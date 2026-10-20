@@ -1,0 +1,58 @@
+{
+  "schema": "tsl9-offline-contract-evidence-v1",
+  "classification": "static-contract-and-new-host-model-only",
+  "original_source_recovery": false,
+  "flashable": false,
+  "installed_v4160_dump": false,
+  "images": {
+    "boot": {"path": "apk-analysis/tsl9-server-current/TSL9-boot-api-payload.bin", "base": "0x1000", "bytes": 12288, "sha256": "650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb"},
+    "runtime": {"path": "apk-analysis/tsl9-server-current/TSL9-runtime-api-payload.bin", "base": "0x8000", "bytes": 76800, "sha256": "32639d7d6df2abac1b966a72de663dc1c215165edf4f4ee0b58acc78e0f60bcc"}
+  },
+  "source_contract": "apk-analysis/tsl9-function-hardware/seventh-round/boot/ota-contracts.json",
+  "source_fresh_ranges": "apk-analysis/tsl9-function-hardware/seventh-round/boot/fresh-r2-verification.json",
+  "ranges": {
+    "boot-ota": {"image": "boot", "start_va": "0x21be", "end_va_exclusive": "0x235c", "raw_sha256": "44702abb50c4489f378bb1036d8cf949817301e2e07d8af8434f7d6e119438d5"},
+    "runtime-ota": {"image": "runtime", "start_va": "0x9bac", "end_va_exclusive": "0x9d76", "raw_sha256": "3ed293c33a823d9792f7365425682f941557872d70726cfc73bd92f4fc8ff2d9"},
+    "boot-token": {"image": "boot", "start_va": "0x1c4a", "end_va_exclusive": "0x1cc4", "raw_sha256": "aeb3f1e819acd6c47f3aebd7fe001eed6df51aa6c1e8a994cf6de66a7c88d8d4"},
+    "boot-flash-metadata": {"image": "boot", "start_va": "0x20e6", "end_va_exclusive": "0x21be", "raw_sha256": "23077092ff85cc83b7dd51ba2b12015c62a0a2a23ea0a99eca6b37395798a169"},
+    "runtime-flash-metadata": {"image": "runtime", "start_va": "0x9b6c", "end_va_exclusive": "0x9bac", "raw_sha256": "1452ddd6b4c2d2227e116f83b2361d28b76962f45579249e06ed0d654a776163"},
+    "runtime-metadata": {"image": "runtime", "start_va": "0x9d76", "end_va_exclusive": "0x9e66", "raw_sha256": "2583cd88f9e50dea918520f5471b4def663e1aed03be345cee9d775387f1e0fb"},
+    "boot-flash-leaves": {"image": "boot", "start_va": "0x2fe2", "end_va_exclusive": "0x30a8", "raw_sha256": "fc815702f69e9182069b3e07309ef703671ca796a0201029549e4b27a89e3d41"},
+    "boot-metadata-init": {"image": "boot", "start_va": "0x235c", "end_va_exclusive": "0x2382", "raw_sha256": "e9bbab5205ffa16d87010e677e45293b273427224ab62844fd77183e913544e5"},
+    "boot-gatt-parser": {"image": "boot", "start_va": "0x167e", "end_va_exclusive": "0x1848", "raw_sha256": "4e727b7835c0b73e339bbb38773e445b8b016948cf2e2d19bbf20a2430e56cdd"},
+    "runtime-gatt-parser": {"image": "runtime", "start_va": "0x8b2e", "end_va_exclusive": "0x8cfa", "raw_sha256": "3fa5b4a387405ad441b3506578154b6119d5b22b9563de9da0a2e4296a0955ca"},
+    "boot-gatt-send": {"image": "boot", "start_va": "0x1848", "end_va_exclusive": "0x1944", "raw_sha256": "c6d5ecf4797791ad7fe6cdba2f4124aa04a80af2271c04d16a67be615887238b"},
+    "runtime-send-gate": {"image": "runtime", "start_va": "0x8cfa", "end_va_exclusive": "0x8d70", "raw_sha256": "b00dcaf0c1b8bd3eaf538d3a2d093d95f7fdd52bc46131bf0e1996e54f49a337"},
+    "boot-reply-dispatch": {"image": "boot", "start_va": "0x29ce", "end_va_exclusive": "0x2b5e", "raw_sha256": "8c0d14df13002f542ea7a7631616b002d1667051262e5721a3b840484c87659c"},
+    "boot-uart-parser": {"image": "boot", "start_va": "0x261a", "end_va_exclusive": "0x27b4", "raw_sha256": "0e5c267a99e396791df981bc0381c3781947bcce1de4990b341cd15689a98a7e"},
+    "boot-uart-commands": {"image": "boot", "start_va": "0x27b4", "end_va_exclusive": "0x29ce", "raw_sha256": "1b37087149f4ebed1b75855d35d9f3ef225dacc132272919a2e93c0ef8c70f92"},
+    "boot-uart-send": {"image": "boot", "start_va": "0x23aa", "end_va_exclusive": "0x247a", "raw_sha256": "796322bc1e2ac2cfac6394d921475ae425933c6952cf0446ba8399f4bf23c829"},
+    "boot-startup-policy": {"image": "boot", "start_va": "0x247a", "end_va_exclusive": "0x261a", "raw_sha256": "5d591d0d5b3d0f0a29781134cc18788f829b3f60910b2e2a10a2c6a96ad9a62d"},
+    "boot-reset": {"image": "boot", "start_va": "0x1ff6", "end_va_exclusive": "0x200e", "raw_sha256": "747267f2d93163088be978253297d8d8424f7a1ebb7c5e9be2cfa3fb34f86286"},
+    "boot-handoff": {"image": "boot", "start_va": "0x20e2", "end_va_exclusive": "0x20e6", "raw_sha256": "de065e353087e31ebbfcf22ec510ddbd55f8632171fee6811b189afdf6325486"},
+    "runtime-reset": {"image": "runtime", "start_va": "0x99c6", "end_va_exclusive": "0x9a02", "raw_sha256": "6187b3289a39a8d175c389997ab713b9d678fce793d336838219ddc135d06d72"},
+    "runtime-r-default": {"image": "runtime", "start_va": "0x13ed4", "end_va_exclusive": "0x14070", "raw_sha256": "bfa6a8131f60d92a190231e3fdf1ecf0c53b528c690a912884655f6790b60bdb"}
+  },
+  "fixtures": [
+    {"id": "token_low8_aliases", "test": "token_aliases", "ranges": ["boot-ota", "runtime-ota", "boot-token"], "va": ["0x22A0", "0x9C8C"], "input": "synthetic identity0..13; control lengths15/271/527/783/1039; bad and unknown byte", "expected": "U clears active first; boot U00/runtime U01; bad token silent; unknown token indeterminate", "unknown_set": ["real UID", "ROM link"]},
+    {"id": "S_original_echo_and_send_drop", "test": "start_echo_and_drop", "ranges": ["boot-ota", "runtime-ota", "boot-gatt-send", "runtime-send-gate"], "va": ["0x22CA", "0x2312", "0x9CEE", "0x9D2C"], "input": "target1 forboot/0 forruntime, original echo lengths271/15/1040/0; alloc/link assumptions", "expected": "valid active1; invalid clears active and overwrites retained payload0 FF; echo original length;1040 TX dropped; no read-support flag", "unknown_set": ["actual allocation/link"]},
+    {"id": "W_bounds_sequence_failure", "test": "write_boundaries_and_failure", "ranges": ["boot-ota", "runtime-ota", "boot-flash-leaves"], "va": ["0x2240", "0x228A", "0x9C2C", "0x9C76"], "input": "boot pages95/96 andruntime27/28; duplicate andoutoforder2; mismatchedword17; busyhelper2", "expected": "native lastpage addresses0801FC00/08007C00;4programrequests,256wordreads; duplicate rewritten; mismatchsilent active1; busy stops trace", "unknown_set": ["Flash status", "persistence", "actual busy timing"]},
+    {"id": "ROM_overlap_unknown", "test": "overlap_boundary", "ranges": ["boot-ota", "runtime-ota"], "va": ["0x225E", "0x9C4A"], "input": "payloadaddressmod4=0; synthetic data66, absent or explicit RAM forward-copy callback", "expected": "absent ROM copy makes alignedsource andretainedbuffer unknown, no provenACK; explicit assumption mutates payload0..1023 beforewrite", "unknown_set": ["ROM4004C implementation", "prefix outside represented payload foralignment1"]},
+    {"id": "E_U_callback_contract", "test": "end_and_prepare_callbacks", "ranges": ["boot-ota", "runtime-ota", "boot-handoff", "boot-reset", "runtime-reset"], "va": ["0x231E", "0x9D38", "0x9C8A", "0x9DFA"], "input": "active1 withno pages;E arbitrarylength; schedulerNO; RuntimeU target1", "expected": "activecleared;emptyE;disconnect200 andjump8000BOOT/reset99C6Runtime400;timerresultignored;U9DFA metadata1 deferred thenreset evenbudgetexhausted", "unknown_set": ["actualcallbackdelivery", "rootloader", "resetoutcome"]},
+    {"id": "metadata_5_writes_unknown_tail", "test": "metadata_budget_and_unknown_tail", "ranges": ["boot-flash-metadata", "runtime-metadata", "boot-metadata-init"], "va": ["0x2184", "0x219A", "0x21AC", "0x9DC0", "0x9DE8"], "input": "selectoralready2; fiveknownstale reads thenwrites;unknownselector; startup fields", "expected": "oneequalreadnowrite;5reads5writesnofinalread;return1budgetonly;8prefixmasksFF/248tailmasks00;init singleprogram request", "unknown_set": ["248stacktailbytes", "fifthwritepersistence", "metadataatomicity"]},
+    {"id": "GATT_parser_gap_checksum_stale", "test": "gatt_parser_branches", "ranges": ["boot-gatt-parser"], "va": ["0x1700", "0x17D8", "0x1824", "0x183E"], "input": "fragmentedS;elapsed299/300;bad checksum;zero-lengthSaftervalidS;length1041", "expected": "299continues/300parserresetonly;activepreservedbybadframe/gap;staledataretained;oversizedframenodispatch", "unknown_set": ["clock unit real elapsed time"]},
+    {"id": "UART_challenge_independent", "test": "uart_challenge_and_independence", "ranges": ["boot-uart-commands", "boot-startup-policy"], "va": ["0x27B4", "0x281A", "0x2846", "0x2896"], "input": "syntheticID0..11 andmetadata1=16; wrong88/right89S;U default", "expected": "I15,sumpayload86,key89,session1;Skey94/session2/sum0/K41;GATTactiveindependent;U silent", "unknown_set": ["real ID", "UART wiring"]},
+    {"id": "wire_native_alignment_stall_unknown", "test": "wire_and_stall_boundaries", "ranges": ["boot-gatt-parser", "runtime-gatt-parser", "boot-gatt-send", "boot-uart-send"], "va": ["0x182C", "0x1830", "0x8CDE", "0x8CE2"], "input": "literalE/Kframes;BOOTWwire;busywriterthenE;droppedprogram2;symbolicIDbyte1", "expected": "Eframe557F45000045;Kframe557F4B0001418D;BOOTpayload200090AA/dataaligned;Runtimepayload2000B9D8/ROMcopy;busy prevents laterdispatch;unknownID yieldsunknownkey/checksum", "unknown_set": ["ROM copy", "UART polling", "runtimeUART contract outside scope"]},
+    {"id": "UART_retry_short_R_reset_gap", "test": "uart_write_retry_short_and_reset", "ranges": ["boot-uart-parser", "boot-uart-commands", "boot-uart-send"], "va": ["0x28D4", "0x2942", "0x2958", "0x2974", "0x29BE", "0x2656"], "input": "syntheticcipherplaintext3atbyte0;readbackfailthenretry;summatchedE88;retained1026byteswithWlength0;Rsession0;badframe;2999/3000gap", "expected": "sum3then6,norollback;shortWconsumesretainedbuffer;R K41/event4reset,noFlashRead;badframepreservessession;3000gapclearsallUARTstate", "unknown_set": ["hardwareFlash/UARTsend", "actualtimerdelivery"]},
+    {"id": "replay_87_pages", "test": "replay_87_pages", "ranges": ["boot-ota", "runtime-ota", "boot-gatt-parser", "runtime-gatt-parser"], "input": "raw capturedruntime76800B/boot12288B inertdata;reversedpages;syntheticGATTframes244bytefragments;explicitRuntimeRAMROMcopy", "expected": "87pageACKattempts underfakeknownRAM/linkassumptions;348program256 requests;22272wordreads;RAMpayloadbyteexact;Eaccepted", "unknown_set": ["realROMcopy", "Flashpersistence", "signature", "actualexecution"]}
+  ],
+  "identity": {"classification": "synthetic-or-symbolic", "synthetic_bytes": [0,1,2,3,4,5,6,7,8,9,10,11,12,13], "real_uid_saved": false, "vin_saved": false, "auth_code_saved": false},
+  "additional_boundary_fixtures": [
+    {"test": "wire_and_stall_boundaries", "range": "runtime-r-default", "va": "0x1402e", "input": "RuntimeR=52, connection andauth bothpassed", "expected": "nonA0 branch returns13EAE,silent,noFlashRead; general_authNO/UNKNOWN isindeterminate"},
+    {"test": "wire_and_stall_boundaries", "input": "unimplementedGATTA0forBOOTandRuntime", "expected": "TC_INDETERMINATE,nativehandlernotimplementeddoesnotmeansilent"},
+    {"test": "wire_and_stall_boundaries", "range": "boot-uart-commands", "input": "UARTGsession0;UARTRsendbusy", "expected": "G K41/event2jump;Rbusy stallearlierthanreset scheduling"},
+    {"test": "uart_write_retry_short_and_reset", "range": "boot-uart-commands", "input": "UARTWpage96;badE;Szerolengthwithretainedchallenge89", "expected": "Wboundsfailbeforesum/program;Ekeepssession2;Susesstaledata0andkeybecomes94"}
+  ],
+  "initial_known_rx_assumption": {"point": "newtraceafterstartupBSSclear", "boot_bss": "20004068..2000999F", "runtime_bss": "20004088..2000C94F", "gatt_boot_payload": "200090AA", "gatt_runtime_payload": "2000B9D8", "uart_boot_storage": "20009594..2000999F", "rx_initial_bytes": "zero", "rx_initial_masks": "FF", "arbitrary_snapshot_default": false, "metadata_and_identity_default": "unknown"},
+  "execution_exclusions": ["originalfirmware", "APK", "network", "API", "BLE", "CAN", "UART", "Flash", "toolinstallation", "globalconfig"]
+}

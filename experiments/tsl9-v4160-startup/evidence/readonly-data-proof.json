@@ -1,0 +1,340 @@
+{
+  "schema": "ID2966-eight-opaque-caller-use-evidence-v1",
+  "source_path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin",
+  "source_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "model_base": 32768,
+  "raw_two_aligned_AUIPC_candidates": [
+    {
+      "highPC": 36276,
+      "lowPC": 36280,
+      "target": 105964,
+      "high_word": 71191,
+      "low_word": 59115027,
+      "raw_hex": "1716010013068603",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 36552,
+      "lowPC": 36556,
+      "target": 34324,
+      "high_word": 4294964503,
+      "low_word": 1959068947,
+      "raw_hex": "17f5ffff1305c574",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 36584,
+      "lowPC": 36588,
+      "target": 105964,
+      "high_word": 71191,
+      "low_word": 4031120915,
+      "raw_hex": "17160100130646f0",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 36676,
+      "lowPC": 36680,
+      "target": 109364,
+      "high_word": 75543,
+      "low_word": 3204908819,
+      "raw_hex": "17270100130707bf",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 36738,
+      "lowPC": 36742,
+      "target": 34324,
+      "high_word": 4294964503,
+      "low_word": 1764033811,
+      "raw_hex": "17f5ffff13052569",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 36760,
+      "lowPC": 36764,
+      "target": 34324,
+      "high_word": 4294964503,
+      "low_word": 1740965139,
+      "raw_hex": "17f5ffff1305c567",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 36796,
+      "lowPC": 36800,
+      "target": 105980,
+      "high_word": 71319,
+      "low_word": 3825632915,
+      "raw_hex": "97160100938606e4",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 36848,
+      "lowPC": 36852,
+      "target": 35970,
+      "high_word": 1303,
+      "low_word": 3374646547,
+      "raw_hex": "17050000130525c9",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 39688,
+      "lowPC": 39692,
+      "target": 39634,
+      "high_word": 1303,
+      "low_word": 4238673171,
+      "raw_hex": "170500001305a5fc",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 39790,
+      "lowPC": 39794,
+      "target": 39634,
+      "high_word": 1303,
+      "low_word": 4131718419,
+      "raw_hex": "17050000130545f6",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 94302,
+      "lowPC": 94306,
+      "target": 93952,
+      "high_word": 1303,
+      "low_word": 3928294675,
+      "raw_hex": "17050000130525ea",
+      "raw_candidate_only": true
+    },
+    {
+      "highPC": 95164,
+      "lowPC": 95168,
+      "target": 94902,
+      "high_word": 1303,
+      "low_word": 4020569363,
+      "raw_hex": "170500001305a5ef",
+      "raw_candidate_only": true
+    }
+  ],
+  "rows": [
+    {
+      "address": 34324,
+      "PCREL_highPC": [
+        36552,
+        36738,
+        36760
+      ],
+      "use": "a0 passed to indirect calls8ED0/8F8A/8FA0 loaded from ROM-slot0x40080; returned a0 stored GP+157/+148/+152",
+      "classification": "materialized address argument; caller alone does not prove callback/code/data semantics or body",
+      "extent_proved": null
+    },
+    {
+      "address": 35970,
+      "PCREL_highPC": [
+        36848
+      ],
+      "use": "a0 to indirect call8FF8 from ROM-slot40080; returned a0 stored GP+144",
+      "classification": "opaque address argument; code entry independently delegated",
+      "extent_proved": null
+    },
+    {
+      "address": 39634,
+      "PCREL_highPC": [
+        39688,
+        39790
+      ],
+      "use": "a0 to direct9124 with a1=0,a2=5000,a3=0;9124 stores this a0 as record+4 and901A reads/calls record+4 indirectly",
+      "classification": "callback-address use chain supported locally, but actual body/ABI delegated",
+      "extent_proved": null,
+      "additional_use": "9B08/9B0C forms a0=9AD2;9B12 direct90B0 compares it against record+4 entries for removal. Raw pointer identity use, no direct execution here."
+    },
+    {
+      "address": 93952,
+      "PCREL_highPC": [
+        94302
+      ],
+      "use": "a0 to indirect1706A from ROM-slot40080; returned a0 stored GP+363",
+      "classification": "opaque address argument; body/ABI not proved by ROM registration pattern",
+      "extent_proved": null
+    },
+    {
+      "address": 94902,
+      "PCREL_highPC": [
+        95164
+      ],
+      "use": "a0 to indirect173C4 from ROM-slot40080; returned a0 stored GP+365",
+      "classification": "opaque address argument; body/ABI not proved by caller",
+      "extent_proved": null
+    },
+    {
+      "address": 105964,
+      "PCREL_highPC": [
+        36276,
+        36584
+      ],
+      "use": "a2 address, a1=13, a0=774 passed to8EF6 via runtime pointer atROM-slot40174",
+      "classification": "address argument only;13 is argument value, not proved byte count",
+      "caller_local_loads_from_target": [],
+      "extent_proved": null,
+      "proposed_13_byte_slice_sha256": "20fd1ebc1f9da3a9f125d135fc9ef905c97f081e93b9e8dc40af30724c327a40",
+      "pointer_or_literal_roles": "not established by caller; no provider generated",
+      "additional_use": "8DB4/8DB8 also forms a2=19DEC;8DBC a1=13,8DBE a0=774;8DC2 C.JALR via ROM-slot40174. Same unproved ROM read extent."
+    },
+    {
+      "address": 105980,
+      "PCREL_highPC": [
+        36796
+      ],
+      "use": "a3 address,a2=16,a1=4,a0=GP passed to8FCC via runtime pointer atROM-slot40130",
+      "classification": "address argument only;16/4 units and callback structure semantics unproved",
+      "caller_local_loads_from_target": [],
+      "extent_proved": null,
+      "proposed_16_byte_slice_sha256": "4bbc7a5d35fa96af271eb731e716a8b8b6429bfdaf18dfd48d34f864b16ff6eb",
+      "pointer_or_literal_roles": "word-looking values alone do not prove pointer roles; no provider generated"
+    },
+    {
+      "address": 109364,
+      "PCREL_highPC": [
+        36676
+      ],
+      "use": "8F3A LBU runtime source;8F3E ANDI3;8F40 branch skips3;8F4C base+index;8F4E signed LB intoa1;8F58/5A retain low16bits then8F5C pass toa0=25 ROM-slot40154",
+      "classification": "bounded caller-local readonly byte lookup view",
+      "index_domain": [
+        0,
+        1,
+        2
+      ],
+      "signed_load": true,
+      "extent_proved": {
+        "start": 109364,
+        "end_exclusive": 109367,
+        "bytes": 3,
+        "scope": "minimum enclosing view for all reachable local index values, not original object extent"
+      },
+      "bytes_hex": "7f0081",
+      "sha256": "688c32f638b6c4acbea9cb9fbe21fdd69151b95dc2e41735b06eb80090390e07",
+      "pointer_or_literal_roles": "literal byte values loaded directly; no pointer-word relocation"
+    }
+  ],
+  "only_bounded_data_provider": {
+    "address": 109364,
+    "bytes": 3,
+    "sha256": "688c32f638b6c4acbea9cb9fbe21fdd69151b95dc2e41735b06eb80090390e07"
+  },
+  "replay_commands": [
+    [
+      "C:\\Users\\locky\\Tools\\radare2\\bin\\r2.exe",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-q",
+      "-c",
+      "e scr.color=0; pDj 384 @ 0x8e88; q",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin"
+    ],
+    [
+      "C:\\Users\\locky\\Tools\\radare2\\bin\\r2.exe",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-q",
+      "-c",
+      "e scr.color=0; pDj 64 @ 0x9b4e; q",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin"
+    ],
+    [
+      "C:\\Users\\locky\\Tools\\radare2\\bin\\r2.exe",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-q",
+      "-c",
+      "e scr.color=0; pDj 48 @ 0x17040; q",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin"
+    ],
+    [
+      "C:\\Users\\locky\\Tools\\radare2\\bin\\r2.exe",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-q",
+      "-c",
+      "e scr.color=0; pDj 40 @ 0x173a2; q",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin"
+    ],
+    [
+      "C:\\Users\\locky\\Tools\\radare2\\bin\\r2.exe",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-q",
+      "-c",
+      "e scr.color=0; pDj 92 @ 0x9124; q",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin"
+    ],
+    [
+      "C:\\Users\\locky\\Tools\\radare2\\bin\\r2.exe",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-q",
+      "-c",
+      "e scr.color=0; pDj 96 @ 0x901a; q",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin"
+    ],
+    [
+      "C:\\Users\\locky\\Tools\\radare2\\bin\\r2.exe",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-q",
+      "-c",
+      "e scr.color=0; pDj 30 @ 0x8da6; q",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin"
+    ],
+    [
+      "C:\\Users\\locky\\Tools\\radare2\\bin\\r2.exe",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-q",
+      "-c",
+      "e scr.color=0; pDj 52 @ 0x9b02; q",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin"
+    ]
+  ],
+  "r2_sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+  "limits": [
+    "Raw candidate scan covers only adjacent AUIPC+I/S pairs at2-byte offsets, not every possible reference mechanism",
+    "Matched raw candidates validated against retained caller code; no unbounded code enumeration",
+    "Unknown ROM pointer values/body/ABI/read-write effects remain unknown",
+    "No original data-object length/type, hardware mapping or physical flash readonly proof",
+    "3B is caller-local read-view bound; unknownROM consuming resulting scalar does not enlarge this local memory read"
+  ],
+  "network": false,
+  "target_execution": false,
+  "emulation": false,
+  "hardware": false,
+  "D_mutation": false
+}

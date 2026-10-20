@@ -1,0 +1,1339 @@
+/* R80 original-VA ET_REL representation; not a verified executable image. */
+SECTIONS {
+ .tsl9_code_00008000 0x8000 : { KEEP(*(.text.tsl9_image_entry)) }
+ .tsl9_ro_00008038 0x8038 : { KEEP(*(.tsl9_vectors)) }
+ .tsl9_code_00008180 0x8180 : { KEEP(*(.text.tsl9_entry_main_8180)) }
+ .tsl9_code_000081aa 0x81AA : { KEEP(*(.text.tsl9_rf_flag_81aa)) }
+ .tsl9_code_000081b0 0x81B0 : { KEEP(*(.text.tsl9_periph_clock_81b0)) }
+ .tsl9_code_000081de 0x81DE : { KEEP(*(.text.tsl9_runtime_unported_81de)) }
+ .tsl9_code_000081ee 0x81EE : { KEEP(*(.text.tsl9_runtime_unported_81ee)) }
+ .tsl9_code_000081f8 0x81F8 : { KEEP(*(.text.tsl9_runtime_unported_81f8)) }
+ .tsl9_code_00008202 0x8202 : { KEEP(*(.text.tsl9_runtime_unported_8202)) }
+ .tsl9_code_00008214 0x8214 : { KEEP(*(.text.tsl9_tx_gate_8214)) }
+ .tsl9_code_0000823e 0x823E : { KEEP(*(.text.tsl9_runtime_unported_823e)) }
+ .tsl9_code_00008282 0x8282 : { KEEP(*(.text.tsl9_control_limit_8282)) }
+ .tsl9_code_00008294 0x8294 : { KEEP(*(.text.tsl9_dispatch_mode_8294)) }
+ .tsl9_code_0000829e 0x829E : { KEEP(*(.text.tsl9_runtime_unported_829e)) }
+ .tsl9_code_000082c8 0x82C8 : { KEEP(*(.text.tsl9_runtime_unported_82c8)) }
+ .tsl9_code_00008386 0x8386 : { KEEP(*(.text.tsl9_runtime_unported_8386)) }
+ .tsl9_code_0000843a 0x843A : { KEEP(*(.text.tsl9_rf_enabled_843a)) }
+ .tsl9_code_00008440 0x8440 : { KEEP(*(.text.tsl9_context_restore_irq)) }
+ .tsl9_code_00008490 0x8490 : { KEEP(*(.text.tsl9_ble_lle)) }
+ .tsl9_code_00008518 0x8518 : { KEEP(*(.text.tsl9_tx_memset_8518)) }
+ .tsl9_code_000085c0 0x85C0 : { KEEP(*(.text.tsl9_ble_param_85c0)) }
+ .tsl9_code_000085e2 0x85E2 : { KEEP(*(.text.tsl9_runtime_unported_85e2)) }
+ .tsl9_code_00008778 0x8778 : { KEEP(*(.text.tsl9_r79_region_8778)) }
+ .tsl9_code_000087c4 0x87C4 : { KEEP(*(.text.tsl9_runtime_unported_87c4)) }
+ .tsl9_code_00008a3c 0x8A3C : { KEEP(*(.text.tsl9_r79_region_8a3c)) }
+ .tsl9_code_00008cfa 0x8CFA : { KEEP(*(.text.tsl9_ble_frame_8cfa)) }
+ .tsl9_code_00008e12 0x8E12 : { KEEP(*(.text.tsl9_r79_region_8e12)) }
+ .tsl9_code_00008e64 0x8E64 : { KEEP(*(.text.tsl9_runtime_unported_8e64)) }
+ .tsl9_code_00008e82 0x8E82 : { KEEP(*(.text.tsl9_runtime_unported_8e82)) }
+ .tsl9_code_00008fe6 0x8FE6 : { KEEP(*(.text.__tsl9_runtime_entry)) }
+ .tsl9_code_00008ff8 0x8FF8 : { KEEP(*(.text.tsl9_ble_scheduler_event_8ff8)) }
+ .tsl9_code_00009058 0x9058 : { KEEP(*(.text.tsl9_ble_scheduler_init_9058)) }
+ .tsl9_code_0000908e 0x908E : { KEEP(*(.text.tsl9_scheduler_cancel_908e)) }
+ .tsl9_code_00009102 0x9102 : { KEEP(*(.text.tsl9_sgpio_register_9102)) }
+ .tsl9_code_0000922e 0x922E : { KEEP(*(.text.tsl9_entry_init_922e)) }
+ .tsl9_code_0000926e 0x926E : { KEEP(*(.text.tsl9_init_check_transform_926e)) }
+ .tsl9_code_00009298 0x9298 : { KEEP(*(.text.tsl9_init_check_identifier_9298)) }
+ .tsl9_code_000092d0 0x92D0 : { KEEP(*(.text.tsl9_r79_region_92d0)) }
+ .tsl9_code_00009312 0x9312 : { KEEP(*(.text.tsl9_init_check_value_9312)) }
+ .tsl9_code_0000935c 0x935C : { KEEP(*(.text.tsl9_runtime_unported_935c)) }
+ .tsl9_code_00009388 0x9388 : { KEEP(*(.text.tsl9_timer_start_9388)) }
+ .tsl9_code_000093cc 0x93CC : { KEEP(*(.text.tsl9_periph_timer_stop_93cc)) }
+ .tsl9_code_000093ee 0x93EE : { KEEP(*(.text.tsl9_timer_prepare_93ee)) }
+ .tsl9_code_00009432 0x9432 : { KEEP(*(.text.tsl9_runtime_unported_9432)) }
+ .tsl9_code_000094cc 0x94CC : { KEEP(*(.text.tsl9_runtime_unported_94cc)) }
+ .tsl9_code_000094e6 0x94E6 : { KEEP(*(.text.tsl9_event_reference_94e6)) }
+ .tsl9_code_0000952c 0x952C : { KEEP(*(.text.tsl9_runtime_unported_952c)) }
+ .tsl9_code_0000959a 0x959A : { KEEP(*(.text.tsl9_runtime_unported_959a)) }
+ .tsl9_code_000095ec 0x95EC : { KEEP(*(.text.tsl9_event_reference_95ec)) }
+ .tsl9_code_00009636 0x9636 : { KEEP(*(.text.tsl9_runtime_unported_9636)) }
+ .tsl9_code_00009680 0x9680 : { KEEP(*(.text.tsl9_runtime_unported_9680)) }
+ .tsl9_code_0000971a 0x971A : { KEEP(*(.text.tsl9_runtime_unported_971a)) }
+ .tsl9_code_00009770 0x9770 : { KEEP(*(.text.tsl9_timer_mode_9770)) }
+ .tsl9_code_0000977c 0x977C : { KEEP(*(.text.tsl9_timer3_irq)) }
+ .tsl9_code_00009936 0x9936 : { KEEP(*(.text.tsl9_runtime_unported_9936)) }
+ .tsl9_code_000099c6 0x99C6 : { KEEP(*(.text.tsl9_service_reference_99c6)) }
+ .tsl9_code_00009a02 0x9A02 : { KEEP(*(.text.tsl9_sgpio_pin_init_9a02)) }
+ .tsl9_code_00009a20 0x9A20 : { KEEP(*(.text.tsl9_runtime_unported_9a20)) }
+ .tsl9_code_00009ab0 0x9AB0 : { KEEP(*(.text.tsl9_sgpio_expire_9ab0)) }
+ .tsl9_code_00009ac2 0x9AC2 : { KEEP(*(.text.tsl9_runtime_unported_9ac2)) }
+ .tsl9_code_00009ace 0x9ACE : { KEEP(*(.text.tsl9_sgpio_idle_9ace)) }
+ .tsl9_code_00009ae0 0x9AE0 : { KEEP(*(.text.tsl9_r79_region_9ae0)) }
+ .tsl9_code_00009b14 0x9B14 : { KEEP(*(.text.tsl9_runtime_unported_9b14)) }
+ .tsl9_code_00009b2c 0x9B2C : { KEEP(*(.text.tsl9_runtime_unported_9b2c)) }
+ .tsl9_code_00009b6c 0x9B6C : { KEEP(*(.text.tsl9_storage_page_9b6c)) }
+ .tsl9_code_00009bac 0x9BAC : { KEEP(*(.text.tsl9_r79_region_9bac)) }
+ .tsl9_code_00009d76 0x9D76 : { KEEP(*(.text.tsl9_config_persist_9d76)) }
+ .tsl9_code_00009d9e 0x9D9E : { KEEP(*(.text.tsl9_config_read_9d9e)) }
+ .tsl9_code_00009dc0 0x9DC0 : { KEEP(*(.text.tsl9_r79_region_9dc0)) }
+ .tsl9_code_00009e0a 0x9E0A : { KEEP(*(.text.tsl9_runtime_unported_9e0a)) }
+ .tsl9_code_00009e2c 0x9E2C : { KEEP(*(.text.tsl9_runtime_unported_9e2c)) }
+ .tsl9_code_00009e66 0x9E66 : { KEEP(*(.text.tsl9_runtime_unported_9e66)) }
+ .tsl9_code_00009e8e 0x9E8E : { KEEP(*(.text.tsl9_runtime_unported_9e8e)) }
+ .tsl9_code_00009e94 0x9E94 : { KEEP(*(.text.tsl9_runtime_unported_9e94)) }
+ .tsl9_code_00009ecc 0x9ECC : { KEEP(*(.text.tsl9_runtime_unported_9ecc)) }
+ .tsl9_code_00009edc 0x9EDC : { KEEP(*(.text.tsl9_rf_flag_9edc)) }
+ .tsl9_code_00009ee2 0x9EE2 : { KEEP(*(.text.tsl9_runtime_unported_9ee2)) }
+ .tsl9_code_00009f26 0x9F26 : { KEEP(*(.text.tsl9_runtime_unported_9f26)) }
+ .tsl9_code_00009f3e 0x9F3E : { KEEP(*(.text.tsl9_runtime_unported_9f3e)) }
+ .tsl9_code_00009f48 0x9F48 : { KEEP(*(.text.tsl9_runtime_unported_9f48)) }
+ .tsl9_code_00009f64 0x9F64 : { KEEP(*(.text.tsl9_runtime_unported_9f64)) }
+ .tsl9_code_00009f6e 0x9F6E : { KEEP(*(.text.tsl9_runtime_unported_9f6e)) }
+ .tsl9_code_0000a128 0xA128 : { KEEP(*(.text.tsl9_runtime_unported_a128)) }
+ .tsl9_code_0000a20e 0xA20E : { KEEP(*(.text.tsl9_callback_a20e)) }
+ .tsl9_code_0000a212 0xA212 : { KEEP(*(.text.tsl9_runtime_unported_a212)) }
+ .tsl9_code_0000a2a0 0xA2A0 : { KEEP(*(.text.tsl9_feature_init_a2a0)) }
+ .tsl9_code_0000a2b2 0xA2B2 : { KEEP(*(.text.tsl9_runtime_unported_a2b2)) }
+ .tsl9_code_0000a2f2 0xA2F2 : { KEEP(*(.text.tsl9_callback_a2f2)) }
+ .tsl9_code_0000a39e 0xA39E : { KEEP(*(.text.tsl9_runtime_unported_a39e)) }
+ .tsl9_code_0000a3f4 0xA3F4 : { KEEP(*(.text.tsl9_callback_a3f4)) }
+ .tsl9_code_0000a400 0xA400 : { KEEP(*(.text.tsl9_callback_a400)) }
+ .tsl9_code_0000a416 0xA416 : { KEEP(*(.text.tsl9_runtime_unported_a416)) }
+ .tsl9_code_0000a57e 0xA57E : { KEEP(*(.text.tsl9_runtime_unported_a57e)) }
+ .tsl9_code_0000a58a 0xA58A : { KEEP(*(.text.tsl9_runtime_unported_a58a)) }
+ .tsl9_code_0000a5d0 0xA5D0 : { KEEP(*(.text.tsl9_runtime_unported_a5d0)) }
+ .tsl9_code_0000a5fe 0xA5FE : { KEEP(*(.text.tsl9_runtime_unported_a5fe)) }
+ .tsl9_code_0000a886 0xA886 : { KEEP(*(.text.tsl9_runtime_unported_a886)) }
+ .tsl9_code_0000a894 0xA894 : { KEEP(*(.text.tsl9_runtime_unported_a894)) }
+ .tsl9_code_0000a8da 0xA8DA : { KEEP(*(.text.tsl9_runtime_unported_a8da)) }
+ .tsl9_code_0000a8fc 0xA8FC : { KEEP(*(.text.tsl9_runtime_unported_a8fc)) }
+ .tsl9_code_0000a906 0xA906 : { KEEP(*(.text.tsl9_runtime_unported_a906)) }
+ .tsl9_code_0000a936 0xA936 : { KEEP(*(.text.tsl9_feature_init_a936)) }
+ .tsl9_code_0000a94c 0xA94C : { KEEP(*(.text.tsl9_runtime_unported_a94c)) }
+ .tsl9_code_0000a97c 0xA97C : { KEEP(*(.text.tsl9_runtime_unported_a97c)) }
+ .tsl9_code_0000a9bc 0xA9BC : { KEEP(*(.text.tsl9_runtime_unported_a9bc)) }
+ .tsl9_code_0000a9f4 0xA9F4 : { KEEP(*(.text.tsl9_callback_a9f4)) }
+ .tsl9_code_0000a9fe 0xA9FE : { KEEP(*(.text.tsl9_callback_a9fe)) }
+ .tsl9_code_0000aa0e 0xAA0E : { KEEP(*(.text.tsl9_callback_aa0e)) }
+ .tsl9_code_0000aa1e 0xAA1E : { KEEP(*(.text.tsl9_runtime_unported_aa1e)) }
+ .tsl9_code_0000aa66 0xAA66 : { KEEP(*(.text.tsl9_runtime_unported_aa66)) }
+ .tsl9_code_0000aa6c 0xAA6C : { KEEP(*(.text.tsl9_runtime_unported_aa6c)) }
+ .tsl9_code_0000aac2 0xAAC2 : { KEEP(*(.text.tsl9_runtime_unported_aac2)) }
+ .tsl9_code_0000aaf4 0xAAF4 : { KEEP(*(.text.tsl9_runtime_unported_aaf4)) }
+ .tsl9_code_0000aafe 0xAAFE : { KEEP(*(.text.tsl9_runtime_unported_aafe)) }
+ .tsl9_code_0000ab08 0xAB08 : { KEEP(*(.text.tsl9_runtime_unported_ab08)) }
+ .tsl9_code_0000ab12 0xAB12 : { KEEP(*(.text.tsl9_runtime_unported_ab12)) }
+ .tsl9_code_0000ab1c 0xAB1C : { KEEP(*(.text.tsl9_runtime_unported_ab1c)) }
+ .tsl9_code_0000ab2a 0xAB2A : { KEEP(*(.text.tsl9_runtime_unported_ab2a)) }
+ .tsl9_code_0000ab9e 0xAB9E : { KEEP(*(.text.tsl9_runtime_unported_ab9e)) }
+ .tsl9_code_0000ac72 0xAC72 : { KEEP(*(.text.tsl9_runtime_unported_ac72)) }
+ .tsl9_code_0000ace2 0xACE2 : { KEEP(*(.text.tsl9_runtime_unported_ace2)) }
+ .tsl9_code_0000ad16 0xAD16 : { KEEP(*(.text.tsl9_runtime_unported_ad16)) }
+ .tsl9_code_0000ad72 0xAD72 : { KEEP(*(.text.tsl9_runtime_unported_ad72)) }
+ .tsl9_code_0000aea4 0xAEA4 : { KEEP(*(.text.tsl9_runtime_unported_aea4)) }
+ .tsl9_code_0000aed6 0xAED6 : { KEEP(*(.text.tsl9_feature_init_aed6)) }
+ .tsl9_code_0000aeec 0xAEEC : { KEEP(*(.text.tsl9_runtime_unported_aeec)) }
+ .tsl9_code_0000af18 0xAF18 : { KEEP(*(.text.tsl9_feature_init_af18)) }
+ .tsl9_code_0000af66 0xAF66 : { KEEP(*(.text.tsl9_runtime_unported_af66)) }
+ .tsl9_code_0000af86 0xAF86 : { KEEP(*(.text.tsl9_runtime_unported_af86)) }
+ .tsl9_code_0000afc0 0xAFC0 : { KEEP(*(.text.tsl9_runtime_unported_afc0)) }
+ .tsl9_code_0000afc6 0xAFC6 : { KEEP(*(.text.tsl9_runtime_unported_afc6)) }
+ .tsl9_code_0000b03e 0xB03E : { KEEP(*(.text.tsl9_runtime_unported_b03e)) }
+ .tsl9_code_0000b060 0xB060 : { KEEP(*(.text.tsl9_feature_init_b060)) }
+ .tsl9_code_0000b072 0xB072 : { KEEP(*(.text.tsl9_callback_b072)) }
+ .tsl9_code_0000b0ba 0xB0BA : { KEEP(*(.text.tsl9_runtime_unported_b0ba)) }
+ .tsl9_code_0000b0f4 0xB0F4 : { KEEP(*(.text.tsl9_runtime_unported_b0f4)) }
+ .tsl9_code_0000b168 0xB168 : { KEEP(*(.text.tsl9_runtime_unported_b168)) }
+ .tsl9_code_0000b186 0xB186 : { KEEP(*(.text.tsl9_runtime_unported_b186)) }
+ .tsl9_code_0000b228 0xB228 : { KEEP(*(.text.tsl9_runtime_unported_b228)) }
+ .tsl9_code_0000b232 0xB232 : { KEEP(*(.text.tsl9_runtime_unported_b232)) }
+ .tsl9_code_0000b23c 0xB23C : { KEEP(*(.text.tsl9_runtime_unported_b23c)) }
+ .tsl9_code_0000b246 0xB246 : { KEEP(*(.text.tsl9_runtime_unported_b246)) }
+ .tsl9_code_0000b250 0xB250 : { KEEP(*(.text.tsl9_runtime_unported_b250)) }
+ .tsl9_code_0000b39c 0xB39C : { KEEP(*(.text.tsl9_runtime_unported_b39c)) }
+ .tsl9_code_0000b3ae 0xB3AE : { KEEP(*(.text.tsl9_runtime_unported_b3ae)) }
+ .tsl9_code_0000b3be 0xB3BE : { KEEP(*(.text.tsl9_runtime_unported_b3be)) }
+ .tsl9_code_0000b3de 0xB3DE : { KEEP(*(.text.tsl9_runtime_unported_b3de)) }
+ .tsl9_code_0000b3f0 0xB3F0 : { KEEP(*(.text.tsl9_runtime_unported_b3f0)) }
+ .tsl9_code_0000b450 0xB450 : { KEEP(*(.text.tsl9_runtime_unported_b450)) }
+ .tsl9_code_0000b46a 0xB46A : { KEEP(*(.text.tsl9_feature_init_b46a)) }
+ .tsl9_code_0000b480 0xB480 : { KEEP(*(.text.tsl9_callback_b480)) }
+ .tsl9_code_0000b4ee 0xB4EE : { KEEP(*(.text.tsl9_runtime_unported_b4ee)) }
+ .tsl9_code_0000b504 0xB504 : { KEEP(*(.text.tsl9_runtime_unported_b504)) }
+ .tsl9_code_0000b532 0xB532 : { KEEP(*(.text.tsl9_runtime_unported_b532)) }
+ .tsl9_code_0000b546 0xB546 : { KEEP(*(.text.tsl9_runtime_unported_b546)) }
+ .tsl9_code_0000b574 0xB574 : { KEEP(*(.text.tsl9_runtime_unported_b574)) }
+ .tsl9_code_0000b57e 0xB57E : { KEEP(*(.text.tsl9_runtime_unported_b57e)) }
+ .tsl9_code_0000b5ba 0xB5BA : { KEEP(*(.text.tsl9_runtime_unported_b5ba)) }
+ .tsl9_code_0000bb72 0xBB72 : { KEEP(*(.text.tsl9_runtime_unported_bb72)) }
+ .tsl9_code_0000bb7e 0xBB7E : { KEEP(*(.text.tsl9_runtime_unported_bb7e)) }
+ .tsl9_code_0000bb88 0xBB88 : { KEEP(*(.text.tsl9_runtime_unported_bb88)) }
+ .tsl9_code_0000bb92 0xBB92 : { KEEP(*(.text.tsl9_runtime_unported_bb92)) }
+ .tsl9_code_0000bb9c 0xBB9C : { KEEP(*(.text.tsl9_runtime_unported_bb9c)) }
+ .tsl9_code_0000bbcc 0xBBCC : { KEEP(*(.text.tsl9_runtime_unported_bbcc)) }
+ .tsl9_code_0000bbd8 0xBBD8 : { KEEP(*(.text.tsl9_runtime_unported_bbd8)) }
+ .tsl9_code_0000bbe2 0xBBE2 : { KEEP(*(.text.tsl9_runtime_unported_bbe2)) }
+ .tsl9_code_0000bbec 0xBBEC : { KEEP(*(.text.tsl9_runtime_unported_bbec)) }
+ .tsl9_code_0000bbf6 0xBBF6 : { KEEP(*(.text.tsl9_runtime_unported_bbf6)) }
+ .tsl9_code_0000bc00 0xBC00 : { KEEP(*(.text.tsl9_runtime_unported_bc00)) }
+ .tsl9_code_0000bc1a 0xBC1A : { KEEP(*(.text.tsl9_runtime_unported_bc1a)) }
+ .tsl9_code_0000c1f6 0xC1F6 : { KEEP(*(.text.tsl9_runtime_unported_c1f6)) }
+ .tsl9_code_0000c200 0xC200 : { KEEP(*(.text.tsl9_runtime_unported_c200)) }
+ .tsl9_code_0000c248 0xC248 : { KEEP(*(.text.tsl9_runtime_unported_c248)) }
+ .tsl9_code_0000c25a 0xC25A : { KEEP(*(.text.tsl9_feature_init_c25a)) }
+ .tsl9_code_0000c270 0xC270 : { KEEP(*(.text.tsl9_runtime_unported_c270)) }
+ .tsl9_code_0000c2fe 0xC2FE : { KEEP(*(.text.tsl9_runtime_unported_c2fe)) }
+ .tsl9_code_0000c30e 0xC30E : { KEEP(*(.text.tsl9_runtime_unported_c30e)) }
+ .tsl9_code_0000c4aa 0xC4AA : { KEEP(*(.text.tsl9_runtime_unported_c4aa)) }
+ .tsl9_code_0000c516 0xC516 : { KEEP(*(.text.tsl9_feature_init_c516)) }
+ .tsl9_code_0000c544 0xC544 : { KEEP(*(.text.tsl9_tx_apply_c544)) }
+ .tsl9_code_0000c612 0xC612 : { KEEP(*(.text.tsl9_runtime_unported_c612)) }
+ .tsl9_code_0000c634 0xC634 : { KEEP(*(.text.tsl9_tx_clear_c634)) }
+ .tsl9_code_0000c646 0xC646 : { KEEP(*(.text.tsl9_runtime_unported_c646)) }
+ .tsl9_code_0000c684 0xC684 : { KEEP(*(.text.tsl9_runtime_unported_c684)) }
+ .tsl9_code_0000c73e 0xC73E : { KEEP(*(.text.tsl9_runtime_unported_c73e)) }
+ .tsl9_code_0000c7c0 0xC7C0 : { KEEP(*(.text.tsl9_runtime_unported_c7c0)) }
+ .tsl9_code_0000cac0 0xCAC0 : { KEEP(*(.text.tsl9_runtime_unported_cac0)) }
+ .tsl9_code_0000cacc 0xCACC : { KEEP(*(.text.tsl9_runtime_unported_cacc)) }
+ .tsl9_code_0000cae2 0xCAE2 : { KEEP(*(.text.tsl9_runtime_unported_cae2)) }
+ .tsl9_code_0000caec 0xCAEC : { KEEP(*(.text.tsl9_runtime_unported_caec)) }
+ .tsl9_code_0000caf6 0xCAF6 : { KEEP(*(.text.tsl9_runtime_unported_caf6)) }
+ .tsl9_code_0000cb2c 0xCB2C : { KEEP(*(.text.tsl9_runtime_unported_cb2c)) }
+ .tsl9_code_0000cb60 0xCB60 : { KEEP(*(.text.tsl9_runtime_unported_cb60)) }
+ .tsl9_code_0000cbae 0xCBAE : { KEEP(*(.text.tsl9_runtime_unported_cbae)) }
+ .tsl9_code_0000cbb8 0xCBB8 : { KEEP(*(.text.tsl9_runtime_unported_cbb8)) }
+ .tsl9_code_0000cbca 0xCBCA : { KEEP(*(.text.tsl9_runtime_unported_cbca)) }
+ .tsl9_code_0000cce6 0xCCE6 : { KEEP(*(.text.tsl9_runtime_unported_cce6)) }
+ .tsl9_code_0000cd08 0xCD08 : { KEEP(*(.text.tsl9_feature_init_cd08)) }
+ .tsl9_code_0000cd1e 0xCD1E : { KEEP(*(.text.tsl9_runtime_unported_cd1e)) }
+ .tsl9_code_0000cd3a 0xCD3A : { KEEP(*(.text.tsl9_runtime_unported_cd3a)) }
+ .tsl9_code_0000cdf4 0xCDF4 : { KEEP(*(.text.tsl9_runtime_unported_cdf4)) }
+ .tsl9_code_0000cea6 0xCEA6 : { KEEP(*(.text.tsl9_runtime_unported_cea6)) }
+ .tsl9_code_0000ceb0 0xCEB0 : { KEEP(*(.text.tsl9_runtime_unported_ceb0)) }
+ .tsl9_code_0000ceba 0xCEBA : { KEEP(*(.text.tsl9_runtime_unported_ceba)) }
+ .tsl9_code_0000ceda 0xCEDA : { KEEP(*(.text.tsl9_runtime_unported_ceda)) }
+ .tsl9_code_0000cf4c 0xCF4C : { KEEP(*(.text.tsl9_feature_init_cf4c)) }
+ .tsl9_code_0000cf62 0xCF62 : { KEEP(*(.text.tsl9_runtime_unported_cf62)) }
+ .tsl9_code_0000cfa8 0xCFA8 : { KEEP(*(.text.tsl9_runtime_unported_cfa8)) }
+ .tsl9_code_0000cfee 0xCFEE : { KEEP(*(.text.tsl9_runtime_unported_cfee)) }
+ .tsl9_code_0000cff4 0xCFF4 : { KEEP(*(.text.tsl9_feature_init_cff4)) }
+ .tsl9_code_0000d006 0xD006 : { KEEP(*(.text.tsl9_runtime_unported_d006)) }
+ .tsl9_code_0000d010 0xD010 : { KEEP(*(.text.tsl9_runtime_unported_d010)) }
+ .tsl9_code_0000d0cc 0xD0CC : { KEEP(*(.text.tsl9_feature_init_d0cc)) }
+ .tsl9_code_0000d0e2 0xD0E2 : { KEEP(*(.text.tsl9_runtime_unported_d0e2)) }
+ .tsl9_code_0000d148 0xD148 : { KEEP(*(.text.tsl9_runtime_unported_d148)) }
+ .tsl9_code_0000d16e 0xD16E : { KEEP(*(.text.tsl9_runtime_unported_d16e)) }
+ .tsl9_code_0000d17c 0xD17C : { KEEP(*(.text.tsl9_runtime_unported_d17c)) }
+ .tsl9_code_0000d196 0xD196 : { KEEP(*(.text.tsl9_runtime_unported_d196)) }
+ .tsl9_code_0000d1dc 0xD1DC : { KEEP(*(.text.tsl9_runtime_unported_d1dc)) }
+ .tsl9_code_0000d22a 0xD22A : { KEEP(*(.text.tsl9_runtime_unported_d22a)) }
+ .tsl9_code_0000d24c 0xD24C : { KEEP(*(.text.tsl9_runtime_unported_d24c)) }
+ .tsl9_code_0000d25a 0xD25A : { KEEP(*(.text.tsl9_runtime_unported_d25a)) }
+ .tsl9_code_0000d2a6 0xD2A6 : { KEEP(*(.text.tsl9_runtime_unported_d2a6)) }
+ .tsl9_code_0000d2b0 0xD2B0 : { KEEP(*(.text.tsl9_runtime_unported_d2b0)) }
+ .tsl9_code_0000d31a 0xD31A : { KEEP(*(.text.tsl9_runtime_unported_d31a)) }
+ .tsl9_code_0000d324 0xD324 : { KEEP(*(.text.tsl9_runtime_unported_d324)) }
+ .tsl9_code_0000d388 0xD388 : { KEEP(*(.text.tsl9_runtime_unported_d388)) }
+ .tsl9_code_0000d392 0xD392 : { KEEP(*(.text.tsl9_runtime_unported_d392)) }
+ .tsl9_code_0000d39c 0xD39C : { KEEP(*(.text.tsl9_feature_init_d39c)) }
+ .tsl9_code_0000d3b2 0xD3B2 : { KEEP(*(.text.tsl9_callback_d3b2)) }
+ .tsl9_code_0000d3e4 0xD3E4 : { KEEP(*(.text.tsl9_runtime_unported_d3e4)) }
+ .tsl9_code_0000d420 0xD420 : { KEEP(*(.text.tsl9_runtime_unported_d420)) }
+ .tsl9_code_0000d4ec 0xD4EC : { KEEP(*(.text.tsl9_runtime_unported_d4ec)) }
+ .tsl9_code_0000d4f2 0xD4F2 : { KEEP(*(.text.tsl9_runtime_unported_d4f2)) }
+ .tsl9_code_0000d514 0xD514 : { KEEP(*(.text.tsl9_feature_init_d514)) }
+ .tsl9_code_0000d526 0xD526 : { KEEP(*(.text.tsl9_runtime_unported_d526)) }
+ .tsl9_code_0000d5de 0xD5DE : { KEEP(*(.text.tsl9_runtime_unported_d5de)) }
+ .tsl9_code_0000d5e4 0xD5E4 : { KEEP(*(.text.tsl9_feature_init_d5e4)) }
+ .tsl9_code_0000d5f6 0xD5F6 : { KEEP(*(.text.tsl9_runtime_unported_d5f6)) }
+ .tsl9_code_0000d62e 0xD62E : { KEEP(*(.text.tsl9_callback_d62e)) }
+ .tsl9_code_0000d63a 0xD63A : { KEEP(*(.text.tsl9_callback_d63a)) }
+ .tsl9_code_0000d646 0xD646 : { KEEP(*(.text.tsl9_callback_d646)) }
+ .tsl9_code_0000d652 0xD652 : { KEEP(*(.text.tsl9_callback_d652)) }
+ .tsl9_code_0000d65e 0xD65E : { KEEP(*(.text.tsl9_runtime_unported_d65e)) }
+ .tsl9_code_0000d69a 0xD69A : { KEEP(*(.text.tsl9_runtime_unported_d69a)) }
+ .tsl9_code_0000d6f2 0xD6F2 : { KEEP(*(.text.tsl9_runtime_unported_d6f2)) }
+ .tsl9_code_0000d76c 0xD76C : { KEEP(*(.text.tsl9_runtime_unported_d76c)) }
+ .tsl9_code_0000d798 0xD798 : { KEEP(*(.text.tsl9_runtime_unported_d798)) }
+ .tsl9_code_0000d7e0 0xD7E0 : { KEEP(*(.text.tsl9_runtime_unported_d7e0)) }
+ .tsl9_code_0000d8c0 0xD8C0 : { KEEP(*(.text.tsl9_runtime_unported_d8c0)) }
+ .tsl9_code_0000d8fe 0xD8FE : { KEEP(*(.text.tsl9_runtime_unported_d8fe)) }
+ .tsl9_code_0000d952 0xD952 : { KEEP(*(.text.tsl9_runtime_unported_d952)) }
+ .tsl9_code_0000da56 0xDA56 : { KEEP(*(.text.tsl9_runtime_unported_da56)) }
+ .tsl9_code_0000dd0c 0xDD0C : { KEEP(*(.text.tsl9_runtime_unported_dd0c)) }
+ .tsl9_code_0000dd2a 0xDD2A : { KEEP(*(.text.tsl9_runtime_unported_dd2a)) }
+ .tsl9_code_0000dd6c 0xDD6C : { KEEP(*(.text.tsl9_runtime_unported_dd6c)) }
+ .tsl9_code_0000dd76 0xDD76 : { KEEP(*(.text.tsl9_runtime_unported_dd76)) }
+ .tsl9_code_0000dd7c 0xDD7C : { KEEP(*(.text.tsl9_runtime_unported_dd7c)) }
+ .tsl9_code_0000dec2 0xDEC2 : { KEEP(*(.text.tsl9_runtime_unported_dec2)) }
+ .tsl9_code_0000decc 0xDECC : { KEEP(*(.text.tsl9_runtime_unported_decc)) }
+ .tsl9_code_0000ded2 0xDED2 : { KEEP(*(.text.tsl9_runtime_unported_ded2)) }
+ .tsl9_code_0000dee2 0xDEE2 : { KEEP(*(.text.tsl9_runtime_unported_dee2)) }
+ .tsl9_code_0000df2e 0xDF2E : { KEEP(*(.text.tsl9_feature_init_df2e)) }
+ .tsl9_code_0000df44 0xDF44 : { KEEP(*(.text.tsl9_callback_df44)) }
+ .tsl9_code_0000e030 0xE030 : { KEEP(*(.text.tsl9_runtime_unported_e030)) }
+ .tsl9_code_0000e096 0xE096 : { KEEP(*(.text.tsl9_runtime_unported_e096)) }
+ .tsl9_code_0000e0aa 0xE0AA : { KEEP(*(.text.tsl9_runtime_unported_e0aa)) }
+ .tsl9_code_0000ea36 0xEA36 : { KEEP(*(.text.tsl9_runtime_unported_ea36)) }
+ .tsl9_code_0000eb32 0xEB32 : { KEEP(*(.text.tsl9_runtime_unported_eb32)) }
+ .tsl9_code_0000eb8a 0xEB8A : { KEEP(*(.text.tsl9_runtime_unported_eb8a)) }
+ .tsl9_code_0000ebbc 0xEBBC : { KEEP(*(.text.tsl9_runtime_unported_ebbc)) }
+ .tsl9_code_0000ebf0 0xEBF0 : { KEEP(*(.text.tsl9_runtime_unported_ebf0)) }
+ .tsl9_code_0000ec60 0xEC60 : { KEEP(*(.text.tsl9_runtime_unported_ec60)) }
+ .tsl9_code_0000ecac 0xECAC : { KEEP(*(.text.tsl9_runtime_unported_ecac)) }
+ .tsl9_code_0000ecea 0xECEA : { KEEP(*(.text.tsl9_callback_ecea)) }
+ .tsl9_code_0000ed54 0xED54 : { KEEP(*(.text.tsl9_runtime_unported_ed54)) }
+ .tsl9_code_0000ed9a 0xED9A : { KEEP(*(.text.tsl9_callback_ed9a)) }
+ .tsl9_code_0000ee26 0xEE26 : { KEEP(*(.text.tsl9_runtime_unported_ee26)) }
+ .tsl9_code_0000ee30 0xEE30 : { KEEP(*(.text.tsl9_runtime_unported_ee30)) }
+ .tsl9_code_0000eed0 0xEED0 : { KEEP(*(.text.tsl9_runtime_unported_eed0)) }
+ .tsl9_code_0000ef12 0xEF12 : { KEEP(*(.text.tsl9_runtime_unported_ef12)) }
+ .tsl9_code_0000ef6a 0xEF6A : { KEEP(*(.text.tsl9_feature_init_ef6a)) }
+ .tsl9_code_0000ef80 0xEF80 : { KEEP(*(.text.tsl9_runtime_unported_ef80)) }
+ .tsl9_code_0000ef8a 0xEF8A : { KEEP(*(.text.tsl9_runtime_unported_ef8a)) }
+ .tsl9_code_0000effe 0xEFFE : { KEEP(*(.text.tsl9_runtime_unported_effe)) }
+ .tsl9_code_0000f076 0xF076 : { KEEP(*(.text.tsl9_runtime_unported_f076)) }
+ .tsl9_code_0000f2c8 0xF2C8 : { KEEP(*(.text.tsl9_runtime_unported_f2c8)) }
+ .tsl9_code_0000f31c 0xF31C : { KEEP(*(.text.tsl9_callback_f31c)) }
+ .tsl9_code_0000f332 0xF332 : { KEEP(*(.text.tsl9_runtime_unported_f332)) }
+ .tsl9_code_0000f384 0xF384 : { KEEP(*(.text.tsl9_runtime_unported_f384)) }
+ .tsl9_code_0000f42c 0xF42C : { KEEP(*(.text.tsl9_runtime_unported_f42c)) }
+ .tsl9_code_0000f4e4 0xF4E4 : { KEEP(*(.text.tsl9_runtime_unported_f4e4)) }
+ .tsl9_code_0000f4f0 0xF4F0 : { KEEP(*(.text.tsl9_runtime_unported_f4f0)) }
+ .tsl9_code_0000f510 0xF510 : { KEEP(*(.text.tsl9_runtime_unported_f510)) }
+ .tsl9_code_0000f51a 0xF51A : { KEEP(*(.text.tsl9_runtime_unported_f51a)) }
+ .tsl9_code_0000f526 0xF526 : { KEEP(*(.text.tsl9_runtime_unported_f526)) }
+ .tsl9_code_0000f532 0xF532 : { KEEP(*(.text.tsl9_runtime_unported_f532)) }
+ .tsl9_code_0000f53c 0xF53C : { KEEP(*(.text.tsl9_runtime_unported_f53c)) }
+ .tsl9_code_0000f564 0xF564 : { KEEP(*(.text.tsl9_runtime_unported_f564)) }
+ .tsl9_code_0000f56e 0xF56E : { KEEP(*(.text.tsl9_runtime_unported_f56e)) }
+ .tsl9_code_0000f596 0xF596 : { KEEP(*(.text.tsl9_runtime_unported_f596)) }
+ .tsl9_code_0000f5a0 0xF5A0 : { KEEP(*(.text.tsl9_runtime_unported_f5a0)) }
+ .tsl9_code_0000f5c8 0xF5C8 : { KEEP(*(.text.tsl9_runtime_unported_f5c8)) }
+ .tsl9_code_0000f5d2 0xF5D2 : { KEEP(*(.text.tsl9_runtime_unported_f5d2)) }
+ .tsl9_code_0000f5fa 0xF5FA : { KEEP(*(.text.tsl9_runtime_unported_f5fa)) }
+ .tsl9_code_0000f604 0xF604 : { KEEP(*(.text.tsl9_runtime_unported_f604)) }
+ .tsl9_code_0000f640 0xF640 : { KEEP(*(.text.tsl9_runtime_unported_f640)) }
+ .tsl9_code_0000f64a 0xF64A : { KEEP(*(.text.tsl9_runtime_unported_f64a)) }
+ .tsl9_code_0000f686 0xF686 : { KEEP(*(.text.tsl9_runtime_unported_f686)) }
+ .tsl9_code_0000f690 0xF690 : { KEEP(*(.text.tsl9_runtime_unported_f690)) }
+ .tsl9_code_0000f6a0 0xF6A0 : { KEEP(*(.text.tsl9_runtime_unported_f6a0)) }
+ .tsl9_code_0000f6b4 0xF6B4 : { KEEP(*(.text.tsl9_runtime_unported_f6b4)) }
+ .tsl9_code_0000f6be 0xF6BE : { KEEP(*(.text.tsl9_runtime_unported_f6be)) }
+ .tsl9_code_0000f6cc 0xF6CC : { KEEP(*(.text.tsl9_runtime_unported_f6cc)) }
+ .tsl9_code_0000f6d6 0xF6D6 : { KEEP(*(.text.tsl9_runtime_unported_f6d6)) }
+ .tsl9_code_0000f6e0 0xF6E0 : { KEEP(*(.text.tsl9_runtime_unported_f6e0)) }
+ .tsl9_code_0000f6ec 0xF6EC : { KEEP(*(.text.tsl9_runtime_unported_f6ec)) }
+ .tsl9_code_0000f6fe 0xF6FE : { KEEP(*(.text.tsl9_feature_init_f6fe)) }
+ .tsl9_code_0000f714 0xF714 : { KEEP(*(.text.tsl9_runtime_unported_f714)) }
+ .tsl9_code_0000f832 0xF832 : { KEEP(*(.text.tsl9_runtime_unported_f832)) }
+ .tsl9_code_0000f848 0xF848 : { KEEP(*(.text.tsl9_runtime_unported_f848)) }
+ .tsl9_code_0000f84e 0xF84E : { KEEP(*(.text.tsl9_runtime_unported_f84e)) }
+ .tsl9_code_0000f85a 0xF85A : { KEEP(*(.text.tsl9_runtime_unported_f85a)) }
+ .tsl9_code_0000f8a2 0xF8A2 : { KEEP(*(.text.tsl9_runtime_unported_f8a2)) }
+ .tsl9_code_0000f8da 0xF8DA : { KEEP(*(.text.tsl9_runtime_unported_f8da)) }
+ .tsl9_code_0000f8e0 0xF8E0 : { KEEP(*(.text.tsl9_runtime_unported_f8e0)) }
+ .tsl9_code_0000f8e6 0xF8E6 : { KEEP(*(.text.tsl9_runtime_unported_f8e6)) }
+ .tsl9_code_0000f8ec 0xF8EC : { KEEP(*(.text.tsl9_runtime_unported_f8ec)) }
+ .tsl9_code_0000f8f2 0xF8F2 : { KEEP(*(.text.tsl9_runtime_unported_f8f2)) }
+ .tsl9_code_0000f900 0xF900 : { KEEP(*(.text.tsl9_runtime_unported_f900)) }
+ .tsl9_code_0000f906 0xF906 : { KEEP(*(.text.tsl9_feature_init_f906)) }
+ .tsl9_code_0000f918 0xF918 : { KEEP(*(.text.tsl9_runtime_unported_f918)) }
+ .tsl9_code_0000f932 0xF932 : { KEEP(*(.text.tsl9_runtime_unported_f932)) }
+ .tsl9_code_0000f99c 0xF99C : { KEEP(*(.text.tsl9_runtime_unported_f99c)) }
+ .tsl9_code_0000f9a8 0xF9A8 : { KEEP(*(.text.tsl9_runtime_unported_f9a8)) }
+ .tsl9_code_0000f9ae 0xF9AE : { KEEP(*(.text.tsl9_runtime_unported_f9ae)) }
+ .tsl9_code_0000f9b4 0xF9B4 : { KEEP(*(.text.tsl9_runtime_unported_f9b4)) }
+ .tsl9_code_0000f9c2 0xF9C2 : { KEEP(*(.text.tsl9_feature_init_f9c2)) }
+ .tsl9_code_0000f9d4 0xF9D4 : { KEEP(*(.text.tsl9_callback_f9d4)) }
+ .tsl9_code_0000fa14 0xFA14 : { KEEP(*(.text.tsl9_callback_fa14)) }
+ .tsl9_code_0000fa58 0xFA58 : { KEEP(*(.text.tsl9_runtime_unported_fa58)) }
+ .tsl9_code_0000fbf6 0xFBF6 : { KEEP(*(.text.tsl9_callback_fbf6)) }
+ .tsl9_code_0000fc16 0xFC16 : { KEEP(*(.text.tsl9_runtime_unported_fc16)) }
+ .tsl9_code_0000fc1c 0xFC1C : { KEEP(*(.text.tsl9_runtime_unported_fc1c)) }
+ .tsl9_code_0000fc22 0xFC22 : { KEEP(*(.text.tsl9_runtime_unported_fc22)) }
+ .tsl9_code_0000fc58 0xFC58 : { KEEP(*(.text.tsl9_runtime_unported_fc58)) }
+ .tsl9_code_0000fc5e 0xFC5E : { KEEP(*(.text.tsl9_runtime_unported_fc5e)) }
+ .tsl9_code_0000fcac 0xFCAC : { KEEP(*(.text.tsl9_runtime_unported_fcac)) }
+ .tsl9_code_0000fcbe 0xFCBE : { KEEP(*(.text.tsl9_runtime_unported_fcbe)) }
+ .tsl9_code_0000fcd2 0xFCD2 : { KEEP(*(.text.tsl9_runtime_unported_fcd2)) }
+ .tsl9_code_0000fd20 0xFD20 : { KEEP(*(.text.tsl9_runtime_unported_fd20)) }
+ .tsl9_code_0000fdfa 0xFDFA : { KEEP(*(.text.tsl9_feature_init_fdfa)) }
+ .tsl9_code_0000fe0c 0xFE0C : { KEEP(*(.text.tsl9_runtime_unported_fe0c)) }
+ .tsl9_code_0000fe58 0xFE58 : { KEEP(*(.text.tsl9_runtime_unported_fe58)) }
+ .tsl9_code_0000fed4 0xFED4 : { KEEP(*(.text.tsl9_runtime_unported_fed4)) }
+ .tsl9_code_0000fee4 0xFEE4 : { KEEP(*(.text.tsl9_feature_init_fee4)) }
+ .tsl9_code_0000fef6 0xFEF6 : { KEEP(*(.text.tsl9_runtime_unported_fef6)) }
+ .tsl9_code_0000ff3c 0xFF3C : { KEEP(*(.text.tsl9_runtime_unported_ff3c)) }
+ .tsl9_code_0000ff48 0xFF48 : { KEEP(*(.text.tsl9_runtime_unported_ff48)) }
+ .tsl9_code_0000ff7a 0xFF7A : { KEEP(*(.text.tsl9_runtime_unported_ff7a)) }
+ .tsl9_code_0000ff88 0xFF88 : { KEEP(*(.text.tsl9_runtime_unported_ff88)) }
+ .tsl9_code_0000ffa8 0xFFA8 : { KEEP(*(.text.tsl9_runtime_unported_ffa8)) }
+ .tsl9_code_0000ffb2 0xFFB2 : { KEEP(*(.text.tsl9_runtime_unported_ffb2)) }
+ .tsl9_code_0000ffe2 0xFFE2 : { KEEP(*(.text.tsl9_runtime_unported_ffe2)) }
+ .tsl9_code_0001000a 0x1000A : { KEEP(*(.text.tsl9_feature_init_1000a)) }
+ .tsl9_code_00010020 0x10020 : { KEEP(*(.text.tsl9_runtime_unported_10020)) }
+ .tsl9_code_00010090 0x10090 : { KEEP(*(.text.tsl9_runtime_unported_10090)) }
+ .tsl9_code_00010128 0x10128 : { KEEP(*(.text.tsl9_feature_init_10128)) }
+ .tsl9_code_0001013a 0x1013A : { KEEP(*(.text.tsl9_runtime_unported_1013a)) }
+ .tsl9_code_00010280 0x10280 : { KEEP(*(.text.tsl9_runtime_unported_10280)) }
+ .tsl9_code_00010286 0x10286 : { KEEP(*(.text.tsl9_runtime_unported_10286)) }
+ .tsl9_code_0001028c 0x1028C : { KEEP(*(.text.tsl9_runtime_unported_1028c)) }
+ .tsl9_code_000102be 0x102BE : { KEEP(*(.text.tsl9_runtime_unported_102be)) }
+ .tsl9_code_000103d4 0x103D4 : { KEEP(*(.text.tsl9_runtime_unported_103d4)) }
+ .tsl9_code_000103ec 0x103EC : { KEEP(*(.text.tsl9_callback_103ec)) }
+ .tsl9_code_0001041a 0x1041A : { KEEP(*(.text.tsl9_control_reference_1041a)) }
+ .tsl9_code_00010442 0x10442 : { KEEP(*(.text.tsl9_callback_10442)) }
+ .tsl9_code_0001044e 0x1044E : { KEEP(*(.text.tsl9_callback_1044e)) }
+ .tsl9_code_0001046a 0x1046A : { KEEP(*(.text.tsl9_callback_1046a)) }
+ .tsl9_code_0001049a 0x1049A : { KEEP(*(.text.tsl9_rf_cancel_1049a)) }
+ .tsl9_code_000104ae 0x104AE : { KEEP(*(.text.tsl9_mode_reference_104ae)) }
+ .tsl9_code_0001051c 0x1051C : { KEEP(*(.text.tsl9_dispatch_reference_1051c)) }
+ .tsl9_code_0001053c 0x1053C : { KEEP(*(.text.tsl9_runtime_unported_1053c)) }
+ .tsl9_code_0001055c 0x1055C : { KEEP(*(.text.tsl9_callback_1055c)) }
+ .tsl9_code_00010564 0x10564 : { KEEP(*(.text.tsl9_runtime_unported_10564)) }
+ .tsl9_code_00010586 0x10586 : { KEEP(*(.text.tsl9_mode_clear_10586)) }
+ .tsl9_code_000105c8 0x105C8 : { KEEP(*(.text.tsl9_runtime_unported_105c8)) }
+ .tsl9_code_0001063c 0x1063C : { KEEP(*(.text.tsl9_control_zero_1063c)) }
+ .tsl9_code_00010642 0x10642 : { KEEP(*(.text.tsl9_runtime_unported_10642)) }
+ .tsl9_code_00010692 0x10692 : { KEEP(*(.text.tsl9_runtime_unported_10692)) }
+ .tsl9_code_000106b8 0x106B8 : { KEEP(*(.text.tsl9_runtime_unported_106b8)) }
+ .tsl9_code_000106ec 0x106EC : { KEEP(*(.text.tsl9_runtime_unported_106ec)) }
+ .tsl9_code_00010754 0x10754 : { KEEP(*(.text.tsl9_runtime_unported_10754)) }
+ .tsl9_code_000107b2 0x107B2 : { KEEP(*(.text.tsl9_runtime_unported_107b2)) }
+ .tsl9_code_000107c0 0x107C0 : { KEEP(*(.text.tsl9_runtime_unported_107c0)) }
+ .tsl9_code_00010840 0x10840 : { KEEP(*(.text.tsl9_runtime_unported_10840)) }
+ .tsl9_code_0001087c 0x1087C : { KEEP(*(.text.tsl9_runtime_unported_1087c)) }
+ .tsl9_code_00010892 0x10892 : { KEEP(*(.text.tsl9_runtime_unported_10892)) }
+ .tsl9_code_00010942 0x10942 : { KEEP(*(.text.tsl9_runtime_unported_10942)) }
+ .tsl9_code_00010986 0x10986 : { KEEP(*(.text.tsl9_runtime_unported_10986)) }
+ .tsl9_code_000109dc 0x109DC : { KEEP(*(.text.tsl9_runtime_unported_109dc)) }
+ .tsl9_code_00010a9a 0x10A9A : { KEEP(*(.text.tsl9_feature_init_10a9a)) }
+ .tsl9_code_00010ab0 0x10AB0 : { KEEP(*(.text.tsl9_r79_region_10ab0)) }
+ .tsl9_code_00010af6 0x10AF6 : { KEEP(*(.text.tsl9_ble_helper_10af6)) }
+ .tsl9_code_00010b5c 0x10B5C : { KEEP(*(.text.tsl9_r79_region_10b5c)) }
+ .tsl9_code_00010bdc 0x10BDC : { KEEP(*(.text.tsl9_runtime_unported_10bdc)) }
+ .tsl9_code_00010c16 0x10C16 : { KEEP(*(.text.tsl9_service_events_slot_10c16)) }
+ .tsl9_code_00010c48 0x10C48 : { KEEP(*(.text.tsl9_service_events_scan_10c48)) }
+ .tsl9_code_00010cfe 0x10CFE : { KEEP(*(.text.tsl9_runtime_unported_10cfe)) }
+ .tsl9_code_00010d2e 0x10D2E : { KEEP(*(.text.tsl9_runtime_unported_10d2e)) }
+ .tsl9_code_00010f74 0x10F74 : { KEEP(*(.text.tsl9_r79_region_10f74)) }
+ .tsl9_code_000111d2 0x111D2 : { KEEP(*(.text.tsl9_service_events_dispatch_111d2)) }
+ .tsl9_code_000112be 0x112BE : { KEEP(*(.text.tsl9_runtime_unported_112be)) }
+ .tsl9_code_0001135e 0x1135E : { KEEP(*(.text.tsl9_r79_region_1135e)) }
+ .tsl9_code_00011844 0x11844 : { KEEP(*(.text.tsl9_runtime_unported_11844)) }
+ .tsl9_code_00012388 0x12388 : { KEEP(*(.text.tsl9_runtime_unported_12388)) }
+ .tsl9_code_000124d0 0x124D0 : { KEEP(*(.text.tsl9_r79_region_124d0)) }
+ .tsl9_code_00012780 0x12780 : { KEEP(*(.text.tsl9_can_filter_fill_12780)) }
+ .tsl9_code_00012820 0x12820 : { KEEP(*(.text.tsl9_mode_filters_clear_12820)) }
+ .tsl9_code_00012864 0x12864 : { KEEP(*(.text.tsl9_runtime_unported_12864)) }
+ .tsl9_code_000128ba 0x128BA : { KEEP(*(.text.tsl9_r79_region_128ba)) }
+ .tsl9_code_000128ec 0x128EC : { KEEP(*(.text.tsl9_mode_channel_clear_128ec)) }
+ .tsl9_code_0001290a 0x1290A : { KEEP(*(.text.tsl9_runtime_unported_1290a)) }
+ .tsl9_code_0001291c 0x1291C : { KEEP(*(.text.tsl9_runtime_unported_1291c)) }
+ .tsl9_code_000129d8 0x129D8 : { KEEP(*(.text.tsl9_periph_can_enqueue_129d8)) }
+ .tsl9_code_00012a34 0x12A34 : { KEEP(*(.text.tsl9_can_rx0_irq)) }
+ .tsl9_code_00012a68 0x12A68 : { KEEP(*(.text.tsl9_entry_can_consume_12a68)) }
+ .tsl9_code_00012b9c 0x12B9C : { KEEP(*(.text.tsl9_runtime_unported_12b9c)) }
+ .tsl9_code_00012c5e 0x12C5E : { KEEP(*(.text.tsl9_settings_write_12c5e)) }
+ .tsl9_code_00012c90 0x12C90 : { KEEP(*(.text.tsl9_settings_default_12c90)) }
+ .tsl9_code_00012d06 0x12D06 : { KEEP(*(.text.tsl9_settings_write_12d06)) }
+ .tsl9_code_00012d38 0x12D38 : { KEEP(*(.text.tsl9_settings_default_12d38)) }
+ .tsl9_code_00012d68 0x12D68 : { KEEP(*(.text.tsl9_settings_write_12d68)) }
+ .tsl9_code_00012d9a 0x12D9A : { KEEP(*(.text.tsl9_settings_default_12d9a)) }
+ .tsl9_code_00012e72 0x12E72 : { KEEP(*(.text.tsl9_settings_write_12e72)) }
+ .tsl9_code_00012ea4 0x12EA4 : { KEEP(*(.text.tsl9_settings_default_12ea4)) }
+ .tsl9_code_00012ef6 0x12EF6 : { KEEP(*(.text.tsl9_settings_write_12ef6)) }
+ .tsl9_code_00012f28 0x12F28 : { KEEP(*(.text.tsl9_settings_default_12f28)) }
+ .tsl9_code_00012f58 0x12F58 : { KEEP(*(.text.tsl9_settings_write_12f58)) }
+ .tsl9_code_00012f8a 0x12F8A : { KEEP(*(.text.tsl9_settings_default_12f8a)) }
+ .tsl9_code_00012fdc 0x12FDC : { KEEP(*(.text.tsl9_runtime_unported_12fdc)) }
+ .tsl9_code_00013124 0x13124 : { KEEP(*(.text.tsl9_r79_region_13124)) }
+ .tsl9_code_00013156 0x13156 : { KEEP(*(.text.tsl9_runtime_unported_13156)) }
+ .tsl9_code_00013160 0x13160 : { KEEP(*(.text.tsl9_runtime_unported_13160)) }
+ .tsl9_code_000133fa 0x133FA : { KEEP(*(.text.tsl9_service_events_pending_133fa)) }
+ .tsl9_code_00013474 0x13474 : { KEEP(*(.text.tsl9_r79_region_13474)) }
+ .tsl9_code_000135d4 0x135D4 : { KEEP(*(.text.tsl9_runtime_unported_135d4)) }
+ .tsl9_code_00013960 0x13960 : { KEEP(*(.text.tsl9_ble_queue_copy_13960)) }
+ .tsl9_code_000139ba 0x139BA : { KEEP(*(.text.tsl9_r79_region_139ba)) }
+ .tsl9_code_000139e6 0x139E6 : { KEEP(*(.text.tsl9_runtime_unported_139e6)) }
+ .tsl9_code_00013a62 0x13A62 : { KEEP(*(.text.tsl9_runtime_unported_13a62)) }
+ .tsl9_code_00013af0 0x13AF0 : { KEEP(*(.text.tsl9_service_events_enqueue_13af0)) }
+ .tsl9_code_00013b5c 0x13B5C : { KEEP(*(.text.tsl9_runtime_unported_13b5c)) }
+ .tsl9_code_00013be8 0x13BE8 : { KEEP(*(.text.tsl9_r79_region_13be8)) }
+ .tsl9_code_00013cac 0x13CAC : { KEEP(*(.text.tsl9_ble_queue_route_13cac)) }
+ .tsl9_code_00013cc8 0x13CC8 : { KEEP(*(.text.tsl9_runtime_unported_13cc8)) }
+ .tsl9_code_00013d4a 0x13D4A : { KEEP(*(.text.tsl9_r79_region_13d4a)) }
+ .tsl9_code_00014a54 0x14A54 : { KEEP(*(.text.tsl9_runtime_unported_14a54)) }
+ .tsl9_code_00014a92 0x14A92 : { KEEP(*(.text.tsl9_r79_region_14a92)) }
+ .tsl9_code_00014af8 0x14AF8 : { KEEP(*(.text.tsl9_runtime_unported_14af8)) }
+ .tsl9_code_0001524e 0x1524E : { KEEP(*(.text.tsl9_runtime_unported_1524e)) }
+ .tsl9_code_000152d2 0x152D2 : { KEEP(*(.text.tsl9_service_reference_152d2)) }
+ .tsl9_code_000152da 0x152DA : { KEEP(*(.text.tsl9_runtime_unported_152da)) }
+ .tsl9_code_0001532c 0x1532C : { KEEP(*(.text.tsl9_r79_region_1532c)) }
+ .tsl9_code_00015378 0x15378 : { KEEP(*(.text.tsl9_runtime_unported_15378)) }
+ .tsl9_code_0001611e 0x1611E : { KEEP(*(.text.tsl9_r79_region_1611e)) }
+ .tsl9_code_0001651a 0x1651A : { KEEP(*(.text.tsl9_runtime_unported_1651a)) }
+ .tsl9_code_000165cc 0x165CC : { KEEP(*(.text.tsl9_spi_select_165cc)) }
+ .tsl9_code_0001660a 0x1660A : { KEEP(*(.text.tsl9_spi_byte_1660a)) }
+ .tsl9_code_00016652 0x16652 : { KEEP(*(.text.tsl9_spi_write_16652)) }
+ .tsl9_code_000166b2 0x166B2 : { KEEP(*(.text.tsl9_spi_modify_166b2)) }
+ .tsl9_code_00016708 0x16708 : { KEEP(*(.text.tsl9_spi_read_16708)) }
+ .tsl9_code_00016750 0x16750 : { KEEP(*(.text.tsl9_spi_wait_16750)) }
+ .tsl9_code_000167a4 0x167A4 : { KEEP(*(.text.tsl9_spi_write_reg_167a4)) }
+ .tsl9_code_000167f0 0x167F0 : { KEEP(*(.text.tsl9_spi_capture_167f0)) }
+ .tsl9_code_0001687e 0x1687E : { KEEP(*(.text.tsl9_runtime_unported_1687e)) }
+ .tsl9_code_000168c4 0x168C4 : { KEEP(*(.text.tsl9_runtime_unported_168c4)) }
+ .tsl9_code_000168f0 0x168F0 : { KEEP(*(.text.tsl9_spi_transmit_168f0)) }
+ .tsl9_code_000169e6 0x169E6 : { KEEP(*(.text.tsl9_r79_region_169e6)) }
+ .tsl9_code_00016a38 0x16A38 : { KEEP(*(.text.tsl9_spi_filters_16a38)) }
+ .tsl9_code_00016b20 0x16B20 : { KEEP(*(.text.tsl9_mode_channel_flags_16b20)) }
+ .tsl9_code_00016b48 0x16B48 : { KEEP(*(.text.tsl9_mode_channel_mask_16b48)) }
+ .tsl9_code_00016b78 0x16B78 : { KEEP(*(.text.tsl9_runtime_unported_16b78)) }
+ .tsl9_code_00016bf4 0x16BF4 : { KEEP(*(.text.tsl9_runtime_unported_16bf4)) }
+ .tsl9_code_00016c6c 0x16C6C : { KEEP(*(.text.tsl9_runtime_unported_16c6c)) }
+ .tsl9_code_00016d22 0x16D22 : { KEEP(*(.text.tsl9_exti_5_9_irq)) }
+ .tsl9_code_00016d6e 0x16D6E : { KEEP(*(.text.tsl9_entry_exti_consume_16d6e)) }
+ .tsl9_code_00016dac 0x16DAC : { KEEP(*(.text.tsl9_runtime_unported_16dac)) }
+ .tsl9_code_00016f26 0x16F26 : { KEEP(*(.text.tsl9_runtime_unported_16f26)) }
+ .tsl9_code_00016f4a 0x16F4A : { KEEP(*(.text.tsl9_rf_schedule_16f4a)) }
+ .tsl9_code_00017024 0x17024 : { KEEP(*(.text.tsl9_runtime_unported_17024)) }
+ .tsl9_code_00017048 0x17048 : { KEEP(*(.text.tsl9_rf_control_17048)) }
+ .tsl9_code_000170e2 0x170E2 : { KEEP(*(.text.tsl9_runtime_unported_170e2)) }
+ .tsl9_code_00017176 0x17176 : { KEEP(*(.text.tsl9_runtime_unported_17176)) }
+ .tsl9_code_000171c2 0x171C2 : { KEEP(*(.text.tsl9_rf_complete_171c2)) }
+ .tsl9_code_00017216 0x17216 : { KEEP(*(.text.tsl9_rf_retry_17216)) }
+ .tsl9_code_0001724a 0x1724A : { KEEP(*(.text.tsl9_rf_task_1724a)) }
+ .tsl9_code_000172c2 0x172C2 : { KEEP(*(.text.tsl9_rf_status_172c2)) }
+ .tsl9_code_0001730e 0x1730E : { KEEP(*(.text.tsl9_runtime_unported_1730e)) }
+ .tsl9_code_000173bc 0x173BC : { KEEP(*(.text.tsl9_runtime_unported_173bc)) }
+ .tsl9_code_0001743a 0x1743A : { KEEP(*(.text.tsl9_rf_queue_complete_1743a)) }
+ .tsl9_code_00017474 0x17474 : { KEEP(*(.text.tsl9_rf_queue_handshake_17474)) }
+ .tsl9_code_000174cc 0x174CC : { KEEP(*(.text.tsl9_rf_queue_task_174cc)) }
+ .tsl9_code_00017650 0x17650 : { KEEP(*(.text.tsl9_runtime_unported_17650)) }
+ .tsl9_code_000176cc 0x176CC : { KEEP(*(.text.tsl9_rf_queue_empty_frame_176cc)) }
+ .tsl9_code_0001771c 0x1771C : { KEEP(*(.text.tsl9_rf_queue_frame_1771c)) }
+ .tsl9_code_0001775e 0x1775E : { KEEP(*(.text.tsl9_rf_queue_select_1775e)) }
+ .tsl9_code_000177d0 0x177D0 : { KEEP(*(.text.tsl9_runtime_unported_177d0)) }
+ .tsl9_code_00017966 0x17966 : { KEEP(*(.text.tsl9_rf_queue_start_17966)) }
+ .tsl9_code_00017998 0x17998 : { KEEP(*(.text.tsl9_rf_queue_enable_17998)) }
+ .tsl9_code_000179ca 0x179CA : { KEEP(*(.text.tsl9_runtime_unported_179ca)) }
+ .tsl9_code_00017a22 0x17A22 : { KEEP(*(.text.tsl9_runtime_unported_17a22)) }
+ .tsl9_code_00017a84 0x17A84 : { KEEP(*(.text.tsl9_runtime_unported_17a84)) }
+ .tsl9_code_00017ac6 0x17AC6 : { KEEP(*(.text.tsl9_callback_17ac6)) }
+ .tsl9_code_00017d52 0x17D52 : { KEEP(*(.text.tsl9_ble_helper_17d52)) }
+ .tsl9_code_00017dfa 0x17DFA : { KEEP(*(.text.tsl9_runtime_unported_17dfa)) }
+ .tsl9_code_00017e26 0x17E26 : { KEEP(*(.text.tsl9_runtime_unported_17e26)) }
+ .tsl9_code_00017ebc 0x17EBC : { KEEP(*(.text.tsl9_runtime_unported_17ebc)) }
+ .tsl9_code_00017edc 0x17EDC : { KEEP(*(.text.tsl9_runtime_unported_17edc)) }
+ .tsl9_code_00017f68 0x17F68 : { KEEP(*(.text.tsl9_runtime_unported_17f68)) }
+ .tsl9_code_00017f72 0x17F72 : { KEEP(*(.text.tsl9_runtime_unported_17f72)) }
+ .tsl9_code_00017f9a 0x17F9A : { KEEP(*(.text.tsl9_runtime_unported_17f9a)) }
+ .tsl9_code_00017fb4 0x17FB4 : { KEEP(*(.text.tsl9_runtime_unported_17fb4)) }
+ .tsl9_code_000181b2 0x181B2 : { KEEP(*(.text.tsl9_runtime_unported_181b2)) }
+ .tsl9_code_0001822c 0x1822C : { KEEP(*(.text.tsl9_r79_region_1822c)) }
+ .tsl9_code_0001835a 0x1835A : { KEEP(*(.text.tsl9_runtime_unported_1835a)) }
+ .tsl9_code_0001836c 0x1836C : { KEEP(*(.text.tsl9_feature_init_1836c)) }
+ .tsl9_code_0001838c 0x1838C : { KEEP(*(.text.tsl9_default_irq_1838c)) }
+ .tsl9_code_0001838e 0x1838E : { KEEP(*(.text.tsl9_default_irq_1838e)) }
+ .tsl9_code_00018390 0x18390 : { KEEP(*(.text.tsl9_default_irq_18390)) }
+ .tsl9_code_00018392 0x18392 : { KEEP(*(.text.tsl9_default_irq_18392)) }
+ .tsl9_code_00018394 0x18394 : { KEEP(*(.text.tsl9_default_irq_18394)) }
+ .tsl9_code_00018396 0x18396 : { KEEP(*(.text.tsl9_default_irq_18396)) }
+ .tsl9_code_00018398 0x18398 : { KEEP(*(.text.tsl9_default_irq_18398)) }
+ .tsl9_code_0001839a 0x1839A : { KEEP(*(.text.tsl9_default_irq_1839a)) }
+ .tsl9_code_0001839c 0x1839C : { KEEP(*(.text.tsl9_default_irq_1839c)) }
+ .tsl9_code_0001839e 0x1839E : { KEEP(*(.text.tsl9_default_irq_1839e)) }
+ .tsl9_code_000183a0 0x183A0 : { KEEP(*(.text.tsl9_default_irq_183a0)) }
+ .tsl9_code_000183a2 0x183A2 : { KEEP(*(.text.tsl9_default_irq_183a2)) }
+ .tsl9_code_000183a4 0x183A4 : { KEEP(*(.text.tsl9_default_irq_183a4)) }
+ .tsl9_code_000183a6 0x183A6 : { KEEP(*(.text.tsl9_default_irq_183a6)) }
+ .tsl9_code_000183a8 0x183A8 : { KEEP(*(.text.tsl9_default_irq_183a8)) }
+ .tsl9_code_000183aa 0x183AA : { KEEP(*(.text.tsl9_default_irq_183aa)) }
+ .tsl9_code_000183ac 0x183AC : { KEEP(*(.text.tsl9_default_irq_183ac)) }
+ .tsl9_code_000183ae 0x183AE : { KEEP(*(.text.tsl9_default_irq_183ae)) }
+ .tsl9_code_000183b0 0x183B0 : { KEEP(*(.text.tsl9_default_irq_183b0)) }
+ .tsl9_code_000183b2 0x183B2 : { KEEP(*(.text.tsl9_default_irq_183b2)) }
+ .tsl9_code_000183b4 0x183B4 : { KEEP(*(.text.tsl9_default_irq_183b4)) }
+ .tsl9_code_000183b6 0x183B6 : { KEEP(*(.text.tsl9_default_irq_183b6)) }
+ .tsl9_code_000183b8 0x183B8 : { KEEP(*(.text.tsl9_default_irq_183b8)) }
+ .tsl9_code_000183bc 0x183BC : { KEEP(*(.text.tsl9_default_irq_183bc)) }
+ .tsl9_code_000183be 0x183BE : { KEEP(*(.text.tsl9_default_irq_183be)) }
+ .tsl9_code_000183c2 0x183C2 : { KEEP(*(.text.tsl9_default_irq_183c2)) }
+ .tsl9_code_000183c4 0x183C4 : { KEEP(*(.text.tsl9_default_irq_183c4)) }
+ .tsl9_code_000183c6 0x183C6 : { KEEP(*(.text.tsl9_default_irq_183c6)) }
+ .tsl9_code_000183c8 0x183C8 : { KEEP(*(.text.tsl9_default_irq_183c8)) }
+ .tsl9_code_000183ca 0x183CA : { KEEP(*(.text.tsl9_default_irq_183ca)) }
+ .tsl9_code_000183ce 0x183CE : { KEEP(*(.text.tsl9_default_irq_183ce)) }
+ .tsl9_code_000183d0 0x183D0 : { KEEP(*(.text.tsl9_default_irq_183d0)) }
+ .tsl9_code_000183d2 0x183D2 : { KEEP(*(.text.tsl9_default_irq_183d2)) }
+ .tsl9_code_000183d4 0x183D4 : { KEEP(*(.text.tsl9_default_irq_183d4)) }
+ .tsl9_code_000183d6 0x183D6 : { KEEP(*(.text.tsl9_default_irq_183d6)) }
+ .tsl9_code_000183d8 0x183D8 : { KEEP(*(.text.tsl9_default_irq_183d8)) }
+ .tsl9_code_000183da 0x183DA : { KEEP(*(.text.tsl9_default_irq_183da)) }
+ .tsl9_code_000183dc 0x183DC : { KEEP(*(.text.tsl9_default_irq_183dc)) }
+ .tsl9_code_000183de 0x183DE : { KEEP(*(.text.tsl9_default_irq_183de)) }
+ .tsl9_code_000183e0 0x183E0 : { KEEP(*(.text.tsl9_default_irq_183e0)) }
+ .tsl9_code_000183e2 0x183E2 : { KEEP(*(.text.tsl9_default_irq_183e2)) }
+ .tsl9_code_000183e6 0x183E6 : { KEEP(*(.text.tsl9_default_irq_183e6)) }
+ .tsl9_code_000183e8 0x183E8 : { KEEP(*(.text.tsl9_default_irq_183e8)) }
+ .tsl9_code_000183ea 0x183EA : { KEEP(*(.text.tsl9_default_irq_183ea)) }
+ .tsl9_code_000183ec 0x183EC : { KEEP(*(.text.tsl9_default_irq_183ec)) }
+ .tsl9_code_000183ee 0x183EE : { KEEP(*(.text.tsl9_default_irq_183ee)) }
+ .tsl9_code_000183f4 0x183F4 : { KEEP(*(.text.tsl9_default_irq_183f4)) }
+ .tsl9_code_000183f6 0x183F6 : { KEEP(*(.text.tsl9_default_irq_183f6)) }
+ .tsl9_code_000183f8 0x183F8 : { KEEP(*(.text.tsl9_default_irq_183f8)) }
+ .tsl9_code_000183fa 0x183FA : { KEEP(*(.text.tsl9_default_irq_183fa)) }
+ .tsl9_code_000183fc 0x183FC : { KEEP(*(.text.tsl9_default_irq_183fc)) }
+ .tsl9_code_000183fe 0x183FE : { KEEP(*(.text.tsl9_reset_entry)) KEEP(*(.text.tsl9_reset_mret_18488)) KEEP(*(.text.tsl9_default_irq_1848c)) KEEP(*(.text.tsl9_default_irq_18490)) }
+ .tsl9_code_00018492 0x18492 : { KEEP(*(.text.tsl9_ble_bb)) }
+ .tsl9_code_0001849e 0x1849E : { KEEP(*(.text.sc_native_init)) }
+ .tsl9_code_00018588 0x18588 : { KEEP(*(.text.tsl9_entry_clock_update_18588)) }
+ .tsl9_code_00018636 0x18636 : { KEEP(*(.text.tsl9_hal_adc_reset_18636)) }
+ .tsl9_code_00018682 0x18682 : { KEEP(*(.text.tsl9_hal_adc_configure_18682)) }
+ .tsl9_code_000186da 0x186DA : { KEEP(*(.text.tsl9_hal_adc_enable_186da)) }
+ .tsl9_code_000186ea 0x186EA : { KEEP(*(.text.tsl9_hal_adc_start_186ea)) }
+ .tsl9_code_00018702 0x18702 : { KEEP(*(.text.tsl9_hal_adc_channel_18702)) }
+ .tsl9_code_000187ba 0x187BA : { KEEP(*(.text.tsl9_hal_adc_data_187ba)) }
+ .tsl9_code_000187c2 0x187C2 : { KEEP(*(.text.tsl9_hal_adc_temperature_187c2)) }
+ .tsl9_code_000187e2 0x187E2 : { KEEP(*(.text.tsl9_hal_adc_flag_187e2)) }
+ .tsl9_code_000187ec 0x187EC : { KEEP(*(.text.tsl9_hal_adc_buffer_187ec)) }
+ .tsl9_code_00018804 0x18804 : { KEEP(*(.text.tsl9_init_can_registers_18804)) }
+ .tsl9_code_000188f6 0x188F6 : { KEEP(*(.text.tsl9_can_filter_regs_188f6)) }
+ .tsl9_code_000189f8 0x189F8 : { KEEP(*(.text.tsl9_can_mailbox_189f8)) }
+ .tsl9_code_00018acc 0x18ACC : { KEEP(*(.text.tsl9_periph_can_capture_18acc)) }
+ .tsl9_code_00018b70 0x18B70 : { KEEP(*(.text.tsl9_init_exti_config_18b70)) }
+ .tsl9_code_00018bda 0x18BDA : { KEEP(*(.text.tsl9_event_exti_clear_18bda)) }
+ .tsl9_code_00018be4 0x18BE4 : { KEEP(*(.text.tsl9_storage_status_18be4)) }
+ .tsl9_code_00018bec 0x18BEC : { KEEP(*(.text.tsl9_storage_unlock_18bec)) }
+ .tsl9_code_00018c0a 0x18C0A : { KEEP(*(.text.tsl9_storage_lock_18c0a)) }
+ .tsl9_code_00018c18 0x18C18 : { KEEP(*(.text.tsl9_storage_erase_18c18)) }
+ .tsl9_code_00018c46 0x18C46 : { KEEP(*(.text.tsl9_storage_program_18c46)) }
+ .tsl9_code_00018caa 0x18CAA : { KEEP(*(.text.tsl9_runtime_unported_18caa)) }
+ .tsl9_code_00018cdc 0x18CDC : { KEEP(*(.text.tsl9_sgpio_config_18cdc)) }
+ .tsl9_code_00018d9e 0x18D9E : { KEEP(*(.text.tsl9_init_gpio_route_18d9e)) }
+ .tsl9_code_00018dca 0x18DCA : { KEEP(*(.text.tsl9_rtc_startup_18dca)) }
+ .tsl9_code_00018de0 0x18DE0 : { KEEP(*(.text.tsl9_hal_adc_clock_18de0)) }
+ .tsl9_code_00018df2 0x18DF2 : { KEEP(*(.text.tsl9_rtc_startup_18df2)) }
+ .tsl9_code_00018e1a 0x18E1A : { KEEP(*(.text.tsl9_rtc_startup_18e1a)) }
+ .tsl9_code_00018e2e 0x18E2E : { KEEP(*(.text.tsl9_rtc_startup_18e2e)) }
+ .tsl9_code_00018e3a 0x18E3A : { KEEP(*(.text.tsl9_rtc_startup_18e3a)) }
+ .tsl9_code_00018e5a 0x18E5A : { KEEP(*(.text.tsl9_hal_ahb_gate_18e5a)) }
+ .tsl9_code_00018e78 0x18E78 : { KEEP(*(.text.tsl9_board_rcc_apb2_enable_18e78)) }
+ .tsl9_code_00018e96 0x18E96 : { KEEP(*(.text.tsl9_board_rcc_apb1_enable_18e96)) }
+ .tsl9_code_00018eb4 0x18EB4 : { KEEP(*(.text.tsl9_board_rcc_apb2_reset_18eb4)) }
+ .tsl9_code_00018ed2 0x18ED2 : { KEEP(*(.text.tsl9_board_rcc_apb1_reset_18ed2)) }
+ .tsl9_code_00018ef0 0x18EF0 : { KEEP(*(.text.tsl9_rtc_startup_18ef0)) }
+ .tsl9_code_00018f02 0x18F02 : { KEEP(*(.text.tsl9_rtc_startup_18f02)) }
+ .tsl9_code_00018f1a 0x18F1A : { KEEP(*(.text.tsl9_rtc_startup_18f1a)) }
+ .tsl9_code_00018f74 0x18F74 : { KEEP(*(.text.tsl9_rtc_startup_18f74)) }
+ .tsl9_code_00018f9c 0x18F9C : { KEEP(*(.text.tsl9_rtc_startup_18f9c)) }
+ .tsl9_code_00018fc6 0x18FC6 : { KEEP(*(.text.tsl9_event_rtc_wait_18fc6)) }
+ .tsl9_code_00018fd6 0x18FD6 : { KEEP(*(.text.tsl9_event_rtc_clear_core_18fd6)) }
+ .tsl9_code_00018fea 0x18FEA : { KEEP(*(.text.tsl9_event_rtc_clear_18fea)) }
+ .tsl9_code_00018fee 0x18FEE : { KEEP(*(.text.tsl9_rtc_startup_18fee)) }
+ .tsl9_code_00019418 0x19418 : { KEEP(*(.text.tsl9_init_spi_registers_19418)) }
+ .tsl9_code_00019472 0x19472 : { KEEP(*(.text.tsl9_init_spi_enable_19472)) }
+ .tsl9_code_00019490 0x19490 : { KEEP(*(.text.tsl9_runtime_unported_19490)) }
+ .tsl9_code_000194b8 0x194B8 : { KEEP(*(.text.tsl9_hal_delay_ticks_194b8)) }
+ .tsl9_code_000194ee 0x194EE : { KEEP(*(.text.tsl9_runtime_unported_194ee)) }
+ .tsl9_code_0001950c 0x1950C : { KEEP(*(.text.tsl9_rtc_startup_1950c)) }
+ .tsl9_code_00019512 0x19512 : { KEEP(*(.text.tsl9_runtime_unported_19512)) }
+ .tsl9_code_00019544 0x19544 : { KEEP(*(.text.tsl9_runtime_unported_19544)) }
+ .tsl9_code_000196b0 0x196B0 : { KEEP(*(.text.tsl9_runtime_unported_196b0)) }
+ .tsl9_code_00019736 0x19736 : { KEEP(*(.text.tsl9_runtime_unported_19736)) }
+ .tsl9_code_0001986a 0x1986A : { KEEP(*(.text.tsl9_runtime_unported_1986a)) }
+ .tsl9_code_000198aa 0x198AA : { KEEP(*(.text.tsl9_rtc_startup_198aa)) }
+ .tsl9_code_00019928 0x19928 : { KEEP(*(.text.tsl9_rtc_alarm_irq)) }
+ .tsl9_code_00019944 0x19944 : { KEEP(*(.text.tsl9_runtime_unported_19944)) }
+ .tsl9_ro_000199fc 0x199FC : { KEEP(*(.rodata.tsl9_ro_window_199fc)) }
+ .tsl9_ro_00019a6c 0x19A6C : { KEEP(*(.rodata.tsl9_r79_const_19a6c)) }
+ .tsl9_ro_00019a78 0x19A78 : { KEEP(*(.rodata.tsl9_r79_callback_19a78)) }
+ .tsl9_ro_00019a84 0x19A84 : { KEEP(*(.rodata.tsl9_ble_advertising_19a84)) }
+ .tsl9_ro_00019a94 0x19A94 : { KEEP(*(.rodata.tsl9_r79_callback_19a94)) }
+ .tsl9_ro_00019aa0 0x19AA0 : { KEEP(*(.rodata.__tsl9_jump_table_19aa0)) }
+ .tsl9_ro_00019ae8 0x19AE8 : { KEEP(*(.rodata.__tsl9_jump_table_19ae8)) }
+ .tsl9_ro_00019b14 0x19B14 : { KEEP(*(.rodata.__tsl9_jump_table_19b14)) }
+ .tsl9_ro_00019b40 0x19B40 : { KEEP(*(.rodata.tsl9_ro_window_19b40)) }
+ .tsl9_ro_00019b70 0x19B70 : { KEEP(*(.rodata.tsl9_ro_window_19b70)) }
+ .tsl9_ro_00019d70 0x19D70 : { KEEP(*(.rodata.tsl9_ro_window_19d70)) }
+ .tsl9_ro_00019d74 0x19D74 : { KEEP(*(.rodata.__tsl9_jump_table_19d74)) }
+ .tsl9_ro_00019dd4 0x19DD4 : { KEEP(*(.rodata.__tsl9_jump_table_19dd4)) }
+ .tsl9_ro_00019de8 0x19DE8 : { KEEP(*(.rodata.__tsl9_jump_table_19de8)) }
+ .tsl9_ro_00019e60 0x19E60 : { KEEP(*(.rodata.__tsl9_jump_table_19e60)) }
+ .tsl9_ro_00019fac 0x19FAC : { KEEP(*(.rodata.__tsl9_jump_table_19fac)) }
+ .tsl9_ro_00019fd4 0x19FD4 : { KEEP(*(.rodata.__tsl9_jump_table_19fd4)) }
+ .tsl9_ro_0001a0c8 0x1A0C8 : { KEEP(*(.rodata.tsl9_ro_window_1a0c8)) }
+ .tsl9_ro_0001a0ec 0x1A0EC : { KEEP(*(.rodata.tsl9_ro_window_1a0ec)) }
+ .tsl9_ro_0001a110 0x1A110 : { KEEP(*(.rodata.tsl9_ro_window_1a110)) }
+ .tsl9_ro_0001a17c 0x1A17C : { KEEP(*(.rodata.tsl9_ro_window_1a17c)) }
+ .tsl9_ro_0001a18c 0x1A18C : { KEEP(*(.rodata.tsl9_r78_union_1a18c)) }
+ .tsl9_ro_0001a2a0 0x1A2A0 : { KEEP(*(.rodata.tsl9_ro_window_1a2a0)) }
+ .tsl9_ro_0001a2ac 0x1A2AC : { KEEP(*(.rodata.tsl9_ro_window_1a2ac)) }
+ .tsl9_ro_0001a2b4 0x1A2B4 : { KEEP(*(.rodata.tsl9_ro_window_1a2b4)) }
+ .tsl9_ro_0001a2c0 0x1A2C0 : { KEEP(*(.rodata.tsl9_ro_window_1a2c0)) }
+ .tsl9_ro_0001a2c4 0x1A2C4 : { KEEP(*(.rodata.tsl9_ro_window_1a2c4)) }
+ .tsl9_ro_0001a2d0 0x1A2D0 : { KEEP(*(.rodata.tsl9_r80_union_1a2d0)) }
+ .tsl9_runtime_ram 0x20004000 (NOLOAD) : { KEEP(*(.bss.tsl9_runtime_ram)) }
+}
+ASSERT(SIZEOF(.tsl9_code_00008000) == 4,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00008038) == 328,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008180) == 42,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000081aa) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000081b0) == 26,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000081de) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000081ee) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000081f8) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008202) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008214) == 42,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000823e) == 68,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008282) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008294) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000829e) == 42,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000082c8) == 190,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008386) == 180,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000843a) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008440) == 78,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008490) == 134,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008518) == 168,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000085c0) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000085e2) == 406,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008778) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000087c4) == 632,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008a3c) == 702,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008cfa) == 280,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008e12) == 82,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008e64) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008e82) == 356,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008fe6) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00008ff8) == 96,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009058) == 54,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000908e) == 116,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009102) == 300,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000922e) == 64,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000926e) == 42,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009298) == 56,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000092d0) == 66,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009312) == 74,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000935c) == 44,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009388) == 68,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000093cc) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000093ee) == 68,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009432) == 154,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000094cc) == 26,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000094e6) == 70,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000952c) == 110,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000959a) == 82,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000095ec) == 74,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009636) == 74,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009680) == 154,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000971a) == 86,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009770) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000977c) == 442,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009936) == 144,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000099c6) == 60,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009a02) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009a20) == 144,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009ab0) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009ac2) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009ace) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009ae0) == 52,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009b14) == 24,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009b2c) == 64,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009b6c) == 64,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009bac) == 458,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009d76) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009d9e) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009dc0) == 74,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009e0a) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009e2c) == 58,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009e66) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009e8e) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009e94) == 56,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009ecc) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009edc) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009ee2) == 68,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009f26) == 24,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009f3e) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009f48) == 28,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009f64) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00009f6e) == 442,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a128) == 230,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a20e) == 4,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a212) == 142,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a2a0) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a2b2) == 64,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a2f2) == 172,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a39e) == 86,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a3f4) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a400) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a416) == 360,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a57e) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a58a) == 70,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a5d0) == 46,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a5fe) == 648,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a886) == 14,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a894) == 70,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a8da) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a8fc) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a906) == 48,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a936) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a94c) == 48,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a97c) == 64,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a9bc) == 56,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a9f4) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000a9fe) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000aa0e) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000aa1e) == 72,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000aa66) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000aa6c) == 86,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000aac2) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000aaf4) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000aafe) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ab08) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ab12) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ab1c) == 14,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ab2a) == 116,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ab9e) == 212,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ac72) == 112,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ace2) == 52,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ad16) == 92,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ad72) == 306,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000aea4) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000aed6) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000aeec) == 44,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000af18) == 78,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000af66) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000af86) == 58,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000afc0) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000afc6) == 120,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b03e) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b060) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b072) == 72,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b0ba) == 58,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b0f4) == 116,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b168) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b186) == 162,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b228) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b232) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b23c) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b246) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b250) == 332,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b39c) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b3ae) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b3be) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b3de) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b3f0) == 96,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b450) == 26,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b46a) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b480) == 110,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b4ee) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b504) == 46,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b532) == 20,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b546) == 46,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b574) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b57e) == 60,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000b5ba) == 1464,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bb72) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bb7e) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bb88) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bb92) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bb9c) == 48,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bbcc) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bbd8) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bbe2) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bbec) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bbf6) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bc00) == 26,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000bc1a) == 1500,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c1f6) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c200) == 72,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c248) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c25a) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c270) == 142,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c2fe) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c30e) == 412,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c4aa) == 108,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c516) == 46,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c544) == 206,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c612) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c634) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c646) == 62,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c684) == 186,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c73e) == 130,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000c7c0) == 768,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cac0) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cacc) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cae2) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000caec) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000caf6) == 54,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cb2c) == 52,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cb60) == 78,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cbae) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cbb8) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cbca) == 284,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cce6) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cd08) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cd1e) == 28,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cd3a) == 186,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cdf4) == 178,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cea6) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ceb0) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ceba) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ceda) == 114,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cf4c) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cf62) == 70,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cfa8) == 70,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cfee) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000cff4) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d006) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d010) == 188,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d0cc) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d0e2) == 102,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d148) == 38,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d16e) == 14,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d17c) == 26,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d196) == 70,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d1dc) == 78,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d22a) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d24c) == 14,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d25a) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d2a6) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d2b0) == 106,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d31a) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d324) == 100,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d388) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d392) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d39c) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d3b2) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d3e4) == 60,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d420) == 204,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d4ec) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d4f2) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d514) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d526) == 184,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d5de) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d5e4) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d5f6) == 56,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d62e) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d63a) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d646) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d652) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d65e) == 60,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d69a) == 88,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d6f2) == 122,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d76c) == 44,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d798) == 72,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d7e0) == 224,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d8c0) == 62,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d8fe) == 84,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000d952) == 260,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000da56) == 694,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000dd0c) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000dd2a) == 66,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000dd6c) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000dd76) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000dd7c) == 326,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000dec2) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000decc) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ded2) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000dee2) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000df2e) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000df44) == 236,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000e030) == 102,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000e096) == 20,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000e0aa) == 2444,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ea36) == 252,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000eb32) == 88,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000eb8a) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ebbc) == 52,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ebf0) == 112,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ec60) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ecac) == 62,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ecea) == 106,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ed54) == 70,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ed9a) == 140,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ee26) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ee30) == 160,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000eed0) == 66,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ef12) == 88,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ef6a) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ef80) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ef8a) == 116,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000effe) == 120,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f076) == 594,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f2c8) == 84,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f31c) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f332) == 82,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f384) == 168,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f42c) == 184,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f4e4) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f4f0) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f510) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f51a) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f526) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f532) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f53c) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f564) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f56e) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f596) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f5a0) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f5c8) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f5d2) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f5fa) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f604) == 60,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f640) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f64a) == 60,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f686) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f690) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f6a0) == 20,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f6b4) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f6be) == 14,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f6cc) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f6d6) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f6e0) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f6ec) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f6fe) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f714) == 286,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f832) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f848) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f84e) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f85a) == 72,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f8a2) == 56,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f8da) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f8e0) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f8e6) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f8ec) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f8f2) == 14,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f900) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f906) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f918) == 26,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f932) == 106,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f99c) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f9a8) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f9ae) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f9b4) == 14,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f9c2) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000f9d4) == 64,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fa14) == 68,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fa58) == 414,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fbf6) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fc16) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fc1c) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fc22) == 54,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fc58) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fc5e) == 78,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fcac) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fcbe) == 20,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fcd2) == 78,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fd20) == 218,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fdfa) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fe0c) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fe58) == 124,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fed4) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fee4) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000fef6) == 70,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ff3c) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ff48) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ff7a) == 14,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ff88) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ffa8) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ffb2) == 48,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0000ffe2) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001000a) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010020) == 112,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010090) == 152,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010128) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001013a) == 326,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010280) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010286) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001028c) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000102be) == 278,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000103d4) == 24,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000103ec) == 46,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001041a) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010442) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001044e) == 28,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001046a) == 48,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001049a) == 20,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000104ae) == 110,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001051c) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001053c) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001055c) == 8,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010564) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010586) == 66,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000105c8) == 116,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001063c) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010642) == 80,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010692) == 38,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000106b8) == 52,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000106ec) == 104,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010754) == 94,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000107b2) == 14,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000107c0) == 128,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010840) == 60,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001087c) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010892) == 176,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010942) == 68,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010986) == 86,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000109dc) == 190,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010a9a) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010ab0) == 70,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010af6) == 102,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010b5c) == 128,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010bdc) == 58,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010c16) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010c48) == 182,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010cfe) == 48,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010d2e) == 582,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00010f74) == 606,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000111d2) == 236,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000112be) == 160,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001135e) == 1254,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00011844) == 2884,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012388) == 328,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000124d0) == 688,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012780) == 160,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012820) == 68,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012864) == 86,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000128ba) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000128ec) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001290a) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001291c) == 188,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000129d8) == 92,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012a34) == 52,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012a68) == 308,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012b9c) == 194,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012c5e) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012c90) == 118,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012d06) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012d38) == 48,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012d68) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012d9a) == 216,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012e72) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012ea4) == 82,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012ef6) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012f28) == 48,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012f58) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012f8a) == 82,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00012fdc) == 328,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013124) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013156) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013160) == 666,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000133fa) == 122,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013474) == 352,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000135d4) == 908,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013960) == 90,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000139ba) == 44,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000139e6) == 124,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013a62) == 142,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013af0) == 108,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013b5c) == 140,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013be8) == 196,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013cac) == 28,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013cc8) == 130,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00013d4a) == 3338,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00014a54) == 62,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00014a92) == 102,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00014af8) == 1878,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001524e) == 132,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000152d2) == 8,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000152da) == 82,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001532c) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00015378) == 3494,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001611e) == 1020,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001651a) == 178,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000165cc) == 62,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001660a) == 72,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016652) == 96,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000166b2) == 86,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016708) == 72,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016750) == 84,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000167a4) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000167f0) == 142,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001687e) == 70,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000168c4) == 44,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000168f0) == 246,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000169e6) == 82,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016a38) == 232,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016b20) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016b48) == 48,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016b78) == 124,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016bf4) == 120,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016c6c) == 182,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016d22) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016d6e) == 62,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016dac) == 378,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016f26) == 36,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00016f4a) == 218,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017024) == 36,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017048) == 154,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000170e2) == 148,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017176) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000171c2) == 84,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017216) == 52,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001724a) == 120,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000172c2) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001730e) == 174,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000173bc) == 126,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001743a) == 58,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017474) == 88,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000174cc) == 388,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017650) == 124,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000176cc) == 80,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001771c) == 66,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001775e) == 114,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000177d0) == 406,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017966) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017998) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000179ca) == 88,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017a22) == 98,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017a84) == 66,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017ac6) == 652,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017d52) == 168,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017dfa) == 44,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017e26) == 150,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017ebc) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017edc) == 140,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017f68) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017f72) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017f9a) == 26,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00017fb4) == 510,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000181b2) == 122,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001822c) == 302,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001835a) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001836c) == 24,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001838c) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001838e) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018390) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018392) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018394) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018396) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018398) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001839a) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001839c) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001839e) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183a0) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183a2) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183a4) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183a6) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183a8) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183aa) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183ac) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183ae) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183b0) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183b2) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183b4) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183b6) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183b8) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183bc) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183be) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183c2) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183c4) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183c6) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183c8) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183ca) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183ce) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183d0) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183d2) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183d4) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183d6) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183d8) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183da) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183dc) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183de) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183e0) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183e2) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183e6) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183e8) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183ea) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183ec) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183ee) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183f4) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183f6) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183f8) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183fa) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183fc) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000183fe) == 148,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018492) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001849e) == 234,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018588) == 174,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018636) == 76,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018682) == 88,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000186da) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000186ea) == 24,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018702) == 184,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000187ba) == 8,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000187c2) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000187e2) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000187ec) == 24,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018804) == 242,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000188f6) == 258,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000189f8) == 212,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018acc) == 164,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018b70) == 106,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018bda) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018be4) == 8,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018bec) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018c0a) == 14,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018c18) == 46,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018c46) == 100,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018caa) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018cdc) == 194,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018d9e) == 44,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018dca) == 22,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018de0) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018df2) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018e1a) == 20,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018e2e) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018e3a) == 32,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018e5a) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018e78) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018e96) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018eb4) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018ed2) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018ef0) == 18,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018f02) == 24,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018f1a) == 90,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018f74) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018f9c) == 42,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018fc6) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018fd6) == 20,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018fea) == 4,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00018fee) == 1066,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00019418) == 90,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00019472) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00019490) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000194b8) == 54,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000194ee) == 30,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001950c) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00019512) == 50,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00019544) == 364,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000196b0) == 134,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00019736) == 308,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_0001986a) == 64,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_000198aa) == 126,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00019928) == 28,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_code_00019944) == 182,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_000199fc) == 110,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019a6c) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019a78) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019a84) == 13,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019a94) == 12,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019aa0) == 72,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019ae8) == 44,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019b14) == 44,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019b40) == 48,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019b70) == 432,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019d70) == 3,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019d74) == 96,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019dd4) == 20,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019de8) == 120,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019e60) == 332,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019fac) == 40,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_00019fd4) == 244,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a0c8) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a0ec) == 34,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a110) == 106,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a17c) == 16,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a18c) == 274,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a2a0) == 8,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a2ac) == 6,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a2b4) == 10,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a2c0) == 2,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a2c4) == 9,"R79 exact member size")
+ASSERT(SIZEOF(.tsl9_ro_0001a2d0) == 2204,"R80 exact member size")
+ASSERT(SIZEOF(.tsl9_runtime_ram) == 35152,"R79 exact RAM span")

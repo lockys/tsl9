@@ -1,0 +1,76 @@
+#ifndef TSL9_SETTINGS_ACCESSORS_H
+#define TSL9_SETTINGS_ACCESSORS_H
+/* RV32 register-ABI emission anchors; these are not inferred original C prototypes. */
+#ifdef __cplusplus
+extern "C" {
+#endif
+void tsl9_runtime_unported_81f8(void);
+void tsl9_runtime_unported_9e8e(void);
+void tsl9_runtime_unported_a894(void);
+void tsl9_runtime_unported_a8da(void);
+void tsl9_runtime_unported_aafe(void);
+void tsl9_runtime_unported_ab08(void);
+void tsl9_runtime_unported_aea4(void);
+void tsl9_runtime_unported_b228(void);
+void tsl9_runtime_unported_b232(void);
+void tsl9_runtime_unported_b23c(void);
+void tsl9_runtime_unported_b246(void);
+void tsl9_runtime_unported_c2fe(void);
+void tsl9_runtime_unported_cea6(void);
+void tsl9_runtime_unported_ceb0(void);
+void tsl9_runtime_unported_cfee(void);
+void tsl9_runtime_unported_d17c(void);
+void tsl9_runtime_unported_d2a6(void);
+void tsl9_runtime_unported_d31a(void);
+void tsl9_runtime_unported_d388(void);
+void tsl9_runtime_unported_d392(void);
+void tsl9_runtime_unported_d5de(void);
+void tsl9_runtime_unported_dd0c(void);
+void tsl9_runtime_unported_dd6c(void);
+void tsl9_runtime_unported_dec2(void);
+void tsl9_runtime_unported_dee2(void);
+void tsl9_runtime_unported_ebbc(void);
+void tsl9_runtime_unported_f076(void);
+void tsl9_runtime_unported_f332(void);
+void tsl9_runtime_unported_f4e4(void);
+void tsl9_runtime_unported_f4f0(void);
+void tsl9_runtime_unported_f510(void);
+void tsl9_runtime_unported_f526(void);
+void tsl9_runtime_unported_f532(void);
+void tsl9_runtime_unported_f53c(void);
+void tsl9_runtime_unported_f56e(void);
+void tsl9_runtime_unported_f5a0(void);
+void tsl9_runtime_unported_f5d2(void);
+void tsl9_runtime_unported_f604(void);
+void tsl9_runtime_unported_f640(void);
+void tsl9_runtime_unported_f64a(void);
+void tsl9_runtime_unported_f686(void);
+void tsl9_runtime_unported_f690(void);
+void tsl9_runtime_unported_f6a0(void);
+void tsl9_runtime_unported_f6b4(void);
+void tsl9_runtime_unported_f6be(void);
+void tsl9_runtime_unported_f6cc(void);
+void tsl9_runtime_unported_f6d6(void);
+void tsl9_runtime_unported_f714(void);
+void tsl9_runtime_unported_f832(void);
+void tsl9_runtime_unported_f84e(void);
+void tsl9_runtime_unported_f85a(void);
+void tsl9_runtime_unported_f8da(void);
+void tsl9_runtime_unported_f8e6(void);
+void tsl9_runtime_unported_f918(void);
+void tsl9_runtime_unported_f932(void);
+void tsl9_runtime_unported_f99c(void);
+void tsl9_runtime_unported_f9a8(void);
+void tsl9_runtime_unported_fc22(void);
+void tsl9_runtime_unported_ff3c(void);
+void tsl9_runtime_unported_ff7a(void);
+void tsl9_runtime_unported_ffa8(void);
+void tsl9_runtime_unported_ffe2(void);
+void tsl9_runtime_unported_10280(void);
+void tsl9_runtime_unported_10286(void);
+void tsl9_runtime_unported_135d4(void);
+void tsl9_runtime_unported_13a62(void);
+#ifdef __cplusplus
+}
+#endif
+#endif
