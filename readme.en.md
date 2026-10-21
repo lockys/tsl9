@@ -29,6 +29,7 @@ The repository also contains 116 historical PowerShell scripts. Their native RV3
 | Readable native clock and derived fields | [English guide](experiments/tsl9-v4160-native-clock/readme.en.md) |
 | Clock normal-return register contracts | [English guide](experiments/tsl9-v4160-clock-registers/readme.en.md) |
 | Reset data-copy, BSS clear and output registers | [English guide](experiments/tsl9-v4160-reset-memory/readme.en.md) |
+| Interrupt initialization normal register contracts | [English guide](experiments/tsl9-v4160-interrupt-registers/readme.en.md) |
 | Runtime main/init/loop/dispatch | [Guide](experiments/tsl9-v4160-runtime-loop/readme.en.md) |
 | Reference resident entry and byte-copy | [Entry](experiments/tsl9-resident-entry-reference/readme.en.md) / [copy](experiments/tsl9-resident-copy-reference/readme.en.md) |
 | Published file identity | [Manifest](publication-manifest.json) |

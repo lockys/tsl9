@@ -1,0 +1,516 @@
+{
+  "schema": "TSL9-IRQ-register-frozen-profile-blocker-v1",
+  "mode": "cpp",
+  "expected_native_blocker_reproduced": true,
+  "native_compilation_succeeded": false,
+  "native_verification_passed": false,
+  "blocker": "Stack pointer required, but has been reserved.",
+  "affected_functions": [
+    "tsl9_rebuild_interrupt_registers_9a42",
+    "tsl9_rebuild_rcc_registers_19124",
+    "tsl9_rebuild_rcc_registers_19142",
+    "tsl9_rebuild_rcc_registers_19160",
+    "tsl9_rebuild_rcc_registers_1917e"
+  ],
+  "object_emitted": false,
+  "linked_ELF_emitted": false,
+  "flags": [
+    "--target=riscv32-unknown-elf",
+    "-march=rv32imac_zicsr",
+    "-mabi=ilp32",
+    "-Oz",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-stack-protector",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-mno-relax",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-ffixed-x1",
+    "-ffixed-x2",
+    "-ffixed-x3",
+    "-ffixed-x4",
+    "-ffixed-x5",
+    "-ffixed-x6",
+    "-ffixed-x7",
+    "-ffixed-x8",
+    "-ffixed-x9",
+    "-ffixed-x11",
+    "-ffixed-x12",
+    "-ffixed-x13",
+    "-ffixed-x16",
+    "-ffixed-x17",
+    "-ffixed-x18",
+    "-ffixed-x19",
+    "-ffixed-x20",
+    "-ffixed-x21",
+    "-ffixed-x22",
+    "-ffixed-x23",
+    "-ffixed-x24",
+    "-ffixed-x25",
+    "-ffixed-x26",
+    "-ffixed-x27",
+    "-ffixed-x28",
+    "-ffixed-x29",
+    "-ffixed-x30",
+    "-ffixed-x31",
+    "-x",
+    "c++",
+    "-std=c++17"
+  ],
+  "allowed_allocator_registers": [
+    10,
+    14,
+    15
+  ],
+  "A1_reserved_except_explicit_commitment": true,
+  "source_sha256": {
+    "interrupt_registers.c": "d3000829bd171e12d7fd6fe9ba5532c76635dce730d64628b3044d06b3724321",
+    "interrupt_registers.h": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59",
+    "irq_io.h": "2ced66889c82da11b595b9dab734c8af4fdd4bb365390a534ec3611f0d5398f7"
+  },
+  "runner_sha256": "420378340d5c1c1f53b2098310610b1f926be8e33358974c6a9c11b3d9d07f8b",
+  "IR_checker_sha256": "b9432308dbe4bb37e1a9c213b36302f782782213ac059c8f596bb68670edf3ba",
+  "clang": {
+    "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+    "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+  },
+  "commands": [
+    {
+      "label": "compile",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-c",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-review\\build\\blocked-9271b6d5152243dd9f0c2cfa5aa28f61-cpp\\interrupt_registers.o"
+      ],
+      "exit": 1,
+      "log_sha256": "5123adfb39dc2962806d4f6e47f130851cd04fb9868548a06833813c3a56144a"
+    },
+    {
+      "label": "llvm-ir",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-S",
+        "-emit-llvm",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-review\\build\\blocked-9271b6d5152243dd9f0c2cfa5aa28f61-cpp\\interrupt_registers.ll"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "LLVM_IR_sha256": "07757f68193abdd0ad77a784a145c5da95612f2b080bdf3292e216465e4dcd51",
+  "IR_only_checks": {
+    "passed": true,
+    "initializer_effects": [
+      {
+        "kind": "csrc",
+        "csr": 2048,
+        "mask": 136
+      },
+      {
+        "kind": "read",
+        "width": 32,
+        "address": 1073877020,
+        "result": "%1"
+      },
+      {
+        "kind": "write",
+        "width": 32,
+        "address": 1073877020,
+        "value": "%2"
+      },
+      {
+        "kind": "read",
+        "width": 32,
+        "address": 1073877016,
+        "result": "%3"
+      },
+      {
+        "kind": "write",
+        "width": 32,
+        "address": 1073877016,
+        "value": "%4"
+      },
+      {
+        "kind": "read",
+        "width": 32,
+        "address": 1073877008,
+        "result": "%5"
+      },
+      {
+        "kind": "write",
+        "width": 32,
+        "address": 1073877008,
+        "value": "%6"
+      },
+      {
+        "kind": "read",
+        "width": 32,
+        "address": 1073877008,
+        "result": "%7"
+      },
+      {
+        "kind": "write",
+        "width": 32,
+        "address": 1073877008,
+        "value": "%8"
+      },
+      {
+        "kind": "read",
+        "width": 32,
+        "address": 1073877004,
+        "result": "%9"
+      },
+      {
+        "kind": "write",
+        "width": 32,
+        "address": 1073877004,
+        "value": "%10"
+      },
+      {
+        "kind": "read",
+        "width": 32,
+        "address": 1073877004,
+        "result": "%11"
+      },
+      {
+        "kind": "write",
+        "width": 32,
+        "address": 1073877004,
+        "value": "%12"
+      },
+      {
+        "kind": "write",
+        "width": 8,
+        "address": 3758154797,
+        "value": 0
+      },
+      {
+        "kind": "write",
+        "width": 32,
+        "address": 3758153988,
+        "value": 8192
+      },
+      {
+        "kind": "write",
+        "width": 8,
+        "address": 3758154788,
+        "value": 32
+      },
+      {
+        "kind": "write",
+        "width": 32,
+        "address": 3758153988,
+        "value": 16
+      },
+      {
+        "kind": "write",
+        "width": 8,
+        "address": 3758154791,
+        "value": 48
+      },
+      {
+        "kind": "write",
+        "width": 32,
+        "address": 3758153988,
+        "value": 128
+      },
+      {
+        "kind": "csrs",
+        "csr": 2048,
+        "mask": 136
+      }
+    ],
+    "initializer_commitments": [
+      {
+        "after_effect": 3,
+        "registers": [
+          "%2",
+          1,
+          1073876992,
+          "%1"
+        ]
+      },
+      {
+        "after_effect": 5,
+        "registers": [
+          "%4",
+          1,
+          1073876992,
+          "%3"
+        ]
+      },
+      {
+        "after_effect": 7,
+        "registers": [
+          "%6",
+          1,
+          1073876992,
+          "%5"
+        ]
+      },
+      {
+        "after_effect": 9,
+        "registers": [
+          "%8",
+          0,
+          "%7",
+          1073876992
+        ]
+      },
+      {
+        "after_effect": 11,
+        "registers": [
+          "%10",
+          1,
+          1073876992,
+          "%9"
+        ]
+      },
+      {
+        "after_effect": 13,
+        "registers": [
+          "%12",
+          0,
+          "%11",
+          1073876992
+        ]
+      },
+      {
+        "after_effect": 20,
+        "registers": [
+          "%12",
+          0,
+          128,
+          3758153728
+        ]
+      }
+    ],
+    "helpers": {
+      "tsl9_rebuild_rcc_registers_19124": {
+        "address": 1073877016,
+        "volatile_effects": 2,
+        "commits": [
+          [
+            "%5",
+            "%1",
+            1073876992,
+            "%3"
+          ],
+          [
+            "%7",
+            0,
+            "%3",
+            1073876992
+          ]
+        ],
+        "exact_nonzero_A1_value_retained": true,
+        "returned_value": "%8"
+      },
+      "tsl9_rebuild_rcc_registers_19142": {
+        "address": 1073877020,
+        "volatile_effects": 2,
+        "commits": [
+          [
+            "%5",
+            "%1",
+            1073876992,
+            "%3"
+          ],
+          [
+            "%7",
+            0,
+            "%3",
+            1073876992
+          ]
+        ],
+        "exact_nonzero_A1_value_retained": true,
+        "returned_value": "%8"
+      },
+      "tsl9_rebuild_rcc_registers_19160": {
+        "address": 1073877004,
+        "volatile_effects": 2,
+        "commits": [
+          [
+            "%5",
+            "%1",
+            1073876992,
+            "%3"
+          ],
+          [
+            "%7",
+            0,
+            "%3",
+            1073876992
+          ]
+        ],
+        "exact_nonzero_A1_value_retained": true,
+        "returned_value": "%8"
+      },
+      "tsl9_rebuild_rcc_registers_1917e": {
+        "address": 1073877008,
+        "volatile_effects": 2,
+        "commits": [
+          [
+            "%5",
+            "%1",
+            1073876992,
+            "%3"
+          ],
+          [
+            "%7",
+            0,
+            "%3",
+            1073876992
+          ]
+        ],
+        "exact_nonzero_A1_value_retained": true,
+        "returned_value": "%8"
+      }
+    },
+    "native_machine_allocation_proved": false,
+    "native_instructions_inspected": false,
+    "RV32_executed": false
+  },
+  "IR_transcript_controls": [
+    {
+      "case": "wrong_CSR_mask",
+      "rejected": true,
+      "reason": "CSR800 mask136 and memory clobber"
+    },
+    {
+      "case": "wrong_PFIC_width",
+      "rejected": true,
+      "reason": "initializer effect order/address/width/value"
+    },
+    {
+      "case": "wrong_register_constraint",
+      "rejected": true,
+      "reason": "exact fixed A0/A1/A4/A5 input-only commitment"
+    },
+    {
+      "case": "wrong_fresh_RMW_mask",
+      "rejected": true,
+      "reason": "fresh read RMW exact mask"
+    },
+    {
+      "case": "missing_commitment",
+      "rejected": true,
+      "reason": "seven exact ordered full-register commitments"
+    },
+    {
+      "case": "wrong_final_return",
+      "rejected": true,
+      "reason": "return actual final fresh RMW"
+    }
+  ],
+  "actual_native_function_sizes": null,
+  "actual_native_RD_preservation_proved": false,
+  "original_ABI_proved": false,
+  "original_fixed_placement_proved": false,
+  "firmware_executed": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false
+}

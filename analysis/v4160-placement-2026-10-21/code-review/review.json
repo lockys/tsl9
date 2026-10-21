@@ -1,0 +1,79 @@
+{
+  "schema": "TSL9-interrupt-registers-independent-code-review-contract-v1",
+  "passed": true,
+  "component_inputs": [
+    {
+      "path": "experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.c",
+      "sha256": "d3000829bd171e12d7fd6fe9ba5532c76635dce730d64628b3044d06b3724321"
+    },
+    {
+      "path": "experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.h",
+      "sha256": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"
+    },
+    {
+      "path": "experiments/tsl9-v4160-interrupt-registers/src/irq_io.h",
+      "sha256": "2ced66889c82da11b595b9dab734c8af4fdd4bb365390a534ec3611f0d5398f7"
+    },
+    {
+      "path": "experiments/tsl9-v4160-interrupt-registers/tests/test_io.h",
+      "sha256": "a9cc47726a4245b905e95eb9ca286ae07451c566ccea0da9aa4f830cb6c41abc"
+    },
+    {
+      "path": "scripts/portable_verify.py",
+      "sha256": "93933fcb13a0fc45c9c5c82ebb1584a94298e28888d4f7f6a359237c7d3f8754"
+    }
+  ],
+  "original_source_seal_sha256": "4d6745033aae496576b9db2fb7467396fbfda5067713cf1451a34b949b414283",
+  "placement_source_seal_sha256": "b6a9cf17dfcc69c176476044086f00ca763167908065aad8c1084737cdb34fc4",
+  "old_component_ABI_counterevidence_seal_sha256": "f73778eacef8a1681a5ee621cb36ebb2b794906770d1d23b93dfc420d5fc58d0",
+  "independent_receipts": [
+    {
+      "path": "receipts/c016eca0d32c4d10ae515e45053ba061-cpp.json",
+      "sha256": "882c01089d3b44a5aabe7fba178c8fc25bbf9eb8d1c8803a767704429131410d",
+      "language": "cpp"
+    },
+    {
+      "path": "receipts/e44629876d544c6e9b2090f1ed6a67ae-c.json",
+      "sha256": "2292b825e9d3fd5d9bdb92b7fc465a2aa79941ccee07e60f6a13b61966e0327f",
+      "language": "c"
+    }
+  ],
+  "parent_receipts": [
+    {
+      "path": "receipts/parent-c.json",
+      "sha256": "a9ef8277c49340642c36d00745ce949c1ed8526be75dda4ecb1a9fe04bf0e08a"
+    },
+    {
+      "path": "receipts/parent-cpp.json",
+      "sha256": "3536af3bad1e9574b1c265340660adb27b998604329e904e30c7c6c8cfd6be1c"
+    }
+  ],
+  "independent_tests_per_mode": {
+    "groups": 4,
+    "cases": 3820,
+    "checks": 138312
+  },
+  "parent_tests_per_mode": {
+    "groups": 4,
+    "cases": 9184,
+    "checks": 246384
+  },
+  "compiled_behavior_mutants_rejected": 36,
+  "blocking_findings_in_host_numeric_IO_output_interface": [],
+  "normal_output_scope": [
+    "Helper enabled truthiness and exact A1 bits",
+    "Helper A4/A5 base and before values",
+    "Main ordered20 external effects plus7 output observations",
+    "Main A0 last fresh clear,A1zero,A4=128,A5=0xe000e000"
+  ],
+  "actual_native_A2_A3_preservation_proved": false,
+  "native_output_A1_proved": false,
+  "native_compiler_constraints_passed": false,
+  "full_original_entry_IRQ_ABI_proved": false,
+  "placement_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false
+}

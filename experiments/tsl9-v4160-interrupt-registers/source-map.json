@@ -1,0 +1,27 @@
+{
+  "schema": "TSL9-interrupt-register-source-map-v1",
+  "runtime_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source_seal_sha256": "4d6745033aae496576b9db2fb7467396fbfda5067713cf1451a34b949b414283",
+  "abi_seal_sha256": "f73778eacef8a1681a5ee621cb36ebb2b794906770d1d23b93dfc420d5fc58d0",
+  "original_initializer": {"start": 39490, "end_exclusive": 39634, "bytes": 144},
+  "original_helpers": [
+    {"start": 102692, "end_exclusive": 102722, "bytes": 30, "MMIO": 1073877016},
+    {"start": 102722, "end_exclusive": 102752, "bytes": 30, "MMIO": 1073877020},
+    {"start": 102752, "end_exclusive": 102782, "bytes": 30, "MMIO": 1073877004},
+    {"start": 102782, "end_exclusive": 102812, "bytes": 30, "MMIO": 1073877008}
+  ],
+  "helper_normal_outputs": {
+    "A0": "enabled ? (fresh_word | mask) : (fresh_word & ~mask)",
+    "A1": "exact incoming enabled bits",
+    "A4": "enabled ? 0x40021000 : fresh_word",
+    "A5": "enabled ? fresh_word : 0x40021000",
+    "A2_A3": "not written"
+  },
+  "initializer_normal_outputs": {"A0": "sixth fresh RCC word & ~0x101D", "A1": 0, "A4": 128, "A5": 3758153728, "A2_A3": "not written"},
+  "native_allocator_registers": ["a0", "a4", "a5"],
+  "A1_reserved_except_explicit_boundary_commitments": true,
+  "original_pointwise_IRQ_state_proved": false,
+  "original_fixed_placement_proved": false,
+  "ROM_or_hardware_identified": false,
+  "OTA_ready": false
+}

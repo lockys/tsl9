@@ -1,5 +1,17 @@
 # Verified milestones
 
+## Placement audit and interrupt register model
+
+The exact owned pool is eight separated original ranges totaling 540 bytes: reset memory 62, clock query 174, fields 40, IRQ initializer **144**, and four RCC helpers **30 each**. A byte-bound audit verifies all 691 section bindings and 8,280 RELA records against the full fixed linker layout. The helpers have other callers. No external direct interior entry was found within admitted code, but 939 indirect instructions leave computed targets unresolved. Summing bytes does not establish a safe contiguous placement.
+
+Actual old native IRQ bodies disprove a useful-looking space assumption: the 118-byte initializer and 22-byte helpers write A2/A3, while the original preserves them. Their A1/A4/A5 residues also differ. A3 survives along the existing caller path to an unresolved callback, so these old bodies cannot supply replacement space under the original contract.
+
+The new `interrupt-registers` C/C++ model retains the 20 MMIO/CSR effects, exact helper A1 bits, branch-specific A4/A5 and final initializer A1=0/A4=128/A5=`0xE000E000`. Each full-source host language passes four groups / 9,184 cases / 246,384 checks. These are host normal-boundary results. Its intended native profile currently fails with `Stack pointer required, but has been reserved.` in all five functions; it emits no object/ELF and has **no accepted native register or placement proof**. Three bounded diagnostic combinations also fail. IR checks and expected-failure reproduction are recorded separately from successful compilation. Restructuring branch-local value lifetimes remains implementation work.
+
+One actual native size improvement is verified independently: unchanged reset C/C++ under `-Oz` produces a 66-byte leaf and 68-byte fragment, down from 78/80; the original is 62. Physical GP operands reduce from four to three. Clock query/fields remain 196/38. Synthetic jump witnesses check two-byte resolved C.J and four-byte external JAL x0 geometry, without supplying an original entry adapter or allocating space. No original image is changed and no BIN is generated.
+
+Use `sh experiments/tsl9-v4160-interrupt-registers/verify.sh --language both`. Source, ABI counterevidence, independent tests, successful bounded probes and failed new native profiles are under `analysis/v4160-placement-2026-10-21/`, with English and Traditional Chinese guides separated. Destination/checkout verification produces fresh local results; historical build archives are not shipped. Linux/macOS, original intermediate IRQ state, ROM, board, Flash and rebuilt-image OTA remain unverified.
+
 ## Reset memory initialization
 
 The reset slice at `0x186BA..0x186F8` now has a readable C/C++ implementation: separate GP observations, interleaved forward word copy, unsigned bounds, BSS word clear and the normal boundary A0/A1/A2 values. The exact ID2966 source proof covers 62 bytes / 17 instructions and rejects 17 raw mutations. Its 128-byte initializer is read as data. Each host language passes five groups / 338 cases / 133,601 checks; the independent review adds five groups / 538 cases / 193,964 checks per language and rejects 22 actually compiled mutants in total.

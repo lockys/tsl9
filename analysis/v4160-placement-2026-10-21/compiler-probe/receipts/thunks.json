@@ -1,0 +1,429 @@
+{
+  "schema": "TSL9-synthetic-thunk-width-static-witness-v1",
+  "passed": true,
+  "runner_sha256": "7732cfa32d9eca5dc0fcb83448e9f424ff4ab563c7ddc297734a957edf7e8339",
+  "immutable_dependencies": {
+    "verify_native.py": "6d5d0e43a1a909e8dbaa6a63027c0db7fc14b295c934b979b3d3169bdd38d456",
+    "elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141"
+  },
+  "tools": {
+    "clang": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "linker": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "objdump": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    }
+  },
+  "witnesses": [
+    {
+      "case": "local_forward_CJ_max",
+      "source_sha256": "15b7daef35ae4ef41b91afcfad88c47228ed049fe8aa75115a56bffebb025b0b",
+      "object_sha256": "ae3826802e1c8b0b4ac11f0c4e71263c8c1e95a93ba5a24cb49ec54bd1ba34cd",
+      "ELF_sha256": "3467ed1cd6678264baa9f1a2d893240295e24912a7dadbe17fb246cc97a81b2c",
+      "symbol_address": 4096,
+      "raw_bytes": "fdaf",
+      "decoded": {
+        "encoding": "C.J",
+        "bytes": 2,
+        "rd": 0,
+        "displacement": 2046,
+        "target": 6142
+      },
+      "commands": [
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac",
+            "-mabi=ilp32",
+            "-mno-relax",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\thunk.s",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\thunk.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "--no-relax",
+            "--no-undefined",
+            "--entry=probe_entry",
+            "-Ttext=0x1000",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\thunk.o",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "--disassemble",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "aff7563e2a741bd66141bd641c84b747ef863dd034c89accaf2c90c11fd89df0"
+        }
+      ]
+    },
+    {
+      "case": "local_backward_CJ_min",
+      "source_sha256": "9f389031b3c525a5070b92444d5589cac9cf8f1a91471a0c5874bc8981a71022",
+      "object_sha256": "b2e10feac71cb348dcf7274b33e013c287d0ccef0eb22232084d1a44c594eb28",
+      "ELF_sha256": "80f44f435e854ee52e2748e6204cbe99eb1e13922564833729227db2b46f286c",
+      "symbol_address": 6144,
+      "raw_bytes": "01b0",
+      "decoded": {
+        "encoding": "C.J",
+        "bytes": 2,
+        "rd": 0,
+        "displacement": -2048,
+        "target": 4096
+      },
+      "commands": [
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac",
+            "-mabi=ilp32",
+            "-mno-relax",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\thunk.s",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\thunk.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "--no-relax",
+            "--no-undefined",
+            "--entry=probe_entry",
+            "-Ttext=0x1000",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\thunk.o",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "--disassemble",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "ff8806aae3e9a0ad0938cbd3b806e18d6a4ec7d05776f5343d79ba689881725e"
+        }
+      ]
+    },
+    {
+      "case": "external_near_CJ_spelling",
+      "source_sha256": "1e59410a4efb4bc9bcb8064e1573eb0df91841e4476fa283c6c5cc7738aab983",
+      "object_sha256": "43b2ac08a8bc14e525221c15d3cdfe67afc8f1c608fd03e3e9f630b4945803f4",
+      "ELF_sha256": "96f1204f26e2c085c1592f542ba71e76d5bfb07ab5eb7f78d7e6931a28fcd5ef",
+      "symbol_address": 100026,
+      "raw_bytes": "6f00a017",
+      "decoded": {
+        "encoding": "JAL",
+        "bytes": 4,
+        "rd": 0,
+        "displacement": 378,
+        "target": 100404
+      },
+      "commands": [
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac",
+            "-mabi=ilp32",
+            "-mno-relax",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\thunk.s",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\thunk.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "--no-relax",
+            "--no-undefined",
+            "--entry=probe_entry",
+            "-Ttext=0x186ba",
+            "--defsym=external_target=0x18834",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\thunk.o",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "--disassemble",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "b28f172bbad4a193420bf1468837ae509cb4af2bbb5f6f5e9718ce7c594fc745"
+        }
+      ]
+    },
+    {
+      "case": "external_far_JAL_x0",
+      "source_sha256": "6737c4040ffc366bbb475810cfc89c672c12dfb96710a2b9d4e86c70969cf4cd",
+      "object_sha256": "43b2ac08a8bc14e525221c15d3cdfe67afc8f1c608fd03e3e9f630b4945803f4",
+      "ELF_sha256": "a77e796862f81f52b2618a4d139a4e3cf02d85481d2edd3e0560421096ff71e3",
+      "symbol_address": 100026,
+      "raw_bytes": "6f10efbf",
+      "decoded": {
+        "encoding": "JAL",
+        "bytes": 4,
+        "rd": 0,
+        "displacement": -60418,
+        "target": 39608
+      },
+      "commands": [
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac",
+            "-mabi=ilp32",
+            "-mno-relax",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\thunk.s",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\thunk.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "--no-relax",
+            "--no-undefined",
+            "--entry=probe_entry",
+            "-Ttext=0x186ba",
+            "--defsym=external_target=0x9ab8",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\thunk.o",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "--disassemble",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "bec0aa9f420bd4e72e230ce3ec7a20233b2aac07d59c2fe75df52b26cc4c9e41"
+        }
+      ]
+    }
+  ],
+  "original_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "original_prefixes": [
+    {
+      "name": "reset",
+      "entry": 100026,
+      "first_instruction_bytes": 4,
+      "complete_prefix_for_4byte_thunk": 4,
+      "prefix_instruction_widths": [
+        4
+      ],
+      "original_prefix": "17250000",
+      "two_byte_thunk_can_replace_whole_first_instruction": false
+    },
+    {
+      "name": "query",
+      "entry": 100404,
+      "first_instruction_bytes": 4,
+      "complete_prefix_for_4byte_thunk": 4,
+      "prefix_instruction_widths": [
+        4
+      ],
+      "original_prefix": "37170240",
+      "two_byte_thunk_can_replace_whole_first_instruction": false
+    },
+    {
+      "name": "fields",
+      "entry": 104252,
+      "first_instruction_bytes": 4,
+      "complete_prefix_for_4byte_thunk": 4,
+      "prefix_instruction_widths": [
+        4
+      ],
+      "original_prefix": "9387c106",
+      "two_byte_thunk_can_replace_whole_first_instruction": false
+    },
+    {
+      "name": "irq",
+      "entry": 39490,
+      "first_instruction_bytes": 2,
+      "complete_prefix_for_4byte_thunk": 4,
+      "prefix_instruction_widths": [
+        2,
+        2
+      ],
+      "original_prefix": "41114ac0",
+      "two_byte_thunk_can_replace_whole_first_instruction": true
+    }
+  ],
+  "geometry_examples": [
+    {
+      "entry": 100026,
+      "hypothetical_target": 39608,
+      "displacement": -60418,
+      "aligned": true,
+      "CJ_geometry_fits": false,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 100026,
+      "hypothetical_target": 102714,
+      "displacement": 2688,
+      "aligned": true,
+      "CJ_geometry_fits": false,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 100026,
+      "hypothetical_target": 104290,
+      "displacement": 4264,
+      "aligned": true,
+      "CJ_geometry_fits": false,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 100404,
+      "hypothetical_target": 39608,
+      "displacement": -60796,
+      "aligned": true,
+      "CJ_geometry_fits": false,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 100404,
+      "hypothetical_target": 102714,
+      "displacement": 2310,
+      "aligned": true,
+      "CJ_geometry_fits": false,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 100404,
+      "hypothetical_target": 104290,
+      "displacement": 3886,
+      "aligned": true,
+      "CJ_geometry_fits": false,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 104252,
+      "hypothetical_target": 39608,
+      "displacement": -64644,
+      "aligned": true,
+      "CJ_geometry_fits": false,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 104252,
+      "hypothetical_target": 102714,
+      "displacement": -1538,
+      "aligned": true,
+      "CJ_geometry_fits": true,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 104252,
+      "hypothetical_target": 104290,
+      "displacement": 38,
+      "aligned": true,
+      "CJ_geometry_fits": true,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 39490,
+      "hypothetical_target": 39608,
+      "displacement": 118,
+      "aligned": true,
+      "CJ_geometry_fits": true,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 39490,
+      "hypothetical_target": 102714,
+      "displacement": 63224,
+      "aligned": true,
+      "CJ_geometry_fits": false,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    },
+    {
+      "entry": 39490,
+      "hypothetical_target": 104290,
+      "displacement": 64800,
+      "aligned": true,
+      "CJ_geometry_fits": false,
+      "JAL_x0_geometry_fits": true,
+      "target_storage_owned_and_free_proved": false
+    }
+  ],
+  "encoded_immediate_ranges": {
+    "CJ": {
+      "bytes": 2,
+      "minimum": -2048,
+      "maximum": 2046,
+      "alignment": 2
+    },
+    "JAL_x0": {
+      "bytes": 4,
+      "minimum": -1048576,
+      "maximum": 1048574,
+      "alignment": 2
+    }
+  },
+  "candidate_slack_is_assumed": false,
+  "actual_original_entry_thunk_installed": false,
+  "original_image_changed": false,
+  "BIN_produced": false,
+  "original_layout_integration_proved": false,
+  "source_original_ABI_proved": false,
+  "RV32_executed": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false
+}
