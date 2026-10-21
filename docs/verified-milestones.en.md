@@ -1,5 +1,15 @@
 # Verified milestones
 
+## Readable IRQ source in the complete offline image
+
+Actual C11/C++17 builds recompile 34 original instruction/data carriers plus two readable units, then link and export identical 76,800-byte images. SHA-256 is `47f200dce24be25ac89d57922689da536259935e8615ba8195b10ca192895e1c`. Only eight specified bytes at `0x9A44..0x9A4B` differ, permuting four prologue register-save instructions. Original APK/vendor BINs and the prior source-identical fixture remain unchanged.
+
+Checks cover all 691 original allocations, 686 retained storage sections, 53 real section-relative bindings and eight external entry calls. All 8,270 outside-owned RELA records retain exact roles and multiplicity. The new total is 8,276: six new core JALs replace ten old owned records, explicitly discharging four helper branch RELA records through identical bytes. Every exported byte is backed by actual sections and LOAD contents, without hole filling, original-BIN fallback, RAM NOBITS or ROM-byte export.
+
+Each language has actual dependency closure for 36 compiled units, 44 checked commands and 15 actual ELF/relocation/image negative controls. Strict full linking rejects the sole missing ROM provider; the successful artifact uses only a numeric `0x40000` address witness. Readable C/C++ replaces five IRQ/RCC functions; all other original instruction/data carriers remain, so this is not complete source recovery.
+
+The image is [NOT-FLASH-VALIDATED-irq-callframe.bin](../artifacts/offline-images/ID2966-V4.1.60-readable-IRQ-integration/NOT-FLASH-VALIDATED-irq-callframe.bin). Entry points and separate independent reviews are in the [English guide](../analysis/v4160-irq-image-integration-2026-10-21/readme.en.md). Installed ROM, asynchronous interrupt state, hardware, physical Flash and BLE OTA remain unproved; this BIN is **not verified flashable**. Windows Python/LLVM builds do not establish shell, Linux/macOS or CI results.
+
 ## 144-byte IRQ callframe and C++ allocations
 
 Readable C/C++ main now uses six explicit4-byte JALs to shared RCC helpers and a compiler-generated16-byte frame. Actual C11/C++17 main functions are144 bytes, with four30-byte helpers: all264 bytes /94 instructions fit their original extents, without extra allocations. C++ `-fno-exceptions` removes prior unwind metadata; a separate predecessor experiment confirms that this sole flag does not change its five function bodies.

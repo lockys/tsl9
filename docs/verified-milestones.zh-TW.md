@@ -1,5 +1,15 @@
 # 已驗證里程碑
 
+## IRQ 可讀來源的完整離線映像
+
+已實際重新編譯 34 個原始指令／資料載體與兩個可讀單元，並在 C11／C++17 分別連結、匯出相同的 76,800-byte 映像。新映像 SHA-256 為 `47f200dce24be25ac89d57922689da536259935e8615ba8195b10ca192895e1c`，只在 `0x9A44..0x9A4B` 有八個明確 byte 差異，對應四個 prologue 保存指令的順序。原始 APK、廠商 BIN 與先前來源一致映像未替換。
+
+核對 691 個原始配置、686 段保留儲存、53 個真實區段內符號綁定及八筆外部進入呼叫；8,270 筆範圍外 RELA 保持完整角色與次數。新總數為 8,276，其中六筆為新核心 JAL，四筆原 helper 分支 RELA 由一致 bytes 明確解除。所有匯出 bytes 均由實際區段及 LOAD 支持；無補洞、原始 BIN 回填、RAM NOBITS 或 ROM bytes 匯出。
+
+每語言有 36 個實際編譯單元的依賴閉包、44 個受檢指令及 15 個實際 ELF／重定位／映像負例。完整嚴格連結明確拒絕唯一缺失的 ROM provider；成功產物僅使用 `0x40000` 的數字位址見證。可讀 C/C++ 只取代五個 IRQ／RCC 函式，其餘仍是原始指令／資料載體，不能宣稱完整來源重建。
+
+映像位於 [NOT-FLASH-VALIDATED-irq-callframe.bin](../artifacts/offline-images/ID2966-V4.1.60-readable-IRQ-integration/NOT-FLASH-VALIDATED-irq-callframe.bin)，入口與分開的獨立審查見 [繁體中文說明](../analysis/v4160-irq-image-integration-2026-10-21/readme.zh-TW.md)。原機 ROM、非同步中斷狀態、硬體、實體 Flash 與 BLE OTA 仍未通過；此 BIN **尚未驗證可刷寫**。Windows Python／LLVM 建置不代表 shell、Linux／macOS 或 CI 結果。
+
 ## 144-byte IRQ 呼叫框架與 C++ 配置
 
 新版可讀 C/C++ main 改用六個四-byte JAL 呼叫既有 RCC helper，由編譯器建立 16-byte frame。C11／C++17 的實際 main 均為 144 bytes，四個 helper 各 30 bytes，264 bytes／94 指令全部位於原始區段，且無額外配置。C++ 的 `-fno-exceptions` 移除先前 unwind metadata；獨立 predecessor 實驗也確認此單一 flag 不改動其五個函式 bytes。

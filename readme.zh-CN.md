@@ -36,6 +36,7 @@ sh ./verify.sh --model system-clock-query --language both
 | 中断初始化正常寄存器契约 | [繁体中文说明](experiments/tsl9-v4160-interrupt-registers/readme.zh-TW.md) |
 | 原址机器码一致的 RCC helper 与新版 IRQ 核心 | [繁体中文说明](experiments/tsl9-v4160-irq-native/readme.zh-TW.md) |
 | 可放回原区段的 144-byte IRQ 调用框架 | [繁体中文说明](experiments/tsl9-v4160-irq-callframe/readme.zh-TW.md) |
+| IRQ 可读来源与完整原始布局整合 | [繁体中文说明](analysis/v4160-irq-image-integration-2026-10-21/readme.zh-TW.md) |
 | 新功能候选与既有功能证据 | [繁体中文提案](analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.zh-TW.md) |
 | Runtime 主程序／初始化／循环／分发 | [说明](experiments/tsl9-v4160-runtime-loop/readme.zh-TW.md) |
 | resident 候选入口与 byte-copy | [入口](experiments/tsl9-resident-entry-reference/readme.zh-TW.md)／[copy](experiments/tsl9-resident-copy-reference/readme.zh-TW.md) |
