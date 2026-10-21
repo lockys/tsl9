@@ -6,7 +6,7 @@
 
 ## 跨平台验证
 
-新增追查 OTA 发送入口 `0x8A56`：原始 280 bytes／96 条指令已逐条核对，40 项操作数反例被拒绝。可读 C/C++ 的编译探针已符合 280-byte 大小，但入口与返回的栈操作顺序仍未吻合，**尚未纳入完整映像，也不是可直接替换的函数**。参见[本轮分析](analysis/v4160-ota-tx-2026-10-22/README.md)及[后续发送路径与新功能提案](analysis/v4160-ota-tx-2026-10-22/continuation-plan/README.md)。
+OTA 发送入口 `0x8A56` 已取得实际 280-byte 原生组件：8-byte 窄汇编入口、270-byte 可读 C/C++ 主体及 2-byte 返回函数。超长输入可直接返回、不碰栈，两次 ROM 调用的返回地址吻合。寄存器保存／恢复时序以新的独立排序步骤核对；**此组件尚未纳入完整映像，未经原硬件或 BLE OTA 验证**。参见[入口与调用框架分析](analysis/v4160-tx-register-abi-2026-10-22/README.md)、[原始发送契约](analysis/v4160-ota-tx-2026-10-22/README.md)及[新功能提案](analysis/v4160-ota-tx-2026-10-22/continuation-plan/README.md)。
 
 最新完整映像已纳入 OTA 页面回复：12 个可读 IRQ／Flash／OTA 函数共 650 bytes，完整 76,800-byte BIN 与官方 ID2966 V4.1.60 相同。C、C++ 各新编译 43 个单元，61 个命令含两次明确 ABI 排序；全部单元记录完整标头依赖。其余 679 个区段仍使用原始承载，这是部分源码重建，**不是原硬件或 BLE OTA 验证**。参见[新版整合](analysis/v4160-reply-image-integration-2026-10-22/README.md)与[离线映像](artifacts/offline-images/ID2966-V4.1.60-reply-integrated/README.md)。
 

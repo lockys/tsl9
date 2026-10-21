@@ -1,0 +1,127 @@
+{
+  "schema": "TSL9-TX-prior-diagnostic-results-v1",
+  "historical_actual_artifacts_read": true,
+  "default_reopens_archives": false,
+  "ordinary_C_candidate": {
+    "c": {
+      "object_sha256": "1ecbf7d77bdf0d964c979bdf8f08f09d0f753e83563b22c5b027c9f524e26bcb",
+      "body_sha256": "600af4836d05093e80ad5eed97d8315be2f21a120608b476859c69f9700c2503",
+      "bytes": 278,
+      "instructions": 95,
+      "original_gate_RAs": [
+        35472,
+        35510
+      ],
+      "original_gate_RA_values_preserved": true,
+      "guard_before_frame": false,
+      "fresh_restore_frontiers_preserved": false,
+      "original_ABI_admitted": false
+    },
+    "cpp": {
+      "object_sha256": "1ecbf7d77bdf0d964c979bdf8f08f09d0f753e83563b22c5b027c9f524e26bcb",
+      "body_sha256": "600af4836d05093e80ad5eed97d8315be2f21a120608b476859c69f9700c2503",
+      "bytes": 278,
+      "instructions": 95,
+      "original_gate_RAs": [
+        35472,
+        35510
+      ],
+      "original_gate_RA_values_preserved": true,
+      "guard_before_frame": false,
+      "fresh_restore_frontiers_preserved": false,
+      "original_ABI_admitted": false
+    }
+  },
+  "ordinary_C_split": {
+    "c": {
+      "object_sha256": "2e98585a586169a3dec954c78e1e370dc5eb1e6a70dc70195ed3d80bd988e699",
+      "entry_bytes": 18,
+      "valid_body_bytes": 272,
+      "total_owned_bytes": 290,
+      "oversized_path_no_frame_proved": true,
+      "entry_tail_writes_T1": true,
+      "valid_body_writes_T1_before_first_gate": false,
+      "extra_T1_provider_boundary_equivalence_proved": false,
+      "original_ABI_admitted": false,
+      "controls": [
+        {
+          "name": "wrong_unsigned_condition",
+          "actual_compiled_entry_bytes_mutated": true,
+          "rejected": true,
+          "original_hex": "63f3d700",
+          "changed_hex": "63e3d700",
+          "reason": "Unsigned A5>=A3 reaches source-only tail adapter"
+        },
+        {
+          "name": "oversized_RET_changes_RA",
+          "actual_compiled_entry_bytes_mutated": true,
+          "rejected": true,
+          "original_hex": "8280",
+          "changed_hex": "8290",
+          "reason": "Oversized path RET without RA link"
+        },
+        {
+          "name": "tail_address_wrong_GPR",
+          "actual_compiled_entry_bytes_mutated": true,
+          "rejected": true,
+          "original_hex": "17030000",
+          "changed_hex": "97030000",
+          "reason": "Actual compiler-owned T1 PCREL tail address"
+        },
+        {
+          "name": "entry_tail_creates_RA",
+          "actual_compiled_entry_bytes_mutated": true,
+          "rejected": true,
+          "original_hex": "67000300",
+          "changed_hex": "e7000300",
+          "reason": "Actual no-link JR T1 entry transfer"
+        }
+      ]
+    },
+    "cpp": {
+      "object_sha256": "5205a11315c46170c7e1e9adeea9e32067d7054595df1b9de35bc94c0aeec09f",
+      "entry_bytes": 18,
+      "valid_body_bytes": 272,
+      "total_owned_bytes": 290,
+      "oversized_path_no_frame_proved": true,
+      "entry_tail_writes_T1": true,
+      "valid_body_writes_T1_before_first_gate": false,
+      "extra_T1_provider_boundary_equivalence_proved": false,
+      "original_ABI_admitted": false,
+      "controls": [
+        {
+          "name": "wrong_unsigned_condition",
+          "actual_compiled_entry_bytes_mutated": true,
+          "rejected": true,
+          "original_hex": "63f3d700",
+          "changed_hex": "63e3d700",
+          "reason": "Unsigned A5>=A3 reaches source-only tail adapter"
+        },
+        {
+          "name": "oversized_RET_changes_RA",
+          "actual_compiled_entry_bytes_mutated": true,
+          "rejected": true,
+          "original_hex": "8280",
+          "changed_hex": "8290",
+          "reason": "Oversized path RET without RA link"
+        },
+        {
+          "name": "tail_address_wrong_GPR",
+          "actual_compiled_entry_bytes_mutated": true,
+          "rejected": true,
+          "original_hex": "17030000",
+          "changed_hex": "97030000",
+          "reason": "Actual compiler-owned T1 PCREL tail address"
+        },
+        {
+          "name": "entry_tail_creates_RA",
+          "actual_compiled_entry_bytes_mutated": true,
+          "rejected": true,
+          "original_hex": "67000300",
+          "changed_hex": "e7000300",
+          "reason": "Actual no-link JR T1 entry transfer"
+        }
+      ]
+    }
+  }
+}

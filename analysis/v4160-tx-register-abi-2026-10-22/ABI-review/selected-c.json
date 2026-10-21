@@ -1,0 +1,867 @@
+{
+  "schema": "TSL9-TX-independent-layered-ABI-review-v1",
+  "actual_build_artifact_replay": true,
+  "checked_layered_subsets_passed": true,
+  "actual_folder": "experiments/tsl9-v4160-tx-register-abi/build/formal-final/ordered/c",
+  "actual_providers": "experiments/tsl9-v4160-tx-register-abi/build/formal-final/pre/c",
+  "actual_artifact_sha256": {
+    "experiments/tsl9-v4160-tx-register-abi/build/formal-final/pre/c/entry.o": "10c85139694f171e6376341ea33c6a38122dea8281ebaaa863abbbe8585a636f",
+    "experiments/tsl9-v4160-tx-register-abi/build/formal-final/pre/c/valid_body.o": "d9aa545a5ae04c6b48efeb212864139383f296ce561b9ed667757033259c336f",
+    "experiments/tsl9-v4160-tx-register-abi/build/formal-final/pre/c/valid_body.ll": "b741d52becde82724e548d188a11deece4ad5b44073464f35ac072dcec843493",
+    "experiments/tsl9-v4160-tx-register-abi/build/formal-final/pre/c/return_leaf.o": "1e779fd0a2abee5dafbb3f64f50748f8d77cc2c05ff7a8a05880b9a8f3524e9a",
+    "experiments/tsl9-v4160-tx-register-abi/build/formal-final/pre/c/return_leaf.ll": "1aab980120265ba96e8ce1039073fb35a9c22fc8ba0353c8f9362db318fbd63b",
+    "experiments/tsl9-v4160-tx-register-abi/build/formal-final/ordered/c/valid_body-ordered.o": "9a7878a67c15ab9b31c991807d4d14991d0790444b4fd44c95b4848be28b1697",
+    "experiments/tsl9-v4160-tx-register-abi/build/formal-final/ordered/c/COMPONENT-ONLY-NOT-FIRMWARE.elf": "19460aa5bfc4b4e6a7bc56134c7aac3ca1d7d218f6e387995a468e52859af094",
+    "experiments/tsl9-v4160-tx-register-abi/build/formal-final/ordered/c/source-integrated-component.o": "515257997cbc5b32a008f6d49280a888771e570ecced295825976b7080f9e021",
+    "experiments/tsl9-v4160-tx-register-abi/build/formal-final/ordered/c/verification.json": "9e89f182d4bcd2110e0655831c40ac47fabceb399ff7b6529f7f36e6448f8596"
+  },
+  "entry": {
+    "schema": "TSL9-TX-independent-narrow-entry-review-v1",
+    "actual_objects_IR_and_linked_ELF_read": true,
+    "checked_entry_prefix_passed": true,
+    "entry_object_sha256": "10c85139694f171e6376341ea33c6a38122dea8281ebaaa863abbbe8585a636f",
+    "supplied_body_object_sha256": "9a7878a67c15ab9b31c991807d4d14991d0790444b4fd44c95b4848be28b1697",
+    "supplied_body_object_name": "valid_body-ordered.o",
+    "body_ordering_provenance_requires_separate_pre_post_audit": true,
+    "leaf_object_sha256": "1e779fd0a2abee5dafbb3f64f50748f8d77cc2c05ff7a8a05880b9a8f3524e9a",
+    "linked_ELF_sha256": "19460aa5bfc4b4e6a7bc56134c7aac3ca1d7d218f6e387995a468e52859af094",
+    "actual_entry_RELA_count": 1,
+    "actual_entry_RELA_type": 16,
+    "contract": {
+      "entry_bytes": 8,
+      "typed_body_bytes": 270,
+      "typed_return_bytes": 2,
+      "allocated_bytes": 280,
+      "entry_FUNC_bytes": 8,
+      "aggregate_FUNC280_fabricated": false,
+      "fallthrough_address": 35422,
+      "oversized_return_address": 35692,
+      "opaque_gate_RAs": [
+        35472,
+        35510
+      ],
+      "RAM_PCREL_target": 536916364,
+      "actual_body_SHA256": "8b129d84cbd65062315ec8197f7cbabb0eae7a4dfec4dca5bf39861851a525b9",
+      "oversized_path_no_frame_proved": true,
+      "new_T1_transfer_not_introduced": true,
+      "original_known_incoming_linked_here": false,
+      "private_original_roles_linked_here": false,
+      "full_pointwise_identity_proved": false,
+      "original_ABI_admitted": false
+    },
+    "controls": [
+      {
+        "name": "inverted_length_condition",
+        "actual_linked_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "Linked unsigned branch actually targets the typed RET at8B6C"
+      },
+      {
+        "name": "branch_to_wrong_leaf",
+        "actual_linked_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "Linked unsigned branch actually targets the typed RET at8B6C"
+      },
+      {
+        "name": "return_leaf_links_RA",
+        "actual_linked_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "Entry literal and real typed RET leaf retain their actual source bytes"
+      }
+    ],
+    "source_owned_assembly_layer_explicit": true,
+    "whole_algorithm_assembly": false,
+    "original_ABI_admitted": false,
+    "hardware_OTA_proved": false,
+    "target_execution": false,
+    "ISA_emulation": false
+  },
+  "frame": {
+    "schema": "TSL9-TX-independent-tail-scheduling-review-v1",
+    "actual_pre_and_post_ELF_read": true,
+    "before_sha256": "d9aa545a5ae04c6b48efeb212864139383f296ce561b9ed667757033259c336f",
+    "after_sha256": "9a7878a67c15ab9b31c991807d4d14991d0790444b4fd44c95b4848be28b1697",
+    "function_name": "tsl9_tx_valid_body",
+    "window_offsets": [
+      208,
+      270
+    ],
+    "prefix_offsets": [
+      2,
+      12
+    ],
+    "frame_saves_scheduled": 5,
+    "frame_restores_moved": 5,
+    "no_new_instruction_word": true,
+    "outside_bytes_and_all_ELF_metadata_identical": true,
+    "fresh_restore_frontiers_proved": true,
+    "source_full_pointwise_identity_proved": false,
+    "original_ABI_admitted": false,
+    "hardware_OTA_proved": false,
+    "target_execution": false,
+    "ISA_emulation": false
+  },
+  "loop": {
+    "schema": "TSL9-TX-independent-loop-CFG-correspondence-v1",
+    "actual_original_and_linked_body_read": true,
+    "linked_ELF_sha256": "19460aa5bfc4b4e6a7bc56134c7aac3ca1d7d218f6e387995a468e52859af094",
+    "linked_body_sha256": "8b129d84cbd65062315ec8197f7cbabb0eae7a4dfec4dca5bf39861851a525b9",
+    "original_body_sha256": "3b01d76ded6b08cb239ca3c8d7e789db8b0b7149d4c6d4e48c50d987a1ef2f0b",
+    "loop_CFG_correspondence_proved": true,
+    "proof": {
+      "source": {
+        "header": [
+          {
+            "PC": 35594,
+            "bytes": 4,
+            "raw_hex": "13950501",
+            "op": "slli",
+            "rd": 10,
+            "rs1": 11,
+            "rs2": null,
+            "immediate": 16,
+            "target": null,
+            "memory_width": null
+          },
+          {
+            "PC": 35598,
+            "bytes": 2,
+            "raw_hex": "4181",
+            "op": "srli",
+            "rd": 10,
+            "rs1": 10,
+            "rs2": null,
+            "immediate": 16,
+            "target": null,
+            "memory_width": null
+          }
+        ],
+        "guard": {
+          "PC": 35600,
+          "bytes": 4,
+          "raw_hex": "63618504",
+          "op": "bltu",
+          "rd": null,
+          "rs1": 10,
+          "rs2": 8,
+          "immediate": null,
+          "target": 35666,
+          "memory_width": null
+        },
+        "payload": [
+          {
+            "PC": 35666,
+            "bytes": 4,
+            "raw_hex": "3385b400",
+            "op": "add",
+            "rd": 10,
+            "rs1": 9,
+            "rs2": 11,
+            "immediate": null,
+            "target": null,
+            "memory_width": null
+          },
+          {
+            "PC": 35670,
+            "bytes": 4,
+            "raw_hex": "03450500",
+            "op": "lbu",
+            "rd": 10,
+            "rs1": 10,
+            "rs2": null,
+            "immediate": 0,
+            "target": null,
+            "memory_width": 8
+          },
+          {
+            "PC": 35674,
+            "bytes": 4,
+            "raw_hex": "3388b700",
+            "op": "add",
+            "rd": 16,
+            "rs1": 15,
+            "rs2": 11,
+            "immediate": null,
+            "target": null,
+            "memory_width": null
+          },
+          {
+            "PC": 35678,
+            "bytes": 2,
+            "raw_hex": "8505",
+            "op": "addi",
+            "rd": 11,
+            "rs1": 11,
+            "rs2": null,
+            "immediate": 1,
+            "target": null,
+            "memory_width": null
+          },
+          {
+            "PC": 35680,
+            "bytes": 2,
+            "raw_hex": "2a97",
+            "op": "add",
+            "rd": 14,
+            "rs1": 14,
+            "rs2": 10,
+            "immediate": null,
+            "target": null,
+            "memory_width": null
+          },
+          {
+            "PC": 35682,
+            "bytes": 4,
+            "raw_hex": "a302a800",
+            "op": "sb",
+            "rd": null,
+            "rs1": 16,
+            "rs2": 10,
+            "immediate": 5,
+            "target": null,
+            "memory_width": 8
+          },
+          {
+            "PC": 35686,
+            "bytes": 4,
+            "raw_hex": "1377f70f",
+            "op": "andi",
+            "rd": 14,
+            "rs1": 14,
+            "rs2": null,
+            "immediate": 255,
+            "target": null,
+            "memory_width": null
+          },
+          {
+            "PC": 35690,
+            "bytes": 2,
+            "raw_hex": "45b7",
+            "op": "jal",
+            "rd": 0,
+            "rs1": null,
+            "rs2": null,
+            "immediate": null,
+            "target": 35594,
+            "memory_width": null
+          }
+        ],
+        "finish": [
+          {
+            "PC": 35604,
+            "bytes": 2,
+            "raw_hex": "a297",
+            "op": "add",
+            "rd": 15,
+            "rs1": 15,
+            "rs2": 8,
+            "immediate": null,
+            "target": null,
+            "memory_width": null
+          },
+          {
+            "PC": 35606,
+            "bytes": 4,
+            "raw_hex": "a382e700",
+            "op": "sb",
+            "rd": null,
+            "rs1": 15,
+            "rs2": 14,
+            "immediate": 5,
+            "target": null,
+            "memory_width": 8
+          }
+        ]
+      },
+      "candidate": {
+        "header": [
+          {
+            "PC": 35594,
+            "bytes": 4,
+            "raw_hex": "13950501",
+            "op": "slli",
+            "rd": 10,
+            "rs1": 11,
+            "rs2": null,
+            "immediate": 16,
+            "target": null,
+            "memory_width": null,
+            "offset": 180
+          },
+          {
+            "PC": 35598,
+            "bytes": 2,
+            "raw_hex": "4181",
+            "op": "srli",
+            "rd": 10,
+            "rs1": 10,
+            "rs2": null,
+            "immediate": 16,
+            "target": null,
+            "memory_width": null,
+            "offset": 184
+          }
+        ],
+        "guard": {
+          "PC": 35600,
+          "bytes": 4,
+          "raw_hex": "637f8500",
+          "op": "bgeu",
+          "rd": null,
+          "rs1": 10,
+          "rs2": 8,
+          "immediate": null,
+          "target": 35630,
+          "memory_width": null,
+          "offset": 186
+        },
+        "payload": [
+          {
+            "PC": 35604,
+            "bytes": 4,
+            "raw_hex": "3385b400",
+            "op": "add",
+            "rd": 10,
+            "rs1": 9,
+            "rs2": 11,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 190
+          },
+          {
+            "PC": 35608,
+            "bytes": 4,
+            "raw_hex": "03450500",
+            "op": "lbu",
+            "rd": 10,
+            "rs1": 10,
+            "rs2": null,
+            "immediate": 0,
+            "target": null,
+            "memory_width": 8,
+            "offset": 194
+          },
+          {
+            "PC": 35612,
+            "bytes": 4,
+            "raw_hex": "3388f500",
+            "op": "add",
+            "rd": 16,
+            "rs1": 11,
+            "rs2": 15,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 198
+          },
+          {
+            "PC": 35616,
+            "bytes": 2,
+            "raw_hex": "8505",
+            "op": "addi",
+            "rd": 11,
+            "rs1": 11,
+            "rs2": null,
+            "immediate": 1,
+            "target": null,
+            "memory_width": null,
+            "offset": 202
+          },
+          {
+            "PC": 35618,
+            "bytes": 2,
+            "raw_hex": "2a97",
+            "op": "add",
+            "rd": 14,
+            "rs1": 14,
+            "rs2": 10,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 204
+          },
+          {
+            "PC": 35620,
+            "bytes": 4,
+            "raw_hex": "a302a800",
+            "op": "sb",
+            "rd": null,
+            "rs1": 16,
+            "rs2": 10,
+            "immediate": 5,
+            "target": null,
+            "memory_width": 8,
+            "offset": 206
+          },
+          {
+            "PC": 35624,
+            "bytes": 4,
+            "raw_hex": "1377f70f",
+            "op": "andi",
+            "rd": 14,
+            "rs1": 14,
+            "rs2": null,
+            "immediate": 255,
+            "target": null,
+            "memory_width": null,
+            "offset": 210
+          },
+          {
+            "PC": 35628,
+            "bytes": 2,
+            "raw_hex": "f9bf",
+            "op": "jal",
+            "rd": 0,
+            "rs1": null,
+            "rs2": null,
+            "immediate": null,
+            "target": 35594,
+            "memory_width": null,
+            "offset": 214
+          }
+        ],
+        "finish": [
+          {
+            "PC": 35630,
+            "bytes": 2,
+            "raw_hex": "a297",
+            "op": "add",
+            "rd": 15,
+            "rs1": 15,
+            "rs2": 8,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 216
+          },
+          {
+            "PC": 35632,
+            "bytes": 4,
+            "raw_hex": "a382e700",
+            "op": "sb",
+            "rd": null,
+            "rs1": 15,
+            "rs2": 14,
+            "immediate": 5,
+            "target": null,
+            "memory_width": 8,
+            "offset": 218
+          }
+        ]
+      },
+      "payload_correspondence": [
+        {
+          "source": {
+            "PC": 35666,
+            "bytes": 4,
+            "raw_hex": "3385b400",
+            "op": "add",
+            "rd": 10,
+            "rs1": 9,
+            "rs2": 11,
+            "immediate": null,
+            "target": null,
+            "memory_width": null
+          },
+          "candidate": {
+            "PC": 35604,
+            "bytes": 4,
+            "raw_hex": "3385b400",
+            "op": "add",
+            "rd": 10,
+            "rs1": 9,
+            "rs2": 11,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 190
+          },
+          "relation": "same semantic fields"
+        },
+        {
+          "source": {
+            "PC": 35670,
+            "bytes": 4,
+            "raw_hex": "03450500",
+            "op": "lbu",
+            "rd": 10,
+            "rs1": 10,
+            "rs2": null,
+            "immediate": 0,
+            "target": null,
+            "memory_width": 8
+          },
+          "candidate": {
+            "PC": 35608,
+            "bytes": 4,
+            "raw_hex": "03450500",
+            "op": "lbu",
+            "rd": 10,
+            "rs1": 10,
+            "rs2": null,
+            "immediate": 0,
+            "target": null,
+            "memory_width": 8,
+            "offset": 194
+          },
+          "relation": "same semantic fields"
+        },
+        {
+          "source": {
+            "PC": 35674,
+            "bytes": 4,
+            "raw_hex": "3388b700",
+            "op": "add",
+            "rd": 16,
+            "rs1": 15,
+            "rs2": 11,
+            "immediate": null,
+            "target": null,
+            "memory_width": null
+          },
+          "candidate": {
+            "PC": 35612,
+            "bytes": 4,
+            "raw_hex": "3388f500",
+            "op": "add",
+            "rd": 16,
+            "rs1": 11,
+            "rs2": 15,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 198
+          },
+          "relation": "same ADD A6 result under corresponding A1/A5 inputs; rs1/rs2 reversed"
+        },
+        {
+          "source": {
+            "PC": 35678,
+            "bytes": 2,
+            "raw_hex": "8505",
+            "op": "addi",
+            "rd": 11,
+            "rs1": 11,
+            "rs2": null,
+            "immediate": 1,
+            "target": null,
+            "memory_width": null
+          },
+          "candidate": {
+            "PC": 35616,
+            "bytes": 2,
+            "raw_hex": "8505",
+            "op": "addi",
+            "rd": 11,
+            "rs1": 11,
+            "rs2": null,
+            "immediate": 1,
+            "target": null,
+            "memory_width": null,
+            "offset": 202
+          },
+          "relation": "same semantic fields"
+        },
+        {
+          "source": {
+            "PC": 35680,
+            "bytes": 2,
+            "raw_hex": "2a97",
+            "op": "add",
+            "rd": 14,
+            "rs1": 14,
+            "rs2": 10,
+            "immediate": null,
+            "target": null,
+            "memory_width": null
+          },
+          "candidate": {
+            "PC": 35618,
+            "bytes": 2,
+            "raw_hex": "2a97",
+            "op": "add",
+            "rd": 14,
+            "rs1": 14,
+            "rs2": 10,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 204
+          },
+          "relation": "same semantic fields"
+        },
+        {
+          "source": {
+            "PC": 35682,
+            "bytes": 4,
+            "raw_hex": "a302a800",
+            "op": "sb",
+            "rd": null,
+            "rs1": 16,
+            "rs2": 10,
+            "immediate": 5,
+            "target": null,
+            "memory_width": 8
+          },
+          "candidate": {
+            "PC": 35620,
+            "bytes": 4,
+            "raw_hex": "a302a800",
+            "op": "sb",
+            "rd": null,
+            "rs1": 16,
+            "rs2": 10,
+            "immediate": 5,
+            "target": null,
+            "memory_width": 8,
+            "offset": 206
+          },
+          "relation": "same semantic fields"
+        },
+        {
+          "source": {
+            "PC": 35686,
+            "bytes": 4,
+            "raw_hex": "1377f70f",
+            "op": "andi",
+            "rd": 14,
+            "rs1": 14,
+            "rs2": null,
+            "immediate": 255,
+            "target": null,
+            "memory_width": null
+          },
+          "candidate": {
+            "PC": 35624,
+            "bytes": 4,
+            "raw_hex": "1377f70f",
+            "op": "andi",
+            "rd": 14,
+            "rs1": 14,
+            "rs2": null,
+            "immediate": 255,
+            "target": null,
+            "memory_width": null,
+            "offset": 210
+          },
+          "relation": "same semantic fields"
+        }
+      ],
+      "source_true_edge": "low16(A1)<liveS0 -> payload",
+      "candidate_false_edge": "not(low16(A1)>=liveS0) -> fallthrough payload",
+      "complementary_unsigned_predicate": true,
+      "backedge_header_correspondence": true,
+      "zero_iterations_skip_A6_write": true,
+      "source_payload_bytes": 26,
+      "candidate_payload_bytes": 26
+    },
+    "controls": [
+      {
+        "name": "noncomplementary_branch",
+        "actual_linked_instruction_bytes_mutated": true,
+        "rejected": true,
+        "offset": 186,
+        "reason": "Unsigned complementary branch compares counter A0 against live S0"
+      },
+      {
+        "name": "wrong_live_length_GPR",
+        "actual_linked_instruction_bytes_mutated": true,
+        "rejected": true,
+        "offset": 186,
+        "reason": "Unsigned complementary branch compares counter A0 against live S0"
+      },
+      {
+        "name": "counter_not_low16",
+        "actual_linked_instruction_bytes_mutated": true,
+        "rejected": true,
+        "offset": 180,
+        "reason": "Unique low16 counter comparison header"
+      },
+      {
+        "name": "payload_counter_address_changed",
+        "actual_linked_instruction_bytes_mutated": true,
+        "rejected": true,
+        "offset": 190,
+        "reason": "Payload semantic fields differ outside the allowed A6 ADD operand swap"
+      },
+      {
+        "name": "payload_load_wrong_width",
+        "actual_linked_instruction_bytes_mutated": true,
+        "rejected": true,
+        "offset": 194,
+        "reason": "Payload semantic fields differ outside the allowed A6 ADD operand swap"
+      },
+      {
+        "name": "payload_A6_destination_changed",
+        "actual_linked_instruction_bytes_mutated": true,
+        "rejected": true,
+        "offset": 198,
+        "reason": "Payload semantic fields differ outside the allowed A6 ADD operand swap"
+      },
+      {
+        "name": "counter_increment_changed",
+        "actual_linked_instruction_bytes_mutated": true,
+        "rejected": true,
+        "offset": 202,
+        "reason": "Payload semantic fields differ outside the allowed A6 ADD operand swap"
+      },
+      {
+        "name": "payload_store_offset_changed",
+        "actual_linked_instruction_bytes_mutated": true,
+        "rejected": true,
+        "offset": 206,
+        "reason": "Payload semantic fields differ outside the allowed A6 ADD operand swap"
+      },
+      {
+        "name": "backedge_header_changed",
+        "actual_linked_instruction_bytes_mutated": true,
+        "rejected": true,
+        "offset": 214,
+        "reason": "Actual no-link payload backedge returns to same counter header"
+      }
+    ],
+    "assumptions": [
+      "corresponding A1 full counter, A4 checksum, A5 packet pointer, live S0/S1 values at header",
+      "corresponding memory byte responses at each paired logical access",
+      "no asynchronous interference or inspection of differing instruction PCs",
+      "payload/data reads do not distinguish replaced instruction bytes as data"
+    ],
+    "argument_domain_not_proved_from_all_callers": true,
+    "opaque_ROM_ABI_proved": false,
+    "arbitrary_computed_interior_entries_absent_proved": false,
+    "original_full_ABI_admitted": false,
+    "target_execution": false,
+    "ISA_emulation": false
+  },
+  "guard_controls": {
+    "schema": "TSL9-TX-independent-frame-guard-controls-v1",
+    "actual_input_sha256": "d9aa545a5ae04c6b48efeb212864139383f296ce561b9ed667757033259c336f",
+    "tool_sha256": "7a516d1098ed0b45cf6c3ff92515f14cf831a3472a32621352a10f1914526d7a",
+    "policy_sha256": "370ea3f33c0164b83a04ee7623bc8507dc8da1e628af7de011ccb951f4dba9a2",
+    "controls": [
+      {
+        "name": "aliased_comment_storage",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "selected code storage does not alias any other section payload",
+        "mutated_input_sha256": "975e2ff8a570498488dddbcc17c37d5b90bd2ebef39242d8826676b24ff997ce"
+      },
+      {
+        "name": "function_visibility_changed",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "one allowlisted LOCAL FUNC270/default-visibility typed body",
+        "mutated_input_sha256": "fae472bb3743820c8c8fa955695bd6cc2154c4f6a53ec2ffa8b6eeda32291f46"
+      },
+      {
+        "name": "function_binding_changed",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "one allowlisted LOCAL FUNC270/default-visibility typed body",
+        "mutated_input_sha256": "30db319e91e232f2c2752797585453e35cc52a56f8624fa97e53a6265b77dd6a"
+      },
+      {
+        "name": "duplicate_selected_section_name",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "unique typed body section name",
+        "mutated_input_sha256": "a09e5a0478b5cfbb375c50406d546cf6d9fc6ee0756b587d0cce5c796d1ee811"
+      },
+      {
+        "name": "wrong_save_GPR",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "exact five compiled C.SWSP values/slots",
+        "mutated_input_sha256": "efd0a22630b79eabef8a9fed4cdf204537f744818ffee4c7b04a3f139635a175"
+      },
+      {
+        "name": "wrong_save_slot",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "exact five compiled C.SWSP values/slots",
+        "mutated_input_sha256": "9c92ae70f38468f5fb9ffc051403f19130df7dcc47fc2bcd3559a0dbbee40eef"
+      },
+      {
+        "name": "wrong_restore_slot",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "whole bounded success-tail operand contract",
+        "mutated_input_sha256": "077bcebb7f57024b4a5f861f9d644af64e091c090ff74c699dc05293b8617a12"
+      },
+      {
+        "name": "wrong_descriptor_width",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "whole bounded success-tail operand contract",
+        "mutated_input_sha256": "4136b3c664585fcb37dc055add3f700ca6274979693c3e5099819faae7bbc1fb"
+      },
+      {
+        "name": "interior_symbol_anchor",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "no symbol at or inside scheduling window",
+        "mutated_input_sha256": "c1bcf3d254fb032a458f944fd97acaa8328d24aebee240a7381e10883ad5d19d"
+      },
+      {
+        "name": "interior_relocation_site",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "no relocation at a moved instruction/window",
+        "mutated_input_sha256": "9a3e27f3e62aded2f9d6fb0a943fe867565f0033b89e7dd4ef1856fe890f8e02"
+      },
+      {
+        "name": "interior_relocation_target",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "no recorded relocation target at or inside window",
+        "mutated_input_sha256": "0f17e334c06691ea1f636e91fe047debc7af122c773e03782a1811242f00d633"
+      },
+      {
+        "name": "encoded_interior_branch_target",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "no direct branch/jump target inside scheduling window",
+        "mutated_input_sha256": "cc68734fd3f5608a464951c2bb9586da6bb2da110161062ba82c6dbe8da4cc77"
+      },
+      {
+        "name": "opaque_call_return_at_window_start",
+        "actual_compiler_ELF_bytes_mutated": true,
+        "rejected": true,
+        "reason": "no callreturn at or inside scheduling window",
+        "mutated_input_sha256": "115b1b4872b4b84a774cf45dc13f43739c5d78630482621f1a0aab290f70c9bd"
+      },
+      {
+        "name": "double_application",
+        "actual_scheduled_object_bytes_used": true,
+        "rejected": true,
+        "reason": "exact five compiled C.SWSP values/slots"
+      }
+    ],
+    "total_rejected": 14,
+    "accepted_firmware_generated": false,
+    "target_execution": false,
+    "ISA_emulation": false
+  },
+  "partial_link": {
+    "actual_partial_ELF_read": true,
+    "sha256": "515257997cbc5b32a008f6d49280a888771e570ecced295825976b7080f9e021",
+    "allocated_bytes": 280,
+    "function_parts": [
+      8,
+      270,
+      2
+    ],
+    "actual_RELA_types": [
+      16,
+      23,
+      24
+    ],
+    "original_full_image_roles_integrated": false
+  },
+  "original_full_ABI_admitted": false,
+  "whole_image_integrated": false,
+  "hardware_OTA_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false
+}

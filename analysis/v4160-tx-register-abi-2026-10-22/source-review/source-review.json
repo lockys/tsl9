@@ -1,0 +1,471 @@
+{
+  "schema": "TSL9-TX-typed-source-entry-frame-review-v1",
+  "reference_original_seal": "bcf8358a333c6cd1522a39dc2f0fb11951ee89c796f2c5c7563097d0d56ffd1a",
+  "reference_decoder_sha256": "da17e505ec2b58cada40a80a12a645b7fa21c116ce76666544168f2c4ff6c6a7",
+  "reference_C_sources": {
+    "experiments/tsl9-v4160-ota-tx/src/tx_native.c": "d246669c3758acc93808339b40a84c9ac74d4fd163bc8748ac4d0e99cf1ba0dd",
+    "experiments/tsl9-v4160-ota-tx/src/tx_io.h": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f",
+    "experiments/tsl9-v4160-ota-tx/src/tx_native.h": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4"
+  },
+  "source_frontiers": {
+    "guard_PC": 35418,
+    "first_SP_write_PC": 35422,
+    "first_GP_read_PC": 35434,
+    "success_head_restores": [
+      35622,
+      35624,
+      35626,
+      35628
+    ],
+    "metadata_writes": [
+      35634,
+      35638
+    ],
+    "success_S0_restore_PC": 35648,
+    "tail_slot_read_PC": 35654,
+    "tail_handle_read_PC": 35658,
+    "tail_PC": 35664,
+    "source_boundary_fields_checked": 21
+  },
+  "raw_boundary_controls": [
+    {
+      "case": "guard_limit1038",
+      "rejected": true,
+      "reason": "Original entry/frame/restore boundary 0x8a56"
+    },
+    {
+      "case": "frame_before_guard",
+      "rejected": true,
+      "reason": "Original entry/frame/restore boundary 0x8a56"
+    },
+    {
+      "case": "swap_save_S0_S1",
+      "rejected": true,
+      "reason": "Original entry/frame/restore boundary 0x8a60"
+    },
+    {
+      "case": "late_RA_restore",
+      "rejected": true,
+      "reason": "Original entry/frame/restore boundary 0x8b26"
+    },
+    {
+      "case": "metadata_SW_width",
+      "rejected": true,
+      "reason": "Original entry/frame/restore boundary 0x8b36"
+    },
+    {
+      "case": "S0_wrong_restore_slot",
+      "rejected": true,
+      "reason": "Original entry/frame/restore boundary 0x8b40"
+    },
+    {
+      "case": "tail_writes_link",
+      "rejected": true,
+      "reason": "Original entry/frame/restore boundary 0x8b50"
+    }
+  ],
+  "aligned_alias_witness": {
+    "base": 536916364,
+    "live_SP": 536916336,
+    "entry_SP_if_unchanged": 536916368,
+    "SP_alignment": 16,
+    "saved_RA_address": 536916364,
+    "original_RA_read_before_metadata": 305397763,
+    "stable_post_gate_length": 1,
+    "first_metadata_address": 536916366,
+    "first_metadata_width": 2,
+    "first_metadata_value": 7,
+    "late_RA_word_after_metadata": 458755,
+    "actual_runtime_reachability_proved": false,
+    "instruction_execution": false
+  },
+  "selected_prior_actual_IR": {
+    "project_relative": "experiments/tsl9-v4160-ota-tx/build/formal-native-final/c/tx_native.ll",
+    "sha256": "5a1e9a9e0df4db377b2a86290046c9f47cd0a04b2c988946220499940d4ac08e",
+    "inspected_during_review": true,
+    "default_checker_replays_archive": false,
+    "IR_guard_precedes_first_volatile_handle": true,
+    "native_frame_macros_are_noops": true,
+    "gate_call_clobbers_omit_SP_GP_S0_S1_S2_S3": true,
+    "opaque_gate_IR": [
+      "%31 = tail call { i32, i32, i32, i32, i32 } asm sideeffect \"jalr ra, $4, 0\", \"={x10},={x11},={x12},={x13},={x15},{x10},{x11},{x12},{x13},{x15},~{x1},~{x14},~{x16},~{x17},~{x5},~{x6},~{x7},~{x28},~{x29},~{x30},~{x31},~{memory}\"(i32 %0, i32 %30, i32 %2, i32 %3, i32 %27) #1, !noalias !22, !srcloc !25",
+      "%66 = tail call { i32, i32, i32, i32, i32 } asm sideeffect \"jalr ra, $4, 0\", \"={x10},={x11},={x12},={x13},={x15},{x10},{x11},{x12},{x13},{x15},~{x1},~{x14},~{x16},~{x17},~{x5},~{x6},~{x7},~{x28},~{x29},~{x30},~{x31},~{memory}\"(i32 %65, i32 %63, i32 %41, i32 %40, i32 %60) #1, !noalias !39, !srcloc !25"
+    ],
+    "reserved_S0_S1_S2_S3_target_features_present": true
+  },
+  "implementation_options": [
+    {
+      "option": "frameless typed dispatcher plus truthful returning typed body",
+      "status": "requires actual bounded compiler probe and total ownership proof"
+    },
+    {
+      "option": "explicit numeric-SP frame plus terminal asm unreachable",
+      "status": "custom machine-entry only; inferred noreturn and hidden frame risks; no ordinary C ABI claim"
+    }
+  ],
+  "replacement_admitted": false,
+  "new_HOST_tests_run": false,
+  "original_or_rebuilt_RV32_executed": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false,
+  "selected_parent_global_register_probe": {
+    "source_project_relative": "apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22/entry-plan/global_owned_s0.c",
+    "source_sha256": "426c0949b426824e400a9546c426dc4eb9d4583a07f3bb350ea1e4e435d18e7a",
+    "parent_compilation_receipt_sha256": "368c96670da8ed2b401f5e0187f8a05c8f4a33f161b2fe2efcea056e75df6b18",
+    "actual_objects_inspected": [
+      {
+        "mode": "c",
+        "object_sha256": "8c45bd582500848b264fb9b7ac45e8a6117e13122b9b40ddc8f5b5baf4244a9d",
+        "IR_sha256": "514440e47ed7948a3349bdd84b49a32dcb42ea2ec431326c80917820e8c88b07",
+        "code_bytes": 16,
+        "code_hex": "411122c6a2852a842e85324441018280",
+        "frame_bytes": 16,
+        "saved_restored_GPR": 8,
+        "actual_named_register_intrinsics": true
+      },
+      {
+        "mode": "cpp",
+        "object_sha256": "8c45bd582500848b264fb9b7ac45e8a6117e13122b9b40ddc8f5b5baf4244a9d",
+        "IR_sha256": "d65e1a3379ee83efbd36929b62bf6da3b23f5e03b4d2576a50469d93dd7f40ea",
+        "code_bytes": 16,
+        "code_hex": "411122c6a2852a842e85324441018280",
+        "frame_bytes": 16,
+        "saved_restored_GPR": 8,
+        "actual_named_register_intrinsics": true
+      }
+    ],
+    "compiled_here": false,
+    "target_executed": false,
+    "establishes_frame_ownership": false
+  },
+  "local_compiler_reservation_help": {
+    "compiler_sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "argv_suffix": [
+      "--help"
+    ],
+    "selected_documented_option": "-ffixed-x8",
+    "documented_description": "Reserve the x8 register (AArch64/RISC-V only)",
+    "clobber_omission_permission_established": false
+  },
+  "candidate_source_pins": {
+    "experiments/tsl9-v4160-tx-register-abi/src/tx_io.h": "f3ba14c8adfe24d07f83338cbe82699c8668087fd3792cd5c6a2f6988671c7e7",
+    "experiments/tsl9-v4160-tx-register-abi/src/tx_native.c": "6b32db73aff79b57174d3315198a339ceb41bbe653f1a88976abea3a9d049530",
+    "experiments/tsl9-v4160-tx-register-abi/src/tx_native.h": "5360c8c710bd57311fb92bc10f9880caf2881ad83604e9a567bdfb19f40d4db6"
+  },
+  "candidate_source_delta": {
+    "comparison_only_hint_count": 2,
+    "HOST_hint_macro_is_identity": true,
+    "old_HOST_provider_reused": true,
+    "fresh_HOST_tests_run": false,
+    "native_prefix_equivalence_proved": false
+  },
+  "selected_canonical_component_observations": [
+    {
+      "mode": "c",
+      "actual_object_sha256": "1ecbf7d77bdf0d964c979bdf8f08f09d0f753e83563b22c5b027c9f524e26bcb",
+      "actual_IR_sha256": "a8ff7a228325bfd70fd70a8374dd455768e82c64d6c3165b68345ff6f50972c0",
+      "parent_diagnostic_sha256": "d6d6f7946d9301816c4236c280ef03761f1e3be91d2a33cc9a0f7bf3897550fb",
+      "code_bytes": 278,
+      "instruction_geometry_count": 95,
+      "first_instruction": {
+        "PC": 35414,
+        "bytes": 2,
+        "raw_hex": "0111",
+        "op": "addi",
+        "rd": 2,
+        "rs1": 2,
+        "rs2": null,
+        "immediate": -32,
+        "target": null,
+        "memory_width": null
+      },
+      "second_gate_instruction": {
+        "PC": 35508,
+        "bytes": 2,
+        "raw_hex": "8297",
+        "op": "jalr",
+        "rd": 1,
+        "rs1": 15,
+        "rs2": null,
+        "immediate": 0,
+        "target": null,
+        "memory_width": null
+      },
+      "second_gate_raw_link": 35510,
+      "PCREL_high_instruction": {
+        "PC": 35542,
+        "bytes": 4,
+        "raw_hex": "97060000",
+        "op": "auipc",
+        "rd": 13,
+        "rs1": null,
+        "rs2": null,
+        "immediate": 0,
+        "target": null,
+        "memory_width": null
+      },
+      "original_entry_guard_before_frame": false,
+      "original_success_restore_order_admitted": false,
+      "padding_or_gap_reuse_admitted": false,
+      "actual_object_inspected": true,
+      "compiled_here": false,
+      "target_executed": false
+    },
+    {
+      "mode": "cpp",
+      "actual_object_sha256": "1ecbf7d77bdf0d964c979bdf8f08f09d0f753e83563b22c5b027c9f524e26bcb",
+      "actual_IR_sha256": "302228aa7ab60e1190bd3d4c58a8345fba3a2bcd831883c71e3aed872151a02b",
+      "parent_diagnostic_sha256": "0fe75c246342daf3622909e3020ea2c60bbd2529bb7c5ea73c58f94099fd891e",
+      "code_bytes": 278,
+      "instruction_geometry_count": 95,
+      "first_instruction": {
+        "PC": 35414,
+        "bytes": 2,
+        "raw_hex": "0111",
+        "op": "addi",
+        "rd": 2,
+        "rs1": 2,
+        "rs2": null,
+        "immediate": -32,
+        "target": null,
+        "memory_width": null
+      },
+      "second_gate_instruction": {
+        "PC": 35508,
+        "bytes": 2,
+        "raw_hex": "8297",
+        "op": "jalr",
+        "rd": 1,
+        "rs1": 15,
+        "rs2": null,
+        "immediate": 0,
+        "target": null,
+        "memory_width": null
+      },
+      "second_gate_raw_link": 35510,
+      "PCREL_high_instruction": {
+        "PC": 35542,
+        "bytes": 4,
+        "raw_hex": "97060000",
+        "op": "auipc",
+        "rd": 13,
+        "rs1": null,
+        "rs2": null,
+        "immediate": 0,
+        "target": null,
+        "memory_width": null
+      },
+      "original_entry_guard_before_frame": false,
+      "original_success_restore_order_admitted": false,
+      "padding_or_gap_reuse_admitted": false,
+      "actual_object_inspected": true,
+      "compiled_here": false,
+      "target_executed": false
+    }
+  ],
+  "adapter_source_pins": {
+    "experiments/tsl9-v4160-tx-register-abi/adapter/entry.S": "8b781c240cbf99287ce12ed7b198a252e5deb3ba67b23ac19789512f9eea4ef0",
+    "experiments/tsl9-v4160-tx-register-abi/adapter/return_leaf.c": "aac07d0d13ecf39b0c9773670e0bd6323e3624bff3e38ecac53685dccccb6732",
+    "experiments/tsl9-v4160-tx-register-abi/adapter/valid_body.c": "dd98bd9e6298f8c7d76e86744eea8b10ddceb81dce71d8b5bbb456f7fe7b6be0"
+  },
+  "adapter_source_contract": {
+    "mnemonic_entry_operations": 2,
+    "explicit_standard_branch_relocation": 1,
+    "valid_body_has_no_duplicate_guard": true,
+    "body_is_exact_typed_extraction": true,
+    "leaf_is_true_C_identity_return": true,
+    "returning_signature_preserved": true,
+    "source_raw_code_or_padding": false,
+    "machine_fallthrough_and_return_leaf_still_require_actual_artifact": true,
+    "full_original_ABI_admitted": false
+  },
+  "adapter_source_controls": [
+    {
+      "case": "hidden_entry_stack",
+      "rejected": true,
+      "reason": "Exactly two mnemonic entry operations; no SP/A0/RA destination, raw code, alias or padding",
+      "compiled": false
+    },
+    {
+      "case": "wrong_unsigned_guard",
+      "rejected": true,
+      "reason": "Exactly two mnemonic entry operations; no SP/A0/RA destination, raw code, alias or padding",
+      "compiled": false
+    },
+    {
+      "case": "entry_changes_link",
+      "rejected": true,
+      "reason": "Exactly two mnemonic entry operations; no SP/A0/RA destination, raw code, alias or padding",
+      "compiled": false
+    },
+    {
+      "case": "normalized_oversize_return",
+      "rejected": true,
+      "reason": "Actual typed identity-return leaf, no assembly/noreturn/unreachable",
+      "compiled": false
+    },
+    {
+      "case": "changed_typed_stride",
+      "rejected": true,
+      "reason": "Valid-only body changes only includes/name/guard extraction, not typed algorithm",
+      "compiled": false
+    }
+  ],
+  "selected_actual_pre_motion_adapters": [
+    {
+      "passed": true,
+      "actual_pre_motion_adapter_subset_replayed": true,
+      "actual_compile_recipe_replayed": false,
+      "entry_leaf": {
+        "entry_bytes": 8,
+        "leaf_bytes": 2,
+        "guard_PC": 35418,
+        "guard_target": 35692,
+        "oversized_A0_RA_SP_unchanged": true,
+        "entry_memory_accesses": 0,
+        "new_link_written": false
+      },
+      "component_bytes": 280,
+      "typed_body_bytes": 270,
+      "public_FUNC_bytes": 8,
+      "numeric_RAM_witness_only": true,
+      "whole_original_FUNC_role_admitted": false,
+      "original_success_restore_order_admitted": false,
+      "full_original_ABI_admitted": false,
+      "actual_code_byte_controls": [
+        {
+          "case": "limit1038",
+          "actual_code_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Only initial A5 limit; A0/RA/SP untouched"
+        },
+        {
+          "case": "signed_guard",
+          "actual_code_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Unadmitted instruction form at 0x8a5a"
+        },
+        {
+          "case": "guard_wrong_target",
+          "actual_code_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Exact unsigned A5<A3, standard branch target"
+        },
+        {
+          "case": "entry_limit_writes_A0",
+          "actual_code_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Only initial A5 limit; A0/RA/SP untouched"
+        },
+        {
+          "case": "typed_leaf_changes_link",
+          "actual_code_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Typed leaf is only RET; no A0/SP/new link writes"
+        }
+      ],
+      "actual_files": {
+        "entry.o": "10c85139694f171e6376341ea33c6a38122dea8281ebaaa863abbbe8585a636f",
+        "valid_body.o": "d9aa545a5ae04c6b48efeb212864139383f296ce561b9ed667757033259c336f",
+        "return_leaf.o": "1e779fd0a2abee5dafbb3f64f50748f8d77cc2c05ff7a8a05880b9a8f3524e9a",
+        "return_leaf.ll": "1aab980120265ba96e8ce1039073fb35a9c22fc8ba0353c8f9362db318fbd63b",
+        "COMPONENT-ONLY-NOT-FIRMWARE.elf": "7ea462f9dbffd8475aadd0ec88079f9cca98c579a536b67c38f6a92ef864c3a5"
+      },
+      "target_execution": false
+    },
+    {
+      "passed": true,
+      "actual_pre_motion_adapter_subset_replayed": true,
+      "actual_compile_recipe_replayed": false,
+      "entry_leaf": {
+        "entry_bytes": 8,
+        "leaf_bytes": 2,
+        "guard_PC": 35418,
+        "guard_target": 35692,
+        "oversized_A0_RA_SP_unchanged": true,
+        "entry_memory_accesses": 0,
+        "new_link_written": false
+      },
+      "component_bytes": 280,
+      "typed_body_bytes": 270,
+      "public_FUNC_bytes": 8,
+      "numeric_RAM_witness_only": true,
+      "whole_original_FUNC_role_admitted": false,
+      "original_success_restore_order_admitted": false,
+      "full_original_ABI_admitted": false,
+      "actual_code_byte_controls": [
+        {
+          "case": "limit1038",
+          "actual_code_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Only initial A5 limit; A0/RA/SP untouched"
+        },
+        {
+          "case": "signed_guard",
+          "actual_code_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Unadmitted instruction form at 0x8a5a"
+        },
+        {
+          "case": "guard_wrong_target",
+          "actual_code_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Exact unsigned A5<A3, standard branch target"
+        },
+        {
+          "case": "entry_limit_writes_A0",
+          "actual_code_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Only initial A5 limit; A0/RA/SP untouched"
+        },
+        {
+          "case": "typed_leaf_changes_link",
+          "actual_code_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Typed leaf is only RET; no A0/SP/new link writes"
+        }
+      ],
+      "actual_files": {
+        "entry.o": "10c85139694f171e6376341ea33c6a38122dea8281ebaaa863abbbe8585a636f",
+        "valid_body.o": "121ec7eca977ba29630de5746e85523b46e88cc4f591ac738fdf0fa725c2fa3b",
+        "return_leaf.o": "1e779fd0a2abee5dafbb3f64f50748f8d77cc2c05ff7a8a05880b9a8f3524e9a",
+        "return_leaf.ll": "1aab980120265ba96e8ce1039073fb35a9c22fc8ba0353c8f9362db318fbd63b",
+        "COMPONENT-ONLY-NOT-FIRMWARE.elf": "fbb94f3926f78306a7aa7749ed01c5dd10b0c11803115f139be2396e346dc3fb"
+      },
+      "target_execution": false
+    }
+  ],
+  "selected_parent_minimal_diagnostics": {
+    "receipt_project_relative": "apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22/entry-plan/build/formal-v3/verification.json",
+    "receipt_sha256": "b8357161bbb33a5cffc1739d90c3fba261bd9fb4269cb7a7cce27e52f5b9bb1f",
+    "actual_inputs_and_artifacts_read_back": true,
+    "object_count": 4,
+    "function_count": 6,
+    "guard_byte_controls_rejected": 4,
+    "guard_before_frame": true,
+    "global_register_frame_ownership": false,
+    "script_draft_not_a_default_dependency": true,
+    "default_actual_archive_replay": false
+  },
+  "selected_actual_typed_dispatcher": {
+    "C_and_CPP_objects_read": true,
+    "entry_bytes": 18,
+    "body_bytes": 272,
+    "total_bytes": 290,
+    "owner_bytes": 280,
+    "size_admitted": false,
+    "compiled_here": false
+  },
+  "next_implementation": {
+    "method": "separately reviewed motion of only existing five compiler LW-SP words",
+    "RA_S1_S2_S3_before_metadata_SH": true,
+    "S0_restore_after_metadata_SH": true,
+    "no_SP_write_opaque_call_or_live_destination_crossing_required": true,
+    "all_other_instruction_relative_order_and_provenance_preserved_required": true,
+    "pure_Clang_claim": false,
+    "full_ordinary_C_ABI_claim": false,
+    "implemented_or_admitted_in_this_scope": false
+  }
+}

@@ -1,0 +1,959 @@
+{
+  "schema": "TSL9-TX-register-ABI-component-v1",
+  "passed": true,
+  "mode": "c",
+  "pre_folder": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-tx-register-abi\\build\\formal-final\\pre\\c",
+  "source_refinement": {
+    "canonical_changes": "two identity-preserving branch hints",
+    "typed_valid_body_extraction": true,
+    "HOST_algorithm_changed": false
+  },
+  "source_pins": {
+    "apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22/implementation/verify_native.py": "7e7c74ae2cd2deea61ea4d439b4bae8d5771a2d379302e7dd316651e0e71f76e",
+    "apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22/implementation/probe_adapter.py": "3ee7685419288e9f8cb4363f3127f0f73b2ba33f27bc9346ff7b5a5cb979b1c5",
+    "apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22/implementation/probe_ordered.py": "95c0c2a42e9c84b567d5fb9525816d619e85a40e591a99ce8074ebda1480360e",
+    "apk-analysis/tsl9-v4160-ota-tx-2026-10-22/implementation/verify_native.py": "adeeaddea4c46d92dd4ce33a5beaa329779781a0611e97b965c1f023f5ef4eca",
+    "apk-analysis/tsl9-v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "apk-analysis/tsl9-v4160-ota-tx-2026-10-22/source-review/raw.py": "da17e505ec2b58cada40a80a12a645b7fa21c116ce76666544168f2c4ff6c6a7",
+    "apk-analysis/tsl9-v4160-ota-tx-2026-10-22/ABI-review/native.py": "24ade8f364d00cbc6c7afc2239f13d67fef4f6822647fc4525c05cd9e64bd5eb",
+    "apk-analysis/tsl9-v4160-ota-tx-2026-10-22/ABI-review/original.py": "feeff6d2f8fae97b4ccb153b764a3b47798d48cfb26ca86cc9414da0608caf1a",
+    "apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22/ABI-review/entry.py": "8ab59c90aa042c741da6772782d39a71c35144d5ee7761b4ec18bc3a9d23366d",
+    "apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22/ABI-review/tail.py": "4f7d04f00be7df503baa0a218e31aca29acc8067ca2f3c930c66a5c740484aa7",
+    "apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22/ABI-review/predicates.py": "88c3fba01faeff7c0e309d43f62186971e6a3a75b8a033a323b17482940f674e",
+    "apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22/ABI-review/loop.py": "cc505e92d084b2e0fe2bb33bfd53161c5ca1fc9c0892da0711b04b696ebba1df",
+    "experiments/tsl9-v4160-tx-register-abi/src/tx_io.h": "f3ba14c8adfe24d07f83338cbe82699c8668087fd3792cd5c6a2f6988671c7e7",
+    "experiments/tsl9-v4160-tx-register-abi/src/tx_native.c": "6b32db73aff79b57174d3315198a339ceb41bbe653f1a88976abea3a9d049530",
+    "experiments/tsl9-v4160-tx-register-abi/src/tx_native.h": "5360c8c710bd57311fb92bc10f9880caf2881ad83604e9a567bdfb19f40d4db6",
+    "experiments/tsl9-v4160-tx-register-abi/adapter/entry.S": "8b781c240cbf99287ce12ed7b198a252e5deb3ba67b23ac19789512f9eea4ef0",
+    "experiments/tsl9-v4160-tx-register-abi/adapter/return_leaf.c": "aac07d0d13ecf39b0c9773670e0bd6323e3624bff3e38ecac53685dccccb6732",
+    "experiments/tsl9-v4160-tx-register-abi/adapter/valid_body.c": "dd98bd9e6298f8c7d76e86744eea8b10ddceb81dce71d8b5bbb456f7fe7b6be0",
+    "experiments/tsl9-v4160-tx-register-abi/postpass/policy.json": "370ea3f33c0164b83a04ee7623bc8507dc8da1e628af7de011ccb951f4dba9a2",
+    "experiments/tsl9-v4160-tx-register-abi/postpass/schedule.py": "7a516d1098ed0b45cf6c3ff92515f14cf831a3472a32621352a10f1914526d7a"
+  },
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "checks": {
+    "passed": true,
+    "geometry": {
+      "bytes": 280,
+      "instructions": 96
+    },
+    "real_FUNC_parts": [
+      {
+        "name": "tsl9_ota_tx_8a56",
+        "offset": 0,
+        "bytes": 8
+      },
+      {
+        "name": "tsl9_tx_valid_body",
+        "offset": 8,
+        "bytes": 270
+      },
+      {
+        "name": "tsl9_tx_oversized_return",
+        "offset": 278,
+        "bytes": 2
+      }
+    ],
+    "relocations": 3,
+    "guard_before_frame": true,
+    "source_save_order": true,
+    "source_fresh_restore_frontiers": true,
+    "entry": {
+      "schema": "TSL9-TX-independent-narrow-entry-review-v1",
+      "actual_objects_IR_and_linked_ELF_read": true,
+      "checked_entry_prefix_passed": true,
+      "entry_object_sha256": "10c85139694f171e6376341ea33c6a38122dea8281ebaaa863abbbe8585a636f",
+      "supplied_body_object_sha256": "9a7878a67c15ab9b31c991807d4d14991d0790444b4fd44c95b4848be28b1697",
+      "supplied_body_object_name": "valid_body-ordered.o",
+      "body_ordering_provenance_requires_separate_pre_post_audit": true,
+      "leaf_object_sha256": "1e779fd0a2abee5dafbb3f64f50748f8d77cc2c05ff7a8a05880b9a8f3524e9a",
+      "linked_ELF_sha256": "19460aa5bfc4b4e6a7bc56134c7aac3ca1d7d218f6e387995a468e52859af094",
+      "actual_entry_RELA_count": 1,
+      "actual_entry_RELA_type": 16,
+      "contract": {
+        "entry_bytes": 8,
+        "typed_body_bytes": 270,
+        "typed_return_bytes": 2,
+        "allocated_bytes": 280,
+        "entry_FUNC_bytes": 8,
+        "aggregate_FUNC280_fabricated": false,
+        "fallthrough_address": 35422,
+        "oversized_return_address": 35692,
+        "opaque_gate_RAs": [
+          35472,
+          35510
+        ],
+        "RAM_PCREL_target": 536916364,
+        "actual_body_SHA256": "8b129d84cbd65062315ec8197f7cbabb0eae7a4dfec4dca5bf39861851a525b9",
+        "oversized_path_no_frame_proved": true,
+        "new_T1_transfer_not_introduced": true,
+        "original_known_incoming_linked_here": false,
+        "private_original_roles_linked_here": false,
+        "full_pointwise_identity_proved": false,
+        "original_ABI_admitted": false
+      },
+      "controls": [
+        {
+          "name": "inverted_length_condition",
+          "actual_linked_ELF_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Linked unsigned branch actually targets the typed RET at8B6C"
+        },
+        {
+          "name": "branch_to_wrong_leaf",
+          "actual_linked_ELF_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Linked unsigned branch actually targets the typed RET at8B6C"
+        },
+        {
+          "name": "return_leaf_links_RA",
+          "actual_linked_ELF_bytes_mutated": true,
+          "rejected": true,
+          "reason": "Entry literal and real typed RET leaf retain their actual source bytes"
+        }
+      ],
+      "source_owned_assembly_layer_explicit": true,
+      "whole_algorithm_assembly": false,
+      "original_ABI_admitted": false,
+      "hardware_OTA_proved": false,
+      "target_execution": false,
+      "ISA_emulation": false
+    },
+    "frame": {
+      "schema": "TSL9-TX-independent-tail-scheduling-review-v1",
+      "actual_pre_and_post_ELF_read": true,
+      "before_sha256": "d9aa545a5ae04c6b48efeb212864139383f296ce561b9ed667757033259c336f",
+      "after_sha256": "9a7878a67c15ab9b31c991807d4d14991d0790444b4fd44c95b4848be28b1697",
+      "function_name": "tsl9_tx_valid_body",
+      "window_offsets": [
+        208,
+        270
+      ],
+      "prefix_offsets": [
+        2,
+        12
+      ],
+      "frame_saves_scheduled": 5,
+      "frame_restores_moved": 5,
+      "no_new_instruction_word": true,
+      "outside_bytes_and_all_ELF_metadata_identical": true,
+      "fresh_restore_frontiers_proved": true,
+      "source_full_pointwise_identity_proved": false,
+      "original_ABI_admitted": false,
+      "hardware_OTA_proved": false,
+      "target_execution": false,
+      "ISA_emulation": false
+    },
+    "loop": {
+      "schema": "TSL9-TX-independent-loop-CFG-correspondence-v1",
+      "actual_original_and_linked_body_read": true,
+      "linked_ELF_sha256": "19460aa5bfc4b4e6a7bc56134c7aac3ca1d7d218f6e387995a468e52859af094",
+      "linked_body_sha256": "8b129d84cbd65062315ec8197f7cbabb0eae7a4dfec4dca5bf39861851a525b9",
+      "original_body_sha256": "3b01d76ded6b08cb239ca3c8d7e789db8b0b7149d4c6d4e48c50d987a1ef2f0b",
+      "loop_CFG_correspondence_proved": true,
+      "proof": {
+        "source": {
+          "header": [
+            {
+              "PC": 35594,
+              "bytes": 4,
+              "raw_hex": "13950501",
+              "op": "slli",
+              "rd": 10,
+              "rs1": 11,
+              "rs2": null,
+              "immediate": 16,
+              "target": null,
+              "memory_width": null
+            },
+            {
+              "PC": 35598,
+              "bytes": 2,
+              "raw_hex": "4181",
+              "op": "srli",
+              "rd": 10,
+              "rs1": 10,
+              "rs2": null,
+              "immediate": 16,
+              "target": null,
+              "memory_width": null
+            }
+          ],
+          "guard": {
+            "PC": 35600,
+            "bytes": 4,
+            "raw_hex": "63618504",
+            "op": "bltu",
+            "rd": null,
+            "rs1": 10,
+            "rs2": 8,
+            "immediate": null,
+            "target": 35666,
+            "memory_width": null
+          },
+          "payload": [
+            {
+              "PC": 35666,
+              "bytes": 4,
+              "raw_hex": "3385b400",
+              "op": "add",
+              "rd": 10,
+              "rs1": 9,
+              "rs2": 11,
+              "immediate": null,
+              "target": null,
+              "memory_width": null
+            },
+            {
+              "PC": 35670,
+              "bytes": 4,
+              "raw_hex": "03450500",
+              "op": "lbu",
+              "rd": 10,
+              "rs1": 10,
+              "rs2": null,
+              "immediate": 0,
+              "target": null,
+              "memory_width": 8
+            },
+            {
+              "PC": 35674,
+              "bytes": 4,
+              "raw_hex": "3388b700",
+              "op": "add",
+              "rd": 16,
+              "rs1": 15,
+              "rs2": 11,
+              "immediate": null,
+              "target": null,
+              "memory_width": null
+            },
+            {
+              "PC": 35678,
+              "bytes": 2,
+              "raw_hex": "8505",
+              "op": "addi",
+              "rd": 11,
+              "rs1": 11,
+              "rs2": null,
+              "immediate": 1,
+              "target": null,
+              "memory_width": null
+            },
+            {
+              "PC": 35680,
+              "bytes": 2,
+              "raw_hex": "2a97",
+              "op": "add",
+              "rd": 14,
+              "rs1": 14,
+              "rs2": 10,
+              "immediate": null,
+              "target": null,
+              "memory_width": null
+            },
+            {
+              "PC": 35682,
+              "bytes": 4,
+              "raw_hex": "a302a800",
+              "op": "sb",
+              "rd": null,
+              "rs1": 16,
+              "rs2": 10,
+              "immediate": 5,
+              "target": null,
+              "memory_width": 8
+            },
+            {
+              "PC": 35686,
+              "bytes": 4,
+              "raw_hex": "1377f70f",
+              "op": "andi",
+              "rd": 14,
+              "rs1": 14,
+              "rs2": null,
+              "immediate": 255,
+              "target": null,
+              "memory_width": null
+            },
+            {
+              "PC": 35690,
+              "bytes": 2,
+              "raw_hex": "45b7",
+              "op": "jal",
+              "rd": 0,
+              "rs1": null,
+              "rs2": null,
+              "immediate": null,
+              "target": 35594,
+              "memory_width": null
+            }
+          ],
+          "finish": [
+            {
+              "PC": 35604,
+              "bytes": 2,
+              "raw_hex": "a297",
+              "op": "add",
+              "rd": 15,
+              "rs1": 15,
+              "rs2": 8,
+              "immediate": null,
+              "target": null,
+              "memory_width": null
+            },
+            {
+              "PC": 35606,
+              "bytes": 4,
+              "raw_hex": "a382e700",
+              "op": "sb",
+              "rd": null,
+              "rs1": 15,
+              "rs2": 14,
+              "immediate": 5,
+              "target": null,
+              "memory_width": 8
+            }
+          ]
+        },
+        "candidate": {
+          "header": [
+            {
+              "PC": 35594,
+              "bytes": 4,
+              "raw_hex": "13950501",
+              "op": "slli",
+              "rd": 10,
+              "rs1": 11,
+              "rs2": null,
+              "immediate": 16,
+              "target": null,
+              "memory_width": null,
+              "offset": 180
+            },
+            {
+              "PC": 35598,
+              "bytes": 2,
+              "raw_hex": "4181",
+              "op": "srli",
+              "rd": 10,
+              "rs1": 10,
+              "rs2": null,
+              "immediate": 16,
+              "target": null,
+              "memory_width": null,
+              "offset": 184
+            }
+          ],
+          "guard": {
+            "PC": 35600,
+            "bytes": 4,
+            "raw_hex": "637f8500",
+            "op": "bgeu",
+            "rd": null,
+            "rs1": 10,
+            "rs2": 8,
+            "immediate": null,
+            "target": 35630,
+            "memory_width": null,
+            "offset": 186
+          },
+          "payload": [
+            {
+              "PC": 35604,
+              "bytes": 4,
+              "raw_hex": "3385b400",
+              "op": "add",
+              "rd": 10,
+              "rs1": 9,
+              "rs2": 11,
+              "immediate": null,
+              "target": null,
+              "memory_width": null,
+              "offset": 190
+            },
+            {
+              "PC": 35608,
+              "bytes": 4,
+              "raw_hex": "03450500",
+              "op": "lbu",
+              "rd": 10,
+              "rs1": 10,
+              "rs2": null,
+              "immediate": 0,
+              "target": null,
+              "memory_width": 8,
+              "offset": 194
+            },
+            {
+              "PC": 35612,
+              "bytes": 4,
+              "raw_hex": "3388f500",
+              "op": "add",
+              "rd": 16,
+              "rs1": 11,
+              "rs2": 15,
+              "immediate": null,
+              "target": null,
+              "memory_width": null,
+              "offset": 198
+            },
+            {
+              "PC": 35616,
+              "bytes": 2,
+              "raw_hex": "8505",
+              "op": "addi",
+              "rd": 11,
+              "rs1": 11,
+              "rs2": null,
+              "immediate": 1,
+              "target": null,
+              "memory_width": null,
+              "offset": 202
+            },
+            {
+              "PC": 35618,
+              "bytes": 2,
+              "raw_hex": "2a97",
+              "op": "add",
+              "rd": 14,
+              "rs1": 14,
+              "rs2": 10,
+              "immediate": null,
+              "target": null,
+              "memory_width": null,
+              "offset": 204
+            },
+            {
+              "PC": 35620,
+              "bytes": 4,
+              "raw_hex": "a302a800",
+              "op": "sb",
+              "rd": null,
+              "rs1": 16,
+              "rs2": 10,
+              "immediate": 5,
+              "target": null,
+              "memory_width": 8,
+              "offset": 206
+            },
+            {
+              "PC": 35624,
+              "bytes": 4,
+              "raw_hex": "1377f70f",
+              "op": "andi",
+              "rd": 14,
+              "rs1": 14,
+              "rs2": null,
+              "immediate": 255,
+              "target": null,
+              "memory_width": null,
+              "offset": 210
+            },
+            {
+              "PC": 35628,
+              "bytes": 2,
+              "raw_hex": "f9bf",
+              "op": "jal",
+              "rd": 0,
+              "rs1": null,
+              "rs2": null,
+              "immediate": null,
+              "target": 35594,
+              "memory_width": null,
+              "offset": 214
+            }
+          ],
+          "finish": [
+            {
+              "PC": 35630,
+              "bytes": 2,
+              "raw_hex": "a297",
+              "op": "add",
+              "rd": 15,
+              "rs1": 15,
+              "rs2": 8,
+              "immediate": null,
+              "target": null,
+              "memory_width": null,
+              "offset": 216
+            },
+            {
+              "PC": 35632,
+              "bytes": 4,
+              "raw_hex": "a382e700",
+              "op": "sb",
+              "rd": null,
+              "rs1": 15,
+              "rs2": 14,
+              "immediate": 5,
+              "target": null,
+              "memory_width": 8,
+              "offset": 218
+            }
+          ]
+        },
+        "payload_correspondence": [
+          {
+            "source": {
+              "PC": 35666,
+              "bytes": 4,
+              "raw_hex": "3385b400",
+              "op": "add",
+              "rd": 10,
+              "rs1": 9,
+              "rs2": 11,
+              "immediate": null,
+              "target": null,
+              "memory_width": null
+            },
+            "candidate": {
+              "PC": 35604,
+              "bytes": 4,
+              "raw_hex": "3385b400",
+              "op": "add",
+              "rd": 10,
+              "rs1": 9,
+              "rs2": 11,
+              "immediate": null,
+              "target": null,
+              "memory_width": null,
+              "offset": 190
+            },
+            "relation": "same semantic fields"
+          },
+          {
+            "source": {
+              "PC": 35670,
+              "bytes": 4,
+              "raw_hex": "03450500",
+              "op": "lbu",
+              "rd": 10,
+              "rs1": 10,
+              "rs2": null,
+              "immediate": 0,
+              "target": null,
+              "memory_width": 8
+            },
+            "candidate": {
+              "PC": 35608,
+              "bytes": 4,
+              "raw_hex": "03450500",
+              "op": "lbu",
+              "rd": 10,
+              "rs1": 10,
+              "rs2": null,
+              "immediate": 0,
+              "target": null,
+              "memory_width": 8,
+              "offset": 194
+            },
+            "relation": "same semantic fields"
+          },
+          {
+            "source": {
+              "PC": 35674,
+              "bytes": 4,
+              "raw_hex": "3388b700",
+              "op": "add",
+              "rd": 16,
+              "rs1": 15,
+              "rs2": 11,
+              "immediate": null,
+              "target": null,
+              "memory_width": null
+            },
+            "candidate": {
+              "PC": 35612,
+              "bytes": 4,
+              "raw_hex": "3388f500",
+              "op": "add",
+              "rd": 16,
+              "rs1": 11,
+              "rs2": 15,
+              "immediate": null,
+              "target": null,
+              "memory_width": null,
+              "offset": 198
+            },
+            "relation": "same ADD A6 result under corresponding A1/A5 inputs; rs1/rs2 reversed"
+          },
+          {
+            "source": {
+              "PC": 35678,
+              "bytes": 2,
+              "raw_hex": "8505",
+              "op": "addi",
+              "rd": 11,
+              "rs1": 11,
+              "rs2": null,
+              "immediate": 1,
+              "target": null,
+              "memory_width": null
+            },
+            "candidate": {
+              "PC": 35616,
+              "bytes": 2,
+              "raw_hex": "8505",
+              "op": "addi",
+              "rd": 11,
+              "rs1": 11,
+              "rs2": null,
+              "immediate": 1,
+              "target": null,
+              "memory_width": null,
+              "offset": 202
+            },
+            "relation": "same semantic fields"
+          },
+          {
+            "source": {
+              "PC": 35680,
+              "bytes": 2,
+              "raw_hex": "2a97",
+              "op": "add",
+              "rd": 14,
+              "rs1": 14,
+              "rs2": 10,
+              "immediate": null,
+              "target": null,
+              "memory_width": null
+            },
+            "candidate": {
+              "PC": 35618,
+              "bytes": 2,
+              "raw_hex": "2a97",
+              "op": "add",
+              "rd": 14,
+              "rs1": 14,
+              "rs2": 10,
+              "immediate": null,
+              "target": null,
+              "memory_width": null,
+              "offset": 204
+            },
+            "relation": "same semantic fields"
+          },
+          {
+            "source": {
+              "PC": 35682,
+              "bytes": 4,
+              "raw_hex": "a302a800",
+              "op": "sb",
+              "rd": null,
+              "rs1": 16,
+              "rs2": 10,
+              "immediate": 5,
+              "target": null,
+              "memory_width": 8
+            },
+            "candidate": {
+              "PC": 35620,
+              "bytes": 4,
+              "raw_hex": "a302a800",
+              "op": "sb",
+              "rd": null,
+              "rs1": 16,
+              "rs2": 10,
+              "immediate": 5,
+              "target": null,
+              "memory_width": 8,
+              "offset": 206
+            },
+            "relation": "same semantic fields"
+          },
+          {
+            "source": {
+              "PC": 35686,
+              "bytes": 4,
+              "raw_hex": "1377f70f",
+              "op": "andi",
+              "rd": 14,
+              "rs1": 14,
+              "rs2": null,
+              "immediate": 255,
+              "target": null,
+              "memory_width": null
+            },
+            "candidate": {
+              "PC": 35624,
+              "bytes": 4,
+              "raw_hex": "1377f70f",
+              "op": "andi",
+              "rd": 14,
+              "rs1": 14,
+              "rs2": null,
+              "immediate": 255,
+              "target": null,
+              "memory_width": null,
+              "offset": 210
+            },
+            "relation": "same semantic fields"
+          }
+        ],
+        "source_true_edge": "low16(A1)<liveS0 -> payload",
+        "candidate_false_edge": "not(low16(A1)>=liveS0) -> fallthrough payload",
+        "complementary_unsigned_predicate": true,
+        "backedge_header_correspondence": true,
+        "zero_iterations_skip_A6_write": true,
+        "source_payload_bytes": 26,
+        "candidate_payload_bytes": 26
+      },
+      "controls": [
+        {
+          "name": "noncomplementary_branch",
+          "actual_linked_instruction_bytes_mutated": true,
+          "rejected": true,
+          "offset": 186,
+          "reason": "Unsigned complementary branch compares counter A0 against live S0"
+        },
+        {
+          "name": "wrong_live_length_GPR",
+          "actual_linked_instruction_bytes_mutated": true,
+          "rejected": true,
+          "offset": 186,
+          "reason": "Unsigned complementary branch compares counter A0 against live S0"
+        },
+        {
+          "name": "counter_not_low16",
+          "actual_linked_instruction_bytes_mutated": true,
+          "rejected": true,
+          "offset": 180,
+          "reason": "Unique low16 counter comparison header"
+        },
+        {
+          "name": "payload_counter_address_changed",
+          "actual_linked_instruction_bytes_mutated": true,
+          "rejected": true,
+          "offset": 190,
+          "reason": "Payload semantic fields differ outside the allowed A6 ADD operand swap"
+        },
+        {
+          "name": "payload_load_wrong_width",
+          "actual_linked_instruction_bytes_mutated": true,
+          "rejected": true,
+          "offset": 194,
+          "reason": "Payload semantic fields differ outside the allowed A6 ADD operand swap"
+        },
+        {
+          "name": "payload_A6_destination_changed",
+          "actual_linked_instruction_bytes_mutated": true,
+          "rejected": true,
+          "offset": 198,
+          "reason": "Payload semantic fields differ outside the allowed A6 ADD operand swap"
+        },
+        {
+          "name": "counter_increment_changed",
+          "actual_linked_instruction_bytes_mutated": true,
+          "rejected": true,
+          "offset": 202,
+          "reason": "Payload semantic fields differ outside the allowed A6 ADD operand swap"
+        },
+        {
+          "name": "payload_store_offset_changed",
+          "actual_linked_instruction_bytes_mutated": true,
+          "rejected": true,
+          "offset": 206,
+          "reason": "Payload semantic fields differ outside the allowed A6 ADD operand swap"
+        },
+        {
+          "name": "backedge_header_changed",
+          "actual_linked_instruction_bytes_mutated": true,
+          "rejected": true,
+          "offset": 214,
+          "reason": "Actual no-link payload backedge returns to same counter header"
+        }
+      ],
+      "assumptions": [
+        "corresponding A1 full counter, A4 checksum, A5 packet pointer, live S0/S1 values at header",
+        "corresponding memory byte responses at each paired logical access",
+        "no asynchronous interference or inspection of differing instruction PCs",
+        "payload/data reads do not distinguish replaced instruction bytes as data"
+      ],
+      "argument_domain_not_proved_from_all_callers": true,
+      "opaque_ROM_ABI_proved": false,
+      "arbitrary_computed_interior_entries_absent_proved": false,
+      "original_full_ABI_admitted": false,
+      "target_execution": false,
+      "ISA_emulation": false
+    },
+    "original_whole_FUNC280_role_admitted": false,
+    "whole_original_ABI_admitted": false,
+    "full_image": false,
+    "BIN_exported": false,
+    "RV32_execution": false,
+    "ISA_emulation": false,
+    "hardware": false
+  },
+  "commands": {
+    "pre_native_commands": 9,
+    "ordered_native_and_Python_commands": 7,
+    "total_nested_commands": 16
+  },
+  "dependencies": {
+    "valid_body_project_inputs": 3,
+    "return_leaf_project_inputs": 1,
+    "resource_headers": 1,
+    "assembly_direct_source_only": true
+  },
+  "tools": {
+    "clang": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "ld.lld": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "llvm-objdump": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    }
+  },
+  "python": {
+    "path": "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "sha256": "adccb8817dc234c555a7cd465fd0f99b05e0238a395c3778a89c3e55e8a45e2f"
+  },
+  "artifacts": {
+    "pre/c/adapter.json": {
+      "bytes": 20495,
+      "sha256": "535e9a4acb9c3d87b84963f53130834dba23fab9a1171b2d044cdb0ac5d0785a"
+    },
+    "pre/c/COMPONENT-ONLY-NOT-FIRMWARE.elf": {
+      "bytes": 3608,
+      "sha256": "7ea462f9dbffd8475aadd0ec88079f9cca98c579a536b67c38f6a92ef864c3a5"
+    },
+    "pre/c/component.ld": {
+      "bytes": 272,
+      "sha256": "30bdc41bd7acc0a6a67510fa1a0f1a0d306a4a19f8ea7e8efab674d78206f079"
+    },
+    "pre/c/disassembly.log": {
+      "bytes": 4347,
+      "sha256": "ebb9d81f23d6bbe88bd42cf3c8f81f7d05e3761eab430efc8ba2aa1071e625ce"
+    },
+    "pre/c/entry-object.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pre/c/entry.o": {
+      "bytes": 604,
+      "sha256": "10c85139694f171e6376341ea33c6a38122dea8281ebaaa863abbbe8585a636f"
+    },
+    "pre/c/numeric-witness.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pre/c/resource-dir.log": {
+      "bytes": 112,
+      "sha256": "361046f65369d8b7cbf1cecea755e803142eaac5a708651350a8006c251ba3aa"
+    },
+    "pre/c/return_leaf-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pre/c/return_leaf-object.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pre/c/return_leaf.d": {
+      "bytes": 291,
+      "sha256": "f7f5e33a689e31a2f2dc58cc530af2fabd94ee35b2e8bfd1a377d06809cdd72e"
+    },
+    "pre/c/return_leaf.ll": {
+      "bytes": 2588,
+      "sha256": "1aab980120265ba96e8ce1039073fb35a9c22fc8ba0353c8f9362db318fbd63b"
+    },
+    "pre/c/return_leaf.o": {
+      "bytes": 864,
+      "sha256": "1e779fd0a2abee5dafbb3f64f50748f8d77cc2c05ff7a8a05880b9a8f3524e9a"
+    },
+    "pre/c/strict-no-RAM.log": {
+      "bytes": 284,
+      "sha256": "f153f26a5321c3fdbab9ec0baef4ea79825d6db91a43e0417110f4eaecf689e8"
+    },
+    "pre/c/valid_body-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pre/c/valid_body-object.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pre/c/valid_body.d": {
+      "bytes": 577,
+      "sha256": "d949006a1307d0425ad87dbf309586be9ca03842f7d7cd7cbf13b73b39784ac5"
+    },
+    "pre/c/valid_body.ll": {
+      "bytes": 15834,
+      "sha256": "b741d52becde82724e548d188a11deece4ad5b44073464f35ac072dcec843493"
+    },
+    "pre/c/valid_body.o": {
+      "bytes": 1268,
+      "sha256": "d9aa545a5ae04c6b48efeb212864139383f296ce561b9ed667757033259c336f"
+    },
+    "ordered/c/actual-branch-overflow.log": {
+      "bytes": 495,
+      "sha256": "8ad017c64740002e55477fd055ea431eeb875a4c57d5e0892863260780a7e63b"
+    },
+    "ordered/c/branch-overflow.ld": {
+      "bytes": 276,
+      "sha256": "51c5ce0eec8f72f1ca60ab78c1e3df60d97a21e1788ff0048bcc7fe4cba14c1a"
+    },
+    "ordered/c/complete-static-disassembly.log": {
+      "bytes": 4351,
+      "sha256": "8e4d1b54e180888b75ca161a4816f54cba8654d8dd23e1ba97774c6efeea4ac1"
+    },
+    "ordered/c/COMPONENT-ONLY-NOT-FIRMWARE.elf": {
+      "bytes": 3608,
+      "sha256": "19460aa5bfc4b4e6a7bc56134c7aac3ca1d7d218f6e387995a468e52859af094"
+    },
+    "ordered/c/component.ld": {
+      "bytes": 202,
+      "sha256": "c6fd74be27adf0a679a6069961b1e7bf1989bcf810a55214d1d0b2604a510f94"
+    },
+    "ordered/c/explicit-frame-scheduling.log": {
+      "bytes": 304,
+      "sha256": "e8f266ac0fd9d3e743db0cc17f7770036d25caf135acdfbfb9870d64fa3a2a86"
+    },
+    "ordered/c/frame-order.json": {
+      "bytes": 4329,
+      "sha256": "d8eac0c6c95264a8aaeddb02d368207c62fd13e5fa25b2ae2c71d85cd75f926c"
+    },
+    "ordered/c/numeric-address-witness.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ordered/c/objdump-help.log": {
+      "bytes": 8571,
+      "sha256": "d26423638e332038db1235b21e4d78748cc2d27795208e268ed0d3668e2bf690"
+    },
+    "ordered/c/ordered.json": {
+      "bytes": 15455,
+      "sha256": "494d591a2f640ce9ea84163a955c413c4d09fca386228d04431a35026818f3e0"
+    },
+    "ordered/c/partial.ld": {
+      "bytes": 243,
+      "sha256": "c4581d09ed5518f50c40118bd5a10212b68e0aed1e0d01301277ecf9e4bee6ff"
+    },
+    "ordered/c/relocatable-composite.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ordered/c/source-integrated-component.o": {
+      "bytes": 1148,
+      "sha256": "515257997cbc5b32a008f6d49280a888771e570ecced295825976b7080f9e021"
+    },
+    "ordered/c/strict-no-RAM.log": {
+      "bytes": 306,
+      "sha256": "0cf593ec353edda180d80e75e276df61108dd980395793517b0e08a64acefdea"
+    },
+    "ordered/c/valid_body-ordered.o": {
+      "bytes": 1268,
+      "sha256": "9a7878a67c15ab9b31c991807d4d14991d0790444b4fd44c95b4848be28b1697"
+    }
+  },
+  "RV32_execution": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false
+}

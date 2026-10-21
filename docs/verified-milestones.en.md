@@ -1,5 +1,13 @@
 # Verified milestones
 
+## Actual native repair of the TX entry and split restores
+
+Fresh C11/C++17 components link to 280 bytes each: an eight-byte narrow assembly entry, a 270-byte readable body and a real two-byte return leaf. A standard ELF branch relocation makes oversized input return without stack access. Both resident-call return addresses match original 0x8A90/0x8AB6. The public entry honestly remains FUNC8, without fabricated single-FUNC280 metadata.
+
+A new scheduling stage moves only five newly compiled saves and five restores. It restores source save order and the fresh-read boundaries around descriptor stores. Actual C/C++ pre/post objects and linked components pass independent checks; every other ELF byte and metadata remains identical. No new opcode or original-firmware bytes generate code. Actual missing-RAM-provider and out-of-range-branch links are also rejected by the linker.
+
+This is a reproducible native component milestone, not complete-image integration or proof of full ABI, physical hardware/ROM/BOOT or BLE OTA. No new BIN is produced. The complete image remains the twelve readable functions / 650 bytes below. See the [current analysis](../analysis/v4160-tx-register-abi-2026-10-22/readme.en.md).
+
 ## Original OTA packet construction and measured native differences
 
 Actual C11/C++17 host suites each pass 107 cases / 15,605 checks and eight compiled semantic negatives. Independent suites each pass 31 cases / 78,283 checks and fourteen compiled semantic negatives. These use synthetic providers, numeric memory and explicit ROM boundaries; they do not execute or emulate RV32. Every host executable is checked by the existing immutable machine guard.
