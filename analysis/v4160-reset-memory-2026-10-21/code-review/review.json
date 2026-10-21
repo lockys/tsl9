@@ -1,0 +1,79 @@
+{
+  "schema": "TSL9-reset-memory-independent-review-contract-v1",
+  "passed": true,
+  "source_seal_sha256": "c7fc4efeada8f88980967ccc23ff5c72924ef4ed924b70609909c6ff8856a226",
+  "component_inputs": [
+    {
+      "path": "experiments/tsl9-v4160-reset-memory/src/reset_memory.c",
+      "sha256": "123bef3ebb0cfef1e39e942052302bc0d8cea66c7e4a6ab62d6752b9adf2d4f6"
+    },
+    {
+      "path": "experiments/tsl9-v4160-reset-memory/src/reset_memory.h",
+      "sha256": "04d81c8f927fa00a217eea3dc54b6e8c47a709bd8ddcc9bc87dae6da8d725d32"
+    },
+    {
+      "path": "experiments/tsl9-v4160-reset-memory/tests/test_io.h",
+      "sha256": "e341db5d316e24a211d0038df39d62588b5e26c3bf883a3228d04225c73b1229"
+    },
+    {
+      "path": "scripts/portable_verify.py",
+      "sha256": "93933fcb13a0fc45c9c5c82ebb1584a94298e28888d4f7f6a359237c7d3f8754"
+    }
+  ],
+  "independent_receipts": [
+    {
+      "path": "receipts/independent-cpp.json",
+      "sha256": "4d5e248be79ca15a8630ac54c33a7096a86f54ed4c64ac3d757dcb8edea63505",
+      "language": "cpp",
+      "tests": {
+        "passed": true,
+        "groups": 5,
+        "cases": 538,
+        "checks": 193964
+      },
+      "compiled_mutants_rejected": 11
+    },
+    {
+      "path": "receipts/independent-c.json",
+      "sha256": "e2b1f6e5bf128db20b2001ea249f460b9c3cf4fb9d8b0b3b02ad25632d493d10",
+      "language": "c",
+      "tests": {
+        "passed": true,
+        "groups": 5,
+        "cases": 538,
+        "checks": 193964
+      },
+      "compiled_mutants_rejected": 11
+    }
+  ],
+  "parent_receipts": [
+    {
+      "path": "receipts/parent-c.json",
+      "sha256": "e18b9222fcf9e1eff6c2efd53f2bd027da0564cc16571e501683e5076b523110"
+    },
+    {
+      "path": "receipts/parent-cpp.json",
+      "sha256": "fde3b60a093ae80f8939cbd2e164f27eeeaa65c662a2c69f71fc0b159f1fbdbc"
+    }
+  ],
+  "review_scope": "Ordered numeric GP/READ32/WRITE32/output3 host interface; original native entry/exit and hardware excluded",
+  "blocking_findings_in_reviewed_host_interface": [],
+  "remaining_original_binary_requirements": [
+    "Actual native A0/A1/A2 residues",
+    "Original T0 residue or proved deadness under applicable continuation/interrupt model",
+    "Untouched-register preservation",
+    "SP/RA/entry adapter",
+    "Fragment continuation binding",
+    "Final mapped initializer identity",
+    "Physical RAM/ROM/IRQ/OTA compatibility"
+  ],
+  "original_data_used_only_as_data": true,
+  "original_image_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "initializer_sha256": "d2f2eac71b3c4f04686d1179aebb430b70088394c46552914bec908c98558e0c",
+  "full_native_ABI_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false
+}

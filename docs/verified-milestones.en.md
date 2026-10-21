@@ -1,5 +1,15 @@
 # Verified milestones
 
+## Reset memory initialization
+
+The reset slice at `0x186BA..0x186F8` now has a readable C/C++ implementation: separate GP observations, interleaved forward word copy, unsigned bounds, BSS word clear and the normal boundary A0/A1/A2 values. The exact ID2966 source proof covers 62 bytes / 17 instructions and rejects 17 raw mutations. Its 128-byte initializer is read as data. Each host language passes five groups / 338 cases / 133,601 checks; the independent review adds five groups / 538 cases / 193,964 checks per language and rejects 22 actually compiled mutants in total.
+
+The original slice falls through into CSR setup. Its normal A0/A1 values survive the original clock initializer to the unresolved ROM entry, so a conventional C helper cannot silently discard them. A separate 372-byte / 130-instruction reset/clock caller proof documents that boundary. Installed ROM identity and interrupt compatibility remain unproved.
+
+The native leaf compiles to 78 bytes / 24 instructions versus the original 62-byte slice. It has a C-generated return, while the optional continuation fragment produces 80 bytes and a four-byte JAL even though its source requests `c.j`. Neither fits the original extent. Numeric continuation linking at a nonoverlapping diagnostic address is only a relocation witness; it does not supply the original entry adapter. Full instruction-byte, register, memory-width and loop-CFG checks are separate from native all-path or asynchronous-state equivalence. No original image is replaced and no BIN is generated.
+
+Use `sh experiments/tsl9-v4160-reset-memory/verify.sh --language both`. The source, caller, independent C/C++ and compiler review records are under `analysis/v4160-reset-memory-2026-10-21/`. Selected review source/text and receipt metadata are delivered; historical build archives remain in the workspace, while destination verification creates fresh local outputs. Windows results do not establish Linux/macOS or POSIX-shell launch success.
+
 ## Clock normal-return register contracts
 
 The user reported successful official-BIN selection and firmware update through `tsl9-morphe` on 2026-10-21. This is an official-image OTA baseline reported by the user, with exact APK/BIN identities and versions still unspecified. It is separate from the rebuilt-image boot, acceptance and recovery requirements below.

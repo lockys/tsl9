@@ -1,0 +1,943 @@
+{
+  "schema": "TSL9-reset-memory-original-caller-audit-v1",
+  "passed": true,
+  "source_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source_bytes": 76800,
+  "source_base": 32768,
+  "tool_sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+  "reference_inputs": [
+    {
+      "path": "experiments/tsl9-v4160-reset-contract/source-map.json",
+      "sha256": "30b0aa7912c2323c26167e023f50f6687f3eb53b70c68ad4bee10ca6fad6726b"
+    },
+    {
+      "path": "experiments/tsl9-v4160-reset-contract/src/reset_contract.c",
+      "sha256": "d42375243fc8ba99de54765da85789bb56459c651d8a23d3caf520a63cdd2359"
+    },
+    {
+      "path": "experiments/tsl9-v4160-clock-contract/source-map.json",
+      "sha256": "dca1752dd8c2194ee7df6fb85131ced06d39e9e6d19eea59085fd06b6b5041c5"
+    },
+    {
+      "path": "experiments/tsl9-resident-entry-reference/source-map.json",
+      "sha256": "95a30cf4b25220538db0d79bb224ceea85259a0c797ec5b407dad2b871748480"
+    }
+  ],
+  "covered_code_bytes": 372,
+  "covered_code_instructions": 130,
+  "ranges": [
+    {
+      "start": 100010,
+      "end_exclusive": 100148,
+      "bytes": 138,
+      "instructions": 37,
+      "sha256": "9507502c874a03e2c64a28b186a1f56aba9e85c9989dbf0cc053dabc4045bb4d",
+      "rows": [
+        {
+          "addr": 100010,
+          "size": 4,
+          "bytes": "97c1fe1f",
+          "opcode": "auipc gp, 0x1ffec"
+        },
+        {
+          "addr": 100014,
+          "size": 4,
+          "bytes": "93816195",
+          "opcode": "addi gp, gp, -1706"
+        },
+        {
+          "addr": 100018,
+          "size": 4,
+          "bytes": "1781ff1f",
+          "opcode": "auipc sp, 0x1fff8"
+        },
+        {
+          "addr": 100022,
+          "size": 4,
+          "bytes": "1301e194",
+          "opcode": "addi sp, sp, -1714"
+        },
+        {
+          "addr": 100026,
+          "size": 4,
+          "bytes": "17250000",
+          "opcode": "auipc a0, 0x2"
+        },
+        {
+          "addr": 100030,
+          "size": 4,
+          "bytes": "1305654a",
+          "opcode": "addi a0, a0, 1190"
+        },
+        {
+          "addr": 100034,
+          "size": 4,
+          "bytes": "93850100",
+          "opcode": "mv a1, gp"
+        },
+        {
+          "addr": 100038,
+          "size": 4,
+          "bytes": "13860108",
+          "opcode": "addi a2, gp, 128"
+        },
+        {
+          "addr": 100042,
+          "size": 4,
+          "bytes": "63fac500",
+          "opcode": "bleu a2, a1, 0x186de",
+          "jump": 100062,
+          "fail": 100046
+        },
+        {
+          "addr": 100046,
+          "size": 4,
+          "bytes": "83220500",
+          "opcode": "lw t0, 0(a0)"
+        },
+        {
+          "addr": 100050,
+          "size": 4,
+          "bytes": "23a05500",
+          "opcode": "sw t0, 0(a1)"
+        },
+        {
+          "addr": 100054,
+          "size": 2,
+          "bytes": "1105",
+          "opcode": "addi a0, a0, 4"
+        },
+        {
+          "addr": 100056,
+          "size": 2,
+          "bytes": "9105",
+          "opcode": "addi a1, a1, 4"
+        },
+        {
+          "addr": 100058,
+          "size": 4,
+          "bytes": "e3eac5fe",
+          "opcode": "bltu a1, a2, 0x186ce",
+          "jump": 100046,
+          "fail": 100062
+        },
+        {
+          "addr": 100062,
+          "size": 4,
+          "bytes": "13850108",
+          "opcode": "addi a0, gp, 128"
+        },
+        {
+          "addr": 100066,
+          "size": 4,
+          "bytes": "9745ff1f",
+          "opcode": "auipc a1, 0x1fff4"
+        },
+        {
+          "addr": 100070,
+          "size": 4,
+          "bytes": "93856527",
+          "opcode": "addi a1, a1, 630"
+        },
+        {
+          "addr": 100074,
+          "size": 4,
+          "bytes": "6377b500",
+          "opcode": "bleu a1, a0, 0x186f8",
+          "jump": 100088,
+          "fail": 100078
+        },
+        {
+          "addr": 100078,
+          "size": 4,
+          "bytes": "23200500",
+          "opcode": "sw zero, 0(a0)"
+        },
+        {
+          "addr": 100082,
+          "size": 2,
+          "bytes": "1105",
+          "opcode": "addi a0, a0, 4"
+        },
+        {
+          "addr": 100084,
+          "size": 4,
+          "bytes": "e36db5fe",
+          "opcode": "bltu a0, a1, 0x186ee",
+          "jump": 100078,
+          "fail": 100088
+        },
+        {
+          "addr": 100088,
+          "size": 2,
+          "bytes": "fd42",
+          "opcode": "li t0, 31"
+        },
+        {
+          "addr": 100090,
+          "size": 4,
+          "bytes": "739002bc",
+          "opcode": "csrw 0xbc0, t0"
+        },
+        {
+          "addr": 100094,
+          "size": 2,
+          "bytes": "8d42",
+          "opcode": "li t0, 3"
+        },
+        {
+          "addr": 100096,
+          "size": 4,
+          "bytes": "73904280",
+          "opcode": "csrw 0x804, t0"
+        },
+        {
+          "addr": 100100,
+          "size": 4,
+          "bytes": "b7220000",
+          "opcode": "lui t0, 0x2"
+        },
+        {
+          "addr": 100104,
+          "size": 4,
+          "bytes": "93828288",
+          "opcode": "addi t0, t0, -1912"
+        },
+        {
+          "addr": 100108,
+          "size": 4,
+          "bytes": "73a00230",
+          "opcode": "csrs mstatus, t0"
+        },
+        {
+          "addr": 100112,
+          "size": 4,
+          "bytes": "9702ffff",
+          "opcode": "auipc t0, 0xffff0"
+        },
+        {
+          "addr": 100116,
+          "size": 4,
+          "bytes": "93828292",
+          "opcode": "addi t0, t0, -1752"
+        },
+        {
+          "addr": 100120,
+          "size": 4,
+          "bytes": "93e23200",
+          "opcode": "ori t0, t0, 3"
+        },
+        {
+          "addr": 100124,
+          "size": 4,
+          "bytes": "73905230",
+          "opcode": "csrw mtvec, t0"
+        },
+        {
+          "addr": 100128,
+          "size": 4,
+          "bytes": "ef00a002",
+          "opcode": "jal ra, 0x1874a",
+          "jump": 100170,
+          "fail": 100132
+        },
+        {
+          "addr": 100132,
+          "size": 4,
+          "bytes": "9712ffff",
+          "opcode": "auipc t0, 0xffff1"
+        },
+        {
+          "addr": 100136,
+          "size": 4,
+          "bytes": "9382428e",
+          "opcode": "addi t0, t0, -1820"
+        },
+        {
+          "addr": 100140,
+          "size": 4,
+          "bytes": "73901234",
+          "opcode": "csrw mepc, t0"
+        },
+        {
+          "addr": 100144,
+          "size": 4,
+          "bytes": "6f70120d",
+          "opcode": "j 0x40000",
+          "jump": 262144
+        }
+      ]
+    },
+    {
+      "start": 100170,
+      "end_exclusive": 100404,
+      "bytes": 234,
+      "instructions": 93,
+      "sha256": "e0debe8b77025cfb56144045a0aa7524b7a2cd2ad0bd3daa2d880408ad9758f5",
+      "rows": [
+        {
+          "addr": 100170,
+          "size": 4,
+          "bytes": "b7170240",
+          "opcode": "lui a5, 0x40021"
+        },
+        {
+          "addr": 100174,
+          "size": 2,
+          "bytes": "9843",
+          "opcode": "lw a4, 0(a5)"
+        },
+        {
+          "addr": 100176,
+          "size": 4,
+          "bytes": "b706fff8",
+          "opcode": "lui a3, 0xf8ff0"
+        },
+        {
+          "addr": 100180,
+          "size": 2,
+          "bytes": "4111",
+          "opcode": "addi sp, sp, -16"
+        },
+        {
+          "addr": 100182,
+          "size": 4,
+          "bytes": "13671700",
+          "opcode": "ori a4, a4, 1"
+        },
+        {
+          "addr": 100186,
+          "size": 2,
+          "bytes": "98c3",
+          "opcode": "sw a4, 0(a5)"
+        },
+        {
+          "addr": 100188,
+          "size": 2,
+          "bytes": "d843",
+          "opcode": "lw a4, 4(a5)"
+        },
+        {
+          "addr": 100190,
+          "size": 4,
+          "bytes": "37060200",
+          "opcode": "lui a2, 0x20"
+        },
+        {
+          "addr": 100194,
+          "size": 2,
+          "bytes": "758f",
+          "opcode": "and a4, a4, a3"
+        },
+        {
+          "addr": 100196,
+          "size": 2,
+          "bytes": "d8c3",
+          "opcode": "sw a4, 4(a5)"
+        },
+        {
+          "addr": 100198,
+          "size": 2,
+          "bytes": "9843",
+          "opcode": "lw a4, 0(a5)"
+        },
+        {
+          "addr": 100200,
+          "size": 4,
+          "bytes": "b706f7fe",
+          "opcode": "lui a3, 0xfef70"
+        },
+        {
+          "addr": 100204,
+          "size": 2,
+          "bytes": "fd16",
+          "opcode": "addi a3, a3, -1"
+        },
+        {
+          "addr": 100206,
+          "size": 2,
+          "bytes": "758f",
+          "opcode": "and a4, a4, a3"
+        },
+        {
+          "addr": 100208,
+          "size": 2,
+          "bytes": "98c3",
+          "opcode": "sw a4, 0(a5)"
+        },
+        {
+          "addr": 100210,
+          "size": 2,
+          "bytes": "9843",
+          "opcode": "lw a4, 0(a5)"
+        },
+        {
+          "addr": 100212,
+          "size": 4,
+          "bytes": "b706fcff",
+          "opcode": "lui a3, 0xfffc0"
+        },
+        {
+          "addr": 100216,
+          "size": 2,
+          "bytes": "fd16",
+          "opcode": "addi a3, a3, -1"
+        },
+        {
+          "addr": 100218,
+          "size": 2,
+          "bytes": "758f",
+          "opcode": "and a4, a4, a3"
+        },
+        {
+          "addr": 100220,
+          "size": 2,
+          "bytes": "98c3",
+          "opcode": "sw a4, 0(a5)"
+        },
+        {
+          "addr": 100222,
+          "size": 2,
+          "bytes": "d843",
+          "opcode": "lw a4, 4(a5)"
+        },
+        {
+          "addr": 100224,
+          "size": 4,
+          "bytes": "b70681ff",
+          "opcode": "lui a3, 0xff810"
+        },
+        {
+          "addr": 100228,
+          "size": 2,
+          "bytes": "fd16",
+          "opcode": "addi a3, a3, -1"
+        },
+        {
+          "addr": 100230,
+          "size": 2,
+          "bytes": "758f",
+          "opcode": "and a4, a4, a3"
+        },
+        {
+          "addr": 100232,
+          "size": 2,
+          "bytes": "d8c3",
+          "opcode": "sw a4, 4(a5)"
+        },
+        {
+          "addr": 100234,
+          "size": 4,
+          "bytes": "37079f00",
+          "opcode": "lui a4, 0x9f0"
+        },
+        {
+          "addr": 100238,
+          "size": 2,
+          "bytes": "98c7",
+          "opcode": "sw a4, 8(a5)"
+        },
+        {
+          "addr": 100240,
+          "size": 2,
+          "bytes": "02c4",
+          "opcode": "sw zero, 8(sp)"
+        },
+        {
+          "addr": 100242,
+          "size": 2,
+          "bytes": "02c6",
+          "opcode": "sw zero, 12(sp)"
+        },
+        {
+          "addr": 100244,
+          "size": 2,
+          "bytes": "9843",
+          "opcode": "lw a4, 0(a5)"
+        },
+        {
+          "addr": 100246,
+          "size": 2,
+          "bytes": "c166",
+          "opcode": "lui a3, 0x10"
+        },
+        {
+          "addr": 100248,
+          "size": 2,
+          "bytes": "558f",
+          "opcode": "or a4, a4, a3"
+        },
+        {
+          "addr": 100250,
+          "size": 2,
+          "bytes": "98c3",
+          "opcode": "sw a4, 0(a5)"
+        },
+        {
+          "addr": 100252,
+          "size": 4,
+          "bytes": "b7160240",
+          "opcode": "lui a3, 0x40021"
+        },
+        {
+          "addr": 100256,
+          "size": 2,
+          "bytes": "0567",
+          "opcode": "lui a4, 0x1"
+        },
+        {
+          "addr": 100258,
+          "size": 2,
+          "bytes": "9c42",
+          "opcode": "lw a5, 0(a3)"
+        },
+        {
+          "addr": 100260,
+          "size": 2,
+          "bytes": "f18f",
+          "opcode": "and a5, a5, a2"
+        },
+        {
+          "addr": 100262,
+          "size": 2,
+          "bytes": "3ec6",
+          "opcode": "sw a5, 12(sp)"
+        },
+        {
+          "addr": 100264,
+          "size": 2,
+          "bytes": "a247",
+          "opcode": "lw a5, 8(sp)"
+        },
+        {
+          "addr": 100266,
+          "size": 2,
+          "bytes": "8507",
+          "opcode": "addi a5, a5, 1"
+        },
+        {
+          "addr": 100268,
+          "size": 2,
+          "bytes": "3ec4",
+          "opcode": "sw a5, 8(sp)"
+        },
+        {
+          "addr": 100270,
+          "size": 2,
+          "bytes": "b247",
+          "opcode": "lw a5, 12(sp)"
+        },
+        {
+          "addr": 100272,
+          "size": 2,
+          "bytes": "81e7",
+          "opcode": "bnez a5, 0x187b8",
+          "jump": 100280,
+          "fail": 100274
+        },
+        {
+          "addr": 100274,
+          "size": 2,
+          "bytes": "a247",
+          "opcode": "lw a5, 8(sp)"
+        },
+        {
+          "addr": 100276,
+          "size": 4,
+          "bytes": "e397e7fe",
+          "opcode": "bne a5, a4, 0x187a2",
+          "jump": 100258,
+          "fail": 100280
+        },
+        {
+          "addr": 100280,
+          "size": 4,
+          "bytes": "b7170240",
+          "opcode": "lui a5, 0x40021"
+        },
+        {
+          "addr": 100284,
+          "size": 2,
+          "bytes": "9c43",
+          "opcode": "lw a5, 0(a5)"
+        },
+        {
+          "addr": 100286,
+          "size": 4,
+          "bytes": "1397e700",
+          "opcode": "slli a4, a5, 0xe"
+        },
+        {
+          "addr": 100290,
+          "size": 4,
+          "bytes": "63570706",
+          "opcode": "bgez a4, 0x18830",
+          "jump": 100400,
+          "fail": 100294
+        },
+        {
+          "addr": 100294,
+          "size": 2,
+          "bytes": "8547",
+          "opcode": "li a5, 1"
+        },
+        {
+          "addr": 100296,
+          "size": 2,
+          "bytes": "3ec6",
+          "opcode": "sw a5, 12(sp)"
+        },
+        {
+          "addr": 100298,
+          "size": 2,
+          "bytes": "3247",
+          "opcode": "lw a4, 12(sp)"
+        },
+        {
+          "addr": 100300,
+          "size": 2,
+          "bytes": "8547",
+          "opcode": "li a5, 1"
+        },
+        {
+          "addr": 100302,
+          "size": 4,
+          "bytes": "631ff704",
+          "opcode": "bne a4, a5, 0x1882c",
+          "jump": 100396,
+          "fail": 100306
+        },
+        {
+          "addr": 100306,
+          "size": 4,
+          "bytes": "b7170240",
+          "opcode": "lui a5, 0x40021"
+        },
+        {
+          "addr": 100310,
+          "size": 2,
+          "bytes": "d843",
+          "opcode": "lw a4, 4(a5)"
+        },
+        {
+          "addr": 100312,
+          "size": 4,
+          "bytes": "b706c1ff",
+          "opcode": "lui a3, 0xffc10"
+        },
+        {
+          "addr": 100316,
+          "size": 2,
+          "bytes": "fd16",
+          "opcode": "addi a3, a3, -1"
+        },
+        {
+          "addr": 100318,
+          "size": 2,
+          "bytes": "d8c3",
+          "opcode": "sw a4, 4(a5)"
+        },
+        {
+          "addr": 100320,
+          "size": 2,
+          "bytes": "d843",
+          "opcode": "lw a4, 4(a5)"
+        },
+        {
+          "addr": 100322,
+          "size": 2,
+          "bytes": "d8c3",
+          "opcode": "sw a4, 4(a5)"
+        },
+        {
+          "addr": 100324,
+          "size": 2,
+          "bytes": "d843",
+          "opcode": "lw a4, 4(a5)"
+        },
+        {
+          "addr": 100326,
+          "size": 4,
+          "bytes": "13670740",
+          "opcode": "ori a4, a4, 1024"
+        },
+        {
+          "addr": 100330,
+          "size": 2,
+          "bytes": "d8c3",
+          "opcode": "sw a4, 4(a5)"
+        },
+        {
+          "addr": 100332,
+          "size": 2,
+          "bytes": "d843",
+          "opcode": "lw a4, 4(a5)"
+        },
+        {
+          "addr": 100334,
+          "size": 2,
+          "bytes": "758f",
+          "opcode": "and a4, a4, a3"
+        },
+        {
+          "addr": 100336,
+          "size": 2,
+          "bytes": "d8c3",
+          "opcode": "sw a4, 4(a5)"
+        },
+        {
+          "addr": 100338,
+          "size": 2,
+          "bytes": "d843",
+          "opcode": "lw a4, 4(a5)"
+        },
+        {
+          "addr": 100340,
+          "size": 4,
+          "bytes": "b7062900",
+          "opcode": "lui a3, 0x290"
+        },
+        {
+          "addr": 100344,
+          "size": 2,
+          "bytes": "558f",
+          "opcode": "or a4, a4, a3"
+        },
+        {
+          "addr": 100346,
+          "size": 2,
+          "bytes": "d8c3",
+          "opcode": "sw a4, 4(a5)"
+        },
+        {
+          "addr": 100348,
+          "size": 2,
+          "bytes": "9843",
+          "opcode": "lw a4, 0(a5)"
+        },
+        {
+          "addr": 100350,
+          "size": 4,
+          "bytes": "b7060001",
+          "opcode": "lui a3, 0x1000"
+        },
+        {
+          "addr": 100354,
+          "size": 2,
+          "bytes": "558f",
+          "opcode": "or a4, a4, a3"
+        },
+        {
+          "addr": 100356,
+          "size": 2,
+          "bytes": "98c3",
+          "opcode": "sw a4, 0(a5)"
+        },
+        {
+          "addr": 100358,
+          "size": 2,
+          "bytes": "9843",
+          "opcode": "lw a4, 0(a5)"
+        },
+        {
+          "addr": 100360,
+          "size": 4,
+          "bytes": "93166700",
+          "opcode": "slli a3, a4, 0x6"
+        },
+        {
+          "addr": 100364,
+          "size": 4,
+          "bytes": "e3dd06fe",
+          "opcode": "bgez a3, 0x18806",
+          "jump": 100358,
+          "fail": 100368
+        },
+        {
+          "addr": 100368,
+          "size": 2,
+          "bytes": "d843",
+          "opcode": "lw a4, 4(a5)"
+        },
+        {
+          "addr": 100370,
+          "size": 4,
+          "bytes": "b7160240",
+          "opcode": "lui a3, 0x40021"
+        },
+        {
+          "addr": 100374,
+          "size": 2,
+          "bytes": "719b",
+          "opcode": "andi a4, a4, -4"
+        },
+        {
+          "addr": 100376,
+          "size": 2,
+          "bytes": "d8c3",
+          "opcode": "sw a4, 4(a5)"
+        },
+        {
+          "addr": 100378,
+          "size": 2,
+          "bytes": "d843",
+          "opcode": "lw a4, 4(a5)"
+        },
+        {
+          "addr": 100380,
+          "size": 4,
+          "bytes": "13672700",
+          "opcode": "ori a4, a4, 2"
+        },
+        {
+          "addr": 100384,
+          "size": 2,
+          "bytes": "d8c3",
+          "opcode": "sw a4, 4(a5)"
+        },
+        {
+          "addr": 100386,
+          "size": 2,
+          "bytes": "2147",
+          "opcode": "li a4, 8"
+        },
+        {
+          "addr": 100388,
+          "size": 2,
+          "bytes": "dc42",
+          "opcode": "lw a5, 4(a3)"
+        },
+        {
+          "addr": 100390,
+          "size": 2,
+          "bytes": "b18b",
+          "opcode": "andi a5, a5, 12"
+        },
+        {
+          "addr": 100392,
+          "size": 4,
+          "bytes": "e39ee7fe",
+          "opcode": "bne a5, a4, 0x18824",
+          "jump": 100388,
+          "fail": 100396
+        },
+        {
+          "addr": 100396,
+          "size": 2,
+          "bytes": "4101",
+          "opcode": "addi sp, sp, 16"
+        },
+        {
+          "addr": 100398,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret"
+        },
+        {
+          "addr": 100400,
+          "size": 2,
+          "bytes": "02c6",
+          "opcode": "sw zero, 12(sp)"
+        },
+        {
+          "addr": 100402,
+          "size": 2,
+          "bytes": "61bf",
+          "opcode": "j 0x187ca",
+          "jump": 100298
+        }
+      ]
+    }
+  ],
+  "original_memory_slice": {
+    "start": 100026,
+    "end_exclusive": 100088,
+    "bytes": 62,
+    "instructions": 17,
+    "fallthrough": true,
+    "has_return": false,
+    "copy_words": 32,
+    "zero_words": 8758,
+    "last_copy_word": 929
+  },
+  "original_anchor_targets": [
+    {
+      "pc": 100010,
+      "register": 3,
+      "target": 536887296
+    },
+    {
+      "pc": 100018,
+      "register": 2,
+      "target": 536936448
+    },
+    {
+      "pc": 100026,
+      "register": 10,
+      "target": 109408
+    },
+    {
+      "pc": 100066,
+      "register": 11,
+      "target": 536922456
+    },
+    {
+      "pc": 100112,
+      "register": 5,
+      "target": 32824
+    },
+    {
+      "pc": 100132,
+      "register": 5,
+      "target": 36872
+    }
+  ],
+  "memory_exit_normal_context": {
+    "gp": 536887296,
+    "sp": 536936448,
+    "a0": 536922456,
+    "a1": 536922456,
+    "a2": 536887424,
+    "t0": 929,
+    "ra": "unchanged incoming value"
+  },
+  "clock": {
+    "entry": 100170,
+    "call_pc": 100128,
+    "return_link": 100132,
+    "ret_pc": 100398,
+    "bytes": 234,
+    "instructions": 93,
+    "entry_sp": 536936448,
+    "frame_sp": 536936432,
+    "unchanged_explicit": [
+      "a0",
+      "a1",
+      "t0",
+      "gp",
+      "ra"
+    ],
+    "first_a2_definition": 100190,
+    "a2_value": 131072,
+    "may_poll_without_bound": true
+  },
+  "terminal_rom_context": {
+    "transfer_pc": 100144,
+    "target": 262144,
+    "gp": 536887296,
+    "sp": 536936448,
+    "a0": 536922456,
+    "a1": 536922456,
+    "a2": 131072,
+    "t0": 36872,
+    "ra": 100132,
+    "mepc": 36872,
+    "installed_ROM_identity_proved": false
+  },
+  "original_executed": false,
+  "ISA_emulation": false,
+  "hardware": false,
+  "network": false,
+  "new_C_leaf_drop_in_proved": false,
+  "OTA_ready": false
+}

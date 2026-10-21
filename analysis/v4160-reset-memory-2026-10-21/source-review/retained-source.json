@@ -1,0 +1,267 @@
+{
+  "schema": "TSL9-reset-memory-raw-source-v1",
+  "original_image_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "start": 100026,
+  "end_exclusive": 100088,
+  "source_bytes": 62,
+  "sha256": "aea8841ab98f92a2372b602ee5c7667e626faac48814dd49d86893392f7273ac",
+  "instructions": [
+    {
+      "pc": 100026,
+      "bytes": "17250000",
+      "size": 4,
+      "decoded": [
+        "auipc",
+        10,
+        8192
+      ]
+    },
+    {
+      "pc": 100030,
+      "bytes": "1305654a",
+      "size": 4,
+      "decoded": [
+        "addi",
+        10,
+        10,
+        1190
+      ]
+    },
+    {
+      "pc": 100034,
+      "bytes": "93850100",
+      "size": 4,
+      "decoded": [
+        "addi",
+        11,
+        3,
+        0
+      ]
+    },
+    {
+      "pc": 100038,
+      "bytes": "13860108",
+      "size": 4,
+      "decoded": [
+        "addi",
+        12,
+        3,
+        128
+      ]
+    },
+    {
+      "pc": 100042,
+      "bytes": "63fac500",
+      "size": 4,
+      "decoded": [
+        "bgeu",
+        11,
+        12,
+        100062
+      ]
+    },
+    {
+      "pc": 100046,
+      "bytes": "83220500",
+      "size": 4,
+      "decoded": [
+        "lw",
+        5,
+        10,
+        0
+      ]
+    },
+    {
+      "pc": 100050,
+      "bytes": "23a05500",
+      "size": 4,
+      "decoded": [
+        "sw",
+        5,
+        11,
+        0
+      ]
+    },
+    {
+      "pc": 100054,
+      "bytes": "1105",
+      "size": 2,
+      "decoded": [
+        "addi",
+        10,
+        10,
+        4
+      ]
+    },
+    {
+      "pc": 100056,
+      "bytes": "9105",
+      "size": 2,
+      "decoded": [
+        "addi",
+        11,
+        11,
+        4
+      ]
+    },
+    {
+      "pc": 100058,
+      "bytes": "e3eac5fe",
+      "size": 4,
+      "decoded": [
+        "bltu",
+        11,
+        12,
+        100046
+      ]
+    },
+    {
+      "pc": 100062,
+      "bytes": "13850108",
+      "size": 4,
+      "decoded": [
+        "addi",
+        10,
+        3,
+        128
+      ]
+    },
+    {
+      "pc": 100066,
+      "bytes": "9745ff1f",
+      "size": 4,
+      "decoded": [
+        "auipc",
+        11,
+        536821760
+      ]
+    },
+    {
+      "pc": 100070,
+      "bytes": "93856527",
+      "size": 4,
+      "decoded": [
+        "addi",
+        11,
+        11,
+        630
+      ]
+    },
+    {
+      "pc": 100074,
+      "bytes": "6377b500",
+      "size": 4,
+      "decoded": [
+        "bgeu",
+        10,
+        11,
+        100088
+      ]
+    },
+    {
+      "pc": 100078,
+      "bytes": "23200500",
+      "size": 4,
+      "decoded": [
+        "sw",
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "pc": 100082,
+      "bytes": "1105",
+      "size": 2,
+      "decoded": [
+        "addi",
+        10,
+        10,
+        4
+      ]
+    },
+    {
+      "pc": 100084,
+      "bytes": "e36db5fe",
+      "size": 4,
+      "decoded": [
+        "bltu",
+        10,
+        11,
+        100078
+      ]
+    }
+  ],
+  "radare2_6_2_4_listing": [
+    {
+      "pc": 100026,
+      "opcode": "auipc a0, 0x2"
+    },
+    {
+      "pc": 100030,
+      "opcode": "addi a0, a0, 1190"
+    },
+    {
+      "pc": 100034,
+      "opcode": "mv a1, gp"
+    },
+    {
+      "pc": 100038,
+      "opcode": "addi a2, gp, 128"
+    },
+    {
+      "pc": 100042,
+      "opcode": "bleu a2, a1, 0x186de"
+    },
+    {
+      "pc": 100046,
+      "opcode": "lw t0, 0(a0)"
+    },
+    {
+      "pc": 100050,
+      "opcode": "sw t0, 0(a1)"
+    },
+    {
+      "pc": 100054,
+      "opcode": "addi a0, a0, 4"
+    },
+    {
+      "pc": 100056,
+      "opcode": "addi a1, a1, 4"
+    },
+    {
+      "pc": 100058,
+      "opcode": "bltu a1, a2, 0x186ce"
+    },
+    {
+      "pc": 100062,
+      "opcode": "addi a0, gp, 128"
+    },
+    {
+      "pc": 100066,
+      "opcode": "auipc a1, 0x1fff4"
+    },
+    {
+      "pc": 100070,
+      "opcode": "addi a1, a1, 630"
+    },
+    {
+      "pc": 100074,
+      "opcode": "bleu a1, a0, 0x186f8"
+    },
+    {
+      "pc": 100078,
+      "opcode": "sw zero, 0(a0)"
+    },
+    {
+      "pc": 100082,
+      "opcode": "addi a0, a0, 4"
+    },
+    {
+      "pc": 100084,
+      "opcode": "bltu a0, a1, 0x186ee"
+    }
+  ],
+  "radare2_sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+  "target_execution": false
+}

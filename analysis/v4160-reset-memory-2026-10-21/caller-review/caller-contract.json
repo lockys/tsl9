@@ -1,0 +1,81 @@
+{
+  "schema": "TSL9-reset-memory-entry-adapter-obligations-v1",
+  "source_only": true,
+  "original_runtime_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "normal_context_premise": "Original reset prefix completes, memory accesses complete, GP/SP have no unaccounted asynchronous changes, and clock1874A eventually returns normally.",
+  "original_memory_slice": {
+    "start": "0x186BA",
+    "end_exclusive": "0x186F8",
+    "bytes": 62,
+    "instructions": 17,
+    "entry_control": "Fallthrough after original GP/SP initialization, not a normal function call.",
+    "exit_control": "Fallthrough to186F8; no CALL, RET or local return-link requirement.",
+    "copy": {"source_start": "0x1AB60", "source_end_exclusive": "0x1ABE0", "destination_start": "0x20004000", "destination_end_exclusive": "0x20004080", "words": 32},
+    "zero": {"start": "0x20004080", "end_exclusive": "0x2000C958", "words": 8758},
+    "last_copied_word": {"source": "0x1ABDC", "bytes": "a1030000", "value": 929},
+    "exit_registers": {"GP": "0x20004000", "SP": "0x20010000", "A0": "0x2000C958", "A1": "0x2000C958", "A2": "0x20004080", "T0": "0x3A1", "RA": "unchanged incoming value"},
+    "other_GPRs": "Not assigned by the memory slice."
+  },
+  "normal_prefix_liveness": {
+    "A0_A1": "Not referenced by clock1874A..18834 or post-clock CSR/handoff suffix; their source values survive to unresolved ROM40000 boundary.",
+    "A2": "Original memory exit20004080 is overwritten by LUI A2,0x20 at1875E before any read in clock.",
+    "T0": "Original memory exit3A1 is immediately overwritten by LI T0,31 at186F8 before the CSR uses it.",
+    "incoming_RA": "No normal read before JAL18720 overwrites it with18724. A new helperRET nevertheless needs a distinct valid adapter return link.",
+    "SP": "Clock reads entrySP by subtracting16 at18754, uses frame offsets8/12, and adds16 at1882C before RET1882E.",
+    "GP": "Established by reset prefix; unchanged by memory slice, clock body and handoff suffix."
+  },
+  "CSR_and_control_order": [
+    {"pc": "0x186FA", "operation": "WRITE", "csr": "0xBC0", "value": "31"},
+    {"pc": "0x18700", "operation": "WRITE", "csr": "0x804", "value": "3"},
+    {"pc": "0x1870C", "operation": "SET_BITS", "csr": "0x300", "value": "0x1888"},
+    {"pc": "0x1871C", "operation": "WRITE", "csr": "0x305", "value": "0x803B"},
+    {"pc": "0x18720", "operation": "CALL", "target": "0x1874A", "link": "0x18724"},
+    {"pc": "0x1872C", "operation": "WRITE", "csr": "0x341", "value": "0x9008"},
+    {"pc": "0x18730", "operation": "TERMINAL_JUMP", "target": "0x40000", "writes_RA": false}
+  ],
+  "clock_obligations": {
+    "range": "0x1874A..0x18834 including cold tail",
+    "bytes": 234,
+    "instructions": 93,
+    "no_calls": true,
+    "explicitly_untouched": ["A0", "A1", "T0", "GP", "RA"],
+    "implicit_RA_read": "RET1882E",
+    "first_A2_definition": "1875E sets0x20000 before its first use",
+    "entry_SP": "0x20010000",
+    "frame_SP": "0x2000FFF0",
+    "frame_words": ["0x2000FFF8", "0x2000FFFC"],
+    "normal_return_link": "0x18724",
+    "unbounded_poll_paths_present": true,
+    "normal_return_guaranteed": false
+  },
+  "source_ROM_boundary": {
+    "target": "0x40000",
+    "GP": "0x20004000",
+    "SP": "0x20010000",
+    "A0": "0x2000C958",
+    "A1": "0x2000C958",
+    "A2": "0x20000",
+    "T0": "0x9008",
+    "RA": "0x18724",
+    "MEPC": "0x9008",
+    "installed_ROM_identity_or_acceptance_proved": false,
+    "local_MRET18734_is_original_fallthrough": false
+  },
+  "new_C_helper_entry_adapter_must_prove": [
+    "Correct relocated own-PC GP/SP/data/CSR anchor targets and exact bounded forward copy/zero memory effects.",
+    "A real helper call return link and adapter continuation that reaches original186F8 or an explicitly linked equivalent; a C RET is not the original fallthrough.",
+    "Preserve or establish source A0/A1 final values; their deadness at actual installed ROM is unproved.",
+    "Prove GP/SP and all relevant untouched register obligations, additional stack access validity, no hidden calls or unresolved libc helpers, and actual native write sets.",
+    "If using local deadness of oldA2/T0/incomingRA, state the normal-path observation scope; this is not asynchronous or whole-entry ABI equivalence.",
+    "Preserve ordered original CSR operations, clock call/return and MEPC assignment without replacing terminal ROM jump with CALL, direct-main jump or local MRET.",
+    "For relocated clock call/link changes, prove the ROM does not require originalRA18724 or reproduce the required boundary state.",
+    "Independently bind installed ROM, RAM/stack, clock/MMIO, privilege, interrupt and hardware/OTA behavior."
+  ],
+  "historical_evidence_limit": "The old sixty-fifth-round independent-reset-contract148B/40 evidence is a relocated native layout, not original186AA138B/37. It cannot provide original PC pairs by substitution.",
+  "original_executed": false,
+  "ISA_emulation": false,
+  "hardware": false,
+  "network": false,
+  "new_C_leaf_drop_in_proved": false,
+  "OTA_ready": false
+}

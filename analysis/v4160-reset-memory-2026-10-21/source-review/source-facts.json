@@ -1,0 +1,135 @@
+{
+  "schema": "TSL9-reset-memory-source-contract-v1",
+  "original_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "base": 32768,
+  "memory_slice": {
+    "start": 100026,
+    "end_exclusive": 100088,
+    "bytes": 62,
+    "instructions": 17,
+    "sha256": "aea8841ab98f92a2372b602ee5c7667e626faac48814dd49d86893392f7273ac"
+  },
+  "previous_reference": {
+    "project_path": "experiments/tsl9-v4160-reset-contract/source-map.json",
+    "sha256": "30b0aa7912c2323c26167e023f50f6687f3eb53b70c68ad4bee10ca6fad6726b",
+    "reset_context_bytes": 138,
+    "reset_context_sha256": "9507502c874a03e2c64a28b186a1f56aba9e85c9989dbf0cc053dabc4045bb4d",
+    "initializer_bytes": 128,
+    "initializer_sha256": "d2f2eac71b3c4f04686d1179aebb430b70088394c46552914bec908c98558e0c"
+  },
+  "static_PC_relative_pairs": [
+    {
+      "hi_pc": 100010,
+      "low_pc": 100014,
+      "register": 3,
+      "hi_raw": "0x1ffec197",
+      "low_raw": "0x95618193",
+      "target": 536887296
+    },
+    {
+      "hi_pc": 100018,
+      "low_pc": 100022,
+      "register": 2,
+      "hi_raw": "0x1fff8117",
+      "low_raw": "0x94e10113",
+      "target": 536936448
+    },
+    {
+      "hi_pc": 100026,
+      "low_pc": 100030,
+      "register": 10,
+      "hi_raw": "0x2517",
+      "low_raw": "0x4a650513",
+      "target": 109408
+    },
+    {
+      "hi_pc": 100066,
+      "low_pc": 100070,
+      "register": 11,
+      "hi_raw": "0x1fff4597",
+      "low_raw": "0x27658593",
+      "target": 536922456
+    }
+  ],
+  "live_GP_reads": [
+    {
+      "pc": 100034,
+      "assignment": "A1=liveGP"
+    },
+    {
+      "pc": 100038,
+      "assignment": "A2=low32(liveGP+128)"
+    },
+    {
+      "pc": 100062,
+      "assignment": "A0=low32(liveGP+128)"
+    }
+  ],
+  "copy": {
+    "source": 109408,
+    "entry_skip": "unsigned A1>=A2",
+    "ordered_iteration": [
+      "READ32[A0]\u2192T0",
+      "WRITE32[A1]\u2190liveT0",
+      "A0=low32(A0+4)",
+      "A1=low32(A1+4)",
+      "repeat_if_unsigned_A1<A2"
+    ],
+    "possible_wrap_nontermination": "If d<e but e>0xfffffffc+(d&3), no cursor in the modulo-four class reaches e; no source iteration bound"
+  },
+  "zero": {
+    "end_exclusive": 536922456,
+    "entry_skip": "unsigned A0>=A1",
+    "ordered_iteration": [
+      "WRITE32[A0]\u21900",
+      "A0=low32(A0+4)",
+      "repeat_if_unsigned_A0<A1"
+    ],
+    "no_reads": true,
+    "T0_unchanged": true
+  },
+  "normal_continuation": {
+    "pc": 100088,
+    "is_RET": false,
+    "RA_link_formed": false,
+    "integer_possible_writes": [
+      5,
+      10,
+      11,
+      12
+    ],
+    "A0": "zero cursor after final increment, or low32(thirdGP+128) on zero skip",
+    "A1": 536922456,
+    "A2": "low32(secondGP+128)",
+    "T0": "incoming if copy skipped, otherwise final successfully read copy word",
+    "other_integer_registers": "untouched by selected body"
+  },
+  "fixed_GP_conditional_result": {
+    "GP": 536887296,
+    "copy_words": 32,
+    "zero_words": 8758,
+    "zero_start": 536887424,
+    "zero_end_exclusive": 536922456,
+    "A0": 536922456,
+    "A1": 536922456,
+    "A2": 536887424,
+    "last_copy_source": 109532,
+    "last_copy_file_bytes": "a1030000",
+    "T0_if_actual_reads_equal_file_and_complete_normally": 929
+  },
+  "limits": [
+    "All GP samples are separate source instructions",
+    "Normal residue formulas exclude unaccounted external machine-register mutation",
+    "Alignment and mapped-address validity are not checked by original body",
+    "Forward word copy is not generic memcpy or memmove semantics",
+    "PC-relative source operands need explicit placement proof if relocated",
+    "C entry/return and native ABI require separate proof",
+    "No physical RAM or execution observation",
+    "No CSR/clock/ROM/OTA proof from memory slice"
+  ],
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false
+}
