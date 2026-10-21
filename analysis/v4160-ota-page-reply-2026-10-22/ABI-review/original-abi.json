@@ -1,0 +1,174 @@
+{
+  "ISA_emulation": false,
+  "allocator_entry": {
+    "A0": "1026",
+    "A1": "entry command",
+    "A2": "full entry index",
+    "A5": "live allocator target",
+    "other_caller_saved": "entry residues except local assignments"
+  },
+  "body_sha256": "5171c6d96b0151461524f4719cc96d8151e0fec5196a591d5ecc516b82a15198",
+  "bytes": 124,
+  "calls": [
+    {
+      "PC": 39854,
+      "bytes": 2,
+      "destination_GPR": 1,
+      "raw_hex": "8297",
+      "return_address": 39856,
+      "source_GPR": 15,
+      "target": "live GPR with bit0 cleared"
+    },
+    {
+      "PC": 39892,
+      "bytes": 2,
+      "destination_GPR": 1,
+      "raw_hex": "8297",
+      "return_address": 39894,
+      "source_GPR": 15,
+      "target": "live GPR with bit0 cleared"
+    },
+    {
+      "PC": 39904,
+      "bytes": 4,
+      "destination_GPR": 1,
+      "raw_hex": "efe07fe7",
+      "return_address": 39908,
+      "target": 35414
+    },
+    {
+      "PC": 39928,
+      "bytes": 2,
+      "destination_GPR": 0,
+      "raw_hex": "0283",
+      "return_address": null,
+      "source_GPR": 6,
+      "target": "live GPR with bit0 cleared"
+    },
+    {
+      "PC": 39944,
+      "bytes": 2,
+      "destination_GPR": 0,
+      "raw_hex": "8280",
+      "return_address": null,
+      "source_GPR": 1,
+      "target": "live GPR with bit0 cleared"
+    }
+  ],
+  "copy_entry": {
+    "A0": "live allocation+2",
+    "A1": "((0x20004+liveS1)<<10) modulo2^32",
+    "A2": "1024",
+    "A5": "fresh live copy target",
+    "other_caller_saved": "allocator-dependent residues"
+  },
+  "entry": 39822,
+  "frame_bytes": 32,
+  "free_tail": {
+    "A0": "liveS0 before its fresh restore",
+    "A0_assignment_PC": 39908,
+    "SP_restore_PC": 39926,
+    "eventual_caller_return_and_GPRs": "provider-defined",
+    "fresh_S0_restore_PC": 39910,
+    "jump_PC": 39928,
+    "new_RA_created": false,
+    "provider_returns_into_local_continuation": false,
+    "remaining_restore_PCs": [
+      39916,
+      39918,
+      39920,
+      39922,
+      39924
+    ],
+    "target_GPR": 6,
+    "target_load_PC": 39912
+  },
+  "hardware": false,
+  "header_store_low16_only": true,
+  "input_index_GPR": 12,
+  "input_index_width": 32,
+  "instructions": 50,
+  "live_pointer_loads": [
+    {
+      "PC": 39830,
+      "base_GPR": 18,
+      "destination_GPR": 15,
+      "fixed_address_unconditionally_proved": false,
+      "nominal_address": 262256,
+      "offset": 112
+    },
+    {
+      "PC": 39874,
+      "base_GPR": 18,
+      "destination_GPR": 15,
+      "fixed_address_unconditionally_proved": false,
+      "nominal_address": 262220,
+      "offset": 76
+    },
+    {
+      "PC": 39912,
+      "base_GPR": 18,
+      "destination_GPR": 6,
+      "fixed_address_unconditionally_proved": false,
+      "nominal_address": 262248,
+      "offset": 104
+    }
+  ],
+  "network": false,
+  "null_path": {
+    "A0": 0,
+    "SP_restore": 32,
+    "entry": 39930,
+    "fresh_restore_order": [
+      1,
+      8,
+      9,
+      18,
+      19,
+      20
+    ],
+    "other_caller_saved": "allocator-defined, not normalized",
+    "terminal": "JR restoredRA",
+    "terminal_PC": 39944
+  },
+  "old_frame_word_permutation_applies": false,
+  "ordinary_C_provider_SP_callee_saved_obligations": "conditional only; no arbitrary liveSP/S-register clobber equivalence",
+  "original_save_order": [
+    {
+      "GPR": 18,
+      "PC": 39824,
+      "slot": 16
+    },
+    {
+      "GPR": 9,
+      "PC": 39834,
+      "slot": 20
+    },
+    {
+      "GPR": 19,
+      "PC": 39836,
+      "slot": 12
+    },
+    {
+      "GPR": 20,
+      "PC": 39838,
+      "slot": 8
+    },
+    {
+      "GPR": 1,
+      "PC": 39840,
+      "slot": 28
+    },
+    {
+      "GPR": 8,
+      "PC": 39842,
+      "slot": 24
+    }
+  ],
+  "resident_ABI_verified": false,
+  "schema": "TSL9-page-reply-original-ABI-obligations-v1",
+  "source_arithmetic_uses_live_full32_index": true,
+  "source_context_sha256": "9a66b861219b9d0b2307f5968bd5e44081e40ccb48600ca397713485145d0564",
+  "source_firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "target_execution": false
+}

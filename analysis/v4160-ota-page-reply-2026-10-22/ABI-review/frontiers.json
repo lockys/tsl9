@@ -1,0 +1,45 @@
+{
+  "schema": "TSL9-page-reply-ABI-prefix-frontiers-v1",
+  "entry": 39822,
+  "scope": "Static actual instruction order; no CPU evaluation",
+  "compiler_reference": "first-native-53fc7bdcc36d457d824110ea90f529e5",
+  "frame": {"bytes": 32, "slots": {"RA": 28, "S0": 24, "S1": 20, "S2": 16, "S3": 12, "S4": 8}},
+  "windows": [
+    {
+      "function_interval": [2, 22],
+      "source": ["SW S2,16(SP)", "LUI S2,0x40000", "LW A5,0x70(S2)", "SW S1,20(SP)", "SW S3,12(SP)", "SW S4,8(SP)", "SW RA,28(SP)", "SW S0,24(SP)"],
+      "compiler": ["SW RA,28(SP)", "SW S0,24(SP)", "SW S1,20(SP)", "SW S2,16(SP)", "SW S3,12(SP)", "SW S4,8(SP)", "LUI S2,0x40000", "LW A5,0x70(S2)"],
+      "source_allocator_pointer_load_PC": 39830,
+      "compiler_allocator_pointer_load_PC": 39840,
+      "first_memory_order_divergence_PC": 39824,
+      "first_register_order_divergence_PC": 39826,
+      "same_allocator_call_PC": 39854,
+      "universal_normal_boundary_equivalence": false,
+      "reason": "Only source S2 save precedes the original ROM-pointer read; all six compiler saves precede its read. Faults, asynchronous changes and arbitrary stack/ROM aliasing forbid a generic commuting proof."
+    },
+    {
+      "function_interval": [88, 96],
+      "source": ["LW S0,24(SP)", "LW T1,0x68(S2)", "LW RA,28(SP)"],
+      "compiler": ["LW T1,0x68(S2)", "LW RA,28(SP)", "LW S0,24(SP)"],
+      "same_live_buffer_A0_selection_PC": 39908,
+      "source_S0_restore_PC": 39910,
+      "source_release_target_load_PC": 39912,
+      "compiler_release_target_load_PC": 39910,
+      "same_no_link_tail_PC": 39928,
+      "arbitrary_fault_or_async_equivalence": false,
+      "reason": "A0 is selected before either window. Original S0 is freshly restored before its fresh release-pointer load; compiler T1 and RA loads precede S0 restore."
+    }
+  ],
+  "control_frontiers": [
+    {"PC": 39854, "kind": "allocator C.JALR", "rd": 1, "rs1": 15, "return_PC": 39856},
+    {"PC": 39856, "kind": "A0-zero branch", "target": 39930},
+    {"PC": 39892, "kind": "copy C.JALR", "rd": 1, "rs1": 15, "return_PC": 39894},
+    {"PC": 39904, "kind": "TX JAL", "rd": 1, "target": 35414, "return_PC": 39908},
+    {"PC": 39928, "kind": "release C.JR", "rd": 0, "rs1": 6, "return_PC": null},
+    {"PC": 39944, "kind": "null C.RET", "rd": 0, "rs1": 1, "return_PC": null}
+  ],
+  "explicit_order_layer": "May restore the original source instruction stream from this compiler-owned inventory; it is not a universal equivalence assertion about the unscheduled compiler body.",
+  "resident_SP_S_register_ABI_verified": false,
+  "computed_entry_absence_verified": false,
+  "hardware_OTA_validated": false
+}

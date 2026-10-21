@@ -1,0 +1,2359 @@
+{
+  "schema": "TSL9-OTA-page-reply-native-v1",
+  "passed": true,
+  "mode": "cpp",
+  "input_sha256": {
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/README.md": "e630d05a927b51ced18d234edd09b7aaf5f3ac3a88cba03320de17a0281a34e5",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/readme.zh-TW.md": "e630d05a927b51ced18d234edd09b7aaf5f3ac3a88cba03320de17a0281a34e5",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/readme.en.md": "91977439ae845325824366c1fd1be7e606fd9cb3d9e2bccd912c8f0f9696dc25",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/contracts.json": "a2424eb270e065b7e69bd45f7b348b9a2086beac7c6053a6c9961dfe081392ef",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/retained-evidence.json": "4a190f0459027a96eb77607ce8c2e12faf0d774b7e20175535042d896883d3fc",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/source-proof.json": "bc8a3d7645b03140240e4aaa331004d8c84bb5a8c5f2597687751010c38d6d22",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/source-proof.py": "8ca0cf81d803ebd5aff343542c17cb9cb7a06cd003871e42655aa7e21fb14fd1",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/check-review.py": "633bd8f1073a9def9f4169f5b9c65cf51c23c90fa5457101f8cbe3e0a38af66b",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/check-review.sh": "accb4391b1430325760a21483b2fb17cdeaa6563fc89db9c1c412c3fdfb7d832",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/seal-review.py": "16ac354ef08f907334b15b8e22ad0ca0731feaeb20c733eb4d53c094abfcca34",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/implementation/verify_native.py": "23b0dfe90a4cde21c8066c2fd318bfd9e19b32ebb758b83eb9f294dc3dae6ee3",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/ABI-review/native.py": "7c5dc682981fec994c9d5b23b2579371bd1ee352c0220a57c1588c28a099ba08",
+    "apk-analysis/tsl9-v4160-ota-page-reply-2026-10-22/source-review/seal.json": "66484b79f8ef5199e20c8c136797ca7f3ced8b19fc5d2f2f2fb79734a4028a3f",
+    "apk-analysis/tsl9-v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "experiments/tsl9-v4160-ota-page-reply/src/host_io.c": "fb4073a071639cbefae21d2e983e57e55882c30cc4b7a583eb2ade4bca71e444",
+    "experiments/tsl9-v4160-ota-page-reply/src/host_io.h": "e35b951040704fab033c4b834d613fc7e21475fe67a510f48406fb1bef8709a2",
+    "experiments/tsl9-v4160-ota-page-reply/src/page_reply.c": "0b2ea78e7a55dcee6e5adc3857e1b272b9faa578f1c8776b930fd4812abef9f0",
+    "experiments/tsl9-v4160-ota-page-reply/src/page_reply.h": "5f84c99810942eeaaa31ad194751a544cf38c476cc72a45e0c2c81f09d862a1e",
+    "experiments/tsl9-v4160-ota-page-reply/src/reply_io.h": "b6f693cecac98b87a320cbf14d7c23177d48a6b9133c917baed1fb83ae40aa1d",
+    "experiments/tsl9-v4160-reply-abi-order/.gitignore": "c7cd0fc55d4b88bc4ed87b1cdc33670d9046174ab762188a0f2ce10290bb56e0",
+    "experiments/tsl9-v4160-reply-abi-order/order-policy.json": "04d9c56c859f36e380d17e180076f8694993842922f3c6153fc68b1fb63e61ea",
+    "experiments/tsl9-v4160-reply-abi-order/order.py": "6e8a137297c7aa7e7cfa1153a7b46ee061269d3912b72180e941c2c942448776",
+    "experiments/tsl9-v4160-reply-abi-order/readme.en.md": "9343dd0b576831bcf6bc834c34e1696e3a85694734ea1036b4096fa20381053a",
+    "experiments/tsl9-v4160-reply-abi-order/README.md": "c7b02f3f4618b38bc1ae633224506bc8fef6117c0a6f08d3cc54189908b12058",
+    "experiments/tsl9-v4160-reply-abi-order/readme.zh-TW.md": "c7b02f3f4618b38bc1ae633224506bc8fef6117c0a6f08d3cc54189908b12058",
+    "experiments/tsl9-v4160-reply-abi-order/verify.sh": "5bfaf329ba8b466f761d445dc452886c42ae4d57470b48df46a81bae42174393"
+  },
+  "tools": {
+    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe": "adccb8817dc234c555a7cd465fd0f99b05e0238a395c3778a89c3e55e8a45e2f"
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-c",
+        "-MMD",
+        "-MF",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\page_reply.d",
+        "-MT",
+        "page_reply.o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\src\\page_reply.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\page_reply.o"
+      ],
+      "exit": 0,
+      "log": "compile.o.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-S",
+        "-emit-llvm",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\src\\page_reply.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\page_reply.ll"
+      ],
+      "exit": 0,
+      "log": "compile.ll.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-reply-abi-order\\order.py",
+        "--project-root",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea",
+        "--input",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\page_reply.o",
+        "--output",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\source-ordered.o",
+        "--receipt",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\ABI-order.json"
+      ],
+      "exit": 0,
+      "log": "explicit-ABI-order.log",
+      "log_sha256": "6fb70825b512b3862b0744f4d1be4112fe1963704b041ab312b2a035670af047"
+    },
+    {
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "-m",
+        "elf32lriscv",
+        "--no-relax",
+        "-T",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\original-entry-component.ld",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\source-ordered.o",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\STRICT-MISSING-TX.elf"
+      ],
+      "exit": 1,
+      "log": "strict-missing-TX.log",
+      "log_sha256": "2c6d668f05c8ad3d742b1fb9af541a186f7ee5cc1edf986b0fa3e044bd089ad1"
+    },
+    {
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "-m",
+        "elf32lriscv",
+        "--no-relax",
+        "-T",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\original-entry-component.ld",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\source-ordered.o",
+        "--defsym=__tsl9v4160_call_8a56=0x8a56",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\ADDRESS-WITNESS-ONLY.elf"
+      ],
+      "exit": 0,
+      "log": "numeric-TX-witness.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+        "-d",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\page_reply.o"
+      ],
+      "exit": 0,
+      "log": "disassembly.log",
+      "log_sha256": "88b4209ecade3655384a39288c59742e0e9386d9389b4c8a57f01c32718d81f5"
+    }
+  ],
+  "checks": {
+    "component": {
+      "bytes": 124,
+      "instructions": 50,
+      "source_body_sha256": "5171c6d96b0151461524f4719cc96d8151e0fec5196a591d5ecc516b82a15198",
+      "observed_body_sha256": "cc7a5be4094a468eeb99ca7bea76b42d8429811811fd3d1a23862acab174a0da",
+      "scheduled_all_source_words": false,
+      "compiler_only_pointwise_identity": false,
+      "unaltered_control_offsets": [
+        32,
+        34,
+        70,
+        82,
+        106,
+        108,
+        122
+      ],
+      "normal_tail_no_new_RA": true,
+      "null_other_caller_saved_provider_defined": true,
+      "unknown_resident_ABI": true,
+      "hardware_validated": false,
+      "rows": [
+        {
+          "PC": 39822,
+          "bytes": 2,
+          "raw_hex": "0111",
+          "op": "addi",
+          "rd": 2,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": -32,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39824,
+          "bytes": 2,
+          "raw_hex": "06ce",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 1,
+          "immediate": 28,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39826,
+          "bytes": 2,
+          "raw_hex": "22cc",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 8,
+          "immediate": 24,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39828,
+          "bytes": 2,
+          "raw_hex": "26ca",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 9,
+          "immediate": 20,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39830,
+          "bytes": 2,
+          "raw_hex": "4ac8",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 18,
+          "immediate": 16,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39832,
+          "bytes": 2,
+          "raw_hex": "4ec6",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 19,
+          "immediate": 12,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39834,
+          "bytes": 2,
+          "raw_hex": "52c4",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 20,
+          "immediate": 8,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39836,
+          "bytes": 4,
+          "raw_hex": "37090400",
+          "op": "lui",
+          "rd": 18,
+          "rs1": null,
+          "rs2": null,
+          "immediate": 262144,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39840,
+          "bytes": 4,
+          "raw_hex": "83270907",
+          "op": "lw",
+          "rd": 15,
+          "rs1": 18,
+          "rs2": null,
+          "immediate": 112,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39844,
+          "bytes": 2,
+          "raw_hex": "aa89",
+          "op": "mv",
+          "rd": 19,
+          "rs1": 10,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39846,
+          "bytes": 4,
+          "raw_hex": "13052040",
+          "op": "addi",
+          "rd": 10,
+          "rs1": 0,
+          "rs2": null,
+          "immediate": 1026,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39850,
+          "bytes": 2,
+          "raw_hex": "2e8a",
+          "op": "mv",
+          "rd": 20,
+          "rs1": 11,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39852,
+          "bytes": 2,
+          "raw_hex": "b284",
+          "op": "mv",
+          "rd": 9,
+          "rs1": 12,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39854,
+          "bytes": 2,
+          "raw_hex": "8297",
+          "op": "jalr",
+          "rd": 1,
+          "rs1": 15,
+          "rs2": null,
+          "immediate": 0,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39856,
+          "bytes": 2,
+          "raw_hex": "29c5",
+          "op": "beq",
+          "rd": null,
+          "rs1": 10,
+          "rs2": 0,
+          "immediate": null,
+          "target": 39930,
+          "memory_width": null
+        },
+        {
+          "PC": 39858,
+          "bytes": 4,
+          "raw_hex": "93d78400",
+          "op": "srli",
+          "rd": 15,
+          "rs1": 9,
+          "rs2": null,
+          "immediate": 8,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39862,
+          "bytes": 4,
+          "raw_hex": "a3009500",
+          "op": "sb",
+          "rd": null,
+          "rs1": 10,
+          "rs2": 9,
+          "immediate": 1,
+          "target": null,
+          "memory_width": 8
+        },
+        {
+          "PC": 39866,
+          "bytes": 4,
+          "raw_hex": "2300f500",
+          "op": "sb",
+          "rd": null,
+          "rs1": 10,
+          "rs2": 15,
+          "immediate": 0,
+          "target": null,
+          "memory_width": 8
+        },
+        {
+          "PC": 39870,
+          "bytes": 4,
+          "raw_hex": "b7050200",
+          "op": "lui",
+          "rd": 11,
+          "rs1": null,
+          "rs2": null,
+          "immediate": 131072,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39874,
+          "bytes": 4,
+          "raw_hex": "8327c904",
+          "op": "lw",
+          "rd": 15,
+          "rs1": 18,
+          "rs2": null,
+          "immediate": 76,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39878,
+          "bytes": 2,
+          "raw_hex": "9105",
+          "op": "addi",
+          "rd": 11,
+          "rs1": 11,
+          "rs2": null,
+          "immediate": 4,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39880,
+          "bytes": 2,
+          "raw_hex": "a695",
+          "op": "add",
+          "rd": 11,
+          "rs1": 11,
+          "rs2": 9,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39882,
+          "bytes": 2,
+          "raw_hex": "2a84",
+          "op": "mv",
+          "rd": 8,
+          "rs1": 10,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39884,
+          "bytes": 4,
+          "raw_hex": "13060040",
+          "op": "addi",
+          "rd": 12,
+          "rs1": 0,
+          "rs2": null,
+          "immediate": 1024,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39888,
+          "bytes": 2,
+          "raw_hex": "aa05",
+          "op": "slli",
+          "rd": 11,
+          "rs1": 11,
+          "rs2": null,
+          "immediate": 10,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39890,
+          "bytes": 2,
+          "raw_hex": "0905",
+          "op": "addi",
+          "rd": 10,
+          "rs1": 10,
+          "rs2": null,
+          "immediate": 2,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39892,
+          "bytes": 2,
+          "raw_hex": "8297",
+          "op": "jalr",
+          "rd": 1,
+          "rs1": 15,
+          "rs2": null,
+          "immediate": 0,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39894,
+          "bytes": 2,
+          "raw_hex": "4e85",
+          "op": "mv",
+          "rd": 10,
+          "rs1": 19,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39896,
+          "bytes": 2,
+          "raw_hex": "2286",
+          "op": "mv",
+          "rd": 12,
+          "rs1": 8,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39898,
+          "bytes": 2,
+          "raw_hex": "d285",
+          "op": "mv",
+          "rd": 11,
+          "rs1": 20,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39900,
+          "bytes": 4,
+          "raw_hex": "93062040",
+          "op": "addi",
+          "rd": 13,
+          "rs1": 0,
+          "rs2": null,
+          "immediate": 1026,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39904,
+          "bytes": 4,
+          "raw_hex": "ef000000",
+          "op": "jal",
+          "rd": 1,
+          "rs1": null,
+          "rs2": null,
+          "immediate": null,
+          "target": 39904,
+          "memory_width": null
+        },
+        {
+          "PC": 39908,
+          "bytes": 2,
+          "raw_hex": "2285",
+          "op": "mv",
+          "rd": 10,
+          "rs1": 8,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39910,
+          "bytes": 4,
+          "raw_hex": "03238906",
+          "op": "lw",
+          "rd": 6,
+          "rs1": 18,
+          "rs2": null,
+          "immediate": 104,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39914,
+          "bytes": 2,
+          "raw_hex": "f240",
+          "op": "lw",
+          "rd": 1,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 28,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39916,
+          "bytes": 2,
+          "raw_hex": "6244",
+          "op": "lw",
+          "rd": 8,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 24,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39918,
+          "bytes": 2,
+          "raw_hex": "d244",
+          "op": "lw",
+          "rd": 9,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 20,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39920,
+          "bytes": 2,
+          "raw_hex": "4249",
+          "op": "lw",
+          "rd": 18,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 16,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39922,
+          "bytes": 2,
+          "raw_hex": "b249",
+          "op": "lw",
+          "rd": 19,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 12,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39924,
+          "bytes": 2,
+          "raw_hex": "224a",
+          "op": "lw",
+          "rd": 20,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 8,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39926,
+          "bytes": 2,
+          "raw_hex": "0561",
+          "op": "addi",
+          "rd": 2,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 32,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39928,
+          "bytes": 2,
+          "raw_hex": "0283",
+          "op": "jalr",
+          "rd": 0,
+          "rs1": 6,
+          "rs2": null,
+          "immediate": 0,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39930,
+          "bytes": 2,
+          "raw_hex": "f240",
+          "op": "lw",
+          "rd": 1,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 28,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39932,
+          "bytes": 2,
+          "raw_hex": "6244",
+          "op": "lw",
+          "rd": 8,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 24,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39934,
+          "bytes": 2,
+          "raw_hex": "d244",
+          "op": "lw",
+          "rd": 9,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 20,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39936,
+          "bytes": 2,
+          "raw_hex": "4249",
+          "op": "lw",
+          "rd": 18,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 16,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39938,
+          "bytes": 2,
+          "raw_hex": "b249",
+          "op": "lw",
+          "rd": 19,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 12,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39940,
+          "bytes": 2,
+          "raw_hex": "224a",
+          "op": "lw",
+          "rd": 20,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 8,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39942,
+          "bytes": 2,
+          "raw_hex": "0561",
+          "op": "addi",
+          "rd": 2,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 32,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39944,
+          "bytes": 2,
+          "raw_hex": "8280",
+          "op": "jalr",
+          "rd": 0,
+          "rs1": 1,
+          "rs2": null,
+          "immediate": 0,
+          "target": null,
+          "memory_width": null
+        }
+      ],
+      "object_sha256": "bc3bdbcba1f187022854c91a84cd5f1678303f6eeba9df81ff4506b6449d47e7",
+      "owner": ".text.tsl9_ota_page_reply_9b8e",
+      "sole_TX_relocation": [
+        {
+          "owner": ".text.tsl9_ota_page_reply_9b8e",
+          "offset": 82,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "__tsl9v4160_call_8a56",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        }
+      ]
+    },
+    "explicit_source_ordered_component": {
+      "bytes": 124,
+      "instructions": 50,
+      "source_body_sha256": "5171c6d96b0151461524f4719cc96d8151e0fec5196a591d5ecc516b82a15198",
+      "observed_body_sha256": "8a8e383fc30a48c0c11bdc885579e0850fbdbfb6c8bd7162f395b5f2c3fd0691",
+      "scheduled_all_source_words": true,
+      "compiler_only_pointwise_identity": true,
+      "unaltered_control_offsets": [
+        32,
+        34,
+        70,
+        82,
+        106,
+        108,
+        122
+      ],
+      "normal_tail_no_new_RA": true,
+      "null_other_caller_saved_provider_defined": true,
+      "unknown_resident_ABI": true,
+      "hardware_validated": false,
+      "rows": [
+        {
+          "PC": 39822,
+          "bytes": 2,
+          "raw_hex": "0111",
+          "op": "addi",
+          "rd": 2,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": -32,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39824,
+          "bytes": 2,
+          "raw_hex": "4ac8",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 18,
+          "immediate": 16,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39826,
+          "bytes": 4,
+          "raw_hex": "37090400",
+          "op": "lui",
+          "rd": 18,
+          "rs1": null,
+          "rs2": null,
+          "immediate": 262144,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39830,
+          "bytes": 4,
+          "raw_hex": "83270907",
+          "op": "lw",
+          "rd": 15,
+          "rs1": 18,
+          "rs2": null,
+          "immediate": 112,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39834,
+          "bytes": 2,
+          "raw_hex": "26ca",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 9,
+          "immediate": 20,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39836,
+          "bytes": 2,
+          "raw_hex": "4ec6",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 19,
+          "immediate": 12,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39838,
+          "bytes": 2,
+          "raw_hex": "52c4",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 20,
+          "immediate": 8,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39840,
+          "bytes": 2,
+          "raw_hex": "06ce",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 1,
+          "immediate": 28,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39842,
+          "bytes": 2,
+          "raw_hex": "22cc",
+          "op": "sw",
+          "rd": null,
+          "rs1": 2,
+          "rs2": 8,
+          "immediate": 24,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39844,
+          "bytes": 2,
+          "raw_hex": "aa89",
+          "op": "mv",
+          "rd": 19,
+          "rs1": 10,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39846,
+          "bytes": 4,
+          "raw_hex": "13052040",
+          "op": "addi",
+          "rd": 10,
+          "rs1": 0,
+          "rs2": null,
+          "immediate": 1026,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39850,
+          "bytes": 2,
+          "raw_hex": "2e8a",
+          "op": "mv",
+          "rd": 20,
+          "rs1": 11,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39852,
+          "bytes": 2,
+          "raw_hex": "b284",
+          "op": "mv",
+          "rd": 9,
+          "rs1": 12,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39854,
+          "bytes": 2,
+          "raw_hex": "8297",
+          "op": "jalr",
+          "rd": 1,
+          "rs1": 15,
+          "rs2": null,
+          "immediate": 0,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39856,
+          "bytes": 2,
+          "raw_hex": "29c5",
+          "op": "beq",
+          "rd": null,
+          "rs1": 10,
+          "rs2": 0,
+          "immediate": null,
+          "target": 39930,
+          "memory_width": null
+        },
+        {
+          "PC": 39858,
+          "bytes": 4,
+          "raw_hex": "93d78400",
+          "op": "srli",
+          "rd": 15,
+          "rs1": 9,
+          "rs2": null,
+          "immediate": 8,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39862,
+          "bytes": 4,
+          "raw_hex": "a3009500",
+          "op": "sb",
+          "rd": null,
+          "rs1": 10,
+          "rs2": 9,
+          "immediate": 1,
+          "target": null,
+          "memory_width": 8
+        },
+        {
+          "PC": 39866,
+          "bytes": 4,
+          "raw_hex": "2300f500",
+          "op": "sb",
+          "rd": null,
+          "rs1": 10,
+          "rs2": 15,
+          "immediate": 0,
+          "target": null,
+          "memory_width": 8
+        },
+        {
+          "PC": 39870,
+          "bytes": 4,
+          "raw_hex": "b7050200",
+          "op": "lui",
+          "rd": 11,
+          "rs1": null,
+          "rs2": null,
+          "immediate": 131072,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39874,
+          "bytes": 4,
+          "raw_hex": "8327c904",
+          "op": "lw",
+          "rd": 15,
+          "rs1": 18,
+          "rs2": null,
+          "immediate": 76,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39878,
+          "bytes": 2,
+          "raw_hex": "9105",
+          "op": "addi",
+          "rd": 11,
+          "rs1": 11,
+          "rs2": null,
+          "immediate": 4,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39880,
+          "bytes": 2,
+          "raw_hex": "a695",
+          "op": "add",
+          "rd": 11,
+          "rs1": 11,
+          "rs2": 9,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39882,
+          "bytes": 2,
+          "raw_hex": "2a84",
+          "op": "mv",
+          "rd": 8,
+          "rs1": 10,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39884,
+          "bytes": 4,
+          "raw_hex": "13060040",
+          "op": "addi",
+          "rd": 12,
+          "rs1": 0,
+          "rs2": null,
+          "immediate": 1024,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39888,
+          "bytes": 2,
+          "raw_hex": "aa05",
+          "op": "slli",
+          "rd": 11,
+          "rs1": 11,
+          "rs2": null,
+          "immediate": 10,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39890,
+          "bytes": 2,
+          "raw_hex": "0905",
+          "op": "addi",
+          "rd": 10,
+          "rs1": 10,
+          "rs2": null,
+          "immediate": 2,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39892,
+          "bytes": 2,
+          "raw_hex": "8297",
+          "op": "jalr",
+          "rd": 1,
+          "rs1": 15,
+          "rs2": null,
+          "immediate": 0,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39894,
+          "bytes": 2,
+          "raw_hex": "4e85",
+          "op": "mv",
+          "rd": 10,
+          "rs1": 19,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39896,
+          "bytes": 2,
+          "raw_hex": "2286",
+          "op": "mv",
+          "rd": 12,
+          "rs1": 8,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39898,
+          "bytes": 2,
+          "raw_hex": "d285",
+          "op": "mv",
+          "rd": 11,
+          "rs1": 20,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39900,
+          "bytes": 4,
+          "raw_hex": "93062040",
+          "op": "addi",
+          "rd": 13,
+          "rs1": 0,
+          "rs2": null,
+          "immediate": 1026,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39904,
+          "bytes": 4,
+          "raw_hex": "ef000000",
+          "op": "jal",
+          "rd": 1,
+          "rs1": null,
+          "rs2": null,
+          "immediate": null,
+          "target": 39904,
+          "memory_width": null
+        },
+        {
+          "PC": 39908,
+          "bytes": 2,
+          "raw_hex": "2285",
+          "op": "mv",
+          "rd": 10,
+          "rs1": 8,
+          "rs2": null,
+          "immediate": null,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39910,
+          "bytes": 2,
+          "raw_hex": "6244",
+          "op": "lw",
+          "rd": 8,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 24,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39912,
+          "bytes": 4,
+          "raw_hex": "03238906",
+          "op": "lw",
+          "rd": 6,
+          "rs1": 18,
+          "rs2": null,
+          "immediate": 104,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39916,
+          "bytes": 2,
+          "raw_hex": "f240",
+          "op": "lw",
+          "rd": 1,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 28,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39918,
+          "bytes": 2,
+          "raw_hex": "d244",
+          "op": "lw",
+          "rd": 9,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 20,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39920,
+          "bytes": 2,
+          "raw_hex": "4249",
+          "op": "lw",
+          "rd": 18,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 16,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39922,
+          "bytes": 2,
+          "raw_hex": "b249",
+          "op": "lw",
+          "rd": 19,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 12,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39924,
+          "bytes": 2,
+          "raw_hex": "224a",
+          "op": "lw",
+          "rd": 20,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 8,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39926,
+          "bytes": 2,
+          "raw_hex": "0561",
+          "op": "addi",
+          "rd": 2,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 32,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39928,
+          "bytes": 2,
+          "raw_hex": "0283",
+          "op": "jalr",
+          "rd": 0,
+          "rs1": 6,
+          "rs2": null,
+          "immediate": 0,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39930,
+          "bytes": 2,
+          "raw_hex": "f240",
+          "op": "lw",
+          "rd": 1,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 28,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39932,
+          "bytes": 2,
+          "raw_hex": "6244",
+          "op": "lw",
+          "rd": 8,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 24,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39934,
+          "bytes": 2,
+          "raw_hex": "d244",
+          "op": "lw",
+          "rd": 9,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 20,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39936,
+          "bytes": 2,
+          "raw_hex": "4249",
+          "op": "lw",
+          "rd": 18,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 16,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39938,
+          "bytes": 2,
+          "raw_hex": "b249",
+          "op": "lw",
+          "rd": 19,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 12,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39940,
+          "bytes": 2,
+          "raw_hex": "224a",
+          "op": "lw",
+          "rd": 20,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 8,
+          "target": null,
+          "memory_width": 32
+        },
+        {
+          "PC": 39942,
+          "bytes": 2,
+          "raw_hex": "0561",
+          "op": "addi",
+          "rd": 2,
+          "rs1": 2,
+          "rs2": null,
+          "immediate": 32,
+          "target": null,
+          "memory_width": null
+        },
+        {
+          "PC": 39944,
+          "bytes": 2,
+          "raw_hex": "8280",
+          "op": "jalr",
+          "rd": 0,
+          "rs1": 1,
+          "rs2": null,
+          "immediate": 0,
+          "target": null,
+          "memory_width": null
+        }
+      ],
+      "object_sha256": "bfee6b78418fcc1870659a72b4a61482cc0733dee1f23206dc3e91df14024587",
+      "owner": ".text.tsl9_ota_page_reply_9b8e",
+      "sole_TX_relocation": [
+        {
+          "owner": ".text.tsl9_ota_page_reply_9b8e",
+          "offset": 82,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "__tsl9v4160_call_8a56",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        }
+      ]
+    },
+    "ABI_order_receipt": {
+      "schema": "TSL9-page-reply-explicit-ABI-order-receipt-v1",
+      "passed": true,
+      "tool_sha256": "6e8a137297c7aa7e7cfa1153a7b46ee061269d3912b72180e941c2c942448776",
+      "policy_sha256": "04d9c56c859f36e380d17e180076f8694993842922f3c6153fc68b1fb63e61ea",
+      "parser_sha256": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+      "decoder_sha256": "8ca0cf81d803ebd5aff343542c17cb9cb7a06cd003871e42655aa7e21fb14fd1",
+      "input": {
+        "path": "experiments/tsl9-v4160-ota-page-reply/build/formal-native-final/cpp/page_reply.o",
+        "bytes": 1080,
+        "sha256": "bc3bdbcba1f187022854c91a84cd5f1678303f6eeba9df81ff4506b6449d47e7"
+      },
+      "output": {
+        "path": "experiments/tsl9-v4160-ota-page-reply/build/formal-native-final/cpp/source-ordered.o",
+        "bytes": 1080,
+        "sha256": "bfee6b78418fcc1870659a72b4a61482cc0733dee1f23206dc3e91df14024587"
+      },
+      "proof": {
+        "section": ".text.tsl9_ota_page_reply_9b8e",
+        "symbol": "tsl9_ota_page_reply_9b8e",
+        "words": 50,
+        "bytes": 124,
+        "intervals": [
+          {
+            "section_interval": [
+              2,
+              22
+            ],
+            "compiler_order": [
+              [
+                "sw",
+                null,
+                2,
+                1,
+                28,
+                null,
+                32
+              ],
+              [
+                "sw",
+                null,
+                2,
+                8,
+                24,
+                null,
+                32
+              ],
+              [
+                "sw",
+                null,
+                2,
+                9,
+                20,
+                null,
+                32
+              ],
+              [
+                "sw",
+                null,
+                2,
+                18,
+                16,
+                null,
+                32
+              ],
+              [
+                "sw",
+                null,
+                2,
+                19,
+                12,
+                null,
+                32
+              ],
+              [
+                "sw",
+                null,
+                2,
+                20,
+                8,
+                null,
+                32
+              ],
+              [
+                "lui",
+                18,
+                null,
+                null,
+                262144,
+                null,
+                null
+              ],
+              [
+                "lw",
+                15,
+                18,
+                null,
+                112,
+                null,
+                32
+              ]
+            ],
+            "required_order": [
+              [
+                "sw",
+                null,
+                2,
+                18,
+                16,
+                null,
+                32
+              ],
+              [
+                "lui",
+                18,
+                null,
+                null,
+                262144,
+                null,
+                null
+              ],
+              [
+                "lw",
+                15,
+                18,
+                null,
+                112,
+                null,
+                32
+              ],
+              [
+                "sw",
+                null,
+                2,
+                9,
+                20,
+                null,
+                32
+              ],
+              [
+                "sw",
+                null,
+                2,
+                19,
+                12,
+                null,
+                32
+              ],
+              [
+                "sw",
+                null,
+                2,
+                20,
+                8,
+                null,
+                32
+              ],
+              [
+                "sw",
+                null,
+                2,
+                1,
+                28,
+                null,
+                32
+              ],
+              [
+                "sw",
+                null,
+                2,
+                8,
+                24,
+                null,
+                32
+              ]
+            ],
+            "compiler_words": [
+              "06ce",
+              "22cc",
+              "26ca",
+              "4ac8",
+              "4ec6",
+              "52c4",
+              "37090400",
+              "83270907"
+            ],
+            "required_words": [
+              "4ac8",
+              "37090400",
+              "83270907",
+              "26ca",
+              "4ec6",
+              "52c4",
+              "06ce",
+              "22cc"
+            ],
+            "all_words_from_this_compiler_interval": true
+          },
+          {
+            "section_interval": [
+              88,
+              96
+            ],
+            "compiler_order": [
+              [
+                "lw",
+                6,
+                18,
+                null,
+                104,
+                null,
+                32
+              ],
+              [
+                "lw",
+                1,
+                2,
+                null,
+                28,
+                null,
+                32
+              ],
+              [
+                "lw",
+                8,
+                2,
+                null,
+                24,
+                null,
+                32
+              ]
+            ],
+            "required_order": [
+              [
+                "lw",
+                8,
+                2,
+                null,
+                24,
+                null,
+                32
+              ],
+              [
+                "lw",
+                6,
+                18,
+                null,
+                104,
+                null,
+                32
+              ],
+              [
+                "lw",
+                1,
+                2,
+                null,
+                28,
+                null,
+                32
+              ]
+            ],
+            "compiler_words": [
+              "03238906",
+              "f240",
+              "6244"
+            ],
+            "required_words": [
+              "6244",
+              "03238906",
+              "f240"
+            ],
+            "all_words_from_this_compiler_interval": true
+          }
+        ],
+        "changed_file_offsets": [
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147
+        ],
+        "before_body_sha256": "cc7a5be4094a468eeb99ca7bea76b42d8429811811fd3d1a23862acab174a0da",
+        "after_body_sha256": "8a8e383fc30a48c0c11bdc885579e0850fbdbfb6c8bd7162f395b5f2c3fd0691"
+      },
+      "metadata_symbols_RELA_identical": true,
+      "compiler_alone_emitted_scheduled_order": false,
+      "arbitrary_fault_or_async_prefix_equivalence": false,
+      "original_BIN_read_for_generation": false,
+      "new_opcodes_generated": false,
+      "padding_added": false,
+      "compiler_source_provenance_verified_here": false,
+      "computed_interior_entries_proved_absent": false,
+      "unknown_ROM_ABI_proved": false,
+      "pipeline": "C/C++ compiler output followed by explicit source-owned ABI ordering",
+      "target_execution": false,
+      "ISA_emulation": false,
+      "hardware": false,
+      "OTA_ready": false
+    },
+    "IR": {
+      "IR_sha256": "0890f0dadb785a13c528ae8b4bd5ea2e27da872529cbc1d40f4decd4edcee400",
+      "opaque_calls": 2,
+      "TX_output_fields_forwarded_to_tail": [
+        1,
+        2
+      ],
+      "release_signature_proved": false,
+      "full_resident_SP_S_register_ABI_proved": false
+    },
+    "disassembly": {
+      "rows": 50,
+      "bytes": 124,
+      "ELF_bytes_bound": true
+    },
+    "numeric_entry_extent_fit": true,
+    "full_original_byte_identity_after_explicit_order": true,
+    "compiler_only_pointwise_identity": false,
+    "universal_native_opaque_SP_S_ABI": false,
+    "provider_witness_only": true,
+    "TX_provider_bytes": 0,
+    "strict_missing_provider_rejected": true,
+    "linked_code_sha256": "5171c6d96b0151461524f4719cc96d8151e0fec5196a591d5ecc516b82a15198",
+    "image_integrated": false,
+    "OTA_ready": false
+  },
+  "raw_IR_controls": [
+    {
+      "name": "allocator_no_link",
+      "rejected": true
+    },
+    {
+      "name": "copy_target_S1",
+      "rejected": true
+    },
+    {
+      "name": "free_links_RA",
+      "rejected": true
+    },
+    {
+      "name": "null_target_T1",
+      "rejected": true
+    },
+    {
+      "name": "header_source_A1",
+      "rejected": true
+    },
+    {
+      "name": "frame_size",
+      "rejected": true
+    },
+    {
+      "name": "copy_full_index_shift",
+      "rejected": true
+    },
+    {
+      "name": "musttail_removed",
+      "rejected": true
+    },
+    {
+      "name": "TX_A1_substituted",
+      "rejected": true
+    },
+    {
+      "name": "opaque_T1_clobber_omitted",
+      "rejected": true
+    },
+    {
+      "name": "TX_A4_clobber_omitted",
+      "rejected": true
+    }
+  ],
+  "actual_compiled_controls": [
+    {
+      "name": "header_shift",
+      "rejected": true,
+      "file": "src/reply_io.h",
+      "old": "(value)>>8",
+      "new": "(value)>>16",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\header_shift\\src\\page_reply.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\header_shift\\page_reply.o"
+          ],
+          "exit": 0,
+          "log": "compile.o.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\header_shift\\src\\page_reply.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\header_shift\\page_reply.ll"
+          ],
+          "exit": 0,
+          "log": "compile.ll.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "name": "truncate_index",
+      "rejected": true,
+      "file": "src/reply_io.h",
+      "old": "((value)+(index))",
+      "new": "((value)+((index)&65535u))",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\truncate_index\\src\\page_reply.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\truncate_index\\page_reply.o"
+          ],
+          "exit": 0,
+          "log": "compile.o.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\truncate_index\\src\\page_reply.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\truncate_index\\page_reply.ll"
+          ],
+          "exit": 0,
+          "log": "compile.ll.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "name": "tail_residue_swap",
+      "rejected": true,
+      "file": "src/reply_io.h",
+      "old": "(a0,(r1),(r2))",
+      "new": "(a0,(r2),(r1))",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\tail_residue_swap\\src\\page_reply.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\tail_residue_swap\\page_reply.o"
+          ],
+          "exit": 0,
+          "log": "compile.o.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\tail_residue_swap\\src\\page_reply.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\cpp\\compiled-controls\\tail_residue_swap\\page_reply.ll"
+          ],
+          "exit": 0,
+          "log": "compile.ll.log",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "ABI-order.json": {
+      "bytes": 6237,
+      "sha256": "9c4b4cae2b0b340ddf8af4896d6b78dbce1c21ffcb916dbf240474cc02d4839a"
+    },
+    "ADDRESS-WITNESS-ONLY.elf": {
+      "bytes": 3644,
+      "sha256": "28de382b6240b0020d34d61e18eee7aaa725643b89d81fde2781b6bce3c8152a"
+    },
+    "compile.ll.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile.o.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "disassembly.log": {
+      "bytes": 2238,
+      "sha256": "88b4209ecade3655384a39288c59742e0e9386d9389b4c8a57f01c32718d81f5"
+    },
+    "explicit-ABI-order.log": {
+      "bytes": 145,
+      "sha256": "6fb70825b512b3862b0744f4d1be4112fe1963704b041ab312b2a035670af047"
+    },
+    "numeric-TX-witness.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "original-entry-component.ld": {
+      "bytes": 232,
+      "sha256": "329b4bb59393ff3cf7f45feef77a7be131121ddb5d04d160fe536efb63a83083"
+    },
+    "page_reply.d": {
+      "bytes": 418,
+      "sha256": "a9f973ce0089469b45d34da5ffa45525dc0c31e4a22ec41c99830fde00de5969"
+    },
+    "page_reply.ll": {
+      "bytes": 8440,
+      "sha256": "0890f0dadb785a13c528ae8b4bd5ea2e27da872529cbc1d40f4decd4edcee400"
+    },
+    "page_reply.o": {
+      "bytes": 1080,
+      "sha256": "bc3bdbcba1f187022854c91a84cd5f1678303f6eeba9df81ff4506b6449d47e7"
+    },
+    "source-ordered.o": {
+      "bytes": 1080,
+      "sha256": "bfee6b78418fcc1870659a72b4a61482cc0733dee1f23206dc3e91df14024587"
+    },
+    "strict-missing-TX.log": {
+      "bytes": 294,
+      "sha256": "2c6d668f05c8ad3d742b1fb9af541a186f7ee5cc1edf986b0fa3e044bd089ad1"
+    },
+    "compiled-controls/header_shift/compile.ll.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compiled-controls/header_shift/compile.o.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compiled-controls/header_shift/page_reply.ll": {
+      "bytes": 8568,
+      "sha256": "fb995e2fd179e64655b70c846adaadad635f63d6eeaeb575c70d0ed9f1861f0a"
+    },
+    "compiled-controls/header_shift/page_reply.o": {
+      "bytes": 1080,
+      "sha256": "b16736bae9fe849a116a63d9f70ca34fa9a44a09cdde351429650123bef28d34"
+    },
+    "compiled-controls/header_shift/src/host_io.c": {
+      "bytes": 5093,
+      "sha256": "fb4073a071639cbefae21d2e983e57e55882c30cc4b7a583eb2ade4bca71e444"
+    },
+    "compiled-controls/header_shift/src/host_io.h": {
+      "bytes": 4191,
+      "sha256": "e35b951040704fab033c4b834d613fc7e21475fe67a510f48406fb1bef8709a2"
+    },
+    "compiled-controls/header_shift/src/page_reply.c": {
+      "bytes": 1686,
+      "sha256": "0b2ea78e7a55dcee6e5adc3857e1b272b9faa578f1c8776b930fd4812abef9f0"
+    },
+    "compiled-controls/header_shift/src/page_reply.h": {
+      "bytes": 421,
+      "sha256": "5f84c99810942eeaaa31ad194751a544cf38c476cc72a45e0c2c81f09d862a1e"
+    },
+    "compiled-controls/header_shift/src/reply_io.h": {
+      "bytes": 3696,
+      "sha256": "23c597f61cc23ada3da52e3fc2c7dc71b08eba6d99149197140bfe4f8543d03b"
+    },
+    "compiled-controls/tail_residue_swap/compile.ll.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compiled-controls/tail_residue_swap/compile.o.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compiled-controls/tail_residue_swap/page_reply.ll": {
+      "bytes": 8577,
+      "sha256": "6c591bc75c09a0a9c81437d82aaeb49fcbaf0dca8868efc580cdad764c0dc3c5"
+    },
+    "compiled-controls/tail_residue_swap/page_reply.o": {
+      "bytes": 1088,
+      "sha256": "20e54d201afd230f0990df946e9cbf910c2d9677187eaa582d729a94e728ce3f"
+    },
+    "compiled-controls/tail_residue_swap/src/host_io.c": {
+      "bytes": 5093,
+      "sha256": "fb4073a071639cbefae21d2e983e57e55882c30cc4b7a583eb2ade4bca71e444"
+    },
+    "compiled-controls/tail_residue_swap/src/host_io.h": {
+      "bytes": 4191,
+      "sha256": "e35b951040704fab033c4b834d613fc7e21475fe67a510f48406fb1bef8709a2"
+    },
+    "compiled-controls/tail_residue_swap/src/page_reply.c": {
+      "bytes": 1686,
+      "sha256": "0b2ea78e7a55dcee6e5adc3857e1b272b9faa578f1c8776b930fd4812abef9f0"
+    },
+    "compiled-controls/tail_residue_swap/src/page_reply.h": {
+      "bytes": 421,
+      "sha256": "5f84c99810942eeaaa31ad194751a544cf38c476cc72a45e0c2c81f09d862a1e"
+    },
+    "compiled-controls/tail_residue_swap/src/reply_io.h": {
+      "bytes": 3695,
+      "sha256": "58d3a036cde9bd1ddfdc337911197fc395de6f1f4580f05133403d627e7c0ef7"
+    },
+    "compiled-controls/truncate_index/compile.ll.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compiled-controls/truncate_index/compile.o.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compiled-controls/truncate_index/page_reply.ll": {
+      "bytes": 8598,
+      "sha256": "6f750d5c60ac552fda68dbfab1a0fb552efedc9fd8fda4d4d870d94a047de905"
+    },
+    "compiled-controls/truncate_index/page_reply.o": {
+      "bytes": 1088,
+      "sha256": "d5c294e19153d6c732ede266b4d038bc956c6c0400ea8f135964d5e8df6701d2"
+    },
+    "compiled-controls/truncate_index/src/host_io.c": {
+      "bytes": 5093,
+      "sha256": "fb4073a071639cbefae21d2e983e57e55882c30cc4b7a583eb2ade4bca71e444"
+    },
+    "compiled-controls/truncate_index/src/host_io.h": {
+      "bytes": 4191,
+      "sha256": "e35b951040704fab033c4b834d613fc7e21475fe67a510f48406fb1bef8709a2"
+    },
+    "compiled-controls/truncate_index/src/page_reply.c": {
+      "bytes": 1686,
+      "sha256": "0b2ea78e7a55dcee6e5adc3857e1b272b9faa578f1c8776b930fd4812abef9f0"
+    },
+    "compiled-controls/truncate_index/src/page_reply.h": {
+      "bytes": 421,
+      "sha256": "5f84c99810942eeaaa31ad194751a544cf38c476cc72a45e0c2c81f09d862a1e"
+    },
+    "compiled-controls/truncate_index/src/reply_io.h": {
+      "bytes": 3704,
+      "sha256": "7d299c1dbcd486ae3884f376915d1db242dc435731cae5ab0a56c12941fdb13e"
+    }
+  },
+  "RV32_execution": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false
+}

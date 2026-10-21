@@ -1,0 +1,38 @@
+{
+  "schema": "TSL9-reply-entry-call-narrow-superseding-correction-v1",
+  "superseded_scope": "Only classification of the incoming instruction at0x9DF4; all old sealed bytes remain unchanged",
+  "source_seal_sha256": "66484b79f8ef5199e20c8c136797ca7f3ced8b19fc5d2f2f2fb79734a4028a3f",
+  "supersedes": [
+    {
+      "path": "../source-review/contracts.json",
+      "sha256": "a2424eb270e065b7e69bd45f7b348b9a2086beac7c6053a6c9961dfe081392ef",
+      "JSON_pointer": "/recorded_RELA/external_incoming_role",
+      "old_value": "shared physical W/R handler tail RVC_JUMP to entry; not two callsites",
+      "corrected_value": "One recorded physical incoming RV32 C.JAL at0x9DF4 to0x9B8E, rd=x1 and RA=0x9DF6; not two callsites. Relocation type45 does not establish no-link semantics."
+    },
+    {
+      "path": "../source-review/README.md",
+      "sha256": "e630d05a927b51ced18d234edd09b7aaf5f3ac3a88cba03320de17a0281a34e5",
+      "old_phrase": "是 W/R 共用的實體尾端路徑",
+      "corrected_phrase": "是位於0x9DF4的實體 C.JAL 呼叫，寫入 RA=0x9DF6；不能依 RVC_JUMP 重定位名稱判定為無連結尾端跳轉"
+    },
+    {
+      "path": "../source-review/readme.zh-TW.md",
+      "sha256": "e630d05a927b51ced18d234edd09b7aaf5f3ac3a88cba03320de17a0281a34e5",
+      "old_phrase": "是 W/R 共用的實體尾端路徑",
+      "corrected_phrase": "是位於0x9DF4的實體 C.JAL 呼叫，寫入 RA=0x9DF6；不能依 RVC_JUMP 重定位名稱判定為無連結尾端跳轉"
+    },
+    {
+      "path": "../source-review/readme.en.md",
+      "sha256": "91977439ae845325824366c1fd1be7e606fd9cb3d9e2bccd912c8f0f9696dc25",
+      "old_phrase": "it is the shared physical W/R tail edge",
+      "corrected_phrase": "it is the physical RV32 C.JAL call at0x9DF4, which writes RA=0x9DF6; the RVC_JUMP relocation name alone does not imply a no-link tail"
+    }
+  ],
+  "confirmed": {"PC": 40436, "raw_hex": "693b", "halfword": 15209, "quadrant": 1, "funct3": 1, "instruction": "RV32 C.JAL", "rd": 1, "signed_delta": -614, "target": 39822, "RA_written": 40438},
+  "unchanged": ["Original function0x9B8E..0x9C0A remains124B/50instructions", "Release at0x9BF8 remains a no-link JR T1 tail", "Original symbol and relocation roles", "Original and rebuilt artifact bytes", "All prior sealed files"],
+  "full_image_or_hardware_proof": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network": false
+}

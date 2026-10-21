@@ -1,5 +1,13 @@
 # Verified milestones
 
+## Native C/C++ OTA page reply and original entry boundary
+
+Readable C/C++ now covers `0x9B8E..0x9C0A`: 124 bytes / 50 instructions. Fresh builds for each language explicitly order two regions of existing compiler words, link at the original address and read back an exact original function. Only 28 bytes inside those regions change; all other ELF bytes remain identical. LLVM alone did not emit the final order. Strict linking without TX fails; successful linking supplies only a numeric `0x8A56` address witness.
+
+Each language passes 87 host cases / 3,634 checks and six actual compiled semantic negatives. The independent source-effect suite adds 90 cases / 6,699 checks and ten actual compiled negatives. Native evidence adds eleven raw/IR controls, three compiled negatives and three linked ELF controls. Independent ordering checks reject eighteen actual malformed ELF inputs, five path hazards and three receipt tamper cases per language. Synthetic host evidence does not prove unknown resident register preservation.
+
+An actual two-object partial link preserves the original public NOTYPE / size 0 and local LOCAL / size 0 entries, with no numeric ABS entry alias or padding; the readable function remains a real FUNC / size 124. Original incoming roles, retained carrier allocations and outside relocations are checked. **The complete image remains the prior eleven-function / 526-byte version; the twelfth function is not yet integrated.** Physical hardware, installed ROM/BOOT and BLE OTA remain unverified. See the [component](../experiments/tsl9-v4160-ota-page-reply/readme.en.md), [ordering pass](../experiments/tsl9-v4160-reply-abi-order/readme.en.md) and [integration boundary / feature candidate](../analysis/v4160-ota-page-reply-2026-10-22/integration-plan/readme.en.md).
+
 ## Eleven readable functions restore the original complete-image bytes
 
 Five Flash leaves, totaling 198 bytes / 76 instructions, now restore the original registers, entry prefixes, boundaries and machine code. IRQ and quarter automatic saves are restored through an explicit ABI scheduling step. It only permutes existing C.SWSP instructions in newly compiled objects, creates no opcodes or padding, and never fills bytes from an original BIN. Compiler-only and scheduled objects/receipts are retained separately; Clang alone did not produce the final order.

@@ -1,0 +1,44 @@
+{
+  "schema": "TSL9-reply-entry-call-correction-actual-v1",
+  "passed": true,
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "incoming": {
+    "PC": 40436,
+    "raw_hex": "693b",
+    "halfword": 15209,
+    "bytes": 2,
+    "quadrant": 1,
+    "funct3": 1,
+    "instruction": "RV32 C.JAL",
+    "rd": 1,
+    "signed_delta": -614,
+    "target": 39822,
+    "RA_written": 40438
+  },
+  "raw_semantic_controls": [
+    {
+      "name": "same_target_no_link_CJ",
+      "mutated_raw": "69bb",
+      "rejected": true,
+      "reason": "Actual incoming call links RA9DF6 and targets9B8E"
+    },
+    {
+      "name": "changed_compressed_target",
+      "mutated_raw": "6d3b",
+      "rejected": true,
+      "reason": "Actual incoming call links RA9DF6 and targets9B8E"
+    },
+    {
+      "name": "wrong_instruction_width",
+      "mutated_raw": "6b3b",
+      "rejected": true,
+      "reason": "RV32 C.JAL/C.J encoding, not relocation-name inference"
+    }
+  ],
+  "scope": "Only9DF4 incoming call classification;9BF8 release tail remains unchanged",
+  "type45_alone_establishes_no_link": false,
+  "whole_image_integrated": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "hardware_OTA_validated": false
+}

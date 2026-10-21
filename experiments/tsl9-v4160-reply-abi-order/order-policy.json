@@ -1,0 +1,49 @@
+{
+  "schema": "TSL9-page-reply-source-ABI-order-v1",
+  "symbol": "tsl9_ota_page_reply_9b8e",
+  "section": ".text.tsl9_ota_page_reply_9b8e",
+  "bytes": 124,
+  "instruction_count": 50,
+  "windows": [
+    {
+      "interval": [2, 22],
+      "compiler_order": [
+        ["sw", null, 2, 1, 28, null, 32],
+        ["sw", null, 2, 8, 24, null, 32],
+        ["sw", null, 2, 9, 20, null, 32],
+        ["sw", null, 2, 18, 16, null, 32],
+        ["sw", null, 2, 19, 12, null, 32],
+        ["sw", null, 2, 20, 8, null, 32],
+        ["lui", 18, null, null, 262144, null, null],
+        ["lw", 15, 18, null, 112, null, 32]
+      ],
+      "required_order": [
+        ["sw", null, 2, 18, 16, null, 32],
+        ["lui", 18, null, null, 262144, null, null],
+        ["lw", 15, 18, null, 112, null, 32],
+        ["sw", null, 2, 9, 20, null, 32],
+        ["sw", null, 2, 19, 12, null, 32],
+        ["sw", null, 2, 20, 8, null, 32],
+        ["sw", null, 2, 1, 28, null, 32],
+        ["sw", null, 2, 8, 24, null, 32]
+      ]
+    },
+    {
+      "interval": [88, 96],
+      "compiler_order": [
+        ["lw", 6, 18, null, 104, null, 32],
+        ["lw", 1, 2, null, 28, null, 32],
+        ["lw", 8, 2, null, 24, null, 32]
+      ],
+      "required_order": [
+        ["lw", 8, 2, null, 24, null, 32],
+        ["lw", 6, 18, null, 104, null, 32],
+        ["lw", 1, 2, null, 28, null, 32]
+      ]
+    }
+  ],
+  "control_offsets": [32, 34, 70, 82, 106, 108, 122],
+  "pipeline": "C/C++ compiler output followed by explicit source-owned ABI ordering",
+  "compiler_only_identity": false,
+  "arbitrary_fault_or_async_prefix_equivalence": false
+}

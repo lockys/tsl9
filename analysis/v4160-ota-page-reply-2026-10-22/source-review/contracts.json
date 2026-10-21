@@ -1,0 +1,63 @@
+{
+  "schema": "ID2966-page-reply-source-contract-v1",
+  "entry": "0x9B8E",
+  "end_exclusive": "0x9C0A",
+  "bytes": 124,
+  "instructions": 50,
+  "address_arithmetic": "unsigned 32-bit; formulas are static algebra, not execution",
+  "input_registers": {"A0": "opaque context", "A1": "opaque command", "A2": "full 32-bit index; no local u16 narrowing"},
+  "frame": {
+    "decrement_PC": "0x9B8E",
+    "bytes": 32,
+    "ordered_saves": [["0x9B90", "S2", 16], ["0x9B9A", "S1", 20], ["0x9B9C", "S3", 12], ["0x9B9E", "S4", 8], ["0x9BA0", "RA", 28], ["0x9BA2", "S0", 24]],
+    "save_width": 32,
+    "restore_width": 32,
+    "address_basis": "Every stack access uses the SP live at that instruction; restored words are fresh reads, not cached original values",
+    "save_order_interruption_equivalence_required_for_physical_prefix": true
+  },
+  "ordered_live_pointer_loads": [["0x9B96", "A5", "live S2 + 0x70", 32], ["0x9BC2", "A5", "live S2 + 0x4C", 32], ["0x9BE8", "T1", "live S2 + 0x68", 32]],
+  "captures": [["0x9B92", "S2", "0x00040000"], ["0x9BA4", "S3", "entry A0"], ["0x9BAA", "S4", "entry A1"], ["0x9BAC", "S1", "entry A2 full32"]],
+  "call_boundaries": [
+    {"PC": "0x9BAE", "instruction": "C.JALR x1,x15", "target": "fresh allocator slot", "return_PC": "0x9BB0", "arguments": {"A0": 1026, "A1": "entry command", "A2": "entry index", "A5": "loaded target"}, "other_registers": "A3/A4/A6/A7 locally untouched; no unknown callee preservation inferred"},
+    {"PC": "0x9BD4", "instruction": "C.JALR x1,x15", "target": "fresh copy slot", "return_PC": "0x9BD6", "arguments": {"A0": "allocator result + 2", "A1": "u32((0x20004 + live S1) << 10)", "A2": 1024, "A5": "loaded target"}, "other_registers": "S0 captured live allocation at9BCA; other residues from allocator unless locally overwritten"},
+    {"PC": "0x9BE0", "instruction": "JAL x1,0x8A56", "target": "direct TX function", "return_PC": "0x9BE4", "arguments": {"A0": "live S3", "A1": "live S4", "A2": "live S0", "A3": 1026}, "other_registers": "other residues from copy unless locally overwritten"},
+    {"PC": "0x9BF8", "instruction": "JALR x0,T1,0", "target": "fresh release slot; JALR clears target bit0", "return_PC": null, "arguments": {"A0": "live S0 selected at9BE4 BEFORE S0 restore", "A1..A7": "TX residues", "T1": "fresh target at9BE8"}, "other_registers": "fresh restored RA/S0/S1/S2/S3/S4 and live SP+32; opaque tail, not a local normalized result"}
+  ],
+  "nonnull_header": [
+    {"PC": "0x9BB2", "operation": "A5=live S1 logical-shift-right8"},
+    {"PC": "0x9BB6", "operation": "WRITE8(allocator A0+1, low8(live S1))"},
+    {"PC": "0x9BBA", "operation": "WRITE8(allocator A0, low8(A5))"}
+  ],
+  "nonnull_restore_order": [["0x9BE6", "S0", 24], ["0x9BEC", "RA", 28], ["0x9BEE", "S1", 20], ["0x9BF0", "S2", 16], ["0x9BF2", "S3", 12], ["0x9BF4", "S4", 8]],
+  "null_branch": {
+    "PC": "0x9BB0",
+    "condition": "allocator return A0 equals zero",
+    "target": "0x9BFA",
+    "restore_order": [["0x9BFA", "RA", 28], ["0x9BFC", "S0", 24], ["0x9BFE", "S1", 20], ["0x9C00", "S2", 16], ["0x9C02", "S3", 12], ["0x9C04", "S4", 8]],
+    "SP_increment_PC": "0x9C06",
+    "RET_PC": "0x9C08",
+    "A0": "zero; no local later A0 write",
+    "A1..A7": "allocator residues; no local later writes",
+    "null_slot_guard": false
+  },
+  "CFG": {
+    "blocks": [["0x9B8E", "0x9BB2"], ["0x9BB2", "0x9BFA"], ["0x9BFA", "0x9C0A"]],
+    "edges": [["0x9BB0", "0x9BB2", "A0!=0"], ["0x9BB0", "0x9BFA", "A0==0"]],
+    "local_loop": false,
+    "callee_nonreturn": "Any opaque call may halt/transfer/not return; do not fabricate its suffix",
+    "terminal_edges": [["0x9BF8", "live T1 tail"], ["0x9C08", "fresh restored RA"]]
+  },
+  "direct_instruction_written_GPRs": [1, 2, 6, 8, 9, 10, 11, 12, 13, 15, 18, 19, 20],
+  "recorded_RELA": {"owned": 2, "external_incoming": 1, "external_incoming_PC": "0x9DF4", "external_incoming_role": "shared physical W/R handler tail RVC_JUMP to entry; not two callsites", "recorded_external_interior": 0},
+  "original_public_symbol": {"name": "__tsl9v4160_ota_code_9b8e", "info": 16, "bytes": 0, "kind": "GLOBAL NOTYPE; no canonical FUNC124 provider exists"},
+  "limits": {
+    "callee_preserves_SP_and_S_registers_proved": false,
+    "native_drop_in_equivalence_proved": false,
+    "physical_async_or_fault_prefix_proved": false,
+    "computed_or_encoded_interior_references_absent_proved": false,
+    "unique_common_status_result_exists": false,
+    "installed_ROM_or_BOOT_identity_known": false,
+    "hardware_or_OTA_verified": false,
+    "source_scope": "No local command/page/UID validation or copy/TX status branch in this124B; no absence claim for other functions"
+  }
+}
