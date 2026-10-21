@@ -1,5 +1,17 @@
 # Verified milestones
 
+## Clock normal-return register contracts
+
+The user reported successful official-BIN selection and firmware update through `tsl9-morphe` on 2026-10-21. This is an official-image OTA baseline reported by the user, with exact APK/BIN identities and versions still unspecified. It is separate from the rebuilt-image boot, acceptance and recovery requirements below.
+
+The clock reconstruction now includes the original path-specific A3 value, conditional A2 assignment, query A4/A5 and the full field-function A5 product. A new 298-byte / 98-instruction caller witness and 130 inspected passthrough rows show A3 surviving to the unresolved callback at `0x131E0` through a fresh pointer at `0x4004C`. The concrete continuation after `1973C` is `9F4C`, then `131C2`. This makes discarding A3 unsafe without further evidence; it does not prove the callback consumes it.
+
+The new C11/C++17 host suite passes six groups / 293,845 checks per language; independent tests pass four groups / 5,345 cases / 250,316 checks and reject sixteen actually compiled residue/A2 countercases in total. The unchanged 214-byte / 69-instruction source proof and fifty raw controls are reused, and original integer destination fields are checked separately.
+
+Native builds use compiler register reservations and explicit physical-register constraints. The query uses only A2–A5, with A2 reserved from general allocation; its body is 196 bytes versus the original 174, leaving a 22-byte placement gap. The field body is 38 bytes versus the original 40. Its complete ten-instruction machine pattern confirms unsigned division, byte/halfword stores and normal-return A4=1000/A5=full product. These component proofs do not establish asynchronous intermediate-state, IRQ, full-image, ROM or physical compatibility. No original body is replaced and no BIN is produced.
+
+Use `sh experiments/tsl9-v4160-clock-registers/verify.sh --language both`; native CLI and evidence limits are under `analysis/v4160-clock-abi-2026-10-21/compiler-review/`. Linux/macOS and POSIX-shell execution remain unverified while the previously observed CI account restriction is unresolved. New documentation remains split by language.
+
 ## Readable native clock and derived fields
 
 The two clock functions now have a separate readable C/C++ implementation with actual volatile MMIO/RAM accesses and live GP primitives, without the older register-interpreter adapter. It reuses the unchanged 214-byte / 69-instruction source proof and 50 raw negative controls. Each host language passes six groups / 269,618 checks. Independent tests pass four groups / 5,345 cases / 214,811 assertions per language and reject ten actually compiled countercases in total.

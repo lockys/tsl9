@@ -1,0 +1,77 @@
+{
+  "schema": "TSL9-clock-caller-register-obligations-v1",
+  "source_only": true,
+  "original_runtime_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "normal_path_assumption": "Inspected instructions complete normally without unaccounted asynchronous register, stack or memory changes.",
+  "known_entry_chain": [
+    {"call_pc": "0x900C", "target": "0x9250", "link": "0x900E"},
+    {"call_pc": "0x9254", "target": "0x18834", "link": "0x9258"},
+    {"call_pc": "0x9258", "target": "0x9A42", "link": "0x925C"},
+    {"call_pc": "0x925C", "target": "0x1973C", "link": "0x9260"},
+    {"call_pc": "0x9260", "target": "0x9F4C", "link": "0x9264"},
+    {"call_pc": "0x9264", "target": "0x131C2", "link": "0x9268"}
+  ],
+  "query_register_outputs": {
+    "a0_a1": "Unchanged by original query body.",
+    "a2": "Unchanged except external PLL path sets 0x00C00000.",
+    "a3": {
+      "selector4": "4",
+      "selector0_or12": "8",
+      "PLL_internal": "17",
+      "PLL_external_mask_equal": "0x40021000",
+      "PLL_external_fallback": "low32(fresh fallback config << 14)"
+    },
+    "a4": "Zero-extended live table byte.",
+    "a5": "Fresh scalar word logically shifted by low5 bits of live table byte.",
+    "other_GPRs": "Not assigned by original body, including GP, SP and RA."
+  },
+  "derived_register_outputs": {
+    "a4": "1000",
+    "a5": "low32((((fresh uint32 scalar / 8000000) & 255) * 1000)); full product remains in A5 even though SH writes only low16.",
+    "other_GPRs": "Not assigned by original body, including A0/A1/A2/A3, GP, SP and RA."
+  },
+  "normal_caller_prefix_liveness": {
+    "query_a0_a1": "Intervening 9A42 writes A0/A1 before reading their incoming values.",
+    "query_a4_a5": "Intervening 9A42 helpers overwrite A4/A5 before reading their incoming values.",
+    "derived_a4_a5": "Following 9F4C writes A4/A5 before reading their incoming values.",
+    "a0": "No incoming-value read in the inspected post-derived prefix; overwritten at 131D8 before first opaque callback.",
+    "a1": "No incoming-value read in the inspected post-derived prefix; overwritten at 131CA before first opaque callback.",
+    "a2": "No incoming-value read after query in this prefix; overwritten at 131CE before first opaque callback.",
+    "a3": "Query output survives 9A42, 1973C and 9F4C; 131C2 does not assign A3 before opaque JALR at 131E0. A3 is exposed to that callback; whether it is consumed is unknown."
+  },
+  "first_unresolved_callback": {
+    "pointer_read_pc": "0x131C6",
+    "pointer_address": "0x4004C",
+    "call_pc": "0x131E0",
+    "call_form": "JALR through fresh A5; link 0x131E2",
+    "target_and_prototype_proved": false,
+    "A3_ignored_proved": false
+  },
+  "intervening_and_asynchronous_boundaries": {
+    "9A42_CSR": "Clear 0x800 mask0x88 at9A50; set same mask at9AC2. Not a saved-CSR restore.",
+    "CSR_guarantees_no_interrupts": false,
+    "original_interrupt_register_preservation_proved": false,
+    "installed_ROM_callback_implementation_proved": false
+  },
+  "drop_in_assessment": {
+    "preserving_only_original_untouched_GPRs_sufficient": false,
+    "concrete_reason": "Query's source-clobbered, path-dependent A3 reaches an unresolved callback without intervening definition. Preserving input A3 instead of reproducing source A3 is not justified.",
+    "derived_A4_A5_dead_on_only_this_inspected_normal_prefix": true,
+    "whole_program_derived_A4_A5_deadness_proved": false,
+    "register_preservation_alone_proves_stack_memory_and_interrupt_compatibility": false,
+    "original_entry_ABI_or_linked_binary_equivalence_proved": false
+  },
+  "direct_scan_limits": {
+    "scope": "All 38400 halfword-aligned positions of this one original image; decode only JAL and RV32 C.JAL/C.J target immediates.",
+    "matching_raw_candidates": 3,
+    "all_matches_are_known_trusted_callsites": true,
+    "code_data_partition_proved": false,
+    "computed_JALR_or_pointer_call_coverage": false,
+    "no_other_callers_claim": false
+  },
+  "original_executed": false,
+  "ISA_emulation": false,
+  "hardware": false,
+  "network": false,
+  "OTA_ready": false
+}

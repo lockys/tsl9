@@ -1,0 +1,49 @@
+{
+  "schema": "TSL9-clock-register-compiler-results-v1",
+  "passed": true,
+  "source_sha256": {
+    "clock_fields.c": "416e0990c9ed3a142953af97ea6496bf269311f003dfec1046ab32308afd8701",
+    "clock_io.h": "fd2d1bb3c780daf698c93db536ca5f2229e20553dc5543646c0667bab839e36f",
+    "clock_query.c": "dcaa19f44760e16e022e73aa86fbcc3b0638c6ca1410a1fb03087366fa8eebc8",
+    "clock_registers.h": "c52596a6f9943912122d845e61ed5ea4298d2a205f3bdd614de96ef2e3b17552"
+  },
+  "native_builds": [
+    {"mode": "c", "receipt": "build/verified-dbfa907a95ac4cfd8cb055bdc7f2fc80-c/verification.json", "receipt_sha256": "d34da5e9f3a672854dad9fed6e844b50aa857d16cc8ff6f75cb8f5ae172bc14b"},
+    {"mode": "cpp", "receipt": "build/verified-15a7c134e3df4062bc7748814f582560-cpp/verification.json", "receipt_sha256": "bcaf713959b40a32d72bd4b4333719f20a4fcc78512c2d6c439e532e59f62f66"}
+  ],
+  "parent_host_builds": [
+    {"mode": "c", "receipt": "experiments/tsl9-v4160-clock-registers/build/host-503ee82a7ace4558b82176061482e8a9-c/verification.json", "receipt_sha256": "2ac07388bccc32500add619f7379e7f50f1a70862c2a9dfd8615c2a8751f1d35"},
+    {"mode": "cpp", "receipt": "experiments/tsl9-v4160-clock-registers/build/host-c95c3a066f244deb957f96bba77728ff-cpp/verification.json", "receipt_sha256": "c8e7b53ca94c03585261eef0d57cabc5d9287350071f2646131b1cb51873441d"}
+  ],
+  "query": {"native_bytes": 196, "original_bytes": 174, "instructions": 64, "allocator_registers": [13,14,15], "actual_written_registers": [12,13,14,15], "full_native_branch_semantics_proved": false},
+  "fields": {"native_bytes": 38, "original_bytes": 40, "instructions": 10, "allocator_registers": [14,15], "actual_written_registers": [14,15], "normal_return_A4": 1000, "normal_return_A5": "((fresh_GP_plus108_word DIVU 8000000) & 255) * 1000", "normal_return_pattern_proved": true},
+  "actual_compiled_and_linked_controls_per_mode": 3,
+  "actual_transcript_controls_per_mode": 14,
+  "every_native_raw_destination_field_checked": true,
+  "actual_GP_writes": 0,
+  "actual_SP_accesses": 0,
+  "native_CFG_acyclic": true,
+  "toolchain": "Android NDK27.1.12297006 Clang18.0.2 RV32IMAC ILP32 Os",
+  "clang_sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+  "linker_sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+  "objdump_sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+  "bounded_probe_reports": [
+    {"report": "build/probe-5a7ab9e3ce924f44bcba753c016364a4/probe-results.json", "finding": "18 original reservation/optimization profiles"},
+    {"report": "build/gp-probe-7a7072a3ed874eb0b09c09f5509c2e11/probe-results.json", "finding": "corrected six empty-GP profiles; supersedes early invalid-source probe"},
+    {"report": "build/residue-probe-4f10dfceb89e4b5cab07dcbd550144f1/probe-results.json", "finding": "four final fields register-barrier profiles"},
+    {"report": "build/targeted-query-36ec62f99dc441dba5ec2be0b96007c4/probe-results.json", "finding": "four opaque external-mask/A3-anchor profiles"},
+    {"report": "build/reuse-a3-33064ee983284000a5bd3e3b3f48ba96/probe-results.json", "finding": "two A3 comparison-reuse profiles rejected for required reserved SP"}
+  ],
+  "full_original_ABI_proved": false,
+  "pointwise_register_semantics_proved": false,
+  "original_fixed_placement_proved": false,
+  "original_IRQ_ABI_proved": false,
+  "old_native_gate_modified": false,
+  "firmware_BIN_produced": false,
+  "firmware_executed": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false,
+  "goal_complete": false
+}
