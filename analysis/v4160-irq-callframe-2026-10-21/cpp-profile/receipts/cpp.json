@@ -1,0 +1,2558 @@
+{
+  "schema": "TSL9-IRQ-CPP-no-exceptions-single-profile-v1",
+  "passed": true,
+  "flags": [
+    "--target=riscv32-unknown-elf",
+    "-march=rv32imac_zicsr",
+    "-mabi=ilp32",
+    "-Oz",
+    "-mllvm",
+    "-enable-machine-outliner=never",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-stack-protector",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-mno-relax",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-ffixed-x1",
+    "-ffixed-x2",
+    "-ffixed-x3",
+    "-ffixed-x4",
+    "-ffixed-x5",
+    "-ffixed-x6",
+    "-ffixed-x7",
+    "-ffixed-x8",
+    "-ffixed-x9",
+    "-ffixed-x12",
+    "-ffixed-x13",
+    "-ffixed-x16",
+    "-ffixed-x17",
+    "-ffixed-x18",
+    "-ffixed-x19",
+    "-ffixed-x20",
+    "-ffixed-x21",
+    "-ffixed-x22",
+    "-ffixed-x23",
+    "-ffixed-x24",
+    "-ffixed-x25",
+    "-ffixed-x26",
+    "-ffixed-x27",
+    "-ffixed-x28",
+    "-ffixed-x29",
+    "-ffixed-x30",
+    "-ffixed-x31",
+    "-x",
+    "c++",
+    "-std=c++17",
+    "-fno-exceptions"
+  ],
+  "baseline_flags": [
+    "--target=riscv32-unknown-elf",
+    "-march=rv32imac_zicsr",
+    "-mabi=ilp32",
+    "-Oz",
+    "-mllvm",
+    "-enable-machine-outliner=never",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-stack-protector",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-mno-relax",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-ffixed-x1",
+    "-ffixed-x2",
+    "-ffixed-x3",
+    "-ffixed-x4",
+    "-ffixed-x5",
+    "-ffixed-x6",
+    "-ffixed-x7",
+    "-ffixed-x8",
+    "-ffixed-x9",
+    "-ffixed-x12",
+    "-ffixed-x13",
+    "-ffixed-x16",
+    "-ffixed-x17",
+    "-ffixed-x18",
+    "-ffixed-x19",
+    "-ffixed-x20",
+    "-ffixed-x21",
+    "-ffixed-x22",
+    "-ffixed-x23",
+    "-ffixed-x24",
+    "-ffixed-x25",
+    "-ffixed-x26",
+    "-ffixed-x27",
+    "-ffixed-x28",
+    "-ffixed-x29",
+    "-ffixed-x30",
+    "-ffixed-x31",
+    "-x",
+    "c++",
+    "-std=c++17"
+  ],
+  "only_added_flag": "-fno-exceptions",
+  "source_sha256": {
+    "experiments/tsl9-v4160-irq-native/src/interrupt_registers.c": "7bf0b338044ef635f132281c11abb516bb0b9a62108e7c8faa8857c1b5e928db",
+    "experiments/tsl9-v4160-irq-native/src/native_io.h": "f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e",
+    "experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.h": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"
+  },
+  "runner_sha256": "264de297601ae69522c81aebd6a36b170352731a63abe2697c23b308e6931a0d",
+  "immutable_dependency_seal_sha256": "13772c1bfe0c3faf0fe37cf4cbdd8fe4be40ca6f6913ef132c64a3c0677f9c04",
+  "immutable_dependency_members": {
+    "verify_native.py": "58e726bf5590eeb318c7123a75fd00c5b406b58e36c545c65962a1ac80a369ac",
+    "gates.py": "c51f2242a3f3356ce77c09c12757cda0ed13b6830ac255cbfbd4fcdfd36341e5",
+    "elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "receipts/cpp.json": "1134805ce608d4a588c70ea5417c2c684887b262110c490a2531ed20c012b7e3"
+  },
+  "tools": {
+    "clang": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "linker": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "objdump": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    }
+  },
+  "commands": [
+    {
+      "label": "compile",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-c",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-native\\src\\interrupt_registers.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\cpp-profile\\build\\no-exceptions-0c83a5cacec042fcb9a77b61f7bd9093-cpp\\irq.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "llvm-ir",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-S",
+        "-emit-llvm",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-native\\src\\interrupt_registers.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\cpp-profile\\build\\no-exceptions-0c83a5cacec042fcb9a77b61f7bd9093-cpp\\irq.ll"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "link",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "--no-relax",
+        "--no-undefined",
+        "-T",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\cpp-profile\\build\\no-exceptions-0c83a5cacec042fcb9a77b61f7bd9093-cpp\\placements.ld",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\cpp-profile\\build\\no-exceptions-0c83a5cacec042fcb9a77b61f7bd9093-cpp\\irq.o",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\cpp-profile\\build\\no-exceptions-0c83a5cacec042fcb9a77b61f7bd9093-cpp\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "disassembly",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+        "--disassemble",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\cpp-profile\\build\\no-exceptions-0c83a5cacec042fcb9a77b61f7bd9093-cpp\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "log_sha256": "60a9c0bc931c751340f8aa3f59bd499c1800dffdef85765644bb73f0e5645f55"
+    }
+  ],
+  "firmware_input": {
+    "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "bytes": 76800
+  },
+  "LLVM_IR_sha256": "05c2d5f1d980f81784954f0e46cc99b27180e66833b97448e6fc80546312e21e",
+  "placement_script_sha256": "18ce3803b591787323e3b38689d3a30d8bb051a8cf2ba81c290a7b03bfc0fe65",
+  "checks": {
+    "object": {
+      "kind": 1,
+      "architecture": "rv32i2p1_m2p0_a2p1_c2p0_zicsr2p0",
+      "sha256": "668586268e9a5343fd09608bf1d3c8f791fe170e81f69ef425c3b3801fd7c9fd",
+      "symbols": {
+        "tsl9_rebuild_rcc_registers_19124": {
+          "address": 0,
+          "bytes": 30,
+          "code_sha256": "ca3d4aef350f5c783ee6eeae7d25ba85b74055551058135024d07edf1804e864"
+        },
+        "tsl9_rebuild_rcc_registers_19142": {
+          "address": 0,
+          "bytes": 30,
+          "code_sha256": "e74e208ea699962ecf8c71269627881ab8edfd64787710b410c6c74a3607d6d5"
+        },
+        "tsl9_rebuild_rcc_registers_19160": {
+          "address": 0,
+          "bytes": 30,
+          "code_sha256": "a5541a42d8ec2844fcd1d2df5492c90e2b140ce22ae79b02f50e330277c31b60"
+        },
+        "tsl9_rebuild_rcc_registers_1917e": {
+          "address": 0,
+          "bytes": 30,
+          "code_sha256": "bec2619b2d742c8bfa1b82087f6cea1ed8a133adb89b25258a487ef2e2d2648e"
+        },
+        "tsl9_rebuild_interrupt_registers_9a42": {
+          "address": 0,
+          "bytes": 180,
+          "code_sha256": "fc6b64b3fc3368ab3359ab5888102b85cf356da19699a5d2e50180a20e7167d5"
+        }
+      },
+      "undefined_symbols": [],
+      "writable_allocations": 0,
+      "relocations": 0,
+      "executable_allocated_bytes": 300,
+      "executable_byte_ownership_passed": true,
+      "total_allocated_bytes": 300,
+      "all_allocated_bytes_function_owned": true,
+      "extra_readonly_allocations": [],
+      "extra_readonly_storage_integration_proved": null
+    },
+    "linked": {
+      "kind": 2,
+      "architecture": "rv32i2p1_m2p0_a2p1_c2p0_zicsr2p0",
+      "sha256": "2edcfefa9cdce02400c1fba10aa65a33a8641f23e5ec985006b0234c697c9128",
+      "symbols": {
+        "tsl9_rebuild_rcc_registers_19124": {
+          "address": 102692,
+          "bytes": 30,
+          "code_sha256": "ca3d4aef350f5c783ee6eeae7d25ba85b74055551058135024d07edf1804e864"
+        },
+        "tsl9_rebuild_rcc_registers_19142": {
+          "address": 102722,
+          "bytes": 30,
+          "code_sha256": "e74e208ea699962ecf8c71269627881ab8edfd64787710b410c6c74a3607d6d5"
+        },
+        "tsl9_rebuild_rcc_registers_19160": {
+          "address": 102752,
+          "bytes": 30,
+          "code_sha256": "a5541a42d8ec2844fcd1d2df5492c90e2b140ce22ae79b02f50e330277c31b60"
+        },
+        "tsl9_rebuild_rcc_registers_1917e": {
+          "address": 102782,
+          "bytes": 30,
+          "code_sha256": "bec2619b2d742c8bfa1b82087f6cea1ed8a133adb89b25258a487ef2e2d2648e"
+        },
+        "tsl9_rebuild_interrupt_registers_9a42": {
+          "address": 196608,
+          "bytes": 180,
+          "code_sha256": "fc6b64b3fc3368ab3359ab5888102b85cf356da19699a5d2e50180a20e7167d5"
+        }
+      },
+      "undefined_symbols": [],
+      "writable_allocations": 0,
+      "relocations": 0,
+      "executable_allocated_bytes": 300,
+      "executable_byte_ownership_passed": true,
+      "total_allocated_bytes": 300,
+      "all_allocated_bytes_function_owned": true,
+      "extra_readonly_allocations": [],
+      "extra_readonly_storage_integration_proved": null
+    },
+    "machine": {
+      "tsl9_rebuild_rcc_registers_19124": {
+        "bytes": 30,
+        "instruction_rows": 12,
+        "code_sha256": "ca3d4aef350f5c783ee6eeae7d25ba85b74055551058135024d07edf1804e864",
+        "rows": [
+          {
+            "address": 102692,
+            "offset": 0,
+            "bytes": "99c5",
+            "mnemonic": "beqz",
+            "operands": "a1, 0x19132 <tsl9_rebuild_rcc_registers_19124+0xe>",
+            "encoded_rd": null
+          },
+          {
+            "address": 102694,
+            "offset": 2,
+            "bytes": "37170240",
+            "mnemonic": "lui",
+            "operands": "a4, 0x40021",
+            "encoded_rd": 14
+          },
+          {
+            "address": 102698,
+            "offset": 6,
+            "bytes": "1c4f",
+            "mnemonic": "lw",
+            "operands": "a5, 0x18(a4)",
+            "encoded_rd": 15
+          },
+          {
+            "address": 102700,
+            "offset": 8,
+            "bytes": "5d8d",
+            "mnemonic": "or",
+            "operands": "a0, a0, a5",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102702,
+            "offset": 10,
+            "bytes": "08cf",
+            "mnemonic": "sw",
+            "operands": "a0, 0x18(a4)",
+            "encoded_rd": null
+          },
+          {
+            "address": 102704,
+            "offset": 12,
+            "bytes": "8280",
+            "mnemonic": "ret",
+            "operands": "",
+            "encoded_rd": null
+          },
+          {
+            "address": 102706,
+            "offset": 14,
+            "bytes": "b7170240",
+            "mnemonic": "lui",
+            "operands": "a5, 0x40021",
+            "encoded_rd": 15
+          },
+          {
+            "address": 102710,
+            "offset": 18,
+            "bytes": "984f",
+            "mnemonic": "lw",
+            "operands": "a4, 0x18(a5)",
+            "encoded_rd": 14
+          },
+          {
+            "address": 102712,
+            "offset": 20,
+            "bytes": "1345f5ff",
+            "mnemonic": "not",
+            "operands": "a0, a0",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102716,
+            "offset": 24,
+            "bytes": "798d",
+            "mnemonic": "and",
+            "operands": "a0, a0, a4",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102718,
+            "offset": 26,
+            "bytes": "88cf",
+            "mnemonic": "sw",
+            "operands": "a0, 0x18(a5)",
+            "encoded_rd": null
+          },
+          {
+            "address": 102720,
+            "offset": 28,
+            "bytes": "8280",
+            "mnemonic": "ret",
+            "operands": "",
+            "encoded_rd": null
+          }
+        ],
+        "CFG": {
+          "102692": [
+            102706,
+            102694
+          ],
+          "102694": [
+            102698
+          ],
+          "102698": [
+            102700
+          ],
+          "102700": [
+            102702
+          ],
+          "102702": [
+            102704
+          ],
+          "102704": [],
+          "102706": [
+            102710
+          ],
+          "102710": [
+            102712
+          ],
+          "102712": [
+            102716
+          ],
+          "102716": [
+            102718
+          ],
+          "102718": [
+            102720
+          ],
+          "102720": []
+        },
+        "all_ELF_bytes_covered": true,
+        "every_raw_RD_checked": true,
+        "encoded_written_registers": [
+          10,
+          14,
+          15
+        ],
+        "helper_original_byte_equality": true,
+        "helper_A1_writes": 0,
+        "SP_accesses": 0,
+        "GP_writes": 0,
+        "T0_writes": 0,
+        "A2_A3_writes": 0,
+        "hidden_calls": 0
+      },
+      "tsl9_rebuild_rcc_registers_19142": {
+        "bytes": 30,
+        "instruction_rows": 12,
+        "code_sha256": "e74e208ea699962ecf8c71269627881ab8edfd64787710b410c6c74a3607d6d5",
+        "rows": [
+          {
+            "address": 102722,
+            "offset": 0,
+            "bytes": "99c5",
+            "mnemonic": "beqz",
+            "operands": "a1, 0x19150 <tsl9_rebuild_rcc_registers_19142+0xe>",
+            "encoded_rd": null
+          },
+          {
+            "address": 102724,
+            "offset": 2,
+            "bytes": "37170240",
+            "mnemonic": "lui",
+            "operands": "a4, 0x40021",
+            "encoded_rd": 14
+          },
+          {
+            "address": 102728,
+            "offset": 6,
+            "bytes": "5c4f",
+            "mnemonic": "lw",
+            "operands": "a5, 0x1c(a4)",
+            "encoded_rd": 15
+          },
+          {
+            "address": 102730,
+            "offset": 8,
+            "bytes": "5d8d",
+            "mnemonic": "or",
+            "operands": "a0, a0, a5",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102732,
+            "offset": 10,
+            "bytes": "48cf",
+            "mnemonic": "sw",
+            "operands": "a0, 0x1c(a4)",
+            "encoded_rd": null
+          },
+          {
+            "address": 102734,
+            "offset": 12,
+            "bytes": "8280",
+            "mnemonic": "ret",
+            "operands": "",
+            "encoded_rd": null
+          },
+          {
+            "address": 102736,
+            "offset": 14,
+            "bytes": "b7170240",
+            "mnemonic": "lui",
+            "operands": "a5, 0x40021",
+            "encoded_rd": 15
+          },
+          {
+            "address": 102740,
+            "offset": 18,
+            "bytes": "d84f",
+            "mnemonic": "lw",
+            "operands": "a4, 0x1c(a5)",
+            "encoded_rd": 14
+          },
+          {
+            "address": 102742,
+            "offset": 20,
+            "bytes": "1345f5ff",
+            "mnemonic": "not",
+            "operands": "a0, a0",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102746,
+            "offset": 24,
+            "bytes": "798d",
+            "mnemonic": "and",
+            "operands": "a0, a0, a4",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102748,
+            "offset": 26,
+            "bytes": "c8cf",
+            "mnemonic": "sw",
+            "operands": "a0, 0x1c(a5)",
+            "encoded_rd": null
+          },
+          {
+            "address": 102750,
+            "offset": 28,
+            "bytes": "8280",
+            "mnemonic": "ret",
+            "operands": "",
+            "encoded_rd": null
+          }
+        ],
+        "CFG": {
+          "102722": [
+            102736,
+            102724
+          ],
+          "102724": [
+            102728
+          ],
+          "102728": [
+            102730
+          ],
+          "102730": [
+            102732
+          ],
+          "102732": [
+            102734
+          ],
+          "102734": [],
+          "102736": [
+            102740
+          ],
+          "102740": [
+            102742
+          ],
+          "102742": [
+            102746
+          ],
+          "102746": [
+            102748
+          ],
+          "102748": [
+            102750
+          ],
+          "102750": []
+        },
+        "all_ELF_bytes_covered": true,
+        "every_raw_RD_checked": true,
+        "encoded_written_registers": [
+          10,
+          14,
+          15
+        ],
+        "helper_original_byte_equality": true,
+        "helper_A1_writes": 0,
+        "SP_accesses": 0,
+        "GP_writes": 0,
+        "T0_writes": 0,
+        "A2_A3_writes": 0,
+        "hidden_calls": 0
+      },
+      "tsl9_rebuild_rcc_registers_19160": {
+        "bytes": 30,
+        "instruction_rows": 12,
+        "code_sha256": "a5541a42d8ec2844fcd1d2df5492c90e2b140ce22ae79b02f50e330277c31b60",
+        "rows": [
+          {
+            "address": 102752,
+            "offset": 0,
+            "bytes": "99c5",
+            "mnemonic": "beqz",
+            "operands": "a1, 0x1916e <tsl9_rebuild_rcc_registers_19160+0xe>",
+            "encoded_rd": null
+          },
+          {
+            "address": 102754,
+            "offset": 2,
+            "bytes": "37170240",
+            "mnemonic": "lui",
+            "operands": "a4, 0x40021",
+            "encoded_rd": 14
+          },
+          {
+            "address": 102758,
+            "offset": 6,
+            "bytes": "5c47",
+            "mnemonic": "lw",
+            "operands": "a5, 0xc(a4)",
+            "encoded_rd": 15
+          },
+          {
+            "address": 102760,
+            "offset": 8,
+            "bytes": "5d8d",
+            "mnemonic": "or",
+            "operands": "a0, a0, a5",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102762,
+            "offset": 10,
+            "bytes": "48c7",
+            "mnemonic": "sw",
+            "operands": "a0, 0xc(a4)",
+            "encoded_rd": null
+          },
+          {
+            "address": 102764,
+            "offset": 12,
+            "bytes": "8280",
+            "mnemonic": "ret",
+            "operands": "",
+            "encoded_rd": null
+          },
+          {
+            "address": 102766,
+            "offset": 14,
+            "bytes": "b7170240",
+            "mnemonic": "lui",
+            "operands": "a5, 0x40021",
+            "encoded_rd": 15
+          },
+          {
+            "address": 102770,
+            "offset": 18,
+            "bytes": "d847",
+            "mnemonic": "lw",
+            "operands": "a4, 0xc(a5)",
+            "encoded_rd": 14
+          },
+          {
+            "address": 102772,
+            "offset": 20,
+            "bytes": "1345f5ff",
+            "mnemonic": "not",
+            "operands": "a0, a0",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102776,
+            "offset": 24,
+            "bytes": "798d",
+            "mnemonic": "and",
+            "operands": "a0, a0, a4",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102778,
+            "offset": 26,
+            "bytes": "c8c7",
+            "mnemonic": "sw",
+            "operands": "a0, 0xc(a5)",
+            "encoded_rd": null
+          },
+          {
+            "address": 102780,
+            "offset": 28,
+            "bytes": "8280",
+            "mnemonic": "ret",
+            "operands": "",
+            "encoded_rd": null
+          }
+        ],
+        "CFG": {
+          "102752": [
+            102766,
+            102754
+          ],
+          "102754": [
+            102758
+          ],
+          "102758": [
+            102760
+          ],
+          "102760": [
+            102762
+          ],
+          "102762": [
+            102764
+          ],
+          "102764": [],
+          "102766": [
+            102770
+          ],
+          "102770": [
+            102772
+          ],
+          "102772": [
+            102776
+          ],
+          "102776": [
+            102778
+          ],
+          "102778": [
+            102780
+          ],
+          "102780": []
+        },
+        "all_ELF_bytes_covered": true,
+        "every_raw_RD_checked": true,
+        "encoded_written_registers": [
+          10,
+          14,
+          15
+        ],
+        "helper_original_byte_equality": true,
+        "helper_A1_writes": 0,
+        "SP_accesses": 0,
+        "GP_writes": 0,
+        "T0_writes": 0,
+        "A2_A3_writes": 0,
+        "hidden_calls": 0
+      },
+      "tsl9_rebuild_rcc_registers_1917e": {
+        "bytes": 30,
+        "instruction_rows": 12,
+        "code_sha256": "bec2619b2d742c8bfa1b82087f6cea1ed8a133adb89b25258a487ef2e2d2648e",
+        "rows": [
+          {
+            "address": 102782,
+            "offset": 0,
+            "bytes": "99c5",
+            "mnemonic": "beqz",
+            "operands": "a1, 0x1918c <tsl9_rebuild_rcc_registers_1917e+0xe>",
+            "encoded_rd": null
+          },
+          {
+            "address": 102784,
+            "offset": 2,
+            "bytes": "37170240",
+            "mnemonic": "lui",
+            "operands": "a4, 0x40021",
+            "encoded_rd": 14
+          },
+          {
+            "address": 102788,
+            "offset": 6,
+            "bytes": "1c4b",
+            "mnemonic": "lw",
+            "operands": "a5, 0x10(a4)",
+            "encoded_rd": 15
+          },
+          {
+            "address": 102790,
+            "offset": 8,
+            "bytes": "5d8d",
+            "mnemonic": "or",
+            "operands": "a0, a0, a5",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102792,
+            "offset": 10,
+            "bytes": "08cb",
+            "mnemonic": "sw",
+            "operands": "a0, 0x10(a4)",
+            "encoded_rd": null
+          },
+          {
+            "address": 102794,
+            "offset": 12,
+            "bytes": "8280",
+            "mnemonic": "ret",
+            "operands": "",
+            "encoded_rd": null
+          },
+          {
+            "address": 102796,
+            "offset": 14,
+            "bytes": "b7170240",
+            "mnemonic": "lui",
+            "operands": "a5, 0x40021",
+            "encoded_rd": 15
+          },
+          {
+            "address": 102800,
+            "offset": 18,
+            "bytes": "984b",
+            "mnemonic": "lw",
+            "operands": "a4, 0x10(a5)",
+            "encoded_rd": 14
+          },
+          {
+            "address": 102802,
+            "offset": 20,
+            "bytes": "1345f5ff",
+            "mnemonic": "not",
+            "operands": "a0, a0",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102806,
+            "offset": 24,
+            "bytes": "798d",
+            "mnemonic": "and",
+            "operands": "a0, a0, a4",
+            "encoded_rd": 10
+          },
+          {
+            "address": 102808,
+            "offset": 26,
+            "bytes": "88cb",
+            "mnemonic": "sw",
+            "operands": "a0, 0x10(a5)",
+            "encoded_rd": null
+          },
+          {
+            "address": 102810,
+            "offset": 28,
+            "bytes": "8280",
+            "mnemonic": "ret",
+            "operands": "",
+            "encoded_rd": null
+          }
+        ],
+        "CFG": {
+          "102782": [
+            102796,
+            102784
+          ],
+          "102784": [
+            102788
+          ],
+          "102788": [
+            102790
+          ],
+          "102790": [
+            102792
+          ],
+          "102792": [
+            102794
+          ],
+          "102794": [],
+          "102796": [
+            102800
+          ],
+          "102800": [
+            102802
+          ],
+          "102802": [
+            102806
+          ],
+          "102806": [
+            102808
+          ],
+          "102808": [
+            102810
+          ],
+          "102810": []
+        },
+        "all_ELF_bytes_covered": true,
+        "every_raw_RD_checked": true,
+        "encoded_written_registers": [
+          10,
+          14,
+          15
+        ],
+        "helper_original_byte_equality": true,
+        "helper_A1_writes": 0,
+        "SP_accesses": 0,
+        "GP_writes": 0,
+        "T0_writes": 0,
+        "A2_A3_writes": 0,
+        "hidden_calls": 0
+      },
+      "tsl9_rebuild_interrupt_registers_9a42": {
+        "bytes": 180,
+        "instruction_rows": 65,
+        "code_sha256": "fc6b64b3fc3368ab3359ab5888102b85cf356da19699a5d2e50180a20e7167d5",
+        "rows": [
+          {
+            "address": 196608,
+            "offset": 0,
+            "bytes": "13078008",
+            "mnemonic": "li",
+            "operands": "a4, 0x88",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196612,
+            "offset": 4,
+            "bytes": "73300780",
+            "mnemonic": "csrc",
+            "operands": "0x800, a4",
+            "encoded_rd": null
+          },
+          {
+            "address": 196616,
+            "offset": 8,
+            "bytes": "37050202",
+            "mnemonic": "lui",
+            "operands": "a0, 0x2020",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196620,
+            "offset": 12,
+            "bytes": "1905",
+            "mnemonic": "addi",
+            "operands": "a0, a0, 0x6",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196622,
+            "offset": 14,
+            "bytes": "37170240",
+            "mnemonic": "lui",
+            "operands": "a4, 0x40021",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196626,
+            "offset": 18,
+            "bytes": "5c4f",
+            "mnemonic": "lw",
+            "operands": "a5, 0x1c(a4)",
+            "encoded_rd": 15
+          },
+          {
+            "address": 196628,
+            "offset": 20,
+            "bytes": "5d8d",
+            "mnemonic": "or",
+            "operands": "a0, a0, a5",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196630,
+            "offset": 22,
+            "bytes": "48cf",
+            "mnemonic": "sw",
+            "operands": "a0, 0x1c(a4)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196632,
+            "offset": 24,
+            "bytes": "8545",
+            "mnemonic": "li",
+            "operands": "a1, 0x1",
+            "encoded_rd": 11
+          },
+          {
+            "address": 196634,
+            "offset": 26,
+            "bytes": "0565",
+            "mnemonic": "lui",
+            "operands": "a0, 0x1",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196636,
+            "offset": 28,
+            "bytes": "7505",
+            "mnemonic": "addi",
+            "operands": "a0, a0, 0x1d",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196638,
+            "offset": 30,
+            "bytes": "37170240",
+            "mnemonic": "lui",
+            "operands": "a4, 0x40021",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196642,
+            "offset": 34,
+            "bytes": "1c4f",
+            "mnemonic": "lw",
+            "operands": "a5, 0x18(a4)",
+            "encoded_rd": 15
+          },
+          {
+            "address": 196644,
+            "offset": 36,
+            "bytes": "5d8d",
+            "mnemonic": "or",
+            "operands": "a0, a0, a5",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196646,
+            "offset": 38,
+            "bytes": "08cf",
+            "mnemonic": "sw",
+            "operands": "a0, 0x18(a4)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196648,
+            "offset": 40,
+            "bytes": "8545",
+            "mnemonic": "li",
+            "operands": "a1, 0x1",
+            "encoded_rd": 11
+          },
+          {
+            "address": 196650,
+            "offset": 42,
+            "bytes": "37050202",
+            "mnemonic": "lui",
+            "operands": "a0, 0x2020",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196654,
+            "offset": 46,
+            "bytes": "1905",
+            "mnemonic": "addi",
+            "operands": "a0, a0, 0x6",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196656,
+            "offset": 48,
+            "bytes": "37170240",
+            "mnemonic": "lui",
+            "operands": "a4, 0x40021",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196660,
+            "offset": 52,
+            "bytes": "1c4b",
+            "mnemonic": "lw",
+            "operands": "a5, 0x10(a4)",
+            "encoded_rd": 15
+          },
+          {
+            "address": 196662,
+            "offset": 54,
+            "bytes": "5d8d",
+            "mnemonic": "or",
+            "operands": "a0, a0, a5",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196664,
+            "offset": 56,
+            "bytes": "08cb",
+            "mnemonic": "sw",
+            "operands": "a0, 0x10(a4)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196666,
+            "offset": 58,
+            "bytes": "8545",
+            "mnemonic": "li",
+            "operands": "a1, 0x1",
+            "encoded_rd": 11
+          },
+          {
+            "address": 196668,
+            "offset": 60,
+            "bytes": "37050202",
+            "mnemonic": "lui",
+            "operands": "a0, 0x2020",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196672,
+            "offset": 64,
+            "bytes": "1905",
+            "mnemonic": "addi",
+            "operands": "a0, a0, 0x6",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196674,
+            "offset": 66,
+            "bytes": "b7170240",
+            "mnemonic": "lui",
+            "operands": "a5, 0x40021",
+            "encoded_rd": 15
+          },
+          {
+            "address": 196678,
+            "offset": 70,
+            "bytes": "984b",
+            "mnemonic": "lw",
+            "operands": "a4, 0x10(a5)",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196680,
+            "offset": 72,
+            "bytes": "1345f5ff",
+            "mnemonic": "not",
+            "operands": "a0, a0",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196684,
+            "offset": 76,
+            "bytes": "798d",
+            "mnemonic": "and",
+            "operands": "a0, a0, a4",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196686,
+            "offset": 78,
+            "bytes": "88cb",
+            "mnemonic": "sw",
+            "operands": "a0, 0x10(a5)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196688,
+            "offset": 80,
+            "bytes": "8145",
+            "mnemonic": "li",
+            "operands": "a1, 0x0",
+            "encoded_rd": 11
+          },
+          {
+            "address": 196690,
+            "offset": 82,
+            "bytes": "0565",
+            "mnemonic": "lui",
+            "operands": "a0, 0x1",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196692,
+            "offset": 84,
+            "bytes": "7505",
+            "mnemonic": "addi",
+            "operands": "a0, a0, 0x1d",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196694,
+            "offset": 86,
+            "bytes": "37170240",
+            "mnemonic": "lui",
+            "operands": "a4, 0x40021",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196698,
+            "offset": 90,
+            "bytes": "5c47",
+            "mnemonic": "lw",
+            "operands": "a5, 0xc(a4)",
+            "encoded_rd": 15
+          },
+          {
+            "address": 196700,
+            "offset": 92,
+            "bytes": "5d8d",
+            "mnemonic": "or",
+            "operands": "a0, a0, a5",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196702,
+            "offset": 94,
+            "bytes": "48c7",
+            "mnemonic": "sw",
+            "operands": "a0, 0xc(a4)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196704,
+            "offset": 96,
+            "bytes": "8545",
+            "mnemonic": "li",
+            "operands": "a1, 0x1",
+            "encoded_rd": 11
+          },
+          {
+            "address": 196706,
+            "offset": 98,
+            "bytes": "0565",
+            "mnemonic": "lui",
+            "operands": "a0, 0x1",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196708,
+            "offset": 100,
+            "bytes": "7505",
+            "mnemonic": "addi",
+            "operands": "a0, a0, 0x1d",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196710,
+            "offset": 102,
+            "bytes": "b7170240",
+            "mnemonic": "lui",
+            "operands": "a5, 0x40021",
+            "encoded_rd": 15
+          },
+          {
+            "address": 196714,
+            "offset": 106,
+            "bytes": "d847",
+            "mnemonic": "lw",
+            "operands": "a4, 0xc(a5)",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196716,
+            "offset": 108,
+            "bytes": "1345f5ff",
+            "mnemonic": "not",
+            "operands": "a0, a0",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196720,
+            "offset": 112,
+            "bytes": "798d",
+            "mnemonic": "and",
+            "operands": "a0, a0, a4",
+            "encoded_rd": 10
+          },
+          {
+            "address": 196722,
+            "offset": 114,
+            "bytes": "c8c7",
+            "mnemonic": "sw",
+            "operands": "a0, 0xc(a5)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196724,
+            "offset": 116,
+            "bytes": "8145",
+            "mnemonic": "li",
+            "operands": "a1, 0x0",
+            "encoded_rd": 11
+          },
+          {
+            "address": 196726,
+            "offset": 118,
+            "bytes": "b7e500e0",
+            "mnemonic": "lui",
+            "operands": "a1, 0xe000e",
+            "encoded_rd": 11
+          },
+          {
+            "address": 196730,
+            "offset": 122,
+            "bytes": "a3860542",
+            "mnemonic": "sb",
+            "operands": "zero, 0x42d(a1)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196734,
+            "offset": 126,
+            "bytes": "0967",
+            "mnemonic": "lui",
+            "operands": "a4, 0x2",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196736,
+            "offset": 128,
+            "bytes": "93870510",
+            "mnemonic": "addi",
+            "operands": "a5, a1, 0x100",
+            "encoded_rd": 15
+          },
+          {
+            "address": 196740,
+            "offset": 132,
+            "bytes": "d8c3",
+            "mnemonic": "sw",
+            "operands": "a4, 0x4(a5)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196742,
+            "offset": 134,
+            "bytes": "13070002",
+            "mnemonic": "li",
+            "operands": "a4, 0x20",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196746,
+            "offset": 138,
+            "bytes": "2382e542",
+            "mnemonic": "sb",
+            "operands": "a4, 0x424(a1)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196750,
+            "offset": 142,
+            "bytes": "4147",
+            "mnemonic": "li",
+            "operands": "a4, 0x10",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196752,
+            "offset": 144,
+            "bytes": "d8c3",
+            "mnemonic": "sw",
+            "operands": "a4, 0x4(a5)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196754,
+            "offset": 146,
+            "bytes": "13070003",
+            "mnemonic": "li",
+            "operands": "a4, 0x30",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196758,
+            "offset": 150,
+            "bytes": "a383e542",
+            "mnemonic": "sb",
+            "operands": "a4, 0x427(a1)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196762,
+            "offset": 154,
+            "bytes": "13070008",
+            "mnemonic": "li",
+            "operands": "a4, 0x80",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196766,
+            "offset": 158,
+            "bytes": "d8c3",
+            "mnemonic": "sw",
+            "operands": "a4, 0x4(a5)",
+            "encoded_rd": null
+          },
+          {
+            "address": 196768,
+            "offset": 160,
+            "bytes": "13078008",
+            "mnemonic": "li",
+            "operands": "a4, 0x88",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196772,
+            "offset": 164,
+            "bytes": "73200780",
+            "mnemonic": "csrs",
+            "operands": "0x800, a4",
+            "encoded_rd": null
+          },
+          {
+            "address": 196776,
+            "offset": 168,
+            "bytes": "13070008",
+            "mnemonic": "li",
+            "operands": "a4, 0x80",
+            "encoded_rd": 14
+          },
+          {
+            "address": 196780,
+            "offset": 172,
+            "bytes": "b7e700e0",
+            "mnemonic": "lui",
+            "operands": "a5, 0xe000e",
+            "encoded_rd": 15
+          },
+          {
+            "address": 196784,
+            "offset": 176,
+            "bytes": "8145",
+            "mnemonic": "li",
+            "operands": "a1, 0x0",
+            "encoded_rd": 11
+          },
+          {
+            "address": 196786,
+            "offset": 178,
+            "bytes": "8280",
+            "mnemonic": "ret",
+            "operands": "",
+            "encoded_rd": null
+          }
+        ],
+        "CFG": {
+          "196608": [
+            196612
+          ],
+          "196612": [
+            196616
+          ],
+          "196616": [
+            196620
+          ],
+          "196620": [
+            196622
+          ],
+          "196622": [
+            196626
+          ],
+          "196626": [
+            196628
+          ],
+          "196628": [
+            196630
+          ],
+          "196630": [
+            196632
+          ],
+          "196632": [
+            196634
+          ],
+          "196634": [
+            196636
+          ],
+          "196636": [
+            196638
+          ],
+          "196638": [
+            196642
+          ],
+          "196642": [
+            196644
+          ],
+          "196644": [
+            196646
+          ],
+          "196646": [
+            196648
+          ],
+          "196648": [
+            196650
+          ],
+          "196650": [
+            196654
+          ],
+          "196654": [
+            196656
+          ],
+          "196656": [
+            196660
+          ],
+          "196660": [
+            196662
+          ],
+          "196662": [
+            196664
+          ],
+          "196664": [
+            196666
+          ],
+          "196666": [
+            196668
+          ],
+          "196668": [
+            196672
+          ],
+          "196672": [
+            196674
+          ],
+          "196674": [
+            196678
+          ],
+          "196678": [
+            196680
+          ],
+          "196680": [
+            196684
+          ],
+          "196684": [
+            196686
+          ],
+          "196686": [
+            196688
+          ],
+          "196688": [
+            196690
+          ],
+          "196690": [
+            196692
+          ],
+          "196692": [
+            196694
+          ],
+          "196694": [
+            196698
+          ],
+          "196698": [
+            196700
+          ],
+          "196700": [
+            196702
+          ],
+          "196702": [
+            196704
+          ],
+          "196704": [
+            196706
+          ],
+          "196706": [
+            196708
+          ],
+          "196708": [
+            196710
+          ],
+          "196710": [
+            196714
+          ],
+          "196714": [
+            196716
+          ],
+          "196716": [
+            196720
+          ],
+          "196720": [
+            196722
+          ],
+          "196722": [
+            196724
+          ],
+          "196724": [
+            196726
+          ],
+          "196726": [
+            196730
+          ],
+          "196730": [
+            196734
+          ],
+          "196734": [
+            196736
+          ],
+          "196736": [
+            196740
+          ],
+          "196740": [
+            196742
+          ],
+          "196742": [
+            196746
+          ],
+          "196746": [
+            196750
+          ],
+          "196750": [
+            196752
+          ],
+          "196752": [
+            196754
+          ],
+          "196754": [
+            196758
+          ],
+          "196758": [
+            196762
+          ],
+          "196762": [
+            196766
+          ],
+          "196766": [
+            196768
+          ],
+          "196768": [
+            196772
+          ],
+          "196772": [
+            196776
+          ],
+          "196776": [
+            196780
+          ],
+          "196780": [
+            196784
+          ],
+          "196784": [
+            196786
+          ],
+          "196786": []
+        },
+        "all_ELF_bytes_covered": true,
+        "every_raw_RD_checked": true,
+        "encoded_written_registers": [
+          10,
+          11,
+          14,
+          15
+        ],
+        "helper_original_byte_equality": false,
+        "helper_A1_writes": null,
+        "SP_accesses": 0,
+        "GP_writes": 0,
+        "T0_writes": 0,
+        "A2_A3_writes": 0,
+        "hidden_calls": 0
+      }
+    },
+    "initializer_static_def_use": {
+      "effects": [
+        {
+          "kind": "csrc",
+          "csr": 2048,
+          "mask": 136
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877020,
+          "identity": 0
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877020,
+          "value": [
+            "or",
+            [
+              "fresh_read",
+              0,
+              1073877020
+            ],
+            33685510
+          ]
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877016,
+          "identity": 1
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877016,
+          "value": [
+            "or",
+            [
+              "fresh_read",
+              1,
+              1073877016
+            ],
+            4125
+          ]
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877008,
+          "identity": 2
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877008,
+          "value": [
+            "or",
+            [
+              "fresh_read",
+              2,
+              1073877008
+            ],
+            33685510
+          ]
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877008,
+          "identity": 3
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877008,
+          "value": [
+            "and",
+            [
+              "fresh_read",
+              3,
+              1073877008
+            ],
+            4261281785
+          ]
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877004,
+          "identity": 4
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877004,
+          "value": [
+            "or",
+            [
+              "fresh_read",
+              4,
+              1073877004
+            ],
+            4125
+          ]
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877004,
+          "identity": 5
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877004,
+          "value": [
+            "and",
+            [
+              "fresh_read",
+              5,
+              1073877004
+            ],
+            4294963170
+          ]
+        },
+        {
+          "kind": "write",
+          "width": 8,
+          "address": 3758154797,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 3758153988,
+          "value": 8192
+        },
+        {
+          "kind": "write",
+          "width": 8,
+          "address": 3758154788,
+          "value": 32
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 3758153988,
+          "value": 16
+        },
+        {
+          "kind": "write",
+          "width": 8,
+          "address": 3758154791,
+          "value": 48
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 3758153988,
+          "value": 128
+        },
+        {
+          "kind": "csrs",
+          "csr": 2048,
+          "mask": 136
+        }
+      ],
+      "normal_outputs": {
+        "a0": [
+          "and",
+          [
+            "fresh_read",
+            5,
+            1073877004
+          ],
+          4294963170
+        ],
+        "a1": 0,
+        "a4": 128,
+        "a5": 3758153728
+      },
+      "static_def_use_only": true,
+      "guest_memory_created": false,
+      "CSR_state_created": false,
+      "PC_execution": false,
+      "interrupt_semantics_proved": false
+    },
+    "LLVM_IR": {
+      "effects": [
+        {
+          "kind": "csrc",
+          "csr": 2048,
+          "mask": 136
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877020,
+          "identity": 0
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877020,
+          "value": [
+            "or",
+            [
+              "fresh_read",
+              0,
+              1073877020
+            ],
+            33685510
+          ]
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877016,
+          "identity": 1
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877016,
+          "value": [
+            "or",
+            [
+              "fresh_read",
+              1,
+              1073877016
+            ],
+            4125
+          ]
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877008,
+          "identity": 2
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877008,
+          "value": [
+            "or",
+            [
+              "fresh_read",
+              2,
+              1073877008
+            ],
+            33685510
+          ]
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877008,
+          "identity": 3
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877008,
+          "value": [
+            "and",
+            [
+              "fresh_read",
+              3,
+              1073877008
+            ],
+            4261281785
+          ]
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877004,
+          "identity": 4
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877004,
+          "value": [
+            "or",
+            [
+              "fresh_read",
+              4,
+              1073877004
+            ],
+            4125
+          ]
+        },
+        {
+          "kind": "read",
+          "width": 32,
+          "address": 1073877004,
+          "identity": 5
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 1073877004,
+          "value": [
+            "and",
+            [
+              "fresh_read",
+              5,
+              1073877004
+            ],
+            4294963170
+          ]
+        },
+        {
+          "kind": "write",
+          "width": 8,
+          "address": 3758154797,
+          "value": 0
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 3758153988,
+          "value": 8192
+        },
+        {
+          "kind": "write",
+          "width": 8,
+          "address": 3758154788,
+          "value": 32
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 3758153988,
+          "value": 16
+        },
+        {
+          "kind": "write",
+          "width": 8,
+          "address": 3758154791,
+          "value": 48
+        },
+        {
+          "kind": "write",
+          "width": 32,
+          "address": 3758153988,
+          "value": 128
+        },
+        {
+          "kind": "csrs",
+          "csr": 2048,
+          "mask": 136
+        }
+      ],
+      "commitments": [
+        {
+          "after_effect": 3,
+          "registers": [
+            [
+              "or",
+              [
+                "fresh_read",
+                0,
+                1073877020
+              ],
+              33685510
+            ],
+            1,
+            1073876992,
+            [
+              "fresh_read",
+              0,
+              1073877020
+            ]
+          ]
+        },
+        {
+          "after_effect": 5,
+          "registers": [
+            [
+              "or",
+              [
+                "fresh_read",
+                1,
+                1073877016
+              ],
+              4125
+            ],
+            1,
+            1073876992,
+            [
+              "fresh_read",
+              1,
+              1073877016
+            ]
+          ]
+        },
+        {
+          "after_effect": 7,
+          "registers": [
+            [
+              "or",
+              [
+                "fresh_read",
+                2,
+                1073877008
+              ],
+              33685510
+            ],
+            1,
+            1073876992,
+            [
+              "fresh_read",
+              2,
+              1073877008
+            ]
+          ]
+        },
+        {
+          "after_effect": 9,
+          "registers": [
+            [
+              "and",
+              [
+                "fresh_read",
+                3,
+                1073877008
+              ],
+              4261281785
+            ],
+            0,
+            [
+              "fresh_read",
+              3,
+              1073877008
+            ],
+            1073876992
+          ]
+        },
+        {
+          "after_effect": 11,
+          "registers": [
+            [
+              "or",
+              [
+                "fresh_read",
+                4,
+                1073877004
+              ],
+              4125
+            ],
+            1,
+            1073876992,
+            [
+              "fresh_read",
+              4,
+              1073877004
+            ]
+          ]
+        },
+        {
+          "after_effect": 13,
+          "registers": [
+            [
+              "and",
+              [
+                "fresh_read",
+                5,
+                1073877004
+              ],
+              4294963170
+            ],
+            0,
+            [
+              "fresh_read",
+              5,
+              1073877004
+            ],
+            1073876992
+          ]
+        },
+        {
+          "after_effect": 20,
+          "registers": [
+            [
+              "and",
+              [
+                "fresh_read",
+                5,
+                1073877004
+              ],
+              4294963170
+            ],
+            0,
+            128,
+            3758153728
+          ]
+        }
+      ],
+      "final_return": [
+        "and",
+        [
+          "fresh_read",
+          5,
+          1073877004
+        ],
+        4294963170
+      ],
+      "helpers": {
+        "tsl9_rebuild_rcc_registers_19124": {
+          "branch_owned_RMW_sites": 2,
+          "full_A1_zero_test": true,
+          "offset": 24,
+          "structural_IR_only": true
+        },
+        "tsl9_rebuild_rcc_registers_19142": {
+          "branch_owned_RMW_sites": 2,
+          "full_A1_zero_test": true,
+          "offset": 28,
+          "structural_IR_only": true
+        },
+        "tsl9_rebuild_rcc_registers_19160": {
+          "branch_owned_RMW_sites": 2,
+          "full_A1_zero_test": true,
+          "offset": 12,
+          "structural_IR_only": true
+        },
+        "tsl9_rebuild_rcc_registers_1917e": {
+          "branch_owned_RMW_sites": 2,
+          "full_A1_zero_test": true,
+          "offset": 16,
+          "structural_IR_only": true
+        }
+      },
+      "all_initializer_IR_instructions_accounted": true,
+      "static_SSA_identities_only": true,
+      "target_execution": false,
+      "ISA_emulation": false
+    }
+  },
+  "baseline_comparison": {
+    "functions": {
+      "tsl9_rebuild_rcc_registers_19124": {
+        "bytes": 30,
+        "instructions": 12,
+        "code_sha256": "ca3d4aef350f5c783ee6eeae7d25ba85b74055551058135024d07edf1804e864",
+        "identical_to_sealed_CPP_baseline": true,
+        "address": 102692
+      },
+      "tsl9_rebuild_rcc_registers_19142": {
+        "bytes": 30,
+        "instructions": 12,
+        "code_sha256": "e74e208ea699962ecf8c71269627881ab8edfd64787710b410c6c74a3607d6d5",
+        "identical_to_sealed_CPP_baseline": true,
+        "address": 102722
+      },
+      "tsl9_rebuild_rcc_registers_19160": {
+        "bytes": 30,
+        "instructions": 12,
+        "code_sha256": "a5541a42d8ec2844fcd1d2df5492c90e2b140ce22ae79b02f50e330277c31b60",
+        "identical_to_sealed_CPP_baseline": true,
+        "address": 102752
+      },
+      "tsl9_rebuild_rcc_registers_1917e": {
+        "bytes": 30,
+        "instructions": 12,
+        "code_sha256": "bec2619b2d742c8bfa1b82087f6cea1ed8a133adb89b25258a487ef2e2d2648e",
+        "identical_to_sealed_CPP_baseline": true,
+        "address": 102782
+      },
+      "tsl9_rebuild_interrupt_registers_9a42": {
+        "bytes": 180,
+        "instructions": 65,
+        "code_sha256": "fc6b64b3fc3368ab3359ab5888102b85cf356da19699a5d2e50180a20e7167d5",
+        "identical_to_sealed_CPP_baseline": true,
+        "address": 196608
+      }
+    },
+    "proof_result_equality": {
+      "machine": true,
+      "initializer_static_def_use": true,
+      "LLVM_IR": true
+    },
+    "all_five_functions_identical": true
+  },
+  "transcript_controls": [
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "missing_first",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "95f8f3da156c22730f80a2620a9d13256e63e774fe73e8c6edcb6502a666ce40"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "missing_middle",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "a84ac808fa4b64fba8543ce23a7aabba1b5e8419c4b02bda97f872effbe37abc"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "truncated_last",
+      "rejected": true,
+      "reason": "complete ELF function extent, including instructions after interior RET",
+      "transcript_sha256": "31b500db7b431a3a64d2c3e7f3905a4f8839618603e9b62fea88cf42924bf278"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "changed_raw_byte",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "616b70c93390724ee27a09e8dd58671bf72da53e4b44310060a4e71dd0a056cb"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "unparsed_middle",
+      "rejected": true,
+      "reason": "no ignored unparsed/interior instruction lines",
+      "transcript_sha256": "72ce734d88869e3f878737000bb17e9f116a84b9c3b948a1636b6aabee80e10b"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "unparsed_trailing",
+      "rejected": true,
+      "reason": "no ignored unparsed/interior instruction lines",
+      "transcript_sha256": "40e7fe3632ad75ded4edd2ecbc1e9d98316ef47a108868ba4283d5c379c4ae42"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "missing_first",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "aedb0f0f792f25ec69dd5bb943e2b96b38503827a3725528a3f01ed6bca72514"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "missing_middle",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "5dcdce9effa037e358fbb2ccc4eaa6cca1351ef67367ead7a34a67a78883921e"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "truncated_last",
+      "rejected": true,
+      "reason": "complete ELF function extent, including instructions after interior RET",
+      "transcript_sha256": "062210394451a061ba33033b13bae72dc4def7611bfde27a21c8cab92b4b1579"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "changed_raw_byte",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "e0c0f99238e6e5639e65962512ae089c64579249a9540b2a1faef87d55a62093"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "unparsed_middle",
+      "rejected": true,
+      "reason": "no ignored unparsed/interior instruction lines",
+      "transcript_sha256": "18c0122a0b2c9fd73ac69d2fca794c8f9fe8ad4d8f8d7fe2629caa9797cf9e42"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "unparsed_trailing",
+      "rejected": true,
+      "reason": "no ignored unparsed/interior instruction lines",
+      "transcript_sha256": "0a0c028a3401ba93a82fa31d29aa539fcdf1752c88fb6b9e77404f353297deee"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "missing_first",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "e592836c2ee301efd8330c2370afb8481987167deb64a2c6ff4cd06429986c56"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "missing_middle",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "4f77f319105bfb69ad96d9932b8917127456ecbcfe01e14070a06bf5562d2c93"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "truncated_last",
+      "rejected": true,
+      "reason": "complete ELF function extent, including instructions after interior RET",
+      "transcript_sha256": "009740ebf8b8793216d6dea843e41521af4427dea1f72f5d3fd62b290b13cd71"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "changed_raw_byte",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "3cec9b63bd1ace95e4f4b390ce5cc47c57a09d8a23baccd3258a33451822d1e4"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "unparsed_middle",
+      "rejected": true,
+      "reason": "no ignored unparsed/interior instruction lines",
+      "transcript_sha256": "a0d5bb6d6e1d9076768b683fe0bf92c9334e48fc29442f4c700d38ed77f21274"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "unparsed_trailing",
+      "rejected": true,
+      "reason": "no ignored unparsed/interior instruction lines",
+      "transcript_sha256": "13f28a952cfc72b07f9423377e2e585282a002d5ff0915bf4c413a3576670ddd"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "missing_first",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "ad81bb77fc557df8b73d40ba9eaca79fc40b49142f66b6e8d5484a41dc27ae73"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "missing_middle",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "6c4d7dd2cfe144105552fcc255b5fa32b719bfdcd123415b03e52fd2c8dbc281"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "truncated_last",
+      "rejected": true,
+      "reason": "complete ELF function extent, including instructions after interior RET",
+      "transcript_sha256": "4990a91520964ed10e6e801621587f3e81c9198b00d2dcce59a60c271d518c69"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "changed_raw_byte",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "fdac0e8dbe68cfe8d03fcc7a338eb6bca4be94c7f7db7c8aab05f0d645308ef5"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "unparsed_middle",
+      "rejected": true,
+      "reason": "no ignored unparsed/interior instruction lines",
+      "transcript_sha256": "b4c0c756539c948c7033e694117071ca1b41abd338b37d7f965f1204faecea12"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "unparsed_trailing",
+      "rejected": true,
+      "reason": "no ignored unparsed/interior instruction lines",
+      "transcript_sha256": "83cb9ed31c5c4368cc5759fd073dbfbc1bd90244e0e81eecc4406353a3879254"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "missing_first",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "458eb10edc261042f9ecee805a0c054248df5a2a51cebb8c7703e837646a1fb1"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "missing_middle",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "5d34072dd4528e969cc4e8d241abb5e810d0a89927d21d850aac9c4a65585aa2"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "truncated_last",
+      "rejected": true,
+      "reason": "complete ELF function extent, including instructions after interior RET",
+      "transcript_sha256": "58e8c7ca7b09fe43e8d582cda5f1250b182b27b75c7393e2e2eaa6509ef993ae"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "changed_raw_byte",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "8d97502fbbc2b640a05da03230661a633946228ffd10bbb5ee989ce1e5c0c606"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "unparsed_middle",
+      "rejected": true,
+      "reason": "no ignored unparsed/interior instruction lines",
+      "transcript_sha256": "dfa88ea86cb8993ef050955f98bd5833cafd99a785090dea942c045280f6ba4a"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "unparsed_trailing",
+      "rejected": true,
+      "reason": "no ignored unparsed/interior instruction lines",
+      "transcript_sha256": "f688df2b6a8f0982c359ed5dac5576c334b32c648ee4de4c895e45cfae6862d5"
+    }
+  ],
+  "allocation_comparison": {
+    "object": {
+      "baseline_total": 420,
+      "actual_total": 300,
+      "baseline_extra_readonly": [
+        {
+          "name": ".eh_frame",
+          "address": 0,
+          "bytes": 120,
+          "sha256": "2eb2c3e884340d06c969940e12182a54e1e0029aa2c41ce0437607f5e82bd871"
+        }
+      ],
+      "actual_extra_readonly": []
+    },
+    "linked": {
+      "baseline_total": 424,
+      "actual_total": 300,
+      "baseline_extra_readonly": [
+        {
+          "name": ".eh_frame",
+          "address": 0,
+          "bytes": 124,
+          "sha256": "cb3e63420aefa60f84bf813e9eea98a10fc10e4aa134feb0a454b2ad03d5b022"
+        }
+      ],
+      "actual_extra_readonly": []
+    }
+  },
+  "helper_original120byte_identity": true,
+  "main_original_extent_fits": false,
+  "main_bytes": 180,
+  "original_main_bytes": 144,
+  "all_allocated_function_ownership_passed": true,
+  "original_full_image_integration_proved": false,
+  "original_ABI_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "firmware_BIN_produced": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false
+}

@@ -1,5 +1,15 @@
 # 已驗證里程碑
 
+## 144-byte IRQ 呼叫框架與 C++ 配置
+
+新版可讀 C/C++ main 改用六個四-byte JAL 呼叫既有 RCC helper，由編譯器建立 16-byte frame。C11／C++17 的實際 main 均為 144 bytes，四個 helper 各 30 bytes，264 bytes／94 指令全部位於原始區段，且無額外配置。C++ 的 `-fno-exceptions` 移除先前 unwind metadata；獨立 predecessor 實驗也確認此單一 flag 不改動其五個函式 bytes。
+
+main 的第一條 SP 調整與 offset 10 以後的 134 bytes 原樣一致，四個 helper 的 120 bytes 完全一致。差異是四個兩-byte prologue store 的排列；frame slot 集合、六個 JAL 的 PC／目標／RA、所有指令邊界及還原載入分別核對。**逐指令 stack 狀態與非同步 IRQ 等價仍未通過。**
+
+主機每語言通過 9184 案例／246384 斷言；獨立測試每語言 3820 案例／138312 斷言，共拒絕 60 個實際編譯變異。原生每語言拒絕六個已編譯／連結反例與 30 個覆蓋反例。完整 source-carrier 的下一階段整合規劃已找出 34 個 C TU、691 個配置、53 個 section-relative alias；四個 helper 的原始 branch RELA 由 byte 一致性解除，不能虛稱新物件仍有 8280 筆 RELA。
+
+此輪尚未整合或生成新 BIN，原 76,800-byte 離線映像與 gate 保持不變；ROM、板子、硬體中斷及 OTA 相容性仍未證明。來源入口為 `sh experiments/tsl9-v4160-irq-callframe/verify.sh --language both`；原生入口為同目錄 `verify-native.sh --tool-dir <LLVM-bin> --language both`。Windows Python／MSVC／LLVM 證據不代表 Linux／macOS 或 shell 已執行成功，既有 CI 帳戶限制未重試或調整。
+
 ## 分支式 IRQ 核心與 RCC 原址 bytes
 
 新版 C/C++ 核心讓兩條 RMW 分支各自保留讀取、運算、寫入與返回值，使用逐次基底／立即數與明確的 A0 返回橋接，並停用 machine outliner。四個 RCC helper 各 30 bytes，在原址 0x19124／0x19142／0x19160／0x1917E 連結後與原 BIN 的 120 bytes 完全一致；完整機器碼核對確認只寫 A0/A4/A5，A1 精確保留。IRQ 本體只寫 A0/A1/A4/A5，正常返回輸出符合原始契約；20 個有序效果及六次 fresh RCC 讀取分別由機器碼與 LLVM IR 檢查。

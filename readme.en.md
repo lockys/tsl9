@@ -2,7 +2,7 @@
 
 [繁體中文](README.md) | [简体中文](readme.zh-CN.md)
 
-This project preserves the original APK, 22 distinct updater BINs, readable C/C++ behavior models and static source evidence. The goal remains a rebuilt BIN compatible with the original hardware and BLE updater. **No rebuilt BIN is currently verified as flashable.**
+This project preserves the original APK, 22 distinct updater BINs, readable C/C++ behavior models and static source evidence. The goal remains a rebuilt BIN compatible with the original hardware and BLE updater, while identifying worthwhile new features during reverse engineering and keeping proposals separate from implemented functions. **No rebuilt BIN is currently verified as flashable.**
 
 ## Portable verification
 
@@ -33,6 +33,8 @@ The repository also contains 116 historical PowerShell scripts. Their native RV3
 | Reset data-copy, BSS clear and output registers | [English guide](experiments/tsl9-v4160-reset-memory/readme.en.md) |
 | Interrupt initialization normal register contracts | [English guide](experiments/tsl9-v4160-interrupt-registers/readme.en.md) |
 | Original-address RCC byte identity and new IRQ core | [English guide](experiments/tsl9-v4160-irq-native/readme.en.md) |
+| 144-byte IRQ callframe fitting its original extent | [English guide](experiments/tsl9-v4160-irq-callframe/readme.en.md) |
+| Feature candidates and existing-feature evidence | [English proposals](analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.en.md) |
 | Runtime main/init/loop/dispatch | [Guide](experiments/tsl9-v4160-runtime-loop/readme.en.md) |
 | Reference resident entry and byte-copy | [Entry](experiments/tsl9-resident-entry-reference/readme.en.md) / [copy](experiments/tsl9-resident-copy-reference/readme.en.md) |
 | Published file identity | [Manifest](publication-manifest.json) |

@@ -1,0 +1,312 @@
+{
+  "schema": "TSL9-irq-callframe-independent-host-review-v1",
+  "passed": true,
+  "language": "cpp",
+  "compiler": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+  "compiler_sha256": "88c8344236a27a6e727e0a8edc49aaa2690bdc7a9464b9d18cc7abe70a9f1c0d",
+  "inputs_sha256": {
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c": "350298243ab9bf60abdc058c47721a8a8b575e13c314f6340ffbdee338e35e83",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c": "7fd1b2e15b6c0b100faed8e3af7c3ab79d049dc6c23f32433bfad8eee0c6b45a",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\callframe_io.h": "c8ab6f87e64e518e6dddb46d36a57633eb04af9b4e2917e99e1597973826b3c7",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-native\\src\\native_io.h": "f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.h": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-interrupt-registers\\tests\\test_io.h": "a9cc47726a4245b905e95eb9ca286ae07451c566ccea0da9aa4f830cb6c41abc",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\code-review\\independent-tests.c": "e40f4b8e986e705d6c8c29a34c793ce74d7c37a506e0ddedfecd80a1e2b783b4",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\code-review\\final-audit.json": "4757434b52178f0394efe252688340c1be19f43a16708e1b70b4e1d0b453dce9",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\scripts\\portable_verify.py": "93933fcb13a0fc45c9c5c82ebb1584a94298e28888d4f7f6a359237c7d3f8754",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\run-review.py": "2b205fce54f7eae7b575106eb4f78587331de13c2b7ea982c3166d237066eb34"
+  },
+  "reused_oracle_sha256": "e40f4b8e986e705d6c8c29a34c793ce74d7c37a506e0ddedfecd80a1e2b783b4",
+  "reused_oracle_seal_sha256": "4757434b52178f0394efe252688340c1be19f43a16708e1b70b4e1d0b453dce9",
+  "positive": {
+    "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\positive.exe",
+    "executable_sha256": "84dfcfbe03274d9de1ef794b6baa46dc163ba187fb140de1b26f8f023aec0c9e",
+    "result": {
+      "passed": true,
+      "groups": 4,
+      "cases": 3820,
+      "checks": 138312
+    }
+  },
+  "compiled_behavior_mutants": {
+    "wrong-first-call": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\wrong-first-call.exe",
+      "executable_sha256": "4c3935306c00a244058ecd105a9772073e77322619b6e22f819e361d0d23da4b",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL address or A0 case3169 event2"
+      }
+    },
+    "wrong-call-order": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\wrong-call-order.exe",
+      "executable_sha256": "0137acfe1261d948e72e3e452e4109fb881a7f068d544be46089bf77e54c9726",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL address or A0 case3169 event5"
+      }
+    },
+    "reset-call-enabled": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\reset-call-enabled.exe",
+      "executable_sha256": "d91196fbf0d69871497e7e750fd9dfe438a205cccb2eb6225c0f616a24e827a6",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL sample/value or A1 case3169 event12"
+      }
+    },
+    "last-clear-wrong-helper": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\last-clear-wrong-helper.exe",
+      "executable_sha256": "3e63a2096238f7d75e2eff994c12eb9fa8412729c01bdf7168b60152bcfd59ae",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL address or A0 case3169 event17"
+      }
+    },
+    "main-result-corruption": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\main-result-corruption.exe",
+      "executable_sha256": "60ceaea7e998df2c620a2edf2cdd1a0a681dc2a6faad7424f6bb7384052310f3",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL address or A0 case3169 event27"
+      }
+    },
+    "drop-CSR-clear": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\drop-CSR-clear.exe",
+      "executable_sha256": "f80d85aa64a57dfedcb9fecd0a94975d4aad7de974e04af59bb41cd7d4cd01b8",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL exact effect width/order case3169 event1"
+      }
+    },
+    "drop-CSR-set": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\drop-CSR-set.exe",
+      "executable_sha256": "e6bea0b47724853e936fbdc39ddc81b8cf2f186854aaab95a47215e11fd36593",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL exact effect width/order case3169 event26"
+      }
+    },
+    "PFIC-wrong-zero-address": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\PFIC-wrong-zero-address.exe",
+      "executable_sha256": "085839cfd6877bfc1ff57da66407da21f36eec92e2c995dfa15db7b80081602c",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL address or A0 case3169 event20"
+      }
+    },
+    "PFIC-word-as-byte": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\PFIC-word-as-byte.exe",
+      "executable_sha256": "cb667f8e753025bf969aa706c17012ec1d92b086509a71b570c9492ae0a2aa93",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL exact effect width/order case3169 event21"
+      }
+    },
+    "PFIC-byte-as-word": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\PFIC-byte-as-word.exe",
+      "executable_sha256": "f044e3c9601fbcba3b0b25a91dd28a6e441934d100feb0dc8c81885038ac1c09",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL exact effect width/order case3169 event22"
+      }
+    },
+    "PFIC-last-mask": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\PFIC-last-mask.exe",
+      "executable_sha256": "bf49a7b556239675dba61195e62df8bea1f440ce0df50c66181aff44f9601259",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL sample/value or A1 case3169 event25"
+      }
+    },
+    "enabled-only-one": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\enabled-only-one.exe",
+      "executable_sha256": "20d77f4a7007f7f110b23676263ef2ed014d59161f4599d651f8ecf2d1e8216b",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL normal A4 case3 event3"
+      }
+    },
+    "normalize-enabled": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\normalize-enabled.exe",
+      "executable_sha256": "ec193124ec8f0046b7ea0a353f54490979cfb6b5e46badc14552a2479a3fdf1f",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL sample/value or A1 case3 event3"
+      }
+    },
+    "enabled-full-address": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\enabled-full-address.exe",
+      "executable_sha256": "ae047a79a7585fe6feddfb39810c88250a257fac6a5b6b01397f2d65d7d276b3",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL normal A4 case2 event3"
+      }
+    },
+    "disabled-full-address": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\disabled-full-address.exe",
+      "executable_sha256": "89e1a38a457d3a111d61007856ff7abef127e61c5593684927ae99787d869333",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL normal A5 case1 event3"
+      }
+    },
+    "enabled-after-residue": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\enabled-after-residue.exe",
+      "executable_sha256": "c2a20398bf45892796344082f803cfda79a05162f8104ea87414b00db4567392",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL normal A5 case10 event3"
+      }
+    },
+    "disabled-after-residue": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\disabled-after-residue.exe",
+      "executable_sha256": "03f7898743524525854aa5154c0331c081e210d2dc93b31bf8fd2abdbeb50958",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL normal A4 case81 event3"
+      }
+    },
+    "mask-truncated": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\mask-truncated.exe",
+      "executable_sha256": "9581911c786007abf862e7be36f533f1db6bccfc0febe3588bc87d36abaccc97",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL sample/value or A1 case10 event2"
+      }
+    },
+    "cache-branch-read": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\cache-branch-read.exe",
+      "executable_sha256": "3d30e70c0ab77f5c90e3e7d351d10469d94580757dab4a267c3bd66c0c5cd13d",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL exact effect width/order case3 event1"
+      }
+    },
+    "write-before-read": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\write-before-read.exe",
+      "executable_sha256": "8e17f55102d6911f41ee76b36ba531cd608233240ed44e0a370c3b8076718e63",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL exact effect width/order case1 event1"
+      }
+    },
+    "helper-wrong-width": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\helper-wrong-width.exe",
+      "executable_sha256": "3f5c0030561954763857741ad3d89dd2a805e5af301a37167a91bcb9861f1331",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL exact effect width/order case1 event2"
+      }
+    },
+    "clear-as-OR": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\clear-as-OR.exe",
+      "executable_sha256": "cbf6eda7ee58301ac3e44981231e6fee122e31d0083d680589a29315428cb12c",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL sample/value or A1 case1 event2"
+      }
+    },
+    "fast-mask": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\fast-mask.exe",
+      "executable_sha256": "9ab695a4c5b113b4c3e55d34ba517401af91e79127e37b696a1c96b37d79528d",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL sample/value or A1 case3169 event12"
+      }
+    },
+    "slow-mask": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\slow-mask.exe",
+      "executable_sha256": "1a7f29934ed3f91a40f79a1a91af61c1f7a86312e193b34db36f6e72c3140791",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL sample/value or A1 case3169 event18"
+      }
+    },
+    "final-call-enabled": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\final-call-enabled.exe",
+      "executable_sha256": "997ba39be301a272e9a6587fe49464d28f03d0560241b192b5dc836ed4e5f294",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL sample/value or A1 case3169 event18"
+      }
+    },
+    "host-return-value": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\host-return-value.exe",
+      "executable_sha256": "e109ce3f62c39814d3bacc3cb8a755833511e59a1a23b9940ac12cb0bce670c6",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL main A0 last independent clear sample case3169 event27"
+      }
+    },
+    "host-output-A1": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\host-output-A1.exe",
+      "executable_sha256": "b25601166bb64e69571d6eef64adcae5b3a7f709daa592a7d9a8626470431744",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL sample/value or A1 case3169 event27"
+      }
+    },
+    "host-output-A4": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\host-output-A4.exe",
+      "executable_sha256": "ce3fa00e50a84cc60f73855f31c37bb0037f946bd43485c96fb93641f1f30463",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL normal A4 case3169 event27"
+      }
+    },
+    "host-output-A5": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\host-output-A5.exe",
+      "executable_sha256": "17fcb4450bbb571f93fc13c31d8ffba9e44e798db7c169e8e70af23a9576e157",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL normal A5 case3169 event27"
+      }
+    },
+    "CSR-mask": {
+      "executable": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\source-review\\build\\51f9451875854ba3907fae7618b91d44-cpp\\CSR-mask.exe",
+      "executable_sha256": "d6af048c9df050691dd60769ddda287b8843102519849780b3bdb7b9a2e174fb",
+      "result": {
+        "rejected": true,
+        "exit_code": 1,
+        "failure": "FAIL sample/value or A1 case3169 event1"
+      }
+    }
+  },
+  "compiled_mutants_rejected": 30,
+  "actual_source_translation_units": 2,
+  "host_only": true,
+  "native_bridge_or_register_proof": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false
+}

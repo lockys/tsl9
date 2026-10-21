@@ -1,0 +1,35 @@
+{
+  "schema": "TSL9-callframe-independent-host-contract-v1",
+  "passed": true,
+  "component_inputs": [
+    {"path":"experiments/tsl9-v4160-irq-callframe/src/interrupt_callframe.c","sha256":"350298243ab9bf60abdc058c47721a8a8b575e13c314f6340ffbdee338e35e83"},
+    {"path":"experiments/tsl9-v4160-irq-callframe/src/rcc_helpers.c","sha256":"7fd1b2e15b6c0b100faed8e3af7c3ab79d049dc6c23f32433bfad8eee0c6b45a"},
+    {"path":"experiments/tsl9-v4160-irq-callframe/src/callframe_io.h","sha256":"c8ab6f87e64e518e6dddb46d36a57633eb04af9b4e2917e99e1597973826b3c7"},
+    {"path":"experiments/tsl9-v4160-irq-native/src/native_io.h","sha256":"f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e"},
+    {"path":"experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.h","sha256":"da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"},
+    {"path":"experiments/tsl9-v4160-interrupt-registers/tests/test_io.h","sha256":"a9cc47726a4245b905e95eb9ca286ae07451c566ccea0da9aa4f830cb6c41abc"},
+    {"path":"scripts/portable_verify.py","sha256":"93933fcb13a0fc45c9c5c82ebb1584a94298e28888d4f7f6a359237c7d3f8754"}
+  ],
+  "peer_seals": [
+    {"scope_names":["tsl9-v4160-placement-2026-10-21","v4160-placement-2026-10-21"],"subdirectory":"code-review","filename":"final-audit.json","sha256":"4757434b52178f0394efe252688340c1be19f43a16708e1b70b4e1d0b453dce9"},
+    {"scope_names":["tsl9-v4160-interrupt-init-2026-10-21","v4160-interrupt-init-2026-10-21"],"subdirectory":"source","filename":"final-audit.json","sha256":"4d6745033aae496576b9db2fb7467396fbfda5067713cf1451a34b949b414283"}
+  ],
+  "reused_independent_oracle_sha256":"e40f4b8e986e705d6c8c29a34c793ce74d7c37a506e0ddedfecd80a1e2b783b4",
+  "receipts": [
+    {"path":"receipts/94c3882ea7884190b445da2e41bf8607-c.json","sha256":"b7f949dc2f5fd8cfe51d41c2c0d4905b44e0bc9460711d90699c7135d484dde2","language":"c"},
+    {"path":"receipts/51f9451875854ba3907fae7618b91d44-cpp.json","sha256":"9f81ccad983fc32934c21a0016e85960930bcbe7de88476a94a5107f18ffd5bf","language":"cpp"}
+  ],
+  "tests_per_mode":{"groups":4,"cases":3820,"checks":138312},
+  "actually_compiled_behavior_mutants_rejected":60,
+  "actual_source_translation_units":2,
+  "blocking_findings_in_host_interface":[],
+  "host_outputs_are_actual_GPR_captures":false,
+  "native_bridge_or_register_proved":false,
+  "native_identity_proved_by_this_review":false,
+  "placement_proved":false,
+  "target_execution":false,
+  "ISA_emulation":false,
+  "network":false,
+  "hardware":false,
+  "OTA_ready":false
+}

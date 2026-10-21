@@ -2,7 +2,7 @@
 
 [繁體中文](README.md) | [English](readme.en.md)
 
-本项目保存原始 APK、22 份不同的更新器 BIN、可读 C/C++ 行为模型及静态来源证据。完整目标仍是生成与原硬件及 BLE 更新器兼容的重建 BIN。**目前尚无经验证可刷写的重建 BIN。**
+本项目保存原始 APK、22 份不同的更新器 BIN、可读 C/C++ 行为模型及静态来源证据。完整目标仍是生成与原硬件及 BLE 更新器兼容的重建 BIN，并在逆向过程中评估值得新增的功能，将提案与已实现功能分别列出。**目前尚无经验证可刷写的重建 BIN。**
 
 ## 跨平台验证
 
@@ -35,6 +35,8 @@ sh ./verify.sh --model system-clock-query --language both
 | 启动数据复制、BSS 清零与输出寄存器 | [繁体中文说明](experiments/tsl9-v4160-reset-memory/readme.zh-TW.md) |
 | 中断初始化正常寄存器契约 | [繁体中文说明](experiments/tsl9-v4160-interrupt-registers/readme.zh-TW.md) |
 | 原址机器码一致的 RCC helper 与新版 IRQ 核心 | [繁体中文说明](experiments/tsl9-v4160-irq-native/readme.zh-TW.md) |
+| 可放回原区段的 144-byte IRQ 调用框架 | [繁体中文说明](experiments/tsl9-v4160-irq-callframe/readme.zh-TW.md) |
+| 新功能候选与既有功能证据 | [繁体中文提案](analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.zh-TW.md) |
 | Runtime 主程序／初始化／循环／分发 | [说明](experiments/tsl9-v4160-runtime-loop/readme.zh-TW.md) |
 | resident 候选入口与 byte-copy | [入口](experiments/tsl9-resident-entry-reference/readme.zh-TW.md)／[copy](experiments/tsl9-resident-copy-reference/readme.zh-TW.md) |
 | 发布文件身份 | [Manifest](publication-manifest.json) |

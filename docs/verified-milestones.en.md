@@ -1,5 +1,15 @@
 # Verified milestones
 
+## 144-byte IRQ callframe and C++ allocations
+
+Readable C/C++ main now uses six explicit4-byte JALs to shared RCC helpers and a compiler-generated16-byte frame. Actual C11/C++17 main functions are144 bytes, with four30-byte helpers: all264 bytes /94 instructions fit their original extents, without extra allocations. C++ `-fno-exceptions` removes prior unwind metadata; a separate predecessor experiment confirms that this sole flag does not change its five function bodies.
+
+Main's first SP adjustment and134 bytes after offset10 match the original; all120 helper bytes are identical. Four2-byte prologue stores are permuted. Slot sets, all six JAL PCs/targets/RA links, instruction boundaries and fresh frame reloads are checked separately. **Pointwise stack state and asynchronous IRQ equivalence remain unproved.**
+
+Canonical host suites pass9184 cases /246384 assertions per language. Independent suites pass3820 cases /138312 assertions per language and reject60 compiled mutations in total. Each native language rejects six compiled/linked controls and30 coverage controls. The next source-carrier integration plan identifies34 C TUs,691 allocations and53 section-relative aliases. Four original helper branch RELA records are discharged by exact byte identity; new objects must not be falsely reported as retaining8280 RELA.
+
+No new BIN or full-image integration is produced this round. The previous76,800-byte offline image and gate remain unchanged; ROM, board, hardware interrupt and OTA compatibility remain unproved. Use `sh experiments/tsl9-v4160-irq-callframe/verify.sh --language both`, or sibling `verify-native.sh --tool-dir <LLVM-bin> --language both`. Windows Python/MSVC/LLVM evidence does not establish Linux/macOS or shell execution; existing CI account restrictions were neither retried nor changed.
+
 ## Branch-first IRQ core and original-address RCC bytes
 
 The new C/C++ core gives each RMW branch its own read, operation, store and returned value. Per-use base/immediate primitives and an explicit returned-A0 bridge avoid the previous spill ranges; machine outlining is disabled. Each RCC helper is 30 bytes and links at its original 0x19124/0x19142/0x19160/0x1917E address with all 120 bytes identical to the original BIN. Complete machine checks show only A0/A4/A5 writes and exact A1 preservation. The IRQ initializer writes only A0/A1/A4/A5 and matches normal output registers; machine code and LLVM IR separately check the 20 ordered effects and six fresh RCC reads.

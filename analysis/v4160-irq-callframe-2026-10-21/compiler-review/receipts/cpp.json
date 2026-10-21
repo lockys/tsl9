@@ -1,0 +1,3686 @@
+{
+  "schema": "TSL9-original-placement-callframe-native-proof-v1",
+  "passed": true,
+  "mode": "cpp",
+  "source_sha256": {
+    "experiments/tsl9-v4160-irq-callframe/src/interrupt_callframe.c": "350298243ab9bf60abdc058c47721a8a8b575e13c314f6340ffbdee338e35e83",
+    "experiments/tsl9-v4160-irq-callframe/src/callframe_io.h": "c8ab6f87e64e518e6dddb46d36a57633eb04af9b4e2917e99e1597973826b3c7",
+    "experiments/tsl9-v4160-irq-callframe/src/rcc_helpers.c": "7fd1b2e15b6c0b100faed8e3af7c3ab79d049dc6c23f32433bfad8eee0c6b45a",
+    "experiments/tsl9-v4160-irq-native/src/native_io.h": "f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e",
+    "experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.h": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"
+  },
+  "runner_sha256": "722d477623f5f6065ebb8b3ed9715b730c4fddacc0a3dd374d3fe72fdc530cd9",
+  "dependencies": {
+    "native_seal": "13772c1bfe0c3faf0fe37cf4cbdd8fe4be40ca6f6913ef132c64a3c0677f9c04",
+    "native_members": {
+      "verify_native.py": "58e726bf5590eeb318c7123a75fd00c5b406b58e36c545c65962a1ac80a369ac",
+      "gates.py": "c51f2242a3f3356ce77c09c12757cda0ed13b6830ac255cbfbd4fcdfd36341e5",
+      "elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141"
+    },
+    "original_source_seal": "4d6745033aae496576b9db2fb7467396fbfda5067713cf1451a34b949b414283",
+    "source_plan_seal": "85843df867c68c84572efb2f4630bb199ced6c752960fee8d9128d2f4eceb934",
+    "decoder": "352e9460efd082b6e6a9fe726c7141bc1efcb328d2988734f5b1b3d5c347c1ed",
+    "source_plan_verification": "e2effb75ab54c030500491a802c9e3e0ce715934162e407166cec2cdd6046c96"
+  },
+  "tools": {
+    "clang": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "linker": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "objdump": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    }
+  },
+  "main_flags": [
+    "--target=riscv32-unknown-elf",
+    "-march=rv32imac_zicsr",
+    "-mabi=ilp32",
+    "-Oz",
+    "-mllvm",
+    "-enable-machine-outliner=never",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-stack-protector",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-mno-relax",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-ffixed-x3",
+    "-ffixed-x4",
+    "-ffixed-x5",
+    "-ffixed-x6",
+    "-ffixed-x7",
+    "-ffixed-x12",
+    "-ffixed-x13",
+    "-ffixed-x16",
+    "-ffixed-x17",
+    "-ffixed-x19",
+    "-ffixed-x20",
+    "-ffixed-x21",
+    "-ffixed-x22",
+    "-ffixed-x23",
+    "-ffixed-x24",
+    "-ffixed-x25",
+    "-ffixed-x26",
+    "-ffixed-x27",
+    "-ffixed-x28",
+    "-ffixed-x29",
+    "-ffixed-x30",
+    "-ffixed-x31",
+    "-x",
+    "c++",
+    "-std=c++17",
+    "-fno-exceptions"
+  ],
+  "helper_flags": [
+    "--target=riscv32-unknown-elf",
+    "-march=rv32imac_zicsr",
+    "-mabi=ilp32",
+    "-Oz",
+    "-mllvm",
+    "-enable-machine-outliner=never",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-stack-protector",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-mno-relax",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-ffixed-x1",
+    "-ffixed-x2",
+    "-ffixed-x3",
+    "-ffixed-x4",
+    "-ffixed-x5",
+    "-ffixed-x6",
+    "-ffixed-x7",
+    "-ffixed-x8",
+    "-ffixed-x9",
+    "-ffixed-x12",
+    "-ffixed-x13",
+    "-ffixed-x16",
+    "-ffixed-x17",
+    "-ffixed-x18",
+    "-ffixed-x19",
+    "-ffixed-x20",
+    "-ffixed-x21",
+    "-ffixed-x22",
+    "-ffixed-x23",
+    "-ffixed-x24",
+    "-ffixed-x25",
+    "-ffixed-x26",
+    "-ffixed-x27",
+    "-ffixed-x28",
+    "-ffixed-x29",
+    "-ffixed-x30",
+    "-ffixed-x31",
+    "-x",
+    "c++",
+    "-std=c++17",
+    "-fno-exceptions"
+  ],
+  "commands": [
+    {
+      "label": "main.o",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-c",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\main.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "main.ll",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-S",
+        "-emit-llvm",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\main.ll"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "helpers.o",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-c",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\helpers.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "helpers.ll",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-S",
+        "-emit-llvm",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\helpers.ll"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "link",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "--no-relax",
+        "--no-undefined",
+        "-T",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\placements.ld",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\main.o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\helpers.o",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "disassembly",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+        "--disassemble",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "log_sha256": "d8600b1ddd728c5eef8f7067c8dd200004e09be3b0440319e67d3f7dd046c7fd"
+    }
+  ],
+  "firmware_input": {
+    "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "artifacts": {
+    "main.o": "31984d2df688a8d955fa52a4c59cb23d978b6e0a999163b98a09db81d5806a2b",
+    "helpers.o": "c43f648d6837a4dcbcb6f1535578faf100bd8fe2d25582ca0ddffe84b1a38f30",
+    "main.ll": "dea830fd61f496d343793323ce9ab73003fbdbdbac128d7ba8b0b94eb05c5a3d",
+    "helpers.ll": "bb1d404e286412883a891b0adc4ce5369f86b33c3823fa70bd76f58072baa3e1",
+    "COMPONENT-ONLY-NOT-FIRMWARE.elf": "6f5373023ab7eab50a67e1b9b422ddec8de71b23728d9501bc4612c3a530a6ac",
+    "placements.ld": "b1e77f2a0475177eae03382b644aadf040beece00a3aa371faf2613f066def1b"
+  },
+  "checks": {
+    "objects": {
+      "main": {
+        "sha256": "31984d2df688a8d955fa52a4c59cb23d978b6e0a999163b98a09db81d5806a2b",
+        "kind": "main",
+        "allocated_bytes": 144,
+        "all_allocated_byte_ownership": true,
+        "undefined_symbols": [
+          "tsl9_rebuild_rcc_registers_19124",
+          "tsl9_rebuild_rcc_registers_19142",
+          "tsl9_rebuild_rcc_registers_19160",
+          "tsl9_rebuild_rcc_registers_1917e"
+        ],
+        "relocations": 6,
+        "functions": {
+          "tsl9_rebuild_interrupt_registers_9a42": {
+            "address": 0,
+            "bytes": 144,
+            "code_sha256": "dc854fc64abb7b2c5a8939365c052c706c7074222d6e00561430d54da981bc7c"
+          }
+        }
+      },
+      "helpers": {
+        "sha256": "c43f648d6837a4dcbcb6f1535578faf100bd8fe2d25582ca0ddffe84b1a38f30",
+        "kind": "helpers",
+        "allocated_bytes": 120,
+        "all_allocated_byte_ownership": true,
+        "undefined_symbols": [],
+        "relocations": 0,
+        "functions": {
+          "tsl9_rebuild_rcc_registers_19124": {
+            "address": 0,
+            "bytes": 30,
+            "code_sha256": "ca3d4aef350f5c783ee6eeae7d25ba85b74055551058135024d07edf1804e864"
+          },
+          "tsl9_rebuild_rcc_registers_19142": {
+            "address": 0,
+            "bytes": 30,
+            "code_sha256": "e74e208ea699962ecf8c71269627881ab8edfd64787710b410c6c74a3607d6d5"
+          },
+          "tsl9_rebuild_rcc_registers_19160": {
+            "address": 0,
+            "bytes": 30,
+            "code_sha256": "a5541a42d8ec2844fcd1d2df5492c90e2b140ce22ae79b02f50e330277c31b60"
+          },
+          "tsl9_rebuild_rcc_registers_1917e": {
+            "address": 0,
+            "bytes": 30,
+            "code_sha256": "bec2619b2d742c8bfa1b82087f6cea1ed8a133adb89b25258a487ef2e2d2648e"
+          }
+        }
+      }
+    },
+    "linked": {
+      "sha256": "6f5373023ab7eab50a67e1b9b422ddec8de71b23728d9501bc4612c3a530a6ac",
+      "kind": "linked",
+      "allocated_bytes": 264,
+      "all_allocated_byte_ownership": true,
+      "undefined_symbols": [],
+      "relocations": 0,
+      "functions": {
+        "tsl9_rebuild_interrupt_registers_9a42": {
+          "address": 39490,
+          "bytes": 144,
+          "code_sha256": "e891dfba9c3ecc43d492888fd2c95c35e9510722dae42261c805ec3c4e0e1e82"
+        },
+        "tsl9_rebuild_rcc_registers_19142": {
+          "address": 102722,
+          "bytes": 30,
+          "code_sha256": "e74e208ea699962ecf8c71269627881ab8edfd64787710b410c6c74a3607d6d5"
+        },
+        "tsl9_rebuild_rcc_registers_19124": {
+          "address": 102692,
+          "bytes": 30,
+          "code_sha256": "ca3d4aef350f5c783ee6eeae7d25ba85b74055551058135024d07edf1804e864"
+        },
+        "tsl9_rebuild_rcc_registers_1917e": {
+          "address": 102782,
+          "bytes": 30,
+          "code_sha256": "bec2619b2d742c8bfa1b82087f6cea1ed8a133adb89b25258a487ef2e2d2648e"
+        },
+        "tsl9_rebuild_rcc_registers_19160": {
+          "address": 102752,
+          "bytes": 30,
+          "code_sha256": "a5541a42d8ec2844fcd1d2df5492c90e2b140ce22ae79b02f50e330277c31b60"
+        }
+      }
+    },
+    "machine": {
+      "functions": {
+        "tsl9_rebuild_interrupt_registers_9a42": {
+          "bytes": 144,
+          "instructions": 46,
+          "code_sha256": "e891dfba9c3ecc43d492888fd2c95c35e9510722dae42261c805ec3c4e0e1e82",
+          "rows": [
+            {
+              "addr": 39490,
+              "size": 2,
+              "bytes": "4111",
+              "decoded": [
+                "addi",
+                2,
+                2,
+                -16
+              ]
+            },
+            {
+              "addr": 39492,
+              "size": 2,
+              "bytes": "06c6",
+              "decoded": [
+                "sw",
+                1,
+                2,
+                12
+              ]
+            },
+            {
+              "addr": 39494,
+              "size": 2,
+              "bytes": "22c4",
+              "decoded": [
+                "sw",
+                8,
+                2,
+                8
+              ]
+            },
+            {
+              "addr": 39496,
+              "size": 2,
+              "bytes": "26c2",
+              "decoded": [
+                "sw",
+                9,
+                2,
+                4
+              ]
+            },
+            {
+              "addr": 39498,
+              "size": 2,
+              "bytes": "4ac0",
+              "decoded": [
+                "sw",
+                18,
+                2,
+                0
+              ]
+            },
+            {
+              "addr": 39500,
+              "size": 4,
+              "bytes": "13098008",
+              "decoded": [
+                "addi",
+                18,
+                0,
+                136
+              ]
+            },
+            {
+              "addr": 39504,
+              "size": 4,
+              "bytes": "73300980",
+              "decoded": [
+                "csrrc",
+                0,
+                2048,
+                18
+              ]
+            },
+            {
+              "addr": 39508,
+              "size": 4,
+              "bytes": "b7040202",
+              "decoded": [
+                "lui",
+                9,
+                33685504
+              ]
+            },
+            {
+              "addr": 39512,
+              "size": 4,
+              "bytes": "13856400",
+              "decoded": [
+                "addi",
+                10,
+                9,
+                6
+              ]
+            },
+            {
+              "addr": 39516,
+              "size": 2,
+              "bytes": "8545",
+              "decoded": [
+                "addi",
+                11,
+                0,
+                1
+              ]
+            },
+            {
+              "addr": 39518,
+              "size": 4,
+              "bytes": "eff0406e",
+              "decoded": [
+                "jal",
+                1,
+                102722
+              ]
+            },
+            {
+              "addr": 39522,
+              "size": 2,
+              "bytes": "0564",
+              "decoded": [
+                "lui",
+                8,
+                4096
+              ]
+            },
+            {
+              "addr": 39524,
+              "size": 4,
+              "bytes": "1305d401",
+              "decoded": [
+                "addi",
+                10,
+                8,
+                29
+              ]
+            },
+            {
+              "addr": 39528,
+              "size": 2,
+              "bytes": "8545",
+              "decoded": [
+                "addi",
+                11,
+                0,
+                1
+              ]
+            },
+            {
+              "addr": 39530,
+              "size": 4,
+              "bytes": "eff0a06b",
+              "decoded": [
+                "jal",
+                1,
+                102692
+              ]
+            },
+            {
+              "addr": 39534,
+              "size": 4,
+              "bytes": "13856400",
+              "decoded": [
+                "addi",
+                10,
+                9,
+                6
+              ]
+            },
+            {
+              "addr": 39538,
+              "size": 2,
+              "bytes": "8545",
+              "decoded": [
+                "addi",
+                11,
+                0,
+                1
+              ]
+            },
+            {
+              "addr": 39540,
+              "size": 4,
+              "bytes": "eff0a070",
+              "decoded": [
+                "jal",
+                1,
+                102782
+              ]
+            },
+            {
+              "addr": 39544,
+              "size": 4,
+              "bytes": "13856400",
+              "decoded": [
+                "addi",
+                10,
+                9,
+                6
+              ]
+            },
+            {
+              "addr": 39548,
+              "size": 2,
+              "bytes": "8145",
+              "decoded": [
+                "addi",
+                11,
+                0,
+                0
+              ]
+            },
+            {
+              "addr": 39550,
+              "size": 4,
+              "bytes": "eff00070",
+              "decoded": [
+                "jal",
+                1,
+                102782
+              ]
+            },
+            {
+              "addr": 39554,
+              "size": 4,
+              "bytes": "1305d401",
+              "decoded": [
+                "addi",
+                10,
+                8,
+                29
+              ]
+            },
+            {
+              "addr": 39558,
+              "size": 2,
+              "bytes": "8545",
+              "decoded": [
+                "addi",
+                11,
+                0,
+                1
+              ]
+            },
+            {
+              "addr": 39560,
+              "size": 4,
+              "bytes": "eff0806d",
+              "decoded": [
+                "jal",
+                1,
+                102752
+              ]
+            },
+            {
+              "addr": 39564,
+              "size": 2,
+              "bytes": "8145",
+              "decoded": [
+                "addi",
+                11,
+                0,
+                0
+              ]
+            },
+            {
+              "addr": 39566,
+              "size": 4,
+              "bytes": "1305d401",
+              "decoded": [
+                "addi",
+                10,
+                8,
+                29
+              ]
+            },
+            {
+              "addr": 39570,
+              "size": 4,
+              "bytes": "eff0e06c",
+              "decoded": [
+                "jal",
+                1,
+                102752
+              ]
+            },
+            {
+              "addr": 39574,
+              "size": 4,
+              "bytes": "b7e700e0",
+              "decoded": [
+                "lui",
+                15,
+                3758153728
+              ]
+            },
+            {
+              "addr": 39578,
+              "size": 4,
+              "bytes": "a3860742",
+              "decoded": [
+                "sb",
+                0,
+                15,
+                1069
+              ]
+            },
+            {
+              "addr": 39582,
+              "size": 2,
+              "bytes": "0967",
+              "decoded": [
+                "lui",
+                14,
+                8192
+              ]
+            },
+            {
+              "addr": 39584,
+              "size": 4,
+              "bytes": "23a2e710",
+              "decoded": [
+                "sw",
+                14,
+                15,
+                260
+              ]
+            },
+            {
+              "addr": 39588,
+              "size": 4,
+              "bytes": "13070002",
+              "decoded": [
+                "addi",
+                14,
+                0,
+                32
+              ]
+            },
+            {
+              "addr": 39592,
+              "size": 4,
+              "bytes": "2382e742",
+              "decoded": [
+                "sb",
+                14,
+                15,
+                1060
+              ]
+            },
+            {
+              "addr": 39596,
+              "size": 2,
+              "bytes": "4147",
+              "decoded": [
+                "addi",
+                14,
+                0,
+                16
+              ]
+            },
+            {
+              "addr": 39598,
+              "size": 4,
+              "bytes": "23a2e710",
+              "decoded": [
+                "sw",
+                14,
+                15,
+                260
+              ]
+            },
+            {
+              "addr": 39602,
+              "size": 4,
+              "bytes": "13070003",
+              "decoded": [
+                "addi",
+                14,
+                0,
+                48
+              ]
+            },
+            {
+              "addr": 39606,
+              "size": 4,
+              "bytes": "a383e742",
+              "decoded": [
+                "sb",
+                14,
+                15,
+                1063
+              ]
+            },
+            {
+              "addr": 39610,
+              "size": 4,
+              "bytes": "13070008",
+              "decoded": [
+                "addi",
+                14,
+                0,
+                128
+              ]
+            },
+            {
+              "addr": 39614,
+              "size": 4,
+              "bytes": "23a2e710",
+              "decoded": [
+                "sw",
+                14,
+                15,
+                260
+              ]
+            },
+            {
+              "addr": 39618,
+              "size": 4,
+              "bytes": "73200980",
+              "decoded": [
+                "csrrs",
+                0,
+                2048,
+                18
+              ]
+            },
+            {
+              "addr": 39622,
+              "size": 2,
+              "bytes": "b240",
+              "decoded": [
+                "lw",
+                1,
+                2,
+                12
+              ]
+            },
+            {
+              "addr": 39624,
+              "size": 2,
+              "bytes": "2244",
+              "decoded": [
+                "lw",
+                8,
+                2,
+                8
+              ]
+            },
+            {
+              "addr": 39626,
+              "size": 2,
+              "bytes": "9244",
+              "decoded": [
+                "lw",
+                9,
+                2,
+                4
+              ]
+            },
+            {
+              "addr": 39628,
+              "size": 2,
+              "bytes": "0249",
+              "decoded": [
+                "lw",
+                18,
+                2,
+                0
+              ]
+            },
+            {
+              "addr": 39630,
+              "size": 2,
+              "bytes": "4101",
+              "decoded": [
+                "addi",
+                2,
+                2,
+                16
+              ]
+            },
+            {
+              "addr": 39632,
+              "size": 2,
+              "bytes": "8280",
+              "decoded": [
+                "jalr",
+                0,
+                1,
+                0
+              ]
+            }
+          ],
+          "raw_operand_decode_checked": true
+        },
+        "tsl9_rebuild_rcc_registers_19124": {
+          "bytes": 30,
+          "instructions": 12,
+          "code_sha256": "ca3d4aef350f5c783ee6eeae7d25ba85b74055551058135024d07edf1804e864",
+          "rows": [
+            {
+              "addr": 102692,
+              "size": 2,
+              "bytes": "99c5",
+              "decoded": [
+                "beq",
+                11,
+                0,
+                102706
+              ]
+            },
+            {
+              "addr": 102694,
+              "size": 4,
+              "bytes": "37170240",
+              "decoded": [
+                "lui",
+                14,
+                1073876992
+              ]
+            },
+            {
+              "addr": 102698,
+              "size": 2,
+              "bytes": "1c4f",
+              "decoded": [
+                "lw",
+                15,
+                14,
+                24
+              ]
+            },
+            {
+              "addr": 102700,
+              "size": 2,
+              "bytes": "5d8d",
+              "decoded": [
+                "or",
+                10,
+                10,
+                15
+              ]
+            },
+            {
+              "addr": 102702,
+              "size": 2,
+              "bytes": "08cf",
+              "decoded": [
+                "sw",
+                10,
+                14,
+                24
+              ]
+            },
+            {
+              "addr": 102704,
+              "size": 2,
+              "bytes": "8280",
+              "decoded": [
+                "jalr",
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "addr": 102706,
+              "size": 4,
+              "bytes": "b7170240",
+              "decoded": [
+                "lui",
+                15,
+                1073876992
+              ]
+            },
+            {
+              "addr": 102710,
+              "size": 2,
+              "bytes": "984f",
+              "decoded": [
+                "lw",
+                14,
+                15,
+                24
+              ]
+            },
+            {
+              "addr": 102712,
+              "size": 4,
+              "bytes": "1345f5ff",
+              "decoded": [
+                "xori",
+                10,
+                10,
+                -1
+              ]
+            },
+            {
+              "addr": 102716,
+              "size": 2,
+              "bytes": "798d",
+              "decoded": [
+                "and",
+                10,
+                10,
+                14
+              ]
+            },
+            {
+              "addr": 102718,
+              "size": 2,
+              "bytes": "88cf",
+              "decoded": [
+                "sw",
+                10,
+                15,
+                24
+              ]
+            },
+            {
+              "addr": 102720,
+              "size": 2,
+              "bytes": "8280",
+              "decoded": [
+                "jalr",
+                0,
+                1,
+                0
+              ]
+            }
+          ],
+          "raw_operand_decode_checked": true
+        },
+        "tsl9_rebuild_rcc_registers_19142": {
+          "bytes": 30,
+          "instructions": 12,
+          "code_sha256": "e74e208ea699962ecf8c71269627881ab8edfd64787710b410c6c74a3607d6d5",
+          "rows": [
+            {
+              "addr": 102722,
+              "size": 2,
+              "bytes": "99c5",
+              "decoded": [
+                "beq",
+                11,
+                0,
+                102736
+              ]
+            },
+            {
+              "addr": 102724,
+              "size": 4,
+              "bytes": "37170240",
+              "decoded": [
+                "lui",
+                14,
+                1073876992
+              ]
+            },
+            {
+              "addr": 102728,
+              "size": 2,
+              "bytes": "5c4f",
+              "decoded": [
+                "lw",
+                15,
+                14,
+                28
+              ]
+            },
+            {
+              "addr": 102730,
+              "size": 2,
+              "bytes": "5d8d",
+              "decoded": [
+                "or",
+                10,
+                10,
+                15
+              ]
+            },
+            {
+              "addr": 102732,
+              "size": 2,
+              "bytes": "48cf",
+              "decoded": [
+                "sw",
+                10,
+                14,
+                28
+              ]
+            },
+            {
+              "addr": 102734,
+              "size": 2,
+              "bytes": "8280",
+              "decoded": [
+                "jalr",
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "addr": 102736,
+              "size": 4,
+              "bytes": "b7170240",
+              "decoded": [
+                "lui",
+                15,
+                1073876992
+              ]
+            },
+            {
+              "addr": 102740,
+              "size": 2,
+              "bytes": "d84f",
+              "decoded": [
+                "lw",
+                14,
+                15,
+                28
+              ]
+            },
+            {
+              "addr": 102742,
+              "size": 4,
+              "bytes": "1345f5ff",
+              "decoded": [
+                "xori",
+                10,
+                10,
+                -1
+              ]
+            },
+            {
+              "addr": 102746,
+              "size": 2,
+              "bytes": "798d",
+              "decoded": [
+                "and",
+                10,
+                10,
+                14
+              ]
+            },
+            {
+              "addr": 102748,
+              "size": 2,
+              "bytes": "c8cf",
+              "decoded": [
+                "sw",
+                10,
+                15,
+                28
+              ]
+            },
+            {
+              "addr": 102750,
+              "size": 2,
+              "bytes": "8280",
+              "decoded": [
+                "jalr",
+                0,
+                1,
+                0
+              ]
+            }
+          ],
+          "raw_operand_decode_checked": true
+        },
+        "tsl9_rebuild_rcc_registers_19160": {
+          "bytes": 30,
+          "instructions": 12,
+          "code_sha256": "a5541a42d8ec2844fcd1d2df5492c90e2b140ce22ae79b02f50e330277c31b60",
+          "rows": [
+            {
+              "addr": 102752,
+              "size": 2,
+              "bytes": "99c5",
+              "decoded": [
+                "beq",
+                11,
+                0,
+                102766
+              ]
+            },
+            {
+              "addr": 102754,
+              "size": 4,
+              "bytes": "37170240",
+              "decoded": [
+                "lui",
+                14,
+                1073876992
+              ]
+            },
+            {
+              "addr": 102758,
+              "size": 2,
+              "bytes": "5c47",
+              "decoded": [
+                "lw",
+                15,
+                14,
+                12
+              ]
+            },
+            {
+              "addr": 102760,
+              "size": 2,
+              "bytes": "5d8d",
+              "decoded": [
+                "or",
+                10,
+                10,
+                15
+              ]
+            },
+            {
+              "addr": 102762,
+              "size": 2,
+              "bytes": "48c7",
+              "decoded": [
+                "sw",
+                10,
+                14,
+                12
+              ]
+            },
+            {
+              "addr": 102764,
+              "size": 2,
+              "bytes": "8280",
+              "decoded": [
+                "jalr",
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "addr": 102766,
+              "size": 4,
+              "bytes": "b7170240",
+              "decoded": [
+                "lui",
+                15,
+                1073876992
+              ]
+            },
+            {
+              "addr": 102770,
+              "size": 2,
+              "bytes": "d847",
+              "decoded": [
+                "lw",
+                14,
+                15,
+                12
+              ]
+            },
+            {
+              "addr": 102772,
+              "size": 4,
+              "bytes": "1345f5ff",
+              "decoded": [
+                "xori",
+                10,
+                10,
+                -1
+              ]
+            },
+            {
+              "addr": 102776,
+              "size": 2,
+              "bytes": "798d",
+              "decoded": [
+                "and",
+                10,
+                10,
+                14
+              ]
+            },
+            {
+              "addr": 102778,
+              "size": 2,
+              "bytes": "c8c7",
+              "decoded": [
+                "sw",
+                10,
+                15,
+                12
+              ]
+            },
+            {
+              "addr": 102780,
+              "size": 2,
+              "bytes": "8280",
+              "decoded": [
+                "jalr",
+                0,
+                1,
+                0
+              ]
+            }
+          ],
+          "raw_operand_decode_checked": true
+        },
+        "tsl9_rebuild_rcc_registers_1917e": {
+          "bytes": 30,
+          "instructions": 12,
+          "code_sha256": "bec2619b2d742c8bfa1b82087f6cea1ed8a133adb89b25258a487ef2e2d2648e",
+          "rows": [
+            {
+              "addr": 102782,
+              "size": 2,
+              "bytes": "99c5",
+              "decoded": [
+                "beq",
+                11,
+                0,
+                102796
+              ]
+            },
+            {
+              "addr": 102784,
+              "size": 4,
+              "bytes": "37170240",
+              "decoded": [
+                "lui",
+                14,
+                1073876992
+              ]
+            },
+            {
+              "addr": 102788,
+              "size": 2,
+              "bytes": "1c4b",
+              "decoded": [
+                "lw",
+                15,
+                14,
+                16
+              ]
+            },
+            {
+              "addr": 102790,
+              "size": 2,
+              "bytes": "5d8d",
+              "decoded": [
+                "or",
+                10,
+                10,
+                15
+              ]
+            },
+            {
+              "addr": 102792,
+              "size": 2,
+              "bytes": "08cb",
+              "decoded": [
+                "sw",
+                10,
+                14,
+                16
+              ]
+            },
+            {
+              "addr": 102794,
+              "size": 2,
+              "bytes": "8280",
+              "decoded": [
+                "jalr",
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "addr": 102796,
+              "size": 4,
+              "bytes": "b7170240",
+              "decoded": [
+                "lui",
+                15,
+                1073876992
+              ]
+            },
+            {
+              "addr": 102800,
+              "size": 2,
+              "bytes": "984b",
+              "decoded": [
+                "lw",
+                14,
+                15,
+                16
+              ]
+            },
+            {
+              "addr": 102802,
+              "size": 4,
+              "bytes": "1345f5ff",
+              "decoded": [
+                "xori",
+                10,
+                10,
+                -1
+              ]
+            },
+            {
+              "addr": 102806,
+              "size": 2,
+              "bytes": "798d",
+              "decoded": [
+                "and",
+                10,
+                10,
+                14
+              ]
+            },
+            {
+              "addr": 102808,
+              "size": 2,
+              "bytes": "88cb",
+              "decoded": [
+                "sw",
+                10,
+                15,
+                16
+              ]
+            },
+            {
+              "addr": 102810,
+              "size": 2,
+              "bytes": "8280",
+              "decoded": [
+                "jalr",
+                0,
+                1,
+                0
+              ]
+            }
+          ],
+          "raw_operand_decode_checked": true
+        }
+      },
+      "calls": [
+        {
+          "site": 39518,
+          "target": 102722,
+          "link": 39522,
+          "displacement": 63204,
+          "bytes": 4,
+          "raw": "eff0406e",
+          "A0_mask": 33685510,
+          "A1_flag": 1,
+          "MMIO_address": 1073877020
+        },
+        {
+          "site": 39530,
+          "target": 102692,
+          "link": 39534,
+          "displacement": 63162,
+          "bytes": 4,
+          "raw": "eff0a06b",
+          "A0_mask": 4125,
+          "A1_flag": 1,
+          "MMIO_address": 1073877016
+        },
+        {
+          "site": 39540,
+          "target": 102782,
+          "link": 39544,
+          "displacement": 63242,
+          "bytes": 4,
+          "raw": "eff0a070",
+          "A0_mask": 33685510,
+          "A1_flag": 1,
+          "MMIO_address": 1073877008
+        },
+        {
+          "site": 39550,
+          "target": 102782,
+          "link": 39554,
+          "displacement": 63232,
+          "bytes": 4,
+          "raw": "eff00070",
+          "A0_mask": 33685510,
+          "A1_flag": 0,
+          "MMIO_address": 1073877008
+        },
+        {
+          "site": 39560,
+          "target": 102752,
+          "link": 39564,
+          "displacement": 63192,
+          "bytes": 4,
+          "raw": "eff0806d",
+          "A0_mask": 4125,
+          "A1_flag": 1,
+          "MMIO_address": 1073877004
+        },
+        {
+          "site": 39570,
+          "target": 102752,
+          "link": 39574,
+          "displacement": 63182,
+          "bytes": 4,
+          "raw": "eff0e06c",
+          "A0_mask": 4125,
+          "A1_flag": 0,
+          "MMIO_address": 1073877004
+        }
+      ],
+      "main_first_SP_adjustment_identical": true,
+      "main_body_offset10_identical": true,
+      "main_instruction_boundaries_identical": true,
+      "save_multiset_identical": true,
+      "save_order_identical": false,
+      "actual_save_rows": [
+        {
+          "addr": 39492,
+          "size": 2,
+          "bytes": "06c6",
+          "decoded": [
+            "sw",
+            1,
+            2,
+            12
+          ]
+        },
+        {
+          "addr": 39494,
+          "size": 2,
+          "bytes": "22c4",
+          "decoded": [
+            "sw",
+            8,
+            2,
+            8
+          ]
+        },
+        {
+          "addr": 39496,
+          "size": 2,
+          "bytes": "26c2",
+          "decoded": [
+            "sw",
+            9,
+            2,
+            4
+          ]
+        },
+        {
+          "addr": 39498,
+          "size": 2,
+          "bytes": "4ac0",
+          "decoded": [
+            "sw",
+            18,
+            2,
+            0
+          ]
+        }
+      ],
+      "original_save_rows": [
+        {
+          "addr": 39492,
+          "size": 2,
+          "bytes": "4ac0",
+          "decoded": [
+            "sw",
+            18,
+            2,
+            0
+          ]
+        },
+        {
+          "addr": 39494,
+          "size": 2,
+          "bytes": "06c6",
+          "decoded": [
+            "sw",
+            1,
+            2,
+            12
+          ]
+        },
+        {
+          "addr": 39496,
+          "size": 2,
+          "bytes": "22c4",
+          "decoded": [
+            "sw",
+            8,
+            2,
+            8
+          ]
+        },
+        {
+          "addr": 39498,
+          "size": 2,
+          "bytes": "26c2",
+          "decoded": [
+            "sw",
+            9,
+            2,
+            4
+          ]
+        }
+      ],
+      "changed_instruction_PCs": [
+        39492,
+        39494,
+        39496,
+        39498
+      ],
+      "fresh_frame_loads": [
+        {
+          "site": 39622,
+          "register": 1,
+          "offset": 12
+        },
+        {
+          "site": 39624,
+          "register": 8,
+          "offset": 8
+        },
+        {
+          "site": 39626,
+          "register": 9,
+          "offset": 4
+        },
+        {
+          "site": 39628,
+          "register": 18,
+          "offset": 0
+        }
+      ],
+      "normal_output_contract": {
+        "A0": "last fresh READ32(0x4002100c) & 0xffffefe2",
+        "A1": 0,
+        "A4": 128,
+        "A5": 3758153728,
+        "A2_A3": "untouched",
+        "S0_S1_S2_RA": "fresh stack reloads; equal incoming only if saved words unchanged",
+        "SP": "entry SP if intervening execution keeps frame base"
+      },
+      "whole_component_original_extents_fit": true,
+      "original_pointwise_equivalence_proved": false,
+      "asynchronous_equivalence_proved": false,
+      "full_original_image_integration_proved": false,
+      "target_execution": false,
+      "ISA_emulation": false
+    },
+    "LLVM_IR": {
+      "explicit_JAL_boundaries": [
+        {
+          "target": "tsl9_rebuild_rcc_registers_19142",
+          "constraints": "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}",
+          "IR_arguments": "i32 1, i32 %4"
+        },
+        {
+          "target": "tsl9_rebuild_rcc_registers_19124",
+          "constraints": "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}",
+          "IR_arguments": "i32 1, i32 %8"
+        },
+        {
+          "target": "tsl9_rebuild_rcc_registers_1917e",
+          "constraints": "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}",
+          "IR_arguments": "i32 1, i32 %11"
+        },
+        {
+          "target": "tsl9_rebuild_rcc_registers_1917e",
+          "constraints": "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}",
+          "IR_arguments": "i32 0, i32 %14"
+        },
+        {
+          "target": "tsl9_rebuild_rcc_registers_19160",
+          "constraints": "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}",
+          "IR_arguments": "i32 1, i32 %17"
+        },
+        {
+          "target": "tsl9_rebuild_rcc_registers_19160",
+          "constraints": "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}",
+          "IR_arguments": "i32 %19, i32 %21"
+        }
+      ],
+      "PFIC_store_widths": [
+        8,
+        32,
+        8,
+        32,
+        8,
+        32
+      ],
+      "main_source_runtime_calls": 0,
+      "helper_branch_owned_load_sites": 8,
+      "helper_branch_owned_store_sites": 8,
+      "structural_IR_checks_only": true,
+      "full_IR_semantics_proved": false
+    }
+  },
+  "actual_compiled_controls": [
+    {
+      "case": "missing_RA_clobber",
+      "changed_source": "experiments/tsl9-v4160-irq-callframe/src/callframe_io.h",
+      "source_sha256": "c04b9b1c8ec0e3ea16c038ddf65f2347212d5721369362d4495205af3abce282",
+      "actual_compilation_and_link_succeeded": true,
+      "rejected": true,
+      "reason": "every allocated byte owned by expected executable functions",
+      "artifacts": {
+        "main.o": "f14c8dbaecc1b76e1c5737ee81ef1b350d8bfce91a4b850bea39d9b6c6ce2e54",
+        "helpers.o": "c43f648d6837a4dcbcb6f1535578faf100bd8fe2d25582ca0ddffe84b1a38f30",
+        "main.ll": "74bf8515b518ddeee829154939e35fda0cf2d46d227599d2eb1459ef1bfb83cf",
+        "helpers.ll": "75b10e89a71177c158245d58812e006a9e0a8dce3e32c304745587dcfb72935e",
+        "COMPONENT-ONLY-NOT-FIRMWARE.elf": "6d6565e59528df694c4ad4e7d7ed72196c5d373d46d1de2760a7e8a70826bd6a"
+      },
+      "commands": [
+        {
+          "label": "main.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\main.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "main.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\main.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\helpers.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\helpers.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "link",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "--no-relax",
+            "--no-undefined",
+            "-T",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\placements.ld",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\main.o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\helpers.o",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "disassembly",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "--disassemble",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-missing_RA_clobber\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "86e193dc616de800833c5d4d2e36b46bf05c3af7eb1c73574469bb75e365abab"
+        }
+      ]
+    },
+    {
+      "case": "wrong_call_link",
+      "changed_source": "experiments/tsl9-v4160-irq-callframe/src/callframe_io.h",
+      "source_sha256": "b96fd05a18b08f6c307e6dad60c1207cd41c4c05acaeb61e58b2b50c224a9084",
+      "actual_compilation_and_link_succeeded": true,
+      "rejected": true,
+      "reason": "unparsed/unsupported displayed instruction: j",
+      "artifacts": {
+        "main.o": "fae94469edc9a5d98391a902cdad5702486603f59f1b4d16b3f55b2491f8a84b",
+        "helpers.o": "c43f648d6837a4dcbcb6f1535578faf100bd8fe2d25582ca0ddffe84b1a38f30",
+        "main.ll": "b69fa1068635454bb160cdb3507b983a63d260b4fc2ca7c5711f712e22d1ae83",
+        "helpers.ll": "3431dab9bc734159432dacc08215eca6f8b338dad779ae959b1db67acddbbf45",
+        "COMPONENT-ONLY-NOT-FIRMWARE.elf": "b355dec70fc736438d0e86f24079764d08c37b18ff15ba30bb05c9b35dfbda73"
+      },
+      "commands": [
+        {
+          "label": "main.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\main.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "main.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\main.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\helpers.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\helpers.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "link",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "--no-relax",
+            "--no-undefined",
+            "-T",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\placements.ld",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\main.o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\helpers.o",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "disassembly",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "--disassemble",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_link\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "8742e6064fd41e45f31570ccbd4b5bc5317afe7cc1c4f087aedfeb4518c39c6f"
+        }
+      ]
+    },
+    {
+      "case": "wrong_call_target",
+      "changed_source": "experiments/tsl9-v4160-irq-callframe/src/interrupt_callframe.c",
+      "source_sha256": "a36e223fa7b578a7207e7a0f81196a9726c3e9804b72d8822eebd4dcf31b25eb",
+      "actual_compilation_and_link_succeeded": true,
+      "rejected": true,
+      "reason": "only explicit main-object helper obligations; final link has no UND",
+      "artifacts": {
+        "main.o": "8e2ef5913aaa5132237b034532da5ca06ef6d5dd6df9c40b08b8033b7bb5fef3",
+        "helpers.o": "c43f648d6837a4dcbcb6f1535578faf100bd8fe2d25582ca0ddffe84b1a38f30",
+        "main.ll": "456501a3c8adbb6292a3cfe0835a4b9de12470cb72fabebd93e4cc67b7b64432",
+        "helpers.ll": "3f04c97f737227ebbd418532e6d5a4c42b22e7e0080c39aa853934ec9646d5b3",
+        "COMPONENT-ONLY-NOT-FIRMWARE.elf": "febcf8e04d3ea37d5b04cdecd7e3e117b5ad3daf671d1fe32b956a20ae3980d7"
+      },
+      "commands": [
+        {
+          "label": "main.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\main.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "main.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\main.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\helpers.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\helpers.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "link",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "--no-relax",
+            "--no-undefined",
+            "-T",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\placements.ld",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\main.o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\helpers.o",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "disassembly",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "--disassemble",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_call_target\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "a6feca62deded658b02ce4deffd13e3f59073de87cbb8d506c91b23481145a7b"
+        }
+      ]
+    },
+    {
+      "case": "wrong_final_flag",
+      "changed_source": "experiments/tsl9-v4160-irq-callframe/src/callframe_io.h",
+      "source_sha256": "ebeb860e33f3b187e3b4c5627c56894f52dc78dd660c37e39db13b5b96cd28ba",
+      "actual_compilation_and_link_succeeded": true,
+      "rejected": true,
+      "reason": "original firstSP adjustment and complete body from offset10 identical",
+      "artifacts": {
+        "main.o": "566a7da8c0e50abefa4712b6dc239c6fd4e7e874f895b7f2cd5810f0fc74e645",
+        "helpers.o": "c43f648d6837a4dcbcb6f1535578faf100bd8fe2d25582ca0ddffe84b1a38f30",
+        "main.ll": "48dbeea17df028873e439ba5a75e442271110f091b30d7729066e5e521a049df",
+        "helpers.ll": "28a073d91ac0667ea22f5e45ca5779cc2c26f7c661aa0045b231c66d047150e1",
+        "COMPONENT-ONLY-NOT-FIRMWARE.elf": "597279ce244cc5b8e7114c8b9e4595402e576df5d566697c2ce6d3cd812cc11c"
+      },
+      "commands": [
+        {
+          "label": "main.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\main.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "main.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\main.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\helpers.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\helpers.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "link",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "--no-relax",
+            "--no-undefined",
+            "-T",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\placements.ld",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\main.o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\helpers.o",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "disassembly",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "--disassemble",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_final_flag\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "9d5860c1123cf517ea81e3e378f0b79120a2155f8c7f04bdf57b788c5fd7c9e9"
+        }
+      ]
+    },
+    {
+      "case": "wrong_PFIC_width",
+      "changed_source": "experiments/tsl9-v4160-irq-native/src/native_io.h",
+      "source_sha256": "8ce3d3b63711ecdf00788525ff35d9a6e82b0e23e12f10799d581d31f8cedc13",
+      "actual_compilation_and_link_succeeded": true,
+      "rejected": true,
+      "reason": "Unsupported instruction at 0x9a9a: a3960742",
+      "artifacts": {
+        "main.o": "362cd012a53ed1ebba72fd4cc157fa435b71a5fccb2d8a22ab5fa62e6c1d3109",
+        "helpers.o": "c43f648d6837a4dcbcb6f1535578faf100bd8fe2d25582ca0ddffe84b1a38f30",
+        "main.ll": "4530cadb3b687c14dea49424cccc78af4b7428f66ef10b6522f3ba9394d88b83",
+        "helpers.ll": "cb199acb6b052a9e3b7276034523391a72d30dcc71af38c65a1dce1ea9ff15d4",
+        "COMPONENT-ONLY-NOT-FIRMWARE.elf": "3dc4494caf7f5be0ae03fb5a7c7b538ed6fe4e49d471b7afd7177b0dc447e6f6"
+      },
+      "commands": [
+        {
+          "label": "main.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\main.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "main.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\main.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\helpers.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\helpers.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "link",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "--no-relax",
+            "--no-undefined",
+            "-T",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\placements.ld",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\main.o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\helpers.o",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "disassembly",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "--disassemble",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_PFIC_width\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e923f354d8a14e6ab8bbe73de462dafa2ffa393d750a09b8420ec7cce713046f"
+        }
+      ]
+    },
+    {
+      "case": "wrong_helper_offset",
+      "changed_source": "experiments/tsl9-v4160-irq-callframe/src/rcc_helpers.c",
+      "source_sha256": "f0804fdf1d205733ea439b337d99f27295aa7b98b5b4333131366dcdc5a88847",
+      "actual_compilation_and_link_succeeded": true,
+      "rejected": true,
+      "reason": "all120 helper bytes/decoded instructions equal original at original VAs",
+      "artifacts": {
+        "main.o": "31984d2df688a8d955fa52a4c59cb23d978b6e0a999163b98a09db81d5806a2b",
+        "helpers.o": "e836271ee17f98588c1ed541f3111eb014d61b580e95917f8b88dbc45760f33c",
+        "main.ll": "3269176bdf763f0c1348fc89744a386d58c00b78fc0509a37959f2112016922e",
+        "helpers.ll": "cd6748b6c62b8ac97169b2d92fa62d8aeb53878fed3614d96b6d3085c798ebb6",
+        "COMPONENT-ONLY-NOT-FIRMWARE.elf": "f6ce8f0e4039c1ec5cf60dab7891a3ffdb9d71f7abde20d0630a9f2695c321ff"
+      },
+      "commands": [
+        {
+          "label": "main.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\main.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "main.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\main.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.o",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\helpers.o"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "helpers.ll",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x12",
+            "-ffixed-x13",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-S",
+            "-emit-llvm",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\helpers.ll"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "link",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "--no-relax",
+            "--no-undefined",
+            "-T",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\placements.ld",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\main.o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\helpers.o",
+            "-o",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "label": "disassembly",
+          "argv": [
+            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "--disassemble",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7e254542f5444e23a7b159628261eb36-cpp\\negative-wrong_helper_offset\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+          ],
+          "exit": 0,
+          "log_sha256": "0c10a1fca5ddaf6cb5fd86d080cc61da5de985bdb7eb74d9a9d595da219ceeae"
+        }
+      ]
+    }
+  ],
+  "transcript_controls": [
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "missing_first",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "9b9bd088fed72b8479f300a0fa8e381def00f92b7a9b0ffcf9c17b2f55c8b9af"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "missing_middle",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "269b54f8eb455348928f3fa807bf408aa7b243d4ea9ee93e611c3e4aba1597ec"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "truncated_last",
+      "rejected": true,
+      "reason": "full function extent including interior RET alternatives",
+      "transcript_sha256": "4e8efc94a43d31d944142faf66f147b6ca23c8aee8d4ed7f217c657cd34e97d7"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "changed_raw_byte",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "f99ff3081841a0122188dc91c7e29586718410f511ca8b365cbf86a8abd4b0f5"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "unparsed_middle",
+      "rejected": true,
+      "reason": "no skipped/unparsed interior instruction lines",
+      "transcript_sha256": "e14a69b0cdd3c78c4e5be3b22a7bab2bc7022239773d1416ab101e6837471a40"
+    },
+    {
+      "function": "tsl9_rebuild_interrupt_registers_9a42",
+      "case": "unparsed_trailing",
+      "rejected": true,
+      "reason": "no skipped/unparsed interior instruction lines",
+      "transcript_sha256": "afdf94f5a3c3d086a0cc07f2344c87d2526dde1a488b4904ed49dcb000107a8e"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "missing_first",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "0c58552a5c5ff43c6331ae179f3266d14e55683c5460461fb3bbf6e93a2d3b03"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "missing_middle",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "876f5d5f51813203d9f5c93ff6bf0e35cecf0dafbedf4cad8b6faa3333231240"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "truncated_last",
+      "rejected": true,
+      "reason": "full function extent including interior RET alternatives",
+      "transcript_sha256": "ec6578ebb65787f66db6bb8ad8656613f51b971f1d3611a27b74aeb5bb0175fe"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "changed_raw_byte",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "56bc844432fb87ec0bda27d9ad7880356c1f48f5b8d98ca17163c9c38c7f687e"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "unparsed_middle",
+      "rejected": true,
+      "reason": "no skipped/unparsed interior instruction lines",
+      "transcript_sha256": "d05dc0a826cbf786f15976a1c18f3c4dfaa52b968a4c870bde32463b0d4ae4eb"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "case": "unparsed_trailing",
+      "rejected": true,
+      "reason": "no skipped/unparsed interior instruction lines",
+      "transcript_sha256": "01dae2fe2502bdfbe39e37065e3f697e26938ef814ec3c3f3d7dac1cb2865e72"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "missing_first",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "100687ec5b4d86c03840a9571797f1e551c8389d773cdd275dd801d4a8cc6852"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "missing_middle",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "896d7b7f9b65d11b65c2ee2198ebecf0730773ee34dbaf8e10592b3eee6def1d"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "truncated_last",
+      "rejected": true,
+      "reason": "full function extent including interior RET alternatives",
+      "transcript_sha256": "0d137cfa9e74c31a38db39b091bc90b9d9c967565f08453bc54e1be758fec7cd"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "changed_raw_byte",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "e31db30f25ac027540059220ac579c4547b01986ea25bf238edd6276274c1eb6"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "unparsed_middle",
+      "rejected": true,
+      "reason": "no skipped/unparsed interior instruction lines",
+      "transcript_sha256": "4bc1cf2a149a7fd7036a4d031df9c7293f9ff92ec7f3d1b4298325d0e02971ab"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "case": "unparsed_trailing",
+      "rejected": true,
+      "reason": "no skipped/unparsed interior instruction lines",
+      "transcript_sha256": "d23e7a525c95b2e83392ac5fc73e8aaaf46bedcf4ebbbe6d125b92303f90af7f"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "missing_first",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "97fa010eeedfbc686019f09dd5c2dbbbbe71f6db68d1bc6a79cfc0c32227dc92"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "missing_middle",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "554d7145c93f35385184143a56196cff1a58f7e12a41352638899539864e716e"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "truncated_last",
+      "rejected": true,
+      "reason": "full function extent including interior RET alternatives",
+      "transcript_sha256": "c2c9a43e3756eeae8e009fd750609b3aeaa80baca66d261c14ed1b0ce654ffb5"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "changed_raw_byte",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "11f1e6c0354bc390bacfd61f198448f2774d8adf2051670ff67423e7eda14fe6"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "unparsed_middle",
+      "rejected": true,
+      "reason": "no skipped/unparsed interior instruction lines",
+      "transcript_sha256": "99e6cabfa662142efce82514651e362f8f2bbe2e1e43b475b2a754a73fd6a404"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "case": "unparsed_trailing",
+      "rejected": true,
+      "reason": "no skipped/unparsed interior instruction lines",
+      "transcript_sha256": "7da6ebafda7e7ad783f36445b3ee3eb091f2908c32b4ce418d8116ef52c9c860"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "missing_first",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "24cc8d0e382e0451aee31c9631d39a173bd9b0c41ab421761c67bb6d7700538a"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "missing_middle",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "d9c1f5abb79ff1bd43bb545fe315d1a4f57472b75891989c8e536bb4dc2bb9da"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "truncated_last",
+      "rejected": true,
+      "reason": "full function extent including interior RET alternatives",
+      "transcript_sha256": "8060bee6b91e27ef54686bbe430e40877b44d7bd6459ae5356cb910bda6f8864"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "changed_raw_byte",
+      "rejected": true,
+      "reason": "every contiguous raw instruction byte equals actual ELF",
+      "transcript_sha256": "6e7c3241c453aea3a250351c2307e23bd1b6662dfe34b54c0c5fab3a83418b4d"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "unparsed_middle",
+      "rejected": true,
+      "reason": "no skipped/unparsed interior instruction lines",
+      "transcript_sha256": "6f364c8658464b48f73ea2c62bbcf95c78939ba661d374bc23b2029adc375225"
+    },
+    {
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "case": "unparsed_trailing",
+      "rejected": true,
+      "reason": "no skipped/unparsed interior instruction lines",
+      "transcript_sha256": "7f8ead8412c18f2a7458a09c665a06be3e368fae326dd7f3c7f0fc4494178972"
+    }
+  ],
+  "whole_component_original_extents_fit": true,
+  "exact_original_main_bytes": false,
+  "original_pointwise_equivalence_proved": false,
+  "asynchronous_equivalence_proved": false,
+  "original_full_image_integration_proved": false,
+  "physical_compatibility_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "firmware_BIN_produced": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false
+}
