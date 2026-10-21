@@ -1,5 +1,13 @@
 # 已驗證里程碑
 
+## 原始尺寸的 Flash program 與入口事件順序
+
+新版 C11／C++17 program 函式自然產生 100 bytes／38 指令。補回兩次 fresh 基底暫存器載入，並明確約束 A0／A5 primitive 後，整個區段由新來源持有，沒有 NOP、padding 或借用原始 bytes。六個 Flash 函式合計 262 bytes／99 指令，兩種語言產生相同元件 ELF。入口控制讀取位於 +4，接著在 +6 對齊 A0、+14 首次寫入控制暫存器；五個 program 迴圈目標仍位於原址，最後六個 bytes 是實際清理及返回指令。
+
+主機每語言通過 481 案例／247,191 斷言，並拒絕六個實際編譯變異；新的獨立 expected-effect 測試每語言通過 12 情境／8,964 斷言及十二個編譯變異拒絕，所有主機執行檔均在啟動前後核對架構。獨立靜態審查另外核對實際元件 bytes、IR 及已知分支角色。另以不同韌體參考路徑實際編譯及重播，並確認錯誤參考 context 會被拒絕。
+
+這補上前輪六個 bytes 的來源缺口，但並未保留所有指令邊界：原始 program 的 +8 位於新版四-byte 對齊指令內。scratch 暫存器、fault／非返回 prefix、非同步、ROM、板子及 OTA 相容性仍未證明。此元件里程碑沒有產生完整新映像或 BIN。已封存的下一階段整合規劃涵蓋 691 個配置、十一個可讀函式、680 段保留儲存、8,259 筆範圍外 RELA 及二十筆外部入口引用；預計的 42 個編譯單元尚非完整映像建置成果。詳見 [繁體中文說明](../analysis/v4160-flash-entry-order-2026-10-22/README.md)。主機入口為 `python experiments/tsl9-v4160-flash-entry-order/verify.py --language both`，原生靜態檢查入口為 `python analysis/v4160-flash-entry-order-2026-10-22/implementation/verify_native.py --project-root . --tool-dir <LLVM-bin> --language both`。Windows 證據不代表 shell、Linux、macOS 或 CI 已執行。
+
 ## 六個可讀 V4.1.60 Flash 函式
 
 共用 C11／C++17 來源重建 quarter wrapper、status、unlock、lock、erase 與 64-word program。原始證據為 262 bytes／99 指令；六個原址原生元件分別為 64／8／30／14／46／94 bytes，status 與 lock 共 22 bytes 完全一致。正常返回契約保留 32-byte frame、fresh `SP+12` source reload、五個有序呼叫、CSR mask 136 與暫存器殘值。program 剩下的六個 bytes 尚無新的儲存來源；此輪沒有產生完整新映像或 BIN。

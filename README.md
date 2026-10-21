@@ -36,6 +36,7 @@ sh ./verify.sh --model system-clock-query --language both
 | 可放回原區段的 144-byte IRQ 呼叫框架 | [繁體中文說明](experiments/tsl9-v4160-irq-callframe/readme.zh-TW.md) |
 | IRQ 可讀來源與完整原始布局整合 | [繁體中文說明](analysis/v4160-irq-image-integration-2026-10-21/readme.zh-TW.md) |
 | 六個可讀 Flash 函式與原址元件 | [繁體中文說明](analysis/v4160-flash-native-2026-10-22/README.md) |
+| 自然產生 100-byte program 與原始進入順序 | [繁體中文說明](analysis/v4160-flash-entry-order-2026-10-22/README.md) |
 | 新功能候選與既有功能證據 | [繁體中文提案](analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.zh-TW.md) |
 | Runtime主程式／初始化／迴圈／派送 | [說明](experiments/tsl9-v4160-runtime-loop/readme.zh-TW.md) |
 | resident候選入口與byte-copy | [入口](experiments/tsl9-resident-entry-reference/readme.zh-TW.md)／[copy](experiments/tsl9-resident-copy-reference/readme.zh-TW.md) |
