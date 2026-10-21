@@ -1,5 +1,13 @@
 # Verified milestones
 
+## Six readable V4.1.60 Flash functions
+
+Shared C11/C++17 source reconstructs the quarter wrapper, status, unlock, lock, erase and 64-word program functions. Original evidence covers 262 bytes / 99 instructions; native components at the six original entry addresses occupy 64/8/30/14/46/94 bytes. Status and lock have 22 original-identical bytes. The normal contract preserves the 32-byte frame, fresh `SP+12` source reload, five ordered calls, CSR mask 136 and normal register residues. Program's six-byte remainder has no new storage owner; no new complete image or BIN is produced.
+
+Canonical host suites pass 481 cases / 247,191 assertions and reject six compiled mutations per language. Independent expected-effect tests add 12 scenarios / 8,964 assertions and twelve compiled mutation rejections per language. Native checks separately inspect actual machine code/IR, rejecting fifteen machine-byte and three IR controls per language. Original source, six high-address caller slices and the full object's recorded relocation frontier are separate evidence scopes.
+
+The frontier identifies twelve external entry references and eleven owned call/branch records among the prior object's 8,276 RELA; the other 8,265 must retain their roles in future integration. No external interior target in those recorded RELA does not establish absence in ROM, numeric indirect references or unknown runtime state. Frame-save order, fault/nonreturn GPR prefixes, pointwise/asynchronous state, board/ROM/Flash and BLE OTA remain unproved. See the [English guide](../analysis/v4160-flash-native-2026-10-22/readme.en.md). Default host command: `python experiments/tsl9-v4160-flash-native/verify.py --language both`; native command: `python analysis/v4160-flash-native-2026-10-22/implementation/verify_native.py --project-root . --tool-dir <LLVM-bin> --language both`. Windows evidence does not establish POSIX/Linux/macOS/CI execution.
+
 ## Readable IRQ source in the complete offline image
 
 Actual C11/C++17 builds recompile 34 original instruction/data carriers plus two readable units, then link and export identical 76,800-byte images. SHA-256 is `47f200dce24be25ac89d57922689da536259935e8615ba8195b10ca192895e1c`. Only eight specified bytes at `0x9A44..0x9A4B` differ, permuting four prologue register-save instructions. Original APK/vendor BINs and the prior source-identical fixture remain unchanged.

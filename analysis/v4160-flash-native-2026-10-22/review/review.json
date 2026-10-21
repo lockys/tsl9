@@ -1,0 +1,52 @@
+{
+  "schema":"ID2966-independent-flash-native-review-v1",
+  "passed":true,
+  "source_seal_sha256":"dff9a51e3b59bbdddd150dde37614753bb3c3b440d7bde2f9402c8b6e9a2bce4",
+  "original_firmware_sha256":"0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "model_inputs":[
+    {"path":"experiments/tsl9-v4160-flash-native/src/flash_native.c","sha256":"a937b855436127a16300ea62ee5a0b44fe09ab0c0e19a0395ee15bcc34025494"},
+    {"path":"experiments/tsl9-v4160-flash-native/src/flash_native.h","sha256":"b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd"},
+    {"path":"experiments/tsl9-v4160-flash-native/src/native_io.h","sha256":"77a46db44e17958027dd01caa6c730fcd4172bce14d56d774876e909b56d3503"},
+    {"path":"experiments/tsl9-v4160-flash-native/src/host_io.c","sha256":"01bb5096a99afdc6e774733121417994a250f40c3f0a6924ddd5b5db57861857"},
+    {"path":"experiments/tsl9-v4160-flash-native/src/host_io.h","sha256":"41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a"},
+    {"path":"experiments/tsl9-v4160-flash-native/tests/test_flash.c","sha256":"574145330cab322daa09331e55d68fe8d5740950e207f7179a4d71c8da8b5718"},
+    {"path":"experiments/tsl9-v4160-flash-native/verify.py","sha256":"9ef74cf130304001785eadee7dbe462df87c1a5afa0ac116d081eeaecfd93731"},
+    {"path":"experiments/tsl9-v4160-flash-native/verify_host.py","sha256":"d1f470a8539eb9815eaa65230a6da974f7dd21b2c009950516e0e3d250cc377e"},
+    {"path":"scripts/portable_verify.py","sha256":"93933fcb13a0fc45c9c5c82ebb1584a94298e28888d4f7f6a359237c7d3f8754"}
+  ],
+  "case_inputs":[
+    {"path":"implementation/verify_native.py","sha256":"dc0c966f057a0562f0d51a0289b9b24ce242d47bee0cd397d72fc12bc0a42013"},
+    {"path":"implementation/probe_native.py","sha256":"68c779c7b5189780703c4b5f63116fb40846fecc7b67329c5c5967a304f5ad2f"},
+    {"path":"compiler-review/review.py","sha256":"0dd857b44c9163d45668f224e5b772f3adfa08e832e58e1c5491b7fa5f1c0554"}
+  ],
+  "receipts":[
+    {"kind":"effects","path":"receipts/effects-effects-283f86fd83a64f33a4b3435f94623d3f-c.json","sha256":"983b5ecc6fe5a2917c46d7a95b4c2a3cf42b7c5d3fd6631ffcfedd51928ab057"},
+    {"kind":"effects","path":"receipts/effects-effects-214fda21f4e841e889570ff4bd86a5b6-cpp.json","sha256":"3d153c1fb19259d78aac3e3e8f1b3f1afac7671bcc9fa4d5037d695041a267b9"},
+    {"kind":"host","path":"receipts/host-c.json","sha256":"983a4473f4b2ea09ce284f2b814b480ee6451a5eda4359efa96bc01a47de9949","artifact_path":"formal-host-372b9ca9d239413da35d9838d02e5558/c/verification.json"},
+    {"kind":"host","path":"receipts/host-cpp.json","sha256":"76ba2ed480177e95a704bf57c1da6fb34e06aaf64b1e9ce991121cc266c71de2","artifact_path":"formal-host-372b9ca9d239413da35d9838d02e5558/cpp/verification.json"},
+    {"kind":"native","path":"receipts/native-c.json","sha256":"ae44eb5a78f86f70354827e66160813f2b1a3955c189ccbabfb0760a733bc9a7","artifact_path":"formal-native-e7e00f684d324cd0bd0f05e5a1671b34/c/verification.json"},
+    {"kind":"native","path":"receipts/native-cpp.json","sha256":"883a898a089a2805f67cc941be04363270e1758858adeb62881ad6d3be8f664b","artifact_path":"formal-native-e7e00f684d324cd0bd0f05e5a1671b34/cpp/verification.json"}
+  ],
+  "native_component_ELF_sha256":"1097156d90ee982a6c03c903785b563acae0357d1bbc7b7c2e29315adbf5d613",
+  "original_bytes":262,"original_instructions":99,
+  "native_bytes":256,"native_instructions":98,
+  "native_function_bytes":{"quarter":64,"status":8,"unlock":30,"lock":14,"erase":46,"program":94},
+  "host_per_language":{"groups":5,"cases":481,"checks":247191,"compiled_controls":6},
+  "independent_expected_effects_per_language":{"groups":1,"cases":12,"checks":8964,"compiled_controls":12},
+  "raw_native_controls_per_language":15,
+  "IR_transcript_controls_per_language":3,
+  "blocking_findings_after_final_verification":[],
+  "closed_review_findings":["Normal effects have an independent expected-order/value/known-mask oracle before prefix comparison","Final host CLI requires exact frozen coverage and before/after runner/helper pins","Native review receives the actual model source directory rather than the source-proof directory"],
+  "unresolved_gaps":["Program aligns A0 after its initial polls, unlike original18EFA; nonreturn/fault/asynchronous GPR prefixes are not equivalent","Quarter keeps the32B frame and SP+12 reload but changes prologue save order","The6B original program tail is not established free or integrated","No whole-image symbol/reference/interior-entry ownership integration is performed","Host normal output slots are semantic observations, not hardware register captures","Actual Flash persistence, faults, controller timing, resident contracts and hardware compatibility remain unproved"],
+  "new_product_features_implemented":false,
+  "new_firmware_BIN":false,
+  "full_image_integration":false,
+  "pointwise_async_equivalence":false,
+  "nonreturn_physical_GPR_prefix_equivalence":false,
+  "target_execution":false,
+  "ISA_emulation":false,
+  "network":false,
+  "device_io":false,
+  "hardware":false,
+  "OTA_ready":false
+}

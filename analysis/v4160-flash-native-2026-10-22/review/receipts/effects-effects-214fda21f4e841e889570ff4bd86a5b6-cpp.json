@@ -1,0 +1,144 @@
+{
+  "schema": "TSL9-independent-expected-flash-effects-v1",
+  "passed": true,
+  "language": "cpp",
+  "source_pins": {
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-flash-native\\src\\flash_native.c": "a937b855436127a16300ea62ee5a0b44fe09ab0c0e19a0395ee15bcc34025494",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-flash-native\\src\\flash_native.h": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-flash-native\\src\\host_io.c": "01bb5096a99afdc6e774733121417994a250f40c3f0a6924ddd5b5db57861857",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-flash-native\\src\\host_io.h": "41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-flash-native\\src\\native_io.h": "77a46db44e17958027dd01caa6c730fcd4172bce14d56d774876e909b56d3503",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\expected-effects.c": "d2387b7983052b2b3b863223eaf3873e00435a1bd03b5833ba31a4c7ad569705",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\scripts\\portable_verify.py": "93933fcb13a0fc45c9c5c82ebb1584a94298e28888d4f7f6a359237c7d3f8754",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\run-effects.py": "044a2eb5992972310f7dca92fc09dab7f4bfa4f7681ab3cf3f73b3b20457e182"
+  },
+  "compiler": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+  "compiler_sha256": "88c8344236a27a6e727e0a8edc49aaa2690bdc7a9464b9d18cc7abe70a9f1c0d",
+  "positive": {
+    "executable_sha256": "1a72b158365aea8eb741a35f09bf73c79f9d0e53e04104c7408f6a30d04866e8",
+    "result": {
+      "passed": true,
+      "groups": 1,
+      "cases": 12,
+      "checks": 8964,
+      "synthetic_effects_only": true
+    }
+  },
+  "actually_compiled_mutants": [
+    {
+      "name": "unlock-key-order",
+      "executable_sha256": "89fe3a27d390d1c2f55a50f8b3b9c6efd91b0023e41e6e8e5fc342134e92fc33",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line57 case1 event6: q->value==e->request.value"
+      }
+    },
+    {
+      "name": "status-not49",
+      "executable_sha256": "a2b2a74101168a159c198498f9663a301d5fa8f49bdae3c59b0759ff6a0136c1",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line57 case1 event10: q->value==e->request.value"
+      }
+    },
+    {
+      "name": "align128",
+      "executable_sha256": "523cea9ce8bade53e1e8019c29e8258a36b40e29041a53180fc249f9e4f8a238",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line57 case1 event13: q->value==e->request.value"
+      }
+    },
+    {
+      "name": "erase-wrong-final-mask",
+      "executable_sha256": "f620efb4c5cb6b992cb65fccdcfb3afe686067a6d7a4419b0ca534d048ef2065",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line57 case2 event19: q->known==e->request.known"
+      }
+    },
+    {
+      "name": "program-wrong-mode",
+      "executable_sha256": "d96f2a159a2ce387eb03c29f492a86ac437448cd7af203b1f8ad601e842456d6",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line57 case1 event21: q->value==e->request.value"
+      }
+    },
+    {
+      "name": "write-before-source-read",
+      "executable_sha256": "f3c2a0479c6108371c3568a262c1e29951916f1c62271f3ae769570817a9ef7e",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line56 case1 event24: q->kind==e->request.kind"
+      }
+    },
+    {
+      "name": "per-word-poll-wrong-bit",
+      "executable_sha256": "2c63bb7d71b3c57c89a3dfda19abfd72ac22eddeea137d5c82f746f4dec6eb8c",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line56 case2 event30: q->site==e->request.site"
+      }
+    },
+    {
+      "name": "cached-CTRL-before-commit",
+      "executable_sha256": "e72155173bfc935bab7d6d8c2d704a70da682ed467014cd083b09fb5b70f24a2",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line56 case1 event216: q->kind==e->request.kind"
+      }
+    },
+    {
+      "name": "status-return-zero",
+      "executable_sha256": "2e74639a90d5b2690ae1ac36d88f2fd6a0493b1c3ba3b6d5efc1bde290e4d7ec",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line60 case3 event1: a.value==b.value"
+      }
+    },
+    {
+      "name": "lock-wrong-A5",
+      "executable_sha256": "465ae75a564202ee39b35d59c892cf53e6a5094806ea5defb948566345e674d5",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line60 case1 event226: a.value==b.value"
+      }
+    },
+    {
+      "name": "stride8",
+      "executable_sha256": "13b62d3845084f88b93a4cf6bcd7f72b241eb27bf7436c29bf33d5a56953cfe9",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line56 case1 event27: q->address==e->request.address"
+      }
+    },
+    {
+      "name": "cached-frame-source",
+      "executable_sha256": "4fd07b7dc818797481287e127414a97200db48c71b3af5e1252a7c2afac4924c",
+      "result": {
+        "rejected": true,
+        "exit": 1,
+        "reason": "REVIEW_FAIL line56 case1 event19: q->site==e->request.site"
+      }
+    }
+  ],
+  "actual_mutants_rejected": 12,
+  "host_only": true,
+  "native_register_proof": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "hardware": false,
+  "network": false
+}

@@ -1,0 +1,58 @@
+{
+  "schema": "native-review-explicit-context-check-v1",
+  "passed": true,
+  "build_root": "experiments/tsl9-v4160-flash-native/build/native-93a4dce3d2154291a48dea3a519f4b3f",
+  "modes": [
+    {
+      "mode": "c",
+      "default_equals_explicit": true,
+      "all_six_normal_boundaries": true,
+      "all_six_fit": true,
+      "context_negatives": [
+        {
+          "name": "tool-byte-drift",
+          "rejected": true,
+          "reason": "actual before/after tool identity"
+        },
+        {
+          "name": "wrong-parser-bytes",
+          "rejected": true,
+          "reason": "ELF parser"
+        },
+        {
+          "name": "wrong-firmware-bytes",
+          "rejected": true,
+          "reason": "actual original firmware"
+        }
+      ]
+    },
+    {
+      "mode": "cpp",
+      "default_equals_explicit": true,
+      "all_six_normal_boundaries": true,
+      "all_six_fit": true,
+      "context_negatives": [
+        {
+          "name": "tool-byte-drift",
+          "rejected": true,
+          "reason": "actual before/after tool identity"
+        },
+        {
+          "name": "wrong-parser-bytes",
+          "rejected": true,
+          "reason": "ELF parser"
+        },
+        {
+          "name": "wrong-firmware-bytes",
+          "rejected": true,
+          "reason": "actual original firmware"
+        }
+      ]
+    }
+  ],
+  "semantic_gates_unchanged": true,
+  "target_execution": false,
+  "emulation": false,
+  "network": false,
+  "new_BIN": false
+}

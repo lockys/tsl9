@@ -35,6 +35,7 @@ The repository also contains 116 historical PowerShell scripts. Their native RV3
 | Original-address RCC byte identity and new IRQ core | [English guide](experiments/tsl9-v4160-irq-native/readme.en.md) |
 | 144-byte IRQ callframe fitting its original extent | [English guide](experiments/tsl9-v4160-irq-callframe/readme.en.md) |
 | Readable IRQ source integrated into the complete original layout | [English guide](analysis/v4160-irq-image-integration-2026-10-21/readme.en.md) |
+| Six readable Flash functions and original-address components | [English guide](analysis/v4160-flash-native-2026-10-22/readme.en.md) |
 | Feature candidates and existing-feature evidence | [English proposals](analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.en.md) |
 | Runtime main/init/loop/dispatch | [Guide](experiments/tsl9-v4160-runtime-loop/readme.en.md) |
 | Reference resident entry and byte-copy | [Entry](experiments/tsl9-resident-entry-reference/readme.en.md) / [copy](experiments/tsl9-resident-copy-reference/readme.en.md) |

@@ -1,0 +1,74 @@
+{
+  "schema": "ID2966-independent-flash-host-guard-review-v2",
+  "passed": true,
+  "old_review_seal_sha256": "173c8790e2deaad0ae6ac29bea2cabdbc8be2c13b68edefc3d5beb37c545488c",
+  "old_host_runner_sha256": "d1f470a8539eb9815eaa65230a6da974f7dd21b2c009950516e0e3d250cc377e",
+  "runner_sha256": "be7ad39a8f05003bbba371d11f4f2337338165dbc5f9700ce3d7c50a2878659f",
+  "current_inputs": [
+    {
+      "path": "experiments/tsl9-v4160-flash-native/verify_host.py",
+      "sha256": "be7ad39a8f05003bbba371d11f4f2337338165dbc5f9700ce3d7c50a2878659f"
+    }
+  ],
+  "host_receipts": [
+    {
+      "mode": "c",
+      "path": "receipts/host-c.json",
+      "sha256": "25f20945b1244561a9486d287e2c6451a78c77427785d0d1006e787f96b1f1b3",
+      "archive_path": "c/verification.json"
+    },
+    {
+      "mode": "cpp",
+      "path": "receipts/host-cpp.json",
+      "sha256": "a4cb52ff413c2f68d01369546038ff4d9fe0dd17785aa483cb75be216262bbbb",
+      "archive_path": "cpp/verification.json"
+    }
+  ],
+  "audit_receipts": [
+    {
+      "path": "receipts/independent-guard.json",
+      "sha256": "50d274807f39bdf46d60b72c7fac0b5008511276e15c75bf9d6bbd33e1ce36b6"
+    }
+  ],
+  "guard_scope": "Every positive and six behavior-negative executable launch; before subprocess, unchanged after; replay reparses all seven executables",
+  "host_architecture": "Derived only from current sys.executable format/OS/encoding/machine plus struct pointer width; never inferred from candidate test artifact",
+  "actual_host_format": "PE AMD64 0x8664 /64bits",
+  "actual_RV32_guard_rejection_before_subprocess": true,
+  "old_17_members_preserved": true,
+  "old_checker_expected_to_reject_current_runner": true,
+  "fresh_host_per_language": {
+    "groups": 5,
+    "cases": 481,
+    "checks": 247191,
+    "compiled_behavior_controls": 6,
+    "guarded_test_executables": 7
+  },
+  "reused_historical_independent_effects_per_language": {
+    "groups": 1,
+    "cases": 12,
+    "checks": 8964,
+    "compiled_controls": 12,
+    "rerun": false
+  },
+  "reused_native_component": {
+    "bytes": 256,
+    "instructions": 98,
+    "functions": 6,
+    "ELF_sha256": "1097156d90ee982a6c03c903785b563acae0357d1bbc7b7c2e29315adbf5d613",
+    "recompiled": false
+  },
+  "resolved_guard_draft_error": "platform.machine() was empty; final guard derives architecture directly from current Python executable, not a guessed or candidate-selected machine",
+  "boundaries": [
+    "Format gate is not an untrusted-code sandbox or proof of code semantics",
+    "Only actual Windows PE runs were performed by this review; non-Windows format support is source-reviewed",
+    "Existing physical nonreturn GPR/pointwise-asynchronous/save-order limits remain",
+    "Six original program tail bytes remain unowned; no whole image or OTA acceptance claim",
+    "Historical independent run-effects.py is archival and must not be rerun through an unverified compiler output"
+  ],
+  "target_execution": false,
+  "ISA_emulation": false,
+  "hardware": false,
+  "network": false,
+  "new_firmware_BIN": false,
+  "OTA_ready": false
+}

@@ -1,0 +1,499 @@
+{
+  "calls": [
+    {
+      "A0_destination": 134707456,
+      "A1": "live SP at the source C.MV",
+      "RA": 77438,
+      "call_pc": 77434,
+      "end_exclusive": 77438,
+      "instructions": 4,
+      "known_write_extent": [
+        134707456,
+        134707712
+      ],
+      "raw_hex": "378507088a8513050590ef601fd9",
+      "signed_addend": -1792,
+      "start": 77424,
+      "target": 39946,
+      "upper": 134709248
+    },
+    {
+      "A0_destination": 134707200,
+      "A1": "live SP at the source C.MV",
+      "RA": 77584,
+      "call_pc": 77580,
+      "end_exclusive": 77584,
+      "instructions": 4,
+      "known_write_extent": [
+        134707200,
+        134707456
+      ],
+      "raw_hex": "378507088a8513050580ef60ffcf",
+      "signed_addend": -2048,
+      "start": 77570,
+      "target": 39946,
+      "upper": 134709248
+    },
+    {
+      "A0_destination": 134706944,
+      "A1": "live SP at the source C.MV",
+      "RA": 77682,
+      "call_pc": 77678,
+      "end_exclusive": 77682,
+      "instructions": 4,
+      "known_write_extent": [
+        134706944,
+        134707200
+      ],
+      "raw_hex": "377507088a8513050570ef60dfc9",
+      "signed_addend": 1792,
+      "start": 77668,
+      "target": 39946,
+      "upper": 134705152
+    },
+    {
+      "A0_destination": 134706688,
+      "A1": "live SP at the source C.MV",
+      "RA": 77948,
+      "call_pc": 77944,
+      "end_exclusive": 77948,
+      "instructions": 4,
+      "known_write_extent": [
+        134706688,
+        134706944
+      ],
+      "raw_hex": "377507088a8513050560ef603fb9",
+      "signed_addend": 1536,
+      "start": 77934,
+      "target": 39946,
+      "upper": 134705152
+    },
+    {
+      "A0_destination": 134706432,
+      "A1": "live SP at the source C.MV",
+      "RA": 78080,
+      "call_pc": 78076,
+      "end_exclusive": 78080,
+      "instructions": 4,
+      "known_write_extent": [
+        134706432,
+        134706688
+      ],
+      "raw_hex": "377507088a8513050550ef60ffb0",
+      "signed_addend": 1280,
+      "start": 78066,
+      "target": 39946,
+      "upper": 134705152
+    },
+    {
+      "A0_destination": 134707712,
+      "A1": "live SP at the source C.MV",
+      "RA": 78178,
+      "call_pc": 78174,
+      "end_exclusive": 78178,
+      "instructions": 4,
+      "known_write_extent": [
+        134707712,
+        134707968
+      ],
+      "raw_hex": "378507088a85130505a0ef60dfaa",
+      "signed_addend": -1536,
+      "start": 78164,
+      "target": 39946,
+      "upper": 134709248
+    }
+  ],
+  "conclusion": "The quarter helper has confirmed non-OTA call slices outside both outer receiver envelopes; do not add those envelopes to the generic primitive.",
+  "limits": {
+    "ISA_emulation": false,
+    "OTA_ready": false,
+    "actual_SP_known": false,
+    "execution_reachability_proved": false,
+    "hardware": false,
+    "installed_chip_identified": false,
+    "network": false,
+    "original_execution": false,
+    "physical_capacity_proved": false,
+    "settings_semantics_confirmed": false
+  },
+  "original_bytes": 76800,
+  "original_image_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "passed": true,
+  "receiver_envelopes": {
+    "BOOT_receiver_writes_Runtime": [
+      134250496,
+      134348800
+    ],
+    "Runtime_receiver_writes_BOOT": [
+      134221824,
+      134250496
+    ],
+    "bounds_are_outer_receiver_guards": true,
+    "not_a_physical_Flash_capacity_measurement": true
+  },
+  "schema": "TSL9-V4160-generic-Flash-quarter-callers-v1",
+  "selected_instructions": 24,
+  "selected_source_bytes": 84,
+  "semantic_raw_negative_controls": [
+    {
+      "call_pc": 77434,
+      "case": "LUI destination",
+      "reason": "LUI writes original A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 77434,
+      "case": "LUI upper immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77434,
+      "case": "C.MV destination",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 77434,
+      "case": "C.MV source",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 77434,
+      "case": "ADDI input",
+      "reason": "ADDI reads and writes A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 77434,
+      "case": "ADDI low immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77434,
+      "case": "ADDI sign",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77434,
+      "case": "JAL opcode",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 77434,
+      "case": "JAL destination",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 77434,
+      "case": "JAL target",
+      "reason": "Actual direct quarter-helper target",
+      "rejected": true
+    },
+    {
+      "call_pc": 77580,
+      "case": "LUI destination",
+      "reason": "LUI writes original A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 77580,
+      "case": "LUI upper immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77580,
+      "case": "C.MV destination",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 77580,
+      "case": "C.MV source",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 77580,
+      "case": "ADDI input",
+      "reason": "ADDI reads and writes A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 77580,
+      "case": "ADDI low immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77580,
+      "case": "ADDI sign",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77580,
+      "case": "JAL opcode",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 77580,
+      "case": "JAL destination",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 77580,
+      "case": "JAL target",
+      "reason": "Actual direct quarter-helper target",
+      "rejected": true
+    },
+    {
+      "call_pc": 77678,
+      "case": "LUI destination",
+      "reason": "LUI writes original A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 77678,
+      "case": "LUI upper immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77678,
+      "case": "C.MV destination",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 77678,
+      "case": "C.MV source",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 77678,
+      "case": "ADDI input",
+      "reason": "ADDI reads and writes A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 77678,
+      "case": "ADDI low immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77678,
+      "case": "ADDI sign",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77678,
+      "case": "JAL opcode",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 77678,
+      "case": "JAL destination",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 77678,
+      "case": "JAL target",
+      "reason": "Actual direct quarter-helper target",
+      "rejected": true
+    },
+    {
+      "call_pc": 77944,
+      "case": "LUI destination",
+      "reason": "LUI writes original A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 77944,
+      "case": "LUI upper immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77944,
+      "case": "C.MV destination",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 77944,
+      "case": "C.MV source",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 77944,
+      "case": "ADDI input",
+      "reason": "ADDI reads and writes A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 77944,
+      "case": "ADDI low immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77944,
+      "case": "ADDI sign",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 77944,
+      "case": "JAL opcode",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 77944,
+      "case": "JAL destination",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 77944,
+      "case": "JAL target",
+      "reason": "Actual direct quarter-helper target",
+      "rejected": true
+    },
+    {
+      "call_pc": 78076,
+      "case": "LUI destination",
+      "reason": "LUI writes original A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 78076,
+      "case": "LUI upper immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 78076,
+      "case": "C.MV destination",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 78076,
+      "case": "C.MV source",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 78076,
+      "case": "ADDI input",
+      "reason": "ADDI reads and writes A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 78076,
+      "case": "ADDI low immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 78076,
+      "case": "ADDI sign",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 78076,
+      "case": "JAL opcode",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 78076,
+      "case": "JAL destination",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 78076,
+      "case": "JAL target",
+      "reason": "Actual direct quarter-helper target",
+      "rejected": true
+    },
+    {
+      "call_pc": 78174,
+      "case": "LUI destination",
+      "reason": "LUI writes original A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 78174,
+      "case": "LUI upper immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 78174,
+      "case": "C.MV destination",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 78174,
+      "case": "C.MV source",
+      "reason": "C.MV copies live SP into A1",
+      "rejected": true
+    },
+    {
+      "call_pc": 78174,
+      "case": "ADDI input",
+      "reason": "ADDI reads and writes A0",
+      "rejected": true
+    },
+    {
+      "call_pc": 78174,
+      "case": "ADDI low immediate",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 78174,
+      "case": "ADDI sign",
+      "reason": "Exact source-bound aligned destination",
+      "rejected": true
+    },
+    {
+      "call_pc": 78174,
+      "case": "JAL opcode",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 78174,
+      "case": "JAL destination",
+      "reason": "Four-byte JAL writes RA",
+      "rejected": true
+    },
+    {
+      "call_pc": 78174,
+      "case": "JAL target",
+      "reason": "Actual direct quarter-helper target",
+      "rejected": true
+    }
+  ]
+}

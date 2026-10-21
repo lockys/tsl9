@@ -1,0 +1,661 @@
+{
+  "schema": "ID2966-readable-flash-host-v1",
+  "passed": true,
+  "mode": "c",
+  "tests": {
+    "passed": true,
+    "groups": 5,
+    "cases": 481,
+    "checks": 247191,
+    "synthetic_provider": true,
+    "RV32_execution": false
+  },
+  "source_sha256": {
+    "src/flash_native.c": "a937b855436127a16300ea62ee5a0b44fe09ab0c0e19a0395ee15bcc34025494",
+    "src/flash_native.h": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd",
+    "src/host_io.c": "01bb5096a99afdc6e774733121417994a250f40c3f0a6924ddd5b5db57861857",
+    "src/host_io.h": "41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a",
+    "src/native_io.h": "77a46db44e17958027dd01caa6c730fcd4172bce14d56d774876e909b56d3503",
+    "tests/test_flash.c": "574145330cab322daa09331e55d68fe8d5740950e207f7179a4d71c8da8b5718"
+  },
+  "source_evidence_pins": {
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\source\\seal.json": "dff9a51e3b59bbdddd150dde37614753bb3c3b440d7bde2f9402c8b6e9a2bce4",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\source\\inspect.py": "4ae4c3f5eaa0076adcdc153cc87468b2c032b94e76c083ecc7b7b5d9fd251702",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\source\\r2-source.json": "459fbdd61bc83f6bc4682fc22cc4b2c07a0780ebfc0519e46a209ea73e4bb420",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\source\\source-proof.json": "baa66ddf28496a6767f55355764c9f35479932eca1db603415706ebe5908a073",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\source\\contracts.json": "d78eed6261c8815d3b309de3ebcfe0e28f1fac2db8fae180a596e9f36f6158a1",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\source\\README.md": "d870ef83df38b0991703118f389dc7f0a4ded4049c0ea3c3941e5ffff62071b5",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\source\\readme.zh-TW.md": "d870ef83df38b0991703118f389dc7f0a4ded4049c0ea3c3941e5ffff62071b5",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\source\\readme.en.md": "2b254c36cfc971a6f5bf7c1a5dbcdc9f0ec51f24a804ce6519464bea33d5b1a8",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\source\\seal.py": "74c800882b71fd98092e927c2636500e2fa2bfd3974ba0fdd2d0e17e3d1f6aff"
+  },
+  "original_owner_audit_rerun": false,
+  "runner_sha256": "d1f470a8539eb9815eaa65230a6da974f7dd21b2c009950516e0e3d250cc377e",
+  "portable_compiler_helper_sha256": "93933fcb13a0fc45c9c5c82ebb1584a94298e28888d4f7f6a359237c7d3f8754",
+  "compiler": {
+    "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+    "sha256": "88c8344236a27a6e727e0a8edc49aaa2690bdc7a9464b9d18cc7abe70a9f1c0d"
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+        "/nologo",
+        "/W4",
+        "/WX",
+        "/Od",
+        "/TC",
+        "/std:c11",
+        "/DTSL9_FLASH_HOST_TEST=1",
+        "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-flash-native\\src",
+        "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-flash-native\\src\\flash_native.c",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-flash-native\\src\\host_io.c",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-flash-native\\tests\\test_flash.c",
+        "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\host-tests.exe",
+        "/link",
+        "/INCREMENTAL:NO"
+      ],
+      "exit": 0,
+      "log": "compile.log",
+      "log_sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+    },
+    {
+      "argv": [
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\host-tests.exe"
+      ],
+      "exit": 0,
+      "log": "tests.log",
+      "log_sha256": "e85a5db2fe2bcc573537733b804608170f6acc6656bcb7ad8ba1d1806915a49b"
+    }
+  ],
+  "actual_compiled_controls": [
+    {
+      "case": "wrong_unlock_key",
+      "compiled": true,
+      "rejected": true,
+      "mutation_file": "src/flash_native.c",
+      "old": "FN_WRITE(0x18ea8u,FN_ADD(base,FN_K(4u)),key1);",
+      "new": "FN_WRITE(0x18ea8u,FN_ADD(base,FN_K(4u)),key2);",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTSL9_FLASH_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_unlock_key\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_unlock_key\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_unlock_key\\src\\flash_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_unlock_key\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_unlock_key\\tests\\test_flash.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_unlock_key\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_unlock_key\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "7cfb4543f5a3b892312409051955638a0fbbcc9fd5148a9913956c66f75d3a23"
+        }
+      ],
+      "executable_sha256": "6a5049c06a4fb7c5488f22bab401ff2fd186ad6ec1ac75604aa2c0c952fc99e7",
+      "artifacts": {
+        "compile.log": {
+          "bytes": 67,
+          "sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        "flash_native.obj": {
+          "bytes": 8678,
+          "sha256": "c341e349fbf6e51c222d1b22fc71692b4ab6dfab7f2b59e46917c955ca1aea17"
+        },
+        "host_io.obj": {
+          "bytes": 8061,
+          "sha256": "fa2dedf3ff23f6323c98dcd18292b5893f4f071c01f1c206f4b28021399438e5"
+        },
+        "negative.exe": {
+          "bytes": 166400,
+          "sha256": "6a5049c06a4fb7c5488f22bab401ff2fd186ad6ec1ac75604aa2c0c952fc99e7"
+        },
+        "tests.log": {
+          "bytes": 59,
+          "sha256": "7cfb4543f5a3b892312409051955638a0fbbcc9fd5148a9913956c66f75d3a23"
+        },
+        "test_flash.obj": {
+          "bytes": 31485,
+          "sha256": "9bb72898d5b9f9b32a714fe17091cdf29ed1a8e257e57e01847ddfcb8ef996da"
+        },
+        "src/flash_native.c": {
+          "bytes": 4811,
+          "sha256": "fcc7d13b66ec871855a3c28909775c074b4aec598267c098b10c39b970826d23"
+        },
+        "src/flash_native.h": {
+          "bytes": 796,
+          "sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd"
+        },
+        "src/host_io.c": {
+          "bytes": 5283,
+          "sha256": "01bb5096a99afdc6e774733121417994a250f40c3f0a6924ddd5b5db57861857"
+        },
+        "src/host_io.h": {
+          "bytes": 2148,
+          "sha256": "41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a"
+        },
+        "src/native_io.h": {
+          "bytes": 6062,
+          "sha256": "77a46db44e17958027dd01caa6c730fcd4172bce14d56d774876e909b56d3503"
+        },
+        "tests/test_flash.c": {
+          "bytes": 13418,
+          "sha256": "574145330cab322daa09331e55d68fe8d5740950e207f7179a4d71c8da8b5718"
+        }
+      }
+    },
+    {
+      "case": "wrong_word_stride",
+      "compiled": true,
+      "rejected": true,
+      "mutation_file": "src/flash_native.c",
+      "old": "offset+=4u;",
+      "new": "offset+=8u;",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTSL9_FLASH_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_word_stride\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_word_stride\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_word_stride\\src\\flash_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_word_stride\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_word_stride\\tests\\test_flash.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_word_stride\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_word_stride\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "7cfb4543f5a3b892312409051955638a0fbbcc9fd5148a9913956c66f75d3a23"
+        }
+      ],
+      "executable_sha256": "3199ef1c9ca066b9a216cc643e1795cfd08e55ffd083f647b65dfc36b510c29f",
+      "artifacts": {
+        "compile.log": {
+          "bytes": 67,
+          "sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        "flash_native.obj": {
+          "bytes": 8678,
+          "sha256": "da7a0d4420902ba9322ed95e70f98e4a90b1d2fe23af9c84810bcb0887db1068"
+        },
+        "host_io.obj": {
+          "bytes": 8061,
+          "sha256": "00306ff2b698f46d1768b43efe0c37c47e4ec012100ae703d06b9d875f5c930b"
+        },
+        "negative.exe": {
+          "bytes": 166400,
+          "sha256": "3199ef1c9ca066b9a216cc643e1795cfd08e55ffd083f647b65dfc36b510c29f"
+        },
+        "tests.log": {
+          "bytes": 59,
+          "sha256": "7cfb4543f5a3b892312409051955638a0fbbcc9fd5148a9913956c66f75d3a23"
+        },
+        "test_flash.obj": {
+          "bytes": 31485,
+          "sha256": "d947679a783b04b15737dbf1dca3b3acf6dd7abb599fc7c727ae09864af8b765"
+        },
+        "src/flash_native.c": {
+          "bytes": 4811,
+          "sha256": "0ca813078d513ec310f60cffd9a39d3e6e000dd0efe257bf742a32c7bc9fbcf2"
+        },
+        "src/flash_native.h": {
+          "bytes": 796,
+          "sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd"
+        },
+        "src/host_io.c": {
+          "bytes": 5283,
+          "sha256": "01bb5096a99afdc6e774733121417994a250f40c3f0a6924ddd5b5db57861857"
+        },
+        "src/host_io.h": {
+          "bytes": 2148,
+          "sha256": "41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a"
+        },
+        "src/native_io.h": {
+          "bytes": 6062,
+          "sha256": "77a46db44e17958027dd01caa6c730fcd4172bce14d56d774876e909b56d3503"
+        },
+        "tests/test_flash.c": {
+          "bytes": 13418,
+          "sha256": "574145330cab322daa09331e55d68fe8d5740950e207f7179a4d71c8da8b5718"
+        }
+      }
+    },
+    {
+      "case": "stale_source_word",
+      "compiled": true,
+      "rejected": true,
+      "mutation_file": "src/flash_native.c",
+      "old": "FN_ADD(source,FN_K(offset))",
+      "new": "FN_ADD(source,FN_K(0u))",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTSL9_FLASH_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\stale_source_word\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\stale_source_word\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\stale_source_word\\src\\flash_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\stale_source_word\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\stale_source_word\\tests\\test_flash.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\stale_source_word\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\stale_source_word\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "7cfb4543f5a3b892312409051955638a0fbbcc9fd5148a9913956c66f75d3a23"
+        }
+      ],
+      "executable_sha256": "ebb524307bf18e0cc25a0fe817266f8d18ae35af2d7c253d3bd0426616dffca5",
+      "artifacts": {
+        "compile.log": {
+          "bytes": 67,
+          "sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        "flash_native.obj": {
+          "bytes": 8678,
+          "sha256": "295a16fc223b76906a75d6ca25539a8b4c40eab707985642d66e18befcae142f"
+        },
+        "host_io.obj": {
+          "bytes": 8061,
+          "sha256": "2723db793c20cbe8ccdfc6e52c9d1ae091383d9b589eba47123867a7bc9a0e14"
+        },
+        "negative.exe": {
+          "bytes": 166400,
+          "sha256": "ebb524307bf18e0cc25a0fe817266f8d18ae35af2d7c253d3bd0426616dffca5"
+        },
+        "tests.log": {
+          "bytes": 59,
+          "sha256": "7cfb4543f5a3b892312409051955638a0fbbcc9fd5148a9913956c66f75d3a23"
+        },
+        "test_flash.obj": {
+          "bytes": 31485,
+          "sha256": "6d7990251bf856b2ef115be056a0d580b6900051b386f1d56d6562fcb81132e4"
+        },
+        "src/flash_native.c": {
+          "bytes": 4807,
+          "sha256": "6df81004810502eca423891ab00af48909fda91bed0d42b066379eb893260c02"
+        },
+        "src/flash_native.h": {
+          "bytes": 796,
+          "sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd"
+        },
+        "src/host_io.c": {
+          "bytes": 5283,
+          "sha256": "01bb5096a99afdc6e774733121417994a250f40c3f0a6924ddd5b5db57861857"
+        },
+        "src/host_io.h": {
+          "bytes": 2148,
+          "sha256": "41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a"
+        },
+        "src/native_io.h": {
+          "bytes": 6062,
+          "sha256": "77a46db44e17958027dd01caa6c730fcd4172bce14d56d774876e909b56d3503"
+        },
+        "tests/test_flash.c": {
+          "bytes": 13418,
+          "sha256": "574145330cab322daa09331e55d68fe8d5740950e207f7179a4d71c8da8b5718"
+        }
+      }
+    },
+    {
+      "case": "wrong_source_frame_slot",
+      "compiled": true,
+      "rejected": true,
+      "mutation_file": "src/native_io.h",
+      "old": "FN_ADD(h->regs[2],FN_K(12u)),source)",
+      "new": "FN_ADD(h->regs[2],FN_K(16u)),source)",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTSL9_FLASH_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_source_frame_slot\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_source_frame_slot\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_source_frame_slot\\src\\flash_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_source_frame_slot\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_source_frame_slot\\tests\\test_flash.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_source_frame_slot\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_source_frame_slot\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "bef0273816406aed3e8ff7d8b4cf9c14b526c602cfa7fc852d492f0736730511"
+        }
+      ],
+      "executable_sha256": "934c2d33e119769d10b501d51c96daad457d19aea81f40e59491cd3f373cba1e",
+      "artifacts": {
+        "compile.log": {
+          "bytes": 67,
+          "sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        "flash_native.obj": {
+          "bytes": 8686,
+          "sha256": "8ab5dbd61cf24db88f397aa0381d53a8b29e52d4973b44b0f47131debc6508e9"
+        },
+        "host_io.obj": {
+          "bytes": 8069,
+          "sha256": "d068f128664536f9bc0888eca8c057137532f857c9c7569676b271ba964e71ef"
+        },
+        "negative.exe": {
+          "bytes": 166400,
+          "sha256": "934c2d33e119769d10b501d51c96daad457d19aea81f40e59491cd3f373cba1e"
+        },
+        "tests.log": {
+          "bytes": 86,
+          "sha256": "bef0273816406aed3e8ff7d8b4cf9c14b526c602cfa7fc852d492f0736730511"
+        },
+        "test_flash.obj": {
+          "bytes": 31489,
+          "sha256": "48ab4666c9ffd51594c2dfb6f8fc7e575d26a8fdc21e48287b17e484449e2469"
+        },
+        "src/flash_native.c": {
+          "bytes": 4811,
+          "sha256": "a937b855436127a16300ea62ee5a0b44fe09ab0c0e19a0395ee15bcc34025494"
+        },
+        "src/flash_native.h": {
+          "bytes": 796,
+          "sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd"
+        },
+        "src/host_io.c": {
+          "bytes": 5283,
+          "sha256": "01bb5096a99afdc6e774733121417994a250f40c3f0a6924ddd5b5db57861857"
+        },
+        "src/host_io.h": {
+          "bytes": 2148,
+          "sha256": "41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a"
+        },
+        "src/native_io.h": {
+          "bytes": 6062,
+          "sha256": "37d409e6cdbc2e085da88dcd27e1b1cf41e6b2e790e0c5de760531b4a9731e62"
+        },
+        "tests/test_flash.c": {
+          "bytes": 13418,
+          "sha256": "574145330cab322daa09331e55d68fe8d5740950e207f7179a4d71c8da8b5718"
+        }
+      }
+    },
+    {
+      "case": "wrong_CSR_mask",
+      "compiled": true,
+      "rejected": true,
+      "mutation_file": "src/host_io.c",
+      "old": "h->regs[8]=fn_constant(136u);",
+      "new": "h->regs[8]=fn_constant(64u);",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTSL9_FLASH_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_CSR_mask\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_CSR_mask\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_CSR_mask\\src\\flash_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_CSR_mask\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_CSR_mask\\tests\\test_flash.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_CSR_mask\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\wrong_CSR_mask\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "e0bfc926d9e1cf8a943c292d1a7571de53ffefa64f3729836b4c17d3fd550ed6"
+        }
+      ],
+      "executable_sha256": "988d65da7b790e8c017feb20231b55befc36d19d88945044c148502cb4873e8a",
+      "artifacts": {
+        "compile.log": {
+          "bytes": 67,
+          "sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        "flash_native.obj": {
+          "bytes": 8678,
+          "sha256": "aec9bb1a2af035c31c5966f5604ee0b90fd271a0adff2f3613d2ba1b977f0668"
+        },
+        "host_io.obj": {
+          "bytes": 8057,
+          "sha256": "75e1b9995f1a2bba7d5a2bd787f93de0ab6eb281b7001876aee143836e2fb079"
+        },
+        "negative.exe": {
+          "bytes": 166400,
+          "sha256": "988d65da7b790e8c017feb20231b55befc36d19d88945044c148502cb4873e8a"
+        },
+        "tests.log": {
+          "bytes": 80,
+          "sha256": "e0bfc926d9e1cf8a943c292d1a7571de53ffefa64f3729836b4c17d3fd550ed6"
+        },
+        "test_flash.obj": {
+          "bytes": 31481,
+          "sha256": "9642a2524b18efaf894f48cf9d3310c4027a6848272ecad3fe2fa50fc2831d76"
+        },
+        "src/flash_native.c": {
+          "bytes": 4811,
+          "sha256": "a937b855436127a16300ea62ee5a0b44fe09ab0c0e19a0395ee15bcc34025494"
+        },
+        "src/flash_native.h": {
+          "bytes": 796,
+          "sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd"
+        },
+        "src/host_io.c": {
+          "bytes": 5282,
+          "sha256": "11024602af231321f10e1a9c25b1fea99c14eca1048341d2e24eb6cf0ea10f05"
+        },
+        "src/host_io.h": {
+          "bytes": 2148,
+          "sha256": "41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a"
+        },
+        "src/native_io.h": {
+          "bytes": 6062,
+          "sha256": "77a46db44e17958027dd01caa6c730fcd4172bce14d56d774876e909b56d3503"
+        },
+        "tests/test_flash.c": {
+          "bytes": 13418,
+          "sha256": "574145330cab322daa09331e55d68fe8d5740950e207f7179a4d71c8da8b5718"
+        }
+      }
+    },
+    {
+      "case": "cleanup_after_unknown_poll",
+      "compiled": true,
+      "rejected": true,
+      "mutation_file": "src/native_io.h",
+      "old": "#define FN_CHECK_FLOW() do { if(h->flow!=FN_RETURNED) return fn_failed(); } while(0)",
+      "new": "#define FN_CHECK_FLOW() ((void)0)",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTSL9_FLASH_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\cleanup_after_unknown_poll\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\cleanup_after_unknown_poll\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\cleanup_after_unknown_poll\\src\\flash_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\cleanup_after_unknown_poll\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\cleanup_after_unknown_poll\\tests\\test_flash.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\cleanup_after_unknown_poll\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-flash-native-2026-10-22\\review\\build\\formal-host-372b9ca9d239413da35d9838d02e5558\\c\\compiled-controls\\cleanup_after_unknown_poll\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "fa5e40ad473ae77ce7a5dcddc2750faf936a530981306385661735c87a2257e9"
+        }
+      ],
+      "executable_sha256": "cc44153aa1c4986e93a0034732a09b72d43902acde4737a71a23890237acd7a9",
+      "artifacts": {
+        "compile.log": {
+          "bytes": 67,
+          "sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+        },
+        "flash_native.obj": {
+          "bytes": 8283,
+          "sha256": "c06bce5a2196ddf4d8a72b8d3be2378268d1777d5ff4ac940ee430e33b909ca2"
+        },
+        "host_io.obj": {
+          "bytes": 8069,
+          "sha256": "bf889f919e8c11a6bce2f9a8cd8cca563b9ae13e326acc0a05f6c485a8f059eb"
+        },
+        "negative.exe": {
+          "bytes": 166400,
+          "sha256": "cc44153aa1c4986e93a0034732a09b72d43902acde4737a71a23890237acd7a9"
+        },
+        "tests.log": {
+          "bytes": 84,
+          "sha256": "fa5e40ad473ae77ce7a5dcddc2750faf936a530981306385661735c87a2257e9"
+        },
+        "test_flash.obj": {
+          "bytes": 31493,
+          "sha256": "26040b53812107b48cbe48afafa7fa84042e379f61c7fb247e864cf7fd4a364c"
+        },
+        "src/flash_native.c": {
+          "bytes": 4811,
+          "sha256": "a937b855436127a16300ea62ee5a0b44fe09ab0c0e19a0395ee15bcc34025494"
+        },
+        "src/flash_native.h": {
+          "bytes": 796,
+          "sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd"
+        },
+        "src/host_io.c": {
+          "bytes": 5283,
+          "sha256": "01bb5096a99afdc6e774733121417994a250f40c3f0a6924ddd5b5db57861857"
+        },
+        "src/host_io.h": {
+          "bytes": 2148,
+          "sha256": "41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a"
+        },
+        "src/native_io.h": {
+          "bytes": 6011,
+          "sha256": "4c647d3a6a8a7cb67697ddf094048d3f5a2c2619a1b720b982b67a403b2b1fcd"
+        },
+        "tests/test_flash.c": {
+          "bytes": 13418,
+          "sha256": "574145330cab322daa09331e55d68fe8d5740950e207f7179a4d71c8da8b5718"
+        }
+      }
+    }
+  ],
+  "executable_sha256": "fa0dd4bee08fa89cc7506e3aaad48b51cee91b9684dc44a6b8a524686d649af9",
+  "artifacts": {
+    "compile.log": {
+      "bytes": 67,
+      "sha256": "a6d7b072a9ce17fa04d5d33e86f40281031c7b0ddfe98723da53925a0e7cca07"
+    },
+    "flash_native.obj": {
+      "bytes": 8642,
+      "sha256": "d616f70402c7fc1e68ac6bcf9708aaa60566088af811bf9b096f7e47a45bbcae"
+    },
+    "host-tests.exe": {
+      "bytes": 166400,
+      "sha256": "fa0dd4bee08fa89cc7506e3aaad48b51cee91b9684dc44a6b8a524686d649af9"
+    },
+    "host_io.obj": {
+      "bytes": 8025,
+      "sha256": "1090095c04a8ea64c765112c8e89ae6e12aa0b1a05860b8636fd05e9beb76536"
+    },
+    "tests.log": {
+      "bytes": 105,
+      "sha256": "e85a5db2fe2bcc573537733b804608170f6acc6656bcb7ad8ba1d1806915a49b"
+    },
+    "test_flash.obj": {
+      "bytes": 31449,
+      "sha256": "3090f282fb8630f1f92c4dbbcbf1ed0f0faadc761f82429e039bd480e9199227"
+    }
+  },
+  "original_firmware_executed": false,
+  "ISA_emulation": false,
+  "synthetic_provider": true,
+  "nonreturn_register_prefix_proved": false,
+  "native_registers_checked": false,
+  "hardware": false,
+  "network": false,
+  "OTA_ready": false
+}

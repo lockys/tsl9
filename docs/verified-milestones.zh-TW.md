@@ -1,5 +1,13 @@
 # 已驗證里程碑
 
+## 六個可讀 V4.1.60 Flash 函式
+
+共用 C11／C++17 來源重建 quarter wrapper、status、unlock、lock、erase 與 64-word program。原始證據為 262 bytes／99 指令；六個原址原生元件分別為 64／8／30／14／46／94 bytes，status 與 lock 共 22 bytes 完全一致。正常返回契約保留 32-byte frame、fresh `SP+12` source reload、五個有序呼叫、CSR mask 136 與暫存器殘值。program 剩下的六個 bytes 尚無新的儲存來源；此輪沒有產生完整新映像或 BIN。
+
+主機每語言通過 481 案例／247,191 斷言，並拒絕六個實際編譯變異；獨立 expected-effect 測試每語言另有 12 情境／8,964 斷言與 12 個已編譯變異拒絕。原生靜態檢查讀取實際機器碼及 IR，每語言另拒絕 15 個機器碼與三個 IR 反例。原始六函式、六個高位址 caller slice 與整個物件的已記錄重定位 frontier 分開保存證據。
+
+frontier 在前輪物件的 8,276 筆 RELA 中找出 12 筆外部入口及 11 筆 owned 呼叫／分支，後續整合仍須保留其餘 8,265 筆完整角色。已記錄 RELA 沒有外部 interior target，不等於 ROM、間接數值引用或未知執行期沒有其他入口。frame 保存順序、fault／非返回 GPR prefix、逐指令／非同步狀態、板子／ROM／Flash 與 BLE OTA 仍未證明。詳見 [繁體中文說明](../analysis/v4160-flash-native-2026-10-22/README.md)。預設主機入口為 `python experiments/tsl9-v4160-flash-native/verify.py --language both`；原生入口為 `python analysis/v4160-flash-native-2026-10-22/implementation/verify_native.py --project-root . --tool-dir <LLVM-bin> --language both`。Windows 證據不代表 POSIX／Linux／macOS／CI 已執行成功。
+
 ## IRQ 可讀來源的完整離線映像
 
 已實際重新編譯 34 個原始指令／資料載體與兩個可讀單元，並在 C11／C++17 分別連結、匯出相同的 76,800-byte 映像。新映像 SHA-256 為 `47f200dce24be25ac89d57922689da536259935e8615ba8195b10ca192895e1c`，只在 `0x9A44..0x9A4B` 有八個明確 byte 差異，對應四個 prologue 保存指令的順序。原始 APK、廠商 BIN 與先前來源一致映像未替換。

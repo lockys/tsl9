@@ -1,0 +1,91 @@
+{
+  "schema": "ID2966-flash-normal-contract-review-v1",
+  "source_proof": "source-proof.json",
+  "scope": "Static original source; no operation performed on hardware",
+  "conditions": [
+    "Normal entry and normal return through the decoded control flow",
+    "Every encountered memory/CSR access completes and every busy poll eventually observes its tested bit clear",
+    "No unmodelled asynchronous register or control-flow interference",
+    "Fresh reads are separate observations; no assumption that MMIO or stack values stay constant between reads"
+  ],
+  "base": "0x40022000",
+  "helpers": [
+    {
+      "entry": "0x18E90", "bytes": 8,
+      "inputs": "A0=status value",
+      "effects": "One SW32(base+12,A0) at18E94; no status read",
+      "normal_outputs": {"A0": "unchanged", "A5": "0x40022000"},
+      "other_GPRs": "unchanged including A1/A2/A3/A4/A6/RA/SP",
+      "return_PC": "0x18E96"
+    },
+    {
+      "entry": "0x18E98", "bytes": 30,
+      "inputs": "none",
+      "effects": "Ordered SW32(+4,45670123), SW32(+4,CDEF89AB), SW32(+36,45670123), SW32(+36,CDEF89AB)",
+      "normal_outputs": {"A3": "0x45670123", "A4": "0xCDEF89AB", "A5": "0x40022000"},
+      "other_GPRs": "unchanged including A0/A1/A2/A6/RA/SP",
+      "return_PC": "0x18EB4"
+    },
+    {
+      "entry": "0x18EB6", "bytes": 14,
+      "inputs": "none",
+      "effects": "LW32(+16) at18EBA; SW32(+16,fresh|0x8000) at18EC0",
+      "normal_outputs": {"A3": "0x8000", "A4": "0x40022000", "A5": "freshREAD32(+16)|0x8000"},
+      "other_GPRs": "unchanged including A0/A1/A2/A6/RA/SP",
+      "return_PC": "0x18EC2"
+    },
+    {
+      "entry": "0x18EC4", "bytes": 46,
+      "inputs": "A0=D",
+      "effects": "Fresh CTRL read/setbit17/write; align A0 down256; write A0 to+20; fresh CTRL read/setbit6/write; unbounded status bit0 poll; fresh CTRL read/clearbit17/write",
+      "normal_outputs": {"A0": "D&0xFFFFFF00", "A3": "0xFFFDFFFF", "A4": "freshFinalREAD32(+16)&0xFFFDFFFF", "A5": "0x40022000"},
+      "other_GPRs": "unchanged including A1/A2/A6/RA/SP",
+      "poll": {"load": "0x18EE0", "mask": 1, "branch": "0x18EE4"},
+      "return_PC": "0x18EF0"
+    },
+    {
+      "entry": "0x18EF2", "bytes": 100,
+      "inputs": "A0=D,A1=S; entry A2 is not a length input",
+      "effects": "Fresh CTRL setbit16; status bit0 then bit1 polls; 64 ordered LW32(S+i),SW32(align(D)+i),status bit1 polls for i=0,4,...252; fresh CTRL setbit21; status bit0 poll; fresh CTRL clearbit16",
+      "normal_outputs": {"A0": "D&0xFFFFFF00", "A1": "S unchanged", "A2": "256", "A3": "0xFFFEFFFF", "A4": "freshFinalREAD32(+16)&0xFFFEFFFF", "A5": "0x40022000", "A6": "lastSourceREAD32(S+252) at18F1E, before last per-word poll"},
+      "other_GPRs": "unchanged including RA/SP/GP/S0..S11/T0..T6/A7",
+      "polls": [
+        {"load": "0x18F02", "mask": 1, "branch": "0x18F06"},
+        {"load": "0x18F0C", "mask": 2, "branch": "0x18F10", "exit_fact": "A5=0 seeds copy index"},
+        {"load": "0x18F2A", "mask": 2, "branch": "0x18F2E"},
+        {"load": "0x18F44", "mask": 1, "branch": "0x18F48"}
+      ],
+      "loop": {"source_address": "u32(S+i)", "destination_address": "u32((D&FFFFFF00)+i)", "stride_PC": "0x18F30, C.ADDI,2 bytes", "limit_PC": "0x18F16", "backedge_PC": "0x18F32"},
+      "return_PC": "0x18F54"
+    }
+  ],
+  "wrapper": {
+    "entry": "0x9C0A", "bytes": 64,
+    "inputs": "A0=D,A1=S; incoming A2 unused",
+    "frame_bytes": 32,
+    "stores_in_order": ["SP+24=S0 at9C0C", "SP+20=S1 at9C0E", "SP+28=RA at9C10", "SP+12=A1 at9C14"],
+    "sequence": ["S1=A0", "S0=136", "CSR800 clear S0 at9C1A", "unlock18E98", "A0=49;status18E90", "A0=S1;erase18EC4", "fresh A1=LW32(SP+12) at9C30", "A0=S1;program18EF2", "lock18EB6", "CSR800 set S0 at9C3C", "fresh restore RA/S0/S1 from28/24/20", "SP+=32;RET"],
+    "normal_outputs": {"A0": "D&FFFFFF00", "A1": "fresh source pointer read from private frameSP+12", "A2": "256", "A3": "0x8000", "A4": "0x40022000", "A5": "freshLockREAD32(base+16)|0x8000", "A6": "last source word from source selected by fresh frame reload"},
+    "preserved": "S0/S1/RA restored from fresh frame loads; SP restored arithmetically; other nonlisted GPRs never written directly or by the five helpers",
+    "CSR_warning": "Clears mask136 then sets mask136. Does not read/save/restore the prior CSR800 value. No claim about architectural interrupt semantics or pointwise interrupt behavior.",
+    "stack_warning": "A replacement that holds A1 only in a register removes the original fresh SP+12 read. Exact stack layout, store order and fresh restore values are separate integration obligations."
+  },
+  "native_compile_gates": {
+    "suggested_profile": "Existing proven RV32IMAC/ILP32 Clang -Oz, no relax, machine outliner disabled; use the existing compiler worker's pinned actual profile",
+    "source_fit_bytes": {"9C0A": 64,"18E90": 8,"18E98": 30,"18EB6": 14,"18EC4": 46,"18EF2": 100},
+    "required_static_checks": ["C and C++ actual machine bytes and full instruction coverage", "Per-function encoded destination sets equal source ledger, not merely ordinary C calling convention", "No helper stack/calls/RA write or hidden outlined code", "Exact fresh read/write widths, order, busy branches and normal output residues", "Original five direct JAL target geometry, frame and CSR sequence", "Whole-image section/ref/symbol/alias ownership and incoming interior references before integration"],
+    "ordinary_C_limit": "A readable void C helper does not inherently retain original A0/A1/A2/A3/A4/A5/A6 residues. HOST callbacks prove values/order only; native register contracts require raw compiled proof."
+  },
+  "nonreturn_and_unknowns": [
+    "Original busy polls have no timeout, error code, retry budget or cancellation branch",
+    "If a poll never clears, later operations, lock, CSR set and return do not occur",
+    "HOST budget exhaustion must report an explicit unknown/nonreturn boundary with only the observed prefix; it must not invent an original timeout return",
+    "All decoded data accesses are 32-bit LW/SW. Numeric RV32 address addition wraps modulo2^32; physical alias, source alignment/fault behavior and actual valid memory are unproved",
+    "No MMIO error-bit decision or success return is decoded; aligned A0 is not a success code",
+    "Fresh volatile observations and final register residues do not prove pointwise asynchronous/IRQ equivalence",
+    "Chip identity, ROM implementation, physical Flash geometry, write completion, timing, recoverability and OTA readiness remain unproved",
+    "Only the admitted 9D00 continuation has a bounded liveness observation; other known or computed callers are not claimed dead for these registers",
+    "Older runtime/BOOT addresses are not transferred as proof for ID2966"
+  ],
+  "target_execution": false, "emulation": false, "network": false, "hardware": false, "new_BIN": false
+}

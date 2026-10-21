@@ -1,0 +1,48 @@
+{
+  "schema":"TSL9-flash-old-model-reuse-boundaries-v1",
+  "evidence":"cross-version.json",
+  "current_source_seal_sha256":"dff9a51e3b59bbdddd150dde37614753bb3c3b440d7bde2f9402c8b6e9a2bce4",
+  "current_source_contract_sha256":"d78eed6261c8815d3b309de3ebcfe0e28f1fac2db8fae180a596e9f36f6158a1",
+  "source_baseline":"experiments/tsl9-contract-model/src/flash_page.c",
+  "source_baseline_sha256":"fdfdcddf53e9f3f9cae3a30873893c10fd2689d2892a4fd5e64b6124e16c57fb",
+  "reusable_as_new_test_expectations":[
+    "Each erase/program helper performs its own A0 AND FFFFFF00; alignment is not inferred from a wrapper convention",
+    "Quarter performs CSR800 clear88, unlock, status-write31, erase, program, lock, CSR800 set88 in that order",
+    "Four unlock stores use45670123/CDEF89AB at40022004 then40022024",
+    "CTRL40022010 RMW and ADDR40022014 preserve their source order and fresh reads",
+    "Erase sets20000, writes aligned destination, sets40, waits for STATUS4002200C bit1 clear, then clears20000",
+    "Program sets10000, waits separately for status mask1 then mask2 clear, then performs64 live word reads/stores with mask2 polling after every store",
+    "Program reads each source word immediately before its destination store; forward overlap and intervening source mutation must remain observable",
+    "Program sets200000, waits for mask1 clear, clears10000; lock ORs8000 from a fresh CTRL read",
+    "CSR set88 is a new OR effect, not restoration of an initial CSR snapshot",
+    "Standalone helpers do not add the enclosing quarter caller's CSR clear/set"
+  ],
+  "cannot_reuse_as_original_ID2966_ABI_or_return_proof":[
+    "Old helper PCs18BE4..18CAA require a +0x2AC translation; quarter9B6C instead becomes9C0A, so no single global PC delta covers both",
+    "The five wrapper JAL operands must be decoded and bound to their actual new targets; ten changed bytes are not arbitrary tolerated differences",
+    "FP_RETURNED is host flow only; the old model does not capture native A0/GPR residues",
+    "Quarter A1 is freshly reloaded from stackSP+12 after the erase call; a stable host source descriptor is not equivalent to this full live-stack contract",
+    "Old model mapped SRAM/value views and value-known masks are host interface conventions, not physical address validity or trap behavior",
+    "Old source descriptor lifetime/mutation assumptions do not authorize replacing native register or stack behavior",
+    "The old test suite's resource spin_budget is not an original timeout, retry policy or cleanup operation",
+    "The separate V4.1.60 fc_write_registers entry197BE takes A2 source, uses a timer suffix and returns0; it is not quarter9C0A"
+  ],
+  "new_review_required":[
+    "Full original raw instruction, register-write and live-SP contracts from the independent source proof",
+    "Actual C/C++ object/linked source bytes, widths, call relocations, stack and compiler register writes",
+    "Host synthetic backend freshness/order/normal outputs and diagnostic nonreturn-prefix tests",
+    "Explicit unknown hardware status, memory alignment/traps, electrical persistence and actual resident behavior"
+  ],
+  "interpretation_limits":[
+    "A returned native scalar is not a Flash-controller success flag",
+    "There is no status/error interpretation beyond the observed poll masks in these bodies",
+    "Synthetic aborts stop tests with their observed prefix; they do not prove the original returns on that condition",
+    "No current module mode or installed BOOT identity is inferred",
+    "No new OTA protocol, staging, resident-provider or whole-image compatibility conclusion follows"
+  ],
+  "source_bytes_analyzed_only":true,
+  "target_execution":false,
+  "ISA_emulation":false,
+  "network":false,
+  "hardware":false
+}
