@@ -39,6 +39,7 @@ sh ./verify.sh --model system-clock-query --language both
 | IRQ 可读来源与完整原始布局整合 | [繁体中文说明](analysis/v4160-irq-image-integration-2026-10-21/readme.zh-TW.md) |
 | 六个可读 Flash 函数与原址组件 | [繁体中文说明](analysis/v4160-flash-native-2026-10-22/README.md) |
 | 自然生成 100-byte program 与原始进入顺序 | [繁体中文说明](analysis/v4160-flash-entry-order-2026-10-22/README.md) |
+| 十一个 IRQ／Flash 函数整合的完整离线映像（尚未验证可刷写） | [繁体中文说明](analysis/v4160-flash-image-integration-2026-10-22/README.md) |
 | 新功能候选与既有功能证据 | [繁体中文提案](analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.zh-TW.md) |
 | Runtime 主程序／初始化／循环／分发 | [说明](experiments/tsl9-v4160-runtime-loop/readme.zh-TW.md) |
 | resident 候选入口与 byte-copy | [入口](experiments/tsl9-resident-entry-reference/readme.zh-TW.md)／[copy](experiments/tsl9-resident-copy-reference/readme.zh-TW.md) |

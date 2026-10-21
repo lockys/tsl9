@@ -1,5 +1,13 @@
 # 已驗證里程碑
 
+## 十一個 IRQ／Flash 可讀函式的完整離線映像
+
+已實際以 C11／C++17 編譯 34 個原始載體、兩個 IRQ／RCC 單元及六個 Flash 單元，並匯出相同的 76,800-byte 映像，SHA-256 為 `de159bb345b27250a683e197dd84b04e51a7a7ed89315347395baaea53f68be1`。與官方映像共有 70 個 byte 不同：八個為前輪 IRQ 差異、62 個為新 Flash 差異。十一個可讀函式共 526 bytes；其餘仍是原始載體，屬部分來源重建。
+
+核對全部 691 個配置、680 段保留儲存、53 個真實 section-relative 綁定與二十筆外部入口。實際 RELA 為 8,270 筆：8,259 筆範圍外記錄保留完整角色及次數，另有十一筆可讀函式 JAL。十筆原始內部分支由實際 bytes、條件、PC 及目標明確解除；壓縮呼叫及 tail jump 分別保留其返回位址行為。未連結儲存與重定位後的映像資料分層比較。
+
+全部匯出 bytes 都有實際區段／LOAD 支持，無補洞、原始 BIN 回填、RAM NOBITS 或 ROM bytes。嚴格連結仍拒絕缺失 ROM provider，成功連結只有數字位址見證。獨立來源／配置及 ABI 審查讀取實際連結產物。補充 literal 搜尋在三個完整映像均無命中，但不能排除計算而來或 ROM 引用。完整 fault prefix、原始 program `+8` 邊界、逐指令／非同步 IRQ 狀態、板子／晶片、實際 BOOT 與 BLE OTA 仍未證明。**此 BIN 尚未驗證可刷寫。** 詳見 [繁體中文說明](../analysis/v4160-flash-image-integration-2026-10-22/README.md)。Windows LLVM 證據不代表 shell、Linux、macOS 或 CI 執行結果。
+
 ## 原始尺寸的 Flash program 與入口事件順序
 
 新版 C11／C++17 program 函式自然產生 100 bytes／38 指令。補回兩次 fresh 基底暫存器載入，並明確約束 A0／A5 primitive 後，整個區段由新來源持有，沒有 NOP、padding 或借用原始 bytes。六個 Flash 函式合計 262 bytes／99 指令，兩種語言產生相同元件 ELF。入口控制讀取位於 +4，接著在 +6 對齊 A0、+14 首次寫入控制暫存器；五個 program 迴圈目標仍位於原址，最後六個 bytes 是實際清理及返回指令。

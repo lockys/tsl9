@@ -1,5 +1,13 @@
 # Verified milestones
 
+## Eleven readable IRQ/Flash functions in the complete offline image
+
+Actual C11/C++17 builds compile 34 original carriers, two IRQ/RCC units and six Flash units, then export identical 76,800-byte images with SHA-256 `de159bb345b27250a683e197dd84b04e51a7a7ed89315347395baaea53f68be1`. Seventy bytes differ from the official image: eight previous IRQ bytes and 62 new Flash bytes. Eleven readable functions occupy 526 bytes; the other contents remain original carriers, so this is partial source reconstruction.
+
+All 691 allocations and 680 retained storage sections are checked, together with 53 true section-relative bindings and twenty incoming entries. Actual RELA count is 8,270: 8,259 outside records preserve complete roles and multiplicity, plus eleven typed JALs. Ten original internal branch records are explicitly discharged by their bytes, conditions, PCs and targets. Compressed incoming calls and the tail jump retain their respective return-address behavior. Partial storage and relocated image data are checked at separate layers.
+
+Every exported byte is backed by actual sections/LOADs, without holes, original-BIN fallback, RAM NOBITS or ROM bytes. Strict linking still rejects the missing ROM provider; successful linking uses a numeric address witness only. Independent source/layout and ABI reviews inspect actual linked artifacts. Supplemental literal scanning finds no selected interior-address U32LE values in three complete images, but cannot exclude computed or ROM references. Full fault prefixes, original program `+8` boundary, pointwise/asynchronous IRQ state, board/chip, installed BOOT and BLE OTA remain unproved. **This BIN is not verified as flashable.** See the [English guide](../analysis/v4160-flash-image-integration-2026-10-22/readme.en.md). Windows LLVM evidence does not establish shell, Linux, macOS or CI execution.
+
 ## Original-size Flash program and entry event order
 
 The new C11/C++17 program function naturally occupies 100 bytes / 38 instructions. Two fresh base-register loads and explicit A0/A5 primitive constraints recover its complete extent without NOPs, padding or borrowed original bytes. The six Flash functions now total 262 bytes / 99 instructions. Both languages produce identical component ELFs. The initial control read at offset +4 precedes A0 alignment at +6 and the first control store at +14; five program loop destinations retain their original addresses. The last six bytes are actual cleanup and return instructions.

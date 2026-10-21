@@ -37,6 +37,7 @@ The repository also contains 116 historical PowerShell scripts. Their native RV3
 | Readable IRQ source integrated into the complete original layout | [English guide](analysis/v4160-irq-image-integration-2026-10-21/readme.en.md) |
 | Six readable Flash functions and original-address components | [English guide](analysis/v4160-flash-native-2026-10-22/readme.en.md) |
 | Natural 100-byte program and original entry order | [English guide](analysis/v4160-flash-entry-order-2026-10-22/readme.en.md) |
+| Complete offline image with eleven IRQ/Flash functions (flashability unverified) | [English guide](analysis/v4160-flash-image-integration-2026-10-22/readme.en.md) |
 | Feature candidates and existing-feature evidence | [English proposals](analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.en.md) |
 | Runtime main/init/loop/dispatch | [Guide](experiments/tsl9-v4160-runtime-loop/readme.en.md) |
 | Reference resident entry and byte-copy | [Entry](experiments/tsl9-resident-entry-reference/readme.en.md) / [copy](experiments/tsl9-resident-copy-reference/readme.en.md) |
