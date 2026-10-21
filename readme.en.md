@@ -6,9 +6,7 @@ This project preserves the original APK, 22 distinct updater BINs, readable C/C+
 
 ## Portable verification
 
-The new OTA page reply has been reconstructed in C/C++: its standalone fixed-placement component at `0x9B8E` matches all original 124 bytes / 50 instructions, with an explicit ABI ordering stage. Both languages pass host tests and independent effect checks; a partial link also preserves the original NOTYPE and local entry roles. **It is not yet integrated into the complete image**; the eleven-function image below is unchanged. See the [new component](experiments/tsl9-v4160-ota-page-reply/readme.en.md) and [integration boundary](analysis/v4160-ota-page-reply-2026-10-22/integration-plan/readme.en.md).
-
-The latest integration restores the original machine code of eleven readable IRQ/Flash functions, totaling 526 bytes; the complete offline BIN matches official ID2966 V4.1.60. Its generation chain explicitly combines a C/C++ compiler with separate ABI save scheduling, while other image contents remain original carriers. This is partial source recovery, **not hardware or BLE OTA validation**. See the [new integration](analysis/v4160-register-image-integration-2026-10-22/readme.en.md).
+The latest complete image integrates the OTA page reply: twelve readable IRQ/Flash/OTA functions total 650 bytes, and the complete 76,800-byte BIN matches official ID2966 V4.1.60. Each C/C++ pipeline freshly compiles 43 translation units, records complete header dependencies and runs 61 commands including two explicit ABI ordering stages. The remaining 679 sections still use original carriers. This is partial source recovery, **not hardware or BLE OTA validation**. See the [new integration](analysis/v4160-reply-image-integration-2026-10-22/readme.en.md) and [offline image](artifacts/offline-images/ID2966-V4.1.60-reply-integrated/readme.en.md).
 
 Requirements: Python 3.10+, a C11/C++17 compiler, and a POSIX shell. Linux can use GCC or Clang, macOS can use Clang, and Windows can use Git Bash plus Visual Studio C++ Build Tools. PowerShell and CMake are not required by the portable entry.
 

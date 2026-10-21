@@ -6,9 +6,7 @@
 
 ## 跨平台验证
 
-新的 OTA 页面回复函数已用 C/C++ 重建：独立组件在 `0x9B8E` 的 124 bytes／50 条指令与原始函数完全相同，生成包含明确的 ABI 排序。C、C++ 的主机测试与独立效果检查均通过；原始 NOTYPE／局部入口也已通过部分链接验证。**它尚未纳入完整映像**；下列十一函数映像保持原样。参见[新组件](experiments/tsl9-v4160-ota-page-reply/README.md)与[整合边界](analysis/v4160-ota-page-reply-2026-10-22/integration-plan/README.md)。
-
-最新整合恢复了 11 个可读 IRQ／Flash 函数共 526 bytes 的原始机器码；完整离线 BIN 与官方 ID2966 V4.1.60 相同。生成链明确包含 C/C++ 编译器与独立 ABI 保存顺序处理，其余映像仍使用原始承载数据。这是部分源码重建，**不是原硬件或 BLE OTA 验证**。参见[新版整合](analysis/v4160-register-image-integration-2026-10-22/README.md)。
+最新完整映像已纳入 OTA 页面回复：12 个可读 IRQ／Flash／OTA 函数共 650 bytes，完整 76,800-byte BIN 与官方 ID2966 V4.1.60 相同。C、C++ 各新编译 43 个单元，61 个命令含两次明确 ABI 排序；全部单元记录完整标头依赖。其余 679 个区段仍使用原始承载，这是部分源码重建，**不是原硬件或 BLE OTA 验证**。参见[新版整合](analysis/v4160-reply-image-integration-2026-10-22/README.md)与[离线映像](artifacts/offline-images/ID2966-V4.1.60-reply-integrated/README.md)。
 
 需要 Python 3.10 以上、C11／C++17 编译器及 POSIX shell。Linux 可用 GCC 或 Clang；macOS 可用 Clang；Windows 可用 Git Bash 加 Visual Studio C++ Build Tools。新的跨平台入口不需要 PowerShell 或 CMake。
 

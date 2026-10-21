@@ -1,5 +1,15 @@
 # Verified milestones
 
+## Twelve readable functions in the complete image with full header dependencies
+
+The OTA page reply is now integrated, bringing readable code to twelve functions / 650 bytes. Fresh C11/C++17 pipelines each compile 34 original carriers and nine readable units. Their 61 commands comprise 59 LLVM operations and two explicit ABI ordering stages. Each language records 223 actual artifact pins and 41 integration controls. Both 76,800-byte outputs exactly match official ID2966 V4.1.60 SHA-256 `0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667`.
+
+All 43 compilations use full `-MD`: 74 project inputs, fourteen generated inputs and one actual Clang `stdint.h` resource header, used by fourteen units. Old `-MMD` omission did not prove that system headers were unused. Independent source review checks full recipe chronology, compiler-versus-ordered inputs and thirteen record mutations; these are not target executions.
+
+Complete artifact checks cover 691 allocations, 679 retained carriers, 8,257 outside plus twelve JAL relocations, 53 relative bindings, 21 incoming entries and fifteen LOADs' full file/memory extents and permissions. The original public NOTYPE / size 0 and local reply entries remain. Incoming `9DF4` is `C.JAL` linking to `9DF6`. Additional compiler address-signature metadata is bound to its actual source/payload instead of being arbitrarily ignored.
+
+This is partial source recovery; other contents remain original carriers. **Not verified as flashable.** ROM is only a numeric-address witness; hardware, installed ROM/BOOT, BLE OTA and recovery remain unproved. No RV32 execution/emulation or hardware operation; unchanged existing host suites were not rerun. See the [integration](../analysis/v4160-reply-image-integration-2026-10-22/readme.en.md) and [offline image](../artifacts/offline-images/ID2966-V4.1.60-reply-integrated/readme.en.md).
+
 ## Native C/C++ OTA page reply and original entry boundary
 
 Readable C/C++ now covers `0x9B8E..0x9C0A`: 124 bytes / 50 instructions. Fresh builds for each language explicitly order two regions of existing compiler words, link at the original address and read back an exact original function. Only 28 bytes inside those regions change; all other ELF bytes remain identical. LLVM alone did not emit the final order. Strict linking without TX fails; successful linking supplies only a numeric `0x8A56` address witness.
