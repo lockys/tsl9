@@ -1,5 +1,13 @@
 # Verified milestones
 
+## Readable native clock and derived fields
+
+The two clock functions now have a separate readable C/C++ implementation with actual volatile MMIO/RAM accesses and live GP primitives, without the older register-interpreter adapter. It reuses the unchanged 214-byte / 69-instruction source proof and 50 raw negative controls. Each host language passes six groups / 269,618 checks. Independent tests pass four groups / 5,345 cases / 214,811 assertions per language and reject ten actually compiled countercases in total.
+
+Freestanding C11 and C++17 RV32 builds each produce a 170-byte query and a 44-byte derived-field function. The latter exceeds its original 40-byte extent, so these bytes cannot be substituted at the original placement. Linked components have no undefined symbols, runtime helpers or writable data. Full ELF-bound disassembly coverage verifies four/three GP read sites, load/store widths and direct branch boundaries; LLVM IR checks the dynamic GP offsets and unsigned arithmetic. Ten compiled native source controls and 24 disassembly-transcript controls are rejected in total. This is structural evidence, not a native all-path semantic or original register/stack/interrupt ABI proof.
+
+Use `sh experiments/tsl9-v4160-native-clock/verify.sh --language both` for source/host checks. The standalone LLVM CLI is documented in `analysis/v4160-native-clock-2026-10-21/native-review/readme.en.md`. No RV32 code is executed or emulated, no original image is changed and no new BIN is generated. New guides and review documents have separate English and Traditional Chinese files; each `README.md` only links the language versions.
+
 ## Readable native interrupt initialization
 
 The new component reconstructs `0x9A42` and four RCC helpers as readable C/C++, with direct volatile MMIO and CSR instructions in native builds. The original five functions occupy 264 bytes / 94 instructions; 94 raw instruction mutations are rejected. Each hosted language passes 4 groups / 6,680 checks; independent tests pass 4 groups / 34,267 assertions per language and reject six actually compiled countercases.

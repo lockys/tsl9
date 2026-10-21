@@ -1,0 +1,28 @@
+# Readable native clock component review
+
+This review reuses the immutable source proof in `apk-analysis/tsl9-v4160-system-clock-query-2026-10-21/source/`. Its seal SHA-256 is `ebf0521f52c5142d1dc7969aaca17bb1c7567065165eba4c88fd4523e30b6a51`. The original ID2966 runtime digest is `0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667`; the reviewed bodies contain 214 bytes / 69 instructions (`0x18834..0x188E2`, `0x1973C..0x19764`). The preceding source-specific hosted SF model is a useful reference but is not a native ABI implementation.
+
+## Source constraints for readable C
+
+Both original functions are leaf bodies without stack operations or calls. They do not assign A0, A1, GP, or RA. A new `void` C interface can express memory-effect business logic but does not preserve original A0 or caller-saved register state by its type. Neither `void` nor ordinary compiler output establishes an alias for the original entry addresses, exact stack/return behavior, interrupt ABI, or installed GP convention. A verified wrapper or a complete new calling convention would be needed before integrating a native replacement.
+
+Query must observe four distinct GP uses: the initial scalar store at `0x18850`, table base at `0x1885A`, fresh scalar address at `0x18868`, and final store at `0x18872`. Derivation uses GP separately at `0x1973C`, `0x19752`, and `0x1975E`. Address additions wrap to 32 bits before native pointer conversion. Reading GP once at function entry changes behavior under the source contract's permitted environment changes. A native `readGP` assembly primitive must be volatile and keep surrounding C memory effects in the required compiler order; this is not a physical memory fence.
+
+Query selectors 0 and 12 choose 8,000,000; selector 4 chooses 32,000,000; selector 8 enters the multiplier path. The multiplier sample and source sample are separate new reads. The multiplier is `((sample >> 18) & 15) + 2`, except 17 becomes 18. Internal selection reads `0x40023800` and uses bit 4 for 4,000,000 versus 8,000,000. External selection first reads `0x40021004` for equality of masked bits `0x00C00000`; if unequal, another new read's bit 17 selects 4,000,000 versus 8,000,000. Testing bit 17 directly is a defined unsigned-C equivalent to the original wrapped left shift by 14 followed by signed BGEZ. Reusing an earlier config value is not equivalent.
+
+After storing the provisional scalar, query reads config again for the table index, reads the live byte at GP+64+index, reads the then-current scalar word again, and logically shifts by `(byte & 31)`. A fixed reset table, cached provisional scalar, clamped shift, signed shift, or C shift count above 31 would change behavior. The reset table bytes are only conditional initialization evidence and cannot replace the byte read.
+
+Derivation reads the live word, performs unsigned division by 8,000,000, truncates to eight bits, stores that byte, then multiplies the held truncated value by 1,000 and stores its low 16 bits. It does not reload the byte after writing it. Derivation must not consume a cached result from the earlier query: the intervening initialization function is a separate original call.
+
+## Independent implementation results
+
+The actual shared `native_clock.c` and public header were reviewed without changing them. No blocking source mismatch was found. The native-only primitives use volatile word, unsigned-byte, byte-write, and halfword-write accesses; `current_gp` uses volatile `mv` assembly with a compiler memory clobber. The host selection changes these primitives, not the branch/arithmetic business logic.
+
+Independent C11 and C++17 runs each passed **4 groups, 5,345 cases, and 214,811 assertions**. The harness derives an ordered primitive trace from the sealed source contract. Coverage includes all 16 multiplier fields, internal/external alternatives and fresh fallback samples, 16 indices times 256 shift-byte values, independently changing GP values with 32-bit address wrap, a fresh global different from the provisional scalar, unsigned extremes, and all 537 quotient boundaries. The byte and halfword stores have separate GP samples; a held quotient is used without reloading the written byte.
+
+Each language run also compiled and executed five incorrect source variants: reusing the multiplier sample for source selection, using the provisional scalar instead of the fresh global, caching one GP for query, clamping the shift to 31, and omitting quotient truncation before multiplication. All **10 actual compiled mutants** were rejected by the independent runtime assertions. A compilation failure is not accepted as a behavioral rejection. Receipts pin source/header/harness/compiler-helper/source-proof inputs, actual compiler and executables, compile options, and compiler logs; all inputs were unchanged during each run. `audit.py --language both` reproduces this hosted review.
+
+The final parent suites independently passed 6 groups / 269,618 checks in each language, with the existing 214-byte / 69-instruction / 50-raw-mutation source proof replayed. `check-review.py` closes both final parent receipts and both independent receipts against current input and actual executable/compiler digests. The final parent script, model documentation, and source map are bound through those final receipts. It performs only file reads, without executing a test or firmware.
+
+Native compilation, hosted fake-memory behavior, native instruction/IR inspection, and physical hardware/OTA validation remain separate evidence levels. This scope performs no original RV32 execution, ISA emulation, network access, or device I/O.
+

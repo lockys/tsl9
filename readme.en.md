@@ -26,6 +26,7 @@ The repository also contains 116 historical PowerShell scripts. Their native RV3
 | 22 original decoded BINs | [Firmware archive](firmware-downloads/legacy-options-2026-10-20/BINs/) |
 | New clock calculation model | [English guide](experiments/tsl9-v4160-system-clock-query/readme.en.md) |
 | Readable native interrupt initialization | [English guide](experiments/tsl9-v4160-interrupt-init/readme.en.md) |
+| Readable native clock and derived fields | [English guide](experiments/tsl9-v4160-native-clock/readme.en.md) |
 | Runtime main/init/loop/dispatch | [Guide](experiments/tsl9-v4160-runtime-loop/readme.en.md) |
 | Reference resident entry and byte-copy | [Entry](experiments/tsl9-resident-entry-reference/readme.en.md) / [copy](experiments/tsl9-resident-copy-reference/readme.en.md) |
 | Published file identity | [Manifest](publication-manifest.json) |

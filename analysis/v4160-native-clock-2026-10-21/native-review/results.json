@@ -1,0 +1,75 @@
+{
+  "schema": "TSL9-readable-native-clock-results-v1",
+  "passed": true,
+  "evidence_class": "Actual native compilation/linking plus structural and primitive IR/machine checks",
+  "source_sha256": {
+    "experiments/tsl9-v4160-native-clock/src/native_clock.c": "4431edc962d12f6e3bd8c55978d09f73104d1266ed558c10cbedee516a63e4ba",
+    "experiments/tsl9-v4160-native-clock/src/native_clock.h": "e7fc271ebd7bc1f144b69ca7286a9c776bcbe2445e089586af393da2a9a1ae55"
+  },
+  "native_builds": [
+    {
+      "mode": "c",
+      "receipt": "build/native-e04610fe195648908a5e3931e0dd0416-c/verification.json",
+      "receipt_sha256": "572e867629949485a97d0a4303006417c273bb679d567c4f43d0f539b353872a"
+    },
+    {
+      "mode": "cpp",
+      "receipt": "build/native-c1fe88738c2149f8b129c7468f576ffa-cpp/verification.json",
+      "receipt_sha256": "f6b99f24dd5ed8351222f4bff314b8012008826e96e3474a7fafbbd403f5af9b"
+    }
+  ],
+  "parent_host_builds": [
+    {
+      "mode": "c",
+      "receipt": "experiments/tsl9-v4160-native-clock/build/host-92a26eb7bd794589aaf41679bae912bf-c/verification.json",
+      "receipt_sha256": "0a2b188b15d28d554be0f2a23177c0c6683aa929f02435e0f1a3633524382b83"
+    },
+    {
+      "mode": "cpp",
+      "receipt": "experiments/tsl9-v4160-native-clock/build/host-a9ce3c604c40411aba95caefbeb90ff6-cpp/verification.json",
+      "receipt_sha256": "8b15b8847a2988b7ccce99d84c28b72e1b876e3c3eb94aaf17680cabe451d420"
+    }
+  ],
+  "parent_host_tests_per_mode": {"groups": 6, "checks": 269618},
+  "parent_original_source_proof": {"bytes": 214, "instructions": 69, "raw_negative_controls": 50},
+  "query": {
+    "native_bytes": 170,
+    "native_instructions": 59,
+    "original_bytes": 174,
+    "original_instructions": 58,
+    "code_sha256": "68d9b333829d9057ffd4e2b7d9d7afbef9529025cb28c04d901c8484423edc83",
+    "GP_reads": 4,
+    "GP_writes": 0
+  },
+  "fields": {
+    "native_bytes": 44,
+    "native_instructions": 14,
+    "original_bytes": 40,
+    "original_instructions": 11,
+    "code_sha256": "6b10feb0e86badf7a1e6c99bde0d8a6a60ff2fd9ba54550f13e7167a4dfe0c20",
+    "GP_reads": 3,
+    "GP_writes": 0,
+    "fits_original_extent": false
+  },
+  "native_object_sha256_both_modes": "f68f31b9d02340f40ce9be216719d767d3809f270946bb0a7e459229e84c7d0e",
+  "linked_component_sha256_both_modes": "97116f3a778af37b9edcd4a2f22b42550b1446cfec054e2e3c21a1c62b152392",
+  "actual_compiled_source_controls_per_mode": 5,
+  "ELF_bound_transcript_controls_per_mode": 12,
+  "all_function_bytes_compared_to_raw_disassembly": true,
+  "toolchain": "Android NDK27.1.12297006 Clang18.0.2, RV32IMAC ILP32 Os",
+  "clang_sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+  "ld_lld_sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+  "llvm_objdump_sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+  "native_branch_semantics_proved": false,
+  "original_fixed_placement_proved": false,
+  "original_C_ABI_proved": false,
+  "original_IRQ_ABI_proved": false,
+  "old_native_image_gate_modified": false,
+  "firmware_BIN_produced": false,
+  "firmware_executed": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false,
+  "goal_complete": false
+}

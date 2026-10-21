@@ -1,0 +1,133 @@
+{
+  "schema": "TSL9-native-clock-source-contract-review-v1",
+  "passed": true,
+  "review_kind": "Static source contract for ordinary C reconstruction; not completed C implementation audit",
+  "immutable_source_proof": {
+    "project_relative_layouts": [
+      "apk-analysis/tsl9-v4160-system-clock-query-2026-10-21/source",
+      "analysis/tsl9-v4160-system-clock-query-2026-10-21/source"
+    ],
+    "seal_sha256": "ebf0521f52c5142d1dc7969aaca17bb1c7567065165eba4c88fd4523e30b6a51",
+    "members": [
+      {
+        "path": "inspect-source.py",
+        "bytes": 22531,
+        "sha256": "5fd0e617ac3f25525fe8f27df939866b9bdb7200f1b158fed5a0a069a1c1a933"
+      },
+      {
+        "path": "retained-source.json",
+        "bytes": 12854,
+        "sha256": "0aa4f2f2e0828453e5aa4f6aac3e3b2a7a95559820ef1173281dcad26f3901b0"
+      },
+      {
+        "path": "source-map.json",
+        "bytes": 36570,
+        "sha256": "65f5e15e72b424d0be4638e217786bac8e3c74414c54f0fb22be238d5fbfb466"
+      },
+      {
+        "path": "contract.json",
+        "bytes": 13925,
+        "sha256": "4d326394394f979758ac8c4d335f33447e8095e0dc0bb2c5837c4a78bbaaeb8c"
+      },
+      {
+        "path": "README.md",
+        "bytes": 7568,
+        "sha256": "3d35e8b6126231df603551865d737bcc445a95bf3117cbdb459f4b572da529db"
+      }
+    ]
+  },
+  "firmware": {
+    "catalog_ID": 2966,
+    "version": "V4.1.60",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "bytes": 76800,
+    "analysis_base": 32768
+  },
+  "target_source_spans": [
+    {
+      "role": "query18834",
+      "start": 100404,
+      "end_exclusive": 100578,
+      "file_offset": 67636,
+      "bytes": 174,
+      "instructions": 58,
+      "sha256": "1fe76c3ddc25809287b5ebaf84cd508bcffeebc7b442eac36b33a38ab2f81e1e"
+    },
+    {
+      "role": "derive1973c",
+      "start": 104252,
+      "end_exclusive": 104292,
+      "file_offset": 71484,
+      "bytes": 40,
+      "instructions": 11,
+      "sha256": "54981bbd3ffcfe30f15091ac55558d66f221f32712e54ac53e33f9ff2c2afb43"
+    }
+  ],
+  "read_only_original_replay": {
+    "passed": true,
+    "target_bytes": 214,
+    "target_instructions": 69,
+    "raw_operand_mutation_rejections": 50,
+    "target_execution": false,
+    "network": false
+  },
+  "leaf_register_effects": "Both bodies contain no call and no SP operation, do not explicitly assign GP/RA/A0/A1, and RET uses then-live RA. Other A2/A3/A4/A5 fields are changed by source operations; old argument/status ABI is unproved.",
+  "query_order": [
+    "fresh_selector_read",
+    "conditional_independent_multiplier_and_source_reads",
+    "conditional_fresh_EXTEN_or_external_reads",
+    "provisional_WRITE32_GP_plus108",
+    "fresh_prescaler_READ32",
+    "live_table_READ8",
+    "fresh_scalar_READ32_GP_plus108",
+    "unsigned_shift_table_byte_and31",
+    "final_WRITE32_GP_plus108"
+  ],
+  "multiplier_values": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    18
+  ],
+  "derived_fields": {
+    "read": "fresh_READ32_GP_plus108",
+    "quotient": "(uint32(word)/8000000)&255",
+    "first_write": "WRITE8_GP_plus382_quotient",
+    "second_write": "WRITE16_GP_plus380_low16(held_quotient*1000)",
+    "byte_reloaded": false
+  },
+  "ordinary_C_interface_requirements": [
+    "Every register read and memory write remains a distinct ordered effect",
+    "Use explicit unsigned32 arithmetic and shift-count masking",
+    "Use byte and halfword output widths",
+    "Context/GP arguments and C return values do not preserve original A0/A1 ABI",
+    "void C declaration does not prove A0/A1 preservation",
+    "Fixed GP per ordinary C call is an explicit interface assumption",
+    "Original RA/SP/temporary-register behavior requires separate adapter proof"
+  ],
+  "blocking_findings_for_drop_in_claim": [
+    "Original entry/exit ABI unproved",
+    "Physical peripheral behavior and chip identity unverified",
+    "No OTA compatibility proof"
+  ],
+  "full_original_ABI_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false,
+  "wrapper_syntax_checked": true,
+  "wrapper_full_replay_repeated": false
+}
