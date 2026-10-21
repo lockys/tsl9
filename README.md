@@ -1,42 +1,86 @@
-# TSL9 離線韌體分析與 C/C++ 重建
+# TSL9 offline C/C++ reconstruction / TSL9 離線 C/C++ 重建
 
-保存原始 APK、22 份官方更新服務已回傳的解碼 BIN，以及目前的 C/C++ 重建程式與本機驗證工具。版本標籤來自伺服器，不能單靠標籤判斷硬體適用性。
+## English
 
-**目前沒有已驗證可由藍牙燒錄的重建 BIN。** 實際 MCU／PCB、ROM ABI、記憶體／中斷契約與 OTA 相容性仍未確認。請勿將本專案的候選配置或 `ADDRESS-WITNESS-ONLY.elf` 當作可執行、可刷寫韌體。
+This private repository preserves the original APK,22 distinct decoded updater
+BINs,readable C/C++ behavior models,source-bound native instruction carriers and
+offline verification tools. Version labels alone do not prove hardware suitability.
+**No rebuilt BIN has been verified to install and run through the original BLE OTA.**
 
-## 檔案位置
+The full goal remains necessary TSL9 functionality plus the original execution
+layer,with hardware,startup,resident ROM,memory,IRQ and update compatibility proved
+individually. Source observation,synthetic host tests,address witnesses and physical
+evidence remain separate. Original/rebuilt firmware is not executed or emulated.
 
-| 內容 | 位置 |
-|---|---|
-| 原始 Android APK 1.2.7 | [artifacts/apk/安卓-TSL电子模块-1.2.7-1.apk](artifacts/apk/安卓-TSL电子模块-1.2.7-1.apk) |
-| 22 份不同 SHA-256 的官方回傳 BIN | [firmware-downloads/legacy-options-2026-10-20/BINs/](firmware-downloads/legacy-options-2026-10-20/BINs/) |
-| V4.1.60／ID2966 啟動、IRQ、初始化與回呼重建 | [experiments/tsl9-v4160-startup/](experiments/tsl9-v4160-startup/) |
-| V4.1.00／ID2581 主體與功能模型 | [experiments/tsl9-contract-model/src/](experiments/tsl9-contract-model/src/) |
-| V4.1.00／R81 資料與回呼閉包實驗 | [experiments/tsl9-lookup-domain-closure/](experiments/tsl9-lookup-domain-closure/) |
-| 多版本比較程式 | [experiments/tsl9-multiversion/](experiments/tsl9-multiversion/) |
-| POST 下載腳本及 localhost Mock 測試 | [scripts/README-download-firmware.md](scripts/README-download-firmware.md) |
-| 交付來源檔案的大小與 SHA-256 | [publication-manifest.json](publication-manifest.json) |
+| Content | Location / current scope |
+| --- | --- |
+| Original APK1.2.7 | [APK](artifacts/apk/安卓-TSL电子模块-1.2.7-1.apk),48,067,278 bytes |
+|22 original decoded BINs | [Firmware archive](firmware-downloads/legacy-options-2026-10-20/BINs/) |
+| V4.1.60 native carriers | [Native project](experiments/tsl9-v4160-startup/); latest actual691 allocations/8,280 RELA/one true resident UND |
+| Reset / IRQ data effects | [Reset](experiments/tsl9-v4160-reset-contract/) / [IRQ](experiments/tsl9-v4160-irq-frame-contract/) |
+| BOOT / UID | [Command](experiments/tsl9-boot2580-command-adapter/) / [UID](experiments/tsl9-boot2580-uid-helper/) |
+| Reference byte-copy | [C/C++](experiments/tsl9-resident-copy-reference/);58B/18 source instructions |
+| Reference entry/initializer | [C/C++](experiments/tsl9-resident-entry-reference/);230B/66 instructions plus4B header |
+| Evidence and limitations | [Verified milestones](docs/verified-milestones.md) |
+| Published file hashes | [Manifest](publication-manifest.json) |
 
-`apk-analysis/tsl9-server-current/` 的兩份 BIN 是 ID2580／ID2581 的相同內容別名，保留給舊驗證程式使用；不是另外兩份不同韌體。APK 的下載原名為 `安卓-TSL电子模块-1.2.7.apk`，此處依上傳要求使用 `-1.apk` 檔名，內容未修改：48,067,278 bytes，SHA-256 `10d7d92f16d7806d841fcfd152b318601f6c234a2445e99e0729709aacc9c3ee`。
+The selected Dec2023 V1.31 candidate does not identify the installed resident.
+Its second initializer copy requests140 bytes,but the captured tail supplies136.
+Actual main+tail stops at READ32 source0x6EB2C; main-only stops at0x6EAA4.
+Neither can skip that read to zeroing or MRET. Synthetic unknown-memory fixtures
+test the suffix without filling the original artifact or proving real Flash behavior.
 
-## 重建範圍與證據
+The76,800-byte [offline original-layout image](artifacts/offline-images/ID2966-V4.1.60-source-image-fidelity/NOT-FLASH-VALIDATED-original-layout.bin)
+is byte-identical to original ID2966 and remains NOT-FLASH-VALIDATED. A SHN_ABS40000
+address witness does not implement __tsl9v4160_rom_entry. Exact MCU/PCB,installed
+BOOT/ROM,physical memory/IRQ ABI and OTA acceptance remain unproved. Historical
+stage counts apply only to their original scope.
 
-本專案包含高階 C 功能模型，以及用 C11／C++17 加 RV32 inline assembly 保留原始指令、暫存器行為和語意重定位的元件。它不是完整恢復的原始 C/C++ 原始碼；Python／PowerShell 用於離線分析、編譯與 ELF 核對。
+### Local verification and publication
 
-最新 V4.1.60 已交付階段見 [MATERIALIZED.md](experiments/tsl9-v4160-startup/MATERIALIZED.md)：捕獲 6306B code、459B RO、554 筆重定位。嚴格最終連結仍因 84 個真實未解析符號而失敗，另有 79 個間接呼叫位置的目標／ABI 尚未完整解析。以上數字只適用於此有限捕獲範圍，不表示整份韌體只剩這些缺口。
-
-V4.1.00 與 V4.1.60 分開處理；不混用版本的程式或尾段資料。[FEATURE-COVERAGE.md](FEATURE-COVERAGE.md) 與各實驗內文件含歷史階段說明，不能當作原硬體功能驗證。此儲存庫保存目前有效的原始碼與實驗輸入，未上傳數百 MB 的歷史分析快照、私人 API 請求／回應、日誌或暫存編譯產物；部分歷史報告連結與原機絕對路徑因此只供來源追溯。
-
-## 本機靜態核對
-
-原工具環境為 Windows、PowerShell 7、Python 3，以及 Android NDK `27.1.12297006` 的 Clang／LLD。既有驗證器有固定的原工具路徑；在其他環境重做前需自行配置等效工具。僅執行主機端驗證器，不執行、模擬或刷寫 RV32 目標。
+The retained environment is Windows/PowerShell7,Python3,MSVC BuildTools and NDK
+27.1.12297006 Clang/LLD. Historical tools may require fixed paths and local archives;
+recent source proofs/model verifiers resolve this snapshot's analysis inputs.
 
 ```powershell
 python scripts/verify-publication.py
-python experiments/tsl9-v4160-startup/verify-extension.py --spec experiments/tsl9-v4160-startup/evidence/materialized-integration.json
-pwsh -NoProfile -File experiments/tsl9-lookup-domain-closure/verify-native.ps1
+pwsh -NoProfile -File experiments/tsl9-resident-copy-reference/verify.ps1
+pwsh -NoProfile -File experiments/tsl9-resident-entry-reference/verify.ps1
 ```
 
-最後一項可加 `-Cpp` 檢查 C++17。驗證成功表示相應的主機端靜態條件成立，不代表原機啟動、藍牙 OTA 或車輛功能通過。
+Add -Cpp for C++17. Passing establishes only the declared source/host scope.
+Commit/push follows each verified milestone. New documents are English plus
+Traditional Chinese; sealed historical bytes stay unchanged with companion notes.
+Real identifiers,credentials,private request/response logs,unrelated work and
+temporary builds are excluded. Original APK/BIN rights remain with their holders.
 
-原始 APK／BIN 仍屬各自權利人；此儲存庫未賦予第三方元件額外授權。
+## 繁體中文
+
+此私人儲存庫保存原始APK、更新器回傳的22份不同解碼BIN、可讀C/C++行為模型、有來源依據
+的原生指令carrier及離線驗證工具。版本標籤不能證明硬體適用性。**目前沒有已驗證可由
+原藍牙OTA安裝並在原硬體執行的重建BIN。**
+
+完整目標仍是TSL9必要功能與原機執行層，逐項證明硬體、啟動、resident ROM、記憶體、
+IRQ及更新相容性。來源觀察、合成host測試、數值witness與實體證據分開；沒有執行或模擬
+原始／重建韌體。上表提供APK、22份BIN、Runtime、reset／IRQ、BOOT／UID、copy／entry
+重建程式及最新證據連結。最新原生實物為691配置／8280 RELA／1個真正resident UND；
+歷史文件的舊數量只適用各自階段。
+
+Dec2023 V1.31只是候選，不是實機resident辨識。第二段初始化請求140B，tail只捕獲136B；
+主段加tail在0x6EB2C的READ32停止，只有主段更早在0x6EAA4停止，不能先跳到zero或MRET。
+合成未知記憶體fixture可驗後綴，但不補原檔，也不證明實體Flash會回什麼值。
+
+76,800B original-layout離線image與原ID2966逐byte相同，仍標示NOT-FLASH-VALIDATED。
+SHN_ABS40000位址witness不是resident實作；確切MCU／PCB、原機BOOT／ROM、實體記憶體／
+IRQ ABI及OTA接受都未證實。byte-copy有58B／18來源指令，entry／init／seed有230B／66
+指令，另4B header；這些是有來源條件的重建，不是完整恢復的原始碼。
+
+### 本機驗證與發佈
+
+使用上方host指令；-Cpp可驗C++17。環境為Windows／PowerShell7、Python3、
+MSVC BuildTools及NDK27.1.12297006。部分歷史工具需固定路徑／本機archive，不保證只靠
+GitHub快照即可重播。通過只表示其來源／host範圍成立，不代表實體OTA或車輛功能。
+
+依指定在每個完成驗證的里程碑commit／push；沒有啟用固定每小時publisher。新文件採
+英文＋繁體中文，歷史封存bytes不改、改附雙語說明。發佈排除真實裝置識別資料、憑證、
+私有請求／回應、無關檔案與暫存build。原APK／BIN權利仍屬各自權利人。

@@ -1,0 +1,539 @@
+{
+  "schema": "WCH-V1.31-reference-entry-ordered-contract-v1",
+  "passed": true,
+  "blocking_findings": [],
+  "reference_candidate_only": true,
+  "carrier_sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22",
+  "source_spans": [
+    {
+      "role": "entry",
+      "start": 450174,
+      "end_exclusive": 450242,
+      "file_offset": 188030,
+      "bytes": 68,
+      "instructions": 18,
+      "sha256": "98fe32a0b24638e9f678c2112dbae4fa05ad6e45d2a9fb84bedb67c3831880b0"
+    },
+    {
+      "role": "initializer",
+      "start": 450060,
+      "end_exclusive": 450174,
+      "file_offset": 187916,
+      "bytes": 114,
+      "instructions": 32,
+      "sha256": "7a0cf58801fabb3dcb9d26fcece3d01b2f41276dacce4130daff0e663559927f"
+    },
+    {
+      "role": "seed_helpers",
+      "start": 262784,
+      "end_exclusive": 262832,
+      "file_offset": 640,
+      "bytes": 48,
+      "instructions": 16,
+      "sha256": "1b443f8c3926fac2d65fda618f0ead0c9d2f50cafe5b0ff9c72eb030c13fd5a8"
+    },
+    {
+      "role": "header",
+      "start": 262144,
+      "end_exclusive": 262148,
+      "file_offset": 0,
+      "bytes": 4,
+      "instructions": 1,
+      "sha256": "2bb4f21801aa29d43c20f8806e6d805fe9975d9bdf699df17862efbdb371124a"
+    }
+  ],
+  "entry": {
+    "header_jump": {
+      "pc": 262144,
+      "raw": "6fd0f267",
+      "target": 450174
+    },
+    "ordered_effects": [
+      {
+        "source_pc": 450174,
+        "source_pc_hex": "0x6DE7E",
+        "operation": "GP=(PC+AUIPCupper+ADDIimm) mod2^32",
+        "low_pc": 450178,
+        "value": 536887296
+      },
+      {
+        "source_pc": 450182,
+        "source_pc_hex": "0x6DE86",
+        "operation": "SP=(PC+AUIPCupper+ADDIimm) mod2^32",
+        "low_pc": 450186,
+        "value": 536936448
+      },
+      {
+        "source_pc": 450190,
+        "source_pc_hex": "0x6DE8E",
+        "operation": "set a0 seed source",
+        "low_pc": 450194,
+        "value": 262784
+      },
+      {
+        "source_pc": 450198,
+        "source_pc_hex": "0x6DE96",
+        "operation": "set a1 seed destination",
+        "low_pc": 450202,
+        "value": 536870928
+      },
+      {
+        "source_pc": 450206,
+        "source_pc_hex": "0x6DE9E",
+        "operation": "set a2 seed end-exclusive",
+        "low_pc": 450210,
+        "value": 536870976
+      },
+      {
+        "source_pc": 450214,
+        "source_pc_hex": "0x6DEA6",
+        "operation": "if unsigned a1>=a2 skip seed AND initializer to MRET",
+        "target": 450238
+      },
+      {
+        "source_pc": 450218,
+        "source_pc_hex": "0x6DEAA",
+        "operation": "READ32",
+        "address": "live a0",
+        "destination": "t0"
+      },
+      {
+        "source_pc": 450222,
+        "source_pc_hex": "0x6DEAE",
+        "operation": "WRITE32",
+        "address": "live a1",
+        "value": "t0 sampled by prior read"
+      },
+      {
+        "source_pc": 450226,
+        "source_pc_hex": "0x6DEB2",
+        "operation": "a0=(a0+4) mod2^32"
+      },
+      {
+        "source_pc": 450228,
+        "source_pc_hex": "0x6DEB4",
+        "operation": "a1=(a1+4) mod2^32"
+      },
+      {
+        "source_pc": 450230,
+        "source_pc_hex": "0x6DEB6",
+        "operation": "if unsigned a1<a2 repeat seed loop",
+        "target": 450218
+      },
+      {
+        "source_pc": 450234,
+        "source_pc_hex": "0x6DEBA",
+        "operation": "DIRECT_CALL",
+        "target": 450060,
+        "link_RA": 450238,
+        "continuation": "only if initializer/zero chain returns to expected link"
+      },
+      {
+        "source_pc": 450238,
+        "source_pc_hex": "0x6DEBE",
+        "operation": "MRET",
+        "raw": "73002030",
+        "target": "machine return context; not saved RA"
+      }
+    ],
+    "fixed_seed_shape": {
+      "source": [
+        262784,
+        262832
+      ],
+      "destination": [
+        536870928,
+        536870976
+      ],
+      "bytes": 48,
+      "words": 12,
+      "read_then_write_then_source_increment_then_destination_increment": true,
+      "normal_initial_guard_false": true,
+      "post_loop_registers_if_normal": {
+        "a0": 262832,
+        "a1": 536870976,
+        "a2": 536870976
+      }
+    }
+  },
+  "initializer": {
+    "entry": 450060,
+    "ordered_effects": [
+      {
+        "source_pc": 450060,
+        "source_pc_hex": "0x6DE0C",
+        "operation": "SP=(liveSP-16) mod2^32"
+      },
+      {
+        "source_pc": 450062,
+        "source_pc_hex": "0x6DE0E",
+        "operation": "a4=0x20000000"
+      },
+      {
+        "source_pc": 450066,
+        "source_pc_hex": "0x6DE12",
+        "operation": "WRITE32",
+        "address": "liveSP+12 mod2^32",
+        "value": "live RA",
+        "role": "save occurs after frame subtraction/LUI and before RAM calls"
+      },
+      {
+        "source_pc": 450068,
+        "source_pc_hex": "0x6DE14",
+        "operation": "a5=0x20000000"
+      },
+      {
+        "source_pc": 450072,
+        "source_pc_hex": "0x6DE18",
+        "operation": "a4=a4+2000"
+      },
+      {
+        "source_pc": 450076,
+        "source_pc_hex": "0x6DE1C",
+        "operation": "WRITE32",
+        "address": "live a5+0",
+        "value": 536872912
+      },
+      {
+        "source_pc": 450086,
+        "source_pc_hex": "0x6DE26",
+        "operation": "WRITE32",
+        "address": "live a5+4",
+        "value": 536880412
+      },
+      {
+        "source_pc": 450108,
+        "source_pc_hex": "0x6DE3C",
+        "operation": "WRITE32",
+        "address": "live a5+8",
+        "value": 536882740
+      },
+      {
+        "source_pc": 450126,
+        "source_pc_hex": "0x6DE4E",
+        "operation": "INDIRECT_CALL_RAM_CODE",
+        "target": 536870928,
+        "a0": 262832,
+        "a1": 536870976,
+        "a2": 536882800,
+        "link_RA": 450130,
+        "normal_return_to_link_required": true
+      },
+      {
+        "source_pc": 450158,
+        "source_pc_hex": "0x6DE6E",
+        "operation": "INDIRECT_CALL_RAM_CODE",
+        "target": 536870928,
+        "a0": 453284,
+        "a1": 536882800,
+        "a2": 536882936,
+        "link_RA": 450162,
+        "normal_return_to_link_required": true
+      },
+      {
+        "source_pc": 450162,
+        "source_pc_hex": "0x6DE72",
+        "operation": "READ32",
+        "address": "then-liveSP+12 mod2^32",
+        "destination": "ra",
+        "role": "fresh read; not a cached entry RA"
+      },
+      {
+        "source_pc": 450164,
+        "source_pc_hex": "0x6DE74",
+        "operation": "SP=(then-liveSP+16) mod2^32"
+      },
+      {
+        "source_pc": 450170,
+        "source_pc_hex": "0x6DE7A",
+        "operation": "INDIRECT_TAIL_RAM_CODE",
+        "target": 536870946,
+        "link_written": false,
+        "return_RA": "value freshly loaded at6DE72"
+      }
+    ],
+    "live_context": "RAM callees are not assumed to preserve SP/GP or stack contents. Later events use returned live state. If exact seed instructions are still installed and normally interpreted without interleaving, neither helper explicitly accesses SP/GP; that conditional source fact does not prove actual ABI preservation.",
+    "default_frame_geometry_only": {
+      "entry_SP": 536936448,
+      "frame_SP": 536936432,
+      "save_and_expected_fresh_read_address": 536936444,
+      "nominal_saved_RA": 450238,
+      "normal_final_SP_if_context_unchanged": 536936448,
+      "memory_accessibility_or_saved_value_stability_proved": false
+    },
+    "numeric_call_return_value_tested": false,
+    "HALT_TRANSFER_or_other_return_target_never_forced_to_continuation": true
+  },
+  "RAM_instruction_admission": {
+    "seed_source_capture": [
+      262784,
+      262832
+    ],
+    "expected_RAM_capture": [
+      536870928,
+      536870976
+    ],
+    "word_helper": {
+      "source": [
+        262784,
+        262802
+      ],
+      "RAM": [
+        536870928,
+        536870946
+      ],
+      "bytes": 18,
+      "instructions": 7
+    },
+    "zero_helper": {
+      "source": [
+        262802,
+        262832
+      ],
+      "RAM": [
+        536870946,
+        536870976
+      ],
+      "bytes": 30,
+      "instructions": 9
+    },
+    "required_conditions": [
+      "all12 seed READ32/WRITE32 requests complete with the expected bytes",
+      "instruction fetch sees those written bytes at the numeric RAM targets",
+      "RAM is executable and ISA/privilege decode matches the standard fields used here",
+      "no alias, IRQ, DMA or later write replaces the instructions or required register context",
+      "memory and control returns complete as required; a numeric target alone is not a provider"
+    ],
+    "embedded_seed_does_not_prove_installed_RAM": true,
+    "provider_generated": false,
+    "default_run_RAM_is_delegated": true
+  },
+  "word_copy_helper": {
+    "entry_source": 262784,
+    "conditional_RAM_entry": 536870928,
+    "ordered_iteration": [
+      {
+        "source_pc": 262784,
+        "source_pc_hex": "0x40280",
+        "operation": "if unsigned a2>=a1 copy one word; else RET",
+        "copy_target": 262790
+      },
+      {
+        "source_pc": 262788,
+        "source_pc_hex": "0x40284",
+        "operation": "RET",
+        "target": "live RA"
+      },
+      {
+        "source_pc": 262790,
+        "source_pc_hex": "0x40286",
+        "operation": "READ32",
+        "address": "live a0",
+        "destination": "a5"
+      },
+      {
+        "source_pc": 262792,
+        "source_pc_hex": "0x40288",
+        "operation": "a1=(a1+4) mod2^32"
+      },
+      {
+        "source_pc": 262794,
+        "source_pc_hex": "0x4028A",
+        "operation": "a0=(a0+4) mod2^32"
+      },
+      {
+        "source_pc": 262796,
+        "source_pc_hex": "0x4028C",
+        "operation": "WRITE32",
+        "address": "(live a1-4) mod2^32",
+        "value": "a5 from preceding read"
+      },
+      {
+        "source_pc": 262800,
+        "source_pc_hex": "0x40290",
+        "operation": "jump unsigned guard",
+        "target": 262784
+      }
+    ],
+    "inclusive_last_word": true,
+    "generic_wrap_alignment_or_memory_validity_proved": false,
+    "fixed_calls": [
+      {
+        "call_pc": 450126,
+        "source": [
+          262832,
+          274660
+        ],
+        "destination": [
+          536870976,
+          536882804
+        ],
+        "last_word_inclusive": 536882800,
+        "words": 2957,
+        "bytes": 11828,
+        "all_requested_source_captured": true,
+        "post_registers_if_normal": {
+          "a0": 274660,
+          "a1": 536882804,
+          "a2": 536882800
+        }
+      },
+      {
+        "call_pc": 450158,
+        "source": [
+          453284,
+          453424
+        ],
+        "destination": [
+          536882800,
+          536882940
+        ],
+        "last_word_inclusive": 536882936,
+        "words": 35,
+        "bytes": 140,
+        "captured_prefix_words": 34,
+        "captured_prefix_bytes": 136,
+        "all_requested_source_captured": false,
+        "post_registers_if_all_reads_normal": {
+          "a0": 453424,
+          "a1": 536882940,
+          "a2": 536882936
+        }
+      }
+    ]
+  },
+  "zero_helper": {
+    "entry_source": 262802,
+    "conditional_RAM_entry": 536870946,
+    "own_constant_bounds": {
+      "start": 536882936,
+      "last_word_inclusive": 536884756,
+      "end_exclusive": 536884760,
+      "words": 456,
+      "bytes": 1824
+    },
+    "ordered_effects": [
+      {
+        "source_pc": 262802,
+        "source_pc_hex": "0x40292",
+        "operation": "a5=0x20003000"
+      },
+      {
+        "source_pc": 262806,
+        "source_pc_hex": "0x40296",
+        "operation": "a4=0x20003000"
+      },
+      {
+        "source_pc": 262810,
+        "source_pc_hex": "0x4029A",
+        "operation": "a5=(a5-264) mod2^32",
+        "nominal_value": 536882936
+      },
+      {
+        "source_pc": 262814,
+        "source_pc_hex": "0x4029E",
+        "operation": "a4=(a4+1556) mod2^32",
+        "nominal_value": 536884756
+      },
+      {
+        "source_pc": 262818,
+        "source_pc_hex": "0x402A2",
+        "operation": "if unsigned a4>=a5 write; else RET",
+        "write_target": 262824
+      },
+      {
+        "source_pc": 262822,
+        "source_pc_hex": "0x402A6",
+        "operation": "RET",
+        "target": "live RA freshly restored by initializer, if unchanged"
+      },
+      {
+        "source_pc": 262824,
+        "source_pc_hex": "0x402A8",
+        "operation": "WRITE32",
+        "address": "live a5",
+        "value": 0
+      },
+      {
+        "source_pc": 262828,
+        "source_pc_hex": "0x402AC",
+        "operation": "a5=(a5+4) mod2^32"
+      },
+      {
+        "source_pc": 262830,
+        "source_pc_hex": "0x402AE",
+        "operation": "jump guard",
+        "target": 262818
+      }
+    ],
+    "not_a_caller_length_parameter": true,
+    "does_not_assign_a0_a1_a2_SP_GP": true,
+    "post_registers_if_normal": {
+      "a4": 536884756,
+      "a5": 536884760
+    }
+  },
+  "strict_captured_provider_stop": {
+    "scope": "strict captured-only source provider under the fixed normal entry/init/reference-helper path",
+    "call_pc": 450158,
+    "read_instruction_source_pc": 262790,
+    "conditional_RAM_instruction_pc": 536870934,
+    "read_address": 453420,
+    "width": 4,
+    "zero_based_word_index": 34,
+    "requested_word_count": 35,
+    "captured_prefix_words": 34,
+    "captured_prefix_bytes": 136,
+    "pending_destination": 536882936,
+    "inclusive_last_destination_word": 536882936,
+    "read_precedes_increments_and_write": true,
+    "no_increment_no_write_until_READ_returns": true,
+    "unbacked_range": [
+      453420,
+      453424
+    ],
+    "source_missing_is_not_physical_unmapped_or_fault_proof": true,
+    "strict_provider_action": "stop/HALT with missing-source evidence; do not fabricate zero/FF or automatically continue",
+    "zero_loop_reached": false,
+    "fresh_RA_reload_reached": false,
+    "MRET_reached": false,
+    "explicit_unknown_external_memory_backend_is_separate_unproved_contract": true
+  },
+  "MRET_and_context": {
+    "source_pc": 450238,
+    "raw": "73002030",
+    "bounded_explicit_CSR_read_or_write_instructions": [],
+    "bounded_MEPC_MTVEC_write_sites": [],
+    "no_bounded_MEPC_write_is_not_global_or_IRQ_preservation": true,
+    "MRET_is_not_RET_to_restored_RA": true,
+    "source_has_no_original_APP_handoff_target_constant": true,
+    "requires_valid_machine_return_state_and_no_unaccounted_trap": true,
+    "MSTATUS_vendor_CSR_and_physical_IRQ_semantics_proved": false
+  },
+  "C_reconstruction_boundaries": {
+    "can_implement": "fixed entry register setup, ordered seed requests, lowRAM writes, delegated RAM calls/tail, literal word/zero reference providers under explicit fetch/ABI/memory conditions, fresh stack restore and MRET observation",
+    "must_keep_unknown": [
+      "installed resident identity",
+      "installed RAM instruction bytes/fetch validity",
+      "effects of delegated RAM code on live SP/GP/RA",
+      "unbacked last READ32 and physical source contents",
+      "IRQ/trap/alias behavior and CSR return context",
+      "original C signature/ABI and successful startup"
+    ],
+    "capture_only_provider_must_stop_before_zero_RA_reload_and_MRET": true
+  },
+  "limits": {
+    "reference_candidate_only": true,
+    "source_only": true,
+    "original_TSL9_resident_identity_proved": false,
+    "startup_completed_proved": false,
+    "holes_filled": false,
+    "provider_generated": false,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "network": false,
+    "hardware": false,
+    "ROOT_modified": false,
+    "D_modified": false
+  }
+}

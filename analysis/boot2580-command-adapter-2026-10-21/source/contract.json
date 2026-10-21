@@ -1,0 +1,524 @@
+{
+  "schema": "TSL9-BOOT-ID2580-command-source-contract-v1",
+  "passed": true,
+  "blocking_findings": [],
+  "selected_boot": {
+    "catalog_ID": 2580,
+    "catalog_version_label": "V1.0.00",
+    "bytes": 12288,
+    "sha256": "650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb",
+    "analysis_base": 4096,
+    "body": {
+      "start": 8638,
+      "end_exclusive": 9052,
+      "bytes": 414,
+      "sha256": "44702abb50c4489f378bb1036d8cf949817301e2e07d8af8434f7d6e119438d5"
+    }
+  },
+  "inputs": {
+    "apk-analysis/tsl9-ota-image-contract-2026-10-21/boot-contract/seal.json": "1252de8f251635284f0c9cd1476baad228ea24e1f69da6d7ae65e1d86e94c79b",
+    "apk-analysis/tsl9-ota-image-contract-2026-10-21/boot-contract/review.json": "45292413ff82b3efac75a069cf84293184ee3139cc719acb00c7f22d07465f4d",
+    "apk-analysis/tsl9-v4160-ota-handoff-2026-10-21/boot-acceptance/final-audit.json": "d2b96075f8bc1e40439d97b87b8f5832acd7e8c7a404428f3ce5af378d42b9ac",
+    "apk-analysis/tsl9-v4160-ota-handoff-2026-10-21/boot-acceptance/facts.json": "af0d7d352758bf3f2a83080f30ffd20fed2293aef71d83f350781b64888aa8e2",
+    "apk-analysis/tsl9-v4160-ota-handoff-2026-10-21/boot-acceptance/source-map.json": "77c9a864635bceb85f4ab283013ed8e8634a69dd566d0dff2dd23bc15f463d8b",
+    "apk-analysis/tsl9-v4160-ota-handoff-2026-10-21/boot-acceptance/response-wrappers.json": "11ae81d8300309f95b31d6e9187a0abb7fb56abdf23eace9c541a630bb58dea6",
+    "retained-source.json": "e21edb56e71a3c724a886919e6493fd415bd75c14ef81ac7f1645b8e5729f713"
+  },
+  "entry_register_schema": {
+    "a0": "numeric context saved in s1 at21D0",
+    "a1": "command numeric u32",
+    "a2": "numeric payload address u32",
+    "a3": "length numeric u32",
+    "gp": "live numeric GP; active byte at (gp+139) mod2^32",
+    "sp": "live numeric SP, after prologue SP=entrySP-48 modulo2^32"
+  },
+  "schema_limit": "Observed register/memory schema for a synthetic adapter, not an original C signature or proof of callee-save, SP, GP, memory, ROM or hardware ABI.",
+  "frame": {
+    "prologue": [
+      8638,
+      8652
+    ],
+    "frame_bytes": 48,
+    "saved_register_offsets": {
+      "ra": 44,
+      "s0": 40,
+      "s1": 36,
+      "s2": 32,
+      "s3": 28,
+      "s4": 24
+    },
+    "body_stack_slots": {
+      "payload": 8,
+      "length": 12
+    },
+    "live_stack_rule": "S stores use then-current SP; each reload after delegated calls uses then-current SP, not an automatic host snapshot. No physical stack memory proof."
+  },
+  "command_dispatch": {
+    "S": 83,
+    "U": 85,
+    "W": 87,
+    "E": 69,
+    "R": {
+      "value": 82,
+      "local_case": false,
+      "effect": "falls to local restore/RET21E2; no page-read case in this body"
+    },
+    "other": "restore/RET21E2"
+  },
+  "common_delegation_rule": "Each call can RETURN normally, HALT or TRANSFER through the synthetic backend. Only RETURN reaches its following instruction. Ignored numeric retval does not turn a nonreturn into a return. Register preservation is an explicit adapter assumption, not established runtime ABI.",
+  "commands": {
+    "W": {
+      "entry": 8706,
+      "guards": [
+        {
+          "pc": 8706,
+          "pc_hex": "0x2202",
+          "operation": "READ8",
+          "address": "liveGP+139"
+        },
+        {
+          "pc": 8710,
+          "pc_hex": "0x2206",
+          "operation": "return if active==0"
+        },
+        {
+          "pc": 8716,
+          "pc_hex": "0x220C",
+          "operation": "return if length!=1026"
+        }
+      ],
+      "page_reads": [
+        {
+          "pc": 8720,
+          "pc_hex": "0x2210",
+          "operation": "READ8",
+          "address": "payload+1 mod2^32",
+          "role": "low byte sampled first"
+        },
+        {
+          "pc": 8724,
+          "pc_hex": "0x2214",
+          "operation": "READ8",
+          "address": "payload+0",
+          "role": "high byte sampled second"
+        }
+      ],
+      "page_formula": {
+        "page": "(second_byte<<8)|first_byte",
+        "destination": "((0x20020+page)<<10) mod2^32",
+        "alias_base": 134250496,
+        "offset": "(destination+0xF7FF8000) mod2^32",
+        "unsigned_limit": 98048,
+        "reject_pc": 8768,
+        "accepted_u16_pages": [
+          0,
+          95
+        ],
+        "runtime75_page_fit": [
+          0,
+          74
+        ],
+        "fit_is_hardware_or_version_proof": false
+      },
+      "source_alignment": {
+        "source": "payload+2 mod2^32",
+        "misalignment": "source&3",
+        "aligned_source": "source-misalignment mod2^32",
+        "unaligned_only": [
+          {
+            "pc": 8790,
+            "pc_hex": "0x2256",
+            "operation": "READ32",
+            "address": 262220,
+            "role": "load pointer, not a direct function target"
+          },
+          {
+            "pc": 8798,
+            "pc_hex": "0x225E",
+            "operation": "INDIRECT_CALL",
+            "target": "loaded a5",
+            "a0": "aligned_source",
+            "a1": "source",
+            "a2": 1024
+          }
+        ],
+        "overlap_copy_semantics_unknown": true
+      },
+      "program_calls": {
+        "site": 8818,
+        "delegated_target": 8422,
+        "offsets": [
+          0,
+          256,
+          512,
+          768
+        ],
+        "a0": "destination+offset mod2^32",
+        "a1": "aligned_source+offset mod2^32",
+        "increment_before_call_pc": 8814,
+        "increment": 256,
+        "numeric_return_value_ignored": true,
+        "all_four_require_normal_returns": true
+      },
+      "readback": {
+        "offsets": {
+          "first": 0,
+          "last": 1020,
+          "step": 4
+        },
+        "events": [
+          {
+            "pc": 8834,
+            "pc_hex": "0x2282",
+            "operation": "READ32",
+            "address": "destination+offset",
+            "role": "Flash first"
+          },
+          {
+            "pc": 8840,
+            "pc_hex": "0x2288",
+            "operation": "READ32",
+            "address": "aligned_source+offset",
+            "role": "live source second, after Flash callback effects"
+          },
+          {
+            "pc": 8842,
+            "pc_hex": "0x228A",
+            "operation": "return silently if unequal"
+          }
+        ],
+        "source_is_live": true,
+        "snapshot_source_not_equivalent": true,
+        "mismatch_does_not_clear_active_locally": true
+      },
+      "success_tail": {
+        "site": 8974,
+        "target": 10912,
+        "a0": "saved context s1",
+        "a1": 87,
+        "a2": 0,
+        "a3": 0
+      },
+      "not_proved_in_body": [
+        "page receipt bitmap",
+        "whole-image digest",
+        "firmware version compatibility",
+        "physical write completion",
+        "full APP startup compatibility"
+      ]
+    },
+    "U": {
+      "entry": 8862,
+      "events": [
+        {
+          "pc": 8872,
+          "pc_hex": "0x22A8",
+          "operation": "WRITE8",
+          "address": "liveGP+139",
+          "value": 0,
+          "role": "before UID call, even on later failure"
+        },
+        {
+          "pc": 8876,
+          "pc_hex": "0x22AC",
+          "operation": "DIRECT_CALL",
+          "target": 7298,
+          "a0": "payload+1 mod2^32",
+          "a1": "uint8(length-1)"
+        },
+        {
+          "pc": 8878,
+          "pc_hex": "0x22AE",
+          "operation": "return if raw UID result!=0"
+        },
+        {
+          "pc": 8902,
+          "pc_hex": "0x22C6",
+          "operation": "TAIL_CALL",
+          "target": 10938,
+          "a0": "saved context s1",
+          "a1": 85,
+          "a2": 0
+        }
+      ],
+      "mode_not_read_locally": true,
+      "does_not_start_W_session": true,
+      "UID_is_delegated": true
+    },
+    "S": {
+      "entry": 8906,
+      "events": [
+        {
+          "pc": 8918,
+          "pc_hex": "0x22D6",
+          "operation": "WRITE32",
+          "address": "liveSP+12",
+          "value": "length"
+        },
+        {
+          "pc": 8920,
+          "pc_hex": "0x22D8",
+          "operation": "WRITE32",
+          "address": "liveSP+8",
+          "value": "payload numeric address"
+        },
+        {
+          "pc": 8922,
+          "pc_hex": "0x22DA",
+          "operation": "DIRECT_CALL",
+          "target": 7298,
+          "a0": "payload+1 mod2^32",
+          "a1": "uint8(length-1)"
+        },
+        {
+          "pc": 8924,
+          "pc_hex": "0x22DC",
+          "operation": "READ32",
+          "address": "liveSP+8",
+          "role": "fresh payload before UID-result branch"
+        },
+        {
+          "pc": 8926,
+          "pc_hex": "0x22DE",
+          "operation": "READ32",
+          "address": "liveSP+12",
+          "role": "fresh length before UID-result branch"
+        },
+        {
+          "pc": 8928,
+          "pc_hex": "0x22E0",
+          "operation": "fail if raw UID result!=0"
+        },
+        {
+          "pc": 8930,
+          "pc_hex": "0x22E2",
+          "operation": "READ8",
+          "address": "fresh payload address",
+          "role": "fresh mode after UID"
+        },
+        {
+          "pc": 8936,
+          "pc_hex": "0x22E8",
+          "operation": "fail if mode!=1"
+        },
+        {
+          "pc": 8940,
+          "pc_hex": "0x22EC",
+          "operation": "WRITE8",
+          "address": "liveGP+139",
+          "value": 1
+        },
+        {
+          "pc": 8944,
+          "pc_hex": "0x22F0",
+          "operation": "DIRECT_CALL",
+          "target": 9486,
+          "role": "delegated cancellation; normal return needed"
+        },
+        {
+          "pc": 8948,
+          "pc_hex": "0x22F4",
+          "operation": "DIRECT_CALL",
+          "target": 8580,
+          "a0": 2,
+          "role": "metadata selector; numeric retval ignored, nonreturn preserved"
+        },
+        {
+          "pc": 8950,
+          "pc_hex": "0x22F6",
+          "operation": "READ32",
+          "address": "liveSP+8",
+          "role": "fresh payload after cancellation and metadata"
+        },
+        {
+          "pc": 8952,
+          "pc_hex": "0x22F8",
+          "operation": "READ32",
+          "address": "liveSP+12",
+          "role": "fresh length after cancellation and metadata"
+        },
+        {
+          "pc": 8974,
+          "pc_hex": "0x230E",
+          "operation": "TAIL_CALL",
+          "target": 10912,
+          "a0": "saved context s1",
+          "a1": 83,
+          "a2": "fresh payload",
+          "a3": "fresh length"
+        }
+      ],
+      "failure_events": [
+        {
+          "pc": 8978,
+          "pc_hex": "0x2312",
+          "operation": "WRITE8",
+          "address": "liveGP+139",
+          "value": 0
+        },
+        {
+          "pc": 8984,
+          "pc_hex": "0x2318",
+          "operation": "WRITE8",
+          "address": "payload freshly loaded at22DC",
+          "value": 255
+        },
+        {
+          "pc": 8988,
+          "pc_hex": "0x231C",
+          "operation": "jump to S response arguments",
+          "target": 8954
+        }
+      ],
+      "length_gate": "Delegated1C82 sees uint8(n-1); not a local strict n15 guard. Raw result0 means match.",
+      "metadata_return_test_between_22F4_and_22F6": false,
+      "echo_is_original_snapshot": false
+    },
+    "E": {
+      "entry": 8990,
+      "events": [
+        {
+          "pc": 8990,
+          "pc_hex": "0x231E",
+          "operation": "READ8",
+          "address": "liveGP+139"
+        },
+        {
+          "pc": 8994,
+          "pc_hex": "0x2322",
+          "operation": "return if active==0"
+        },
+        {
+          "pc": 8998,
+          "pc_hex": "0x2326",
+          "operation": "overwrite a3",
+          "value": 0
+        },
+        {
+          "pc": 9000,
+          "pc_hex": "0x2328",
+          "operation": "overwrite incoming payload register a2",
+          "value": 200
+        },
+        {
+          "pc": 9014,
+          "pc_hex": "0x2336",
+          "operation": "WRITE8",
+          "address": "liveGP+139",
+          "value": 0
+        },
+        {
+          "pc": 9018,
+          "pc_hex": "0x233A",
+          "operation": "DIRECT_CALL",
+          "target": 6906,
+          "a0": 6444,
+          "a1": 0,
+          "a2": 200,
+          "a3": 0
+        },
+        {
+          "pc": 9038,
+          "pc_hex": "0x234E",
+          "operation": "DIRECT_CALL",
+          "target": 6906,
+          "a0": 8418,
+          "a1": 0,
+          "a2": 400,
+          "a3": 0
+        },
+        {
+          "pc": 8974,
+          "pc_hex": "0x230E",
+          "operation": "TAIL_CALL",
+          "target": 10912,
+          "a0": "saved context s1",
+          "a1": 69,
+          "a2": 0,
+          "a3": 0
+        }
+      ],
+      "local_UID_call": false,
+      "local_length_guard": false,
+      "incoming_payload_read": false,
+      "local_mode_guard": false,
+      "scheduling_or_callback_execution_proved": false
+    }
+  },
+  "delegated_boundaries": [
+    {
+      "target": 7298,
+      "callsites": [
+        8876,
+        8922
+      ],
+      "role": "UID comparator; raw0 match, nonzero fail; uint8 length passed; no UID values or packets created"
+    },
+    {
+      "target_expression": "READ32(0x4004C)",
+      "callsites": [
+        8798
+      ],
+      "role": "opaque loaded copy pointer, 1024-byte request; source/destination overlap and actual ABI open"
+    },
+    {
+      "target": 8422,
+      "callsites": [
+        8818
+      ],
+      "role": "program256 request, four iterations; Flash/CSR/status implementation delegated"
+    },
+    {
+      "target": 9486,
+      "callsites": [
+        8944
+      ],
+      "role": "cancellation boundary"
+    },
+    {
+      "target": 8580,
+      "callsites": [
+        8948
+      ],
+      "role": "selector2 metadata request; return ignored only when normal return occurs; persistence/Flash implementation delegated"
+    },
+    {
+      "target": 6906,
+      "callsites": [
+        9018,
+        9038
+      ],
+      "role": "schedule-like request boundary; no timer/IRQ execution proved"
+    },
+    {
+      "target": 10938,
+      "tailsites": [
+        8902
+      ],
+      "role": "three explicit args context/U/status0; wrapper creates one-byte response"
+    },
+    {
+      "target": 10912,
+      "tailsites": [
+        8974
+      ],
+      "role": "four explicit args context/cmd/pointer/n; no automatic one-byte substitution for zero ptr/n"
+    }
+  ],
+  "limits": {
+    "source_only": true,
+    "all_control_paths_conditioned_on_delegated_normal_return_or_explicit_terminal": true,
+    "original_C_ABI_recovered": false,
+    "original_RAM_or_GP_SP_validated": false,
+    "physical_BOOT_version_matched": false,
+    "target_executed": false,
+    "ISA_emulation": false,
+    "network": false,
+    "hardware": false,
+    "real_UID_packet_created": false,
+    "provider_generated": false,
+    "ROOT_modified": false,
+    "D_modified": false,
+    "flashable": false
+  }
+}

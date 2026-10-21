@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "source_chain_verified": true,
+  "sections": 21,
+  "negative_fixtures": [
+    {
+      "case": "prefix",
+      "rejected": true,
+      "reason": "ble.tx exact source predicate s=e?e.length:0,c=[85,127,t]"
+    },
+    {
+      "case": "length-endian",
+      "rejected": true,
+      "reason": "ble.tx exact source predicate c.push(s>>>8),c.push(255&s)"
+    },
+    {
+      "case": "checksum-start",
+      "rejected": true,
+      "reason": "ble.tx exact source predicate for(a=2;a<c.length;a++)n+=c[a]"
+    },
+    {
+      "case": "retry-threshold",
+      "rejected": true,
+      "reason": "ble.txCallback-definition exact source predicate ++this.txData.retryCount<10"
+    },
+    {
+      "case": "UID-start",
+      "rejected": true,
+      "reason": "app.getUidUint8Array exact source predicate t.length>=18?t.slice(4,18):new Uint8Array(14)"
+    },
+    {
+      "case": "UID-end",
+      "rejected": true,
+      "reason": "app.getUidUint8Array exact source predicate t.length>=18?t.slice(4,18):new Uint8Array(14)"
+    },
+    {
+      "case": "MTU-cap",
+      "rejected": true,
+      "reason": "ble.tx exact source predicate var r=this.txvar.mtu;r>244&&(r=244)"
+    },
+    {
+      "case": "success-order",
+      "rejected": true,
+      "reason": "ble.txData-definition exact source predicate e.txData.index++,e.txCallback(!0)"
+    }
+  ],
+  "javascript_executed": false,
+  "network": false,
+  "BLE": false,
+  "hardware": false,
+  "checker_sha256": "e067b053cac343f975c8582dc409e9f3af1239fc09c7c36d1dea6951681e79bd"
+}

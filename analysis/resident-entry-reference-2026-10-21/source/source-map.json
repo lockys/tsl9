@@ -1,0 +1,1411 @@
+{
+  "schema": "WCH-V1.31-entry-init-seed-source-map-v1",
+  "passed": true,
+  "reference_candidate_only": true,
+  "carrier": {
+    "relative_path": "apk-analysis/tsl9-wch-resident-candidate-2026-10-21/carrier-dec2023/REFERENCE-CANDIDATE-ONLY-00040000-0006EA66.bin",
+    "bytes": 191078,
+    "sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22",
+    "retained_range": [
+      262144,
+      453222
+    ]
+  },
+  "retained_source_sha256": "3d993d42d5d5c7defeb839f7e31e2cda5e69ae1e84e72f26f81a996a4d107434",
+  "historical_input_hashes": {
+    "apk-analysis/tsl9-wch-resident-candidate-2026-10-21/carrier-dec2023/final-audit.json": "3e1b0273334d42b7fc249f457b0c42cb639e2233c70de13fa7dc0e482d8e83a0",
+    "apk-analysis/tsl9-wch-resident-candidate-2026-10-21/carrier-dec2023/source-map.json": "96ff0490ccd196ee97655a80ed44ea2b1ceee53b84ca3bad8f8f74525031c0ba",
+    "apk-analysis/tsl9-v4160-entry-irq-contract-2026-10-21/resident-handoff/final-audit.json": "60dd822cd584afaefbdb609d72bda7b3fad63f4ecf16aa5c9d97c7d3197fc0c1",
+    "apk-analysis/tsl9-v4160-entry-irq-contract-2026-10-21/resident-handoff/historical-entry.json": "0f7b39f0b1644a965cec22537c372a6cea9df3a94e5fd1fd1938035a3b900d22",
+    "apk-analysis/tsl9-v4160-entry-irq-contract-2026-10-21/resident-handoff/historical-initializer.json": "2e5d337a5837bdc1c81c70ced4da3c89e41f10cab806fb4bd9bad89c934752a4",
+    "apk-analysis/tsl9-v4160-entry-irq-contract-2026-10-21/resident-handoff/historical-seed.json": "84f379fa3df94706af148a6197f2ef6357031a967884132d2f17dcdeed2100aa"
+  },
+  "public_source_provenance": {
+    "path": "../original-dec2023/wchble_rom.hex",
+    "bytes": 526184,
+    "sha256": "11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5",
+    "git_blob_sha1": "13202d1678c9766117d787d98b4de55ed61fc571",
+    "source_url": "https://raw.githubusercontent.com/openwch/ch32v20x/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.hex",
+    "repository_commit": "ec059e0b18046b111ee850e44f105fcd095e775c",
+    "provenance_path": "../original-dec2023/download.json",
+    "provenance_sha256": "2c30e8c89c9107531b5b1279dc077b2b1e2128c9963f623baffc3425dc5bb6ec"
+  },
+  "version_marker": {
+    "address": 452256,
+    "bytes": 22,
+    "ASCII": "CH32V20x_BLE_LIB_V1.31",
+    "sha256": "5955a4a6b4685c8aceb9fe7911d2bd03a644576f3411b1790813041ee145628c"
+  },
+  "source_spans": [
+    {
+      "role": "entry",
+      "start": 450174,
+      "end_exclusive": 450242,
+      "file_offset": 188030,
+      "bytes": 68,
+      "instructions": 18,
+      "sha256": "98fe32a0b24638e9f678c2112dbae4fa05ad6e45d2a9fb84bedb67c3831880b0"
+    },
+    {
+      "role": "initializer",
+      "start": 450060,
+      "end_exclusive": 450174,
+      "file_offset": 187916,
+      "bytes": 114,
+      "instructions": 32,
+      "sha256": "7a0cf58801fabb3dcb9d26fcece3d01b2f41276dacce4130daff0e663559927f"
+    },
+    {
+      "role": "seed_helpers",
+      "start": 262784,
+      "end_exclusive": 262832,
+      "file_offset": 640,
+      "bytes": 48,
+      "instructions": 16,
+      "sha256": "1b443f8c3926fac2d65fda618f0ead0c9d2f50cafe5b0ff9c72eb030c13fd5a8"
+    },
+    {
+      "role": "header",
+      "start": 262144,
+      "end_exclusive": 262148,
+      "file_offset": 0,
+      "bytes": 4,
+      "instructions": 1,
+      "sha256": "2bb4f21801aa29d43c20f8806e6d805fe9975d9bdf699df17862efbdb371124a"
+    }
+  ],
+  "instructions": [
+    {
+      "pc": 262144,
+      "file_offset": 0,
+      "width": 4,
+      "raw_hex": "6fd0f267",
+      "disassembly": "jal zero, 0x6de7e",
+      "role": "header",
+      "control": {
+        "kind": "jump",
+        "target": 450174
+      }
+    },
+    {
+      "pc": 262784,
+      "file_offset": 640,
+      "width": 4,
+      "raw_hex": "6373b600",
+      "disassembly": "bleu a1, a2, 0x40286",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870928,
+      "control": {
+        "kind": "branch",
+        "target": 262790,
+        "rs1": 12,
+        "rs2": 11,
+        "funct3": 7
+      }
+    },
+    {
+      "pc": 262788,
+      "file_offset": 644,
+      "width": 2,
+      "raw_hex": "8280",
+      "disassembly": "ret",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870932,
+      "control": {
+        "kind": "return",
+        "target": "liveRA"
+      }
+    },
+    {
+      "pc": 262790,
+      "file_offset": 646,
+      "width": 2,
+      "raw_hex": "1c41",
+      "disassembly": "lw a5, 0(a0)",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870934
+    },
+    {
+      "pc": 262792,
+      "file_offset": 648,
+      "width": 2,
+      "raw_hex": "9105",
+      "disassembly": "addi a1, a1, 4",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870936
+    },
+    {
+      "pc": 262794,
+      "file_offset": 650,
+      "width": 2,
+      "raw_hex": "1105",
+      "disassembly": "addi a0, a0, 4",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870938
+    },
+    {
+      "pc": 262796,
+      "file_offset": 652,
+      "width": 4,
+      "raw_hex": "23aef5fe",
+      "disassembly": "sw a5, -4(a1)",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870940
+    },
+    {
+      "pc": 262800,
+      "file_offset": 656,
+      "width": 2,
+      "raw_hex": "c5bf",
+      "disassembly": "j 0x40280",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870944,
+      "control": {
+        "kind": "jump",
+        "target": 262784
+      }
+    },
+    {
+      "pc": 262802,
+      "file_offset": 658,
+      "width": 4,
+      "raw_hex": "b7370020",
+      "disassembly": "lui a5, 0x20003",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870946
+    },
+    {
+      "pc": 262806,
+      "file_offset": 662,
+      "width": 4,
+      "raw_hex": "37370020",
+      "disassembly": "lui a4, 0x20003",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870950
+    },
+    {
+      "pc": 262810,
+      "file_offset": 666,
+      "width": 4,
+      "raw_hex": "938787ef",
+      "disassembly": "addi a5, a5, -264",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870954
+    },
+    {
+      "pc": 262814,
+      "file_offset": 670,
+      "width": 4,
+      "raw_hex": "13074761",
+      "disassembly": "addi a4, a4, 1556",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870958
+    },
+    {
+      "pc": 262818,
+      "file_offset": 674,
+      "width": 4,
+      "raw_hex": "6373f700",
+      "disassembly": "bleu a5, a4, 0x402a8",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870962,
+      "control": {
+        "kind": "branch",
+        "target": 262824,
+        "rs1": 14,
+        "rs2": 15,
+        "funct3": 7
+      }
+    },
+    {
+      "pc": 262822,
+      "file_offset": 678,
+      "width": 2,
+      "raw_hex": "8280",
+      "disassembly": "ret",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870966,
+      "control": {
+        "kind": "return",
+        "target": "liveRA"
+      }
+    },
+    {
+      "pc": 262824,
+      "file_offset": 680,
+      "width": 4,
+      "raw_hex": "23a00700",
+      "disassembly": "sw zero, 0(a5)",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870968
+    },
+    {
+      "pc": 262828,
+      "file_offset": 684,
+      "width": 2,
+      "raw_hex": "9107",
+      "disassembly": "addi a5, a5, 4",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870972
+    },
+    {
+      "pc": 262830,
+      "file_offset": 686,
+      "width": 2,
+      "raw_hex": "d5bf",
+      "disassembly": "j 0x402a2",
+      "role": "seed_helpers",
+      "conditional_RAM_pc": 536870974,
+      "control": {
+        "kind": "jump",
+        "target": 262818
+      }
+    },
+    {
+      "pc": 450060,
+      "file_offset": 187916,
+      "width": 2,
+      "raw_hex": "4111",
+      "disassembly": "addi sp, sp, -16",
+      "role": "initializer"
+    },
+    {
+      "pc": 450062,
+      "file_offset": 187918,
+      "width": 4,
+      "raw_hex": "37070020",
+      "disassembly": "lui a4, 0x20000",
+      "role": "initializer"
+    },
+    {
+      "pc": 450066,
+      "file_offset": 187922,
+      "width": 2,
+      "raw_hex": "06c6",
+      "disassembly": "sw ra, 12(sp)",
+      "role": "initializer"
+    },
+    {
+      "pc": 450068,
+      "file_offset": 187924,
+      "width": 4,
+      "raw_hex": "b7070020",
+      "disassembly": "lui a5, 0x20000",
+      "role": "initializer"
+    },
+    {
+      "pc": 450072,
+      "file_offset": 187928,
+      "width": 4,
+      "raw_hex": "1307077d",
+      "disassembly": "addi a4, a4, 2000",
+      "role": "initializer"
+    },
+    {
+      "pc": 450076,
+      "file_offset": 187932,
+      "width": 2,
+      "raw_hex": "98c3",
+      "disassembly": "sw a4, 0(a5)",
+      "role": "initializer"
+    },
+    {
+      "pc": 450078,
+      "file_offset": 187934,
+      "width": 4,
+      "raw_hex": "37270020",
+      "disassembly": "lui a4, 0x20002",
+      "role": "initializer"
+    },
+    {
+      "pc": 450082,
+      "file_offset": 187938,
+      "width": 4,
+      "raw_hex": "1307c751",
+      "disassembly": "addi a4, a4, 1308",
+      "role": "initializer"
+    },
+    {
+      "pc": 450086,
+      "file_offset": 187942,
+      "width": 2,
+      "raw_hex": "d8c3",
+      "disassembly": "sw a4, 4(a5)",
+      "role": "initializer"
+    },
+    {
+      "pc": 450088,
+      "file_offset": 187944,
+      "width": 4,
+      "raw_hex": "37370020",
+      "disassembly": "lui a4, 0x20003",
+      "role": "initializer"
+    },
+    {
+      "pc": 450092,
+      "file_offset": 187948,
+      "width": 4,
+      "raw_hex": "130747e3",
+      "disassembly": "addi a4, a4, -460",
+      "role": "initializer"
+    },
+    {
+      "pc": 450096,
+      "file_offset": 187952,
+      "width": 4,
+      "raw_hex": "37360020",
+      "disassembly": "lui a2, 0x20003",
+      "role": "initializer"
+    },
+    {
+      "pc": 450100,
+      "file_offset": 187956,
+      "width": 4,
+      "raw_hex": "b7050020",
+      "disassembly": "lui a1, 0x20000",
+      "role": "initializer"
+    },
+    {
+      "pc": 450104,
+      "file_offset": 187960,
+      "width": 4,
+      "raw_hex": "37050400",
+      "disassembly": "lui a0, 0x40",
+      "role": "initializer"
+    },
+    {
+      "pc": 450108,
+      "file_offset": 187964,
+      "width": 2,
+      "raw_hex": "98c7",
+      "disassembly": "sw a4, 8(a5)",
+      "role": "initializer"
+    },
+    {
+      "pc": 450110,
+      "file_offset": 187966,
+      "width": 4,
+      "raw_hex": "130606e7",
+      "disassembly": "addi a2, a2, -400",
+      "role": "initializer"
+    },
+    {
+      "pc": 450114,
+      "file_offset": 187970,
+      "width": 4,
+      "raw_hex": "93850504",
+      "disassembly": "addi a1, a1, 64",
+      "role": "initializer"
+    },
+    {
+      "pc": 450118,
+      "file_offset": 187974,
+      "width": 4,
+      "raw_hex": "1305052b",
+      "disassembly": "addi a0, a0, 688",
+      "role": "initializer"
+    },
+    {
+      "pc": 450122,
+      "file_offset": 187978,
+      "width": 4,
+      "raw_hex": "9720f91f",
+      "disassembly": "auipc ra, 0x1ff92",
+      "role": "initializer"
+    },
+    {
+      "pc": 450126,
+      "file_offset": 187982,
+      "width": 4,
+      "raw_hex": "e780601c",
+      "disassembly": "jalr 454(ra)",
+      "role": "initializer",
+      "control": {
+        "kind": "conditional-RAM-call",
+        "numeric_RAM_target": 536870928,
+        "conditional_source_entry": 262784,
+        "normal_return_to_link_required": 450130
+      }
+    },
+    {
+      "pc": 450130,
+      "file_offset": 187986,
+      "width": 4,
+      "raw_hex": "37360020",
+      "disassembly": "lui a2, 0x20003",
+      "role": "initializer"
+    },
+    {
+      "pc": 450134,
+      "file_offset": 187990,
+      "width": 4,
+      "raw_hex": "b7350020",
+      "disassembly": "lui a1, 0x20003",
+      "role": "initializer"
+    },
+    {
+      "pc": 450138,
+      "file_offset": 187994,
+      "width": 4,
+      "raw_hex": "37f50600",
+      "disassembly": "lui a0, 0x6f",
+      "role": "initializer"
+    },
+    {
+      "pc": 450142,
+      "file_offset": 187998,
+      "width": 4,
+      "raw_hex": "130686ef",
+      "disassembly": "addi a2, a2, -264",
+      "role": "initializer"
+    },
+    {
+      "pc": 450146,
+      "file_offset": 188002,
+      "width": 4,
+      "raw_hex": "938505e7",
+      "disassembly": "addi a1, a1, -400",
+      "role": "initializer"
+    },
+    {
+      "pc": 450150,
+      "file_offset": 188006,
+      "width": 4,
+      "raw_hex": "130545aa",
+      "disassembly": "addi a0, a0, -1372",
+      "role": "initializer"
+    },
+    {
+      "pc": 450154,
+      "file_offset": 188010,
+      "width": 4,
+      "raw_hex": "9720f91f",
+      "disassembly": "auipc ra, 0x1ff92",
+      "role": "initializer"
+    },
+    {
+      "pc": 450158,
+      "file_offset": 188014,
+      "width": 4,
+      "raw_hex": "e780601a",
+      "disassembly": "jalr 422(ra)",
+      "role": "initializer",
+      "control": {
+        "kind": "conditional-RAM-call",
+        "numeric_RAM_target": 536870928,
+        "conditional_source_entry": 262784,
+        "normal_return_to_link_required": 450162
+      }
+    },
+    {
+      "pc": 450162,
+      "file_offset": 188018,
+      "width": 2,
+      "raw_hex": "b240",
+      "disassembly": "lw ra, 12(sp)",
+      "role": "initializer"
+    },
+    {
+      "pc": 450164,
+      "file_offset": 188020,
+      "width": 2,
+      "raw_hex": "4101",
+      "disassembly": "addi sp, sp, 16",
+      "role": "initializer"
+    },
+    {
+      "pc": 450166,
+      "file_offset": 188022,
+      "width": 4,
+      "raw_hex": "1723f91f",
+      "disassembly": "auipc t1, 0x1ff92",
+      "role": "initializer"
+    },
+    {
+      "pc": 450170,
+      "file_offset": 188026,
+      "width": 4,
+      "raw_hex": "6700c31a",
+      "disassembly": "jr 428(t1)",
+      "role": "initializer",
+      "control": {
+        "kind": "conditional-RAM-tail",
+        "numeric_RAM_target": 536870946,
+        "conditional_source_entry": 262802,
+        "normal_return_to_link_required": null
+      }
+    },
+    {
+      "pc": 450174,
+      "file_offset": 188030,
+      "width": 4,
+      "raw_hex": "9761f91f",
+      "disassembly": "auipc gp, 0x1ff96",
+      "role": "entry"
+    },
+    {
+      "pc": 450178,
+      "file_offset": 188034,
+      "width": 4,
+      "raw_hex": "93812118",
+      "disassembly": "addi gp, gp, 386",
+      "role": "entry"
+    },
+    {
+      "pc": 450182,
+      "file_offset": 188038,
+      "width": 4,
+      "raw_hex": "1721fa1f",
+      "disassembly": "auipc sp, 0x1ffa2",
+      "role": "entry"
+    },
+    {
+      "pc": 450186,
+      "file_offset": 188042,
+      "width": 4,
+      "raw_hex": "1301a117",
+      "disassembly": "addi sp, sp, 378",
+      "role": "entry"
+    },
+    {
+      "pc": 450190,
+      "file_offset": 188046,
+      "width": 4,
+      "raw_hex": "1725fdff",
+      "disassembly": "auipc a0, 0xfffd2",
+      "role": "entry"
+    },
+    {
+      "pc": 450194,
+      "file_offset": 188050,
+      "width": 4,
+      "raw_hex": "1305253f",
+      "disassembly": "addi a0, a0, 1010",
+      "role": "entry"
+    },
+    {
+      "pc": 450198,
+      "file_offset": 188054,
+      "width": 4,
+      "raw_hex": "9725f91f",
+      "disassembly": "auipc a1, 0x1ff92",
+      "role": "entry"
+    },
+    {
+      "pc": 450202,
+      "file_offset": 188058,
+      "width": 4,
+      "raw_hex": "9385a517",
+      "disassembly": "addi a1, a1, 378",
+      "role": "entry"
+    },
+    {
+      "pc": 450206,
+      "file_offset": 188062,
+      "width": 4,
+      "raw_hex": "1726f91f",
+      "disassembly": "auipc a2, 0x1ff92",
+      "role": "entry"
+    },
+    {
+      "pc": 450210,
+      "file_offset": 188066,
+      "width": 4,
+      "raw_hex": "1306261a",
+      "disassembly": "addi a2, a2, 418",
+      "role": "entry"
+    },
+    {
+      "pc": 450214,
+      "file_offset": 188070,
+      "width": 4,
+      "raw_hex": "63fcc500",
+      "disassembly": "bleu a2, a1, 0x6debe",
+      "role": "entry",
+      "control": {
+        "kind": "branch",
+        "target": 450238,
+        "rs1": 11,
+        "rs2": 12,
+        "funct3": 7
+      }
+    },
+    {
+      "pc": 450218,
+      "file_offset": 188074,
+      "width": 4,
+      "raw_hex": "83220500",
+      "disassembly": "lw t0, 0(a0)",
+      "role": "entry"
+    },
+    {
+      "pc": 450222,
+      "file_offset": 188078,
+      "width": 4,
+      "raw_hex": "23a05500",
+      "disassembly": "sw t0, 0(a1)",
+      "role": "entry"
+    },
+    {
+      "pc": 450226,
+      "file_offset": 188082,
+      "width": 2,
+      "raw_hex": "1105",
+      "disassembly": "addi a0, a0, 4",
+      "role": "entry"
+    },
+    {
+      "pc": 450228,
+      "file_offset": 188084,
+      "width": 2,
+      "raw_hex": "9105",
+      "disassembly": "addi a1, a1, 4",
+      "role": "entry"
+    },
+    {
+      "pc": 450230,
+      "file_offset": 188086,
+      "width": 4,
+      "raw_hex": "e3eac5fe",
+      "disassembly": "bltu a1, a2, 0x6deaa",
+      "role": "entry",
+      "control": {
+        "kind": "branch",
+        "target": 450218,
+        "rs1": 11,
+        "rs2": 12,
+        "funct3": 6
+      }
+    },
+    {
+      "pc": 450234,
+      "file_offset": 188090,
+      "width": 4,
+      "raw_hex": "eff03ff5",
+      "disassembly": "jal ra, 0x6de0c",
+      "role": "entry",
+      "control": {
+        "kind": "call",
+        "target": 450060
+      }
+    },
+    {
+      "pc": 450238,
+      "file_offset": 188094,
+      "width": 4,
+      "raw_hex": "73002030",
+      "disassembly": "mret",
+      "role": "entry",
+      "control": {
+        "kind": "MRET",
+        "target": "machine return context"
+      }
+    }
+  ],
+  "CFG": {
+    "entry": 262144,
+    "source_instruction_count_including_header": 67,
+    "body_instruction_count_excluding_header": 66,
+    "source_bytes_including_header": 234,
+    "body_bytes_excluding_header": 230,
+    "covered_starts": 67,
+    "uncovered_starts": [],
+    "edges": [
+      {
+        "source": 262144,
+        "target": 450174,
+        "kind": "local"
+      },
+      {
+        "source": 262784,
+        "target": 262790,
+        "kind": "local",
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 262784,
+        "target": 262788,
+        "kind": "local",
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 262790,
+        "target": 262792,
+        "kind": "local"
+      },
+      {
+        "source": 262792,
+        "target": 262794,
+        "kind": "local"
+      },
+      {
+        "source": 262794,
+        "target": 262796,
+        "kind": "local"
+      },
+      {
+        "source": 262796,
+        "target": 262800,
+        "kind": "local"
+      },
+      {
+        "source": 262800,
+        "target": 262784,
+        "kind": "local"
+      },
+      {
+        "source": 262802,
+        "target": 262806,
+        "kind": "local"
+      },
+      {
+        "source": 262806,
+        "target": 262810,
+        "kind": "local"
+      },
+      {
+        "source": 262810,
+        "target": 262814,
+        "kind": "local"
+      },
+      {
+        "source": 262814,
+        "target": 262818,
+        "kind": "local"
+      },
+      {
+        "source": 262818,
+        "target": 262824,
+        "kind": "local",
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 262818,
+        "target": 262822,
+        "kind": "local",
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 262824,
+        "target": 262828,
+        "kind": "local"
+      },
+      {
+        "source": 262828,
+        "target": 262830,
+        "kind": "local"
+      },
+      {
+        "source": 262830,
+        "target": 262818,
+        "kind": "local"
+      },
+      {
+        "source": 450060,
+        "target": 450062,
+        "kind": "local"
+      },
+      {
+        "source": 450062,
+        "target": 450066,
+        "kind": "local"
+      },
+      {
+        "source": 450066,
+        "target": 450068,
+        "kind": "local"
+      },
+      {
+        "source": 450068,
+        "target": 450072,
+        "kind": "local"
+      },
+      {
+        "source": 450072,
+        "target": 450076,
+        "kind": "local"
+      },
+      {
+        "source": 450076,
+        "target": 450078,
+        "kind": "local"
+      },
+      {
+        "source": 450078,
+        "target": 450082,
+        "kind": "local"
+      },
+      {
+        "source": 450082,
+        "target": 450086,
+        "kind": "local"
+      },
+      {
+        "source": 450086,
+        "target": 450088,
+        "kind": "local"
+      },
+      {
+        "source": 450088,
+        "target": 450092,
+        "kind": "local"
+      },
+      {
+        "source": 450092,
+        "target": 450096,
+        "kind": "local"
+      },
+      {
+        "source": 450096,
+        "target": 450100,
+        "kind": "local"
+      },
+      {
+        "source": 450100,
+        "target": 450104,
+        "kind": "local"
+      },
+      {
+        "source": 450104,
+        "target": 450108,
+        "kind": "local"
+      },
+      {
+        "source": 450108,
+        "target": 450110,
+        "kind": "local"
+      },
+      {
+        "source": 450110,
+        "target": 450114,
+        "kind": "local"
+      },
+      {
+        "source": 450114,
+        "target": 450118,
+        "kind": "local"
+      },
+      {
+        "source": 450118,
+        "target": 450122,
+        "kind": "local"
+      },
+      {
+        "source": 450122,
+        "target": 450126,
+        "kind": "local"
+      },
+      {
+        "source": 450126,
+        "target": 262784,
+        "kind": "conditional-RAM-source-entry"
+      },
+      {
+        "source": 450126,
+        "target": 450130,
+        "kind": "normal-return-to-expected-link"
+      },
+      {
+        "source": 450130,
+        "target": 450134,
+        "kind": "local"
+      },
+      {
+        "source": 450134,
+        "target": 450138,
+        "kind": "local"
+      },
+      {
+        "source": 450138,
+        "target": 450142,
+        "kind": "local"
+      },
+      {
+        "source": 450142,
+        "target": 450146,
+        "kind": "local"
+      },
+      {
+        "source": 450146,
+        "target": 450150,
+        "kind": "local"
+      },
+      {
+        "source": 450150,
+        "target": 450154,
+        "kind": "local"
+      },
+      {
+        "source": 450154,
+        "target": 450158,
+        "kind": "local"
+      },
+      {
+        "source": 450158,
+        "target": 262784,
+        "kind": "conditional-RAM-source-entry"
+      },
+      {
+        "source": 450158,
+        "target": 450162,
+        "kind": "normal-return-to-expected-link"
+      },
+      {
+        "source": 450162,
+        "target": 450164,
+        "kind": "local"
+      },
+      {
+        "source": 450164,
+        "target": 450166,
+        "kind": "local"
+      },
+      {
+        "source": 450166,
+        "target": 450170,
+        "kind": "local"
+      },
+      {
+        "source": 450170,
+        "target": 262802,
+        "kind": "conditional-RAM-source-entry"
+      },
+      {
+        "source": 450174,
+        "target": 450178,
+        "kind": "local"
+      },
+      {
+        "source": 450178,
+        "target": 450182,
+        "kind": "local"
+      },
+      {
+        "source": 450182,
+        "target": 450186,
+        "kind": "local"
+      },
+      {
+        "source": 450186,
+        "target": 450190,
+        "kind": "local"
+      },
+      {
+        "source": 450190,
+        "target": 450194,
+        "kind": "local"
+      },
+      {
+        "source": 450194,
+        "target": 450198,
+        "kind": "local"
+      },
+      {
+        "source": 450198,
+        "target": 450202,
+        "kind": "local"
+      },
+      {
+        "source": 450202,
+        "target": 450206,
+        "kind": "local"
+      },
+      {
+        "source": 450206,
+        "target": 450210,
+        "kind": "local"
+      },
+      {
+        "source": 450210,
+        "target": 450214,
+        "kind": "local"
+      },
+      {
+        "source": 450214,
+        "target": 450238,
+        "kind": "local",
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 450214,
+        "target": 450218,
+        "kind": "local",
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 450218,
+        "target": 450222,
+        "kind": "local"
+      },
+      {
+        "source": 450222,
+        "target": 450226,
+        "kind": "local"
+      },
+      {
+        "source": 450226,
+        "target": 450228,
+        "kind": "local"
+      },
+      {
+        "source": 450228,
+        "target": 450230,
+        "kind": "local"
+      },
+      {
+        "source": 450230,
+        "target": 450218,
+        "kind": "local",
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 450230,
+        "target": 450234,
+        "kind": "local",
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 450234,
+        "target": 450060,
+        "kind": "direct-call-entry"
+      },
+      {
+        "source": 450234,
+        "target": 450238,
+        "kind": "normal-return-to-expected-link"
+      }
+    ],
+    "terminals": [
+      {
+        "pc": 262788,
+        "kind": "return",
+        "target": "liveRA"
+      },
+      {
+        "pc": 262822,
+        "kind": "return",
+        "target": "liveRA"
+      },
+      {
+        "pc": 450238,
+        "kind": "MRET",
+        "target": "machine return context"
+      }
+    ],
+    "RAM_edges_require_matching_written_instruction_bytes": true,
+    "normal_return_edges_are_assumptions_not_execution": true
+  },
+  "captured_source_stop": {
+    "scope": "strict captured-only source provider under the fixed normal entry/init/reference-helper path",
+    "call_pc": 450158,
+    "read_instruction_source_pc": 262790,
+    "conditional_RAM_instruction_pc": 536870934,
+    "read_address": 453420,
+    "width": 4,
+    "zero_based_word_index": 34,
+    "requested_word_count": 35,
+    "captured_prefix_words": 34,
+    "captured_prefix_bytes": 136,
+    "pending_destination": 536882936,
+    "inclusive_last_destination_word": 536882936,
+    "read_precedes_increments_and_write": true,
+    "no_increment_no_write_until_READ_returns": true,
+    "unbacked_range": [
+      453420,
+      453424
+    ],
+    "source_missing_is_not_physical_unmapped_or_fault_proof": true,
+    "strict_provider_action": "stop/HALT with missing-source evidence; do not fabricate zero/FF or automatically continue",
+    "zero_loop_reached": false,
+    "fresh_RA_reload_reached": false,
+    "MRET_reached": false,
+    "explicit_unknown_external_memory_backend_is_separate_unproved_contract": true
+  },
+  "raw_operand_mutations": [
+    {
+      "name": "header_entry_target",
+      "pc": 262144,
+      "original_raw": "6fd0f267",
+      "mutant_raw": "6fd0d267",
+      "rejected": true,
+      "error": "40000: entry jump"
+    },
+    {
+      "name": "GP_value",
+      "pc": 450178,
+      "original_raw": "93812118",
+      "mutant_raw": "93813118",
+      "rejected": true,
+      "error": "entry GP/SP"
+    },
+    {
+      "name": "SP_value",
+      "pc": 450186,
+      "original_raw": "1301a117",
+      "mutant_raw": "1301b117",
+      "rejected": true,
+      "error": "entry GP/SP"
+    },
+    {
+      "name": "seed_source",
+      "pc": 450194,
+      "original_raw": "1305253f",
+      "mutant_raw": "1305353f",
+      "rejected": true,
+      "error": "entry seed args"
+    },
+    {
+      "name": "seed_destination",
+      "pc": 450202,
+      "original_raw": "9385a517",
+      "mutant_raw": "9385b517",
+      "rejected": true,
+      "error": "entry seed args"
+    },
+    {
+      "name": "seed_end",
+      "pc": 450210,
+      "original_raw": "1306261a",
+      "mutant_raw": "1306361a",
+      "rejected": true,
+      "error": "entry seed args"
+    },
+    {
+      "name": "entry_guard_unsigned",
+      "pc": 450214,
+      "original_raw": "63fcc500",
+      "mutant_raw": "63ecc500",
+      "rejected": true,
+      "error": "6dea6: unsigned branch operands/target"
+    },
+    {
+      "name": "entry_READ32_width",
+      "pc": 450218,
+      "original_raw": "83220500",
+      "mutant_raw": "83320500",
+      "rejected": true,
+      "error": "seed READ32 first"
+    },
+    {
+      "name": "entry_WRITE32_value",
+      "pc": 450222,
+      "original_raw": "23a05500",
+      "mutant_raw": "23a04500",
+      "rejected": true,
+      "error": "seed WRITE32 second"
+    },
+    {
+      "name": "seed_source_increment",
+      "pc": 450226,
+      "original_raw": "1105",
+      "mutant_raw": "1505",
+      "rejected": true,
+      "error": "seed increments after write"
+    },
+    {
+      "name": "seed_dest_increment",
+      "pc": 450228,
+      "original_raw": "9105",
+      "mutant_raw": "9505",
+      "rejected": true,
+      "error": "seed increments after write"
+    },
+    {
+      "name": "seed_loop_comparison",
+      "pc": 450230,
+      "original_raw": "e3eac5fe",
+      "mutant_raw": "e3fac5fe",
+      "rejected": true,
+      "error": "6deb6: unsigned branch operands/target"
+    },
+    {
+      "name": "init_frame_SP",
+      "pc": 450060,
+      "original_raw": "4111",
+      "mutant_raw": "4511",
+      "rejected": true,
+      "error": "initializer liveSP frame"
+    },
+    {
+      "name": "saved_RA_offset",
+      "pc": 450066,
+      "original_raw": "06c6",
+      "mutant_raw": "06c4",
+      "rejected": true,
+      "error": "initializer savedRA write"
+    },
+    {
+      "name": "RAM0_pointer_value",
+      "pc": 450072,
+      "original_raw": "1307077d",
+      "mutant_raw": "1307177d",
+      "rejected": true,
+      "error": "lowRAM pointer values"
+    },
+    {
+      "name": "RAM4_pointer_value",
+      "pc": 450082,
+      "original_raw": "1307c751",
+      "mutant_raw": "1307d751",
+      "rejected": true,
+      "error": "lowRAM pointer values"
+    },
+    {
+      "name": "RAM8_pointer_value",
+      "pc": 450092,
+      "original_raw": "130747e3",
+      "mutant_raw": "130757e3",
+      "rejected": true,
+      "error": "lowRAM pointer values"
+    },
+    {
+      "name": "first_copy_source",
+      "pc": 450118,
+      "original_raw": "1305052b",
+      "mutant_raw": "1305152b",
+      "rejected": true,
+      "error": "first copy args"
+    },
+    {
+      "name": "first_copy_destination",
+      "pc": 450114,
+      "original_raw": "93850504",
+      "mutant_raw": "93851504",
+      "rejected": true,
+      "error": "first copy args"
+    },
+    {
+      "name": "first_copy_lastword",
+      "pc": 450110,
+      "original_raw": "130606e7",
+      "mutant_raw": "130616e7",
+      "rejected": true,
+      "error": "first copy args"
+    },
+    {
+      "name": "RAM_copy_call_link",
+      "pc": 450126,
+      "original_raw": "e780601c",
+      "mutant_raw": "6780601c",
+      "rejected": true,
+      "error": "6de4e: own LOW opcode/rs1/rd"
+    },
+    {
+      "name": "second_copy_source",
+      "pc": 450150,
+      "original_raw": "130545aa",
+      "mutant_raw": "130555aa",
+      "rejected": true,
+      "error": "second copy args"
+    },
+    {
+      "name": "second_copy_lastword",
+      "pc": 450142,
+      "original_raw": "130686ef",
+      "mutant_raw": "130696ef",
+      "rejected": true,
+      "error": "second copy args"
+    },
+    {
+      "name": "fresh_RA_restore_offset",
+      "pc": 450162,
+      "original_raw": "b240",
+      "mutant_raw": "a240",
+      "rejected": true,
+      "error": "fresh savedRA read after calls"
+    },
+    {
+      "name": "SP_restore_increment",
+      "pc": 450164,
+      "original_raw": "4101",
+      "mutant_raw": "4501",
+      "rejected": true,
+      "error": "liveSP increment after RA load"
+    },
+    {
+      "name": "zero_tail_writes_link",
+      "pc": 450170,
+      "original_raw": "6700c31a",
+      "mutant_raw": "e700c31a",
+      "rejected": true,
+      "error": "6de7a: own LOW opcode/rs1/rd"
+    },
+    {
+      "name": "word_inclusive_comparison",
+      "pc": 262784,
+      "original_raw": "6373b600",
+      "mutant_raw": "6363b600",
+      "rejected": true,
+      "error": "40280: unsigned branch operands/target"
+    },
+    {
+      "name": "word_READ32_destination_register",
+      "pc": 262790,
+      "original_raw": "1c41",
+      "mutant_raw": "1841",
+      "rejected": true,
+      "error": "word READ32"
+    },
+    {
+      "name": "word_preincrement",
+      "pc": 262792,
+      "original_raw": "9105",
+      "mutant_raw": "9505",
+      "rejected": true,
+      "error": "word increments before write"
+    },
+    {
+      "name": "word_STORE_offset",
+      "pc": 262796,
+      "original_raw": "23aef5fe",
+      "mutant_raw": "a3aef5fe",
+      "rejected": true,
+      "error": "word WRITE32 at advanced-a1 minus4"
+    },
+    {
+      "name": "zero_start",
+      "pc": 262810,
+      "original_raw": "938787ef",
+      "mutant_raw": "938797ef",
+      "rejected": true,
+      "error": "zero helper fixed bounds"
+    },
+    {
+      "name": "zero_lastword",
+      "pc": 262814,
+      "original_raw": "13074761",
+      "mutant_raw": "13075761",
+      "rejected": true,
+      "error": "zero helper fixed bounds"
+    },
+    {
+      "name": "zero_inclusive_comparison",
+      "pc": 262818,
+      "original_raw": "6373f700",
+      "mutant_raw": "6363f700",
+      "rejected": true,
+      "error": "402a2: unsigned branch operands/target"
+    },
+    {
+      "name": "zero_STORE_value",
+      "pc": 262824,
+      "original_raw": "23a00700",
+      "mutant_raw": "23a01700",
+      "rejected": true,
+      "error": "zero WRITE32"
+    },
+    {
+      "name": "MRET_word",
+      "pc": 450238,
+      "original_raw": "73002030",
+      "mutant_raw": "73003030",
+      "rejected": true,
+      "error": "terminal MRET"
+    }
+  ],
+  "standard_RV32_fields_only": true,
+  "XWCHC_or_V1_40_constants_used": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network": false
+}

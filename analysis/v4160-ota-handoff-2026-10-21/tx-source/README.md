@@ -1,0 +1,21 @@
+# APK Tx source contract
+
+Offline source proof for the retained TSL9 Android 1.2.7 APK. `exact-source.json` contains 21 exact, inert source excerpts with original appservice codepoint ranges and hashes. The checker independently reads APK ZIP → wxapkg index → appservice, confirms the retained modules, and checks eight mutated source fixtures. It does not evaluate JavaScript or transmit anything.
+
+The Tx function independently specifies wire prefix `55 7F`, one command byte, a two-byte big-endian payload length, the payload, and a checksum. The checksum sums command, both length bytes and payload, excluding the prefix, then retains the low eight bits. Source construction uses ordinary JavaScript arrays before final Uint8Array coercion; this simple byte formula assumes an integer command and byte-valued payload. The source emits the entire payload even when its length exceeds 65535; only its low 16 length bits reach the header. A bounded C encoder must disclose its supported input domain.
+
+Tx snapshots MTU once, caps it at 244, constructs chunks synchronously, and replaces shared `buf/index`. The initial `txData` property is overwritten by the imported defineProperty helper with a function; mutable state subsequently lives on that function object. A successful write increments the current shared index, resets retryCount through `txCallback(true)`, and sends the next current chunk if present. A failed write logs and preincrements retryCount; it resends only while the result is below 10. Ten consecutive failures stop the chain silently at this layer. Final success resets retryCount and performs no further write. There is no Promise, completion callback, timer or queue-generation isolation in these Tx functions. An old callback can act on a newer Tx's state. Device/service/characteristic/writeType are read live for each actual API invocation.
+
+Initial MTU is 20. Notification MTU updates and Android's request for MTU 247 assign `event.mtu - 3`; the Tx path supplies no lower bound. Nonpositive, NaN, or positive fractional values below one can make splice remove zero elements, so a terminating simple chunk model needs a positive integral chunk size. A later MTU change does not rebuild chunks already created. Updater Write's 1200 ms and Read's 1000 ms retry timers are separate from BLE per-chunk retry. TxSend checks connection, invokes tx without returning its result, or calls updater stop before its error UI. Updater stop does not clear BLE's queue.
+
+`GetUidUint8Array` reads `update.deviceinfo.buf` and delegates to the app helper: length at least 18 yields `slice(4,18)`, otherwise a zero-filled Uint8Array(14). This is a 14-byte slice, while deviceinfo.id is derived from the distinct 12-byte slice `[4,16)`. Device getinfo accepts buffers of length at least 18, stores the supplied buffer, and can later replace deviceinfo with cached state and reconstruct its buffer. These local statements establish the byte selection, not hardware identity, freshness, authentication, or the complete callback route populating that buffer. No actual identifier is read by this proof.
+
+Updater calls are U(85), S(83), R(82), W(87), E(69). U/S/E build `[is_app, ...UID14]`, R builds `[page_hi,page_lo,...UID14]`, and W passes the already decoded page. `ready` decodes server page hex and checks page index and sum16 metadata; the separate Tx sum8 is not that server checksum. No legacy updater XOR decoding is introduced here. These source statements do not prove server response availability, device mode or physical OTA compatibility.
+
+Replay from W (the Python path may be replaced by an equivalent local interpreter):
+
+```powershell
+& 'C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe' -X utf8 -B apk-analysis/tsl9-v4160-ota-handoff-2026-10-21/tx-source/check-source.py --check
+```
+
+The source facts support a pure byte-domain encoder and a synthetic shared-state submit/callback model. They do not provide a BLE backend, JavaScript runtime equivalence for arbitrary values, callback scheduling/fairness, exception recovery, actual UID frames, a sender deployment, or a flash-ready image. Synchronous throws are not caught in the selected functions and may interrupt remaining effects. No ROOT, D, prior sealed scope or native firmware source is changed.

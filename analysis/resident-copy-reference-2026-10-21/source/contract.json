@@ -1,0 +1,207 @@
+{
+  "schema": "WCH-V1.31-reference-copy-live-contract-v1",
+  "passed": true,
+  "blocking_findings": [],
+  "reference_candidate_only": true,
+  "selected_carrier_sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22",
+  "version": "CH32V20x_BLE_LIB_V1.31",
+  "slot": {
+    "address": 262220,
+    "raw_LE32": "32030020",
+    "value": 536871730,
+    "value_is_RAM_not_carrier_ROM_text": true,
+    "installed_slot_value_proved": false
+  },
+  "conditional_mapping": {
+    "seed": {
+      "source": 262784,
+      "destination": 536870928,
+      "bytes": 48,
+      "contains_word_copy_helper18B": true
+    },
+    "first_copy": {
+      "source": 262832,
+      "destination": 536870976,
+      "last_destination_word_inclusive": 536882800,
+      "width": 4,
+      "bytes": 11828,
+      "words": 2957,
+      "all_source_bytes_captured_in_main_segment": true
+    },
+    "mapped_copy_helper": {
+      "RAM_entry": 536871730,
+      "source_entry": 263586,
+      "source_end_exclusive": 263644,
+      "bytes": 58,
+      "sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36",
+      "mapping_formula": "source402B0 + (RAMaddress-20000040)",
+      "slot_inside_first_destination_range": true
+    },
+    "assumptions": [
+      "entry seed copy and the relevant prefix of first word copy execute normally",
+      "the seed word-copy instructions are interpreted with the decoded standard RV32 fields",
+      "source reads and RAM writes are valid, stable and preserve the requested bytes",
+      "no interrupt/alias/other memory modification replaces copied instructions",
+      "actual installed resident/ISA may differ from this public candidate"
+    ],
+    "startup_completed_proved": false,
+    "resident_ABI_or_original_TSL9_identity_proved": false
+  },
+  "numeric_register_interface": {
+    "a0": "u32 destination address; body never assigns a0",
+    "a1": "u32 source address; body never assigns a1",
+    "a2": "u32 byte count; body never assigns a2",
+    "a4": "holds initial MMIO word until restore in this local body",
+    "a5": "MMIO base, then index, then restore MMIO base",
+    "a6": "zero-extended source byte",
+    "a3": "computed source/destination address",
+    "SP_GP": "not referenced or assigned by this58B body",
+    "RA": "RET through then-live RA; no call/link inside body",
+    "original_C_signature_proved": false
+  },
+  "ordered_effects": [
+    {
+      "source_pc": 263590,
+      "conditional_RAM_pc": 536871734,
+      "operation": "READ32",
+      "address": 1073889804,
+      "destination": "a4",
+      "role": "saved word; hardware register role unknown"
+    },
+    {
+      "source_pc": 263594,
+      "conditional_RAM_pc": 536871738,
+      "operation": "WRITE32",
+      "address": 1073889804,
+      "value": 0
+    },
+    {
+      "source_pc": 263598,
+      "conditional_RAM_pc": 536871742,
+      "operation": "FENCE.I",
+      "role": "observed instruction; hardware effects/faults delegated"
+    },
+    {
+      "source_pc": 263602,
+      "conditional_RAM_pc": 536871746,
+      "operation": "if destination==0 goto restore"
+    },
+    {
+      "source_pc": 263604,
+      "conditional_RAM_pc": 536871748,
+      "operation": "if source==0 goto restore"
+    },
+    {
+      "source_pc": 263606,
+      "conditional_RAM_pc": 536871750,
+      "operation": "index=0"
+    },
+    {
+      "source_pc": 263608,
+      "conditional_RAM_pc": 536871752,
+      "operation": "if count!=0 enter byte loop else restore"
+    },
+    {
+      "source_pc": 263620,
+      "conditional_RAM_pc": 536871764,
+      "operation": "source_address=(source+old_index) mod2^32"
+    },
+    {
+      "source_pc": 263624,
+      "conditional_RAM_pc": 536871768,
+      "operation": "READ8_UNSIGNED",
+      "address": "computed source_address",
+      "destination": "a6"
+    },
+    {
+      "source_pc": 263628,
+      "conditional_RAM_pc": 536871772,
+      "operation": "destination_address=(destination+old_index) mod2^32"
+    },
+    {
+      "source_pc": 263632,
+      "conditional_RAM_pc": 536871776,
+      "operation": "index=(index+1) mod2^32",
+      "role": "before destination write"
+    },
+    {
+      "source_pc": 263634,
+      "conditional_RAM_pc": 536871778,
+      "operation": "WRITE8",
+      "address": "already computed destination_address",
+      "value": "low8 of a6"
+    },
+    {
+      "source_pc": 263638,
+      "conditional_RAM_pc": 536871782,
+      "operation": "if count!=index repeat loop"
+    },
+    {
+      "source_pc": 263642,
+      "conditional_RAM_pc": 536871786,
+      "operation": "jump common restore"
+    },
+    {
+      "source_pc": 263610,
+      "conditional_RAM_pc": 536871754,
+      "operation": "a5=0x40024000"
+    },
+    {
+      "source_pc": 263614,
+      "conditional_RAM_pc": 536871758,
+      "operation": "WRITE32",
+      "address": 1073889804,
+      "value": "a4 saved by first read"
+    },
+    {
+      "source_pc": 263618,
+      "conditional_RAM_pc": 536871762,
+      "operation": "RET",
+      "target": "liveRA",
+      "a0": "unchanged numeric destination"
+    }
+  ],
+  "behavioral_boundaries": {
+    "zero_destination_source_or_count": "still performs MMIO read, zero write, FENCE.I and restore, but no source/destination byte requests",
+    "nonnull_nonzero_count": "forward byte loop for u32 count; source read precedes destination write each iteration; no snapshot or backward-copy selection",
+    "overlap": "forward live reads can observe earlier writes; not a memmove contract",
+    "return_value": "a0 is unchanged destination, not a success/failure boolean",
+    "fault_or_transfer": "every request/observation can stop before subsequent events; no automatic finally/restore on HALT or TRANSFER",
+    "restore_fence": "no second FENCE.I between restore store and RET",
+    "MMIO_hardware_identity": "unproved; retain literal4002420C, not a guessed peripheral name",
+    "large_count_or_pointer_wrap": "u32 arithmetic shape only, valid memory and feasible completion not proved"
+  },
+  "inherited_startup_gap": {
+    "second_copy_source": 453284,
+    "requested_bytes": 140,
+    "captured_intersection_bytes": 136,
+    "missing_source": [
+      {
+        "start": 453420,
+        "end_exclusive": 453424,
+        "bytes": 4
+      }
+    ],
+    "RAM_destination": 536882800,
+    "last_word_inclusive": 536882936,
+    "later_zero_does_not_prove_missing_source_read_can_complete": true,
+    "ledger_sha256": "9dc8ec6d725cfd0d93896bdf132863a0cfad7ee9aad255ac2a494ee17dc8c832",
+    "copy_RAM_mapping_is_not_startup_completion": true
+  },
+  "limits": {
+    "original_TSL9_resident_identity_proved": false,
+    "BOOT_4004C_runtime_value_proved": false,
+    "ROM_ABI_proved": false,
+    "physical_RAM_MMIO_or_ISA_validated": false,
+    "provider_generated": false,
+    "reference_ROM_injected": false,
+    "holes_filled": false,
+    "ROOT_modified": false,
+    "D_modified": false,
+    "network": false,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "hardware": false,
+    "real_UID_or_packet_created": false
+  }
+}

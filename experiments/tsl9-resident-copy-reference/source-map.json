@@ -1,0 +1,53 @@
+{
+  "schema": "TSL9-reference-copy-host-source-map-v1",
+  "reference_candidate_only": true,
+  "carrier_bytes": 191078,
+  "carrier_sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22",
+  "source_seal_sha256": "ccae5a249566dbaf96987ae87f860f929c0501eb25d50bf771eae7eaf141c020",
+  "body_sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36",
+  "carrier_base": "0x40000",
+  "source_body": "[0x405A2,0x405DC)",
+  "conditional_RAM_body": "[0x20000332,0x2000036C)",
+  "body_bytes": 58,
+  "body_instructions": 18,
+  "nominal_slot": "0x4004C",
+  "conditional_mapping": "402B0 -> RAM20000040 first-copy prefix; not full initialization proof",
+  "ordered_effects": [
+    {"pc": "0x20000336", "operation": "READ32 0x4002420C into saved_mmio"},
+    {"pc": "0x2000033A", "operation": "WRITE32 zero to 0x4002420C"},
+    {"pc": "0x2000033E", "operation": "FENCE.I provider observation"},
+    {"pc": "0x20000342", "operation": "destination==0 -> restore"},
+    {"pc": "0x20000344", "operation": "source==0 -> restore"},
+    {"pc": "0x20000346", "operation": "index=0"},
+    {"pc": "0x20000348", "operation": "u32 n==0 -> restore"},
+    {"pc": "0x20000358", "operation": "fresh READ8 source+index, zero extend"},
+    {"pc": "0x2000035C", "operation": "destination+index before index++"},
+    {"pc": "0x20000360", "operation": "u32 index++ before store callback"},
+    {"pc": "0x20000362", "operation": "WRITE8 loaded byte"},
+    {"pc": "0x20000366", "operation": "n!=index -> loop"},
+    {"pc": "0x2000034E", "operation": "restore original saved MMIO word with its known mask"},
+    {"pc": "0x20000352", "operation": "RET through incoming RA, bit0 cleared; no second fence"}
+  ],
+  "bridge_firmware_sha256": "650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb",
+  "bridge_inputs": {
+    "experiments/tsl9-boot2580-uid-helper/src/uid_helper.c": "d4e6dc25856019fd04e86a5226c6311852b3dbfb0c9c803a211e1f35f8deba05",
+    "experiments/tsl9-boot2580-uid-helper/src/uid_helper.h": "7e1949bbc16e96daadbb53605624c30a9ca71b270317794c3f3f6a06f9d761d7",
+    "experiments/tsl9-boot2580-command-adapter/src/boot_command.c": "28bced87ab3e788bc8f4c7be6c5ba29aa860b0507c0df0756d54177246faf576",
+    "experiments/tsl9-boot2580-command-adapter/src/boot_command.h": "f7835fa950a7e915b4b726183460fc43468e659b8585d2eab23e397efb7d2609"
+  },
+  "bridges": [
+    {"request": "UB_COPY", "pc": "0x1C66", "tail": false, "RA": "caller.ra, normally 0x1C68"},
+    {"request": "UB_COPY", "pc": "0x1C80", "tail": true, "RA": "fresh caller.ra restored by UB source"},
+    {"request": "BC_INDIRECT_COPY", "pc": "0x225E", "RA": "0x2260 compressed JALR continuation"}
+  ],
+  "limitations": [
+    "Explicit RP_DEC2023_133D3705 is a reference choice, not hardware detection.",
+    "No original code execution, ISA emulation, native BIN or actual I/O.",
+    "Host budgets and partial-knowledge stops are observation boundaries, not original recovery branches.",
+    "RET provider acceptance with a partial target is conditional; caller must justify control.",
+    "MMIO hardware purpose, original ABI, actual resident and OTA compatibility remain unknown.",
+    "Missing four-byte second initializer load remains unprovided; helper prefix mapping does not close startup.",
+    "Body equality to retained older reference does not make whole resident profiles interchangeable."
+  ],
+  "OTA_ready": false
+}

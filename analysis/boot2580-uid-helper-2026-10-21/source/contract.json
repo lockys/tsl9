@@ -1,0 +1,416 @@
+{
+  "schema": "TSL9-BOOT2580-UID-helper-live-contract-v1",
+  "passed": true,
+  "blocking_findings": [],
+  "selected_source": {
+    "catalog_ID": 2580,
+    "catalog_label": "V1.0.00",
+    "bytes": 12288,
+    "sha256": "650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb",
+    "analysis_base": 4096,
+    "spans": [
+      {
+        "start": 7242,
+        "end_exclusive": 7298,
+        "file_offset": 3146,
+        "bytes": 56,
+        "instructions": 22,
+        "sha256": "c68e81ca8b76f4b7ccec0329967a2c991fedd9115392b899c79301ff86f5ccb6",
+        "role": "loaded-copy builder"
+      },
+      {
+        "start": 7298,
+        "end_exclusive": 7364,
+        "file_offset": 3202,
+        "bytes": 66,
+        "instructions": 26,
+        "sha256": "c19b58d87b924322e65d42159a5be6e0aa69a480f0516562e199a73527578869",
+        "role": "UID byte comparator"
+      }
+    ]
+  },
+  "interface_limit": "Observed numeric-register and live-memory schema; no original C signature, ROM function identity, callee-save or physical memory ABI established.",
+  "builder": {
+    "entry": 7242,
+    "bytes": 56,
+    "instructions": 22,
+    "entry_a0": "numeric output pointer",
+    "memory_and_call_order": [
+      {
+        "pc": 7242,
+        "pc_hex": "0x1C4A",
+        "operation": "SP = (SP-16) mod2^32"
+      },
+      {
+        "pc": 7244,
+        "pc_hex": "0x1C4C",
+        "operation": "WRITE32",
+        "address": "liveSP+4",
+        "value": "liveS1"
+      },
+      {
+        "pc": 7246,
+        "pc_hex": "0x1C4E",
+        "operation": "S1 = 0x40000"
+      },
+      {
+        "pc": 7250,
+        "pc_hex": "0x1C52",
+        "operation": "READ32",
+        "address": "liveS1+76",
+        "destination": "a5",
+        "role": "first loaded function pointer; only saveS1 completed at this point"
+      },
+      {
+        "pc": 7252,
+        "pc_hex": "0x1C54",
+        "operation": "WRITE32",
+        "address": "liveSP+8",
+        "value": "liveS0"
+      },
+      {
+        "pc": 7254,
+        "pc_hex": "0x1C56",
+        "operation": "S0 = 0x1FFFF000"
+      },
+      {
+        "pc": 7258,
+        "pc_hex": "0x1C5A",
+        "operation": "WRITE32",
+        "address": "liveSP+0",
+        "value": "liveS2"
+      },
+      {
+        "pc": 7260,
+        "pc_hex": "0x1C5C",
+        "operation": "WRITE32",
+        "address": "liveSP+12",
+        "value": "liveRA"
+      },
+      {
+        "pc": 7262,
+        "pc_hex": "0x1C5E",
+        "operation": "a1 = (liveS0+2028) mod2^32"
+      },
+      {
+        "pc": 7266,
+        "pc_hex": "0x1C62",
+        "operation": "a2 = 8"
+      },
+      {
+        "pc": 7268,
+        "pc_hex": "0x1C64",
+        "operation": "S2 = live a0"
+      },
+      {
+        "pc": 7270,
+        "pc_hex": "0x1C66",
+        "operation": "INDIRECT_CALL",
+        "target": "a5 loaded at1C52",
+        "a0": "then-current a0",
+        "a1": "value assigned at1C5E",
+        "a2": 8,
+        "link_RA": 7272
+      },
+      {
+        "pc": 7272,
+        "pc_hex": "0x1C68",
+        "operation": "a1 = (liveS0+2024) mod2^32",
+        "role": "source2 computed before restoring S0; nominal1FFFF7E8 only if relevant S0 preservation holds"
+      },
+      {
+        "pc": 7276,
+        "pc_hex": "0x1C6C",
+        "operation": "READ32",
+        "address": "liveSP+8",
+        "destination": "s0"
+      },
+      {
+        "pc": 7278,
+        "pc_hex": "0x1C6E",
+        "operation": "READ32",
+        "address": "liveS1+76",
+        "destination": "t1",
+        "role": "fresh second pointer load before restoring S1; not reuse first loaded pointer"
+      },
+      {
+        "pc": 7282,
+        "pc_hex": "0x1C72",
+        "operation": "READ32",
+        "address": "liveSP+12",
+        "destination": "ra",
+        "role": "fresh saved return address"
+      },
+      {
+        "pc": 7284,
+        "pc_hex": "0x1C74",
+        "operation": "READ32",
+        "address": "liveSP+4",
+        "destination": "s1"
+      },
+      {
+        "pc": 7286,
+        "pc_hex": "0x1C76",
+        "operation": "a0 = (liveS2+8) mod2^32",
+        "role": "destination2 computed before restoring S2"
+      },
+      {
+        "pc": 7290,
+        "pc_hex": "0x1C7A",
+        "operation": "READ32",
+        "address": "liveSP+0",
+        "destination": "s2"
+      },
+      {
+        "pc": 7292,
+        "pc_hex": "0x1C7C",
+        "operation": "a2 = 6"
+      },
+      {
+        "pc": 7294,
+        "pc_hex": "0x1C7E",
+        "operation": "SP = (SP+16) mod2^32"
+      },
+      {
+        "pc": 7296,
+        "pc_hex": "0x1C80",
+        "operation": "INDIRECT_TAIL",
+        "target": "t1 loaded at1C6E",
+        "a0": "value assigned at1C76",
+        "a1": "value assigned at1C68",
+        "a2": 6,
+        "link_register_written": false,
+        "possible_return_target": "live RA freshly loaded at1C72"
+      }
+    ],
+    "return_value": "Delegated tail target result; builder has no own RET or numeric success return.",
+    "partial_frame_rule": "Do not save S0/S2/RA before the first slot load in a faithful event adapter. Each stack address uses then-current SP. A later read/call can HALT/TRANSFER; no successful unwinding is presumed.",
+    "copy_ABI": "Counts8/6 and register values are observed requests. Whether either loaded target implements copying, preserves S0/S1/S2/SP, returns through expected RA, or faults is unresolved."
+  },
+  "matcher": {
+    "entry": 7298,
+    "bytes": 66,
+    "instructions": 26,
+    "entry_a0": "numeric input pointer",
+    "entry_a1": "u32 request length; exact14 required here, not low8 masking",
+    "length_reject": {
+      "branch_pc": 7300,
+      "target": 7360,
+      "return_result": 1,
+      "return_pc": 7362,
+      "frame_created": false,
+      "body_memory_request_count": 0,
+      "builder_called": false
+    },
+    "normal_length_events": [
+      {
+        "pc": 7304,
+        "pc_hex": "0x1C88",
+        "operation": "SP = (SP-32) mod2^32"
+      },
+      {
+        "pc": 7306,
+        "pc_hex": "0x1C8A",
+        "operation": "WRITE32",
+        "address": "liveSP+24",
+        "value": "liveS0"
+      },
+      {
+        "pc": 7308,
+        "pc_hex": "0x1C8C",
+        "operation": "S0 = live a0",
+        "role": "capture input numeric pointer"
+      },
+      {
+        "pc": 7310,
+        "pc_hex": "0x1C8E",
+        "operation": "a0 = liveSP",
+        "role": "builder destination"
+      },
+      {
+        "pc": 7312,
+        "pc_hex": "0x1C90",
+        "operation": "WRITE32",
+        "address": "liveSP+28",
+        "value": "liveRA"
+      },
+      {
+        "pc": 7314,
+        "pc_hex": "0x1C92",
+        "operation": "DIRECT_CALL",
+        "target": 7242,
+        "a0": "value set fromSP at1C8E",
+        "link_RA": 7316,
+        "continuation_condition": "builder delegated tail returns to expected numeric link; not automatic"
+      },
+      {
+        "pc": 7316,
+        "pc_hex": "0x1C94",
+        "operation": "index a5 = 0"
+      },
+      {
+        "pc": 7318,
+        "pc_hex": "0x1C96",
+        "operation": "limit a3 = 14"
+      },
+      {
+        "pc": 7320,
+        "pc_hex": "0x1C98",
+        "operation": "a4 = (liveS0+index) mod2^32"
+      },
+      {
+        "pc": 7324,
+        "pc_hex": "0x1C9C",
+        "operation": "READ8_UNSIGNED",
+        "address": "a4 from1C98",
+        "destination": "a2",
+        "role": "request/input byte sampled first"
+      },
+      {
+        "pc": 7328,
+        "pc_hex": "0x1CA0",
+        "operation": "a4 = (liveSP+index) mod2^32"
+      },
+      {
+        "pc": 7332,
+        "pc_hex": "0x1CA4",
+        "operation": "READ8_UNSIGNED",
+        "address": "a4 from1CA0",
+        "destination": "a4",
+        "role": "fresh expected byte after input read"
+      },
+      {
+        "pc": 7336,
+        "pc_hex": "0x1CA8",
+        "operation": "if a2!=a4 jump1CBC",
+        "role": "first mismatch exits; no later loop byte request"
+      },
+      {
+        "pc": 7340,
+        "pc_hex": "0x1CAC",
+        "operation": "index = index+1"
+      },
+      {
+        "pc": 7342,
+        "pc_hex": "0x1CAE",
+        "operation": "if index!=14 jump1C98"
+      },
+      {
+        "pc": 7346,
+        "pc_hex": "0x1CB2",
+        "operation": "a0 = 0",
+        "role": "all14 matched"
+      },
+      {
+        "pc": 7348,
+        "pc_hex": "0x1CB4",
+        "operation": "READ32",
+        "address": "liveSP+28",
+        "destination": "ra"
+      },
+      {
+        "pc": 7350,
+        "pc_hex": "0x1CB6",
+        "operation": "READ32",
+        "address": "liveSP+24",
+        "destination": "s0"
+      },
+      {
+        "pc": 7352,
+        "pc_hex": "0x1CB8",
+        "operation": "SP = (SP+32) mod2^32"
+      },
+      {
+        "pc": 7354,
+        "pc_hex": "0x1CBA",
+        "operation": "RET",
+        "target": "liveRA freshly loaded at1CB4"
+      }
+    ],
+    "first_mismatch_events": [
+      {
+        "pc": 7356,
+        "pc_hex": "0x1CBC",
+        "operation": "a0 = 1"
+      },
+      {
+        "pc": 7358,
+        "pc_hex": "0x1CBE",
+        "operation": "jump common restore",
+        "target": 7348
+      }
+    ],
+    "expected_buffer_is_live": true,
+    "input_buffer_is_live": true,
+    "zero_means_match": true,
+    "nonreturn_or_unknown_memory_not_converted_to_mismatch": true,
+    "retained_bounded_behavior": "At most14 paired LBU requests after normal builder return; each pair input first then expected current stack. No full-buffer snapshot or constant-time claim."
+  },
+  "conditional_source_geometry": {
+    "assumptions": [
+      "the relevant callee-saved source/destination registers retain their expected values",
+      "first loaded target normally returns to1C68",
+      "second tail target returns to the expected caller continuation",
+      "both target semantics copy exactly the requested bytes",
+      "source addresses remain stable/readable across both copies and are not changed by destination overlap or other effects",
+      "all address arithmetic and destination storage are valid in the modeled observation"
+    ],
+    "copy1": {
+      "source": 536868844,
+      "bytes": 8,
+      "destination_offset": 0
+    },
+    "copy2": {
+      "source": 536868840,
+      "bytes": 6,
+      "destination_offset": 8
+    },
+    "output_source_addresses": [
+      536868844,
+      536868845,
+      536868846,
+      536868847,
+      536868848,
+      536868849,
+      536868850,
+      536868851,
+      536868840,
+      536868841,
+      536868842,
+      536868843,
+      536868844,
+      536868845
+    ],
+    "requested_output_bytes": 14,
+    "distinct_source_byte_addresses": 12,
+    "tail2_equal_first2_under_assumptions": true,
+    "tail_output_offsets": [
+      12,
+      13
+    ],
+    "head_output_offsets": [
+      0,
+      1
+    ],
+    "equal_source_addresses": [
+      536868844,
+      536868845
+    ],
+    "actual_UID_values_read": false,
+    "actual_UID_or_hardware_identity_recovered": false
+  },
+  "limits": {
+    "source_only": true,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "network": false,
+    "hardware": false,
+    "UID_packet_created": false,
+    "ROM_ABI_proved": false,
+    "physical_memory_validated": false,
+    "original_C_ABI_recovered": false,
+    "provider_generated": false,
+    "ROOT_modified": false,
+    "D_modified": false
+  }
+}

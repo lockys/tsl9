@@ -1,0 +1,196 @@
+{
+  "schema": "ID2966-residual2-native-plan-v1",
+  "source_firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "CFG_review_sha256": "9e90639509b6dae1371d3e65b087d90aa2a209c3c67b09e1c02c20c56cb3a2e6",
+  "baseline_receipt_sha256": "2001fc4b15274f6ce8b7c4ae9c21ab7e18f5010dc70f3a9cfc3ae2abc1e3063c",
+  "sections": [
+    {
+      "name": ".text.tsl9v4160.residual_code_9ae4",
+      "originalVA": 39652,
+      "bytes": 12,
+      "sha256": "c14bb545c0516912ee5f8524341fb8f0420ccb60164aecf9efb67084ea5acd16",
+      "kind": "code",
+      "capture_role": "all_locally_reachable_instructions_not_original_C_function_extent"
+    },
+    {
+      "name": ".text.tsl9v4160.residual_code_f666",
+      "originalVA": 63078,
+      "bytes": 12,
+      "sha256": "c192e1804c8908e01fc911ddd9da37c760a4e2f2911e2376ce83015dd59ba607",
+      "kind": "code",
+      "capture_role": "all_locally_reachable_instructions_not_original_C_function_extent"
+    }
+  ],
+  "defined_symbols": [
+    {
+      "name": "__tsl9v4160_call_9ae4",
+      "originalVA": 39652,
+      "type": "FUNC",
+      "elf_type": 2,
+      "size": 12,
+      "section": ".text.tsl9v4160.residual_code_9ae4",
+      "size_role": "actual_entry_fragment_only_not_proved_original_C_function_extent"
+    },
+    {
+      "name": "__tsl9v4160_call_f666",
+      "originalVA": 63078,
+      "type": "FUNC",
+      "elf_type": 2,
+      "size": 12,
+      "section": ".text.tsl9v4160.residual_code_f666",
+      "size_role": "actual_entry_fragment_only_not_proved_original_C_function_extent"
+    }
+  ],
+  "relocations": [
+    {
+      "section": ".text.tsl9v4160.residual_code_f666",
+      "originalPC": 63080,
+      "offset": 2,
+      "type": "R_RISCV_PCREL_HI20",
+      "type_number": 23,
+      "target": "__tsl9v4160_ram",
+      "target_originalVA": 536887296,
+      "addend": 32665,
+      "final_original_target": 536919961,
+      "role": "existing_actual_RAM_carrier_plus_offset_address_only"
+    },
+    {
+      "section": ".text.tsl9v4160.residual_code_f666",
+      "originalPC": 63084,
+      "offset": 6,
+      "type": "R_RISCV_PCREL_LO12_S",
+      "type_number": 25,
+      "target": ".Lresidual_f668",
+      "target_originalVA": 63080,
+      "addend": 0,
+      "final_original_target": 63080,
+      "role": "own_HIGH_anchor_S_format"
+    }
+  ],
+  "expected_undefined_symbols": {
+    "__tsl9v4160_ram": {
+      "originalVA": 536887296,
+      "role": "existing_actual_RAM_carrier_address_reference",
+      "reference_roles": [
+        "PC_relative_materialized_address_or_load_store"
+      ],
+      "referenced_original_VAs": [
+        536919961
+      ],
+      "existing_actual_provider_contract": [
+        {
+          "name": "__tsl9v4160_ram",
+          "originalVA": 536887296,
+          "elf_type": 1,
+          "size": 35160,
+          "section": ".bss.tsl9v4160.ram"
+        }
+      ],
+      "numeric_binding_is_provider": false,
+      "runtime_value_or_physical_RAM_proved": false
+    }
+  },
+  "local_labels": [
+    {
+      "name": ".Lresidual_9ae4",
+      "originalVA": 39652
+    },
+    {
+      "name": ".Lresidual_9ae8",
+      "originalVA": 39656
+    },
+    {
+      "name": ".Lresidual_9aea",
+      "originalVA": 39658
+    },
+    {
+      "name": ".Lresidual_9aee",
+      "originalVA": 39662
+    },
+    {
+      "name": ".Lresidual_f666",
+      "originalVA": 63078
+    },
+    {
+      "name": ".Lresidual_f668",
+      "originalVA": 63080
+    },
+    {
+      "name": ".Lresidual_f66c",
+      "originalVA": 63084
+    },
+    {
+      "name": ".Lresidual_f670",
+      "originalVA": 63088
+    }
+  ],
+  "relative32_expressions": [],
+  "existing_code_views": [],
+  "required_existing_code_storage": [],
+  "fixed_layout_fallthrough_contracts": [],
+  "literal_readonly_views": [],
+  "mixed_external_address_uses": [],
+  "allocated_bytes": 24,
+  "code_bytes": 24,
+  "RO_bytes": 0,
+  "section_count": 2,
+  "entry_count": 2,
+  "requested_base_direct_roots": 2,
+  "appended_followup_roots": [],
+  "PCREL_pair_count": 1,
+  "PCREL_pairs": [
+    {
+      "highPC": 63080,
+      "lowPC": 63084,
+      "target": 536919961,
+      "low_format": "S"
+    }
+  ],
+  "total_direct_control_relocations": 0,
+  "interior_provider_addends": [
+    {
+      "target": 536919961,
+      "provider": "__tsl9v4160_ram",
+      "provider_originalVA": 536887296,
+      "addend": 32665,
+      "role": "store_address_only"
+    }
+  ],
+  "GP_RAM_contract": {
+    "parent_carrier": "__tsl9v4160_ram[35160]",
+    "new_RAM_allocated": false,
+    "runtime_values_unknown": true
+  },
+  "dynamic_pointer_obligations": {
+    "new_unresolved_indirect_sites": [],
+    "prior_obligations_not_changed": true
+  },
+  "static_decoded_store_operands": [
+    {
+      "sourcePC": 39658,
+      "numeric_address": 1073809428,
+      "width": 4,
+      "constant_value": 2,
+      "peripheral_identity_or_runtime_effect_proved": false
+    },
+    {
+      "sourcePC": 63084,
+      "numeric_address": 536919961,
+      "width": 1,
+      "constant_value": 1,
+      "existing_RAM_provider": "__tsl9v4160_ram",
+      "provider_originalVA": 536887296,
+      "semantic_addend": 32665,
+      "runtime_value_or_physical_RAM_proved": false
+    }
+  ],
+  "FUNC_sizes_only_actual_captured_fragment": true,
+  "source_C_ABI_proved": false,
+  "network": false,
+  "target_executed": false,
+  "emulation": false,
+  "hardware": false,
+  "native_BIN": false,
+  "target_ready": false,
+  "ota_verified": false
+}
