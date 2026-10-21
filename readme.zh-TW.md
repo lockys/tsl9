@@ -1,5 +1,7 @@
 # TSL9離線C/C++重建
 
+[English](readme.en.md) | [简体中文](readme.zh-CN.md)
+
 本專案保存原始APK、22份不同的更新器BIN、可讀C/C++行為模型及靜態來源證據。完整目標仍是產出與原硬體及BLE更新器相容的重建BIN。**目前尚無經驗證可刷寫的重建BIN。**
 
 ## 跨平台驗證
@@ -36,4 +38,4 @@ sh ./verify.sh --model system-clock-query --language both
 
 WCH CH32V20x已列入硬體假說，CH32V208是其中值得比對的子系列。暫存器配置與程式相似仍不能辨識TSL9確切料號、板子、原機ROM、接腳或中斷ABI。resident候選擷取資料仍有缺漏；合成條件的延續不補原始缺洞。
 
-原有76,800-byte來源一致離線映像仍為**NOT-FLASH-VALIDATED**。測試不存取BLE、UART、CAN或實體Flash。每個完成驗證的里程碑commit／push。新文件分成`.en.md`與`.zh-TW.md`，`README.md`只作語言入口。發佈排除真實裝置識別資料、憑證、私有請求／回覆日誌及暫存編譯產物。
+原有76,800-byte來源一致離線映像仍為**NOT-FLASH-VALIDATED**。測試不存取BLE、UART、CAN或實體Flash。每個完成驗證的里程碑commit／push。`README.md`預設顯示繁體中文；英文與簡體中文分別放在`readme.en.md`與`readme.zh-CN.md`，`readme.zh-TW.md`保留獨立的繁體中文版本。各語言分開維護，歷史封存文件保留原始內容。發佈排除真實裝置識別資料、憑證、私有請求／回覆日誌及暫存編譯產物。

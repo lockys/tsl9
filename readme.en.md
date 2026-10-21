@@ -1,5 +1,7 @@
 # TSL9 offline C/C++ reconstruction
 
+[繁體中文](README.md) | [简体中文](readme.zh-CN.md)
+
 This project preserves the original APK, 22 distinct updater BINs, readable C/C++ behavior models and static source evidence. The goal remains a rebuilt BIN compatible with the original hardware and BLE updater. **No rebuilt BIN is currently verified as flashable.**
 
 ## Portable verification
@@ -36,4 +38,4 @@ The repository also contains 116 historical PowerShell scripts. Their native RV3
 
 WCH CH32V20x, including CH32V208 as a subfamily candidate, is retained as a hardware hypothesis. Register-map and code similarities do not identify an exact TSL9 part, board, installed ROM, pinout or interrupt ABI. The captured resident candidate remains incomplete; synthetic continuation does not fill its missing original bytes.
 
-The existing 76,800-byte source-identical offline image remains **NOT-FLASH-VALIDATED**. No BLE/UART/CAN or physical Flash I/O is part of these tests. Commit/push follows each verified milestone. New documents use separate `.en.md` and `.zh-TW.md` files; `README.md` is a language index. Real device identifiers, credentials, private request/response logs and temporary builds are excluded from publication.
+The existing 76,800-byte source-identical offline image remains **NOT-FLASH-VALIDATED**. No BLE/UART/CAN or physical Flash I/O is part of these tests. Commit/push follows each verified milestone. `README.md` displays Traditional Chinese by default; English and Simplified Chinese live in `readme.en.md` and `readme.zh-CN.md`, with a separate Traditional Chinese copy in `readme.zh-TW.md`. Languages are maintained separately and historical sealed documents retain their original contents. Real device identifiers, credentials, private request/response logs and temporary builds are excluded from publication.
