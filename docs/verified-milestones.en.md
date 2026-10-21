@@ -1,5 +1,13 @@
 # Verified milestones
 
+## Readable native interrupt initialization
+
+The new component reconstructs `0x9A42` and four RCC helpers as readable C/C++, with direct volatile MMIO and CSR instructions in native builds. The original five functions occupy 264 bytes / 94 instructions; 94 raw instruction mutations are rejected. Each hosted language passes 4 groups / 6,680 checks; independent tests pass 4 groups / 34,267 assertions per language and reject six actually compiled countercases.
+
+C11 and C++17 also compile and link as freestanding RV32 components: four 22-byte helpers and a 118-byte initializer. Both LLVM IR and actual machine-code checks identify the 20 ordered effects, including six fresh RCC reads, exact word/byte widths, CSR clear/set masks and the final RMW return value. Eight compiled native mutations are rejected. These are standalone component checks. There is no full-firmware replacement, original stack/register ABI proof, RV32 execution or physical I/O. The existing 691-section / 8,280-relocation image and its one unresolved resident entry remain unchanged.
+
+Use `sh experiments/tsl9-v4160-interrupt-init/verify.sh --language both` for its separate source/host check. Native checks require LLVM and the explicit CLI documented under `analysis/v4160-interrupt-init-2026-10-21/native-plan/`. The previous cross-platform CI attempt was blocked before any steps by GitHub account billing/spending-limit restrictions; no rerun or billing changes were made.
+
 ## Portable entry and clock calculation
 
 The portable Python backend verifies four models: runtime-loop, system-clock-query, resident-entry and resident-copy. Each checks its sealed source proof and then builds and runs our own C11 and C++17 host tests. Windows native compiler results pass; Linux, macOS and shell launch results require separate CI evidence. PowerShell and CMake are not dependencies of this entry.

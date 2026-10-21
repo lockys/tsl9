@@ -25,6 +25,7 @@ sh ./verify.sh --model system-clock-query --language both
 | 原始APK 1.2.7 | [APK](artifacts/apk/安卓-TSL电子模块-1.2.7-1.apk) |
 | 22份原始解碼BIN | [韌體封存](firmware-downloads/legacy-options-2026-10-20/BINs/) |
 | 新時脈計算模型 | [繁體中文說明](experiments/tsl9-v4160-system-clock-query/readme.zh-TW.md) |
+| 可讀的原生中斷初始化 | [繁體中文說明](experiments/tsl9-v4160-interrupt-init/readme.zh-TW.md) |
 | Runtime主程式／初始化／迴圈／派送 | [說明](experiments/tsl9-v4160-runtime-loop/readme.zh-TW.md) |
 | resident候選入口與byte-copy | [入口](experiments/tsl9-resident-entry-reference/readme.zh-TW.md)／[copy](experiments/tsl9-resident-copy-reference/readme.zh-TW.md) |
 | 發佈檔案身分 | [Manifest](publication-manifest.json) |

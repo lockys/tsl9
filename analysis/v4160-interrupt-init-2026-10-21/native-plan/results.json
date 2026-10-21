@@ -1,0 +1,80 @@
+{
+  "schema": "TSL9-readable-interrupt-init-native-results-v1",
+  "evidence_class": "Actual native compile, link, LLVM IR and machine static proof; no RV32 execution",
+  "passed": true,
+  "source_sha256": {
+    "experiments/tsl9-v4160-interrupt-init/src/interrupt_init.c": "9cad70ce14708095eb8af1aea1d23f116c2f7a1b352435e8958056bb50f7b492",
+    "experiments/tsl9-v4160-interrupt-init/src/interrupt_init.h": "fb4f961e82084b0cc88466957a64faf95c8fbd37878c12de1df0c495fbf69875"
+  },
+  "verified_builds": [
+    {
+      "mode": "c",
+      "receipt": "build/native-3ea75c9050d545beb94b8a81fb475aca-c/verification.json",
+      "receipt_sha256": "99e8138c7c1832344c2b22a2d871cc3c230582ac693d975c61fa99f2815d31cc"
+    },
+    {
+      "mode": "cpp",
+      "receipt": "build/native-831ee2a672c34ae0a21bced9dfa104d6-cpp/verification.json",
+      "receipt_sha256": "57881503199e4e45799ebf5734c10481a40c102426b9c7faf4cedafd084bac31"
+    }
+  ],
+  "parent_host_source_proof_builds": [
+    {
+      "mode": "c",
+      "receipt": "experiments/tsl9-v4160-interrupt-init/build/host-949e5d0ee5cc4fec87db802b9e0b0f69-c/verification.json",
+      "receipt_sha256": "49d7e2bf6166b22cd6f638df8e777d1c26a8bbf6c058f7dd064399952380d0be"
+    },
+    {
+      "mode": "cpp",
+      "receipt": "experiments/tsl9-v4160-interrupt-init/build/host-9cb4139ed496484b8134791bc72adb88-cpp/verification.json",
+      "receipt_sha256": "d31e56fe0f7c7b1eb680e3a447f7e135e39a92b3e61f695a2fa6a0afb6ce4a59"
+    }
+  ],
+  "parent_host_groups_per_mode": 4,
+  "parent_host_checks_per_mode": 6680,
+  "source_proof_bytes": 264,
+  "source_proof_instructions": 94,
+  "source_proof_raw_negative_controls": 94,
+  "native_object_sha256_both_modes": "1265133032162cf9f98af5e10917b0ab4ece15c91e7d4116847b5ec73e724af6",
+  "initializer_machine_sha256_both_modes": "8110c26cd527e84f35d22a3778c9a4d696a713c5664e130c48e6338cc3e59a2f",
+  "initializer_bytes": 118,
+  "initializer_instruction_count": 43,
+  "original_initializer_bytes": 144,
+  "original_initializer_instruction_count": 46,
+  "helper_count": 4,
+  "bytes_per_helper": 22,
+  "actual_IR_effects_per_mode": 20,
+  "actual_machine_effects_per_mode": 20,
+  "actual_compiled_rejected_source_mutants_per_mode": 4,
+  "undefined_symbols": [],
+  "writable_data": false,
+  "compiler": {
+    "verified_distribution": "Android NDK 27.1.12297006, Clang 18.0.2",
+    "target": "riscv32-unknown-elf",
+    "march": "rv32imac_zicsr",
+    "mabi": "ilp32",
+    "optimization": "Os",
+    "clang_sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "ld_lld_sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "llvm_objdump_sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+  },
+  "old_image_allocations_unchanged": 691,
+  "old_image_raw_RELA_unchanged": 8280,
+  "old_image_true_undefined_symbols": ["__tsl9v4160_rom_entry"],
+  "old_image_baseline_audit": "audit-report.json",
+  "old_image_baseline_audit_sha256": "c6d5c6e318e03147d4841cd38fe583623916d34d61c00ecbd70bf93f01774a06",
+  "native_replacement_fits_original_extent_by_size_only": true,
+  "original_fixed_placement_proved": false,
+  "old_full_native_gate_modified": false,
+  "original_register_residue_equivalence": false,
+  "original_C_ABI_proved": false,
+  "original_IRQ_ABI_proved": false,
+  "installed_ROM_proved": false,
+  "new_firmware_BIN_produced": false,
+  "firmware_executed": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false,
+  "goal_complete": false
+}
