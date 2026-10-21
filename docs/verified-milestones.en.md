@@ -1,5 +1,15 @@
 # Verified milestones
 
+## Branch-first IRQ core and original-address RCC bytes
+
+The new C/C++ core gives each RMW branch its own read, operation, store and returned value. Per-use base/immediate primitives and an explicit returned-A0 bridge avoid the previous spill ranges; machine outlining is disabled. Each RCC helper is 30 bytes and links at its original 0x19124/0x19142/0x19160/0x1917E address with all 120 bytes identical to the original BIN. Complete machine checks show only A0/A4/A5 writes and exact A1 preservation. The IRQ initializer writes only A0/A1/A4/A5 and matches normal output registers; machine code and LLVM IR separately check the 20 ordered effects and six fresh RCC reads.
+
+Each C11/C++17 canonical host suite passes 4 groups / 9184 cases / 246384 assertions, reusing the complete 264-byte/94-instruction source proof. Independent host tests pass 3820 cases / 138312 assertions per language and reject 44 actually compiled mutations in total. Each native language separately rejects five compiled mutations and 30 disassembly-coverage controls.
+
+The 180-byte initializer exceeds its original 144-byte extent, with no accepted alternative placement. C++ adds allocated `.eh_frame`: 120 bytes in the object and 124 linked bytes. Its all-allocated-bytes-function-owned gate explicitly remains false; read-only metadata still requires integration. Normal return evidence does not prove intermediate or asynchronous IRQ equivalence. Full image, ROM, hardware and OTA compatibility remain unproved. No RV32 execution, original-image change or new BIN occurs.
+
+Use `sh experiments/tsl9-v4160-irq-native/verify.sh --language both`; the sibling `verify-native.sh --tool-dir <LLVM-bin> --language both` runs native static checks. New evidence is under `analysis/v4160-irq-native-2026-10-21/`. Windows Python/MSVC/LLVM results remain separate from unverified POSIX shell, Linux/macOS and CI results.
+
 ## Placement audit and interrupt register model
 
 The exact owned pool is eight separated original ranges totaling 540 bytes: reset memory 62, clock query 174, fields 40, IRQ initializer **144**, and four RCC helpers **30 each**. A byte-bound audit verifies all 691 section bindings and 8,280 RELA records against the full fixed linker layout. The helpers have other callers. No external direct interior entry was found within admitted code, but 939 indirect instructions leave computed targets unresolved. Summing bytes does not establish a safe contiguous placement.

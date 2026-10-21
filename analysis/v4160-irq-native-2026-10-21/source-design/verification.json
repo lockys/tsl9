@@ -1,0 +1,796 @@
+{
+  "schema": "TSL9-IRQ-native-source-design-v1",
+  "passed": true,
+  "inputs": [
+    {
+      "path": "experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.c",
+      "sha256": "d3000829bd171e12d7fd6fe9ba5532c76635dce730d64628b3044d06b3724321"
+    },
+    {
+      "path": "experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.h",
+      "sha256": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"
+    },
+    {
+      "path": "experiments/tsl9-v4160-interrupt-registers/src/irq_io.h",
+      "sha256": "2ced66889c82da11b595b9dab734c8af4fdd4bb365390a534ec3611f0d5398f7"
+    },
+    {
+      "path": "apk-analysis/tsl9-v4160-interrupt-init-2026-10-21/abi-review/verification.json",
+      "sha256": "811bd20a78c9e3ea41fd65dc9ff573ec075d9d88e8b877486c51d1c6acc51511"
+    },
+    {
+      "path": "apk-analysis/tsl9-v4160-placement-2026-10-21/compiler-review/results.json",
+      "sha256": "d6e264f24958752c9d9842dc8307db690cf927bc72568a0902ecd53159530d0a"
+    },
+    {
+      "path": "apk-analysis/tsl9-v4160-placement-2026-10-21/compiler-review/final-audit.json",
+      "sha256": "baaa987b5b34e29cf7ef5849593bf7ddfffa362f368c7cb8eb599ad71d1c8958"
+    },
+    {
+      "path": "apk-analysis/tsl9-v4160-placement-2026-10-21/compiler-review/build/blocked-ca0d54326f53496c858b4187a632a3a2-c/interrupt_registers.ll",
+      "sha256": "0c7bc58ea1fd883be2191ae3883177453afc071a1ccb946ab71f59abd8a81ae5"
+    },
+    {
+      "path": "apk-analysis/tsl9-v4160-placement-2026-10-21/compiler-review/build/blocked-9271b6d5152243dd9f0c2cfa5aa28f61-cpp/interrupt_registers.ll",
+      "sha256": "07757f68193abdd0ad77a784a145c5da95612f2b080bdf3292e216465e4dcd51"
+    },
+    {
+      "path": "apk-analysis/tsl9-v4160-placement-2026-10-21/compiler-review/build/return-commit-b1bc9c790e004e1b851a641436de6b1b/c/interrupt_registers.ll",
+      "sha256": "22029a1566189d1c421a79b27af53019fccc8df9625a441072d8334fa75f743c"
+    },
+    {
+      "path": "apk-analysis/tsl9-v4160-placement-2026-10-21/compiler-review/build/return-commit-b1bc9c790e004e1b851a641436de6b1b/cpp/interrupt_registers.ll",
+      "sha256": "2f22ad0f66dfc4b7b82954908b0d7d1d2c03181d63edb588865e587f90f65950"
+    }
+  ],
+  "original_helpers": [
+    {
+      "start": 102692,
+      "bytes": 30,
+      "first_branch": {
+        "addr": 102692,
+        "size": 2,
+        "bytes": "99c5",
+        "opcode": "beqz a1, 0x19132",
+        "jump": 102706,
+        "fail": 102694
+      },
+      "rows": [
+        {
+          "addr": 102692,
+          "size": 2,
+          "bytes": "99c5",
+          "opcode": "beqz a1, 0x19132",
+          "jump": 102706,
+          "fail": 102694
+        },
+        {
+          "addr": 102694,
+          "size": 4,
+          "bytes": "37170240",
+          "opcode": "lui a4, 0x40021"
+        },
+        {
+          "addr": 102698,
+          "size": 2,
+          "bytes": "1c4f",
+          "opcode": "lw a5, 24(a4)"
+        },
+        {
+          "addr": 102700,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5"
+        },
+        {
+          "addr": 102702,
+          "size": 2,
+          "bytes": "08cf",
+          "opcode": "sw a0, 24(a4)"
+        },
+        {
+          "addr": 102704,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret"
+        },
+        {
+          "addr": 102706,
+          "size": 4,
+          "bytes": "b7170240",
+          "opcode": "lui a5, 0x40021"
+        },
+        {
+          "addr": 102710,
+          "size": 2,
+          "bytes": "984f",
+          "opcode": "lw a4, 24(a5)"
+        },
+        {
+          "addr": 102712,
+          "size": 4,
+          "bytes": "1345f5ff",
+          "opcode": "not a0, a0"
+        },
+        {
+          "addr": 102716,
+          "size": 2,
+          "bytes": "798d",
+          "opcode": "and a0, a0, a4"
+        },
+        {
+          "addr": 102718,
+          "size": 2,
+          "bytes": "88cf",
+          "opcode": "sw a0, 24(a5)"
+        },
+        {
+          "addr": 102720,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret"
+        }
+      ]
+    },
+    {
+      "start": 102722,
+      "bytes": 30,
+      "first_branch": {
+        "addr": 102722,
+        "size": 2,
+        "bytes": "99c5",
+        "opcode": "beqz a1, 0x19150",
+        "jump": 102736,
+        "fail": 102724
+      },
+      "rows": [
+        {
+          "addr": 102722,
+          "size": 2,
+          "bytes": "99c5",
+          "opcode": "beqz a1, 0x19150",
+          "jump": 102736,
+          "fail": 102724
+        },
+        {
+          "addr": 102724,
+          "size": 4,
+          "bytes": "37170240",
+          "opcode": "lui a4, 0x40021"
+        },
+        {
+          "addr": 102728,
+          "size": 2,
+          "bytes": "5c4f",
+          "opcode": "lw a5, 28(a4)"
+        },
+        {
+          "addr": 102730,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5"
+        },
+        {
+          "addr": 102732,
+          "size": 2,
+          "bytes": "48cf",
+          "opcode": "sw a0, 28(a4)"
+        },
+        {
+          "addr": 102734,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret"
+        },
+        {
+          "addr": 102736,
+          "size": 4,
+          "bytes": "b7170240",
+          "opcode": "lui a5, 0x40021"
+        },
+        {
+          "addr": 102740,
+          "size": 2,
+          "bytes": "d84f",
+          "opcode": "lw a4, 28(a5)"
+        },
+        {
+          "addr": 102742,
+          "size": 4,
+          "bytes": "1345f5ff",
+          "opcode": "not a0, a0"
+        },
+        {
+          "addr": 102746,
+          "size": 2,
+          "bytes": "798d",
+          "opcode": "and a0, a0, a4"
+        },
+        {
+          "addr": 102748,
+          "size": 2,
+          "bytes": "c8cf",
+          "opcode": "sw a0, 28(a5)"
+        },
+        {
+          "addr": 102750,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret"
+        }
+      ]
+    },
+    {
+      "start": 102752,
+      "bytes": 30,
+      "first_branch": {
+        "addr": 102752,
+        "size": 2,
+        "bytes": "99c5",
+        "opcode": "beqz a1, 0x1916e",
+        "jump": 102766,
+        "fail": 102754
+      },
+      "rows": [
+        {
+          "addr": 102752,
+          "size": 2,
+          "bytes": "99c5",
+          "opcode": "beqz a1, 0x1916e",
+          "jump": 102766,
+          "fail": 102754
+        },
+        {
+          "addr": 102754,
+          "size": 4,
+          "bytes": "37170240",
+          "opcode": "lui a4, 0x40021"
+        },
+        {
+          "addr": 102758,
+          "size": 2,
+          "bytes": "5c47",
+          "opcode": "lw a5, 12(a4)"
+        },
+        {
+          "addr": 102760,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5"
+        },
+        {
+          "addr": 102762,
+          "size": 2,
+          "bytes": "48c7",
+          "opcode": "sw a0, 12(a4)"
+        },
+        {
+          "addr": 102764,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret"
+        },
+        {
+          "addr": 102766,
+          "size": 4,
+          "bytes": "b7170240",
+          "opcode": "lui a5, 0x40021"
+        },
+        {
+          "addr": 102770,
+          "size": 2,
+          "bytes": "d847",
+          "opcode": "lw a4, 12(a5)"
+        },
+        {
+          "addr": 102772,
+          "size": 4,
+          "bytes": "1345f5ff",
+          "opcode": "not a0, a0"
+        },
+        {
+          "addr": 102776,
+          "size": 2,
+          "bytes": "798d",
+          "opcode": "and a0, a0, a4"
+        },
+        {
+          "addr": 102778,
+          "size": 2,
+          "bytes": "c8c7",
+          "opcode": "sw a0, 12(a5)"
+        },
+        {
+          "addr": 102780,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret"
+        }
+      ]
+    },
+    {
+      "start": 102782,
+      "bytes": 30,
+      "first_branch": {
+        "addr": 102782,
+        "size": 2,
+        "bytes": "99c5",
+        "opcode": "beqz a1, 0x1918c",
+        "jump": 102796,
+        "fail": 102784
+      },
+      "rows": [
+        {
+          "addr": 102782,
+          "size": 2,
+          "bytes": "99c5",
+          "opcode": "beqz a1, 0x1918c",
+          "jump": 102796,
+          "fail": 102784
+        },
+        {
+          "addr": 102784,
+          "size": 4,
+          "bytes": "37170240",
+          "opcode": "lui a4, 0x40021"
+        },
+        {
+          "addr": 102788,
+          "size": 2,
+          "bytes": "1c4b",
+          "opcode": "lw a5, 16(a4)"
+        },
+        {
+          "addr": 102790,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5"
+        },
+        {
+          "addr": 102792,
+          "size": 2,
+          "bytes": "08cb",
+          "opcode": "sw a0, 16(a4)"
+        },
+        {
+          "addr": 102794,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret"
+        },
+        {
+          "addr": 102796,
+          "size": 4,
+          "bytes": "b7170240",
+          "opcode": "lui a5, 0x40021"
+        },
+        {
+          "addr": 102800,
+          "size": 2,
+          "bytes": "984b",
+          "opcode": "lw a4, 16(a5)"
+        },
+        {
+          "addr": 102802,
+          "size": 4,
+          "bytes": "1345f5ff",
+          "opcode": "not a0, a0"
+        },
+        {
+          "addr": 102806,
+          "size": 2,
+          "bytes": "798d",
+          "opcode": "and a0, a0, a4"
+        },
+        {
+          "addr": 102808,
+          "size": 2,
+          "bytes": "88cb",
+          "opcode": "sw a0, 16(a5)"
+        },
+        {
+          "addr": 102810,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret"
+        }
+      ]
+    }
+  ],
+  "retained_ir_facts": [
+    {
+      "profile": "original_c",
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "original_c",
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "original_c",
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "original_c",
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        113,
+        134,
+        156,
+        178,
+        212,
+        292
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "original_cpp",
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "original_cpp",
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "original_cpp",
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "original_cpp",
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        113,
+        134,
+        156,
+        178,
+        212,
+        292
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "return_c",
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": true
+    },
+    {
+      "profile": "return_c",
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": true
+    },
+    {
+      "profile": "return_c",
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": true
+    },
+    {
+      "profile": "return_c",
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        113,
+        134,
+        156,
+        178,
+        212,
+        292
+      ],
+      "value_return_bridge": true
+    },
+    {
+      "profile": "return_cpp",
+      "function": "tsl9_rebuild_rcc_registers_19124",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "return_cpp",
+      "function": "tsl9_rebuild_rcc_registers_19142",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "return_cpp",
+      "function": "tsl9_rebuild_rcc_registers_19160",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        112,
+        133,
+        155,
+        177,
+        211,
+        290
+      ],
+      "value_return_bridge": false
+    },
+    {
+      "profile": "return_cpp",
+      "function": "tsl9_rebuild_rcc_registers_1917e",
+      "ordered_terms": [
+        "load volatile i32",
+        " = or i32",
+        " = xor i32",
+        " = and i32",
+        " = select i1",
+        "store volatile i32",
+        "  br i1"
+      ],
+      "positions": [
+        8,
+        113,
+        134,
+        156,
+        178,
+        212,
+        292
+      ],
+      "value_return_bridge": false
+    }
+  ],
+  "recorded_native_failed_profiles": 8,
+  "recorded_functions_failed_per_profile": 5,
+  "proposal": {
+    "branch_local_RMW": true,
+    "offset_interface": true,
+    "branch_specific_output_only_base_LUI": true,
+    "dynamic_helper_mask_A0_identity": true,
+    "main_per_use_immediate_mask_output_A0": true,
+    "actual_return_is_bound_A0": true,
+    "four_register_allocator_requires_exact_A1_proof": true,
+    "disable_observed_outliner_only_if_locally_documented": true
+  },
+  "limits": {
+    "proposal_compiled": false,
+    "allocator_root_cause_fully_proved": false,
+    "no_stack_native_proved": false,
+    "RA_A2_A3_native_preservation_proved": false,
+    "normal_boundary_only": true,
+    "asynchronous_equivalence_proved": false,
+    "target_executed": false,
+    "network": false,
+    "hardware": false,
+    "BIN_created": false,
+    "parent_model_edited": false,
+    "compile_profile_search": false
+  }
+}

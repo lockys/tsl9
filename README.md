@@ -32,6 +32,7 @@ sh ./verify.sh --model system-clock-query --language both
 | 時脈正常返回暫存器契約 | [繁體中文說明](experiments/tsl9-v4160-clock-registers/readme.zh-TW.md) |
 | 啟動資料複製、BSS 清零與輸出暫存器 | [繁體中文說明](experiments/tsl9-v4160-reset-memory/readme.zh-TW.md) |
 | 中斷初始化正常暫存器契約 | [繁體中文說明](experiments/tsl9-v4160-interrupt-registers/readme.zh-TW.md) |
+| 原址機器碼一致的 RCC helper 與新版 IRQ 核心 | [繁體中文說明](experiments/tsl9-v4160-irq-native/readme.zh-TW.md) |
 | Runtime主程式／初始化／迴圈／派送 | [說明](experiments/tsl9-v4160-runtime-loop/readme.zh-TW.md) |
 | resident候選入口與byte-copy | [入口](experiments/tsl9-resident-entry-reference/readme.zh-TW.md)／[copy](experiments/tsl9-resident-copy-reference/readme.zh-TW.md) |
 | 發佈檔案身分 | [Manifest](publication-manifest.json) |

@@ -1,5 +1,15 @@
 # 已驗證里程碑
 
+## 分支式 IRQ 核心與 RCC 原址 bytes
+
+新版 C/C++ 核心讓兩條 RMW 分支各自保留讀取、運算、寫入與返回值，使用逐次基底／立即數與明確的 A0 返回橋接，並停用 machine outliner。四個 RCC helper 各 30 bytes，在原址 0x19124／0x19142／0x19160／0x1917E 連結後與原 BIN 的 120 bytes 完全一致；完整機器碼核對確認只寫 A0/A4/A5，A1 精確保留。IRQ 本體只寫 A0/A1/A4/A5，正常返回輸出符合原始契約；20 個有序效果及六次 fresh RCC 讀取分別由機器碼與 LLVM IR 檢查。
+
+主機 C11／C++17 每語言通過 4 組／9184 案例／246384 斷言，沿用完整 264 bytes／94 指令來源證據。獨立主機測試每語言 3820 案例／138312 斷言，合計拒絕 44 個實際編譯變異。原生每語言另拒絕五個實際編譯變異與 30 個反組譯覆蓋反例。
+
+本體 180 bytes 超過原始 144 bytes，尚未接受任何新位置。C++ 額外配置 `.eh_frame`：object 120 bytes、linked 124 bytes；已配置區段完全由函式持有的 gate 明確為 false，不能以「唯讀」免除整合義務。函式正常返回證據不等於中途狀態／非同步 IRQ 等價。完整映像、ROM、硬體與 OTA 相容性仍未通過，未執行 RV32、未改原始映像、未產生新 BIN。
+
+入口為 `sh experiments/tsl9-v4160-irq-native/verify.sh --language both`，原生入口為同目錄的 `verify-native.sh --tool-dir <LLVM-bin> --language both`。新文件在 `analysis/v4160-irq-native-2026-10-21/`。Windows Python／MSVC／LLVM 證據與未驗證的 POSIX shell、Linux／macOS／CI 結果分開報告。
+
 ## 原址審查與中斷暫存器模型
 
 確切配置池為八個分開的原始範圍，共 540 bytes：reset 記憶體 62、時脈查詢 174、衍生欄位 40、IRQ 初始化 **144**，四個 RCC helper **各 30**。綁定 bytes 的審查核對完整固定 linker layout 的 691 個 section 配置與 8,280 筆 RELA。helper 均有其他呼叫端；已納入的程式碼未見外部直接跳進內部，但 939 條間接指令使計算式目標仍未排除，總和算術不能證明可安全連續配置。

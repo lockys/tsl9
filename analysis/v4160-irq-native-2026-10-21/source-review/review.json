@@ -1,0 +1,75 @@
+{
+  "schema": "TSL9-branch-first-IRQ-independent-host-contract-v1",
+  "passed": true,
+  "component_inputs": [
+    {
+      "path": "experiments/tsl9-v4160-irq-native/src/interrupt_registers.c",
+      "sha256": "7bf0b338044ef635f132281c11abb516bb0b9a62108e7c8faa8857c1b5e928db"
+    },
+    {
+      "path": "experiments/tsl9-v4160-irq-native/src/native_io.h",
+      "sha256": "f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e"
+    },
+    {
+      "path": "experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.h",
+      "sha256": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"
+    },
+    {
+      "path": "experiments/tsl9-v4160-interrupt-registers/tests/test_io.h",
+      "sha256": "a9cc47726a4245b905e95eb9ca286ae07451c566ccea0da9aa4f830cb6c41abc"
+    },
+    {
+      "path": "scripts/portable_verify.py",
+      "sha256": "93933fcb13a0fc45c9c5c82ebb1584a94298e28888d4f7f6a359237c7d3f8754"
+    }
+  ],
+  "peer_seals": [
+    {
+      "scope_names": [
+        "tsl9-v4160-placement-2026-10-21",
+        "v4160-placement-2026-10-21"
+      ],
+      "subdirectory": "code-review",
+      "filename": "final-audit.json",
+      "sha256": "4757434b52178f0394efe252688340c1be19f43a16708e1b70b4e1d0b453dce9"
+    },
+    {
+      "scope_names": [
+        "tsl9-v4160-interrupt-init-2026-10-21",
+        "v4160-interrupt-init-2026-10-21"
+      ],
+      "subdirectory": "source",
+      "filename": "final-audit.json",
+      "sha256": "4d6745033aae496576b9db2fb7467396fbfda5067713cf1451a34b949b414283"
+    }
+  ],
+  "reused_independent_oracle_sha256": "e40f4b8e986e705d6c8c29a34c793ce74d7c37a506e0ddedfecd80a1e2b783b4",
+  "receipts": [
+    {
+      "path": "receipts/d5d7d060e6df4b15aa8b3f783a01fe8e-cpp.json",
+      "sha256": "816529970107842e1095a40fa75c73b37dac547124582fc5ac426c67866064c5",
+      "language": "cpp"
+    },
+    {
+      "path": "receipts/f72b8966d95644d7b757230426b6984c-c.json",
+      "sha256": "9b8fc6b5040d1a3ce2c98918f602a99f310dbc9258d86597406e672abef8d352",
+      "language": "c"
+    }
+  ],
+  "tests_per_mode": {
+    "groups": 4,
+    "cases": 3820,
+    "checks": 138312
+  },
+  "actually_compiled_behavior_mutants_rejected": 44,
+  "blocking_findings_in_host_interface": [],
+  "host_outputs_are_actual_GPR_captures": false,
+  "native_bridge_or_register_proved": false,
+  "native_identity_proved_by_this_review": false,
+  "placement_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false
+}

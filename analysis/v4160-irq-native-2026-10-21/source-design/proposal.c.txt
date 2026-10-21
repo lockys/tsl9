@@ -1,0 +1,76 @@
+/* DESIGN ONLY: uncompiled body/signatures; no model replacement. */
+
+/* Native I/O primitives: always_inline; return the bound register SSA.
+ * Host adapters return the input/base unchanged without extra events. */
+IR_INLINE uint32_t ir_mask_a0(uint32_t value); /* fixed a0 +r, return a0 */
+IR_INLINE uint32_t ir_base_a4(void); /* output-only LUI a4,0x40021 */
+IR_INLINE uint32_t ir_base_a5(void); /* output-only LUI a5,0x40021 */
+
+/* Parent refinement: actual literal instruction has no shared constant input
+ * virtual register. Offset remains ordinary typed C address arithmetic. */
+IR_INLINE uint32_t ir_base_a4_native(void)
+{
+    register uint32_t a4 __asm__("a4");
+    __asm__ volatile("lui %0, 0x40021" : "=r"(a4) : : "memory");
+    return a4;
+}
+/* A5 variant is identical except for the fixed register name. Main-only
+ * IR_MASK_LITERAL(k) uses statement-expression or immediate-requiring macro:
+ * fixed uint32_t a0; asm volatile("li %0, %1" : "=r"(a0) : "i"(k) : "memory");
+ * return/expression a0. Each use emits its own immediate; no shared C mask
+ * literal SSA is held across RMWs. Dynamic helper uses ir_mask_a0 instead.
+ */
+
+/* Explicit implementation example for one identity primitive. */
+IR_INLINE uint32_t ir_mask_a0_native(uint32_t value)
+{
+    register uint32_t a0 __asm__("a0")=value;
+    __asm__ volatile("" : "+r"(a0) : : "memory");
+    return a0;
+}
+
+/* Change the existing output bridge from void/input-only to a value return.
+ * Same prototype for RCC and INIT variants, with their own hosted hook. */
+IR_INLINE uint32_t ir_rcc_return(uint32_t v0,uint32_t v1,
+                                 uint32_t v4,uint32_t v5)
+{
+    register uint32_t a0 __asm__("a0")=v0;
+    register uint32_t a1 __asm__("a1")=v1;
+    register uint32_t a4 __asm__("a4")=v4;
+    register uint32_t a5 __asm__("a5")=v5;
+    __asm__ volatile("" : "+r"(a0) : "r"(a1),"r"(a4),"r"(a5) : "memory");
+    return a0;
+}
+
+/* Replace update32(address,mask,enabled) with an offset interface.
+ * Both the fresh read and write remain inside each branch. Distinct opaque
+ * base definitions stop the current common read/select/store convergence.
+ * Do not compute both branch expressions before this if. */
+IR_INLINE uint32_t update32_branch(uint32_t offset,uint32_t mask,uint32_t enabled)
+{
+    if(enabled) {
+        mask=ir_mask_a0(mask);
+        const uint32_t base=ir_base_a4();
+        const uint32_t before=IR_READ32(base+offset);
+        const uint32_t after=mask|before;
+        IR_WRITE32(base+offset,after);
+        return ir_rcc_return(after,enabled,base,before);
+    } else {
+        mask=ir_mask_a0(mask);
+        const uint32_t base=ir_base_a5();
+        const uint32_t before=IR_READ32(base+offset);
+        const uint32_t after=(~mask)&before;
+        IR_WRITE32(base+offset,after);
+        return ir_rcc_return(after,enabled,before,base);
+    }
+}
+
+/* Standalone helper offsets: 19124=0x18,19142=0x1c,19160=0x0c,1917e=0x10.
+ * Signature, incoming exact enabled bits and public A0 result remain intact.
+ * Main still uses six update operations in the proven order, with the same
+ * masks/flags and 6 fresh reads; only address -> offset changes.
+ * Main's final line must become:
+ * return ir_init_return(result,0u,0x80u,0xe000e000u);
+ * Do not separately return the pre-bridge result SSA afterward.
+ * Keep CSR and trailing six stores in their exact original order/width.
+ */
