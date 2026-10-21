@@ -1,0 +1,253 @@
+--- |
+  ; ModuleID = 'C:\Users\locky\Documents\Codex\2026-10-13\rea-https-github-com-morluto-rea\experiments\tsl9-v4160-irq-callframe\src\interrupt_callframe.c'
+  source_filename = "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c"
+  target datalayout = "e-m:e-p:32:32-i64:64-n32-S128"
+  target triple = "riscv32-unknown-unknown-elf"
+  
+  @llvm.compiler.used = appending global [1 x ptr] [ptr @tsl9_rebuild_interrupt_registers_9a42], section "llvm.metadata"
+  
+  @__tsl9v4160_call_9a42 = dso_local alias i32 (), ptr @tsl9_rebuild_interrupt_registers_9a42
+  
+  ; Function Attrs: minsize mustprogress noinline nounwind optsize
+  define dso_local i32 @tsl9_rebuild_interrupt_registers_9a42() #0 section ".text.tsl9v4160.init_9a42" {
+    %1 = tail call i32 asm sideeffect "li $0, 0x88", "={x18},~{memory}"() #1, !srcloc !4
+    tail call void asm sideeffect "csrc 0x800, $0", "{x18},~{memory}"(i32 %1) #1, !srcloc !5
+    %2 = tail call i32 asm sideeffect "lui $0, 0x2020", "={x9},~{memory}"() #1, !srcloc !6
+    %3 = tail call i32 asm sideeffect "", "={x9},{x9},~{memory}"(i32 %2) #1, !srcloc !7
+    %4 = add i32 %3, 6
+    %5 = tail call i32 asm sideeffect "jal ra, tsl9_rebuild_rcc_registers_19142", "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}"(i32 1, i32 %4) #1, !srcloc !8
+    %6 = tail call i32 asm sideeffect "lui $0, 0x1", "={x8},~{memory}"() #1, !srcloc !9
+    %7 = tail call i32 asm sideeffect "", "={x8},{x8},~{memory}"(i32 %6) #1, !srcloc !10
+    %8 = add i32 %7, 29
+    %9 = tail call i32 asm sideeffect "jal ra, tsl9_rebuild_rcc_registers_19124", "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}"(i32 1, i32 %8) #1, !srcloc !11
+    %10 = tail call i32 asm sideeffect "", "={x9},{x9},~{memory}"(i32 %3) #1, !srcloc !12
+    %11 = add i32 %10, 6
+    %12 = tail call i32 asm sideeffect "jal ra, tsl9_rebuild_rcc_registers_1917e", "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}"(i32 1, i32 %11) #1, !srcloc !13
+    %13 = tail call i32 asm sideeffect "", "={x9},{x9},~{memory}"(i32 %10) #1, !srcloc !14
+    %14 = add i32 %13, 6
+    %15 = tail call i32 asm sideeffect "jal ra, tsl9_rebuild_rcc_registers_1917e", "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}"(i32 0, i32 %14) #1, !srcloc !15
+    %16 = tail call i32 asm sideeffect "", "={x8},{x8},~{memory}"(i32 %7) #1, !srcloc !16
+    %17 = add i32 %16, 29
+    %18 = tail call i32 asm sideeffect "jal ra, tsl9_rebuild_rcc_registers_19160", "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}"(i32 1, i32 %17) #1, !srcloc !17
+    %19 = tail call i32 asm sideeffect "li $0, 0", "={x11},~{memory}"() #1, !srcloc !18
+    %20 = tail call i32 asm sideeffect "", "={x8},{x8},~{memory}"(i32 %16) #1, !srcloc !19
+    %21 = add i32 %20, 29
+    %22 = tail call i32 asm sideeffect "jal ra, tsl9_rebuild_rcc_registers_19160", "={x10},{x11},{x10},~{x1},~{x14},~{x15},~{memory}"(i32 %19, i32 %21) #1, !srcloc !20
+    %23 = tail call i32 asm sideeffect "lui $0, 0xe000e", "={x15},~{memory}"() #1, !srcloc !21
+    %24 = tail call i32 asm sideeffect "", "={x15},{x15},~{memory}"(i32 %23) #1, !srcloc !22
+    %25 = add i32 %24, 1069
+    %26 = inttoptr i32 %25 to ptr
+    store volatile i8 0, ptr %26, align 1, !tbaa !23
+    %27 = tail call { i32, i32 } asm sideeffect "", "={x15},={x14},{x15},{x14},~{memory}"(i32 %24, i32 8192) #1, !srcloc !26
+    %28 = extractvalue { i32, i32 } %27, 0
+    %29 = extractvalue { i32, i32 } %27, 1
+    %30 = add i32 %28, 260
+    %31 = inttoptr i32 %30 to ptr
+    store volatile i32 %29, ptr %31, align 4, !tbaa !27
+    %32 = tail call { i32, i32 } asm sideeffect "", "={x15},={x14},{x15},{x14},~{memory}"(i32 %28, i32 32) #1, !srcloc !29
+    %33 = extractvalue { i32, i32 } %32, 0
+    %34 = extractvalue { i32, i32 } %32, 1
+    %35 = trunc i32 %34 to i8
+    %36 = add i32 %33, 1060
+    %37 = inttoptr i32 %36 to ptr
+    store volatile i8 %35, ptr %37, align 1, !tbaa !23
+    %38 = tail call { i32, i32 } asm sideeffect "", "={x15},={x14},{x15},{x14},~{memory}"(i32 %33, i32 16) #1, !srcloc !30
+    %39 = extractvalue { i32, i32 } %38, 0
+    %40 = extractvalue { i32, i32 } %38, 1
+    %41 = add i32 %39, 260
+    %42 = inttoptr i32 %41 to ptr
+    store volatile i32 %40, ptr %42, align 4, !tbaa !27
+    %43 = tail call { i32, i32 } asm sideeffect "", "={x15},={x14},{x15},{x14},~{memory}"(i32 %39, i32 48) #1, !srcloc !31
+    %44 = extractvalue { i32, i32 } %43, 0
+    %45 = extractvalue { i32, i32 } %43, 1
+    %46 = trunc i32 %45 to i8
+    %47 = add i32 %44, 1063
+    %48 = inttoptr i32 %47 to ptr
+    store volatile i8 %46, ptr %48, align 1, !tbaa !23
+    %49 = tail call { i32, i32 } asm sideeffect "", "={x15},={x14},{x15},{x14},~{memory}"(i32 %44, i32 128) #1, !srcloc !32
+    %50 = extractvalue { i32, i32 } %49, 0
+    %51 = extractvalue { i32, i32 } %49, 1
+    %52 = add i32 %50, 260
+    %53 = inttoptr i32 %52 to ptr
+    store volatile i32 %51, ptr %53, align 4, !tbaa !27
+    tail call void asm sideeffect "csrs 0x800, $0", "{x18},~{memory}"(i32 %1) #1, !srcloc !33
+    %54 = tail call i32 asm sideeffect "", "={x10},{x10},~{memory}"(i32 %22) #1, !srcloc !34
+    ret i32 %54
+  }
+  
+  attributes #0 = { minsize mustprogress noinline nounwind optsize "no-builtins" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="generic-rv32" "target-features"="+32bit,+a,+c,+m,+reserve-x12,+reserve-x13,+reserve-x16,+reserve-x17,+reserve-x19,+reserve-x20,+reserve-x21,+reserve-x22,+reserve-x23,+reserve-x24,+reserve-x25,+reserve-x26,+reserve-x27,+reserve-x28,+reserve-x29,+reserve-x3,+reserve-x30,+reserve-x31,+reserve-x4,+reserve-x5,+reserve-x6,+reserve-x7,+zicsr,-d,-e,-experimental-zacas,-experimental-zcmop,-experimental-zfbfmin,-experimental-zicfilp,-experimental-zicond,-experimental-zimop,-experimental-ztso,-experimental-zvfbfmin,-experimental-zvfbfwma,-f,-h,-relax,-smaia,-ssaia,-svinval,-svnapot,-svpbmt,-v,-xcvalu,-xcvbi,-xcvbitmanip,-xcvelw,-xcvmac,-xcvmem,-xcvsimd,-xsfvcp,-xsfvfnrclipxfqf,-xsfvfwmaccqqq,-xsfvqmaccdod,-xsfvqmaccqoq,-xtheadba,-xtheadbb,-xtheadbs,-xtheadcmo,-xtheadcondmov,-xtheadfmemidx,-xtheadmac,-xtheadmemidx,-xtheadmempair,-xtheadsync,-xtheadvdot,-xventanacondops,-zawrs,-zba,-zbb,-zbc,-zbkb,-zbkc,-zbkx,-zbs,-zca,-zcb,-zcd,-zce,-zcf,-zcmp,-zcmt,-zdinx,-zfa,-zfh,-zfhmin,-zfinx,-zhinx,-zhinxmin,-zicbom,-zicbop,-zicboz,-zicntr,-zifencei,-zihintntl,-zihintpause,-zihpm,-zk,-zkn,-zknd,-zkne,-zknh,-zkr,-zks,-zksed,-zksh,-zkt,-zmmul,-zvbb,-zvbc,-zve32f,-zve32x,-zve64d,-zve64f,-zve64x,-zvfh,-zvfhmin,-zvkb,-zvkg,-zvkn,-zvknc,-zvkned,-zvkng,-zvknha,-zvknhb,-zvks,-zvksc,-zvksed,-zvksg,-zvksh,-zvkt,-zvl1024b,-zvl128b,-zvl16384b,-zvl2048b,-zvl256b,-zvl32768b,-zvl32b,-zvl4096b,-zvl512b,-zvl64b,-zvl65536b,-zvl8192b" }
+  attributes #1 = { nounwind }
+  
+  !llvm.module.flags = !{!0, !1, !2}
+  !llvm.ident = !{!3}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"target-abi", !"ilp32"}
+  !2 = !{i32 8, !"SmallDataLimit", i32 8}
+  !3 = !{!"Android (12285214, based on r522817b) clang version 18.0.2 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)"}
+  !4 = !{i64 2147543517}
+  !5 = !{i64 2147543577}
+  !6 = !{i64 2147543686}
+  !7 = !{i64 2147544167}
+  !8 = !{i64 2147543880}
+  !9 = !{i64 2147544330}
+  !10 = !{i64 2147544810}
+  !11 = !{i64 2147544521}
+  !12 = !{i64 2147545344}
+  !13 = !{i64 2147545057}
+  !14 = !{i64 2147545877}
+  !15 = !{i64 2147545590}
+  !16 = !{i64 2147546412}
+  !17 = !{i64 2147546123}
+  !18 = !{i64 2147546597}
+  !19 = !{i64 2147547001}
+  !20 = !{i64 2147546712}
+  !21 = !{i64 2147547162}
+  !22 = !{i64 2147547238}
+  !23 = !{!24, !24, i64 0}
+  !24 = !{!"omnipotent char", !25, i64 0}
+  !25 = !{!"Simple C++ TBAA"}
+  !26 = !{i64 2147547518}
+  !27 = !{!28, !28, i64 0}
+  !28 = !{!"int", !24, i64 0}
+  !29 = !{i64 2147547848}
+  !30 = !{i64 2147548174}
+  !31 = !{i64 2147548502}
+  !32 = !{i64 2147548828}
+  !33 = !{i64 2147549052}
+  !34 = !{i64 2147549190}
+
+...
+---
+name:            tsl9_rebuild_interrupt_registers_9a42
+alignment:       2
+exposesReturnsTwice: false
+legalized:       false
+regBankSelected: false
+selected:        false
+failedISel:      false
+tracksRegLiveness: true
+hasWinCFI:       false
+callsEHReturn:   false
+callsUnwindInit: false
+hasEHCatchret:   false
+hasEHScopes:     false
+hasEHFunclets:   false
+isOutlined:      false
+debugInstrRef:   false
+failsVerification: false
+tracksDebugUserValues: true
+registers:       []
+liveins:         []
+frameInfo:
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       16
+  offsetAdjustment: 0
+  maxAlignment:    4
+  adjustsStack:    false
+  hasCalls:        false
+  stackProtector:  ''
+  functionContext: ''
+  maxCallFrameSize: 0
+  cvBytesOfCalleeSavedRegisters: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+  hasTailCall:     false
+  localFrameSize:  0
+  savePoint:       ''
+  restorePoint:    ''
+fixedStack:      []
+stack:
+  - { id: 0, name: '', type: spill-slot, offset: -4, size: 4, alignment: 4, 
+      stack-id: default, callee-saved-register: '$x1', callee-saved-restored: true, 
+      debug-info-variable: '', debug-info-expression: '', debug-info-location: '' }
+  - { id: 1, name: '', type: spill-slot, offset: -8, size: 4, alignment: 4, 
+      stack-id: default, callee-saved-register: '$x8', callee-saved-restored: true, 
+      debug-info-variable: '', debug-info-expression: '', debug-info-location: '' }
+  - { id: 2, name: '', type: spill-slot, offset: -12, size: 4, alignment: 4, 
+      stack-id: default, callee-saved-register: '$x9', callee-saved-restored: true, 
+      debug-info-variable: '', debug-info-expression: '', debug-info-location: '' }
+  - { id: 3, name: '', type: spill-slot, offset: -16, size: 4, alignment: 4, 
+      stack-id: default, callee-saved-register: '$x18', callee-saved-restored: true, 
+      debug-info-variable: '', debug-info-expression: '', debug-info-location: '' }
+entry_values:    []
+callSites:       []
+debugValueSubstitutions: []
+constants:       []
+machineFunctionInfo:
+  varArgsFrameIndex: 0
+  varArgsSaveSize: 0
+body:             |
+  bb.0 (%ir-block.0):
+    liveins: $x1, $x8, $x9, $x18
+  
+    $x2 = frame-setup ADDI $x2, -16
+    frame-setup CFI_INSTRUCTION def_cfa_offset 16
+    SW killed $x1, $x2, 12 :: (store (s32) into %stack.0)
+    SW killed $x8, $x2, 8 :: (store (s32) into %stack.1)
+    SW killed $x9, $x2, 4 :: (store (s32) into %stack.2)
+    SW killed $x18, $x2, 0 :: (store (s32) into %stack.3)
+    frame-setup CFI_INSTRUCTION offset $x1, -4
+    frame-setup CFI_INSTRUCTION offset $x8, -8
+    frame-setup CFI_INSTRUCTION offset $x9, -12
+    frame-setup CFI_INSTRUCTION offset $x18, -16
+    INLINEASM &"li $0, 0x88", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x18, !4
+    INLINEASM &"csrc 0x800, $0", 25 /* sideeffect mayload maystore attdialect */, 9 /* reguse */, $x18, !5
+    INLINEASM &"lui $0, 0x2020", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x9, !6
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x9, 9 /* reguse */, $x9, !7
+    renamable $x10 = ADDI renamable $x9, 6
+    $x11 = ADDI $x0, 1
+    INLINEASM &"jal ra, tsl9_rebuild_rcc_registers_19142", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def dead $x10, 9 /* reguse */, $x11, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x14, 12 /* clobber */, implicit-def dead early-clobber $x15, !8
+    INLINEASM &"lui $0, 0x1", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x8, !9
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x8, 9 /* reguse */, $x8, !10
+    renamable $x10 = ADDI renamable $x8, 29
+    $x11 = ADDI $x0, 1
+    INLINEASM &"jal ra, tsl9_rebuild_rcc_registers_19124", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def dead $x10, 9 /* reguse */, $x11, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x14, 12 /* clobber */, implicit-def dead early-clobber $x15, !11
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x9, 9 /* reguse */, $x9, !12
+    renamable $x10 = ADDI renamable $x9, 6
+    $x11 = ADDI $x0, 1
+    INLINEASM &"jal ra, tsl9_rebuild_rcc_registers_1917e", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def dead $x10, 9 /* reguse */, $x11, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x14, 12 /* clobber */, implicit-def dead early-clobber $x15, !13
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x9, 9 /* reguse */, $x9, !14
+    renamable $x10 = ADDI killed renamable $x9, 6
+    $x11 = COPY $x0
+    INLINEASM &"jal ra, tsl9_rebuild_rcc_registers_1917e", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def dead $x10, 9 /* reguse */, $x11, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x14, 12 /* clobber */, implicit-def dead early-clobber $x15, !15
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x8, 9 /* reguse */, $x8, !16
+    renamable $x10 = ADDI renamable $x8, 29
+    $x11 = ADDI $x0, 1
+    INLINEASM &"jal ra, tsl9_rebuild_rcc_registers_19160", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def dead $x10, 9 /* reguse */, $x11, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x14, 12 /* clobber */, implicit-def dead early-clobber $x15, !17
+    INLINEASM &"li $0, 0", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x11, !18
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x8, 9 /* reguse */, $x8, !19
+    renamable $x10 = ADDI killed renamable $x8, 29
+    INLINEASM &"jal ra, tsl9_rebuild_rcc_registers_19160", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x10, 9 /* reguse */, $x11, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x14, 12 /* clobber */, implicit-def dead early-clobber $x15, !20
+    INLINEASM &"lui $0, 0xe000e", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x15, !21
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x15, 9 /* reguse */, $x15, !22
+    SB $x0, renamable $x15, 1069 :: (volatile store (s8) into %ir.26, !tbaa !23)
+    $x14 = LUI 2
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x15, 10 /* regdef */, implicit-def $x14, 9 /* reguse */, $x15, 9 /* reguse */, $x14, !26
+    SW killed renamable $x14, renamable $x15, 260 :: (volatile store (s32) into %ir.31, !tbaa !27)
+    $x14 = ADDI $x0, 32
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x15, 10 /* regdef */, implicit-def $x14, 9 /* reguse */, $x15, 9 /* reguse */, $x14, !29
+    SB killed renamable $x14, renamable $x15, 1060 :: (volatile store (s8) into %ir.37, !tbaa !23)
+    $x14 = ADDI $x0, 16
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x15, 10 /* regdef */, implicit-def $x14, 9 /* reguse */, $x15, 9 /* reguse */, $x14, !30
+    SW killed renamable $x14, renamable $x15, 260 :: (volatile store (s32) into %ir.42, !tbaa !27)
+    $x14 = ADDI $x0, 48
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x15, 10 /* regdef */, implicit-def $x14, 9 /* reguse */, $x15, 9 /* reguse */, $x14, !31
+    SB killed renamable $x14, renamable $x15, 1063 :: (volatile store (s8) into %ir.48, !tbaa !23)
+    $x14 = ADDI $x0, 128
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x15, 10 /* regdef */, implicit-def $x14, 9 /* reguse */, $x15, 9 /* reguse */, $x14, !32
+    SW killed renamable $x14, killed renamable $x15, 260 :: (volatile store (s32) into %ir.53, !tbaa !27)
+    INLINEASM &"csrs 0x800, $0", 25 /* sideeffect mayload maystore attdialect */, 9 /* reguse */, $x18, !33
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x10, 9 /* reguse */, $x10, !34
+    $x1 = LW $x2, 12 :: (load (s32) from %stack.0)
+    $x8 = LW $x2, 8 :: (load (s32) from %stack.1)
+    $x9 = LW $x2, 4 :: (load (s32) from %stack.2)
+    $x18 = LW $x2, 0 :: (load (s32) from %stack.3)
+    $x2 = frame-destroy ADDI $x2, 16
+    PseudoRET implicit $x10
+
+...

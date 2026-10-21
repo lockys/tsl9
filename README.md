@@ -6,6 +6,8 @@
 
 ## 跨平台驗證
 
+最新整合恢復了 11 個可讀 IRQ／Flash 函式共 526 bytes 的原始機器碼；完整離線 BIN 與官方 ID2966 V4.1.60 相同。生成鏈明確包含 C/C++ 編譯器與獨立 ABI 保存順序處理，其餘映像仍使用原始承載資料。這是部分來源重建，**不是原硬體或 BLE OTA 驗證**。詳見[新版整合](analysis/v4160-register-image-integration-2026-10-22/README.md)。
+
 需要Python 3.10以上、C11／C++17編譯器及POSIX shell。Linux可用GCC或Clang；macOS可用Clang；Windows可用Git Bash加Visual Studio C++ Build Tools。新的跨平台入口不需要PowerShell或CMake。
 
 ```sh
@@ -38,6 +40,9 @@ sh ./verify.sh --model system-clock-query --language both
 | 六個可讀 Flash 函式與原址元件 | [繁體中文說明](analysis/v4160-flash-native-2026-10-22/README.md) |
 | 自然產生 100-byte program 與原始進入順序 | [繁體中文說明](analysis/v4160-flash-entry-order-2026-10-22/README.md) |
 | 十一個 IRQ／Flash 函式整合的完整離線映像（尚未驗證可刷寫） | [繁體中文說明](analysis/v4160-flash-image-integration-2026-10-22/README.md) |
+| 五個 Flash 葉函式的暫存器與指令前綴一致 | [繁體中文說明](experiments/tsl9-v4160-flash-register-prefix/README.md) |
+| 明確的 ABI 堆疊保存順序處理與唯讀重驗 | [繁體中文說明](experiments/tsl9-v4160-frame-schedule/README.md) |
+| 十一個可讀函式與官方 bytes 相同的完整離線映像 | [繁體中文說明](analysis/v4160-register-image-integration-2026-10-22/README.md) |
 | 新功能候選與既有功能證據 | [繁體中文提案](analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.zh-TW.md) |
 | Runtime主程式／初始化／迴圈／派送 | [說明](experiments/tsl9-v4160-runtime-loop/readme.zh-TW.md) |
 | resident候選入口與byte-copy | [入口](experiments/tsl9-resident-entry-reference/readme.zh-TW.md)／[copy](experiments/tsl9-resident-copy-reference/readme.zh-TW.md) |

@@ -1,0 +1,153 @@
+{
+  "schema": "ID2966-independent-prefix-file-controls-v1",
+  "passed": true,
+  "ELF_byte_controls": 12,
+  "frontier_controls_rejected": 11,
+  "byte_only_commutative_controls": 1,
+  "IR_controls_rejected": 7,
+  "actual_component_sha256": "575b2e1009437c77d71081fffeaa32988ff10b23c78decb01e9ad976c5e6c9c7",
+  "actual_IR_sha256": {
+    "unlock": "7daf2d24ec7e0e328b87a7e911c15b2fb83e793cfaacc587c430a59975fb11af",
+    "erase": "ad3d2472dafbc2789038ad0df8fbb04f58ca94d0bd4a5d1bc4496c42f0eb99b2",
+    "program": "0c969401c2e7cd048b7094303c16264de4ed1b8ba8d612bd2ca73e58e540158a"
+  },
+  "rows": [
+    {
+      "case": "unlock_previous_materialization",
+      "sha256": "3949377c56d476661069edac3c156676db96b06605e887bccead977a91538b1f",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "unlock_key2_low_hoisted_before_first_store",
+      "sha256": "1e83b286cb532495c76a1e6be43f4395e7fed9b24953087160f83127f3d70990",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "erase_alignment_before_mask",
+      "sha256": "eb22a073ba0de82c6a3129eb9a826249a03cb05c2729da3a339514c60fe87bd2",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "erase_previous_RMW_and_poll_registers",
+      "sha256": "d8db3b0aec24b7476cc9745bf30c18174b39740ebf488dcf908fd62186618ecd",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "erase_busy_poll_A3_instead_of_A4",
+      "sha256": "e6d115893a47af28f790b3796491f568792624d9845da3590facbaa664586f17",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "program_previous_initial_scratch_and_boundary",
+      "sha256": "a8c1ab6692c66a60016684bfaf4139dfe5d39b090a566dd69ffab8a7a5e5697f",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "program_CTRL_read_A2_instead_of_A5",
+      "sha256": "92e5e54f1e6b44990424bcee7d0b76d8cf0aac9eeda85297001dcb8c2dba47d8",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "program_alignment_before_mode_mask",
+      "sha256": "bdae55e5ef89a8db13c2f7268f336fa02c397cc7bfc3ff93542f6f1cd23163f9",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "program_previous_commit_scratch_registers",
+      "sha256": "a2f85c505cc597a4f6ac0508b7a6b60ec3db4c8eba727646b77a9a2178595bd7",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "program_final_busy_poll_A3_instead_of_A4",
+      "sha256": "2060de33b69947558a490a6c7023f20f2e1da6e061cc02e96e8368d6a7a2f2e0",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "program_commutative_source_ADD_encoding",
+      "sha256": "8b0c96863a358fb11dd88b805d255f44c8506e69a571b64e0e817931a531de75",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": false
+    },
+    {
+      "case": "erase_wrong_destination_store_GPR",
+      "sha256": "c89c8eb3c09de079c08d3297e053e0c3f4c0f856d7b7fd15b11fae2a3589f6cf",
+      "bytes": 67072,
+      "exact_byte_gate_rejected": true,
+      "frontier_gate_rejected": true
+    },
+    {
+      "case": "program_volatile_removed",
+      "sha256": "6047826e93ee14ec61713894718ddc38bbc8c3ecd2c97fce158a2ef0093dc9be",
+      "bytes": 7866,
+      "rejected": true,
+      "reason": "All source memory operations remain volatile32 in program"
+    },
+    {
+      "case": "program_load_width16",
+      "sha256": "2a20d7897c37c1d6cca43fc9762abea3b3c7ce70c4cb996d12f60694570bcd3b",
+      "bytes": 7875,
+      "rejected": true,
+      "reason": "All source memory operations remain volatile32 in program"
+    },
+    {
+      "case": "program_initial_bridge_A2",
+      "sha256": "6052bb24d22fb989c058798e25713e1bd6e6ec899d551efd3b21d6a47942c544",
+      "bytes": 7875,
+      "rejected": true,
+      "reason": "Unique ordered fixed x15 SSA bridge for %6"
+    },
+    {
+      "case": "erase_wrong_mode_mask",
+      "sha256": "828f49fcc3fa3bc81289fb4af92417130c902b25c2593c6ec6a4520d21d8bc87",
+      "bytes": 4957,
+      "rejected": true,
+      "reason": "Unique ordered fixed x13 SSA bridge for 131072"
+    },
+    {
+      "case": "unlock_poststore_bridge_wrong_register",
+      "sha256": "60554a34922ceb299c0f98ae61b60ac913903b311224721b9d00d510210da242",
+      "bytes": 3879,
+      "rejected": true,
+      "reason": "Unique ordered fixed x14 SSA bridge for %6"
+    },
+    {
+      "case": "program_source_address_wrong_base",
+      "sha256": "acc90889a336aa72c8497f472a0a9b1e826467669e84d2aaa3da605d0a44e642",
+      "bytes": 7875,
+      "rejected": true,
+      "reason": "Only two ordered original-source address ADD primitives"
+    },
+    {
+      "case": "program_address_sub_instead_of_add",
+      "sha256": "4b85f4ad43ffc56300d85c5cd2a8f281b2dec28ac973f1d3fc5e8ea00b69a391",
+      "bytes": 7875,
+      "rejected": true,
+      "reason": "Only two ordered original-source address ADD primitives"
+    }
+  ],
+  "target_execution": false,
+  "emulation": false,
+  "network": false,
+  "hardware": false
+}

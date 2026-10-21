@@ -1,5 +1,17 @@
 # 已驗證里程碑
 
+## 十一個可讀函式的完整映像恢復原始 bytes
+
+五個 Flash 葉函式共 198 bytes／76 指令已恢復原始暫存器、進入前綴、指令邊界與機器碼；IRQ 及 quarter 的自動保存順序另以明確的 ABI 處理恢復。它只重排新編譯物件既有的 C.SWSP 指令，不生成 opcode、不增加長度、不以原始 BIN 回填。保存編譯器處理前後的物件與收據，不能宣稱 Clang 單獨產生最後次序。
+
+C11／C++17 完整鏈各新編譯 42 個單元，包含 34 個原始承載、兩個 IRQ／RCC、六個 Flash 單元；57 個實際命令包括一次明確的 Python ABI 處理。兩語言各匯出 76,800-byte 映像，SHA-256 與官方 ID2966 V4.1.60 完全相同：`0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667`。11 個可讀函式共 526 bytes，其餘映像仍為原始承載資料，**不是完整來源重建**。
+
+核對 691 個配置、680 段保留儲存、8,259 筆範圍外與 11 筆自身 JAL RELA、53 個真實相對綁定、二十個外部入口及十個已明確消去的內部分支。實際區段／15 個 LOAD 支持全部匯出 bytes，沒有補洞、NOBITS 或 ROM 匯出。原機 ROM 缺少實作時嚴格連結仍失敗；成功連結只使用數值位址 witness。
+
+獨立來源與 ABI 審查會讀取實際編譯來源鏈、處理前後物件、ELF 與 BIN。另有 21 個畸形物件及三種路徑別名防護案例；父層唯讀重驗每語言拒絕七個實際收據／輸出篡改案例。封存 metadata 核對、本機實際成品重驗、全新編譯及實體證據分開報告。GitHub 不包含生成的 build 物件；本機 `re-tsl9` 保留完整獨立保存順序封存。
+
+**仍未驗證可刷寫。** 完整目標未完成：確切晶片／板子、原機 ROM、已安裝 BOOT、實體中斷／Flash 行為、BLE OTA 接受性及失敗復原仍缺證據。下一步優先處理 BLE 分頁接收／回覆與版本對應，保持 Runtime 寫 BOOT 與 BOOT 寫 Runtime 的方向分開。新增功能仍限於既有[本機預檢與狀態說明候選](../analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.zh-TW.md)，不宣稱已加入硬體。詳見[新版整合](../analysis/v4160-register-image-integration-2026-10-22/README.md)及[保存順序工具](../experiments/tsl9-v4160-frame-schedule/README.md)。Windows Python／LLVM 證據不代表 shell、Linux、macOS 或 CI 已執行。
+
 ## 十一個 IRQ／Flash 可讀函式的完整離線映像
 
 已實際以 C11／C++17 編譯 34 個原始載體、兩個 IRQ／RCC 單元及六個 Flash 單元，並匯出相同的 76,800-byte 映像，SHA-256 為 `de159bb345b27250a683e197dd84b04e51a7a7ed89315347395baaea53f68be1`。與官方映像共有 70 個 byte 不同：八個為前輪 IRQ 差異、62 個為新 Flash 差異。十一個可讀函式共 526 bytes；其餘仍是原始載體，屬部分來源重建。

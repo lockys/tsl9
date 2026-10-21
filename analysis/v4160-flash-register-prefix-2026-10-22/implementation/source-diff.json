@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "path": "src/flash_native.c",
+      "previous_sha256": "c2f85fd50a7def5ff4baf200415e9faa3f2a253dea51c6bc54ae6a139fef960b",
+      "current_sha256": "94bbb25ff93325152240c03d2fe01fbc5c7215417ffd3d98b2a61ecde21a7393",
+      "changed": true,
+      "unified_diff": "--- experiments/tsl9-v4160-flash-entry-order/src/flash_native.c\n+++ experiments/tsl9-v4160-flash-register-prefix/src/flash_native.c\n@@ -13,8 +13,12 @@\n #if !defined(FN_ONLY) || FN_ONLY==0x18e98\n fn_word tsl9_flash_unlock_18e98(FN_CONTEXT fn_word incoming_a0)\n {\n-    fn_word key1=FN_K(0x45670123u),key2=FN_K(0xcdef89abu),base=FN_BASE5();\n+    fn_word key1=FN_KEY1_HIGH(),key2,base=FN_BASE5();\n+    key1=FN_REG3(FN_ADD(key1,FN_K(0x123u)));\n+    key2=FN_KEY2_HIGH();\n     FN_WRITE(0x18ea8u,FN_ADD(base,FN_K(4u)),key1);\n+    key2=FN_REG4(key2);\n+    key2=FN_REG4(FN_ADD(key2,FN_K(0xfffff9abu)));\n     FN_WRITE(0x18eaeu,FN_ADD(base,FN_K(4u)),key2);\n     FN_WRITE(0x18eb0u,FN_ADD(base,FN_K(36u)),key1);\n     FN_WRITE(0x18eb2u,FN_ADD(base,FN_K(36u)),key2);\n@@ -37,15 +41,18 @@\n {\n     fn_word base=FN_BASE5(),before,after,status,mask;\n     FN_READ(0x18ec8u,FN_ADD(base,FN_K(16u)),before);\n-    destination=FN_AND(destination,FN_K(0xffffff00u));\n-    mask=FN_MASK3(0x20000u);after=FN_OR(before,mask);\n+    before=FN_REG4(before);\n+    mask=FN_MASK3(0x20000u);\n+    destination=FN_ALIGN0(destination);\n+    after=FN_REG4(FN_OR(before,mask));\n     FN_WRITE(0x18ed4u,FN_ADD(base,FN_K(16u)),after);\n     FN_WRITE(0x18ed6u,FN_ADD(base,FN_K(20u)),destination);\n     FN_READ(0x18ed8u,FN_ADD(base,FN_K(16u)),before);\n-    after=FN_OR(before,FN_K(64u));\n+    before=FN_REG4(before);\n+    after=FN_REG4(FN_OR(before,FN_K(64u)));\n     FN_WRITE(0x18edeu,FN_ADD(base,FN_K(16u)),after);\n     { FN_POLL_BEGIN;\n-      do { FN_POLL_STEP(0x18ee0u,1u);FN_READ(0x18ee0u,FN_ADD(base,FN_K(12u)),status);status=FN_AND(status,FN_K(1u)); }\n+      do { FN_POLL_STEP(0x18ee0u,1u);FN_READ(0x18ee0u,FN_ADD(base,FN_K(12u)),status);status=FN_REG4(FN_AND(status,FN_K(1u))); }\n       while(FN_POLL_TRUE(0x18ee4u,status,1u));\n       FN_CHECK_FLOW(); }\n     FN_READ(0x18ee6u,FN_ADD(base,FN_K(16u)),before);\n@@ -61,8 +68,10 @@\n     fn_word base=FN_BASE4(),before,after,status,last_word,mask,count;\n     uint32_t offset;\n     FN_READ(0x18ef6u,FN_ADD(base,FN_K(16u)),before);\n+    before=FN_REG5(before);\n+    mask=FN_MASK3(0x10000u);\n     destination=FN_ALIGN0(destination);\n-    mask=FN_MASK3(0x10000u);after=FN_OR(before,mask);\n+    after=FN_REG5(FN_OR(before,mask));\n     FN_WRITE(0x18f00u,FN_ADD(base,FN_K(16u)),after);\n     { FN_POLL_BEGIN;\n       do { FN_POLL_STEP(0x18f02u,1u);FN_READ(0x18f02u,FN_ADD(base,FN_K(12u)),status);status=FN_POLL5_AND(status,1u); }\n@@ -74,8 +83,8 @@\n     base=FN_BASE4();\n     count=FN_COUNT();offset=FN_OFFSET_VALUE(status);\n     do {\n-        FN_READ(0x18f1eu,FN_ADD(source,FN_K(offset)),last_word);\n-        FN_WRITE(0x18f26u,FN_ADD(destination,FN_K(offset)),last_word);\n+        FN_READ(0x18f1eu,FN_SOURCE_ADDRESS(source,offset),last_word);\n+        FN_WRITE(0x18f26u,FN_DEST_ADDRESS(destination,offset),last_word);\n         FN_WORD_DONE();\n         { FN_POLL_BEGIN;\n           do { FN_POLL_STEP(0x18f2au,2u);FN_READ(0x18f2au,FN_ADD(base,FN_K(12u)),status);status=FN_AND(status,FN_K(2u)); }\n@@ -83,11 +92,13 @@\n         offset+=4u;\n     } while(offset!=FN_COUNT_VALUE(count));\n     FN_READ(0x18f36u,FN_ADD(base,FN_K(16u)),before);\n-    after=FN_OR(before,FN_K(0x200000u));\n+    before=FN_REG5(before);\n+    mask=FN_MASK3(0x200000u);\n+    after=FN_REG5(FN_OR(before,mask));\n     FN_WRITE(0x18f3eu,FN_ADD(base,FN_K(16u)),after);\n     base=FN_BASE5();\n     { FN_POLL_BEGIN;\n-      do { FN_POLL_STEP(0x18f44u,1u);FN_READ(0x18f44u,FN_ADD(base,FN_K(12u)),status);status=FN_AND(status,FN_K(1u)); }\n+      do { FN_POLL_STEP(0x18f44u,1u);FN_READ(0x18f44u,FN_ADD(base,FN_K(12u)),status);status=FN_REG4(FN_AND(status,FN_K(1u))); }\n       while(FN_POLL_TRUE(0x18f48u,status,1u));FN_CHECK_FLOW(); }\n     FN_READ(0x18f4au,FN_ADD(base,FN_K(16u)),before);\n     mask=FN_MASK3(0xfffeffffu);\n"
+    },
+    {
+      "path": "src/flash_native.h",
+      "previous_sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd",
+      "current_sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd",
+      "changed": false,
+      "unified_diff": ""
+    },
+    {
+      "path": "src/native_io.h",
+      "previous_sha256": "e0d58fdf1ae5ebc1f497a023443a4e6432f5cd75d987c691a2dcf68b3e64af7e",
+      "current_sha256": "579916278d4967cef1af0d04b68b403a515f3d56977613015639a0c9c916c08c",
+      "changed": true,
+      "unified_diff": "--- experiments/tsl9-v4160-flash-entry-order/src/native_io.h\n+++ experiments/tsl9-v4160-flash-register-prefix/src/native_io.h\n@@ -10,6 +10,13 @@\n #define FN_BASE5() FN_K(0x40022000u)\n #define FN_BASE4() FN_K(0x40022000u)\n #define FN_MASK3(v) FN_K(v)\n+#define FN_REG3(v) (v)\n+#define FN_REG4(v) (v)\n+#define FN_REG5(v) (v)\n+#define FN_KEY1_HIGH() FN_K(0x45670000u)\n+#define FN_KEY2_HIGH() FN_K(0xcdef9000u)\n+#define FN_SOURCE_ADDRESS(source,offset) FN_ADD((source),FN_K(offset))\n+#define FN_DEST_ADDRESS(destination,offset) FN_ADD((destination),FN_K(offset))\n #define FN_ALIGN0(v) FN_AND((v),FN_K(0xffffff00u))\n #define FN_POLL5_AND(v,mask) FN_AND((v),FN_K(mask))\n #define FN_COUNT() FN_K(256u)\n@@ -48,6 +55,17 @@\n #define FN_BASE5() FN_FIXED_VALUE(\"a5\",0x40022000u)\n #define FN_BASE4() FN_FIXED_VALUE(\"a4\",0x40022000u)\n #define FN_MASK3(v) FN_FIXED_VALUE(\"a3\",(v))\n+#define FN_REG3(v) FN_FIXED_VALUE(\"a3\",(v))\n+#define FN_REG4(v) FN_FIXED_VALUE(\"a4\",(v))\n+#define FN_REG5(v) FN_FIXED_VALUE(\"a5\",(v))\n+#define FN_KEY1_HIGH() FN_REG3(0x45670000u)\n+#define FN_KEY2_HIGH() FN_REG4(0xcdef9000u)\n+/* Original 18F1A/18F22: A3=A1/A0+A5; the C loop owns all I/O. */\n+#define FN_ORDERED_ADDRESS(reg,base,index) __extension__ ({ \\\n+ register uint32_t fn_base __asm__(reg)=(base),fn_index __asm__(\"a5\")=(index),fn_address __asm__(\"a3\"); \\\n+ __asm__ volatile(\"add %0, %1, %2\" : \"=r\"(fn_address) : \"r\"(fn_base),\"r\"(fn_index) : \"memory\");fn_address; })\n+#define FN_SOURCE_ADDRESS(source,offset) FN_ORDERED_ADDRESS(\"a1\",(source),(offset))\n+#define FN_DEST_ADDRESS(destination,offset) FN_ORDERED_ADDRESS(\"a0\",(destination),(offset))\n #define FN_ALIGN0(v) FN_FIXED_VALUE(\"a0\",FN_AND(FN_FIXED_VALUE(\"a0\",(v)),FN_K(0xffffff00u)))\n #define FN_POLL5_AND(v,mask) FN_FIXED_VALUE(\"a5\",FN_AND((v),FN_K(mask)))\n #define FN_COUNT() FN_FIXED_VALUE(\"a2\",256u)\n"
+    },
+    {
+      "path": "src/host_io.c",
+      "previous_sha256": "01bb5096a99afdc6e774733121417994a250f40c3f0a6924ddd5b5db57861857",
+      "current_sha256": "01bb5096a99afdc6e774733121417994a250f40c3f0a6924ddd5b5db57861857",
+      "changed": false,
+      "unified_diff": ""
+    },
+    {
+      "path": "src/host_io.h",
+      "previous_sha256": "41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a",
+      "current_sha256": "41e0e2509a3e49a5f99fee0e703df44180f8a344a3c28bb782459f66dd27292a",
+      "changed": false,
+      "unified_diff": ""
+    },
+    {
+      "path": "tests/test_flash.c",
+      "previous_sha256": "574145330cab322daa09331e55d68fe8d5740950e207f7179a4d71c8da8b5718",
+      "current_sha256": "574145330cab322daa09331e55d68fe8d5740950e207f7179a4d71c8da8b5718",
+      "changed": false,
+      "unified_diff": ""
+    },
+    {
+      "path": "verify.py",
+      "previous_sha256": "9ef74cf130304001785eadee7dbe462df87c1a5afa0ac116d081eeaecfd93731",
+      "current_sha256": "9ef74cf130304001785eadee7dbe462df87c1a5afa0ac116d081eeaecfd93731",
+      "changed": false,
+      "unified_diff": ""
+    },
+    {
+      "path": "verify.sh",
+      "previous_sha256": "ff78f05f870fb57361d3ce265429f77d4bc57616c269611f4623acc223f31ad0",
+      "current_sha256": "ff78f05f870fb57361d3ce265429f77d4bc57616c269611f4623acc223f31ad0",
+      "changed": false,
+      "unified_diff": ""
+    },
+    {
+      "path": "verify_host.py",
+      "previous_sha256": "be78ce74582a33d3cd962d98e0e5f35d7f56bd702f330fb760c27081f54bf66e",
+      "current_sha256": "f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb",
+      "changed": true,
+      "unified_diff": "--- experiments/tsl9-v4160-flash-entry-order/verify_host.py\n+++ experiments/tsl9-v4160-flash-register-prefix/verify_host.py\n@@ -78,7 +78,7 @@\n     mutations=[\n       ('wrong_unlock_key','src/flash_native.c','FN_WRITE(0x18ea8u,FN_ADD(base,FN_K(4u)),key1);','FN_WRITE(0x18ea8u,FN_ADD(base,FN_K(4u)),key2);'),\n       ('wrong_word_stride','src/flash_native.c','offset+=4u;','offset+=8u;'),\n-      ('stale_source_word','src/flash_native.c','FN_ADD(source,FN_K(offset))','FN_ADD(source,FN_K(0u))'),\n+      ('stale_source_word','src/flash_native.c','FN_SOURCE_ADDRESS(source,offset)','FN_SOURCE_ADDRESS(source,0u)'),\n       ('wrong_source_frame_slot','src/native_io.h','FN_ADD(h->regs[2],FN_K(12u)),source)','FN_ADD(h->regs[2],FN_K(16u)),source)'),\n       ('wrong_CSR_mask','src/host_io.c','h->regs[8]=fn_constant(136u);','h->regs[8]=fn_constant(64u);'),\n       ('cleanup_after_unknown_poll','src/native_io.h','#define FN_CHECK_FLOW() do { if(h->flow!=FN_RETURNED) return fn_failed(); } while(0)','#define FN_CHECK_FLOW() ((void)0)')]\n@@ -95,7 +95,7 @@\n         rows.append(dict(case=name,compiled=True,rejected=True,mutation_file=file,old=old,new=new,commands=[compile_command,test_command],executable_sha256=sha(exe),artifacts={p.relative_to(base).as_posix():dict(bytes=p.stat().st_size,sha256=sha(p)) for p in base.rglob('*') if p.is_file()}))\n     return rows\n def verify(root,folder,mode):\n-    folder.mkdir(parents=True);model=root/'experiments/tsl9-v4160-flash-entry-order';runner_pin=sha(Path(__file__));helper_pin=sha(root/'scripts/portable_verify.py');tools=host_tools(root);compiler,env,msvc=tools.compiler_for(mode)\n+    folder.mkdir(parents=True);model=root/'experiments/tsl9-v4160-flash-register-prefix';runner_pin=sha(Path(__file__));helper_pin=sha(root/'scripts/portable_verify.py');tools=host_tools(root);compiler,env,msvc=tools.compiler_for(mode)\n     # Tool temporary outputs stay in this authorized create-only build folder.\n     env=dict(env);env['TMP']=str(folder);env['TEMP']=str(folder)\n     source_pins={p.relative_to(model).as_posix():sha(p) for d in ('src','tests') for p in (model/d).glob('*') if p.is_file()};compiler_pin=sha(compiler);evidence_pins=source_evidence(root)\n@@ -111,7 +111,7 @@\n         original_firmware_executed=False,ISA_emulation=False,synthetic_provider=True,nonreturn_register_prefix_proved=False,native_registers_checked=False,hardware=False,network=False,OTA_ready=False)\n     write(folder/'verification.json',r);return dict(mode=mode,receipt=str(folder/'verification.json'),sha256=sha(folder/'verification.json'),tests=result)\n def replay(root,receipt):\n-    root=Path(root).resolve();receipt=Path(receipt).resolve();folder=receipt.parent;r=read(receipt);model=root/'experiments/tsl9-v4160-flash-entry-order'\n+    root=Path(root).resolve();receipt=Path(receipt).resolve();folder=receipt.parent;r=read(receipt);model=root/'experiments/tsl9-v4160-flash-register-prefix'\n     need(r['passed'] is True and r['runner_sha256']==sha(Path(__file__)) and r['portable_compiler_helper_sha256']==sha(root/'scripts/portable_verify.py'),'current host runner/helper identity')\n     need(r['source_sha256']=={p.relative_to(model).as_posix():sha(p) for d in ('src','tests') for p in (model/d).glob('*') if p.is_file()},'current exact host source/test identity')\n     need(source_evidence(root)==r['source_evidence_pins'],'current reused sealed source evidence, no historical owner rerun claimed')\n@@ -139,6 +139,6 @@\n def main():\n     p=argparse.ArgumentParser();p.add_argument('--project-root',type=Path,default=R);p.add_argument('--language',choices=['c','cpp','both'],default='both');p.add_argument('--build-root',type=Path);p.add_argument('--replay',type=Path);a=p.parse_args();root=a.project_root.resolve()\n     if a.replay:print(json.dumps(replay(root,a.replay)));return\n-    base=a.build_root.resolve() if a.build_root else root/'experiments/tsl9-v4160-flash-entry-order/build'/('host-'+uuid.uuid4().hex);need(base.is_relative_to(root) and not base.exists(),'create-only host build root inside project')\n+    base=a.build_root.resolve() if a.build_root else root/'experiments/tsl9-v4160-flash-register-prefix/build'/('host-'+uuid.uuid4().hex);need(base.is_relative_to(root) and not base.exists(),'create-only host build root inside project')\n     results=[verify(root,base/mode,mode) for mode in (['c','cpp'] if a.language=='both' else [a.language])];print(json.dumps(dict(passed=True,results=results,firmware_executed=False)))\n if __name__=='__main__':main()\n"
+    },
+    {
+      "path": ".gitignore",
+      "previous_sha256": "181314065df2f2fdaf920b1a8b5311daa216a2d6489a06ada5b49cc514d89417",
+      "current_sha256": "181314065df2f2fdaf920b1a8b5311daa216a2d6489a06ada5b49cc514d89417",
+      "changed": false,
+      "unified_diff": ""
+    }
+  ],
+  "host_provider_tests_API_unchanged": true,
+  "compiler_profiles_changed": false,
+  "padding_added": false
+}

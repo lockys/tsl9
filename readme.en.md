@@ -6,6 +6,8 @@ This project preserves the original APK, 22 distinct updater BINs, readable C/C+
 
 ## Portable verification
 
+The latest integration restores the original machine code of eleven readable IRQ/Flash functions, totaling 526 bytes; the complete offline BIN matches official ID2966 V4.1.60. Its generation chain explicitly combines a C/C++ compiler with separate ABI save scheduling, while other image contents remain original carriers. This is partial source recovery, **not hardware or BLE OTA validation**. See the [new integration](analysis/v4160-register-image-integration-2026-10-22/readme.en.md).
+
 Requirements: Python 3.10+, a C11/C++17 compiler, and a POSIX shell. Linux can use GCC or Clang, macOS can use Clang, and Windows can use Git Bash plus Visual Studio C++ Build Tools. PowerShell and CMake are not required by the portable entry.
 
 ```sh
@@ -38,6 +40,9 @@ The repository also contains 116 historical PowerShell scripts. Their native RV3
 | Six readable Flash functions and original-address components | [English guide](analysis/v4160-flash-native-2026-10-22/readme.en.md) |
 | Natural 100-byte program and original entry order | [English guide](analysis/v4160-flash-entry-order-2026-10-22/readme.en.md) |
 | Complete offline image with eleven IRQ/Flash functions (flashability unverified) | [English guide](analysis/v4160-flash-image-integration-2026-10-22/readme.en.md) |
+| Five Flash leaves with matching register/instruction prefixes | [English guide](experiments/tsl9-v4160-flash-register-prefix/readme.en.md) |
+| Explicit ABI stack-save scheduling and read-only replay | [English guide](experiments/tsl9-v4160-frame-schedule/readme.en.md) |
+| Complete offline image with eleven readable functions matching official bytes | [English guide](analysis/v4160-register-image-integration-2026-10-22/readme.en.md) |
 | Feature candidates and existing-feature evidence | [English proposals](analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.en.md) |
 | Runtime main/init/loop/dispatch | [Guide](experiments/tsl9-v4160-runtime-loop/readme.en.md) |
 | Reference resident entry and byte-copy | [Entry](experiments/tsl9-resident-entry-reference/readme.en.md) / [copy](experiments/tsl9-resident-copy-reference/readme.en.md) |

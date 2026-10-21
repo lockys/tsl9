@@ -1,0 +1,147 @@
+--- |
+  ; ModuleID = 'C:\Users\locky\Documents\Codex\2026-10-13\rea-https-github-com-morluto-rea\experiments\tsl9-v4160-flash-entry-order\src\flash_native.c'
+  source_filename = "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-flash-entry-order\\src\\flash_native.c"
+  target datalayout = "e-m:e-p:32:32-i64:64-n32-S128"
+  target triple = "riscv32-unknown-unknown-elf"
+  
+  %struct.anon = type { [3 x i32], i32, i32 }
+  
+  @llvm.compiler.used = appending global [1 x ptr] [ptr @tsl9_flash_quarter_9c0a], section "llvm.metadata"
+  
+  @__tsl9v4160_call_9c0a = dso_local alias i32 (i32, i32), ptr @tsl9_flash_quarter_9c0a
+  
+  ; Function Attrs: minsize noinline nounwind optsize
+  define dso_local i32 @tsl9_flash_quarter_9c0a(i32 noundef %0, i32 noundef %1) #0 section ".text.tsl9v4160.code_continuation_9c0a" {
+    %3 = alloca %struct.anon, align 4
+    call void @llvm.lifetime.start.p0(i64 20, ptr nonnull %3) #2
+    call void asm sideeffect "", "*m,~{memory}"(ptr nonnull elementtype(%struct.anon) %3) #2, !srcloc !4
+    %4 = getelementptr inbounds %struct.anon, ptr %3, i32 0, i32 1
+    store volatile i32 %1, ptr %4, align 4, !tbaa !5
+    call void asm sideeffect "", "{x9},~{memory}"(i32 %0) #2, !srcloc !10
+    %5 = call i32 asm sideeffect "li $0,136", "={x8},~{memory}"() #2, !srcloc !11
+    call void asm sideeffect "csrc 0x800, $0", "{x8},~{memory}"(i32 %5) #2, !srcloc !12
+    %6 = call i32 asm sideeffect "jal ra, tsl9_flash_unlock_18e98", "={x10},{x10},~{x1},~{x13},~{x14},~{x15},~{memory}"(i32 %0) #2, !srcloc !13
+    %7 = call i32 asm sideeffect "jal ra, tsl9_flash_status_18e90", "={x10},{x10},~{x1},~{x15},~{memory}"(i32 49) #2, !srcloc !14
+    %8 = call i32 asm sideeffect "jal ra, tsl9_flash_erase_18ec4", "={x10},{x10},~{x1},~{x13},~{x14},~{x15},~{memory}"(i32 %0) #2, !srcloc !15
+    %9 = load volatile i32, ptr %4, align 4, !tbaa !5
+    %10 = call i32 asm sideeffect "jal ra, tsl9_flash_program_18ef2", "={x10},{x11},{x10},~{x1},~{x12},~{x13},~{x14},~{x15},~{x16},~{memory}"(i32 %9, i32 %0) #2, !srcloc !16
+    %11 = call i32 asm sideeffect "jal ra, tsl9_flash_lock_18eb6", "={x10},{x10},~{x1},~{x13},~{x14},~{x15},~{memory}"(i32 %10) #2, !srcloc !17
+    call void asm sideeffect "csrs 0x800, $0", "{x8},~{memory}"(i32 %5) #2, !srcloc !18
+    call void @llvm.lifetime.end.p0(i64 20, ptr nonnull %3) #2
+    ret i32 %11
+  }
+  
+  ; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
+  declare void @llvm.lifetime.start.p0(i64 immarg, ptr nocapture) #1
+  
+  ; Function Attrs: mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite)
+  declare void @llvm.lifetime.end.p0(i64 immarg, ptr nocapture) #1
+  
+  attributes #0 = { minsize noinline nounwind optsize "no-builtins" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="generic-rv32" "target-features"="+32bit,+a,+c,+m,+reserve-x17,+reserve-x18,+reserve-x19,+reserve-x20,+reserve-x21,+reserve-x22,+reserve-x23,+reserve-x24,+reserve-x25,+reserve-x26,+reserve-x27,+reserve-x28,+reserve-x29,+reserve-x3,+reserve-x30,+reserve-x31,+reserve-x4,+reserve-x5,+reserve-x6,+reserve-x7,+zicsr,-d,-e,-experimental-zacas,-experimental-zcmop,-experimental-zfbfmin,-experimental-zicfilp,-experimental-zicond,-experimental-zimop,-experimental-ztso,-experimental-zvfbfmin,-experimental-zvfbfwma,-f,-h,-relax,-smaia,-ssaia,-svinval,-svnapot,-svpbmt,-v,-xcvalu,-xcvbi,-xcvbitmanip,-xcvelw,-xcvmac,-xcvmem,-xcvsimd,-xsfvcp,-xsfvfnrclipxfqf,-xsfvfwmaccqqq,-xsfvqmaccdod,-xsfvqmaccqoq,-xtheadba,-xtheadbb,-xtheadbs,-xtheadcmo,-xtheadcondmov,-xtheadfmemidx,-xtheadmac,-xtheadmemidx,-xtheadmempair,-xtheadsync,-xtheadvdot,-xventanacondops,-zawrs,-zba,-zbb,-zbc,-zbkb,-zbkc,-zbkx,-zbs,-zca,-zcb,-zcd,-zce,-zcf,-zcmp,-zcmt,-zdinx,-zfa,-zfh,-zfhmin,-zfinx,-zhinx,-zhinxmin,-zicbom,-zicbop,-zicboz,-zicntr,-zifencei,-zihintntl,-zihintpause,-zihpm,-zk,-zkn,-zknd,-zkne,-zknh,-zkr,-zks,-zksed,-zksh,-zkt,-zmmul,-zvbb,-zvbc,-zve32f,-zve32x,-zve64d,-zve64f,-zve64x,-zvfh,-zvfhmin,-zvkb,-zvkg,-zvkn,-zvknc,-zvkned,-zvkng,-zvknha,-zvknhb,-zvks,-zvksc,-zvksed,-zvksg,-zvksh,-zvkt,-zvl1024b,-zvl128b,-zvl16384b,-zvl2048b,-zvl256b,-zvl32768b,-zvl32b,-zvl4096b,-zvl512b,-zvl64b,-zvl65536b,-zvl8192b" }
+  attributes #1 = { mustprogress nocallback nofree nosync nounwind willreturn memory(argmem: readwrite) }
+  attributes #2 = { nounwind }
+  
+  !llvm.module.flags = !{!0, !1, !2}
+  !llvm.ident = !{!3}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"target-abi", !"ilp32"}
+  !2 = !{i32 8, !"SmallDataLimit", i32 8}
+  !3 = !{!"Android (12285214, based on r522817b) clang version 18.0.2 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)"}
+  !4 = !{i64 2147544717}
+  !5 = !{!6, !9, i64 12}
+  !6 = !{!"", !7, i64 0, !9, i64 12, !9, i64 16}
+  !7 = !{!"omnipotent char", !8, i64 0}
+  !8 = !{!"Simple C/C++ TBAA"}
+  !9 = !{!"int", !7, i64 0}
+  !10 = !{i64 2147544866}
+  !11 = !{i64 2147544972}
+  !12 = !{i64 2147545030}
+  !13 = !{i64 2147545227}
+  !14 = !{i64 2147545536}
+  !15 = !{i64 2147545824}
+  !16 = !{i64 2147546105}
+  !17 = !{i64 2147546393}
+  !18 = !{i64 2147546542}
+
+...
+---
+name:            tsl9_flash_quarter_9c0a
+alignment:       2
+exposesReturnsTwice: false
+legalized:       false
+regBankSelected: false
+selected:        false
+failedISel:      false
+tracksRegLiveness: true
+hasWinCFI:       false
+callsEHReturn:   false
+callsUnwindInit: false
+hasEHCatchret:   false
+hasEHScopes:     false
+hasEHFunclets:   false
+isOutlined:      false
+debugInstrRef:   false
+failsVerification: false
+tracksDebugUserValues: true
+registers:       []
+liveins:
+  - { reg: '$x10', virtual-reg: '' }
+  - { reg: '$x11', virtual-reg: '' }
+frameInfo:
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    4
+  adjustsStack:    false
+  hasCalls:        false
+  stackProtector:  ''
+  functionContext: ''
+  maxCallFrameSize: 4294967295
+  cvBytesOfCalleeSavedRegisters: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+  hasTailCall:     false
+  localFrameSize:  20
+  savePoint:       ''
+  restorePoint:    ''
+fixedStack:      []
+stack:
+  - { id: 0, name: '', type: default, offset: 0, size: 20, alignment: 4, 
+      stack-id: default, callee-saved-register: '', callee-saved-restored: true, 
+      local-offset: -20, debug-info-variable: '', debug-info-expression: '', 
+      debug-info-location: '' }
+entry_values:    []
+callSites:       []
+debugValueSubstitutions: []
+constants:       []
+machineFunctionInfo:
+  varArgsFrameIndex: 0
+  varArgsSaveSize: 0
+body:             |
+  bb.0 (%ir-block.2):
+    liveins: $x10, $x11
+  
+    renamable $x9 = COPY $x10
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 262166 /* mem:m */, %stack.0, 0, !4
+    SW killed renamable $x11, %stack.0, 12 :: (volatile store (s32) into %ir.4, !tbaa !5)
+    INLINEASM &"", 25 /* sideeffect mayload maystore attdialect */, 9 /* reguse */, $x9, !10
+    INLINEASM &"li $0,136", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x8, !11
+    INLINEASM &"csrc 0x800, $0", 25 /* sideeffect mayload maystore attdialect */, 9 /* reguse */, $x8, !12
+    INLINEASM &"jal ra, tsl9_flash_unlock_18e98", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def dead $x10, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x13, 12 /* clobber */, implicit-def dead early-clobber $x14, 12 /* clobber */, implicit-def dead early-clobber $x15, !13
+    $x10 = ADDI $x0, 49
+    INLINEASM &"jal ra, tsl9_flash_status_18e90", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def dead $x10, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x15, !14
+    $x10 = COPY renamable $x9
+    INLINEASM &"jal ra, tsl9_flash_erase_18ec4", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def dead $x10, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x13, 12 /* clobber */, implicit-def dead early-clobber $x14, 12 /* clobber */, implicit-def dead early-clobber $x15, !15
+    renamable $x11 = LW %stack.0, 12 :: (volatile dereferenceable load (s32) from %ir.4, !tbaa !5)
+    $x10 = COPY killed renamable $x9
+    INLINEASM &"jal ra, tsl9_flash_program_18ef2", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x10, 9 /* reguse */, $x11, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x12, 12 /* clobber */, implicit-def dead early-clobber $x13, 12 /* clobber */, implicit-def dead early-clobber $x14, 12 /* clobber */, implicit-def dead early-clobber $x15, 12 /* clobber */, implicit-def dead early-clobber $x16, !16
+    INLINEASM &"jal ra, tsl9_flash_lock_18eb6", 25 /* sideeffect mayload maystore attdialect */, 10 /* regdef */, implicit-def $x10, 9 /* reguse */, $x10, 12 /* clobber */, implicit-def dead early-clobber $x1, 12 /* clobber */, implicit-def dead early-clobber $x13, 12 /* clobber */, implicit-def dead early-clobber $x14, 12 /* clobber */, implicit-def dead early-clobber $x15, !17
+    INLINEASM &"csrs 0x800, $0", 25 /* sideeffect mayload maystore attdialect */, 9 /* reguse */, $x8, !18
+    PseudoRET implicit $x10
+
+...

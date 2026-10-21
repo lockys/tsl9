@@ -1,5 +1,17 @@
 # Verified milestones
 
+## Eleven readable functions restore the original complete-image bytes
+
+Five Flash leaves, totaling 198 bytes / 76 instructions, now restore the original registers, entry prefixes, boundaries and machine code. IRQ and quarter automatic saves are restored through an explicit ABI scheduling step. It only permutes existing C.SWSP instructions in newly compiled objects, creates no opcodes or padding, and never fills bytes from an original BIN. Compiler-only and scheduled objects/receipts are retained separately; Clang alone did not produce the final order.
+
+Fresh C11/C++17 pipelines each compile 42 translation units: 34 original carriers, two IRQ/RCC units and six Flash units. Their 57 actual commands include one explicit Python ABI transformation. Both export 76,800-byte images exactly matching official ID2966 V4.1.60 SHA-256 `0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667`. Eleven readable functions occupy 526 bytes; remaining image content is still original carriers. **This is partial source recovery.**
+
+Checks cover 691 allocations, 680 retained storage sections, 8,259 outside and eleven owned JAL RELA records, 53 real relative bindings, twenty incoming entries and ten explicitly discharged internal branches. Actual sections and fifteen LOADs back every exported byte, without holes, NOBITS or ROM export. Strict linking still rejects the missing resident-ROM provider; successful linking supplies only a numeric-address witness.
+
+Independent source and ABI reviews read actual compilation provenance, pre/post objects, ELF and BIN. Separate scheduling checks reject 21 malformed objects and three path aliases; parent replay rejects seven actual receipt/output tamper controls per language. Archived metadata checks, actual archive replay, fresh compilation and hardware evidence remain distinct. GitHub excludes generated build objects; the local re-tsl9 delivery retains the complete independent scheduling archive.
+
+**Not verified as flashable; the full goal remains incomplete.** Exact chip/board, installed ROM/BOOT, physical interrupts/Flash, BLE OTA acceptance and recovery remain unproved. Next priority is BLE page reception/replies and version identity, keeping Runtime-to-BOOT and BOOT-to-Runtime directions separate. New features remain [local preflight/status proposals](../analysis/v4160-irq-callframe-2026-10-21/feature-candidates/readme.en.md), without a hardware implementation claim. See the [new integration](../analysis/v4160-register-image-integration-2026-10-22/readme.en.md) and [save-scheduling tool](../experiments/tsl9-v4160-frame-schedule/readme.en.md). Windows Python/LLVM evidence does not establish shell, Linux, macOS or CI execution.
+
 ## Eleven readable IRQ/Flash functions in the complete offline image
 
 Actual C11/C++17 builds compile 34 original carriers, two IRQ/RCC units and six Flash units, then export identical 76,800-byte images with SHA-256 `de159bb345b27250a683e197dd84b04e51a7a7ed89315347395baaea53f68be1`. Seventy bytes differ from the official image: eight previous IRQ bytes and 62 new Flash bytes. Eleven readable functions occupy 526 bytes; the other contents remain original carriers, so this is partial source reconstruction.

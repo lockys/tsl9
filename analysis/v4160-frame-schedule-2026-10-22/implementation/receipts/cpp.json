@@ -1,0 +1,154 @@
+{
+  "schema": "TSL9-explicit-ABI-frame-scheduling-receipt-v1",
+  "passed": true,
+  "tool_sha256": "dc680558aca230a54e1fc05f68960f85f4566b0928787caef21839cdd876535d",
+  "policy_sha256": "2af7789f91ceabca11fc29eb264991b96f40664555cdfe08964284f1470a694d",
+  "parser_sha256": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+  "input": {
+    "path": "experiments/tsl9-v4160-flash-image-integration/build/parent-final/cpp/source-integrated.o",
+    "bytes": 484056,
+    "sha256": "07f7803710ec1434f9c33ad778808e47120b85d3c249ac9a2b037f22cc718e8b"
+  },
+  "output": {
+    "path": "experiments/tsl9-v4160-frame-schedule/build/parent-final/cpp/scheduled.o",
+    "bytes": 484056,
+    "sha256": "f1cde330178955515f592305e5f70e3e5eb3f6c6a7c1819e7bcde24569efc846"
+  },
+  "functions": [
+    {
+      "function": "irq",
+      "source_symbol": "tsl9_rebuild_interrupt_registers_9a42",
+      "section": ".text.tsl9v4160.init_9a42",
+      "frame_bytes": 16,
+      "scheduled_section_interval": [
+        2,
+        10
+      ],
+      "compiler_order": [
+        [
+          1,
+          12
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          18,
+          0
+        ]
+      ],
+      "required_order": [
+        [
+          18,
+          0
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          9,
+          4
+        ]
+      ],
+      "compiler_words": [
+        "06c6",
+        "22c4",
+        "26c2",
+        "4ac0"
+      ],
+      "scheduled_words": [
+        "4ac0",
+        "06c6",
+        "22c4",
+        "26c2"
+      ],
+      "all_instructions_are_existing_compiler_saves": true
+    },
+    {
+      "function": "quarter",
+      "source_symbol": "tsl9_flash_quarter_9c0a",
+      "section": ".text.tsl9v4160.code_continuation_9c0a",
+      "frame_bytes": 32,
+      "scheduled_section_interval": [
+        2,
+        8
+      ],
+      "compiler_order": [
+        [
+          1,
+          28
+        ],
+        [
+          8,
+          24
+        ],
+        [
+          9,
+          20
+        ]
+      ],
+      "required_order": [
+        [
+          8,
+          24
+        ],
+        [
+          9,
+          20
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "compiler_words": [
+        "06ce",
+        "22cc",
+        "26ca"
+      ],
+      "scheduled_words": [
+        "22cc",
+        "26ca",
+        "06ce"
+      ],
+      "all_instructions_are_existing_compiler_saves": true
+    }
+  ],
+  "changed_file_offsets": [
+    11032,
+    11033,
+    11034,
+    11035,
+    11036,
+    11037,
+    55264,
+    55265,
+    55266,
+    55267,
+    55268,
+    55269,
+    55270,
+    55271
+  ],
+  "section_metadata_symbols_RELA_identical": true,
+  "original_BIN_read_for_generation": false,
+  "new_opcodes_generated": false,
+  "padding_added": false,
+  "pipeline": "C/C++ compiler output followed by explicit source-owned ABI frame scheduling",
+  "compiler_alone_emitted_scheduled_order": false,
+  "computed_interior_entries_proved_absent": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "hardware": false,
+  "OTA_ready": false
+}
