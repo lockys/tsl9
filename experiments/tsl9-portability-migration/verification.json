@@ -1,0 +1,199 @@
+{
+  "schema": "TSL9-portability-migration-owned-verification-v1",
+  "passed": true,
+  "published_baseline": "99de4f9d4da22f0cd28e039e0197defebf48fb72",
+  "source_sha256": {
+    "download_firmware.py": "1ef4a524be66095d5e392973eed699bec5887837d52c17a52442c141bb96f2b2",
+    "download-firmware.sh": "a53d753c45f770627bd070a8dbb07b7aad858db8dd576bd4b2afb47602028a20",
+    "tests/test_download_mock.py": "46f561025b294656b64facdea1430e1ef7d8a6e3da88b58707b8780b7ef540af",
+    "tests/synthetic-catalog.json": "2f5c4e9c0778956a4e57ac4f195a14f2d40e1e173bd55f183e2428be01aa31dd",
+    "inventory.py": "56ff9f54db6a2588e754e0e08e58f54d8cd395d1acd6ef623eff219a786baffb",
+    "verify_migration.py": "f59e95ece8691b65ad076602b65df7051f729bc53fcecc05e7e7190ce717d73b"
+  },
+  "Python_version": "3.11.15",
+  "host_platform": "Windows",
+  "offline_HTTP_boundary_double": {
+    "passed": true,
+    "unittest_groups": 5,
+    "behavior_cases": 23,
+    "exit": 0,
+    "transcript_sha256": "5a8c76741f47622157b7f0caa8a0448eb6f5217d6b0fd64b052edb32d8cb8bb4",
+    "actual_decoder_and_persistence": true,
+    "socket_network_verified": false
+  },
+  "source_proof_replays": [
+    {
+      "script": "analysis/boot2580-command-adapter-2026-10-21/source/inspect-source.py",
+      "script_sha256": "b164b3002f4db0f691d5c0e8c5b661c39009058fd14f290d7ffef5cf3ccdc1ba",
+      "input": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2580-V1.0.00-decoded.bin",
+      "input_sha256": "650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb",
+      "arguments": [
+        "--check",
+        "--firmware",
+        "<published>/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2580-V1.0.00-decoded.bin",
+        "--source-root",
+        "<published>/analysis/boot2580-command-adapter-2026-10-21/source"
+      ],
+      "result": {
+        "passed": true,
+        "mode": "readonly-byteexact",
+        "body_bytes": 414,
+        "instructions": 144,
+        "raw_mutation_rejections": 18,
+        "output_sha256": {
+          "source-map.json": "b826d0d8f74e0b29d6e2a3f413ca5a5fcb6d365346826adfd8743d7cb9dea1b8",
+          "contract.json": "dea7658bf4c12cc921929afc59d82e4e3fb6ef6bd5655bbaef82324de4f62b6a"
+        },
+        "network": false,
+        "target_executed": false
+      },
+      "exit": 0
+    },
+    {
+      "script": "analysis/boot2580-uid-helper-2026-10-21/source/inspect-source.py",
+      "script_sha256": "d6201b3f8044ca04f6e399f469c977a5d3919f18c4441611bf6f028e81267b5a",
+      "input": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2580-V1.0.00-decoded.bin",
+      "input_sha256": "650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb",
+      "arguments": [
+        "--check",
+        "--firmware",
+        "<published>/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2580-V1.0.00-decoded.bin",
+        "--source-root",
+        "<published>/analysis/boot2580-uid-helper-2026-10-21/source"
+      ],
+      "result": {
+        "passed": true,
+        "mode": "readonly-byteexact",
+        "bytes": 122,
+        "instructions": 48,
+        "raw_mutation_rejections": 24,
+        "output_sha256": {
+          "source-map.json": "11f0b5a590a0a38bd832a63d14bd39737d6c05644b5e9a62116feffb95012fb7",
+          "contract.json": "15b6b233d4c0693f4b92c4f2b3bc9b2f10e5cc520a3788d02a3e592c90bbe9e3"
+        },
+        "network": false,
+        "target_execution": false
+      },
+      "exit": 0
+    },
+    {
+      "script": "analysis/resident-copy-reference-2026-10-21/source/inspect-source.py",
+      "script_sha256": "acf09c2ea07053fd0389501c6ffef61ce1865c3f501b84e3b2888cbfe29145de",
+      "input": "analysis/resident-copy-reference-2026-10-21/reference-carrier/REFERENCE-CANDIDATE-ONLY-00040000-0006EA66.bin",
+      "input_sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22",
+      "arguments": [
+        "--check",
+        "--carrier",
+        "<published>/analysis/resident-copy-reference-2026-10-21/reference-carrier/REFERENCE-CANDIDATE-ONLY-00040000-0006EA66.bin",
+        "--source-root",
+        "<published>/analysis/resident-copy-reference-2026-10-21/source"
+      ],
+      "result": {
+        "passed": true,
+        "mode": "readonly-byteexact",
+        "reference_candidate_only": true,
+        "helper_bytes": 58,
+        "helper_instructions": 18,
+        "raw_operand_mutation_rejections": 23,
+        "output_sha256": {
+          "source-map.json": "35f3a3a2ef8e07e4c9e045406dc591b11201062088547eb6f69fa7a4775d8f21",
+          "contract.json": "fa9d58135f1b6c599d6f2e16f65f6a0000589a10e921ab649dc4e046287efc36"
+        },
+        "target_execution": false,
+        "network": false
+      },
+      "exit": 0
+    },
+    {
+      "script": "analysis/resident-entry-reference-2026-10-21/source/inspect-source.py",
+      "script_sha256": "c78bb6a6825ee504701b74b5397992fbb7ab44e686d447751b6cc961ec3701b5",
+      "input": "analysis/resident-entry-reference-2026-10-21/reference-carrier/REFERENCE-CANDIDATE-ONLY-00040000-0006EA66.bin",
+      "input_sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22",
+      "arguments": [
+        "--check",
+        "--carrier",
+        "<published>/analysis/resident-entry-reference-2026-10-21/reference-carrier/REFERENCE-CANDIDATE-ONLY-00040000-0006EA66.bin",
+        "--source-root",
+        "<published>/analysis/resident-entry-reference-2026-10-21/source"
+      ],
+      "result": {
+        "passed": true,
+        "mode": "readonly-byteexact",
+        "reference_candidate_only": true,
+        "body_bytes": 230,
+        "body_instructions": 66,
+        "header_bytes": 4,
+        "raw_operand_mutation_rejections": 35,
+        "output_sha256": {
+          "source-map.json": "e20e21fff1542cf65217dacb13f3a3d437f912c0bf80d16db6ad98216ed9fe13",
+          "contract.json": "2c67652a87351880f6d405c12f948b2745029d01ac0f99c75f5bae9c9ce933e2"
+        },
+        "target_execution": false,
+        "network": false
+      },
+      "exit": 0
+    },
+    {
+      "script": "analysis/v4160-runtime-loop-2026-10-21/source/inspect-source.py",
+      "script_sha256": "0effa43ed5a7cb652c91e8ec65b569b44812a1f77717eee3fd9f7df54e09b6e7",
+      "input": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+      "input_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+      "arguments": [
+        "--check",
+        "--firmware",
+        "<published>/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+        "--source-root",
+        "<published>/analysis/v4160-runtime-loop-2026-10-21/source"
+      ],
+      "result": {
+        "passed": true,
+        "mode": "readonly-byteexact",
+        "bytes": 220,
+        "instructions": 80,
+        "raw_operand_mutation_rejections": 45,
+        "output_sha256": {
+          "source-map.json": "66bd50f10076de1cbfc9b0bec89b2052434a8f8ff82310428fff83fc79a86418",
+          "contract.json": "d99457665c004f7a5ecd837fd22c7ff4a6ed63ddf41d29071af0ab52069413ec"
+        },
+        "target_execution": false,
+        "network": false
+      },
+      "exit": 0
+    }
+  ],
+  "shell_wrapper": {
+    "tested": false,
+    "reason": "no explicit shell supplied"
+  },
+  "TDD": {
+    "initial_feature_stub": "dry-run returned stopped/not_implemented",
+    "red_exit": 1,
+    "observed_failure": "expected CLI exit0, actual exit1",
+    "port_zero_regression_red": "invalid port0 previously defaulted to80; request issued instead of rejecting",
+    "port_zero_regression_red_exit": 1,
+    "final_owned_suite_exit": 0
+  },
+  "environment_limitations": [
+    {
+      "operation": "literal loopback HTTP, same process and child process",
+      "error_type": "PermissionError",
+      "errno": 13,
+      "winerror": 10013,
+      "loopback_integration_passed": false
+    },
+    {
+      "operation": "Git for Windows sh process startup",
+      "result": "NtCreateDirectoryObject access denied, status0xC0000022; wrapper was not reached",
+      "shell_integration_passed": false
+    },
+    {
+      "operation": "default OS TemporaryDirectory fixture",
+      "result": "permission denied; test fixture moved to explicitly owned scratch directory"
+    }
+  ],
+  "live_vendor_mode_available": false,
+  "vendor_requests": 0,
+  "real_identity_used": false,
+  "target_execution": false,
+  "all_116_PS1_ported": false
+}

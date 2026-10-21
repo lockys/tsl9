@@ -1,0 +1,1601 @@
+{
+  "schema": "ID2966-system-clock-and-derived-output-source-map-v1",
+  "passed": true,
+  "firmware": {
+    "relative_path": "exports/TSL-firmware-options-22-BINs-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "bytes": 76800,
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "analysis_base": 32768
+  },
+  "retained_source_sha256": "0aa4f2f2e0828453e5aa4f6aac3e3b2a7a95559820ef1173281dcad26f3901b0",
+  "historical_input_hashes": {
+    "experiments/tsl9-v4160-startup/src/initialization_native.c": "2c3b9cd2c5bcc025c8165942bc8d498d7107624eaa4f7640f91baff1780ff54e",
+    "experiments/tsl9-v4160-startup/evidence/initialization-plan.json": "0228b7ba888eb7c8bcf80cd03c87f395ee7e05deec3e801d493fe94109168e99",
+    "experiments/tsl9-v4160-startup/evidence/initialization-cfg.json": "4a458eeadac20584e44d6c9d456940b4c95d787cfb0641b99799a094bb58cdbb",
+    "apk-analysis/tsl9-v4160-core-flow-2026-10-20/initialization-review/entry-18834.json": "af465ced5bb1c929bacf012df708d1584d7448a5540ca747a8578206c2ff6ffa",
+    "apk-analysis/tsl9-v4160-core-flow-2026-10-20/initialization-review/entry-1973c.json": "34fe40ec3705ba0e31c5237cced498cbfe6e90801f5e995e000e15f61346e67f",
+    "experiments/tsl9-v4160-reset-contract/source-map.json": "30b0aa7912c2323c26167e023f50f6687f3eb53b70c68ad4bee10ca6fad6726b",
+    "apk-analysis/tsl9-v4160-residual-image-2026-10-21/data-contracts/raw-contexts.json": "e6cb5c9430d3862bfc04ea509bbe10cca1284bb775042b6cb76d8a5d37da7d60"
+  },
+  "fresh_historical_equality": {
+    "query_rows": 58,
+    "derived_rows": 11,
+    "old_raw_rows_equal_original_and_fresh_static_r2": true,
+    "native_C_file_pinned_not_recompiled": true
+  },
+  "source_spans": [
+    {
+      "role": "query18834",
+      "start": 100404,
+      "end_exclusive": 100578,
+      "file_offset": 67636,
+      "bytes": 174,
+      "instructions": 58,
+      "sha256": "1fe76c3ddc25809287b5ebaf84cd508bcffeebc7b442eac36b33a38ab2f81e1e"
+    },
+    {
+      "role": "derive1973c",
+      "start": 104252,
+      "end_exclusive": 104292,
+      "file_offset": 71484,
+      "bytes": 40,
+      "instructions": 11,
+      "sha256": "54981bbd3ffcfe30f15091ac55558d66f221f32712e54ac53e33f9ff2c2afb43"
+    },
+    {
+      "role": "conditional_reset_initializer_mapping",
+      "start": 100010,
+      "end_exclusive": 100062,
+      "file_offset": 67242,
+      "bytes": 52,
+      "instructions": 14,
+      "sha256": "e9126640e076d3aa02b077bc6dff7928da72c3f56fd261176e6c1583813d6d35"
+    }
+  ],
+  "instructions": [
+    {
+      "pc": 100404,
+      "file_offset": 67636,
+      "width": 4,
+      "raw_hex": "37170240",
+      "disassembly": "lui a4, 0x40021",
+      "body": "query18834"
+    },
+    {
+      "pc": 100408,
+      "file_offset": 67640,
+      "width": 2,
+      "raw_hex": "5c43",
+      "disassembly": "lw a5, 4(a4)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100410,
+      "file_offset": 67642,
+      "width": 2,
+      "raw_hex": "9146",
+      "disassembly": "li a3, 4",
+      "body": "query18834"
+    },
+    {
+      "pc": 100412,
+      "file_offset": 67644,
+      "width": 2,
+      "raw_hex": "b18b",
+      "disassembly": "andi a5, a5, 12",
+      "body": "query18834"
+    },
+    {
+      "pc": 100414,
+      "file_offset": 67646,
+      "width": 4,
+      "raw_hex": "638dd702",
+      "disassembly": "beq a5, a3, 0x18878",
+      "body": "query18834",
+      "control": {
+        "kind": "branch",
+        "target": 100472,
+        "rs1": 15,
+        "rs2": 13,
+        "funct3": 0
+      }
+    },
+    {
+      "pc": 100418,
+      "file_offset": 67650,
+      "width": 2,
+      "raw_hex": "a146",
+      "disassembly": "li a3, 8",
+      "body": "query18834"
+    },
+    {
+      "pc": 100420,
+      "file_offset": 67652,
+      "width": 4,
+      "raw_hex": "638fd702",
+      "disassembly": "beq a5, a3, 0x18882",
+      "body": "query18834",
+      "control": {
+        "kind": "branch",
+        "target": 100482,
+        "rs1": 15,
+        "rs2": 13,
+        "funct3": 0
+      }
+    },
+    {
+      "pc": 100424,
+      "file_offset": 67656,
+      "width": 4,
+      "raw_hex": "b7177a00",
+      "disassembly": "lui a5, 0x7a1",
+      "body": "query18834"
+    },
+    {
+      "pc": 100428,
+      "file_offset": 67660,
+      "width": 4,
+      "raw_hex": "93870720",
+      "disassembly": "addi a5, a5, 512",
+      "body": "query18834"
+    },
+    {
+      "pc": 100432,
+      "file_offset": 67664,
+      "width": 4,
+      "raw_hex": "23a6f106",
+      "disassembly": "sw a5, 108(gp)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100436,
+      "file_offset": 67668,
+      "width": 4,
+      "raw_hex": "b7170240",
+      "disassembly": "lui a5, 0x40021",
+      "body": "query18834"
+    },
+    {
+      "pc": 100440,
+      "file_offset": 67672,
+      "width": 2,
+      "raw_hex": "dc43",
+      "disassembly": "lw a5, 4(a5)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100442,
+      "file_offset": 67674,
+      "width": 4,
+      "raw_hex": "13870104",
+      "disassembly": "addi a4, gp, 64",
+      "body": "query18834"
+    },
+    {
+      "pc": 100446,
+      "file_offset": 67678,
+      "width": 2,
+      "raw_hex": "9183",
+      "disassembly": "srli a5, a5, 0x4",
+      "body": "query18834"
+    },
+    {
+      "pc": 100448,
+      "file_offset": 67680,
+      "width": 2,
+      "raw_hex": "bd8b",
+      "disassembly": "andi a5, a5, 15",
+      "body": "query18834"
+    },
+    {
+      "pc": 100450,
+      "file_offset": 67682,
+      "width": 2,
+      "raw_hex": "ba97",
+      "disassembly": "add a5, a5, a4",
+      "body": "query18834"
+    },
+    {
+      "pc": 100452,
+      "file_offset": 67684,
+      "width": 4,
+      "raw_hex": "03c70700",
+      "disassembly": "lbu a4, 0(a5)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100456,
+      "file_offset": 67688,
+      "width": 4,
+      "raw_hex": "9387c106",
+      "disassembly": "addi a5, gp, 108",
+      "body": "query18834"
+    },
+    {
+      "pc": 100460,
+      "file_offset": 67692,
+      "width": 2,
+      "raw_hex": "9c43",
+      "disassembly": "lw a5, 0(a5)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100462,
+      "file_offset": 67694,
+      "width": 4,
+      "raw_hex": "b3d7e700",
+      "disassembly": "srl a5, a5, a4",
+      "body": "query18834"
+    },
+    {
+      "pc": 100466,
+      "file_offset": 67698,
+      "width": 4,
+      "raw_hex": "23a6f106",
+      "disassembly": "sw a5, 108(gp)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100470,
+      "file_offset": 67702,
+      "width": 2,
+      "raw_hex": "8280",
+      "disassembly": "ret",
+      "body": "query18834",
+      "control": {
+        "kind": "return",
+        "target": "liveRA"
+      }
+    },
+    {
+      "pc": 100472,
+      "file_offset": 67704,
+      "width": 4,
+      "raw_hex": "b757e801",
+      "disassembly": "lui a5, 0x1e85",
+      "body": "query18834"
+    },
+    {
+      "pc": 100476,
+      "file_offset": 67708,
+      "width": 4,
+      "raw_hex": "93870780",
+      "disassembly": "addi a5, a5, -2048",
+      "body": "query18834"
+    },
+    {
+      "pc": 100480,
+      "file_offset": 67712,
+      "width": 2,
+      "raw_hex": "c1bf",
+      "disassembly": "j 0x18850",
+      "body": "query18834",
+      "control": {
+        "kind": "jump",
+        "target": 100432
+      }
+    },
+    {
+      "pc": 100482,
+      "file_offset": 67714,
+      "width": 2,
+      "raw_hex": "5c43",
+      "disassembly": "lw a5, 4(a4)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100484,
+      "file_offset": 67716,
+      "width": 2,
+      "raw_hex": "5843",
+      "disassembly": "lw a4, 4(a4)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100486,
+      "file_offset": 67718,
+      "width": 2,
+      "raw_hex": "c166",
+      "disassembly": "lui a3, 0x10",
+      "body": "query18834"
+    },
+    {
+      "pc": 100488,
+      "file_offset": 67720,
+      "width": 2,
+      "raw_hex": "c983",
+      "disassembly": "srli a5, a5, 0x12",
+      "body": "query18834"
+    },
+    {
+      "pc": 100490,
+      "file_offset": 67722,
+      "width": 2,
+      "raw_hex": "bd8b",
+      "disassembly": "andi a5, a5, 15",
+      "body": "query18834"
+    },
+    {
+      "pc": 100492,
+      "file_offset": 67724,
+      "width": 2,
+      "raw_hex": "758f",
+      "disassembly": "and a4, a4, a3",
+      "body": "query18834"
+    },
+    {
+      "pc": 100494,
+      "file_offset": 67726,
+      "width": 2,
+      "raw_hex": "8907",
+      "disassembly": "addi a5, a5, 2",
+      "body": "query18834"
+    },
+    {
+      "pc": 100496,
+      "file_offset": 67728,
+      "width": 2,
+      "raw_hex": "c546",
+      "disassembly": "li a3, 17",
+      "body": "query18834"
+    },
+    {
+      "pc": 100498,
+      "file_offset": 67730,
+      "width": 4,
+      "raw_hex": "6393d700",
+      "disassembly": "bne a5, a3, 0x18898",
+      "body": "query18834",
+      "control": {
+        "kind": "branch",
+        "target": 100504,
+        "rs1": 15,
+        "rs2": 13,
+        "funct3": 1
+      }
+    },
+    {
+      "pc": 100502,
+      "file_offset": 67734,
+      "width": 2,
+      "raw_hex": "c947",
+      "disassembly": "li a5, 18",
+      "body": "query18834"
+    },
+    {
+      "pc": 100504,
+      "file_offset": 67736,
+      "width": 2,
+      "raw_hex": "01ef",
+      "disassembly": "bnez a4, 0x188b0",
+      "body": "query18834",
+      "control": {
+        "kind": "branch",
+        "target": 100528
+      }
+    },
+    {
+      "pc": 100506,
+      "file_offset": 67738,
+      "width": 4,
+      "raw_hex": "37470240",
+      "disassembly": "lui a4, 0x40024",
+      "body": "query18834"
+    },
+    {
+      "pc": 100510,
+      "file_offset": 67742,
+      "width": 4,
+      "raw_hex": "03270780",
+      "disassembly": "lw a4, -2048(a4)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100514,
+      "file_offset": 67746,
+      "width": 2,
+      "raw_hex": "418b",
+      "disassembly": "andi a4, a4, 16",
+      "body": "query18834"
+    },
+    {
+      "pc": 100516,
+      "file_offset": 67748,
+      "width": 2,
+      "raw_hex": "15cb",
+      "disassembly": "beqz a4, 0x188d8",
+      "body": "query18834",
+      "control": {
+        "kind": "branch",
+        "target": 100568
+      }
+    },
+    {
+      "pc": 100518,
+      "file_offset": 67750,
+      "width": 4,
+      "raw_hex": "37177a00",
+      "disassembly": "lui a4, 0x7a1",
+      "body": "query18834"
+    },
+    {
+      "pc": 100522,
+      "file_offset": 67754,
+      "width": 4,
+      "raw_hex": "13070720",
+      "disassembly": "addi a4, a4, 512",
+      "body": "query18834"
+    },
+    {
+      "pc": 100526,
+      "file_offset": 67758,
+      "width": 2,
+      "raw_hex": "29a8",
+      "disassembly": "j 0x188c8",
+      "body": "query18834",
+      "control": {
+        "kind": "jump",
+        "target": 100552
+      }
+    },
+    {
+      "pc": 100528,
+      "file_offset": 67760,
+      "width": 4,
+      "raw_hex": "b7160240",
+      "disassembly": "lui a3, 0x40021",
+      "body": "query18834"
+    },
+    {
+      "pc": 100532,
+      "file_offset": 67764,
+      "width": 2,
+      "raw_hex": "d842",
+      "disassembly": "lw a4, 4(a3)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100534,
+      "file_offset": 67766,
+      "width": 4,
+      "raw_hex": "3706c000",
+      "disassembly": "lui a2, 0xc00",
+      "body": "query18834"
+    },
+    {
+      "pc": 100538,
+      "file_offset": 67770,
+      "width": 2,
+      "raw_hex": "718f",
+      "disassembly": "and a4, a4, a2",
+      "body": "query18834"
+    },
+    {
+      "pc": 100540,
+      "file_offset": 67772,
+      "width": 4,
+      "raw_hex": "6319c700",
+      "disassembly": "bne a4, a2, 0x188ce",
+      "body": "query18834",
+      "control": {
+        "kind": "branch",
+        "target": 100558,
+        "rs1": 14,
+        "rs2": 12,
+        "funct3": 1
+      }
+    },
+    {
+      "pc": 100544,
+      "file_offset": 67776,
+      "width": 4,
+      "raw_hex": "3727f400",
+      "disassembly": "lui a4, 0xf42",
+      "body": "query18834"
+    },
+    {
+      "pc": 100548,
+      "file_offset": 67780,
+      "width": 4,
+      "raw_hex": "13070740",
+      "disassembly": "addi a4, a4, 1024",
+      "body": "query18834"
+    },
+    {
+      "pc": 100552,
+      "file_offset": 67784,
+      "width": 4,
+      "raw_hex": "b387e702",
+      "disassembly": "mul a5, a5, a4",
+      "body": "query18834"
+    },
+    {
+      "pc": 100556,
+      "file_offset": 67788,
+      "width": 2,
+      "raw_hex": "51b7",
+      "disassembly": "j 0x18850",
+      "body": "query18834",
+      "control": {
+        "kind": "jump",
+        "target": 100432
+      }
+    },
+    {
+      "pc": 100558,
+      "file_offset": 67790,
+      "width": 2,
+      "raw_hex": "d842",
+      "disassembly": "lw a4, 4(a3)",
+      "body": "query18834"
+    },
+    {
+      "pc": 100560,
+      "file_offset": 67792,
+      "width": 4,
+      "raw_hex": "9316e700",
+      "disassembly": "slli a3, a4, 0xe",
+      "body": "query18834"
+    },
+    {
+      "pc": 100564,
+      "file_offset": 67796,
+      "width": 4,
+      "raw_hex": "e3d906fc",
+      "disassembly": "bgez a3, 0x188a6",
+      "body": "query18834",
+      "control": {
+        "kind": "branch",
+        "target": 100518,
+        "rs1": 13,
+        "rs2": 0,
+        "funct3": 5
+      }
+    },
+    {
+      "pc": 100568,
+      "file_offset": 67800,
+      "width": 4,
+      "raw_hex": "37173d00",
+      "disassembly": "lui a4, 0x3d1",
+      "body": "query18834"
+    },
+    {
+      "pc": 100572,
+      "file_offset": 67804,
+      "width": 4,
+      "raw_hex": "13070790",
+      "disassembly": "addi a4, a4, -1792",
+      "body": "query18834"
+    },
+    {
+      "pc": 100576,
+      "file_offset": 67808,
+      "width": 2,
+      "raw_hex": "e5b7",
+      "disassembly": "j 0x188c8",
+      "body": "query18834",
+      "control": {
+        "kind": "jump",
+        "target": 100552
+      }
+    },
+    {
+      "pc": 104252,
+      "file_offset": 71484,
+      "width": 4,
+      "raw_hex": "9387c106",
+      "disassembly": "addi a5, gp, 108",
+      "body": "derive1973c"
+    },
+    {
+      "pc": 104256,
+      "file_offset": 71488,
+      "width": 2,
+      "raw_hex": "9c43",
+      "disassembly": "lw a5, 0(a5)",
+      "body": "derive1973c"
+    },
+    {
+      "pc": 104258,
+      "file_offset": 71490,
+      "width": 4,
+      "raw_hex": "37177a00",
+      "disassembly": "lui a4, 0x7a1",
+      "body": "derive1973c"
+    },
+    {
+      "pc": 104262,
+      "file_offset": 71494,
+      "width": 4,
+      "raw_hex": "13070720",
+      "disassembly": "addi a4, a4, 512",
+      "body": "derive1973c"
+    },
+    {
+      "pc": 104266,
+      "file_offset": 71498,
+      "width": 4,
+      "raw_hex": "b3d7e702",
+      "disassembly": "divu a5, a5, a4",
+      "body": "derive1973c"
+    },
+    {
+      "pc": 104270,
+      "file_offset": 71502,
+      "width": 4,
+      "raw_hex": "93f7f70f",
+      "disassembly": "andi a5, a5, 255",
+      "body": "derive1973c"
+    },
+    {
+      "pc": 104274,
+      "file_offset": 71506,
+      "width": 4,
+      "raw_hex": "238ff116",
+      "disassembly": "sb a5, 382(gp)",
+      "body": "derive1973c"
+    },
+    {
+      "pc": 104278,
+      "file_offset": 71510,
+      "width": 4,
+      "raw_hex": "1307803e",
+      "disassembly": "li a4, 1000",
+      "body": "derive1973c"
+    },
+    {
+      "pc": 104282,
+      "file_offset": 71514,
+      "width": 4,
+      "raw_hex": "b387e702",
+      "disassembly": "mul a5, a5, a4",
+      "body": "derive1973c"
+    },
+    {
+      "pc": 104286,
+      "file_offset": 71518,
+      "width": 4,
+      "raw_hex": "239ef116",
+      "disassembly": "sh a5, 380(gp)",
+      "body": "derive1973c"
+    },
+    {
+      "pc": 104290,
+      "file_offset": 71522,
+      "width": 2,
+      "raw_hex": "8280",
+      "disassembly": "ret",
+      "body": "derive1973c",
+      "control": {
+        "kind": "return",
+        "target": "liveRA"
+      }
+    }
+  ],
+  "auxiliary_reset_rows": [
+    {
+      "addr": 100010,
+      "size": 4,
+      "bytes": "97c1fe1f",
+      "opcode": "auipc gp, 0x1ffec",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100014,
+      "size": 4,
+      "bytes": "93816195",
+      "opcode": "addi gp, gp, -1706",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100018,
+      "size": 4,
+      "bytes": "1781ff1f",
+      "opcode": "auipc sp, 0x1fff8",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100022,
+      "size": 4,
+      "bytes": "1301e194",
+      "opcode": "addi sp, sp, -1714",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100026,
+      "size": 4,
+      "bytes": "17250000",
+      "opcode": "auipc a0, 0x2",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100030,
+      "size": 4,
+      "bytes": "1305654a",
+      "opcode": "addi a0, a0, 1190",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100034,
+      "size": 4,
+      "bytes": "93850100",
+      "opcode": "mv a1, gp",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100038,
+      "size": 4,
+      "bytes": "13860108",
+      "opcode": "addi a2, gp, 128",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100042,
+      "size": 4,
+      "bytes": "63fac500",
+      "opcode": "bleu a2, a1, 0x186de",
+      "jump": 100062,
+      "fail": 100046,
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100046,
+      "size": 4,
+      "bytes": "83220500",
+      "opcode": "lw t0, 0(a0)",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100050,
+      "size": 4,
+      "bytes": "23a05500",
+      "opcode": "sw t0, 0(a1)",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100054,
+      "size": 2,
+      "bytes": "1105",
+      "opcode": "addi a0, a0, 4",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100056,
+      "size": 2,
+      "bytes": "9105",
+      "opcode": "addi a1, a1, 4",
+      "body": "conditional_reset_initializer_mapping"
+    },
+    {
+      "addr": 100058,
+      "size": 4,
+      "bytes": "e3eac5fe",
+      "opcode": "bltu a1, a2, 0x186ce",
+      "jump": 100046,
+      "fail": 100062,
+      "body": "conditional_reset_initializer_mapping"
+    }
+  ],
+  "CFG": {
+    "entry_roots": [
+      100404,
+      104252
+    ],
+    "target_bytes": 214,
+    "target_instructions": 69,
+    "conditionally_reached_starts": 69,
+    "uncovered_starts": [],
+    "edges": [
+      {
+        "source": 100404,
+        "target": 100408
+      },
+      {
+        "source": 100408,
+        "target": 100410
+      },
+      {
+        "source": 100410,
+        "target": 100412
+      },
+      {
+        "source": 100412,
+        "target": 100414
+      },
+      {
+        "source": 100414,
+        "target": 100472,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 100414,
+        "target": 100418,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 100418,
+        "target": 100420
+      },
+      {
+        "source": 100420,
+        "target": 100482,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 100420,
+        "target": 100424,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 100424,
+        "target": 100428
+      },
+      {
+        "source": 100428,
+        "target": 100432
+      },
+      {
+        "source": 100432,
+        "target": 100436
+      },
+      {
+        "source": 100436,
+        "target": 100440
+      },
+      {
+        "source": 100440,
+        "target": 100442
+      },
+      {
+        "source": 100442,
+        "target": 100446
+      },
+      {
+        "source": 100446,
+        "target": 100448
+      },
+      {
+        "source": 100448,
+        "target": 100450
+      },
+      {
+        "source": 100450,
+        "target": 100452
+      },
+      {
+        "source": 100452,
+        "target": 100456
+      },
+      {
+        "source": 100456,
+        "target": 100460
+      },
+      {
+        "source": 100460,
+        "target": 100462
+      },
+      {
+        "source": 100462,
+        "target": 100466
+      },
+      {
+        "source": 100466,
+        "target": 100470
+      },
+      {
+        "source": 100472,
+        "target": 100476
+      },
+      {
+        "source": 100476,
+        "target": 100480
+      },
+      {
+        "source": 100480,
+        "target": 100432
+      },
+      {
+        "source": 100482,
+        "target": 100484
+      },
+      {
+        "source": 100484,
+        "target": 100486
+      },
+      {
+        "source": 100486,
+        "target": 100488
+      },
+      {
+        "source": 100488,
+        "target": 100490
+      },
+      {
+        "source": 100490,
+        "target": 100492
+      },
+      {
+        "source": 100492,
+        "target": 100494
+      },
+      {
+        "source": 100494,
+        "target": 100496
+      },
+      {
+        "source": 100496,
+        "target": 100498
+      },
+      {
+        "source": 100498,
+        "target": 100504,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 100498,
+        "target": 100502,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 100502,
+        "target": 100504
+      },
+      {
+        "source": 100504,
+        "target": 100528,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 100504,
+        "target": 100506,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 100506,
+        "target": 100510
+      },
+      {
+        "source": 100510,
+        "target": 100514
+      },
+      {
+        "source": 100514,
+        "target": 100516
+      },
+      {
+        "source": 100516,
+        "target": 100568,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 100516,
+        "target": 100518,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 100518,
+        "target": 100522
+      },
+      {
+        "source": 100522,
+        "target": 100526
+      },
+      {
+        "source": 100526,
+        "target": 100552
+      },
+      {
+        "source": 100528,
+        "target": 100532
+      },
+      {
+        "source": 100532,
+        "target": 100534
+      },
+      {
+        "source": 100534,
+        "target": 100538
+      },
+      {
+        "source": 100538,
+        "target": 100540
+      },
+      {
+        "source": 100540,
+        "target": 100558,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 100540,
+        "target": 100544,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 100544,
+        "target": 100548
+      },
+      {
+        "source": 100548,
+        "target": 100552
+      },
+      {
+        "source": 100552,
+        "target": 100556
+      },
+      {
+        "source": 100556,
+        "target": 100432
+      },
+      {
+        "source": 100558,
+        "target": 100560
+      },
+      {
+        "source": 100560,
+        "target": 100564
+      },
+      {
+        "source": 100564,
+        "target": 100518,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 100564,
+        "target": 100568,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 100568,
+        "target": 100572
+      },
+      {
+        "source": 100572,
+        "target": 100576
+      },
+      {
+        "source": 100576,
+        "target": 100552
+      },
+      {
+        "source": 104252,
+        "target": 104256
+      },
+      {
+        "source": 104256,
+        "target": 104258
+      },
+      {
+        "source": 104258,
+        "target": 104262
+      },
+      {
+        "source": 104262,
+        "target": 104266
+      },
+      {
+        "source": 104266,
+        "target": 104270
+      },
+      {
+        "source": 104270,
+        "target": 104274
+      },
+      {
+        "source": 104274,
+        "target": 104278
+      },
+      {
+        "source": 104278,
+        "target": 104282
+      },
+      {
+        "source": 104282,
+        "target": 104286
+      },
+      {
+        "source": 104286,
+        "target": 104290
+      }
+    ],
+    "return_sites": [
+      100470,
+      104290
+    ],
+    "external_calls": [],
+    "unresolved_control_frontier": [],
+    "endpoints_derived_from_actual_reachable_RET_and_jumps_not_next_symbol": true,
+    "aux_reset_is_mapping_context_not_complete_reset_CFG": true
+  },
+  "conditional_initializer_table": {
+    "source_start": 109408,
+    "bytes": 128,
+    "sha256": "d2f2eac71b3c4f04686d1179aebb430b70088394c46552914bec908c98558e0c",
+    "destination_GP": 536887296,
+    "table_offset": 64,
+    "table_source_start": 109472,
+    "table_bytes": 16,
+    "table_hex": "00000000000000000102030406070809",
+    "table_sha256": "81387c7ef90dc35a7440aff79bf63bc9c233dbe35110bbf209b92caef131b844",
+    "live_RAM_values_not_observed": true,
+    "table_numeric_bytes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9
+    ],
+    "mapping_condition": "Original reset128B copy from1AB60 toGP20004000 completes normally and table bytes remain unchanged until query reads. Resident/IRQ/9A42 or other writers may invalidate this; no live RAM capture.",
+    "function_still_must_READ8_live_table": true,
+    "whole_original_C_array_identity_proved": false
+  },
+  "arithmetic_examples_not_target_execution": [
+    {
+      "u32_clock": 0,
+      "DIVU_quotient": 0,
+      "q8": 0,
+      "WRITE8": 0,
+      "WRITE16": 0
+    },
+    {
+      "u32_clock": 7999999,
+      "DIVU_quotient": 0,
+      "q8": 0,
+      "WRITE8": 0,
+      "WRITE16": 0
+    },
+    {
+      "u32_clock": 8000000,
+      "DIVU_quotient": 1,
+      "q8": 1,
+      "WRITE8": 1,
+      "WRITE16": 1000
+    },
+    {
+      "u32_clock": 2040000000,
+      "DIVU_quotient": 255,
+      "q8": 255,
+      "WRITE8": 255,
+      "WRITE16": 58392
+    },
+    {
+      "u32_clock": 2048000000,
+      "DIVU_quotient": 256,
+      "q8": 0,
+      "WRITE8": 0,
+      "WRITE16": 0
+    },
+    {
+      "u32_clock": 2147483648,
+      "DIVU_quotient": 268,
+      "q8": 12,
+      "WRITE8": 12,
+      "WRITE16": 12000
+    },
+    {
+      "u32_clock": 4294967295,
+      "DIVU_quotient": 536,
+      "q8": 24,
+      "WRITE8": 24,
+      "WRITE16": 24000
+    }
+  ],
+  "raw_operand_mutations": [
+    {
+      "name": "MMIO_initial_base",
+      "pc": 100404,
+      "original_raw": "37170240",
+      "mutant_raw": "37070240",
+      "rejected": true,
+      "error": "query MMIO base LUI"
+    },
+    {
+      "name": "MMIO_first_offset",
+      "pc": 100408,
+      "original_raw": "5c43",
+      "mutant_raw": "1c43",
+      "rejected": true,
+      "error": "18838: fresh READ32 register/offset"
+    },
+    {
+      "name": "selector_mask12",
+      "pc": 100412,
+      "original_raw": "b18b",
+      "mutant_raw": "b58b",
+      "rejected": true,
+      "error": "select mask12/compare4"
+    },
+    {
+      "name": "first_selector_BEQ",
+      "pc": 100414,
+      "original_raw": "638dd702",
+      "mutant_raw": "639dd702",
+      "rejected": true,
+      "error": "1883e: branch condition/register/target"
+    },
+    {
+      "name": "second_selector_value8",
+      "pc": 100418,
+      "original_raw": "a146",
+      "mutant_raw": "a546",
+      "rejected": true,
+      "error": "select compare8"
+    },
+    {
+      "name": "default8000000",
+      "pc": 100428,
+      "original_raw": "93870720",
+      "mutant_raw": "93871720",
+      "rejected": true,
+      "error": "18848: literal base constant"
+    },
+    {
+      "name": "provisional_store_GPoffset",
+      "pc": 100432,
+      "original_raw": "23a6f106",
+      "mutant_raw": "a3a6f106",
+      "rejected": true,
+      "error": "18850: provisional/final WRITE32 liveGP+108"
+    },
+    {
+      "name": "prescaler_fresh_READ32",
+      "pc": 100440,
+      "original_raw": "dc43",
+      "mutant_raw": "9c43",
+      "rejected": true,
+      "error": "18858: fresh READ32 register/offset"
+    },
+    {
+      "name": "table_GPoffset64",
+      "pc": 100442,
+      "original_raw": "13870104",
+      "mutant_raw": "13871104",
+      "rejected": true,
+      "error": "table base liveGP+64"
+    },
+    {
+      "name": "prescaler_shift4",
+      "pc": 100446,
+      "original_raw": "9183",
+      "mutant_raw": "9583",
+      "rejected": true,
+      "error": "fresh prescaler index shift/mask/address"
+    },
+    {
+      "name": "prescaler_mask15",
+      "pc": 100448,
+      "original_raw": "bd8b",
+      "mutant_raw": "b98b",
+      "rejected": true,
+      "error": "fresh prescaler index shift/mask/address"
+    },
+    {
+      "name": "table_unsigned_LBU",
+      "pc": 100452,
+      "original_raw": "03c70700",
+      "mutant_raw": "03870700",
+      "rejected": true,
+      "error": "table unsigned READ8"
+    },
+    {
+      "name": "scalar_fresh_GPoffset",
+      "pc": 100456,
+      "original_raw": "9387c106",
+      "mutant_raw": "9387d106",
+      "rejected": true,
+      "error": "18868: fresh clock address liveGP+108"
+    },
+    {
+      "name": "scalar_fresh_READ32",
+      "pc": 100460,
+      "original_raw": "9c43",
+      "mutant_raw": "9843",
+      "rejected": true,
+      "error": "1886c: fresh READ32 register/offset"
+    },
+    {
+      "name": "final_SRL_to_SRA",
+      "pc": 100462,
+      "original_raw": "b3d7e700",
+      "mutant_raw": "b3d7e740",
+      "rejected": true,
+      "error": "1886e: arithmetic opcode/operands"
+    },
+    {
+      "name": "final_store_width",
+      "pc": 100466,
+      "original_raw": "23a6f106",
+      "mutant_raw": "23b6f106",
+      "rejected": true,
+      "error": "18872: provisional/final WRITE32 liveGP+108"
+    },
+    {
+      "name": "literal32000000",
+      "pc": 100476,
+      "original_raw": "93870780",
+      "mutant_raw": "93871780",
+      "rejected": true,
+      "error": "18878: literal base constant"
+    },
+    {
+      "name": "PLL_first_read_destination",
+      "pc": 100482,
+      "original_raw": "5c43",
+      "mutant_raw": "5843",
+      "rejected": true,
+      "error": "18882: fresh READ32 register/offset"
+    },
+    {
+      "name": "PLL_second_read_base",
+      "pc": 100484,
+      "original_raw": "5843",
+      "mutant_raw": "d843",
+      "rejected": true,
+      "error": "18884: fresh READ32 register/offset"
+    },
+    {
+      "name": "PLL_multiplier_shift18",
+      "pc": 100488,
+      "original_raw": "c983",
+      "mutant_raw": "cd83",
+      "rejected": true,
+      "error": "PLL field extraction/mask65536"
+    },
+    {
+      "name": "PLL_multiplier_mask15",
+      "pc": 100490,
+      "original_raw": "bd8b",
+      "mutant_raw": "b98b",
+      "rejected": true,
+      "error": "PLL field extraction/mask65536"
+    },
+    {
+      "name": "PLL_multiplier_add2",
+      "pc": 100494,
+      "original_raw": "8907",
+      "mutant_raw": "8d07",
+      "rejected": true,
+      "error": "multiplier field+2/compare17"
+    },
+    {
+      "name": "PLL_replace_compare17",
+      "pc": 100496,
+      "original_raw": "c546",
+      "mutant_raw": "c146",
+      "rejected": true,
+      "error": "multiplier field+2/compare17"
+    },
+    {
+      "name": "PLL_replace18",
+      "pc": 100502,
+      "original_raw": "c947",
+      "mutant_raw": "cd47",
+      "rejected": true,
+      "error": "raw17 multiplier replacement18"
+    },
+    {
+      "name": "PLL_source_branch",
+      "pc": 100504,
+      "original_raw": "01ef",
+      "mutant_raw": "01cf",
+      "rejected": true,
+      "error": "18898: compressed branch"
+    },
+    {
+      "name": "special_signed_displacement",
+      "pc": 100510,
+      "original_raw": "03270780",
+      "mutant_raw": "03270700",
+      "rejected": true,
+      "error": "special READ32 address40023800, signed displacement"
+    },
+    {
+      "name": "special_bit4_mask",
+      "pc": 100514,
+      "original_raw": "418b",
+      "mutant_raw": "458b",
+      "rejected": true,
+      "error": "special bit4 mask16"
+    },
+    {
+      "name": "special_branch_direction",
+      "pc": 100516,
+      "original_raw": "15cb",
+      "mutant_raw": "15eb",
+      "rejected": true,
+      "error": "188a4: compressed branch"
+    },
+    {
+      "name": "external_predivide_mask",
+      "pc": 100534,
+      "original_raw": "3706c000",
+      "mutant_raw": "3716c000",
+      "rejected": true,
+      "error": "external config base/maskC00000"
+    },
+    {
+      "name": "external_mask_compare",
+      "pc": 100540,
+      "original_raw": "6319c700",
+      "mutant_raw": "6309c700",
+      "rejected": true,
+      "error": "188bc: branch condition/register/target"
+    },
+    {
+      "name": "literal16000000",
+      "pc": 100548,
+      "original_raw": "13070740",
+      "mutant_raw": "13071740",
+      "rejected": true,
+      "error": "188c0: literal base constant"
+    },
+    {
+      "name": "PLL_MUL_operation",
+      "pc": 100552,
+      "original_raw": "b387e702",
+      "mutant_raw": "b397e702",
+      "rejected": true,
+      "error": "188c8: arithmetic opcode/operands"
+    },
+    {
+      "name": "external_fresh_read_base",
+      "pc": 100558,
+      "original_raw": "d842",
+      "mutant_raw": "5842",
+      "rejected": true,
+      "error": "188ce: fresh READ32 register/offset"
+    },
+    {
+      "name": "SLLI14_wrap_amount",
+      "pc": 100560,
+      "original_raw": "9316e700",
+      "mutant_raw": "9316f700",
+      "rejected": true,
+      "error": "SLLI14 low32 before SIGNED BGEZ"
+    },
+    {
+      "name": "BGEZ_signed_to_unsigned",
+      "pc": 100564,
+      "original_raw": "e3d906fc",
+      "mutant_raw": "e3f906fc",
+      "rejected": true,
+      "error": "188d4: branch condition/register/target"
+    },
+    {
+      "name": "literal4000000",
+      "pc": 100572,
+      "original_raw": "13070790",
+      "mutant_raw": "13071790",
+      "rejected": true,
+      "error": "188d8: literal base constant"
+    },
+    {
+      "name": "derived_fresh_GPoffset",
+      "pc": 104252,
+      "original_raw": "9387c106",
+      "mutant_raw": "9387d106",
+      "rejected": true,
+      "error": "1973c: fresh clock address liveGP+108"
+    },
+    {
+      "name": "derived_fresh_READ32",
+      "pc": 104256,
+      "original_raw": "9c43",
+      "mutant_raw": "9843",
+      "rejected": true,
+      "error": "19740: fresh READ32 register/offset"
+    },
+    {
+      "name": "derived_DIVU_to_DIV",
+      "pc": 104266,
+      "original_raw": "b3d7e702",
+      "mutant_raw": "b3c7e702",
+      "rejected": true,
+      "error": "1974a: arithmetic opcode/operands"
+    },
+    {
+      "name": "derived_AND255",
+      "pc": 104270,
+      "original_raw": "93f7f70f",
+      "mutant_raw": "93f7e70f",
+      "rejected": true,
+      "error": "derived unsigned quotient AND255"
+    },
+    {
+      "name": "derived_SB_width",
+      "pc": 104274,
+      "original_raw": "238ff116",
+      "mutant_raw": "239ff116",
+      "rejected": true,
+      "error": "derived WRITE8 liveGP+17E"
+    },
+    {
+      "name": "derived_SB_offset",
+      "pc": 104274,
+      "original_raw": "238ff116",
+      "mutant_raw": "a38ff116",
+      "rejected": true,
+      "error": "derived WRITE8 liveGP+17E"
+    },
+    {
+      "name": "derived_multiplier1000",
+      "pc": 104278,
+      "original_raw": "1307803e",
+      "mutant_raw": "1307903e",
+      "rejected": true,
+      "error": "derived multiplier1000"
+    },
+    {
+      "name": "derived_MUL_operation",
+      "pc": 104282,
+      "original_raw": "b387e702",
+      "mutant_raw": "b397e702",
+      "rejected": true,
+      "error": "1975a: arithmetic opcode/operands"
+    },
+    {
+      "name": "derived_SH_width",
+      "pc": 104286,
+      "original_raw": "239ef116",
+      "mutant_raw": "238ef116",
+      "rejected": true,
+      "error": "derived WRITE16 liveGP+17C"
+    },
+    {
+      "name": "derived_SH_offset",
+      "pc": 104286,
+      "original_raw": "239ef116",
+      "mutant_raw": "a39ef116",
+      "rejected": true,
+      "error": "derived WRITE16 liveGP+17C"
+    },
+    {
+      "name": "reset_table_GP_mapping",
+      "pc": 100014,
+      "original_raw": "93816195",
+      "mutant_raw": "93817195",
+      "rejected": true,
+      "error": "conditional reset GP/source mapping"
+    },
+    {
+      "name": "reset_initializer_source",
+      "pc": 100030,
+      "original_raw": "1305654a",
+      "mutant_raw": "1305754a",
+      "rejected": true,
+      "error": "conditional reset GP/source mapping"
+    },
+    {
+      "name": "reset_initializer_extent",
+      "pc": 100038,
+      "original_raw": "13860108",
+      "mutant_raw": "13861108",
+      "rejected": true,
+      "error": "conditional initializer dest/end"
+    },
+    {
+      "name": "RET_liveRA_register",
+      "pc": 100470,
+      "original_raw": "8280",
+      "mutant_raw": "0280",
+      "rejected": true,
+      "error": "18876: RET liveRA"
+    }
+  ],
+  "chip_or_SDK_identity_assumed": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false
+}

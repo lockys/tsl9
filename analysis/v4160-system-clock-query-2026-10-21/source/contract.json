@@ -1,0 +1,483 @@
+{
+  "schema": "ID2966-system-clock-and-derived-output-live-contract-v1",
+  "passed": true,
+  "blocking_findings": [],
+  "firmware": {
+    "catalog_ID": 2966,
+    "version": "V4.1.60",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "bytes": 76800,
+    "analysis_base": 32768
+  },
+  "source_spans": [
+    {
+      "role": "query18834",
+      "start": 100404,
+      "end_exclusive": 100578,
+      "file_offset": 67636,
+      "bytes": 174,
+      "instructions": 58,
+      "sha256": "1fe76c3ddc25809287b5ebaf84cd508bcffeebc7b442eac36b33a38ab2f81e1e"
+    },
+    {
+      "role": "derive1973c",
+      "start": 104252,
+      "end_exclusive": 104292,
+      "file_offset": 71484,
+      "bytes": 40,
+      "instructions": 11,
+      "sha256": "54981bbd3ffcfe30f15091ac55558d66f221f32712e54ac53e33f9ff2c2afb43"
+    },
+    {
+      "role": "conditional_reset_initializer_mapping",
+      "start": 100010,
+      "end_exclusive": 100062,
+      "file_offset": 67242,
+      "bytes": 52,
+      "instructions": 14,
+      "sha256": "e9126640e076d3aa02b077bc6dff7928da72c3f56fd261176e6c1583813d6d35"
+    }
+  ],
+  "API_requirements": {
+    "memory_primitives": [
+      "READ32",
+      "READ8_UNSIGNED",
+      "WRITE32",
+      "WRITE8",
+      "WRITE16"
+    ],
+    "context": "numeric u32 GPRs including liveGP/liveRA/A0; evaluate each source address/branch from current register state; no original C prototype claimed",
+    "unknown_or_nonreturn": "unknown reads/branch decisions, HALT and TRANSFER must not be silently replaced with zero, a default branch or a normal return",
+    "leaf_register_effects": "Both bodies contain no call and no SP operation, do not explicitly assign GP/RA/A0/A1, and RET uses then-live RA. Other A2/A3/A4/A5 fields are changed by source operations; old argument/status ABI is unproved.",
+    "no_observation_snapshot": "Repeated MMIO reads, GP-relative addresses and the output-word read are distinct live requests."
+  },
+  "query18834": {
+    "entry": 100404,
+    "end_exclusive": 100578,
+    "bytes": 174,
+    "instructions": 58,
+    "no_calls": true,
+    "no_DIV_instruction": true,
+    "selection_order": [
+      {
+        "pc": 100408,
+        "pc_hex": "0x18838",
+        "operation": "READ32",
+        "address": "liveA4+4 after LUI40021000",
+        "nominal_address": 1073876996,
+        "destination": "a5",
+        "role": "select config sample"
+      },
+      {
+        "pc": 100412,
+        "pc_hex": "0x1883C",
+        "operation": "a5=a5&12"
+      },
+      {
+        "pc": 100414,
+        "pc_hex": "0x1883E",
+        "operation": "if selected bits==4 go literal32000000",
+        "target": 100472
+      },
+      {
+        "pc": 100420,
+        "pc_hex": "0x18844",
+        "operation": "else if selected bits==8 go PLL path",
+        "target": 100482
+      },
+      {
+        "pc": 100424,
+        "pc_hex": "0x18848",
+        "operation": "else provisional=8000000",
+        "role": "both selector0 and selector12 use this default"
+      }
+    ],
+    "PLL_path": {
+      "ordered_prefix": [
+        {
+          "pc": 100482,
+          "pc_hex": "0x18882",
+          "operation": "READ32",
+          "address": "then-liveA4+4",
+          "nominal_address": 1073876996,
+          "destination": "a5",
+          "role": "fresh multiplier config"
+        },
+        {
+          "pc": 100484,
+          "pc_hex": "0x18884",
+          "operation": "READ32",
+          "address": "then-liveA4+4 before A4 overwritten",
+          "nominal_address": 1073876996,
+          "destination": "a4",
+          "role": "separate fresh source config"
+        },
+        {
+          "pc": 100488,
+          "pc_hex": "0x18888",
+          "operation": "a5=logical_right(a5,18)"
+        },
+        {
+          "pc": 100490,
+          "pc_hex": "0x1888A",
+          "operation": "a5=a5&15"
+        },
+        {
+          "pc": 100492,
+          "pc_hex": "0x1888C",
+          "operation": "a4=a4&0x10000"
+        },
+        {
+          "pc": 100494,
+          "pc_hex": "0x1888E",
+          "operation": "a5=(a5+2) mod2^32"
+        },
+        {
+          "pc": 100498,
+          "pc_hex": "0x18892",
+          "operation": "if multiplier!=17 skip replacement"
+        },
+        {
+          "pc": 100502,
+          "pc_hex": "0x18896",
+          "operation": "a5=18",
+          "condition": "old value17"
+        },
+        {
+          "pc": 100504,
+          "pc_hex": "0x18898",
+          "operation": "if sampled source flag!=0 external-config path else special-word path"
+        }
+      ],
+      "multiplier_formula": "(((cfg_multiplier>>18)&15)+2), except17 becomes18",
+      "multiplier_values": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18
+      ],
+      "source_flag_zero_path": [
+        {
+          "pc": 100510,
+          "pc_hex": "0x1889E",
+          "operation": "READ32",
+          "address": "A4 LUI40024000 -2048",
+          "nominal_address": 1073887232,
+          "destination": "a4"
+        },
+        {
+          "pc": 100514,
+          "pc_hex": "0x188A2",
+          "operation": "a4=a4&16"
+        },
+        {
+          "pc": 100516,
+          "pc_hex": "0x188A4",
+          "operation": "if bit4==0 choose4000000 else8000000"
+        }
+      ],
+      "source_flag_nonzero_path": [
+        {
+          "pc": 100532,
+          "pc_hex": "0x188B4",
+          "operation": "READ32",
+          "address": "liveA3+4 after LUI40021000",
+          "nominal_address": 1073876996,
+          "destination": "a4"
+        },
+        {
+          "pc": 100538,
+          "pc_hex": "0x188BA",
+          "operation": "a4=a4&0x00C00000"
+        },
+        {
+          "pc": 100540,
+          "pc_hex": "0x188BC",
+          "operation": "if masked value==0x00C00000 choose16000000; else another fresh read"
+        },
+        {
+          "pc": 100558,
+          "pc_hex": "0x188CE",
+          "operation": "READ32",
+          "address": "then-liveA3+4",
+          "nominal_address": 1073876996,
+          "destination": "a4"
+        },
+        {
+          "pc": 100560,
+          "pc_hex": "0x188D0",
+          "operation": "a3=(a4<<14) mod2^32"
+        },
+        {
+          "pc": 100564,
+          "pc_hex": "0x188D4",
+          "operation": "SIGNED int32(a3)>=0 chooses8000000, negative chooses4000000",
+          "role": "not unsigned comparison; low32 wrap before sign test, equivalent to testing sampled bit17 when normal register flow holds"
+        }
+      ],
+      "join": {
+        "pc": 100552,
+        "pc_hex": "0x188C8",
+        "operation": "a5=low32(a5*a4)",
+        "role": "MUL, not DIV; base is4000000/8000000/16000000"
+      },
+      "known_numeric_bound_only": "With the literal branches/fields and no external GPR mutation, largest product16000000*18=288000000 fits u32; retain actual low32 MUL semantics."
+    },
+    "common_live_suffix": [
+      {
+        "pc": 100432,
+        "pc_hex": "0x18850",
+        "operation": "WRITE32",
+        "address": "then-liveGP+108 mod2^32",
+        "value": "provisional a5",
+        "role": "first output store occurs before prescaler MMIO/table/word reads"
+      },
+      {
+        "pc": 100440,
+        "pc_hex": "0x18858",
+        "operation": "READ32",
+        "address": "a5+4 after fresh LUI40021000",
+        "nominal_address": 1073876996,
+        "destination": "a5",
+        "role": "fresh prescaler config"
+      },
+      {
+        "pc": 100442,
+        "pc_hex": "0x1885A",
+        "operation": "a4=(then-liveGP+64) mod2^32"
+      },
+      {
+        "pc": 100446,
+        "pc_hex": "0x1885E",
+        "operation": "a5=logical_right(a5,4)"
+      },
+      {
+        "pc": 100448,
+        "pc_hex": "0x18860",
+        "operation": "a5=a5&15"
+      },
+      {
+        "pc": 100450,
+        "pc_hex": "0x18862",
+        "operation": "a5=(table_base+a5) mod2^32"
+      },
+      {
+        "pc": 100452,
+        "pc_hex": "0x18864",
+        "operation": "READ8_UNSIGNED",
+        "address": "computed table address",
+        "destination": "a4",
+        "role": "live table byte; zero-extend8, not an embedded constant"
+      },
+      {
+        "pc": 100456,
+        "pc_hex": "0x18868",
+        "operation": "a5=(then-liveGP+108) mod2^32"
+      },
+      {
+        "pc": 100460,
+        "pc_hex": "0x1886C",
+        "operation": "READ32",
+        "address": "a5 from18868",
+        "destination": "a5",
+        "role": "fresh scalar read, not cached provisional value"
+      },
+      {
+        "pc": 100462,
+        "pc_hex": "0x1886E",
+        "operation": "a5=logical_right(a5,a4&31)",
+        "role": "RV32 SRL uses low5 shift bits; not arithmetic-right or unmasked C shift"
+      },
+      {
+        "pc": 100466,
+        "pc_hex": "0x18872",
+        "operation": "WRITE32",
+        "address": "then-liveGP+108 mod2^32",
+        "value": "shifted fresh scalar"
+      },
+      {
+        "pc": 100470,
+        "pc_hex": "0x18876",
+        "operation": "RET",
+        "target": "then-liveRA",
+        "a0": "not assigned by this body"
+      }
+    ],
+    "scalar_name_scope": "GP+108 word is the clock scalar described by the task as SystemCoreClock; original symbol/C-object identity and physical frequency units are not proved.",
+    "GP_address_formation": "18850 provisional store, 1885A table base, 18868 scalar address and18872 final store each use GP then current at that point. Do not pin one GP for the whole function.",
+    "table_index_range": [
+      0,
+      15
+    ],
+    "table_shift_value_range_from_live_READ8": [
+      0,
+      255
+    ],
+    "effective_shift_range": [
+      0,
+      31
+    ],
+    "memory_request_bounds_under_normal_fixed_control": {
+      "selector0_or4_or12": 6,
+      "PLL_source_zero": 9,
+      "PLL_source_nonzero_mask_equal": 9,
+      "PLL_source_nonzero_mask_not_equal": 10,
+      "includes_table_scalar_reads_and_two_writes": true
+    },
+    "hardware_clock_source_chip_or_SDK_identity_proved": false
+  },
+  "derive1973c": {
+    "entry": 104252,
+    "end_exclusive": 104292,
+    "bytes": 40,
+    "instructions": 11,
+    "ordered_effects": [
+      {
+        "pc": 104252,
+        "pc_hex": "0x1973C",
+        "operation": "a5=(then-liveGP+108) mod2^32"
+      },
+      {
+        "pc": 104256,
+        "pc_hex": "0x19740",
+        "operation": "READ32",
+        "address": "a5 from1973C",
+        "destination": "a5",
+        "role": "fresh clock scalar after unrelated9A42 may have changed GP/global"
+      },
+      {
+        "pc": 104258,
+        "pc_hex": "0x19742",
+        "operation": "a4=8000000 via literal LUI/ADDI",
+        "low_pc": 104262
+      },
+      {
+        "pc": 104266,
+        "pc_hex": "0x1974A",
+        "operation": "a5=DIVU32(a5,8000000)",
+        "role": "unsigned, not signed; divisor is nonzero literal"
+      },
+      {
+        "pc": 104270,
+        "pc_hex": "0x1974E",
+        "operation": "a5=a5&255"
+      },
+      {
+        "pc": 104274,
+        "pc_hex": "0x19752",
+        "operation": "WRITE8",
+        "address": "then-liveGP+382 mod2^32",
+        "value": "low8 a5"
+      },
+      {
+        "pc": 104278,
+        "pc_hex": "0x19756",
+        "operation": "a4=1000"
+      },
+      {
+        "pc": 104282,
+        "pc_hex": "0x1975A",
+        "operation": "a5=low32(a5*a4)",
+        "role": "uses held masked quotient, does not reload the byte written at19752"
+      },
+      {
+        "pc": 104286,
+        "pc_hex": "0x1975E",
+        "operation": "WRITE16",
+        "address": "then-liveGP+380 mod2^32",
+        "value": "low16 a5"
+      },
+      {
+        "pc": 104290,
+        "pc_hex": "0x19762",
+        "operation": "RET",
+        "target": "then-liveRA",
+        "a0": "not assigned by body"
+      }
+    ],
+    "formula_if_no_unaccounted_GPR_change": {
+      "q8": "(uint32(fresh_clock)/8000000)&255",
+      "byte": "q8",
+      "halfword": "(q8*1000)&65535"
+    },
+    "quotient_not_signed": true,
+    "GP_may_differ_between_read_byte_store_halfword_store": true,
+    "tick_frequency_MHz_or_other_output_units_proved": false
+  },
+  "caller_boundary": {
+    "init_call18834": {
+      "pc": 37460,
+      "return_link": 37464
+    },
+    "intervening_unknown_provider": {
+      "pc": 37464,
+      "target": 39490,
+      "may_change_GP_global_or_context": true
+    },
+    "init_call1973c": {
+      "pc": 37468,
+      "return_link": 37472
+    },
+    "do_not_feed_cached_query_value_into_derived_call": true,
+    "source_caller_order_previously_verified_not_expanded_here": true
+  },
+  "conditional_initializer_table": {
+    "source_start": 109408,
+    "bytes": 128,
+    "sha256": "d2f2eac71b3c4f04686d1179aebb430b70088394c46552914bec908c98558e0c",
+    "destination_GP": 536887296,
+    "table_offset": 64,
+    "table_source_start": 109472,
+    "table_bytes": 16,
+    "table_hex": "00000000000000000102030406070809",
+    "table_sha256": "81387c7ef90dc35a7440aff79bf63bc9c233dbe35110bbf209b92caef131b844",
+    "live_RAM_values_not_observed": true,
+    "table_numeric_bytes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9
+    ],
+    "mapping_condition": "Original reset128B copy from1AB60 toGP20004000 completes normally and table bytes remain unchanged until query reads. Resident/IRQ/9A42 or other writers may invalidate this; no live RAM capture.",
+    "function_still_must_READ8_live_table": true,
+    "whole_original_C_array_identity_proved": false
+  },
+  "limits": {
+    "source_only": true,
+    "original_C_ABI_or_prototypes_recovered": false,
+    "physical_RAM_MMIO_clock_or_chip_identity_validated": false,
+    "live_prescaler_table_observed": false,
+    "implicit_GP_stability_assumed": false,
+    "provider_generated": false,
+    "ROOT_modified": false,
+    "D_modified": false,
+    "network": false,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "hardware": false
+  }
+}
