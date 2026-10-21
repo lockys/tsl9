@@ -1,0 +1,641 @@
+{
+  "schema": "TSL9-TX-original-independent-ABI-v1",
+  "passed": true,
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "body_sha256": "3b01d76ded6b08cb239ca3c8d7e789db8b0b7149d4c6d4e48c50d987a1ef2f0b",
+  "body": {
+    "bytes": 280,
+    "indirect_transfers": [
+      {
+        "PC": 35470,
+        "raw_hex": "8297",
+        "bytes": 2,
+        "rd": 1,
+        "rs1": 15,
+        "return_PC": 35472
+      },
+      {
+        "PC": 35508,
+        "raw_hex": "8297",
+        "bytes": 2,
+        "rd": 1,
+        "rs1": 15,
+        "return_PC": 35510
+      },
+      {
+        "PC": 35530,
+        "raw_hex": "8280",
+        "bytes": 2,
+        "rd": 0,
+        "rs1": 1,
+        "return_PC": null
+      },
+      {
+        "PC": 35664,
+        "raw_hex": "0283",
+        "bytes": 2,
+        "rd": 0,
+        "rs1": 6,
+        "return_PC": null
+      },
+      {
+        "PC": 35692,
+        "raw_hex": "8280",
+        "bytes": 2,
+        "rd": 0,
+        "rs1": 1,
+        "return_PC": null
+      }
+    ],
+    "frame_bytes": 32,
+    "ordered_saves": [
+      {
+        "PC": 35424,
+        "GPR": 8,
+        "slot": 24
+      },
+      {
+        "PC": 35426,
+        "GPR": 9,
+        "slot": 20
+      },
+      {
+        "PC": 35428,
+        "GPR": 18,
+        "slot": 16
+      },
+      {
+        "PC": 35430,
+        "GPR": 19,
+        "slot": 12
+      },
+      {
+        "PC": 35432,
+        "GPR": 1,
+        "slot": 28
+      }
+    ],
+    "early_unsigned_guard": {
+      "PC": 35418,
+      "condition": "1039 < unsigned entryA3",
+      "target": 35692,
+      "before_frame": true,
+      "A0": "unchanged entrycontext",
+      "A5": 1039
+    },
+    "unknown_gate_ABI": {
+      "slot_address": 262460,
+      "first_args": {
+        "A0": "entrycontext",
+        "A1": "liveGP+0x80",
+        "A2": "entrypayload",
+        "A3": "entrylength"
+      },
+      "second_args": {
+        "A0": "liveS2",
+        "A1": "liveGP+0x80",
+        "A2": "livepost-firstgate residue",
+        "A3": "livepost-firstgate residue"
+      },
+      "local_success_test": "A0==1 only",
+      "callee_SP_S_GP_preservation_proved": false
+    },
+    "framed_failure": {
+      "PC": 35518,
+      "A0": "path-dependent entrycontext or gate result; no commonstatus",
+      "A2": "set1 after secondgate even if it fails",
+      "fresh_stack_restore": true
+    },
+    "success_tail": {
+      "PC": 35664,
+      "rd": 0,
+      "target_GPR": 6,
+      "ROM_slot": 262224,
+      "A0": "LBU(liveGP+0x94+4*liveLane)",
+      "A1": 1,
+      "A2": "liveGP+0x94+4*liveLane",
+      "A3": "numeric SRAM2000B18C",
+      "A5": 262144,
+      "RA": "freshly restored callerRA",
+      "SP": "liveSP+32",
+      "provider_signature_proved": false
+    },
+    "post_gate_length_guard_still_bounds_arbitrary_liveS0": false,
+    "full32_counter_guard": "low16(A1)<liveS0; addressing uses fullA1",
+    "allocation_copy_free_calls_visible": false,
+    "resident_ROM_behavior_proved": false,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "hardware_OTA_proved": false
+  },
+  "incoming": [
+    {
+      "site": 33640,
+      "bytes": 2,
+      "rd": 1,
+      "target": 35414,
+      "link": 33642,
+      "raw_hex": "fd25"
+    },
+    {
+      "site": 33820,
+      "bytes": 2,
+      "rd": 1,
+      "target": 35414,
+      "link": 33822,
+      "raw_hex": "2d2d"
+    },
+    {
+      "site": 39904,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 39908,
+      "raw_hex": "efe07fe7"
+    },
+    {
+      "site": 79272,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 79276,
+      "raw_hex": "ef50efca"
+    },
+    {
+      "site": 80688,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 80692,
+      "raw_hex": "ef407ff2"
+    },
+    {
+      "site": 80768,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 80772,
+      "raw_hex": "ef407fed"
+    },
+    {
+      "site": 80942,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 80946,
+      "raw_hex": "ef409fe2"
+    },
+    {
+      "site": 81580,
+      "bytes": 4,
+      "rd": 0,
+      "target": 35414,
+      "link": null,
+      "raw_hex": "6f40bfba"
+    },
+    {
+      "site": 83768,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 83772,
+      "raw_hex": "ef40efb1"
+    }
+  ],
+  "local_backedge": {
+    "site": 35690,
+    "bytes": 2,
+    "rd": 0,
+    "target": 35594,
+    "link": null,
+    "raw_hex": "45b7"
+  },
+  "computed_or_encoded_interior_references_absent_proved": false,
+  "actual_archived_ELF_read": true,
+  "actual_folder": "experiments/tsl9-v4160-reply-image-integration/build/formal-v1/c",
+  "partial_sha256": "5e7695221b39aca03e9cdf3a8478597d78a401cc1bcfaa609c5343df4d526d31",
+  "linked_sha256": "3ffa4a4baae0288a1fed1ff8fa3d0a7c291cb4142ae1cbf19616761bc6e4ca87",
+  "owner": {
+    "name_offset": 5007,
+    "type": 1,
+    "flags": 6,
+    "address": 0,
+    "offset": 10528,
+    "size": 280,
+    "link": 0,
+    "info": 0,
+    "alignment": 2,
+    "entry_size": 0,
+    "index": 136,
+    "name": ".text.tsl9v4160.code_continuation_8a56"
+  },
+  "owner_symbol_roles": [
+    {
+      "name": "$d.3",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 0,
+      "bytes": 0,
+      "info": 0,
+      "other": 0
+    },
+    {
+      "name": ".Lcode_continuation_00008b6c",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 278,
+      "bytes": 0,
+      "info": 0,
+      "other": 0
+    },
+    {
+      "name": ".Lcode_continuation_00008a96",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 64,
+      "bytes": 0,
+      "info": 0,
+      "other": 0
+    },
+    {
+      "name": ".Lcode_continuation_00008acc",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 118,
+      "bytes": 0,
+      "info": 0,
+      "other": 0
+    },
+    {
+      "name": ".Lcode_continuation_00008abe",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 104,
+      "bytes": 0,
+      "info": 0,
+      "other": 0
+    },
+    {
+      "name": ".Lcode_continuation_00008ace",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 120,
+      "bytes": 0,
+      "info": 0,
+      "other": 0
+    },
+    {
+      "name": ".Lcode_continuation_00008ad6",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 128,
+      "bytes": 0,
+      "info": 0,
+      "other": 0
+    },
+    {
+      "name": ".Lcode_continuation_00008b0a",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 180,
+      "bytes": 0,
+      "info": 0,
+      "other": 0
+    },
+    {
+      "name": ".Lcode_continuation_00008b52",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 252,
+      "bytes": 0,
+      "info": 0,
+      "other": 0
+    },
+    {
+      "name": "",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 0,
+      "bytes": 0,
+      "info": 3,
+      "other": 0
+    },
+    {
+      "name": "__tsl9v4160_call_8a56",
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 0,
+      "bytes": 280,
+      "info": 18,
+      "other": 0
+    }
+  ],
+  "owned_RELA": [
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 4,
+      "type": 16,
+      "addend": 0,
+      "symbol": {
+        "name": ".Lcode_continuation_00008b6c",
+        "owner": ".text.tsl9v4160.code_continuation_8a56",
+        "offset": 278,
+        "bytes": 0,
+        "info": 0,
+        "other": 0
+      }
+    },
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 32,
+      "type": 16,
+      "addend": 0,
+      "symbol": {
+        "name": ".Lcode_continuation_00008a96",
+        "owner": ".text.tsl9v4160.code_continuation_8a56",
+        "offset": 64,
+        "bytes": 0,
+        "info": 0,
+        "other": 0
+      }
+    },
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 40,
+      "type": 16,
+      "addend": 0,
+      "symbol": {
+        "name": ".Lcode_continuation_00008a96",
+        "owner": ".text.tsl9v4160.code_continuation_8a56",
+        "offset": 64,
+        "bytes": 0,
+        "info": 0,
+        "other": 0
+      }
+    },
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 60,
+      "type": 16,
+      "addend": 0,
+      "symbol": {
+        "name": ".Lcode_continuation_00008acc",
+        "owner": ".text.tsl9v4160.code_continuation_8a56",
+        "offset": 118,
+        "bytes": 0,
+        "info": 0,
+        "other": 0
+      }
+    },
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 68,
+      "type": 16,
+      "addend": 0,
+      "symbol": {
+        "name": ".Lcode_continuation_00008abe",
+        "owner": ".text.tsl9v4160.code_continuation_8a56",
+        "offset": 104,
+        "bytes": 0,
+        "info": 0,
+        "other": 0
+      }
+    },
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 76,
+      "type": 16,
+      "addend": 0,
+      "symbol": {
+        "name": ".Lcode_continuation_00008abe",
+        "owner": ".text.tsl9v4160.code_continuation_8a56",
+        "offset": 104,
+        "bytes": 0,
+        "info": 0,
+        "other": 0
+      }
+    },
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 100,
+      "type": 16,
+      "addend": 0,
+      "symbol": {
+        "name": ".Lcode_continuation_00008ace",
+        "owner": ".text.tsl9v4160.code_continuation_8a56",
+        "offset": 120,
+        "bytes": 0,
+        "info": 0,
+        "other": 0
+      }
+    },
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 128,
+      "type": 23,
+      "addend": 0,
+      "symbol": {
+        "name": "__tsl9v4160_data_2000b18c",
+        "owner": ".bss.tsl9v4160.ram",
+        "offset": 29068,
+        "bytes": 0,
+        "info": 16,
+        "other": 0
+      }
+    },
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 132,
+      "type": 24,
+      "addend": 0,
+      "symbol": {
+        "name": ".Lcode_continuation_00008ad6",
+        "owner": ".text.tsl9v4160.code_continuation_8a56",
+        "offset": 128,
+        "bytes": 0,
+        "info": 0,
+        "other": 0
+      }
+    },
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 186,
+      "type": 16,
+      "addend": 0,
+      "symbol": {
+        "name": ".Lcode_continuation_00008b52",
+        "owner": ".text.tsl9v4160.code_continuation_8a56",
+        "offset": 252,
+        "bytes": 0,
+        "info": 0,
+        "other": 0
+      }
+    },
+    {
+      "owner": ".text.tsl9v4160.code_continuation_8a56",
+      "offset": 276,
+      "type": 45,
+      "addend": 0,
+      "symbol": {
+        "name": ".Lcode_continuation_00008b0a",
+        "owner": ".text.tsl9v4160.code_continuation_8a56",
+        "offset": 180,
+        "bytes": 0,
+        "info": 0,
+        "other": 0
+      }
+    }
+  ],
+  "actual_external_incoming": [
+    {
+      "site": 33640,
+      "bytes": 2,
+      "rd": 1,
+      "target": 35414,
+      "link": 33642,
+      "raw_hex": "fd25",
+      "owner": ".text.tsl9v4160.direct_expansion_82d2",
+      "RELA_type": 45
+    },
+    {
+      "site": 33820,
+      "bytes": 2,
+      "rd": 1,
+      "target": 35414,
+      "link": 33822,
+      "raw_hex": "2d2d",
+      "owner": ".text.tsl9v4160.conditional_runtime_838e",
+      "RELA_type": 45
+    },
+    {
+      "site": 39904,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 39908,
+      "raw_hex": "efe07fe7",
+      "owner": ".text.tsl9v4160.ota_handler_9b8e",
+      "RELA_type": 17
+    },
+    {
+      "site": 79272,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 79276,
+      "raw_hex": "ef50efca",
+      "owner": ".text.tsl9v4160.code_continuation_13346",
+      "RELA_type": 17
+    },
+    {
+      "site": 80688,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 80692,
+      "raw_hex": "ef407ff2",
+      "owner": ".text.tsl9v4160.direct_followup_137c0",
+      "RELA_type": 17
+    },
+    {
+      "site": 80768,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 80772,
+      "raw_hex": "ef407fed",
+      "owner": ".text.tsl9v4160.conditional_runtime_13b4c",
+      "RELA_type": 17
+    },
+    {
+      "site": 80942,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 80946,
+      "raw_hex": "ef409fe2",
+      "owner": ".text.tsl9v4160.post_table_code_13bd2",
+      "RELA_type": 17
+    },
+    {
+      "site": 81580,
+      "bytes": 4,
+      "rd": 0,
+      "target": 35414,
+      "link": null,
+      "raw_hex": "6f40bfba",
+      "owner": ".text.tsl9v4160.conditional_runtime_13e98",
+      "RELA_type": 17
+    },
+    {
+      "site": 83768,
+      "bytes": 4,
+      "rd": 1,
+      "target": 35414,
+      "link": 83772,
+      "raw_hex": "ef40efb1",
+      "owner": ".text.tsl9v4160.gatt_ingress_13f7e",
+      "RELA_type": 17
+    }
+  ],
+  "actual_incoming_link_controls": [
+    {
+      "site": 33640,
+      "kind": "actual original incoming instruction bytes",
+      "same_width_target": true,
+      "original_link_contract": {
+        "site": 33640,
+        "bytes": 2,
+        "rd": 1,
+        "target": 35414,
+        "link": 33642,
+        "raw_hex": "fd25"
+      },
+      "mutated_link_contract": {
+        "site": 33640,
+        "bytes": 2,
+        "rd": 0,
+        "target": 35414,
+        "link": null,
+        "raw_hex": "fda5"
+      },
+      "rejected": true,
+      "reason": "Actual incoming width/rd/target/RA/raw contract"
+    },
+    {
+      "site": 79272,
+      "kind": "actual original incoming instruction bytes",
+      "same_width_target": true,
+      "original_link_contract": {
+        "site": 79272,
+        "bytes": 4,
+        "rd": 1,
+        "target": 35414,
+        "link": 79276,
+        "raw_hex": "ef50efca"
+      },
+      "mutated_link_contract": {
+        "site": 79272,
+        "bytes": 4,
+        "rd": 0,
+        "target": 35414,
+        "link": null,
+        "raw_hex": "6f50efca"
+      },
+      "rejected": true,
+      "reason": "Actual incoming width/rd/target/RA/raw contract"
+    },
+    {
+      "site": 81580,
+      "kind": "actual original incoming instruction bytes",
+      "same_width_target": true,
+      "original_link_contract": {
+        "site": 81580,
+        "bytes": 4,
+        "rd": 0,
+        "target": 35414,
+        "link": null,
+        "raw_hex": "6f40bfba"
+      },
+      "mutated_link_contract": {
+        "site": 81580,
+        "bytes": 4,
+        "rd": 1,
+        "target": 35414,
+        "link": 81584,
+        "raw_hex": "ef40bfba"
+      },
+      "rejected": true,
+      "reason": "Actual incoming width/rd/target/RA/raw contract"
+    }
+  ]
+}

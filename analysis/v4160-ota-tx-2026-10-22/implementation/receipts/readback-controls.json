@@ -1,0 +1,110 @@
+{
+  "passed": true,
+  "controls": [
+    {
+      "name": "missing_launch_guard",
+      "rejected": true,
+      "reason": "every actual HOST launch has matching machine guard"
+    },
+    {
+      "name": "wrong_compile_profile",
+      "rejected": true,
+      "reason": "exact actual native source/profile/link command recipes"
+    },
+    {
+      "name": "wrong_source",
+      "rejected": true,
+      "reason": "exact actual native source/profile/link command recipes"
+    },
+    {
+      "name": "actual_RV32_rejected_before_launch",
+      "rejected": true,
+      "reason": "RISC-V ELF is prohibited from host execution"
+    }
+  ],
+  "actual_RV32_object_sha256": "0cc1759335b9a0562c5f264b17233600b212aa62012ac847730193dd6a22e837",
+  "subprocess_calls_for_RV32": 0,
+  "CLI": {
+    "folder": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\cli-readback",
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+          "-X",
+          "utf8",
+          "-B",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\verify_host.py",
+          "--project-root",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea",
+          "--replay",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\verification.json",
+          "--build-root",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\cli-readback\\MUST-NOT-EXIST"
+        ],
+        "exit": 1,
+        "log": "host_build_option.log",
+        "log_sha256": "369223df23691a2f2cb4144deb10ed16cb76a28fbedcbb774527509cc2db6f25",
+        "host_executable_guard": null
+      },
+      {
+        "argv": [
+          "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+          "-X",
+          "utf8",
+          "-B",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\verify_host.py",
+          "--project-root",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea",
+          "--replay",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\verification.json",
+          "--language",
+          "c"
+        ],
+        "exit": 1,
+        "log": "host_language_option.log",
+        "log_sha256": "369223df23691a2f2cb4144deb10ed16cb76a28fbedcbb774527509cc2db6f25",
+        "host_executable_guard": null
+      },
+      {
+        "argv": [
+          "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+          "-X",
+          "utf8",
+          "-B",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-ota-tx-2026-10-22\\implementation\\verify_native.py",
+          "--project-root",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea",
+          "--replay",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\verification.json",
+          "--tool-dir",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\cli-readback"
+        ],
+        "exit": 1,
+        "log": "native_tool_option.log",
+        "log_sha256": "1c93e38665d020127e999f944305d14bc29fbc16e92293ec55ab53b29601f52b",
+        "host_executable_guard": null
+      },
+      {
+        "argv": [
+          "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+          "-X",
+          "utf8",
+          "-B",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-ota-tx-2026-10-22\\implementation\\verify_native.py",
+          "--project-root",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea",
+          "--replay",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\verification.json",
+          "--firmware",
+          "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\cli-readback\\same-official-firmware-validation-only.bin"
+        ],
+        "exit": 0,
+        "log": "alternate-firmware-readonly.log",
+        "log_sha256": "4d9106ea07771ad6a0749d970308105b8a2d54f924a13e4d9ba711a080cadfca",
+        "host_executable_guard": null
+      }
+    ],
+    "alternate_firmware_validation_only_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "RV32_execution": false
+}

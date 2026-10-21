@@ -1,0 +1,75 @@
+{
+  "schema": "ID2966-TX-8A56-original-source-contract-v1",
+  "extent": {"entry": "0x8A56", "end_exclusive": "0x8B6E", "bytes": 280, "instructions": 96, "body_sha256": "3b01d76ded6b08cb239ca3c8d7e789db8b0b7149d4c6d4e48c50d987a1ef2f0b"},
+  "interpretation": "Static raw-source contract and unsigned algebra; not an ISA interpreter, physical packet capture or external API definition",
+  "entry_registers": {"A0": "full32 opaque context/tag", "A1": "full32 command; header/checksum ultimately use low8", "A2": "full32 numeric payload source address; not a lane input", "A3": "full32 unsigned length"},
+  "early_guard": {
+    "PCs": ["0x8A56", "0x8A5A"], "condition": "unsigned1039 < entry A3", "target": "0x8B6C",
+    "A0": "unchanged entry A0", "A5": 1039, "SP_and_memory_touched": false,
+    "second_postgate_length_guard_exists": false
+  },
+  "frame": {
+    "decrement_PC": "0x8A5E", "bytes": 32,
+    "ordered_saves": [["0x8A60", "S0", 24], ["0x8A62", "S1", 20], ["0x8A64", "S2", 16], ["0x8A66", "S3", 12], ["0x8A68", "RA", 28]],
+    "width": 32, "locally_unwritten_frame_offsets": "0..11; no general initialization claim",
+    "capture_order": [["0x8A6E", "S2", "entry A0"], ["0x8A70", "S0", "entry A3"], ["0x8A72", "S1", "entry A2"], ["0x8A74", "S3", "entry A1"]],
+    "address_rule": "Every save/restore uses SP live at that exact instruction; restored words are fresh reads and may have changed through aliasing or opaque callees"
+  },
+  "lane_selection": {
+    "lane0": ["8A6A READ16 zero-extended at liveGP+0x96 intoA4", "8A76 compare full32 entryA0 against zero-extended A4; mismatch enters lane1 check", "8A7A/7C materialize0xFFFE;8A7E excludes equalA4", "8A86 fresh READ32 target at0x4013C", "8A8A A1=liveGP+0x80", "8A8E C.JALR RA,A5", "8A90/92 accept only returnedA0==1", "8ACC setsA2=0"],
+    "lane1": ["8A96 fresh READ16 zero-extended at currentGP+0x9A intoA5", "8A9A compares A5 against live full32 S2; mismatch restores/returns", "8A9E/AA0 materialize0xFFFE;8AA2 excludes equalS2", "8AAA fresh READ32 target at0x4013C", "8AAE A1=currentGP+0x80", "8AB2 A0=liveS2", "8AB4 C.JALR RA,A5", "8AB6 setsA5=1;8AB8 setsA2=1 EVEN if the next predicate fails", "8ABA accepts only returnedA0==1; otherwise restore/return"],
+    "full32_context_not_u16": true,
+    "source_local_lane_after_success": "A2 is explicitly0 or1; no opaque calls between lane selection and final tail",
+    "callee_identity": "The two slot0x4013C callees are opaque; compare-to-one gates do not establish an allocator, permission API, BLE service name or common error semantics"
+  },
+  "opaque_gate_calls": [
+    {"PC": "0x8A8E", "target_load_PC": "0x8A86", "slot_address": "0x4013C", "slot_width": 32, "link_register": "RA", "link_PC": "0x8A90", "known_local_arguments": {"A0": "entry context", "A1": "liveGP+0x80", "A2": "entry source address", "A3": "entry length"}, "other_state": "A4=first zero-extended handle before call;A5=target;no opaque preservation is assumed"},
+    {"PC": "0x8AB4", "target_load_PC": "0x8AAA", "slot_address": "0x4013C", "slot_width": 32, "link_register": "RA", "link_PC": "0x8AB6", "known_local_arguments": {"A0": "live S2", "A1": "currentGP+0x80", "A2": "entry source address if first gate was not called; otherwise first-gate residue", "A3": "entry length if first gate was not called; otherwise first-gate residue"}, "other_state": "S0/S1/S2/S3/SP/GP may be changed by the first gate; no synthetic ordinary-ABI guarantee"}
+  ],
+  "buffer_and_packet_algebra": {
+    "PCREL_pair": ["0x8AD6 AUIPC A3,0x20002000", "0x8ADA ADDI A3,A3,1718"],
+    "static_PC_relative_target": "0x2000B18C", "linked_symbol": "__tsl9v4160_data_2000b18c in .bss.tsl9v4160.ram",
+    "B": "u32(0x2000B18C + lane*1062)", "P": "u32(B+6)", "N": "post-gate live S0 used by the payload loop, before the later +6 and fresh restore",
+    "stride_instruction": "8AD2 and8B1E are MUL (funct7=1/funct3=0), not REMU",
+    "magic_materialization": "8ADE LUI A4,0xFFFF8000;8AE0 XORI A4,-171 => unsigned0x00007F55; not ADDI",
+    "ordered_header_writes": [["0x8AEC", "WRITE16", "P+0", "0x7F55 (little-endian55 7F)"], ["0x8AF0", "WRITE8", "P+4", "low8(liveS0 length)"], ["0x8AFA", "WRITE8", "P+3", "low8(liveS0>>8)"], ["0x8B00", "WRITE8", "P+2", "low8(liveS3 command)"]],
+    "logical_packet_bytes": "55 7F COMMAND_LOW8 LENGTH_HIGH8 LENGTH_LOW8 PAYLOAD_BYTES CHECKSUM_LOW8; this is a local memory layout, not physical wire evidence",
+    "checksum": "sum modulo256 of command + low8(length) + (length>>8) + each freshly read payload byte; magic bytes excluded; not a polynomial CRC",
+    "checksum_write": ["0x8B16", "WRITE8", "u32(P+liveS0+5)", "final low8 sum"],
+    "record_metadata_writes": [["0x8B32", "WRITE16", "B+2", "low16(u32(liveS0+6))"], ["0x8B36", "WRITE16", "B+4", "0"]],
+    "metadata_zero_is_not_SW": true,
+    "record_B0_B1_initialized_locally": false,
+    "no_header_overlap_from_metadata_zero": "SH atB+4 coversB+4..5; magic startsB+6"
+  },
+  "payload_loop": {
+    "initial_counter_PC": "0x8B08 A1=0", "header_PC": "0x8B0A",
+    "guard": "8B0A SLLI A0,A1,16;8B0E SRLI A0,A0,16;8B10 BLTU A0,liveS0 to8B52; compares low16(full32counter) with full32 currentS0",
+    "ordered_body": [["0x8B52", "A0=u32(liveS1+full32counter)"], ["0x8B56", "READ8 unsigned atA0 intoA0"], ["0x8B5A", "A6=u32(P+full32counter)"], ["0x8B5E", "A1=u32(A1+1)"], ["0x8B60", "A4=u32(A4+payloadByte)"], ["0x8B62", "WRITE8(A6+5,payloadByte)"], ["0x8B66", "A4&=255"], ["0x8B6A", "C.J (rd0) to8B0A"]],
+    "source_and_destination_use_full32_counter": true,
+    "forward_alias_feedback": "Every byte is read immediately before its corresponding write. Source/destination/frame overlap is not excluded; a whole-buffer snapshot or memcpy assumption changes this contract",
+    "finite_bound_condition": "If stable post-gate S0 is <=65535 and accesses complete, loop iterates that many times. Original entry guard guarantees<=1039 only before opaque calls",
+    "postgate_S0_above65535": "Low16 counter is always smaller; no ordinary terminating guard value. A HOST budget may stop with explicit unknown/budget flow but must not fabricate an original native guard or normal return",
+    "physical_buffer_bounds_or_alignment_proved": false
+  },
+  "failure_return": {
+    "restore_order": [["0x8ABE", "RA", 28], ["0x8AC0", "S0", 24], ["0x8AC2", "S1", 20], ["0x8AC4", "S2", 16], ["0x8AC6", "S3", 12]],
+    "SP_increment_PC": "0x8AC8", "RET_PC": "0x8ACA", "return_target": "fresh saved RA, with JALR target bit0 cleared",
+    "A0_path_cases": ["No opaque gate called: entryA0 remains", "First gate returned but second lane is ineligible: first-gate A0 residue remains", "Second gate returned non-one: second-gate A0 residue remains"],
+    "A2": "Entry address if no gate; first-gate residue if no second call; forced1 after second call even on failure",
+    "A5_at_failure": "Second-handle value on8A9A mismatch,0xFFFE on8AA2 sentinel exclusion,or1 on8ABA predicate failure",
+    "single_common_status": false,
+    "other_caller_saved_registers": "Opaque residues plus explicit local writes; no blanket preservation statement"
+  },
+  "success_tail": {
+    "restore_before_metadata": [["0x8B26", "RA", 28], ["0x8B28", "S1", 20], ["0x8B2A", "S2", 16], ["0x8B2C", "S3", 12]],
+    "interleaving": ["8B2E A1=1", "8B32/36 record WRITE16 metadata", "8B3A/3E A2=u32(currentGP+0x94+4*lane)", "8B40 fresh READ32 restoreS0 atSP+24", "8B42 A5=0x40000", "8B46 fresh READ32 T1 at0x40050", "8B4A READ8 unsigned A0 atA2+0", "8B4E currentSP+=32", "8B50 JR T1 (rd0), no link"],
+    "boundary_arguments": {"A0": "unsigned READ8(currentGP+0x94+4*lane)", "A1": 1, "A2": "numeric pointer currentGP+0x94+4*lane", "A3": "0x2000B18C", "A4": "final8-bit additive sum", "A5": "0x40000", "A6": "u32(P+N-1) when nonzero payload loop ran; opaque incoming residue when zero-length", "A7": "locally untouched opaque residue", "T1": "fresh slot0x40050 target"},
+    "A6_formula_note": "A6 is P+(length-1), the base used with store offset5; it is not the final destination byte address",
+    "restored_registers": "Fresh RA/S0/S1/S2/S3 frame words; liveSP+32",
+    "continuation": "JALR clears target bit0. Tail callee may return to fresh savedRA, transfer, fault or never return; local code does not normalize its result"
+  },
+  "source_call_inventory": {"opaque_predicate_calls": 2, "opaque_terminal_tail": 1, "direct_allocator_calls": 0, "direct_copy_calls": 0, "direct_release_calls": 0, "no_callee_internal_allocation_claim": true},
+  "recorded_references": {"canonical_original_FUNC_size": 280, "owned_RELA": 11, "owned_internal_target_refs": 10, "owned_external_data_PCREL_HI": 1, "external_incoming": 9, "incoming_linked_calls": 8, "incoming_no_link_tail": 1, "external_recorded_interior": 0, "computed_or_encoded_interior_absence_proved": false},
+  "direct_local_written_GPRs": [1, 2, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19],
+  "limits": {"opaque_GP_SP_S_preservation_proved": false, "native_C_ABI_transparency_proved": false, "interrupt_or_fault_pointwise_identity_proved": false, "resident_slot_function_identity_known": false, "physical_memory_validity_proved": false, "hardware_or_BLE_verified": false, "OTA_ready": false, "callee_nonreturn_rule": "Stop the observed prefix on any nonreturn/unknown operation; no fabricated suffix"}
+}

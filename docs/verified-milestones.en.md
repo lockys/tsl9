@@ -1,5 +1,15 @@
 # Verified milestones
 
+## Original OTA packet construction and measured native differences
+
+Actual C11/C++17 host suites each pass 107 cases / 15,605 checks and eight compiled semantic negatives. Independent suites each pass 31 cases / 78,283 checks and fourteen compiled semantic negatives. These use synthetic providers, numeric memory and explicit ROM boundaries; they do not execute or emulate RV32. Every host executable is checked by the existing immutable machine guard.
+
+Readable C/C++ now follows `0x8A56..0x8B6E`: the original 280 bytes / 96 instructions, forty operand mutations, nine external direct entries and eleven owner RELA records have been checked. The entry payload limit is 1039 bytes and buffer stride is 1062 bytes. Original descriptor writes are 16 bits and the final task read is one byte; wider memory operations are not interchangeable.
+
+The compile probe fits the original 280-byte section, but independent review rejects original ABI admission. Its frame precedes the original guard, restores occur later, and some operands/control flow differ. An existing-word permutation alone cannot close these gaps. This is readable logic reconstruction and bounded native-gap evidence, **not a new complete image or flashable BIN**. The complete image remains the twelve-function / 650-byte version below.
+
+Offline packet preflight and update wait-reason display are recorded proposals, not implemented hardware features. ROM slots retain raw numeric/live-register contracts; candidate SDK names do not identify the installed version or prove its ABI. See the [analysis](../analysis/v4160-ota-tx-2026-10-22/readme.en.md) and [follow-up path](../analysis/v4160-ota-tx-2026-10-22/continuation-plan/readme.en.md).
+
 ## Twelve readable functions in the complete image with full header dependencies
 
 The OTA page reply is now integrated, bringing readable code to twelve functions / 650 bytes. Fresh C11/C++17 pipelines each compile 34 original carriers and nine readable units. Their 61 commands comprise 59 LLVM operations and two explicit ABI ordering stages. Each language records 223 actual artifact pins and 41 integration controls. Both 76,800-byte outputs exactly match official ID2966 V4.1.60 SHA-256 `0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667`.

@@ -6,6 +6,8 @@ This project preserves the original APK, 22 distinct updater BINs, readable C/C+
 
 ## Portable verification
 
+New work follows OTA transmit entry `0x8A56`: all original 280 bytes / 96 instructions are checked, including forty rejected operand mutations. The readable C/C++ compile probe now fits 280 bytes, but entry/return stack order still differs. **It is not integrated into the complete image or admitted as a direct replacement.** See the [current analysis](analysis/v4160-ota-tx-2026-10-22/readme.en.md) and [transmit-path follow-up / feature proposals](analysis/v4160-ota-tx-2026-10-22/continuation-plan/readme.en.md).
+
 The latest complete image integrates the OTA page reply: twelve readable IRQ/Flash/OTA functions total 650 bytes, and the complete 76,800-byte BIN matches official ID2966 V4.1.60. Each C/C++ pipeline freshly compiles 43 translation units, records complete header dependencies and runs 61 commands including two explicit ABI ordering stages. The remaining 679 sections still use original carriers. This is partial source recovery, **not hardware or BLE OTA validation**. See the [new integration](analysis/v4160-reply-image-integration-2026-10-22/readme.en.md) and [offline image](artifacts/offline-images/ID2966-V4.1.60-reply-integrated/readme.en.md).
 
 Requirements: Python 3.10+, a C11/C++17 compiler, and a POSIX shell. Linux can use GCC or Clang, macOS can use Clang, and Windows can use Git Bash plus Visual Studio C++ Build Tools. PowerShell and CMake are not required by the portable entry.

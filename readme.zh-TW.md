@@ -6,6 +6,8 @@
 
 ## 跨平台驗證
 
+新增追查 OTA 傳送入口 `0x8A56`：原始 280 bytes／96 條指令已逐條核對，40 項運算元反例被拒絕。可讀 C/C++ 的編譯探針已符合 280-byte 大小，但入口與返回的堆疊順序仍未吻合，**尚未納入完整映像，也不是可直接替換的函式**。詳見[本輪分析](analysis/v4160-ota-tx-2026-10-22/README.md)及[後續傳送路徑與新功能提案](analysis/v4160-ota-tx-2026-10-22/continuation-plan/README.md)。
+
 最新完整映像已納入 OTA 頁面回覆：12 個可讀 IRQ／Flash／OTA 函式共 650 bytes，完整 76,800-byte BIN 與官方 ID2966 V4.1.60 相同。C、C++ 各新編譯 43 個單元，61 個命令含兩次明確 ABI 排序；全部單元記錄完整標頭依賴。其餘 679 個區段仍使用原始承載，這是部分來源重建，**不是原硬體或 BLE OTA 驗證**。詳見[新版整合](analysis/v4160-reply-image-integration-2026-10-22/README.md)與[離線映像](artifacts/offline-images/ID2966-V4.1.60-reply-integrated/README.md)。
 
 需要Python 3.10以上、C11／C++17編譯器及POSIX shell。Linux可用GCC或Clang；macOS可用Clang；Windows可用Git Bash加Visual Studio C++ Build Tools。新的跨平台入口不需要PowerShell或CMake。

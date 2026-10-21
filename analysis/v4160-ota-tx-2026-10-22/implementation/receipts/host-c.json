@@ -1,0 +1,881 @@
+{
+  "schema": "TSL9-OTA-TX-synthetic-host-v1",
+  "passed": true,
+  "mode": "c",
+  "tests": {
+    "passed": true,
+    "groups": 4,
+    "cases": 107,
+    "checks": 15605,
+    "synthetic_provider": true,
+    "RV32_execution": false
+  },
+  "source_sha256": {
+    "src/host_io.c": "f795021fc5116ba18a16000eeebf6a2a235b3a2c9de4d0104f2396d7872d81aa",
+    "src/host_io.h": "1755ca187eb54fb95bb5b1523c8955c8f99883048115e5c8481972d706c8c4c6",
+    "src/tx_io.h": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f",
+    "src/tx_native.c": "d246669c3758acc93808339b40a84c9ac74d4fd163bc8748ac4d0e99cf1ba0dd",
+    "src/tx_native.h": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4",
+    "tests/test_tx.c": "0aa0c23570dcdf99bf5a1cf6171bd28017384259af56dc7b25839e67c41889aa"
+  },
+  "runner_sha256": "2ab502e9a2d19a8d62fb7b6a9a9d0da62086513a9ee21a45fc7911213c76882d",
+  "helper_sha256": "93933fcb13a0fc45c9c5c82ebb1584a94298e28888d4f7f6a359237c7d3f8754",
+  "guard_sha256": "f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb",
+  "compiler": {
+    "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+    "sha256": "88c8344236a27a6e727e0a8edc49aaa2690bdc7a9464b9d18cc7abe70a9f1c0d"
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+        "/nologo",
+        "/W4",
+        "/WX",
+        "/Od",
+        "/TC",
+        "/std:c11",
+        "/DTX_HOST_TEST=1",
+        "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\src",
+        "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\src\\tx_native.c",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\src\\host_io.c",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\tests\\test_tx.c",
+        "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\tests.exe",
+        "/link",
+        "/INCREMENTAL:NO"
+      ],
+      "exit": 0,
+      "log": "compile.log",
+      "log_sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa",
+      "host_executable_guard": null
+    },
+    {
+      "argv": [
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\tests.exe"
+      ],
+      "exit": 0,
+      "log": "tests.log",
+      "log_sha256": "cff95f66c64d2fcd52387d3bb101b855a08848b6d2d6068be6bdae78689fe065",
+      "host_executable_guard": {
+        "format": "PE",
+        "machine": 34404,
+        "bits": 64,
+        "host_arch": "x86_64",
+        "host_platform": "win32",
+        "bytes": 162304,
+        "sha256": "36f1f0b9cdd3519deb3e3ba0696aa16a66e0a376b958fb47e46f0fab50361134"
+      }
+    }
+  ],
+  "actual_compiled_controls": [
+    {
+      "name": "stride",
+      "file": "src/host_io.h",
+      "old": "(v)*TX_ARG5(1062u)",
+      "new": "(v)*TX_ARG5(1063u)",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTX_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stride\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stride\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stride\\src\\tx_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stride\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stride\\tests\\test_tx.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stride\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stride\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "52369a01e69d59c102193c81d4a630ff423ce4cd54ffeb4efa0708ceb23df2b2",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 162304,
+            "sha256": "0f02107c1f40fc684d2f4fa2cd68c477612d13726297bedd59e3c9fe80bc1817"
+          }
+        }
+      ]
+    },
+    {
+      "name": "checksum",
+      "file": "src/tx_native.c",
+      "old": "checksum=TX_ARG4(checksum+byte);",
+      "new": "checksum=TX_ARG4(checksum+1u);",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTX_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\checksum\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\checksum\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\checksum\\src\\tx_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\checksum\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\checksum\\tests\\test_tx.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\checksum\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\checksum\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "14bf94937b54bf72db56876f5140f3651be7842d0887bc220f1c80677cadb33d",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 162304,
+            "sha256": "a541d29002d341da634627ec04b21a29236ee6b5f4af1b2d96fbf9faf9db366e"
+          }
+        }
+      ]
+    },
+    {
+      "name": "metadata_width",
+      "file": "src/host_io.h",
+      "old": "tx_write(h,(site),(addr),2,(v),1);",
+      "new": "tx_write(h,(site),(addr),4,(v),1);",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTX_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\metadata_width\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\metadata_width\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\metadata_width\\src\\tx_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\metadata_width\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\metadata_width\\tests\\test_tx.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\metadata_width\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\metadata_width\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "52369a01e69d59c102193c81d4a630ff423ce4cd54ffeb4efa0708ceb23df2b2",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 162304,
+            "sha256": "cc3558bbd061a863464c0dabe6bdf5d5a19f393c4b0c2f71e240965a3807fffd"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ambient_A2",
+      "file": "src/host_io.c",
+      "old": "tx_set(h,1,site+2u);",
+      "new": "tx_set(h,1,site+2u);tx_set(h,12,0u);",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTX_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\ambient_A2\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\ambient_A2\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\ambient_A2\\src\\tx_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\ambient_A2\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\ambient_A2\\tests\\test_tx.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\ambient_A2\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\ambient_A2\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "d13119ac14d11f83cf83724d0404f8e6336a25682739bd113bebcdc23c6fc1f2",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 162304,
+            "sha256": "6a5b944ff0a4c9b38a57227b22c8e218cd1e1b62ac36929b99026bfc3c063874"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stale_GP",
+      "file": "src/host_io.h",
+      "old": "(v)=tx_get(h,3);",
+      "new": "(v)=0x20000000u;",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTX_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_GP\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_GP\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_GP\\src\\tx_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_GP\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_GP\\tests\\test_tx.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_GP\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_GP\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "2b82c2ec2a044ad709b4747f08ffed17cfb747f0bf6da52cd8f08457c8bc5496",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 162304,
+            "sha256": "757a6e170f5822c8f5956a16f019a9459420704fee6e4ef81474f66568d0bc7d"
+          }
+        }
+      ]
+    },
+    {
+      "name": "tail_status",
+      "file": "src/host_io.c",
+      "old": "if(h->flow==TX_CONTINUE)h->flow=TX_RETURNED;",
+      "new": "if(h->flow==TX_CONTINUE){tx_set(h,10,0u);h->flow=TX_RETURNED;}",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTX_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\tail_status\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\tail_status\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\tail_status\\src\\tx_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\tail_status\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\tail_status\\tests\\test_tx.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\tail_status\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\tail_status\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "8ca002489a568fc794b99ef55386463eb3ce86642dbecfa9d4b56fc98e97682e",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 162304,
+            "sha256": "0488f46a28a360ebfab93afc5315c3c041f0fb0689961e4a0f847aa372e2714c"
+          }
+        }
+      ]
+    },
+    {
+      "name": "stale_source",
+      "file": "src/tx_native.c",
+      "old": "TX_LIVE_S1(payload);payload=TX_ARG0(payload+index);",
+      "new": "payload=TX_ARG0(source+index);",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTX_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_source\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_source\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_source\\src\\tx_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_source\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_source\\tests\\test_tx.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_source\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\stale_source\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "70f7de2d9ea533b39f402839ac8f9839233ffff7a851e01bc481f64972e2fad5",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 162304,
+            "sha256": "871bf1280d421405a29e4eae38b3711e870f437250fdf6313278010d5028112b"
+          }
+        }
+      ]
+    },
+    {
+      "name": "invented_bound",
+      "file": "src/tx_native.c",
+      "old": "        TX_LIVE_S0(n);\n        if(TX_INDEX0(index)>=n)",
+      "new": "        TX_LIVE_S0(n);n=length;\n        if(TX_INDEX0(index)>=n)",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DTX_HOST_TEST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\invented_bound\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\invented_bound\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\invented_bound\\src\\tx_native.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\invented_bound\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\invented_bound\\tests\\test_tx.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\invented_bound\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-host-final\\c\\compiled-controls\\invented_bound\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "2b82c2ec2a044ad709b4747f08ffed17cfb747f0bf6da52cd8f08457c8bc5496",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 162304,
+            "sha256": "858b65c8a5e7a43c4984d901f598e2cfa597ae97048398f9d4db65b1a5b44ce0"
+          }
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "compile.log": {
+      "bytes": 61,
+      "sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa"
+    },
+    "host_io.obj": {
+      "bytes": 8628,
+      "sha256": "b504a707d5afd79fa4055cf106ffa01e33914fbab51733879a6d6411980b261b"
+    },
+    "tests.exe": {
+      "bytes": 162304,
+      "sha256": "36f1f0b9cdd3519deb3e3ba0696aa16a66e0a376b958fb47e46f0fab50361134"
+    },
+    "tests.log": {
+      "bytes": 104,
+      "sha256": "cff95f66c64d2fcd52387d3bb101b855a08848b6d2d6068be6bdae78689fe065"
+    },
+    "test_tx.obj": {
+      "bytes": 19698,
+      "sha256": "2a27bd770334e7c07293173621646b8f16e9f59056511e92e03e792c0ead736c"
+    },
+    "tx_native.obj": {
+      "bytes": 10021,
+      "sha256": "7cd1cc9373c45042f3d1a33d5a0087c060b5247b77ef0592691c0a3b89fa32cd"
+    },
+    "compiled-controls/ambient_A2/compile.log": {
+      "bytes": 61,
+      "sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa"
+    },
+    "compiled-controls/ambient_A2/host_io.obj": {
+      "bytes": 8682,
+      "sha256": "8e5cb4fa173f6535b79b171b155df3fb62eaa595ffe9b5d042aa98a7001548b9"
+    },
+    "compiled-controls/ambient_A2/negative.exe": {
+      "bytes": 162304,
+      "sha256": "6a5b944ff0a4c9b38a57227b22c8e218cd1e1b62ac36929b99026bfc3c063874"
+    },
+    "compiled-controls/ambient_A2/tests.log": {
+      "bytes": 17,
+      "sha256": "d13119ac14d11f83cf83724d0404f8e6336a25682739bd113bebcdc23c6fc1f2"
+    },
+    "compiled-controls/ambient_A2/test_tx.obj": {
+      "bytes": 19726,
+      "sha256": "efaf6717b45850ff39c773f2c3168bcd5afb6840a82ee87cd7ce7258b9b1e04f"
+    },
+    "compiled-controls/ambient_A2/tx_native.obj": {
+      "bytes": 10049,
+      "sha256": "379876c88619df9d5188d81a3b2d317f91824be8b9473dd646c1ca985a7e50c1"
+    },
+    "compiled-controls/ambient_A2/src/host_io.c": {
+      "bytes": 4849,
+      "sha256": "5490f351284e605507467f447b4af5360d36168b6ead1651654cab5a6937797c"
+    },
+    "compiled-controls/ambient_A2/src/host_io.h": {
+      "bytes": 5369,
+      "sha256": "1755ca187eb54fb95bb5b1523c8955c8f99883048115e5c8481972d706c8c4c6"
+    },
+    "compiled-controls/ambient_A2/src/tx_io.h": {
+      "bytes": 4066,
+      "sha256": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f"
+    },
+    "compiled-controls/ambient_A2/src/tx_native.c": {
+      "bytes": 3119,
+      "sha256": "d246669c3758acc93808339b40a84c9ac74d4fd163bc8748ac4d0e99cf1ba0dd"
+    },
+    "compiled-controls/ambient_A2/src/tx_native.h": {
+      "bytes": 425,
+      "sha256": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4"
+    },
+    "compiled-controls/ambient_A2/tests/test_tx.c": {
+      "bytes": 7467,
+      "sha256": "0aa0c23570dcdf99bf5a1cf6171bd28017384259af56dc7b25839e67c41889aa"
+    },
+    "compiled-controls/checksum/compile.log": {
+      "bytes": 61,
+      "sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa"
+    },
+    "compiled-controls/checksum/host_io.obj": {
+      "bytes": 8656,
+      "sha256": "bf6101e6a83f70fc9270a1b203bd9678100b0fb6382516ff75de89b3ec74b4a3"
+    },
+    "compiled-controls/checksum/negative.exe": {
+      "bytes": 162304,
+      "sha256": "a541d29002d341da634627ec04b21a29236ee6b5f4af1b2d96fbf9faf9db366e"
+    },
+    "compiled-controls/checksum/tests.log": {
+      "bytes": 18,
+      "sha256": "14bf94937b54bf72db56876f5140f3651be7842d0887bc220f1c80677cadb33d"
+    },
+    "compiled-controls/checksum/test_tx.obj": {
+      "bytes": 19726,
+      "sha256": "c818101531dfa61494a2bac9b0a0f49b1d0a5622b2329d76c8c586bd6006cd97"
+    },
+    "compiled-controls/checksum/tx_native.obj": {
+      "bytes": 10036,
+      "sha256": "77fb1a1d20f002d7f5769aaafbeb642ff7c53802a50f322ea9e84f3d8a2bbb3a"
+    },
+    "compiled-controls/checksum/src/host_io.c": {
+      "bytes": 4833,
+      "sha256": "f795021fc5116ba18a16000eeebf6a2a235b3a2c9de4d0104f2396d7872d81aa"
+    },
+    "compiled-controls/checksum/src/host_io.h": {
+      "bytes": 5369,
+      "sha256": "1755ca187eb54fb95bb5b1523c8955c8f99883048115e5c8481972d706c8c4c6"
+    },
+    "compiled-controls/checksum/src/tx_io.h": {
+      "bytes": 4066,
+      "sha256": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f"
+    },
+    "compiled-controls/checksum/src/tx_native.c": {
+      "bytes": 3117,
+      "sha256": "7076671147bef4d12b4ce6f531abe9bea46081436f54491e6e1badf150fad0a3"
+    },
+    "compiled-controls/checksum/src/tx_native.h": {
+      "bytes": 425,
+      "sha256": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4"
+    },
+    "compiled-controls/checksum/tests/test_tx.c": {
+      "bytes": 7467,
+      "sha256": "0aa0c23570dcdf99bf5a1cf6171bd28017384259af56dc7b25839e67c41889aa"
+    },
+    "compiled-controls/invented_bound/compile.log": {
+      "bytes": 61,
+      "sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa"
+    },
+    "compiled-controls/invented_bound/host_io.obj": {
+      "bytes": 8660,
+      "sha256": "ece0cb48b43a1460f07aaaeb3143382c21a4c61de0c977596ba5b11add1fe6e9"
+    },
+    "compiled-controls/invented_bound/negative.exe": {
+      "bytes": 162304,
+      "sha256": "858b65c8a5e7a43c4984d901f598e2cfa597ae97048398f9d4db65b1a5b44ce0"
+    },
+    "compiled-controls/invented_bound/tests.log": {
+      "bytes": 18,
+      "sha256": "2b82c2ec2a044ad709b4747f08ffed17cfb747f0bf6da52cd8f08457c8bc5496"
+    },
+    "compiled-controls/invented_bound/test_tx.obj": {
+      "bytes": 19730,
+      "sha256": "8c6a6db2829dbdd16b8a35612d395dbeb96cf7501065e986c8b4780ea771c24a"
+    },
+    "compiled-controls/invented_bound/tx_native.obj": {
+      "bytes": 10064,
+      "sha256": "f66217de4e525f9d704d32305641cf2b40ff621c75a8d21f8f29e413dc03e0b8"
+    },
+    "compiled-controls/invented_bound/src/host_io.c": {
+      "bytes": 4833,
+      "sha256": "f795021fc5116ba18a16000eeebf6a2a235b3a2c9de4d0104f2396d7872d81aa"
+    },
+    "compiled-controls/invented_bound/src/host_io.h": {
+      "bytes": 5369,
+      "sha256": "1755ca187eb54fb95bb5b1523c8955c8f99883048115e5c8481972d706c8c4c6"
+    },
+    "compiled-controls/invented_bound/src/tx_io.h": {
+      "bytes": 4066,
+      "sha256": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f"
+    },
+    "compiled-controls/invented_bound/src/tx_native.c": {
+      "bytes": 3128,
+      "sha256": "e45498aa28b8d99b3a4dcf15906eabe20b0eb549fa9c0748f436d3c98219f889"
+    },
+    "compiled-controls/invented_bound/src/tx_native.h": {
+      "bytes": 425,
+      "sha256": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4"
+    },
+    "compiled-controls/invented_bound/tests/test_tx.c": {
+      "bytes": 7467,
+      "sha256": "0aa0c23570dcdf99bf5a1cf6171bd28017384259af56dc7b25839e67c41889aa"
+    },
+    "compiled-controls/metadata_width/compile.log": {
+      "bytes": 61,
+      "sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa"
+    },
+    "compiled-controls/metadata_width/host_io.obj": {
+      "bytes": 8660,
+      "sha256": "775035019a594d75f09cb0c278d379b87a39a0b54a176e4607381309f8ca8594"
+    },
+    "compiled-controls/metadata_width/negative.exe": {
+      "bytes": 162304,
+      "sha256": "cc3558bbd061a863464c0dabe6bdf5d5a19f393c4b0c2f71e240965a3807fffd"
+    },
+    "compiled-controls/metadata_width/tests.log": {
+      "bytes": 17,
+      "sha256": "52369a01e69d59c102193c81d4a630ff423ce4cd54ffeb4efa0708ceb23df2b2"
+    },
+    "compiled-controls/metadata_width/test_tx.obj": {
+      "bytes": 19730,
+      "sha256": "de4d914c1cbdf7ef63a46b8214df9036005d4457d35993a59cb6cf67e247d3d7"
+    },
+    "compiled-controls/metadata_width/tx_native.obj": {
+      "bytes": 10053,
+      "sha256": "f862d6e8a0d6699ef98641e2329e5fd7ad84b9707b501a464bb276206ff1124f"
+    },
+    "compiled-controls/metadata_width/src/host_io.c": {
+      "bytes": 4833,
+      "sha256": "f795021fc5116ba18a16000eeebf6a2a235b3a2c9de4d0104f2396d7872d81aa"
+    },
+    "compiled-controls/metadata_width/src/host_io.h": {
+      "bytes": 5369,
+      "sha256": "40f0b2ad13f597bf02e9cfb90b9fe5f9f9b0ca5c5f6792774a3ed1abbc682398"
+    },
+    "compiled-controls/metadata_width/src/tx_io.h": {
+      "bytes": 4066,
+      "sha256": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f"
+    },
+    "compiled-controls/metadata_width/src/tx_native.c": {
+      "bytes": 3119,
+      "sha256": "d246669c3758acc93808339b40a84c9ac74d4fd163bc8748ac4d0e99cf1ba0dd"
+    },
+    "compiled-controls/metadata_width/src/tx_native.h": {
+      "bytes": 425,
+      "sha256": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4"
+    },
+    "compiled-controls/metadata_width/tests/test_tx.c": {
+      "bytes": 7467,
+      "sha256": "0aa0c23570dcdf99bf5a1cf6171bd28017384259af56dc7b25839e67c41889aa"
+    },
+    "compiled-controls/stale_GP/compile.log": {
+      "bytes": 61,
+      "sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa"
+    },
+    "compiled-controls/stale_GP/host_io.obj": {
+      "bytes": 8656,
+      "sha256": "b2bf2f34acbd85fb0c3c6a67fdb83ab83175fb7cfa8d6a6c4d014de162545cb3"
+    },
+    "compiled-controls/stale_GP/negative.exe": {
+      "bytes": 162304,
+      "sha256": "757a6e170f5822c8f5956a16f019a9459420704fee6e4ef81474f66568d0bc7d"
+    },
+    "compiled-controls/stale_GP/tests.log": {
+      "bytes": 18,
+      "sha256": "2b82c2ec2a044ad709b4747f08ffed17cfb747f0bf6da52cd8f08457c8bc5496"
+    },
+    "compiled-controls/stale_GP/test_tx.obj": {
+      "bytes": 19726,
+      "sha256": "f2be462cae2a19361e6325ea6a51a60e9c4a70481a7c866c894a80c430007e07"
+    },
+    "compiled-controls/stale_GP/tx_native.obj": {
+      "bytes": 9925,
+      "sha256": "12c5a65077a2d4005a26eefe33033a5baa367f68066aab23bf6aec2c39261212"
+    },
+    "compiled-controls/stale_GP/src/host_io.c": {
+      "bytes": 4833,
+      "sha256": "f795021fc5116ba18a16000eeebf6a2a235b3a2c9de4d0104f2396d7872d81aa"
+    },
+    "compiled-controls/stale_GP/src/host_io.h": {
+      "bytes": 5369,
+      "sha256": "ed137d80b12006dd3f66ef2fdb2c9b489a03b3581619f1feb02498b386408b16"
+    },
+    "compiled-controls/stale_GP/src/tx_io.h": {
+      "bytes": 4066,
+      "sha256": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f"
+    },
+    "compiled-controls/stale_GP/src/tx_native.c": {
+      "bytes": 3119,
+      "sha256": "d246669c3758acc93808339b40a84c9ac74d4fd163bc8748ac4d0e99cf1ba0dd"
+    },
+    "compiled-controls/stale_GP/src/tx_native.h": {
+      "bytes": 425,
+      "sha256": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4"
+    },
+    "compiled-controls/stale_GP/tests/test_tx.c": {
+      "bytes": 7467,
+      "sha256": "0aa0c23570dcdf99bf5a1cf6171bd28017384259af56dc7b25839e67c41889aa"
+    },
+    "compiled-controls/stale_source/compile.log": {
+      "bytes": 61,
+      "sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa"
+    },
+    "compiled-controls/stale_source/host_io.obj": {
+      "bytes": 8660,
+      "sha256": "0203184d6a3fb949815ae80fcad426f09cd96555d9cf4c3812e044025ecca7ba"
+    },
+    "compiled-controls/stale_source/negative.exe": {
+      "bytes": 162304,
+      "sha256": "871bf1280d421405a29e4eae38b3711e870f437250fdf6313278010d5028112b"
+    },
+    "compiled-controls/stale_source/tests.log": {
+      "bytes": 18,
+      "sha256": "70f7de2d9ea533b39f402839ac8f9839233ffff7a851e01bc481f64972e2fad5"
+    },
+    "compiled-controls/stale_source/test_tx.obj": {
+      "bytes": 19730,
+      "sha256": "eaeb2df0f9625be6fee0c128010fddbb61e7c31a4f698686b29f95ac60d13801"
+    },
+    "compiled-controls/stale_source/tx_native.obj": {
+      "bytes": 9923,
+      "sha256": "fa36d3489edff4c4226dae597af1c1dcdefa013be90987b1c7abc81f54374372"
+    },
+    "compiled-controls/stale_source/src/host_io.c": {
+      "bytes": 4833,
+      "sha256": "f795021fc5116ba18a16000eeebf6a2a235b3a2c9de4d0104f2396d7872d81aa"
+    },
+    "compiled-controls/stale_source/src/host_io.h": {
+      "bytes": 5369,
+      "sha256": "1755ca187eb54fb95bb5b1523c8955c8f99883048115e5c8481972d706c8c4c6"
+    },
+    "compiled-controls/stale_source/src/tx_io.h": {
+      "bytes": 4066,
+      "sha256": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f"
+    },
+    "compiled-controls/stale_source/src/tx_native.c": {
+      "bytes": 3098,
+      "sha256": "b4ac624f2d43a3f298b30e8d0611854f339a3ac5f9d9b7eaa6ab3fb5ff5c914d"
+    },
+    "compiled-controls/stale_source/src/tx_native.h": {
+      "bytes": 425,
+      "sha256": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4"
+    },
+    "compiled-controls/stale_source/tests/test_tx.c": {
+      "bytes": 7467,
+      "sha256": "0aa0c23570dcdf99bf5a1cf6171bd28017384259af56dc7b25839e67c41889aa"
+    },
+    "compiled-controls/stride/compile.log": {
+      "bytes": 61,
+      "sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa"
+    },
+    "compiled-controls/stride/host_io.obj": {
+      "bytes": 8652,
+      "sha256": "a02c7407a629cae964b30977d032275856ab89311fb5a266272f07a684d6c349"
+    },
+    "compiled-controls/stride/negative.exe": {
+      "bytes": 162304,
+      "sha256": "0f02107c1f40fc684d2f4fa2cd68c477612d13726297bedd59e3c9fe80bc1817"
+    },
+    "compiled-controls/stride/tests.log": {
+      "bytes": 17,
+      "sha256": "52369a01e69d59c102193c81d4a630ff423ce4cd54ffeb4efa0708ceb23df2b2"
+    },
+    "compiled-controls/stride/test_tx.obj": {
+      "bytes": 19722,
+      "sha256": "af84df6ef5f1c4ee687feff6ff67a53567071acc3e4417d54a1ce3bca8b94b73"
+    },
+    "compiled-controls/stride/tx_native.obj": {
+      "bytes": 10045,
+      "sha256": "878c3484052476e10734753bbde1a27bccddbba3063e738921dc3f76b225570f"
+    },
+    "compiled-controls/stride/src/host_io.c": {
+      "bytes": 4833,
+      "sha256": "f795021fc5116ba18a16000eeebf6a2a235b3a2c9de4d0104f2396d7872d81aa"
+    },
+    "compiled-controls/stride/src/host_io.h": {
+      "bytes": 5369,
+      "sha256": "7492c952b1c48a0f3f73c8a99e692af94140193aa562d32f1f2f9c2e52180cb4"
+    },
+    "compiled-controls/stride/src/tx_io.h": {
+      "bytes": 4066,
+      "sha256": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f"
+    },
+    "compiled-controls/stride/src/tx_native.c": {
+      "bytes": 3119,
+      "sha256": "d246669c3758acc93808339b40a84c9ac74d4fd163bc8748ac4d0e99cf1ba0dd"
+    },
+    "compiled-controls/stride/src/tx_native.h": {
+      "bytes": 425,
+      "sha256": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4"
+    },
+    "compiled-controls/stride/tests/test_tx.c": {
+      "bytes": 7467,
+      "sha256": "0aa0c23570dcdf99bf5a1cf6171bd28017384259af56dc7b25839e67c41889aa"
+    },
+    "compiled-controls/tail_status/compile.log": {
+      "bytes": 61,
+      "sha256": "d0b48080bf52a5b0873ac00eb537d36d9ce48b014ebead0fce60717aa88d82aa"
+    },
+    "compiled-controls/tail_status/host_io.obj": {
+      "bytes": 8702,
+      "sha256": "8262063feb98d412f98d2d6134daa0ced4a370e0e76114a745447425e201e952"
+    },
+    "compiled-controls/tail_status/negative.exe": {
+      "bytes": 162304,
+      "sha256": "0488f46a28a360ebfab93afc5315c3c041f0fb0689961e4a0f847aa372e2714c"
+    },
+    "compiled-controls/tail_status/tests.log": {
+      "bytes": 17,
+      "sha256": "8ca002489a568fc794b99ef55386463eb3ce86642dbecfa9d4b56fc98e97682e"
+    },
+    "compiled-controls/tail_status/test_tx.obj": {
+      "bytes": 19730,
+      "sha256": "b1c5dcbf8ba9a783bea35898a87a3d1c28343f33f80c8754dfc7ac1f7b0845d1"
+    },
+    "compiled-controls/tail_status/tx_native.obj": {
+      "bytes": 10049,
+      "sha256": "f38870bc9a6ce5b3d5697fdb0f5e68d6e32b916c0338493e582931f8401a1761"
+    },
+    "compiled-controls/tail_status/src/host_io.c": {
+      "bytes": 4851,
+      "sha256": "0b3cd70487386f328789082f3ec278aa06c83227b1d6a46767be65faf63e9733"
+    },
+    "compiled-controls/tail_status/src/host_io.h": {
+      "bytes": 5369,
+      "sha256": "1755ca187eb54fb95bb5b1523c8955c8f99883048115e5c8481972d706c8c4c6"
+    },
+    "compiled-controls/tail_status/src/tx_io.h": {
+      "bytes": 4066,
+      "sha256": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f"
+    },
+    "compiled-controls/tail_status/src/tx_native.c": {
+      "bytes": 3119,
+      "sha256": "d246669c3758acc93808339b40a84c9ac74d4fd163bc8748ac4d0e99cf1ba0dd"
+    },
+    "compiled-controls/tail_status/src/tx_native.h": {
+      "bytes": 425,
+      "sha256": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4"
+    },
+    "compiled-controls/tail_status/tests/test_tx.c": {
+      "bytes": 7467,
+      "sha256": "0aa0c23570dcdf99bf5a1cf6171bd28017384259af56dc7b25839e67c41889aa"
+    }
+  },
+  "RV32_execution": false,
+  "ISA_emulation": false,
+  "physical_GPR_prefix": false,
+  "native_callee_SP_preservation_proved": false,
+  "network": false,
+  "hardware": false
+}

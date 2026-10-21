@@ -1,0 +1,53 @@
+{
+  "schema": "TSL9-TX-saved-SDK-candidates-v1",
+  "observed_from_local_saved_headers": true,
+  "network_requests": 0,
+  "headers": [
+    {
+      "workspace_path": "apk-analysis/tsl9-function-hardware/hardware/wchble_rom.h",
+      "sha256": "fab43e7b8e351596a14d2a434eea4fa79587a8b9bba12738897d35ee2c3dbf2e",
+      "header_version": "V1.40",
+      "function_base_line": 2721,
+      "set_event_line": 2787,
+      "read_char_cfg_line": 4062
+    },
+    {
+      "workspace_path": "apk-analysis/tsl9-wch-resident-candidate-2026-10-21/original-dec2023/wchble_rom.h",
+      "sha256": "647a185941fedeb6ba16d544d9bca91a6f53219bb649a5513b59abeb21a9a94c",
+      "header_version": "V1.30",
+      "function_base_line": 2719,
+      "set_event_line": 2785,
+      "read_char_cfg_line": 4060
+    }
+  ],
+  "candidate_function_base": 262196,
+  "candidate_slots": [
+    {
+      "index": 7,
+      "nominal_address": 262224,
+      "name": "tmos_set_event",
+      "candidate_arguments": [
+        "tmosTaskID taskID",
+        "tmosEvents event"
+      ],
+      "candidate_return": "bStatus_t"
+    },
+    {
+      "index": 66,
+      "nominal_address": 262460,
+      "name": "GATTServApp_ReadCharCfg",
+      "candidate_arguments": [
+        "uint16_t connHandle",
+        "gattCharCfg_t *charCfgTbl"
+      ],
+      "candidate_return": "uint16_t"
+    }
+  ],
+  "source_kind": "archived local SDK reference, not matching installed-provider evidence",
+  "limitations": [
+    "Header version strings and matching numeric slots do not prove that either SDK is the installed TSL9 ROM.",
+    "No real ROM pointer word, callee body, register preservation or prototype compatibility is provided.",
+    "The reconstructed function keeps raw numeric arguments and does not cast these candidate prototypes onto unknown code.",
+    "The final slot call is consistent with queue/event submission, not proof of observed Bluetooth transmission."
+  ]
+}
