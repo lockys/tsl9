@@ -59,3 +59,49 @@ source-level proof位於analysis/*/source/。完整本機獨立／整合收據�
 檔案。每個完成驗證的里程碑經精確staging與敏感資料審查後commit／push；新文件用
 英文＋繁體中文，舊seal維持原bytes並旁附說明。硬體、啟動、原機ROM、記憶體、IRQ、
 實體Flash及原藍牙OTA仍未證實。
+
+## Runtime main, initialization and dispatcher: English
+
+The newest model covers original ID2966 V4.1.60 main9008, initializer9250,
+permanent loop8180 and dispatcher901A: 220 bytes/80 instructions. The portable
+source proof rejects45 raw operand mutations. Parent C11 and C++17 each pass
+6 groups/1,431 checks, with all seven model files, source proof, original firmware,
+type dependency, compiler and actual executable pinned. Source/host effects do
+not establish installed ROM, original ABI, hardware or OTA acceptance.
+
+Calls require an explicit return route, including the initializer's tail call.
+Loop callback slots are loaded afresh; live callee changes affect subsequent
+numeric addresses/register values. Budget exhaustion leaves the frame in place,
+never executing main9012 as cleanup. Dispatch mode is sampled before its argument;
+one-shot fields clear before callback, and result masking uses live S0/S1 before
+fresh frame restoration. Unknown bits never silently become zero. Detailed local
+independent and actual RC/RI/ML composition seals remain in the delivery archive;
+their host binaries are excluded from this repository snapshot.
+
+Current actual RC/RI/ML composition passes21 groups/725,870 assertions per
+language; independent model review passes7 groups/293 checks per language and
+rejects six compiled behavioral countercases. Actual composition rejects six
+successfully compiled countercases. Strict captured
+resident segments admit no ML effects. The nested dispatcher experiment uses an
+explicit synthetic resident-task policy; it does not identify the real scheduler.
+The earlier composition attempt is retained as superseded; composition-v2 binds
+the corrected full-known return-route rule and final parent receipts.
+
+## Runtime主程式、初始化與派送：繁體中文
+
+最新模型涵蓋原始ID2966 V4.1.60的main9008、initializer9250、永久loop8180及
+dispatcher901A，共220B／80條指令。可攜來源證據拒絕45個raw operand突變；父流程
+C11與C++17各通過6組／1,431項，核對七個模型檔案、來源證據、原韌體、型別依賴、
+編譯器及實際執行檔雜湊。來源／host結果不代表原機ROM、ABI、硬體或OTA已獲證明。
+
+每次callee均須明示返回路徑，包括初始化尾呼叫。loop即時重讀callback槽，callee改動
+會影響後續數值位址與暫存器。觀察次數用盡時保留堆疊，不會把main9012當清理執行。
+派送先取mode再取argument；單次欄位在callback前清除，結果在fresh frame還原前使用
+當下S0／S1。未知位元不自動補零。完整本機獨立審查與實際RC／RI／ML整合seal保留
+於交付archive，host執行檔不放此GitHub快照。
+
+最新實際RC／RI／ML整合每語言通過21組／725,870項，六個成功編譯的反例均遭拒絕。
+獨立模型審查每語言通過7組／293項，另外六個已編譯行為反例均遭拒絕。
+嚴格使用擷取resident段時不允許任何ML效果；巢狀dispatcher實驗須明示合成resident-task
+政策，不等於辨識真實排程器。較早整合保留為舊紀錄；composition-v2綁定修正後的完整
+已知返回路徑規則及父流程最終收據。

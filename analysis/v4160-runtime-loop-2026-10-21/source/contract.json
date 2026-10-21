@@ -1,0 +1,682 @@
+{
+  "schema": "ID2966-runtime-loop-live-contract-v1",
+  "passed": true,
+  "blocking_findings": [],
+  "source_firmware": {
+    "catalog_ID": 2966,
+    "version": "V4.1.60",
+    "bytes": 76800,
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "analysis_base": 32768
+  },
+  "source_spans": [
+    {
+      "role": "main",
+      "start": 36872,
+      "end_exclusive": 36890,
+      "file_offset": 4104,
+      "bytes": 18,
+      "instructions": 8,
+      "sha256": "87dd87b4471d5281a6185185b66e454ac79136553f837e3c9a3c2abdfb85ead5"
+    },
+    {
+      "role": "init",
+      "start": 37456,
+      "end_exclusive": 37520,
+      "file_offset": 4688,
+      "bytes": 64,
+      "instructions": 19,
+      "sha256": "9c9a241ad1ffb34eab4267c3368c9b5cbd459e1d9f111621eb4716087f8cf60b"
+    },
+    {
+      "role": "loop",
+      "start": 33152,
+      "end_exclusive": 33194,
+      "file_offset": 384,
+      "bytes": 42,
+      "instructions": 15,
+      "sha256": "c440bafcc9fdbe370d24fbcd3bd0c67e8162ceaa776a64ea6f34f1d509b6f72f"
+    },
+    {
+      "role": "dispatcher",
+      "start": 36890,
+      "end_exclusive": 36986,
+      "file_offset": 4122,
+      "bytes": 96,
+      "instructions": 38,
+      "sha256": "1ca1876ac3f3458d2a170336f9d1598ee7dd62f359f802ceae6739d04fda437f"
+    }
+  ],
+  "interface_limit": "Synthetic numeric/live-state C reconstruction contract from raw source; no original C prototype or ABI recovery.",
+  "common_call_rule": "Calls carry then-live argument registers and numeric link RA. Only an explicit return to the expected link permits continuation. HALT/TRANSFER or unknown callee effects are preserved. No automatic SP/GP/callee-saved register or stack restoration is inferred.",
+  "main": {
+    "entry": 36872,
+    "ordered_effects": [
+      {
+        "pc": 36872,
+        "pc_hex": "0x9008",
+        "operation": "SP=(liveSP-16) mod2^32"
+      },
+      {
+        "pc": 36874,
+        "pc_hex": "0x900A",
+        "operation": "WRITE32",
+        "address": "liveSP+12",
+        "value": "liveRA"
+      },
+      {
+        "pc": 36876,
+        "pc_hex": "0x900C",
+        "operation": "DIRECT_CALL",
+        "target": 37456,
+        "link_RA": 36878,
+        "args": "then-live a0..a7"
+      },
+      {
+        "pc": 36878,
+        "pc_hex": "0x900E",
+        "operation": "DIRECT_CALL",
+        "target": 33152,
+        "link_RA": 36882,
+        "args": "then-live a0..a7 after initializer/tail"
+      },
+      {
+        "pc": 36882,
+        "pc_hex": "0x9012",
+        "operation": "READ32",
+        "address": "then-liveSP+12",
+        "destination": "ra",
+        "condition": "only if loop call returns; not established by the selected loop body"
+      },
+      {
+        "pc": 36884,
+        "pc_hex": "0x9014",
+        "operation": "a0=0",
+        "condition": "only after preceding continuation"
+      },
+      {
+        "pc": 36886,
+        "pc_hex": "0x9016",
+        "operation": "SP=(then-liveSP+16) mod2^32"
+      },
+      {
+        "pc": 36888,
+        "pc_hex": "0x9018",
+        "operation": "RET",
+        "target": "freshly loaded liveRA"
+      }
+    ],
+    "normally_returning_loop_provider_proved": false,
+    "local_loop_has_no_RET": true,
+    "source_present_post_loop_suffix_is_not_a_normal_loop_exit": true
+  },
+  "initializer": {
+    "entry": 37456,
+    "ordered_effects": [
+      {
+        "pc": 37456,
+        "pc_hex": "0x9250",
+        "operation": "SP=(liveSP-16) mod2^32"
+      },
+      {
+        "pc": 37458,
+        "pc_hex": "0x9252",
+        "operation": "WRITE32",
+        "address": "liveSP+12",
+        "value": "liveRA"
+      },
+      {
+        "pc": 37460,
+        "pc_hex": "0x9254",
+        "operation": "DIRECT_CALL",
+        "target": 100404,
+        "link_RA": 37464,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37464,
+        "pc_hex": "0x9258",
+        "operation": "DIRECT_CALL",
+        "target": 39490,
+        "link_RA": 37468,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37468,
+        "pc_hex": "0x925C",
+        "operation": "DIRECT_CALL",
+        "target": 104252,
+        "link_RA": 37472,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37472,
+        "pc_hex": "0x9260",
+        "operation": "DIRECT_CALL",
+        "target": 40780,
+        "link_RA": 37476,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37476,
+        "pc_hex": "0x9264",
+        "operation": "DIRECT_CALL",
+        "target": 78274,
+        "link_RA": 37480,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37480,
+        "pc_hex": "0x9268",
+        "operation": "DIRECT_CALL",
+        "target": 36488,
+        "link_RA": 37482,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37482,
+        "pc_hex": "0x926A",
+        "operation": "DIRECT_CALL",
+        "target": 39758,
+        "link_RA": 37486,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37486,
+        "pc_hex": "0x926E",
+        "operation": "DIRECT_CALL",
+        "target": 39256,
+        "link_RA": 37488,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37488,
+        "pc_hex": "0x9270",
+        "operation": "DIRECT_CALL",
+        "target": 40722,
+        "link_RA": 37492,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37492,
+        "pc_hex": "0x9274",
+        "operation": "DIRECT_CALL",
+        "target": 77202,
+        "link_RA": 37496,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37496,
+        "pc_hex": "0x9278",
+        "operation": "DIRECT_CALL",
+        "target": 85130,
+        "link_RA": 37500,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37500,
+        "pc_hex": "0x927C",
+        "operation": "DIRECT_CALL",
+        "target": 87206,
+        "link_RA": 37504,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37504,
+        "pc_hex": "0x9280",
+        "operation": "DIRECT_CALL",
+        "target": 94272,
+        "link_RA": 37508,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37508,
+        "pc_hex": "0x9284",
+        "operation": "DIRECT_CALL",
+        "target": 95138,
+        "link_RA": 37512,
+        "args": "then-live a0..a7; no local argument assignment between calls"
+      },
+      {
+        "pc": 37512,
+        "pc_hex": "0x9288",
+        "operation": "READ32",
+        "address": "then-liveSP+12",
+        "destination": "ra",
+        "role": "fresh, after14 normal calls"
+      },
+      {
+        "pc": 37514,
+        "pc_hex": "0x928A",
+        "operation": "SP=(then-liveSP+16) mod2^32"
+      },
+      {
+        "pc": 37516,
+        "pc_hex": "0x928C",
+        "operation": "DIRECT_TAIL",
+        "target": 97270,
+        "link_written": false,
+        "return_RA": "freshly loaded at9288",
+        "args": "then-live a0..a7"
+      }
+    ],
+    "direct_callee_count": 14,
+    "numeric_return_values_tested_locally": false,
+    "arguments_and_statuses_not_reset_between_calls": true,
+    "tail_implementation_delegated": true
+  },
+  "loop": {
+    "entry": 33152,
+    "prologue_order": [
+      {
+        "pc": 33152,
+        "pc_hex": "0x8180",
+        "operation": "SP=(liveSP-16) mod2^32"
+      },
+      {
+        "pc": 33154,
+        "pc_hex": "0x8182",
+        "operation": "WRITE32",
+        "address": "liveSP+8",
+        "value": "old liveS0"
+      },
+      {
+        "pc": 33156,
+        "pc_hex": "0x8184",
+        "operation": "S0=0xB000"
+      },
+      {
+        "pc": 33158,
+        "pc_hex": "0x8186",
+        "operation": "WRITE32",
+        "address": "liveSP+4",
+        "value": "liveS1"
+      },
+      {
+        "pc": 33160,
+        "pc_hex": "0x8188",
+        "operation": "WRITE32",
+        "address": "liveSP+0",
+        "value": "liveS2"
+      },
+      {
+        "pc": 33162,
+        "pc_hex": "0x818A",
+        "operation": "WRITE32",
+        "address": "liveSP+12",
+        "value": "liveRA"
+      },
+      {
+        "pc": 33164,
+        "pc_hex": "0x818C",
+        "operation": "S2=0x20000000"
+      },
+      {
+        "pc": 33168,
+        "pc_hex": "0x8190",
+        "operation": "S1=0x40003000"
+      },
+      {
+        "pc": 33172,
+        "pc_hex": "0x8194",
+        "operation": "S0=(S0-1366) mod2^32",
+        "nominal_value": 43690
+      }
+    ],
+    "iteration_order": [
+      {
+        "pc": 33176,
+        "pc_hex": "0x8198",
+        "operation": "READ32",
+        "address": "then-liveS2+0",
+        "destination": "a5",
+        "role": "fresh on EVERY iteration"
+      },
+      {
+        "pc": 33180,
+        "pc_hex": "0x819C",
+        "operation": "INDIRECT_CALL",
+        "target": "loaded a5, even if zero",
+        "link_RA": 33182,
+        "args": "then-live argument registers"
+      },
+      {
+        "pc": 33182,
+        "pc_hex": "0x819E",
+        "operation": "DIRECT_CALL",
+        "target": 94210,
+        "link_RA": 33186,
+        "args": "then-live argument registers"
+      },
+      {
+        "pc": 33186,
+        "pc_hex": "0x81A2",
+        "operation": "DIRECT_CALL",
+        "target": 76888,
+        "link_RA": 33190,
+        "args": "then-live argument registers"
+      },
+      {
+        "pc": 33190,
+        "pc_hex": "0x81A6",
+        "operation": "WRITE32",
+        "address": "then-liveS1+0",
+        "value": "then-liveS0",
+        "nominal_address_if_preserved": 1073754112,
+        "nominal_value_if_preserved": 43690
+      },
+      {
+        "pc": 33192,
+        "pc_hex": "0x81A8",
+        "operation": "UNCONDITIONAL_BACKEDGE",
+        "target": 33176
+      }
+    ],
+    "pointer_is_not_cached": true,
+    "local_null_pointer_guard": false,
+    "local_restore_or_RET": false,
+    "frame_is_not_unwound_on_observation_budget": true,
+    "body_is_perpetual_if_all_operations_return_normally": true,
+    "host_budget_is_not_an_original_HALT_instruction": true,
+    "MMIO_hardware_role_proved": false,
+    "S0_S1_S2_preservation_after_callbacks_proved": false
+  },
+  "dispatcher": {
+    "entry": 36890,
+    "entry_a1": "full u32 input; not truncated before selection/callback",
+    "prologue": [
+      {
+        "pc": 36890,
+        "pc_hex": "0x901A",
+        "operation": "SP=(liveSP-16) mod2^32"
+      },
+      {
+        "pc": 36892,
+        "pc_hex": "0x901C",
+        "operation": "WRITE32",
+        "address": "liveSP+8",
+        "value": "liveS0"
+      },
+      {
+        "pc": 36894,
+        "pc_hex": "0x901E",
+        "operation": "WRITE32",
+        "address": "liveSP+12",
+        "value": "liveRA"
+      },
+      {
+        "pc": 36896,
+        "pc_hex": "0x9020",
+        "operation": "WRITE32",
+        "address": "liveSP+4",
+        "value": "liveS1"
+      },
+      {
+        "pc": 36898,
+        "pc_hex": "0x9022",
+        "operation": "S0=0"
+      },
+      {
+        "pc": 36900,
+        "pc_hex": "0x9024",
+        "operation": "a4=15"
+      }
+    ],
+    "selection": {
+      "low_bit_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "selected_index": "least index0..14 whose input a1 bit is1",
+      "raw_operations": [
+        {
+          "pc": 36902,
+          "pc_hex": "0x9026",
+          "operation": "a5=ASR32(a1,S0&31)"
+        },
+        {
+          "pc": 36906,
+          "pc_hex": "0x902A",
+          "operation": "a5=a5&1"
+        },
+        {
+          "pc": 36908,
+          "pc_hex": "0x902C",
+          "operation": "if a5==0 go increment",
+          "target": 36976
+        },
+        {
+          "pc": 36976,
+          "pc_hex": "0x9070",
+          "operation": "S0=(S0+1) mod2^32"
+        },
+        {
+          "pc": 36978,
+          "pc_hex": "0x9072",
+          "operation": "if S0!=15 repeat scan",
+          "target": 36902
+        }
+      ],
+      "no_low15_bit_path": [
+        {
+          "pc": 36982,
+          "pc_hex": "0x9076",
+          "operation": "a0=0"
+        },
+        {
+          "pc": 36984,
+          "pc_hex": "0x9078",
+          "operation": "jump restore",
+          "target": 36966
+        }
+      ],
+      "bits15_to31_do_not_select_a_record": true
+    },
+    "selected_record": {
+      "PCREL_pair": [
+        36916,
+        36920
+      ],
+      "base": 536919560,
+      "base_formula": "0x9034+0x20003000-556 modulo2^32; not a liveGP lookup",
+      "stride": 12,
+      "index_range": [
+        0,
+        14
+      ],
+      "whole_original_C_object_or_physical_RAM_validity_proved": false,
+      "ordered_effects": [
+        {
+          "pc": 36910,
+          "pc_hex": "0x902E",
+          "operation": "a5=12"
+        },
+        {
+          "pc": 36912,
+          "pc_hex": "0x9030",
+          "operation": "a4=(S0*a5) mod2^32"
+        },
+        {
+          "pc": 36916,
+          "pc_hex": "0x9034",
+          "operation": "compute PC-relative base",
+          "low_pc": 36920,
+          "value": 536919560
+        },
+        {
+          "pc": 36924,
+          "pc_hex": "0x903C",
+          "operation": "S1=full32 live a1"
+        },
+        {
+          "pc": 36926,
+          "pc_hex": "0x903E",
+          "operation": "a5=(base+record_offset) mod2^32"
+        },
+        {
+          "pc": 36928,
+          "pc_hex": "0x9040",
+          "operation": "READ32",
+          "address": "a5+4",
+          "destination": "a3",
+          "role": "callback pointer FIRST"
+        },
+        {
+          "pc": 36930,
+          "pc_hex": "0x9042",
+          "operation": "if a3==0 skip mode/arg/clear/call",
+          "target": 36954
+        },
+        {
+          "pc": 36932,
+          "pc_hex": "0x9044",
+          "operation": "READ8_UNSIGNED",
+          "address": "a5+0",
+          "destination": "a4",
+          "role": "mode byte BEFORE arg read"
+        },
+        {
+          "pc": 36936,
+          "pc_hex": "0x9048",
+          "operation": "READ32",
+          "address": "a5+8",
+          "destination": "a0",
+          "role": "argument AFTER sampled mode byte"
+        },
+        {
+          "pc": 36938,
+          "pc_hex": "0x904A",
+          "operation": "a4=a4&255",
+          "role": "mask sampled mode only after argument read"
+        },
+        {
+          "pc": 36942,
+          "pc_hex": "0x904E",
+          "operation": "if a4!=0 call without clearing",
+          "target": 36952
+        },
+        {
+          "pc": 36944,
+          "pc_hex": "0x9050",
+          "operation": "WRITE32",
+          "address": "a5+4",
+          "value": 0
+        },
+        {
+          "pc": 36948,
+          "pc_hex": "0x9054",
+          "operation": "WRITE32",
+          "address": "a5+8",
+          "value": 0
+        },
+        {
+          "pc": 36952,
+          "pc_hex": "0x9058",
+          "operation": "INDIRECT_CALL",
+          "target": "a3 loaded at9040",
+          "link_RA": 36954,
+          "a0": "argument loaded at9048",
+          "a1": "full original u32 input still in a1 before this call",
+          "mode": "a4 low8; no new mode read",
+          "target_and_argument_not_refetched_after_clears": true
+        }
+      ],
+      "correct_read_order": "pointer READ32, mode LBU, argument READ32, mode ANDI, optional clears, call",
+      "callback_zero_path_has_no_mode_arg_read_or_clear": true,
+      "mode0_clears_only_for_nonzero_callback": true
+    },
+    "return_and_restore": [
+      {
+        "pc": 36954,
+        "pc_hex": "0x905A",
+        "operation": "a0=1"
+      },
+      {
+        "pc": 36956,
+        "pc_hex": "0x905C",
+        "operation": "a0=(a0 << (then-liveS0&31)) mod2^32"
+      },
+      {
+        "pc": 36960,
+        "pc_hex": "0x9060",
+        "operation": "a0=a0 XOR then-liveS1"
+      },
+      {
+        "pc": 36962,
+        "pc_hex": "0x9062",
+        "operation": "a0=(a0<<16) mod2^32"
+      },
+      {
+        "pc": 36964,
+        "pc_hex": "0x9064",
+        "operation": "a0=a0 logical-right16",
+        "role": "low16 zero-extended"
+      },
+      {
+        "pc": 36966,
+        "pc_hex": "0x9066",
+        "operation": "READ32",
+        "address": "then-liveSP+12",
+        "destination": "ra"
+      },
+      {
+        "pc": 36968,
+        "pc_hex": "0x9068",
+        "operation": "READ32",
+        "address": "then-liveSP+8",
+        "destination": "s0"
+      },
+      {
+        "pc": 36970,
+        "pc_hex": "0x906A",
+        "operation": "READ32",
+        "address": "then-liveSP+4",
+        "destination": "s1"
+      },
+      {
+        "pc": 36972,
+        "pc_hex": "0x906C",
+        "operation": "SP=(then-liveSP+16) mod2^32"
+      },
+      {
+        "pc": 36974,
+        "pc_hex": "0x906E",
+        "operation": "RET",
+        "target": "freshly loaded liveRA"
+      }
+    ],
+    "callback_numeric_return_value_ignored": true,
+    "result_computed_before_S0_S1_restore": true,
+    "removes_selected_bit_only_if_expected_S0_S1_preserved": true,
+    "actual_post_callback_formula": "low16(liveS1 XOR (1u << (liveS0&31)))",
+    "original_C_ABI_callee_save_or_lifetime_proved": false,
+    "no_low15_selection_returns0_even_if_higher_input_bits_set": true
+  },
+  "limits": {
+    "source_only": true,
+    "original_C_prototypes_or_ABI_recovered": false,
+    "cross_version_dispatcher_ABI_assumed": false,
+    "physical_RAM_MMIO_or_resident_validated": false,
+    "callback_target_lifetime_or_return_proved": false,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "network": false,
+    "hardware": false,
+    "provider_generated": false,
+    "ROOT_modified": false,
+    "D_modified": false
+  }
+}

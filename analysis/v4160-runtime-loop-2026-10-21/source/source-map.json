@@ -1,0 +1,2007 @@
+{
+  "schema": "ID2966-runtime-loop-source-map-v1",
+  "passed": true,
+  "firmware": {
+    "relative_path": "exports/TSL-firmware-options-22-BINs-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "bytes": 76800,
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "analysis_base": 32768,
+    "header_file_offset_0x38_LE32": 32768,
+    "physical_load_not_measured": true
+  },
+  "retained_source_sha256": "95e33f2e2bb76f13d959b16c753351c01ae02ce6619028d97b63965aef11d880",
+  "historical_input_hashes": {
+    "experiments/tsl9-v4160-startup/src/main_native.c": "ac05af51cc5dcc8a86f3ed4f78d137b558879b5cbb32dd5194423b23d29ed5c7",
+    "experiments/tsl9-v4160-startup/src/core_flow_native.c": "20f6f64e552947addce5687f303bdb6ebe92c2f208eb4e1ebb322c9d8cac052a",
+    "experiments/tsl9-v4160-startup/src/conditional_dispatcher_native.c": "029eb3e204265de59ec1d8aa0459e4b079467d45262a477d8b06a699045c587c",
+    "experiments/tsl9-v4160-startup/evidence/main-plan.json": "8807347f7b06fed219105eadc1a50aacb9a458729d167ee686a89654d2030fbd",
+    "experiments/tsl9-v4160-startup/evidence/core-flow-plan.json": "d51e449a9392496b70791071208229f1612cd476c1a62964589b6163894ce6e3",
+    "experiments/tsl9-v4160-startup/evidence/core-flow-cfg.json": "aa554fee7984003aa7cf8fe5871e14e23782f9e1e1b82c57978539ff61da04c9",
+    "experiments/tsl9-v4160-startup/evidence/conditional-dispatcher-plan.json": "f750dfc421ba9bd3f9333121327d1c8e4c9f5a22db2430c9992da4f93a1b6bb1",
+    "experiments/tsl9-v4160-startup/evidence/conditional-dispatcher-cfg.json": "b4b3583cfd319c53ab78ee9331c08606c5acfb146cf4d65ae89e7d1363b667c5"
+  },
+  "fresh_vs_historical": {
+    "main_source_hex_bytes": 18,
+    "core_CFG_rows": 34,
+    "dispatcher_CFG_rows": 38,
+    "all_selected_raw_bytes_equal_original_and_fresh_disassembly": true,
+    "native_C_sources_hash_pinned_not_recompiled": true
+  },
+  "source_spans": [
+    {
+      "role": "main",
+      "start": 36872,
+      "end_exclusive": 36890,
+      "file_offset": 4104,
+      "bytes": 18,
+      "instructions": 8,
+      "sha256": "87dd87b4471d5281a6185185b66e454ac79136553f837e3c9a3c2abdfb85ead5"
+    },
+    {
+      "role": "init",
+      "start": 37456,
+      "end_exclusive": 37520,
+      "file_offset": 4688,
+      "bytes": 64,
+      "instructions": 19,
+      "sha256": "9c9a241ad1ffb34eab4267c3368c9b5cbd459e1d9f111621eb4716087f8cf60b"
+    },
+    {
+      "role": "loop",
+      "start": 33152,
+      "end_exclusive": 33194,
+      "file_offset": 384,
+      "bytes": 42,
+      "instructions": 15,
+      "sha256": "c440bafcc9fdbe370d24fbcd3bd0c67e8162ceaa776a64ea6f34f1d509b6f72f"
+    },
+    {
+      "role": "dispatcher",
+      "start": 36890,
+      "end_exclusive": 36986,
+      "file_offset": 4122,
+      "bytes": 96,
+      "instructions": 38,
+      "sha256": "1ca1876ac3f3458d2a170336f9d1598ee7dd62f359f802ceae6739d04fda437f"
+    }
+  ],
+  "instructions": [
+    {
+      "pc": 33152,
+      "file_offset": 384,
+      "width": 2,
+      "raw_hex": "4111",
+      "disassembly": "addi sp, sp, -16",
+      "body": "loop"
+    },
+    {
+      "pc": 33154,
+      "file_offset": 386,
+      "width": 2,
+      "raw_hex": "22c4",
+      "disassembly": "sw s0, 8(sp)",
+      "body": "loop"
+    },
+    {
+      "pc": 33156,
+      "file_offset": 388,
+      "width": 2,
+      "raw_hex": "2d64",
+      "disassembly": "lui s0, 0xb",
+      "body": "loop"
+    },
+    {
+      "pc": 33158,
+      "file_offset": 390,
+      "width": 2,
+      "raw_hex": "26c2",
+      "disassembly": "sw s1, 4(sp)",
+      "body": "loop"
+    },
+    {
+      "pc": 33160,
+      "file_offset": 392,
+      "width": 2,
+      "raw_hex": "4ac0",
+      "disassembly": "sw s2, 0(sp)",
+      "body": "loop"
+    },
+    {
+      "pc": 33162,
+      "file_offset": 394,
+      "width": 2,
+      "raw_hex": "06c6",
+      "disassembly": "sw ra, 12(sp)",
+      "body": "loop"
+    },
+    {
+      "pc": 33164,
+      "file_offset": 396,
+      "width": 4,
+      "raw_hex": "37090020",
+      "disassembly": "lui s2, 0x20000",
+      "body": "loop"
+    },
+    {
+      "pc": 33168,
+      "file_offset": 400,
+      "width": 4,
+      "raw_hex": "b7340040",
+      "disassembly": "lui s1, 0x40003",
+      "body": "loop"
+    },
+    {
+      "pc": 33172,
+      "file_offset": 404,
+      "width": 4,
+      "raw_hex": "1304a4aa",
+      "disassembly": "addi s0, s0, -1366",
+      "body": "loop"
+    },
+    {
+      "pc": 33176,
+      "file_offset": 408,
+      "width": 4,
+      "raw_hex": "83270900",
+      "disassembly": "lw a5, 0(s2)",
+      "body": "loop"
+    },
+    {
+      "pc": 33180,
+      "file_offset": 412,
+      "width": 2,
+      "raw_hex": "8297",
+      "disassembly": "jalr a5",
+      "body": "loop",
+      "control": {
+        "kind": "indirect-call",
+        "rs1": 15,
+        "link_RA": 33182
+      }
+    },
+    {
+      "pc": 33182,
+      "file_offset": 414,
+      "width": 4,
+      "raw_hex": "efe05066",
+      "disassembly": "jal ra, 0x17002",
+      "body": "loop",
+      "control": {
+        "kind": "call",
+        "target": 94210
+      }
+    },
+    {
+      "pc": 33186,
+      "file_offset": 418,
+      "width": 4,
+      "raw_hex": "efa0702b",
+      "disassembly": "jal ra, 0x12c58",
+      "body": "loop",
+      "control": {
+        "kind": "call",
+        "target": 76888
+      }
+    },
+    {
+      "pc": 33190,
+      "file_offset": 422,
+      "width": 2,
+      "raw_hex": "80c0",
+      "disassembly": "sw s0, 0(s1)",
+      "body": "loop"
+    },
+    {
+      "pc": 33192,
+      "file_offset": 424,
+      "width": 2,
+      "raw_hex": "c5bf",
+      "disassembly": "j 0x8198",
+      "body": "loop",
+      "control": {
+        "kind": "jump",
+        "target": 33176
+      }
+    },
+    {
+      "pc": 36872,
+      "file_offset": 4104,
+      "width": 2,
+      "raw_hex": "4111",
+      "disassembly": "addi sp, sp, -16",
+      "body": "main"
+    },
+    {
+      "pc": 36874,
+      "file_offset": 4106,
+      "width": 2,
+      "raw_hex": "06c6",
+      "disassembly": "sw ra, 12(sp)",
+      "body": "main"
+    },
+    {
+      "pc": 36876,
+      "file_offset": 4108,
+      "width": 2,
+      "raw_hex": "9124",
+      "disassembly": "jal 0x9250",
+      "body": "main",
+      "control": {
+        "kind": "call",
+        "target": 37456
+      }
+    },
+    {
+      "pc": 36878,
+      "file_offset": 4110,
+      "width": 4,
+      "raw_hex": "eff02f97",
+      "disassembly": "jal ra, 0x8180",
+      "body": "main",
+      "control": {
+        "kind": "call",
+        "target": 33152
+      }
+    },
+    {
+      "pc": 36882,
+      "file_offset": 4114,
+      "width": 2,
+      "raw_hex": "b240",
+      "disassembly": "lw ra, 12(sp)",
+      "body": "main"
+    },
+    {
+      "pc": 36884,
+      "file_offset": 4116,
+      "width": 2,
+      "raw_hex": "0145",
+      "disassembly": "li a0, 0",
+      "body": "main"
+    },
+    {
+      "pc": 36886,
+      "file_offset": 4118,
+      "width": 2,
+      "raw_hex": "4101",
+      "disassembly": "addi sp, sp, 16",
+      "body": "main"
+    },
+    {
+      "pc": 36888,
+      "file_offset": 4120,
+      "width": 2,
+      "raw_hex": "8280",
+      "disassembly": "ret",
+      "body": "main",
+      "control": {
+        "kind": "return",
+        "target": "liveRA"
+      }
+    },
+    {
+      "pc": 36890,
+      "file_offset": 4122,
+      "width": 2,
+      "raw_hex": "4111",
+      "disassembly": "addi sp, sp, -16",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36892,
+      "file_offset": 4124,
+      "width": 2,
+      "raw_hex": "22c4",
+      "disassembly": "sw s0, 8(sp)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36894,
+      "file_offset": 4126,
+      "width": 2,
+      "raw_hex": "06c6",
+      "disassembly": "sw ra, 12(sp)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36896,
+      "file_offset": 4128,
+      "width": 2,
+      "raw_hex": "26c2",
+      "disassembly": "sw s1, 4(sp)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36898,
+      "file_offset": 4130,
+      "width": 2,
+      "raw_hex": "0144",
+      "disassembly": "li s0, 0",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36900,
+      "file_offset": 4132,
+      "width": 2,
+      "raw_hex": "3d47",
+      "disassembly": "li a4, 15",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36902,
+      "file_offset": 4134,
+      "width": 4,
+      "raw_hex": "b3d78540",
+      "disassembly": "sra a5, a1, s0",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36906,
+      "file_offset": 4138,
+      "width": 2,
+      "raw_hex": "858b",
+      "disassembly": "andi a5, a5, 1",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36908,
+      "file_offset": 4140,
+      "width": 2,
+      "raw_hex": "b1c3",
+      "disassembly": "beqz a5, 0x9070",
+      "body": "dispatcher",
+      "control": {
+        "kind": "branch",
+        "target": 36976
+      }
+    },
+    {
+      "pc": 36910,
+      "file_offset": 4142,
+      "width": 2,
+      "raw_hex": "b147",
+      "disassembly": "li a5, 12",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36912,
+      "file_offset": 4144,
+      "width": 4,
+      "raw_hex": "3307f402",
+      "disassembly": "mul a4, s0, a5",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36916,
+      "file_offset": 4148,
+      "width": 4,
+      "raw_hex": "97370020",
+      "disassembly": "auipc a5, 0x20003",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36920,
+      "file_offset": 4152,
+      "width": 4,
+      "raw_hex": "938747dd",
+      "disassembly": "addi a5, a5, -556",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36924,
+      "file_offset": 4156,
+      "width": 2,
+      "raw_hex": "ae84",
+      "disassembly": "mv s1, a1",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36926,
+      "file_offset": 4158,
+      "width": 2,
+      "raw_hex": "ba97",
+      "disassembly": "add a5, a5, a4",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36928,
+      "file_offset": 4160,
+      "width": 2,
+      "raw_hex": "d443",
+      "disassembly": "lw a3, 4(a5)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36930,
+      "file_offset": 4162,
+      "width": 2,
+      "raw_hex": "81ce",
+      "disassembly": "beqz a3, 0x905a",
+      "body": "dispatcher",
+      "control": {
+        "kind": "branch",
+        "target": 36954
+      }
+    },
+    {
+      "pc": 36932,
+      "file_offset": 4164,
+      "width": 4,
+      "raw_hex": "03c70700",
+      "disassembly": "lbu a4, 0(a5)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36936,
+      "file_offset": 4168,
+      "width": 2,
+      "raw_hex": "8847",
+      "disassembly": "lw a0, 8(a5)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36938,
+      "file_offset": 4170,
+      "width": 4,
+      "raw_hex": "1377f70f",
+      "disassembly": "andi a4, a4, 255",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36942,
+      "file_offset": 4174,
+      "width": 2,
+      "raw_hex": "09e7",
+      "disassembly": "bnez a4, 0x9058",
+      "body": "dispatcher",
+      "control": {
+        "kind": "branch",
+        "target": 36952
+      }
+    },
+    {
+      "pc": 36944,
+      "file_offset": 4176,
+      "width": 4,
+      "raw_hex": "23a20700",
+      "disassembly": "sw zero, 4(a5)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36948,
+      "file_offset": 4180,
+      "width": 4,
+      "raw_hex": "23a40700",
+      "disassembly": "sw zero, 8(a5)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36952,
+      "file_offset": 4184,
+      "width": 2,
+      "raw_hex": "8296",
+      "disassembly": "jalr a3",
+      "body": "dispatcher",
+      "control": {
+        "kind": "indirect-call",
+        "rs1": 13,
+        "link_RA": 36954
+      }
+    },
+    {
+      "pc": 36954,
+      "file_offset": 4186,
+      "width": 2,
+      "raw_hex": "0545",
+      "disassembly": "li a0, 1",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36956,
+      "file_offset": 4188,
+      "width": 4,
+      "raw_hex": "33158500",
+      "disassembly": "sll a0, a0, s0",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36960,
+      "file_offset": 4192,
+      "width": 2,
+      "raw_hex": "258d",
+      "disassembly": "xor a0, a0, s1",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36962,
+      "file_offset": 4194,
+      "width": 2,
+      "raw_hex": "4205",
+      "disassembly": "slli a0, a0, 0x10",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36964,
+      "file_offset": 4196,
+      "width": 2,
+      "raw_hex": "4181",
+      "disassembly": "srli a0, a0, 0x10",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36966,
+      "file_offset": 4198,
+      "width": 2,
+      "raw_hex": "b240",
+      "disassembly": "lw ra, 12(sp)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36968,
+      "file_offset": 4200,
+      "width": 2,
+      "raw_hex": "2244",
+      "disassembly": "lw s0, 8(sp)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36970,
+      "file_offset": 4202,
+      "width": 2,
+      "raw_hex": "9244",
+      "disassembly": "lw s1, 4(sp)",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36972,
+      "file_offset": 4204,
+      "width": 2,
+      "raw_hex": "4101",
+      "disassembly": "addi sp, sp, 16",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36974,
+      "file_offset": 4206,
+      "width": 2,
+      "raw_hex": "8280",
+      "disassembly": "ret",
+      "body": "dispatcher",
+      "control": {
+        "kind": "return",
+        "target": "liveRA"
+      }
+    },
+    {
+      "pc": 36976,
+      "file_offset": 4208,
+      "width": 2,
+      "raw_hex": "0504",
+      "disassembly": "addi s0, s0, 1",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36978,
+      "file_offset": 4210,
+      "width": 4,
+      "raw_hex": "e31ae4fa",
+      "disassembly": "bne s0, a4, 0x9026",
+      "body": "dispatcher",
+      "control": {
+        "kind": "branch",
+        "target": 36902
+      }
+    },
+    {
+      "pc": 36982,
+      "file_offset": 4214,
+      "width": 2,
+      "raw_hex": "0145",
+      "disassembly": "li a0, 0",
+      "body": "dispatcher"
+    },
+    {
+      "pc": 36984,
+      "file_offset": 4216,
+      "width": 2,
+      "raw_hex": "fdb7",
+      "disassembly": "j 0x9066",
+      "body": "dispatcher",
+      "control": {
+        "kind": "jump",
+        "target": 36966
+      }
+    },
+    {
+      "pc": 37456,
+      "file_offset": 4688,
+      "width": 2,
+      "raw_hex": "4111",
+      "disassembly": "addi sp, sp, -16",
+      "body": "init"
+    },
+    {
+      "pc": 37458,
+      "file_offset": 4690,
+      "width": 2,
+      "raw_hex": "06c6",
+      "disassembly": "sw ra, 12(sp)",
+      "body": "init"
+    },
+    {
+      "pc": 37460,
+      "file_offset": 4692,
+      "width": 4,
+      "raw_hex": "eff0005e",
+      "disassembly": "jal ra, 0x18834",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 100404
+      }
+    },
+    {
+      "pc": 37464,
+      "file_offset": 4696,
+      "width": 4,
+      "raw_hex": "ef00a07e",
+      "disassembly": "jal ra, 0x9a42",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 39490
+      }
+    },
+    {
+      "pc": 37468,
+      "file_offset": 4700,
+      "width": 4,
+      "raw_hex": "ef00014e",
+      "disassembly": "jal ra, 0x1973c",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 104252
+      }
+    },
+    {
+      "pc": 37472,
+      "file_offset": 4704,
+      "width": 4,
+      "raw_hex": "ef00d04e",
+      "disassembly": "jal ra, 0x9f4c",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 40780
+      }
+    },
+    {
+      "pc": 37476,
+      "file_offset": 4708,
+      "width": 4,
+      "raw_hex": "ef90f075",
+      "disassembly": "jal ra, 0x131c2",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 78274
+      }
+    },
+    {
+      "pc": 37480,
+      "file_offset": 4712,
+      "width": 2,
+      "raw_hex": "0531",
+      "disassembly": "jal 0x8e88",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 36488
+      }
+    },
+    {
+      "pc": 37482,
+      "file_offset": 4714,
+      "width": 4,
+      "raw_hex": "ef00500e",
+      "disassembly": "jal ra, 0x9b4e",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 39758
+      }
+    },
+    {
+      "pc": 37486,
+      "file_offset": 4718,
+      "width": 2,
+      "raw_hex": "ed25",
+      "disassembly": "jal 0x9958",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 39256
+      }
+    },
+    {
+      "pc": 37488,
+      "file_offset": 4720,
+      "width": 4,
+      "raw_hex": "ef00304a",
+      "disassembly": "jal ra, 0x9f12",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 40722
+      }
+    },
+    {
+      "pc": 37492,
+      "file_offset": 4724,
+      "width": 4,
+      "raw_hex": "ef90f031",
+      "disassembly": "jal ra, 0x12d92",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 77202
+      }
+    },
+    {
+      "pc": 37496,
+      "file_offset": 4728,
+      "width": 4,
+      "raw_hex": "efb03021",
+      "disassembly": "jal ra, 0x14c8a",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 85130
+      }
+    },
+    {
+      "pc": 37500,
+      "file_offset": 4732,
+      "width": 4,
+      "raw_hex": "efc0a022",
+      "disassembly": "jal ra, 0x154a6",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 87206
+      }
+    },
+    {
+      "pc": 37504,
+      "file_offset": 4736,
+      "width": 4,
+      "raw_hex": "efd0105c",
+      "disassembly": "jal ra, 0x17040",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 94272
+      }
+    },
+    {
+      "pc": 37508,
+      "file_offset": 4740,
+      "width": 4,
+      "raw_hex": "efe0e011",
+      "disassembly": "jal ra, 0x173a2",
+      "body": "init",
+      "control": {
+        "kind": "call",
+        "target": 95138
+      }
+    },
+    {
+      "pc": 37512,
+      "file_offset": 4744,
+      "width": 2,
+      "raw_hex": "b240",
+      "disassembly": "lw ra, 12(sp)",
+      "body": "init"
+    },
+    {
+      "pc": 37514,
+      "file_offset": 4746,
+      "width": 2,
+      "raw_hex": "4101",
+      "disassembly": "addi sp, sp, 16",
+      "body": "init"
+    },
+    {
+      "pc": 37516,
+      "file_offset": 4748,
+      "width": 4,
+      "raw_hex": "6fe0b016",
+      "disassembly": "j 0x17bf6",
+      "body": "init",
+      "control": {
+        "kind": "jump",
+        "target": 97270
+      }
+    }
+  ],
+  "CFG": {
+    "entry_roots": [
+      36872,
+      36890
+    ],
+    "instructions": 80,
+    "bytes": 220,
+    "conditionally_covered_starts": 80,
+    "uncovered_starts": [],
+    "edges": [
+      {
+        "source": 33152,
+        "target": 33154,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33154,
+        "target": 33156,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33156,
+        "target": 33158,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33158,
+        "target": 33160,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33160,
+        "target": 33162,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33162,
+        "target": 33164,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33164,
+        "target": 33168,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33168,
+        "target": 33172,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33172,
+        "target": 33176,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33176,
+        "target": 33180,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33180,
+        "target": 33182,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33182,
+        "target": 94210,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 33182,
+        "target": 33186,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33186,
+        "target": 76888,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 33186,
+        "target": 33190,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33190,
+        "target": 33192,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 33192,
+        "target": 33176,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36872,
+        "target": 36874,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36874,
+        "target": 36876,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36876,
+        "target": 37456,
+        "kind": "selected-direct-call-entry",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36876,
+        "target": 36878,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36878,
+        "target": 33152,
+        "kind": "selected-direct-call-entry",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36878,
+        "target": 36882,
+        "kind": "unproved-loop-return-only",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36882,
+        "target": 36884,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36884,
+        "target": 36886,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36886,
+        "target": 36888,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36890,
+        "target": 36892,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36892,
+        "target": 36894,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36894,
+        "target": 36896,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36896,
+        "target": 36898,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36898,
+        "target": 36900,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36900,
+        "target": 36902,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36902,
+        "target": 36906,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36906,
+        "target": 36908,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36908,
+        "target": 36976,
+        "kind": "local",
+        "inside_selected_source": true,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 36908,
+        "target": 36910,
+        "kind": "local",
+        "inside_selected_source": true,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 36910,
+        "target": 36912,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36912,
+        "target": 36916,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36916,
+        "target": 36920,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36920,
+        "target": 36924,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36924,
+        "target": 36926,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36926,
+        "target": 36928,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36928,
+        "target": 36930,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36930,
+        "target": 36954,
+        "kind": "local",
+        "inside_selected_source": true,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 36930,
+        "target": 36932,
+        "kind": "local",
+        "inside_selected_source": true,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 36932,
+        "target": 36936,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36936,
+        "target": 36938,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36938,
+        "target": 36942,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36942,
+        "target": 36952,
+        "kind": "local",
+        "inside_selected_source": true,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 36942,
+        "target": 36944,
+        "kind": "local",
+        "inside_selected_source": true,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 36944,
+        "target": 36948,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36948,
+        "target": 36952,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36952,
+        "target": 36954,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36954,
+        "target": 36956,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36956,
+        "target": 36960,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36960,
+        "target": 36962,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36962,
+        "target": 36964,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36964,
+        "target": 36966,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36966,
+        "target": 36968,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36968,
+        "target": 36970,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36970,
+        "target": 36972,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36972,
+        "target": 36974,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36976,
+        "target": 36978,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36978,
+        "target": 36902,
+        "kind": "local",
+        "inside_selected_source": true,
+        "branch_outcome": "taken"
+      },
+      {
+        "source": 36978,
+        "target": 36982,
+        "kind": "local",
+        "inside_selected_source": true,
+        "branch_outcome": "not-taken"
+      },
+      {
+        "source": 36982,
+        "target": 36984,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 36984,
+        "target": 36966,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37456,
+        "target": 37458,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37458,
+        "target": 37460,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37460,
+        "target": 100404,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37460,
+        "target": 37464,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37464,
+        "target": 39490,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37464,
+        "target": 37468,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37468,
+        "target": 104252,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37468,
+        "target": 37472,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37472,
+        "target": 40780,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37472,
+        "target": 37476,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37476,
+        "target": 78274,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37476,
+        "target": 37480,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37480,
+        "target": 36488,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37480,
+        "target": 37482,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37482,
+        "target": 39758,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37482,
+        "target": 37486,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37486,
+        "target": 39256,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37486,
+        "target": 37488,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37488,
+        "target": 40722,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37488,
+        "target": 37492,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37492,
+        "target": 77202,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37492,
+        "target": 37496,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37496,
+        "target": 85130,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37496,
+        "target": 37500,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37500,
+        "target": 87206,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37500,
+        "target": 37504,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37504,
+        "target": 94272,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37504,
+        "target": 37508,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37508,
+        "target": 95138,
+        "kind": "delegated-direct-call",
+        "inside_selected_source": false
+      },
+      {
+        "source": 37508,
+        "target": 37512,
+        "kind": "normal-return-to-link-required",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37512,
+        "target": 37514,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37514,
+        "target": 37516,
+        "kind": "local",
+        "inside_selected_source": true
+      },
+      {
+        "source": 37516,
+        "target": 97270,
+        "kind": "delegated-tail",
+        "inside_selected_source": false
+      }
+    ],
+    "calls": [
+      {
+        "pc": 33180,
+        "kind": "indirect",
+        "target_register": 15,
+        "link_RA": 33182
+      },
+      {
+        "pc": 33182,
+        "kind": "direct",
+        "target": 94210,
+        "link_RA": 33186,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 33186,
+        "kind": "direct",
+        "target": 76888,
+        "link_RA": 33190,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 36876,
+        "kind": "direct",
+        "target": 37456,
+        "link_RA": 36878,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 36878,
+        "kind": "direct",
+        "target": 33152,
+        "link_RA": 36882,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 36952,
+        "kind": "indirect",
+        "target_register": 13,
+        "link_RA": 36954
+      },
+      {
+        "pc": 37460,
+        "kind": "direct",
+        "target": 100404,
+        "link_RA": 37464,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37464,
+        "kind": "direct",
+        "target": 39490,
+        "link_RA": 37468,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37468,
+        "kind": "direct",
+        "target": 104252,
+        "link_RA": 37472,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37472,
+        "kind": "direct",
+        "target": 40780,
+        "link_RA": 37476,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37476,
+        "kind": "direct",
+        "target": 78274,
+        "link_RA": 37480,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37480,
+        "kind": "direct",
+        "target": 36488,
+        "link_RA": 37482,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37482,
+        "kind": "direct",
+        "target": 39758,
+        "link_RA": 37486,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37486,
+        "kind": "direct",
+        "target": 39256,
+        "link_RA": 37488,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37488,
+        "kind": "direct",
+        "target": 40722,
+        "link_RA": 37492,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37492,
+        "kind": "direct",
+        "target": 77202,
+        "link_RA": 37496,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37496,
+        "kind": "direct",
+        "target": 85130,
+        "link_RA": 37500,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37500,
+        "kind": "direct",
+        "target": 87206,
+        "link_RA": 37504,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37504,
+        "kind": "direct",
+        "target": 94272,
+        "link_RA": 37508,
+        "argument_registers": "then-live a0..a7"
+      },
+      {
+        "pc": 37508,
+        "kind": "direct",
+        "target": 95138,
+        "link_RA": 37512,
+        "argument_registers": "then-live a0..a7"
+      }
+    ],
+    "terminals": [
+      {
+        "pc": 36888,
+        "kind": "return",
+        "target": "liveRA"
+      },
+      {
+        "pc": 36974,
+        "kind": "return",
+        "target": "liveRA"
+      },
+      {
+        "pc": 37516,
+        "kind": "delegated-tail",
+        "target": 97270
+      }
+    ],
+    "main_900E_return_edge_is_not_established_by_loop_source": true,
+    "loop_contains_no_RET_or_restore": true,
+    "normal_return_edges_do_not_prove_callee_ABI": true,
+    "external_callees_not_traversed": true
+  },
+  "synthetic_bit_geometry_cases": [
+    {
+      "input": 0,
+      "selected_index": null,
+      "result_if_expected_S0_S1_preserved": 0
+    },
+    {
+      "input": 32768,
+      "selected_index": null,
+      "result_if_expected_S0_S1_preserved": 0
+    },
+    {
+      "input": 2147483648,
+      "selected_index": null,
+      "result_if_expected_S0_S1_preserved": 0
+    },
+    {
+      "input": 2147516420,
+      "selected_index": 2,
+      "result_if_expected_S0_S1_preserved": 32768
+    },
+    {
+      "input": 65535,
+      "selected_index": 0,
+      "result_if_expected_S0_S1_preserved": 65534
+    },
+    {
+      "input": 4294967295,
+      "selected_index": 0,
+      "result_if_expected_S0_S1_preserved": 65534
+    }
+  ],
+  "raw_operand_mutations": [
+    {
+      "name": "main_savedRA_offset",
+      "pc": 36874,
+      "original_raw": "06c6",
+      "mutant_raw": "06c4",
+      "rejected": true,
+      "error": "900a: live stack register/offset"
+    },
+    {
+      "name": "main_init_target",
+      "pc": 36876,
+      "original_raw": "9124",
+      "mutant_raw": "9924",
+      "rejected": true,
+      "error": "900c: direct call target"
+    },
+    {
+      "name": "main_loop_target",
+      "pc": 36878,
+      "original_raw": "eff02f97",
+      "mutant_raw": "eff00f97",
+      "rejected": true,
+      "error": "900e: direct call target"
+    },
+    {
+      "name": "main_freshRA_offset",
+      "pc": 36882,
+      "original_raw": "b240",
+      "mutant_raw": "a240",
+      "rejected": true,
+      "error": "9012: live stack register/offset"
+    },
+    {
+      "name": "main_return0",
+      "pc": 36884,
+      "original_raw": "0145",
+      "mutant_raw": "0545",
+      "rejected": true,
+      "error": "9014: main0 only after loop return"
+    },
+    {
+      "name": "init_savedRA_offset",
+      "pc": 37458,
+      "original_raw": "06c6",
+      "mutant_raw": "06c4",
+      "rejected": true,
+      "error": "9252: live stack register/offset"
+    },
+    {
+      "name": "init_first_target",
+      "pc": 37460,
+      "original_raw": "eff0005e",
+      "mutant_raw": "eff0205e",
+      "rejected": true,
+      "error": "9254: direct call target"
+    },
+    {
+      "name": "init_freshRA_offset",
+      "pc": 37512,
+      "original_raw": "b240",
+      "mutant_raw": "a240",
+      "rejected": true,
+      "error": "9288: live stack register/offset"
+    },
+    {
+      "name": "init_SP_restore",
+      "pc": 37514,
+      "original_raw": "4101",
+      "mutant_raw": "4501",
+      "rejected": true,
+      "error": "928a: frame/index arithmetic"
+    },
+    {
+      "name": "init_tail_becomes_call",
+      "pc": 37516,
+      "original_raw": "6fe0b016",
+      "mutant_raw": "efe0b016",
+      "rejected": true,
+      "error": "928c: direct jump target"
+    },
+    {
+      "name": "loop_saveS0_offset",
+      "pc": 33154,
+      "original_raw": "22c4",
+      "mutant_raw": "22c6",
+      "rejected": true,
+      "error": "8182: live stack register/offset"
+    },
+    {
+      "name": "loop_S0_high",
+      "pc": 33156,
+      "original_raw": "2d64",
+      "mutant_raw": "2964",
+      "rejected": true,
+      "error": "8184: S0 LUI before remaining saves"
+    },
+    {
+      "name": "loop_saveS1_offset",
+      "pc": 33158,
+      "original_raw": "26c2",
+      "mutant_raw": "26c0",
+      "rejected": true,
+      "error": "8186: live stack register/offset"
+    },
+    {
+      "name": "loop_saveS2_offset",
+      "pc": 33160,
+      "original_raw": "4ac0",
+      "mutant_raw": "4ac2",
+      "rejected": true,
+      "error": "8188: live stack register/offset"
+    },
+    {
+      "name": "loop_saveRA_offset",
+      "pc": 33162,
+      "original_raw": "06c6",
+      "mutant_raw": "06c4",
+      "rejected": true,
+      "error": "818a: live stack register/offset"
+    },
+    {
+      "name": "loop_S2_base",
+      "pc": 33164,
+      "original_raw": "37090020",
+      "mutant_raw": "37190020",
+      "rejected": true,
+      "error": "loop S2/S1 LUI"
+    },
+    {
+      "name": "loop_S1_base",
+      "pc": 33168,
+      "original_raw": "b7340040",
+      "mutant_raw": "b7240040",
+      "rejected": true,
+      "error": "loop S2/S1 LUI"
+    },
+    {
+      "name": "loop_AAAA_low",
+      "pc": 33172,
+      "original_raw": "1304a4aa",
+      "mutant_raw": "1304b4aa",
+      "rejected": true,
+      "error": "8194: nominal S0 AAAA"
+    },
+    {
+      "name": "loop_live_pointer_base",
+      "pc": 33176,
+      "original_raw": "83270900",
+      "mutant_raw": "83a70900",
+      "rejected": true,
+      "error": "8198: fresh pointer from live S2"
+    },
+    {
+      "name": "loop_pointer_width",
+      "pc": 33176,
+      "original_raw": "83270900",
+      "mutant_raw": "83370900",
+      "rejected": true,
+      "error": "8198: fresh pointer from live S2"
+    },
+    {
+      "name": "loop_indirect_target",
+      "pc": 33180,
+      "original_raw": "8297",
+      "mutant_raw": "0297",
+      "rejected": true,
+      "error": "819c: unguarded loaded A5 call"
+    },
+    {
+      "name": "loop_direct_target",
+      "pc": 33182,
+      "original_raw": "efe05066",
+      "mutant_raw": "efe07066",
+      "rejected": true,
+      "error": "819e: direct call target"
+    },
+    {
+      "name": "loop_write_value_register",
+      "pc": 33190,
+      "original_raw": "80c0",
+      "mutant_raw": "84c0",
+      "rejected": true,
+      "error": "81a6: live S0→live S1 WRITE32"
+    },
+    {
+      "name": "loop_write_base_register",
+      "pc": 33190,
+      "original_raw": "80c0",
+      "mutant_raw": "00c0",
+      "rejected": true,
+      "error": "81a6: live S0→live S1 WRITE32"
+    },
+    {
+      "name": "loop_backedge",
+      "pc": 33192,
+      "original_raw": "c5bf",
+      "mutant_raw": "cdbf",
+      "rejected": true,
+      "error": "81a8: direct jump target"
+    },
+    {
+      "name": "dispatcher_save_order_RA_offset",
+      "pc": 36894,
+      "original_raw": "06c6",
+      "mutant_raw": "06c4",
+      "rejected": true,
+      "error": "901e: live stack register/offset"
+    },
+    {
+      "name": "scan_limit15",
+      "pc": 36900,
+      "original_raw": "3d47",
+      "mutant_raw": "3947",
+      "rejected": true,
+      "error": "9024: dispatcher constant"
+    },
+    {
+      "name": "scan_uses_A1",
+      "pc": 36902,
+      "original_raw": "b3d78540",
+      "mutant_raw": "b3578540",
+      "rejected": true,
+      "error": "9026/2a: arithmetic shift inputA1 byS0, AND1"
+    },
+    {
+      "name": "record_stride12",
+      "pc": 36910,
+      "original_raw": "b147",
+      "mutant_raw": "b547",
+      "rejected": true,
+      "error": "902e: dispatcher constant"
+    },
+    {
+      "name": "registry_PC_low",
+      "pc": 36920,
+      "original_raw": "938747dd",
+      "mutant_raw": "938757dd",
+      "rejected": true,
+      "error": "9034: own PCREL registry base"
+    },
+    {
+      "name": "save_full_input_S1",
+      "pc": 36924,
+      "original_raw": "ae84",
+      "mutant_raw": "aa84",
+      "rejected": true,
+      "error": "903c: save full A1 in S1 then add record offset"
+    },
+    {
+      "name": "callback_pointer_field",
+      "pc": 36928,
+      "original_raw": "d443",
+      "mutant_raw": "9443",
+      "rejected": true,
+      "error": "9040: callback pointer first"
+    },
+    {
+      "name": "mode_LBU_field",
+      "pc": 36932,
+      "original_raw": "03c70700",
+      "mutant_raw": "03c71700",
+      "rejected": true,
+      "error": "9044: mode byte BEFORE argument"
+    },
+    {
+      "name": "argument_field8",
+      "pc": 36936,
+      "original_raw": "8847",
+      "mutant_raw": "c847",
+      "rejected": true,
+      "error": "9048: argument after mode byte"
+    },
+    {
+      "name": "mode_mask255",
+      "pc": 36938,
+      "original_raw": "1377f70f",
+      "mutant_raw": "1377e70f",
+      "rejected": true,
+      "error": "904a: mode ANDI255 after argument"
+    },
+    {
+      "name": "mode_branch_direction",
+      "pc": 36942,
+      "original_raw": "09e7",
+      "mutant_raw": "09c7",
+      "rejected": true,
+      "error": "904e: compressed branch register/condition"
+    },
+    {
+      "name": "clear_callback_offset",
+      "pc": 36944,
+      "original_raw": "23a20700",
+      "mutant_raw": "a3a20700",
+      "rejected": true,
+      "error": "mode0 clears callback then argument BEFORE call"
+    },
+    {
+      "name": "clear_argument_offset",
+      "pc": 36948,
+      "original_raw": "23a40700",
+      "mutant_raw": "a3a40700",
+      "rejected": true,
+      "error": "mode0 clears callback then argument BEFORE call"
+    },
+    {
+      "name": "callback_target_A3",
+      "pc": 36952,
+      "original_raw": "8296",
+      "mutant_raw": "0296",
+      "rejected": true,
+      "error": "9058: loaded A3 call/link905a"
+    },
+    {
+      "name": "postcall_live_shift_S0",
+      "pc": 36956,
+      "original_raw": "33158500",
+      "mutant_raw": "33159500",
+      "rejected": true,
+      "error": "return uses THEN-LIVE S0/S1"
+    },
+    {
+      "name": "postcall_live_XOR_S1",
+      "pc": 36960,
+      "original_raw": "258d",
+      "mutant_raw": "218d",
+      "rejected": true,
+      "error": "return uses THEN-LIVE S0/S1"
+    },
+    {
+      "name": "low16_truncation",
+      "pc": 36962,
+      "original_raw": "4205",
+      "mutant_raw": "4605",
+      "rejected": true,
+      "error": "return low16 truncation"
+    },
+    {
+      "name": "dispatcher_freshRA_offset",
+      "pc": 36966,
+      "original_raw": "b240",
+      "mutant_raw": "a240",
+      "rejected": true,
+      "error": "9066: live stack register/offset"
+    },
+    {
+      "name": "dispatcher_freshS0_offset",
+      "pc": 36968,
+      "original_raw": "2244",
+      "mutant_raw": "3244",
+      "rejected": true,
+      "error": "9068: live stack register/offset"
+    },
+    {
+      "name": "dispatcher_scan_backedge",
+      "pc": 36978,
+      "original_raw": "e31ae4fa",
+      "mutant_raw": "e31be4fa",
+      "rejected": true,
+      "error": "9072: direct branch target"
+    }
+  ],
+  "network": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "hardware": false
+}

@@ -21,6 +21,7 @@ evidence remain separate. Original/rebuilt firmware is not executed or emulated.
 | BOOT / UID | [Command](experiments/tsl9-boot2580-command-adapter/) / [UID](experiments/tsl9-boot2580-uid-helper/) |
 | Reference byte-copy | [C/C++](experiments/tsl9-resident-copy-reference/);58B/18 source instructions |
 | Reference entry/initializer | [C/C++](experiments/tsl9-resident-entry-reference/);230B/66 instructions plus4B header |
+| V4.1.60 main/init/loop/dispatch | [C/C++](experiments/tsl9-v4160-runtime-loop/);220B/80 source instructions |
 | Evidence and limitations | [Verified milestones](docs/verified-milestones.md) |
 | Published file hashes | [Manifest](publication-manifest.json) |
 
@@ -46,6 +47,7 @@ recent source proofs/model verifiers resolve this snapshot's analysis inputs.
 python scripts/verify-publication.py
 pwsh -NoProfile -File experiments/tsl9-resident-copy-reference/verify.ps1
 pwsh -NoProfile -File experiments/tsl9-resident-entry-reference/verify.ps1
+pwsh -NoProfile -File experiments/tsl9-v4160-runtime-loop/verify.ps1
 ```
 
 Add -Cpp for C++17. Passing establishes only the declared source/host scope.
@@ -53,6 +55,11 @@ Commit/push follows each verified milestone. New documents are English plus
 Traditional Chinese; sealed historical bytes stay unchanged with companion notes.
 Real identifiers,credentials,private request/response logs,unrelated work and
 temporary builds are excluded. Original APK/BIN rights remain with their holders.
+
+The newest runtime model preserves initialization call order, the permanent main
+loop, fresh callback slots, mode-before-argument dispatch and explicit return
+routes. Its host limit never becomes a native main return. Deep callees remain
+providers; source-bound reconstruction does not establish the physical ABI.
 
 ## 繁體中文
 
@@ -74,6 +81,10 @@ Dec2023 V1.31只是候選，不是實機resident辨識。第二段初始化請�
 SHN_ABS40000位址witness不是resident實作；確切MCU／PCB、原機BOOT／ROM、實體記憶體／
 IRQ ABI及OTA接受都未證實。byte-copy有58B／18來源指令，entry／init／seed有230B／66
 指令，另4B header；這些是有來源條件的重建，不是完整恢復的原始碼。
+
+最新Runtime模型另重建220B／80條來源指令，保留初始化呼叫順序、永久主迴圈、即時callback
+槽、先mode後argument的派送與明示返回路徑。主機次數限制不會變成原生main返回。
+深層callee仍需提供者，尚未證明原機ABI；上方新增runtime-loop驗證指令可重播此範圍。
 
 ### 本機驗證與發佈
 
