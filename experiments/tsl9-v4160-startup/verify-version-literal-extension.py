@@ -15,9 +15,11 @@ import sys
 import uuid
 from pathlib import Path
 
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
+
 ROOT = Path(__file__).resolve().parent
 W = ROOT.parents[1]
-BIN = Path(r'C:\Users\locky\AppData\Local\Android\Sdk\ndk\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\bin')
+BIN = _paths["llvm_bin"]()
 NAME = '__tsl9v4160_address_1ab1c'
 SECTION = '.rodata.tsl9v4160.version_literal_1ab1c'
 VA = 0x1AB1C

@@ -8,12 +8,14 @@ import json
 import struct
 from pathlib import Path
 
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
+
 HERE = Path(__file__).resolve().parent
 WORK = HERE.parents[2]
 NATIVE = WORK / "experiments/tsl9-v4160-startup"
 IMAGE = NATIVE / "build/image-fidelity-999d8125159a4d80bd6df9153f267002"
 FW = WORK / "exports/TSL-firmware-options-22-BINs-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin"
-TOOLBIN = Path("C:/Users/locky/AppData/Local/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/windows-x86_64/bin")
+TOOLBIN = _paths["llvm_bin"]()
 
 
 def sha(path):

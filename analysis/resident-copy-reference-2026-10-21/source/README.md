@@ -30,7 +30,7 @@ python -B "<source-package>\inspect-source.py" --check --carrier "<absolute-REFE
 To additionally recheck the already sealed historical carrier/handoff trees in the original workspace, append:
 
 ```powershell
---verify-historical --workspace "C:\Users\locky\Documents\Codex\2026-10-13\rea-https-github-com-morluto-rea"
+--verify-historical --workspace "$env:TSL9_ANALYSIS_WORKSPACE"
 ```
 
 `--check` regenerates and byte-compares both JSON reports, checks all seal members, and writes nothing. `--write` is restricted to this checker's own unsealed directory. No original ISA execution, emulation, network, hardware, real UID packet, ROOT change, D change or BIN/provider construction is performed.

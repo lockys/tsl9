@@ -35,8 +35,18 @@ foreach($ubPath in $ubInputs.Keys){if((Get-FileHash -LiteralPath $ubPath -Algori
 $ubNames=@('src/uid_helper.c','src/uid_helper.h','tests/test_uid_helper.c','verify.ps1','source-map.json','README.md')
 $ubPins=@{}
 foreach($ubName in $ubNames){$ubPins[$ubName]=(Get-FileHash -LiteralPath (Join-Path $ubRoot $ubName) -Algorithm SHA256).Hash.ToLowerInvariant()}
-$ubPython='C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe'
-$ubProofText=& $ubPython -X utf8 -B (Join-Path $ProofRoot 'inspect-source.py') --check --firmware $Firmware --source-root $ProofRoot
+$ubPython=$env:TSL9_PYTHON
+$ubPythonPrefix=@()
+if(-not $ubPython){
+    $ubPythonCommand=Get-Command python -CommandType Application -ErrorAction SilentlyContinue
+    if($ubPythonCommand){$ubPython=$ubPythonCommand.Source}else{
+        $ubPythonCommand=Get-Command py -CommandType Application -ErrorAction SilentlyContinue
+        if(-not $ubPythonCommand){throw 'Set TSL9_PYTHON to a Python 3 executable, or add python/py to PATH.'}
+        $ubPython=$ubPythonCommand.Source
+        $ubPythonPrefix=@('-3')
+    }
+}
+$ubProofText=& $ubPython @ubPythonPrefix -X utf8 -B (Join-Path $ProofRoot 'inspect-source.py') --check --firmware $Firmware --source-root $ProofRoot
 if($LASTEXITCODE -ne 0){throw 'Original helper source replay failed'}
 $ubProof=$ubProofText | ConvertFrom-Json
 if(-not $ubProof.passed -or $ubProof.bytes -ne 122 -or $ubProof.instructions -ne 48 -or $ubProof.raw_mutation_rejections -ne 24){throw 'Complete selected UID helper source required'}

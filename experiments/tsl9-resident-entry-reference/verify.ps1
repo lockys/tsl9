@@ -20,8 +20,18 @@ foreach($riProperty in $riMap.reset_inputs.PSObject.Properties){$riInputs[(Join-
 foreach($riPath in $riInputs.Keys){if((Get-FileHash -LiteralPath $riPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne $riInputs[$riPath]){throw 'Source/reference/dependency changed'}}
 $riNames=@('src/resident_entry.c','src/resident_entry.h','src/reset_entry_bridge.c','src/reset_entry_bridge.h','tests/test_resident_entry.c','tests/run-tests.ps1','verify.ps1','source-map.json','README.md')
 $riPins=@{};foreach($riName in $riNames){$riPins[$riName]=(Get-FileHash -LiteralPath (Join-Path $riRoot $riName) -Algorithm SHA256).Hash.ToLowerInvariant()}
-$riPython='C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe'
-$riProofText=& $riPython -X utf8 -B (Join-Path $ProofRoot 'inspect-source.py') --check --carrier $Carrier --source-root $ProofRoot
+$riPython=$env:TSL9_PYTHON
+$riPythonPrefix=@()
+if(-not $riPython){
+    $riPythonCommand=Get-Command python -CommandType Application -ErrorAction SilentlyContinue
+    if($riPythonCommand){$riPython=$riPythonCommand.Source}else{
+        $riPythonCommand=Get-Command py -CommandType Application -ErrorAction SilentlyContinue
+        if(-not $riPythonCommand){throw 'Set TSL9_PYTHON to a Python 3 executable, or add python/py to PATH.'}
+        $riPython=$riPythonCommand.Source
+        $riPythonPrefix=@('-3')
+    }
+}
+$riProofText=& $riPython @riPythonPrefix -X utf8 -B (Join-Path $ProofRoot 'inspect-source.py') --check --carrier $Carrier --source-root $ProofRoot
 if($LASTEXITCODE -ne 0){throw 'Resident entry raw source replay failed'}
 $riProof=$riProofText | ConvertFrom-Json
 if(-not $riProof.passed -or $riProof.body_bytes -ne 230 -or $riProof.body_instructions -ne 66 -or $riProof.header_bytes -ne 4 -or $riProof.raw_operand_mutation_rejections -ne 35){throw 'Complete selected source required'}

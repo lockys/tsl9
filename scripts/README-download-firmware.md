@@ -1,6 +1,6 @@
 # POST 下載已回傳的韌體 BIN
 
-在 `C:\Users\locky\Documents\projects\re-tsl9` 執行：
+在自己的專案根目錄執行：
 
 ```powershell
 pwsh -NoProfile -File .\scripts\download-tsl-firmware.ps1 -FirmwareId 2966

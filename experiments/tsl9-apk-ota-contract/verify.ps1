@@ -9,13 +9,20 @@ $caseCompiler=Join-Path $caseVs ('VC\Tools\MSVC\'+$caseVersion+'\bin\Hostx64\x64
 $caseMode=if($Cpp){'cpp'}else{'c'}
 $caseBuild=Join-Path $caseRoot ('build\'+[Guid]::NewGuid().ToString('N')+'-'+$caseMode)
 New-Item -ItemType Directory -Path $caseBuild | Out-Null
+$casePythonPrefix=@()
+if(-not $Python){$Python=$env:TSL9_PYTHON}
 if(-not $Python){
-    $caseBundledPython='C:\Users\locky\AppData\Local\hermes\hermes-agent\venv\Scripts\python.exe'
-    if(Test-Path -LiteralPath $caseBundledPython){$Python=$caseBundledPython}else{$Python=(Get-Command python -ErrorAction Stop).Source}
+    $casePythonCommand=Get-Command python -CommandType Application -ErrorAction SilentlyContinue
+    if($casePythonCommand){$Python=$casePythonCommand.Source}else{
+        $casePythonCommand=Get-Command py -CommandType Application -ErrorAction SilentlyContinue
+        if(-not $casePythonCommand){throw 'Set TSL9_PYTHON to a Python 3 executable, or add python/py to PATH.'}
+        $Python=$casePythonCommand.Source
+        $casePythonPrefix=@('-3')
+    }
 }
 $caseSourceArgs=@('-X','utf8','-B',(Join-Path $caseRoot 'verify-source.py'))
 if($Apk){$caseSourceArgs+=@('--apk',$Apk)}
-$caseSourceOutput=& $Python @caseSourceArgs
+$caseSourceOutput=& $Python @casePythonPrefix @caseSourceArgs
 if($LASTEXITCODE -ne 0){throw 'Original APK/source-chain verification failed'}
 $caseSource=$caseSourceOutput | ConvertFrom-Json
 if(-not $caseSource.passed -or -not $caseSource.source_chain_verified){throw 'Source receipt missing'}

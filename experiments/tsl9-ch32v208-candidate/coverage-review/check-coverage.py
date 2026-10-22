@@ -7,7 +7,9 @@ import hashlib
 import json
 import struct
 
-D = Path(r'C:/Users/locky/Documents/projects/re-tsl9')
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
+
+D = _paths["project_root"]()
 E = D / 'experiments/tsl9-lookup-domain-closure'
 OUT = Path(__file__).resolve().parent
 BASE, LENGTH = 0x8000, 76800

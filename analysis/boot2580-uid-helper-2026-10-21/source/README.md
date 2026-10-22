@@ -24,7 +24,7 @@ python -B "<source-package>\inspect-source.py" --check --firmware "<absolute-ID-
 The48 retained rows are hard-pinned in `retained-source.json`; the old927-row evidence tree is not needed in D. To additionally check the original historical seals while in the original workspace, append:
 
 ```powershell
---verify-historical --workspace "C:\Users\locky\Documents\Codex\2026-10-13\rea-https-github-com-morluto-rea"
+--verify-historical --workspace "$env:TSL9_ANALYSIS_WORKSPACE"
 ```
 
 `--check` is entirely read-only and compares both generated JSON files byte for byte, then checks seal members. `--write` is limited to this checker's own unsealed directory and refuses nonidentical existing outputs. No network, hardware, real UID, ROOT/D changes or target execution is involved.

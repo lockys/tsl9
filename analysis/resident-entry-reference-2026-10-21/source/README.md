@@ -44,7 +44,7 @@ python -B "<source-package>\inspect-source.py" --check --carrier "<absolute-REFE
 This rechecks raw code, mathematical mapping and the pinned inventory-based boundary; it is not a source-memory provider and does not execute either copy. To additionally recheck all historical carrier/handoff sealed members, append:
 
 ```powershell
---verify-historical --workspace "C:\Users\locky\Documents\Codex\2026-10-13\rea-https-github-com-morluto-rea"
+--verify-historical --workspace "$env:TSL9_ANALYSIS_WORKSPACE"
 ```
 
 `--check` is entirely read-only and byte-compares generated JSON. `--write` is limited to the checker's own unsealed directory. The package proves reference source flow, not installed resident identity, original ABI, startup success, physical RAM/MMIO, IRQ behavior or flash readiness. It generates no provider, fills no holes, executes no original ISA, performs no network/hardware operation, and changes neither ROOT/D nor old seals.

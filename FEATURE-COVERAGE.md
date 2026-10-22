@@ -349,7 +349,7 @@ R30 新增完整 0x8B2E GATT 接收回呼 C/C++ 與 portable GATT 註冊 binding
 
 本輪 staging C／C++ 各 32 組、2,031 checks 全過；九物件 RV32 ET_REL 為 34,000／36,856 bytes、38 exports、102 defined relocations。portable table/context、來源 alias 與部分效果有合成測試；原 ROM ABI、啟動、IRQ、最終連結、原機及藍牙 OTA 均未通過，尚無可燒錄 BIN。下方為保留的 R29 功能盤點及其歷史測試數字。
 
-核對日期：2026-10-18。程式目錄：`C:\Users\locky\Documents\projects\re-tsl9`。
+核對日期：2026-10-18。程式目錄：目前專案根目錄（由腳本位置解析）。
 
 **目前交付是可在電腦編譯／測試的 C11／C++17 離線行為模型，尚非可燒錄韌體，也沒有任何功能經實體車輛驗證。**「已建模」表示指定程式範圍及其外部合約已重建，不能直接視為整項產品功能完成。
 

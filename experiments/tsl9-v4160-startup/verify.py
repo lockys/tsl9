@@ -1,8 +1,10 @@
 """Compile C/C++; inspect ELF bytes/relocations. Never execute the target."""
 from pathlib import Path
 import argparse,hashlib,json,re,struct,subprocess,uuid
+
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
 ROOT=Path(__file__).resolve().parent
-BIN=Path(r'C:\Users\locky\AppData\Local\Android\Sdk\ndk\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\bin')
+BIN=_paths["llvm_bin"]()
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def need(x,message):
     if not x:raise AssertionError(message)

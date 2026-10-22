@@ -24,7 +24,7 @@ python -B "<source-package>\inspect-source.py" --check --firmware "<absolute-ID-
 Optional additional historical-chain validation in the original evidence workspace:
 
 ```powershell
-python -B "<source-package>\inspect-source.py" --check --firmware "<absolute-BOOT>" --source-root "<source-package>" --verify-historical --workspace "C:\Users\locky\Documents\Codex\2026-10-13\rea-https-github-com-morluto-rea"
+python -B "<source-package>\inspect-source.py" --check --firmware "<absolute-BOOT>" --source-root "<source-package>" --verify-historical --workspace "$env:TSL9_ANALYSIS_WORKSPACE"
 ```
 
 `--check` is entirely read-only and compares both generated JSON files byte for byte. `--write` is restricted to this checker's own directory and refuses a sealed package. No network, target execution, ISA emulation, hardware operation, new provider, ROOT change or D change is performed.

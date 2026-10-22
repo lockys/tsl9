@@ -31,10 +31,10 @@ ELF 為 RV32 RISC-V ET_EXEC，零剩餘 UND、零未套用 REL/RELA，只有 Fla
 
 ## 在此機重新建置
 
-在 PowerShell 7 執行下列指令，`RuntimePath` 必須指向同 SHA256 的原始 Runtime。腳本依收據使用本機固定的 LLVM／Python，不下載依賴；每次輸出全新 GUID 目錄，不覆蓋舊建置。
+在專案根目錄以 PowerShell 7 執行下列指令，`RuntimePath` 必須指向同 SHA256 的原始 Runtime。依[本機路徑設定](../../docs/local-paths.zh-TW.md)指定工具環境變數，並將 `$RuntimePath` 設為自己的原始 Runtime 路徑。不下載依賴；每次輸出全新 GUID 目錄，不覆蓋舊建置。
 
 ```powershell
-pwsh -NoProfile -File C:/Users/locky/Documents/projects/re-tsl9/experiments/tsl9-ch32v208-candidate/build.ps1 -Mode cpp -RuntimePath C:/Users/locky/Documents/Codex/2026-10-13/rea-https-github-com-morluto-rea/apk-analysis/tsl9-server-current/TSL9-runtime-api-payload.bin
+pwsh -NoProfile -File ./experiments/tsl9-ch32v208-candidate/build.ps1 -Mode cpp -RuntimePath "$RuntimePath"
 # C 路徑：將 -Mode cpp 改為 -Mode c
 ```
 

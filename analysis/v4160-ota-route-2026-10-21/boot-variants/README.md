@@ -24,7 +24,7 @@ ID2815在四次program返回、word readback全部相等後，`2310`將index高�
 重播只讀四份已保存BIN及封存主proof，僅寫本scope review.json：
 
 ```powershell
-& 'C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe' -X utf8 -B apk-analysis/tsl9-v4160-ota-route-2026-10-21/boot-variants/review-variants.py
+python -X utf8 -B apk-analysis/tsl9-v4160-ota-route-2026-10-21/boot-variants/review-variants.py
 ```
 
 本輪新增的是「存在不同BOOT回應形狀」的證據；仍缺catalog product對應、原機installed BOOT身份、底層傳輸／ROM／Flash行為與硬體適用性。沒有可刷包、替代建議或OTA-ready結論。seal／一次readonly readback後停止寫入。

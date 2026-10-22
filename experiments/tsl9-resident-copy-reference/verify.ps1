@@ -35,8 +35,18 @@ foreach($rpProperty in $rpMap.bridge_inputs.PSObject.Properties){$rpInputs[(Join
 foreach($rpPath in $rpInputs.Keys){if((Get-FileHash -LiteralPath $rpPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne $rpInputs[$rpPath]){throw 'Source/reference/dependency changed'}}
 $rpNames=@('src/reference_copy.c','src/reference_copy.h','tests/test_reference_copy.c','tests/run-tests.ps1','verify.ps1','source-map.json','README.md')
 $rpPins=@{};foreach($rpName in $rpNames){$rpPins[$rpName]=(Get-FileHash -LiteralPath (Join-Path $rpRoot $rpName) -Algorithm SHA256).Hash.ToLowerInvariant()}
-$rpPython='C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe'
-$rpProofText=& $rpPython -X utf8 -B (Join-Path $ProofRoot 'inspect-source.py') --check --carrier $Carrier --source-root $ProofRoot
+$rpPython=$env:TSL9_PYTHON
+$rpPythonPrefix=@()
+if(-not $rpPython){
+    $rpPythonCommand=Get-Command python -CommandType Application -ErrorAction SilentlyContinue
+    if($rpPythonCommand){$rpPython=$rpPythonCommand.Source}else{
+        $rpPythonCommand=Get-Command py -CommandType Application -ErrorAction SilentlyContinue
+        if(-not $rpPythonCommand){throw 'Set TSL9_PYTHON to a Python 3 executable, or add python/py to PATH.'}
+        $rpPython=$rpPythonCommand.Source
+        $rpPythonPrefix=@('-3')
+    }
+}
+$rpProofText=& $rpPython @rpPythonPrefix -X utf8 -B (Join-Path $ProofRoot 'inspect-source.py') --check --carrier $Carrier --source-root $ProofRoot
 if($LASTEXITCODE -ne 0){throw 'Reference source replay failed'}
 $rpProof=$rpProofText | ConvertFrom-Json
 if(-not $rpProof.passed -or $rpProof.helper_bytes -ne 58 -or $rpProof.helper_instructions -ne 18 -or $rpProof.raw_operand_mutation_rejections -ne 23){throw 'Complete selected source required'}

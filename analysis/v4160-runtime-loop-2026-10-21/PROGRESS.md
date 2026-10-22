@@ -10,7 +10,7 @@ instructions, with45 raw operand mutations rejected by the portable source proof
 Own C11/C++17 suites each pass6 groups/1,431 checks. Independent reuse, review and
 actual reset/resident/runtime composition are separate sealed scopes. New code
 is delivered to the existing re-tsl9 project; each verified milestone is committed
-and pushed to the authorized private lockys/tsl9 repository.
+and pushed to the authorized project repository.
 
 Initialization exposes14 deep callee providers and a tail provider without
 inventing prototypes or status checks. Loop budget is a host observation stop,
@@ -41,7 +41,7 @@ regressions and bind the final source, not the earlier formal receipts.
 dispatcher901A固定資料流，共220B／80條指令；可攜來源證據拒絕45個原始運算元突變。
 自有C11／C++17各通過6組／1,431項；獨立reuse、review及實際reset／resident／runtime
 整合分別封存。新程式交付到既有re-tsl9專案；每個驗證里程碑commit／push到已授權
-的私人lockys/tsl9儲存庫。
+的專案儲存庫。
 
 初始化明示14個深層callee與尾呼叫提供者，不臆造原型或成功檢查。loop次數限制只是
 主機觀察停止，不是main返回；保留共用即時槽、暫存器、堆疊重讀與明示返回路徑。

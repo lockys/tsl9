@@ -37,7 +37,9 @@ $mcOutput=& $mcExe
 if($LASTEXITCODE -ne 0){throw 'Host comparison behavior failed'}
 $mcTests=$mcOutput|ConvertFrom-Json
 if(-not $mcTests.passed){throw 'Host test receipt missing'}
-$mcClang='C:\Users\locky\AppData\Local\Android\Sdk\ndk\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\bin\clang.exe'
+$mcTools=$env:TSL9_LLVM_BIN
+if([string]::IsNullOrWhiteSpace($mcTools)){throw 'Set TSL9_LLVM_BIN to the existing LLVM toolchain bin directory.'}
+$mcClang=Join-Path $mcTools 'clang.exe'
 $mcTarget=Join-Path $mcBuild 'freestanding-memcmp-rv32.o'
 $mcTargetFlags=@('--target=riscv32-unknown-elf','-march=rv32imac','-mabi=ilp32','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-fno-exceptions','-fno-rtti','-Wall','-Wextra','-Werror')
 $mcTargetFlags+=if($Cpp){@('-x','c++','-std=c++17')}else{@('-x','c','-std=c11')}

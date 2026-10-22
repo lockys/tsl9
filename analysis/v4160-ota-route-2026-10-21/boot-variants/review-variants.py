@@ -1,6 +1,8 @@
 """Four retained BOOT response shapes, offline bounded original-opcode comparison."""
 from pathlib import Path
 import ast,hashlib,json,struct,subprocess,sys
+
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
 sys.dont_write_bytecode=True
 W=Path(__file__).resolve().parents[3];OUT=Path(__file__).parent;ROOT=W/'exports/TSL-firmware-options-22-BINs-2026-10-20/BINs'
 SHA=lambda b:hashlib.sha256(b).hexdigest();SX=lambda v,n:v-(1<<n)if v&(1<<(n-1))else v
@@ -8,7 +10,7 @@ SPECS={2349:dict(sha='8aa3d7eeeeea1a05bd41917ef5c1e6404af670e296e04b72aa322e5634
 
 def main():
     prior=OUT.parent/'protocol-review/review.json';assert SHA(prior.read_bytes())=='9a66b861219b9d0b2307f5968bd5e44081e40ccb48600ca397713485145d0564'
-    r2=Path('C:/Users/locky/Tools/radare2/bin/r2.exe');dec=W/'apk-analysis/tsl9-v4160-platform-2026-10-20/vector-review/review-vectors.py';assert SHA(dec.read_bytes())=='0c4a0bb7e12c3be5001c7624b02e9fb1c1cd3cc78f011455485fff268b26151b'
+    r2=_paths["radare2"]();dec=W/'apk-analysis/tsl9-v4160-platform-2026-10-20/vector-review/review-vectors.py';assert SHA(dec.read_bytes())=='0c4a0bb7e12c3be5001c7624b02e9fb1c1cd3cc78f011455485fff268b26151b'
     variants=[]
     for ident,spec in SPECS.items():
         p=ROOT/f'ID-{ident}-V1.0.00-decoded.bin';raw=p.read_bytes();assert len(raw)==12288 and SHA(raw)==spec['sha']

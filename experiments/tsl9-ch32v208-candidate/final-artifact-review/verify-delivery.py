@@ -1,7 +1,9 @@
 """Read-only delivery identity check, only writes new local review JSON."""
 from pathlib import Path
 import json, hashlib
-ROOT=Path('C:/Users/locky/Documents/projects/re-tsl9')
+
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
+ROOT=_paths["project_root"]()
 DELIVERY=ROOT/'candidate-bin/ch32v208-2026-10-20'
 OUT=Path(__file__).parent/'delivery-review.json'
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()

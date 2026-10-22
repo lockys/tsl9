@@ -1,7 +1,8 @@
 param([switch]$Cpp)
 $ErrorActionPreference='Stop'
 $nativeRoot=$PSScriptRoot
-$nativeTools='C:\Users\locky\AppData\Local\Android\Sdk\ndk\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\bin'
+$nativeTools=$env:TSL9_LLVM_BIN
+if([string]::IsNullOrWhiteSpace($nativeTools)){throw 'Set TSL9_LLVM_BIN to the existing LLVM toolchain bin directory.'}
 $nativeClang=Join-Path $nativeTools 'clang.exe'
 $nativeMode=if($Cpp){'target-service-dispatch-native-cpp'}else{'target-service-dispatch-native-c'}
 $nativeBuild=Join-Path $nativeRoot ('build/'+$nativeMode)

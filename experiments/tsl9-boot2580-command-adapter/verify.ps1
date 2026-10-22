@@ -36,8 +36,18 @@ foreach($bcPath in $bcInputs.Keys){if((Get-FileHash -LiteralPath $bcPath -Algori
 $bcNames=@('src/boot_command.c','src/boot_command.h','src/boot_fp_bridge.c','src/boot_fp_bridge.h','tests/test_boot_command.c','verify.ps1','source-map.json','README.md')
 $bcPins=@{}
 foreach($bcName in $bcNames){$bcPins[$bcName]=(Get-FileHash -LiteralPath (Join-Path $bcRoot $bcName) -Algorithm SHA256).Hash.ToLowerInvariant()}
-$bcPython='C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe'
-$bcProofText=& $bcPython -X utf8 -B (Join-Path $ProofRoot 'inspect-source.py') --check --firmware $Firmware --source-root $ProofRoot
+$bcPython=$env:TSL9_PYTHON
+$bcPythonPrefix=@()
+if(-not $bcPython){
+    $bcPythonCommand=Get-Command python -CommandType Application -ErrorAction SilentlyContinue
+    if($bcPythonCommand){$bcPython=$bcPythonCommand.Source}else{
+        $bcPythonCommand=Get-Command py -CommandType Application -ErrorAction SilentlyContinue
+        if(-not $bcPythonCommand){throw 'Set TSL9_PYTHON to a Python 3 executable, or add python/py to PATH.'}
+        $bcPython=$bcPythonCommand.Source
+        $bcPythonPrefix=@('-3')
+    }
+}
+$bcProofText=& $bcPython @bcPythonPrefix -X utf8 -B (Join-Path $ProofRoot 'inspect-source.py') --check --firmware $Firmware --source-root $ProofRoot
 if($LASTEXITCODE -ne 0){throw 'Actual original selected BOOT source replay failed'}
 $bcProof=$bcProofText | ConvertFrom-Json
 if(-not $bcProof.passed -or $bcProof.body_bytes -ne 414 -or $bcProof.instructions -ne 144 -or $bcProof.raw_mutation_rejections -ne 18){throw 'Complete selected command source required'}

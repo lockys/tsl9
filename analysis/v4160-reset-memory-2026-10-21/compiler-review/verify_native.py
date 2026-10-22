@@ -11,6 +11,8 @@ import subprocess
 import sys
 import uuid
 
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
+
 HERE = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("reset_memory_elf", HERE / "elf32.py")
 parser_module = importlib.util.module_from_spec(spec)
@@ -18,7 +20,7 @@ spec.loader.exec_module(parser_module)
 ELF, require = parser_module.ELF, parser_module.require
 ENTRY = "tsl9_rebuild_reset_memory_186ba"
 CONTINUATION = "__tsl9_reset_resume_186f8"
-NDK = Path("C:/Users/locky/AppData/Local/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/windows-x86_64/bin")
+NDK = _paths["llvm_bin"]()
 
 
 def sha(path):

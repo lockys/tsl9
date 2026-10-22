@@ -2,8 +2,10 @@
 from pathlib import Path
 import hashlib, json, re, struct
 
-W = Path('C:/Users/locky/Documents/Codex/2026-10-13/rea-https-github-com-morluto-rea')
-D = Path('C:/Users/locky/Documents/projects/re-tsl9')
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
+
+W = _paths["analysis_workspace"]()
+D = _paths["project_root"]()
 OUT = W/'apk-analysis/tsl9-function-hardware/ch32v208-candidate-bin/final-artifact-review'
 ROOT = D/'experiments/tsl9-ch32v208-candidate/build'
 BUILDS = {'c': ROOT/'c/9d67b31c0a504ab7835d26e94b1d6802', 'cpp': ROOT/'cpp/4a468349eb29421caee467369d4d45fe'}

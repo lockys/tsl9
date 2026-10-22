@@ -9,11 +9,21 @@ if(-not $ProjectRoot){$ProjectRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRo
 if(-not $OutputRoot){$OutputRoot=Join-Path $PSScriptRoot 'build'}
 $build=Join-Path ([IO.Path]::GetFullPath($OutputRoot)) ($Mode+'/'+[guid]::NewGuid().ToString('N'))
 [IO.Directory]::CreateDirectory($build)|Out-Null
-$python='C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe'
+$python=$env:TSL9_PYTHON
+$pythonPrefix=@()
+if(-not $python){
+    $pythonCommand=Get-Command python -CommandType Application -ErrorAction SilentlyContinue
+    if($pythonCommand){$python=$pythonCommand.Source}else{
+        $pythonCommand=Get-Command py -CommandType Application -ErrorAction SilentlyContinue
+        if(-not $pythonCommand){throw 'Set TSL9_PYTHON to a Python 3 executable, or add python/py to PATH.'}
+        $python=$pythonCommand.Source
+        $pythonPrefix=@('-3')
+    }
+}
 function Hash([string]$p){(Get-FileHash -LiteralPath $p -Algorithm SHA256).Hash.ToLowerInvariant()}
 $sourceHashes=@{}
 foreach($n in @('build.ps1','prepare.py','audit.py')){$p=Join-Path $PSScriptRoot $n;$sourceHashes[$p]=Hash $p}
-$planLines=@(& $python -X utf8 -B (Join-Path $PSScriptRoot 'prepare.py') --project-root $ProjectRoot --runtime $RuntimePath --output $build --mode $Mode)
+$planLines=@(& $python @pythonPrefix -X utf8 -B (Join-Path $PSScriptRoot 'prepare.py') --project-root $ProjectRoot --runtime $RuntimePath --output $build --mode $Mode)
 if($LASTEXITCODE -or $planLines.Count -ne 1){throw 'Conditional plan preparation failed'}
 $planPath=Join-Path $build 'plan.json'
 $p=Get-Content -LiteralPath $planPath -Raw|ConvertFrom-Json
@@ -39,7 +49,7 @@ foreach($n in @('carrier.c','carrier.o','candidate.ld','plan.json','tsl9-ch32v20
 $receipt=Join-Path $build 'producer.json'
 $producer=[pscustomobject]@{schema='CH32V208-conditional-candidate-producer-v1';mode=$Mode;plan=$planPath;plan_sha256=(Hash $planPath);sources=$sourceHashes;compiler_args=$compileArgs;linker_args=$linkArgs;objcopy_args=$copyArgs;compile_exit=$compileExit;link_exit=$linkExit;objcopy_exit=$copyExit;outputs=$outputs;target_ready=$false;ota_verified=$false;goal_complete=$false;network=$false;target_executed=$false;hardware=$false;emulation=$false}
 [IO.File]::WriteAllText($receipt,($producer|ConvertTo-Json -Depth 8),[Text.UTF8Encoding]::new($false))
-$auditLines=@(& $python -X utf8 -B (Join-Path $PSScriptRoot 'audit.py') --receipt $receipt)
+$auditLines=@(& $python @pythonPrefix -X utf8 -B (Join-Path $PSScriptRoot 'audit.py') --receipt $receipt)
 if($LASTEXITCODE -or $auditLines.Count -ne 1){throw 'Candidate audit failed'}
 $audit=$auditLines[0]|ConvertFrom-Json
 if(-not $audit.passed){throw 'Candidate audit rejected'}

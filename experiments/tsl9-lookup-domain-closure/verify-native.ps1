@@ -1,7 +1,17 @@
 param([switch]$Cpp,[string]$BaselineReceiptPath)
 $ErrorActionPreference='Stop'
 $root=$PSScriptRoot
-$python='C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe'
+$python=$env:TSL9_PYTHON
+$pythonPrefix=@()
+if(-not $python){
+    $pythonCommand=Get-Command python -CommandType Application -ErrorAction SilentlyContinue
+    if($pythonCommand){$python=$pythonCommand.Source}else{
+        $pythonCommand=Get-Command py -CommandType Application -ErrorAction SilentlyContinue
+        if(-not $pythonCommand){throw 'Set TSL9_PYTHON to a Python 3 executable, or add python/py to PATH.'}
+        $python=$pythonCommand.Source
+        $pythonPrefix=@('-3')
+    }
+}
 $mode=if($Cpp){'cpp'}else{'c'}
 $build=Join-Path $root ('build/'+$mode+'/'+[guid]::NewGuid().ToString('N'))
 [IO.Directory]::CreateDirectory($build)|Out-Null
@@ -71,7 +81,7 @@ $receipt=Join-Path $build 'producer.json'
 if((Hash $objcopy) -ne $objcopySHA){throw 'Alias tool changed'}
 $producer=[pscustomobject]@{schema='R81-native-closure-producer';mode=$mode;baseline_reused=[bool]$BaselineReceiptPath;baseline_receipt=$basePath;baseline_receipt_sha256=(Hash $basePath);objcopy=$objcopy;objcopy_sha256=$objcopySHA;alias_args=$aliasArgs;objects=$objects;sources=$sources;strict_exit=$strictExit;strict_log=$strictPath;strict_log_sha256=(Hash $strictPath);network=$false;target_executed=$false;emulation=$false;hardware=$false;native_bin=$false}
 [IO.File]::WriteAllText($receipt,($producer|ConvertTo-Json -Depth 8 -Compress),[Text.UTF8Encoding]::new($false))
-$auditLines=@(& $python -X utf8 -B (Join-Path $root 'audit-native.py') --receipt $receipt);$auditExit=$LASTEXITCODE
+$auditLines=@(& $python @pythonPrefix -X utf8 -B (Join-Path $root 'audit-native.py') --receipt $receipt);$auditExit=$LASTEXITCODE
 if($auditExit -or $auditLines.Count -ne 1){throw ('Native audit failed '+$auditExit)}
 $audit=$auditLines[0]|ConvertFrom-Json
 if(-not $audit.passed){throw 'Native audit rejected'}

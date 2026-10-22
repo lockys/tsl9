@@ -15,7 +15,7 @@ Updater calls are U(85), S(83), R(82), W(87), E(69). U/S/E build `[is_app, ...UI
 Replay from W (the Python path may be replaced by an equivalent local interpreter):
 
 ```powershell
-& 'C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe' -X utf8 -B apk-analysis/tsl9-v4160-ota-handoff-2026-10-21/tx-source/check-source.py --check
+python -X utf8 -B apk-analysis/tsl9-v4160-ota-handoff-2026-10-21/tx-source/check-source.py --check
 ```
 
 The source facts support a pure byte-domain encoder and a synthetic shared-state submit/callback model. They do not provide a BLE backend, JavaScript runtime equivalence for arbitrary values, callback scheduling/fairness, exception recovery, actual UID frames, a sender deployment, or a flash-ready image. Synchronous throws are not caught in the selected functions and may interrupt remaining effects. No ROOT, D, prior sealed scope or native firmware source is changed.

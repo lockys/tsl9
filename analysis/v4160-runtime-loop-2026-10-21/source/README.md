@@ -33,7 +33,7 @@ python -B "<source-package>\inspect-source.py" --check --firmware "<absolute-ID-
 The package contains all selected rows, so replay needs neither radare2 nor an old evidence tree. To additionally verify the historical native/evidence files in the original workspace, append:
 
 ```powershell
---verify-historical --workspace "C:\Users\locky\Documents\Codex\2026-10-13\rea-https-github-com-morluto-rea"
+--verify-historical --workspace "$env:TSL9_ANALYSIS_WORKSPACE"
 ```
 
 `--check` regenerates and byte-compares the two JSON reports and checks seal members without writes. `--write` is restricted to this checker's own unsealed scope. No original ISA, network, hardware, provider generation, ROOT/D change or old-seal mutation occurs. Physical RAM/MMIO/resident, original C signatures/ABI, callback lifetimes, IRQ behavior and target readiness remain unproved.

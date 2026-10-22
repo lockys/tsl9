@@ -2,6 +2,8 @@
 from pathlib import Path
 import argparse, copy, hashlib, json, runpy, subprocess, sys
 
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
+
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
@@ -9,7 +11,7 @@ FW = ROOT / 'exports/TSL-firmware-options-22-BINs-2026-10-20/BINs/ID-2966-V4.1.6
 FW_SHA = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 BASE = ROOT / 'experiments/tsl9-v4160-startup/build/image-fidelity-999d8125159a4d80bd6df9153f267002'
 PARSER = ROOT / 'apk-analysis/tsl9-v4160-reset-memory-2026-10-21/compiler-review/elf32.py'
-R2 = Path('C:/Users/locky/Tools/radare2/bin/r2.exe')
+R2 = _paths["radare2"]()
 RANGES = [(0x9c0a,64), (0x18e90,8), (0x18e98,30), (0x18eb6,14), (0x18ec4,46), (0x18ef2,100)]
 PRIOR = [
  'apk-analysis/tsl9-v4160-ota-route-2026-10-21/flash-reachability',

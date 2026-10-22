@@ -18,8 +18,18 @@ foreach($mlProperty in $mlMap.dependency_inputs.PSObject.Properties){$mlInputs[(
 foreach($mlPath in $mlInputs.Keys){if((Get-FileHash -LiteralPath $mlPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne $mlInputs[$mlPath]){throw 'Source/reference/dependency changed'}}
 $mlNames=@('src/runtime_loop.c','src/runtime_loop.h','tests/test_runtime_loop.c','tests/run-tests.ps1','verify.ps1','source-map.json','README.md')
 $mlPins=@{};foreach($mlName in $mlNames){$mlPins[$mlName]=(Get-FileHash -LiteralPath (Join-Path $mlRoot $mlName) -Algorithm SHA256).Hash.ToLowerInvariant()}
-$mlPython='C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe'
-$mlProofText=& $mlPython -X utf8 -B (Join-Path $ProofRoot 'inspect-source.py') --check --firmware $Firmware --source-root $ProofRoot
+$mlPython=$env:TSL9_PYTHON
+$mlPythonPrefix=@()
+if(-not $mlPython){
+    $mlPythonCommand=Get-Command python -CommandType Application -ErrorAction SilentlyContinue
+    if($mlPythonCommand){$mlPython=$mlPythonCommand.Source}else{
+        $mlPythonCommand=Get-Command py -CommandType Application -ErrorAction SilentlyContinue
+        if(-not $mlPythonCommand){throw 'Set TSL9_PYTHON to a Python 3 executable, or add python/py to PATH.'}
+        $mlPython=$mlPythonCommand.Source
+        $mlPythonPrefix=@('-3')
+    }
+}
+$mlProofText=& $mlPython @mlPythonPrefix -X utf8 -B (Join-Path $ProofRoot 'inspect-source.py') --check --firmware $Firmware --source-root $ProofRoot
 if($LASTEXITCODE -ne 0){throw 'Runtime-loop raw source replay failed'}
 $mlProof=$mlProofText | ConvertFrom-Json
 if(-not $mlProof.passed -or $mlProof.bytes -ne $mlMap.body_bytes -or $mlProof.instructions -ne $mlMap.body_instructions -or $mlProof.raw_operand_mutation_rejections -ne $mlMap.raw_operand_mutation_rejections){throw 'Complete selected source proof required'}

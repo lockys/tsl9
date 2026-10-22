@@ -6,6 +6,8 @@ import json
 import re
 from pathlib import Path
 
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
+
 HERE=Path(__file__).resolve().parent
 W=HERE.parents[2]
 SCOPE=Path('apk-analysis/tsl9-v4160-resident-contracts-2026-10-21/flash-callers')
@@ -116,7 +118,7 @@ def build(workspace):
         refs.append(dict(PC=alloc[rel['section']]['originalVA']+rel['offset'],type=rel['type'],canonical=rel['symbol']['name'],originalVA=spec['expected_undefined_symbols'][rel['symbol']['name']]))
     need(not direct_to_hook and refs==[dict(PC=0x19a80,type=23,canonical='__tsl9v4160_address_197be',originalVA=0x197be)],'Bounded-current614-only-record-materialization-no-known-direct-OTA-edge')
 
-    d=Path('C:/Users/locky/Documents/projects/re-tsl9/experiments/tsl9-contract-model')
+    d=_paths["project_root"]() / 'experiments/tsl9-contract-model'
     model={n:read(d/n).decode('utf-8')for n in('src/flash_page.c','src/flash_page.h','src/ram_bridge.c','src/target_ble_hal_init.c','verify-flash-page.ps1')}
     fixture=load(d/'fixtures/evidence.json');old_versions=load('apk-analysis/tsl9-server-current/verification.json')['serverInfoVersions']
     need(fixture['images']['runtime']['sha256']=='32639d7d6df2abac1b966a72de663dc1c215165edf4f4ee0b58acc78e0f60bcc'and fixture['images']['boot']['sha256']=='650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb','Old-readable-model-artifact-identity-distinct-from-ID2966')

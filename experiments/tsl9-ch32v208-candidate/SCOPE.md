@@ -2,7 +2,7 @@
 
 使用者本次明確指示：「那先用最強候選產bin」。因此本輪可以在**CH32V208／D8W為候選平台**的明示假設下產生實驗BIN；原機已證明相容的完整目標仍未達成，不以此修改舊R81嚴格稽核或宣稱可安全燒錄。
 
-只做本機靜態編譯／連結／objcopy／檔案與整數比對。來源為指定目錄 `C:/Users/locky/Documents/projects/re-tsl9` 現有C/C++和已保留本機原始TSL9 Runtime。沒有API、網路、識別資料外傳、目標執行／模擬或BLE/CAN/UART/SPI/Flash操作。
+只做本機靜態編譯／連結／objcopy／檔案與整數比對。來源為動態解析的專案根目錄內現有C/C++和已保留本機原始TSL9 Runtime。沒有API、網路、識別資料外傳、目標執行／模擬或BLE/CAN/UART/SPI/Flash操作。
 
 候選設計可使用**已從原指令觀察的數值地址**進行final placement／address-only external bindings，例如ROM entry 0x40000與0x19D10資料地址；它們必須在新候選manifest明列為assumed resident/external addresses，不能冒稱已取得ROM body、已證ABI或已補齊4096B資料域。保留原R81 strict failure與所有舊收據不變。
 

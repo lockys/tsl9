@@ -37,7 +37,9 @@ $clockOutput=& $clockExe
 if($LASTEXITCODE -ne 0){throw 'Host clock behavior failed'}
 $clockTests=$clockOutput | ConvertFrom-Json
 if(-not $clockTests.passed){throw 'Host clock result missing'}
-$clockClang='C:\Users\locky\AppData\Local\Android\Sdk\ndk\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\bin\clang.exe'
+$clockTools=$env:TSL9_LLVM_BIN
+if([string]::IsNullOrWhiteSpace($clockTools)){throw 'Set TSL9_LLVM_BIN to the existing LLVM toolchain bin directory.'}
+$clockClang=Join-Path $clockTools 'clang.exe'
 $clockTarget=Join-Path $clockBuild 'freestanding-clock-rv32.o'
 $clockTargetFlags=@('--target=riscv32-unknown-elf','-march=rv32imac','-mabi=ilp32','-O2','-ffreestanding','-fno-builtin','-fno-stack-protector','-fno-exceptions','-fno-rtti','-Wall','-Wextra','-Werror')
 $clockTargetFlags+=if($Cpp){@('-x','c++','-std=c++17')}else{@('-x','c','-std=c11')}

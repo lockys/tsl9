@@ -11,8 +11,10 @@ import subprocess
 import sys
 import uuid
 
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
+
 HERE = Path(__file__).resolve().parent
-NDK = Path("C:/Users/locky/AppData/Local/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/windows-x86_64/bin")
+NDK = _paths["llvm_bin"]()
 QUERY = "tsl9_rebuild_clock_query_registers_18834"
 FIELDS = "tsl9_rebuild_clock_fields_registers_1973c"
 PARSER_SHA = "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141"

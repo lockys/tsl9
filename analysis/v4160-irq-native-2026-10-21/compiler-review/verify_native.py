@@ -11,6 +11,8 @@ import uuid
 from gates import ENTRY, HELPERS, SCRATCH, IMAGE_SHA, elf_gate, machine_gate, main_static_def_use, ir_gate
 from elf32 import require
 
+_paths = __import__("runpy").run_path(str(next(p for p in Path(__file__).resolve().parents if (p / "scripts/project_paths.py").is_file()) / "scripts/project_paths.py"))
+
 HERE = Path(__file__).resolve().parent
 SOURCE_PINS = {
     "experiments/tsl9-v4160-irq-native/src/interrupt_registers.c":"7bf0b338044ef635f132281c11abb516bb0b9a62108e7c8faa8857c1b5e928db",
@@ -19,7 +21,7 @@ SOURCE_PINS = {
 PARSER_SHA = "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141"
 FIRMWARE = "exports/TSL-firmware-options-22-BINs-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin"
 PUBLISHED_FIRMWARE = "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin"
-NDK = Path("C:/Users/locky/AppData/Local/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/windows-x86_64/bin")
+NDK = _paths["llvm_bin"]()
 
 
 def sha(path):

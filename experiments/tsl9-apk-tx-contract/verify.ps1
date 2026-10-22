@@ -19,8 +19,18 @@ if(-not $Apk -or -not $ProofRoot){throw 'Exact APK and sealed source proof requi
 $txNames=@('src/apk_tx.c','src/apk_tx.h','tests/test_apk_tx.c','verify.ps1','verify-source.py','source-map.json','README.md')
 $txPins=@{}
 foreach($txName in $txNames){$txPins[$txName]=(Get-FileHash -LiteralPath (Join-Path $txRoot $txName) -Algorithm SHA256).Hash.ToLowerInvariant()}
-$txPython='C:/Users/locky/AppData/Local/hermes/hermes-agent/venv/Scripts/python.exe'
-$txProofText=& $txPython -X utf8 -B (Join-Path $txRoot 'verify-source.py') --apk $Apk --proof-root $ProofRoot --rx-root $RxRoot
+$txPython=$env:TSL9_PYTHON
+$txPythonPrefix=@()
+if(-not $txPython){
+    $txPythonCommand=Get-Command python -CommandType Application -ErrorAction SilentlyContinue
+    if($txPythonCommand){$txPython=$txPythonCommand.Source}else{
+        $txPythonCommand=Get-Command py -CommandType Application -ErrorAction SilentlyContinue
+        if(-not $txPythonCommand){throw 'Set TSL9_PYTHON to a Python 3 executable, or add python/py to PATH.'}
+        $txPython=$txPythonCommand.Source
+        $txPythonPrefix=@('-3')
+    }
+}
+$txProofText=& $txPython @txPythonPrefix -X utf8 -B (Join-Path $txRoot 'verify-source.py') --apk $Apk --proof-root $ProofRoot --rx-root $RxRoot
 if($LASTEXITCODE -ne 0){throw 'Actual original APK source check failed'}
 $txProof=$txProofText | ConvertFrom-Json
 if(-not $txProof.passed -or $txProof.sender_sections -ne 21 -or $txProof.receiver_sections -ne 6){throw 'Exact sender/receiver proof required'}
