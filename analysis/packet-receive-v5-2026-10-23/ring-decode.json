@@ -1,0 +1,261 @@
+{
+  "schema": "TSL9-ring-bounded-static-decode-v1",
+  "source_file": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "source_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "image_base": 32768,
+  "start": 76744,
+  "end": 76836,
+  "range_sha256": "d3d9af9bcec8af13dfd424d3bfb2bd79f8fc3fd61308cb6ec0d7c18b1b78b13b",
+  "decoder": {
+    "tool": "radare2",
+    "version": "6.2.4",
+    "sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+    "recipe": [
+      "${RADARE2}",
+      "-N",
+      "-q",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-c",
+      "e scr.color=0;pDj 92 @ 0x12bc8;q",
+      "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin"
+    ]
+  },
+  "target_executed": false,
+  "ISA_emulated": false,
+  "rows": [
+    {
+      "offset": 0,
+      "address": 76744,
+      "width": 2,
+      "bytes": "4111",
+      "assembly": "addi sp, sp, -16"
+    },
+    {
+      "offset": 2,
+      "address": 76746,
+      "width": 2,
+      "bytes": "06c6",
+      "assembly": "sw ra, 12(sp)"
+    },
+    {
+      "offset": 4,
+      "address": 76748,
+      "width": 2,
+      "bytes": "22c4",
+      "assembly": "sw s0, 8(sp)"
+    },
+    {
+      "offset": 6,
+      "address": 76750,
+      "width": 2,
+      "bytes": "26c2",
+      "assembly": "sw s1, 4(sp)"
+    },
+    {
+      "offset": 8,
+      "address": 76752,
+      "width": 2,
+      "bytes": "8147",
+      "assembly": "li a5, 0"
+    },
+    {
+      "offset": 10,
+      "address": 76754,
+      "width": 4,
+      "bytes": "9798ff1f",
+      "assembly": "auipc a7, 0x1fff9"
+    },
+    {
+      "offset": 14,
+      "address": 76758,
+      "width": 4,
+      "bytes": "93886846",
+      "assembly": "addi a7, a7, 1126"
+    },
+    {
+      "offset": 18,
+      "address": 76762,
+      "width": 2,
+      "bytes": "314e",
+      "assembly": "li t3, 12"
+    },
+    {
+      "offset": 20,
+      "address": 76764,
+      "width": 4,
+      "bytes": "13030002",
+      "assembly": "li t1, 32"
+    },
+    {
+      "offset": 24,
+      "address": 76768,
+      "width": 4,
+      "bytes": "3387c703",
+      "assembly": "mul a4, a5, t3"
+    },
+    {
+      "offset": 28,
+      "address": 76772,
+      "width": 4,
+      "bytes": "3384e800",
+      "assembly": "add s0, a7, a4"
+    },
+    {
+      "offset": 32,
+      "address": 76776,
+      "width": 4,
+      "bytes": "03580400",
+      "assembly": "lhu a6, 0(s0)"
+    },
+    {
+      "offset": 36,
+      "address": 76780,
+      "width": 2,
+      "bytes": "4208",
+      "assembly": "slli a6, a6, 0x10"
+    },
+    {
+      "offset": 38,
+      "address": 76782,
+      "width": 4,
+      "bytes": "13580801",
+      "assembly": "srli a6, a6, 0x10"
+    },
+    {
+      "offset": 42,
+      "address": 76786,
+      "width": 4,
+      "bytes": "63150802",
+      "assembly": "bnez a6, 0x12c1c"
+    },
+    {
+      "offset": 46,
+      "address": 76790,
+      "width": 4,
+      "bytes": "2310a400",
+      "assembly": "sh a0, 0(s0)"
+    },
+    {
+      "offset": 50,
+      "address": 76794,
+      "width": 4,
+      "bytes": "2301c400",
+      "assembly": "sb a2, 2(s0)"
+    },
+    {
+      "offset": 54,
+      "address": 76798,
+      "width": 4,
+      "bytes": "b7070400",
+      "assembly": "lui a5, 0x40"
+    },
+    {
+      "offset": 58,
+      "address": 76802,
+      "width": 2,
+      "bytes": "fc47",
+      "assembly": "lw a5, 76(a5)"
+    },
+    {
+      "offset": 60,
+      "address": 76804,
+      "width": 2,
+      "bytes": "0d07",
+      "assembly": "addi a4, a4, 3"
+    },
+    {
+      "offset": 62,
+      "address": 76806,
+      "width": 2,
+      "bytes": "b684",
+      "assembly": "mv s1, a3"
+    },
+    {
+      "offset": 64,
+      "address": 76808,
+      "width": 4,
+      "bytes": "3385e800",
+      "assembly": "add a0, a7, a4"
+    },
+    {
+      "offset": 68,
+      "address": 76812,
+      "width": 2,
+      "bytes": "8297",
+      "assembly": "jalr a5"
+    },
+    {
+      "offset": 70,
+      "address": 76814,
+      "width": 4,
+      "bytes": "a3059400",
+      "assembly": "sb s1, 11(s0)"
+    },
+    {
+      "offset": 74,
+      "address": 76818,
+      "width": 2,
+      "bytes": "b240",
+      "assembly": "lw ra, 12(sp)"
+    },
+    {
+      "offset": 76,
+      "address": 76820,
+      "width": 2,
+      "bytes": "2244",
+      "assembly": "lw s0, 8(sp)"
+    },
+    {
+      "offset": 78,
+      "address": 76822,
+      "width": 2,
+      "bytes": "9244",
+      "assembly": "lw s1, 4(sp)"
+    },
+    {
+      "offset": 80,
+      "address": 76824,
+      "width": 2,
+      "bytes": "4101",
+      "assembly": "addi sp, sp, 16"
+    },
+    {
+      "offset": 82,
+      "address": 76826,
+      "width": 2,
+      "bytes": "8280",
+      "assembly": "ret"
+    },
+    {
+      "offset": 84,
+      "address": 76828,
+      "width": 2,
+      "bytes": "8507",
+      "assembly": "addi a5, a5, 1"
+    },
+    {
+      "offset": 86,
+      "address": 76830,
+      "width": 4,
+      "bytes": "e39167fc",
+      "assembly": "bne a5, t1, 0x12be0"
+    },
+    {
+      "offset": 90,
+      "address": 76834,
+      "width": 2,
+      "bytes": "c5bf",
+      "assembly": "j 0x12c12"
+    }
+  ],
+  "limitations": [
+    "Bounded original static decode; complete global entry/xref coverage remains unproved.",
+    "C.JALR semantics were checked from RV32C encoding; r2 ESIL was not executed or treated as authoritative.",
+    "RAM ownership, resident pointer value/identity and runtime/IRQ/fault behavior remain unknown."
+  ]
+}

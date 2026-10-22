@@ -403,6 +403,13 @@
       "replacements": [],
       "origin_sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182",
       "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+    },
+    {
+      "origin": "experiments/tsl9-packet-receive/src/packet_receive.v5.c",
+      "destination": "src/native/receive/packet_receive.c",
+      "replacements": [],
+      "origin_sha256": "0e42490f8d2cc17bf9e5ab414827ee7158777f132928c61502b300089aaa520d",
+      "sha256": "0e42490f8d2cc17bf9e5ab414827ee7158777f132928c61502b300089aaa520d"
     }
   ],
   "native_units": [
@@ -612,6 +619,19 @@
       "evidence": "experiments/tsl9-spi-transfer-leaf/README.md",
       "scope": "Eight C-generated architectural regions with five explicit symbolic compressed control ports. Separate nominal component links to all original72B25i at16896; this curation compares native72B/8FUNC/5definedRVC relocation projections only. Private physical-register/fallthrough contract, not ordinary C ABI or full runtime/IRQ/physical hardware/OTA proof.",
       "origin_unit_sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+    },
+    {
+      "name": "packet-receive",
+      "profile": "packet-a0-a5",
+      "origin_unit": "experiments/tsl9-packet-receive/src/packet_receive.v5.c",
+      "curated_unit": "src/native/receive/packet_receive.c",
+      "evidence": "experiments/tsl9-packet-receive/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-packet-receive/build/verified-v2/c/verification.json",
+        "experiments/tsl9-packet-receive/build/verified-v2/cpp/verification.json"
+      ],
+      "scope": "142B/52i across genuine entry14B/body116B/finish12B regions; all120 noncontrol bytes match the original. Six pending relocations retain four JALs to two UND providers and two branches to the defined finish FUNC. Native source-copy/codegen equivalence only; separate formal evidence checks private physical-register and adjacent-region contracts. Machine calls, complete resident/IRQ/hardware ABI and flashability remain unproved.",
+      "origin_unit_sha256": "0e42490f8d2cc17bf9e5ab414827ee7158777f132928c61502b300089aaa520d"
     }
   ],
   "legacy_groups": [

@@ -54,7 +54,8 @@ def flags(unit, mode):
     clock = kind in ('clock-query', 'clock-fields')
     irq = kind in ('irq-bank', 'delay-bank')
     spi = kind == 'spi-a0-a3-a4-a5'
-    result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi else 'rv32imac_zicsr_zifencei'),
+    packet = kind == 'packet-a0-a5'
+    result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi or packet else 'rv32imac_zicsr_zifencei'),
               '-mabi=ilp32', '-Os' if clock else '-Oz']
     if not clock:
         result += ['-mllvm', '-enable-machine-outliner=never']
@@ -80,6 +81,8 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'spi-a0-a3-a4-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 13, 14, 15}]
+    elif kind == 'packet-a0-a5':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'adc-bank':
         result += ['-ffixed-x' + str(n) for n in range(5, 32) if n not in range(10, 17)]
     return result
@@ -251,6 +254,29 @@ def audit(base, record, manifest):
                      and pair[1]['relocations'] == [dict(owner='.text.'+owner, offset=at, type=kind, addend=0, symbol=target)
                           for owner, at, kind, target in relocations],
                      'Eight private SPI regions and five defined RVC ports; separate nominal-link verifier proves original72B, not ordinary C ABI or firmware readiness')
+            if unit['name'] == 'packet-receive':
+                regions = [
+                    ('tsl9_receive_buffer_entry_16a7c', 14, '101a382fcf71900631fe5dc97b6e0cab025169982e2acac53bb12cea36974088'),
+                    ('tsl9_packet_receive_body', 116, 'b1a6d7d72e3ef5099c2d52aef686d396e89aeb04436d8da196e51fa5f2b4208f'),
+                    ('tsl9_packet_receive_finish_16afe', 12, '0688d624f9b479028d25e4fa4abd146dfc2d31a83027e163c46a9a50d8914c2d'),
+                ]
+                relocations = [
+                    (20, 17, 'tsl9_spi_transfer_entry_16896'),
+                    (32, 17, 'tsl9_spi_transfer_entry_16896'),
+                    (38, 17, 'tsl9_spi_transfer_entry_16896'),
+                    (74, 44, 'tsl9_packet_receive_finish_16afe'),
+                    (92, 16, 'tsl9_packet_receive_finish_16afe'),
+                    (112, 17, 'tsl9_ring_insert_entry_12bc8'),
+                ]
+                need(pair[1]['functions'] == sorted([
+                     dict(name=n, binding=1, bytes=z, code_sha256=h) for n, z, h in regions], key=lambda x: x['name'])
+                     and pair[1]['allocated_sections'] == [dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h)
+                          for n, z, h in regions]
+                     and pair[1]['allocated_bytes'] == 142 and not pair[1]['global_ABS']
+                     and pair[1]['UND'] == ['tsl9_ring_insert_entry_12bc8', 'tsl9_spi_transfer_entry_16896']
+                     and pair[1]['relocations'] == [dict(owner='.text.tsl9_packet_receive_body', offset=at,
+                          type=kind, addend=0, symbol=target) for at, kind, target in relocations],
+                     'Three private architectural regions with 120 original noncontrol bytes; six pending relocations need separate adjacency/ABI evidence, not firmware readiness')
             if unit['name'] == 'delay-registers':
                 need(pair[1]['functions'] == [dict(name='tsl9_delay_registers_19764', binding=1, bytes=54,
                      code_sha256='0bcb7577e755f1ca9736b0fd0b05e4d3f0a0e1e0cd3a59976b947191d3df74a4')], 'Exact original delay leaf')

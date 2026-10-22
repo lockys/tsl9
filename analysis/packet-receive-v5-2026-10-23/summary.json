@@ -1,0 +1,217 @@
+{
+  "schema": "TSL9-packet-receive-v5-milestone-v1",
+  "firmware_ready": false,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_OTA_proved": false,
+  "original": {
+    "base": 32768,
+    "bytes": 142,
+    "end": 92938,
+    "instructions": 52,
+    "sha256": "d823c819bbe92c3b7ee17c92411825549084d08dc32c36378d8e60d4915f40e2",
+    "start": 92796
+  },
+  "candidate": {
+    "source": "experiments/tsl9-packet-receive/src/packet_receive.v5.c",
+    "curated_source": "src/native/receive/packet_receive.c",
+    "source_sha256": "0e42490f8d2cc17bf9e5ab414827ee7158777f132928c61502b300089aaa520d",
+    "verifier": "experiments/tsl9-packet-receive/verify.py",
+    "verifier_sha256": "00d3e8542e80f1f9339547b18acb14d62b41d5c80cad5dcae28fa6dca7faf854",
+    "linker_sha256": "eddda2351acbdc4883caccbdc411e9f1d847ac1f6e134f055d9bd52dff702226",
+    "code_bytes": 142,
+    "instructions": 52,
+    "genuine_FUNC_regions": [
+      {
+        "name": "tsl9_receive_buffer_entry_16a7c",
+        "offset": 0,
+        "size": 14
+      },
+      {
+        "name": "tsl9_packet_receive_body",
+        "offset": 14,
+        "size": 116
+      },
+      {
+        "name": "tsl9_packet_receive_finish_16afe",
+        "offset": 130,
+        "size": 12
+      }
+    ],
+    "noncontrol_bytes": 120,
+    "noncontrol_sha256": "528b69f7ec290450aa7b0338bdfbf25b88571693b0f2142199ccdb37c34479f6",
+    "noncontrol_equal_original": true,
+    "full_resolved_bytes_equal_original": false,
+    "ordinary_C_ABI": false
+  },
+  "actual_linkage": {
+    "native_ELF_sha256": "394bc5852488b60d17f7ccebeb18cdd85df9952a2684df26df132a30bf931854",
+    "partial_ELF_sha256": "d22086e49e7a50eb80b022a814a77248024a6c02555dfae2229cc111d1909ae0",
+    "relocations": [
+      {
+        "addend": 0,
+        "offset": 34,
+        "pending": true,
+        "target": "tsl9_spi_transfer_entry_16896",
+        "type": 17
+      },
+      {
+        "addend": 0,
+        "offset": 46,
+        "pending": true,
+        "target": "tsl9_spi_transfer_entry_16896",
+        "type": 17
+      },
+      {
+        "addend": 0,
+        "offset": 52,
+        "pending": true,
+        "target": "tsl9_spi_transfer_entry_16896",
+        "type": 17
+      },
+      {
+        "addend": 0,
+        "offset": 88,
+        "pending": true,
+        "target": "tsl9_packet_receive_finish_16afe",
+        "type": 44
+      },
+      {
+        "addend": 0,
+        "offset": 106,
+        "pending": true,
+        "target": "tsl9_packet_receive_finish_16afe",
+        "type": 16
+      },
+      {
+        "addend": 0,
+        "offset": 126,
+        "pending": true,
+        "target": "tsl9_ring_insert_entry_12bc8",
+        "type": 17
+      }
+    ],
+    "undefined_providers": [
+      "tsl9_spi_transfer_entry_16896",
+      "tsl9_ring_insert_entry_12bc8"
+    ],
+    "all_six_machine_immediates_pending": true,
+    "no_ABS_provider": true
+  },
+  "current_formal": {
+    "c": {
+      "receipt": "receipts/packet-c.json",
+      "sha256": "f30f1374e4cfebee84ad2c8e582126908a6f64e7f40942fcd509c1c28cb1ca0e",
+      "inputs": 9,
+      "artifacts": 10,
+      "recipes": 5,
+      "negative_controls": 41,
+      "replay_exit": 0,
+      "strict_readiness_exit": 1,
+      "byte_exact_portable_original": true
+    },
+    "cpp": {
+      "receipt": "receipts/packet-cpp.json",
+      "sha256": "b9a56045f6408ab5060a92248355a70ef96f7f628325a898fd33982fe3071e80",
+      "inputs": 9,
+      "artifacts": 10,
+      "recipes": 5,
+      "negative_controls": 41,
+      "replay_exit": 0,
+      "strict_readiness_exit": 1,
+      "byte_exact_portable_original": true
+    },
+    "independent_read_only_review_passed": true,
+    "entire_normalized_IR_and_ELF_pinned": true,
+    "all52_typed_operations_checked": true
+  },
+  "historical_probes": [
+    {
+      "version": 3,
+      "source": "experiments/tsl9-packet-receive/src/packet_receive.v3.c",
+      "source_sha256": "72e40f486177030d7c36612d3d9f67919f682eae56190cbf92e69eecef4dff13",
+      "raw_local_receipt": "experiments/tsl9-packet-receive/build/probe-v3/measurement.json",
+      "raw_sha256": "4390881cea726cddb438f9c0ece734d659d337972feade7ca39099119cc9e35e",
+      "raw_bytes": 15601,
+      "CRLF_pairs": 523,
+      "code_bytes": 154,
+      "instructions": 58,
+      "ELF_sha256": "2631e8aef23ec01b31176dbbcb88445caff639b7cebfbcd72d6a0f8ce58cc869",
+      "promoted": false,
+      "change": "A1 dependency orders S0/S2 initialization before address transfer; duplicate epilogue and A0/DLC/ID gaps remain."
+    },
+    {
+      "version": 4,
+      "source": "experiments/tsl9-packet-receive/src/packet_receive.v4.c",
+      "source_sha256": "6f00d08180473e11da2aba43c2d5be529c2612fea5b5dc2b38f6bc4a0653e412",
+      "raw_local_receipt": "experiments/tsl9-packet-receive/build/probe-v4/measurement.json",
+      "raw_sha256": "5fd304035c30ba84584e38eac57ddd1f59dba8c832833698a4c2bd9022dde098",
+      "raw_bytes": 16231,
+      "CRLF_pairs": 522,
+      "earlier_LF_normalized_sha256": "3d60ae32a96383ba0ead8b6400634b6f08b14abe36459c59f1a20f0ac11feab6",
+      "code_bytes": 154,
+      "instructions": 58,
+      "ELF_sha256": "b190f4fb53c275d517e5c194859dc2f406277feab74c4df3b12221af59e09d84",
+      "promoted": false,
+      "change": "A4 DLC, rejection/ring A0 and ID/payload order repaired; duplicate epilogue remains."
+    },
+    {
+      "version": 5,
+      "raw_local_receipt": "experiments/tsl9-packet-receive/build/probe-v5/measurement.json",
+      "raw_sha256": "21785d1afe085b24f4810c9e4055061c2ef203127629a13622c7ce536e32fd3e",
+      "code_bytes": 142,
+      "instructions": 52,
+      "change": "One genuine finish FUNC and two symbolic reject edges; source subsequently passed the separate formal verified-v2 gate."
+    }
+  ],
+  "historical_receipt_note": "Raw local receipts remain unchanged. Earlier normalized hashes identify derivatives, not raw originals. Probe measurements and formal verified-v1 are historical, not claimed to replay with the current formal checker.",
+  "curated": {
+    "C_H_files": 50,
+    "native_translation_units": 24,
+    "comparisons": 48,
+    "objects": 96,
+    "inputs": 102,
+    "recipes": 96,
+    "MD_closures": 96,
+    "artifacts": 289,
+    "helper_sha256": "077ab08469e20d1c91eb329af5a299e288d60ea7d62700ff34cda241cf65c78c",
+    "manifest_sha256": "b335620cdbdba74bbd45d75274f468a0997fd4ab5786d6ca950ac856e67cf21d",
+    "raw_local_receipt": "build/curated-source/packet-20261023-v1/verification.json",
+    "raw_receipt_sha256": "c9feed837d9b343101ac5ebec3152789565c424d18ae7f2bd579a69574ffd684",
+    "public_derivative": "receipts/curated-source.json",
+    "public_derivative_sha256": "19c4f4edb6f3ce60a517f6abe4d261f5b2002e3273bda3e35e6a299d0a87c369",
+    "path_only_derivative": true,
+    "inverse_JSON_equality_verified": true,
+    "raw_original_preserved_locally": true,
+    "original_receipt_replay_claimed": false,
+    "local_replay_exit": 0,
+    "previous_46_results_92_objects_MD_closures_and_277_artifact_hashes_unchanged": true,
+    "previous_49_sources_and_23_unit_records_preserved": true,
+    "old_profiles_and_gates_preserved": true
+  },
+  "next_target": {
+    "symbol": "tsl9_ring_insert_entry_12bc8",
+    "range_start": 76744,
+    "range_end": 76836,
+    "bytes": 92,
+    "instructions": 32,
+    "sha256": "d3d9af9bcec8af13dfd424d3bfb2bd79f8fc3fd61308cb6ec0d7c18b1b78b13b",
+    "evidence": "ring-decode.json",
+    "RAM_base_candidate": 536920120,
+    "slots": 32,
+    "slot_bytes": 12,
+    "resident_pointer_slot": 262220,
+    "provider_identity_confirmed": false
+  },
+  "unimplemented_feature_leads": [
+    "Queue-full/drop diagnostic counters after RAM/transport ownership proof.",
+    "Investigate ID0 occupancy ambiguity before changing queue layout or claiming real loss."
+  ],
+  "limitations": [
+    "Static native compilation/IR/ELF decode only; no target/ISA/MMIO execution.",
+    "Three FUNC symbols are private architectural regions, not ordinary independently callable C ABI functions.",
+    "All six control relocations are pending in actual ET_REL bytes. Two external providers remain unresolved.",
+    "Ring/resident ABI, IRQ/fault interleaving, physical memory/peripheral identity and full image placement remain unproved.",
+    "No flashable BIN, whole firmware equivalence, OTA acceptance or hardware functionality is claimed."
+  ]
+}
