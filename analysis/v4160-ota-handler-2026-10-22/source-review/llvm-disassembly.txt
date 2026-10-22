@@ -1,0 +1,215 @@
+
+C:\Users\locky\Documents\Codex\2026-10-13\rea-https-github-com-morluto-rea\experiments\tsl9-v4160-tx-image-integration\build\formal-v1\c\ADDRESS-WITNESS-ONLY.elf:	file format elf32-littleriscv
+
+Disassembly of section .text.tsl9v4160.ota_handler_9c4a:
+
+00009c4a <__tsl9v4160_ota_code_9c4a>:
+    9c4a: 79 71        	addi	sp, sp, -0x30
+    9c4c: 22 d4        	sw	s0, 0x28(sp)
+    9c4e: 4a d0        	sw	s2, 0x20(sp)
+    9c50: 06 d6        	sw	ra, 0x2c(sp)
+    9c52: 26 d2        	sw	s1, 0x24(sp)
+    9c54: 4e ce        	sw	s3, 0x1c(sp)
+    9c56: 52 cc        	sw	s4, 0x18(sp)
+    9c58: 56 ca        	sw	s5, 0x14(sp)
+    9c5a: 93 07 30 05  	li	a5, 0x53
+    9c5e: 2a 89        	mv	s2, a0
+    9c60: 32 84        	mv	s0, a2
+    9c62: 63 8f f5 10  	beq	a1, a5, 0x9d80 <.Lota_handler_00009d80>
+    9c66: 63 e3 b7 02  	bltu	a5, a1, 0x9c8c <.Lota_handler_00009c8c>
+    9c6a: 93 07 50 04  	li	a5, 0x45
+    9c6e: 63 85 f5 18  	beq	a1, a5, 0x9df8 <.Lota_handler_00009df8>
+    9c72: 93 07 20 05  	li	a5, 0x52
+    9c76: 63 88 f5 14  	beq	a1, a5, 0x9dc6 <.Lota_handler_00009dc6>
+
+00009c7a <.Lota_handler_00009c7a>:
+    9c7a: b2 50        	lw	ra, 0x2c(sp)
+    9c7c: 22 54        	lw	s0, 0x28(sp)
+    9c7e: 92 54        	lw	s1, 0x24(sp)
+    9c80: 02 59        	lw	s2, 0x20(sp)
+    9c82: f2 49        	lw	s3, 0x1c(sp)
+    9c84: 62 4a        	lw	s4, 0x18(sp)
+    9c86: d2 4a        	lw	s5, 0x14(sp)
+    9c88: 45 61        	addi	sp, sp, 0x30
+    9c8a: 82 80        	ret
+
+00009c8c <.Lota_handler_00009c8c>:
+    9c8c: 93 07 50 05  	li	a5, 0x55
+    9c90: 63 8d f5 08  	beq	a1, a5, 0x9d2a <.Lota_handler_00009d2a>
+    9c94: 93 07 70 05  	li	a5, 0x57
+    9c98: e3 91 f5 fe  	bne	a1, a5, 0x9c7a <.Lota_handler_00009c7a>
+    9c9c: 83 c7 91 0a  	lbu	a5, 0xa9(gp)
+    9ca0: e9 df        	beqz	a5, 0x9c7a <.Lota_handler_00009c7a>
+    9ca2: 93 07 20 40  	li	a5, 0x402
+    9ca6: e3 9a f6 fc  	bne	a3, a5, 0x9c7a <.Lota_handler_00009c7a>
+    9caa: 03 4a 06 00  	lbu	s4, 0x0(a2)
+    9cae: 83 47 16 00  	lbu	a5, 0x1(a2)
+    9cb2: b7 04 02 00  	lui	s1, 0x20
+    9cb6: 22 0a        	slli	s4, s4, 0x8
+    9cb8: 33 6a fa 00  	or	s4, s4, a5
+    9cbc: 91 04        	addi	s1, s1, 0x4
+    9cbe: d2 94        	add	s1, s1, s4
+    9cc0: aa 04        	slli	s1, s1, 0xa
+    9cc2: 37 f7 ff f7  	lui	a4, 0xf7fff
+    9cc6: 9d 67        	lui	a5, 0x7
+    9cc8: 26 97        	add	a4, a4, s1
+    9cca: 93 87 07 f0  	addi	a5, a5, -0x100
+    9cce: e3 e6 e7 fa  	bltu	a5, a4, 0x9c7a <.Lota_handler_00009c7a>
+    9cd2: 93 05 26 00  	addi	a1, a2, 0x2
+    9cd6: 93 f7 35 00  	andi	a5, a1, 0x3
+    9cda: b3 89 f5 40  	sub	s3, a1, a5
+    9cde: 81 cb        	beqz	a5, 0x9cee <.Lota_handler_00009cee>
+    9ce0: b7 07 04 00  	lui	a5, 0x40
+    9ce4: fc 47        	lw	a5, 0x4c(a5)
+    9ce6: 13 06 00 40  	li	a2, 0x400
+    9cea: 4e 85        	mv	a0, s3
+    9cec: 82 97        	jalr	a5
+
+00009cee <.Lota_handler_00009cee>:
+    9cee: 01 44        	li	s0, 0x0
+    9cf0: 93 0a 00 40  	li	s5, 0x400
+
+00009cf4 <.Lota_handler_00009cf4>:
+    9cf4: b3 85 89 00  	add	a1, s3, s0
+    9cf8: 33 85 84 00  	add	a0, s1, s0
+    9cfc: 13 04 04 10  	addi	s0, s0, 0x100
+    9d00: 29 37        	jal	0x9c0a <tsl9_flash_quarter_9c0a>
+    9d02: e3 19 54 ff  	bne	s0, s5, 0x9cf4 <.Lota_handler_00009cf4>
+    9d06: 81 47        	li	a5, 0x0
+    9d08: 13 07 00 40  	li	a4, 0x400
+
+00009d0c <.Lota_handler_00009d0c>:
+    9d0c: b3 86 97 00  	add	a3, a5, s1
+    9d10: 90 42        	lw	a2, 0x0(a3)
+    9d12: b3 86 f9 00  	add	a3, s3, a5
+    9d16: 94 42        	lw	a3, 0x0(a3)
+    9d18: 63 1d d6 12  	bne	a2, a3, 0x9e52 <.Lota_handler_00009e52>
+    9d1c: 91 07        	addi	a5, a5, 0x4
+    9d1e: e3 97 e7 fe  	bne	a5, a4, 0x9d0c <.Lota_handler_00009d0c>
+    9d22: 52 86        	mv	a2, s4
+    9d24: 93 05 70 05  	li	a1, 0x57
+    9d28: e9 a0        	j	0x9df2 <.Lota_handler_00009df2>
+
+00009d2a <.Lota_handler_00009d2a>:
+    9d2a: 93 85 f6 ff  	addi	a1, a3, -0x1
+    9d2e: 93 f5 f5 0f  	andi	a1, a1, 0xff
+    9d32: 13 05 16 00  	addi	a0, a2, 0x1
+    9d36: a3 84 01 0a  	sb	zero, 0xa9(gp)
+    9d3a: ef f0 8f db  	jal	0x92f2 <__tsl9v4160_ota_code_92f2>
+    9d3e: 15 fd        	bnez	a0, 0x9c7a <.Lota_handler_00009c7a>
+    9d40: 03 47 04 00  	lbu	a4, 0x0(s0)
+    9d44: 85 47        	li	a5, 0x1
+    9d46: 63 16 f7 02  	bne	a4, a5, 0x9d72 <.Lota_handler_00009d72>
+    9d4a: 81 46        	li	a3, 0x0
+    9d4c: 13 06 80 0c  	li	a2, 0xc8
+    9d50: 81 45        	li	a1, 0x0
+
+00009d52 <.Lota_handler_00009d52>:
+    9d52: 17 f5 ff ff  	auipc	a0, 0xfffff
+    9d56: 13 05 65 0c  	addi	a0, a0, 0xc6
+    9d5a: ef f0 af bc  	jal	0x9124 <__tsl9v4160_call_9124>
+    9d5e: 81 46        	li	a3, 0x0
+    9d60: 13 06 00 19  	li	a2, 0x190
+    9d64: 81 45        	li	a1, 0x0
+
+00009d66 <.Lota_handler_00009d66>:
+    9d66: 17 05 00 00  	auipc	a0, 0x0
+    9d6a: 13 05 a5 17  	addi	a0, a0, 0x17a
+    9d6e: ef f0 6f bb  	jal	0x9124 <__tsl9v4160_call_9124>
+
+00009d72 <.Lota_handler_00009d72>:
+    9d72: 05 46        	li	a2, 0x1
+    9d74: 93 05 50 05  	li	a1, 0x55
+
+00009d78 <.Lota_handler_00009d78>:
+    9d78: 4a 85        	mv	a0, s2
+    9d7a: ef a0 c0 1e  	jal	0x13f66 <__tsl9v4160_ota_code_13f66>
+    9d7e: f5 bd        	j	0x9c7a <.Lota_handler_00009c7a>
+
+00009d80 <.Lota_handler_00009d80>:
+    9d80: 83 47 06 00  	lbu	a5, 0x0(a2)
+    9d84: 93 85 f6 ff  	addi	a1, a3, -0x1
+    9d88: 85 44        	li	s1, 0x1
+    9d8a: 93 f5 f5 0f  	andi	a1, a1, 0xff
+    9d8e: 13 05 16 00  	addi	a0, a2, 0x1
+    9d92: 23 06 f1 00  	sb	a5, 0xc(sp)
+    9d96: a3 06 91 00  	sb	s1, 0xd(sp)
+    9d9a: ef f0 8f d5  	jal	0x92f2 <__tsl9v4160_ota_code_92f2>
+    9d9e: 11 ed        	bnez	a0, 0x9dba <.Lota_handler_00009dba>
+    9da0: 83 47 04 00  	lbu	a5, 0x0(s0)
+    9da4: 99 eb        	bnez	a5, 0x9dba <.Lota_handler_00009dba>
+    9da6: a3 84 91 0a  	sb	s1, 0xa9(gp)
+
+00009daa <.Lota_handler_00009daa>:
+    9daa: 89 46        	li	a3, 0x2
+    9dac: 70 00        	addi	a2, sp, 0xc
+    9dae: 93 05 30 05  	li	a1, 0x53
+
+00009db2 <.Lota_handler_00009db2>:
+    9db2: 4a 85        	mv	a0, s2
+    9db4: ef a0 40 0e  	jal	0x13e98 <__tsl9v4160_conditional_code_13e98>
+    9db8: c9 b5        	j	0x9c7a <.Lota_handler_00009c7a>
+
+00009dba <.Lota_handler_00009dba>:
+    9dba: a3 84 01 0a  	sb	zero, 0xa9(gp)
+    9dbe: fd 57        	li	a5, -0x1
+    9dc0: 23 06 f1 00  	sb	a5, 0xc(sp)
+    9dc4: dd b7        	j	0x9daa <.Lota_handler_00009daa>
+
+00009dc6 <.Lota_handler_00009dc6>:
+    9dc6: 83 c7 91 0a  	lbu	a5, 0xa9(gp)
+    9dca: e3 88 07 ea  	beqz	a5, 0x9c7a <.Lota_handler_00009c7a>
+    9dce: c1 47        	li	a5, 0x10
+    9dd0: e3 95 f6 ea  	bne	a3, a5, 0x9c7a <.Lota_handler_00009c7a>
+    9dd4: b9 45        	li	a1, 0xe
+    9dd6: 13 05 26 00  	addi	a0, a2, 0x2
+    9dda: ef f0 8f d1  	jal	0x92f2 <__tsl9v4160_ota_code_92f2>
+    9dde: e3 1e 05 e8  	bnez	a0, 0x9c7a <.Lota_handler_00009c7a>
+    9de2: 83 47 04 00  	lbu	a5, 0x0(s0)
+    9de6: 03 46 14 00  	lbu	a2, 0x1(s0)
+    9dea: 93 05 20 05  	li	a1, 0x52
+    9dee: a2 07        	slli	a5, a5, 0x8
+    9df0: 5d 8e        	or	a2, a2, a5
+
+00009df2 <.Lota_handler_00009df2>:
+    9df2: 4a 85        	mv	a0, s2
+    9df4: 69 3b        	jal	0x9b8e <tsl9_ota_page_reply_9b8e>
+    9df6: 51 b5        	j	0x9c7a <.Lota_handler_00009c7a>
+
+00009df8 <.Lota_handler_00009df8>:
+    9df8: 83 c7 91 0a  	lbu	a5, 0xa9(gp)
+    9dfc: e3 8f 07 e6  	beqz	a5, 0x9c7a <.Lota_handler_00009c7a>
+    9e00: bd 47        	li	a5, 0xf
+    9e02: e3 9c f6 e6  	bne	a3, a5, 0x9c7a <.Lota_handler_00009c7a>
+    9e06: 83 47 06 00  	lbu	a5, 0x0(a2)
+    9e0a: e3 98 07 e6  	bnez	a5, 0x9c7a <.Lota_handler_00009c7a>
+    9e0e: b9 45        	li	a1, 0xe
+    9e10: 13 05 16 00  	addi	a0, a2, 0x1
+    9e14: ef f0 ef cd  	jal	0x92f2 <__tsl9v4160_ota_code_92f2>
+    9e18: e3 11 05 e6  	bnez	a0, 0x9c7a <.Lota_handler_00009c7a>
+    9e1c: 81 46        	li	a3, 0x0
+    9e1e: 13 06 80 0c  	li	a2, 0xc8
+    9e22: 81 45        	li	a1, 0x0
+
+00009e24 <.Lota_handler_00009e24>:
+    9e24: 17 f5 ff ff  	auipc	a0, 0xfffff
+    9e28: 13 05 45 ff  	addi	a0, a0, -0xc
+    9e2c: a3 84 01 0a  	sb	zero, 0xa9(gp)
+    9e30: ef f0 4f af  	jal	0x9124 <__tsl9v4160_call_9124>
+    9e34: 81 46        	li	a3, 0x0
+    9e36: 13 06 00 19  	li	a2, 0x190
+    9e3a: 81 45        	li	a1, 0x0
+
+00009e3c <.Lota_handler_00009e3c>:
+    9e3c: 17 05 00 00  	auipc	a0, 0x0
+    9e40: 13 05 c5 ba  	addi	a0, a0, -0x454
+    9e44: ef f0 0f ae  	jal	0x9124 <__tsl9v4160_call_9124>
+    9e48: 81 46        	li	a3, 0x0
+    9e4a: 01 46        	li	a2, 0x0
+    9e4c: 93 05 50 04  	li	a1, 0x45
+    9e50: 8d b7        	j	0x9db2 <.Lota_handler_00009db2>
+
+00009e52 <.Lota_handler_00009e52>:
+    9e52: 13 06 f0 0f  	li	a2, 0xff
+    9e56: 93 05 70 05  	li	a1, 0x57
+    9e5a: 39 bf        	j	0x9d78 <.Lota_handler_00009d78>

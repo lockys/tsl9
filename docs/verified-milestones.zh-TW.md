@@ -1,5 +1,11 @@
 # 已驗證里程碑
 
+## OTA 命令的共享 C/C++ 與實際原生差距
+
+`0x9C4A..0x9E5C` 的 U／S／W／R／E 命令已實作為共享 HOST／native 的可讀 C11／C++17。各語言本組 HOST 通過 10 案例／8,292 檢查與三個編譯語義反例，獨立 HOST 通過 16 案例／18 次 dispatch／898 項行為檢查與四個編譯語義反例。這些是 guarded 合成測試，沒有執行 RV32 或硬體。
+
+實際 ET_REL 每語言為 776 bytes／285 指令／112-byte frame；原始 530 bytes／48-byte frame。九個真 UND、23 筆 RELA、全部指令欄位及原生反例已獨立核對。多出的 246 bytes、callee preservation、live S／SP／RA、配置與 OTA 接受契約尚待證明。**沒有連結或新增 BIN，完整 TX 映像不變。** W 只證明寫 BOOT 數值別名；不得當成 Runtime 自刷證據。 [本輪程式與證據](../analysis/v4160-ota-handler-2026-10-22/README.md)
+
 ## callback 原生元件縮減至 624 bytes
 
 新的 C11／C++17 元件均為 624 bytes／223 條指令：明確保留 S10／S11，將六個 GP 使用位置改為讀取當下實體 GP，並以明示步驟交換兩個既有保存指令。48-byte frame、十一組保存／還原、十五個間接呼叫已由獨立審查核對；本輪未重跑 HOST。原始剩餘 8 bytes 含有可執行指令，完整 prefix、呼叫返回 ABI、尾區所有權及原位配置尚未證實。**元件尚未整合，沒有新增 BIN；原有完整 TX 映像維持不變。** [證據與限制](../analysis/v4160-callback-registers-2026-10-22/README.md)

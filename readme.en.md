@@ -4,6 +4,10 @@
 
 This project preserves the original APK, 22 distinct updater BINs, readable C/C++ behavior models and static source evidence. The goal remains a rebuilt BIN compatible with the original hardware and BLE updater, while identifying worthwhile new features during reverse engineering and keeping proposals separate from implemented functions. **No rebuilt BIN is currently verified as flashable.**
 
+## OTA commands rebuilt as shared C/C++
+
+Readable C11/C++17 now covers U/S/W/R/E commands, preserving UID, length, page, live mode, four quarter writes and word-by-word readback order. Both languages pass the own and independent HOST suites. Actual native objects each contain **776 bytes / 285 instructions / a 112-byte frame**, exceeding the original 530-byte region by 246 bytes, with nine true undefined references. **No link or BIN integration; the complete TX image is unchanged.** W writes a BOOT alias and does not prove Runtime self-update. [Code, evidence and gaps](./analysis/v4160-ota-handler-2026-10-22/readme.en.md)
+
 ## Callback native component reduced to 624 bytes
 
 New C11/C++17 components each contain 624 bytes / 223 instructions. They explicitly reserve S10/S11, read the current physical GP at six uses and swap two existing saves through an explicit stage. Independent reviews confirm a 48-byte frame, eleven save/restore pairs and fifteen indirect calls; HOST suites are not rerun. The remaining eight original bytes contain executable instructions. Full prefix, call-return ABI, tail ownership and original placement remain unproved. **This component is not integrated and adds no BIN; the existing complete TX image is unchanged.** [Evidence and limits](./analysis/v4160-callback-registers-2026-10-22/readme.en.md)

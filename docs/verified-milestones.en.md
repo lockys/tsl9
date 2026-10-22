@@ -1,5 +1,11 @@
 # Verified milestones
 
+## Shared OTA command C/C++ and actual native gaps
+
+The U/S/W/R/E handler at `0x9C4A..0x9E5C` now has readable shared HOST/native C11/C++17. Each language passes 10 own HOST cases / 8,292 checks and three compiled semantic mutants; independent HOST passes 16 cases / 18 dispatches / 898 behavioral assertions and four compiled semantic mutants. These are guarded synthetic tests, without RV32 or hardware execution.
+
+Each actual ET_REL contains 776 bytes / 285 instructions / a 112-byte frame, versus the original 530 bytes / 48-byte frame. Independent review covers nine true undefined references, 23 relocations, all instruction fields and native negative controls. The 246-byte excess, callee preservation, live S/SP/RA, placement and OTA acceptance remain unproved. **No link or new BIN; the complete TX image is unchanged.** W proves writes to a numeric BOOT alias, not Runtime self-update. [Code and evidence](../analysis/v4160-ota-handler-2026-10-22/readme.en.md)
+
 ## Callback native component reduced to 624 bytes
 
 New C11/C++17 components each contain 624 bytes / 223 instructions. They explicitly reserve S10/S11, read the current physical GP at six uses and swap two existing saves through an explicit stage. Independent reviews confirm a 48-byte frame, eleven save/restore pairs and fifteen indirect calls; HOST suites are not rerun. The remaining eight original bytes contain executable instructions. Full prefix, call-return ABI, tail ownership and original placement remain unproved. **This component is not integrated and adds no BIN; the existing complete TX image is unchanged.** [Evidence and limits](../analysis/v4160-callback-registers-2026-10-22/readme.en.md)

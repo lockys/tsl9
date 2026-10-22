@@ -1,0 +1,108 @@
+{
+  "schema": "ID2966-OTA-handler-original-contract-v1",
+  "entry": 40010,
+  "end_exclusive": 40540,
+  "bytes": 530,
+  "instructions": 169,
+  "body_sha256": "693eba9e21b786525b457b538d998a997a601ee46327621a2302ede1b2f274c5",
+  "entry_registers": {
+    "A0": "full u32 connection/context, copied to S2 at9C5E",
+    "A1": "full u32 command, exact unsigned comparisons with E/R/S/U/W; no byte truncation",
+    "A2": "full u32 payload pointer, copied to S0 at9C60",
+    "A3": "full u32 payload length; exact1026/16/15 on W/R/E",
+    "A4_A5": "ambient caller values subsequently overwritten by explicit scratch instructions",
+    "A6_A7": "no explicit original body writes; unknown callee changes remain possible"
+  },
+  "frame": {
+    "bytes": 48,
+    "save_order": [[8,40],[18,32],[1,44],[9,36],[19,28],[20,24],[21,20]],
+    "save_PCs": [40012,40014,40016,40018,40020,40022,40024],
+    "restore_order": [[1,44],[8,40],[9,36],[18,32],[19,28],[20,24],[21,20]],
+    "restore_PC": "0x9C7A",
+    "SP_pop_PC": "0x9C88",
+    "return_PC": "0x9C8A",
+    "return": "fresh LW RA from current liveSP+44, remaining fresh liveSP reads, liveSP+=48, JR RA clears bit0",
+    "temporary_reply_bytes": [{"PC":"0x9D92","offset":12,"value":"initial S mode byte"},{"PC":"0x9D96","offset":13,"value":"S1=1 before UID call"},{"PC":"0x9DC0","offset":12,"value":"255 on S failure"}],
+    "reply_pointer": "0x9DAC ADDI A2,current liveSP,12; opaque callees may change SP/frame between stores and pointer materialization",
+    "entry_SP_and_saved_register_values_restored_unconditionally": false
+  },
+  "live_S_roles": {
+    "S0": "initial payload; W replaces it with0 then increments by256 BEFORE every9D00 call",
+    "S1": "W flash page address; S initializes1 before UID and later SB uses postcall live S1",
+    "S2": "connection/context; every reply uses the then-live S2",
+    "S3": "W source pointer aligned downward from payload+2",
+    "S4": "W BE16 page initially; reply9D22 uses postcallee live S4",
+    "S5": "W loop terminal1024 initialized before9D00; loop compares postcallee live S0 against live S5",
+    "callee_preservation": "not proved by explicit saves or source-level C names; any ordinary ABI model is conditional"
+  },
+  "commands": {
+    "W": {
+      "guard_order": "fresh LBU(liveGP+169)!=0, full length==1026, two ordered payload LBU forming BE16 page, unsigned address guard",
+      "destination": "low32((0x20004+page)<<10)=0x08001000+page*1024 for the original BE16 page",
+      "range_guard": "low32(destination+0xF7FFF000)<=0x6F00, accepting original BE16 page0..27",
+      "alignment": "A1=payload+2; S3=A1-(A1&3). Nonzero remainder invokes READ32(0x4004C) with A0=S3,A1=original source,A2=1024; overlapping-copy resident semantics unknown",
+      "program": "9CF4/9CF8 form A1=liveS3+liveS0 and A0=liveS1+liveS0;9CFC increments S0 by256 BEFORE C.JAL9D00;9D02 compares returned liveS0/liveS5",
+      "four_calls_condition": "four256-byte calls follow if live S0/S1/S3/S5 and relevant execution state remain consistent; arbitrary opaque callee effects can change loop count/addresses or prevent return",
+      "readback": "9D06 A5=0;9D08 A4=1024. Each9D0C iteration computes Flash address, LW9D10 intoA2 FIRST, computes live source address, LW9D16 intoA3 SECOND, compares full32; increments offset4 until1024",
+      "reply_scratch_registers": "At W mismatch13F66 or match9B8E, A3 retains the last fresh source word; A4=1024; A5 is the first mismatching offset or1024 after complete match. These are source-defined callee-visible residues, not invented API arguments.",
+      "mismatch": "9E52 A2=255,A1=W then small reply13F66 using liveS2; no fabricated success status",
+      "match": "9D22 A2=liveS4,A1=W;9DF4 calls9B8E with liveS2; not tail"
+    },
+    "U": {
+      "order": "A1=(length-1)&255,A0=payload+1; clear active at liveGP+169 BEFORE9D3A UID helper",
+      "identity": "helper92F2 raw A0==0 proceeds; byte-masked length is not a full strict length15 check in this body",
+      "mode": "fresh LBU(liveS0) after UID; only exact1 requests schedule8E18 with200 then9EE0 with400",
+      "reply": "on matching identity, mode other than1 still reaches one-byte1 U reply via13F66"
+    },
+    "S": {
+      "order": "read mode before UID; store savedmode at liveSP+12 and1 at liveSP+13 before9D9A; A1=(length-1)&255,A0=payload+1",
+      "success": "UID raw zero then fresh LBU(liveS0)==0; SB LOW8(live postUID S1) to liveGP+169, not unconditionally a literal1 under arbitrary callee effects",
+      "failure": "SB0 to liveGP+169, overwrite current liveSP+12 with255",
+      "reply": "A2=current liveSP+12,A3=2,A1=S,A0=liveS2 to13E98; exact pointer/frame alias effects are not an abstract copied array"
+    },
+    "R": {
+      "guard_order": "active!=0; full length==16;92F2(payload+2,14) raw zero; then fresh BE16 page from liveS0",
+      "no_W_page_guard": true,
+      "reply": "9DF4 actual RV32 C.JAL to9B8E, rd1/RA9DF6"
+    },
+    "E": {
+      "guard_order": "active!=0; full length==15; mode fresh LBU(payload)==0;92F2(payload+1,14) raw zero",
+      "order": "prepare callback8E18, SB0 to liveGP+169 BEFORE first schedule call9E30; schedule8E18 delay200 then99E8 delay400; empty E reply through13E98",
+      "whole_image_CRC_or_signature_check_in_this_body": false
+    }
+  },
+  "calls": [
+    {"PC":"0x9CEC","RA":"0x9CEE","kind":"indirect","target":"fresh READ32(0x4004C) in A5","explicit_args":{"A0":"liveS3","A1":"source payload+2 as materialized9CD2","A2":"1024"},"notes":"alignment copy only; overlap/failure semantics opaque"},
+    {"PC":"0x9D00","RA":"0x9D02","kind":"direct","target":"0x9C0A","explicit_args":{"A0":"liveS1+preincrement liveS0","A1":"liveS3+preincrement liveS0"},"notes":"actual16-bit C.JAL; S0 already incremented256 at callee entry; no fixed count under arbitrary callees"},
+    {"PC":"0x9D3A","RA":"0x9D3E","kind":"direct","target":"0x92F2","explicit_args":{"A0":"entrypayload+1","A1":"(entrylength-1)&255"},"notes":"U clears active before call"},
+    {"PC":"0x9D5A","RA":"0x9D5E","kind":"direct","target":"0x9124","explicit_args":{"A0":"PCREL8E18","A1":"0","A2":"200","A3":"0"},"notes":"only U mode1"},
+    {"PC":"0x9D6E","RA":"0x9D72","kind":"direct","target":"0x9124","explicit_args":{"A0":"PCREL9EE0","A1":"0","A2":"400","A3":"0"}},
+    {"PC":"0x9D7A","RA":"0x9D7E","kind":"direct","target":"0x13F66","explicit_args":{"A0":"liveS2","A1":"U or W","A2":"1 for U or255 for W mismatch"},"notes":"A3 is path-specific live scratch/result residue, not normalized to zero"},
+    {"PC":"0x9D9A","RA":"0x9D9E","kind":"direct","target":"0x92F2","explicit_args":{"A0":"entrypayload+1","A1":"(entrylength-1)&255"},"notes":"S saved-mode/one stack bytes already written"},
+    {"PC":"0x9DB4","RA":"0x9DB8","kind":"direct","target":"0x13E98","explicit_args":{"A0":"liveS2","A1":"S or E","A2":"liveSP+12 for S or0 for E","A3":"2 for S or0 for E"}},
+    {"PC":"0x9DDA","RA":"0x9DDE","kind":"direct","target":"0x92F2","explicit_args":{"A0":"entrypayload+2","A1":"14"},"notes":"R, strict full length16 checked earlier"},
+    {"PC":"0x9DF4","RA":"0x9DF6","kind":"direct","target":"0x9B8E","explicit_args":{"A0":"liveS2","A1":"W or R","A2":"postcallee liveS4 for W or fresh BE16 read from liveS0 for R"},"notes":"actual halfword693B, q01/funct3=001: C.JAL rd1, NOT no-link jump/tail"},
+    {"PC":"0x9E14","RA":"0x9E18","kind":"direct","target":"0x92F2","explicit_args":{"A0":"entrypayload+1","A1":"14"},"notes":"E strict15/mode0 checked earlier"},
+    {"PC":"0x9E30","RA":"0x9E34","kind":"direct","target":"0x9124","explicit_args":{"A0":"PCREL8E18","A1":"0","A2":"200","A3":"0"},"notes":"active cleared before call"},
+    {"PC":"0x9E44","RA":"0x9E48","kind":"direct","target":"0x9124","explicit_args":{"A0":"PCREL99E8","A1":"0","A2":"400","A3":"0"}}
+  ],
+  "call_boundary_limits": {
+    "explicit_args_complete_raw8_claim": false,
+    "all_other_A0_A7": "actual live residues from all intervening source instructions/callees; all explicit body write PC inventories and169 operand rows retained in source proof",
+    "all_direct_rd": 1,
+    "indirect_target_bit0": "JALR raw target clears bit0; complete loaded word and raw link remain relevant",
+    "unknown_effects": "all callee memory/GPR/GP/S/SP/RA changes and halt/transfer/nonreturn are unproved unless explicitly constrained by a conditional model",
+    "function_A0": "no uniform status; unknowncommand or some guard returns preserve incoming/live A0, UID rejection returns raw helper result, reply paths carry callee result",
+    "tail": "No external tail call in this handler. Internal rd0 branches/jumps go to shared epilogue/blocks;9DF4 writesRA. Final9C8A JR uses fresh savedRA."
+  },
+  "numeric_address_pairs": [{"PC":"0x9D52","address":"0x8E18"},{"PC":"0x9D66","address":"0x9EE0"},{"PC":"0x9E24","address":"0x8E18"},{"PC":"0x9E3C","address":"0x99E8"}],
+  "recorded_incoming": {"PC":"0x14094","target":"0x9C4A","raw_link":"0x14098","rd":1,"RELA_type":17,"addend":0,"all_possible_computed_entries_known":false},
+  "ROM_identity_known": false,
+  "hardware_memory_map_proved": false,
+  "whole_original_ABI_admitted": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network": false,
+  "hardware": false,
+  "OTA_ready": false
+}

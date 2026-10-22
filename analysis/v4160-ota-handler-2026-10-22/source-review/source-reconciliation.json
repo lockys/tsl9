@@ -1,0 +1,45 @@
+{
+  "schema": "ID2966-OTA-handler-readable-source-inspection-v1",
+  "method": "Independent manual inspection against all169 retained raw operand rows and original contracts; source identity is mechanically pinned. This is not HOST execution or compiled native ABI proof.",
+  "source_files": {
+    "experiments/tsl9-v4160-ota-handler/src/ota_handler.c": "17998205c781a9223a7d2eb01f9a4bbd7cc5cc3013336795bb76e0da6e0bf9d0",
+    "experiments/tsl9-v4160-ota-handler/src/ota_handler.h": "fa6165d20e935b5c69dbab733c2340de13093a8827840bbffbce491bf9dd61de",
+    "experiments/tsl9-v4160-ota-handler/src/io.h": "64ef7d4de24543628ddee3254dacd5e79b3ac6a0950f504cad72c5ac880c3af5",
+    "experiments/tsl9-v4160-ota-handler/src/host_io.c": "3285e6228573cb39e5b09a845450268a74c2fbfb475e2d95b3673dc22a7b3d1b"
+  },
+  "matched_obligations": [
+    {"source":"9C5A..9C98 command comparisons","readable_C":"full uint32 command equality; no byte truncation"},
+    {"source":"9C9C..9CCE W guards","readable_C":"fresh active then1026 then ordered two byte page and exact unsigned wrapping address bound"},
+    {"source":"9CD2..9CEC alignment copy","readable_C":"downward alignment, conditional READ32 slot4004C and named opaque call; no guessed overlap implementation"},
+    {"source":"9CF4..9D02 W program","readable_C":"live source/destination/offset, increment BEFORE call; loop compares postcall named live offset/limit"},
+    {"source":"9D10 before9D16 W readback","readable_C":"two ordered32-bit effects, Flash first and live source second, step4"},
+    {"source":"9D36 before9D3A U","readable_C":"active clear occurs before UID; masked length and post-UID fresh mode"},
+    {"source":"9D80..9DC4 S","readable_C":"pre-UID mode/frame bytes, post-UID live payload mode, live S1-named status store and current liveSP reply address"},
+    {"source":"9DC6..9DF4 R","readable_C":"strict16/UID14, fresh BE16 after UID, no W range guard; page reply is a returning call"},
+    {"source":"9DF8..9E50 E","readable_C":"strict15/mode0/UID14, active clear before ordered200/400 schedules and empty reply"},
+    {"source":"9C4A saves and9C7A restores","readable_C":"HOST only models seven saved words/fresh readback order/current SP bookkeeping; native uses a separate compiler-owned C frame"},
+    {"source":"seven GP+169 ports","readable_C":"HOST carried live field and native per-use GP port; no resident preservation claim"},
+    {"source":"opaque return/halt/transfer and UID raw0","readable_C":"named call boundaries may change named state; memory-return register changes rejected; unknown UID A0 stops before predicate"}
+  ],
+  "review_finding_repaired_before_freeze": {
+    "finding": "Initial W reply projection omitted source-defined A3/A4/A5 residues and forwarded earlier quarter outputs.",
+    "raw_evidence": ["9D16 LWA3 contains last source word","9D08 A4=1024","9D06/9D1C A5 offset reaches mismatch offset or1024"],
+    "final_C": "Both W reply boundaries set a[3]=source_word,a[4]=1024,a[5]=offset and defined_argument_mask63. Other projections are unchanged.",
+    "scope": "Only selected W reply boundary obligations improved; no whole raw8 claim. For example R still does not project raw A5=(highbyte<<8)."
+  },
+  "remaining_limits": [
+    "HOST named values do not prove physical register identity or unknown resident ABI preservation.",
+    "Native response[2] is a compiler-owned object, not proof of original liveSP+12/13 addresses, aliases or48-byte frame.",
+    "HOST return_address is saved-data bookkeeping; final JR/changed raw return target is not executed or completely reproduced as physical transfer.",
+    "defined_argument_mask is an explicit algorithm projection; complete raw intermediate A0..A7 residues are not supplied.",
+    "Native direct calls/callback addresses request real unresolved symbols; actual code providers, instruction sizes, links and placement require separate compiled-artifact proof.",
+    "Diagnostic budget is HOST-only and does not establish a native timeout, safe loop bound, ROM behavior or hardware safety.",
+    "Unknown scalar propagation is bounded by the declared HOST API; it is not a full bit-level physical CPU state model."
+  ],
+  "HOST_tests_run_by_this_source_review": false,
+  "native_compilation_run_by_this_source_review": false,
+  "old_large_OTA_matrix_rerun": false,
+  "whole_original_ABI_admitted": false,
+  "original_placement_admitted": false,
+  "OTA_ready": false
+}

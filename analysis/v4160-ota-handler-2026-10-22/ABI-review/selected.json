@@ -1,0 +1,172 @@
+{
+  "schema": "TSL9-OTA-handler-independent-selected-v1",
+  "shared_core_pins": {
+    "ota_handler.c": "17998205c781a9223a7d2eb01f9a4bbd7cc5cc3013336795bb76e0da6e0bf9d0",
+    "ota_handler.h": "fa6165d20e935b5c69dbab733c2340de13093a8827840bbffbce491bf9dd61de",
+    "io.h": "64ef7d4de24543628ddee3254dacd5e79b3ac6a0950f504cad72c5ac880c3af5",
+    "host_io.c": "3285e6228573cb39e5b09a845450268a74c2fbfb475e2d95b3673dc22a7b3d1b"
+  },
+  "HOST": {
+    "c": {
+      "receipt": "apk-analysis/tsl9-v4160-ota-handler-2026-10-22/ABI-review/build/host-final/c/verification.json",
+      "sha256": "c624e93a89a45f72d540f9ffddc410ebc5854fbab4dce4cf0a44b29d49d03cf0",
+      "tests": {
+        "passed": true,
+        "narrative_cases": 16,
+        "dispatches": 18,
+        "checks": 898,
+        "synthetic_HOST_only": true,
+        "physical_ABI_proof": false
+      },
+      "compiled_controls": [
+        "command_byte_truncation",
+        "stale_S_payload_after_UID",
+        "S_active_forced_one",
+        "RAM_read_before_Flash"
+      ],
+      "compiler": {
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+        "sha256": "88c8344236a27a6e727e0a8edc49aaa2690bdc7a9464b9d18cc7abe70a9f1c0d"
+      },
+      "recorded_actual_host_run": true,
+      "readonly_replay_passed": true
+    },
+    "cpp": {
+      "receipt": "apk-analysis/tsl9-v4160-ota-handler-2026-10-22/ABI-review/build/host-final/cpp/verification.json",
+      "sha256": "abcc5a7b74b2b9f06c4d83e4fdd7b084ee5d0059e7947cbada4a40c2db37bedc",
+      "tests": {
+        "passed": true,
+        "narrative_cases": 16,
+        "dispatches": 18,
+        "checks": 898,
+        "synthetic_HOST_only": true,
+        "physical_ABI_proof": false
+      },
+      "compiled_controls": [
+        "command_byte_truncation",
+        "stale_S_payload_after_UID",
+        "S_active_forced_one",
+        "RAM_read_before_Flash"
+      ],
+      "compiler": {
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+        "sha256": "88c8344236a27a6e727e0a8edc49aaa2690bdc7a9464b9d18cc7abe70a9f1c0d"
+      },
+      "recorded_actual_host_run": true,
+      "readonly_replay_passed": true
+    }
+  },
+  "native": {
+    "c": {
+      "receipt": "apk-analysis/tsl9-v4160-ota-handler-2026-10-22/ABI-review/build/native-c.json",
+      "sha256": "7eb60877a8411eb21028fa0143ea9f0b239a41117a2fee75a256894072fb409e",
+      "producer_receipt": "83f3d3283ae42180407b9769037aa5375877bcf4157edd0bebf9d482debb4fb9",
+      "actual_object": {
+        "bytes": 2352,
+        "sha256": "7e4b46c1dfc0740d0c6d429806ebb271705d3b01f2652f0d06d16b2fd224a970"
+      },
+      "actual_IR": {
+        "bytes": 27761,
+        "sha256": "2b78e54bf683730340904fb54f3b55f4b3e81b4791b636caa226c1c84d106790"
+      },
+      "native_bytes": 776,
+      "instructions": 285,
+      "frame_bytes": 112,
+      "oversize_bytes": 246,
+      "direct_call_occurrences": 15,
+      "indirect_call_occurrences": 1,
+      "GP_reads": 7,
+      "SP_memory_operands": 111,
+      "direct_call_counts": {
+        "__tsl9v4160_call_9124": 4,
+        "__tsl9v4160_call_9c0a": 1,
+        "__tsl9v4160_conditional_code_13e98": 2,
+        "__tsl9v4160_ota_code_13f66": 2,
+        "__tsl9v4160_ota_code_92f2": 4,
+        "__tsl9v4160_ota_code_9b8e": 2
+      },
+      "true_UND": 9,
+      "RELA": 23,
+      "dependencies": {
+        "mode": "c",
+        "actual_recipes": 4,
+        "actual_MD_project_inputs": 3,
+        "actual_MD_resource_inputs": 1,
+        "all_actual_source_tool_resource_hashes_checked": true,
+        "native_compiler_invoked_by_review": false
+      },
+      "focused_raw_controls": {
+        "entry_SP_subtract_changed_to_add": true,
+        "direct_JAL_link_register_removed": true,
+        "actual_GP_read_changed_to_GP_write": true
+      },
+      "linked": false,
+      "actual_native_artifacts_read": true
+    },
+    "cpp": {
+      "receipt": "apk-analysis/tsl9-v4160-ota-handler-2026-10-22/ABI-review/build/native-cpp.json",
+      "sha256": "fb03c4a83c37e2d988fd4c5c77297f4bd94509677a47eedaedf34bef5745b1dd",
+      "producer_receipt": "4c02eb197de652d22177fe0d535ed2fa4f234789915d602a649c45aadfcb4376",
+      "actual_object": {
+        "bytes": 2352,
+        "sha256": "7e4b46c1dfc0740d0c6d429806ebb271705d3b01f2652f0d06d16b2fd224a970"
+      },
+      "actual_IR": {
+        "bytes": 27846,
+        "sha256": "219cc45433bd0c95900bce1a39ec10c6e1a5f68d3e4a381e018a5fd7f1fa576b"
+      },
+      "native_bytes": 776,
+      "instructions": 285,
+      "frame_bytes": 112,
+      "oversize_bytes": 246,
+      "direct_call_occurrences": 15,
+      "indirect_call_occurrences": 1,
+      "GP_reads": 7,
+      "SP_memory_operands": 111,
+      "direct_call_counts": {
+        "__tsl9v4160_call_9124": 4,
+        "__tsl9v4160_call_9c0a": 1,
+        "__tsl9v4160_conditional_code_13e98": 2,
+        "__tsl9v4160_ota_code_13f66": 2,
+        "__tsl9v4160_ota_code_92f2": 4,
+        "__tsl9v4160_ota_code_9b8e": 2
+      },
+      "true_UND": 9,
+      "RELA": 23,
+      "dependencies": {
+        "mode": "cpp",
+        "actual_recipes": 4,
+        "actual_MD_project_inputs": 3,
+        "actual_MD_resource_inputs": 1,
+        "all_actual_source_tool_resource_hashes_checked": true,
+        "native_compiler_invoked_by_review": false
+      },
+      "focused_raw_controls": {
+        "entry_SP_subtract_changed_to_add": true,
+        "direct_JAL_link_register_removed": true,
+        "actual_GP_read_changed_to_GP_write": true
+      },
+      "linked": false,
+      "actual_native_artifacts_read": true
+    }
+  },
+  "original": {
+    "bytes": 530,
+    "instructions": 169,
+    "frame_bytes": 48,
+    "owned_RELA": 51,
+    "recorded_direct_caller": "14094 -> 9C4A, link14098"
+  },
+  "full_original_ABI_admitted": false,
+  "original_placement_admitted": false,
+  "hardware_OTA_proved": false,
+  "BIN_created": false,
+  "generated_archives_in_seal": false,
+  "checker_pins": {
+    "run-host.py": "ee2c6f763b866357d03fefc3c8335dfe66dbf20a842ae1efde940fb8c9d14e75",
+    "independent_host.c": "254b6dd5e60640eea6f7d0d54433d6abf1ff9f5af65c1761ecd58f36869b00f1",
+    "native.py": "ec575277355bb9c7160771625b84de2a340512863d3ee3a4df26180a15fe98e3",
+    "review.py": "bd0118b622c6f489a89f6281aa5bddd2d62a0eb4dec0e7958882ee7c31c89c12",
+    "check.py": "a71020932d46d962ecffacabf4941f7f4d06b5399705c4c2e02b4f3ba8825f85"
+  }
+}
