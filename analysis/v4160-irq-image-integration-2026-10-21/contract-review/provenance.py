@@ -46,7 +46,7 @@ def script_check(path,m):
         raise ValueError('unsupported partial-link statement '+s)
     need(len(sections)==len(set(sections))==691 and set(sections)==set(m['allocations']) and kept==sections and sizes==sections and set(allowed)==seen,'complete691 sections/KEEP/assert and53 actual assignments')
 def run():
-    need(sha(RUNNER)=='1929598ffc723937e8cd6bcafbe507fb5ff23f6d9541f00043bdadcb44f3455a','frozen actual integration runner')
+    need(sha(RUNNER)=='b26410ae9a0d9dece3e5404fb311407dd7c3022a08a7d2fb8c8df7834496c854','frozen actual integration runner')
     need(sha(MODEL/'source-manifest.json')=='d952159ab2bf7c5294bc433510b88a7c19b23295ba11b0e7ab3d4a1ed39b1ce7','portable source manifest')
     m=read(MODEL/'source-manifest.json');p=read(PLAN)
     need(m['selected_sections']==p['selected_sections'] and m['section_relative_bindings']==p['section_relative_bindings'],'actual selected source/bindings match independent plan')
@@ -55,7 +55,7 @@ def run():
     pinned={str((R/n).resolve()):pin for n,pin in m['source_files'].items()}
     for name,pin in pinned.items():need(sha(Path(name))==pin,'actual original/typed source and header pin')
     results=[]
-    for mode,pin in [('c','2978fd550beb5883957cf83fc0ffa13c0f33d1cb1a5324e0187d18bd0d41cd46'),('cpp','dd8a81f1a762ae4fee193cf7f871e8b67ba4428a9a00521ed1e98a0ce83604f0')]:
+    for mode,pin in [('c','64f7e9f24a0cf1a9ac7fce09f4b5879f30ba9e55042f582509b3228d00a8a068'),('cpp','1d508a329b5360cb764c51c1b4f2964df288f9313b47bf7343d5cc78a6e316e9')]:
         folder=BUILD/mode;receipt=folder/'verification.json';need(sha(receipt)==pin,'actual final build receipt')
         r=read(receipt);need(r['runner_sha256']==sha(RUNNER) and r['source_files']==m['source_files'] and r['manifest_sha256']==sha(MODEL/'source-manifest.json'),'receipt actual runner/source closure')
         for name,row in r['artifacts'].items():

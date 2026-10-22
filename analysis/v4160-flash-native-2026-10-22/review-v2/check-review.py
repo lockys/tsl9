@@ -6,7 +6,7 @@ import importlib.util
 import json
 from pathlib import Path
 
-OLD_SEAL='173c8790e2deaad0ae6ac29bea2cabdbc8be2c13b68edefc3d5beb37c545488c'
+OLD_SEAL='f5cec050e258486cb7205c2354742e197ed7632fa5f943cc3a0a2bf9760c92f6'
 OLD_RUNNER='d1f470a8539eb9815eaa65230a6da974f7dd21b2c009950516e0e3d250cc377e'
 MODEL='experiments/tsl9-v4160-flash-native'
 

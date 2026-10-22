@@ -10,11 +10,11 @@ import uuid
 
 HERE = Path(__file__).resolve().parent
 DEPENDENCY = Path("apk-analysis/tsl9-v4160-irq-native-2026-10-21/compiler-review")
-SEAL_SHA = "13772c1bfe0c3faf0fe37cf4cbdd8fe4be40ca6f6913ef132c64a3c0677f9c04"
+SEAL_SHA = "273617ca292a9ee2f2962ef14d72214903068bcaaabb338148938dcf63c505a2"
 PINS = {"verify_native.py":"58e726bf5590eeb318c7123a75fd00c5b406b58e36c545c65962a1ac80a369ac",
         "gates.py":"c51f2242a3f3356ce77c09c12757cda0ed13b6830ac255cbfbd4fcdfd36341e5",
         "elf32.py":"00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
-        "receipts/cpp.json":"1134805ce608d4a588c70ea5417c2c684887b262110c490a2531ed20c012b7e3"}
+        "receipts/cpp.json":"abb2f027c322d4eecf449ab828265b6d3f742bc4018e9417e04a34d3c60e02bd"}
 
 
 def sha(path):

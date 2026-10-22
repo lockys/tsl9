@@ -8,7 +8,7 @@ Both actual 76,800-byte images have SHA-256 `de159bb345b27250a683e197dd84b04e51a
 
 ## Evidence and scope
 
-`source-constraints.json`, SHA-256 `b1d2908c00fd7577beaf5cf9eee0a462cbe611767d310c7314ef945691da8ccf`, was independently derived from actual local original/prior objects and sealed IRQ/Flash component ELFs. It preserves source-backed roles and hashes for portable admission of new artifacts when the old build archives are absent. Portable mode explicitly does not claim to reread those archives.
+`source-constraints.json`, SHA-256 `d29445adccff76de983d85bf0384c3fd5d9f5af5805387bebaf200dc495cd180`, was independently derived from actual local original/prior objects and sealed IRQ/Flash component ELFs. It preserves source-backed roles and hashes for portable admission of new artifacts when the old build archives are absent. Portable mode explicitly does not claim to reread those archives.
 
 The independent gate verifies all 691 original allocation metadata and linked addresses, the partial-object contents of all 680 retained allocations, all eleven native bodies, real section-owned FUNC aliases/providers, all 53 section-relative bindings, and all twenty external references to selected function entries. It preserves all 8259 outside relocation records, including signed addends and multiplicity; the actual new owned relocations are eleven JALs, for 8270 total.
 

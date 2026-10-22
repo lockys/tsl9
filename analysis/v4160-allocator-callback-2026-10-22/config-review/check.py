@@ -11,7 +11,7 @@ sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 FW = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 OLD = 'v4160-ota-source-wiring-2026-10-22/allocator-review'
-OLD_CHECK = 'bae75ad424079a6d2c2efe8cd725728b33678d2bef534183088103117bec2aa3'
+OLD_CHECK = 'c65cb2622eeade943b85aed00ca23a16552b64e229a0fbd839599f537de6fe6a'
 
 
 def need(v, message):

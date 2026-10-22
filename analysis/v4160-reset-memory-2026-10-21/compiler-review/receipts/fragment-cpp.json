@@ -11,15 +11,15 @@
   "ELF_parser_sha256": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
   "tools": {
     "clang": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "path": "${LLVM_BIN}\\clang.exe",
       "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
     },
     "linker": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+      "path": "${LLVM_BIN}\\ld.lld.exe",
       "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
     },
     "objdump": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+      "path": "${LLVM_BIN}\\llvm-objdump.exe",
       "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
     }
   },
@@ -74,7 +74,7 @@
   "commands": [
     {
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac",
         "-mabi=ilp32",
@@ -122,16 +122,16 @@
         "-ffixed-x31",
         "-DTSL9_RESET_MEMORY_FRAGMENT=1",
         "-c",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-reset-memory\\src\\reset_memory.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-reset-memory\\src\\reset_memory.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\reset_memory.o"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\reset_memory.o"
       ],
       "exit": 0,
       "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac",
         "-mabi=ilp32",
@@ -180,47 +180,47 @@
         "-DTSL9_RESET_MEMORY_FRAGMENT=1",
         "-S",
         "-emit-llvm",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-reset-memory\\src\\reset_memory.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-reset-memory\\src\\reset_memory.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\reset_memory.ll"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\reset_memory.ll"
       ],
       "exit": 0,
       "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "${LLVM_BIN}\\ld.lld.exe",
         "--no-relax",
         "--no-undefined",
         "--entry=tsl9_rebuild_reset_memory_186ba",
         "-Ttext=0x1000",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\reset_memory.o",
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\reset_memory.o",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\STRICT-MISSING-CONTINUATION.elf"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\STRICT-MISSING-CONTINUATION.elf"
       ],
       "exit": 1,
       "log_sha256": "0056364bb3c29a01e9985a036c1f3e27eed701869244718849d071ca799a39d2"
     },
     {
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "${LLVM_BIN}\\ld.lld.exe",
         "--no-relax",
         "--no-undefined",
         "--entry=tsl9_rebuild_reset_memory_186ba",
         "-Ttext=0x1000",
         "--defsym=__tsl9_reset_resume_186f8=0x186f8",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\reset_memory.o",
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\reset_memory.o",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\ADDRESS-WITNESS-ONLY.elf"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\ADDRESS-WITNESS-ONLY.elf"
       ],
       "exit": 0,
       "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+        "${LLVM_BIN}\\llvm-objdump.exe",
         "--disassemble",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\ADDRESS-WITNESS-ONLY.elf"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-reset-memory-2026-10-21\\compiler-review\\build\\native-7bdd73145a88411d8f909dd4fcf00dfc-fragment-cpp\\ADDRESS-WITNESS-ONLY.elf"
       ],
       "exit": 0,
       "log_sha256": "63436c42ae3f5d5394d74b15b3fdfc01785a32fedc5d1ffa067603ca81e43876"

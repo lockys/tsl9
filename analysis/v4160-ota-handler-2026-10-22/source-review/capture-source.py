@@ -15,7 +15,7 @@ def load(n,p):
 def case(root,n):return next(p for p in (root/'analysis'/n,root/'apk-analysis'/('tsl9-'+n)) if p.is_dir())
 def context(root):
     old=case(root,'v4160-event-callback-2026-10-22')/'source-review/check-source.py'
-    need(sha(old.parent/'seal.json')=='c9edde476232c0c0e018c08e54d2d9d9a9afa20839d5e19a53f5ffa752e0e1c5','Immutable original field-extension proof')
+    need(sha(old.parent/'seal.json')=='f42e262c6b6c7a80fa3da77ce6af0b0df7ad70f6a8c9ff664b5eefa940554972','Immutable original field-extension proof')
     for name,pin in json.loads((old.parent/'seal.json').read_bytes())['members'].items():need(sha(old.parent/name)==pin,'Immutable field extension member '+name)
     need(sha(old)=='3a4f54667035a5ed722d59befa24ba0366e832d1a300fed725f49cbce675f185','Pinned field reader entry')
     base,E=load('handler_prior_field_reader',old).context(root);extension=load('handler_OR_SP_fields',HERE/'raw.py')

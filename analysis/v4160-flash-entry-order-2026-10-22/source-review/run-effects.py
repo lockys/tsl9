@@ -11,7 +11,7 @@ import uuid
 MODEL='experiments/tsl9-v4160-flash-entry-order'
 OLD='experiments/tsl9-v4160-flash-native'
 ORACLE='d2387b7983052b2b3b863223eaf3873e00435a1bd03b5833ba31a4c7ad569705'
-GUARD='be7ad39a8f05003bbba371d11f4f2337338165dbc5f9700ce3d7c50a2878659f'
+GUARD='9c58f4ec67704d64ae8c72eb46c0cb05286e1e3558c21677594683b07f5977b9'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def need(v,m):
     if not v:raise ValueError(m)

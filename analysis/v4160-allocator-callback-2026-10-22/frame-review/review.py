@@ -64,7 +64,7 @@ def original(root,firmware):
          ('lw',1,2,None,188,None),('lw',8,2,None,184,None),('lw',9,2,None,180,None),('lw',18,2,None,176,None),('lw',19,2,None,172,None),
          ('addi',2,2,None,192,None),('jalr',0,1,None,0,None)],'Exact original caller inputs and fresh-return frame projection')
     uid=case(root,'v4160-ota-handler-compact-2026-10-22')/'callee-review'
-    refs=runpy.run_path(str(uid/'review.py'));refs['closed'](uid,'fc9cb5eac8556bb00e86a598ad9fd9587ad2763318f5d6735c70f2cabe8be6f9')
+    refs=runpy.run_path(str(uid/'review.py'));refs['closed'](uid,'5b915632290d82c30545fa9ec517fc96bb67d706abf71f592e53354c3a622a8c')
     actual=refs['rows'](raw[0x12ba:0x1334],0x92ba,decode)
     need(actual==read(uid/'app-instructions.json'),'Bounded122B UID builder/comparator actual operand rows')
     return dict(handler=measured,caller_rows=caller,caller_checks_A0_status_after_return=False,caller_restores_S7=False,

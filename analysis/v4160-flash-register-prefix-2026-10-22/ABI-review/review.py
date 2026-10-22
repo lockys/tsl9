@@ -4,7 +4,7 @@ import argparse,hashlib,json,re,runpy,struct,sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
 SHA=lambda b:hashlib.sha256(b).hexdigest()
-PRIOR_REVIEW='de1a55014e3db06fc909cadd92a746c9922b08bcdecfa0bcb28862f98d1f9ca0'
+PRIOR_REVIEW='4d7e1b4ffa5101347970a662390c4cb8ff6455161e47d6e68f2144a27b8ca7e1'
 CORE={'flash_native.c':'94bbb25ff93325152240c03d2fe01fbc5c7215417ffd3d98b2a61ecde21a7393','flash_native.h':'b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd','native_io.h':'579916278d4967cef1af0d04b68b403a515f3d56977613015639a0c9c916c08c'}
 FRAMES={0x9a42:dict(name='tsl9_rebuild_interrupt_registers_9a42',bytes=144,frame=16,original=[(18,0),(1,12),(8,8),(9,4)],compiler=[(1,12),(8,8),(9,4),(18,0)],end=10),0x9c0a:dict(name='tsl9_flash_quarter_9c0a',bytes=64,frame=32,original=[(8,24),(9,20),(1,28)],compiler=[(1,28),(8,24),(9,20)],end=8)}
 FLASH={0x9c0a:('quarter',64),0x18e90:('status',8),0x18e98:('unlock',30),0x18eb6:('lock',14),0x18ec4:('erase',46),0x18ef2:('program',100)}
@@ -174,7 +174,7 @@ def inspect(root,folder,firmware=None,strict=True):
     artifacts={n:dict(path=ctx['prior']['relative'](root,folder/n),bytes=(folder/n).stat().st_size,sha256=SHA((folder/n).read_bytes())) for n in names}
     producer=None
     if (folder/'verification.json').is_file():
-        b=(folder/'verification.json').read_bytes();r=json.loads(b);need(r.get('passed') is True and r.get('schema')=='ID2966-flash-register-prefix-native-v1' and r.get('mode') in ('c','cpp') and r.get('source_sha256')==CORE,'actual formal producer receipt schema/source/pass');need(r.get('runner_sha256')=='832035fea10ca77b3f48631f368b2d7e7a9c4cfb3d3509a5585a63718bd79be8','explicit frozen native producer CLI');producer=dict(path=ctx['prior']['relative'](root,folder/'verification.json'),sha256=SHA(b),schema=r.get('schema'),runner_sha256=r.get('runner_sha256'),mode=r.get('mode'))
+        b=(folder/'verification.json').read_bytes();r=json.loads(b);need(r.get('passed') is True and r.get('schema')=='ID2966-flash-register-prefix-native-v1' and r.get('mode') in ('c','cpp') and r.get('source_sha256')==CORE,'actual formal producer receipt schema/source/pass');need(r.get('runner_sha256')=='617757c0bfe4612ca87337c7a84c98d68551876a2f5208bbb00df85bb61db09a','explicit frozen native producer CLI');producer=dict(path=ctx['prior']['relative'](root,folder/'verification.json'),sha256=SHA(b),schema=r.get('schema'),runner_sha256=r.get('runner_sha256'),mode=r.get('mode'))
     fw=firmware or root/'exports/TSL-firmware-options-22-BINs-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin'
     return dict(schema='TSL9-register-prefix-independent-ABI-review-v1',passed=strict and component['normal_static_instruction_semantics'],provisional=not strict,baseline=baseline,component=component,object_IR=objects,actual_ELF_byte_controls=negatives,MIR_transcript_controls=MIR_transcript_controls(),artifacts=artifacts,producer=producer,native_sources=CORE,firmware_path=ctx['prior']['relative'](root,fw),reviewer_sha256=SHA(Path(__file__).read_bytes()),target_execution=False,ISA_emulation=False,network=False,full_image_integrated=False,hardware_or_OTA_verified=False)
 

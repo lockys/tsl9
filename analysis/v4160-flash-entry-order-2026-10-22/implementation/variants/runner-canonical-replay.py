@@ -3,8 +3,8 @@ import argparse,hashlib,importlib.util,json,re,struct,types,uuid
 from pathlib import Path
 H=Path(__file__).resolve().parent
 MODEL='experiments/tsl9-v4160-flash-entry-order'
-OLD_RUNNER='dc0c966f057a0562f0d51a0289b9b24ce242d47bee0cd397d72fc12bc0a42013'
-OLD_SEAL='455829d73f11aaea707c2a95e9c738b2939ee1ec47910c56d3dc70d21f261663'
+OLD_RUNNER='1c0878d97e75bf7609e5fe9a458a57cf8fba134cd4ce4ed29af4e144f23d50d6'
+OLD_SEAL='48e31cf0f93865b58e5b865b5ba80d86514e1d6821b775f213a4b47a3b019d4d'
 PROGRAM_CHECKER='8896ae7d7ce7b59c2760099d493594cae43e49e177319cd6b78bf56b430eb73a'
 CORE={'flash_native.c':'c2f85fd50a7def5ff4baf200415e9faa3f2a253dea51c6bc54ae6a139fef960b','flash_native.h':'b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd','native_io.h':'e0d58fdf1ae5ebc1f497a023443a4e6432f5cd75d987c691a2dcf68b3e64af7e'}
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()

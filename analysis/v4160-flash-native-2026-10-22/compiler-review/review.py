@@ -132,7 +132,7 @@ def tool_digest(path,observed_tools=None):
 
 
 def pinned_helpers(project_root=None,parser_path=None):
-    need(SHA((SOURCE/'seal.json').read_bytes())=='dff9a51e3b59bbdddd150dde37614753bb3c3b440d7bde2f9402c8b6e9a2bce4','original source seal')
+    need(SHA((SOURCE/'seal.json').read_bytes())=='67f43fd3bf0f8e94d316952ab931109e5069f06c6078152bf3c6995dad9b423d','original source seal')
     seal=json.loads((SOURCE/'seal.json').read_bytes())
     for row in seal['members']: need(SHA((SOURCE/row['path']).read_bytes())==row['sha256'],'original source member '+row['path'])
     root=Path(project_root).resolve() if project_root else ROOT

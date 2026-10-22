@@ -2,7 +2,7 @@
 
 [English](readme.en.md)
 
-本輪檢查已固定的可讀函式 `experiments/tsl9-v4160-ota-page-reply/src/page_reply.c` 與具名合成 HOST adapter，和原始124 bytes／50指令的證據分開封存。原始證據為 `../source-review/seal.json`，SHA256 `66484b79f8ef5199e20c8c136797ca7f3ced8b19fc5d2f2f2fb79734a4028a3f`。測試依原始契約建立有限效果 oracle，沒有執行或解譯 RV32 指令。
+本輪檢查已固定的可讀函式 `experiments/tsl9-v4160-ota-page-reply/src/page_reply.c` 與具名合成 HOST adapter，和原始124 bytes／50指令的證據分開封存。原始證據為 `../source-review/seal.json`，SHA256 `2fe1ed8e78cbb6e054a0368c330b5d1d15f9c75bc0510769340371464b3d32f3`。測試依原始契約建立有限效果 oracle，沒有執行或解譯 RV32 指令。
 
 ## 實際獨立結果
 
@@ -12,13 +12,13 @@ C11、C++17 各通過 **3組、90個案例、6,699次斷言**，每種語言另�
 - 14個資料不可確認案例：配置結果、S1或SP未知；9個不同讀取點資料未知；以及拒絕「已返回但修改暫存器或 known mask」的記憶體 callback。
 - 63個停止前綴：在21個效果點分別回覆 UNKNOWN／HALT／TRANSFER，確認精確前綴長度及沒有補造後續效果。
 
-每個正向與錯誤版本的可執行檔，都經固定的 native-host guard `f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb` 於執行前後檢查。本次 Windows 使用實際 PE machine0x8664，每種語言共11次受保護執行，沒有啟動 RV32 程式。C11 使用 MSVC `/TC /std:c11`，C++17 使用 `/TP /std:c++17`，均開啟 `/W4 /WX`。首次獨立 fixture 編譯遇到 signed／unsigned 斷言警告，失敗日誌留在本機；修正測試斷言後才取得本次成功結果，沒有修改產品來源。
+每個正向與錯誤版本的可執行檔，都經固定的 native-host guard `76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189` 於執行前後檢查。本次 Windows 使用實際 PE machine0x8664，每種語言共11次受保護執行，沒有啟動 RV32 程式。C11 使用 MSVC `/TC /std:c11`，C++17 使用 `/TP /std:c++17`，均開啟 `/W4 /WX`。首次獨立 fixture 編譯遇到 signed／unsigned 斷言警告，失敗日誌留在本機；修正測試斷言後才取得本次成功結果，沒有修改產品來源。
 
 10個實際編譯的錯誤版本，各只修改一處有限來源片段：縮窄來源 index、顛倒標頭寫入順序、快取複製 slot base、複製長度錯誤、快取釋放 slot base、使用過期 free buffer、快取還原 SP、將尾端結果統一成零、覆寫 TX A1，以及未清除奇數釋放目標的 bit0。每個版本都成功編譯，先檢查主機格式才執行，再由獨立語意斷言拒絕。這些數量與製作者6個控制及原始指令18個控制分開記錄。
 
 本次獨立收據保存在本機 `code-review/build/independent-9307d2c1418f4fef9faf85eab1441c10/{c,cpp}`，SHA256 分別為 `4da39eda271a8975a55af77b1f8a8386c9fa722d62a455466194cf22a4c58107`、`d66e2e6a042e98e739908a96d6a39c59ea0ab346e5818f4f1dc95f3ec617fe0c`。兩份實體封存均已另行唯讀重查，沒有再次執行。`selected-receipts.json` 只保存精簡來源、工具及結果身分，不包含產生的二進位或完整封存內容。
 
-製作者最終 HOST CLI 為 `d255aed146042a1f73e3ae79096a5948fdc3eafa50558e988062ccfacdd3c8e2`。其獨立的標準 C/C++ 測試各為3組／87案例／3634檢查，另有6個編譯錯誤控制；本輪也唯讀重查兩份實體封存。這些結果明確歸屬製作者，不替代本次獨立90案例 oracle。
+製作者最終 HOST CLI 為 `92e3d7bf90b7255a8efee6a90c4126df802c15225586e006170aa006d779e332`。其獨立的標準 C/C++ 測試各為3組／87案例／3634檢查，另有6個編譯錯誤控制；本輪也唯讀重查兩份實體封存。這些結果明確歸屬製作者，不替代本次獨立90案例 oracle。
 
 ## 結果代表的範圍
 

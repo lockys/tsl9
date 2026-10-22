@@ -7,8 +7,8 @@ import json
 from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
-RUNNER_SHA='c4ed93b51f80038b88ec3a0847729d548323b667c04c7edce671f9e002a2805a'
-REFERENCE_SHA='b1d2908c00fd7577beaf5cf9eee0a462cbe611767d310c7314ef945691da8ccf'
+RUNNER_SHA='26992c58b81616a90a00d0bba84f73fe25feb3ac15004d0411a8f5bfb4c7ee8d'
+REFERENCE_SHA='d29445adccff76de983d85bf0384c3fd5d9f5af5805387bebaf200dc495cd180'
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def need(v,m):

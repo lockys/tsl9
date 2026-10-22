@@ -6,19 +6,19 @@
     {
       "label": "compiler-resource-dir",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "-print-resource-dir"
       ],
       "exit": 0,
       "log": "compiler-resource-dir.log",
       "sha256": "361046f65369d8b7cbf1cecea755e803142eaac5a708651350a8006c251ba3aa",
-      "TMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
-      "TEMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
+      "TMP": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
+      "TEMP": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
     },
     {
       "label": "native-object",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr_zifencei",
         "-mabi=ilp32",
@@ -42,23 +42,23 @@
         "-c",
         "-MD",
         "-MF",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.d",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.d",
         "-MT",
         "native.o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\src\\native.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.o"
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.o"
       ],
       "exit": 0,
       "log": "native-object.log",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "TMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
-      "TEMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
+      "TMP": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
+      "TEMP": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
     },
     {
       "label": "native-IR",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr_zifencei",
         "-mabi=ilp32",
@@ -81,44 +81,44 @@
         "-std=c11",
         "-S",
         "-emit-llvm",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\src\\native.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.ll"
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.ll"
       ],
       "exit": 0,
       "log": "native-IR.log",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "TMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
-      "TEMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
+      "TMP": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
+      "TEMP": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
     },
     {
       "label": "complete-static-disassembly",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+        "${LLVM_BIN}\\llvm-objdump.exe",
         "--mattr=+m,+a,+c,+zicsr,+zifencei",
         "-d",
         "-r",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.o"
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.o"
       ],
       "exit": 0,
       "log": "complete-static-disassembly.log",
       "sha256": "77f829084058732bbe48dd4cc5841aedcbe092ec7729ecc8a135f20328a4de12",
-      "TMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
-      "TEMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
+      "TMP": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
+      "TEMP": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
     }
   ],
   "source_pins": {
-    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.c": "4b6a0a286466f2142d64e48fa2afbed86e782bf99f2a0db76e5e0e643b0e34a7",
-    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.h": "1468fb5384938bdee808dbeab4437aa4d63fe4ccccddcbc39f0279eb7b8871ac",
-    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.c": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536",
-    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.h": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2",
-    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\io.h": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8",
-    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-resident-native-2026-10-22\\implementation\\probe.py": "6b8d1d4cd5caad138815fd7233748f43f2436a88a303d2327b787e6af8d14a17",
-    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-native-2026-10-21\\compiler-review\\elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
-    "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe": "adccb8817dc234c555a7cd465fd0f99b05e0238a395c3778a89c3e55e8a45e2f",
-    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
-    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
-    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\src\\native.c": "4b6a0a286466f2142d64e48fa2afbed86e782bf99f2a0db76e5e0e643b0e34a7",
+    "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\src\\native.h": "1468fb5384938bdee808dbeab4437aa4d63fe4ccccddcbc39f0279eb7b8871ac",
+    "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.c": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536",
+    "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.h": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2",
+    "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-leaves\\src\\io.h": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8",
+    "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-resident-native-2026-10-22\\implementation\\probe.py": "6b8d1d4cd5caad138815fd7233748f43f2436a88a303d2327b787e6af8d14a17",
+    "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-native-2026-10-21\\compiler-review\\elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "${PYTHON}": "adccb8817dc234c555a7cd465fd0f99b05e0238a395c3778a89c3e55e8a45e2f",
+    "${LLVM_BIN}\\clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "${LLVM_BIN}\\llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "${HOME}\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
   },
   "checks": {
     "functions": [
@@ -263,27 +263,27 @@
     ],
     "actual_MD_inputs": [
       {
-        "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h",
+        "path": "${HOME}\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h",
         "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
       },
       {
-        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\io.h",
+        "path": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-leaves\\src\\io.h",
         "sha256": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8"
       },
       {
-        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.c",
+        "path": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.c",
         "sha256": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536"
       },
       {
-        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.h",
+        "path": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.h",
         "sha256": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2"
       },
       {
-        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.c",
+        "path": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\src\\native.c",
         "sha256": "4b6a0a286466f2142d64e48fa2afbed86e782bf99f2a0db76e5e0e643b0e34a7"
       },
       {
-        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.h",
+        "path": "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-resident-memory-native\\src\\native.h",
         "sha256": "1468fb5384938bdee808dbeab4437aa4d63fe4ccccddcbc39f0279eb7b8871ac"
       }
     ],

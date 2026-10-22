@@ -14,7 +14,7 @@ ORACLE='d2387b7983052b2b3b863223eaf3873e00435a1bd03b5833ba31a4c7ad569705'
 def module(name,path):
     s=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 def guarded_source(old,new):
-    F.need(F.sha(old)=='be7ad39a8f05003bbba371d11f4f2337338165dbc5f9700ce3d7c50a2878659f','Immutable reviewed host executable guard')
+    F.need(F.sha(old)=='9c58f4ec67704d64ae8c72eb46c0cb05286e1e3558c21677594683b07f5977b9','Immutable reviewed host executable guard')
     names={'sha','need','host_architecture','host_executable','execute'}
     def bodies(path):return {x.name:ast.dump(x,include_attributes=False) for x in ast.parse(path.read_text(encoding='utf-8')).body if isinstance(x,ast.FunctionDef) and x.name in names}
     a=bodies(old);b=bodies(new);F.need(set(a)==names and a==b,'Actual current host guard closure matches reviewed function ASTs')

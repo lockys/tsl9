@@ -14,7 +14,7 @@ SITE,CODE,ORIGIN=0x19896,0x1b000,0x8000
 ENTRY='tsl9_adc_config_1892e'
 BASE_SHA='3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee'
 FW_SHA='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
-ABI_SEAL='51da11cabcafde788376f1cf5aac6306a959332798de96a8492a689df44ff36b'
+ABI_SEAL='4ec2d4d6d851e7f4b27477ef336da273548889341c3476f4cc278fbcb31d248b'
 TOOLS={'clang':'047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6','ld.lld':'fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f','llvm-objdump':'de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa'}
 def need(v,m):
     if not v:raise ValueError(m)

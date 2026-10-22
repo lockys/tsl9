@@ -14,7 +14,7 @@
 
 ## 來源與 metadata 核對
 
-source-provenance.json 獨立核對最終 runner 1929598ffc723937e8cd6bcafbe507fb5ff23f6d9541f00043bdadcb44f3455a、portable manifest、兩份實際 build receipts、每份 144 個 artifacts／logs、44 個實際命令及 36 份 compiler dependency rules。實際 71 個 native sources／headers 與四個生成輸入均有 pin；兩份 filtered carrier 只移除原五個 assembly blocks，其他 bytes 不變，兩份 adapter 只有宣告、section attributes 與同 TU 真 aliases。53-label script 的完整 691 段／KEEP／assertion 與 assignment grammar 另行核對；所有 object 輸入與輸出都在新的 build folder，未使用歷史 carrier object 作為新建輸入。
+source-provenance.json 獨立核對最終 runner b26410ae9a0d9dece3e5404fb311407dd7c3022a08a7d2fb8c8df7834496c854、portable manifest、兩份實際 build receipts、每份 144 個 artifacts／logs、44 個實際命令及 36 份 compiler dependency rules。實際 71 個 native sources／headers 與四個生成輸入均有 pin；兩份 filtered carrier 只移除原五個 assembly blocks，其他 bytes 不變，兩份 adapter 只有宣告、section attributes 與同 TU 真 aliases。53-label script 的完整 691 段／KEEP／assertion 與 assignment grammar 另行核對；所有 object 輸入與輸出都在新的 build folder，未使用歷史 carrier object 作為新建輸入。
 
 只接受量測過的 metadata 差異：五個選定函式各自 $d→$x；兩個新增 typed TU 各帶一個 FILE、一個 .comment marker 及一個 attributes-origin ABS $d marker，全部未被 RELA 引用。實際 main.o 的 $d.2、helpers.o 的 $d.5 原屬非配置的 .riscv.attributes，partial link 後轉成 local ABS0；.comment markers 仍屬 .comment。這不是 numeric provider。其他 local／SECTION roles 均保留；四個舊 helper 私有 branch labels 只隨其唯一舊 branch RELA 解除，沒有放寬 global aliases。
 

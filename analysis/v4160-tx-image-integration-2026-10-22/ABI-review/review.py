@@ -11,7 +11,7 @@ import sys
 
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
-BASELINE='2ad943924b90566302494cef54a1d49289f0b1e0b28411d0a14592ab2b6c5dc8'
+BASELINE='8dc4c64aa66aff78b4d47a773976488d0f344f340ae5bc164f196c451a24ac19'
 NATIVE='24ade8f364d00cbc6c7afc2239f13d67fef4f6822647fc4525c05cd9e64bd5eb'
 LOOP='cc505e92d084b2e0fe2bb33bfd53161c5ca1fc9c0892da0711b04b696ebba1df'
 IMAGE='NOT-FLASH-VALIDATED-tx-integrated.bin'

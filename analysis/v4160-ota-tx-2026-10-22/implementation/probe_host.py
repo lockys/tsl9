@@ -3,7 +3,7 @@ from pathlib import Path
 sys.dont_write_bytecode=True
 root=Path(__file__).resolve().parents[3]
 p=root/'experiments/tsl9-v4160-flash-register-prefix/verify_host.py'
-assert hashlib.sha256(p.read_bytes()).hexdigest()=='f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+assert hashlib.sha256(p.read_bytes()).hexdigest()=='76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 s=importlib.util.spec_from_file_location('tx_probe_guard',p);g=importlib.util.module_from_spec(s);s.loader.exec_module(g)
 model=root/'experiments/tsl9-v4160-ota-tx';base=model/'build'/('host-probe-'+uuid.uuid4().hex)
 for mode in ('c','cpp'):

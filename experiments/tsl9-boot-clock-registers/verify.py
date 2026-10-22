@@ -33,11 +33,11 @@ SOURCE_PINS = {
     "analysis/function-hardware/fifty-seventh-round/independent-provider-witness/audit_gp_elf.py": "5273de663770fcd57c1d2a40d2158d51928900dff97b0ab37051e1766fcc40f6",
     "analysis/function-hardware/fifty-fifth-round/independent-service-events-contract/elf_service_events.py": "57e3575ad7f56598120abf5639dd660812337693159673adbe6666c8a75b2469",
     "analysis/boot2580-clock-2026-10-22/check.py": "70e2f7a0419e3ee69cd244a7362650efd0777d013ea5ec7d50873570add393fa",
-    "analysis/boot2580-clock-2026-10-22/ledger.json": "47e7ac42e902fd632a4ebe2dcf26d6a3c7805c6efc112056ec4dad95be24e8f2",
+    "analysis/boot2580-clock-2026-10-22/ledger.json": "013701885f01e6d385b7c2a41b06c07097f980afa8c5c29b3f6d798f6ce2ed1e",
     "analysis/boot2580-clock-2026-10-22/original_fields.py": "207a9f317a07570988dbddeffca4e39e1f370a7e686d865b0f754364248d5f35",
-    "analysis/boot2580-clock-2026-10-22/original-runtime-rows.json": "8072bb26a0166e6c7f9ea59a7d42b594efb4f27376e6d4e31911f2347a0bc43e",
+    "analysis/boot2580-clock-2026-10-22/original-runtime-rows.json": "a75e92e17458158e7b1411052ac30987a45cefb6a38fccaa859754f73fbbe4df",
     "analysis/boot2580-clock-exit-2026-10-22/check.py": "403c9f93c37738c10801f33f08e2c5b2232c49cc776cfc32300cb8948a8c54e6",
-    "analysis/boot2580-clock-exit-2026-10-22/ledger.json": "2c41f76f470a9c3506adf803015718c50dfb9c74dbac7cfa4d94a9094c22c4a0"
+    "analysis/boot2580-clock-exit-2026-10-22/ledger.json": "4edb2a111cd8171d1376cf71c1a3127425821960072922d8b77a187784647294"
 }
 BOOT_SHA = '650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb'
 RUNTIME_SHA = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'

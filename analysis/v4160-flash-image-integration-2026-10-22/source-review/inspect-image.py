@@ -65,7 +65,7 @@ def prepare(root,firmware,original_path,prior_path,irq_path,flash_path):
     manifest_path=root/'experiments/tsl9-v4160-irq-image-integration/source-manifest.json'
     need(sha(manifest_path)=='d952159ab2bf7c5294bc433510b88a7c19b23295ba11b0e7ab3d4a1ed39b1ce7','Pinned original full manifest');m=read(manifest_path)
     plan=case(root,'v4160-flash-entry-order-2026-10-22')/'image-plan'
-    need(sha(plan/'seal.json')=='5cacfc4682a0e493ca6826f86b855a46a386155db3da1cf56c283f021a3b7bfe','Sealed eleven-function source plan')
+    need(sha(plan/'seal.json')=='81912879ab740bff2055d518eac48f2191fad242ed782fc84cc7e3d0ea62169d','Sealed eleven-function source plan')
     for x in read(plan/'seal.json')['members']:need(sha(plan/x['path'])==x['sha256'],'Sealed source plan member')
     p=read(plan/'report.json');selected=p['selected'];names={x['name'] for x in selected};need(len(names)==11 and sum(x['bytes'] for x in selected)==526,'Eleven exact owned extents')
     parser=case(root,'v4160-reset-memory-2026-10-21')/'compiler-review/elf32.py';need(sha(parser)=='00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141','Bounded read-only ELF parser');E=load('independent_image_ELF',parser).ELF
@@ -125,7 +125,7 @@ def retained_context(root,firmware,reference):
     """Use hashes independently derived from W baselines; do not pretend to reread them."""
     q=read(reference);need(sha(firmware)==q['original_firmware_sha256'] and firmware.stat().st_size==76800,'Original image for portable artifact admission')
     old_path=root/'experiments/tsl9-v4160-irq-image-integration/source-manifest.json';need(sha(old_path)==q['original_manifest_sha256'],'Immutable original section metadata manifest');m=read(old_path)
-    manifest=root/'experiments/tsl9-v4160-flash-image-integration/source-manifest.json';need(sha(manifest)=='afe5eba6e7b6af15c9556fa9c9a366e5c4713dcbf343b16d2d8077eb6c1b4b1c','Current eleven-function source ledger');n=read(manifest)
+    manifest=root/'experiments/tsl9-v4160-flash-image-integration/source-manifest.json';need(sha(manifest)=='8463f01466e180f4a70127413939469d5124a85cdeab5d0f0e90d438c765c3d9','Current eleven-function source ledger');n=read(manifest)
     need(n['allocations']==m['allocations'] and n['section_metadata']==m['section_metadata'] and n['section_relative_bindings']==m['section_relative_bindings'],'All original691 owners/metadata and53 canonical bindings retained')
     selected=q['selected'];names={r['name'] for r in selected};retained=set(m['allocations'])-names
     hashes={name:r['sha256'] for name,r in n['retained_storage'].items()};need(set(hashes)==retained and digest(hashes)==q['retained_raw_hashes_digest'],'All680 raw retained hashes anchored to actual independent baseline reads')

@@ -7,7 +7,7 @@ import runpy
 import sys
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
-PIN = '16d33830cd05b0fb49b4ecf576b1657cf4c6a5bedabd4ccc63dc73ef3ef1f551'
+PIN = 'a1d0dc4d3e8767e8dbd959235133779650f1da649c2d3f8ddbb38662addea9a7'
 FW = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 RANGES = {'write_cb': (0x197be, 0x197f0), 'timer': (0x19764, 0x1979a),
           'unlock': (0x18e98, 0x18eb6), 'lock': (0x18eb6, 0x18ec4),

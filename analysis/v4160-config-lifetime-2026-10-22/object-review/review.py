@@ -16,7 +16,7 @@ def closed():
         for n,pin in read(HERE/'seal.json')['members'].items():need(sha(HERE/n)==pin,'Closed object-review member '+n)
 def context(root):
     p=case(root,'v4160-allocator-callback-2026-10-22')/'frame-review/review.py'
-    need(sha(p)=='256fbe8259c9e80ca6950a91aff1b4f7792a5129cfe0fdfb0cee29c8f36a5c3c','Immutable prior frame reader')
+    need(sha(p)=='629cae8ea2f236c51d55946a69afec8f7a6cf1734bdf4d54c84feceb06849eed','Immutable prior frame reader')
     sys.path.insert(0,str(p.parent))
     try:m=runpy.run_path(str(p))
     finally:sys.path.pop(0)

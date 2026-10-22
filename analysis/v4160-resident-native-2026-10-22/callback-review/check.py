@@ -8,8 +8,8 @@ from pathlib import Path
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 FW='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
-PRIOR='d460886bab54b1a9d4ac288de09b38b2b1874aa806b07e5c049eaa6abe2bc401'
-CONT='44f29e0fe3466757d85e4d54a31b2519c4dd5997bc3c1aa67137ef45d4ea94ff'
+PRIOR='82ccc4a6dbd43fd467993291629fa62c6de3e8662b844f8fa43a90d821d47a0d'
+CONT='b453913bfa81f02d097527cba2ee826b253dd43c7873be17d7881bb7b7b49ecc'
 IRQ='4d6745033aae496576b9db2fb7467396fbfda5067713cf1451a34b949b414283'
 RANGES={'callback':(0x197f0,0x1995c,130,'ee7d9a35ebc31a363cc5f6efca0ce21d341099694f34aa90185be94995d826a4'),
         'fill_fast':(0x8520,0x854a,17,'98688760c7a23d3f8b23f4b6cdbb0dd285fd8562ff5ba950b5fd46fee5a7ae2d'),

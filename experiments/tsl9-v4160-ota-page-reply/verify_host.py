@@ -5,7 +5,7 @@ from pathlib import Path
 sys.dont_write_bytecode=True
 MODEL='experiments/tsl9-v4160-ota-page-reply'
 GUARD='experiments/tsl9-v4160-flash-register-prefix/verify_host.py'
-GUARD_PIN='f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+GUARD_PIN='76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 EXPECTED=dict(passed=True,groups=3,cases=87,checks=3634,synthetic_provider=True,RV32_execution=False)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def need(x,m):

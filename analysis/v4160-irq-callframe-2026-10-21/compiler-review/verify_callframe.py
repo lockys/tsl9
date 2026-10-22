@@ -21,7 +21,7 @@ SOURCE_PINS = {
  "experiments/tsl9-v4160-irq-native/src/native_io.h":"f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e",
  "experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.h":"da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"}
 NATIVE_PINS = {"verify_native.py":"58e726bf5590eeb318c7123a75fd00c5b406b58e36c545c65962a1ac80a369ac","gates.py":"c51f2242a3f3356ce77c09c12757cda0ed13b6830ac255cbfbd4fcdfd36341e5","elf32.py":"00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141"}
-NATIVE_SEAL = "13772c1bfe0c3faf0fe37cf4cbdd8fe4be40ca6f6913ef132c64a3c0677f9c04"
+NATIVE_SEAL = "273617ca292a9ee2f2962ef14d72214903068bcaaabb338148938dcf63c505a2"
 PLAN_SEAL = "85843df867c68c84572efb2f4630bb199ced6c752960fee8d9128d2f4eceb934"
 SOURCE_SEAL = "4d6745033aae496576b9db2fb7467396fbfda5067713cf1451a34b949b414283"
 REG = {"zero":0,"ra":1,"sp":2,"s0":8,"s1":9,"a0":10,"a1":11,"a2":12,"a3":13,"a4":14,"a5":15,"s2":18}

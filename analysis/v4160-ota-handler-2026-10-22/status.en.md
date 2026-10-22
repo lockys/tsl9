@@ -12,7 +12,7 @@ These are byte/storage-source counts, **not feature completion percentages**. Or
 
 The actual `source-integrated.o` has 691 nonempty allocations and one true UND, `__tsl9v4160_rom_entry`. The historical count of 31 unresolved symbols is not current ELF state. Later real storage and relative labels resolved location obligations without proving resident, callback, lifetime or physical ABI contracts.
 
-Evidence is the [complete TX integration](../v4160-tx-image-integration-2026-10-22/readme.en.md) and its local `build/formal-v1/c/verification.json` (SHA-256 `f210928f4f5164a1a5c350bc94be1d9784176d97e1c1d78d2dd8441b8016ed1b`). The reread `source-integrated.o` SHA-256 is `85c674487c0bf2b0bbcbc3f0f5607d82dd07014acaf0634cfd45525ccdcdf456`.
+Evidence is the [complete TX integration](../v4160-tx-image-integration-2026-10-22/readme.en.md) and its local `build/formal-v1/c/verification.json` (SHA-256 `9b76a657fae241ab83a598ced274bbd819ffd45dc1c5133d33281f00311bb2e7`). The reread `source-integrated.o` SHA-256 is `85c674487c0bf2b0bbcbc3f0f5607d82dd07014acaf0634cfd45525ccdcdf456`.
 
 ## Evidence still required
 

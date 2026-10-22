@@ -9,11 +9,11 @@ sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 FW='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 PINS={
- 'v4160-adc-config-2026-10-22/source-review':'0c3a18d757bc75e6d0bf43648f7129de4c56d9d166618556c1c2b3e451c5f677',
- 'v4160-adc-caller-2026-10-22/continuation-review':'6d71e389571fd41d10f727e0fe645dfdb3c51c4f56a92274c9d793102e9b6133',
- 'v4160-allocator-callback-2026-10-22/config-review':'963f2d22d8a1e6090cb91259ba2b65de6f76426af22a4ea99e4521931c9577b9',
- 'v4160-ota-handler-compact-2026-10-22/callee-review':'fc9cb5eac8556bb00e86a598ad9fd9587ad2763318f5d6735c70f2cabe8be6f9',
- 'v4160-resident-contracts-2026-10-21/flash-callers':'4e2f84890434fff9acf884dd226268e591130c9a2ab909193c1a45ff505b63cc',
+ 'v4160-adc-config-2026-10-22/source-review':'9cc7d0cd8a2d8150060556e9ade6baa11fc424d7c378ff694e63416358143624',
+ 'v4160-adc-caller-2026-10-22/continuation-review':'7219329783bade2ad85492619c7656444ec69d13bc93a3ea28483505a6647309',
+ 'v4160-allocator-callback-2026-10-22/config-review':'dcb6a0e3aa98e46d26cfccbb965427ac80894b511a256e35758982e50a3db23d',
+ 'v4160-ota-handler-compact-2026-10-22/callee-review':'5b915632290d82c30545fa9ec517fc96bb67d706abf71f592e53354c3a622a8c',
+ 'v4160-resident-contracts-2026-10-21/flash-callers':'bde93ccc1309312e50c5b85ba5ca6b58c41fb6b4427e6a4d432881653ded784b',
 }
 MODEL='84f33520fad4078e97a0eb6a009fa5d5b6d1cfa91fc2a772b2fb9b7950ea8f5f'
 RANGES={'App_config':(0x199e2,0x19b16),'read_cb':(0x1979a,0x197b8),'write_cb':(0x197be,0x197f0),'timer':(0x19764,0x1979a),'unlock':(0x18e98,0x18eb6),'lock':(0x18eb6,0x18ec4),'erase':(0x18ec4,0x18ef2),'program':(0x18ef2,0x18f56),'mac_source':(0x18f56,0x18f88)}

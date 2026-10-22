@@ -3,7 +3,7 @@ import argparse,collections,hashlib,importlib.util,json,os,re,shlex,struct,sys,u
 from pathlib import Path
 sys.dont_write_bytecode=True
 H=Path(__file__).resolve().parent;MODEL='experiments/tsl9-v4160-reply-image-integration';ROM='__tsl9v4160_rom_entry';IMAGE='NOT-FLASH-VALIDATED-reply-integrated.bin'
-MANIFEST_SHA='09bfe0613a88a395b048a397530f62e49b199e890c3d2fc04285ca44887915fe'
+MANIFEST_SHA='2bac53620548772e2e06197dd52b9e0ca6e50a7f88d27b6f39fd1fddf2ac3f78'
 REPLY_OWNER='.text.tsl9v4160.ota_handler_9b8e';REPLY_NATIVE='.text.tsl9_ota_page_reply_9b8e'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def need(v,m):
@@ -15,8 +15,8 @@ def module(n,p):
 def case(root,slug):return next(p for p in (root/'analysis'/slug,root/'apk-analysis'/('tsl9-'+slug)) if p.is_dir())
 def context(root,firmware=None):
     root=Path(root).resolve();model=root/MODEL;need(sha(model/'source-manifest.json')==MANIFEST_SHA,'portable twelve-function source ledger');m=read(model/'source-manifest.json');need(sha(model/'original-image-layout.ld')==m['layout_sha256'],'original691 layout')
-    old=case(root,'v4160-irq-image-integration-2026-10-21')/'integration/verify_image.py';need(sha(old)=='1929598ffc723937e8cd6bcafbe507fb5ff23f6d9541f00043bdadcb44f3455a','immutable generic storage helpers');V=module('eleven_original_layout_helpers',old);ctx=V.context(root)
-    flash_path=case(root,'v4160-flash-register-prefix-2026-10-22')/'implementation/verify_native.py';need(sha(flash_path)=='832035fea10ca77b3f48631f368b2d7e7a9c4cfb3d3509a5585a63718bd79be8','frozen100B native compiler/checker');F=module('eleven_flash_native_helpers',flash_path);f=F.context(root,firmware)
+    old=case(root,'v4160-irq-image-integration-2026-10-21')/'integration/verify_image.py';need(sha(old)=='b26410ae9a0d9dece3e5404fb311407dd7c3022a08a7d2fb8c8df7834496c854','immutable generic storage helpers');V=module('eleven_original_layout_helpers',old);ctx=V.context(root)
+    flash_path=case(root,'v4160-flash-register-prefix-2026-10-22')/'implementation/verify_native.py';need(sha(flash_path)=='617757c0bfe4612ca87337c7a84c98d68551876a2f5208bbb00df85bb61db09a','frozen100B native compiler/checker');F=module('eleven_flash_native_helpers',flash_path);f=F.context(root,firmware)
     for n,pin in m['source_files'].items():need(sha(root/n)==pin,'pinned source/header '+n)
     plan=case(root,'v4160-flash-entry-order-2026-10-22')/'image-plan';need(sha(plan/'seal.json')==m['entry_order_plan_seal_sha256'],'sealed eleven-owner plan')
     for r in read(plan/'seal.json')['members']:need(sha(plan/r['path'])==r['sha256'],'plan member')
@@ -259,7 +259,7 @@ def dependency_gate(root,folder,ctx):
 def snapshot(root,ctx,tools,firmware):
     pins=ctx['V'].snapshot(root,ctx,tools);pins.update(ctx['flash']['pins']);pins.update({str(root/n):pin for n,pin in ctx['manifest']['frame_schedule_source_files'].items()});pins.update({str(root/n):pin for n,pin in ctx['manifest']['reply_order_source_files'].items()});pins.update({str(root/n):pin for n,pin in ctx['reply']['pins'].items()});pins.update(ctx.get('resource_headers',{}))
     for p in (Path(__file__).resolve(),firmware):pins[str(p.resolve())]=sha(p)
-    plan=case(root,'v4160-reply-image-integration-2026-10-22')/'image-plan';need(sha(plan/'seal.json')=='8ad4c5328ed0baa66eb88c00cdf2c9dd9563a9472e3ee068f11e120ea23b8342','sealed actual twelve-owner plan');pins[str(plan/'seal.json')]=sha(plan/'seal.json')
+    plan=case(root,'v4160-reply-image-integration-2026-10-22')/'image-plan';need(sha(plan/'seal.json')=='ddac5dcc40bd6395fa783e98f278b494eac3ac9988ecf5fecdeb92ed9cee3694','sealed actual twelve-owner plan');pins[str(plan/'seal.json')]=sha(plan/'seal.json')
     for row in read(plan/'seal.json')['members']:pins[str(plan/row['path'])]=row['sha256']
     for slug,sub in [('v4160-flash-entry-order-2026-10-22','image-plan'),('v4160-flash-register-prefix-2026-10-22','implementation')]:
         base=case(root,slug)/sub;pins[str(base/'seal.json')]=sha(base/'seal.json')

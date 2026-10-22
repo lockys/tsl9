@@ -26,7 +26,7 @@ def prepare(root,folder,firmware):
     source_roles=b['roles'](merged,c)
     old_context=old['context'](root,firmware)
     original=b['pinned'](b['case'](root,'v4160-ota-tx-2026-10-22')/'ABI-review/original.py',
-                       'feeff6d2f8fae97b4ccb153b764a3b47798d48cfb26ca86cc9414da0608caf1a')
+                       '4b226169737a533cf8bb1138b7e06b8ea9f24871e9037c0ed0ebe92aedf0c08f')
     tx=original['inspect'](root,firmware,folder)
     incoming=old_context['baseline']['incoming']+tx['incoming']
     b['need'](len({r['site'] for r in incoming})==30,'Existing21 plus TX9 actual incoming contracts')

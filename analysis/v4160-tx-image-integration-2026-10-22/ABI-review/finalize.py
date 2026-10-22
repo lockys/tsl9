@@ -8,9 +8,9 @@ import sys
 
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
-PRODUCER='7e0b44936da1238fffde04c970340e15c43bc30e1afc5f32311d9c17cfdde638'
-EXPECTED={'c':'f210928f4f5164a1a5c350bc94be1d9784176d97e1c1d78d2dd8441b8016ed1b',
-          'cpp':'48858f75b1e41622d238baf5f1b7ae9b63bf1bf8fe3ba81a4cc05a529b44ae78'}
+PRODUCER='1e67599d1290092f013d1dde69f8223e1bd7a8a2e3d2c648cfc302d7099c0fc9'
+EXPECTED={'c':'9b76a657fae241ab83a598ced274bbd819ffd45dc1c5133d33281f00311bb2e7',
+          'cpp':'1de21bcb781f1bb0718d008620eca555dd586a67c6ae650cb228510376afdc1c'}
 DEPENDENCIES=(
     'apk-analysis/tsl9-v4160-irq-native-2026-10-21/compiler-review/elf32.py',
     'apk-analysis/tsl9-v4160-flash-image-integration-2026-10-22/ABI-review/review.py',

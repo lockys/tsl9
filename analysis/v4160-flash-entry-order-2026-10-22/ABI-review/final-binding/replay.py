@@ -12,7 +12,7 @@ def inspect(cfg):
     root=Path(cfg.get('project_root',ROOT)).resolve()
     def local(value):
         q=Path(value);return q.resolve() if q.is_absolute() else (root/q).resolve()
-    seal=(BASE/'seal.json').read_bytes();assert SHA(seal)=='73d1375e87cda816939e22a5612431462e16a7f0f005744c8771b442b371eb0c'
+    seal=(BASE/'seal.json').read_bytes();assert SHA(seal)=='8ebc042584c195424f0ec1b137fa2666bc34017a91baa198e7aab18723606b12'
     for row in json.loads(seal)['members']:assert SHA((BASE/row['path']).read_bytes())==row['sha256']
     api=runpy.run_path(str(BASE/'audit.py'))
     prior=local(cfg.get('prior_build','experiments/tsl9-v4160-flash-native/build/native-93a4dce3d2154291a48dea3a519f4b3f'))
@@ -27,12 +27,12 @@ def inspect(cfg):
         canonical=json.loads(json.dumps(fresh));canonical['build_root']=baseline['build_root'];canonical['linked_component']['path']=baseline['linked_component']['path']
         assert canonical==baseline
         raw=(folder/'verification.json').read_bytes();assert SHA(raw)==FORMAL[mode];receipt=json.loads(raw)
-        assert receipt['passed'] and receipt['runner_sha256']=='6ba9eb2874979ea43ae688197834d139adab4a0ce8323e5aa35176dc6ba0d1f4'
+        assert receipt['passed'] and receipt['runner_sha256']=='6fbf5d6da281811a782ddfc2cf474d657b425fc4514b5822b6b3e1457a505a20'
         program=next(v for v in fresh['functions'] if v['name']=='program')
         assert receipt['checks']['program_contract']==program['proof'] and receipt['checks']['IR']['program']==program['IR']
         assert fresh['linked_component']['sha256']=='aeccc19da9c5764a386333dd26898429c35bf0ff40efb08c8f8417b11820339d'
         records.append(dict(mode=mode,logical_build_root=default,formal_receipt_sha256=FORMAL[mode],baseline_report_sha256=SHA((BASE/('review-'+mode+'.json')).read_bytes()),actual_current_inputs_equal_immutable_ABI_after_location_normalization=True,source_pins=fresh['source_pins'],component_ELF_sha256=fresh['linked_component']['sha256'],functions=[{k:v[k] for k in ('name','address','bytes','limit','fits','object_sha256','IR_sha256')} for v in fresh['functions']],program_bytes=100,program_instructions=38,raw_machine_negatives=12,IR_transcript_negatives=3,known5_interior_roles=True))
-    return dict(schema='final-native-receipt-independent-ABI-binding-v1',passed=True,base_ABI_seal_sha256=SHA(seal),formal_runner_sha256='6ba9eb2874979ea43ae688197834d139adab4a0ce8323e5aa35176dc6ba0d1f4',modes=records,normal_contracts=True,full_role_identity=False,full_GPR_prefix_equivalence=False,physical_fault_prefix_equivalence=False,pointwise_async_equivalence=False,full_image_integration=False,target_execution=False,emulation=False,network=False,hardware=False,new_BIN=False)
+    return dict(schema='final-native-receipt-independent-ABI-binding-v1',passed=True,base_ABI_seal_sha256=SHA(seal),formal_runner_sha256='6fbf5d6da281811a782ddfc2cf474d657b425fc4514b5822b6b3e1457a505a20',modes=records,normal_contracts=True,full_role_identity=False,full_GPR_prefix_equivalence=False,physical_fault_prefix_equivalence=False,pointwise_async_equivalence=False,full_image_integration=False,target_execution=False,emulation=False,network=False,hardware=False,new_BIN=False)
 
 
 def main():

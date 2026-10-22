@@ -13,7 +13,7 @@
 1. 編譯34個 raw TU、9個 typed TU，另輸出9份對應 LLVM IR。reply 仍是只有一個配置區段的獨立 object；以限定的 reply ABI pass 處理 `reply.o`，只重新排列 compiler 已產生的指令，輸出 `reply-ordered.o`。
 2. 先將其他8個 typed object 與已調整的 reply 合併，再透過 `canonical53.ld` 和 raw carrier 合併；最後才對完整 `pre-frame-integrated.o` 執行原有 IRQ／quarter 保存字順序調整，輸出 `source-integrated.o`。
 
-boundary script 先放原始零長度 reply owner，再放真正 native reply input section。原公開符號維持 NOTYPE0；C 函式在同一入口提供另一個 GLOBAL FUNC124。原本私有空配置分支角色由實際編譯的本地控制流取代。原始 `9DF4` 的 `693b` 是 **RV32 C.JAL**，rd=x1、target9B8E、link9DF6；依據補充更正 seal `89992f1f7d8f98595b5e151d34479ef0876162d697087c8e562d72036472a34c`，不能只看 RVC_JUMP 重定位名稱就判斷為無連結跳轉。9BF8 的釋放呼叫仍是另一個不寫 link 的 T1 尾端轉移。
+boundary script 先放原始零長度 reply owner，再放真正 native reply input section。原公開符號維持 NOTYPE0；C 函式在同一入口提供另一個 GLOBAL FUNC124。原本私有空配置分支角色由實際編譯的本地控制流取代。原始 `9DF4` 的 `693b` 是 **RV32 C.JAL**，rd=x1、target9B8E、link9DF6；依據補充更正 seal `d624d83db7e8a8d543833b844f8ee007af4c045d9f9ef179c4e01dde65950df9`，不能只看 RVC_JUMP 重定位名稱就判斷為無連結跳轉。9BF8 的釋放呼叫仍是另一個不寫 link 的 T1 尾端轉移。
 
 compiler body、typed-provider body、最終調整後 body 是不同的身分。manifest 中含 `native_object_sha256` 的欄位代表**函式 body bytes**，不是整份 ELF object；實際完整 object 雜湊另外放在 artifact pins。最終 payload 可以與原始 bytes 相同，中間 ELF metadata 仍可能合理不同；必須依角色規則核對，不能宣稱所有 object 逐位元組相同。
 

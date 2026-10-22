@@ -75,4 +75,4 @@ Windows 可直接使用已安裝的 Python 執行 check.py。預設只核對封�
 
 `mode-controls.json` 保留模式與錯誤實檔控制；`dependency-availability.json` 記錄封存前 W／D／P 的既有相依閉包均可核對。新 checker 只讀；封存後重跑前後 member hashes 一致。check.sh 未在這台機器重試曾拒絕的 Git Bash；Python 入口已驗證。
 
-沿用而不修改 `callback-frontiers-2026-10-22/binding-review`，seal SHA-256 `16d33830cd05b0fb49b4ecf576b1657cf4c6a5bedabd4ccc63dc73ef3ef1f551`，包含其已封存 decoder／encoding 來源及必要前置證據。`seal.json` 釘住本次所有 member。尚未證明實際硬體身份、Flash 所有權、硬體寫入成功、whole OTA、fault equivalence 或新的 native 全部 ABI；這些不能由本機靜態來源檢查推定。
+沿用而不修改 `callback-frontiers-2026-10-22/binding-review`，seal SHA-256 `a1d0dc4d3e8767e8dbd959235133779650f1da649c2d3f8ddbb38662addea9a7`，包含其已封存 decoder／encoding 來源及必要前置證據。`seal.json` 釘住本次所有 member。尚未證明實際硬體身份、Flash 所有權、硬體寫入成功、whole OTA、fault equivalence 或新的 native 全部 ABI；這些不能由本機靜態來源檢查推定。

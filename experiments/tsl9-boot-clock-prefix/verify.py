@@ -13,7 +13,7 @@ import sys
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 BASE = 'experiments/tsl9-boot-clock-registers/verify.py'
-BASE_SHA = '9e191de6e659d998c7d8924823040b0f2a6e2eede5db96650d2b6744bda6572f'
+BASE_SHA = '096660430ae0aa0f44813192aa30c49c958b8180e4123249a5aa36eeab11a7a8'
 SYMS = ['tsl9_clock_prefix_entry','tsl9_clock_prefix_body','tsl9_clock_prefix_return']
 PREFIX = bytes.fromhex('b7170240 9843 b706fff8 4111')
 IR_SHA = 'f464d446ad5fb931a0cc87c605c1fbe7104deb98708b88acc05baf2646b15eef'

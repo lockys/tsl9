@@ -40,7 +40,7 @@ def build(workspace):
     e=objects['c']
     old=load('apk-analysis/tsl9-v4160-opaque-contracts-2026-10-21/body-triage/triage.json')
     cfg_path=workspace/'apk-analysis/tsl9-v4160-conditional-runtime-2026-10-21/native/cfg-proof.json'
-    need(sha(read(cfg_path))=='ab1fd505f1e6de0e76d1cc27a5ee2e09c4492bd2cf8573c4941400bd42f42c08','Sealed-current-conditional-code-provenance')
+    need(sha(read(cfg_path))=='933e82cd7fbf94c241ae4ae966e386c8bbc5e695a8b3b8ef05e3d077008c810b','Sealed-current-conditional-code-provenance')
     current=load(cfg_path);rows={}
     def gather(x):
         if isinstance(x,dict):

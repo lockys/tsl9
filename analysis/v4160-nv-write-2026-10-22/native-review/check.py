@@ -31,10 +31,10 @@ def metadata(root):
     for name, pin in seal['external_inputs'].items():
         need(sha(locate(root, name)) == pin, 'Independent external input ' + name)
     original_folder = locate(root, 'analysis/v4160-nv-write-2026-10-22/source-review')
-    source.closed(original_folder, 'c29430e22451a71a2acbcf0afea199f4b6053d09309597eb4082a52fbafa677a')
+    source.closed(original_folder, '2d9c5278019c0a2e452f42cc2cadf8af60b486c95244cd1b855567b5fc060005')
     need(read(original_folder / 'ledger.json')['groups'] == read(HERE / 'original-contract.json')['groups'], 'Independent original raw source agrees with separately sealed source review')
     implementation_seal = locate(root, 'analysis/v4160-nv-write-2026-10-22/implementation/seal.json')
-    need(sha(implementation_seal) == '19b6707152ccba39ca2e3a286d6bfda5f6fc9bfaad2dd5c1398d1e96a0a3ab3c', 'Exact producer final source freeze')
+    need(sha(implementation_seal) == 'e4889ef4828275d2bf3199ba6c61fa9d3ebdbb6c094243d64036b31d287de764', 'Exact producer final source freeze')
     for row in read(implementation_seal)['members']:
         need(sha(locate(root, row['path'])) == row['sha256'], 'Closed producer member ' + row['path'])
     need((HERE / 'README.md').read_bytes() == (HERE / 'readme.zh-TW.md').read_bytes(), 'Traditional Chinese default')

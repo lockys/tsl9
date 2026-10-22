@@ -11,7 +11,7 @@ import sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 FW='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
-MANIFEST='09bfe0613a88a395b048a397530f62e49b199e890c3d2fc04285ca44887915fe'
+MANIFEST='2bac53620548772e2e06197dd52b9e0ca6e50a7f88d27b6f39fd1fddf2ac3f78'
 OWNER='.text.tsl9v4160.code_continuation_8a56'
 BODY='3b01d76ded6b08cb239ca3c8d7e789db8b0b7149d4c6d4e48c50d987a1ef2f0b'
 PARSER='00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141'

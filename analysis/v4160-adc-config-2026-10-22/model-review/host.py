@@ -14,7 +14,7 @@ sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 MODEL='experiments/tsl9-adc-config'
 GUARD='experiments/tsl9-v4160-flash-register-prefix/verify_host.py'
-GUARD_PIN='f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+GUARD_PIN='76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 MUTATIONS=[('wrong_mask_bit','UINT32_C(0xe0f0feff)','UINT32_C(0xe0f0fefe)'),('masked_fullword','bits|=v<<8;','bits|=(v&255u)<<8;'),('byte_without_decrement','((v-1u)&255u)<<20','(v&255u)<<20')]
 def need(v,m):
     if not v:raise ValueError(m)

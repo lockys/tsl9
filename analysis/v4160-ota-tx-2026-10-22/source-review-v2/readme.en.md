@@ -2,7 +2,7 @@
 
 [繁體中文](readme.zh-TW.md)
 
-This narrowly supersedes the public checker in the immutable sibling `source-review`, seal `bcf8358a333c6cd1522a39dc2f0fb11951ee89c796f2c5c7563097d0d56ffd1a`. Its eleven files, raw decoder, 280-byte/96-instruction proof, forty operand controls, contracts and retained evidence remain unchanged. The old checker fails because fresh basic-block extents contain Python tuples while JSON readback contains lists. This was a checker serialization comparison defect, not a newly discovered instruction or contract change.
+This narrowly supersedes the public checker in the immutable sibling `source-review`, seal `46da5762a0bc46c15a04ad6b2bf0f890a001de66b8ac006d0c507529505d76e2`. Its eleven files, raw decoder, 280-byte/96-instruction proof, forty operand controls, contracts and retained evidence remain unchanged. The old checker fails because fresh basic-block extents contain Python tuples while JSON readback contains lists. This was a checker serialization comparison defect, not a newly discovered instruction or contract change.
 
 The new checker verifies every old sealed file, invokes the original proof, and JSON-normalizes the freshly computed values before exact comparison. Five structural controls reject changed tuple/list endpoints, reversed or missing extents and wrong arity. Shape normalization accepts no value changes. The original mismatched direct comparison is deliberately reproduced as a diagnostic. No reconstructed C/C++ or target code is executed.
 

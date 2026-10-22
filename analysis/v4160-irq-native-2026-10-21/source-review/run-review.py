@@ -10,7 +10,7 @@ import subprocess
 import uuid
 
 ORACLE_SHA='e40f4b8e986e705d6c8c29a34c793ce74d7c37a506e0ddedfecd80a1e2b783b4'
-ORACLE_SEAL='4757434b52178f0394efe252688340c1be19f43a16708e1b70b4e1d0b453dce9'
+ORACLE_SEAL='cf4881fc4618d32fa3d982659f733b649a4bee1445ffa52232feb249cbfed279'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def need(value,message):
     if not value:raise ValueError(message)

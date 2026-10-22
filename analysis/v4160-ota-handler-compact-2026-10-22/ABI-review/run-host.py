@@ -13,7 +13,7 @@ sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 MODEL='experiments/tsl9-v4160-ota-handler-compact/src'
 GUARD='experiments/tsl9-v4160-flash-register-prefix/verify_host.py'
-GUARD_PIN='f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+GUARD_PIN='76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 CORE=('ota_handler.c','ota_handler.h','io.h','host_io.c')
 MUTANTS=(
     ('command_byte_truncation','s->context=context;s->buffer=payload;',

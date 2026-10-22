@@ -9,8 +9,8 @@ import runpy
 import sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
-OLD='de1a55014e3db06fc909cadd92a746c9922b08bcdecfa0bcb28862f98d1f9ca0'
-MANIFEST='09bfe0613a88a395b048a397530f62e49b199e890c3d2fc04285ca44887915fe'
+OLD='4d7e1b4ffa5101347970a662390c4cb8ff6455161e47d6e68f2144a27b8ca7e1'
+MANIFEST='2bac53620548772e2e06197dd52b9e0ca6e50a7f88d27b6f39fd1fddf2ac3f78'
 PARSER='00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141'
 REPLY='.text.tsl9v4160.ota_handler_9b8e'
 def need(v,m):
@@ -20,7 +20,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--project-root',type=Path,required=True);a=p.parse_args();root=a.project_root.resolve();out=HERE/'baseline.json';need(not out.exists(),'Create-only independent baseline')
     previous=root/'apk-analysis/tsl9-v4160-flash-image-integration-2026-10-22/ABI-review/review.py';need(sha(previous)==OLD,'Immutable generic role/LOAD/scatter helper');old=runpy.run_path(str(previous));parser=root/'apk-analysis/tsl9-v4160-irq-native-2026-10-21/compiler-review/elf32.py';need(sha(parser)==PARSER,'Immutable bounded ELF parser');ELF=runpy.run_path(str(parser))['ELF']
     plan=HERE.parent/'image-plan/source-manifest.json';need(sha(plan)==MANIFEST,'New independently prepared12-owner plan');m=json.loads(plan.read_bytes());selected={r['name']:r for r in m['selected_sections']};need(len(selected)==12 and sum(r['bytes'] for r in selected.values())==650,'Twelve650-byte selected owners')
-    prior=root/'experiments/tsl9-v4160-register-image-integration/build/formal-final/c';merged=ELF(prior/'source-integrated.o');linked=ELF(prior/'ADDRESS-WITNESS-ONLY.elf');need(sha(prior/'verification.json')=='c279758c4036d99417e0eface017b79f02ba2924d92ea9dbfcd84f05b0f0a5ec','Sealed actual prior11 producer receipt');need(hashlib.sha256(merged.raw).hexdigest()=='4e86cebc1119d30a726386cc520d73c5384920bb74bd97dbbc5dfa505c6bfbf2','Sealed actual prior11 merged ELF');need(hashlib.sha256(linked.raw).hexdigest()=='14046e6231cc8e5e25aa978e91ff3bc05509989a00f142d2adbaec971559f5e2','Sealed actual prior11 linked ELF')
+    prior=root/'experiments/tsl9-v4160-register-image-integration/build/formal-final/c';merged=ELF(prior/'source-integrated.o');linked=ELF(prior/'ADDRESS-WITNESS-ONLY.elf');need(sha(prior/'verification.json')=='a3c4adfdec77c0400d85c5735ef40672cece29f2d1138c9f7828d63b77532c75','Sealed actual prior11 producer receipt');need(hashlib.sha256(merged.raw).hexdigest()=='4e86cebc1119d30a726386cc520d73c5384920bb74bd97dbbc5dfa505c6bfbf2','Sealed actual prior11 merged ELF');need(hashlib.sha256(linked.raw).hexdigest()=='14046e6231cc8e5e25aa978e91ff3bc05509989a00f142d2adbaec971559f5e2','Sealed actual prior11 linked ELF')
     facts={}
     for name,s in old['alloc'](merged).items():
         row={k:s[k] for k in ('type','flags','size','alignment','entry_size','address')};row.update(originalVA=linked.byname[name]['address'],merged_sha256=hashlib.sha256(old['data'](merged,s)).hexdigest(),linked_sha256=hashlib.sha256(old['data'](linked,linked.byname[name])).hexdigest());facts[name]=row

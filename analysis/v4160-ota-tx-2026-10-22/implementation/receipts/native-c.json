@@ -3161,7 +3161,7 @@
     {
       "label": "resource-dir",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "-print-resource-dir"
       ],
       "exit": 0,
@@ -3171,7 +3171,7 @@
     {
       "label": "compile",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr",
         "-mabi=ilp32",
@@ -3209,12 +3209,12 @@
         "-c",
         "-MD",
         "-MF",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.d",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.d",
         "-MT",
         "tx_native.o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\src\\tx_native.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\src\\tx_native.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.o"
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.o"
       ],
       "exit": 0,
       "log": "compile.log",
@@ -3223,7 +3223,7 @@
     {
       "label": "IR",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr",
         "-mabi=ilp32",
@@ -3260,9 +3260,9 @@
         "-std=c11",
         "-S",
         "-emit-llvm",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\src\\tx_native.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\src\\tx_native.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.ll"
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.ll"
       ],
       "exit": 0,
       "log": "IR.log",
@@ -3271,9 +3271,9 @@
     {
       "label": "disassembly",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+        "${LLVM_BIN}\\llvm-objdump.exe",
         "-d",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.o"
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.o"
       ],
       "exit": 0,
       "log": "disassembly.log",
@@ -3282,16 +3282,16 @@
     {
       "label": "strict-missing-RAM",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "${LLVM_BIN}\\ld.lld.exe",
         "-m",
         "elf32lriscv",
         "--no-relax",
         "--build-id=none",
         "-T",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\component.ld",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.o",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\component.ld",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.o",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\STRICT-MISSING-RAM.elf"
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\STRICT-MISSING-RAM.elf"
       ],
       "exit": 1,
       "log": "strict-missing-RAM.log",
@@ -3300,17 +3300,17 @@
     {
       "label": "numeric-address-witness",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "${LLVM_BIN}\\ld.lld.exe",
         "-m",
         "elf32lriscv",
         "--no-relax",
         "--build-id=none",
         "--defsym=__tsl9v4160_data_2000b18c=0x2000B18C",
         "-T",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\component.ld",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.o",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\component.ld",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\tx_native.o",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-tx\\build\\formal-native-sealed-inputs\\c\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
       ],
       "exit": 0,
       "log": "numeric-address-witness.log",
@@ -3322,27 +3322,27 @@
     "src/tx_native.h": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4",
     "src/tx_io.h": "1af1906c7cde16a5b77a642a716af718b576ed5aad90e988495cbe3dedad957f"
   },
-  "runner_sha256": "adeeaddea4c46d92dd4ce33a5beaa329779781a0611e97b965c1f023f5ef4eca",
+  "runner_sha256": "253b5fb067d5f5c90e517e2df4593381ef807dfbdd6143de2526c97a84744525",
   "parser_sha256": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
   "decoder_sha256": "da17e505ec2b58cada40a80a12a645b7fa21c116ce76666544168f2c4ff6c6a7",
   "independent_checker_sha256": "24ade8f364d00cbc6c7afc2239f13d67fef4f6822647fc4525c05cd9e64bd5eb",
   "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
   "tools": {
     "clang": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "path": "${LLVM_BIN}\\clang.exe",
       "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
     },
     "ld.lld": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+      "path": "${LLVM_BIN}\\ld.lld.exe",
       "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
     },
     "llvm-objdump": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+      "path": "${LLVM_BIN}\\llvm-objdump.exe",
       "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
     }
   },
   "resource": {
-    "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h",
+    "path": "${HOME}\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h",
     "resource_relative": "include/stdint.h",
     "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
   },

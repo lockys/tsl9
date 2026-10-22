@@ -12,7 +12,7 @@
 
 實讀 `source-integrated.o` 有 691 個非空配置與一個真 UND：`__tsl9v4160_rom_entry`。歷史「31 個未解析符號」不是目前的 ELF 狀態；後續實際 storage 與相對標籤已解析位置義務，但沒有因此證明 resident、callback、資料生命週期或實機 ABI。
 
-來源依據為 [完整 TX 整合](../v4160-tx-image-integration-2026-10-22/README.md)及其本機 `build/formal-v1/c/verification.json`（SHA-256 `f210928f4f5164a1a5c350bc94be1d9784176d97e1c1d78d2dd8441b8016ed1b`）。本輪再次讀取的 `source-integrated.o` SHA-256 為 `85c674487c0bf2b0bbcbc3f0f5607d82dd07014acaf0634cfd45525ccdcdf456`。
+來源依據為 [完整 TX 整合](../v4160-tx-image-integration-2026-10-22/README.md)及其本機 `build/formal-v1/c/verification.json`（SHA-256 `9b76a657fae241ab83a598ced274bbd819ffd45dc1c5133d33281f00311bb2e7`）。本輪再次讀取的 `source-integrated.o` SHA-256 為 `85c674487c0bf2b0bbcbc3f0f5607d82dd07014acaf0634cfd45525ccdcdf456`。
 
 ## 完成目標仍需要的證據
 

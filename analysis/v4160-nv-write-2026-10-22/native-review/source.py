@@ -8,7 +8,7 @@ import sys
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 FW = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
-BINDING = '16d33830cd05b0fb49b4ecf576b1657cf4c6a5bedabd4ccc63dc73ef3ef1f551'
+BINDING = 'a1d0dc4d3e8767e8dbd959235133779650f1da649c2d3f8ddbb38662addea9a7'
 
 
 def need(v, message):

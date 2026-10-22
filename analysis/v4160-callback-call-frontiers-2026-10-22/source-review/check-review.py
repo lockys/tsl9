@@ -5,8 +5,8 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 FW = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
-SOURCE_SEAL = 'c9edde476232c0c0e018c08e54d2d9d9a9afa20839d5e19a53f5ffa752e0e1c5'
-REGISTER_SEAL = '1019c7c5fc2aa5d59d1d578bb5f9830117ed3ea56869d0824dea8ddf6448faba'
+SOURCE_SEAL = 'f42e262c6b6c7a80fa3da77ce6af0b0df7ad70f6a8c9ff664b5eefa940554972'
+REGISTER_SEAL = 'b49115005675a962220ed18fc416ebb0aaad6875b3994e301bd9f415b12939f3'
 
 def need(v, m):
     if not v: raise ValueError(m)

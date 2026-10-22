@@ -14,14 +14,14 @@ sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 BASE = 'experiments/tsl9-boot-clock-registers/verify.py'
 PINS = {
-    BASE:'9e191de6e659d998c7d8924823040b0f2a6e2eede5db96650d2b6744bda6572f',
-    'experiments/tsl9-boot-clock-prefix/verify.py':'808746305b669589f01a7417da50959b4690106c23603a126a40c573f9f75fed',
+    BASE:'096660430ae0aa0f44813192aa30c49c958b8180e4123249a5aa36eeab11a7a8',
+    'experiments/tsl9-boot-clock-prefix/verify.py':'8befcde0b7afe9c890ad85207912e9fa2bc7ac9265334af090eff36cb65890bf',
     'analysis/boot2580-reset-resident-2026-10-22/check.py':'00c4b2812b7f50c7d6220430b70d82bdbdccff6a2bc9b4f58422477ab5b04e0d',
     'experiments/tsl9-runtime-reset-clock/src/reset_memory.c':'cd2d0975bdab14759f41f096ce89532535544f10373532b0adb5e2e5455ebaf1',
     'experiments/tsl9-runtime-reset-clock/src/reset_ports.c':'5419c3d669183107771f88231080e517458e757a63868f5971b2db7f14ed9ae8',
     'experiments/tsl9-runtime-reset-clock/src/reset_data.c':'02aad93670679ef0c8c472dc998e3d41963ba33d280a5ec6baa336a3173ed1ec',
     'experiments/tsl9-runtime-reset-clock/component.ld':'d37a24f82843d4e19a7f87dca15cac070e7b53327a781db4cfb9a4b66d752b9c',
-    'experiments/tsl9-runtime-reset-clock/probe.py':'587872d72fe1bc701f7ba420f49da30185fb5b45f6c2e704d9f8ec795dec42a1',
+    'experiments/tsl9-runtime-reset-clock/probe.py':'76755454ec4b52cccecd11f16c7f8884ca8020ec1bee6bd91b7d913c5a787d53',
 }
 RESET_SHA = '9507502c874a03e2c64a28b186a1f56aba9e85c9989dbf0cc053dabc4045bb4d'
 DATA_SHA = 'd2f2eac71b3c4f04686d1179aebb430b70088394c46552914bec908c98558e0c'

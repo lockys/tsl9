@@ -30,7 +30,7 @@
 
 新case會回到既有12B7A tail。`__tsl9v4160_existing_code_12b7a`由partial-link script在舊`.text.tsl9v4160.direct_expansion_12b7a` section起點、KEEP之前建立，為global NOTYPE、size0、offset0；沒有新增storage或ABS實作。
 
-其boundary綁定舊direct-expansion CFG SHA256 `7426eb0c195c7f855997df6b07348ba4d0e189cfc92c5a7c10bbdbead1d27265`，root12B24的真指令`12B7A:f240`，不是只憑偶數alignment或section flags。Fresh merged與linked witness均逐symbol檢查section、type、size與value，舊8B及全部其他配置保持原bytes。
+其boundary綁定舊direct-expansion CFG SHA256 `548bfff5501409778c7c6af77b3bea22d701a0ee9d2cecec62b6b23611b9a596`，root12B24的真指令`12B7A:f240`，不是只憑偶數alignment或section flags。Fresh merged與linked witness均逐symbol檢查section、type、size與value，舊8B及全部其他配置保持原bytes。
 
 ## 最新整合與依賴
 

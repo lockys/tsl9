@@ -5,7 +5,7 @@
   "commands": [
     {
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac",
         "-mabi=ilp32",
@@ -19,11 +19,11 @@
         "c",
         "-std=c11",
         "-I",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-startup\\src",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-startup\\src",
         "-c",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-ota-page-reply-2026-10-22\\integration-plan\\build\\boundary-c-738e4daa5397428ea084a1b5c62ef8d5\\ota_handler_native.c",
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-ota-page-reply-2026-10-22\\integration-plan\\build\\boundary-c-738e4daa5397428ea084a1b5c62ef8d5\\ota_handler_native.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-ota-page-reply-2026-10-22\\integration-plan\\build\\boundary-c-738e4daa5397428ea084a1b5c62ef8d5\\carrier.o"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-ota-page-reply-2026-10-22\\integration-plan\\build\\boundary-c-738e4daa5397428ea084a1b5c62ef8d5\\carrier.o"
       ],
       "exit": 0,
       "log": "compile-boundary-carrier.log",
@@ -31,15 +31,15 @@
     },
     {
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "${LLVM_BIN}\\ld.lld.exe",
         "-r",
         "--no-relax",
         "-T",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-ota-page-reply-2026-10-22\\integration-plan\\build\\boundary-c-738e4daa5397428ea084a1b5c62ef8d5\\reply-section.ld",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-ota-page-reply-2026-10-22\\integration-plan\\build\\boundary-c-738e4daa5397428ea084a1b5c62ef8d5\\carrier.o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\c\\source-ordered.o",
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-ota-page-reply-2026-10-22\\integration-plan\\build\\boundary-c-738e4daa5397428ea084a1b5c62ef8d5\\reply-section.ld",
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-ota-page-reply-2026-10-22\\integration-plan\\build\\boundary-c-738e4daa5397428ea084a1b5c62ef8d5\\carrier.o",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-ota-page-reply\\build\\formal-native-final\\c\\source-ordered.o",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-ota-page-reply-2026-10-22\\integration-plan\\build\\boundary-c-738e4daa5397428ea084a1b5c62ef8d5\\partial.o"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-ota-page-reply-2026-10-22\\integration-plan\\build\\boundary-c-738e4daa5397428ea084a1b5c62ef8d5\\partial.o"
       ],
       "exit": 0,
       "log": "partial-boundary-link.log",
@@ -48,9 +48,9 @@
   ],
   "original_source_sha256": "21e7595ca2fd008ceedf032f1502632bff75c64d3afc46af2f775a193c2aa982",
   "filtered_source_sha256": "494f4495b7e39d1fb15dbbe198b349becd3d4119fd541418e6bceeead327ff9d",
-  "native_receipt_sha256": "1471cb9264f0a015a3eafc315ecfc7f595f640f015f37cdcd6d8b2549464289b",
+  "native_receipt_sha256": "97b50c6d1de459468a0b175c3a0240412a2203b6c5ef98fcbb152e76a0212392",
   "native_provenance_replayed": true,
-  "native_checker_sha256": "23b0dfe90a4cde21c8066c2fd318bfd9e19b32ebb758b83eb9f294dc3dae6ee3",
+  "native_checker_sha256": "d80564844da68c0946e53395b64a08c7e4c169b416088a849043861592a4b90d",
   "ordered_object_sha256": "bfee6b78418fcc1870659a72b4a61482cc0733dee1f23206dc3e91df14024587",
   "carrier_sha256": "27f352ae7632fc792800297778eb8d623e544d3d30e4be6ce89c0a88c3c5a585",
   "partial_object_sha256": "242e733d2b44cbdb578ebd37ff97544908f01a8134bfa43bf84be51e71c363d8",

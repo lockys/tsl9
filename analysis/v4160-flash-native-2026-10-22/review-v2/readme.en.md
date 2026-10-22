@@ -2,7 +2,7 @@
 
 [繁體中文](readme.zh-TW.md)
 
-This addendum supersedes the current host-runner entry in the earlier independent review. Its 17 sealed files remain byte-identical under seal `173c8790e2deaad0ae6ac29bea2cabdbc8be2c13b68edefc3d5beb37c545488c`. The old review pinned host runner `d1f470a8539eb9815eaa65230a6da974f7dd21b2c009950516e0e3d250cc377e`; that checker should reject the changed runner. No historical receipt is relabeled as a fresh result.
+This addendum supersedes the current host-runner entry in the earlier independent review. Its 17 sealed files remain byte-identical under seal `f5cec050e258486cb7205c2354742e197ed7632fa5f943cc3a0a2bf9760c92f6`. The old review pinned host runner `d1f470a8539eb9815eaa65230a6da974f7dd21b2c009950516e0e3d250cc377e`; that checker should reject the changed runner. No historical receipt is relabeled as a fresh result.
 
 The compiler selection helper accepts an explicit compiler override. A successful compile alone cannot establish that its output is a host executable: a cross-compiler could produce RV32 code. The corrected runner reads and validates executable format/machine before launching each positive or behavioral-negative test. It explicitly rejects RISC-V ELF machine 243, rather than relying on an operating-system launch failure. This is a format gate for the owned test artifacts, not a general untrusted-program sandbox or a proof of executable behavior.
 

@@ -6,7 +6,7 @@
 
 ## 實際證據與來源審查
 
-[review.json](review.json) 綁定最終 runner、可攜 model wrapper、manifest／layout 與實際收據副本。runner SHA256 為 `1929598ffc723937e8cd6bcafbe507fb5ff23f6d9541f00043bdadcb44f3455a`。`prepare_manifest.py` 是歷史來源的一次性擷取；新的正式驗證使用已固定的 manifest 與 layout，不需要舊 build 目錄。
+[review.json](review.json) 綁定最終 runner、可攜 model wrapper、manifest／layout 與實際收據副本。runner SHA256 為 `b26410ae9a0d9dece3e5404fb311407dd7c3022a08a7d2fb8c8df7834496c854`。`prepare_manifest.py` 是歷史來源的一次性擷取；新的正式驗證使用已固定的 manifest 與 layout，不需要舊 build 目錄。
 
 來源過濾只移除五個白名單 quoted-assembly 區塊，各一次，直到精確 `.size`。重播會逐 byte 重算兩份過濾來源的剩餘內容。強制包含的 adapter 在實際所屬編譯單元指定原 section，建立真正 global FUNC alias；C++ 也維持 C linkage。主函式與 helpers 分別沿用已封存的原生編譯 profile，主函式允許實際 callframe，helpers 保持較窄的暫存器限制；LLVM IR 與選定函式 code hash 綁定真正輸出。沒有執行原始或重建 RV32 程式。
 

@@ -4,7 +4,7 @@ import argparse,hashlib,json,os,runpy,sys,uuid
 from pathlib import Path
 sys.dont_write_bytecode=True
 MODEL='experiments/tsl9-v4160-event-callback'
-GUARD='experiments/tsl9-v4160-flash-register-prefix/verify_host.py';GPIN='f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+GUARD='experiments/tsl9-v4160-flash-register-prefix/verify_host.py';GPIN='76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 MUTATIONS=[('sign-mask','if(event_word&0x8000u)','if(event_word&0x80000000u)'),('exact-one','if(a[0]!=1u)goto clear_pending;','if(!(a[0]&1u))goto clear_pending;'),('low-bit','if(!(a[0]&1u))goto dispose;','if(a[0]!=1u)goto dispose;'),('capacity-wrap','capacity=(a[0]-3u)&0xffffu;','capacity=a[0]-3u;'),('message-residue','CB_READ(h,0x8646u,a[0],8,type);a[4]=type;','CB_READ(h,0x8646u,a[0],8,type);')]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def need(v,m):

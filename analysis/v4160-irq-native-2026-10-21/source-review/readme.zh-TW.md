@@ -2,7 +2,7 @@
 
 本輪使用 `TSL9_IRQ_REGISTERS_HOST_TEST=1`，測試凍結的 `experiments/tsl9-v4160-irq-native/src/interrupt_registers.c` 與 `native_io.h`。公開標頭及 void callback 沿用 `tsl9-v4160-interrupt-registers`。這是 C／C++ 行為審查，不另造韌體解碼器，也不代表原生暫存器證明。
 
-獨立合成 oracle **原樣沿用**前一輪 placement code review 的 `independent-tests.c`，SHA-256 是 `e40f4b8e986e705d6c8c29a34c793ce74d7c37a506e0ddedfecd80a1e2b783b4`，其封存為 `4757434b52178f0394efe252688340c1be19f43a16708e1b70b4e1d0b453dce9`。Runner 先核對舊 seal 及全部成員，再以同一套獨立 fixture 檢查新核心，避免複製或暗改舊證據；新來源／標頭也各自固定雜湊。
+獨立合成 oracle **原樣沿用**前一輪 placement code review 的 `independent-tests.c`，SHA-256 是 `e40f4b8e986e705d6c8c29a34c793ce74d7c37a506e0ddedfecd80a1e2b783b4`，其封存為 `cf4881fc4618d32fa3d982659f733b649a4bee1445ffa52232feb249cbfed279`。Runner 先核對舊 seal 及全部成員，再以同一套獨立 fixture 檢查新核心，避免複製或暗改舊證據；新來源／標頭也各自固定雜湊。
 
 ## Host 測試證明的範圍
 

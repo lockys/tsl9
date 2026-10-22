@@ -8,10 +8,10 @@ import runpy
 
 HERE=Path(__file__).resolve().parent
 NATIVE_CLI='783918ed872b02c62321d1997bb4be2db08447f0f1d1def10a722c209f06fa8f'
-HOST_EXPECTED={'c':'6123a01eac010395983a02e2b41b7f375cccfe7538362b5b0757fa7bc5ffbcec',
-               'cpp':'7c7332d0b673fb1ed508cc99f35eafda77e8ccf0c50330ed12a2c785387f123f'}
-NATIVE_EXPECTED={'c':'08f8303f84124386c4f8ac8cc52813d03f673583aa936140561e0710a95efbee',
-                 'cpp':'5c49dbc54130a472250ed848a6ce6ae2b463cc96b7f5fa659f995f13670deee7'}
+HOST_EXPECTED={'c':'6df1aeac4e06613fbce309f3346750e4feca6c082f1b435b66c33d71209427f5',
+               'cpp':'ad630f8459db083843966c5d7c538cd1e7e27a06294300b5fc9fe0435aeac316'}
+NATIVE_EXPECTED={'c':'6f12eb06c6e52ceb885a59d2c07bb6a8ebf91c0fc43b7b6e4e798710e72c1bf5',
+                 'cpp':'ffb0c07547f0bc396b683e986aff8b4a573fb5ab948372351186009e1fc9a385'}
 
 
 def need(value,message):

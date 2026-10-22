@@ -8,9 +8,9 @@ from pathlib import Path
 import sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
-SOURCE_SEAL='66484b79f8ef5199e20c8c136797ca7f3ced8b19fc5d2f2f2fb79734a4028a3f'
+SOURCE_SEAL='2fe1ed8e78cbb6e054a0368c330b5d1d15f9c75bc0510769340371464b3d32f3'
 EXPECTED={'passed':True,'groups':3,'cases':90,'checks':6699,'ordered_effects':21,'target_execution':False}
-PRODUCER='d255aed146042a1f73e3ae79096a5948fdc3eafa50558e988062ccfacdd3c8e2'
+PRODUCER='92e3d7bf90b7255a8efee6a90c4126df802c15225586e006170aa006d779e332'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
 def need(v,m):

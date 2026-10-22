@@ -5,7 +5,7 @@ sys.dont_write_bytecode=True
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
     root=Path(__file__).resolve().parents[3];old=root/'experiments/tsl9-v4160-reply-image-integration';model=root/'experiments/tsl9-v4160-tx-image-integration';m=json.loads((old/'source-manifest.json').read_bytes())
-    case=root/'apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22';seal=json.loads((case/'implementation/seal.json').read_bytes());assert sha(case/'implementation/seal.json')=='b9a00137b3cea9ddaa2f08eb3567affe56eb65e0ea716941e191cb8eeae55a4b'
+    case=root/'apk-analysis/tsl9-v4160-tx-register-abi-2026-10-22';seal=json.loads((case/'implementation/seal.json').read_bytes());assert sha(case/'implementation/seal.json')=='9b740482f3133e083c17f55b6a64f8c0cbaef1542d99f2b549c9a9fcccc3c842'
     for n,pin in seal['members'].items():assert sha(case/'implementation'/n)==pin
     r=json.loads((case/'implementation/receipts/native-c.json').read_bytes());source=root/'apk-analysis/tsl9-v4160-ota-tx-2026-10-22/ABI-review/original-source.json';original=json.loads(source.read_bytes());owner=original['owner']['name'] if isinstance(original['owner'],dict) else original['owner'];assert owner=='.text.tsl9v4160.code_continuation_8a56'
     native=root/'experiments/tsl9-v4160-tx-register-abi';extra=[*native.joinpath('src').glob('*'),native/'adapter/valid_body.c',native/'adapter/return_leaf.c',model/'adapter/entry.S'];source_files=dict(m['source_files']);source_files.update({p.relative_to(root).as_posix():sha(p) for p in extra if p.is_file()})

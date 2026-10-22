@@ -8,15 +8,15 @@
   },
   "tools": {
     "clang": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "path": "${LLVM_BIN}\\clang.exe",
       "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
     },
     "linker": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+      "path": "${LLVM_BIN}\\ld.lld.exe",
       "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
     },
     "objdump": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+      "path": "${LLVM_BIN}\\llvm-objdump.exe",
       "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
     }
   },
@@ -38,38 +38,38 @@
       "commands": [
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac",
             "-mabi=ilp32",
             "-mno-relax",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\thunk.s",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\thunk.s",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\thunk.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\thunk.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "${LLVM_BIN}\\ld.lld.exe",
             "--no-relax",
             "--no-undefined",
             "--entry=probe_entry",
             "-Ttext=0x1000",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\thunk.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\thunk.o",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "${LLVM_BIN}\\llvm-objdump.exe",
             "--disassemble",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_forward_CJ_max\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
           ],
           "exit": 0,
           "log_sha256": "aff7563e2a741bd66141bd641c84b747ef863dd034c89accaf2c90c11fd89df0"
@@ -93,38 +93,38 @@
       "commands": [
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac",
             "-mabi=ilp32",
             "-mno-relax",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\thunk.s",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\thunk.s",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\thunk.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\thunk.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "${LLVM_BIN}\\ld.lld.exe",
             "--no-relax",
             "--no-undefined",
             "--entry=probe_entry",
             "-Ttext=0x1000",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\thunk.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\thunk.o",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "${LLVM_BIN}\\llvm-objdump.exe",
             "--disassemble",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\local_backward_CJ_min\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
           ],
           "exit": 0,
           "log_sha256": "ff8806aae3e9a0ad0938cbd3b806e18d6a4ec7d05776f5343d79ba689881725e"
@@ -148,39 +148,39 @@
       "commands": [
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac",
             "-mabi=ilp32",
             "-mno-relax",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\thunk.s",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\thunk.s",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\thunk.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\thunk.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "${LLVM_BIN}\\ld.lld.exe",
             "--no-relax",
             "--no-undefined",
             "--entry=probe_entry",
             "-Ttext=0x186ba",
             "--defsym=external_target=0x18834",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\thunk.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\thunk.o",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "${LLVM_BIN}\\llvm-objdump.exe",
             "--disassemble",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_near_CJ_spelling\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
           ],
           "exit": 0,
           "log_sha256": "b28f172bbad4a193420bf1468837ae509cb4af2bbb5f6f5e9718ce7c594fc745"
@@ -204,39 +204,39 @@
       "commands": [
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac",
             "-mabi=ilp32",
             "-mno-relax",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\thunk.s",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\thunk.s",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\thunk.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\thunk.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "${LLVM_BIN}\\ld.lld.exe",
             "--no-relax",
             "--no-undefined",
             "--entry=probe_entry",
             "-Ttext=0x186ba",
             "--defsym=external_target=0x9ab8",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\thunk.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\thunk.o",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         {
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "${LLVM_BIN}\\llvm-objdump.exe",
             "--disassemble",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-probe\\build\\thunks-8636b78f78014ed08a159647be21f859\\external_far_JAL_x0\\NUMERIC-WIDTH-WITNESS-ONLY.elf"
           ],
           "exit": 0,
           "log_sha256": "bec0aa9f420bd4e72e230ce3ec7a20233b2aac07d59c2fe75df52b26cc4c9e41"

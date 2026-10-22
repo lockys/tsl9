@@ -7,9 +7,9 @@ from pathlib import Path
 import runpy
 
 HERE=Path(__file__).resolve().parent
-RUNNER='6e35d93ca70c258244dd5fd47e91d18d4c8a6cfd09a87bc8e58d63eaad299657'
-EXPECTED={'c':'6613db876bdf1c6980b5dee782b41b9b81d14986881c1679bf67c4c15c08e98b',
-          'cpp':'bb7892655bf304a1bcc9ce9a61444fd88e152f9f14d939668e17316250d03208'}
+RUNNER='62304e37df139cd08baea6c1442b658e742b5fa79b048124d5a5991cf91e9eb1'
+EXPECTED={'c':'fe70fe087dd9c9517f89ffe8faed59cf6d7e2e9ea10c2313bb85c6a19ae85540',
+          'cpp':'2be08710de89f4fd450a22eb44fe1a3916bd8393ba5b7c46395eb5f7f26427ed'}
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()

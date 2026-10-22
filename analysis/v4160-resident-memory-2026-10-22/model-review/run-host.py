@@ -12,7 +12,7 @@ sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 MODEL='experiments/tsl9-resident-memory-leaves/src'
 GUARD='experiments/tsl9-v4160-flash-register-prefix/verify_host.py'
-GUARD_PIN='f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+GUARD_PIN='76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 CORE=('memory_leaves.c','memory_leaves.h','io.h','host_io.c')
 MUTANTS=(('truncate_compare_expected','(byte&255u)!=expected','(byte&255u)!=(expected&255u)'),
          ('skip_guard_for_null_compare','uint32_t saved,byte,end,answer=0;','uint32_t saved,byte,end,answer=0;\n    if(!address)return completed(0);'),

@@ -59,7 +59,7 @@ def host_tools(root):
     p=root/'scripts/portable_verify.py';s=importlib.util.spec_from_file_location('flash_host_compiler',p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 def source_evidence(root):
     scope=next(p for p in (root/'analysis/v4160-flash-native-2026-10-22/source',root/'apk-analysis/tsl9-v4160-flash-native-2026-10-22/source') if p.is_dir())
-    seal=scope/'seal.json';need(sha(seal)=='dff9a51e3b59bbdddd150dde37614753bb3c3b440d7bde2f9402c8b6e9a2bce4','sealed ID2966 source contracts')
+    seal=scope/'seal.json';need(sha(seal)=='67f43fd3bf0f8e94d316952ab931109e5069f06c6078152bf3c6995dad9b423d','sealed ID2966 source contracts')
     pins={str(seal):sha(seal)}
     for row in read(seal)['members']:need(sha(scope/row['path'])==row['sha256'],'sealed original source proof member');pins[str(scope/row['path'])]=row['sha256']
     proof=read(scope/'source-proof.json');need(proof['source_bytes']==262 and proof['instruction_count']==99 and len(proof['owners'])==6,'six original functions262B99instructions evidence')

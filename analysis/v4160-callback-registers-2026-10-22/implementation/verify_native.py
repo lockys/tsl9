@@ -64,8 +64,8 @@ def context(root):
     for name, pin in INDEPENDENT.items():
         need(sha(independent / name) == pin, 'Frozen independent native/ordering gate ' + name)
     for path, pin in ((profile, BASE), (parser, PARSER), (frame, FRAME),
-                      (helper, 'adeeaddea4c46d92dd4ce33a5beaa329779781a0611e97b965c1f023f5ef4eca'),
-                      (base / 'seal.json', '9ce53d1af259fe73edb31ff562750ca0b9636e3daf381fc0115dc3f4f9094aee')):
+                      (helper, '253b5fb067d5f5c90e517e2df4593381ef807dfbdd6143de2526c97a84744525'),
+                      (base / 'seal.json', 'ba10071d511399e4be47c4cc7432121e0ddc386cd4a0b6f7abcabca5fe3935cf')):
         need(sha(path) == pin, 'Immutable profile/parser/frame/baseline identity ' + str(path))
     return dict(base=base, profile=profile, helper=helper, parser=parser, frame=frame, independent=independent,
                 A=runpy.run_path(str(independent / 'review.py')),

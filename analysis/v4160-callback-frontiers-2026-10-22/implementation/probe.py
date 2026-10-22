@@ -15,7 +15,7 @@ MODEL='experiments/tsl9-nv-read-callback'
 OLD='apk-analysis/tsl9-v4160-resident-native-2026-10-22/implementation/probe.py'
 DECODER='apk-analysis/tsl9-v4160-resident-memory-2026-10-22/continuation-review/check.py'
 COPY='apk-analysis/tsl9-v4160-ota-handler-compact-2026-10-22/callee-review'
-COPY_PIN='fc9cb5eac8556bb00e86a598ad9fd9587ad2763318f5d6735c70f2cabe8be6f9'
+COPY_PIN='5b915632290d82c30545fa9ec517fc96bb67d706abf71f592e53354c3a622a8c'
 ENTRY='tsl9_nv_read_callback_1979a'
 def H(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def need(v,m):

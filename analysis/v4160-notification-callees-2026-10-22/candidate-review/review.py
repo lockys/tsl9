@@ -27,7 +27,7 @@ def context(root):
                             root/'apk-analysis/tsl9-v4160-callback-call-frontiers-2026-10-22/resident-review/review.py') if p.is_file())
     need(H(source.read_bytes())==PIN,'Immutable prior bounded field reader')
     seal=source.parent/'seal.json'
-    need(H(seal.read_bytes())=='5085f6f586cf78e0a75ae48f15b4af00fc2ea5e391abe70d74fdc8a685b8bde4',
+    need(H(seal.read_bytes())=='30587e991482df36bdb7ab76d3b7828f660e0aa69a82c587513798996c1e8f77',
          'Closed prior conditional-profile evidence')
     need(H((source.parent/'profile-and-header.json').read_bytes())==
          json.loads(seal.read_bytes())['members']['profile-and-header.json'],'Exact retained profile references')

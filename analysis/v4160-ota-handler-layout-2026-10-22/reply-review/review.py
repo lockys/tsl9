@@ -10,7 +10,7 @@ FW='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 RANGES={'packet':(0x13e98,0x13eb4),'allocate_copy_TX_free':(0x13b4c,0x13ba6),
         'small':(0x13f66,0x13f7e),'page':(0x9b8e,0x9c0a),'TX_original':(0x8a56,0x8b6e)}
 PRIOR='v4160-ota-handler-compact-2026-10-22'
-SEAL='fc9cb5eac8556bb00e86a598ad9fd9587ad2763318f5d6735c70f2cabe8be6f9'
+SEAL='5b915632290d82c30545fa9ec517fc96bb67d706abf71f592e53354c3a622a8c'
 
 def need(v,m):
     if not v:raise ValueError(m)

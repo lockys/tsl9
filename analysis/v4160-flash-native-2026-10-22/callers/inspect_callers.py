@@ -7,14 +7,14 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 IMAGE_SHA = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
-SOURCE_SEAL = 'dff9a51e3b59bbdddd150dde37614753bb3c3b440d7bde2f9402c8b6e9a2bce4'
+SOURCE_SEAL = '67f43fd3bf0f8e94d316952ab931109e5069f06c6078152bf3c6995dad9b423d'
 PARSER_SHA = '00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141'
 SITES = ((0x12e7a, 0x08077900), (0x12f0c, 0x08077800),
          (0x12f6e, 0x08077700), (0x13078, 0x08077600),
          (0x130fc, 0x08077500), (0x1315e, 0x08077a00))
 RECEIVER_SEALS = {
-    'flash-reachability/seal.json': 'b30898df66749a5c1ef5600eb53827ae999638044b87c6da1a216a39a2677b19',
-    'boot-variants/seal.json': '6b1e505acbdf24fc17760a5cdb00e1e8102c648be5a4c8bfb455048c21d442f2',
+    'flash-reachability/seal.json': '6f72f4907921b2d38538d19f1a183bdf33500aed8bfffa490cbc520ac31a263c',
+    'boot-variants/seal.json': '588007552c5eb7dce4ad2ebef594b3a0362e7715a100557964c82795a92480fc',
 }
 
 

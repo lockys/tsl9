@@ -9,7 +9,7 @@ import sys
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 OLD = HERE.parent / 'source-review'
-OLD_SEAL = 'bcf8358a333c6cd1522a39dc2f0fb11951ee89c796f2c5c7563097d0d56ffd1a'
+OLD_SEAL = '46da5762a0bc46c15a04ad6b2bf0f890a001de66b8ac006d0c507529505d76e2'
 KEYS = ('decoded_rows', 'direct_local_written_GPRs', 'basic_block_extents', 'raw_operand_controls', 'source_roles', 'source_RELA', 'source_directives', 'incoming_instruction_fields')
 
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()

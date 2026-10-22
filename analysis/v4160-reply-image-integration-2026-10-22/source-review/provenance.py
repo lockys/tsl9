@@ -8,8 +8,8 @@ import shlex
 import sys
 sys.dont_write_bytecode=True
 
-OLD_RUNNER='73d3fb0525d5f47c772632a2e397533d86fd3b58e2a26feeecfbd06ddac1bdb1'
-REPLY_RUNNER='23b0dfe90a4cde21c8066c2fd318bfd9e19b32ebb758b83eb9f294dc3dae6ee3'
+OLD_RUNNER='93100f6512b513a8e2757476a5d7b9c02aeb8ae97736cdeec83f3da259142e33'
+REPLY_RUNNER='d80564844da68c0946e53395b64a08c7e4c169b416088a849043861592a4b90d'
 REPLY='.text.tsl9v4160.ota_handler_9b8e'
 def need(value,message):
     if not value:raise ValueError(message)

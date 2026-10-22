@@ -19,7 +19,7 @@ def module(p):
     s=importlib.util.spec_from_file_location('adc_native_'+p.parent.name+'_'+p.stem,p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 def source():return module(HERE/'source.py')
 def context(root):
-    p=source().case(root,'v4160-resident-native-2026-10-22')/'abi-review/review.py';need(sha(p)=='00fd4f88327b6b98f51dd5ef2e70a91076a1f2a427799b85ca03af6c0caf9add','Pinned raw/LLVM native reader');m=module(p);return m,m.context(root)
+    p=source().case(root,'v4160-resident-native-2026-10-22')/'abi-review/review.py';need(sha(p)=='ea95caacce05635160b6e749b6b1684fa1d64bda9f368bc988f19892fdff4bbd','Pinned raw/LLVM native reader');m=module(p);return m,m.context(root)
 def stable(root):
     result=source().inspect(root);pins=read(HERE/'reference-pins.json')
     for path,pin in pins['sources'].items():need(sha(source().locate(root,path))==pin,'Frozen independent native input '+path)

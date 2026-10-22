@@ -4,13 +4,13 @@ import argparse,copy,hashlib,json,runpy,struct,sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
 SHA=lambda b:hashlib.sha256(b).hexdigest()
-MANIFEST_SHA='743c087e24760779073cd27ef06b7355b9f61ced6a8b14a2e9fc410d3fa10c5e'
-PRIOR_REVIEW='de1a55014e3db06fc909cadd92a746c9922b08bcdecfa0bcb28862f98d1f9ca0'
+MANIFEST_SHA='2ac3a0e317f7e67d30306be8e50e4ed53e9f794596a12ae5a29ab3ced14047d0'
+PRIOR_REVIEW='4d7e1b4ffa5101347970a662390c4cb8ff6455161e47d6e68f2144a27b8ca7e1'
 SCHEDULER_SHA='dc680558aca230a54e1fc05f68960f85f4566b0928787caef21839cdd876535d'
 POLICY_SHA='2af7789f91ceabca11fc29eb264991b96f40664555cdfe08964284f1470a694d'
 MODEL='experiments/tsl9-v4160-register-image-integration'
 IMAGE='NOT-FLASH-VALIDATED-register-scheduled.bin'
-PRODUCER_SHA='73d3fb0525d5f47c772632a2e397533d86fd3b58e2a26feeecfbd06ddac1bdb1'
+PRODUCER_SHA='93100f6512b513a8e2757476a5d7b9c02aeb8ae97736cdeec83f3da259142e33'
 
 
 def need(v,why):

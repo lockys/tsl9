@@ -6,7 +6,7 @@ This is a partial readable C replacement of five functions totaling264B: main9A4
 
 ## Actual evidence and source audit
 
-[review.json](review.json) pins the final runner, portable model wrappers, manifest/layout and selected actual receipt copies. The final runner SHA is `1929598ffc723937e8cd6bcafbe507fb5ff23f6d9541f00043bdadcb44f3455a`. Historical extraction in `prepare_manifest.py` is a one-time provenance operation; the fresh verifier consumes its pinned manifest and copied layout rather than needing old build directories.
+[review.json](review.json) pins the final runner, portable model wrappers, manifest/layout and selected actual receipt copies. The final runner SHA is `b26410ae9a0d9dece3e5404fb311407dd7c3022a08a7d2fb8c8df7834496c854`. Historical extraction in `prepare_manifest.py` is a one-time provenance operation; the fresh verifier consumes its pinned manifest and copied layout rather than needing old build directories.
 
 The source filter removes exactly the five allowlisted quoted-assembly blocks, once each, through their exact `.size` records. The remaining two filtered source files are byte-recomputed during replay. Forced adapter declarations assign typed functions to original section names and create actual global FUNC aliases in each owning translation unit, including C linkage under C++. The main and helpers use their separately sealed native compile profiles; the main permits the real callframe while helpers retain their narrower register constraints. LLVM IR and selected code hashes bind those compile outputs. No original/rebuilt RV32 code is executed.
 

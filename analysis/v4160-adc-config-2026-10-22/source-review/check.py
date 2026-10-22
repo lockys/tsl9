@@ -8,7 +8,7 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 FW = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
-PRIOR = 'e353c073d94c7dada170d35d1b9ac4b7fdd490b22d14ad5f4ca4dc5236b92611'
+PRIOR = 'e00c429d0db7e336243cfeeef830b1d91d559cf325cc433efa886dab737cadb9'
 REFERENCE = {'rv_i-excerpt.txt':'a9307dfd76d8be41b708005c4160f72dba043cf560c335a67cb279dcab3dac11','rv_m-excerpt.txt':'55d91b0f584c058dd37c23c2b4011b227e9df6c4553c3e44bd347e056f8e1eb4','arg_lut-excerpt.txt':'8aaf78654b294f372bfce95dac25cba7eac83722413223eb94b7f80b32aec695'}
 RANGES = {
  '1892e':(0x1892e,0x18986,37,'2f5e265070408a8fcbb4172fb5a1a4574baecd33ffc971eaafb5fc02d678653e'),

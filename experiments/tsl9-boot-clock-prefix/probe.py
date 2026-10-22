@@ -26,7 +26,7 @@ def main():
     if HERE != root/'experiments/tsl9-boot-clock-prefix' or output.exists() or not output.is_relative_to(HERE/'build'):
         raise ValueError('Use a new owned build directory')
     prior_path = root/'experiments/tsl9-boot-clock-registers/verify.py'
-    if sha(prior_path) != '9e191de6e659d998c7d8924823040b0f2a6e2eede5db96650d2b6744bda6572f':
+    if sha(prior_path) != '096660430ae0aa0f44813192aa30c49c958b8180e4123249a5aa36eeab11a7a8':
         raise ValueError('Reviewed baseline verifier')
     prior = runpy.run_path(str(prior_path))
     tools = {n:a.tool_dir/(n+'.exe' if sys.platform == 'win32' else n) for n in prior['TOOLS']}

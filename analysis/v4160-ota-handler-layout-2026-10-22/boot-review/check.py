@@ -20,7 +20,7 @@ def prior(root):
         p=folder/m['path'];need(p.stat().st_size==m['bytes'] and sha(p)==m['sha256'],'Immutable original BOOT source member '+m['path'])
     return folder
 def context(root):
-    folder=case(root,'v4160-ota-handler-2026-10-22')/'source-review';need(sha(folder/'seal.json')=='a40aee30a42697fc6eb5c00966f2680fbcd5175ffdbfe286eef3467a5e658ec4','Pinned independent raw-field decoder proof')
+    folder=case(root,'v4160-ota-handler-2026-10-22')/'source-review';need(sha(folder/'seal.json')=='7e32146e97e26f74eefa36fa8d8eab4d558dd1deae37e88bef8ccc4d8b059615','Pinned independent raw-field decoder proof')
     for n,pin in read(folder/'seal.json')['members'].items():need(sha(folder/n)==pin,'Immutable decoder member '+n)
     return load('bounded_BOOT_raw_fields',folder/'capture-source.py').context(root)[0]
 def rows(raw,decode):

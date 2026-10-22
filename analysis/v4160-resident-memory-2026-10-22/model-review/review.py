@@ -13,7 +13,7 @@ sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 MODEL='experiments/tsl9-resident-memory-leaves'
 DEPS={
- 'v4160-ota-handler-compact-2026-10-22/callee-review/review.py':'ef19f4db8f469250c136982c462b409bf4292fd4565c387295b51d9f6f410286',
+ 'v4160-ota-handler-compact-2026-10-22/callee-review/review.py':'1de389f8f0ce42a332ab82027dab7910d3402112d1e775754a2ec23c744b1296',
  'v4160-ota-handler-compact-2026-10-22/ABI-review/native.py':'1b378718c84e31bf7a6f03a3f3f22f9db755d6b804dd410b29f0224559b1dca9'}
 PORTS={'ml_port_read8','ml_port_read32','ml_port_write8','ml_port_write32','ml_port_fence_i'}
 PUBLIC={'tsl9_candidate_compare_200004bc','tsl9_candidate_fill_2000039c','tsl9_candidate_copy_20000332'}

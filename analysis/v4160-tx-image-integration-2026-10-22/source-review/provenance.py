@@ -8,13 +8,13 @@ sys.dont_write_bytecode=True
 def context(R,root,firmware):
     oldcase=R.case(root,'v4160-reply-image-integration-2026-10-22')/'source-review'
     p=oldcase/'provenance.py';q=oldcase/'source-inputs.py'
-    R.need(R.sha(p)=='fa11bf5313e15bc785a232ed0eebb3fc049a1c61f96f1d8b13a6beb2abb20468' and R.sha(q)=='bd7bb51ad0a59926bd73806720c4fd895017e13854b5506d5702fbf988268b3e','Immutable independent prior source/recipe helpers')
-    P=R.load('thirteen_prior_source_recipes',p);S=R.load('thirteen_prior_source_inputs',q);old=root/'experiments/tsl9-v4160-reply-image-integration';c=S.context(root,old/'source-manifest.json','09bfe0613a88a395b048a397530f62e49b199e890c3d2fc04285ca44887915fe');model=root/'experiments/tsl9-v4160-tx-image-integration';ledger=R.read(model/'source-manifest.json')
+    R.need(R.sha(p)=='d19e18ed6d6f7104791cba4563d9f6cf830dd426ad5070e5bcee70f23fe27bcb' and R.sha(q)=='65a5534114ed3e901ddb2f5fc4361834e303255fe4cbd7bc6107d593e5d7ffb0','Immutable independent prior source/recipe helpers')
+    P=R.load('thirteen_prior_source_recipes',p);S=R.load('thirteen_prior_source_inputs',q);old=root/'experiments/tsl9-v4160-reply-image-integration';c=S.context(root,old/'source-manifest.json','2bac53620548772e2e06197dd52b9e0ca6e50a7f88d27b6f39fd1fddf2ac3f78');model=root/'experiments/tsl9-v4160-tx-image-integration';ledger=R.read(model/'source-manifest.json')
     extra={n:R.sha(root/n) for n in ['experiments/tsl9-v4160-tx-register-abi/'+s for s in ('src/tx_native.c','src/tx_native.h','src/tx_io.h','adapter/valid_body.c','adapter/return_leaf.c')]+['experiments/tsl9-v4160-tx-image-integration/adapter/entry.S']}
     R.need(ledger['source_files']==dict(c['manifest']['source_files'],**extra) and len(ledger['source_files'])==85,'Exactly old79 + six explicit TX inputs; no fake source provider')
     for n,pin in ledger['source_files'].items():R.need(R.sha(root/n)==pin,'Actual current source pin '+n)
     txproducer=next(n for n in c['manifest']['source_units'] if n.endswith('/code_continuation_native.c'));txrow=dict(name=R.OWNER,global_alias=R.PUBLIC,bytes=280);c['generated_filters'][txproducer]=S.filtered(c['generated_filters'][txproducer],[txrow])
-    units,E,bindings=P.profiles(root,firmware,c['manifest']);profile=R.case(root,'v4160-ota-tx-2026-10-22')/'implementation/verify_native.py';R.need(R.sha(profile)=='adeeaddea4c46d92dd4ce33a5beaa329779781a0611e97b965c1f023f5ef4eca','Immutable TX compiler profile');F=R.load('thirteen_independent_TX_profile',profile)
+    units,E,bindings=P.profiles(root,firmware,c['manifest']);profile=R.case(root,'v4160-ota-tx-2026-10-22')/'implementation/verify_native.py';R.need(R.sha(profile)=='253b5fb067d5f5c90e517e2df4593381ef807dfbdd6143de2526c97a84744525','Immutable TX compiler profile');F=R.load('thirteen_independent_TX_profile',profile)
     return dict(P=P,S=S,old=c,model=model,ledger=ledger,units=units,E=E,bindings=bindings,TXflags=F.flags)
 
 def recipes(R,root,folder,mode,tools,c):

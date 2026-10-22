@@ -26,7 +26,7 @@ def check(root):
     for name,pin in json.loads((HERE/'core-pins.json').read_bytes()).items():
         need(sha(root/'experiments/tsl9-v4160-event-callback/src'/name)==pin,'Frozen current callback source '+name)
     need(sha(root/'experiments/tsl9-v4160-flash-register-prefix/verify_host.py')==
-         'f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb','Immutable HOST launch machine guard')
+         '76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189','Immutable HOST launch machine guard')
     need((HERE/'README.md').read_bytes()==(HERE/'readme.zh-TW.md').read_bytes(),'Default full Traditional Chinese')
     return dict(passed=True,mode='metadata-only',members=len(seal['files']),
                 actual_original_firmware_read=False,actual_host_artifacts_replayed=False,

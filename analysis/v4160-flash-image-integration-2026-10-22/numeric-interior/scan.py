@@ -6,7 +6,7 @@ from pathlib import Path
 import struct
 
 HERE = Path(__file__).resolve().parent
-PLAN_SEAL = '5cacfc4682a0e493ca6826f86b855a46a386155db3da1cf56c283f021a3b7bfe'
+PLAN_SEAL = '81912879ab740bff2055d518eac48f2191fad242ed782fc84cc7e3d0ea62169d'
 EXPECTED = {
     'original': '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667',
     'previous_IRQ': '47f200dce24be25ac89d57922689da536259935e8615ba8195b10ca192895e1c',

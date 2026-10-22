@@ -5,7 +5,7 @@ import argparse,hashlib,json,runpy,sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
 SHA=lambda b:hashlib.sha256(b).hexdigest()
-OLD_PINS={'review.py':'0dd857b44c9163d45668f224e5b772f3adfa08e832e58e1c5491b7fa5f1c0554','seal.json':'777443ff023089f092561f3bc36de2f710603dbeca651a43d4ed158b6b69a87d'}
+OLD_PINS={'review.py':'8b04718cadb328b6a84b5f0791df666f968340db75134807e9f299b6f43b1448','seal.json':'defa91e414212d140f175796f3985dc185755e670c93c5fd370d7d2abf32774a'}
 CORE={'flash_native.c':'c2f85fd50a7def5ff4baf200415e9faa3f2a253dea51c6bc54ae6a139fef960b','flash_native.h':'b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd','native_io.h':'e0d58fdf1ae5ebc1f497a023443a4e6432f5cd75d987c691a2dcf68b3e64af7e'}
 
 

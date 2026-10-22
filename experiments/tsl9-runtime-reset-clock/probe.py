@@ -11,7 +11,7 @@ import sys
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 BASE = 'experiments/tsl9-boot-clock-registers/verify.py'
-BASE_SHA = '9e191de6e659d998c7d8924823040b0f2a6e2eede5db96650d2b6744bda6572f'
+BASE_SHA = '096660430ae0aa0f44813192aa30c49c958b8180e4123249a5aa36eeab11a7a8'
 CLOCK_SHA = '9cbdc2d1e74ae0d6facc5db02cd1d9d5e08f2d7791e4df800eba716d6d32b142'
 
 

@@ -3,8 +3,8 @@ import argparse,hashlib,importlib.util,json,re,shlex,struct,types,uuid
 from pathlib import Path
 H=Path(__file__).resolve().parent
 MODEL='experiments/tsl9-v4160-flash-register-prefix'
-OLD_RUNNER='dc0c966f057a0562f0d51a0289b9b24ce242d47bee0cd397d72fc12bc0a42013'
-OLD_SEAL='455829d73f11aaea707c2a95e9c738b2939ee1ec47910c56d3dc70d21f261663'
+OLD_RUNNER='1c0878d97e75bf7609e5fe9a458a57cf8fba134cd4ce4ed29af4e144f23d50d6'
+OLD_SEAL='48e31cf0f93865b58e5b865b5ba80d86514e1d6821b775f213a4b47a3b019d4d'
 CORE={"flash_native.c":"94bbb25ff93325152240c03d2fe01fbc5c7215417ffd3d98b2a61ecde21a7393","flash_native.h":"b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd","native_io.h":"579916278d4967cef1af0d04b68b403a515f3d56977613015639a0c9c916c08c"}
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def read(p):return json.loads(p.read_text(encoding='utf-8'))

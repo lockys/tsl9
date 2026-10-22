@@ -10,7 +10,7 @@ sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 FW='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 RAW='da17e505ec2b58cada40a80a12a645b7fa21c116ce76666544168f2c4ff6c6a7'
-OLD_SEAL='bcf8358a333c6cd1522a39dc2f0fb11951ee89c796f2c5c7563097d0d56ffd1a'
+OLD_SEAL='46da5762a0bc46c15a04ad6b2bf0f890a001de66b8ac006d0c507529505d76e2'
 def need(v,m):
     if not v:raise ValueError(m)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()

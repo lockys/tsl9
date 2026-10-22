@@ -9,9 +9,9 @@
     "experiments/tsl9-v4160-irq-native/src/native_io.h": "f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e",
     "experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.h": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"
   },
-  "runner_sha256": "722d477623f5f6065ebb8b3ed9715b730c4fddacc0a3dd374d3fe72fdc530cd9",
+  "runner_sha256": "3982e89a003562b5bdaa0ddeac0c8ece6c7240e15156280cef6c7e844c652c01",
   "dependencies": {
-    "native_seal": "13772c1bfe0c3faf0fe37cf4cbdd8fe4be40ca6f6913ef132c64a3c0677f9c04",
+    "native_seal": "273617ca292a9ee2f2962ef14d72214903068bcaaabb338148938dcf63c505a2",
     "native_members": {
       "verify_native.py": "58e726bf5590eeb318c7123a75fd00c5b406b58e36c545c65962a1ac80a369ac",
       "gates.py": "c51f2242a3f3356ce77c09c12757cda0ed13b6830ac255cbfbd4fcdfd36341e5",
@@ -24,15 +24,15 @@
   },
   "tools": {
     "clang": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "path": "${LLVM_BIN}\\clang.exe",
       "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
     },
     "linker": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+      "path": "${LLVM_BIN}\\ld.lld.exe",
       "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
     },
     "objdump": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+      "path": "${LLVM_BIN}\\llvm-objdump.exe",
       "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
     }
   },
@@ -133,7 +133,7 @@
     {
       "label": "main.o",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr",
         "-mabi=ilp32",
@@ -177,9 +177,9 @@
         "c",
         "-std=c11",
         "-c",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\main.o"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\main.o"
       ],
       "exit": 0,
       "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -187,7 +187,7 @@
     {
       "label": "main.ll",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr",
         "-mabi=ilp32",
@@ -232,9 +232,9 @@
         "-std=c11",
         "-S",
         "-emit-llvm",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\main.ll"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\main.ll"
       ],
       "exit": 0,
       "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -242,7 +242,7 @@
     {
       "label": "helpers.o",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr",
         "-mabi=ilp32",
@@ -291,9 +291,9 @@
         "c",
         "-std=c11",
         "-c",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\helpers.o"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\helpers.o"
       ],
       "exit": 0,
       "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -301,7 +301,7 @@
     {
       "label": "helpers.ll",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr",
         "-mabi=ilp32",
@@ -351,9 +351,9 @@
         "-std=c11",
         "-S",
         "-emit-llvm",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\helpers.ll"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\helpers.ll"
       ],
       "exit": 0,
       "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -361,15 +361,15 @@
     {
       "label": "link",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "${LLVM_BIN}\\ld.lld.exe",
         "--no-relax",
         "--no-undefined",
         "-T",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\placements.ld",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\main.o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\helpers.o",
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\placements.ld",
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\main.o",
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\helpers.o",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
       ],
       "exit": 0,
       "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -377,16 +377,16 @@
     {
       "label": "disassembly",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+        "${LLVM_BIN}\\llvm-objdump.exe",
         "--disassemble",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
       ],
       "exit": 0,
       "log_sha256": "826703854fb8d21738960e422810fb352835f1d38995bb121d2de9ccd24743cc"
     }
   ],
   "firmware_input": {
-    "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin",
+    "path": "${ANALYSIS_WORKSPACE}\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin",
     "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
   },
   "artifacts": {
@@ -1820,7 +1820,7 @@
         {
           "label": "main.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -1864,9 +1864,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\main.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\main.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -1874,7 +1874,7 @@
         {
           "label": "main.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -1919,9 +1919,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\main.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\main.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -1929,7 +1929,7 @@
         {
           "label": "helpers.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -1978,9 +1978,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\helpers.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\helpers.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -1988,7 +1988,7 @@
         {
           "label": "helpers.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2038,9 +2038,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\helpers.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\helpers.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2048,15 +2048,15 @@
         {
           "label": "link",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "${LLVM_BIN}\\ld.lld.exe",
             "--no-relax",
             "--no-undefined",
             "-T",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\placements.ld",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\main.o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\helpers.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\placements.ld",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\main.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\helpers.o",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2064,9 +2064,9 @@
         {
           "label": "disassembly",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "${LLVM_BIN}\\llvm-objdump.exe",
             "--disassemble",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-missing_RA_clobber\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "006af898aa21a9043b0f2a10d60a407c982903ba21ce49d607a77bb468b97750"
@@ -2091,7 +2091,7 @@
         {
           "label": "main.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2135,9 +2135,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\main.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\main.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2145,7 +2145,7 @@
         {
           "label": "main.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2190,9 +2190,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\main.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\main.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2200,7 +2200,7 @@
         {
           "label": "helpers.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2249,9 +2249,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\helpers.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\helpers.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2259,7 +2259,7 @@
         {
           "label": "helpers.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2309,9 +2309,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\helpers.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\helpers.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2319,15 +2319,15 @@
         {
           "label": "link",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "${LLVM_BIN}\\ld.lld.exe",
             "--no-relax",
             "--no-undefined",
             "-T",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\placements.ld",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\main.o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\helpers.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\placements.ld",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\main.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\helpers.o",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2335,9 +2335,9 @@
         {
           "label": "disassembly",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "${LLVM_BIN}\\llvm-objdump.exe",
             "--disassemble",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_link\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "ef0a7e4fdb5c72b08d2a6b526f3290fffa4126e57f0a680ab2f0ff7333b299fd"
@@ -2362,7 +2362,7 @@
         {
           "label": "main.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2406,9 +2406,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\main.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\main.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2416,7 +2416,7 @@
         {
           "label": "main.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2461,9 +2461,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\main.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\main.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2471,7 +2471,7 @@
         {
           "label": "helpers.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2520,9 +2520,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\helpers.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\helpers.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2530,7 +2530,7 @@
         {
           "label": "helpers.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2580,9 +2580,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\helpers.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\helpers.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2590,15 +2590,15 @@
         {
           "label": "link",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "${LLVM_BIN}\\ld.lld.exe",
             "--no-relax",
             "--no-undefined",
             "-T",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\placements.ld",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\main.o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\helpers.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\placements.ld",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\main.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\helpers.o",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2606,9 +2606,9 @@
         {
           "label": "disassembly",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "${LLVM_BIN}\\llvm-objdump.exe",
             "--disassemble",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_call_target\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "353eb7e35b5a7294a8cb0c208f05171ac7bbf2e13d321850aa805ab33b1d541c"
@@ -2633,7 +2633,7 @@
         {
           "label": "main.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2677,9 +2677,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\main.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\main.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2687,7 +2687,7 @@
         {
           "label": "main.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2732,9 +2732,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\main.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\main.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2742,7 +2742,7 @@
         {
           "label": "helpers.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2791,9 +2791,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\helpers.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\helpers.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2801,7 +2801,7 @@
         {
           "label": "helpers.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2851,9 +2851,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\helpers.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\helpers.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2861,15 +2861,15 @@
         {
           "label": "link",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "${LLVM_BIN}\\ld.lld.exe",
             "--no-relax",
             "--no-undefined",
             "-T",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\placements.ld",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\main.o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\helpers.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\placements.ld",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\main.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\helpers.o",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2877,9 +2877,9 @@
         {
           "label": "disassembly",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "${LLVM_BIN}\\llvm-objdump.exe",
             "--disassemble",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_final_flag\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "0131c4925f3ceeb2612272f026aeadcfd5e67f384af53e5151dfb9f8c3f17879"
@@ -2904,7 +2904,7 @@
         {
           "label": "main.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -2948,9 +2948,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\main.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\main.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -2958,7 +2958,7 @@
         {
           "label": "main.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -3003,9 +3003,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\main.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\main.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -3013,7 +3013,7 @@
         {
           "label": "helpers.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -3062,9 +3062,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\helpers.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\helpers.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -3072,7 +3072,7 @@
         {
           "label": "helpers.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -3122,9 +3122,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\helpers.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\helpers.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -3132,15 +3132,15 @@
         {
           "label": "link",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "${LLVM_BIN}\\ld.lld.exe",
             "--no-relax",
             "--no-undefined",
             "-T",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\placements.ld",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\main.o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\helpers.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\placements.ld",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\main.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\helpers.o",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -3148,9 +3148,9 @@
         {
           "label": "disassembly",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "${LLVM_BIN}\\llvm-objdump.exe",
             "--disassemble",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_PFIC_width\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "02d3f80cdbd5f85f6eb1c6df11a69ea6ad532038010d937fd485f5b1101c4ab0"
@@ -3175,7 +3175,7 @@
         {
           "label": "main.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -3219,9 +3219,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\main.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\main.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -3229,7 +3229,7 @@
         {
           "label": "main.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -3274,9 +3274,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\interrupt_callframe.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\main.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\main.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -3284,7 +3284,7 @@
         {
           "label": "helpers.o",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -3333,9 +3333,9 @@
             "c",
             "-std=c11",
             "-c",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\helpers.o"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\helpers.o"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -3343,7 +3343,7 @@
         {
           "label": "helpers.ll",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+            "${LLVM_BIN}\\clang.exe",
             "--target=riscv32-unknown-elf",
             "-march=rv32imac_zicsr",
             "-mabi=ilp32",
@@ -3393,9 +3393,9 @@
             "-std=c11",
             "-S",
             "-emit-llvm",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\experiments\\tsl9-v4160-irq-callframe\\src\\rcc_helpers.c",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\helpers.ll"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\helpers.ll"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -3403,15 +3403,15 @@
         {
           "label": "link",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+            "${LLVM_BIN}\\ld.lld.exe",
             "--no-relax",
             "--no-undefined",
             "-T",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\placements.ld",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\main.o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\helpers.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\placements.ld",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\main.o",
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\helpers.o",
             "-o",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -3419,9 +3419,9 @@
         {
           "label": "disassembly",
           "argv": [
-            "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+            "${LLVM_BIN}\\llvm-objdump.exe",
             "--disassemble",
-            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+            "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-irq-callframe-2026-10-21\\compiler-review\\build\\callframe-7f5b7e3155884dd58ecde25fff49ec11-c\\negative-wrong_helper_offset\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
           ],
           "exit": 0,
           "log_sha256": "e00fe4b27c890e1049465ebb1e4309b347f3e458157992bcc5603ef43d705cb4"

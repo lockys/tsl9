@@ -8,8 +8,8 @@ from pathlib import Path
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 FW='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
-PRIOR_SEAL='fc9cb5eac8556bb00e86a598ad9fd9587ad2763318f5d6735c70f2cabe8be6f9'
-REPLY_SEAL='ea5c241b4670daf6e833755118b38a5e12860e31314c58ae1a3a0b93fbaf3d80'
+PRIOR_SEAL='5b915632290d82c30545fa9ec517fc96bb67d706abf71f592e53354c3a622a8c'
+REPLY_SEAL='c7f659d4edcad4e9412a7cbb05b3e74c28d806c86287b78bbcd22e7d3d1c8281'
 TD_SHA='d18a5c4d0722e20d3d0398f180931118a5125c9ada56a64d32c602ad5bd71490'
 
 def need(value,message):

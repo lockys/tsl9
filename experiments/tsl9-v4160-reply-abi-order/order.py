@@ -15,7 +15,7 @@ import sys
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 PARSER_SHA = '00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141'
-DECODER_SHA = '8ca0cf81d803ebd5aff343542c17cb9cb7a06cd003871e42655aa7e21fb14fd1'
+DECODER_SHA = '47747b92bcc3618c8e53bdadd1c640164ef34def3ffd32f0fcffc2f63defa895'
 ENTRY = 0x9b8e
 FIELDS = ('op', 'rd', 'rs1', 'rs2', 'immediate', 'target', 'memory_width')
 

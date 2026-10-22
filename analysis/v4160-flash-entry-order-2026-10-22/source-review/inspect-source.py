@@ -35,7 +35,7 @@ def tail_contract(decoder,raw):
 def analyze(root,firmware,original,layout,integrated=None,receipt=None):
     need(sha(firmware)==FW and firmware.stat().st_size==76800,'Exact ID2966 raw image')
     raw=firmware.read_bytes();source=case(root,'v4160-flash-native-2026-10-22')/'source'
-    sealed(source,'dff9a51e3b59bbdddd150dde37614753bb3c3b440d7bde2f9402c8b6e9a2bce4')
+    sealed(source,'67f43fd3bf0f8e94d316952ab931109e5069f06c6078152bf3c6995dad9b423d')
     parser=case(root,'v4160-reset-memory-2026-10-21')/'compiler-review/elf32.py'
     direct_path=case(root,'v4160-placement-2026-10-21')/'source-review/check-placement.py'
     need(sha(parser)==ELF,'Reviewed ELF parser')
@@ -97,7 +97,7 @@ def analyze(root,firmware,original,layout,integrated=None,receipt=None):
         pin=r['artifacts']['source-integrated.o'];need(sha(integrated)==pin['sha256'] and integrated.stat().st_size==pin['bytes'],'Actual integrated object pinned by receipt')
         current=inspect(integrated,8276)
         need(old['owners']==current['owners'] and old['symbol_definitions']==current['symbol_definitions'] and old['incoming_RELA']==current['incoming_RELA'] and old['admitted_direct_targets']==current['admitted_direct_targets'],'Flash ownership/definitions/references unchanged across prior IRQ integration')
-    return {'schema':'ID2966-flash-entry-order-original-source-v1','passed':True,'firmware_sha256':FW,'layout_sha256':LAYOUT,'source_seal_sha256':'dff9a51e3b59bbdddd150dde37614753bb3c3b440d7bde2f9402c8b6e9a2bce4','full_original_source_bytes':262,'full_original_instructions':99,'tail_raw':raw[0x18f50-0x8000:0x18f56-0x8000].hex(),'tail_rows':tail,'tail_semantic_controls':negative,'early_alignment_row':decoder.decode(raw,0x18efa),'original_carrier':old,'prior_partial_IRQ_integrated_carrier':current,'no_padding_or_free_tail_claim':True,'target_execution':False,'ISA_emulation':False,'network':False,'hardware':False,'new_BIN':False,'OTA_ready':False}
+    return {'schema':'ID2966-flash-entry-order-original-source-v1','passed':True,'firmware_sha256':FW,'layout_sha256':LAYOUT,'source_seal_sha256':'67f43fd3bf0f8e94d316952ab931109e5069f06c6078152bf3c6995dad9b423d','full_original_source_bytes':262,'full_original_instructions':99,'tail_raw':raw[0x18f50-0x8000:0x18f56-0x8000].hex(),'tail_rows':tail,'tail_semantic_controls':negative,'early_alignment_row':decoder.decode(raw,0x18efa),'original_carrier':old,'prior_partial_IRQ_integrated_carrier':current,'no_padding_or_free_tail_claim':True,'target_execution':False,'ISA_emulation':False,'network':False,'hardware':False,'new_BIN':False,'OTA_ready':False}
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--project-root',type=Path,required=True);p.add_argument('--firmware',type=Path,required=True);p.add_argument('--original-object',type=Path,required=True);p.add_argument('--layout',type=Path,required=True);p.add_argument('--integrated-object',type=Path);p.add_argument('--integrated-receipt',type=Path);p.add_argument('--output',type=Path);p.add_argument('--reference',type=Path);a=p.parse_args()
     r=analyze(a.project_root.resolve(strict=True),a.firmware,a.original_object,a.layout,a.integrated_object,a.integrated_receipt)

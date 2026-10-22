@@ -4,7 +4,7 @@ from pathlib import Path
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 MODEL='experiments/tsl9-v4160-tx-image-integration';TX='.text.tsl9v4160.code_continuation_8a56';IMAGE='NOT-FLASH-VALIDATED-tx-integrated.bin'
-MANIFEST='2e2c63b0c17adfea9c9a14a3eac1907749ef2e9b188cc7b3a2280c27ae04ad8c'
+MANIFEST='f95e133f59ed9701b1ae6bb5187fb19f467cefc02bfed1063577bb6df42219a7'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def H(b):return hashlib.sha256(b).hexdigest()
 def read(p):return json.loads(p.read_bytes())

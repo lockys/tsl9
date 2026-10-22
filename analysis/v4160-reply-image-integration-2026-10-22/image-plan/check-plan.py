@@ -11,8 +11,8 @@ import sys
 
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
-MANIFEST_SHA = '09bfe0613a88a395b048a397530f62e49b199e890c3d2fc04285ca44887915fe'
-PARENT_SHA = '743c087e24760779073cd27ef06b7355b9f61ced6a8b14a2e9fc410d3fa10c5e'
+MANIFEST_SHA = '2bac53620548772e2e06197dd52b9e0ca6e50a7f88d27b6f39fd1fddf2ac3f78'
+PARENT_SHA = '2ac3a0e317f7e67d30306be8e50e4ed53e9f794596a12ae5a29ab3ced14047d0'
 CASE_FILES = ['README.md', 'readme.zh-TW.md', 'readme.en.md', 'prepare-plan.py',
               'source-manifest.json', 'verification.json', 'check-plan.py']
 

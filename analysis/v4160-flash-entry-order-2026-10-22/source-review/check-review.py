@@ -69,10 +69,10 @@ def main():
     for x in r['project_inputs']:need(sha(root/x['path'])==x['sha256'],'Exact reviewed project input '+x['path'])
     for x in r['case_inputs']:need(sha(case(root,x['case'])/x['path'])==x['sha256'],'Exact reviewed case input')
     oldcase=case(root,'v4160-flash-native-2026-10-22')
-    for relative,pin in [('review','173c8790e2deaad0ae6ac29bea2cabdbc8be2c13b68edefc3d5beb37c545488c'),('review-v2','028a6dd7dc7530f4befe1c1eff3343ae5fa251c9b3c1dee78f5d272f5ceab9b7')]:sealed(oldcase/relative,pin)
+    for relative,pin in [('review','f5cec050e258486cb7205c2354742e197ed7632fa5f943cc3a0a2bf9760c92f6'),('review-v2','8776b2d6362641b6f80015c066715dc5c56010cce05e8ecbd7a3c60dde95cea9')]:sealed(oldcase/relative,pin)
     for x in read(oldcase/'review/review.json')['model_inputs']:
         if x['path'].startswith(OLD+'/src/') or x['path'].startswith(OLD+'/tests/'):need(sha(root/x['path'])==x['sha256'],'Exact prior core/test preserved')
-    source_delta(root);source=oldcase/'source';sealed(source,'dff9a51e3b59bbdddd150dde37614753bb3c3b440d7bde2f9402c8b6e9a2bce4')
+    source_delta(root);source=oldcase/'source';sealed(source,'67f43fd3bf0f8e94d316952ab931109e5069f06c6078152bf3c6995dad9b423d')
     need(sha(here/'source-inventory.json')==r['source_inventory_sha256'] and sha(here/'component-review.json')==r['component_review_sha256'],'Exact independent source/component observations')
     source_inventory=read(here/'source-inventory.json');need(source_inventory['tail_raw']=='758f98cb8280' and len(source_inventory['original_carrier']['incoming_RELA'])==23,'Bound original tail and incoming roles')
     component=read(here/'component-review.json');need(component['passed'] and component['program']['A0_alignment_offset']==6 and len(component['raw_native_semantic_controls'])==3,'Independent actual-component early-order/tail/CFG evidence')

@@ -10,8 +10,8 @@ import sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 ENTRY='tsl9_adc_config_1892e'
-MODEL_SEAL='2ede59286cfbd60bc19985b330ed46f8e1613697a5cc525ce26c549c0505c07f'
-SOURCE_SEAL='0c3a18d757bc75e6d0bf43648f7129de4c56d9d166618556c1c2b3e451c5f677'
+MODEL_SEAL='f95142055c7f1588c17a8623c928a039191f2cf2e683fe9b46a293be316e5247'
+SOURCE_SEAL='9cc7d0cd8a2d8150060556e9ade6baa11fc424d7c378ff694e63416358143624'
 def need(v,m):
     if not v:raise ValueError(m)
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()

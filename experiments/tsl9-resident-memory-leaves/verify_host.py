@@ -11,7 +11,7 @@ import uuid
 sys.dont_write_bytecode=True
 MODEL='experiments/tsl9-resident-memory-leaves'
 GUARD='experiments/tsl9-v4160-flash-register-prefix/verify_host.py'
-GPIN='f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+GPIN='76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 EXPECTED=dict(groups=4,cases=27,checks=219)
 MUTATIONS=[('full_word_compare','if((byte&255u)!=expected)','if((byte&255u)!=(expected&255u))'),
  ('forward_copy','ml_port_read8(io,source+offset,&byte)','ml_port_read8(io,source+(count-1u-offset),&byte)'),

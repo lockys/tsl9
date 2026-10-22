@@ -61,7 +61,7 @@
     {
       "label": "compile",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr",
         "-mabi=ilp32",
@@ -108,9 +108,9 @@
         "c",
         "-std=c11",
         "-c",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-review\\build\\allow-a1-e2d9e93c56b7410c894009cd285da4a5-c\\interrupt_registers.o"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-review\\build\\allow-a1-e2d9e93c56b7410c894009cd285da4a5-c\\interrupt_registers.o"
       ],
       "exit": 1,
       "log_sha256": "5123adfb39dc2962806d4f6e47f130851cd04fb9868548a06833813c3a56144a"
@@ -118,7 +118,7 @@
     {
       "label": "llvm-ir",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr",
         "-mabi=ilp32",
@@ -166,9 +166,9 @@
         "-std=c11",
         "-S",
         "-emit-llvm",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-review\\build\\allow-a1-e2d9e93c56b7410c894009cd285da4a5-c\\interrupt_registers.ll"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-review\\build\\allow-a1-e2d9e93c56b7410c894009cd285da4a5-c\\interrupt_registers.ll"
       ],
       "exit": 0,
       "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -176,15 +176,15 @@
   ],
   "tools": {
     "clang": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "path": "${LLVM_BIN}\\clang.exe",
       "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
     },
     "linker": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+      "path": "${LLVM_BIN}\\ld.lld.exe",
       "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
     },
     "objdump": {
-      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+      "path": "${LLVM_BIN}\\llvm-objdump.exe",
       "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
     }
   },

@@ -13,7 +13,7 @@ sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 MODEL='experiments/tsl9-v4160-event-callback/src'
 GUARD='experiments/tsl9-v4160-flash-register-prefix/verify_host.py'
-GUARD_PIN='f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+GUARD_PIN='76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 MUTANTS=(('exact_gate_changed_to_lowbit','if(a[0]!=1u)','if(!(a[0]&1u))'),
          ('capacity_underflow_clamped','capacity=(a[0]-3u)&0xffffu;','capacity=a[0]<3u?0u:((a[0]-3u)&0xffffu);'),
          ('sixth_argument_wrong_task','a[5]=s->task;','a[5]=s->connection;'))

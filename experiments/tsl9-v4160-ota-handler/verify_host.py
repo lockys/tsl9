@@ -11,7 +11,7 @@ import uuid
 sys.dont_write_bytecode=True
 MODEL='experiments/tsl9-v4160-ota-handler'
 GUARD='experiments/tsl9-v4160-flash-register-prefix/verify_host.py'
-GPIN='f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+GPIN='76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 EXPECTED=dict(groups=1,cases=10,checks=8292)
 MUTATIONS=[('UID_zero_result','if(a[0])return;\n        OH_READ(h,0x9d40','if(!a[0])return;\n        OH_READ(h,0x9d40'),
  ('Flash_before_RAM','OH_READ(h,0x9d10,s->flash+offset,32,flash_word);\n            OH_READ(h,0x9d16,s->source+offset,32,source_word);','OH_READ(h,0x9d16,s->source+offset,32,source_word);\n            OH_READ(h,0x9d10,s->flash+offset,32,flash_word);'),

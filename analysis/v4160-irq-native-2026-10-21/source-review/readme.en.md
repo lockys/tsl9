@@ -2,7 +2,7 @@
 
 This review tests the frozen `experiments/tsl9-v4160-irq-native/src/interrupt_registers.c` and `native_io.h` through `TSL9_IRQ_REGISTERS_HOST_TEST=1`. The public header and void host callbacks are reused from `tsl9-v4160-interrupt-registers`. It is a C/C++ behavior review, not another raw-firmware decoder or a native-register proof.
 
-The independent synthetic oracle is reused **unchanged** from the prior placement code review: `independent-tests.c` SHA-256 `e40f4b8e986e705d6c8c29a34c793ce74d7c37a506e0ddedfecd80a1e2b783b4`, sealed under `4757434b52178f0394efe252688340c1be19f43a16708e1b70b4e1d0b453dce9`. Replaying this separate oracle against the new core avoids copying or silently changing the previous evidence. The runner verifies the old seal and every member before use, and pins all new source/header inputs.
+The independent synthetic oracle is reused **unchanged** from the prior placement code review: `independent-tests.c` SHA-256 `e40f4b8e986e705d6c8c29a34c793ce74d7c37a506e0ddedfecd80a1e2b783b4`, sealed under `cf4881fc4618d32fa3d982659f733b649a4bee1445ffa52232feb249cbfed279`. Replaying this separate oracle against the new core avoids copying or silently changing the previous evidence. The runner verifies the old seal and every member before use, and pins all new source/header inputs.
 
 ## What the host test establishes
 

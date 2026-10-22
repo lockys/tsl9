@@ -12,9 +12,9 @@ def load(n,p):
 def main():
     p=argparse.ArgumentParser();p.add_argument('--project-root',type=Path,required=True);p.add_argument('--flash-component',type=Path,required=True);a=p.parse_args();root=a.project_root.resolve();old=root/'experiments/tsl9-v4160-irq-image-integration';m=read(old/'source-manifest.json')
     need(sha(old/'source-manifest.json')=='d952159ab2bf7c5294bc433510b88a7c19b23295ba11b0e7ab3d4a1ed39b1ce7','original full source inventory')
-    plan=case(root,'v4160-flash-entry-order-2026-10-22')/'image-plan';need(sha(plan/'seal.json')=='5cacfc4682a0e493ca6826f86b855a46a386155db3da1cf56c283f021a3b7bfe','eleven-function source plan')
+    plan=case(root,'v4160-flash-entry-order-2026-10-22')/'image-plan';need(sha(plan/'seal.json')=='81912879ab740bff2055d518eac48f2191fad242ed782fc84cc7e3d0ea62169d','eleven-function source plan')
     for r in read(plan/'seal.json')['members']:need(sha(plan/r['path'])==r['sha256'],'frozen plan member')
-    report=read(plan/'report.json');vp=case(root,'v4160-irq-image-integration-2026-10-21')/'integration/verify_image.py';need(sha(vp)=='1929598ffc723937e8cd6bcafbe507fb5ff23f6d9541f00043bdadcb44f3455a','immutable generic layout helper');V=load('prior_image_helpers',vp);ctx=V.context(root);E=ctx['ELF']
+    report=read(plan/'report.json');vp=case(root,'v4160-irq-image-integration-2026-10-21')/'integration/verify_image.py';need(sha(vp)=='b26410ae9a0d9dece3e5404fb311407dd7c3022a08a7d2fb8c8df7834496c854','immutable generic layout helper');V=load('prior_image_helpers',vp);ctx=V.context(root);E=ctx['ELF']
     source_case=case(root,'v4160-flash-entry-order-2026-10-22');fp=source_case/'implementation/receipts/native-c.json';fr=read(fp);component=a.flash_component.resolve();need(sha(component)=='aeccc19da9c5764a386333dd26898429c35bf0ff40efb08c8f8417b11820339d','sealed current Flash component')
     e=E(component);firmware=next(root/n for n in ['firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin','exports/TSL-firmware-options-22-BINs-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin'] if (root/n).is_file());original=firmware.read_bytes();need(sha(firmware)==m['original_image_sha256'],'exact reference')
     irq={r['name']:r for r in m['selected_sections']};rows=[];symbols={s['name']:s for s in e.symbols}

@@ -9,7 +9,7 @@ from pathlib import Path
 import sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
-ABI_SEAL='51da11cabcafde788376f1cf5aac6306a959332798de96a8492a689df44ff36b'
+ABI_SEAL='4ec2d4d6d851e7f4b27477ef336da273548889341c3476f4cc278fbcb31d248b'
 def need(v,m):
     if not v:raise ValueError(m)
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()

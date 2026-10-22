@@ -4,7 +4,7 @@ import argparse,hashlib,json,runpy,subprocess,sys,uuid
 from pathlib import Path
 sys.dont_write_bytecode=True
 MODEL='experiments/tsl9-v4160-tx-register-abi'
-OLDPIN='adeeaddea4c46d92dd4ce33a5beaa329779781a0611e97b965c1f023f5ef4eca'
+OLDPIN='253b5fb067d5f5c90e517e2df4593381ef807dfbdd6143de2526c97a84744525'
 CLANG='047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def need(v,m):

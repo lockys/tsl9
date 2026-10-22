@@ -8,7 +8,7 @@ from pathlib import Path
 import sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
-RAW_SEAL='d04462932608baac28bbd05704b63560f433bdd25c2e52c672a7e6e6b70a5b4b'
+RAW_SEAL='ab7aa9a99bb5f7d62730cf6f289f244a803f3d5cd446a1da213dfba0b1cf330e'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
 def need(v,m):

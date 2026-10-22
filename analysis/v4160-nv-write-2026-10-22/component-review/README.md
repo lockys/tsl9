@@ -53,6 +53,6 @@ Windows 可直接以現有 Python 執行 check.py。預設模式只核對封存 
 
 ## 保留的界線
 
-本次只證明真實定義、實際 relocation 解析與完整靜態元件保存。原始來源契約 `source-review` seal 為 `c29430e22451a71a2acbcf0afea199f4b6053d09309597eb4082a52fbafa677a`，沒有修改。
+本次只證明真實定義、實際 relocation 解析與完整靜態元件保存。原始來源契約 `source-review` seal 為 `2d9c5278019c0a2e452f42cc2cadf8af60b486c95244cd1b855567b5fc060005`，沒有修改。
 
 完整原始 ABI 與正常 caller replacement 仍未證明：新的 write 使用 16-byte frame，原始 wrapper 使用 32-byte frame 並新讀保存的 source；新的 timer 也使用不同 scratch／出口 GPR。元件成功連結無法解決這些差異，也不證明 fault、IRQ、非同步、alias、installed provider、Flash ownership、輪詢終止、OTA 或實體寫入成功。沒有產生可燒錄 BIN。

@@ -53,6 +53,6 @@ The first component-v1 producer reader incorrectly required one program header w
 
 ## Limits retained
 
-This proves genuine definitions, actual relocation resolution and complete static component preservation. The original `source-review` seal is `c29430e22451a71a2acbcf0afea199f4b6053d09309597eb4082a52fbafa677a` and is unchanged.
+This proves genuine definitions, actual relocation resolution and complete static component preservation. The original `source-review` seal is `2d9c5278019c0a2e452f42cc2cadf8af60b486c95244cd1b855567b5fc060005` and is unchanged.
 
 Full original ABI and normal caller replacement remain unproved: new write has a 16-byte frame; the original has a 32-byte frame and freshly reloads the saved source. New timer also has different scratch/output GPRs. Successful component linking cannot resolve these differences or establish fault, IRQ, asynchronous or alias equivalence, installed providers, Flash ownership, poll termination, OTA or physical write success. No flashable BIN was generated.

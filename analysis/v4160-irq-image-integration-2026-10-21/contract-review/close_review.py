@@ -11,7 +11,7 @@ def module(name,path):
 def canon(x):return json.dumps(x,sort_keys=True,separators=(',',':'))
 def run():
     A=module('independent_contract',H/'review.py');P=module('independent_provenance',H/'provenance.py')
-    evidence=[('final-c.json','b717c1ee713b58a9bbafa65448e634a29b62956bb6ae006aa29ed1abafdce7de'),('final-cpp.json','3cb6fcff3ef37dba94d056730196cad39018420985c32a8bef71d1fafb9a8793')]
+    evidence=[('final-c.json','e1cdcfe3403d6aa26f93037f23849fb4996e8b6f7204c1e3c94a649a4939ea87'),('final-cpp.json','64d30445d23291eea88bf30480a7e5af3659dcdd940f2bab5af246e8e2cf34af')]
     p,b,bl,selected,alloc=A.baseline();rows=[]
     for filename,pin in evidence:
         path=H/filename;need(sha(path)==pin,'selected final independent receipt pin');v=read(path)
@@ -21,7 +21,7 @@ def run():
         need(canon(mg)==canon(v['merged']) and canon(lg)==canon(v['linked']) and canon(neg)==canon(v['actual_raw_negative_controls']),'fresh independent exact artifact/control replay')
         rows.append(dict(mode=v['label'],receipt=filename,sha256=pin,allocations=691,retained_sections=686,RELA=8276,outside_RELA=8270,raw_controls_rejected=17,image_sha256=inp[2]['sha256']))
     need(rows[0]['image_sha256']==rows[1]['image_sha256']=='47f200dce24be25ac89d57922689da536259935e8615ba8195b10ca192895e1c','actual C/CPP source images identical')
-    provenance=P.run();need(provenance==read(H/'source-provenance.json') and sha(H/'source-provenance.json')=='9d0d4c2180c4982a5b9eab752ff0d73935a6d1a9ef922cc00bd228771e439a32','fresh independent actual source/command/dependency closure')
+    provenance=P.run();need(provenance==read(H/'source-provenance.json') and sha(H/'source-provenance.json')=='7261f46375a8b4db30a7ae5824698fb79cf0b80b9f328763a7a138696769ed26','fresh independent actual source/command/dependency closure')
     wrapper=R/'experiments/tsl9-v4160-irq-image-integration/verify.py';need(sha(wrapper)=='2231fc18a8356d6d545f074d6bb4336e4fcac05c601324dfef5d75ad241f36c0','portable wrapper frozen')
     need((H/'README.md').read_bytes()==(H/'readme.zh-TW.md').read_bytes(),'README contains full Traditional Chinese copy')
     if (H/'seal.json').exists():

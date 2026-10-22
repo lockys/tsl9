@@ -4,7 +4,7 @@ import argparse,hashlib,json,runpy,sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
 MEMBERS=['review.py','replay.py','context-check.py','context-check.json','tool-pins.json','review-c.json','review-cpp.json','README.md','readme.zh-TW.md','readme.en.md']
-FORMAL={'c':'d3053edec5a507acbcf9d7408a435ba206ea43371c60f9b99260e5cbb2f0b069','cpp':'1439440dfad59aedd4b8c4834b86133cbcc39381ebdc9cfd387fa34e98f35318'}
+FORMAL={'c':'54cd32ffa16da57f3209c966020fd62a8ab1179c92d4a53d235c8d8c7c8e3c04','cpp':'0b590cff5d8204573c4e5a0f16a09c68034301fdfd88056e7be8acdabc0a619f'}
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
         assert (json.dumps(result,indent=2)+'\n').encode('utf-8')==path.read_bytes()
         receipt=folder/'verification.json';raw=receipt.read_bytes();assert hashlib.sha256(raw).hexdigest()==FORMAL[mode]
         producer=json.loads(raw);assert producer['passed'] and producer['checks']['independent_normal_contract']==saved
-        assert producer['runner_sha256']=='dc0c966f057a0562f0d51a0289b9b24ce242d47bee0cd397d72fc12bc0a42013'
+        assert producer['runner_sha256']=='1c0878d97e75bf7609e5fe9a458a57cf8fba134cd4ce4ed29af4e144f23d50d6'
         assert all(producer['source_sha256'][n]==h for n,h in saved['source_pins'].items())
         formal.append(dict(mode=mode,path=saved['build_root']+'/verification.json',sha256=FORMAL[mode],actual_independent_result_equals_formal_embedded_result=True))
         reports.append(dict(mode=mode,functions=len(result['functions']),all_fit=result['all_six_fit'],full_image=False))

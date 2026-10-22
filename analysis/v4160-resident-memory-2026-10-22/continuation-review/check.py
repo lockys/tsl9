@@ -10,7 +10,7 @@ import sys
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 TD_SHA = 'd18a5c4d0722e20d3d0398f180931118a5125c9ada56a64d32c602ad5bd71490'
-CALLBACK_PIN = 'd460886bab54b1a9d4ac288de09b38b2b1874aa806b07e5c049eaa6abe2bc401'
+CALLBACK_PIN = '82ccc4a6dbd43fd467993291629fa62c6de3e8662b844f8fa43a90d821d47a0d'
 FW_SHA = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 
 

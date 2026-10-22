@@ -10,7 +10,7 @@ def main():
     records=[]
     for mode in ('c','cpp'):
         source=ROOT/'experiments/tsl9-v4160-flash-image-integration/build/formal-final'/mode
-        receipt=source/'verification.json';r=json.loads(receipt.read_bytes());expected={'c':'655bb92d1e3f57ea0db68c95efcc8d64d772fc3760d57425c189d897a2ea81fc','cpp':'0c2328f747b27348554b727d2fe18ddb88c57275d29300a11291b59272320a52'}
+        receipt=source/'verification.json';r=json.loads(receipt.read_bytes());expected={'c':'c92decef824aa6ec561ce17205ecd722c37a70b710c8289b0e436eca7185e59b','cpp':'afc2097b10855038e6fb861b9fbcbaf79dbd804924b784cf96f9afd8a5ba5ebb'}
         if SHA(receipt)!=expected[mode]:raise ValueError('immutable actual baseline producer receipt')
         source_pins={str(ROOT/path):digest for path,digest in r['source_files'].items()}
         if any(SHA(Path(path))!=digest for path,digest in source_pins.items()):raise ValueError('actual baseline source before diagnostic')

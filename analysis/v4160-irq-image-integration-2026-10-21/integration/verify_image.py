@@ -8,7 +8,7 @@ from pathlib import Path
 H=Path(__file__).resolve().parent
 MODEL='experiments/tsl9-v4160-irq-image-integration'
 MANIFEST_SHA='d952159ab2bf7c5294bc433510b88a7c19b23295ba11b0e7ab3d4a1ed39b1ce7'
-CF_SEAL='fa0cde7529b379936069bb92befbb35b30e449b4119ca30ffcf97328d52a14f6'
+CF_SEAL='adf95bbe0f92f012e790b8226abc80c7ec6f6ec483bcdd31e91e34526afbc83b'
 ROM='__tsl9v4160_rom_entry'
 def need(v,m):
     if not v:raise ValueError(m)

@@ -10,7 +10,7 @@ import sys
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 PRIOR = 'v4160-ota-source-wiring-2026-10-22/allocator-review/check.py'
-PIN = 'bae75ad424079a6d2c2efe8cd725728b33678d2bef534183088103117bec2aa3'
+PIN = 'c65cb2622eeade943b85aed00ca23a16552b64e229a0fbd839599f537de6fe6a'
 
 
 def sha(p):
@@ -59,7 +59,7 @@ def config_derivation(root, firmware=None):
     old = next(p for p in (root / 'analysis' / scope, root / 'apk-analysis' / ('tsl9-' + scope)) if p.is_dir())
     ledger = json.loads((old / 'source-ledger.json').read_bytes())
     mac = HERE.parent / 'mac-review'
-    need(sha(mac / 'seal.json') == 'ee0b85f72d60633aff4b3e74df73666666ca9b1a5574ba157a532312ddd8f0e0', 'Exact helper proof seal')
+    need(sha(mac / 'seal.json') == '3e653f961ed1309babad68506af791768e6ea615a201e52b4570fb6f65be8a76', 'Exact helper proof seal')
     for name, pin in json.loads((mac / 'seal.json').read_bytes())['members'].items():
         need(sha(mac / name) == pin, 'Closed MAC footprint member')
     module = runpy.run_path(str(mac / 'check.py'))

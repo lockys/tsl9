@@ -8,7 +8,7 @@ MEMBERS=['probe_native.py','verify_native.py','compare_inline.py','check.py','ch
 MODEL_MEMBERS=['.gitignore','verify.py','verify.sh','verify_host.py','README.md','readme.zh-TW.md','readme.en.md','src/callback.c','src/callback.h','src/io.h','src/host_io.c','tests/smoke.c']
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--project-root',type=Path,required=True);a=p.parse_args();root=a.project_root.resolve();model=root/MODEL;scope=HERE.parent;reviews=[('source-review','c9edde476232c0c0e018c08e54d2d9d9a9afa20839d5e19a53f5ffa752e0e1c5'),('ABI-review','8f0956900f50a5b560ecd879eb5f1374884d8c20084503f96004f8df4cad60b7')]
+    p=argparse.ArgumentParser();p.add_argument('--project-root',type=Path,required=True);a=p.parse_args();root=a.project_root.resolve();model=root/MODEL;scope=HERE.parent;reviews=[('source-review','f42e262c6b6c7a80fa3da77ce6af0b0df7ad70f6a8c9ff664b5eefa940554972'),('ABI-review','cef4218a713f64be91c8a9d84906e77dbf0698f0b2a7a81a1f0395f4bb804e98')]
     for name,pin in reviews:assert sha(scope/name/'seal.json')==pin
     for base,names in[(HERE,MEMBERS),(model,MODEL_MEMBERS)]:
         for n in names:data=(base/n).read_bytes();data.decode('utf-8');assert b'\r' not in data and data.endswith(b'\n') and not data.endswith(b'\n\n'),n

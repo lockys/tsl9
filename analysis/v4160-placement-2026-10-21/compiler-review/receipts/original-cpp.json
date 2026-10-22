@@ -76,14 +76,14 @@
   "runner_sha256": "420378340d5c1c1f53b2098310610b1f926be8e33358974c6a9c11b3d9d07f8b",
   "IR_checker_sha256": "b9432308dbe4bb37e1a9c213b36302f782782213ac059c8f596bb68670edf3ba",
   "clang": {
-    "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+    "path": "${LLVM_BIN}\\clang.exe",
     "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
   },
   "commands": [
     {
       "label": "compile",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr",
         "-mabi=ilp32",
@@ -131,9 +131,9 @@
         "c++",
         "-std=c++17",
         "-c",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-review\\build\\blocked-9271b6d5152243dd9f0c2cfa5aa28f61-cpp\\interrupt_registers.o"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-review\\build\\blocked-9271b6d5152243dd9f0c2cfa5aa28f61-cpp\\interrupt_registers.o"
       ],
       "exit": 1,
       "log_sha256": "5123adfb39dc2962806d4f6e47f130851cd04fb9868548a06833813c3a56144a"
@@ -141,7 +141,7 @@
     {
       "label": "llvm-ir",
       "argv": [
-        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "${LLVM_BIN}\\clang.exe",
         "--target=riscv32-unknown-elf",
         "-march=rv32imac_zicsr",
         "-mabi=ilp32",
@@ -190,9 +190,9 @@
         "-std=c++17",
         "-S",
         "-emit-llvm",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.c",
+        "${ANALYSIS_WORKSPACE}\\experiments\\tsl9-v4160-interrupt-registers\\src\\interrupt_registers.c",
         "-o",
-        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-review\\build\\blocked-9271b6d5152243dd9f0c2cfa5aa28f61-cpp\\interrupt_registers.ll"
+        "${ANALYSIS_WORKSPACE}\\apk-analysis\\tsl9-v4160-placement-2026-10-21\\compiler-review\\build\\blocked-9271b6d5152243dd9f0c2cfa5aa28f61-cpp\\interrupt_registers.ll"
       ],
       "exit": 0,
       "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"

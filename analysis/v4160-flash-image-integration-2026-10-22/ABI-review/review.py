@@ -6,8 +6,8 @@ sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
 SHA=lambda b:hashlib.sha256(b).hexdigest()
 MANIFEST='d952159ab2bf7c5294bc433510b88a7c19b23295ba11b0e7ab3d4a1ed39b1ce7'
-PLAN_SEAL='5cacfc4682a0e493ca6826f86b855a46a386155db3da1cf56c283f021a3b7bfe'
-BASELINE_SHA='97668dca419101a3bc829cf5703c103247940cf5233ed79773c3fcfdec45eb3c'
+PLAN_SEAL='81912879ab740bff2055d518eac48f2191fad242ed782fc84cc7e3d0ea62169d'
+BASELINE_SHA='c3cf60fb54b9b4bc234e1c7408c15ec40679161201b95d61e3d89a06562a4e95'
 DISCHARGED={'.Ldirect_closure_00018ee0','.Ldirect_closure_00018f02','.Ldirect_closure_00018f0c','.Ldirect_closure_00018f1a','.Ldirect_closure_00018f2a','.Ldirect_closure_00018f44'}
 FLASH={0x9c0a:('quarter',64),0x18e90:('status',8),0x18e98:('unlock',30),0x18eb6:('lock',14),0x18ec4:('erase',46),0x18ef2:('program',100)}
 
@@ -63,10 +63,10 @@ def historical_context(root,prior,flash_component,parser=None,firmware=None):
     ELF=runpy.run_path(str(parser))['ELF'];base=ELF(prior/'source-integrated.o');oldlinked=ELF(prior/'ADDRESS-WITNESS-ONLY.elf')
     need(SHA(base.raw)==plan['prior_object_sha256'] and len(base.relocations)==8276,'actual prior IRQ-integrated carrier, not original8280')
     p100=case(root,'v4160-flash-entry-order-2026-10-22')/'ABI-review/program.py';need(SHA(p100.read_bytes())=='8896ae7d7ce7b59c2760099d493594cae43e49e177319cd6b78bf56b430eb73a','independent program100 checker')
-    program=runpy.run_path(str(p100));fd=case(root,'v4160-flash-native-2026-10-22')/'compiler-review/review.py';need(SHA(fd.read_bytes())=='0dd857b44c9163d45668f224e5b772f3adfa08e832e58e1c5491b7fa5f1c0554','unchanged five Flash gates')
+    program=runpy.run_path(str(p100));fd=case(root,'v4160-flash-native-2026-10-22')/'compiler-review/review.py';need(SHA(fd.read_bytes())=='8b04718cadb328b6a84b5f0791df666f968340db75134807e9f299b6f43b1448','unchanged five Flash gates')
     f=runpy.run_path(str(fd));decode,_=f['pinned_helpers'](root,parser)
     component=ELF(flash_component);need(SHA(component.raw)=='aeccc19da9c5764a386333dd26898429c35bf0ff40efb08c8f8417b11820339d','actual sealed final six Flash component')
-    irq=case(root,'v4160-irq-callframe-2026-10-21')/'compiler-review';checked_seal(irq,'final-audit.json','fa0cde7529b379936069bb92befbb35b30e449b4119ca30ffcf97328d52a14f6')
+    irq=case(root,'v4160-irq-callframe-2026-10-21')/'compiler-review';checked_seal(irq,'final-audit.json','adf95bbe0f92f012e790b8226abc80c7ec6f6ec483bcdd31e91e34526afbc83b')
     oldIRQ=json.loads((irq/'receipts/c.json').read_bytes())['checks']['machine'];irq_functions=oldIRQ['functions']
     src=case(root,'v4160-interrupt-init-2026-10-21')/'source/inspect-source.py';need(SHA(src.read_bytes())=='352e9460efd082b6e6a9fe726c7141bc1efcb328d2988734f5b1b3d5c347c1ed','IRQ raw operand decoder')
     idecode=runpy.run_path(str(src))['decode']
@@ -224,7 +224,7 @@ def context(root,prior=None,flash_component=None,parser=None,firmware=None):
     plan_dir=case(root,'v4160-flash-entry-order-2026-10-22')/'image-plan';checked_seal(plan_dir,'seal.json',PLAN_SEAL);plan=json.loads((plan_dir/'report.json').read_bytes())
     manifest=root/'experiments/tsl9-v4160-irq-image-integration/source-manifest.json';need(SHA(manifest.read_bytes())==MANIFEST,'original691 manifest pin');m=json.loads(manifest.read_bytes())
     parser=parser or case(root,'v4160-irq-native-2026-10-21')/'compiler-review/elf32.py';need(SHA(parser.read_bytes())=='00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141','bounded ELF parser pin');ELF=runpy.run_path(str(parser))['ELF']
-    fd=case(root,'v4160-flash-native-2026-10-22')/'compiler-review/review.py';need(SHA(fd.read_bytes())=='0dd857b44c9163d45668f224e5b772f3adfa08e832e58e1c5491b7fa5f1c0554','unchanged five Flash gate pin');f=runpy.run_path(str(fd));decode,_=f['pinned_helpers'](root,parser)
+    fd=case(root,'v4160-flash-native-2026-10-22')/'compiler-review/review.py';need(SHA(fd.read_bytes())=='8b04718cadb328b6a84b5f0791df666f968340db75134807e9f299b6f43b1448','unchanged five Flash gate pin');f=runpy.run_path(str(fd));decode,_=f['pinned_helpers'](root,parser)
     p100=case(root,'v4160-flash-entry-order-2026-10-22')/'ABI-review/program.py';need(SHA(p100.read_bytes())=='8896ae7d7ce7b59c2760099d493594cae43e49e177319cd6b78bf56b430eb73a','program100 checker pin');program=runpy.run_path(str(p100))
     src=case(root,'v4160-interrupt-init-2026-10-21')/'source/inspect-source.py';need(SHA(src.read_bytes())=='352e9460efd082b6e6a9fe726c7141bc1efcb328d2988734f5b1b3d5c347c1ed','IRQ raw operand decoder pin');idecode=runpy.run_path(str(src))['decode']
     firmware=firmware or root/'exports/TSL-firmware-options-22-BINs-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin';original=firmware.read_bytes();need(SHA(original)=='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667','original firmware identity')

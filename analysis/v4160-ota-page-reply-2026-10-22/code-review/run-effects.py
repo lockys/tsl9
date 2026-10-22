@@ -12,7 +12,7 @@ sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
 MODEL='experiments/tsl9-v4160-ota-page-reply'
 GUARD='experiments/tsl9-v4160-flash-register-prefix/verify_host.py'
-GUARD_PIN='f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+GUARD_PIN='76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 CORE={'host_io.c':'fb4073a071639cbefae21d2e983e57e55882c30cc4b7a583eb2ade4bca71e444',
       'host_io.h':'e35b951040704fab033c4b834d613fc7e21475fe67a510f48406fb1bef8709a2',
       'page_reply.c':'0b2ea78e7a55dcee6e5adc3857e1b272b9faa578f1c8776b930fd4812abef9f0',

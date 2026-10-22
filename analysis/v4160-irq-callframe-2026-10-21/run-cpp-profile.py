@@ -10,7 +10,7 @@ import uuid
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
-SEAL_SHA='25d9bffbff7e3d68bbe712936936c66d632162f394e3c551c0c2fde25a2d9370'
+SEAL_SHA='7933cfc1286357844d296d846c20919589a518c3b32e3304ce894cef5195fdb2'
 
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()

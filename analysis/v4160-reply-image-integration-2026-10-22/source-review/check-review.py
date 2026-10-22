@@ -8,8 +8,8 @@ from pathlib import Path
 import sys
 sys.dont_write_bytecode=True
 HERE=Path(__file__).resolve().parent
-MANIFEST='09bfe0613a88a395b048a397530f62e49b199e890c3d2fc04285ca44887915fe'
-PLAN='8ad4c5328ed0baa66eb88c00cdf2c9dd9563a9472e3ee068f11e120ea23b8342'
+MANIFEST='2bac53620548772e2e06197dd52b9e0ca6e50a7f88d27b6f39fd1fddf2ac3f78'
+PLAN='ddac5dcc40bd6395fa783e98f278b494eac3ac9988ecf5fecdeb92ed9cee3694'
 FW='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 def need(value,message):
     if not value:raise ValueError(message)

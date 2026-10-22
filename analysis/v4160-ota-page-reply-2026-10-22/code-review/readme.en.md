@@ -2,7 +2,7 @@
 
 [繁體中文](readme.zh-TW.md)
 
-The frozen readable function is `experiments/tsl9-v4160-ota-page-reply/src/page_reply.c`, with its named synthetic HOST adapter. This bundle is separate from the immutable original124B/50-instruction source proof (`../source-review/seal.json`, SHA256 `66484b79f8ef5199e20c8c136797ca7f3ced8b19fc5d2f2f2fb79734a4028a3f`). It tests the C/C++ algorithm against a finite effect oracle derived from those raw-source contracts; it does not execute or interpret RV32 instructions.
+The frozen readable function is `experiments/tsl9-v4160-ota-page-reply/src/page_reply.c`, with its named synthetic HOST adapter. This bundle is separate from the immutable original124B/50-instruction source proof (`../source-review/seal.json`, SHA256 `2fe1ed8e78cbb6e054a0368c330b5d1d15f9c75bc0510769340371464b3d32f3`). It tests the C/C++ algorithm against a finite effect oracle derived from those raw-source contracts; it does not execute or interpret RV32 instructions.
 
 ## Actual independent results
 
@@ -12,13 +12,13 @@ C11 and C++17 each passed **3 groups, 90 cases, 6,699 assertions**, plus **10 se
 - Fourteen unavailable-state cases: unknown allocator result, S1 or SP; unknown data at nine distinct reads; and rejected returned-memory callbacks that mutate registers or their known mask.
 - Sixty-three stopped prefixes: UNKNOWN/HALT/TRANSFER at each of21 ordered effects, checking exact prefix length and absence of a fabricated suffix.
 
-Every positive/negative executable was inspected before and after launch by the immutable native-host guard `f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb`. This Windows run used actual PE machine0x8664 outputs. There were eleven guarded launches per language; no RV32 executable was launched. C11 used MSVC `/TC /std:c11`; C++17 used `/TP /std:c++17`, with `/W4 /WX`. The first independent fixture compile exposed a signed/unsigned assertion warning; its failed log is retained locally. The fixture assertion was corrected before the selected successful pair; no product source was changed.
+Every positive/negative executable was inspected before and after launch by the immutable native-host guard `76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189`. This Windows run used actual PE machine0x8664 outputs. There were eleven guarded launches per language; no RV32 executable was launched. C11 used MSVC `/TC /std:c11`; C++17 used `/TP /std:c++17`, with `/W4 /WX`. The first independent fixture compile exposed a signed/unsigned assertion warning; its failed log is retained locally. The fixture assertion was corrected before the selected successful pair; no product source was changed.
 
 The ten actual compiled controls change exactly one bounded source fragment each: narrowed source index, reversed header stores, cached copy slot base, wrong copy size, cached release slot base, stale free buffer, cached restore SP, normalized tail result, overwritten TX A1 and an unmasked odd release target. Each compiles successfully, runs only after host-machine inspection and fails an independent semantic assertion. Their count is separate from the producer's six controls and the raw proof's18 operand controls.
 
 Selected independent receipts reside under the local `code-review/build/independent-9307d2c1418f4fef9faf85eab1441c10/{c,cpp}` archive. Their SHA256 values are `4da39eda271a8975a55af77b1f8a8386c9fa722d62a455466194cf22a4c58107` and `d66e2e6a042e98e739908a96d6a39c59ea0ab346e5818f4f1dc95f3ec617fe0c`. Both were independently reparsed without executing again. `selected-receipts.json` retains concise source/tool/result identities, not generated binaries or full archive contents.
 
-The final producer HOST CLI is `d255aed146042a1f73e3ae79096a5948fdc3eafa50558e988062ccfacdd3c8e2`. Its separate C/C++ canonical pair each passed3/87/3634 plus six compiled negatives, and both actual archives were read-only replayed here. Those results are attributed to the producer; they do not replace this independent90-case oracle.
+The final producer HOST CLI is `92e3d7bf90b7255a8efee6a90c4126df802c15225586e006170aa006d779e332`. Its separate C/C++ canonical pair each passed3/87/3634 plus six compiled negatives, and both actual archives were read-only replayed here. Those results are attributed to the producer; they do not replace this independent90-case oracle.
 
 ## What the result means
 

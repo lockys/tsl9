@@ -12,7 +12,7 @@ sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
 MODEL = 'experiments/tsl9-v4160-ota-tx'
 GUARD = 'experiments/tsl9-v4160-flash-register-prefix/verify_host.py'
-GUARD_PIN = 'f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb'
+GUARD_PIN = '76c6d512164da18cd0fc4641940301f2df2362251c584de0e6b049c21d0ad189'
 CORE = {'host_io.c': 'f795021fc5116ba18a16000eeebf6a2a235b3a2c9de4d0104f2396d7872d81aa',
         'host_io.h': '1755ca187eb54fb95bb5b1523c8955c8f99883048115e5c8481972d706c8c4c6',
         'tx_native.c': 'd246669c3758acc93808339b40a84c9ac74d4fd163bc8748ac4d0e99cf1ba0dd',

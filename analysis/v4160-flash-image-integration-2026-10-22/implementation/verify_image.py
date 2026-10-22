@@ -2,7 +2,7 @@
 import argparse,collections,hashlib,importlib.util,json,os,re,shlex,struct,uuid
 from pathlib import Path
 H=Path(__file__).resolve().parent;MODEL='experiments/tsl9-v4160-flash-image-integration';ROM='__tsl9v4160_rom_entry';IMAGE='NOT-FLASH-VALIDATED-irq-and-flash.bin'
-MANIFEST_SHA='afe5eba6e7b6af15c9556fa9c9a366e5c4713dcbf343b16d2d8077eb6c1b4b1c'
+MANIFEST_SHA='8463f01466e180f4a70127413939469d5124a85cdeab5d0f0e90d438c765c3d9'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def need(v,m):
     if not v:raise ValueError(m)
@@ -13,8 +13,8 @@ def module(n,p):
 def case(root,slug):return next(p for p in (root/'analysis'/slug,root/'apk-analysis'/('tsl9-'+slug)) if p.is_dir())
 def context(root):
     root=Path(root).resolve();model=root/MODEL;need(sha(model/'source-manifest.json')==MANIFEST_SHA,'portable eleven-function source ledger');m=read(model/'source-manifest.json');need(sha(model/'original-image-layout.ld')==m['layout_sha256'],'original691 layout')
-    old=case(root,'v4160-irq-image-integration-2026-10-21')/'integration/verify_image.py';need(sha(old)=='1929598ffc723937e8cd6bcafbe507fb5ff23f6d9541f00043bdadcb44f3455a','immutable generic storage helpers');V=module('eleven_original_layout_helpers',old);ctx=V.context(root)
-    flash_path=case(root,'v4160-flash-entry-order-2026-10-22')/'implementation/verify_native.py';need(sha(flash_path)=='0f96c209bb486581056ea3b68fbe4581dfeb4ff48fc03cba9a07e2e80dd7fa89','frozen100B native compiler/checker');F=module('eleven_flash_native_helpers',flash_path);f=F.context(root)
+    old=case(root,'v4160-irq-image-integration-2026-10-21')/'integration/verify_image.py';need(sha(old)=='b26410ae9a0d9dece3e5404fb311407dd7c3022a08a7d2fb8c8df7834496c854','immutable generic storage helpers');V=module('eleven_original_layout_helpers',old);ctx=V.context(root)
+    flash_path=case(root,'v4160-flash-entry-order-2026-10-22')/'implementation/verify_native.py';need(sha(flash_path)=='5a744ab0f227d2a99fd48a8f05fd172b61e0a06a605cf9607f97d03f8b3a203f','frozen100B native compiler/checker');F=module('eleven_flash_native_helpers',flash_path);f=F.context(root)
     for n,pin in m['source_files'].items():need(sha(root/n)==pin,'pinned source/header '+n)
     plan=case(root,'v4160-flash-entry-order-2026-10-22')/'image-plan';need(sha(plan/'seal.json')==m['entry_order_plan_seal_sha256'],'sealed eleven-owner plan')
     for r in read(plan/'seal.json')['members']:need(sha(plan/r['path'])==r['sha256'],'plan member')

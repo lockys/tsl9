@@ -5,9 +5,9 @@ No native target is executed. This never exports or patches a firmware image.
 import argparse,hashlib,importlib.util,json,os,re,shlex,shutil,struct,subprocess,uuid
 from pathlib import Path
 H=Path(__file__).resolve().parent;MODEL='experiments/tsl9-v4160-flash-native'
-SOURCE_SEAL='dff9a51e3b59bbdddd150dde37614753bb3c3b440d7bde2f9402c8b6e9a2bce4'
+SOURCE_SEAL='67f43fd3bf0f8e94d316952ab931109e5069f06c6078152bf3c6995dad9b423d'
 PARSER_SHA='00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141'
-REVIEW_SHA='0dd857b44c9163d45668f224e5b772f3adfa08e832e58e1c5491b7fa5f1c0554'
+REVIEW_SHA='8b04718cadb328b6a84b5f0791df666f968340db75134807e9f299b6f43b1448'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
 def write(p,d):p.write_bytes((json.dumps(d,indent=2)+'\n').encode())
