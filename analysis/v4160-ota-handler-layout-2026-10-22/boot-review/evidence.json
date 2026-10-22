@@ -1,0 +1,223 @@
+{
+  "schema": "ID2580-BOOT-selected-page-guard-operands-v1",
+  "BOOT_sha256": "650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb",
+  "BOOT_body_sha256": "44702abb50c4489f378bb1036d8cf949817301e2e07d8af8434f7d6e119438d5",
+  "body_range": [
+    8638,
+    9052
+  ],
+  "body_bytes": 414,
+  "body_instructions": 144,
+  "guard_operand_columns": [
+    "PC",
+    "op",
+    "rd",
+    "rs1",
+    "rs2",
+    "immediate",
+    "target",
+    "memory_width"
+  ],
+  "guard_operand_rows": [
+    [
+      8720,
+      "lbu",
+      15,
+      12,
+      null,
+      1,
+      null,
+      8
+    ],
+    [
+      8724,
+      "lbu",
+      8,
+      12,
+      null,
+      0,
+      null,
+      8
+    ],
+    [
+      8728,
+      "lui",
+      14,
+      null,
+      null,
+      4160716800,
+      null,
+      null
+    ],
+    [
+      8732,
+      "slli",
+      15,
+      15,
+      null,
+      8,
+      null,
+      null
+    ],
+    [
+      8734,
+      "or",
+      15,
+      15,
+      8,
+      null,
+      null,
+      null
+    ],
+    [
+      8736,
+      "slli",
+      8,
+      15,
+      null,
+      8,
+      null,
+      null
+    ],
+    [
+      8740,
+      "srli",
+      15,
+      15,
+      null,
+      8,
+      null,
+      null
+    ],
+    [
+      8742,
+      "or",
+      8,
+      8,
+      15,
+      null,
+      null,
+      null
+    ],
+    [
+      8744,
+      "slli",
+      8,
+      8,
+      null,
+      16,
+      null,
+      null
+    ],
+    [
+      8746,
+      "lui",
+      15,
+      null,
+      null,
+      131072,
+      null,
+      null
+    ],
+    [
+      8750,
+      "addi",
+      15,
+      15,
+      null,
+      32,
+      null,
+      null
+    ],
+    [
+      8754,
+      "srli",
+      8,
+      8,
+      null,
+      16,
+      null,
+      null
+    ],
+    [
+      8756,
+      "add",
+      8,
+      8,
+      15,
+      null,
+      null,
+      null
+    ],
+    [
+      8758,
+      "slli",
+      8,
+      8,
+      null,
+      10,
+      null,
+      null
+    ],
+    [
+      8760,
+      "lui",
+      15,
+      null,
+      null,
+      98304,
+      null,
+      null
+    ],
+    [
+      8762,
+      "add",
+      14,
+      14,
+      8,
+      null,
+      null,
+      null
+    ],
+    [
+      8764,
+      "addi",
+      15,
+      15,
+      null,
+      -256,
+      null,
+      null
+    ],
+    [
+      8768,
+      "bltu",
+      null,
+      15,
+      14,
+      null,
+      8674,
+      null
+    ]
+  ],
+  "conclusions": {
+    "page_formula": "BE16 from byte[payload] high and byte[payload+1] low; low sampled first",
+    "destination_formula": "((0x20020+page)<<10) mod2^32",
+    "reject_formula": "BLTU A5=0x17F00,A4=(destination+0xF7FF8000) mod2^32",
+    "accepted_initial_unsigned16_pages": [
+      0,
+      95
+    ],
+    "guard_is_not_storage_ownership": true,
+    "local_W_compare": "Flash32 first, liveRAM32 second, mismatch silent return; match empty W reply",
+    "local_E": "active only; no incoming length/payload/UID/image completion check in this selected E body; clear active then schedules then empty E reply",
+    "CRC_limit": "No whole-image CRC/signature/completion gate is established by this selected body. Upstream framing, delegated helper behavior, metadata/root policy and physical acceptance remain outside this bounded proof.",
+    "handoff4B": "20E2 LUI T1,0x8000;20E4 JR T1; only numeric jump shape, not actual scheduled execution or alias proof",
+    "installed_BOOT_identity_proved": false,
+    "physical_Flash_capacity_proved": false,
+    "free_storage_proved": false,
+    "NV_metadata_ownership_proved": false,
+    "whole_OTA_proved": false
+  },
+  "source_reuse": "Exact pinned old414B/144 retained bytes reused; old18controls and HOST/FP matrices not rerun. New five single-field guard/readback controls only."
+}

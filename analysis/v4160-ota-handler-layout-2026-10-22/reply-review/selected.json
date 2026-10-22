@@ -1,0 +1,894 @@
+{
+  "schema": "TSL9-reply-pointer-selected-readbacks-v1",
+  "actual_readbacks": {
+    "destination-c": {
+      "receipt_sha256": "db1c90fc4d52299826f1cc5271a01cb7dac46087cf1d4c3324885ca71441bc66",
+      "result": {
+        "schema": "TSL9-reply-pointer-consumer-review-v1",
+        "passed": true,
+        "metadata_only": false,
+        "actual_original_firmware_read": true,
+        "actual_native_artifacts_read": true,
+        "actual_image_ELF_read": true,
+        "actual_candidate_sources_read": true,
+        "retained_instruction_rows": 209,
+        "facts": {
+          "packet_wrapper_bytes": 28,
+          "allocation_wrapper_bytes": 90,
+          "small_bytes": 24,
+          "page_bytes": 124,
+          "original_pointer_escapes_to_allocator_A2": true,
+          "pointer_reloaded_from_live_SP12_into_copy_A1": true,
+          "length_reloaded_from_live_SP8": true,
+          "copy_target_fresh_live_S1_plus_4C": true,
+          "TX_uses_postcopy_live_S0_buffer": true,
+          "numeric_pointer_globally_unobserved_proved": false
+        },
+        "raw_operand_controls": [
+          {
+            "case": "packet length branch",
+            "PC": 81570,
+            "field": "rs1",
+            "bit": 7,
+            "original": 13,
+            "mutated": 12,
+            "rejected": true
+          },
+          {
+            "case": "saved source slot",
+            "PC": 80740,
+            "field": "immediate",
+            "bit": 7,
+            "original": 12,
+            "mutated": 76,
+            "rejected": true
+          },
+          {
+            "case": "fresh copy slot",
+            "PC": 80750,
+            "field": "immediate",
+            "bit": 5,
+            "original": 76,
+            "mutated": 12,
+            "rejected": true
+          },
+          {
+            "case": "source pointer argument",
+            "PC": 80752,
+            "field": "rd",
+            "bit": 7,
+            "original": 11,
+            "mutated": 10,
+            "rejected": true
+          },
+          {
+            "case": "payload byte feeds store",
+            "PC": 35670,
+            "field": "rd",
+            "bit": 7,
+            "original": 10,
+            "mutated": 11,
+            "rejected": true
+          }
+        ],
+        "installed_identity_proved": false,
+        "full_ABI_admitted": false,
+        "original_or_candidate_execution": false,
+        "HOST_or_compiler_run": false,
+        "ISA_emulation": false,
+        "network": false,
+        "hardware_OTA_proved": false,
+        "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+        "image_ELF_sha256": "6ab2e06720dc9f9ea4fa531836605fed6d3b8832a7dfa008d76bd9bd0a54f7b2",
+        "image_scope": "Four unchanged App consumers only; rebuilt TX bytes are not asserted identical to original",
+        "actual_native_folder": "C:\\Users\\locky\\Documents\\projects\\re-tsl9\\experiments\\tsl9-v4160-ota-handler-compact\\build\\delivery-8cb2701b8d1a499a9b12c06aec58bb1b\\native\\c",
+        "native_projection": {
+          "object_sha256": "d75a75e0df88a7033632ad9f46c7c24bbd48357ecce4b29b5eb6c99effd7463d",
+          "bytes": 568,
+          "frame": 48,
+          "response": {
+            "allocations": [
+              [
+                "%9",
+                "[2 x i8], align 1"
+              ]
+            ],
+            "response_pointer": "%9",
+            "users": [
+              "store volatile i8 %118, ptr %9, align 1, !tbaa !5",
+              "%122 = getelementptr inbounds i8, ptr %9, i32 1",
+              "store volatile i8 -1, ptr %9, align 1, !tbaa !5",
+              "%138 = ptrtoint ptr %9 to i32"
+            ],
+            "separate_volatile_two_byte_response": true,
+            "no_argument_struct_alloca": true,
+            "source_pointer_and_length2_preserved": true,
+            "physical_original_SP12_equal": false,
+            "unknown_resident_footprint_or_alias_proved": false
+          },
+          "frame_contents": {
+            "actual_save_prefix": [
+              {
+                "PC": 2,
+                "register": 1,
+                "slot": 44
+              },
+              {
+                "PC": 4,
+                "register": 8,
+                "slot": 40
+              },
+              {
+                "PC": 6,
+                "register": 9,
+                "slot": 36
+              },
+              {
+                "PC": 8,
+                "register": 18,
+                "slot": 32
+              },
+              {
+                "PC": 10,
+                "register": 19,
+                "slot": 28
+              },
+              {
+                "PC": 12,
+                "register": 20,
+                "slot": 24
+              },
+              {
+                "PC": 14,
+                "register": 21,
+                "slot": 20
+              },
+              {
+                "PC": 16,
+                "register": 22,
+                "slot": 16
+              },
+              {
+                "PC": 18,
+                "register": 23,
+                "slot": 12
+              },
+              {
+                "PC": 20,
+                "register": 24,
+                "slot": 8
+              }
+            ],
+            "actual_reply_byte_stores": [
+              {
+                "PC": 282,
+                "slot": 6,
+                "source_register": 12
+              },
+              {
+                "PC": 288,
+                "slot": 7,
+                "source_register": 12
+              },
+              {
+                "PC": 314,
+                "slot": 6,
+                "source_register": 10
+              }
+            ],
+            "actual_response_pointer_materializations": [
+              {
+                "PC": 320,
+                "register": 9,
+                "offset": 6
+              }
+            ],
+            "actual_reply_slots": [
+              6,
+              7
+            ],
+            "original_reply_slots": [
+              12,
+              13
+            ],
+            "original_saved_register_count": 7,
+            "original_frame_contents_equal": false,
+            "original_save_order_equal": false,
+            "original_SP12_overlaps_native_saved_S7": true,
+            "pointer_numeric_identity_or_unbounded_callee_access_proved_irrelevant": false,
+            "require_provider_contract_before_rebinding_reply_pointer": true
+          }
+        },
+        "candidate_sources": [
+          {
+            "candidate": "carrier",
+            "slot": 262220,
+            "raw_target": 536871730,
+            "source_flash_entry": 263650,
+            "source_flash_end": 263708,
+            "RAM_entry": 536871730,
+            "RAM_end": 536871788,
+            "body_sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36"
+          },
+          {
+            "candidate": "carrier-dec2023",
+            "slot": 262220,
+            "raw_target": 536871730,
+            "source_flash_entry": 263586,
+            "source_flash_end": 263644,
+            "RAM_entry": 536871730,
+            "RAM_end": 536871788,
+            "body_sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36"
+          }
+        ]
+      }
+    },
+    "destination-cpp": {
+      "receipt_sha256": "87dd5f2030d5bbc685a7a1f38632ce89b7669541b4950902d3152c3040d07a23",
+      "result": {
+        "schema": "TSL9-reply-pointer-consumer-review-v1",
+        "passed": true,
+        "metadata_only": false,
+        "actual_original_firmware_read": true,
+        "actual_native_artifacts_read": true,
+        "actual_image_ELF_read": true,
+        "actual_candidate_sources_read": true,
+        "retained_instruction_rows": 209,
+        "facts": {
+          "packet_wrapper_bytes": 28,
+          "allocation_wrapper_bytes": 90,
+          "small_bytes": 24,
+          "page_bytes": 124,
+          "original_pointer_escapes_to_allocator_A2": true,
+          "pointer_reloaded_from_live_SP12_into_copy_A1": true,
+          "length_reloaded_from_live_SP8": true,
+          "copy_target_fresh_live_S1_plus_4C": true,
+          "TX_uses_postcopy_live_S0_buffer": true,
+          "numeric_pointer_globally_unobserved_proved": false
+        },
+        "raw_operand_controls": [
+          {
+            "case": "packet length branch",
+            "PC": 81570,
+            "field": "rs1",
+            "bit": 7,
+            "original": 13,
+            "mutated": 12,
+            "rejected": true
+          },
+          {
+            "case": "saved source slot",
+            "PC": 80740,
+            "field": "immediate",
+            "bit": 7,
+            "original": 12,
+            "mutated": 76,
+            "rejected": true
+          },
+          {
+            "case": "fresh copy slot",
+            "PC": 80750,
+            "field": "immediate",
+            "bit": 5,
+            "original": 76,
+            "mutated": 12,
+            "rejected": true
+          },
+          {
+            "case": "source pointer argument",
+            "PC": 80752,
+            "field": "rd",
+            "bit": 7,
+            "original": 11,
+            "mutated": 10,
+            "rejected": true
+          },
+          {
+            "case": "payload byte feeds store",
+            "PC": 35670,
+            "field": "rd",
+            "bit": 7,
+            "original": 10,
+            "mutated": 11,
+            "rejected": true
+          }
+        ],
+        "installed_identity_proved": false,
+        "full_ABI_admitted": false,
+        "original_or_candidate_execution": false,
+        "HOST_or_compiler_run": false,
+        "ISA_emulation": false,
+        "network": false,
+        "hardware_OTA_proved": false,
+        "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+        "image_ELF_sha256": "6ab2e06720dc9f9ea4fa531836605fed6d3b8832a7dfa008d76bd9bd0a54f7b2",
+        "image_scope": "Four unchanged App consumers only; rebuilt TX bytes are not asserted identical to original",
+        "actual_native_folder": "C:\\Users\\locky\\Documents\\projects\\re-tsl9\\experiments\\tsl9-v4160-ota-handler-compact\\build\\delivery-8cb2701b8d1a499a9b12c06aec58bb1b\\native\\cpp",
+        "native_projection": {
+          "object_sha256": "d75a75e0df88a7033632ad9f46c7c24bbd48357ecce4b29b5eb6c99effd7463d",
+          "bytes": 568,
+          "frame": 48,
+          "response": {
+            "allocations": [
+              [
+                "%9",
+                "[2 x i8], align 1"
+              ]
+            ],
+            "response_pointer": "%9",
+            "users": [
+              "store volatile i8 %118, ptr %9, align 1, !tbaa !5",
+              "%122 = getelementptr inbounds i8, ptr %9, i32 1",
+              "store volatile i8 -1, ptr %9, align 1, !tbaa !5",
+              "%138 = ptrtoint ptr %9 to i32"
+            ],
+            "separate_volatile_two_byte_response": true,
+            "no_argument_struct_alloca": true,
+            "source_pointer_and_length2_preserved": true,
+            "physical_original_SP12_equal": false,
+            "unknown_resident_footprint_or_alias_proved": false
+          },
+          "frame_contents": {
+            "actual_save_prefix": [
+              {
+                "PC": 2,
+                "register": 1,
+                "slot": 44
+              },
+              {
+                "PC": 4,
+                "register": 8,
+                "slot": 40
+              },
+              {
+                "PC": 6,
+                "register": 9,
+                "slot": 36
+              },
+              {
+                "PC": 8,
+                "register": 18,
+                "slot": 32
+              },
+              {
+                "PC": 10,
+                "register": 19,
+                "slot": 28
+              },
+              {
+                "PC": 12,
+                "register": 20,
+                "slot": 24
+              },
+              {
+                "PC": 14,
+                "register": 21,
+                "slot": 20
+              },
+              {
+                "PC": 16,
+                "register": 22,
+                "slot": 16
+              },
+              {
+                "PC": 18,
+                "register": 23,
+                "slot": 12
+              },
+              {
+                "PC": 20,
+                "register": 24,
+                "slot": 8
+              }
+            ],
+            "actual_reply_byte_stores": [
+              {
+                "PC": 282,
+                "slot": 6,
+                "source_register": 12
+              },
+              {
+                "PC": 288,
+                "slot": 7,
+                "source_register": 12
+              },
+              {
+                "PC": 314,
+                "slot": 6,
+                "source_register": 10
+              }
+            ],
+            "actual_response_pointer_materializations": [
+              {
+                "PC": 320,
+                "register": 9,
+                "offset": 6
+              }
+            ],
+            "actual_reply_slots": [
+              6,
+              7
+            ],
+            "original_reply_slots": [
+              12,
+              13
+            ],
+            "original_saved_register_count": 7,
+            "original_frame_contents_equal": false,
+            "original_save_order_equal": false,
+            "original_SP12_overlaps_native_saved_S7": true,
+            "pointer_numeric_identity_or_unbounded_callee_access_proved_irrelevant": false,
+            "require_provider_contract_before_rebinding_reply_pointer": true
+          }
+        },
+        "candidate_sources": [
+          {
+            "candidate": "carrier",
+            "slot": 262220,
+            "raw_target": 536871730,
+            "source_flash_entry": 263650,
+            "source_flash_end": 263708,
+            "RAM_entry": 536871730,
+            "RAM_end": 536871788,
+            "body_sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36"
+          },
+          {
+            "candidate": "carrier-dec2023",
+            "slot": 262220,
+            "raw_target": 536871730,
+            "source_flash_entry": 263586,
+            "source_flash_end": 263644,
+            "RAM_entry": 536871730,
+            "RAM_end": 536871788,
+            "body_sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36"
+          }
+        ]
+      }
+    },
+    "publication-c": {
+      "receipt_sha256": "a9a199622af3c1d80d52a5dad1a46dfbf11d43fbeb0fd12e26e739c960b20059",
+      "result": {
+        "schema": "TSL9-reply-pointer-consumer-review-v1",
+        "passed": true,
+        "metadata_only": false,
+        "actual_original_firmware_read": true,
+        "actual_native_artifacts_read": true,
+        "actual_image_ELF_read": true,
+        "actual_candidate_sources_read": true,
+        "retained_instruction_rows": 209,
+        "facts": {
+          "packet_wrapper_bytes": 28,
+          "allocation_wrapper_bytes": 90,
+          "small_bytes": 24,
+          "page_bytes": 124,
+          "original_pointer_escapes_to_allocator_A2": true,
+          "pointer_reloaded_from_live_SP12_into_copy_A1": true,
+          "length_reloaded_from_live_SP8": true,
+          "copy_target_fresh_live_S1_plus_4C": true,
+          "TX_uses_postcopy_live_S0_buffer": true,
+          "numeric_pointer_globally_unobserved_proved": false
+        },
+        "raw_operand_controls": [
+          {
+            "case": "packet length branch",
+            "PC": 81570,
+            "field": "rs1",
+            "bit": 7,
+            "original": 13,
+            "mutated": 12,
+            "rejected": true
+          },
+          {
+            "case": "saved source slot",
+            "PC": 80740,
+            "field": "immediate",
+            "bit": 7,
+            "original": 12,
+            "mutated": 76,
+            "rejected": true
+          },
+          {
+            "case": "fresh copy slot",
+            "PC": 80750,
+            "field": "immediate",
+            "bit": 5,
+            "original": 76,
+            "mutated": 12,
+            "rejected": true
+          },
+          {
+            "case": "source pointer argument",
+            "PC": 80752,
+            "field": "rd",
+            "bit": 7,
+            "original": 11,
+            "mutated": 10,
+            "rejected": true
+          },
+          {
+            "case": "payload byte feeds store",
+            "PC": 35670,
+            "field": "rd",
+            "bit": 7,
+            "original": 10,
+            "mutated": 11,
+            "rejected": true
+          }
+        ],
+        "installed_identity_proved": false,
+        "full_ABI_admitted": false,
+        "original_or_candidate_execution": false,
+        "HOST_or_compiler_run": false,
+        "ISA_emulation": false,
+        "network": false,
+        "hardware_OTA_proved": false,
+        "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+        "image_ELF_sha256": "6ab2e06720dc9f9ea4fa531836605fed6d3b8832a7dfa008d76bd9bd0a54f7b2",
+        "image_scope": "Four unchanged App consumers only; rebuilt TX bytes are not asserted identical to original",
+        "actual_native_folder": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\publish-tsl9\\experiments\\tsl9-v4160-ota-handler-compact\\build\\delivery-3faa5284464e493480fb0cba38f6ecc5\\native\\c",
+        "native_projection": {
+          "object_sha256": "d75a75e0df88a7033632ad9f46c7c24bbd48357ecce4b29b5eb6c99effd7463d",
+          "bytes": 568,
+          "frame": 48,
+          "response": {
+            "allocations": [
+              [
+                "%9",
+                "[2 x i8], align 1"
+              ]
+            ],
+            "response_pointer": "%9",
+            "users": [
+              "store volatile i8 %118, ptr %9, align 1, !tbaa !5",
+              "%122 = getelementptr inbounds i8, ptr %9, i32 1",
+              "store volatile i8 -1, ptr %9, align 1, !tbaa !5",
+              "%138 = ptrtoint ptr %9 to i32"
+            ],
+            "separate_volatile_two_byte_response": true,
+            "no_argument_struct_alloca": true,
+            "source_pointer_and_length2_preserved": true,
+            "physical_original_SP12_equal": false,
+            "unknown_resident_footprint_or_alias_proved": false
+          },
+          "frame_contents": {
+            "actual_save_prefix": [
+              {
+                "PC": 2,
+                "register": 1,
+                "slot": 44
+              },
+              {
+                "PC": 4,
+                "register": 8,
+                "slot": 40
+              },
+              {
+                "PC": 6,
+                "register": 9,
+                "slot": 36
+              },
+              {
+                "PC": 8,
+                "register": 18,
+                "slot": 32
+              },
+              {
+                "PC": 10,
+                "register": 19,
+                "slot": 28
+              },
+              {
+                "PC": 12,
+                "register": 20,
+                "slot": 24
+              },
+              {
+                "PC": 14,
+                "register": 21,
+                "slot": 20
+              },
+              {
+                "PC": 16,
+                "register": 22,
+                "slot": 16
+              },
+              {
+                "PC": 18,
+                "register": 23,
+                "slot": 12
+              },
+              {
+                "PC": 20,
+                "register": 24,
+                "slot": 8
+              }
+            ],
+            "actual_reply_byte_stores": [
+              {
+                "PC": 282,
+                "slot": 6,
+                "source_register": 12
+              },
+              {
+                "PC": 288,
+                "slot": 7,
+                "source_register": 12
+              },
+              {
+                "PC": 314,
+                "slot": 6,
+                "source_register": 10
+              }
+            ],
+            "actual_response_pointer_materializations": [
+              {
+                "PC": 320,
+                "register": 9,
+                "offset": 6
+              }
+            ],
+            "actual_reply_slots": [
+              6,
+              7
+            ],
+            "original_reply_slots": [
+              12,
+              13
+            ],
+            "original_saved_register_count": 7,
+            "original_frame_contents_equal": false,
+            "original_save_order_equal": false,
+            "original_SP12_overlaps_native_saved_S7": true,
+            "pointer_numeric_identity_or_unbounded_callee_access_proved_irrelevant": false,
+            "require_provider_contract_before_rebinding_reply_pointer": true
+          }
+        },
+        "candidate_sources": [
+          {
+            "candidate": "carrier",
+            "slot": 262220,
+            "raw_target": 536871730,
+            "source_flash_entry": 263650,
+            "source_flash_end": 263708,
+            "RAM_entry": 536871730,
+            "RAM_end": 536871788,
+            "body_sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36"
+          },
+          {
+            "candidate": "carrier-dec2023",
+            "slot": 262220,
+            "raw_target": 536871730,
+            "source_flash_entry": 263586,
+            "source_flash_end": 263644,
+            "RAM_entry": 536871730,
+            "RAM_end": 536871788,
+            "body_sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36"
+          }
+        ]
+      }
+    },
+    "publication-cpp": {
+      "receipt_sha256": "a3d467cb89f11f270375e2f0441a3fbfddae28a22d50ca8027f9eb437b905d8f",
+      "result": {
+        "schema": "TSL9-reply-pointer-consumer-review-v1",
+        "passed": true,
+        "metadata_only": false,
+        "actual_original_firmware_read": true,
+        "actual_native_artifacts_read": true,
+        "actual_image_ELF_read": true,
+        "actual_candidate_sources_read": true,
+        "retained_instruction_rows": 209,
+        "facts": {
+          "packet_wrapper_bytes": 28,
+          "allocation_wrapper_bytes": 90,
+          "small_bytes": 24,
+          "page_bytes": 124,
+          "original_pointer_escapes_to_allocator_A2": true,
+          "pointer_reloaded_from_live_SP12_into_copy_A1": true,
+          "length_reloaded_from_live_SP8": true,
+          "copy_target_fresh_live_S1_plus_4C": true,
+          "TX_uses_postcopy_live_S0_buffer": true,
+          "numeric_pointer_globally_unobserved_proved": false
+        },
+        "raw_operand_controls": [
+          {
+            "case": "packet length branch",
+            "PC": 81570,
+            "field": "rs1",
+            "bit": 7,
+            "original": 13,
+            "mutated": 12,
+            "rejected": true
+          },
+          {
+            "case": "saved source slot",
+            "PC": 80740,
+            "field": "immediate",
+            "bit": 7,
+            "original": 12,
+            "mutated": 76,
+            "rejected": true
+          },
+          {
+            "case": "fresh copy slot",
+            "PC": 80750,
+            "field": "immediate",
+            "bit": 5,
+            "original": 76,
+            "mutated": 12,
+            "rejected": true
+          },
+          {
+            "case": "source pointer argument",
+            "PC": 80752,
+            "field": "rd",
+            "bit": 7,
+            "original": 11,
+            "mutated": 10,
+            "rejected": true
+          },
+          {
+            "case": "payload byte feeds store",
+            "PC": 35670,
+            "field": "rd",
+            "bit": 7,
+            "original": 10,
+            "mutated": 11,
+            "rejected": true
+          }
+        ],
+        "installed_identity_proved": false,
+        "full_ABI_admitted": false,
+        "original_or_candidate_execution": false,
+        "HOST_or_compiler_run": false,
+        "ISA_emulation": false,
+        "network": false,
+        "hardware_OTA_proved": false,
+        "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+        "image_ELF_sha256": "6ab2e06720dc9f9ea4fa531836605fed6d3b8832a7dfa008d76bd9bd0a54f7b2",
+        "image_scope": "Four unchanged App consumers only; rebuilt TX bytes are not asserted identical to original",
+        "actual_native_folder": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\publish-tsl9\\experiments\\tsl9-v4160-ota-handler-compact\\build\\delivery-3faa5284464e493480fb0cba38f6ecc5\\native\\cpp",
+        "native_projection": {
+          "object_sha256": "d75a75e0df88a7033632ad9f46c7c24bbd48357ecce4b29b5eb6c99effd7463d",
+          "bytes": 568,
+          "frame": 48,
+          "response": {
+            "allocations": [
+              [
+                "%9",
+                "[2 x i8], align 1"
+              ]
+            ],
+            "response_pointer": "%9",
+            "users": [
+              "store volatile i8 %118, ptr %9, align 1, !tbaa !5",
+              "%122 = getelementptr inbounds i8, ptr %9, i32 1",
+              "store volatile i8 -1, ptr %9, align 1, !tbaa !5",
+              "%138 = ptrtoint ptr %9 to i32"
+            ],
+            "separate_volatile_two_byte_response": true,
+            "no_argument_struct_alloca": true,
+            "source_pointer_and_length2_preserved": true,
+            "physical_original_SP12_equal": false,
+            "unknown_resident_footprint_or_alias_proved": false
+          },
+          "frame_contents": {
+            "actual_save_prefix": [
+              {
+                "PC": 2,
+                "register": 1,
+                "slot": 44
+              },
+              {
+                "PC": 4,
+                "register": 8,
+                "slot": 40
+              },
+              {
+                "PC": 6,
+                "register": 9,
+                "slot": 36
+              },
+              {
+                "PC": 8,
+                "register": 18,
+                "slot": 32
+              },
+              {
+                "PC": 10,
+                "register": 19,
+                "slot": 28
+              },
+              {
+                "PC": 12,
+                "register": 20,
+                "slot": 24
+              },
+              {
+                "PC": 14,
+                "register": 21,
+                "slot": 20
+              },
+              {
+                "PC": 16,
+                "register": 22,
+                "slot": 16
+              },
+              {
+                "PC": 18,
+                "register": 23,
+                "slot": 12
+              },
+              {
+                "PC": 20,
+                "register": 24,
+                "slot": 8
+              }
+            ],
+            "actual_reply_byte_stores": [
+              {
+                "PC": 282,
+                "slot": 6,
+                "source_register": 12
+              },
+              {
+                "PC": 288,
+                "slot": 7,
+                "source_register": 12
+              },
+              {
+                "PC": 314,
+                "slot": 6,
+                "source_register": 10
+              }
+            ],
+            "actual_response_pointer_materializations": [
+              {
+                "PC": 320,
+                "register": 9,
+                "offset": 6
+              }
+            ],
+            "actual_reply_slots": [
+              6,
+              7
+            ],
+            "original_reply_slots": [
+              12,
+              13
+            ],
+            "original_saved_register_count": 7,
+            "original_frame_contents_equal": false,
+            "original_save_order_equal": false,
+            "original_SP12_overlaps_native_saved_S7": true,
+            "pointer_numeric_identity_or_unbounded_callee_access_proved_irrelevant": false,
+            "require_provider_contract_before_rebinding_reply_pointer": true
+          }
+        },
+        "candidate_sources": [
+          {
+            "candidate": "carrier",
+            "slot": 262220,
+            "raw_target": 536871730,
+            "source_flash_entry": 263650,
+            "source_flash_end": 263708,
+            "RAM_entry": 536871730,
+            "RAM_end": 536871788,
+            "body_sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36"
+          },
+          {
+            "candidate": "carrier-dec2023",
+            "slot": 262220,
+            "raw_target": 536871730,
+            "source_flash_entry": 263586,
+            "source_flash_end": 263644,
+            "RAM_entry": 536871730,
+            "RAM_end": 536871788,
+            "body_sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36"
+          }
+        ]
+      }
+    }
+  },
+  "new_compiler_or_HOST_runs": 0
+}

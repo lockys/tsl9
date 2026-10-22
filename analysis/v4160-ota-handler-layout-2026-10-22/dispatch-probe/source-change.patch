@@ -1,0 +1,58 @@
+--- baseline/ota_handler.c
++++ switch/ota_handler.c
+@@ -7,7 +7,8 @@
+ {
+     oh_values *s=&h->values;uint32_t *a=h->args;uint32_t first,second,mode,offset,flash_word,source_word,target;
+     s->context=context;s->buffer=payload;
+-    if(command==0x57u){
++    switch(command){
++    case 0x57u:{
+         OH_READ(h,0x9c9c,OH_GP(h)+0xa9u,8,first);
+         if(!first || length!=1026u)return;
+         OH_READ(h,0x9caa,payload,8,first);OH_READ(h,0x9cae,payload+1u,8,second);
+@@ -35,7 +36,7 @@
+         a[0]=s->context;a[1]=0x57u;a[2]=s->page;a[3]=source_word;a[4]=1024u;a[5]=offset;
+         goto page_reply;
+     }
+-    if(command==0x55u){
++    case 0x55u:{
+         a[1]=(length-1u)&255u;a[0]=payload+1u;
+         OH_WRITE(h,0x9d36,OH_GP(h)+0xa9u,8,0);
+         OH_CALL(h,0x9d3a,OH_UID_92F2,0x92f2u,3u);OH_REQUIRE_A0(h);
+@@ -50,7 +51,7 @@
+         a[0]=s->context;a[1]=0x55u;a[2]=1u;
+         goto small_reply;
+     }
+-    if(command==0x53u){
++    case 0x53u:{
+         OH_READ(h,0x9d80,payload,8,mode);
+         a[1]=(length-1u)&255u;s->flash=1u;a[0]=payload+1u;
+         OH_WRITE(h,0x9d92,OH_STACK(h,12u),8,mode);
+@@ -66,7 +67,7 @@
+         a[0]=s->context;a[1]=0x53u;a[2]=OH_STACK(h,12u);a[3]=2u;
+         goto packet_reply;
+     }
+-    if(command==0x52u){
++    case 0x52u:{
+         OH_READ(h,0x9dc6,OH_GP(h)+0xa9u,8,first);
+         if(!first || length!=16u)return;
+         a[0]=payload+2u;a[1]=14u;
+@@ -76,7 +77,7 @@
+         a[0]=s->context;a[1]=0x52u;a[2]=second|(first<<8);
+         goto page_reply;
+     }
+-    if(command==0x45u){
++    case 0x45u:{
+         OH_READ(h,0x9df8,OH_GP(h)+0xa9u,8,first);
+         if(!first || length!=15u)return;
+         OH_READ(h,0x9e06,payload,8,mode);if(mode)return;
+@@ -91,7 +92,8 @@
+         a[0]=s->context;a[1]=0x45u;a[2]=0;a[3]=0;
+         goto packet_reply;
+     }
+-    return;
++    default:return;
++    }
+ small_reply:
+     OH_CALL(h,0x9d7a,OH_SMALL_REPLY_13F66,0x13f66u,command==0x57u?63u:7u);return;
+ packet_reply:

@@ -1,5 +1,11 @@
 # 已驗證里程碑
 
+## OTA 真實 provider 部分連結與配置義務
+
+以既有實際 C11／C++17 object 與完整映像 provider object 執行 pinned `ld.lld -r`。九個元件 UND 均綁至真實配置，仍有一個原 ROM UND；692個非空配置、8,281筆RELA，所有原配置 bytes／重定位語義保留。原 raw530 與新 FUNC568並存，原 caller 未改向；**不宣稱 final JAL／硬體 ABI 通過，沒有 final ELF／BIN。**
+
+獨立原碼追查確認 S pointer 先進 slot70 的 ambient A2，再進 fresh slot4C 的 A1；不能只靠 copy 候選關閉地址義務。原 BOOT guard 的頁0..95、Runtime實際75頁與後續21頁數值餘量亦已實讀核對，不代表free／NV所有權。單一 C switch 探針與568基線逐byte相同，未採用。 [本輪證據與工具](../analysis/v4160-ota-handler-layout-2026-10-22/README.md)
+
 ## OTA 元件：568 bytes，保留完整八暫存器橋接
 
 依 compiler IR 的 escape 現象分離 native 回覆陣列與參數物件，再依原始三個 terminal 回覆共用位置調整 C 控制流。實際 C11／C++17 元件從 776 bytes／285 指令／112-byte frame 降為 **568 bytes／193 指令／48-byte frame**，九個真 UND、20 筆 RELA。所有八暫存器 I/O、memory clobber、HOST 效果與 W A3／A4／A5 投影保留。原始範圍為 530 bytes，還有 38-byte 差距；frame 相等不代表物理 ABI 相等。**沒有連結或新增 BIN，完整 TX 映像不變。** [本輪程式與獨立證據](../analysis/v4160-ota-handler-compact-2026-10-22/README.md)

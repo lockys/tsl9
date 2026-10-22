@@ -1,0 +1,49 @@
+{
+  "schema": "TSL9-S-reply-pointer-observation-conditions-v1",
+  "observation": "The original source pointer escapes; unconditional numeric-address irrelevance is not proved. No source or ABI change is authorized by this review.",
+  "original_handler": {
+    "source": "Immutable ota-handler/source-review/instructions.json and contracts.json",
+    "reply_stores": "9D92 WRITE8 liveSP+12 from input byte; 9D96 WRITE8 liveSP+13 of1, both before UID call9D9A.",
+    "after_UID": "9DA0 reads liveS0 mode; 9DA6 stores postcall liveS1 into liveGP+169 only on accepted UID and mode0. Reply call uses current liveSP+12, not an entry-SP snapshot.",
+    "packet_call": "9DAA A3=2;9DAC A2=liveSP+12;9DAE A1=0x53;9DB2 A0=liveS2;9DB4 linked JAL13E98. E also uses packet13E98. Source API masks are subsets, not a claim all scratch residues match."
+  },
+  "packet_13E98": {
+    "extent": "13E98..13EB4 exclusive,28bytes/12instructions",
+    "snapshot": "A6=contextA0,A7=commandA1,A5=pointerA2,A4=lengthA3; context/command/pointer/length remain in A0..A3.",
+    "branch": "If A2==0 or A3==0, restore A0..A3 from A6/A7/A5/A4 and tail JAL rd0 to8A56. Otherwise tail JAL rd0 to13B4C. The S pointer is nonzero/length2 only under the stated live memory conditions.",
+    "allocator_escape": "13B64 stores source pointer to liveSP+12;13B66 stores length to liveSP+8.13B60 sets A0=length, but no local write to A2 precedes opaque JALR13B68. Allocator-like slot at initialS1(40000)+70 therefore receives source pointer in A2, length in A3, and ambient wrapper residues.",
+    "copy_escape": "After successful nonzero allocation,13B6C reloads length from current liveSP+8;13B6E freshly reads target32 at liveS1+4C;13B70 reloads source pointer from current liveSP+12 into A1;13B72 puts length in A2;13B74 saves current allocatedA0 in S0;13B76 calls targetA5. Addresses/lengths can change if callee edits frame/SP/S1.",
+    "TX": "13B78 fresh length from liveSP+8;13B7A context from liveS2;13B7C A2=postcopy liveS0;13B7E command from liveS3;13B80 linked JAL8A56. This packet source is the allocation, not directly the original two-byte reply pointer.",
+    "release": "13B84 sets A0=postTX liveS0;13B88 fresh target32 at liveS1+68 after S0 restore.13B96 tailJR T1 after fresh restores. Release identity, footprint, ambient inputs, return and installed behavior remain unknown.",
+    "null_allocation": "A0==0 at13B6A branches13B98; fresh restores then RET. No copy/TX/free suffix is invented."
+  },
+  "other_replies": {
+    "small_13F66": "24bytes. Stores low8 entryA2 at its own liveSP+15, passes pointerSP+15 and length1 to13B4C, then fresh RA restore/RET. It does not take the S two-byte reply pointer as its semantic third input; allocator/copy ambient and alias caveats still apply.",
+    "page_9B8E": "124bytes. Allocates1026 via fresh liveS2+70; writes two index bytes, copies1024 from computed page address via fresh liveS2+4C, TX8A56 receives allocated buffer,length1026, then tail releases via fresh liveS2+68. Third input is full32 page index, not S reply pointer. Allocation/copy/TX/free remain opaque at stated boundaries."
+  },
+  "conditional_copy_candidates": {
+    "reference": "Reuse immutable compact/callee-review reference-pins,18operand rows and source mapping for both existing candidate segments. No whole ROM copied or generated here.",
+    "normal_body": "Each exact58byte body at candidateRAM20000332 tests destinationA0/sourceA1 for zero and countA2 for zero; otherwise forward LBU(source+index),SB(destination+index),increment/equality loop. Source numeric address is only null-tested and used for memory addresses; it is not retained in globals or compared to a particular stack range by these local instructions.",
+    "sideeffects": "Before null/length checks: READ32 MMIO4002420C intoA4, WRITE32 zero, FENCE.I; normal/early return restores saved MMIO word. Not generic pure memcpy; fault, hardware and asynchronous effects are unproved.",
+    "outputs": "No local writes to A0/A1/A2/RA/SP/GP/S registers. Scratch A3/A4/A5/A6 may change. Candidate returns entry destination in A0, not Boolean status.",
+    "installed_identity_proved": false
+  },
+  "conditional_contents_projection": {
+    "claim": "For the successful S length2 path, changing one valid nonzero response address to another can leave the two copied bytes and downstream packet bytes equal, under ALL listed conditions. This is a conditional packet-content observation, not equality of all registers, memory, faults, timing, addresses, status or ABI.",
+    "conditions": [
+      "Allocation slot70 must not observe or retain ambient source pointerA2/other address-derived residue, inspect caller/callee frame addresses, or introduce address-dependent effects. This has NOT been established.",
+      "Allocation must normally return a valid destination and preserve the specific liveSP/S1/S0/S2/S3/frame roles required by App, or supply explicitly equivalent values. No ordinary ABI is assumed for unknown installed ROM.",
+      "The fresh copy slot must actually select one of the exact reviewed candidate bodies, or a separately proved provider with the same relevant footprint and outputs. Installed identity is NOT proved.",
+      "Both source locations hold the same two bytes when each byte is freshly read; destinations and all App frames, records, code, MMIO and source regions do not introduce alias-dependent differences. Memory/slot accesses and FENCE.I complete normally with no intervening writes/asynchronous events affecting the comparison.",
+      "TX gate and terminal providers, subsequent release and caller continuations must satisfy their separate live-state/ambient-input contracts and not observe the differing private pointer/address history. Existing TX source evidence alone does not prove installed ROM behavior."
+    ],
+    "does_not_establish": "Global address nonescape; arbitrary alias equivalence; hidden ROM footprint; pointwise register/fault/IRQ equality; physical stackABI; original placement; BOOT/CRC/signature/OTA/hardware readiness."
+  },
+  "native568": {
+    "actual_objects": "Existing D/P delivered C/CPP archives read only; no compilation or HOST rerun.",
+    "response": "Separate volatile[2] object materialized at SP+6, writes atSP+6/SP+7.",
+    "save_slots": "RA44,S040,S136,S232,S328,S424,S520,S616,S712,S88. Forcing replySP12 would overwrite savedS7. Same48-byte frame does not imply raw frame equivalence.",
+    "admission": "Do not force SP12. Keep full8 bridges and opaque contracts; consumer identity/footprint evidence is needed before replacing numeric-pointer obligations with a contents-only projection."
+  },
+  "limits": {"full_ABI_admitted":false,"installed_identity_proved":false,"target_execution":false,"ISA_emulation":false,"hardware_OTA_proved":false,"new_BIN":false}
+}

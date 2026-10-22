@@ -1,5 +1,11 @@
 # Verified milestones
 
+## OTA actual provider partial links and placement obligations
+
+Pinned `ld.lld -r` combines existing real C11/C++17 objects with full-image provider objects. Nine component undefined references bind to allocated providers, leaving the original ROM undefined symbol;692 nonempty allocations and8,281 relocations preserve all original allocation bytes/relocation semantics. Old raw530 and new FUNC568 coexist; the caller is not redirected. **No final-JAL/hardware-ABI admission, final ELF or BIN.**
+
+Independent source tracing finds S pointer escape into slot70 ambient A2 before fresh slot4C A1; candidate copy alone does not close numeric-address obligations. Actual BOOT pages0..95, current75 Runtime pages and subsequent21-page numeric headroom do not prove free/NV ownership. A single switch probe is byte-identical to568 baseline and is not promoted. [Evidence and tools](../analysis/v4160-ota-handler-layout-2026-10-22/readme.en.md)
+
 ## OTA component: 568 bytes with the complete eight-register bridge
 
 Compiler IR escape evidence motivates separating the native reply array from the argument object; original three shared terminal replies motivate C control-flow sharing. Actual C11/C++17 components shrink from 776 bytes / 285 instructions / a 112-byte frame to **568 bytes / 193 instructions / a 48-byte frame**, with nine true undefined symbols and20 relocations. All eight register inputs/outputs, memory clobbers, HOST effects and W A3/A4/A5 projections remain. The original530-byte region still leaves a38-byte excess; equal frames do not prove physical ABI equality. **No link or new BIN; the complete TX image is unchanged.** [Code and independent evidence](../analysis/v4160-ota-handler-compact-2026-10-22/readme.en.md)
