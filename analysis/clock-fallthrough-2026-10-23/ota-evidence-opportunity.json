@@ -1,0 +1,103 @@
+{
+  "schema": "TSL9-OTA-evidence-opportunity-source-review-v1",
+  "evidence_type": "Read-only current Android source inspection; no app/runtime/storage durability tests.",
+  "source_root_variables": [
+    "MORPHE_JAVA_ROOT",
+    "MORPHE_MAIN_ROOT"
+  ],
+  "source_hashes": {
+    "${MORPHE_JAVA_ROOT}/MainActivity.java": {
+      "sha256": "0dbc0db8660b8b009c3c97c680cd888cc6f38a2fdf094e61a0ce0e4d70bf8c03",
+      "lines": 380
+    },
+    "${MORPHE_JAVA_ROOT}/OtaSession.java": {
+      "sha256": "da7a612e0314cab3ef46a3c5c2650f8a342e94b5d59607174bbc194dd393e7f0",
+      "lines": 105
+    },
+    "${MORPHE_JAVA_ROOT}/FirmwareImage.java": {
+      "sha256": "827e4cf0adacc62f59e2402b31936e190e1bdf1e857fe3350fc06c2027cc6acd",
+      "lines": 32
+    },
+    "${MORPHE_JAVA_ROOT}/BleClient.java": {
+      "sha256": "b6b7a6c5c7bc6f77373cc5606e81f57bec601e6be6957767679dcd43df9a73ea",
+      "lines": 128
+    },
+    "${MORPHE_JAVA_ROOT}/DeviceInfoSnapshot.java": {
+      "sha256": "fca5208b7abb2ca543f77c970b4d4f4ce485b9ac4947c75a91f3225f02a8abd4",
+      "lines": 13
+    },
+    "${MORPHE_JAVA_ROOT}/HardwareCapture.java": {
+      "sha256": "66b6140918065c271ee83a2af4fe500ff64c0b08d9c6f4f41fbb6cb23bfd2ce3",
+      "lines": 81
+    },
+    "${MORPHE_MAIN_ROOT}/res/values-b+zh+Hant/strings.xml": {
+      "sha256": "dfdb9730122da8d893cbe8a2d1cb9b32eb86577860bcab406c6757e34cc33c56",
+      "lines": 246
+    }
+  },
+  "existing": [
+    {
+      "file": "MainActivity.java",
+      "functions": "onCreate, log, flushLog, onStop, onDestroy",
+      "lines": [
+        51,
+        54,
+        331,
+        347
+      ],
+      "fact": "Text debug log is written/reloaded/exported by design; it already records selected image and transfer hashes. Truncation and ignored write errors limit completeness/durability."
+    },
+    {
+      "file": "OtaSession.java",
+      "functions": "onPacket",
+      "lines": [
+        60,
+        75
+      ],
+      "fact": "Optional per-page readback comparison exists; policy can skip it. E receipt completes END state; its payload semantics and postboot execution remain unknown."
+    },
+    {
+      "file": "FirmwareImage.java",
+      "functions": "constructor",
+      "lines": [
+        13,
+        15
+      ],
+      "fact": "File SHA and planned transfer-payload SHA are calculated; neither measures a received hardware image."
+    },
+    {
+      "file": "MainActivity.java",
+      "functions": "onCreate, onSaveInstanceState",
+      "lines": [
+        43,
+        55,
+        230
+      ],
+      "fact": "OTA/session objects start afresh; only text history/tab is restored by the observed source paths."
+    },
+    {
+      "file": "DeviceInfoSnapshot.java",
+      "functions": "snapshot prefix",
+      "lines": [
+        3,
+        12
+      ],
+      "fact": "Revision remains unknown; A0 prefix cannot prove a complete revision fingerprint."
+    },
+    {
+      "file": "HardwareCapture.java",
+      "functions": "capture persistence",
+      "lines": [
+        1,
+        81
+      ],
+      "fact": "Separate atomic hardware capture exists; UI excludes starting OTA while capture is active, so it does not supply a complete OTA session journal."
+    }
+  ],
+  "gap": "No structured per-session, durable OTA evidence receipt linking image/transfer identity, readback policy/results, END acknowledgment and separately sourced postboot/runtime/function observations.",
+  "proposal": "Local session-keyed append/atomic receipt history; reopening displays past evidence without auto-resuming transmission. Default excludes UID/VIN/MAC and unreviewed raw payloads.",
+  "implemented": false,
+  "device_records_read": false,
+  "target_execution": false,
+  "network": false
+}
