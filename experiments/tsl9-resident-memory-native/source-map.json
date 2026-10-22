@@ -1,0 +1,40 @@
+{
+  "schema": "TSL9-direct-memory-native-source-map-v1",
+  "algorithm_include": "experiments/tsl9-resident-memory-leaves/src/memory_leaves.c",
+  "shared_algorithm_body_unchanged": true,
+  "native_source": "experiments/tsl9-resident-memory-native/src/native.c",
+  "native_header": "experiments/tsl9-resident-memory-native/src/native.h",
+  "native_IO": "real volatile uint8_t/uint32_t accesses and FENCE.I; no callback behavior",
+  "normal_public_boundary": "three uint32 arguments / uint32 result; no context or sret",
+  "second_source_adaptation": "always_inline declarations plus read/write fixed A0/A1/A2 empty-asm return bridge",
+  "selected_entry_bytes": [
+    52,
+    48,
+    52
+  ],
+  "observed_selected_frames": false,
+  "selected_writes_A1_A2_SP_S_GP_RA": false,
+  "remaining_extra_register_writes": {
+    "compare": [
+      "A6"
+    ],
+    "fill": [
+      "A3",
+      "A6",
+      "A7"
+    ],
+    "copy": [
+      "T0",
+      "A7"
+    ]
+  },
+  "scratch_liveout_identity_proved": false,
+  "fault_async_prefix_proved": false,
+  "original_extent_ownership_proved": false,
+  "original_full_register_ABI_proved": false,
+  "installed_provider_proved": false,
+  "HOST_adapter_execution": false,
+  "unchanged_HOST_rerun": false,
+  "linked": false,
+  "BIN_exported": false
+}

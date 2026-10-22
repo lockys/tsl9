@@ -1,0 +1,37 @@
+{
+  "schema": "TSL9-resident-native-source-register-contracts-v1",
+  "source_review_seal": "9f3f19f3dcdd2ae2178d2f1d245e44619ddd387955505ebdb3d0a494bcb8a102",
+  "original_three_argument_projection": "A0/A1/A2 are three full-width inputs; normal A0 result is operation-specific",
+  "leaves": {
+    "compare": {
+      "entry": 536872124,
+      "bytes": 62,
+      "instructions": 19,
+      "own_written_GPRs_excluding_zero": [10, 13, 14, 15],
+      "normal_A0": "0 on initial null/count0/first mismatch; otherwise1",
+      "normal_scratch": "A4=40024000, A5=original saved MMIO word. A3=last LBU byte if loop entered, otherwise unchanged."
+    },
+    "fill": {
+      "entry": 536871836,
+      "bytes": 46,
+      "instructions": 14,
+      "own_written_GPRs_excluding_zero": [10, 14, 15],
+      "normal_A0": "initial destination if null/count0; otherwise uint32(destination+count)",
+      "normal_scratch": "A4=40024000, A5=original saved MMIO word."
+    },
+    "copy": {
+      "entry": 536871730,
+      "bytes": 58,
+      "instructions": 18,
+      "own_written_GPRs_excluding_zero": [13, 14, 15, 16],
+      "normal_A0": "unchanged initial destination on every normal path",
+      "normal_scratch": "A5=40024000, A4=original saved MMIO word. A3=last destination byte address and A6=last LBU byte if loop entered; otherwise A3/A6 unchanged."
+    }
+  },
+  "all_preserved_by_original_own_instructions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+  "ordering": "direct volatile READ32(4002420C), WRITE32(0), FENCE.I precede initial argument tests. Normal exits restore the saved word. Byte operations are fresh and ordered, with uint32 wrap and no repeated null guard.",
+  "nonreturn_limits": "Source raw facts alone do not establish MMIO fault, FENCE.I implementation, asynchronous behavior, physical mapping or installed resident identity.",
+  "normal_boundary_vs_prefix": "Restoring a register at return does not prove transient register/RA/SP equivalence. Different original scratch residues need caller/observer evidence before treating them as unobservable.",
+  "physical_ABI_proved": false,
+  "installed_provider_proved": false
+}

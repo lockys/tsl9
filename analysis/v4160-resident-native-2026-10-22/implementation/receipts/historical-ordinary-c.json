@@ -1,0 +1,326 @@
+{
+  "schema": "TSL9-direct-memory-native-adapter-v1",
+  "passed": true,
+  "mode": "c",
+  "commands": [
+    {
+      "label": "compiler-resource-dir",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "-print-resource-dir"
+      ],
+      "exit": 0,
+      "log": "compiler-resource-dir.log",
+      "sha256": "361046f65369d8b7cbf1cecea755e803142eaac5a708651350a8006c251ba3aa",
+      "TMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
+      "TEMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
+    },
+    {
+      "label": "native-object",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-c",
+        "-MD",
+        "-MF",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.d",
+        "-MT",
+        "native.o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.o"
+      ],
+      "exit": 0,
+      "log": "native-object.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "TMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
+      "TEMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
+    },
+    {
+      "label": "native-IR",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-S",
+        "-emit-llvm",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.ll"
+      ],
+      "exit": 0,
+      "log": "native-IR.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "TMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
+      "TEMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
+    },
+    {
+      "label": "complete-static-disassembly",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\native.o"
+      ],
+      "exit": 0,
+      "log": "complete-static-disassembly.log",
+      "sha256": "77f829084058732bbe48dd4cc5841aedcbe092ec7729ecc8a135f20328a4de12",
+      "TMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp",
+      "TEMP": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\build\\ordinary-v1\\c\\compiler-temp"
+    }
+  ],
+  "source_pins": {
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.c": "4b6a0a286466f2142d64e48fa2afbed86e782bf99f2a0db76e5e0e643b0e34a7",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.h": "1468fb5384938bdee808dbeab4437aa4d63fe4ccccddcbc39f0279eb7b8871ac",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.c": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.h": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\io.h": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-resident-native-2026-10-22\\implementation\\probe.py": "6b8d1d4cd5caad138815fd7233748f43f2436a88a303d2327b787e6af8d14a17",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-native-2026-10-21\\compiler-review\\elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe": "adccb8817dc234c555a7cd465fd0f99b05e0238a395c3778a89c3e55e8a45e2f",
+    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+  },
+  "checks": {
+    "functions": [
+      {
+        "name": "tsl9_candidate_compare_200004bc",
+        "bytes": 64,
+        "info": 18,
+        "section": ".text.tsl9_candidate_compare_200004bc",
+        "code_sha256": "540a018378fe711f4f42e4ba8b6083118979647654692fe85ab455707f2d9ea7"
+      },
+      {
+        "name": "ml_port_read8",
+        "bytes": 10,
+        "info": 18,
+        "section": ".text.ml_port_read8",
+        "code_sha256": "36ae6f1cab9c1bad34e8c9cf9ab364a18dbca296e24caaa2fb3b3e8e1faf58fe"
+      },
+      {
+        "name": "ml_port_write32",
+        "bytes": 6,
+        "info": 18,
+        "section": ".text.ml_port_write32",
+        "code_sha256": "9de693ad38a90b1f191b794b4b5afbc0542a6d9cc0b1ce8b17b2046b9a60f99a"
+      },
+      {
+        "name": "tsl9_candidate_fill_2000039c",
+        "bytes": 62,
+        "info": 18,
+        "section": ".text.tsl9_candidate_fill_2000039c",
+        "code_sha256": "58c14f4b6feea1454bbd8fa03edb62f8b3600dbb2b52598ce148e0c7908e6c8c"
+      },
+      {
+        "name": "ml_port_write8",
+        "bytes": 8,
+        "info": 18,
+        "section": ".text.ml_port_write8",
+        "code_sha256": "49f51be00536d37924f57310bef03adf46b1c65b0e36ee2bd2ee3e387212777c"
+      },
+      {
+        "name": "tsl9_candidate_copy_20000332",
+        "bytes": 64,
+        "info": 18,
+        "section": ".text.tsl9_candidate_copy_20000332",
+        "code_sha256": "43d04405f8e7c0065f4ceb63946387278953c0e52c1306f301a8ce7eced26477"
+      },
+      {
+        "name": "ml_port_read32",
+        "bytes": 8,
+        "info": 18,
+        "section": ".text.ml_port_read32",
+        "code_sha256": "098669a4358d25a473b4be57311ea9b3f851ba0eef46b891ca048bf0cccfbfb3"
+      },
+      {
+        "name": "ml_port_fence_i",
+        "bytes": 8,
+        "info": 18,
+        "section": ".text.ml_port_fence_i",
+        "code_sha256": "d16ac7340ebb9cc9d489d6251b56dd46861ed079aedf2e8d667871a6d459d848"
+      },
+      {
+        "name": "tsl9_native_compare_200004bc",
+        "bytes": 30,
+        "info": 18,
+        "section": ".text.tsl9_native_compare_200004bc",
+        "code_sha256": "45fc28ece0b7e1aad0acf31b4eba98b0f5c69a2bb1cc73b204af463a2b269eea"
+      },
+      {
+        "name": "tsl9_native_fill_2000039c",
+        "bytes": 30,
+        "info": 18,
+        "section": ".text.tsl9_native_fill_2000039c",
+        "code_sha256": "45fc28ece0b7e1aad0acf31b4eba98b0f5c69a2bb1cc73b204af463a2b269eea"
+      },
+      {
+        "name": "tsl9_native_copy_20000332",
+        "bytes": 30,
+        "info": 18,
+        "section": ".text.tsl9_native_copy_20000332",
+        "code_sha256": "45fc28ece0b7e1aad0acf31b4eba98b0f5c69a2bb1cc73b204af463a2b269eea"
+      }
+    ],
+    "allocated_bytes": 320,
+    "instructions": 125,
+    "instructions_per_section": {
+      ".text.tsl9_candidate_compare_200004bc": 24,
+      ".text.ml_port_read8": 4,
+      ".text.ml_port_write32": 3,
+      ".text.tsl9_candidate_fill_2000039c": 22,
+      ".text.ml_port_write8": 3,
+      ".text.tsl9_candidate_copy_20000332": 23,
+      ".text.ml_port_read32": 4,
+      ".text.ml_port_fence_i": 3,
+      ".text.tsl9_native_compare_200004bc": 13,
+      ".text.tsl9_native_fill_2000039c": 13,
+      ".text.tsl9_native_copy_20000332": 13
+    },
+    "undefined_symbols": [],
+    "RELA": 3,
+    "relocations": [
+      {
+        "owner": ".text.tsl9_native_compare_200004bc",
+        "offset": 14,
+        "type": 19,
+        "addend": 0,
+        "symbol": {
+          "name": "tsl9_candidate_compare_200004bc",
+          "value": 0,
+          "size": 64,
+          "info": 18,
+          "other": 0,
+          "index": 3
+        }
+      },
+      {
+        "owner": ".text.tsl9_native_fill_2000039c",
+        "offset": 14,
+        "type": 19,
+        "addend": 0,
+        "symbol": {
+          "name": "tsl9_candidate_fill_2000039c",
+          "value": 0,
+          "size": 62,
+          "info": 18,
+          "other": 0,
+          "index": 6
+        }
+      },
+      {
+        "owner": ".text.tsl9_native_copy_20000332",
+        "offset": 14,
+        "type": 19,
+        "addend": 0,
+        "symbol": {
+          "name": "tsl9_candidate_copy_20000332",
+          "value": 0,
+          "size": 64,
+          "info": 18,
+          "other": 0,
+          "index": 8
+        }
+      }
+    ],
+    "actual_MD_inputs": [
+      {
+        "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h",
+        "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+      },
+      {
+        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\io.h",
+        "sha256": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8"
+      },
+      {
+        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.c",
+        "sha256": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536"
+      },
+      {
+        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-leaves\\src\\memory_leaves.h",
+        "sha256": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2"
+      },
+      {
+        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.c",
+        "sha256": "4b6a0a286466f2142d64e48fa2afbed86e782bf99f2a0db76e5e0e643b0e34a7"
+      },
+      {
+        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-resident-memory-native\\src\\native.h",
+        "sha256": "1468fb5384938bdee808dbeab4437aa4d63fe4ccccddcbc39f0279eb7b8871ac"
+      }
+    ],
+    "native_candidate_ABI_proved": false,
+    "installed_provider_proved": false,
+    "linked": false,
+    "BIN_exported": false,
+    "target_execution": false
+  },
+  "artifacts": {
+    "compiler-resource-dir.log": {
+      "bytes": 112,
+      "sha256": "361046f65369d8b7cbf1cecea755e803142eaac5a708651350a8006c251ba3aa"
+    },
+    "complete-static-disassembly.log": {
+      "bytes": 6557,
+      "sha256": "77f829084058732bbe48dd4cc5841aedcbe092ec7729ecc8a135f20328a4de12"
+    },
+    "native-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native-object.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native.d": {
+      "bytes": 934,
+      "sha256": "167012a77884d976ab10f392d5b5b274cf0f704d75cac99aff2815bd5deb237b"
+    },
+    "native.ll": {
+      "bytes": 15640,
+      "sha256": "86d471a80b0513a441c94f37d6a5e9fcf62a9c796d78a94ab30ec0a1e493306e"
+    },
+    "native.o": {
+      "bytes": 2416,
+      "sha256": "725db3ebbd763c154d92be0c1ff8b410f4223a8d4296cc30a583b0e935b5c840"
+    }
+  }
+}

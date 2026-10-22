@@ -1,5 +1,11 @@
 # Verified milestones
 
+## Native memory IO entries without context or stack frames
+
+Sealed shared C algorithms now have real volatile byte/word IO and FENCE.I. After two measured profiles, C11/C++17 three-u32/u32-result entries are compare52/fill48/copy52 bytes, totaling152B/52 instructions. These three entries have no context/sret, call or explicit SP/RA/S/A1/A2 write. Eight genuine unused global functions remain (230B); the whole object is382B/138 instructions, UND0/RELA0. **Extra registers, scratch residues and fault timing still differ; fill exceeds its original extent by2B. Full ABI/placement remain unproved; no new BIN.**
+
+The original App field44 entry197F0 has a364B/130-instruction source range. An aligned zero-fill path and two small RCC leaves narrow early effects, but13 call sites and a polling loop without an encoded timeout retain unresolved dependencies. No callback-wide staCB-zero guarantee is claimed. [Native C/C++, artifacts and limits](../analysis/v4160-resident-native-2026-10-22/readme.en.md)
+
 ## Three conditional resident memory leaves reconstructed in C/C++
 
 New C11/C++17 components implement compare-byte, fill and forward copy, retaining the MMIO guard/FENCE.I before argument checks and restoration on normal completion. Compare uses the full32-bit expected value; fill returns the advanced address, while copy returns the original destination and retains forward-overlap feedback. Synthetic IO tests and native-object inspection validate the authored components; **they are not installed-ROM providers and produce no new BIN**.

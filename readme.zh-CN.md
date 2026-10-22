@@ -4,6 +4,12 @@
 
 本项目保存原始 APK、22 份不同的更新器 BIN、可读 C/C++ 行为模型及静态来源证据。完整目标仍是生成与原硬件及 BLE 更新器兼容的重建 BIN，并在逆向过程中评估值得新增的功能，将提案与已实现功能分别列出。**目前尚无经验证可刷写的重建 BIN。**
 
+## 原生内存 IO 入口已移除 context 与 frame
+
+沿用封存的共享 C 算法，新增真实 volatile byte／word IO 与 FENCE.I。两个实测 profile 后，C11／C++17 三参数、单值返回入口为 compare52／fill48／copy52 bytes，合计152B／52指令；三入口无 context／sret、call 或 SP／RA／S／A1／A2 明确写入。整个对象仍包含八个未使用的真实 global functions230B，总382B／138指令，0UND／0RELA。**额外寄存器、scratch与fault时序仍不同，fill也超过原范围2B；完整ABI与placement未通过，没有新BIN。**
+
+原App field44的197F0入口已界定364B／130指令，并核对第一段aligned填零路径与两个小RCC leaf；13个调用点及无明确timeout的轮询仍有未解依赖，不能宣称callback后staCB保持零值。 [原生C/C++、实物与限制](analysis/v4160-resident-native-2026-10-22/README.md)
+
 ## 三个候选内存 leaf 已重建为 C/C++
 
 新增比较固定 byte、填值与向前复制的 C11／C++17 组件，保留参数判断前的 MMIO guard、FENCE.I 与正常退出恢复。比较采用完整32-bit期望值；fill返回前移地址，copy返回原目标地址并保留重叠时的向前反馈。以合成 IO 测试及原生对象检查验证，**尚非原机 ROM provider，没有新 BIN**。
