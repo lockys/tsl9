@@ -1,0 +1,38 @@
+"""Read-only five-command native provenance; no compiler or RISC-V launch."""
+from pathlib import Path
+import shlex
+BASE='783918ed872b02c62321d1997bb4be2db08447f0f1d1def10a722c209f06fa8f'
+def inspect(P,root,folder):
+    r=P.read(folder/'probe.json');P.need(r['passed'] and r['mode'] in ('c','cpp'),'Actual native probe record language');mode=r['mode'];old=P.case(root,'v4160-event-callback-2026-10-22')/'implementation/verify_native.py';P.need(P.sha(old)==BASE,'Immutable baseline native profile');M=P.load('callback_registers_immutable_profile',old)
+    commands=r['commands'];P.need(len(commands)==5,'Exactly five native compilation/query/link/disassembly commands');tools={'clang':Path(commands[0]['argv'][0]).resolve(strict=True),'link':Path(commands[3]['argv'][0]).resolve(strict=True),'objdump':Path(commands[4]['argv'][0]).resolve(strict=True)};src=root/'experiments/tsl9-v4160-callback-registers/src/callback.c';flags=M.flags(mode)+['-ffixed-x26','-ffixed-x27']
+    helper=P.case(root,'v4160-ota-tx-2026-10-22')/'implementation/verify_native.py';P.need(P.sha(helper)=='adeeaddea4c46d92dd4ce33a5beaa329779781a0611e97b965c1f023f5ef4eca','Immutable native tool identities');T=P.load('callback_registers_known_tools',helper)
+    for name,key in [('clang','clang'),('link','ld.lld'),('objdump','llvm-objdump')]:P.need(P.sha(tools[name])==T.TOOLS[key],'Actual known LLVM tool binary identity')
+    expected=[('compiler-resource-dir',[str(tools['clang']),'-print-resource-dir']),('native-object',[str(tools['clang']),*flags,'-c','-MD','-MF',str(folder/'callback.d'),'-MT','callback.o',str(src),'-o',str(folder/'callback.o')]),('native-IR',[str(tools['clang']),*flags,'-S','-emit-llvm',str(src),'-o',str(folder/'callback.ll')]),('strict-component-link',[str(tools['link']),'-m','elf32lriscv','--no-relax','--build-id=none','-T',str(folder/'component.ld'),str(folder/'callback.o'),'-o',str(folder/'COMPONENT-ONLY-NOT-FIRMWARE.elf')]),('complete-static-disassembly',[str(tools['objdump']),'--mattr=+m,+a,+c,+zicsr','-d',str(folder/'COMPONENT-ONLY-NOT-FIRMWARE.elf')])]
+    P.need([(x['label'],x['argv']) for x in commands]==expected,'Only profile additions26/27 and exact current source; all five recipes associated')
+    for x in commands:P.need(x['exit']==0 and x['TMP']==x['TEMP']==str(folder/'compiler-temp') and P.sha(folder/x['log'])==x['sha256'],'Actual successful command/log/owned compiler temp')
+    for n,pin in r['source_pins'].items():P.need(P.sha(Path(n))==pin,'Actual current source/tool/profile/resource input pin')
+    needed=[old,src,src.with_name('callback.h'),src.with_name('io.h'),*tools.values()]
+    for p in needed:P.need(r['source_pins'].get(str(p))==P.sha(p),'Every native source/profile/tool explicitly pinned')
+    P.need((folder/'component.ld').read_bytes()==M.LAYOUT.encode(),'Exactly historical strict standalone layout, no original BIN provider')
+    text=(folder/'callback.d').read_text(encoding='utf-8').replace('\\\r\n','').replace('\\\n','');left,right=text.split(': ',1);paths=[Path(t).resolve(strict=True) for t in shlex.split(right)];P.need(shlex.split(left)==['callback.o'] and paths[0]==src,'Own dependency target/primary')
+    resource=Path((folder/'compiler-resource-dir.log').read_text().strip()).resolve(strict=True)/'include/stdint.h';expected_headers={src,src.with_name('callback.h'),src.with_name('io.h'),resource};P.need(set(paths)==expected_headers and len(paths)==4,'Exact three source/header files plus observed compiler resource header')
+    P.need(P.sha(resource)=='7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34','Pinned actual standard integer definitions')
+    for p in expected_headers:P.need(r['source_pins'].get(str(p))==P.sha(p),'Actual header dependency matches stable input snapshot')
+    P.need(r['profile_additions']==['-ffixed-x26','-ffixed-x27'] and not r['HOST_tests_rerun'] and not r['BIN_exported'],'Bounded native-only profile, no claimed HOST or image generation')
+    expected_artifacts={name+'.log' for name,argv in expected}|{'callback.o','callback.ll','callback.d','component.ld','COMPONENT-ONLY-NOT-FIRMWARE.elf'};P.need(set(r['artifacts'])==expected_artifacts,'Complete exact ten probe artifacts, no omitted IR/header/recipe log')
+    for n,pin in r['artifacts'].items():p=(folder/n).resolve(strict=True);p.relative_to(folder);P.need(P.sha(p)==pin['sha256'] and p.stat().st_size==pin['bytes'],'Actual probe artifact pin')
+    return dict(passed=True,commands=5,source_files=3,dependency_rules=1,resource_headers=1,profile_additions=['-ffixed-x26','-ffixed-x27'],HOST_tests_rerun=False,original_BIN_codegen=False,actual_native_source_compile_provenance_replayed=True)
+
+def ordered(P,root,receipt):
+    r=P.read(receipt);folder=receipt.parent;mode=r['mode'];raw=Path(r['raw_folder']).resolve(strict=True);P.need(mode in ('c','cpp') and raw==folder.parent.parent/'pre'/mode and folder==folder.parent.parent/'ordered'/mode,'Explicit actual pre/ordered stage associations');facts=inspect(P,root,raw)
+    frame=root/'experiments/tsl9-v4160-callback-registers/postpass/frame.py';P.need(P.sha(frame)=='f5f17633570540f838399e30d932e5eca439eae1239a9429c6b89560d4476f02','Frozen source-owned relative-save ordering pass');tools={k:Path(v['path']).resolve(strict=True) for k,v in r['tools'].items()};python=Path(r['python']['path']).resolve(strict=True);P.need(P.sha(python)==r['python']['sha256'],'Actual Python validation-stage identity')
+    expected=[('existing-save-word-order',[str(python),'-B',str(frame),'--project-root',str(root),'--input',str(raw/'callback.o'),'--output',str(folder/'callback-ordered.o'),'--receipt',str(folder/'frame-order.json')]),('strict-ordered-link',[str(tools['ld.lld']),'-m','elf32lriscv','--no-relax','--build-id=none','-T',str(folder/'component.ld'),str(folder/'callback-ordered.o'),'-o',str(folder/'COMPONENT-ONLY-NOT-FIRMWARE.elf')]),('complete-static-disassembly',[str(tools['llvm-objdump']),'--mattr=+m,+a,+c,+zicsr','-d',str(folder/'COMPONENT-ONLY-NOT-FIRMWARE.elf')])]
+    P.need([(c['label'],c['argv']) for c in r['commands']]==expected,'Exact three explicit noncompiler stage recipes')
+    for c in r['commands']:P.need(c['exit']==0 and c['TMP']==c['TEMP']==str(folder/'compiler-temp') and P.sha(folder/c['log'])==c['sha256'],'Actual ordered-stage log/exit/temp identity')
+    for where,key in ((raw,'raw_artifacts'),(folder,'artifacts')):
+        actual={p.relative_to(where).as_posix():dict(bytes=p.stat().st_size,sha256=P.sha(p)) for p in where.rglob('*') if p.is_file() and p.name!='verification.json'};P.need(actual==r[key],'Complete actual pre/post IR/object/dependency/log/control artifact sets')
+    for n,pin in r['source_pins'].items():P.need(P.sha(Path(n))==pin,'Actual formal stable source/profile/pass/tool pin')
+    generation=r['generation'];base=folder.parent.parent;producer=P.case(root,'v4160-callback-registers-2026-10-22')/'implementation';argv=[str(python),'-B',str(producer/'probe_gp.py'),'--project-root',str(root),'--tool-dir',r['tool_dir'],'--build-root',str(base/'pre'),'--language',r['generation_language']];P.need(generation['argv']==argv and generation['exit']==0 and Path(generation['log']).resolve()==base/'fresh-generation.log' and P.sha(base/'fresh-generation.log')==generation['sha256'],'Actual outer native generation recipe and contained log')
+    # Reapply only the already compiled word permutation as immutable data.
+    replay=P.load('callback_registers_frame_data_replay',frame).replay(root,folder/'frame-order.json');P.need((folder/'component.ld').read_bytes()==(raw/'component.ld').read_bytes(),'Only historical strict component link layout')
+    return dict(**facts,total_native_and_pass_recipes=8,explicit_existing_word_order_replayed=True,compiler_only=False),raw,r

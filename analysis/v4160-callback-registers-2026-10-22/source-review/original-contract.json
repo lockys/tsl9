@@ -1,0 +1,285 @@
+{
+  "raw_instructions": 217,
+  "explicit_S10_ports": 0,
+  "explicit_S11_ports": 0,
+  "frame_bytes": 48,
+  "direct_frame_words": 22,
+  "save_order": [
+    [
+      8,
+      40
+    ],
+    [
+      1,
+      44
+    ],
+    [
+      9,
+      36
+    ],
+    [
+      18,
+      32
+    ],
+    [
+      19,
+      28
+    ],
+    [
+      20,
+      24
+    ],
+    [
+      21,
+      20
+    ],
+    [
+      22,
+      16
+    ],
+    [
+      23,
+      12
+    ],
+    [
+      24,
+      8
+    ],
+    [
+      25,
+      4
+    ]
+  ],
+  "readback_order": [
+    [
+      1,
+      44
+    ],
+    [
+      8,
+      40
+    ],
+    [
+      9,
+      36
+    ],
+    [
+      18,
+      32
+    ],
+    [
+      19,
+      28
+    ],
+    [
+      20,
+      24
+    ],
+    [
+      21,
+      20
+    ],
+    [
+      22,
+      16
+    ],
+    [
+      23,
+      12
+    ],
+    [
+      24,
+      8
+    ],
+    [
+      25,
+      4
+    ]
+  ],
+  "direct_SP0_words": 0,
+  "opaque_call_links": [
+    {
+      "PC": 34368,
+      "RA": 34370,
+      "target_register": 15
+    },
+    {
+      "PC": 34396,
+      "RA": 34398,
+      "target_register": 15
+    },
+    {
+      "PC": 34406,
+      "RA": 34408,
+      "target_register": 15
+    },
+    {
+      "PC": 34528,
+      "RA": 34530,
+      "target_register": 15
+    },
+    {
+      "PC": 34564,
+      "RA": 34566,
+      "target_register": 15
+    },
+    {
+      "PC": 34620,
+      "RA": 34622,
+      "target_register": 15
+    },
+    {
+      "PC": 34722,
+      "RA": 34724,
+      "target_register": 15
+    },
+    {
+      "PC": 34746,
+      "RA": 34748,
+      "target_register": 15
+    },
+    {
+      "PC": 34758,
+      "RA": 34760,
+      "target_register": 15
+    },
+    {
+      "PC": 34776,
+      "RA": 34778,
+      "target_register": 15
+    },
+    {
+      "PC": 34808,
+      "RA": 34810,
+      "target_register": 15
+    },
+    {
+      "PC": 34834,
+      "RA": 34836,
+      "target_register": 15
+    },
+    {
+      "PC": 34860,
+      "RA": 34862,
+      "target_register": 15
+    },
+    {
+      "PC": 34922,
+      "RA": 34924,
+      "target_register": 16
+    },
+    {
+      "PC": 34948,
+      "RA": 34950,
+      "target_register": 15
+    }
+  ],
+  "normal_return": {
+    "PC": 34436,
+    "raw_target": "fresh READ32(liveSP+44), then clear bit0",
+    "SP": "current liveSP+48; entrySP equality conditional",
+    "saved_frame_reads": "fresh liveSP addresses in recorded order"
+  },
+  "callee_preserves_S10_S11_proved": false,
+  "SP0_never_aliased_or_written_by_callee": false,
+  "GP_ports": [
+    {
+      "PC": 34446,
+      "bytes": 4,
+      "raw_hex": "83c74109",
+      "op": "lbu",
+      "rd": 15,
+      "rs1": 3,
+      "rs2": null,
+      "immediate": 148,
+      "target": null,
+      "memory_width": 8
+    },
+    {
+      "PC": 34456,
+      "bytes": 4,
+      "raw_hex": "83c78109",
+      "op": "lbu",
+      "rd": 15,
+      "rs1": 3,
+      "rs2": null,
+      "immediate": 152,
+      "target": null,
+      "memory_width": 8
+    },
+    {
+      "PC": 34472,
+      "bytes": 4,
+      "raw_hex": "93874109",
+      "op": "addi",
+      "rd": 15,
+      "rs1": 3,
+      "rs2": null,
+      "immediate": 148,
+      "target": null,
+      "memory_width": null
+    },
+    {
+      "PC": 34508,
+      "bytes": 4,
+      "raw_hex": "93850108",
+      "op": "addi",
+      "rd": 11,
+      "rs1": 3,
+      "rs2": null,
+      "immediate": 128,
+      "target": null,
+      "memory_width": null
+    },
+    {
+      "PC": 34752,
+      "bytes": 4,
+      "raw_hex": "93850108",
+      "op": "addi",
+      "rd": 11,
+      "rs1": 3,
+      "rs2": null,
+      "immediate": 128,
+      "target": null,
+      "memory_width": null
+    },
+    {
+      "PC": 34812,
+      "bytes": 4,
+      "raw_hex": "93870100",
+      "op": "addi",
+      "rd": 15,
+      "rs1": 3,
+      "rs2": null,
+      "immediate": 0,
+      "target": null,
+      "memory_width": null
+    }
+  ],
+  "controls": [
+    {
+      "case": "S10 destination",
+      "PC": 34326,
+      "rejected": true,
+      "reason": "All217 explicit operand ports exclude S10/S11"
+    },
+    {
+      "case": "S11 source",
+      "PC": 34326,
+      "rejected": true,
+      "reason": "All217 explicit operand ports exclude S10/S11"
+    },
+    {
+      "case": "GP destination",
+      "PC": 34326,
+      "rejected": true,
+      "reason": "No original explicit GP write"
+    },
+    {
+      "case": "SP0 store",
+      "PC": 34330,
+      "rejected": true,
+      "reason": "Exactly11 original saves/readbacks, slots4..44 and source order"
+    }
+  ]
+}
