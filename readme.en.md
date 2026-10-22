@@ -4,6 +4,12 @@
 
 This project preserves the original APK, 22 distinct updater BINs, readable C/C++ behavior models and static source evidence. The goal remains a rebuilt BIN compatible with the original hardware and BLE updater, while identifying worthwhile new features during reverse engineering and keeping proposals separate from implemented functions. **No rebuilt BIN is currently verified as flashable.**
 
+## A 550-byte C/C++ component now owns storage at the original reply position
+
+The new C11/C++17 component has **550 bytes /186 instructions /48-byte frame**. A genuine4-byte object occupiesSP+12..15, with only its first two bytes written and no overlap with saves startingSP+16. Given the same entrySP, its reply pointer matches originalSP−36. Correlated S-length2 and empty-E0/0 edges are independently checked. **Only the storage/pointer projection closes: extraS6 saves, full callee/IRQ ABI, placement and OTA remain unproved. The existing568 component/BIN is unchanged.**
+
+Bounded reads also cover a50-byte MAC helper and two46-byte candidate fill leaves. Under explicit valid-stack/normal-access/no-alias/no-async premises, App staCB is zero at BLE-init call entry. This does not extend inside the callee or through callback lifetime. [Code, actual evidence and conditions](analysis/v4160-config-lifetime-2026-10-22/readme.en.md)
+
 ## Allocator callback field origin and a 556-byte C/C++ experiment
 
 Actual64-byte initialization copies in two candidates trace the allocator callback word to config `staCB` (+52). Actual RV32 C compilation verifies both header layouts. The original App sets numerical SNV address `0x08077C00`, without proving other Flash free. Two motivated C lifetime changes reduce the OTA component to **556 bytes /188 instructions /48-byte frame**, removing one S8 save/restore pair. Its independent reply object is SP+10/11, still2 bytes below original SP+12/13. **Pointer ABI remains unproved; the existing568-byte component and complete BIN are not replaced.** [Code, actual evidence and limits](analysis/v4160-allocator-callback-2026-10-22/readme.en.md)

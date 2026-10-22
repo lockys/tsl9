@@ -1,0 +1,700 @@
+{
+  "schema": "TSL9-owned4B-reply-selected-v1",
+  "languages": {
+    "c": {
+      "receipt_sha256": "6c3889165c9e68a7f3bbe0464e66fa49c0debbb10458a0d99416045aa90d81b9",
+      "result": {
+        "schema": "TSL9-independent-reply-object-review-v1",
+        "passed": true,
+        "metadata_only": false,
+        "actual_original_firmware_read": true,
+        "actual_native_artifacts_read": true,
+        "folder": "experiments/tsl9-v4160-ota-reply-object/build/owned-word-v1/c",
+        "mode": "c",
+        "actual_bytes": 550,
+        "actual_instructions": 186,
+        "object_sha256": "19271e883132be302cbf72242287d09e4be8eff908809642884ced3d7f01e6e7",
+        "IR_sha256": "e1daa87d99d1476fee067276d15018ae524471bd94f9605f52c5151b9fd5c638",
+        "producer_receipt_sha256": "6032a8abd1f0cf4767837dfd764c02e82976552adac1805dc6df98819abed980",
+        "original_frame": {
+          "frame_bytes": 48,
+          "saves": [
+            {
+              "PC": 40012,
+              "register": 8,
+              "slot": 40
+            },
+            {
+              "PC": 40014,
+              "register": 18,
+              "slot": 32
+            },
+            {
+              "PC": 40016,
+              "register": 1,
+              "slot": 44
+            },
+            {
+              "PC": 40018,
+              "register": 9,
+              "slot": 36
+            },
+            {
+              "PC": 40020,
+              "register": 19,
+              "slot": 28
+            },
+            {
+              "PC": 40022,
+              "register": 20,
+              "slot": 24
+            },
+            {
+              "PC": 40024,
+              "register": 21,
+              "slot": 20
+            }
+          ],
+          "restores": [
+            {
+              "PC": 40058,
+              "register": 1,
+              "slot": 44
+            },
+            {
+              "PC": 40060,
+              "register": 8,
+              "slot": 40
+            },
+            {
+              "PC": 40062,
+              "register": 9,
+              "slot": 36
+            },
+            {
+              "PC": 40064,
+              "register": 18,
+              "slot": 32
+            },
+            {
+              "PC": 40066,
+              "register": 19,
+              "slot": 28
+            },
+            {
+              "PC": 40068,
+              "register": 20,
+              "slot": 24
+            },
+            {
+              "PC": 40070,
+              "register": 21,
+              "slot": 20
+            }
+          ],
+          "common7_slots_match_original": true,
+          "common7_entry_relative_addresses_match_original": true,
+          "save_order_matches_original": true,
+          "extra_saved_registers": [],
+          "reply_byte_stores": [
+            {
+              "PC": 40338,
+              "slot": 12,
+              "source_register": 15
+            },
+            {
+              "PC": 40342,
+              "slot": 13,
+              "source_register": 9
+            },
+            {
+              "PC": 40384,
+              "slot": 12,
+              "source_register": 15
+            }
+          ],
+          "reply_slots": [
+            12,
+            13
+          ],
+          "two_adjacent_SP_byte_slots": true,
+          "reply_pointer_materializations": [
+            {
+              "PC": 40364,
+              "register": 12,
+              "slot": 12
+            }
+          ],
+          "reply_saved_word_overlap": [],
+          "other_SP_word_stores": [],
+          "entry_relative_reply_offset": -36,
+          "original_entry_relative_reply_offset": -36,
+          "numeric_reply_pointer_matches_original": true,
+          "independent_reply_storage_projection": true,
+          "complete_lifetime_or_physical_ABI_proved": false
+        },
+        "source_delta": {
+          "passed": true,
+          "source_pins": {
+            "ota_handler.c": "b3f41a6ec5caaa283428a421a28fa9d009601ccb7d593da9a3ffd85dca33d4c8",
+            "io.h": "e0c07e0b784d086f208890e3017d7236cc8f1187318c4414236fa4d1bc52ec65",
+            "ota_handler.h": "fa6165d20e935b5c69dbab733c2340de13093a8827840bbffbce491bf9dd61de"
+          },
+          "guard_before_identity": true,
+          "HOST_uint32_identity": true,
+          "HOST_effect_order_unchanged": true,
+          "native_declared_backing_bytes": 4,
+          "native_backing_alignment": 4,
+          "backing_not_initialized": true,
+          "packet_semantic_lengths_unchanged": true,
+          "full8_and_memory_clobbers_text_unchanged": true,
+          "new_LINK_or_BIN": false,
+          "HOST_rerun": false
+        },
+        "IR_object": {
+          "backing_allocation": [
+            [
+              "%9",
+              "[4 x i8], align 4"
+            ]
+          ],
+          "users": [
+            "store volatile i8 %120, ptr %9, align 4, !tbaa !5",
+            "%124 = getelementptr inbounds i8, ptr %9, i32 1",
+            "store volatile i8 -1, ptr %9, align 4, !tbaa !5",
+            "%140 = ptrtoint ptr %9 to i32"
+          ],
+          "second_byte_users": [
+            "store volatile i8 1, ptr %124, align 1, !tbaa !5"
+          ],
+          "declared_backing_bytes": 4,
+          "observed_response_bytes": 2,
+          "packet_lengths_by_path": {
+            "owned_reply": 2,
+            "empty_reply": 0
+          },
+          "correlated_packet_pointer_length": true,
+          "full8_call_bridges": 13,
+          "upper_two_bytes_initialized_locally": false,
+          "unknown_provider_read_footprint_proved": false
+        },
+        "storage": {
+          "projection": {
+            "frame_bytes": 48,
+            "saves": [
+              {
+                "PC": 2,
+                "register": 1,
+                "slot": 44
+              },
+              {
+                "PC": 4,
+                "register": 8,
+                "slot": 40
+              },
+              {
+                "PC": 6,
+                "register": 9,
+                "slot": 36
+              },
+              {
+                "PC": 8,
+                "register": 18,
+                "slot": 32
+              },
+              {
+                "PC": 10,
+                "register": 19,
+                "slot": 28
+              },
+              {
+                "PC": 12,
+                "register": 20,
+                "slot": 24
+              },
+              {
+                "PC": 14,
+                "register": 21,
+                "slot": 20
+              },
+              {
+                "PC": 16,
+                "register": 22,
+                "slot": 16
+              }
+            ],
+            "restores": [
+              {
+                "PC": 354,
+                "register": 1,
+                "slot": 44
+              },
+              {
+                "PC": 356,
+                "register": 8,
+                "slot": 40
+              },
+              {
+                "PC": 358,
+                "register": 9,
+                "slot": 36
+              },
+              {
+                "PC": 360,
+                "register": 18,
+                "slot": 32
+              },
+              {
+                "PC": 362,
+                "register": 19,
+                "slot": 28
+              },
+              {
+                "PC": 364,
+                "register": 20,
+                "slot": 24
+              },
+              {
+                "PC": 366,
+                "register": 21,
+                "slot": 20
+              },
+              {
+                "PC": 368,
+                "register": 22,
+                "slot": 16
+              }
+            ],
+            "common7_slots_match_original": true,
+            "common7_entry_relative_addresses_match_original": true,
+            "save_order_matches_original": false,
+            "extra_saved_registers": [
+              {
+                "PC": 16,
+                "register": 22,
+                "slot": 16
+              }
+            ],
+            "reply_byte_stores": [
+              {
+                "PC": 280,
+                "slot": 12,
+                "source_register": 12
+              },
+              {
+                "PC": 286,
+                "slot": 13,
+                "source_register": 12
+              },
+              {
+                "PC": 312,
+                "slot": 12,
+                "source_register": 10
+              }
+            ],
+            "reply_slots": [
+              12,
+              13
+            ],
+            "two_adjacent_SP_byte_slots": true,
+            "reply_pointer_materializations": [
+              {
+                "PC": 318,
+                "register": 9,
+                "slot": 12
+              }
+            ],
+            "reply_saved_word_overlap": [],
+            "other_SP_word_stores": [],
+            "entry_relative_reply_offset": -36,
+            "original_entry_relative_reply_offset": -36,
+            "numeric_reply_pointer_matches_original": true,
+            "independent_reply_storage_projection": true,
+            "complete_lifetime_or_physical_ABI_proved": false
+          },
+          "full_backing_SP_range": [
+            12,
+            16
+          ],
+          "full_backing_entry_range": [
+            -36,
+            -32
+          ],
+          "full4B_nonoverlap": true,
+          "original_numeric_reply_pointer_matched": true,
+          "physical_prefix_or_whole_ABI_proved": false
+        },
+        "physical_callee_saved_register_contract_proved": false,
+        "unknown_allocator_callback_footprint_proved": false,
+        "full_ABI_admitted": false,
+        "new_link": false,
+        "new_BIN": false,
+        "HOST_rerun": false,
+        "target_execution": false,
+        "ISA_emulation": false,
+        "hardware_OTA_proved": false,
+        "focused_actual_controls": [
+          {
+            "case": "IR_backing_shrunk_to2",
+            "rejected": true,
+            "actual_mutated_input_sha256": "ae51abadf01b040c3a51750b2fd47263f90a4fcbd86682777ad4a36507354a4e",
+            "reason": "Actual full4-byte aligned backing IR allocation"
+          },
+          {
+            "case": "packet_length_changed_to_backing4",
+            "rejected": true,
+            "actual_mutated_input_sha256": "83f71b0ba7f3970fc66e381b47808433e0acb8babd69249fb8dbc489a70c247c",
+            "reason": "Only correlated S2/E0 packet lengths, never4"
+          },
+          {
+            "case": "safe_first2_but_claimed8B_overlaps_save",
+            "rejected": true,
+            "actual_mutated_input_sha256": "7c09c06801c952270a692189cc6c42e7616dde63537b3f7ef959d06b99bd20db",
+            "reason": "No save/spill/load/word-initialization aliases any declared backing byte"
+          },
+          {
+            "case": "savedS6_wrong_restore_slot",
+            "rejected": true,
+            "actual_mutated_input_sha256": "d20bf83007e139c8ff42f7fe859df179e331c16475bc944ef928d538fe05bea4",
+            "reason": "Every actual callee-save reload uses its own saved slot"
+          }
+        ]
+      }
+    },
+    "cpp": {
+      "receipt_sha256": "d792ab6ef0664283bfd05e436f94f16a954d623c8677221f9733bec503a7e20e",
+      "result": {
+        "schema": "TSL9-independent-reply-object-review-v1",
+        "passed": true,
+        "metadata_only": false,
+        "actual_original_firmware_read": true,
+        "actual_native_artifacts_read": true,
+        "folder": "experiments/tsl9-v4160-ota-reply-object/build/owned-word-v1/cpp",
+        "mode": "cpp",
+        "actual_bytes": 550,
+        "actual_instructions": 186,
+        "object_sha256": "19271e883132be302cbf72242287d09e4be8eff908809642884ced3d7f01e6e7",
+        "IR_sha256": "179c308e35b7dc90132fae91318469d0ee911e97225c88351030c4fcebb9ce42",
+        "producer_receipt_sha256": "4369dd60b760d4b5aa445423812096c0b3055792daba75f454a90d8bc79487b3",
+        "original_frame": {
+          "frame_bytes": 48,
+          "saves": [
+            {
+              "PC": 40012,
+              "register": 8,
+              "slot": 40
+            },
+            {
+              "PC": 40014,
+              "register": 18,
+              "slot": 32
+            },
+            {
+              "PC": 40016,
+              "register": 1,
+              "slot": 44
+            },
+            {
+              "PC": 40018,
+              "register": 9,
+              "slot": 36
+            },
+            {
+              "PC": 40020,
+              "register": 19,
+              "slot": 28
+            },
+            {
+              "PC": 40022,
+              "register": 20,
+              "slot": 24
+            },
+            {
+              "PC": 40024,
+              "register": 21,
+              "slot": 20
+            }
+          ],
+          "restores": [
+            {
+              "PC": 40058,
+              "register": 1,
+              "slot": 44
+            },
+            {
+              "PC": 40060,
+              "register": 8,
+              "slot": 40
+            },
+            {
+              "PC": 40062,
+              "register": 9,
+              "slot": 36
+            },
+            {
+              "PC": 40064,
+              "register": 18,
+              "slot": 32
+            },
+            {
+              "PC": 40066,
+              "register": 19,
+              "slot": 28
+            },
+            {
+              "PC": 40068,
+              "register": 20,
+              "slot": 24
+            },
+            {
+              "PC": 40070,
+              "register": 21,
+              "slot": 20
+            }
+          ],
+          "common7_slots_match_original": true,
+          "common7_entry_relative_addresses_match_original": true,
+          "save_order_matches_original": true,
+          "extra_saved_registers": [],
+          "reply_byte_stores": [
+            {
+              "PC": 40338,
+              "slot": 12,
+              "source_register": 15
+            },
+            {
+              "PC": 40342,
+              "slot": 13,
+              "source_register": 9
+            },
+            {
+              "PC": 40384,
+              "slot": 12,
+              "source_register": 15
+            }
+          ],
+          "reply_slots": [
+            12,
+            13
+          ],
+          "two_adjacent_SP_byte_slots": true,
+          "reply_pointer_materializations": [
+            {
+              "PC": 40364,
+              "register": 12,
+              "slot": 12
+            }
+          ],
+          "reply_saved_word_overlap": [],
+          "other_SP_word_stores": [],
+          "entry_relative_reply_offset": -36,
+          "original_entry_relative_reply_offset": -36,
+          "numeric_reply_pointer_matches_original": true,
+          "independent_reply_storage_projection": true,
+          "complete_lifetime_or_physical_ABI_proved": false
+        },
+        "source_delta": {
+          "passed": true,
+          "source_pins": {
+            "ota_handler.c": "b3f41a6ec5caaa283428a421a28fa9d009601ccb7d593da9a3ffd85dca33d4c8",
+            "io.h": "e0c07e0b784d086f208890e3017d7236cc8f1187318c4414236fa4d1bc52ec65",
+            "ota_handler.h": "fa6165d20e935b5c69dbab733c2340de13093a8827840bbffbce491bf9dd61de"
+          },
+          "guard_before_identity": true,
+          "HOST_uint32_identity": true,
+          "HOST_effect_order_unchanged": true,
+          "native_declared_backing_bytes": 4,
+          "native_backing_alignment": 4,
+          "backing_not_initialized": true,
+          "packet_semantic_lengths_unchanged": true,
+          "full8_and_memory_clobbers_text_unchanged": true,
+          "new_LINK_or_BIN": false,
+          "HOST_rerun": false
+        },
+        "IR_object": {
+          "backing_allocation": [
+            [
+              "%9",
+              "[4 x i8], align 4"
+            ]
+          ],
+          "users": [
+            "store volatile i8 %120, ptr %9, align 4, !tbaa !5",
+            "%124 = getelementptr inbounds i8, ptr %9, i32 1",
+            "store volatile i8 -1, ptr %9, align 4, !tbaa !5",
+            "%140 = ptrtoint ptr %9 to i32"
+          ],
+          "second_byte_users": [
+            "store volatile i8 1, ptr %124, align 1, !tbaa !5"
+          ],
+          "declared_backing_bytes": 4,
+          "observed_response_bytes": 2,
+          "packet_lengths_by_path": {
+            "owned_reply": 2,
+            "empty_reply": 0
+          },
+          "correlated_packet_pointer_length": true,
+          "full8_call_bridges": 13,
+          "upper_two_bytes_initialized_locally": false,
+          "unknown_provider_read_footprint_proved": false
+        },
+        "storage": {
+          "projection": {
+            "frame_bytes": 48,
+            "saves": [
+              {
+                "PC": 2,
+                "register": 1,
+                "slot": 44
+              },
+              {
+                "PC": 4,
+                "register": 8,
+                "slot": 40
+              },
+              {
+                "PC": 6,
+                "register": 9,
+                "slot": 36
+              },
+              {
+                "PC": 8,
+                "register": 18,
+                "slot": 32
+              },
+              {
+                "PC": 10,
+                "register": 19,
+                "slot": 28
+              },
+              {
+                "PC": 12,
+                "register": 20,
+                "slot": 24
+              },
+              {
+                "PC": 14,
+                "register": 21,
+                "slot": 20
+              },
+              {
+                "PC": 16,
+                "register": 22,
+                "slot": 16
+              }
+            ],
+            "restores": [
+              {
+                "PC": 354,
+                "register": 1,
+                "slot": 44
+              },
+              {
+                "PC": 356,
+                "register": 8,
+                "slot": 40
+              },
+              {
+                "PC": 358,
+                "register": 9,
+                "slot": 36
+              },
+              {
+                "PC": 360,
+                "register": 18,
+                "slot": 32
+              },
+              {
+                "PC": 362,
+                "register": 19,
+                "slot": 28
+              },
+              {
+                "PC": 364,
+                "register": 20,
+                "slot": 24
+              },
+              {
+                "PC": 366,
+                "register": 21,
+                "slot": 20
+              },
+              {
+                "PC": 368,
+                "register": 22,
+                "slot": 16
+              }
+            ],
+            "common7_slots_match_original": true,
+            "common7_entry_relative_addresses_match_original": true,
+            "save_order_matches_original": false,
+            "extra_saved_registers": [
+              {
+                "PC": 16,
+                "register": 22,
+                "slot": 16
+              }
+            ],
+            "reply_byte_stores": [
+              {
+                "PC": 280,
+                "slot": 12,
+                "source_register": 12
+              },
+              {
+                "PC": 286,
+                "slot": 13,
+                "source_register": 12
+              },
+              {
+                "PC": 312,
+                "slot": 12,
+                "source_register": 10
+              }
+            ],
+            "reply_slots": [
+              12,
+              13
+            ],
+            "two_adjacent_SP_byte_slots": true,
+            "reply_pointer_materializations": [
+              {
+                "PC": 318,
+                "register": 9,
+                "slot": 12
+              }
+            ],
+            "reply_saved_word_overlap": [],
+            "other_SP_word_stores": [],
+            "entry_relative_reply_offset": -36,
+            "original_entry_relative_reply_offset": -36,
+            "numeric_reply_pointer_matches_original": true,
+            "independent_reply_storage_projection": true,
+            "complete_lifetime_or_physical_ABI_proved": false
+          },
+          "full_backing_SP_range": [
+            12,
+            16
+          ],
+          "full_backing_entry_range": [
+            -36,
+            -32
+          ],
+          "full4B_nonoverlap": true,
+          "original_numeric_reply_pointer_matched": true,
+          "physical_prefix_or_whole_ABI_proved": false
+        },
+        "physical_callee_saved_register_contract_proved": false,
+        "unknown_allocator_callback_footprint_proved": false,
+        "full_ABI_admitted": false,
+        "new_link": false,
+        "new_BIN": false,
+        "HOST_rerun": false,
+        "target_execution": false,
+        "ISA_emulation": false,
+        "hardware_OTA_proved": false
+      }
+    }
+  },
+  "generated_archives_sealed": false
+}

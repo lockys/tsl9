@@ -4,6 +4,12 @@
 
 本项目保存原始 APK、22 份不同的更新器 BIN、可读 C/C++ 行为模型及静态来源证据。完整目标仍是生成与原硬件及 BLE 更新器兼容的重建 BIN，并在逆向过程中评估值得新增的功能，将提案与已实现功能分别列出。**目前尚无经验证可刷写的重建 BIN。**
 
+## 550-byte C/C++ 已取得原回复位置的独立对象
+
+新 C11／C++17 组件为 **550 bytes／186 指令／48-byte frame**；真实4-byte对象位于SP+12..15，只写前两bytes，不与从SP+16开始的保存槽重叠。在相同入口SP条件下，回复指针等于原SP−36；S长度2与E空回复0/0已独立核对。**仅闭合位置／对象投影，额外S6保存、完整callee／IRQ ABI、placement及OTA仍待证明；现有568组件与BIN不变。**
+
+另核对50-byte MAC helper与两份候选46-byte fill leaf的局部范围。在有效stack、正常访问、无alias／异步变更等明确条件下，可推导BLE初始化入口的staCB为零，不能延伸至callee内部或后续生命周期。 [代码、实物证据与条件](analysis/v4160-config-lifetime-2026-10-22/README.md)
+
 ## 配置 callback 字段来源与 556-byte C/C++ 实验
 
 两份候选 BLE 初始化的实际64-byte copy，已追到配置 callback word 来自设置结构 `staCB`（+52）；两份 header 经真实 RV32 C 编译核对字段。原 App 的 SNV 设置数值为 `0x08077C00`，不代表其他 Flash 可用。两个有依据的 C 生命周期调整将 OTA 组件缩为 **556 bytes／188 指令／48-byte frame**，移除一对 S8 保存；独立回复对象位于 SP+10/11，仍比原 SP+12/13 低2 bytes，**指针 ABI 尚未通过，不替换现有568组件或完整 BIN**。 [代码、实物证据与限制](analysis/v4160-allocator-callback-2026-10-22/README.md)

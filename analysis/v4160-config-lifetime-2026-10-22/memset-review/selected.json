@@ -1,0 +1,143 @@
+{
+  "schema": "TSL9-byte-fill-selected-static-readbacks-v1",
+  "metadata": {
+    "passed": true,
+    "metadata_only": true,
+    "actual_candidate_bodies_read": 0,
+    "candidate_leaf_bytes": 46,
+    "candidate_leaf_rows": 14,
+    "normal_byte_fill_footprint": "[initial A0, initial A0+A2) modulo32, only when nonnull and length nonzero",
+    "zero_or_null_still_performs_MMIO": true,
+    "MMIO_address": 1073889804,
+    "no_explicit_S_GP_SP_RA_writes": true,
+    "normal_fill_return": "advanced A0; not libc original-pointer semantics",
+    "physical_effects_or_installed_identity_proved": false,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "hardware_OTA_proved": false,
+    "config_entry_derivation": {
+      "kind": "Static operand/interval derivation, not CPU-state execution",
+      "actual_App_and_helper_bytes_read": false,
+      "premises": [
+        "Setup branch reached; the selected reference slot48 leaf is the called implementation",
+        "App SP+16 is nonnull, its64 bytes are valid and do not alias MMIO or code; normal memory/MMIO completion and no asynchronous stack/register modifications",
+        "The fixed decoded source remains unchanged; no self-modification or hidden transfer"
+      ],
+      "zero_request_byte_range_relative_to_App_SP": [
+        16,
+        79
+      ],
+      "staCB_byte_range": [
+        68,
+        71
+      ],
+      "conditional_staCB_zero_at_BLE_call_entry": true,
+      "installed_or_live_staCB_zero_proved": false,
+      "version_gate_reachability_not_proved": true,
+      "BLE_initializer_may_change_source_or_live_S1": true,
+      "runtime_callback_lifetime_or_A2_independence_proved": false,
+      "next_boundary": "Inside BLE_LibInit before config copy, including prior numeric200004BC call"
+    }
+  },
+  "actual": {
+    "passed": true,
+    "metadata_only": false,
+    "actual_candidate_bodies_read": 2,
+    "candidate_leaf_bytes": 46,
+    "candidate_leaf_rows": 14,
+    "normal_byte_fill_footprint": "[initial A0, initial A0+A2) modulo32, only when nonnull and length nonzero",
+    "zero_or_null_still_performs_MMIO": true,
+    "MMIO_address": 1073889804,
+    "no_explicit_S_GP_SP_RA_writes": true,
+    "normal_fill_return": "advanced A0; not libc original-pointer semantics",
+    "physical_effects_or_installed_identity_proved": false,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "hardware_OTA_proved": false,
+    "config_entry_derivation": {
+      "kind": "Static operand/interval derivation, not CPU-state execution",
+      "actual_App_and_helper_bytes_read": true,
+      "premises": [
+        "Setup branch reached; the selected reference slot48 leaf is the called implementation",
+        "App SP+16 is nonnull, its64 bytes are valid and do not alias MMIO or code; normal memory/MMIO completion and no asynchronous stack/register modifications",
+        "The fixed decoded source remains unchanged; no self-modification or hidden transfer"
+      ],
+      "zero_request_byte_range_relative_to_App_SP": [
+        16,
+        79
+      ],
+      "staCB_byte_range": [
+        68,
+        71
+      ],
+      "conditional_staCB_zero_at_BLE_call_entry": true,
+      "installed_or_live_staCB_zero_proved": false,
+      "version_gate_reachability_not_proved": true,
+      "BLE_initializer_may_change_source_or_live_S1": true,
+      "runtime_callback_lifetime_or_A2_independence_proved": false,
+      "next_boundary": "Inside BLE_LibInit before config copy, including prior numeric200004BC call"
+    },
+    "actual_raw_operand_controls": [
+      {
+        "candidate": "carrier",
+        "PC": 536871840,
+        "bit": 20,
+        "field": "immediate",
+        "original": 524,
+        "mutated": 525,
+        "same_instruction_shape": true,
+        "rejected": true
+      },
+      {
+        "candidate": "carrier",
+        "PC": 536871872,
+        "bit": 7,
+        "field": "immediate",
+        "original": -1,
+        "mutated": -2,
+        "same_instruction_shape": true,
+        "rejected": true
+      },
+      {
+        "candidate": "carrier",
+        "PC": 536871876,
+        "bit": 7,
+        "field": "target",
+        "original": 536871870,
+        "mutated": 536869822,
+        "same_instruction_shape": true,
+        "rejected": true
+      },
+      {
+        "candidate": "carrier-dec2023",
+        "PC": 536871840,
+        "bit": 20,
+        "field": "immediate",
+        "original": 524,
+        "mutated": 525,
+        "same_instruction_shape": true,
+        "rejected": true
+      },
+      {
+        "candidate": "carrier-dec2023",
+        "PC": 536871872,
+        "bit": 7,
+        "field": "immediate",
+        "original": -1,
+        "mutated": -2,
+        "same_instruction_shape": true,
+        "rejected": true
+      },
+      {
+        "candidate": "carrier-dec2023",
+        "PC": 536871876,
+        "bit": 7,
+        "field": "target",
+        "original": 536871870,
+        "mutated": 536869822,
+        "same_instruction_shape": true,
+        "rejected": true
+      }
+    ]
+  }
+}

@@ -1,5 +1,11 @@
 # Verified milestones
 
+## A genuine four-byte C object at the original reply position and the config-entry boundary
+
+Two motivated profiles first materialize the complete Flash base before copy, removing an extraS7 save and producing552B/eight saves/SP14 two-byte storage. Declaring an aligned4-byte backing then yields actual C11/C++17 550B/186 instructions/48-byte frame. OwnedSP12..15 does not overlapSP16..47 saves. Only the first two bytes are written; S2/E0/0 correlated IR edges are checked. Original seven common save locations match; extraS6/save order/callRA/full ABI remain unproved. **The narrow pointer projection matches; no new BIN or live replacement.**
+
+Original18F56..18F88 is a50B/14-instruction six-byte writer. The66B/24-instruction caller's MAC copy writesSP40..45, avoidingstaCB68..71. Actual46B/14-instruction slot48 fill leaves in two candidates include MMIO save/zero/FENCE.I/restore, a byte interval and advanced-A0 return. Combined App/source intervals imply staCB zero at19AEC only under explicit nonnull valid-stack/no-alias/no-async/normal-access premises. **This does not cover pre-copy200004BC or permanent runtime zero.** [Code and evidence](../analysis/v4160-config-lifetime-2026-10-22/readme.en.md)
+
 ## Allocator callback field origin and bounded C frame experiments
 
 Each candidate114-byte BLE-init prefix copies64 bytes, writing config+52 into the allocator callback word. Actual reads also cover30-byte zero helpers and8-byte initializer tails; they establish neither a live callback nor permanent zero. Actual RV32 C inclusion of both official headers yields staCB52/readFlash56/writeFlash60/config64. The original App308-byte body,32 selected fields and23 standard stores establish numerical SNVAddr08077C00 and no explicit SP68 store, retaining unknown-call/alias boundaries.

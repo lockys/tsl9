@@ -1,5 +1,11 @@
 # 已驗證里程碑
 
+## 原回覆位置的獨立4-byte C物件與設定入口界線
+
+兩個有根據的profile先將完整Flash base在copy前具體化，移除額外S7保存，得到552B／8saves／SP14兩byte；再宣告有align4的4-byte backing，實際C11／C++17為550B／186指令／48frame，物件SP12..15與保存槽SP16..47不overlap。只寫前兩byte；S2與E0/0的IR phi邊已逐對核對。原七個保存位置相同，額外S6、保存順序、callRA與完整ABI仍未證。**狹義指標位置相同，沒有新BIN或live替換。**
+
+原18F56..18F88的50B／14指令helper只寫六byte；caller66B／24指令的MAC copy只寫SP40..45，未碰staCB68..71。兩份候選slot48的46B／14指令fill含MMIO save/zero/FENCE.I/restore，正常byte區間及A0進位回傳均實讀。結合全部App本體與局部範圍，可在明示有效nonnull stack／無alias／無async／正常存取條件下推得19AEC入口staCB零值，**不證明callee200004BC後或runtime永久零值**。 [程式與證據](../analysis/v4160-config-lifetime-2026-10-22/README.md)
+
 ## 配置 callback 的欄位來源與有界 C frame 實驗
 
 兩份候選的114-byte BLE 初始化 prefix 以64-byte copy將設定+52寫到配置 callback word；加上各30-byte zero helper及8-byte initializer tail的實讀，並不構成 callback live值或永久零值證明。實際 RV32 C 包含兩份官方 header 得到staCB52／readFlash56／writeFlash60／config64；原 App308-byte本體的32選定欄位與23標準store，確認數值SNVAddr08077C00及無明示SP68 store，仍有未知calls與alias界線。
