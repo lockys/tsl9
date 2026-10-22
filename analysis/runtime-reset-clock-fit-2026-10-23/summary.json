@@ -1,0 +1,78 @@
+{
+  "schema": "TSL9-runtime-reset-clock-fit-milestone-v1",
+  "date": "2026-10-23",
+  "scope": "Offline C/C++ reset + fall-through clock composition and curated-source object comparison; not a complete APP or hardware result.",
+  "source": "src/native/clock/clock_init.c",
+  "source_sha256": "a5469ac723d8f4c462049b84b0a22ac15d78c182dd2d22dc61ccec641e97066c",
+  "fit": {
+    "reset_bytes": 138,
+    "reset_instructions": 38,
+    "clock_bytes": 232,
+    "clock_instructions": 93,
+    "total_executable_bytes": 370,
+    "total_instructions": 131,
+    "functions": 4,
+    "clock_entry": "0x1874a",
+    "clock_entry_bytes": 12,
+    "clock_body": "0x18756",
+    "clock_body_bytes": 220,
+    "clock_end_exclusive": "0x18832",
+    "call": "0x18720 -> 0x1874a",
+    "RA": "0x18724",
+    "actual_ELFs_per_language": 6,
+    "initializer_bytes": 128,
+    "RAM_NOBITS_bytes": 35160,
+    "stack_NOBITS_bytes": 16,
+    "reset_negative_controls_per_language": 16,
+    "clock_negative_controls_per_language": 18,
+    "strict_firmware_ready_refusal": {
+      "c_exit": 1,
+      "cpp_exit": 1
+    },
+    "source_hashes_per_language": 57,
+    "artifact_hashes_per_language": 34,
+    "receipts": {
+      "c": {
+        "path": "receipts/c.json",
+        "sha256": "c666890cf80933db1b72213b0d92c93dcfecad4edf472d2195d7d46d08185a9f",
+        "byte_exact_local_receipt": true
+      },
+      "cpp": {
+        "path": "receipts/cpp.json",
+        "sha256": "9a53e698a418995e977c572d768e8cba68bc6736908672b20d9cdfd94d7a53da",
+        "byte_exact_local_receipt": true
+      }
+    }
+  },
+  "curated": {
+    "C_and_header_files": 42,
+    "native_translation_units": 16,
+    "comparisons": 32,
+    "actual_objects": 64,
+    "input_hashes": 86,
+    "artifact_hashes": 193,
+    "actual_MD_maps": 64,
+    "local_receipt": "build/curated-source/runtime-reset-clock-fit-20261023-v3/verification.json",
+    "local_original_sha256": "747755a6c156ca6f90676844607dbfeee8cb380695009de175f94756654cec28",
+    "public_receipt": "receipts/curated-source.json",
+    "public_sha256": "113e481658be913b116f186f8ab0e724a0b8856a05c45c2f7af23f6339f398db",
+    "byte_exact_original": false,
+    "original_preserved_locally": true,
+    "path_fields_only_changed": true,
+    "direct_original_replay_claimed": false
+  },
+  "historical_receipts": "Older local receipts and frozen readers are preserved. Their source pins can reject the current clock revision. Existing public redaction ledger remains unchanged.",
+  "unknowns": [
+    "Original cold SW18830 replaced by RET; residual J18832..18834 is not free space.",
+    "No next-function overlap does not establish indirect, resident, BOOT or IRQ incoming entry safety.",
+    "Vector8038, main9008, resident40000 and full APP provider/layout closure not implemented.",
+    "Physical chip, installed ROM, memory ownership, fault/asynchronous equivalence and BLE OTA compatibility unproved."
+  ],
+  "firmware_ready": false,
+  "full_firmware_verified": false,
+  "hardware_OTA_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "BIN_generated": false,
+  "network": false
+}

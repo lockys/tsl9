@@ -1,0 +1,566 @@
+{
+  "schema": "TSL9-curated-source-v1",
+  "native_firmware_reference": "ID2966 V4.1.60 unless the resident SDK-candidate scope says otherwise",
+  "legacy_reference": "V4.1.00 behavior models; not V4.1.60/native firmware",
+  "files": [
+    {
+      "origin": "experiments/tsl9-init-mask/src/init_mask.c",
+      "destination": "src/native/init_mask/init_mask.c",
+      "replacements": [
+        [
+          "\"../../tsl9-v4160-irq-native/src/native_io.h\"",
+          "\"../irq/native_io.h\""
+        ]
+      ],
+      "origin_sha256": "cb06e8296bb2564243e61250fe44fe564220bc24920d2821a946060eff2707d3",
+      "sha256": "a0523410a35c47575e5a3f7e3ed008fa1e5ef9b024f09c6a283250f1d936b562"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-irq-native/src/interrupt_registers.c",
+      "destination": "src/native/irq/interrupt_registers.c",
+      "replacements": [
+        [
+          "\"../../tsl9-v4160-interrupt-registers/src/interrupt_registers.h\"",
+          "\"interrupt_registers.h\""
+        ]
+      ],
+      "origin_sha256": "7bf0b338044ef635f132281c11abb516bb0b9a62108e7c8faa8857c1b5e928db",
+      "sha256": "5da18f1b818714fea4654dcce9c3ca13fcb71371ff85832331b5619f8c53d486"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-irq-native/src/native_io.h",
+      "destination": "src/native/irq/native_io.h",
+      "replacements": [],
+      "origin_sha256": "f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e",
+      "sha256": "f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.h",
+      "destination": "src/native/irq/interrupt_registers.h",
+      "replacements": [],
+      "origin_sha256": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59",
+      "sha256": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"
+    },
+    {
+      "origin": "experiments/tsl9-nv-write-callback/src/nv_write_callback.c",
+      "destination": "src/native/nv/nv_write_callback.c",
+      "replacements": [
+        [
+          "\"../../tsl9-v4160-flash-entry-order/src/flash_native.c\"",
+          "\"flash_native.c\""
+        ]
+      ],
+      "origin_sha256": "b4f41b783dbf1a780e9771c087c10631d17fd7bd7927fb4dab3e86eea7565e69",
+      "sha256": "9a3e998b68c35073ef15887b53dc9caf4b8c21d83645ba559e290b4fb3ef393c"
+    },
+    {
+      "origin": "experiments/tsl9-nv-write-callback/src/nv_write_callback.h",
+      "destination": "src/native/nv/nv_write_callback.h",
+      "replacements": [
+        [
+          "\"../../tsl9-v4160-flash-entry-order/src/flash_native.h\"",
+          "\"flash_native.h\""
+        ]
+      ],
+      "origin_sha256": "6ab2541ef9f6363f435d714e189320e6e5b68af630cf958e292e0c4dc8b997bb",
+      "sha256": "c814e7ae426389fa43011e19e9e5cb715d7c789191ced8fcdd485399036a91e8"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-flash-entry-order/src/flash_native.c",
+      "destination": "src/native/nv/flash_native.c",
+      "replacements": [],
+      "origin_sha256": "c2f85fd50a7def5ff4baf200415e9faa3f2a253dea51c6bc54ae6a139fef960b",
+      "sha256": "c2f85fd50a7def5ff4baf200415e9faa3f2a253dea51c6bc54ae6a139fef960b"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-flash-entry-order/src/flash_native.h",
+      "destination": "src/native/nv/flash_native.h",
+      "replacements": [],
+      "origin_sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd",
+      "sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-flash-entry-order/src/native_io.h",
+      "destination": "src/native/nv/native_io.h",
+      "replacements": [
+        [
+          "#define FN_CALL_UNLOCK(v) FN_ONE_CALL(tsl9_flash_unlock_18e98,(v),\"a3\",\"a4\",\"a5\")",
+          "#define FN_CALL_UNLOCK(v) FN_ONE_CALL(tsl9_flash_unlock_18e98,(v),\"a1\",\"a3\",\"a4\",\"a5\")"
+        ],
+        [
+          "#define FN_CALL_ERASE(v) FN_ONE_CALL(tsl9_flash_erase_18ec4,(v),\"a3\",\"a4\",\"a5\")",
+          "#define FN_CALL_ERASE(v) FN_ONE_CALL(tsl9_flash_erase_18ec4,(v),\"a1\",\"a3\",\"a4\",\"a5\")"
+        ]
+      ],
+      "origin_sha256": "e0d58fdf1ae5ebc1f497a023443a4e6432f5cd75d987c691a2dcf68b3e64af7e",
+      "sha256": "03a4c41413b799c7251e254cd104ba4d8ea5a83b2bb05bffe6a4068ce85f04da"
+    },
+    {
+      "origin": "experiments/tsl9-nv-read-callback/src/nv_read_callback.c",
+      "destination": "src/native/nv/nv_read_callback.c",
+      "replacements": [],
+      "origin_sha256": "9dedfbeef69aa3df6de14789369a69af8c79f192dec29690ee9868aca962ede2",
+      "sha256": "9dedfbeef69aa3df6de14789369a69af8c79f192dec29690ee9868aca962ede2"
+    },
+    {
+      "origin": "experiments/tsl9-nv-read-callback/src/nv_read_callback.h",
+      "destination": "src/native/nv/nv_read_callback.h",
+      "replacements": [],
+      "origin_sha256": "8a05d4c886ce5a3800017779353ad696fe32fd543a727dc120e6f37f5a925802",
+      "sha256": "8a05d4c886ce5a3800017779353ad696fe32fd543a727dc120e6f37f5a925802"
+    },
+    {
+      "origin": "experiments/tsl9-adc-caller-bank/src/caller_bank.c",
+      "destination": "src/native/adc/caller_bank.c",
+      "replacements": [
+        [
+          "\"../../tsl9-adc-config/src/native.c\"",
+          "\"native.c\""
+        ]
+      ],
+      "origin_sha256": "e32cb316d7d05021675070d9b0b689cd3764df23c9ef24b7c6b7970019ec6ed8",
+      "sha256": "51e44b5c520ce8651217540b3c020a4ad322916ed8e4576c9799ce3357f91cf1"
+    },
+    {
+      "origin": "experiments/tsl9-adc-config/src/native.c",
+      "destination": "src/native/adc/native.c",
+      "replacements": [
+        [
+          "\"../../tsl9-resident-memory-leaves/src/io.h\"",
+          "\"io.h\""
+        ]
+      ],
+      "origin_sha256": "c8b29856fb888a44e84e80e7a1f48866824edf4cd847e63a8a03bbd088e71e49",
+      "sha256": "7011badf2f84e52b0cbc7e6b78c86b2b63df32380300a42b3e56c263936cb0b5"
+    },
+    {
+      "origin": "experiments/tsl9-adc-config/src/adc_config.c",
+      "destination": "src/native/adc/adc_config.c",
+      "replacements": [
+        [
+          "\"../../tsl9-resident-memory-leaves/src/io.h\"",
+          "\"io.h\""
+        ]
+      ],
+      "origin_sha256": "eb600b940fafaf15fb0d3f573e5adec59c600dee51133d8dba1908b757205643",
+      "sha256": "8ec563dc97c30612ea313970227bd92c9b68d656a1f23f36c72eee181ba5610f"
+    },
+    {
+      "origin": "experiments/tsl9-adc-config/src/adc_config.h",
+      "destination": "src/native/adc/adc_config.h",
+      "replacements": [
+        [
+          "\"../../tsl9-resident-memory-leaves/src/memory_leaves.h\"",
+          "\"memory_leaves.h\""
+        ]
+      ],
+      "origin_sha256": "6b2d150c862f3317d170c450e30d4c628e7f30b1d2a0476618ca01086bba04dc",
+      "sha256": "03d2da2050b5d73b51dd9687524a0543192f97315ac02de054bd3ccd3d57c323"
+    },
+    {
+      "origin": "experiments/tsl9-resident-memory-leaves/src/memory_leaves.h",
+      "destination": "src/native/adc/memory_leaves.h",
+      "replacements": [],
+      "origin_sha256": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2",
+      "sha256": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2"
+    },
+    {
+      "origin": "experiments/tsl9-resident-memory-leaves/src/io.h",
+      "destination": "src/native/adc/io.h",
+      "replacements": [],
+      "origin_sha256": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8",
+      "sha256": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-clock-registers/src/clock_query.c",
+      "destination": "src/native/clock/clock_query.c",
+      "replacements": [],
+      "origin_sha256": "dcaa19f44760e16e022e73aa86fbcc3b0638c6ca1410a1fb03087366fa8eebc8",
+      "sha256": "dcaa19f44760e16e022e73aa86fbcc3b0638c6ca1410a1fb03087366fa8eebc8"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-clock-registers/src/clock_fields.c",
+      "destination": "src/native/clock/clock_fields.c",
+      "replacements": [],
+      "origin_sha256": "416e0990c9ed3a142953af97ea6496bf269311f003dfec1046ab32308afd8701",
+      "sha256": "416e0990c9ed3a142953af97ea6496bf269311f003dfec1046ab32308afd8701"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-clock-registers/src/clock_io.h",
+      "destination": "src/native/clock/clock_io.h",
+      "replacements": [],
+      "origin_sha256": "fd2d1bb3c780daf698c93db536ca5f2229e20553dc5543646c0667bab839e36f",
+      "sha256": "fd2d1bb3c780daf698c93db536ca5f2229e20553dc5543646c0667bab839e36f"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-clock-registers/src/clock_registers.h",
+      "destination": "src/native/clock/clock_registers.h",
+      "replacements": [],
+      "origin_sha256": "c52596a6f9943912122d845e61ed5ea4298d2a205f3bdd614de96ef2e3b17552",
+      "sha256": "c52596a6f9943912122d845e61ed5ea4298d2a205f3bdd614de96ef2e3b17552"
+    },
+    {
+      "origin": "experiments/tsl9-resident-memory-native/src/native.c",
+      "destination": "src/native/resident/native.c",
+      "replacements": [
+        [
+          "\"../../tsl9-resident-memory-leaves/src/io.h\"",
+          "\"io.h\""
+        ],
+        [
+          "\"../../tsl9-resident-memory-leaves/src/memory_leaves.c\"",
+          "\"memory_leaves.c\""
+        ]
+      ],
+      "origin_sha256": "b6cb7740f17d984a7d7a88d2090abfee5755dce97092b7fdd0b7c6284d964305",
+      "sha256": "70c00f11745fbb1390a44a552cf6fb1e146ebb6fcb939e6b46b9a312b410243f"
+    },
+    {
+      "origin": "experiments/tsl9-resident-memory-native/src/native.h",
+      "destination": "src/native/resident/native.h",
+      "replacements": [],
+      "origin_sha256": "1468fb5384938bdee808dbeab4437aa4d63fe4ccccddcbc39f0279eb7b8871ac",
+      "sha256": "1468fb5384938bdee808dbeab4437aa4d63fe4ccccddcbc39f0279eb7b8871ac"
+    },
+    {
+      "origin": "experiments/tsl9-resident-memory-leaves/src/memory_leaves.c",
+      "destination": "src/native/resident/memory_leaves.c",
+      "replacements": [],
+      "origin_sha256": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536",
+      "sha256": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536"
+    },
+    {
+      "origin": "experiments/tsl9-resident-memory-leaves/src/memory_leaves.h",
+      "destination": "src/native/resident/memory_leaves.h",
+      "replacements": [],
+      "origin_sha256": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2",
+      "sha256": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2"
+    },
+    {
+      "origin": "experiments/tsl9-resident-memory-leaves/src/io.h",
+      "destination": "src/native/resident/io.h",
+      "replacements": [],
+      "origin_sha256": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8",
+      "sha256": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8"
+    },
+    {
+      "origin": "experiments/tsl9-contract-model/src/dnd_actions.c",
+      "destination": "src/reference/v4100/dnd_actions.c",
+      "replacements": [],
+      "origin_sha256": "2bd619f777ee8beab0cf674e293a54dacb8333fa0c3699b954e8ca9fd7cc2cd2",
+      "sha256": "2bd619f777ee8beab0cf674e293a54dacb8333fa0c3699b954e8ca9fd7cc2cd2"
+    },
+    {
+      "origin": "experiments/tsl9-contract-model/src/dnd_actions.h",
+      "destination": "src/reference/v4100/dnd_actions.h",
+      "replacements": [],
+      "origin_sha256": "b95d4eb4c6732d549f9038364ba58598aab964765b01f1cfb8c383a916d5ca42",
+      "sha256": "b95d4eb4c6732d549f9038364ba58598aab964765b01f1cfb8c383a916d5ca42"
+    },
+    {
+      "origin": "experiments/tsl9-contract-model/src/general_ble.c",
+      "destination": "src/reference/v4100/general_ble.c",
+      "replacements": [],
+      "origin_sha256": "d28de43706c43f5fdc9832858f983b490e3c2e280395f97813fecbc2282cba90",
+      "sha256": "d28de43706c43f5fdc9832858f983b490e3c2e280395f97813fecbc2282cba90"
+    },
+    {
+      "origin": "experiments/tsl9-contract-model/src/general_ble.h",
+      "destination": "src/reference/v4100/general_ble.h",
+      "replacements": [],
+      "origin_sha256": "1686739bcf9db5abb1c78ef85f262af27ac8438755f5e7e43d862ba8adb468aa",
+      "sha256": "1686739bcf9db5abb1c78ef85f262af27ac8438755f5e7e43d862ba8adb468aa"
+    },
+    {
+      "origin": "experiments/tsl9-contract-model/src/feature.h",
+      "destination": "src/reference/v4100/feature.h",
+      "replacements": [],
+      "origin_sha256": "ace08775790c4ab39d6c7dbee3a238780ef778bac6f251f860e057a35b977401",
+      "sha256": "ace08775790c4ab39d6c7dbee3a238780ef778bac6f251f860e057a35b977401"
+    },
+    {
+      "origin": "experiments/tsl9-contract-model/src/gatt_parser.c",
+      "destination": "src/reference/v4100/gatt_parser.c",
+      "replacements": [],
+      "origin_sha256": "76fccc2b6e9a92fb4880b1119fe2009b60bcdd8c63a4a8bd6a6a45ff95aa3274",
+      "sha256": "76fccc2b6e9a92fb4880b1119fe2009b60bcdd8c63a4a8bd6a6a45ff95aa3274"
+    },
+    {
+      "origin": "experiments/tsl9-contract-model/src/gatt_parser.h",
+      "destination": "src/reference/v4100/gatt_parser.h",
+      "replacements": [],
+      "origin_sha256": "5a5e872d9277cef39ee080ccf73f3ec9376c13bc4bd53bc550bb71aa233ca977",
+      "sha256": "5a5e872d9277cef39ee080ccf73f3ec9376c13bc4bd53bc550bb71aa233ca977"
+    },
+    {
+      "origin": "experiments/tsl9-contract-model/src/ble_transport.h",
+      "destination": "src/reference/v4100/ble_transport.h",
+      "replacements": [],
+      "origin_sha256": "97d3bb5e783bb841531655e491ae08289db13a01ad0d0656d36b6561aedce97b",
+      "sha256": "97d3bb5e783bb841531655e491ae08289db13a01ad0d0656d36b6561aedce97b"
+    },
+    {
+      "origin": "experiments/tsl9-delay-register-contract/src/delay.c",
+      "destination": "src/native/timer/delay.c",
+      "replacements": [],
+      "origin_sha256": "7c18e7f7371ba503f0f5f6738139ec97c8655ebb676d798af2718978bb5b2793",
+      "sha256": "7c18e7f7371ba503f0f5f6738139ec97c8655ebb676d798af2718978bb5b2793"
+    },
+    {
+      "origin": "experiments/tsl9-nv-write-frame-contract/src/write_frame.c",
+      "destination": "src/native/nv/nv_write_frame_contract.c",
+      "replacements": [],
+      "origin_sha256": "534eb4915432f049ea0e701c5098ca4a4f89309f028e55e23f89dde20fd5aade",
+      "sha256": "534eb4915432f049ea0e701c5098ca4a4f89309f028e55e23f89dde20fd5aade"
+    },
+    {
+      "origin": "experiments/tsl9-nv-read-registers/src/read_registers.c",
+      "destination": "src/native/nv/nv_read_registers.c",
+      "replacements": [],
+      "origin_sha256": "e165c4a4dd39376ceb52e2838145c435126b50709ad9e82b853eae152bd5023f",
+      "sha256": "e165c4a4dd39376ceb52e2838145c435126b50709ad9e82b853eae152bd5023f"
+    },
+    {
+      "origin": "experiments/tsl9-nv-read-live-count/src/read_live_count.c",
+      "destination": "src/native/nv/nv_read_live_count.c",
+      "replacements": [],
+      "origin_sha256": "71512907d00443a3446d240b15b74d3e834bdfaf77fbc299afbe203222ded7b9",
+      "sha256": "71512907d00443a3446d240b15b74d3e834bdfaf77fbc299afbe203222ded7b9"
+    },
+    {
+      "origin": "experiments/tsl9-boot-clock-fallthrough/src/clock_fallthrough.c",
+      "destination": "src/native/clock/clock_init.c",
+      "replacements": [],
+      "origin_sha256": "a5469ac723d8f4c462049b84b0a22ac15d78c182dd2d22dc61ccec641e97066c",
+      "sha256": "a5469ac723d8f4c462049b84b0a22ac15d78c182dd2d22dc61ccec641e97066c"
+    },
+    {
+      "origin": "experiments/tsl9-runtime-reset-clock/src/reset_memory.c",
+      "destination": "src/native/startup/reset_memory.c",
+      "replacements": [],
+      "origin_sha256": "cd2d0975bdab14759f41f096ce89532535544f10373532b0adb5e2e5455ebaf1",
+      "sha256": "cd2d0975bdab14759f41f096ce89532535544f10373532b0adb5e2e5455ebaf1"
+    },
+    {
+      "origin": "experiments/tsl9-runtime-reset-clock/src/reset_ports.c",
+      "destination": "src/native/startup/reset_ports.c",
+      "replacements": [],
+      "origin_sha256": "5419c3d669183107771f88231080e517458e757a63868f5971b2db7f14ed9ae8",
+      "sha256": "5419c3d669183107771f88231080e517458e757a63868f5971b2db7f14ed9ae8"
+    },
+    {
+      "origin": "experiments/tsl9-runtime-reset-clock/src/reset_data.c",
+      "destination": "src/native/startup/reset_data.c",
+      "replacements": [],
+      "origin_sha256": "02aad93670679ef0c8c472dc998e3d41963ba33d280a5ec6baa336a3173ed1ec",
+      "sha256": "02aad93670679ef0c8c472dc998e3d41963ba33d280a5ec6baa336a3173ed1ec"
+    }
+  ],
+  "native_units": [
+    {
+      "name": "init-mask",
+      "profile": "irq-bank",
+      "origin_unit": "experiments/tsl9-init-mask/src/init_mask.c",
+      "curated_unit": "src/native/init_mask/init_mask.c",
+      "evidence": "scripts/verify-curated-source.py",
+      "scope": "Whole 30-byte leaf equals official V4.1.60; whole startup and physical placement unproved.",
+      "origin_unit_sha256": "cb06e8296bb2564243e61250fe44fe564220bc24920d2821a946060eff2707d3"
+    },
+    {
+      "name": "irq",
+      "profile": "irq-bank",
+      "origin_unit": "experiments/tsl9-v4160-irq-native/src/interrupt_registers.c",
+      "curated_unit": "src/native/irq/interrupt_registers.c",
+      "evidence": "analysis/v4160-irq-native-2026-10-21/compiler-review/README.md",
+      "scope": "Four 30-byte helpers exact; initializer normal register boundary only, 180B vs original144B, asynchronous equivalence unproved.",
+      "origin_unit_sha256": "7bf0b338044ef635f132281c11abb516bb0b9a62108e7c8faa8857c1b5e928db"
+    },
+    {
+      "name": "nv-write",
+      "profile": "standard",
+      "origin_unit": "experiments/tsl9-nv-write-call-contract/src/call_contract.c",
+      "curated_unit": "src/native/nv/nv_write_callback.c",
+      "evidence": "scripts/verify-curated-source.py",
+      "scope": "Fresh origin/curated object comparison covers eight functions and the two recorded A1 clobber declaration adaptations. This is not full firmware equivalence; write frame/source, timer register behavior and installed providers remain unresolved.",
+      "origin_unit_sha256": "50087f3dfa154a4b784e07f081d6d9c80be7ff0e0870508eeeeabe383c2351c8"
+    },
+    {
+      "name": "nv-read",
+      "profile": "standard",
+      "origin_unit": "experiments/tsl9-nv-read-callback/src/nv_read_callback.c",
+      "curated_unit": "src/native/nv/nv_read_callback.c",
+      "evidence": "analysis/v4160-callback-frontiers-2026-10-22/README.md",
+      "scope": "Normal numeric callback projection; new A3 and fault/frame differences, actual indirect provider unresolved.",
+      "origin_unit_sha256": "9dedfbeef69aa3df6de14789369a69af8c79f192dec29690ee9868aca962ede2"
+    },
+    {
+      "name": "adc",
+      "profile": "adc-bank",
+      "origin_unit": "experiments/tsl9-adc-caller-bank/src/caller_bank.c",
+      "curated_unit": "src/native/adc/caller_bank.c",
+      "evidence": "analysis/v4160-adc-caller-2026-10-22/README.md",
+      "scope": "Caller-derived bank preserves live registers; new16B frame and async/alias constraints remain.",
+      "origin_unit_sha256": "e32cb316d7d05021675070d9b0b689cd3764df23c9ef24b7c6b7970019ec6ed8"
+    },
+    {
+      "name": "clock-query",
+      "profile": "clock-query",
+      "origin_unit": "experiments/tsl9-v4160-clock-registers/src/clock_query.c",
+      "curated_unit": "src/native/clock/clock_query.c",
+      "evidence": "analysis/v4160-clock-abi-2026-10-21/compiler-review/README.md",
+      "scope": "Improved original register residues; full branch machine semantics unproved,196B vs174B.",
+      "origin_unit_sha256": "dcaa19f44760e16e022e73aa86fbcc3b0638c6ca1410a1fb03087366fa8eebc8"
+    },
+    {
+      "name": "clock-fields",
+      "profile": "clock-fields",
+      "origin_unit": "experiments/tsl9-v4160-clock-registers/src/clock_fields.c",
+      "curated_unit": "src/native/clock/clock_fields.c",
+      "evidence": "analysis/v4160-clock-abi-2026-10-21/compiler-review/README.md",
+      "scope": "Normal register-return pattern proved;38B vs40B, physical/IRQ equivalence unproved.",
+      "origin_unit_sha256": "416e0990c9ed3a142953af97ea6496bf269311f003dfec1046ab32308afd8701"
+    },
+    {
+      "name": "resident-memory",
+      "profile": "standard",
+      "origin_unit": "experiments/tsl9-resident-memory-native/src/native.c",
+      "curated_unit": "src/native/resident/native.c",
+      "evidence": "analysis/v4160-resident-native-2026-10-22/README.md",
+      "scope": "SDK candidate normal memory/return projection only; extra scratch writes/fault timing remain, installed ROM identity unproved.",
+      "origin_unit_sha256": "b6cb7740f17d984a7d7a88d2090abfee5755dce97092b7fdd0b7c6284d964305"
+    },
+    {
+      "name": "delay-registers",
+      "profile": "delay-bank",
+      "origin_unit": "experiments/tsl9-delay-register-contract/src/delay.c",
+      "curated_unit": "src/native/timer/delay.c",
+      "evidence": "experiments/tsl9-delay-register-contract/README.md",
+      "scope": "Whole 54-byte leaf equals official V4.1.60; separate TU/profile, not yet substituted into NV callback or an OTA image. Global fault/IRQ and physical execution unproved.",
+      "origin_unit_sha256": "7c18e7f7371ba503f0f5f6738139ec97c8655ebb676d798af2718978bb5b2793"
+    },
+    {
+      "name": "nv-write-frame-contract",
+      "profile": "standard",
+      "origin_unit": "experiments/tsl9-nv-write-frame-contract/src/write_frame.c",
+      "curated_unit": "src/native/nv/nv_write_frame_contract.c",
+      "evidence": "experiments/tsl9-nv-write-frame-contract/README.md",
+      "scope": "50-byte callback, original32B frame/source slot and first40B outside JAL relocations match; LI0 precedes saved RA/S0 restores, so full async/fault equivalence unproved. Separate TU, not an OTA BIN.",
+      "origin_unit_sha256": "534eb4915432f049ea0e701c5098ca4a4f89309f028e55e23f89dde20fd5aade"
+    },
+    {
+      "name": "nv-read-registers",
+      "profile": "standard",
+      "origin_unit": "experiments/tsl9-nv-read-registers/src/read_registers.c",
+      "curated_unit": "src/native/nv/nv_read_registers.c",
+      "evidence": "experiments/tsl9-nv-read-registers/README.md",
+      "scope": "30-byte read callback removes extra wrapper A3 write; same normal entry register projection. Original13i versus candidate14i; frame/slot/shift/restore order and fresh provider identity remain unproved. Not whole-code equality or an OTA image.",
+      "origin_unit_sha256": "e165c4a4dd39376ceb52e2838145c435126b50709ad9e82b853eae152bd5023f"
+    },
+    {
+      "name": "nv-read-live-count",
+      "profile": "standard",
+      "origin_unit": "experiments/tsl9-nv-read-live-count/src/read_live_count.c",
+      "curated_unit": "src/native/nv/nv_read_live_count.c",
+      "evidence": "experiments/tsl9-nv-read-live-count/README.md",
+      "scope": "Measured NV read30B13i/direct A2 shift/no added A3 write; exact original10B call window only; frame/return ordering, provider and full ABI remain unproved.",
+      "origin_unit_sha256": "71512907d00443a3446d240b15b74d3e834bdfaf77fbc299afbe203222ded7b9"
+    },
+    {
+      "name": "boot-clock-prefix",
+      "profile": "boot-clock",
+      "origin_unit": "experiments/tsl9-boot-clock-fallthrough/src/clock_fallthrough.c",
+      "curated_unit": "src/native/clock/clock_init.c",
+      "evidence": "experiments/tsl9-runtime-reset-clock-fit/README.md",
+      "scope": "232B93i, genuine entry12B falls through to C body220B; linked adjacency/whole code and normal MMIO/register/frame projection checked. Original cold SW at18830 replaced by RET, residual J at18832 is not free space; indirect/IRQ/fault/hardware/full APP remain unproved.",
+      "origin_unit_sha256": "a5469ac723d8f4c462049b84b0a22ac15d78c182dd2d22dc61ccec641e97066c"
+    },
+    {
+      "name": "startup-memory",
+      "profile": "runtime-reset",
+      "origin_unit": "experiments/tsl9-runtime-reset-clock/src/reset_memory.c",
+      "curated_unit": "src/native/startup/reset_memory.c",
+      "evidence": "experiments/tsl9-runtime-reset-clock-fit/README.md",
+      "scope": "Diagnostic reset138B38i composed with clock232B93i; call18720 to1874A retains RA18724 and three live GP samples. No next-function overlap; original cold-tail/indirect entry, vector/main/resident, full IRQ/fault/hardware remain unproved. No BIN.",
+      "origin_unit_sha256": "cd2d0975bdab14759f41f096ce89532535544f10373532b0adb5e2e5455ebaf1"
+    },
+    {
+      "name": "startup-ports",
+      "profile": "runtime-reset",
+      "origin_unit": "experiments/tsl9-runtime-reset-clock/src/reset_ports.c",
+      "curated_unit": "src/native/startup/reset_ports.c",
+      "evidence": "experiments/tsl9-runtime-reset-clock-fit/README.md",
+      "scope": "Diagnostic reset138B38i composed with clock232B93i; call18720 to1874A retains RA18724 and three live GP samples. No next-function overlap; original cold-tail/indirect entry, vector/main/resident, full IRQ/fault/hardware remain unproved. No BIN.",
+      "origin_unit_sha256": "5419c3d669183107771f88231080e517458e757a63868f5971b2db7f14ed9ae8"
+    },
+    {
+      "name": "startup-data",
+      "profile": "runtime-reset",
+      "origin_unit": "experiments/tsl9-runtime-reset-clock/src/reset_data.c",
+      "curated_unit": "src/native/startup/reset_data.c",
+      "evidence": "experiments/tsl9-runtime-reset-clock-fit/README.md",
+      "scope": "Diagnostic reset138B38i composed with clock232B93i; call18720 to1874A retains RA18724 and three live GP samples. No next-function overlap; original cold-tail/indirect entry, vector/main/resident, full IRQ/fault/hardware remain unproved. No BIN.",
+      "origin_unit_sha256": "02aad93670679ef0c8c472dc998e3d41963ba33d280a5ec6baa336a3173ed1ec"
+    }
+  ],
+  "legacy_groups": [
+    {
+      "name": "DND",
+      "files": [
+        "dnd_actions.c",
+        "dnd_actions.h"
+      ],
+      "evidence": "experiments/tsl9-contract-model/src/dnd_actions.c",
+      "historical_local_receipt": "analysis/round26/test-results.json",
+      "scope": "Published V4.1.00 source provenance only; historical local tests were not rerun for this milestone and do not prove V4.1.60/native equivalence.",
+      "historical_tests_rerun": false
+    },
+    {
+      "name": "general-settings",
+      "files": [
+        "general_ble.c",
+        "general_ble.h",
+        "feature.h"
+      ],
+      "evidence": "experiments/tsl9-contract-model/src/general_ble.c",
+      "historical_local_receipt": "analysis/round23/test-results.json",
+      "scope": "Published V4.1.00 source provenance only; historical local tests were not rerun for this milestone and do not prove V4.1.60/native equivalence.",
+      "historical_tests_rerun": false
+    },
+    {
+      "name": "GATT-framing",
+      "files": [
+        "gatt_parser.c",
+        "gatt_parser.h",
+        "ble_transport.h",
+        "dnd_actions.c",
+        "dnd_actions.h"
+      ],
+      "evidence": "experiments/tsl9-contract-model/src/gatt_parser.c",
+      "historical_local_receipt": "analysis/round30/verification-staging.json",
+      "scope": "Published V4.1.00 source provenance only; historical local tests were not rerun for this milestone and do not prove V4.1.60/native equivalence.",
+      "historical_tests_rerun": false
+    }
+  ],
+  "excluded": [
+    {
+      "path": "experiments/tsl9-nv-write-frame",
+      "reason": "Experimental fresh source reload; exact frame/slot/register contracts remain unproved."
+    },
+    {
+      "path": "experiments/tsl9-v4160-ota-tx",
+      "reason": "Known frame/restore timing differences and unresolved data/ROM providers."
+    },
+    {
+      "path": "experiments/tsl9-resident-register-contract",
+      "reason": "Fixed-bank variant introduces frame/spills; not a general improvement."
+    },
+    {
+      "path": "experiments/tsl9-v4160-startup",
+      "reason": "Large opcode-carrier sources are evidence artifacts, not selected readable C reconstruction."
+    }
+  ],
+  "target_execution": false,
+  "full_firmware_verified": false,
+  "hardware_OTA_proved": false,
+  "rebuilt_flashable_BIN": false
+}

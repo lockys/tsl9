@@ -17,25 +17,19 @@ struct clock_frame {
 };
 typedef char frame_size_is_16[(sizeof(struct clock_frame) == 16) ? 1 : -1];
 
-/* Architectural entry only: first MMIO sample precedes the frame allocation.
- * The extra direct jump is a new instruction, not original IRQ equivalence.
- * clock_body/clock_return use a private register ABI, never a normal C call. */
-LINKAGE __attribute__((naked, used)) void tsl9_clock_prefix_entry(void)
+/* Private architectural entry: the first MMIO read precedes the frame.
+ * There is no branch to the C body. The linker MUST prove exact adjacency;
+ * never call the C body using a normal C ABI or place these functions alone. */
+LINKAGE __attribute__((naked, used, aligned(2))) void tsl9_clock_prefix_entry(void)
 {
     __asm__ volatile(
         "lui a5, 0x40021\n"
         "lw a4, 0(a5)\n"
         "lui a3, 0xf8ff0\n"
-        "addi sp, sp, -16\n"
-        "j tsl9_clock_prefix_body\n");
+        "addi sp, sp, -16\n");
 }
 
-LINKAGE __attribute__((naked, used)) void tsl9_clock_prefix_return(void)
-{
-    __asm__ volatile("addi sp, sp, 16\nret\n");
-}
-
-LINKAGE __attribute__((used, noinline)) void tsl9_clock_prefix_body(void)
+LINKAGE __attribute__((used, noinline, aligned(2))) void tsl9_clock_prefix_body(void)
 {
     register uint32_t first_sample __asm__("a4");
     register volatile struct clock_frame *frame __asm__("sp");
@@ -92,6 +86,6 @@ LINKAGE __attribute__((used, noinline)) void tsl9_clock_prefix_body(void)
     register uint32_t a4 __asm__("a4") = final_a4;
     register uint32_t a5 __asm__("a5") = final_a5;
     __asm__ volatile("" : : "r"(a2), "r"(a3), "r"(a4), "r"(a5) : "memory");
-    __asm__ volatile("j tsl9_clock_prefix_return\n" : : : "memory");
+    __asm__ volatile("addi sp, sp, 16\nret\n" : : : "memory");
     __builtin_unreachable();
 }
