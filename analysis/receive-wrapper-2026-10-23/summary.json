@@ -1,0 +1,220 @@
+{
+  "schema": "TSL9-receiver-open-pipeline-summary-v1",
+  "date": "2026-10-23",
+  "scope": "Reconstruct70B receiver and compose it with the62B flag consumer, retaining genuine downstream providers and pending relocations.",
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "receiver": {
+    "source": "src/native/receive/receive_wrapper.c",
+    "origin": "experiments/tsl9-receive-wrapper/src/receive_wrapper.c",
+    "source_sha256": "df1e1f0633c50b8b2c9f7a58d2ac1e45664057de107dc04d28eca9e931538cdc",
+    "original_range": [
+      "0x16B0A",
+      "0x16B50"
+    ],
+    "original_bytes": 70,
+    "original_instructions": 26,
+    "original_sha256": "b12abed39cf1cc897ab42a51b6cfce8c150031819f747aab095fffd618ae6f80",
+    "entry_bytes": 14,
+    "body_bytes": 56,
+    "actual_ET_REL_adjacency": true,
+    "section_VA": 0,
+    "nominal_VA_claimed": false,
+    "noncall_bytes": 54,
+    "noncall_original_equal": true,
+    "noncall_sha256": "e862be93e54bd3d9027def687318afe6b59fa8676bac2197f9d4d2f0f31e01aa",
+    "open_code_sha256": "2bd070874ac877830742000e75b9fe3cbacdde007c66898214e7e6679de86caf",
+    "full70_equal_to_resolved_original": false,
+    "relocations": {
+      "type": 17,
+      "addends": 0,
+      "body_offsets": [
+        0,
+        18,
+        32,
+        52
+      ],
+      "standalone_offsets": [
+        14,
+        32,
+        46,
+        66
+      ],
+      "providers": [
+        "tsl9_register_read_entry_16994",
+        "tsl9_receive_buffer_entry_16a7c",
+        "tsl9_register_write_entry_16a30"
+      ],
+      "genuine_UND_count": 3,
+      "first_three_raw_words": "0x000000EF",
+      "tail_raw_word": "0x0000006F",
+      "original_targets": [
+        "0x16994",
+        "0x16A7C",
+        "0x16A7C",
+        "0x16A30"
+      ],
+      "original_RA_continuations": [
+        "0x16B1C",
+        "0x16B2E",
+        "0x16B3C",
+        null
+      ]
+    },
+    "frame_bytes": 16,
+    "reserved_architectural_registers": [
+      "ra",
+      "sp",
+      "s0",
+      "s1"
+    ],
+    "C_allocator_bank": [
+      "a0",
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+    ],
+    "ports": [
+      "Original14B frame/input-order entry",
+      "Physical S0 snapshot store",
+      "Then-live S0 mask0x02 update/conditional edge via asm goto",
+      "Three physical S1-to-A0 observations",
+      "Fresh S0/RA/S1 saved-slot reads",
+      "SP restore and real JALx0 tail"
+    ],
+    "pure_C_second_bit_test_implementation_claimed": false,
+    "ordinary_C_callee_ABI_claimed": false,
+    "then_live_provider_effects_retained": true,
+    "downstream_register_preservation_proved": false
+  },
+  "pipeline": {
+    "file_kind": "ET_REL",
+    "section": ".pipeline",
+    "section_VA": 0,
+    "bytes": 132,
+    "instructions": 47,
+    "function_offsets": {
+      "tsl9_flag_consumer_entry_17002": 0,
+      "tsl9_flag_consumer_body": 8,
+      "tsl9_receive_entry_16b0a": 62,
+      "tsl9_receive_body": 76
+    },
+    "relocation_offsets": [
+      22,
+      48,
+      76,
+      94,
+      108,
+      128
+    ],
+    "consumer_relocations_to_genuine_receiver_FUNC": 2,
+    "receiver_relocations_to_three_UND": 4,
+    "total_pending_JAL_relocations": 6,
+    "machine_JALs_resolved": false,
+    "linkage_definition_evidence_only": true,
+    "global_ABS_providers": 0,
+    "all_C_CPP_complete_ELF_bytes_equal": true
+  },
+  "formal_verification": {
+    "checker_sha256": "29bec92a0f027df2be5120d00cb0bb7b4d7e43f410c7bd6fce0b2b25550dd0db",
+    "frozen_consumer_checker_sha256": "5a7314d3f63e20babca57443ed55efcb00ff97487503e409b68ebe1d56871550",
+    "actual_ELFs": 8,
+    "per_language": {
+      "actual_ELFs": 4,
+      "IR_files": 2,
+      "MD_closures": 2,
+      "inputs": 12,
+      "recipes": 10,
+      "artifacts": 18,
+      "negative_controls_recorded": 50,
+      "negative_controls_without_full_hash": 48,
+      "full_SSA_hash_negatives": 2
+    },
+    "complete_metadata_and_local_symbol_closure": true,
+    "replay_exit_codes": {
+      "c": 0,
+      "cpp": 0
+    },
+    "strict_readiness_exit_codes": {
+      "c": 1,
+      "cpp": 1
+    },
+    "replay_inventory_unchanged": true
+  },
+  "ELF_sha256": {
+    "receiver.o": "251ba819063b42bc1ca92f6121f1357fe112ed6b89672f37b505bb5bcdab43fa",
+    "consumer.o": "8f5f0d67afcc1e03b6454afba267aa883cc302dcd1cf1e88b999ffd61827829d",
+    "RECEIVER-OPEN-CALLS.o": "174099baf843232984ff995ce79f82242e727bb06c0ad6a00ae31d5af7e9ff23",
+    "PIPELINE-OPEN-CALLS.o": "5d5e4cdb36af70f1bdea706b4cda99f0d83b78e94b6f558e39df12e805d7a5f8"
+  },
+  "receipts": {
+    "c": {
+      "file": "receipts/receiver-c.json",
+      "sha256": "b625bf1bbba69cc4133e5c90641a53ec46a3e70b212816696cb8c26c8e4f918e",
+      "byte_exact_local_receipt": true,
+      "portable_paths_produced_at_source": true
+    },
+    "cpp": {
+      "file": "receipts/receiver-cpp.json",
+      "sha256": "0808461fa94564bad7290d9483c2b685c587a04522ccbb8f3e2767f72fac2c1c",
+      "byte_exact_local_receipt": true,
+      "portable_paths_produced_at_source": true
+    }
+  },
+  "curated": {
+    "source_files": 46,
+    "native_translation_units": 20,
+    "comparisons": 40,
+    "actual_objects": 80,
+    "inputs": 94,
+    "MD_closures": 80,
+    "artifacts": 241,
+    "local_receipt": "build/curated-source/receive-wrapper-20261023-v1/verification.json",
+    "local_original_sha256": "c9dbaf44d57fe1150340c1019647d0986ef1b88c1fe55a2c1c0b14b118db2cd3",
+    "public_derivative": "receipts/curated-source.json",
+    "public_derivative_sha256": "3ed8b974387334585ad82aaba6b7898143425cee0165e9b851ccf78be9ae6a3e",
+    "inverse_mapping_equals_original_JSON": true,
+    "original_preserved_locally": true,
+    "direct_original_replay_of_public_derivative_claimed": false,
+    "scope": "Provenance and complete original-to-curated object-facts equality only."
+  },
+  "downstream_evidence": "downstream-contracts.json",
+  "feature_opportunity": {
+    "name": "Separate per-channel SPI timeout diagnostics",
+    "status": "analysis only; not implemented",
+    "evidence": "downstream-contracts.json"
+  },
+  "historical_local_probes": {
+    "initial_C_S0_S1_outputs_required_new_frame": true,
+    "initial_fixed_SP_compile_rejected": true,
+    "diagnostic_new_frame_prefix_bytes": 6,
+    "diagnostic_not_promoted": true,
+    "failed_source_snapshots_preserved": true,
+    "formal_v1_receipts_preserved": true,
+    "v2_change": "Tightened exact complete metadata and local-symbol gates; source/layout/flags and all8 ELF bytes unchanged."
+  },
+  "next_target": {
+    "primary": "0x16994 register-read provider",
+    "paired": "0x16A30 register-write provider",
+    "required": "Original32B frames/fresh argument slots/3SPI calls and bank effects; keep16896 SPI and16A7C packet providers explicitly open until proved."
+  },
+  "unknowns": [
+    "Installed resident pointer0x4004C ABI and effects",
+    "Downstream provider implementations and SPI zero/timeout ambiguity",
+    "Physical chip, full startup/main/vector/IRQ/fault and memory ownership",
+    "Resolved whole executable and original BLE OTA compatibility"
+  ],
+  "whole_firmware_verified": false,
+  "firmware_ready": false,
+  "hardware_OTA_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "MMIO_execution": false,
+  "hardware_access": false,
+  "BIN_generated": false,
+  "network_analysis": false
+}

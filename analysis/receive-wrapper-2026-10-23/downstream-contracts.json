@@ -1,0 +1,181 @@
+{
+  "schema": "TSL9-receiver-downstream-contracts-v1",
+  "evidence_kind": "bounded offline raw-byte and disassembly observations; no target execution",
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "raw_span_reference": "../irq-flag-consumer-2026-10-23/source-spans.json",
+  "facts": [
+    {
+      "VA": "[0x16896,0x168DE)",
+      "bytes": 72,
+      "instructions": 25,
+      "sha256": "654d0f600794c1548c617d0f476ca4f0fa5aaf780f49be7c328b3df69e8878dc",
+      "function": "SPI transfer leaf",
+      "local_GPR_writes": [
+        "a0",
+        "a3",
+        "a4",
+        "a5"
+      ],
+      "direct_calls": 0,
+      "indirect_calls": 0,
+      "SP_or_GP_writes": false,
+      "results": [
+        "A0=fresh16-bit MMIO read at4001300C masked to255 on success.",
+        "A0=0 on timeout; indistinguishable from a successful zero byte using A0 alone.",
+        "Each of the two status-poll stages permits up to255 attempts."
+      ]
+    },
+    {
+      "VA": "[0x16994,0x169DC)",
+      "bytes": 72,
+      "instructions": 26,
+      "sha256": "0949ef0357f5c7543bc480b214103d78880ccba36a0551e0cb8cfb1edab2d538",
+      "function": "Register read",
+      "frame_bytes": 32,
+      "slots": {
+        "RA": 28,
+        "A1": 12
+      },
+      "SPI_arguments": [
+        "3",
+        "fresh frame A1 slot",
+        "0"
+      ],
+      "local_and_direct_SPI_S0_S1_GP_writes": false,
+      "normal_return": {
+        "A0": "Third SPI returned byte or timeout0; receiver captures this as status.",
+        "A1": "Fresh frame slot12",
+        "A2": "Inherited unchanged",
+        "A3": "0x40013000",
+        "A4": 17,
+        "A5": "0x40011000"
+      },
+      "indirect_provider_in_this_call_tree": false
+    },
+    {
+      "VA": "[0x16A30,0x16A7C)",
+      "bytes": 76,
+      "instructions": 28,
+      "sha256": "cb0b2b3f0b4c676385ca97543b29c32bf0eaaa99317959e6ad2a54438f71cf6e",
+      "function": "Register write",
+      "frame_bytes": 32,
+      "slots": {
+        "RA": 28,
+        "A1": 8,
+        "A2": 12
+      },
+      "SPI_arguments": [
+        "2",
+        "fresh frame A1 slot",
+        "fresh frame A2 slot"
+      ],
+      "local_and_direct_SPI_S0_S1_GP_writes": false,
+      "normal_return": {
+        "A0": "Third SPI returned byte or timeout0; not a guaranteed zero.",
+        "A1": "Fresh frame slot8",
+        "A2": "Fresh frame slot12",
+        "A3": "0x40013000",
+        "A4": 17,
+        "A5": "0x40011000"
+      },
+      "indirect_provider_in_this_call_tree": false
+    },
+    {
+      "VA": "[0x16A7C,0x16B0A)",
+      "bytes": 142,
+      "instructions": 52,
+      "sha256": "d823c819bbe92c3b7ee17c92411825549084d08dc32c36378d8e60d4915f40e2",
+      "function": "Packet receive",
+      "frame_bytes": 48,
+      "slots": {
+        "RA": 44,
+        "S0": 40,
+        "S1": 36,
+        "S2": 32,
+        "A1": 12
+      },
+      "received_bytes": 13,
+      "buffer_frame_offsets": [
+        16,
+        28
+      ],
+      "valid_packet_call": {
+        "site": "0x16AFA",
+        "target": "0x12BC8",
+        "RA": "0x16AFE",
+        "A0": "(byte16<<3)|(byte17>>5)",
+        "A1": "currentSP+21",
+        "A2": "byte20&15, accepted range1..8",
+        "A3": "then-live S1 channel"
+      },
+      "transitive_provider": "Fresh pointer from0x4004C; full ABI unknown."
+    },
+    {
+      "VA": "[0x12BC8,0x12C24)",
+      "bytes": 92,
+      "instructions": 32,
+      "sha256": "d3d9af9bcec8af13dfd424d3bfb2bd79f8fc3fd61308cb6ec0d7c18b1b78b13b",
+      "function": "Ring insertion",
+      "table": "0x2000C038",
+      "slots": 32,
+      "stride_bytes": 12,
+      "known_additional_GPR_writes": [
+        "a6",
+        "a7",
+        "t1",
+        "t3",
+        "s0",
+        "s1"
+      ],
+      "provider": {
+        "pointer_load_site": "0x12C02",
+        "pointer_slot": "0x4004C",
+        "call_site": "0x12C0C",
+        "RA": "0x12C0E",
+        "arguments": {
+          "A0": "slot+3",
+          "A1": "payload pointer",
+          "A2": "length",
+          "A3": "channel"
+        }
+      },
+      "after_provider": "SB then-live S1,11(then-live S0), then fresh saved-slot restores."
+    }
+  ],
+  "receiver_implications": [
+    "Only A0 carries initial channel; A1 is explicitly44/97/113/44 at the respective source sites.",
+    "A2 before packet calls retains then-live state; it is set to0 only before final write tail.",
+    "First bit predicate is A0&1 before storing A0 into S0.",
+    "After the first optional packet call, original code masks then-live S0 and reads then-live S1. A C cached status/channel would add an unproved preservation assumption.",
+    "Fresh S0/RA/S1 frame-slot reads remain in the exact original tail order, including A0 capture before S1 reload.",
+    "Current C clobber lists cover its allocator bank only; they do not claim downstream providers preserve other physical registers.",
+    "Provider state, stack-slot aliasing, GP changes, normal return and IRQ/fault effects remain unproved."
+  ],
+  "unknowns": [
+    "Physical peripheral/chip identity",
+    "Installed implementation and full register/memory effects behind0x4004C",
+    "Complete function extents and arbitrary indirect entries",
+    "MMIO timing and actual peripheral responses"
+  ],
+  "feature_opportunity": {
+    "name": "Separate per-channel SPI timeout diagnostics",
+    "status": "finding only; not implemented",
+    "motivation": "Original transfer result A0=0 cannot distinguish timeout from an actual zero byte; packet/status decisions can therefore lose the reason for a zero result.",
+    "proposed_behavior": "Keep original SPI result and protocol unchanged; separately record timeout stage/channel and counters for later diagnostics.",
+    "required_evidence_before_implementation": [
+      "Prove free RAM ownership and reset lifetime for counters.",
+      "Complete SPI and caller ABI/IRQ-context proofs.",
+      "Identify an authorized diagnostic transport or existing display path without changing control behavior.",
+      "Verify on original hardware only after complete image and recovery compatibility proof."
+    ],
+    "safe_immediate_use": "Document zero-result ambiguity in offline analysis and avoid reporting A0=0 as confirmed successful communication."
+  },
+  "firmware_ready": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "MMIO_execution": false,
+  "hardware_access": false
+}

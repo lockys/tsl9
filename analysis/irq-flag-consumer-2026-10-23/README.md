@@ -2,7 +2,7 @@
 
 [English](readme.en.md) · [來源片段與雜湊](source-spans.json) · [C/C++ 驗證](../../experiments/tsl9-irq-flag-consumer/README.md)
 
-**已確認於這些原始碼範圍：** `17002` 清除旗標後以 channel 1／2 呼叫 `16B0A`；後者讀取 register `0x2C`，以同一 status 快照的 bit0／bit1 決定讀 `0x61`／`0x71`，最後寫 `0x2C=0`。channel 與接收 buffer 選擇是不同層級。
+**已確認於這些原始碼範圍：** `17002` 清除旗標後以 channel 1／2 呼叫 `16B0A`；後者讀取 register `0x2C`，以返回 A0 的 bit0 決定讀 `0x61`，再檢查當下 S0 的 bit1 決定讀 `0x71`，最後寫 `0x2C=0`。S0 先存入 status，但第一個下游呼叫是否保值仍待 provider 證明；channel 與接收 buffer 選擇是不同層級。
 
 `16994`／`16A30` 分別以 `03`／`02` 加位址進行讀寫；下游 `16896` 對 `0x40013008`／`0x4001300C` 做 16-bit MMIO。兩段輪詢各最多 255 次，timeout 回傳 0；這不代表成功讀到值 0。
 

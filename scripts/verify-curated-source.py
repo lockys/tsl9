@@ -73,6 +73,8 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {14, 15}]
     elif kind == 'consumer-a0-a4-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 14, 15}]
+    elif kind == 'receiver-a0-a5':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'adc-bank':
         result += ['-ffixed-x' + str(n) for n in range(5, 32) if n not in range(10, 17)]
     return result
@@ -177,6 +179,26 @@ def audit(base, record, manifest):
                               ('.text.tsl9_flag_consumer_entry_17002', 8, 6, 1),
                               ('.text.tsl9_flag_consumer_body', 54, 6, 1)],
                      'Measured caller object with exactly two open calls; adjacency and original non-call bytes require separate component verifier')
+            if unit['name'] == 'receive-wrapper':
+                need(pair[1]['functions'] == [
+                     dict(name='tsl9_receive_body', binding=1, bytes=56,
+                          code_sha256='a078c685273e6562c855e9e89e34ed9a81736020a73f941b8d5737ddc04e20b1'),
+                     dict(name='tsl9_receive_entry_16b0a', binding=1, bytes=14,
+                          code_sha256='14eaa914556aaabc7372a9d55c4df77c10d1b2b941caf75126ac89dff8bbc70e')]
+                     and pair[1]['UND'] == ['tsl9_receive_buffer_entry_16a7c', 'tsl9_register_read_entry_16994',
+                                            'tsl9_register_write_entry_16a30']
+                     and pair[1]['relocations'] == [
+                         dict(owner='.text.tsl9_receive_body', offset=at, type=17, addend=0, symbol=name)
+                         for at, name in [(0, 'tsl9_register_read_entry_16994'),
+                                          (18, 'tsl9_receive_buffer_entry_16a7c'),
+                                          (32, 'tsl9_receive_buffer_entry_16a7c'),
+                                          (52, 'tsl9_register_write_entry_16a30')]]
+                     and pair[1]['allocated_bytes'] == 70
+                     and [(s['name'], s['bytes'], s['flags'], s['type'])
+                          for s in pair[1]['allocated_sections']] == [
+                              ('.text.tsl9_receive_entry_16b0a', 14, 6, 1),
+                              ('.text.tsl9_receive_body', 56, 6, 1)],
+                     'Receiver with four explicit open calls; separate verifier checks physical ports and pipeline linkage, not firmware readiness')
             if unit['name'] == 'delay-registers':
                 need(pair[1]['functions'] == [dict(name='tsl9_delay_registers_19764', binding=1, bytes=54,
                      code_sha256='0bcb7577e755f1ca9736b0fd0b05e4d3f0a0e1e0cd3a59976b947191d3df74a4')], 'Exact original delay leaf')

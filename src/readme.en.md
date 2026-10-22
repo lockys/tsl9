@@ -2,13 +2,14 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 45 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
+This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 46 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
 
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
 | [native/init_mask](native/init_mask/init_mask.c) | V4.1.60 initialization-tail register mask | Whole 30-byte function equals the official BIN; complete startup and physical placement unproved |
 | [native/irq/irq_flag.c](native/irq/irq_flag.c) | Vector-slot39 status/flag handler | Complete76B/21i equals official16FB6; two fresh status reads/byte updates and MRET retained; original IRQ context and peripheral identity unproved |
 | [native/irq/flag_consumer.c](native/irq/flag_consumer.c) | GP flag consumer at17002 | Entry8B/body54B; all54B outside two unresolved JAL windows match official; partial-link adjacency checked separately, receive/provider ABI remains open |
+| [native/receive](native/receive/receive_wrapper.c) | Receiver entry16B0A and tail register write | Entry14B/body56B;54 non-call bytes match,4 open JALs; physical S0/S1/frame ports retain live state without an added C frame; downstream ABI remains open |
 | [native/irq](native/irq/interrupt_registers.c) | Four register helpers and IRQ initialization | Four helpers match at30B each; initializer normal outputs reviewed,180B vs original144B, asynchronous equivalence unproved |
 | [native/timer](native/timer/delay.c) | V4.1.60 delay register contract | Entire54-byte leaf matches official; separate TU, not substituted into NV callback/OTA BIN |
 | [native/nv/nv_write_frame_contract.c](native/nv/nv_write_frame_contract.c) | New NV write frame/fresh-source contract | Original32B frame/source slot and first40B outside JALs match; earlier LI0 leaves fault/IRQ gap |
@@ -41,9 +42,9 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The script selects nineteen native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
+The script selects twenty native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
 
-The Windows run with Android NDK27.1.12297006/LLVM18 passed38 comparisons. Its local receipt is `build/curated-source/irq-consumer-20261023-v1/verification.json`. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
+The Windows run with Android NDK27.1.12297006/LLVM18 passed40 comparisons. Its local receipt is `build/curated-source/receive-wrapper-20261023-v1/verification.json`. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
 
 Replay an existing result without compiling:
 
