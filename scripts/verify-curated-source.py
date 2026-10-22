@@ -75,6 +75,8 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 14, 15}]
     elif kind == 'receiver-a0-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
+    elif kind == 'provider-a0-a5':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'adc-bank':
         result += ['-ffixed-x' + str(n) for n in range(5, 32) if n not in range(10, 17)]
     return result
@@ -199,6 +201,27 @@ def audit(base, record, manifest):
                               ('.text.tsl9_receive_entry_16b0a', 14, 6, 1),
                               ('.text.tsl9_receive_body', 56, 6, 1)],
                      'Receiver with four explicit open calls; separate verifier checks physical ports and pipeline linkage, not firmware readiness')
+            provider = {
+                'register-read': ('tsl9_register_read_entry_16994', 'tsl9_register_read_body', 68,
+                    '708967fc3d835d45fe0665ec6f4339d0699fe7e9d28d2724a4a703c35e6ca842', (34, 42, 48)),
+                'register-write': ('tsl9_register_write_entry_16a30', 'tsl9_register_write_body', 72,
+                    'e353a75d5f75d1c2a2a8f9a33d805bf81fe59b26cd1b5489daefc3a60e5e0b93', (36, 44, 52)),
+            }.get(unit['name'])
+            if provider:
+                entry, body, size, code_pin, sites = provider
+                need(pair[1]['functions'] == sorted([
+                     dict(name=entry, binding=1, bytes=4,
+                          code_sha256='ebd7cd0772b876a27b944db11292d9d2a9964546bdfac87c32dd522230eedb5f'),
+                     dict(name=body, binding=1, bytes=size, code_sha256=code_pin)], key=lambda x: x['name'])
+                     and pair[1]['UND'] == ['tsl9_spi_transfer_entry_16896']
+                     and pair[1]['relocations'] == [
+                         dict(owner='.text.'+body, offset=at, type=17, addend=0,
+                              symbol='tsl9_spi_transfer_entry_16896') for at in sites]
+                     and pair[1]['allocated_bytes'] == 4+size
+                     and [(s['name'], s['bytes'], s['flags'], s['type'])
+                          for s in pair[1]['allocated_sections']] == [
+                              ('.text.'+entry, 4, 6, 1), ('.text.'+body, size, 6, 1)],
+                     'Original register-provider code outside three open SPI calls; separate verifier checks frame/slots/GPIO and pipeline linkage')
             if unit['name'] == 'delay-registers':
                 need(pair[1]['functions'] == [dict(name='tsl9_delay_registers_19764', binding=1, bytes=54,
                      code_sha256='0bcb7577e755f1ca9736b0fd0b05e4d3f0a0e1e0cd3a59976b947191d3df74a4')], 'Exact original delay leaf')

@@ -1,0 +1,285 @@
+{
+  "schema": "TSL9-register-providers-open-pipeline-summary-v1",
+  "date": "2026-10-23",
+  "scope": "Reconstruct original register-read/write providers and compose280B receiver pipeline with explicit remaining SPI/packet boundaries.",
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "providers": {
+    "read": {
+      "VA": [
+        "0x16994",
+        "0x169DC"
+      ],
+      "bytes": 72,
+      "instructions": 26,
+      "original_sha256": "0949ef0357f5c7543bc480b214103d78880ccba36a0551e0cb8cfb1edab2d538",
+      "source": "src/native/receive/register_read.c",
+      "source_sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846",
+      "entry_bytes": 4,
+      "body_bytes": 68,
+      "frame_bytes": 32,
+      "slots_relative_to_current_SP": {
+        "RA": 28,
+        "A1": 12
+      },
+      "ordered_operations": [
+        "SP-=32",
+        "SW32 RA,28SP",
+        "if channel&1: WRITE32[40010814]=16",
+        "A0&=2; if nonzero: WRITE32[40010814]=1",
+        "A0=3",
+        "SW32 A1,12SP",
+        "SPI",
+        "fresh LW32 A1,12SP; A0=A1",
+        "SPI",
+        "A0=0",
+        "SPI",
+        "fresh LW32 RA,28SP",
+        "WRITE32[40010810]=17 using A5=40011000,A4=17",
+        "SP+=32;RET"
+      ],
+      "SPI_call_PCs": [
+        "0x169BA",
+        "0x169C2",
+        "0x169C8"
+      ],
+      "JAL_offsets": [
+        38,
+        46,
+        52
+      ],
+      "noncall_bytes": 60,
+      "noncall_sha256": "25e909875b6aac1598907cce188ea1334911e0077704c1dd21858bef6072cd7c",
+      "next_unowned_first8": "0111ae8622cc1306",
+      "noncall_original_equal": true,
+      "global_function_extent_proved": false
+    },
+    "write": {
+      "VA": [
+        "0x16A30",
+        "0x16A7C"
+      ],
+      "bytes": 76,
+      "instructions": 28,
+      "original_sha256": "cb0b2b3f0b4c676385ca97543b29c32bf0eaaa99317959e6ad2a54438f71cf6e",
+      "source": "src/native/receive/register_write.c",
+      "source_sha256": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85",
+      "entry_bytes": 4,
+      "body_bytes": 72,
+      "frame_bytes": 32,
+      "slots_relative_to_current_SP": {
+        "RA": 28,
+        "A2": 12,
+        "A1": 8
+      },
+      "ordered_operations": [
+        "SP-=32",
+        "SW32 RA,28SP",
+        "if channel&1: WRITE32[40010814]=16",
+        "A0&=2; if nonzero: WRITE32[40010814]=1",
+        "A0=2",
+        "SW32 A2,12SP",
+        "SW32 A1,8SP",
+        "SPI",
+        "fresh LW32 A1,8SP; A0=A1",
+        "SPI",
+        "fresh LW32 A2,12SP; A0=A2",
+        "SPI",
+        "fresh LW32 RA,28SP",
+        "WRITE32[40010810]=17 using A5=40011000,A4=17",
+        "SP+=32;RET"
+      ],
+      "SPI_call_PCs": [
+        "0x16A58",
+        "0x16A60",
+        "0x16A68"
+      ],
+      "JAL_offsets": [
+        40,
+        48,
+        56
+      ],
+      "noncall_bytes": 64,
+      "noncall_sha256": "7ede0a9407f68aaa4e140e52adf67059f54a4c379748e59a89dcf46e9e6c1ef7",
+      "next_unowned_first8": "797126d2b7170140",
+      "noncall_original_equal": true,
+      "global_function_extent_proved": false
+    }
+  },
+  "private_C_boundary": {
+    "allocator_bank": [
+      "a0",
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+    ],
+    "RA_SP_reserved": true,
+    "ordinary_C_ABI_claimed": false,
+    "read_implicit_A1_port_measured": true,
+    "read_void_transfer_A0_residue_measured": true,
+    "arbitrary_compiler_guarantee_claimed": false,
+    "frame_contracts": "frame-contracts.json"
+  },
+  "pipeline": {
+    "file_kind": "ET_REL",
+    "section": ".pipeline",
+    "section_VA": 0,
+    "bytes": 280,
+    "instructions": 101,
+    "function_offsets": {
+      "tsl9_flag_consumer_entry_17002": 0,
+      "tsl9_flag_consumer_body": 8,
+      "tsl9_receive_entry_16b0a": 62,
+      "tsl9_receive_body": 76,
+      "tsl9_register_read_entry_16994": 132,
+      "tsl9_register_read_body": 136,
+      "tsl9_register_write_entry_16a30": 204,
+      "tsl9_register_write_body": 208
+    },
+    "genuine_FUNC_count": 8,
+    "pending_relocation_offsets": [
+      22,
+      48,
+      76,
+      94,
+      108,
+      128,
+      170,
+      178,
+      184,
+      244,
+      252,
+      260
+    ],
+    "JAL_type": 17,
+    "all_addends_zero": true,
+    "internal_genuine_FUNC_calls": 4,
+    "remaining_UND_calls": 8,
+    "genuine_UND_providers": [
+      "tsl9_receive_buffer_entry_16a7c",
+      "tsl9_spi_transfer_entry_16896"
+    ],
+    "machine_JALs_resolved": false,
+    "nominal_VA_claimed": false,
+    "global_ABS_providers": 0,
+    "all_C_CPP_complete_ELFs_byte_equal": true
+  },
+  "formal": {
+    "checker_sha256": "41d165f4d942f6d5e1612a578b7c2faaad9fefebfa01f00305d2751f113f266d",
+    "pinned_previous_checkers": [
+      "29bec92a0f027df2be5120d00cb0bb7b4d7e43f410c7bd6fce0b2b25550dd0db",
+      "5a7314d3f63e20babca57443ed55efcb00ff97487503e409b68ebe1d56871550"
+    ],
+    "actual_ELFs": 14,
+    "per_language": {
+      "actual_ELFs": 7,
+      "IR_files": 4,
+      "MD_closures": 4,
+      "inputs": 16,
+      "recipes": 18,
+      "artifacts": 33,
+      "negative_controls": 76,
+      "controls_without_full_hash": 74,
+      "full_SSA_hash_controls": 2
+    },
+    "complete_exact_section_metadata": true,
+    "complete_exact_local_symbols": true,
+    "replay_exit_codes": {
+      "c": 0,
+      "cpp": 0
+    },
+    "strict_readiness_exit_codes": {
+      "c": 1,
+      "cpp": 1
+    },
+    "replay_inventory_unchanged": true,
+    "alias_order_gates": [
+      "command before saved arguments",
+      "write A2 save before A1 save",
+      "fresh argument loads between SPI calls",
+      "RA reload before GPIO cleanup"
+    ],
+    "source_checkers_do_not_execute_ISA": true
+  },
+  "ELF_sha256": {
+    "consumer.o": "8f5f0d67afcc1e03b6454afba267aa883cc302dcd1cf1e88b999ffd61827829d",
+    "PIPELINE-OPEN.o": "c9fb372ea89d143d78f192bebf81ddf864d9333be79564958c6cdd6e08f9cc8b",
+    "read-OPEN.o": "5b0250e716362085fc73fd4b475641b88e5ed2c489a2fea23ed9ba0384746c87",
+    "read.o": "fd96f6f5df62a1c55615dd45745b6fc006a51c4dae9da6a89faf29acea1486de",
+    "receiver.o": "251ba819063b42bc1ca92f6121f1357fe112ed6b89672f37b505bb5bcdab43fa",
+    "write-OPEN.o": "609b1a52286887ee2077a5da92d3b0ffde1d6a8b0a278707694914f01dda4a22",
+    "write.o": "3b54e0c9d96bf3eee2521dd0960e2e999b3dcbc226a23c8190c314d6b92ae4fb"
+  },
+  "receipts": {
+    "c": {
+      "file": "receipts/providers-c.json",
+      "sha256": "47c78cafe18f470b39eeeb8fbac1cd7e7701b9212269c72b07547305ff06b35b",
+      "byte_exact_local_receipt": true,
+      "portable_paths_produced_at_source": true
+    },
+    "cpp": {
+      "file": "receipts/providers-cpp.json",
+      "sha256": "d9b7e201658fa1f2ae56dd2afad433696ba963057bb8504ae614c4021017caf8",
+      "byte_exact_local_receipt": true,
+      "portable_paths_produced_at_source": true
+    }
+  },
+  "curated": {
+    "source_files": 48,
+    "native_translation_units": 22,
+    "comparisons": 44,
+    "actual_objects": 88,
+    "inputs": 98,
+    "MD_closures": 88,
+    "artifacts": 265,
+    "local_receipt": "build/curated-source/register-providers-20261023-v1/verification.json",
+    "local_original_sha256": "f3b15b7a588e963ac2c1c32faa15e4a16c351da4f991373c5ba22bf45963eaf2",
+    "public_derivative": "receipts/curated-source.json",
+    "public_derivative_sha256": "9337f1f302cc3220872f25a0b1817b29680a3b74c3b7c67f5a96d582639a21d7",
+    "inverse_mapping_equals_original_JSON": true,
+    "raw_original_preserved_locally": true,
+    "direct_original_replay_of_public_derivative_claimed": false,
+    "scope": "Provenance and complete original-to-curated object-facts equality, not whole firmware equivalence."
+  },
+  "historical_probes": {
+    "read_write_first_source_probes_noncall_equal": true,
+    "failed_formal_v1_preserved": true,
+    "v1_failure": "Checker expected pipeline string-table size370; actual pinned independent pipeline has400. Corrected exact metadata constant without changing source/flags/code.",
+    "formal_v2_raw_receipts_preserved": true,
+    "v3_change": "Three finite IR alias-order rejection controls added; all source/layout/flags/14 ELF bytes unchanged.",
+    "current_verifier_replay_of_older_versions_claimed": false
+  },
+  "next_target": {
+    "VA": [
+      "0x16896",
+      "0x168DE"
+    ],
+    "bytes": 72,
+    "instructions": 25,
+    "sha256": "654d0f600794c1548c617d0f476ca4f0fa5aaf780f49be7c328b3df69e8878dc",
+    "status": "Prior SPI candidate74B/26i remains unpromoted.",
+    "proposed_single_correction": "Explicit BEQZ architecture ports for two ready edges plus fresh A5 timeout import; keep volatile polling, countdown, masks and data writes in C.",
+    "proposal_compiled": false,
+    "required_gate": "Exact full72B/25i plus all success/timeout register residues, two255 countdowns and fresh MMIO ordering. No compiler-flag search or gate relaxation."
+  },
+  "feature_opportunity_reference": "../receive-wrapper-2026-10-23/downstream-contracts.json",
+  "unknowns": [
+    "SPI/packet implementations and transitive installed resident provider effects",
+    "Physical chip identity and memory ownership",
+    "Full startup/main/vector/IRQ/fault/alias context",
+    "Resolved whole image and original BLE OTA compatibility"
+  ],
+  "whole_firmware_verified": false,
+  "firmware_ready": false,
+  "hardware_OTA_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "MMIO_execution": false,
+  "hardware_access": false,
+  "BIN_generated": false,
+  "network_analysis": false
+}

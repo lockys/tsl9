@@ -1,0 +1,159 @@
+{
+  "schema": "TSL9-register-provider-frame-contracts-v1",
+  "evidence_kind": "Bounded static raw-byte/disassembly and actual C/C++ object observations; no target execution.",
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "read": {
+    "VA": [
+      "0x16994",
+      "0x169DC"
+    ],
+    "bytes": 72,
+    "instructions": 26,
+    "original_sha256": "0949ef0357f5c7543bc480b214103d78880ccba36a0551e0cb8cfb1edab2d538",
+    "source": "src/native/receive/register_read.c",
+    "source_sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846",
+    "entry_bytes": 4,
+    "body_bytes": 68,
+    "frame_bytes": 32,
+    "slots_relative_to_current_SP": {
+      "RA": 28,
+      "A1": 12
+    },
+    "ordered_operations": [
+      "SP-=32",
+      "SW32 RA,28SP",
+      "if channel&1: WRITE32[40010814]=16",
+      "A0&=2; if nonzero: WRITE32[40010814]=1",
+      "A0=3",
+      "SW32 A1,12SP",
+      "SPI",
+      "fresh LW32 A1,12SP; A0=A1",
+      "SPI",
+      "A0=0",
+      "SPI",
+      "fresh LW32 RA,28SP",
+      "WRITE32[40010810]=17 using A5=40011000,A4=17",
+      "SP+=32;RET"
+    ],
+    "SPI_call_PCs": [
+      "0x169BA",
+      "0x169C2",
+      "0x169C8"
+    ],
+    "JAL_offsets": [
+      38,
+      46,
+      52
+    ],
+    "noncall_bytes": 60,
+    "noncall_sha256": "25e909875b6aac1598907cce188ea1334911e0077704c1dd21858bef6072cd7c",
+    "next_unowned_first8": "0111ae8622cc1306"
+  },
+  "write": {
+    "VA": [
+      "0x16A30",
+      "0x16A7C"
+    ],
+    "bytes": 76,
+    "instructions": 28,
+    "original_sha256": "cb0b2b3f0b4c676385ca97543b29c32bf0eaaa99317959e6ad2a54438f71cf6e",
+    "source": "src/native/receive/register_write.c",
+    "source_sha256": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85",
+    "entry_bytes": 4,
+    "body_bytes": 72,
+    "frame_bytes": 32,
+    "slots_relative_to_current_SP": {
+      "RA": 28,
+      "A2": 12,
+      "A1": 8
+    },
+    "ordered_operations": [
+      "SP-=32",
+      "SW32 RA,28SP",
+      "if channel&1: WRITE32[40010814]=16",
+      "A0&=2; if nonzero: WRITE32[40010814]=1",
+      "A0=2",
+      "SW32 A2,12SP",
+      "SW32 A1,8SP",
+      "SPI",
+      "fresh LW32 A1,8SP; A0=A1",
+      "SPI",
+      "fresh LW32 A2,12SP; A0=A2",
+      "SPI",
+      "fresh LW32 RA,28SP",
+      "WRITE32[40010810]=17 using A5=40011000,A4=17",
+      "SP+=32;RET"
+    ],
+    "SPI_call_PCs": [
+      "0x16A58",
+      "0x16A60",
+      "0x16A68"
+    ],
+    "JAL_offsets": [
+      40,
+      48,
+      56
+    ],
+    "noncall_bytes": 64,
+    "noncall_sha256": "7ede0a9407f68aaa4e140e52adf67059f54a4c379748e59a89dcf46e9e6c1ef7",
+    "next_unowned_first8": "797126d2b7170140"
+  },
+  "shared_facts": [
+    "The channel predicates are independent, not if/else; channel3 writes16 then1. Channel0 still performs three SPI calls and cleanup.",
+    "All GPIO stores and saved-slot loads/stores are32bit.",
+    "RA is reloaded before the cleanup GPIO store, not in a compiler epilogue after it.",
+    "No own GP/S0/S1 writes; full opaque-provider effects are not guaranteed by this local observation.",
+    "Final A0 is the third SPI result, not normalized by cleanup."
+  ],
+  "conditional_alias_observations": [
+    {
+      "condition": "If a saved argument slot aliases the SPI data register4001300C.",
+      "consequence": "SPI SH can alter its low16bits; the original later fresh32bit slot load must not be replaced by a cached entry argument.",
+      "physical_alias_observed": false
+    },
+    {
+      "condition": "If RA's entrySP-4 slot aliases cleanup address40010810.",
+      "consequence": "Reloading RA after cleanup would consume17 instead of the pre-cleanup slot content; retain original reload order.",
+      "physical_alias_observed": false
+    }
+  ],
+  "C_compilation_boundary": {
+    "allocator_bank": [
+      "a0",
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+    ],
+    "RA_SP_reserved": true,
+    "ordinary_C_function_ABI_claimed": false,
+    "read_implicit_A1_frame_capture": "Literal frame port reads then-live A1; exact compiled code proves no earlier A1 overwrite. This is a measured private-port contract, not arbitrary-compiler C dataflow.",
+    "read_A0_residue_scope": "Void transfer and architectural RET rely on the pinned compiled code leaving A0 unchanged after the last SPI; no standard C return ABI is claimed.",
+    "architecture_ports": [
+      "entry/return frame mechanics",
+      "saved-slot stores and fresh loads",
+      "three direct SPI calls"
+    ],
+    "C_logic": [
+      "independent channel predicates",
+      "GPIO32 writes",
+      "SPI argument setup"
+    ],
+    "SPI_provider": "genuine UND tsl9_spi_transfer_entry_16896"
+  },
+  "unknowns": [
+    "Installed SPI/provider behavior and physical peripheral response",
+    "Full IRQ/fault/alias validity and memory ownership",
+    "All indirect/interior entries and complete original function extents",
+    "Physical chip and full startup/main/ROM/OTA compatibility"
+  ],
+  "target_execution": false,
+  "ISA_emulation": false,
+  "MMIO_execution": false,
+  "hardware_access": false,
+  "firmware_ready": false
+}

@@ -1,0 +1,4731 @@
+{
+  "schema": "TSL9-register-providers-open-pipeline-v1",
+  "mode": "c",
+  "inputs_before": {
+    "${LLVM_BIN}/clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "${LLVM_BIN}/ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "${LLVM_BIN}/llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+    "${PROJECT_ROOT}/analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/verify.py": "5a7314d3f63e20babca57443ed55efcb00ff97487503e409b68ebe1d56871550",
+    "${PROJECT_ROOT}/experiments/tsl9-receive-wrapper/src/receive_wrapper.c": "df1e1f0633c50b8b2c9f7a58d2ac1e45664057de107dc04d28eca9e931538cdc",
+    "${PROJECT_ROOT}/experiments/tsl9-receive-wrapper/verify.py": "29bec92a0f027df2be5120d00cb0bb7b4d7e43f410c7bd6fce0b2b25550dd0db",
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/pipeline.ld": "5099f57908aad1bb13df777b97ca85416c94c95a15037705c3171a13128d94a4",
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/verify.py": "41d165f4d942f6d5e1612a578b7c2faaad9fefebfa01f00305d2751f113f266d",
+    "${PROJECT_ROOT}/experiments/tsl9-register-read/component.ld": "feee5465a542451cc5b9a9f9e168ad2e346a240c2ac78cc2d1a9a00771ce4b98",
+    "${PROJECT_ROOT}/experiments/tsl9-register-read/src/register_read.c": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846",
+    "${PROJECT_ROOT}/experiments/tsl9-register-write/component.ld": "0bf2e920f51b03dc2440f91a3317515578987e9a13d5529e4b061e4029a1745c",
+    "${PROJECT_ROOT}/experiments/tsl9-register-write/src/register_write.c": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85",
+    "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "inputs_after": {
+    "${LLVM_BIN}/clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "${LLVM_BIN}/ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "${LLVM_BIN}/llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+    "${PROJECT_ROOT}/analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/verify.py": "5a7314d3f63e20babca57443ed55efcb00ff97487503e409b68ebe1d56871550",
+    "${PROJECT_ROOT}/experiments/tsl9-receive-wrapper/src/receive_wrapper.c": "df1e1f0633c50b8b2c9f7a58d2ac1e45664057de107dc04d28eca9e931538cdc",
+    "${PROJECT_ROOT}/experiments/tsl9-receive-wrapper/verify.py": "29bec92a0f027df2be5120d00cb0bb7b4d7e43f410c7bd6fce0b2b25550dd0db",
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/pipeline.ld": "5099f57908aad1bb13df777b97ca85416c94c95a15037705c3171a13128d94a4",
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/verify.py": "41d165f4d942f6d5e1612a578b7c2faaad9fefebfa01f00305d2751f113f266d",
+    "${PROJECT_ROOT}/experiments/tsl9-register-read/component.ld": "feee5465a542451cc5b9a9f9e168ad2e346a240c2ac78cc2d1a9a00771ce4b98",
+    "${PROJECT_ROOT}/experiments/tsl9-register-read/src/register_read.c": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846",
+    "${PROJECT_ROOT}/experiments/tsl9-register-write/component.ld": "0bf2e920f51b03dc2440f91a3317515578987e9a13d5529e4b061e4029a1745c",
+    "${PROJECT_ROOT}/experiments/tsl9-register-write/src/register_write.c": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85",
+    "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "compiler_dependencies": {
+    "consumer": {
+      "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12"
+    },
+    "receiver": {
+      "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "${PROJECT_ROOT}/experiments/tsl9-receive-wrapper/src/receive_wrapper.c": "df1e1f0633c50b8b2c9f7a58d2ac1e45664057de107dc04d28eca9e931538cdc"
+    },
+    "read": {
+      "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "${PROJECT_ROOT}/experiments/tsl9-register-read/src/register_read.c": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+    },
+    "write": {
+      "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "${PROJECT_ROOT}/experiments/tsl9-register-write/src/register_write.c": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85"
+    }
+  },
+  "commands": [
+    {
+      "label": "consumer-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-c",
+        "-MD",
+        "-MF",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/consumer.d",
+        "-MT",
+        "consumer.o",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/consumer.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "consumer-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/consumer.ll"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "receiver-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-c",
+        "-MD",
+        "-MF",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/receiver.d",
+        "-MT",
+        "receiver.o",
+        "${PROJECT_ROOT}/experiments/tsl9-receive-wrapper/src/receive_wrapper.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/receiver.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "receiver-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}/experiments/tsl9-receive-wrapper/src/receive_wrapper.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/receiver.ll"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "read-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-c",
+        "-MD",
+        "-MF",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/read.d",
+        "-MT",
+        "read.o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-read/src/register_read.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/read.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "read-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}/experiments/tsl9-register-read/src/register_read.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/read.ll"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "write-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-c",
+        "-MD",
+        "-MF",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/write.d",
+        "-MT",
+        "write.o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-write/src/register_write.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/write.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "write-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}/experiments/tsl9-register-write/src/register_write.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/write.ll"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "read-combine",
+      "argv": [
+        "${LLVM_BIN}/ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}/experiments/tsl9-register-read/component.ld",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/read.o",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/read-OPEN.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "write-combine",
+      "argv": [
+        "${LLVM_BIN}/ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}/experiments/tsl9-register-write/component.ld",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/write.o",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/write-OPEN.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "pipeline-combine",
+      "argv": [
+        "${LLVM_BIN}/ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/pipeline.ld",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/consumer.o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/receiver.o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/read.o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/write.o",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/PIPELINE-OPEN.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "consumer-dump",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/consumer.o"
+      ],
+      "exit": 0,
+      "log_sha256": "8516d3e6a83f6d793fbdd94dace69232e0117427d6eb92eac5c27dbf9a3dde8d"
+    },
+    {
+      "label": "receiver-dump",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/receiver.o"
+      ],
+      "exit": 0,
+      "log_sha256": "cadca4ec24d661b10185cf3d9a2ae70ea0e5d8690f27c02959ae437cef84bf3f"
+    },
+    {
+      "label": "read-dump",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/read.o"
+      ],
+      "exit": 0,
+      "log_sha256": "a2c47c65d5f6f0a8e2f063336d8d827d132636a3154d9900fd82a812d9759eed"
+    },
+    {
+      "label": "write-dump",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/write.o"
+      ],
+      "exit": 0,
+      "log_sha256": "83710723293128a41a419f182e218561e188d72694d6970c333be0a91c81b6f7"
+    },
+    {
+      "label": "read-OPEN-dump",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/read-OPEN.o"
+      ],
+      "exit": 0,
+      "log_sha256": "256086fe91499cce53de11d1f5527bcd6c5a3e3575fdf63a2d9839338d19bac6"
+    },
+    {
+      "label": "write-OPEN-dump",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/write-OPEN.o"
+      ],
+      "exit": 0,
+      "log_sha256": "be7f6be5b71f88c26c0a2467aff0384fcead3724e2ad64dd1db5dd5fca43808f"
+    },
+    {
+      "label": "PIPELINE-OPEN-dump",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/c/PIPELINE-OPEN.o"
+      ],
+      "exit": 0,
+      "log_sha256": "15af3ff192daec95750c8b1ffc2eb08d715800a08f1a3380cee0234547dfad43"
+    }
+  ],
+  "original_resolved_traces": {
+    "read": {
+      "bytes": 72,
+      "instructions": 26,
+      "rows": [
+        {
+          "offset": 0,
+          "bytes": 2,
+          "hex": "0111"
+        },
+        {
+          "offset": 2,
+          "bytes": 2,
+          "hex": "06ce"
+        },
+        {
+          "offset": 4,
+          "bytes": 4,
+          "hex": "93771500"
+        },
+        {
+          "offset": 8,
+          "bytes": 2,
+          "hex": "91c7"
+        },
+        {
+          "offset": 10,
+          "bytes": 4,
+          "hex": "b7170140"
+        },
+        {
+          "offset": 14,
+          "bytes": 2,
+          "hex": "4147"
+        },
+        {
+          "offset": 16,
+          "bytes": 4,
+          "hex": "23aae780"
+        },
+        {
+          "offset": 20,
+          "bytes": 2,
+          "hex": "0989"
+        },
+        {
+          "offset": 22,
+          "bytes": 2,
+          "hex": "11c5"
+        },
+        {
+          "offset": 24,
+          "bytes": 4,
+          "hex": "b7170140"
+        },
+        {
+          "offset": 28,
+          "bytes": 2,
+          "hex": "0547"
+        },
+        {
+          "offset": 30,
+          "bytes": 4,
+          "hex": "23aae780"
+        },
+        {
+          "offset": 34,
+          "bytes": 2,
+          "hex": "0d45"
+        },
+        {
+          "offset": 36,
+          "bytes": 2,
+          "hex": "2ec6"
+        },
+        {
+          "offset": 38,
+          "bytes": 4,
+          "hex": "eff0dfed"
+        },
+        {
+          "offset": 42,
+          "bytes": 2,
+          "hex": "b245"
+        },
+        {
+          "offset": 44,
+          "bytes": 2,
+          "hex": "2e85"
+        },
+        {
+          "offset": 46,
+          "bytes": 4,
+          "hex": "eff05fed"
+        },
+        {
+          "offset": 50,
+          "bytes": 2,
+          "hex": "0145"
+        },
+        {
+          "offset": 52,
+          "bytes": 4,
+          "hex": "eff0ffec"
+        },
+        {
+          "offset": 56,
+          "bytes": 2,
+          "hex": "f240"
+        },
+        {
+          "offset": 58,
+          "bytes": 4,
+          "hex": "b7170140"
+        },
+        {
+          "offset": 62,
+          "bytes": 2,
+          "hex": "4547"
+        },
+        {
+          "offset": 64,
+          "bytes": 4,
+          "hex": "23a8e780"
+        },
+        {
+          "offset": 68,
+          "bytes": 2,
+          "hex": "0561"
+        },
+        {
+          "offset": 70,
+          "bytes": 2,
+          "hex": "8280"
+        }
+      ],
+      "calls": [
+        {
+          "offset": 38,
+          "original_target": "0x16896",
+          "original_continuation": "0x169be",
+          "pending_relocation": false
+        },
+        {
+          "offset": 46,
+          "original_target": "0x16896",
+          "original_continuation": "0x169c6",
+          "pending_relocation": false
+        },
+        {
+          "offset": 52,
+          "original_target": "0x16896",
+          "original_continuation": "0x169cc",
+          "pending_relocation": false
+        }
+      ],
+      "frame_bytes": 32,
+      "GPIO_selection_address": "0x40010814",
+      "GPIO_cleanup_address": "0x40010810",
+      "GPIO_width_bits": 32,
+      "independent_channel_bits": true,
+      "RA_reload_before_cleanup": true,
+      "A0_exit": "third opaque SPI returned residue; no forced zero",
+      "GP_S0_S1_own_writes": false
+    },
+    "write": {
+      "bytes": 76,
+      "instructions": 28,
+      "rows": [
+        {
+          "offset": 0,
+          "bytes": 2,
+          "hex": "0111"
+        },
+        {
+          "offset": 2,
+          "bytes": 2,
+          "hex": "06ce"
+        },
+        {
+          "offset": 4,
+          "bytes": 4,
+          "hex": "93771500"
+        },
+        {
+          "offset": 8,
+          "bytes": 2,
+          "hex": "91c7"
+        },
+        {
+          "offset": 10,
+          "bytes": 4,
+          "hex": "b7170140"
+        },
+        {
+          "offset": 14,
+          "bytes": 2,
+          "hex": "4147"
+        },
+        {
+          "offset": 16,
+          "bytes": 4,
+          "hex": "23aae780"
+        },
+        {
+          "offset": 20,
+          "bytes": 2,
+          "hex": "0989"
+        },
+        {
+          "offset": 22,
+          "bytes": 2,
+          "hex": "11c5"
+        },
+        {
+          "offset": 24,
+          "bytes": 4,
+          "hex": "b7170140"
+        },
+        {
+          "offset": 28,
+          "bytes": 2,
+          "hex": "0547"
+        },
+        {
+          "offset": 30,
+          "bytes": 4,
+          "hex": "23aae780"
+        },
+        {
+          "offset": 34,
+          "bytes": 2,
+          "hex": "0945"
+        },
+        {
+          "offset": 36,
+          "bytes": 2,
+          "hex": "32c6"
+        },
+        {
+          "offset": 38,
+          "bytes": 2,
+          "hex": "2ec4"
+        },
+        {
+          "offset": 40,
+          "bytes": 4,
+          "hex": "eff0ffe3"
+        },
+        {
+          "offset": 44,
+          "bytes": 2,
+          "hex": "a245"
+        },
+        {
+          "offset": 46,
+          "bytes": 2,
+          "hex": "2e85"
+        },
+        {
+          "offset": 48,
+          "bytes": 4,
+          "hex": "eff07fe3"
+        },
+        {
+          "offset": 52,
+          "bytes": 2,
+          "hex": "3246"
+        },
+        {
+          "offset": 54,
+          "bytes": 2,
+          "hex": "3285"
+        },
+        {
+          "offset": 56,
+          "bytes": 4,
+          "hex": "eff0ffe2"
+        },
+        {
+          "offset": 60,
+          "bytes": 2,
+          "hex": "f240"
+        },
+        {
+          "offset": 62,
+          "bytes": 4,
+          "hex": "b7170140"
+        },
+        {
+          "offset": 66,
+          "bytes": 2,
+          "hex": "4547"
+        },
+        {
+          "offset": 68,
+          "bytes": 4,
+          "hex": "23a8e780"
+        },
+        {
+          "offset": 72,
+          "bytes": 2,
+          "hex": "0561"
+        },
+        {
+          "offset": 74,
+          "bytes": 2,
+          "hex": "8280"
+        }
+      ],
+      "calls": [
+        {
+          "offset": 40,
+          "original_target": "0x16896",
+          "original_continuation": "0x16a5c",
+          "pending_relocation": false
+        },
+        {
+          "offset": 48,
+          "original_target": "0x16896",
+          "original_continuation": "0x16a64",
+          "pending_relocation": false
+        },
+        {
+          "offset": 56,
+          "original_target": "0x16896",
+          "original_continuation": "0x16a6c",
+          "pending_relocation": false
+        }
+      ],
+      "frame_bytes": 32,
+      "GPIO_selection_address": "0x40010814",
+      "GPIO_cleanup_address": "0x40010810",
+      "GPIO_width_bits": 32,
+      "independent_channel_bits": true,
+      "RA_reload_before_cleanup": true,
+      "A0_exit": "third opaque SPI returned residue; no forced zero",
+      "GP_S0_S1_own_writes": false
+    }
+  },
+  "negative_controls": [
+    {
+      "label": "read-SP32",
+      "category": "typed-raw",
+      "rejected_by": "SP-32 before frame write",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-RA-save28",
+      "category": "typed-raw",
+      "rejected_by": "Original frame SW at+2",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-first-mask",
+      "category": "typed-raw",
+      "rejected_by": "Typed immediate at+4",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-first-branch-polarity",
+      "category": "typed-raw",
+      "rejected_by": "Independent GPIO BEQZ at+8",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-GPIO-width32",
+      "category": "typed-raw",
+      "rejected_by": "GPIO SW32 offset at+16",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-destructive-A0-mask",
+      "category": "typed-raw",
+      "rejected_by": "Destructive A0 ANDI2 after first GPIO branch",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-second-pin1",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed LI at+28",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-command3-or2",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed LI at+34",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-first-arg-save",
+      "category": "typed-raw",
+      "rejected_by": "Original frame SW at+36",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-fresh-A1-slot",
+      "category": "typed-raw",
+      "rejected_by": "Fresh frame LW at+42",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-third-input",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed LI at+50",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-RA-reload28",
+      "category": "typed-raw",
+      "rejected_by": "Fresh frame LW at+56",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-cleanup-width32",
+      "category": "typed-raw",
+      "rejected_by": "GPIO SW32 offset at+64",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-SP-restore32",
+      "category": "typed-raw",
+      "rejected_by": "SP+32 after cleanup",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-RET-RA",
+      "category": "typed-raw",
+      "rejected_by": "RET via fresh RA",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-JAL-RA",
+      "category": "typed-raw",
+      "rejected_by": "SPI four-byte JAL RA",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-JAL-open-immediate",
+      "category": "typed-raw",
+      "rejected_by": "Resolved original SPI target or open zero immediate",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-RA-moved-after-cleanup-alias",
+      "category": "typed-alias-order",
+      "rejected_by": "Fresh frame LW at+56",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-command-before-A1-save",
+      "category": "typed-alias-order",
+      "rejected_by": "Typed compressed LI at+34",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-GPIO-volatile-word",
+      "category": "IR-finite",
+      "rejected_by": "Exactly three volatile GPIO word stores",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-GPIO-select-offset",
+      "category": "IR-finite",
+      "rejected_by": "Exact GPIO selector and cleanup offsets",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-GPIO-cleanup-offset",
+      "category": "IR-finite",
+      "rejected_by": "Exact GPIO selector and cleanup offsets",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-freshRA-slot",
+      "category": "IR-finite",
+      "rejected_by": "substring not found",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-SPI-callee",
+      "category": "IR-finite",
+      "rejected_by": "Three exact opaque SPI A0/result/clobber ports",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-SPI-clobber",
+      "category": "IR-finite",
+      "rejected_by": "Three exact opaque SPI A0/result/clobber ports",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-first-branch",
+      "category": "IR-finite",
+      "rejected_by": "Independent bit branches, live bank and slot dataflow",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-fresh-A1",
+      "category": "IR-finite",
+      "rejected_by": "Independent bit branches, live bank and slot dataflow",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-IR-RA-after-cleanup-alias",
+      "category": "IR-alias-order",
+      "rejected_by": "Source alias order: command/save/reload/SPI/RA-before-cleanup/RET",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-IR-save-before-command",
+      "category": "IR-alias-order",
+      "rejected_by": "Source alias order: command/save/reload/SPI/RA-before-cleanup/RET",
+      "full_hash_used": false
+    },
+    {
+      "label": "read-full-SSA-store-source",
+      "category": "full-SSA",
+      "rejected_by": "Complete provider SSA/CFG/port hash",
+      "full_hash_used": true
+    },
+    {
+      "label": "write-SP32",
+      "category": "typed-raw",
+      "rejected_by": "SP-32 before frame write",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-RA-save28",
+      "category": "typed-raw",
+      "rejected_by": "Original frame SW at+2",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-first-mask",
+      "category": "typed-raw",
+      "rejected_by": "Typed immediate at+4",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-first-branch-polarity",
+      "category": "typed-raw",
+      "rejected_by": "Independent GPIO BEQZ at+8",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-GPIO-width32",
+      "category": "typed-raw",
+      "rejected_by": "GPIO SW32 offset at+16",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-destructive-A0-mask",
+      "category": "typed-raw",
+      "rejected_by": "Destructive A0 ANDI2 after first GPIO branch",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-second-pin1",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed LI at+28",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-command3-or2",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed LI at+34",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-first-arg-save",
+      "category": "typed-raw",
+      "rejected_by": "Original frame SW at+36",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-fresh-A1-slot",
+      "category": "typed-raw",
+      "rejected_by": "Fresh frame LW at+44",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-third-input",
+      "category": "typed-raw",
+      "rejected_by": "Then-live A0 MV at+54",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-RA-reload28",
+      "category": "typed-raw",
+      "rejected_by": "Fresh frame LW at+60",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-cleanup-width32",
+      "category": "typed-raw",
+      "rejected_by": "GPIO SW32 offset at+68",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-SP-restore32",
+      "category": "typed-raw",
+      "rejected_by": "SP+32 after cleanup",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-RET-RA",
+      "category": "typed-raw",
+      "rejected_by": "RET via fresh RA",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-JAL-RA",
+      "category": "typed-raw",
+      "rejected_by": "SPI four-byte JAL RA",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-JAL-open-immediate",
+      "category": "typed-raw",
+      "rejected_by": "Resolved original SPI target or open zero immediate",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-RA-moved-after-cleanup-alias",
+      "category": "typed-alias-order",
+      "rejected_by": "Fresh frame LW at+60",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-A2-before-A1-save",
+      "category": "typed-alias-order",
+      "rejected_by": "Original frame SW at+36",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-GPIO-volatile-word",
+      "category": "IR-finite",
+      "rejected_by": "Exactly three volatile GPIO word stores",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-GPIO-select-offset",
+      "category": "IR-finite",
+      "rejected_by": "Exact GPIO selector and cleanup offsets",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-GPIO-cleanup-offset",
+      "category": "IR-finite",
+      "rejected_by": "Exact GPIO selector and cleanup offsets",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-freshRA-slot",
+      "category": "IR-finite",
+      "rejected_by": "substring not found",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-SPI-callee",
+      "category": "IR-finite",
+      "rejected_by": "Three exact opaque SPI A0/result/clobber ports",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-SPI-clobber",
+      "category": "IR-finite",
+      "rejected_by": "Three exact opaque SPI A0/result/clobber ports",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-first-branch",
+      "category": "IR-finite",
+      "rejected_by": "Independent bit branches, live bank and slot dataflow",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-fresh-A1",
+      "category": "IR-finite",
+      "rejected_by": "Independent bit branches, live bank and slot dataflow",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-A2-A1-save-order",
+      "category": "IR-finite",
+      "rejected_by": "Independent bit branches, live bank and slot dataflow",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-IR-RA-after-cleanup-alias",
+      "category": "IR-alias-order",
+      "rejected_by": "Source alias order: command/save/reload/SPI/RA-before-cleanup/RET",
+      "full_hash_used": false
+    },
+    {
+      "label": "write-full-SSA-store-source",
+      "category": "full-SSA",
+      "rejected_by": "Complete provider SSA/CFG/port hash",
+      "full_hash_used": true
+    },
+    {
+      "label": "pipeline-reloc-site-22",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-48",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-76",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-94",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-108",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-128",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-170",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-178",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-184",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-244",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-252",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-reloc-site-260",
+      "category": "ELF-relocation",
+      "rejected_by": "Exact pending JAL17 graph: internal genuine FUNC versus UND",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-adjacency-tsl9_register_read_entry_16994",
+      "category": "ELF-adjacency",
+      "rejected_by": "Exact real FUNC sizes/adjacency",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-adjacency-tsl9_register_write_entry_16a30",
+      "category": "ELF-adjacency",
+      "rejected_by": "Exact real FUNC sizes/adjacency",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-SPI-fakeABS",
+      "category": "ELF-provider",
+      "rejected_by": "Exact genuine FUNC/UND set",
+      "full_hash_used": false
+    },
+    {
+      "label": "pipeline-local-FUNC",
+      "category": "ELF-local-metadata",
+      "rejected_by": "Exact locals; no hidden FUNC/ABS alias",
+      "full_hash_used": false
+    }
+  ],
+  "result": {
+    "passed": true,
+    "actual_ELFs": 7,
+    "ELFs": {
+      "consumer": {
+        "file_kind": "ET_REL",
+        "combined": false,
+        "entry_meaning": "none: relocatable component",
+        "defined_functions": [
+          {
+            "name": "tsl9_flag_consumer_entry_17002",
+            "value": 0,
+            "size": 8,
+            "info": 18,
+            "other": 0,
+            "index": 3
+          },
+          {
+            "name": "tsl9_flag_consumer_body",
+            "value": 0,
+            "size": 54,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          }
+        ],
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 213,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_flag_consumer_entry_17002",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 8,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_flag_consumer_body",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 54,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".rela.text.tsl9_flag_consumer_body",
+            "type": 4,
+            "flags": 64,
+            "address": 0,
+            "size": 24,
+            "link": 10,
+            "info": 4,
+            "alignment": 4,
+            "entry_size": 12
+          },
+          {
+            "name": ".comment",
+            "type": 1,
+            "flags": 48,
+            "address": 0,
+            "size": 159,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1
+          },
+          {
+            "name": ".note.GNU-stack",
+            "type": 1,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".riscv.attributes",
+            "type": 1879048195,
+            "flags": 0,
+            "address": 0,
+            "size": 64,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".llvm_addrsig",
+            "type": 1879002115,
+            "flags": 2147483648,
+            "address": 0,
+            "size": 2,
+            "link": 10,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 144,
+            "link": 1,
+            "info": 6,
+            "alignment": 4,
+            "entry_size": 16
+          }
+        ],
+        "symbols": [
+          {
+            "name": "",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 0
+          },
+          {
+            "name": "flag_consumer.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$x.0",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 3
+          },
+          {
+            "name": "$x.1",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 4
+          },
+          {
+            "name": "$d.2",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 6
+          },
+          {
+            "name": "$d.3",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 8
+          },
+          {
+            "name": "tsl9_flag_consumer_entry_17002",
+            "value": 0,
+            "size": 8,
+            "info": 18,
+            "other": 0,
+            "index": 3
+          },
+          {
+            "name": "tsl9_flag_consumer_body",
+            "value": 0,
+            "size": 54,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          },
+          {
+            "name": "tsl9_receive_entry_16b0a",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        ],
+        "relocations": [
+          {
+            "owner": ".text.tsl9_flag_consumer_body",
+            "offset": 14,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_entry_16b0a",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".text.tsl9_flag_consumer_body",
+            "offset": 40,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_entry_16b0a",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          }
+        ],
+        "allocated_bytes": 62,
+        "UND_providers": [
+          "tsl9_receive_entry_16b0a"
+        ],
+        "ABS_providers": [],
+        "local_ABS_metadata": [
+          {
+            "name": "flag_consumer.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          }
+        ],
+        "code_sha256": "0eb43a696dfaea13a8857fe5d9e35c3a43811e373644237bdac634e2aaf3f580",
+        "noncall54_sha256": "c7401860f08f143e7fd39ca6c9d85b6a539aea9c813ddb13ed67441b0403ac25",
+        "trace": {
+          "bytes": 62,
+          "instructions": 21,
+          "calls": [
+            {
+              "offset": 22,
+              "encoded_displacement": 0,
+              "resolved_target": null,
+              "pending_relocation": true,
+              "original_continuation": "0x1701c"
+            },
+            {
+              "offset": 48,
+              "encoded_displacement": 0,
+              "resolved_target": null,
+              "pending_relocation": true,
+              "original_continuation": "0x17036"
+            }
+          ],
+          "rows": [
+            {
+              "offset": 0,
+              "bytes": 2,
+              "hex": "4111"
+            },
+            {
+              "offset": 2,
+              "bytes": 4,
+              "hex": "83c78116"
+            },
+            {
+              "offset": 6,
+              "bytes": 2,
+              "hex": "06c6"
+            },
+            {
+              "offset": 8,
+              "bytes": 4,
+              "hex": "13f71700"
+            },
+            {
+              "offset": 12,
+              "bytes": 2,
+              "hex": "09cb"
+            },
+            {
+              "offset": 14,
+              "bytes": 2,
+              "hex": "f99b"
+            },
+            {
+              "offset": 16,
+              "bytes": 2,
+              "hex": "0545"
+            },
+            {
+              "offset": 18,
+              "bytes": 4,
+              "hex": "2384f116"
+            },
+            {
+              "offset": 22,
+              "bytes": 4,
+              "hex": "ef000000"
+            },
+            {
+              "offset": 26,
+              "bytes": 4,
+              "hex": "a3840116"
+            },
+            {
+              "offset": 30,
+              "bytes": 4,
+              "hex": "83c78116"
+            },
+            {
+              "offset": 34,
+              "bytes": 4,
+              "hex": "13f72700"
+            },
+            {
+              "offset": 38,
+              "bytes": 2,
+              "hex": "09cb"
+            },
+            {
+              "offset": 40,
+              "bytes": 2,
+              "hex": "f59b"
+            },
+            {
+              "offset": 42,
+              "bytes": 2,
+              "hex": "0945"
+            },
+            {
+              "offset": 44,
+              "bytes": 4,
+              "hex": "2384f116"
+            },
+            {
+              "offset": 48,
+              "bytes": 4,
+              "hex": "ef000000"
+            },
+            {
+              "offset": 52,
+              "bytes": 4,
+              "hex": "23850116"
+            },
+            {
+              "offset": 56,
+              "bytes": 2,
+              "hex": "b240"
+            },
+            {
+              "offset": 58,
+              "bytes": 2,
+              "hex": "4101"
+            },
+            {
+              "offset": 60,
+              "bytes": 2,
+              "hex": "8280"
+            }
+          ],
+          "frame_bytes": 16,
+          "prefix_order": [
+            "SP-16",
+            "LBU8 liveGP+360",
+            "SW32 RA,12SP"
+          ],
+          "exit_order": [
+            "LW32 RA,12SP",
+            "SP+16",
+            "RET"
+          ],
+          "branches": [
+            [
+              12,
+              30
+            ],
+            [
+              38,
+              56
+            ]
+          ],
+          "flag_byte_load_sites": 2,
+          "flag_byte_store_sites": 4,
+          "own_GP_writes": false,
+          "C_allocator_bank": [
+            "a0",
+            "a4",
+            "a5"
+          ],
+          "architectural_port_registers": [
+            "sp",
+            "ra"
+          ]
+        }
+      },
+      "receiver": {
+        "kind": "native",
+        "ET_REL": true,
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 273,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_receive_entry_16b0a",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 14,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_receive_body",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 56,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".rela.text.tsl9_receive_body",
+            "type": 4,
+            "flags": 64,
+            "address": 0,
+            "size": 48,
+            "link": 10,
+            "info": 4,
+            "alignment": 4,
+            "entry_size": 12
+          },
+          {
+            "name": ".comment",
+            "type": 1,
+            "flags": 48,
+            "address": 0,
+            "size": 159,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1
+          },
+          {
+            "name": ".note.GNU-stack",
+            "type": 1,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".riscv.attributes",
+            "type": 1879048195,
+            "flags": 0,
+            "address": 0,
+            "size": 64,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".llvm_addrsig",
+            "type": 1879002115,
+            "flags": 2147483648,
+            "address": 0,
+            "size": 2,
+            "link": 10,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 176,
+            "link": 1,
+            "info": 6,
+            "alignment": 4,
+            "entry_size": 16
+          }
+        ],
+        "functions": [
+          {
+            "name": "tsl9_receive_entry_16b0a",
+            "value": 0,
+            "size": 14,
+            "info": 18,
+            "other": 0,
+            "index": 3
+          },
+          {
+            "name": "tsl9_receive_body",
+            "value": 0,
+            "size": 56,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          }
+        ],
+        "UND": [
+          {
+            "name": "tsl9_register_read_entry_16994",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          },
+          {
+            "name": "tsl9_receive_buffer_entry_16a7c",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          },
+          {
+            "name": "tsl9_register_write_entry_16a30",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        ],
+        "local_ABS_metadata": [
+          {
+            "name": "receive_wrapper.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          }
+        ],
+        "global_ABS_providers": [],
+        "relocations": [
+          {
+            "owner": ".text.tsl9_receive_body",
+            "offset": 0,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_register_read_entry_16994",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".text.tsl9_receive_body",
+            "offset": 18,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_buffer_entry_16a7c",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".text.tsl9_receive_body",
+            "offset": 32,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_buffer_entry_16a7c",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".text.tsl9_receive_body",
+            "offset": 52,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_register_write_entry_16a30",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          }
+        ],
+        "receiver_trace": {
+          "bytes": 70,
+          "instructions": 26,
+          "calls": [
+            {
+              "offset": 14,
+              "rd": 1,
+              "symbol": "tsl9_register_read_entry_16994",
+              "original_target": "0x16994",
+              "original_continuation": "0x16b1c",
+              "true_tail": false,
+              "pending_relocation": true
+            },
+            {
+              "offset": 32,
+              "rd": 1,
+              "symbol": "tsl9_receive_buffer_entry_16a7c",
+              "original_target": "0x16a7c",
+              "original_continuation": "0x16b2e",
+              "true_tail": false,
+              "pending_relocation": true
+            },
+            {
+              "offset": 46,
+              "rd": 1,
+              "symbol": "tsl9_receive_buffer_entry_16a7c",
+              "original_target": "0x16a7c",
+              "original_continuation": "0x16b3c",
+              "true_tail": false,
+              "pending_relocation": true
+            },
+            {
+              "offset": 66,
+              "rd": 0,
+              "symbol": "tsl9_register_write_entry_16a30",
+              "original_target": "0x16a30",
+              "original_continuation": null,
+              "true_tail": true,
+              "pending_relocation": true
+            }
+          ],
+          "rows": [
+            {
+              "offset": 0,
+              "bytes": 2,
+              "hex": "4111"
+            },
+            {
+              "offset": 2,
+              "bytes": 4,
+              "hex": "9305c002"
+            },
+            {
+              "offset": 6,
+              "bytes": 2,
+              "hex": "22c4"
+            },
+            {
+              "offset": 8,
+              "bytes": 2,
+              "hex": "26c2"
+            },
+            {
+              "offset": 10,
+              "bytes": 2,
+              "hex": "06c6"
+            },
+            {
+              "offset": 12,
+              "bytes": 2,
+              "hex": "aa84"
+            },
+            {
+              "offset": 14,
+              "bytes": 4,
+              "hex": "ef000000"
+            },
+            {
+              "offset": 18,
+              "bytes": 4,
+              "hex": "93771500"
+            },
+            {
+              "offset": 22,
+              "bytes": 2,
+              "hex": "2a84"
+            },
+            {
+              "offset": 24,
+              "bytes": 2,
+              "hex": "91c7"
+            },
+            {
+              "offset": 26,
+              "bytes": 4,
+              "hex": "93051006"
+            },
+            {
+              "offset": 30,
+              "bytes": 2,
+              "hex": "2685"
+            },
+            {
+              "offset": 32,
+              "bytes": 4,
+              "hex": "ef000000"
+            },
+            {
+              "offset": 36,
+              "bytes": 2,
+              "hex": "0988"
+            },
+            {
+              "offset": 38,
+              "bytes": 2,
+              "hex": "11c4"
+            },
+            {
+              "offset": 40,
+              "bytes": 4,
+              "hex": "93051007"
+            },
+            {
+              "offset": 44,
+              "bytes": 2,
+              "hex": "2685"
+            },
+            {
+              "offset": 46,
+              "bytes": 4,
+              "hex": "ef000000"
+            },
+            {
+              "offset": 50,
+              "bytes": 2,
+              "hex": "2244"
+            },
+            {
+              "offset": 52,
+              "bytes": 2,
+              "hex": "b240"
+            },
+            {
+              "offset": 54,
+              "bytes": 2,
+              "hex": "2685"
+            },
+            {
+              "offset": 56,
+              "bytes": 2,
+              "hex": "9244"
+            },
+            {
+              "offset": 58,
+              "bytes": 2,
+              "hex": "0146"
+            },
+            {
+              "offset": 60,
+              "bytes": 4,
+              "hex": "9305c002"
+            },
+            {
+              "offset": 64,
+              "bytes": 2,
+              "hex": "4101"
+            },
+            {
+              "offset": 66,
+              "bytes": 4,
+              "hex": "6f000000"
+            }
+          ],
+          "frame_bytes": 16,
+          "entry_bytes": 14,
+          "body_bytes": 56,
+          "prefix_order": [
+            "SP-16",
+            "A1=44",
+            "SW S0,8SP",
+            "SW S1,4SP",
+            "SW RA,12SP",
+            "S1=entryA0"
+          ],
+          "finish_order": [
+            "fresh S0,8SP",
+            "fresh RA,12SP",
+            "A0=then-live S1",
+            "fresh S1,4SP",
+            "A2=0",
+            "A1=44",
+            "SP+16",
+            "JAL x0 open write provider"
+          ],
+          "second_predicate": "then-live S0&2; no cached pre-callee status",
+          "branches": [
+            [
+              24,
+              36
+            ],
+            [
+              38,
+              50
+            ]
+          ],
+          "ordinary_C_callee_preservation_assumed": false
+        },
+        "receiver_open_code_sha256": "2bd070874ac877830742000e75b9fe3cbacdde007c66898214e7e6679de86caf",
+        "noncall54_sha256": "e862be93e54bd3d9027def687318afe6b59fa8676bac2197f9d4d2f0f31e01aa",
+        "internal_definition_linkage_evidence": false,
+        "machine_JALs_resolved": false
+      },
+      "read": {
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 218,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_register_read_entry_16994",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 4,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_register_read_body",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 68,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".rela.text.tsl9_register_read_body",
+            "type": 4,
+            "flags": 64,
+            "address": 0,
+            "size": 36,
+            "link": 10,
+            "info": 4,
+            "alignment": 4,
+            "entry_size": 12
+          },
+          {
+            "name": ".comment",
+            "type": 1,
+            "flags": 48,
+            "address": 0,
+            "size": 159,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1
+          },
+          {
+            "name": ".note.GNU-stack",
+            "type": 1,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".riscv.attributes",
+            "type": 1879048195,
+            "flags": 0,
+            "address": 0,
+            "size": 64,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".llvm_addrsig",
+            "type": 1879002115,
+            "flags": 2147483648,
+            "address": 0,
+            "size": 2,
+            "link": 10,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 144,
+            "link": 1,
+            "info": 6,
+            "alignment": 4,
+            "entry_size": 16
+          }
+        ],
+        "functions": [
+          {
+            "name": "tsl9_register_read_entry_16994",
+            "value": 0,
+            "size": 4,
+            "info": 18,
+            "other": 0,
+            "index": 3
+          },
+          {
+            "name": "tsl9_register_read_body",
+            "value": 0,
+            "size": 68,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          }
+        ],
+        "UND": [
+          {
+            "name": "tsl9_spi_transfer_entry_16896",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        ],
+        "relocations": [
+          {
+            "owner": ".text.tsl9_register_read_body",
+            "offset": 34,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".text.tsl9_register_read_body",
+            "offset": 42,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".text.tsl9_register_read_body",
+            "offset": 48,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          }
+        ],
+        "local_ABS_metadata": [
+          {
+            "name": "register_read.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          }
+        ],
+        "traces": {
+          "read": {
+            "bytes": 72,
+            "instructions": 26,
+            "rows": [
+              {
+                "offset": 0,
+                "bytes": 2,
+                "hex": "0111"
+              },
+              {
+                "offset": 2,
+                "bytes": 2,
+                "hex": "06ce"
+              },
+              {
+                "offset": 4,
+                "bytes": 4,
+                "hex": "93771500"
+              },
+              {
+                "offset": 8,
+                "bytes": 2,
+                "hex": "91c7"
+              },
+              {
+                "offset": 10,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 14,
+                "bytes": 2,
+                "hex": "4147"
+              },
+              {
+                "offset": 16,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 20,
+                "bytes": 2,
+                "hex": "0989"
+              },
+              {
+                "offset": 22,
+                "bytes": 2,
+                "hex": "11c5"
+              },
+              {
+                "offset": 24,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 28,
+                "bytes": 2,
+                "hex": "0547"
+              },
+              {
+                "offset": 30,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 34,
+                "bytes": 2,
+                "hex": "0d45"
+              },
+              {
+                "offset": 36,
+                "bytes": 2,
+                "hex": "2ec6"
+              },
+              {
+                "offset": 38,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 42,
+                "bytes": 2,
+                "hex": "b245"
+              },
+              {
+                "offset": 44,
+                "bytes": 2,
+                "hex": "2e85"
+              },
+              {
+                "offset": 46,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 50,
+                "bytes": 2,
+                "hex": "0145"
+              },
+              {
+                "offset": 52,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 56,
+                "bytes": 2,
+                "hex": "f240"
+              },
+              {
+                "offset": 58,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 62,
+                "bytes": 2,
+                "hex": "4547"
+              },
+              {
+                "offset": 64,
+                "bytes": 4,
+                "hex": "23a8e780"
+              },
+              {
+                "offset": 68,
+                "bytes": 2,
+                "hex": "0561"
+              },
+              {
+                "offset": 70,
+                "bytes": 2,
+                "hex": "8280"
+              }
+            ],
+            "calls": [
+              {
+                "offset": 38,
+                "original_target": "0x16896",
+                "original_continuation": "0x169be",
+                "pending_relocation": true
+              },
+              {
+                "offset": 46,
+                "original_target": "0x16896",
+                "original_continuation": "0x169c6",
+                "pending_relocation": true
+              },
+              {
+                "offset": 52,
+                "original_target": "0x16896",
+                "original_continuation": "0x169cc",
+                "pending_relocation": true
+              }
+            ],
+            "frame_bytes": 32,
+            "GPIO_selection_address": "0x40010814",
+            "GPIO_cleanup_address": "0x40010810",
+            "GPIO_width_bits": 32,
+            "independent_channel_bits": true,
+            "RA_reload_before_cleanup": true,
+            "A0_exit": "third opaque SPI returned residue; no forced zero",
+            "GP_S0_S1_own_writes": false
+          }
+        },
+        "ET_REL": true,
+        "internal_definition_linkage_only": false,
+        "machine_JALs_resolved": false
+      },
+      "read-OPEN": {
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".register_read",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 72,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".rela.register_read",
+            "type": 4,
+            "flags": 64,
+            "address": 0,
+            "size": 36,
+            "link": 5,
+            "info": 1,
+            "alignment": 4,
+            "entry_size": 12
+          },
+          {
+            "name": ".llvm_addrsig",
+            "type": 1879002115,
+            "flags": 2147483648,
+            "address": 0,
+            "size": 2,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 176,
+            "link": 7,
+            "info": 8,
+            "alignment": 4,
+            "entry_size": 16
+          },
+          {
+            "name": ".shstrtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 82,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 117,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          }
+        ],
+        "functions": [
+          {
+            "name": "tsl9_register_read_entry_16994",
+            "value": 0,
+            "size": 4,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_register_read_body",
+            "value": 4,
+            "size": 68,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          }
+        ],
+        "UND": [
+          {
+            "name": "tsl9_spi_transfer_entry_16896",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        ],
+        "relocations": [
+          {
+            "owner": ".register_read",
+            "offset": 38,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".register_read",
+            "offset": 46,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".register_read",
+            "offset": 52,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          }
+        ],
+        "local_ABS_metadata": [
+          {
+            "name": "register_read.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$d.3",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 65521
+          }
+        ],
+        "traces": {
+          "read": {
+            "bytes": 72,
+            "instructions": 26,
+            "rows": [
+              {
+                "offset": 0,
+                "bytes": 2,
+                "hex": "0111"
+              },
+              {
+                "offset": 2,
+                "bytes": 2,
+                "hex": "06ce"
+              },
+              {
+                "offset": 4,
+                "bytes": 4,
+                "hex": "93771500"
+              },
+              {
+                "offset": 8,
+                "bytes": 2,
+                "hex": "91c7"
+              },
+              {
+                "offset": 10,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 14,
+                "bytes": 2,
+                "hex": "4147"
+              },
+              {
+                "offset": 16,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 20,
+                "bytes": 2,
+                "hex": "0989"
+              },
+              {
+                "offset": 22,
+                "bytes": 2,
+                "hex": "11c5"
+              },
+              {
+                "offset": 24,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 28,
+                "bytes": 2,
+                "hex": "0547"
+              },
+              {
+                "offset": 30,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 34,
+                "bytes": 2,
+                "hex": "0d45"
+              },
+              {
+                "offset": 36,
+                "bytes": 2,
+                "hex": "2ec6"
+              },
+              {
+                "offset": 38,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 42,
+                "bytes": 2,
+                "hex": "b245"
+              },
+              {
+                "offset": 44,
+                "bytes": 2,
+                "hex": "2e85"
+              },
+              {
+                "offset": 46,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 50,
+                "bytes": 2,
+                "hex": "0145"
+              },
+              {
+                "offset": 52,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 56,
+                "bytes": 2,
+                "hex": "f240"
+              },
+              {
+                "offset": 58,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 62,
+                "bytes": 2,
+                "hex": "4547"
+              },
+              {
+                "offset": 64,
+                "bytes": 4,
+                "hex": "23a8e780"
+              },
+              {
+                "offset": 68,
+                "bytes": 2,
+                "hex": "0561"
+              },
+              {
+                "offset": 70,
+                "bytes": 2,
+                "hex": "8280"
+              }
+            ],
+            "calls": [
+              {
+                "offset": 38,
+                "original_target": "0x16896",
+                "original_continuation": "0x169be",
+                "pending_relocation": true
+              },
+              {
+                "offset": 46,
+                "original_target": "0x16896",
+                "original_continuation": "0x169c6",
+                "pending_relocation": true
+              },
+              {
+                "offset": 52,
+                "original_target": "0x16896",
+                "original_continuation": "0x169cc",
+                "pending_relocation": true
+              }
+            ],
+            "frame_bytes": 32,
+            "GPIO_selection_address": "0x40010814",
+            "GPIO_cleanup_address": "0x40010810",
+            "GPIO_width_bits": 32,
+            "independent_channel_bits": true,
+            "RA_reload_before_cleanup": true,
+            "A0_exit": "third opaque SPI returned residue; no forced zero",
+            "GP_S0_S1_own_writes": false
+          }
+        },
+        "ET_REL": true,
+        "internal_definition_linkage_only": false,
+        "machine_JALs_resolved": false
+      },
+      "write": {
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 221,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_register_write_entry_16a30",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 4,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_register_write_body",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 72,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".rela.text.tsl9_register_write_body",
+            "type": 4,
+            "flags": 64,
+            "address": 0,
+            "size": 36,
+            "link": 10,
+            "info": 4,
+            "alignment": 4,
+            "entry_size": 12
+          },
+          {
+            "name": ".comment",
+            "type": 1,
+            "flags": 48,
+            "address": 0,
+            "size": 159,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1
+          },
+          {
+            "name": ".note.GNU-stack",
+            "type": 1,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".riscv.attributes",
+            "type": 1879048195,
+            "flags": 0,
+            "address": 0,
+            "size": 64,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".llvm_addrsig",
+            "type": 1879002115,
+            "flags": 2147483648,
+            "address": 0,
+            "size": 2,
+            "link": 10,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 144,
+            "link": 1,
+            "info": 6,
+            "alignment": 4,
+            "entry_size": 16
+          }
+        ],
+        "functions": [
+          {
+            "name": "tsl9_register_write_entry_16a30",
+            "value": 0,
+            "size": 4,
+            "info": 18,
+            "other": 0,
+            "index": 3
+          },
+          {
+            "name": "tsl9_register_write_body",
+            "value": 0,
+            "size": 72,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          }
+        ],
+        "UND": [
+          {
+            "name": "tsl9_spi_transfer_entry_16896",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        ],
+        "relocations": [
+          {
+            "owner": ".text.tsl9_register_write_body",
+            "offset": 36,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".text.tsl9_register_write_body",
+            "offset": 44,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".text.tsl9_register_write_body",
+            "offset": 52,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          }
+        ],
+        "local_ABS_metadata": [
+          {
+            "name": "register_write.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          }
+        ],
+        "traces": {
+          "write": {
+            "bytes": 76,
+            "instructions": 28,
+            "rows": [
+              {
+                "offset": 0,
+                "bytes": 2,
+                "hex": "0111"
+              },
+              {
+                "offset": 2,
+                "bytes": 2,
+                "hex": "06ce"
+              },
+              {
+                "offset": 4,
+                "bytes": 4,
+                "hex": "93771500"
+              },
+              {
+                "offset": 8,
+                "bytes": 2,
+                "hex": "91c7"
+              },
+              {
+                "offset": 10,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 14,
+                "bytes": 2,
+                "hex": "4147"
+              },
+              {
+                "offset": 16,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 20,
+                "bytes": 2,
+                "hex": "0989"
+              },
+              {
+                "offset": 22,
+                "bytes": 2,
+                "hex": "11c5"
+              },
+              {
+                "offset": 24,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 28,
+                "bytes": 2,
+                "hex": "0547"
+              },
+              {
+                "offset": 30,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 34,
+                "bytes": 2,
+                "hex": "0945"
+              },
+              {
+                "offset": 36,
+                "bytes": 2,
+                "hex": "32c6"
+              },
+              {
+                "offset": 38,
+                "bytes": 2,
+                "hex": "2ec4"
+              },
+              {
+                "offset": 40,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 44,
+                "bytes": 2,
+                "hex": "a245"
+              },
+              {
+                "offset": 46,
+                "bytes": 2,
+                "hex": "2e85"
+              },
+              {
+                "offset": 48,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 52,
+                "bytes": 2,
+                "hex": "3246"
+              },
+              {
+                "offset": 54,
+                "bytes": 2,
+                "hex": "3285"
+              },
+              {
+                "offset": 56,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 60,
+                "bytes": 2,
+                "hex": "f240"
+              },
+              {
+                "offset": 62,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 66,
+                "bytes": 2,
+                "hex": "4547"
+              },
+              {
+                "offset": 68,
+                "bytes": 4,
+                "hex": "23a8e780"
+              },
+              {
+                "offset": 72,
+                "bytes": 2,
+                "hex": "0561"
+              },
+              {
+                "offset": 74,
+                "bytes": 2,
+                "hex": "8280"
+              }
+            ],
+            "calls": [
+              {
+                "offset": 40,
+                "original_target": "0x16896",
+                "original_continuation": "0x16a5c",
+                "pending_relocation": true
+              },
+              {
+                "offset": 48,
+                "original_target": "0x16896",
+                "original_continuation": "0x16a64",
+                "pending_relocation": true
+              },
+              {
+                "offset": 56,
+                "original_target": "0x16896",
+                "original_continuation": "0x16a6c",
+                "pending_relocation": true
+              }
+            ],
+            "frame_bytes": 32,
+            "GPIO_selection_address": "0x40010814",
+            "GPIO_cleanup_address": "0x40010810",
+            "GPIO_width_bits": 32,
+            "independent_channel_bits": true,
+            "RA_reload_before_cleanup": true,
+            "A0_exit": "third opaque SPI returned residue; no forced zero",
+            "GP_S0_S1_own_writes": false
+          }
+        },
+        "ET_REL": true,
+        "internal_definition_linkage_only": false,
+        "machine_JALs_resolved": false
+      },
+      "write-OPEN": {
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".writer",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 76,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".rela.writer",
+            "type": 4,
+            "flags": 64,
+            "address": 0,
+            "size": 36,
+            "link": 5,
+            "info": 1,
+            "alignment": 4,
+            "entry_size": 12
+          },
+          {
+            "name": ".llvm_addrsig",
+            "type": 1879002115,
+            "flags": 2147483648,
+            "address": 0,
+            "size": 2,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 176,
+            "link": 7,
+            "info": 8,
+            "alignment": 4,
+            "entry_size": 16
+          },
+          {
+            "name": ".shstrtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 68,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 120,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          }
+        ],
+        "functions": [
+          {
+            "name": "tsl9_register_write_entry_16a30",
+            "value": 0,
+            "size": 4,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_register_write_body",
+            "value": 4,
+            "size": 72,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          }
+        ],
+        "UND": [
+          {
+            "name": "tsl9_spi_transfer_entry_16896",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        ],
+        "relocations": [
+          {
+            "owner": ".writer",
+            "offset": 40,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".writer",
+            "offset": 48,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".writer",
+            "offset": 56,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          }
+        ],
+        "local_ABS_metadata": [
+          {
+            "name": "register_write.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$d.3",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 65521
+          }
+        ],
+        "traces": {
+          "write": {
+            "bytes": 76,
+            "instructions": 28,
+            "rows": [
+              {
+                "offset": 0,
+                "bytes": 2,
+                "hex": "0111"
+              },
+              {
+                "offset": 2,
+                "bytes": 2,
+                "hex": "06ce"
+              },
+              {
+                "offset": 4,
+                "bytes": 4,
+                "hex": "93771500"
+              },
+              {
+                "offset": 8,
+                "bytes": 2,
+                "hex": "91c7"
+              },
+              {
+                "offset": 10,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 14,
+                "bytes": 2,
+                "hex": "4147"
+              },
+              {
+                "offset": 16,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 20,
+                "bytes": 2,
+                "hex": "0989"
+              },
+              {
+                "offset": 22,
+                "bytes": 2,
+                "hex": "11c5"
+              },
+              {
+                "offset": 24,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 28,
+                "bytes": 2,
+                "hex": "0547"
+              },
+              {
+                "offset": 30,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 34,
+                "bytes": 2,
+                "hex": "0945"
+              },
+              {
+                "offset": 36,
+                "bytes": 2,
+                "hex": "32c6"
+              },
+              {
+                "offset": 38,
+                "bytes": 2,
+                "hex": "2ec4"
+              },
+              {
+                "offset": 40,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 44,
+                "bytes": 2,
+                "hex": "a245"
+              },
+              {
+                "offset": 46,
+                "bytes": 2,
+                "hex": "2e85"
+              },
+              {
+                "offset": 48,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 52,
+                "bytes": 2,
+                "hex": "3246"
+              },
+              {
+                "offset": 54,
+                "bytes": 2,
+                "hex": "3285"
+              },
+              {
+                "offset": 56,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 60,
+                "bytes": 2,
+                "hex": "f240"
+              },
+              {
+                "offset": 62,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 66,
+                "bytes": 2,
+                "hex": "4547"
+              },
+              {
+                "offset": 68,
+                "bytes": 4,
+                "hex": "23a8e780"
+              },
+              {
+                "offset": 72,
+                "bytes": 2,
+                "hex": "0561"
+              },
+              {
+                "offset": 74,
+                "bytes": 2,
+                "hex": "8280"
+              }
+            ],
+            "calls": [
+              {
+                "offset": 40,
+                "original_target": "0x16896",
+                "original_continuation": "0x16a5c",
+                "pending_relocation": true
+              },
+              {
+                "offset": 48,
+                "original_target": "0x16896",
+                "original_continuation": "0x16a64",
+                "pending_relocation": true
+              },
+              {
+                "offset": 56,
+                "original_target": "0x16896",
+                "original_continuation": "0x16a6c",
+                "pending_relocation": true
+              }
+            ],
+            "frame_bytes": 32,
+            "GPIO_selection_address": "0x40010814",
+            "GPIO_cleanup_address": "0x40010810",
+            "GPIO_width_bits": 32,
+            "independent_channel_bits": true,
+            "RA_reload_before_cleanup": true,
+            "A0_exit": "third opaque SPI returned residue; no forced zero",
+            "GP_S0_S1_own_writes": false
+          }
+        },
+        "ET_REL": true,
+        "internal_definition_linkage_only": false,
+        "machine_JALs_resolved": false
+      },
+      "PIPELINE-OPEN": {
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".pipeline",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 280,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".rela.pipeline",
+            "type": 4,
+            "flags": 64,
+            "address": 0,
+            "size": 144,
+            "link": 5,
+            "info": 1,
+            "alignment": 4,
+            "entry_size": 12
+          },
+          {
+            "name": ".llvm_addrsig",
+            "type": 1879002115,
+            "flags": 2147483648,
+            "address": 0,
+            "size": 8,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 480,
+            "link": 7,
+            "info": 20,
+            "alignment": 4,
+            "entry_size": 16
+          },
+          {
+            "name": ".shstrtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 72,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 400,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          }
+        ],
+        "functions": [
+          {
+            "name": "tsl9_flag_consumer_entry_17002",
+            "value": 0,
+            "size": 8,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_flag_consumer_body",
+            "value": 8,
+            "size": 54,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_receive_entry_16b0a",
+            "value": 62,
+            "size": 14,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_receive_body",
+            "value": 76,
+            "size": 56,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_register_read_entry_16994",
+            "value": 132,
+            "size": 4,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_register_write_entry_16a30",
+            "value": 204,
+            "size": 4,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_register_read_body",
+            "value": 136,
+            "size": 68,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_register_write_body",
+            "value": 208,
+            "size": 72,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          }
+        ],
+        "UND": [
+          {
+            "name": "tsl9_receive_buffer_entry_16a7c",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          },
+          {
+            "name": "tsl9_spi_transfer_entry_16896",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        ],
+        "relocations": [
+          {
+            "owner": ".pipeline",
+            "offset": 22,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_entry_16b0a",
+              "value": 62,
+              "size": 14,
+              "info": 18,
+              "other": 0,
+              "index": 1
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 48,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_entry_16b0a",
+              "value": 62,
+              "size": 14,
+              "info": 18,
+              "other": 0,
+              "index": 1
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 76,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_register_read_entry_16994",
+              "value": 132,
+              "size": 4,
+              "info": 18,
+              "other": 0,
+              "index": 1
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 94,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_buffer_entry_16a7c",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 108,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_buffer_entry_16a7c",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 128,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_register_write_entry_16a30",
+              "value": 204,
+              "size": 4,
+              "info": 18,
+              "other": 0,
+              "index": 1
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 170,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 178,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 184,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 244,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 252,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".pipeline",
+            "offset": 260,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_spi_transfer_entry_16896",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          }
+        ],
+        "local_ABS_metadata": [
+          {
+            "name": "flag_consumer.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$d.3",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "receive_wrapper.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$d.3",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "register_read.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$d.3",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "register_write.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$d.3",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 65521
+          }
+        ],
+        "traces": {
+          "read": {
+            "bytes": 72,
+            "instructions": 26,
+            "rows": [
+              {
+                "offset": 0,
+                "bytes": 2,
+                "hex": "0111"
+              },
+              {
+                "offset": 2,
+                "bytes": 2,
+                "hex": "06ce"
+              },
+              {
+                "offset": 4,
+                "bytes": 4,
+                "hex": "93771500"
+              },
+              {
+                "offset": 8,
+                "bytes": 2,
+                "hex": "91c7"
+              },
+              {
+                "offset": 10,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 14,
+                "bytes": 2,
+                "hex": "4147"
+              },
+              {
+                "offset": 16,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 20,
+                "bytes": 2,
+                "hex": "0989"
+              },
+              {
+                "offset": 22,
+                "bytes": 2,
+                "hex": "11c5"
+              },
+              {
+                "offset": 24,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 28,
+                "bytes": 2,
+                "hex": "0547"
+              },
+              {
+                "offset": 30,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 34,
+                "bytes": 2,
+                "hex": "0d45"
+              },
+              {
+                "offset": 36,
+                "bytes": 2,
+                "hex": "2ec6"
+              },
+              {
+                "offset": 38,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 42,
+                "bytes": 2,
+                "hex": "b245"
+              },
+              {
+                "offset": 44,
+                "bytes": 2,
+                "hex": "2e85"
+              },
+              {
+                "offset": 46,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 50,
+                "bytes": 2,
+                "hex": "0145"
+              },
+              {
+                "offset": 52,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 56,
+                "bytes": 2,
+                "hex": "f240"
+              },
+              {
+                "offset": 58,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 62,
+                "bytes": 2,
+                "hex": "4547"
+              },
+              {
+                "offset": 64,
+                "bytes": 4,
+                "hex": "23a8e780"
+              },
+              {
+                "offset": 68,
+                "bytes": 2,
+                "hex": "0561"
+              },
+              {
+                "offset": 70,
+                "bytes": 2,
+                "hex": "8280"
+              }
+            ],
+            "calls": [
+              {
+                "offset": 38,
+                "original_target": "0x16896",
+                "original_continuation": "0x169be",
+                "pending_relocation": true
+              },
+              {
+                "offset": 46,
+                "original_target": "0x16896",
+                "original_continuation": "0x169c6",
+                "pending_relocation": true
+              },
+              {
+                "offset": 52,
+                "original_target": "0x16896",
+                "original_continuation": "0x169cc",
+                "pending_relocation": true
+              }
+            ],
+            "frame_bytes": 32,
+            "GPIO_selection_address": "0x40010814",
+            "GPIO_cleanup_address": "0x40010810",
+            "GPIO_width_bits": 32,
+            "independent_channel_bits": true,
+            "RA_reload_before_cleanup": true,
+            "A0_exit": "third opaque SPI returned residue; no forced zero",
+            "GP_S0_S1_own_writes": false
+          },
+          "write": {
+            "bytes": 76,
+            "instructions": 28,
+            "rows": [
+              {
+                "offset": 0,
+                "bytes": 2,
+                "hex": "0111"
+              },
+              {
+                "offset": 2,
+                "bytes": 2,
+                "hex": "06ce"
+              },
+              {
+                "offset": 4,
+                "bytes": 4,
+                "hex": "93771500"
+              },
+              {
+                "offset": 8,
+                "bytes": 2,
+                "hex": "91c7"
+              },
+              {
+                "offset": 10,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 14,
+                "bytes": 2,
+                "hex": "4147"
+              },
+              {
+                "offset": 16,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 20,
+                "bytes": 2,
+                "hex": "0989"
+              },
+              {
+                "offset": 22,
+                "bytes": 2,
+                "hex": "11c5"
+              },
+              {
+                "offset": 24,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 28,
+                "bytes": 2,
+                "hex": "0547"
+              },
+              {
+                "offset": 30,
+                "bytes": 4,
+                "hex": "23aae780"
+              },
+              {
+                "offset": 34,
+                "bytes": 2,
+                "hex": "0945"
+              },
+              {
+                "offset": 36,
+                "bytes": 2,
+                "hex": "32c6"
+              },
+              {
+                "offset": 38,
+                "bytes": 2,
+                "hex": "2ec4"
+              },
+              {
+                "offset": 40,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 44,
+                "bytes": 2,
+                "hex": "a245"
+              },
+              {
+                "offset": 46,
+                "bytes": 2,
+                "hex": "2e85"
+              },
+              {
+                "offset": 48,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 52,
+                "bytes": 2,
+                "hex": "3246"
+              },
+              {
+                "offset": 54,
+                "bytes": 2,
+                "hex": "3285"
+              },
+              {
+                "offset": 56,
+                "bytes": 4,
+                "hex": "ef000000"
+              },
+              {
+                "offset": 60,
+                "bytes": 2,
+                "hex": "f240"
+              },
+              {
+                "offset": 62,
+                "bytes": 4,
+                "hex": "b7170140"
+              },
+              {
+                "offset": 66,
+                "bytes": 2,
+                "hex": "4547"
+              },
+              {
+                "offset": 68,
+                "bytes": 4,
+                "hex": "23a8e780"
+              },
+              {
+                "offset": 72,
+                "bytes": 2,
+                "hex": "0561"
+              },
+              {
+                "offset": 74,
+                "bytes": 2,
+                "hex": "8280"
+              }
+            ],
+            "calls": [
+              {
+                "offset": 40,
+                "original_target": "0x16896",
+                "original_continuation": "0x16a5c",
+                "pending_relocation": true
+              },
+              {
+                "offset": 48,
+                "original_target": "0x16896",
+                "original_continuation": "0x16a64",
+                "pending_relocation": true
+              },
+              {
+                "offset": 56,
+                "original_target": "0x16896",
+                "original_continuation": "0x16a6c",
+                "pending_relocation": true
+              }
+            ],
+            "frame_bytes": 32,
+            "GPIO_selection_address": "0x40010814",
+            "GPIO_cleanup_address": "0x40010810",
+            "GPIO_width_bits": 32,
+            "independent_channel_bits": true,
+            "RA_reload_before_cleanup": true,
+            "A0_exit": "third opaque SPI returned residue; no forced zero",
+            "GP_S0_S1_own_writes": false
+          }
+        },
+        "ET_REL": true,
+        "internal_definition_linkage_only": true,
+        "machine_JALs_resolved": false
+      }
+    },
+    "IR": {
+      "consumer": {
+        "entry_sha256": "c4a974c968b62b83d5b03b3dfa49a01737e46158f91cfcf73fd3625555acce8d",
+        "body_sha256": "9a46e4f08bb1391536762550479cbab938431f295af2cb7e0541f42f15f494fa",
+        "body_lines": 56,
+        "live_GP_imports": 5,
+        "C_return_ABI": false,
+        "source_body_exit": "architectural RET port followed by unreachable",
+        "A0_residue": "entry A0 if no call; opaque returned A0 from last taken JAL otherwise"
+      },
+      "receiver": {
+        "entry_sha256": "f830b0e1e0b61ce1f4d539653463677e0b01e198393cf65a4a31bef84e34e657",
+        "body_sha256": "6bcacd5c234c5470bafa8a2928a4a9ec72b40d50c895daa01f4d43899b1ddc87",
+        "body_lines": 39,
+        "then_live_S1_imports": 3,
+        "then_live_S0_callbr": true,
+        "cached_S0_or_S1_across_call_assumed": false,
+        "allocator_bank": [
+          "a0",
+          "a1",
+          "a2",
+          "a3",
+          "a4",
+          "a5"
+        ],
+        "reserved_architecture_ports": [
+          "ra",
+          "sp",
+          "s0",
+          "s1"
+        ],
+        "downstream_full_register_preservation_proved": false
+      },
+      "read": {
+        "entry_sha256": "41656544277cf591ff5dd1978b02231b1bdc3f0c8663a065035c23820570f105",
+        "body_sha256": "62b943c8e56b0e0e9e81b25dadb09a30343a70ffccd85c2c84feb4d4840bca55",
+        "body_lines": 47,
+        "GPIO_word_stores": 3,
+        "SPI_ports": 3,
+        "RA_before_cleanup": true,
+        "frame_bytes": 32,
+        "inherited_A0_result_not_normalized": true,
+        "complete_downstream_ABI_proved": false
+      },
+      "write": {
+        "entry_sha256": "41656544277cf591ff5dd1978b02231b1bdc3f0c8663a065035c23820570f105",
+        "body_sha256": "e191bb490bb6ece85ef208c5aafdfdfdfa150d4d4534f921d7c9040827222905",
+        "body_lines": 53,
+        "GPIO_word_stores": 3,
+        "SPI_ports": 3,
+        "RA_before_cleanup": true,
+        "frame_bytes": 32,
+        "inherited_A0_result_not_normalized": true,
+        "complete_downstream_ABI_proved": false
+      }
+    },
+    "objdump": {
+      "consumer": {
+        "instructions": 21,
+        "bytes": 62
+      },
+      "receiver": {
+        "instructions": 26,
+        "bytes": 70
+      },
+      "read": {
+        "instructions": 26,
+        "bytes": 72
+      },
+      "write": {
+        "instructions": 28,
+        "bytes": 76
+      },
+      "read-OPEN": {
+        "instructions": 26,
+        "bytes": 72
+      },
+      "write-OPEN": {
+        "instructions": 28,
+        "bytes": 76
+      },
+      "PIPELINE-OPEN": {
+        "instructions": 101,
+        "bytes": 280
+      }
+    },
+    "pipeline_bytes": 280,
+    "pipeline_instructions": 101,
+    "internal_definition_calls": 4,
+    "remaining_UND_calls": 8,
+    "genuine_UND_providers": [
+      "tsl9_receive_buffer_entry_16a7c",
+      "tsl9_spi_transfer_entry_16896"
+    ],
+    "machine_JALs_resolved": false,
+    "firmware_ready": false,
+    "whole_firmware_equivalence": false,
+    "limitations": [
+      "All12 JAL17 records and zero raw immediates remain in ET_REL output.",
+      "SPI and packet providers, transitive resident effects, physical MMIO and full IRQ/fault/alias context are unproved."
+    ],
+    "target_execution": false,
+    "ISA_emulation": false,
+    "MMIO_execution": false,
+    "hardware": false,
+    "network": false,
+    "BIN_generated": false
+  },
+  "artifacts": {
+    "consumer-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "consumer-dump.log": "8516d3e6a83f6d793fbdd94dace69232e0117427d6eb92eac5c27dbf9a3dde8d",
+    "consumer-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "consumer.d": "7cd23ff725e4a141c5d9166ed0da75ab4427670025f879dd35566cd9d43124a5",
+    "consumer.ll": "cc52843f50e155fe987d25c53a62c30201c66f4d862863c40dea932eb6b032ef",
+    "consumer.o": "8f5f0d67afcc1e03b6454afba267aa883cc302dcd1cf1e88b999ffd61827829d",
+    "pipeline-combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "PIPELINE-OPEN-dump.log": "15af3ff192daec95750c8b1ffc2eb08d715800a08f1a3380cee0234547dfad43",
+    "PIPELINE-OPEN.o": "c9fb372ea89d143d78f192bebf81ddf864d9333be79564958c6cdd6e08f9cc8b",
+    "read-combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "read-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "read-dump.log": "a2c47c65d5f6f0a8e2f063336d8d827d132636a3154d9900fd82a812d9759eed",
+    "read-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "read-OPEN-dump.log": "256086fe91499cce53de11d1f5527bcd6c5a3e3575fdf63a2d9839338d19bac6",
+    "read-OPEN.o": "5b0250e716362085fc73fd4b475641b88e5ed2c489a2fea23ed9ba0384746c87",
+    "read.d": "0a8f03e04dd93432fce0bbca4ab187ceeb9a3943d0e0d5a667c9aa447eb09377",
+    "read.ll": "010f23877b64e6847f1b97c764763daf02aaf51d071b7dee623bb026a2aa27c9",
+    "read.o": "fd96f6f5df62a1c55615dd45745b6fc006a51c4dae9da6a89faf29acea1486de",
+    "receiver-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receiver-dump.log": "cadca4ec24d661b10185cf3d9a2ae70ea0e5d8690f27c02959ae437cef84bf3f",
+    "receiver-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receiver.d": "922d61566bbcb0f4e5e8b3909778406a41711b4b637aad450b57b317c0b38eb7",
+    "receiver.ll": "00517f4ac3138f4da8aa7f0420d03f636a0c26a441412c487236b9180265d07a",
+    "receiver.o": "251ba819063b42bc1ca92f6121f1357fe112ed6b89672f37b505bb5bcdab43fa",
+    "write-combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "write-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "write-dump.log": "83710723293128a41a419f182e218561e188d72694d6970c333be0a91c81b6f7",
+    "write-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "write-OPEN-dump.log": "be7f6be5b71f88c26c0a2467aff0384fcead3724e2ad64dd1db5dd5fca43808f",
+    "write-OPEN.o": "609b1a52286887ee2077a5da92d3b0ffde1d6a8b0a278707694914f01dda4a22",
+    "write.d": "82d919839a1d74af1cb7e2be756f43c16c8f750aa9742fcaf948d5d8e2f7addc",
+    "write.ll": "f1336ab010a9560a424ee77b7824c8372028f776d6bf9082aaceb61ec37fdca2",
+    "write.o": "3b54e0c9d96bf3eee2521dd0960e2e999b3dcbc226a23c8190c314d6b92ae4fb"
+  }
+}
