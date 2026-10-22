@@ -4,7 +4,7 @@
 
 Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility with the original hardware.
 
-**Rebuilt BINs remain unverified on the original hardware; OTA readback does not prove working features.**
+**Disclaimer: This project uses Codex vibe coding with REA for experimental reconstruction. Reverse engineering has not yet produced verified, working TSL9 firmware. Rebuilt BINs have not passed full validation on the original hardware; successful OTA readback does not prove working features.**
 
 ## Getting started
 
