@@ -4,6 +4,10 @@
 
 This project preserves the original APK, 22 distinct updater BINs, readable C/C++ behavior models and static source evidence. The goal remains a rebuilt BIN compatible with the original hardware and BLE updater, while identifying worthwhile new features during reverse engineering and keeping proposals separate from implemented functions. **No rebuilt BIN is currently verified as flashable.**
 
+## Allocator callback field origin and a 556-byte C/C++ experiment
+
+Actual64-byte initialization copies in two candidates trace the allocator callback word to config `staCB` (+52). Actual RV32 C compilation verifies both header layouts. The original App sets numerical SNV address `0x08077C00`, without proving other Flash free. Two motivated C lifetime changes reduce the OTA component to **556 bytes /188 instructions /48-byte frame**, removing one S8 save/restore pair. Its independent reply object is SP+10/11, still2 bytes below original SP+12/13. **Pointer ABI remains unproved; the existing568-byte component and complete BIN are not replaced.** [Code, actual evidence and limits](analysis/v4160-allocator-callback-2026-10-22/readme.en.md)
+
 ## The original OTA caller now reaches real C/C++ in a complete experimental image
 
 A genuine same-TU strong alias connects the original caller to new C11/C++17. The actual JAL at `0x14094` reaches `0x1AC00`, retaining return address `0x14098`. Both languages produce the same **77,824-byte** experimental BIN. Only three bytes of that instruction change within the inherited 76,800 bytes; the original530-byte handler remains, followed by new568-byte C and456-byte non-executable FF page packaging. SHA-256: `3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee`.

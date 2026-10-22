@@ -1,5 +1,11 @@
 # 已驗證里程碑
 
+## 配置 callback 的欄位來源與有界 C frame 實驗
+
+兩份候選的114-byte BLE 初始化 prefix 以64-byte copy將設定+52寫到配置 callback word；加上各30-byte zero helper及8-byte initializer tail的實讀，並不構成 callback live值或永久零值證明。實際 RV32 C 包含兩份官方 header 得到staCB52／readFlash56／writeFlash60／config64；原 App308-byte本體的32選定欄位與23標準store，確認數值SNVAddr08077C00及無明示SP68 store，仍有未知calls與alias界線。
+
+兩個 C profile 從568→560→556 bytes，最後188指令／48frame／RA+S0..S7保存，真實2-byte回覆物件SP10/11，不重疊S7@12。相對入口−38不等於原−36，故**沒有修好原回覆指標 ABI，未替換568元件或現有77,824-byte實驗 BIN**。新 HOST演算法未改、沒有RV32／硬體執行或新連結。 [本輪原碼與證據](../analysis/v4160-allocator-callback-2026-10-22/README.md)
+
 ## OTA 原 caller 接上真實 C/C++ 完整實驗映像
 
 保留既有 691 個配置，只在副本弱化原 NOTYPE handler 全域入口，讓同 TU 的真實 FUNC568 強別名接手。C11／C++17 的完整實驗 BIN 相同，為 77,824 bytes，SHA-256 `3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee`。原 caller `0x14094` 的實際 JAL 指向 `0x1AC00`，RA 為 `0x14098`；繼承 76,800-byte 範圍僅該指令有三個 byte 差異。原 raw530 不變，新 C568 與非執行 FF456 形成新增一頁。

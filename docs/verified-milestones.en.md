@@ -1,5 +1,11 @@
 # Verified milestones
 
+## Allocator callback field origin and bounded C frame experiments
+
+Each candidate114-byte BLE-init prefix copies64 bytes, writing config+52 into the allocator callback word. Actual reads also cover30-byte zero helpers and8-byte initializer tails; they establish neither a live callback nor permanent zero. Actual RV32 C inclusion of both official headers yields staCB52/readFlash56/writeFlash60/config64. The original App308-byte body,32 selected fields and23 standard stores establish numerical SNVAddr08077C00 and no explicit SP68 store, retaining unknown-call/alias boundaries.
+
+Two C profiles reduce568→560→556 bytes; the final component has188 instructions, a48-byte frame and RA+S0..S7 saves. Its real2-byte reply object at SP10/11 does not overlap S7@12. Entry-relative−38 differs from original−36. **The original pointer ABI is not repaired, and neither568 nor the existing77,824-byte experimental BIN is replaced.** The HOST algorithm is unchanged; no RV32/hardware execution or new image link occurs. [Code and evidence](../analysis/v4160-allocator-callback-2026-10-22/readme.en.md)
+
 ## The original OTA caller now reaches real C/C++ in a complete experimental image
 
 Only the original NOTYPE global entry is weakened in a copy of the retained 691-allocation object; a genuine same-TU FUNC568 strong alias wins. C11/C++17 produce the same 77,824-byte experimental BIN, SHA-256 `3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee`. The actual JAL at `0x14094` reaches `0x1AC00` with RA `0x14098`. Only three bytes of that instruction change in the inherited 76,800-byte range. The original raw530 body remains; C568 plus non-executable FF456 add one page.

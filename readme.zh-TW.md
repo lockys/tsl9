@@ -4,6 +4,10 @@
 
 本專案保存原始APK、22份不同的更新器BIN、可讀C/C++行為模型及靜態來源證據。完整目標仍是產出與原硬體及BLE更新器相容的重建BIN，並在逆向過程中評估值得新增的功能，將提案與已實作功能分開列出。**目前尚無經驗證可刷寫的重建BIN。**
 
+## 配置 callback 欄位來源與 556-byte C/C++ 實驗
+
+兩份候選 BLE 初始化的實際64-byte copy，已追到配置 callback word 來自設定結構 `staCB`（+52）；兩份 header 以真實 RV32 C 編譯核對欄位，原 App 的 SNV 設定數值為 `0x08077C00`，並不代表其餘 Flash 可用。另以兩個有依據的 C 生命週期調整，將 OTA 元件縮為 **556 bytes／188 指令／48-byte frame**，移除一對 S8 保存；回覆物件為獨立 SP+10/11，仍比原 SP+12/13 低2 bytes，**指標 ABI 尚未通過，不替換現有568元件或完整 BIN**。 [程式、實檔證據與限制](analysis/v4160-allocator-callback-2026-10-22/README.md)
+
 ## OTA 原 caller 已接上真實 C/C++，新增完整實驗映像
 
 新的 C11／C++17 同 TU 強別名接上原 caller；實際 `0x14094` 的 JAL 已指向 `0x1AC00`，返回地址仍為 `0x14098`。兩語言產出相同 **77,824-byte** 實驗 BIN；繼承的 76,800 bytes 中只有該指令的三個 bytes 改變，原 530-byte handler 保留，尾端新增 568-byte C 與 456-byte 非執行 FF 頁尾資料。SHA-256：`3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee`。
