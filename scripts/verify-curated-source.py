@@ -53,7 +53,8 @@ def flags(unit, mode):
     kind = unit['profile']
     clock = kind in ('clock-query', 'clock-fields')
     irq = kind in ('irq-bank', 'delay-bank')
-    result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq else 'rv32imac_zicsr_zifencei'),
+    spi = kind == 'spi-a0-a3-a4-a5'
+    result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi else 'rv32imac_zicsr_zifencei'),
               '-mabi=ilp32', '-Os' if clock else '-Oz']
     if not clock:
         result += ['-mllvm', '-enable-machine-outliner=never']
@@ -77,6 +78,8 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'provider-a0-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
+    elif kind == 'spi-a0-a3-a4-a5':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 13, 14, 15}]
     elif kind == 'adc-bank':
         result += ['-ffixed-x' + str(n) for n in range(5, 32) if n not in range(10, 17)]
     return result
@@ -222,6 +225,32 @@ def audit(base, record, manifest):
                           for s in pair[1]['allocated_sections']] == [
                               ('.text.'+entry, 4, 6, 1), ('.text.'+body, size, 6, 1)],
                      'Original register-provider code outside three open SPI calls; separate verifier checks frame/slots/GPIO and pipeline linkage')
+            if unit['name'] == 'spi-transfer':
+                regions = [
+                    ('tsl9_spi_transfer_entry_16896', 8, '7f26fb137901cc64a48db59174b41db37688008e3df16571b8bd818f3329d4dc'),
+                    ('tsl9_spi_tx_poll_1689e', 8, '43068783c42f65107925427fd8315446af8974f41fabcb47739c64acf8e2f0c5'),
+                    ('tsl9_spi_tx_ready_168a6', 16, 'a2e7f4ad6c08e6892bc9d970e6f51c8d418703d6ef0c0383a929b691d7f8a2f7'),
+                    ('tsl9_spi_rx_poll_168b6', 8, 'b8313f910f50805168364919a92ca5af50511051eba014e671b92346180f14f8'),
+                    ('tsl9_spi_rx_done_168be', 10, '64b2d800f1106e4120e8945478a00b7ccc2c3e37d4554751c7c4a347274dc99b'),
+                    ('tsl9_spi_tx_wait_168c8', 8, 'da6a2b409c5225c45305d7e49665a17af75c0e9148d6ae36fccf13a055280692'),
+                    ('tsl9_spi_timeout_168d0', 4, '9c28941eb64aa06520e1ff0e0058871b3bfbcea0b07d72ad58477e8d0d7350cb'),
+                    ('tsl9_spi_rx_wait_168d4', 10, '45617f06137de470f74f6aa33092020b2949ca144491c77687811e930ff873c1'),
+                ]
+                relocations = [
+                    ('tsl9_spi_tx_poll_1689e', 6, 44, 'tsl9_spi_tx_wait_168c8'),
+                    ('tsl9_spi_rx_poll_168b6', 6, 44, 'tsl9_spi_rx_wait_168d4'),
+                    ('tsl9_spi_tx_wait_168c8', 6, 44, 'tsl9_spi_tx_poll_1689e'),
+                    ('tsl9_spi_rx_wait_168d4', 6, 44, 'tsl9_spi_rx_poll_168b6'),
+                    ('tsl9_spi_rx_wait_168d4', 8, 45, 'tsl9_spi_timeout_168d0'),
+                ]
+                need(pair[1]['functions'] == sorted([
+                     dict(name=n, binding=1, bytes=z, code_sha256=h) for n, z, h in regions], key=lambda x: x['name'])
+                     and pair[1]['allocated_sections'] == [dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h)
+                          for n, z, h in regions]
+                     and pair[1]['allocated_bytes'] == 72 and not pair[1]['UND']
+                     and pair[1]['relocations'] == [dict(owner='.text.'+owner, offset=at, type=kind, addend=0, symbol=target)
+                          for owner, at, kind, target in relocations],
+                     'Eight private SPI regions and five defined RVC ports; separate nominal-link verifier proves original72B, not ordinary C ABI or firmware readiness')
             if unit['name'] == 'delay-registers':
                 need(pair[1]['functions'] == [dict(name='tsl9_delay_registers_19764', binding=1, bytes=54,
                      code_sha256='0bcb7577e755f1ca9736b0fd0b05e4d3f0a0e1e0cd3a59976b947191d3df74a4')], 'Exact original delay leaf')
