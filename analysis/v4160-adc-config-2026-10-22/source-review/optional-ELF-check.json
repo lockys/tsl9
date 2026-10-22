@@ -1,0 +1,234 @@
+{
+  "schema": "TSL9-original-ADC-config-and-callback-closure-v1",
+  "passed": true,
+  "metadata_only": false,
+  "actual_original_firmware_read": true,
+  "actual_optional_ELF_read": true,
+  "raw_controls_replayed": true,
+  "facts": {
+    "source_bytes": 386,
+    "source_rows": 148,
+    "range_count": 8,
+    "all_leaf_CFGs_acyclic": true,
+    "leaf_return_PCs": {
+      "1892e": [
+        100740
+      ],
+      "18986": [
+        100752
+      ],
+      "18996": [
+        100770
+      ],
+      "189ae": [
+        100860,
+        100932,
+        100964
+      ],
+      "18a66": [
+        100972
+      ],
+      "18a6e": [
+        100994
+      ],
+      "18a8e": [
+        101014
+      ],
+      "18a98": [
+        101028
+      ]
+    },
+    "no_leaf_RA_SP_S_GP_TP_writes": true,
+    "leaf_external_calls": 0,
+    "config_source_accesses": 14,
+    "config_masks": [
+      3773890303,
+      4294047741,
+      4279238655
+    ],
+    "config_byte20_minus1_mask": 255,
+    "config_byte20_shift": 20,
+    "config_word_shifts_unmasked": true,
+    "unreviewed_direct_callback_targets": [],
+    "callback_A6_preserved": false,
+    "callback_A7_own_writes": false,
+    "callback_poll_timeout_encoded": false,
+    "callback_normal_return_unconditional": false,
+    "whole_MMIO_state_restored": false,
+    "caller": {
+      "A0": 1073816576,
+      "A1": "live callback SP+32",
+      "zeroed_config_bytes": 32,
+      "config_words": {
+        "0": 0,
+        "4": 0,
+        "8": 0,
+        "12": 917504,
+        "16": 0,
+        "24": 0,
+        "28": 0
+      },
+      "config_byte20": 1,
+      "config_values_conditional_on_old_8520_zero_path": true,
+      "channel": 16,
+      "sequence": 1,
+      "sample": 7,
+      "channel_write_offset": 12,
+      "channel_shift": 18,
+      "sequence_write_offset": 52,
+      "sequence_shift": 0,
+      "channel_RMW_mask": 1835008,
+      "sequence_RMW_mask": 31,
+      "sequence_RMW_value": 16,
+      "returned_A6_source_PC": 100798,
+      "returned_A6": "fresh READ32(0x4001240C) before channel write",
+      "callback_result": "low16 of fresh READ32(0x4001244C)",
+      "poll_mask": 2
+    },
+    "post_config_register_liveness": {
+      "A2_first_post_config_write_PC": 104626,
+      "A2_first_later_use_PC": 100826,
+      "A6_first_post_config_write_PC": 100798,
+      "A6_first_later_use_PC": 100812,
+      "intermediate_leaf_targets": [
+        100742,
+        101016,
+        100974
+      ],
+      "A2_A6_entry_clobbers_overwritten_for_this_caller": true,
+      "A0_first_post_config_write_PC": 104604,
+      "A1_first_post_config_write_PC": 104602,
+      "A3_first_post_config_write_PC": 100986,
+      "A3_first_later_use_PC": 100990,
+      "A4_first_post_config_write_PC": 101020,
+      "A4_first_later_use_PC": 101024,
+      "A5_first_post_config_write_PC": 100742,
+      "A5_first_later_use_PC": 100746,
+      "A0_through_A6_entry_clobbers_overwritten_for_this_caller": true,
+      "original_A7_unread_and_preserved_to_normal_exit": true,
+      "new_A7_clobber_would_escape": true,
+      "original_T0_T2_T3_T4_T5_T6_unread_and_preserved_to_normal_exit": true,
+      "original_T1_only_write_PC": 34080,
+      "original_T1_exit_value": 15,
+      "any_new_T_clobber_requires_separate_exit_proof": true,
+      "relies_on_PSABI": false,
+      "no_async_register_observers_required": true,
+      "native102B_promotion_proved": false,
+      "full_native_ABI_proved": false
+    },
+    "conditional_whole_callback_SP_RA_S_GP_TP_preservation": true,
+    "minimum_stack_bytes_including_nested": 144,
+    "config_word52_preservation_only_if_disjoint": true,
+    "config_word52_actual_value_proved": false,
+    "installed_identity_proved": false,
+    "conditional_callback_MMIO_write_word_addresses": [
+      1073816580,
+      1073816584,
+      1073816588,
+      1073816592,
+      1073816596,
+      1073816600,
+      1073816604,
+      1073816608,
+      1073816612,
+      1073816616,
+      1073816620,
+      1073816624,
+      1073816628,
+      1073816632,
+      1073876996,
+      1073877004,
+      1073877016
+    ],
+    "RCC_reset_word_not_snapshotted_or_restored": true,
+    "RCC_reset_clear_mask": 512,
+    "config52_preservation_scope": "only this bounded normal-return callback, given disjoint word and no interference"
+  },
+  "premises": [
+    "old restricted8520 valid aligned32B zero path",
+    "valid nonwrapping144B stack interval",
+    "fixed MMIO accesses complete normally",
+    "stack/code/config-word52/MMIO write sets are disjoint",
+    "no asynchronous register/stack/code/config-word changes or register observers",
+    "poll returns nonzero on some finite read for normal return"
+  ],
+  "full_original_ABI_proved": false,
+  "whole_OTA_proved": false,
+  "physical_chip_identity_proved": false,
+  "config52_entire_initialization_lifetime_proved": false,
+  "new_BIN_generated": false,
+  "compiler_or_HOST_run": false,
+  "target_execution": false,
+  "ISA_or_ESIL_execution": false,
+  "network": false,
+  "hardware": false,
+  "actual_new_source_bytes": 386,
+  "actual_new_source_rows": 148,
+  "actual_caller_bytes": 364,
+  "prior_dependency_source_bytes": 106,
+  "raw_controls": 6,
+  "controls": [
+    {
+      "PC": 100660,
+      "field": "immediate",
+      "bit": 20,
+      "original": -257,
+      "mutated": -258,
+      "raw_hex": "1307e7ef",
+      "rejected": true,
+      "reason": "Source operand 0x18934 {'op': 'addi', 'rd': 14, 'rs1': 14, 'immediate': -257}"
+    },
+    {
+      "PC": 100724,
+      "field": "immediate",
+      "bit": 20,
+      "original": 20,
+      "mutated": 21,
+      "raw_hex": "83c75501",
+      "rejected": true,
+      "reason": "Exact14-effect source ordering and widths"
+    },
+    {
+      "PC": 100728,
+      "field": "immediate",
+      "bit": 2,
+      "original": -1,
+      "mutated": -2,
+      "raw_hex": "f917",
+      "rejected": true,
+      "reason": "Source operand 0x18978 {'op': 'addi', 'rd': 15, 'rs1': 15, 'immediate': -1}"
+    },
+    {
+      "PC": 100734,
+      "field": "immediate",
+      "bit": 2,
+      "original": 20,
+      "mutated": 21,
+      "raw_hex": "d607",
+      "rejected": true,
+      "reason": "Source operand 0x1897e {'op': 'slli', 'rd': 15, 'rs1': 15, 'immediate': 20}"
+    },
+    {
+      "PC": 100784,
+      "field": "target",
+      "bit": 7,
+      "original": 100862,
+      "mutated": 102910,
+      "raw_hex": "e3f7b704",
+      "rejected": true,
+      "reason": "No branch outside actual bounded source"
+    },
+    {
+      "PC": 101010,
+      "field": "rs1",
+      "bit": 15,
+      "original": 0,
+      "mutated": 1,
+      "raw_hex": "33b5a000",
+      "rejected": true,
+      "reason": "Source operand 0x18a92 {'op': 'sltu', 'rd': 10, 'rs1': 0, 'rs2': 10}"
+    }
+  ],
+  "actual_optional_ELF_sha256": "ed261505789bbcf23a847a992dd79d419293fa6f29fe592bbb2b4a435f8baca3",
+  "whole_ELF_provenance_proved": false
+}

@@ -4,6 +4,12 @@
 
 This project preserves the original APK, 22 distinct updater BINs, readable C/C++ behavior models and static source evidence. The goal remains a rebuilt BIN compatible with the original hardware and BLE updater, while identifying worthwhile new features during reverse engineering and keeping proposals separate from implemented functions. **No rebuilt BIN is currently verified as flashable.**
 
+## ADC configuration reconstructed in C/C++; callback dependencies closed
+
+Shared C11/C++17 reconstructs the original88B/37-instruction configuration logic with14 ordered IO effects, complete high bits, alias feedback and uint32 wrap. Producer HOST has80cases/6864checks per language; independent HOST has74cases/2904checks; each suite rejects3actual compiled semantic controls per language. Native entry102B/38instructions has no call/frame; the whole254B/93-instruction object has5genuine global FUNC and UND0/RELA0. **Extra A2/A6/A7 writes and14-byte oversize remain unresolved; no newly rebuilt firmware BIN.**
+
+Eight original functions cover386B/148rows, closing restricted dependencies at all13 call sites of the364-byte callback. Normal SP/RA/S/GP/TP preservation requires a valid disjoint144-byte stack and other explicit premises. Polling has no timeout or guaranteed termination. This caller overwrites A2/A6 later; original A7 survives to exit, so the new A7 write still escapes. The normal reading is raw16, not calibrated Celsius. [C/C++, tests and original source](analysis/v4160-adc-config-2026-10-22/readme.en.md)
+
 ## Complete fixed-register recipe still fails the original ABI
 
 One complete source-derived bank per leaf compiled successfully in six actual C11/C++17 objects. Selected compare60/fill68/copy64 bytes (23/24/22 instructions) all add16-byte frames and RA/SP writes; fill also temporarily writes A2. This recipe cannot directly replace the original leaves. Whole objects retain eleven genuine global FUNC definitions each, allocating454/492/418B, UND0/RELA0. **No new BIN; existing components and experimental image remain unchanged.**

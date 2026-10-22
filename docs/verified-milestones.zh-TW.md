@@ -1,5 +1,11 @@
 # 已驗證里程碑
 
+## ADC 配置已重建為 C/C++，callback 相依已閉合
+
+原始88B／37指令的配置邏輯已重建為共享C11／C++17，保留14次依序IO、完整高位元、alias與uint32回繞。實作HOST各80案例／6864檢查，獨立HOST各74案例／2904檢查；兩套各有3個實際編譯語意反例。native入口102B／38指令、無call／frame，完整物件254B／93指令、5個真實global FUNC、UND／RELA為零。**額外A2／A6／A7寫入及超出原範圍14B仍未解決，沒有新的重建韌體BIN。**
+
+另核對8個原始函式386B／148列，閉合364-byte callback全部13個呼叫點的受限相依。SP／RA／S／GP／TP正常返回保存需要有效且不重疊的144-byte stack等前提；poll無timeout，不能保證終止。特定caller會覆寫A2／A6，原A7則保持至退出，新A7改寫仍會逃逸。正常讀取結果是raw16，不是已校準攝氏溫度。[C/C++、測試與原始來源](../analysis/v4160-adc-config-2026-10-22/README.md)
+
 ## 完整暫存器保留配方仍未符合原始 ABI
 
 以每個原始 leaf 的可寫暫存器與三個輸入推導唯一完整 mask，C11／C++17 六份實際物件都能編譯。選定 compare60／fill68／copy64 bytes（23／24／22指令），但全部新增16-byte frame與RA／SP寫入，fill另暫時寫A2；因此此配方不能直接替換原機leaf。完整物件各保留十一個真實global FUNC，為454／492／418B，UND／RELA皆零。**沒有新BIN，舊元件及實驗映像保持不變。**
