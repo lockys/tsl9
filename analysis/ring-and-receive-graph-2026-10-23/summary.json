@@ -1,0 +1,186 @@
+{
+  "schema": "TSL9-ring-and-original-layout-receive-graph-summary-v1",
+  "firmware_ready": false,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_operation": false,
+  "network": false,
+  "official_input": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "bytes": 76800,
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "source_and_checker_sha256": {
+    "experiments/tsl9-ring-insert/src/ring_insert.v1.c": "fc52537c7b5bbc1b77c07389c9bc2bfa9372110d98696e0348a35d7a4d7fcfca",
+    "experiments/tsl9-ring-insert/src/ring_insert.v2.c": "efb718b596a7eb9a7beda60349d7f204d8e01cf098252a21a570391ca5dacbe1",
+    "experiments/tsl9-ring-insert/src/ring_insert.v3.c": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d",
+    "experiments/tsl9-ring-insert/component.ld": "4c90c59b4ced05f2e2eae0e70b4a6951fd62ee83177edbc8d5ff1e5055b4c24e",
+    "experiments/tsl9-ring-insert/probe.py": "5d1dca31cf969c5b2e17d3e3afa4f956736cdcc972d501697d8cf5b4de649574",
+    "experiments/tsl9-ring-insert/verify.py": "36099956b928fb6c7af0a171ed0306f7d42e3236243dce029103e6701f7b41b6",
+    "experiments/tsl9-ring-insert/receive_graph.ld": "1aa23340bbeec3c7c9fb35f8d50d17e6921d509b63bb921de0bef5c8e30316e5",
+    "experiments/tsl9-ring-insert/verify_receive_graph.py": "e14b2ad2f4474887be3a63e3b1d415fa1aece600315a18ed56c6741e0924e031",
+    "experiments/tsl9-packet-receive/pipeline.ld": "81dc4e8f241c96fd3fd7304fc08736e451ff4e4ca61365dcc4dcf486f2eed574",
+    "experiments/tsl9-packet-receive/verify_pipeline.py": "45df02f193dc1f74e08b585fe4d311d58a7f01a9b7e8f131ce01ca594f806ea4",
+    "src/native/receive/ring_insert.c": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d",
+    "scripts/verify-curated-source.py": "a002514e34fdf6a0aa100f1f1136733f84ccb94dbe81160e885dacc6a1423897",
+    "src/source-manifest.json": "9ff5d71f51dc2ec2244ca885239c2139e90b35f0897a364ce793f83b48e54519"
+  },
+  "public_receipt_sha256": {
+    "analysis/ring-and-receive-graph-2026-10-23/receipts/curated-source.json": "0fd12ec2e7b66de910664a90c0cd72fc5bf0c6cd08da2f5cc1ef66434be6ff4f",
+    "analysis/ring-and-receive-graph-2026-10-23/receipts/graph-c.json": "01be2d069bdd98fea035ef29e3cfac85cf22badef2422b50e9f11424808ba37b",
+    "analysis/ring-and-receive-graph-2026-10-23/receipts/graph-cpp.json": "b8db0029ebf52da9f5b1afaacb28d7bc4f1c0eebc0dc659b6cfcb80fe9426db7",
+    "analysis/ring-and-receive-graph-2026-10-23/receipts/pipeline-c.json": "7bdd8ba401febb256ab77bcf73db6fe73492da5701b70c421e0added3b541867",
+    "analysis/ring-and-receive-graph-2026-10-23/receipts/pipeline-cpp.json": "cb7a96f812a8fe396338bdea22de44650e0e3a261d67a95d488b2cde5b05e4a7",
+    "analysis/ring-and-receive-graph-2026-10-23/receipts/ring-c.json": "c61f793250cb0c51fce0cc1756300fc5dec58274261827f24dbd0734d3161115",
+    "analysis/ring-and-receive-graph-2026-10-23/receipts/ring-cpp.json": "451182a600184814316a8cc728753a3d3144ebdec0e0b2679779bddfde2fdb3f"
+  },
+  "ring": {
+    "bytes": 92,
+    "instructions": 32,
+    "FUNCs": 5,
+    "native_defined_RELA": 3,
+    "nominal_UND": 0,
+    "nominal_RELA": 0,
+    "negative_controls_per_language": 40,
+    "negative_control_scope": "18 typed byte faults, 4 parsed relocation metadata faults, 6 parsed metadata faults, 1 raw ELF metadata fault, 9 finite IR faults, 1 full IR fault, 1 MD fault; not all raw ELF mutations",
+    "failed_v1": "Reserved SP compile failure; no native object",
+    "historical_v2": "92B with incorrect A0 provider-address scratch register; not byte-identical",
+    "selected_v3": "Fresh pointer address in A5; original nominal 92B equal; not ordinary C ABI"
+  },
+  "partial_pipeline": {
+    "bytes": 494,
+    "instructions": 178,
+    "FUNCs": 19,
+    "RELA": 23,
+    "defined_targets": 22,
+    "UND": [
+      "tsl9_ring_insert_entry_12bc8"
+    ],
+    "machine_immediates_resolved": false,
+    "negative_raw_ELF_controls_per_language": 48
+  },
+  "nominal_graph": {
+    "bytes": 586,
+    "instructions": 210,
+    "FUNCs": 24,
+    "resolved_symbolic_sites": 26,
+    "UND": 0,
+    "RELA": 0,
+    "ELF_sha256": "86a8aa3dd403666b7928d7966350f643ba0ed14e0e57bc2fb620d82b83161f27",
+    "original_aggregate_sha256": "ea0695de5c5abe95f730285256d89dd5e63f265b7d83f5a70687e08f6e4e828f",
+    "original_spans": [
+      {
+        "bytes": 92,
+        "end": 76836,
+        "instructions": 32,
+        "section": ".ring",
+        "sha256": "d3d9af9bcec8af13dfd424d3bfb2bd79f8fc3fd61308cb6ec0d7c18b1b78b13b",
+        "start": 76744
+      },
+      {
+        "bytes": 72,
+        "end": 92382,
+        "instructions": 25,
+        "section": ".spi",
+        "sha256": "654d0f600794c1548c617d0f476ca4f0fa5aaf780f49be7c328b3df69e8878dc",
+        "start": 92310
+      },
+      {
+        "bytes": 72,
+        "end": 92636,
+        "instructions": 26,
+        "section": ".read",
+        "sha256": "0949ef0357f5c7543bc480b214103d78880ccba36a0551e0cb8cfb1edab2d538",
+        "start": 92564
+      },
+      {
+        "bytes": 76,
+        "end": 92796,
+        "instructions": 28,
+        "section": ".write",
+        "sha256": "cb0b2b3f0b4c676385ca97543b29c32bf0eaaa99317959e6ad2a54438f71cf6e",
+        "start": 92720
+      },
+      {
+        "bytes": 142,
+        "end": 92938,
+        "instructions": 52,
+        "section": ".packet",
+        "sha256": "d823c819bbe92c3b7ee17c92411825549084d08dc32c36378d8e60d4915f40e2",
+        "start": 92796
+      },
+      {
+        "bytes": 70,
+        "end": 93008,
+        "instructions": 26,
+        "section": ".receiver",
+        "sha256": "b12abed39cf1cc897ab42a51b6cfce8c150031819f747aab095fffd618ae6f80",
+        "start": 92938
+      },
+      {
+        "bytes": 62,
+        "end": 94272,
+        "instructions": 21,
+        "section": ".consumer",
+        "sha256": "dd6b0fa91982cf653657b71e2d2bfaf2d6349ccc12f2b31561483e40572b0c69",
+        "start": 94210
+      }
+    ],
+    "negative_raw_ELF_controls_per_language": 86,
+    "joined_input_pins": 119,
+    "producer_recipes": 44,
+    "executable_LOAD_span_bytes": 17528,
+    "unvalidated_LOAD_gap_bytes": 16942,
+    "flat_firmware_image": false,
+    "resident_target": "UNKNOWN",
+    "resident_ABI_closed": false
+  },
+  "source_curation": {
+    "C_header_files": 51,
+    "native_units": 25,
+    "comparisons": 50,
+    "objects": 100,
+    "input_files": 104,
+    "artifacts": 301,
+    "recipes": 100,
+    "MDs": 100,
+    "original_receipt": "build/curated-source/ring-20261023-v1/verification.json",
+    "original_receipt_sha256": "2afbc61a96025b9da615fe0ae3551d9541f3d38e65ac3de7e982b36605fe6588",
+    "original_preserved_locally": true,
+    "public_derivative": "analysis/ring-and-receive-graph-2026-10-23/receipts/curated-source.json",
+    "inverse_JSON_equality_checked": true,
+    "original_receipt_replay_claimed_for_derivative": false
+  },
+  "validation": {
+    "c_replay_exit": 0,
+    "cpp_replay_exit": 0,
+    "strict_readiness_rejected": true,
+    "root_independent_graph_replay": true,
+    "root_strict_c_exit": 1,
+    "root_portable_copies_byte_equality": true
+  },
+  "next_boundaries": [
+    {
+      "start": "0x12C24",
+      "end": "0x12C58",
+      "bytes": 52,
+      "instructions": 17,
+      "sha256": "44ab1cdae33f0151e8270b3769d9dca81847154bf88d3f691443d77200ece51a",
+      "C_reconstructed": false
+    },
+    {
+      "start": "0x12C58",
+      "end": "0x12D92",
+      "bytes": 314,
+      "instructions": 107,
+      "sha256": "89905d7666bbe8295d09c752f1fcd34246847ea86c6428b539406450f8980c0f",
+      "C_reconstructed": false
+    }
+  ],
+  "limitations": [
+    "Only seven bounded original code spans match; ELF LOAD gaps are unvalidated.",
+    "No complete firmware BIN, flash or OTA acceptance proof.",
+    "Resident target, physical silicon, startup, IRQ and memory ownership remain unproved.",
+    "ID0 sentinel conflict is static evidence; hardware packet-loss behavior is unknown."
+  ]
+}

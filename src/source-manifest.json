@@ -410,6 +410,13 @@
       "replacements": [],
       "origin_sha256": "0e42490f8d2cc17bf9e5ab414827ee7158777f132928c61502b300089aaa520d",
       "sha256": "0e42490f8d2cc17bf9e5ab414827ee7158777f132928c61502b300089aaa520d"
+    },
+    {
+      "origin": "experiments/tsl9-ring-insert/src/ring_insert.v3.c",
+      "destination": "src/native/receive/ring_insert.c",
+      "replacements": [],
+      "origin_sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d",
+      "sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d"
     }
   ],
   "native_units": [
@@ -632,6 +639,19 @@
       ],
       "scope": "142B/52i across genuine entry14B/body116B/finish12B regions; all120 noncontrol bytes match the original. Six pending relocations retain four JALs to two UND providers and two branches to the defined finish FUNC. Native source-copy/codegen equivalence only; separate formal evidence checks private physical-register and adjacent-region contracts. Machine calls, complete resident/IRQ/hardware ABI and flashability remain unproved.",
       "origin_unit_sha256": "0e42490f8d2cc17bf9e5ab414827ee7158777f132928c61502b300089aaa520d"
+    },
+    {
+      "name": "ring-insert",
+      "profile": "ring-bank",
+      "origin_unit": "experiments/tsl9-ring-insert/src/ring_insert.v3.c",
+      "curated_unit": "src/native/receive/ring_insert.c",
+      "evidence": "experiments/tsl9-ring-insert/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-ring-insert/build/verified-v1/c/verification.json",
+        "experiments/tsl9-ring-insert/build/verified-v1/cpp/verification.json"
+      ],
+      "scope": "Five private regions8/16/50/10/8B and3defined native edges; nominal92B/32i matches original at12BC8. C arithmetic/provider load plus explicit frame/slot/S0/S1 ports. Resident/caller/IRQ/hardware and whole firmware remain unproved.",
+      "origin_unit_sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d"
     }
   ],
   "legacy_groups": [

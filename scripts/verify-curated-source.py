@@ -55,7 +55,8 @@ def flags(unit, mode):
     irq = kind in ('irq-bank', 'delay-bank')
     spi = kind == 'spi-a0-a3-a4-a5'
     packet = kind == 'packet-a0-a5'
-    result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi or packet else 'rv32imac_zicsr_zifencei'),
+    ring = kind == 'ring-bank'
+    result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi or packet or ring else 'rv32imac_zicsr_zifencei'),
               '-mabi=ilp32', '-Os' if clock else '-Oz']
     if not clock:
         result += ['-mllvm', '-enable-machine-outliner=never']
@@ -83,6 +84,8 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 13, 14, 15}]
     elif kind == 'packet-a0-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
+    elif kind == 'ring-bank':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {6, 10, 11, 12, 13, 14, 15, 16, 17, 28}]
     elif kind == 'adc-bank':
         result += ['-ffixed-x' + str(n) for n in range(5, 32) if n not in range(10, 17)]
     return result
@@ -277,6 +280,28 @@ def audit(base, record, manifest):
                      and pair[1]['relocations'] == [dict(owner='.text.tsl9_packet_receive_body', offset=at,
                           type=kind, addend=0, symbol=target) for at, kind, target in relocations],
                      'Three private architectural regions with 120 original noncontrol bytes; six pending relocations need separate adjacency/ABI evidence, not firmware readiness')
+            if unit['name'] == 'ring-insert':
+                regions = [
+                    ('tsl9_ring_insert_entry_12bc8', 8, '157b2d92ee3de3dd29a04ed155700152f87a87db4fcbb174b147c2c7ddc1809d'),
+                    ('tsl9_ring_init_12bd0', 16, 'f7710fc92bad19150fa81576d8ff876a010a63ece699187c888ad1041b5656f9'),
+                    ('tsl9_ring_scan_12be0', 50, '328952811c295258582acaf02c687783e2a5e05d557724c2c0e743c909ee245b'),
+                    ('tsl9_ring_finish_12c12', 10, '5337349bd213a4afedd4bb2b40e85f8a135ca2a3ee774b3c2da607774b084509'),
+                    ('tsl9_ring_advance_12c1c', 8, '4a289d9c0208485c9f3f4d40d21817af5c24f6629d979aa0769d1a1cf0a9e068'),
+                ]
+                edges = [
+                    ('tsl9_ring_scan_12be0', 18, 16, 'tsl9_ring_advance_12c1c'),
+                    ('tsl9_ring_advance_12c1c', 2, 16, 'tsl9_ring_scan_12be0'),
+                    ('tsl9_ring_advance_12c1c', 6, 45, 'tsl9_ring_finish_12c12'),
+                ]
+                need(pair[1]['functions'] == sorted([
+                    dict(name=n, binding=1, bytes=z, code_sha256=h) for n, z, h in regions], key=lambda x: x['name'])
+                    and pair[1]['allocated_sections'] == [
+                        dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
+                    and pair[1]['allocated_bytes'] == 92 and not pair[1]['UND']
+                    and pair[1]['relocations'] == [
+                        dict(owner='.text.'+owner, offset=at, type=kind, addend=0, symbol=target)
+                        for owner, at, kind, target in edges],
+                    'Five private ring regions with three defined edges; nominal verifier proves original92B and PC-derived base, not resident identity or firmware readiness')
             if unit['name'] == 'delay-registers':
                 need(pair[1]['functions'] == [dict(name='tsl9_delay_registers_19764', binding=1, bytes=54,
                      code_sha256='0bcb7577e755f1ca9736b0fd0b05e4d3f0a0e1e0cd3a59976b947191d3df74a4')], 'Exact original delay leaf')

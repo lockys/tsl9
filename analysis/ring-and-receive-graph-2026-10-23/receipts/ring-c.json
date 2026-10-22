@@ -1,0 +1,1717 @@
+{
+  "ISA_emulated": false,
+  "artifacts": [
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/IR.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/compile.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/link.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/linked.elf",
+      "sha256": "f41ea62095dee587f562cd3e1a9341b105187b097107413bebe6dc71f44b491c",
+      "size": 3764
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/linked.log",
+      "sha256": "76cb0b940b8173c6ae12a54b5b295bc0d8ca39558a7d47ea925aa4014ca96b74",
+      "size": 2514
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/native.d",
+      "sha256": "d03c026ca29ead5576c0816a56e25cbc8fd87295e2f19259cbc56a072045c71a",
+      "size": 345
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/native.ll",
+      "sha256": "edbccb66c4223a35c0613217a877919f676cf9f40fb8d9921c5ab3a392c4358e",
+      "size": 9674
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/native.o",
+      "sha256": "9e534a64569a4a28bcc4e7aded98b624f5b6902b58f8d657b422139760f9742c",
+      "size": 1512
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/object.log",
+      "sha256": "c54c848cbfda2af519dc60e251713a8f18592437dd96ad89b9afdafe14770584",
+      "size": 3887
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/recipes.json",
+      "sha256": "541e7216e30cc424fe7d437332453494246744ab8a9531f34c2594c22917edce",
+      "size": 3496
+    }
+  ],
+  "firmware_ready": false,
+  "inputs": [
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/src/ring_insert.v3.c",
+      "sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d",
+      "size": 5312
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/component.ld",
+      "sha256": "4c90c59b4ced05f2e2eae0e70b4a6951fd62ee83177edbc8d5ff1e5055b4c24e",
+      "size": 740
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/probe.py",
+      "sha256": "5d1dca31cf969c5b2e17d3e3afa4f956736cdcc972d501697d8cf5b4de649574",
+      "size": 6421
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-spi-transfer-leaf/verify.py",
+      "sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+      "size": 29593
+    },
+    {
+      "path": "${TSL9_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+      "size": 76800
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-ring-insert/verify.py",
+      "sha256": "36099956b928fb6c7af0a171ed0306f7d42e3236243dce029103e6701f7b41b6",
+      "size": 25239
+    },
+    {
+      "path": "${LLVM_BIN}/../lib/clang/18/include/stdint.h",
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "size": 30946
+    },
+    {
+      "path": "${LLVM_BIN}/clang.exe",
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+      "size": 126673512
+    },
+    {
+      "path": "${LLVM_BIN}/ld.lld.exe",
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+      "size": 73834600
+    },
+    {
+      "path": "${LLVM_BIN}/llvm-objdump.exe",
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+      "size": 18311272
+    }
+  ],
+  "ir": {
+    "input_A1": "fresh scan input %3",
+    "input_A2": "full fresh scan input %4",
+    "normalization": "Exclude only two producer path header lines; LF.",
+    "normalized_sha256": "56a1a7d60d21c9ac5b018d6495105f9acc93c885d0625c0807a247ba22760b29",
+    "ordinary_C_ABI": false,
+    "postcall": "physical S0/S1; returned A0 %35",
+    "provider_read_bits": 32
+  },
+  "language": "c",
+  "limitations": [
+    "Static native compilation, IR and decode only; no target, ISA, MMIO or hardware execution.",
+    "Five genuine FUNC symbols are private architectural regions, not ordinary independently callable C ABI functions.",
+    "The nominal linked ELF resolves three local branches and matches 92 official bytes; it is not a full flashable image.",
+    "Fixed AUIPC requires verified nominal placement; arbitrary rebasing would change the computed table address.",
+    "No identity or complete preservation contract for the indirect resident provider is proved.",
+    "Ring source does not bound full A2 or validate A1; caller constraints, IRQ/fault interleaving, physical memory and complete firmware remain open."
+  ],
+  "llvm_bin": "${LLVM_BIN}",
+  "md_dependencies": [
+    "${TSL9_ROOT}/experiments/tsl9-ring-insert/src/ring_insert.v3.c",
+    "${LLVM_BIN}/../lib/clang/18/include/stdint.h"
+  ],
+  "native": {
+    "code_hex": "411106c622c426c281479798ff1f93886846314e130300023387c7033384e80003580400420813580801631008002310a4002301c400b7070400fc470d07b6843385e8008297a3059400b240224492444101828085076390670001a0",
+    "code_sha256": "06c0d2974f299308439eaa26f39c2ff22b933e3bebc30f7b280433407a81ec52",
+    "derived_table_if_nominal_PC": 536920120,
+    "header": [
+      1,
+      243,
+      1,
+      0,
+      0,
+      912,
+      1,
+      52,
+      0,
+      0,
+      40,
+      15,
+      1
+    ],
+    "indirect_call_RA": 76814,
+    "instructions": [
+      {
+        "instruction": [
+          "addi",
+          2,
+          2,
+          -16
+        ],
+        "offset": 0,
+        "raw": "4111",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "sw",
+          1,
+          2,
+          12
+        ],
+        "offset": 2,
+        "raw": "06c6",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "sw",
+          8,
+          2,
+          8
+        ],
+        "offset": 4,
+        "raw": "22c4",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "sw",
+          9,
+          2,
+          4
+        ],
+        "offset": 6,
+        "raw": "26c2",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "addi",
+          15,
+          0,
+          0
+        ],
+        "offset": 8,
+        "raw": "8147",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "auipc",
+          17,
+          536842240
+        ],
+        "offset": 10,
+        "raw": "9798ff1f",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "addi",
+          17,
+          17,
+          1126
+        ],
+        "offset": 14,
+        "raw": "93886846",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "addi",
+          28,
+          0,
+          12
+        ],
+        "offset": 18,
+        "raw": "314e",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "addi",
+          6,
+          0,
+          32
+        ],
+        "offset": 20,
+        "raw": "13030002",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "mul",
+          14,
+          15,
+          28
+        ],
+        "offset": 24,
+        "raw": "3387c703",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "add",
+          8,
+          17,
+          14
+        ],
+        "offset": 28,
+        "raw": "3384e800",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "lhu",
+          16,
+          8,
+          0
+        ],
+        "offset": 32,
+        "raw": "03580400",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "slli",
+          16,
+          16,
+          16
+        ],
+        "offset": 36,
+        "raw": "4208",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "srli",
+          16,
+          16,
+          16
+        ],
+        "offset": 38,
+        "raw": "13580801",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "bne",
+          16,
+          0,
+          42
+        ],
+        "offset": 42,
+        "raw": "63100800",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "sh",
+          10,
+          8,
+          0
+        ],
+        "offset": 46,
+        "raw": "2310a400",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "sb",
+          12,
+          8,
+          2
+        ],
+        "offset": 50,
+        "raw": "2301c400",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "lui",
+          15,
+          262144
+        ],
+        "offset": 54,
+        "raw": "b7070400",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "lw",
+          15,
+          15,
+          76
+        ],
+        "offset": 58,
+        "raw": "fc47",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "addi",
+          14,
+          14,
+          3
+        ],
+        "offset": 60,
+        "raw": "0d07",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "mv",
+          9,
+          13
+        ],
+        "offset": 62,
+        "raw": "b684",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "add",
+          10,
+          17,
+          14
+        ],
+        "offset": 64,
+        "raw": "3385e800",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "jalr",
+          1,
+          15,
+          0
+        ],
+        "offset": 68,
+        "raw": "8297",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "sb",
+          9,
+          8,
+          11
+        ],
+        "offset": 70,
+        "raw": "a3059400",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "lw",
+          1,
+          2,
+          12
+        ],
+        "offset": 74,
+        "raw": "b240",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "lw",
+          8,
+          2,
+          8
+        ],
+        "offset": 76,
+        "raw": "2244",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "lw",
+          9,
+          2,
+          4
+        ],
+        "offset": 78,
+        "raw": "9244",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "addi",
+          2,
+          2,
+          16
+        ],
+        "offset": 80,
+        "raw": "4101",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "ret",
+          1
+        ],
+        "offset": 82,
+        "raw": "8280",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "addi",
+          15,
+          15,
+          1
+        ],
+        "offset": 84,
+        "raw": "8507",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "bne",
+          15,
+          6,
+          86
+        ],
+        "offset": 86,
+        "raw": "63906700",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "j",
+          90
+        ],
+        "offset": 90,
+        "raw": "01a0",
+        "width": 2
+      }
+    ],
+    "native_pending": true,
+    "program_headers": [],
+    "relocations": [
+      {
+        "addend": 0,
+        "offset": 18,
+        "section": 5,
+        "symbol": 12,
+        "type": 16
+      },
+      {
+        "addend": 0,
+        "offset": 2,
+        "section": 8,
+        "symbol": 11,
+        "type": 16
+      },
+      {
+        "addend": 0,
+        "offset": 6,
+        "section": 8,
+        "symbol": 13,
+        "type": 45
+      }
+    ],
+    "sections": [
+      {
+        "address": 0,
+        "align": 0,
+        "entsize": 0,
+        "flags": 0,
+        "index": 0,
+        "info": 0,
+        "link": 0,
+        "name": "",
+        "name_offset": 0,
+        "offset": 0,
+        "size": 0,
+        "type": 0
+      },
+      {
+        "address": 0,
+        "align": 1,
+        "entsize": 0,
+        "flags": 0,
+        "index": 1,
+        "info": 0,
+        "link": 0,
+        "name": ".strtab",
+        "name_offset": 116,
+        "offset": 621,
+        "size": 290,
+        "type": 3
+      },
+      {
+        "address": 0,
+        "align": 2,
+        "entsize": 0,
+        "flags": 6,
+        "index": 2,
+        "info": 0,
+        "link": 0,
+        "name": ".text",
+        "name_offset": 1,
+        "offset": 52,
+        "size": 0,
+        "type": 1
+      },
+      {
+        "address": 0,
+        "align": 2,
+        "entsize": 0,
+        "flags": 6,
+        "index": 3,
+        "info": 0,
+        "link": 0,
+        "name": ".text.tsl9_ring_insert_entry_12bc8",
+        "name_offset": 132,
+        "offset": 52,
+        "size": 8,
+        "type": 1
+      },
+      {
+        "address": 0,
+        "align": 2,
+        "entsize": 0,
+        "flags": 6,
+        "index": 4,
+        "info": 0,
+        "link": 0,
+        "name": ".text.tsl9_ring_init_12bd0",
+        "name_offset": 258,
+        "offset": 60,
+        "size": 16,
+        "type": 1
+      },
+      {
+        "address": 0,
+        "align": 2,
+        "entsize": 0,
+        "flags": 6,
+        "index": 5,
+        "info": 0,
+        "link": 0,
+        "name": ".text.tsl9_ring_scan_12be0",
+        "name_offset": 231,
+        "offset": 76,
+        "size": 50,
+        "type": 1
+      },
+      {
+        "address": 0,
+        "align": 4,
+        "entsize": 12,
+        "flags": 64,
+        "index": 6,
+        "info": 5,
+        "link": 14,
+        "name": ".rela.text.tsl9_ring_scan_12be0",
+        "name_offset": 226,
+        "offset": 580,
+        "size": 12,
+        "type": 4
+      },
+      {
+        "address": 0,
+        "align": 2,
+        "entsize": 0,
+        "flags": 6,
+        "index": 7,
+        "info": 0,
+        "link": 0,
+        "name": ".text.tsl9_ring_finish_12c12",
+        "name_offset": 187,
+        "offset": 126,
+        "size": 10,
+        "type": 1
+      },
+      {
+        "address": 0,
+        "align": 2,
+        "entsize": 0,
+        "flags": 6,
+        "index": 8,
+        "info": 0,
+        "link": 0,
+        "name": ".text.tsl9_ring_advance_12c1c",
+        "name_offset": 69,
+        "offset": 136,
+        "size": 8,
+        "type": 1
+      },
+      {
+        "address": 0,
+        "align": 4,
+        "entsize": 12,
+        "flags": 64,
+        "index": 9,
+        "info": 8,
+        "link": 14,
+        "name": ".rela.text.tsl9_ring_advance_12c1c",
+        "name_offset": 64,
+        "offset": 592,
+        "size": 24,
+        "type": 4
+      },
+      {
+        "address": 0,
+        "align": 1,
+        "entsize": 1,
+        "flags": 48,
+        "index": 10,
+        "info": 0,
+        "link": 0,
+        "name": ".comment",
+        "name_offset": 7,
+        "offset": 144,
+        "size": 159,
+        "type": 1
+      },
+      {
+        "address": 0,
+        "align": 1,
+        "entsize": 0,
+        "flags": 0,
+        "index": 11,
+        "info": 0,
+        "link": 0,
+        "name": ".note.GNU-stack",
+        "name_offset": 34,
+        "offset": 303,
+        "size": 0,
+        "type": 1
+      },
+      {
+        "address": 0,
+        "align": 1,
+        "entsize": 0,
+        "flags": 0,
+        "index": 12,
+        "info": 0,
+        "link": 0,
+        "name": ".riscv.attributes",
+        "name_offset": 16,
+        "offset": 303,
+        "size": 52,
+        "type": 1879048195
+      },
+      {
+        "address": 0,
+        "align": 1,
+        "entsize": 0,
+        "flags": 2147483648,
+        "index": 13,
+        "info": 0,
+        "link": 14,
+        "name": ".llvm_addrsig",
+        "name_offset": 50,
+        "offset": 616,
+        "size": 5,
+        "type": 1879002115
+      },
+      {
+        "address": 0,
+        "align": 4,
+        "entsize": 16,
+        "flags": 0,
+        "index": 14,
+        "info": 9,
+        "link": 1,
+        "name": ".symtab",
+        "name_offset": 124,
+        "offset": 356,
+        "size": 224,
+        "type": 2
+      }
+    ],
+    "sha256": "9e534a64569a4a28bcc4e7aded98b624f5b6902b58f8d657b422139760f9742c",
+    "symbols": [
+      {
+        "index": 0,
+        "info": 0,
+        "name": "",
+        "other": 0,
+        "section": 0,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 1,
+        "info": 4,
+        "name": "ring_insert.v3.c",
+        "other": 0,
+        "section": 65521,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 2,
+        "info": 0,
+        "name": "$x.0",
+        "other": 0,
+        "section": 3,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 3,
+        "info": 0,
+        "name": "$x.1",
+        "other": 0,
+        "section": 4,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 4,
+        "info": 0,
+        "name": "$x.2",
+        "other": 0,
+        "section": 5,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 5,
+        "info": 0,
+        "name": "$x.3",
+        "other": 0,
+        "section": 7,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 6,
+        "info": 0,
+        "name": "$x.4",
+        "other": 0,
+        "section": 8,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 7,
+        "info": 0,
+        "name": "$d.5",
+        "other": 0,
+        "section": 10,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 8,
+        "info": 0,
+        "name": "$d.6",
+        "other": 0,
+        "section": 12,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 9,
+        "info": 18,
+        "name": "tsl9_ring_insert_entry_12bc8",
+        "other": 0,
+        "section": 3,
+        "size": 8,
+        "value": 0
+      },
+      {
+        "index": 10,
+        "info": 18,
+        "name": "tsl9_ring_init_12bd0",
+        "other": 0,
+        "section": 4,
+        "size": 16,
+        "value": 0
+      },
+      {
+        "index": 11,
+        "info": 18,
+        "name": "tsl9_ring_scan_12be0",
+        "other": 0,
+        "section": 5,
+        "size": 50,
+        "value": 0
+      },
+      {
+        "index": 12,
+        "info": 18,
+        "name": "tsl9_ring_advance_12c1c",
+        "other": 0,
+        "section": 8,
+        "size": 8,
+        "value": 0
+      },
+      {
+        "index": 13,
+        "info": 18,
+        "name": "tsl9_ring_finish_12c12",
+        "other": 0,
+        "section": 7,
+        "size": 10,
+        "value": 0
+      }
+    ],
+    "whole92_original_equal": false
+  },
+  "negative_controls": [
+    "typed-frame-size",
+    "typed-saved-RA-slot",
+    "typed-stride",
+    "typed-count",
+    "typed-mul-index",
+    "typed-LHU-slot",
+    "typed-occupancy-shift",
+    "typed-slot-ID-width",
+    "typed-slot-length-width",
+    "typed-provider-base",
+    "typed-provider-offset",
+    "typed-payload-offset",
+    "typed-channel-source",
+    "typed-copy-destination",
+    "typed-JALR-target",
+    "typed-postcall-channel",
+    "typed-restore-slot",
+    "typed-advance",
+    "relocation-type",
+    "relocation-site",
+    "relocation-addend",
+    "relocation-target",
+    "metadata-FUNC-size",
+    "metadata-FUNC-ABS",
+    "metadata-region-align",
+    "metadata-extra-allocation",
+    "metadata-nominal-PC",
+    "metadata-adjacency",
+    "whole-ELF-local-metadata",
+    "IR-provider-width",
+    "IR-provider-address",
+    "IR-stride-SSA",
+    "IR-occupancy-width",
+    "IR-full-A2",
+    "IR-fresh-A1",
+    "IR-postcall-A0",
+    "IR-postcall-S0",
+    "IR-advance",
+    "full-normalized-IR",
+    "MD-missing-header"
+  ],
+  "nominal": {
+    "code_hex": "411106c622c426c281479798ff1f93886846314e130300023387c7033384e80003580400420813580801631508022310a4002301c400b7070400fc470d07b6843385e8008297a3059400b24022449244410182808507e39167fcc5bf",
+    "code_sha256": "d3d9af9bcec8af13dfd424d3bfb2bd79f8fc3fd61308cb6ec0d7c18b1b78b13b",
+    "derived_table_if_nominal_PC": 536920120,
+    "header": [
+      2,
+      243,
+      1,
+      76744,
+      52,
+      3524,
+      1,
+      52,
+      32,
+      4,
+      40,
+      6,
+      4
+    ],
+    "indirect_call_RA": 76814,
+    "instructions": [
+      {
+        "instruction": [
+          "addi",
+          2,
+          2,
+          -16
+        ],
+        "offset": 0,
+        "raw": "4111",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "sw",
+          1,
+          2,
+          12
+        ],
+        "offset": 2,
+        "raw": "06c6",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "sw",
+          8,
+          2,
+          8
+        ],
+        "offset": 4,
+        "raw": "22c4",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "sw",
+          9,
+          2,
+          4
+        ],
+        "offset": 6,
+        "raw": "26c2",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "addi",
+          15,
+          0,
+          0
+        ],
+        "offset": 8,
+        "raw": "8147",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "auipc",
+          17,
+          536842240
+        ],
+        "offset": 10,
+        "raw": "9798ff1f",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "addi",
+          17,
+          17,
+          1126
+        ],
+        "offset": 14,
+        "raw": "93886846",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "addi",
+          28,
+          0,
+          12
+        ],
+        "offset": 18,
+        "raw": "314e",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "addi",
+          6,
+          0,
+          32
+        ],
+        "offset": 20,
+        "raw": "13030002",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "mul",
+          14,
+          15,
+          28
+        ],
+        "offset": 24,
+        "raw": "3387c703",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "add",
+          8,
+          17,
+          14
+        ],
+        "offset": 28,
+        "raw": "3384e800",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "lhu",
+          16,
+          8,
+          0
+        ],
+        "offset": 32,
+        "raw": "03580400",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "slli",
+          16,
+          16,
+          16
+        ],
+        "offset": 36,
+        "raw": "4208",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "srli",
+          16,
+          16,
+          16
+        ],
+        "offset": 38,
+        "raw": "13580801",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "bne",
+          16,
+          0,
+          84
+        ],
+        "offset": 42,
+        "raw": "63150802",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "sh",
+          10,
+          8,
+          0
+        ],
+        "offset": 46,
+        "raw": "2310a400",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "sb",
+          12,
+          8,
+          2
+        ],
+        "offset": 50,
+        "raw": "2301c400",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "lui",
+          15,
+          262144
+        ],
+        "offset": 54,
+        "raw": "b7070400",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "lw",
+          15,
+          15,
+          76
+        ],
+        "offset": 58,
+        "raw": "fc47",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "addi",
+          14,
+          14,
+          3
+        ],
+        "offset": 60,
+        "raw": "0d07",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "mv",
+          9,
+          13
+        ],
+        "offset": 62,
+        "raw": "b684",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "add",
+          10,
+          17,
+          14
+        ],
+        "offset": 64,
+        "raw": "3385e800",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "jalr",
+          1,
+          15,
+          0
+        ],
+        "offset": 68,
+        "raw": "8297",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "sb",
+          9,
+          8,
+          11
+        ],
+        "offset": 70,
+        "raw": "a3059400",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "lw",
+          1,
+          2,
+          12
+        ],
+        "offset": 74,
+        "raw": "b240",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "lw",
+          8,
+          2,
+          8
+        ],
+        "offset": 76,
+        "raw": "2244",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "lw",
+          9,
+          2,
+          4
+        ],
+        "offset": 78,
+        "raw": "9244",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "addi",
+          2,
+          2,
+          16
+        ],
+        "offset": 80,
+        "raw": "4101",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "ret",
+          1
+        ],
+        "offset": 82,
+        "raw": "8280",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "addi",
+          15,
+          15,
+          1
+        ],
+        "offset": 84,
+        "raw": "8507",
+        "width": 2
+      },
+      {
+        "instruction": [
+          "bne",
+          15,
+          6,
+          24
+        ],
+        "offset": 86,
+        "raw": "e39167fc",
+        "width": 4
+      },
+      {
+        "instruction": [
+          "j",
+          74
+        ],
+        "offset": 90,
+        "raw": "c5bf",
+        "width": 2
+      }
+    ],
+    "native_pending": false,
+    "program_headers": [
+      [
+        6,
+        52,
+        73780,
+        73780,
+        128,
+        128,
+        4,
+        4
+      ],
+      [
+        1,
+        0,
+        73728,
+        73728,
+        180,
+        180,
+        4,
+        4096
+      ],
+      [
+        1,
+        3016,
+        76744,
+        76744,
+        92,
+        92,
+        5,
+        4096
+      ],
+      [
+        1685382481,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        0
+      ]
+    ],
+    "relocations": [],
+    "sections": [
+      {
+        "address": 0,
+        "align": 0,
+        "entsize": 0,
+        "flags": 0,
+        "index": 0,
+        "info": 0,
+        "link": 0,
+        "name": "",
+        "name_offset": 0,
+        "offset": 0,
+        "size": 0,
+        "type": 0
+      },
+      {
+        "address": 76744,
+        "align": 2,
+        "entsize": 0,
+        "flags": 6,
+        "index": 1,
+        "info": 0,
+        "link": 0,
+        "name": ".ring",
+        "name_offset": 1,
+        "offset": 3016,
+        "size": 92,
+        "type": 1
+      },
+      {
+        "address": 76836,
+        "align": 2,
+        "entsize": 0,
+        "flags": 6,
+        "index": 2,
+        "info": 0,
+        "link": 0,
+        "name": ".text",
+        "name_offset": 7,
+        "offset": 3108,
+        "size": 0,
+        "type": 1
+      },
+      {
+        "address": 0,
+        "align": 4,
+        "entsize": 16,
+        "flags": 0,
+        "index": 3,
+        "info": 8,
+        "link": 5,
+        "name": ".symtab",
+        "name_offset": 13,
+        "offset": 3108,
+        "size": 208,
+        "type": 2
+      },
+      {
+        "address": 0,
+        "align": 1,
+        "entsize": 0,
+        "flags": 0,
+        "index": 4,
+        "info": 0,
+        "link": 0,
+        "name": ".shstrtab",
+        "name_offset": 21,
+        "offset": 3316,
+        "size": 39,
+        "type": 3
+      },
+      {
+        "address": 0,
+        "align": 1,
+        "entsize": 0,
+        "flags": 0,
+        "index": 5,
+        "info": 0,
+        "link": 0,
+        "name": ".strtab",
+        "name_offset": 31,
+        "offset": 3355,
+        "size": 166,
+        "type": 3
+      }
+    ],
+    "sha256": "f41ea62095dee587f562cd3e1a9341b105187b097107413bebe6dc71f44b491c",
+    "symbols": [
+      {
+        "index": 0,
+        "info": 0,
+        "name": "",
+        "other": 0,
+        "section": 0,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 1,
+        "info": 4,
+        "name": "ring_insert.v3.c",
+        "other": 0,
+        "section": 65521,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 2,
+        "info": 0,
+        "name": "$x.0",
+        "other": 0,
+        "section": 1,
+        "size": 0,
+        "value": 76744
+      },
+      {
+        "index": 3,
+        "info": 0,
+        "name": "$x.1",
+        "other": 0,
+        "section": 1,
+        "size": 0,
+        "value": 76752
+      },
+      {
+        "index": 4,
+        "info": 0,
+        "name": "$x.2",
+        "other": 0,
+        "section": 1,
+        "size": 0,
+        "value": 76768
+      },
+      {
+        "index": 5,
+        "info": 0,
+        "name": "$x.3",
+        "other": 0,
+        "section": 1,
+        "size": 0,
+        "value": 76818
+      },
+      {
+        "index": 6,
+        "info": 0,
+        "name": "$x.4",
+        "other": 0,
+        "section": 1,
+        "size": 0,
+        "value": 76828
+      },
+      {
+        "index": 7,
+        "info": 0,
+        "name": "$d.6",
+        "other": 0,
+        "section": 65521,
+        "size": 0,
+        "value": 0
+      },
+      {
+        "index": 8,
+        "info": 18,
+        "name": "tsl9_ring_insert_entry_12bc8",
+        "other": 0,
+        "section": 1,
+        "size": 8,
+        "value": 76744
+      },
+      {
+        "index": 9,
+        "info": 18,
+        "name": "tsl9_ring_init_12bd0",
+        "other": 0,
+        "section": 1,
+        "size": 16,
+        "value": 76752
+      },
+      {
+        "index": 10,
+        "info": 18,
+        "name": "tsl9_ring_scan_12be0",
+        "other": 0,
+        "section": 1,
+        "size": 50,
+        "value": 76768
+      },
+      {
+        "index": 11,
+        "info": 18,
+        "name": "tsl9_ring_advance_12c1c",
+        "other": 0,
+        "section": 1,
+        "size": 8,
+        "value": 76828
+      },
+      {
+        "index": 12,
+        "info": 18,
+        "name": "tsl9_ring_finish_12c12",
+        "other": 0,
+        "section": 1,
+        "size": 10,
+        "value": 76818
+      }
+    ],
+    "whole92_original_equal": true
+  },
+  "original": {
+    "base": 32768,
+    "bytes": 92,
+    "end": 76836,
+    "instructions": 32,
+    "sha256": "d3d9af9bcec8af13dfd424d3bfb2bd79f8fc3fd61308cb6ec0d7c18b1b78b13b",
+    "start": 76744
+  },
+  "out_dir": "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c",
+  "recipes": [
+    {
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c",
+        "-std=c11",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/native.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/native.o",
+        "-c",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/src/ring_insert.v3.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/native.o"
+      ],
+      "label": "compile",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c",
+        "-std=c11",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/src/ring_insert.v3.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/native.ll"
+      ],
+      "label": "IR",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr",
+        "-d",
+        "-r",
+        "-t",
+        "-h",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/native.o"
+      ],
+      "label": "object",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}/ld.lld.exe",
+        "--no-relax",
+        "-T",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/component.ld",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/native.o",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/linked.elf"
+      ],
+      "label": "link",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr",
+        "-d",
+        "-r",
+        "-t",
+        "-h",
+        "${TSL9_ROOT}/experiments/tsl9-ring-insert/build/verified-v1/c/linked.elf"
+      ],
+      "label": "linked",
+      "returncode": 0
+    }
+  ],
+  "root": "${TSL9_ROOT}",
+  "schema": "TSL9-ring-native-v3-formal-v1",
+  "static_contract": {
+    "frame_bytes": 16,
+    "fresh_restore": [
+      "RA from SP+12",
+      "S0 from SP+8",
+      "S1 from SP+4",
+      "SP +=16",
+      "RET"
+    ],
+    "full_ring_return_A0": "input A0 residue if no asynchronous interference",
+    "nominal_code_base": 76744,
+    "occupied_halfword_bits": 16,
+    "postcall_channel": "then-live S1 byte at then-live S0+11",
+    "provider_RA": 76814,
+    "provider_call_A0": "table + slot_index * 12 + 3",
+    "provider_call_A1": "full input payload pointer",
+    "provider_call_A2": "full input length, no ring-side bound check",
+    "provider_pointer_read_address": 262220,
+    "provider_pointer_read_bits": 32,
+    "provider_target": "dynamic value freshly read at 0x4004C; no identity or ABI claim",
+    "slot_ID_write_bits": 16,
+    "slot_count": 32,
+    "slot_length_write_bits": 8,
+    "slot_stride": 12,
+    "successful_return_A0": "then-live resident output",
+    "table_address_if_nominal": 536920120
+  },
+  "target_executed": false
+}
