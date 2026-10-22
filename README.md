@@ -4,11 +4,15 @@
 
 本專案保存原始APK、22份不同的更新器BIN、可讀C/C++行為模型及靜態來源證據。完整目標仍是產出與原硬體及BLE更新器相容的重建BIN，並在逆向過程中評估值得新增的功能，將提案與已實作功能分開列出。**目前尚無經驗證可刷寫的重建BIN。**
 
+## TX 已納入完整實驗 BIN
+
+正式 C11／C++17 各新編譯 46 個單元，產出相同的 76,800-byte 實驗 BIN；十三個原始函式範圍共 930 bytes，由十五個真實 FUNC 角色承接，678 個其餘區段仍使用原始承載。與官方 ID2966 的 93 個差異全部位於 TX，其餘 byte 相同。SHA-256：`28697eab551bd9b3ca74a69c44db24fc02e07bedbb5bf02380e4bcb1a390ce89`。**新 BIN 尚未驗證可刷寫。** [完整整合](analysis/v4160-tx-image-integration-2026-10-22/README.md) | [實驗映像](artifacts/offline-images/ID2966-V4.1.60-tx-integrated/README.md)
+
 ## 跨平台驗證
 
-OTA 傳送入口 `0x8A56` 已取得實際 280-byte 原生元件：8-byte 窄組語入口、270-byte 可讀 C/C++ 主體及 2-byte 返回函式。超長輸入可直接返回、不碰堆疊，兩次 ROM 呼叫的返回位址吻合。暫存器儲存／還原時序以新的獨立排序步驟核對；**此元件尚未納入完整映像，未經原硬體或 BLE OTA 驗證**。詳見[入口與呼叫框架分析](analysis/v4160-tx-register-abi-2026-10-22/README.md)、[原始傳送契約](analysis/v4160-ota-tx-2026-10-22/README.md)及[新功能提案](analysis/v4160-ota-tx-2026-10-22/continuation-plan/README.md)。
+OTA 傳送入口 `0x8A56` 已取得實際 280-byte 原生元件：8-byte 窄組語入口、270-byte 可讀 C/C++ 主體及 2-byte 返回函式。超長輸入可直接返回、不碰堆疊，兩次 ROM 呼叫的返回位址吻合。暫存器儲存／還原時序以新的獨立排序步驟核對；**此元件已納入上述新版映像，仍未經原硬體或 BLE OTA 驗證**。詳見[入口與呼叫框架分析](analysis/v4160-tx-register-abi-2026-10-22/README.md)、[原始傳送契約](analysis/v4160-ota-tx-2026-10-22/README.md)及[新功能提案](analysis/v4160-ota-tx-2026-10-22/continuation-plan/README.md)。
 
-最新完整映像已納入 OTA 頁面回覆：12 個可讀 IRQ／Flash／OTA 函式共 650 bytes，完整 76,800-byte BIN 與官方 ID2966 V4.1.60 相同。C、C++ 各新編譯 43 個單元，61 個命令含兩次明確 ABI 排序；全部單元記錄完整標頭依賴。其餘 679 個區段仍使用原始承載，這是部分來源重建，**不是原硬體或 BLE OTA 驗證**。詳見[新版整合](analysis/v4160-reply-image-integration-2026-10-22/README.md)與[離線映像](artifacts/offline-images/ID2966-V4.1.60-reply-integrated/README.md)。
+先前完整映像已納入 OTA 頁面回覆：12 個可讀 IRQ／Flash／OTA 函式共 650 bytes，完整 76,800-byte BIN 與官方 ID2966 V4.1.60 相同。C、C++ 各新編譯 43 個單元，61 個命令含兩次明確 ABI 排序；全部單元記錄完整標頭依賴。其餘 679 個區段仍使用原始承載，這是部分來源重建，**不是原硬體或 BLE OTA 驗證**。詳見[新版整合](analysis/v4160-reply-image-integration-2026-10-22/README.md)與[離線映像](artifacts/offline-images/ID2966-V4.1.60-reply-integrated/README.md)。
 
 需要Python 3.10以上、C11／C++17編譯器及POSIX shell。Linux可用GCC或Clang；macOS可用Clang；Windows可用Git Bash加Visual Studio C++ Build Tools。新的跨平台入口不需要PowerShell或CMake。
 

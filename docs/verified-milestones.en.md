@@ -1,5 +1,11 @@
 # Verified milestones
 
+## TX source in a complete experimental BIN
+
+Fresh C11/C++17 pipelines each compile 46 units and produce the same 76,800-byte experimental BIN. Thirteen original function regions / 930 bytes use fifteen real FUNC roles; 678 other sections retain original carriers. All 93 differences from official ID2966 are inside TX; other bytes are unchanged. SHA-256: `28697eab551bd9b3ca74a69c44db24fc02e07bedbb5bf02380e4bcb1a390ce89`. **The new BIN is not verified as flashable.** [Complete integration](../analysis/v4160-tx-image-integration-2026-10-22/readme.en.md) | [Experimental image](../artifacts/offline-images/ID2966-V4.1.60-tx-integrated/readme.en.md)
+
+Earlier no-integration/no-new-BIN statements below describe their historical scope. Full ABI, physical ROM/BOOT/Flash, CRC/signature policy and hardware OTA remain unproved.
+
 ## Actual native repair of the TX entry and split restores
 
 Fresh C11/C++17 components link to 280 bytes each: an eight-byte narrow assembly entry, a 270-byte readable body and a real two-byte return leaf. A standard ELF branch relocation makes oversized input return without stack access. Both resident-call return addresses match original 0x8A90/0x8AB6. The public entry honestly remains FUNC8, without fabricated single-FUNC280 metadata.

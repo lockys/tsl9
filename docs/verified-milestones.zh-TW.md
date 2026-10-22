@@ -1,5 +1,11 @@
 # 已驗證里程碑
 
+## TX 已納入完整實驗 BIN
+
+正式 C11／C++17 各新編譯 46 個單元，產出相同的 76,800-byte 實驗 BIN；十三個原始函式範圍共 930 bytes，由十五個真實 FUNC 角色承接，678 個其餘區段仍使用原始承載。與官方 ID2966 的 93 個差異全部位於 TX，其餘 byte 相同。SHA-256：`28697eab551bd9b3ca74a69c44db24fc02e07bedbb5bf02380e4bcb1a390ce89`。**新 BIN 尚未驗證可刷寫。** [完整整合](../analysis/v4160-tx-image-integration-2026-10-22/README.md) | [實驗映像](../artifacts/offline-images/ID2966-V4.1.60-tx-integrated/README.md)
+
+以下「尚未整合／沒有新 BIN」描述只適用於其歷史範圍。完整 ABI、實機 ROM／BOOT／Flash、CRC／簽章與硬體 OTA 仍待證。
+
 ## OTA 傳送入口與分段還原的實際原生修復
 
 新的 C11／C++17 元件均實際連結為 280 bytes：8-byte 窄組語入口、270-byte 可讀主體及 2-byte 真實返回葉函式。標準 ELF 分支重定位讓超長輸入直接返回、不碰堆疊；兩次 ROM 呼叫的返回位址為原始的 0x8A90／0x8AB6。公開入口的 FUNC 大小如實為 8 bytes，沒有偽造單一 280-byte C 函式。
