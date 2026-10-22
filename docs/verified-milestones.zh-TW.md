@@ -1,5 +1,11 @@
 # 已驗證里程碑
 
+## OTA 元件：568 bytes，保留完整八暫存器橋接
+
+依 compiler IR 的 escape 現象分離 native 回覆陣列與參數物件，再依原始三個 terminal 回覆共用位置調整 C 控制流。實際 C11／C++17 元件從 776 bytes／285 指令／112-byte frame 降為 **568 bytes／193 指令／48-byte frame**，九個真 UND、20 筆 RELA。所有八暫存器 I/O、memory clobber、HOST 效果與 W A3／A4／A5 投影保留。原始範圍為 530 bytes，還有 38-byte 差距；frame 相等不代表物理 ABI 相等。**沒有連結或新增 BIN，完整 TX 映像不變。** [本輪程式與獨立證據](../analysis/v4160-ota-handler-compact-2026-10-22/README.md)
+
+「停用展開」探針沒有改善，仍為 776 bytes。前輪三份分析 README 把名義四次 quarter 寫成四個 static callsite，已[明示更正](../analysis/v4160-ota-handler-2026-10-22/ERRATA.md)；實際只有一個 quarter JAL 與 backedge，原有獨立物件／metadata 並無該四個呼叫點。UID／builder 及兩份 ROM 候選 copy leaf 的核對只縮小條件性介面義務，不證實已安裝 ROM 或實機 OTA。
+
 ## OTA 命令的共享 C/C++ 與實際原生差距
 
 `0x9C4A..0x9E5C` 的 U／S／W／R／E 命令已實作為共享 HOST／native 的可讀 C11／C++17。各語言本組 HOST 通過 10 案例／8,292 檢查與三個編譯語義反例，獨立 HOST 通過 16 案例／18 次 dispatch／898 項行為檢查與四個編譯語義反例。這些是 guarded 合成測試，沒有執行 RV32 或硬體。

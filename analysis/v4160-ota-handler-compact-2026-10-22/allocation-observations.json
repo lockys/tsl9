@@ -1,0 +1,26 @@
+{
+  "schema": "TSL9-OTA-handler-static-stack-observations-v1",
+  "baseline": {
+    "archived_log": "experiments/tsl9-v4160-ota-handler/build/formal-native/c/complete-static-disassembly.log",
+    "log_sha256": "4c88a2ff5c5c2a115bd7fa360118f8f28be610931df60f9bc75788fe376ebbdb",
+    "instruction_rows": 285,
+    "instruction_bytes": 776,
+    "SP_addressed_instructions": 111,
+    "SP_addressed_instruction_bytes": 228,
+    "SP_operations": {"lw": 35, "sb": 3, "sw": 73}
+  },
+  "compact": {
+    "archived_log": "experiments/tsl9-v4160-ota-handler-compact/build/common-replies-v1/c/complete-static-disassembly.log",
+    "log_sha256": "f7ee408acc197da9b6fa60ae7dd16f05d1ca177d22d05164db3cd358b22958a1",
+    "instruction_rows": 193,
+    "instruction_bytes": 568,
+    "SP_addressed_instructions": 23,
+    "SP_addressed_instruction_bytes": 52,
+    "SP_operations": {"lw": 10, "sb": 3, "sw": 10}
+  },
+  "method": "Count all actual LLVM disassembly instruction rows, byte widths and SP-based memory operands, after independent full native instruction coverage checks. Counts include saves, restores and reply stores; they are not all removable spills.",
+  "scope": "Static source-bound Windows compiler observations; no runtime frequency or feature-completion claim. Build logs are retained locally rather than published. A metadata-only checker does not advertise actual archived-log replay.",
+  "target_executed": false,
+  "hardware_OTA_proved": false,
+  "new_BIN": false
+}

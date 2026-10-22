@@ -1,0 +1,38 @@
+{
+  "schema": "TSL9-OTA-handler-static-quarter-correction-v1",
+  "supersedes_only": "The claim that the final776 compiler unrolled the single W quarter callsite into four static calls",
+  "affected_original_source_paths": [
+    "apk-analysis/tsl9-v4160-ota-handler-2026-10-22/README.md:12",
+    "apk-analysis/tsl9-v4160-ota-handler-2026-10-22/readme.zh-TW.md:12",
+    "apk-analysis/tsl9-v4160-ota-handler-2026-10-22/readme.en.md:12"
+  ],
+  "affected_published_relative_paths": [
+    "analysis/v4160-ota-handler-2026-10-22/README.md:12",
+    "analysis/v4160-ota-handler-2026-10-22/readme.zh-TW.md:12",
+    "analysis/v4160-ota-handler-2026-10-22/readme.en.md:12"
+  ],
+  "original_document_sha256": {
+    "README.md": "7f0de9980b3dc15e2136614f80a9edb08e62a16cd4b9629d00fd37d9421b6ebc",
+    "readme.zh-TW.md": "7f0de9980b3dc15e2136614f80a9edb08e62a16cd4b9629d00fd37d9421b6ebc",
+    "readme.en.md": "1938e59bc7420fb823d11de38fef2e65ebe7d87e911dc82d074de443fadc9f92"
+  },
+  "actual_baseline_object": "experiments/tsl9-v4160-ota-handler/build/formal-native/c/ota_handler.o",
+  "actual_baseline_object_sha256": "7e4b46c1dfc0740d0c6d429806ebb271705d3b01f2652f0d06d16b2fd224a970",
+  "actual_baseline_function_sha256": "7798f2bbf16ce7326251e14830f06bec7fea486da8659e28dfff2ac352b9fdd3",
+  "actual_baseline_function_bytes": 776,
+  "quarter_static_JAL_count": 1,
+  "quarter_JAL_offset": 658,
+  "quarter_RELA_type": 17,
+  "quarter_RELA_symbol": "__tsl9v4160_call_9c0a",
+  "counter_setup": {"offset":642,"rd":23,"immediate":1024},
+  "loop_call_arguments": [{"offset":652,"op":"mv","rd":10,"rs1":9},{"offset":654,"op":"mv","rd":11,"rs1":8}],
+  "postcall_steps": [{"offset":662,"rd":23,"rs1":23,"immediate":-256},{"offset":666,"rd":9,"rs1":9,"immediate":256},{"offset":670,"rd":8,"rs1":8,"immediate":256}],
+  "backedge": {"offset":676,"op":"bne","rs1":23,"rs2":0,"target":652},
+  "loop_slice_offset": 642,
+  "loop_slice_hex": "930b00405ecc4e84da842685a2855686ef000000938b0bf09384041013040410b28ae3940bfe",
+  "conditional_dynamic_count": "Four calls when callees return normally and preserve the counter/cursor S registers; not four static JALs or an installed-ROM proof",
+  "previous_independent_reports_already_recorded_static_count_one": true,
+  "old_sealed_files_modified": false,
+  "target_execution": false,
+  "ISA_emulation": false
+}

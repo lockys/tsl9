@@ -1,5 +1,11 @@
 # Verified milestones
 
+## OTA component: 568 bytes with the complete eight-register bridge
+
+Compiler IR escape evidence motivates separating the native reply array from the argument object; original three shared terminal replies motivate C control-flow sharing. Actual C11/C++17 components shrink from 776 bytes / 285 instructions / a 112-byte frame to **568 bytes / 193 instructions / a 48-byte frame**, with nine true undefined symbols and20 relocations. All eight register inputs/outputs, memory clobbers, HOST effects and W A3/A4/A5 projections remain. The original530-byte region still leaves a38-byte excess; equal frames do not prove physical ABI equality. **No link or new BIN; the complete TX image is unchanged.** [Code and independent evidence](../analysis/v4160-ota-handler-compact-2026-10-22/readme.en.md)
+
+The no-unroll probe has no benefit and remains776 bytes. An [explicit erratum](../analysis/v4160-ota-handler-2026-10-22/ERRATA.md) corrects the three previous analysis READMEs: four nominal quarter iterations do not mean four static callsites. Actual objects have one quarter JAL and a backedge, as already recorded by sealed independent metadata. UID/builder and two candidate ROM copy leaves narrow conditional interface obligations, without identifying installed ROM or proving hardware OTA.
+
 ## Shared OTA command C/C++ and actual native gaps
 
 The U/S/W/R/E handler at `0x9C4A..0x9E5C` now has readable shared HOST/native C11/C++17. Each language passes 10 own HOST cases / 8,292 checks and three compiled semantic mutants; independent HOST passes 16 cases / 18 dispatches / 898 behavioral assertions and four compiled semantic mutants. These are guarded synthetic tests, without RV32 or hardware execution.

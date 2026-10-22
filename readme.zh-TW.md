@@ -4,6 +4,10 @@
 
 本專案保存原始APK、22份不同的更新器BIN、可讀C/C++行為模型及靜態來源證據。完整目標仍是產出與原硬體及BLE更新器相容的重建BIN，並在逆向過程中評估值得新增的功能，將提案與已實作功能分開列出。**目前尚無經驗證可刷寫的重建BIN。**
 
+## OTA 原生元件縮減至 568 bytes
+
+以回覆陣列的生命週期分離及三個共用 C 回覆出口，將元件由 776 bytes／285 指令／112-byte frame 縮至 **568 bytes／193 指令／48-byte frame**；八個暫存器呼叫橋接與各命令效果保留。仍超出原 530-byte 範圍 38 bytes，**未連結、未新增 BIN；完整 TX 映像不變**。前輪分析 README 的「四個展開 quarter callsite」已另附更正，真實物件是一個迴圈呼叫點。 [程式、獨立核對與限制](./analysis/v4160-ota-handler-compact-2026-10-22/README.md)
+
 ## OTA 命令已重建為共享 C/C++
 
 新增 U／S／W／R／E 命令的可讀 C11／C++17，保留 UID、長度、頁碼、即時模式、四次 quarter 寫入與逐 word 讀回的先後順序。兩語言各通過本組及獨立 HOST 測試；實際原生物件均為 **776 bytes／285 指令／112-byte frame**，相較原 530-byte 範圍多 246 bytes，九個外部參照仍為真 UND。**尚未連結或納入 BIN；原有完整 TX 映像維持不變。** W 寫入 BOOT 別名，不代表已證明 Runtime 自更新。 [程式、證據與缺口](./analysis/v4160-ota-handler-2026-10-22/README.md)

@@ -1,0 +1,66 @@
+
+C:\Users\locky\Documents\Codex\2026-10-13\rea-https-github-com-morluto-rea\experiments\tsl9-v4160-tx-image-integration\build\formal-v1\c\ADDRESS-WITNESS-ONLY.elf:	file format elf32-littleriscv
+
+Disassembly of section .text.tsl9v4160.direct_closure_92ba:
+
+000092ba <__tsl9v4160_call_92ba>:
+    92ba: 41 11        	addi	sp, sp, -0x10
+    92bc: 26 c2        	sw	s1, 0x4(sp)
+    92be: b7 04 04 00  	lui	s1, 0x40
+    92c2: fc 44        	lw	a5, 0x4c(s1)
+    92c4: 22 c4        	sw	s0, 0x8(sp)
+    92c6: 37 f4 ff 1f  	lui	s0, 0x1ffff
+    92ca: 4a c0        	sw	s2, 0x0(sp)
+    92cc: 06 c6        	sw	ra, 0xc(sp)
+    92ce: 93 05 c4 7e  	addi	a1, s0, 0x7ec
+    92d2: 21 46        	li	a2, 0x8
+    92d4: 2a 89        	mv	s2, a0
+    92d6: 82 97        	jalr	a5
+    92d8: 93 05 84 7e  	addi	a1, s0, 0x7e8
+    92dc: 22 44        	lw	s0, 0x8(sp)
+    92de: 03 a3 c4 04  	lw	t1, 0x4c(s1)
+    92e2: b2 40        	lw	ra, 0xc(sp)
+    92e4: 92 44        	lw	s1, 0x4(sp)
+    92e6: 13 05 89 00  	addi	a0, s2, 0x8
+    92ea: 02 49        	lw	s2, 0x0(sp)
+    92ec: 19 46        	li	a2, 0x6
+    92ee: 41 01        	addi	sp, sp, 0x10
+    92f0: 02 83        	jr	t1
+
+Disassembly of section .text.tsl9v4160.ota_handler_92f2:
+
+000092f2 <__tsl9v4160_ota_code_92f2>:
+    92f2: b9 47        	li	a5, 0xe
+    92f4: 63 9e f5 02  	bne	a1, a5, 0x9330 <.Lota_handler_00009330>
+    92f8: 01 11        	addi	sp, sp, -0x20
+    92fa: 22 cc        	sw	s0, 0x18(sp)
+    92fc: 2a 84        	mv	s0, a0
+    92fe: 0a 85        	mv	a0, sp
+    9300: 06 ce        	sw	ra, 0x1c(sp)
+    9302: 65 3f        	jal	0x92ba <__tsl9v4160_call_92ba>
+    9304: 81 47        	li	a5, 0x0
+    9306: b9 46        	li	a3, 0xe
+
+00009308 <.Lota_handler_00009308>:
+    9308: 33 07 f4 00  	add	a4, s0, a5
+    930c: 03 46 07 00  	lbu	a2, 0x0(a4)
+    9310: 33 07 f1 00  	add	a4, sp, a5
+    9314: 03 47 07 00  	lbu	a4, 0x0(a4)
+    9318: 63 1a e6 00  	bne	a2, a4, 0x932c <.Lota_handler_0000932c>
+    931c: 85 07        	addi	a5, a5, 0x1
+    931e: e3 95 d7 fe  	bne	a5, a3, 0x9308 <.Lota_handler_00009308>
+    9322: 01 45        	li	a0, 0x0
+
+00009324 <.Lota_handler_00009324>:
+    9324: f2 40        	lw	ra, 0x1c(sp)
+    9326: 62 44        	lw	s0, 0x18(sp)
+    9328: 05 61        	addi	sp, sp, 0x20
+    932a: 82 80        	ret
+
+0000932c <.Lota_handler_0000932c>:
+    932c: 05 45        	li	a0, 0x1
+    932e: dd bf        	j	0x9324 <.Lota_handler_00009324>
+
+00009330 <.Lota_handler_00009330>:
+    9330: 05 45        	li	a0, 0x1
+    9332: 82 80        	ret

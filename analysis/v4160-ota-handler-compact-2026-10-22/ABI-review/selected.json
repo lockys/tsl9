@@ -1,0 +1,726 @@
+{
+  "schema": "TSL9-OTA-handler-compact-independent-selected-v1",
+  "shared_core_pins": {
+    "ota_handler.c": "3c3df0dcbdc91ab798a67857e789b090342b6727651d095fd300f32ff04c423b",
+    "ota_handler.h": "fa6165d20e935b5c69dbab733c2340de13093a8827840bbffbce491bf9dd61de",
+    "io.h": "0d54c0e7900b24b4a2d4e5e6153f30b2ffbcffdfbd5b195ca837d16eb319d5c1",
+    "host_io.c": "3285e6228573cb39e5b09a845450268a74c2fbfb475e2d95b3673dc22a7b3d1b"
+  },
+  "source_delta": {
+    "schema": "TSL9-OTA-handler-compact-bounded-source-delta-v1",
+    "passed": true,
+    "baseline_pins": {
+      "ota_handler.c": "17998205c781a9223a7d2eb01f9a4bbd7cc5cc3013336795bb76e0da6e0bf9d0",
+      "ota_handler.h": "fa6165d20e935b5c69dbab733c2340de13093a8827840bbffbce491bf9dd61de",
+      "io.h": "64ef7d4de24543628ddee3254dacd5e79b3ac6a0950f504cad72c5ac880c3af5",
+      "host_io.c": "3285e6228573cb39e5b09a845450268a74c2fbfb475e2d95b3673dc22a7b3d1b"
+    },
+    "selected_pins": {
+      "ota_handler.c": "3c3df0dcbdc91ab798a67857e789b090342b6727651d095fd300f32ff04c423b",
+      "ota_handler.h": "fa6165d20e935b5c69dbab733c2340de13093a8827840bbffbce491bf9dd61de",
+      "io.h": "0d54c0e7900b24b4a2d4e5e6153f30b2ffbcffdfbd5b195ca837d16eb319d5c1",
+      "host_io.c": "3285e6228573cb39e5b09a845450268a74c2fbfb475e2d95b3673dc22a7b3d1b"
+    },
+    "shared_reply_rewrites": [
+      {
+        "site": "0x9d7a",
+        "callee": "OH_SMALL_REPLY_13F66",
+        "mask": "63u",
+        "label": "small_reply",
+        "setting_order_unchanged": true
+      },
+      {
+        "site": "0x9d7a",
+        "callee": "OH_SMALL_REPLY_13F66",
+        "mask": "7u",
+        "label": "small_reply",
+        "setting_order_unchanged": true
+      },
+      {
+        "site": "0x9df4",
+        "callee": "OH_PAGE_REPLY_9B8E",
+        "mask": "63u",
+        "label": "page_reply",
+        "setting_order_unchanged": true
+      },
+      {
+        "site": "0x9df4",
+        "callee": "OH_PAGE_REPLY_9B8E",
+        "mask": "7u",
+        "label": "page_reply",
+        "setting_order_unchanged": true
+      },
+      {
+        "site": "0x9db4",
+        "callee": "OH_PACKET_REPLY_13E98",
+        "mask": "15u",
+        "label": "packet_reply",
+        "setting_order_unchanged": true
+      }
+    ],
+    "E_packet_exit_to_same_shared_effect": true,
+    "W_small_page_mask": 63,
+    "U_R_small_page_mask": 7,
+    "packet_mask": 15,
+    "branch_predicates_and_memory_effect_order_unchanged": true,
+    "HOST_API_and_primitives_identical": true,
+    "native_response_object": "Separate volatile uint8_t[2], same typed pointer operation and length2 input",
+    "full_eight_argument_native_bridge_unchanged": true,
+    "callee_memory_clobber_unchanged": true,
+    "no_unroll_pragma_in_selected_source": true,
+    "fixture_sha256": "254b6dd5e60640eea6f7d0d54433d6abf1ff9f5af65c1761ecd58f36869b00f1",
+    "fixture_byte_identity": true,
+    "physical_live_SP12_equivalence_proved": false,
+    "opaque_callee_footprint_proved": false,
+    "full_original_ABI_admitted": false,
+    "target_execution": false,
+    "ISA_emulation": false
+  },
+  "HOST": {
+    "c": {
+      "receipt": "apk-analysis/tsl9-v4160-ota-handler-compact-2026-10-22/ABI-review/build/host-final/c/verification.json",
+      "sha256": "8563c55fdf05d6c7cb13447ca4b0b194aa9b736ffca09a8dbb3c62a362d46c89",
+      "tests": {
+        "passed": true,
+        "narrative_cases": 16,
+        "dispatches": 18,
+        "checks": 898,
+        "synthetic_HOST_only": true,
+        "physical_ABI_proof": false
+      },
+      "compiled_controls": [
+        "command_byte_truncation",
+        "stale_S_payload_after_UID",
+        "S_active_forced_one",
+        "RAM_read_before_Flash"
+      ],
+      "compiler": {
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+        "sha256": "88c8344236a27a6e727e0a8edc49aaa2690bdc7a9464b9d18cc7abe70a9f1c0d"
+      },
+      "recorded_actual_host_run": true
+    },
+    "cpp": {
+      "receipt": "apk-analysis/tsl9-v4160-ota-handler-compact-2026-10-22/ABI-review/build/host-final/cpp/verification.json",
+      "sha256": "05bd65ade22c4822f0a784e9240c94f344a9c71816b8815799ff67df8a6c4f21",
+      "tests": {
+        "passed": true,
+        "narrative_cases": 16,
+        "dispatches": 18,
+        "checks": 898,
+        "synthetic_HOST_only": true,
+        "physical_ABI_proof": false
+      },
+      "compiled_controls": [
+        "command_byte_truncation",
+        "stale_S_payload_after_UID",
+        "S_active_forced_one",
+        "RAM_read_before_Flash"
+      ],
+      "compiler": {
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+        "sha256": "88c8344236a27a6e727e0a8edc49aaa2690bdc7a9464b9d18cc7abe70a9f1c0d"
+      },
+      "recorded_actual_host_run": true
+    }
+  },
+  "native": {
+    "c": {
+      "receipt": "apk-analysis/tsl9-v4160-ota-handler-compact-2026-10-22/ABI-review/build/native-final-c.json",
+      "sha256": "92f65ab6145cd1bfaf271c00f58548dd39af461db901bcc389dd4904b7d85196",
+      "producer_receipt": "6cc341afd9aa7ac5cc4ae54e8c18c965da5bccb7f3dea562792f6f0dbbe4d1e7",
+      "actual_object": {
+        "bytes": 2108,
+        "sha256": "d75a75e0df88a7033632ad9f46c7c24bbd48357ecce4b29b5eb6c99effd7463d"
+      },
+      "actual_IR": {
+        "bytes": 20441,
+        "sha256": "4f001f21c2ae2b9d1ec8b5db145d335ceb4b2da971a69a56f83a1504d2f1b94c"
+      },
+      "native_bytes": 568,
+      "instructions": 193,
+      "frame_bytes": 48,
+      "oversize_bytes": 38,
+      "direct_call_occurrences": 12,
+      "indirect_call_occurrences": 1,
+      "GP_reads": 7,
+      "SP_memory_operands": 23,
+      "direct_call_counts": {
+        "__tsl9v4160_call_9124": 4,
+        "__tsl9v4160_call_9c0a": 1,
+        "__tsl9v4160_conditional_code_13e98": 1,
+        "__tsl9v4160_ota_code_13f66": 1,
+        "__tsl9v4160_ota_code_92f2": 4,
+        "__tsl9v4160_ota_code_9b8e": 1
+      },
+      "true_UND": 9,
+      "RELA": 20,
+      "dependencies": {
+        "mode": "c",
+        "actual_recipes": 4,
+        "actual_MD_project_inputs": 3,
+        "actual_MD_resource_inputs": 1,
+        "all_actual_source_tool_resource_hashes_checked": true,
+        "native_compiler_invoked_by_review": false
+      },
+      "focused_raw_controls": {
+        "entry_SP_subtract_changed_to_add": true,
+        "direct_JAL_link_register_removed": true,
+        "actual_GP_read_changed_to_GP_write": true
+      },
+      "loop_operand_controls": {
+        "quarter_counter_start_changed": true,
+        "quarter_source_stride_changed": true
+      },
+      "quarter_loop": {
+        "static_quarter_JALs": 1,
+        "call_offset": 476,
+        "header": 470,
+        "setup": {
+          "PC": 462,
+          "bytes": 4,
+          "raw_hex": "130c0040",
+          "op": "addi",
+          "rd": 24,
+          "rs1": 0,
+          "rs2": null,
+          "immediate": 1024,
+          "target": null,
+          "memory_width": null,
+          "offset": 462
+        },
+        "argument_definitions": {
+          "10": {
+            "PC": 470,
+            "bytes": 2,
+            "raw_hex": "2685",
+            "op": "mv",
+            "rd": 10,
+            "rs1": 9,
+            "rs2": null,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 470
+          },
+          "11": {
+            "PC": 472,
+            "bytes": 2,
+            "raw_hex": "a285",
+            "op": "mv",
+            "rd": 11,
+            "rs1": 8,
+            "rs2": null,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 472
+          }
+        },
+        "steps": {
+          "counter": {
+            "PC": 480,
+            "bytes": 4,
+            "raw_hex": "130c0cf0",
+            "op": "addi",
+            "rd": 24,
+            "rs1": 24,
+            "rs2": null,
+            "immediate": -256,
+            "target": null,
+            "memory_width": null,
+            "offset": 480
+          },
+          "destination": {
+            "PC": 484,
+            "bytes": 4,
+            "raw_hex": "93840410",
+            "op": "addi",
+            "rd": 9,
+            "rs1": 9,
+            "rs2": null,
+            "immediate": 256,
+            "target": null,
+            "memory_width": null,
+            "offset": 484
+          },
+          "source": {
+            "PC": 488,
+            "bytes": 4,
+            "raw_hex": "13040410",
+            "op": "addi",
+            "rd": 8,
+            "rs1": 8,
+            "rs2": null,
+            "immediate": 256,
+            "target": null,
+            "memory_width": null,
+            "offset": 488
+          }
+        },
+        "backedge": {
+          "PC": 494,
+          "bytes": 4,
+          "raw_hex": "e3140cfe",
+          "op": "bne",
+          "rd": null,
+          "rs1": 24,
+          "rs2": 0,
+          "immediate": null,
+          "target": 470,
+          "memory_width": null,
+          "offset": 494
+        },
+        "conditional_dynamic_calls": 4,
+        "conditional_argument_offsets": [
+          0,
+          256,
+          512,
+          768
+        ],
+        "recurrence": "1024 - 256*n; first zero at n=4; both argument cursors advance256 after each normal return",
+        "required_normal_return_and_preserved_registers": [
+          8,
+          9,
+          24
+        ],
+        "source_named_S0_increment_before_call": true,
+        "physical_original_S0_prefix_equivalence": false,
+        "arbitrary_callee_effects_covered": false,
+        "computed_external_entries_excluded": false,
+        "unresolved_ET_REL_JAL_immediates_not_used_as_local_targets": true,
+        "target_execution": false,
+        "ISA_emulation": false
+      },
+      "frame_contents": {
+        "actual_save_prefix": [
+          {
+            "PC": 2,
+            "register": 1,
+            "slot": 44
+          },
+          {
+            "PC": 4,
+            "register": 8,
+            "slot": 40
+          },
+          {
+            "PC": 6,
+            "register": 9,
+            "slot": 36
+          },
+          {
+            "PC": 8,
+            "register": 18,
+            "slot": 32
+          },
+          {
+            "PC": 10,
+            "register": 19,
+            "slot": 28
+          },
+          {
+            "PC": 12,
+            "register": 20,
+            "slot": 24
+          },
+          {
+            "PC": 14,
+            "register": 21,
+            "slot": 20
+          },
+          {
+            "PC": 16,
+            "register": 22,
+            "slot": 16
+          },
+          {
+            "PC": 18,
+            "register": 23,
+            "slot": 12
+          },
+          {
+            "PC": 20,
+            "register": 24,
+            "slot": 8
+          }
+        ],
+        "actual_reply_byte_stores": [
+          {
+            "PC": 282,
+            "slot": 6,
+            "source_register": 12
+          },
+          {
+            "PC": 288,
+            "slot": 7,
+            "source_register": 12
+          },
+          {
+            "PC": 314,
+            "slot": 6,
+            "source_register": 10
+          }
+        ],
+        "actual_response_pointer_materializations": [
+          {
+            "PC": 320,
+            "register": 9,
+            "offset": 6
+          }
+        ],
+        "actual_reply_slots": [
+          6,
+          7
+        ],
+        "original_reply_slots": [
+          12,
+          13
+        ],
+        "original_saved_register_count": 7,
+        "original_frame_contents_equal": false,
+        "original_save_order_equal": false,
+        "original_SP12_overlaps_native_saved_S7": true,
+        "pointer_numeric_identity_or_unbounded_callee_access_proved_irrelevant": false,
+        "require_provider_contract_before_rebinding_reply_pointer": true
+      },
+      "response_IR": {
+        "allocations": [
+          [
+            "%9",
+            "[2 x i8], align 1"
+          ]
+        ],
+        "response_pointer": "%9",
+        "users": [
+          "store volatile i8 %118, ptr %9, align 1, !tbaa !5",
+          "%122 = getelementptr inbounds i8, ptr %9, i32 1",
+          "store volatile i8 -1, ptr %9, align 1, !tbaa !5",
+          "%138 = ptrtoint ptr %9 to i32"
+        ],
+        "separate_volatile_two_byte_response": true,
+        "no_argument_struct_alloca": true,
+        "source_pointer_and_length2_preserved": true,
+        "physical_original_SP12_equal": false,
+        "unknown_resident_footprint_or_alias_proved": false
+      },
+      "linked": false,
+      "actual_native_artifacts_read": true,
+      "readonly_replay_passed": true
+    },
+    "cpp": {
+      "receipt": "apk-analysis/tsl9-v4160-ota-handler-compact-2026-10-22/ABI-review/build/native-final-cpp.json",
+      "sha256": "a6120afa493084d218df5b68ea94080afaf9a0eb551e2f5f261b9ed0d7623634",
+      "producer_receipt": "359f838571337c85161d3e5c65d007eecbdb66f51a897f0910da018117d39d83",
+      "actual_object": {
+        "bytes": 2108,
+        "sha256": "d75a75e0df88a7033632ad9f46c7c24bbd48357ecce4b29b5eb6c99effd7463d"
+      },
+      "actual_IR": {
+        "bytes": 20521,
+        "sha256": "825f3a93054880093dd519772c1951471eab0abcb88a701cab1073dcf34230c0"
+      },
+      "native_bytes": 568,
+      "instructions": 193,
+      "frame_bytes": 48,
+      "oversize_bytes": 38,
+      "direct_call_occurrences": 12,
+      "indirect_call_occurrences": 1,
+      "GP_reads": 7,
+      "SP_memory_operands": 23,
+      "direct_call_counts": {
+        "__tsl9v4160_call_9124": 4,
+        "__tsl9v4160_call_9c0a": 1,
+        "__tsl9v4160_conditional_code_13e98": 1,
+        "__tsl9v4160_ota_code_13f66": 1,
+        "__tsl9v4160_ota_code_92f2": 4,
+        "__tsl9v4160_ota_code_9b8e": 1
+      },
+      "true_UND": 9,
+      "RELA": 20,
+      "dependencies": {
+        "mode": "cpp",
+        "actual_recipes": 4,
+        "actual_MD_project_inputs": 3,
+        "actual_MD_resource_inputs": 1,
+        "all_actual_source_tool_resource_hashes_checked": true,
+        "native_compiler_invoked_by_review": false
+      },
+      "focused_raw_controls": {
+        "entry_SP_subtract_changed_to_add": true,
+        "direct_JAL_link_register_removed": true,
+        "actual_GP_read_changed_to_GP_write": true
+      },
+      "loop_operand_controls": {
+        "quarter_counter_start_changed": true,
+        "quarter_source_stride_changed": true
+      },
+      "quarter_loop": {
+        "static_quarter_JALs": 1,
+        "call_offset": 476,
+        "header": 470,
+        "setup": {
+          "PC": 462,
+          "bytes": 4,
+          "raw_hex": "130c0040",
+          "op": "addi",
+          "rd": 24,
+          "rs1": 0,
+          "rs2": null,
+          "immediate": 1024,
+          "target": null,
+          "memory_width": null,
+          "offset": 462
+        },
+        "argument_definitions": {
+          "10": {
+            "PC": 470,
+            "bytes": 2,
+            "raw_hex": "2685",
+            "op": "mv",
+            "rd": 10,
+            "rs1": 9,
+            "rs2": null,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 470
+          },
+          "11": {
+            "PC": 472,
+            "bytes": 2,
+            "raw_hex": "a285",
+            "op": "mv",
+            "rd": 11,
+            "rs1": 8,
+            "rs2": null,
+            "immediate": null,
+            "target": null,
+            "memory_width": null,
+            "offset": 472
+          }
+        },
+        "steps": {
+          "counter": {
+            "PC": 480,
+            "bytes": 4,
+            "raw_hex": "130c0cf0",
+            "op": "addi",
+            "rd": 24,
+            "rs1": 24,
+            "rs2": null,
+            "immediate": -256,
+            "target": null,
+            "memory_width": null,
+            "offset": 480
+          },
+          "destination": {
+            "PC": 484,
+            "bytes": 4,
+            "raw_hex": "93840410",
+            "op": "addi",
+            "rd": 9,
+            "rs1": 9,
+            "rs2": null,
+            "immediate": 256,
+            "target": null,
+            "memory_width": null,
+            "offset": 484
+          },
+          "source": {
+            "PC": 488,
+            "bytes": 4,
+            "raw_hex": "13040410",
+            "op": "addi",
+            "rd": 8,
+            "rs1": 8,
+            "rs2": null,
+            "immediate": 256,
+            "target": null,
+            "memory_width": null,
+            "offset": 488
+          }
+        },
+        "backedge": {
+          "PC": 494,
+          "bytes": 4,
+          "raw_hex": "e3140cfe",
+          "op": "bne",
+          "rd": null,
+          "rs1": 24,
+          "rs2": 0,
+          "immediate": null,
+          "target": 470,
+          "memory_width": null,
+          "offset": 494
+        },
+        "conditional_dynamic_calls": 4,
+        "conditional_argument_offsets": [
+          0,
+          256,
+          512,
+          768
+        ],
+        "recurrence": "1024 - 256*n; first zero at n=4; both argument cursors advance256 after each normal return",
+        "required_normal_return_and_preserved_registers": [
+          8,
+          9,
+          24
+        ],
+        "source_named_S0_increment_before_call": true,
+        "physical_original_S0_prefix_equivalence": false,
+        "arbitrary_callee_effects_covered": false,
+        "computed_external_entries_excluded": false,
+        "unresolved_ET_REL_JAL_immediates_not_used_as_local_targets": true,
+        "target_execution": false,
+        "ISA_emulation": false
+      },
+      "frame_contents": {
+        "actual_save_prefix": [
+          {
+            "PC": 2,
+            "register": 1,
+            "slot": 44
+          },
+          {
+            "PC": 4,
+            "register": 8,
+            "slot": 40
+          },
+          {
+            "PC": 6,
+            "register": 9,
+            "slot": 36
+          },
+          {
+            "PC": 8,
+            "register": 18,
+            "slot": 32
+          },
+          {
+            "PC": 10,
+            "register": 19,
+            "slot": 28
+          },
+          {
+            "PC": 12,
+            "register": 20,
+            "slot": 24
+          },
+          {
+            "PC": 14,
+            "register": 21,
+            "slot": 20
+          },
+          {
+            "PC": 16,
+            "register": 22,
+            "slot": 16
+          },
+          {
+            "PC": 18,
+            "register": 23,
+            "slot": 12
+          },
+          {
+            "PC": 20,
+            "register": 24,
+            "slot": 8
+          }
+        ],
+        "actual_reply_byte_stores": [
+          {
+            "PC": 282,
+            "slot": 6,
+            "source_register": 12
+          },
+          {
+            "PC": 288,
+            "slot": 7,
+            "source_register": 12
+          },
+          {
+            "PC": 314,
+            "slot": 6,
+            "source_register": 10
+          }
+        ],
+        "actual_response_pointer_materializations": [
+          {
+            "PC": 320,
+            "register": 9,
+            "offset": 6
+          }
+        ],
+        "actual_reply_slots": [
+          6,
+          7
+        ],
+        "original_reply_slots": [
+          12,
+          13
+        ],
+        "original_saved_register_count": 7,
+        "original_frame_contents_equal": false,
+        "original_save_order_equal": false,
+        "original_SP12_overlaps_native_saved_S7": true,
+        "pointer_numeric_identity_or_unbounded_callee_access_proved_irrelevant": false,
+        "require_provider_contract_before_rebinding_reply_pointer": true
+      },
+      "response_IR": {
+        "allocations": [
+          [
+            "%9",
+            "[2 x i8], align 1"
+          ]
+        ],
+        "response_pointer": "%9",
+        "users": [
+          "store volatile i8 %118, ptr %9, align 1, !tbaa !5",
+          "%122 = getelementptr inbounds i8, ptr %9, i32 1",
+          "store volatile i8 -1, ptr %9, align 1, !tbaa !5",
+          "%138 = ptrtoint ptr %9 to i32"
+        ],
+        "separate_volatile_two_byte_response": true,
+        "no_argument_struct_alloca": true,
+        "source_pointer_and_length2_preserved": true,
+        "physical_original_SP12_equal": false,
+        "unknown_resident_footprint_or_alias_proved": false
+      },
+      "linked": false,
+      "actual_native_artifacts_read": true,
+      "readonly_replay_passed": true
+    }
+  },
+  "original": {
+    "bytes": 530,
+    "instructions": 169,
+    "frame_bytes": 48,
+    "owned_RELA": 51
+  },
+  "baseline_correction_sha256": "092385df79f5e1321c164b25beafe6aa3996e098d0b44616c50414ec54bb3eab",
+  "full_original_ABI_admitted": false,
+  "original_placement_admitted": false,
+  "hardware_OTA_proved": false,
+  "BIN_created": false,
+  "generated_archives_in_seal": false,
+  "checker_pins": {
+    "run-host.py": "8c1fede776ccebf889ad23c73b626eacaf8d4c1ef1a7944a03f697d87b1eeb89",
+    "independent_host.c": "254b6dd5e60640eea6f7d0d54433d6abf1ff9f5af65c1761ecd58f36869b00f1",
+    "native.py": "1b378718c84e31bf7a6f03a3f3f22f9db755d6b804dd410b29f0224559b1dca9",
+    "review.py": "bd0118b622c6f489a89f6281aa5bddd2d62a0eb4dec0e7958882ee7c31c89c12",
+    "check.py": "d2c6fbc36280b4aedb24e234f3bdfdeb9d49f0b5339dfe73cc43e885fcfa1138",
+    "source_delta.py": "4f21bd5f71d7e28e59a7c499de786b0170536b36f00064c1af097531cfe0fdb4",
+    "loop.py": "6722d936093968ac18c4faae2c9d5249daf59e41d19e42956bda4fa659f8ba88"
+  },
+  "unpublished_replay_serialization_repair": {
+    "premature_seal_sha256": "214072fe7e1a3f926312351af598d90f7a70c76da674cc07ac142a52d9065b00",
+    "history": "build/history-premature-214072",
+    "original_replay_failure": "Python tuple/list mismatch in response_IR.allocations",
+    "flat_fix": "loop.py returns JSON-native lists",
+    "same_public_CLI": true,
+    "semantic_gates_changed": false,
+    "native_C_or_objects_changed": false,
+    "final_actual_native_C_CPP_replay_passed": true
+  }
+}

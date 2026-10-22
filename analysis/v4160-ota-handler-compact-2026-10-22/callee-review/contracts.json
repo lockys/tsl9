@@ -1,0 +1,57 @@
+{
+  "schema": "ID2966-App-UID-and-conditional-copy-contract-v1",
+  "confirmed_App": {
+    "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "builder": {
+      "entry": "0x92BA", "end_exclusive": "0x92F2", "bytes": 56,
+      "frame": "SP-=16; save S1 at+4, S0 at+8, S2 at+0, RA at+12 in that order; S1 assigned0x40000 before first slot load; S0 assigned0x1FFFF000; S2 copies entryA0",
+      "early_interleaving": "92C2 loads the first target BEFORE92C4 savesS0,92CA savesS2 and92CC savesRA; these are not interchangeable fault/alias prefixes",
+      "first_slot": {"load_PC":"0x92C2","raw_target":"READ32(S1+0x4C), initialS1=0x40000","call_PC":"0x92D6","link":"0x92D8","target_register":"A5","A0":"entry destination pointer","A1":"0x1FFFF7EC","A2":"8","A3_A4_A6_A7":"incoming ambient values, not explicitly overwritten before this opaque call","A5":"complete loaded target word; architectural JALR clears bit0"},
+      "tail_slot": {"load_PC":"0x92DE","raw_target":"fresh READ32(post-first-call liveS1+0x4C) intoT1; may differ from first read","source_PC":"0x92D8","A1":"post-first-call liveS0+0x7E8; not unconditionally0x1FFFF7E8","destination_PC":"0x92E6","A0":"post-first-call liveS2+8","A2":"6","A3_A4_A5_A6_A7":"first callee outputs/residues; second target isT1, notA5","tail_PC":"0x92F0","rd":0,"raw_caller_link":"fresh RA at current liveSP+12 before liveSP+=16; tail recipient clears targetbit0 and returns through this restored link"},
+      "restore_order": [[8,8],[1,12],[9,4],[18,0]],
+      "restore_interleaving": "92D8 computes source from liveS0 BEFORE92DC freshS0 restore;92DE loads target using liveS1 BEFORE92E4 freshS1 restore;92E6 forms destination using liveS2 BEFORE92EA freshS2 restore;92EC setsA2=6;92EE popsSP then tailJR",
+      "unconditional_entry_SP_or_saved_register_restoration": false,
+      "actual_installed_slot_body_known": false
+    },
+    "comparator": {
+      "entry":"0x92F2","end_exclusive":"0x9334","bytes":66,
+      "semantic_inputs":"A0 full pointer, A1 fullu32 length; length must equal14, no low8 truncation in this helper",
+      "invalid_length":"92F2 writesA5=14;92F4 BNE A1,A5→9330; A0=1; RET9332 with no frame/memory access. A1..A4/A6/A7 and S/GP/SP remain entry values because this path does not write them. This preservation is caller-visible even for values not read.",
+      "valid_entry":"SP-=32; save incomingS0 at liveSP+24; S0=A0 pointer; A0=currentSP; save RA at liveSP+28;9302 actualC.JAL92BA links9304",
+      "loop":"after builder returns, A5=0/A3=14; compute liveS0+index→A4, LBU A2 input FIRST; compute current liveSP+index→A4, LBU A4 constructed bytes SECOND; mismatch exits immediately, otherwise index+=1 until14",
+      "normal_results":"A0=0 for all fourteen equal bytes, A0=1 at first mismatch or invalidlength. No standard memcmp sign convention; no App NULL-pointer guard on valid length.",
+      "return":"fresh RA from currentliveSP+28, then freshS0 fromcurrentliveSP+24, SP+=32, JR RA; opaque callee/frame mutations can change continuation",
+      "no_direct_entry_A2_A7_dependency_proof_is_not_full_ABI":"The valid path calls a builder that invokes unknown resident targets. The invalid path preserves ambient values. Neither absence of direct reads nor the0/1 semantic result authorizes a narrow native call bridge.",
+      "GP":"no explicit App writes or reads in these122B; transitive resident/interrupt effects remain unknown"
+    }
+  },
+  "conditional_candidates_only": {
+    "versions":["V1.40 SDK candidate","V1.31 SDK candidate"],
+    "slot":"both captured words4004C=20000332",
+    "mapping":"existing sealed initialization proof maps flash405E2 inV1.40 and405A2 inV1.31 to RAM20000332",
+    "RAM_range":"20000332..2000036C exclusive; complete58B/18instructions localCFG, all branches internal and final exit RET20000352; next body is not included",
+    "body_sha256":"558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36",
+    "operations":"LUI MMIO base40024000; LW saved word4002420C intoA4; SW0 to4002420C; FENCE.I; then test A0null, A1null, A2zero. Early/normal exits rematerializeMMIO base and restore savedA4 before RET.",
+    "copy_loop":"for source/destination nonzero and positive length, indexA5 starts0; source LBUA6 atA1+index precedes destination SBA6 atA0+index; index increments BEFORE store; equality A5==A2 exits after length bytes. Forward byte copy, not memmove; no overlap/wrap/fault guard.",
+    "entry_dependencies":"A0 destination, A1 source, A2 count and RA control link; explicit local CFG defines all scratch reads before use. Memory/MMIO responses are additional inputs; absence of ambient operand reads is only about these exact candidate bytes.",
+    "explicit_GPR_outputs":"A0,A1,A2 not written; A0 therefore remains entrydestination on normal return, not a Boolean success code. ScratchA3/A4/A5/A6 may differ; A7 and RA/SP/GP/TP/S registers have no explicit body writes. No nested callee exists inside these58B.",
+    "ISA":"these18 instructions use standard RV32 integer/compressed/FENCE.I forms; no Xwchc byte-load interpretation is needed for this slice",
+    "normal_completion_conditions":"mapped copiedRAM is executable/coherent; exact candidate is present; accesses/MMIO/FENCE.I/return complete, code/slot remain appropriate, no asynchronous state alteration. First and second App slot reads remain fresh and can differ through memory effects.",
+    "no_transitive_ambient_argument_drop_authorization": true
+  },
+  "unknowns": [
+    "Installed TSL9 resident bytes, SDK version and physical ISA/profile are not measured by these public references.",
+    "0x1FFFF7EC/0x1FFFF7E8 identify numeric source locations only; no real chip UID values were read or transmitted.",
+    "Original slot4004C may use ambientGPRs, clobber S/GP/SP/RA, mutate memory/slots, fault, halt, transfer or never return.",
+    "First-copy stack/data aliasing or a changed liveSP/frame can affect source/destination, fresh saved words, second target and the comparator loop.",
+    "Candidate MMIO purpose/hardware behavior and installed startup mapping/coherence remain conditional; saved-register source shape alone is not hardware evidence.",
+    "This review cannot authorize dropping ambient args, installing a candidate, linking it as the original provider, flashing a BIN or changing the producer full8 bridge."
+  ],
+  "installed_resident_identity_proved": false,
+  "transitive_original_ABI_proved": false,
+  "original_or_candidate_executed": false,
+  "ISA_emulation": false,
+  "HOST_or_compiler_run": false,
+  "network": false,
+  "hardware": false
+}
