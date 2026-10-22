@@ -54,7 +54,7 @@ def flags(unit, mode):
     clock = kind in ('clock-query', 'clock-fields')
     irq = kind in ('irq-bank', 'delay-bank')
     spi = kind == 'spi-a0-a3-a4-a5'
-    packet = kind == 'packet-a0-a5'
+    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5')
     ring = kind == 'ring-bank'
     result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi or packet or ring else 'rv32imac_zicsr_zifencei'),
               '-mabi=ilp32', '-Os' if clock else '-Oz']
@@ -82,7 +82,7 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'spi-a0-a3-a4-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 13, 14, 15}]
-    elif kind == 'packet-a0-a5':
+    elif kind in ('packet-a0-a5', 'irq-adapter-a0-a5'):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'ring-bank':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {6, 10, 11, 12, 13, 14, 15, 16, 17, 28}]
@@ -280,6 +280,29 @@ def audit(base, record, manifest):
                      and pair[1]['relocations'] == [dict(owner='.text.tsl9_packet_receive_body', offset=at,
                           type=kind, addend=0, symbol=target) for at, kind, target in relocations],
                      'Three private architectural regions with 120 original noncontrol bytes; six pending relocations need separate adjacency/ABI evidence, not firmware readiness')
+            if unit['name'] == 'ring-irq-adapter':
+                regions = [
+                    ('tsl9_ring_irq_entry_12c24', 14, '203ff4761ab235fd4dc972c1319ac55557cab310bf1eb01c58dfe7fa5583a094'),
+                    ('tsl9_ring_irq_frame_12c32', 10, 'ad3c0f1a060b6e9dc02eaf0538b61b6b24d28936f0b7fd52625ae283969720ab'),
+                    ('tsl9_ring_irq_dispatch_12c3c', 18, '6a1fbdb870d4e659c6d5b907a1596dc94cde23db9a96fe8bb8799f6dffa731db'),
+                    ('tsl9_ring_irq_finish_12c4e', 6, '0bec86c6da5a0b7ae81fe8c9270303a2abb145a525d5b7986c0f673d1d464857'),
+                    ('tsl9_ring_irq_empty_12c54', 4, '1e7046a0a49788a582f66b43e7121816806539f4491168ed6b45d72da350013a'),
+                ]
+                edges = [
+                    ('tsl9_ring_irq_entry_12c24', 12, 44, 'tsl9_ring_irq_empty_12c54'),
+                    ('tsl9_ring_irq_frame_12c32', 6, 17, 'tsl9_irq_provider_18d78'),
+                    ('tsl9_ring_irq_dispatch_12c3c', 14, 17, 'tsl9_ring_insert_entry_12bc8'),
+                ]
+                need(pair[1]['functions'] == sorted([
+                    dict(name=n, binding=1, bytes=z, code_sha256=h) for n, z, h in regions], key=lambda x: x['name'])
+                    and pair[1]['allocated_sections'] == [
+                        dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
+                    and pair[1]['allocated_bytes'] == 52
+                    and pair[1]['UND'] == ['tsl9_irq_provider_18d78', 'tsl9_ring_insert_entry_12bc8']
+                    and pair[1]['relocations'] == [
+                        dict(owner='.text.'+owner, offset=at, type=kind, addend=0, symbol=target)
+                        for owner, at, kind, target in edges],
+                    'Five private IRQ regions;42 original noncontrol bytes and three honest pending edges; then-live SP/MRET and full IRQ/provider ABI need separate proof')
             if unit['name'] == 'ring-insert':
                 regions = [
                     ('tsl9_ring_insert_entry_12bc8', 8, '157b2d92ee3de3dd29a04ed155700152f87a87db4fcbb174b147c2c7ddc1809d'),

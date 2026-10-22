@@ -1,0 +1,139 @@
+{
+  "schema": "TSL9-ring-IRQ-adapter-milestone-v1",
+  "firmware_ready": false,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_operation": false,
+  "vendor_API_operation": false,
+  "BIN_generated": false,
+  "source_and_checker_sha256": {
+    "experiments/tsl9-ring-irq-adapter/src/irq_adapter.v1.c": "9ea7a45eee5ba79c06bb572c3881ff5411935e884cab9a992bb82112427f7f2b",
+    "experiments/tsl9-ring-irq-adapter/src/irq_adapter.v2.c": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596",
+    "experiments/tsl9-ring-irq-adapter/component.ld": "a62578a70fb912fab3fc4805112dc4d9e1fc524e38a2992be525aff05d600e69",
+    "experiments/tsl9-ring-irq-adapter/probe.py": "7ab70199ac55c5276b6950daba8bdacb9d63f8bde1212a5944a330b8f2a195fa",
+    "experiments/tsl9-ring-irq-adapter/verify.py": "b8d2c1ee3204d554ab6e446fdcc2807c8c117861ccf313a1c875d4ed77728023",
+    "src/native/irq/ring_irq_adapter.c": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596",
+    "scripts/verify-curated-source.py": "f7e02cb7e3753cf19798fd6209fb559291e1e4c7064d5295ec854a02e864bf30",
+    "src/source-manifest.json": "c0ab2e3d138c3f0e28fc6224980787aeeaf6c03c8f2af9c8d650163783a815a5"
+  },
+  "public_receipt_sha256": {
+    "analysis/ring-irq-adapter-2026-10-23/receipts/curated-source.json": "eea8b3c015ce56345be6bc646dd3b50c65f38cda1a8a4d6f66fd5b2adf5d0a43",
+    "analysis/ring-irq-adapter-2026-10-23/receipts/irq-c.json": "cad601ec3fa8ad298b3d64c9629646bc363b30a7ff510d0c329831d8b974d6e4",
+    "analysis/ring-irq-adapter-2026-10-23/receipts/irq-cpp.json": "bd17c39f96067886f8eacaa17dc417d5bf97e6bcdc36a6cb7d3b532e7f32710f"
+  },
+  "official_input": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "start": "0x12C24",
+    "end": "0x12C58",
+    "bytes": 52,
+    "instructions": 17,
+    "span_sha256": "44ab1cdae33f0151e8270b3769d9dca81847154bf88d3f691443d77200ece51a"
+  },
+  "native": {
+    "FUNCs": 5,
+    "region_bytes": [
+      14,
+      10,
+      18,
+      6,
+      4
+    ],
+    "ELF_sha256": "b9882d47ef30b0f24e8e15fc37f05e47f5bb4a602979f7cbdbbefa5d02b64c46",
+    "partial_ELF_sha256": "fed68f34e4cb2b27855d4ed2f620871deef6dd76a80ab20b0d9907957560ac06",
+    "noncontrol_bytes": 42,
+    "noncontrol_sha256": "06a4305460b08dfc29ace962e3296d5a9121f174e0911d025fbc52bf111775d6",
+    "noncontrol_original_equal": true,
+    "full52B_original_equal_claimed": false,
+    "UND_providers": [
+      "tsl9_irq_provider_18d78",
+      "tsl9_ring_insert_entry_12bc8"
+    ],
+    "pending_RELA": 3,
+    "pending_machine_immediates": 3,
+    "nominal_JAL_continuations": [
+      "0x12C3C",
+      "0x12C4E"
+    ],
+    "resolved_executable": false,
+    "full_provider_ABI_closed": false
+  },
+  "formal": {
+    "final_receipts": "experiments/tsl9-ring-irq-adapter/build/verified-v2/{c,cpp}/verification.json",
+    "inputs_per_language": 10,
+    "artifacts_per_language": 10,
+    "recipes_per_language": 5,
+    "MD_dependencies_per_language": 2,
+    "negative_controls_per_language": 89,
+    "negative_control_scopes": {
+      "raw_ELF_reparsed": 70,
+      "parsed_typed_rows": 3,
+      "IR_text": 11,
+      "IR_text_full_normalized_pin": 2,
+      "MD_text": 3
+    },
+    "whole_ELF_hash_disabled_in_all_negatives": true,
+    "full_IR_pin_negatives": 2,
+    "all17typed_instructions_checked": true,
+    "complete_ELF_and_normalized_IR_pinned": true,
+    "C_replay_exit": 0,
+    "CPP_replay_exit": 0,
+    "strict_C_exit": 1,
+    "strict_CPP_exit": 1,
+    "root_independent_review_and_both_replays": true
+  },
+  "curation": {
+    "files": 52,
+    "native_units": 26,
+    "comparisons": 52,
+    "objects": 104,
+    "input_files": 106,
+    "artifacts": 313,
+    "recipes": 104,
+    "MDs": 104,
+    "old50results_and301artifact_hashes_unchanged": true,
+    "old51file25unit_manifest_records_unchanged": true,
+    "raw_receipt": "build/curated-source/ring-irq-20261023-v2/verification.json",
+    "raw_original_sha256": "8736e11ca4f0b7f1368eab4531a39e92f564996eb9e47343349094575740ef80",
+    "original_preserved_locally": true,
+    "public_path_only_inverse_JSON_equal": true,
+    "public_derivative_is_original": false,
+    "original_receipt_replay_claimed_for_derivative": false
+  },
+  "historical": {
+    "v1_source_sha256": "9ea7a45eee5ba79c06bb572c3881ff5411935e884cab9a992bb82112427f7f2b",
+    "v1_bytes": 54,
+    "v1_instructions": 19,
+    "v1_failure": "SP imported as C value caused extra A1 moves and an SP write; 52B linker assertions rejected",
+    "v1_measurement": "experiments/tsl9-ring-irq-adapter/build/probe-v1/measurement.json",
+    "v1_measurement_sha256": "806b7283b5f39cbd5aa2462fad8d6fbb4c8d9378a8216b01dcb967e1c130cf4d",
+    "v2_measurement": "experiments/tsl9-ring-irq-adapter/build/probe-v2/measurement.json",
+    "v2_measurement_sha256": "02f6b3c62dbe4ac5e25246dd473571b7d789d906b08989b022fac876e4dcc727",
+    "earlier_formal_v1_is_historical_not_current_replay": true,
+    "earlier_curation_v1_raw_original_sha256": "eac24672cf9ddc8b59506ff0bf71ccd049674a33521b5bbc6e0eb58f9c95cb62",
+    "raw_originals_unchanged": true
+  },
+  "next_provider": {
+    "path": "analysis/ring-irq-adapter-2026-10-23/provider-decode.json",
+    "decode_sha256": "40a1d92919acca79348034084ca73453ceb9968a99f6a3cddddaf345e772bbdf",
+    "start": "0x18D78",
+    "end": "0x18E1C",
+    "bytes": 164,
+    "instructions": 53,
+    "span_sha256": "678a3cbf42bc02d5c730973675858a18e538af9fdc1cb74dd9296f220f487ae3",
+    "readable_C_reconstructed": false,
+    "no_calls_or_SP_RA_writes_in_bounded_span": true,
+    "physical_peripheral_identity_proved": false,
+    "feature_leads": [
+      "Length field masked15; no <=8 check in adapter.",
+      "Nonzero output+8 path does not write output+0, which adapter subsequently reads."
+    ],
+    "hardware_bug_claimed": false
+  },
+  "limitations": [
+    "Only42 original noncontrol bytes match; all3control immediates remain pending in ET_REL.",
+    "The earlier586B nominal graph is unchanged and does not include this IRQ adapter.",
+    "Private interrupt regions are not ordinary C ABI; complete IRQ, resident, silicon, memory and OTA compatibility remain unproved.",
+    "No complete firmware BIN or hardware validation."
+  ]
+}

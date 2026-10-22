@@ -2,7 +2,7 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 51 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
+This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 52 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
 
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
@@ -14,6 +14,7 @@ This directory is the working entry point for the readable source with the stron
 | [SPI transfer](native/receive/spi_transfer_ports.c) | SPI polling/data leaf | Eight machine regions and five RVC ports; separate nominal link matches all72B/25i, not ordinary C ABI or hardware proof |
 | [packet receive](native/receive/packet_receive.c) | Packet reception, DLC/ID and shared exit | 142B/52i across14/116/12B regions;120 noncontrol bytes match; four JALs and two finish branches remain pending; private ABI, hardware and flashing unproved |
 | [ring insert](native/receive/ring_insert.c) | Receive queue and fresh resident indirect call | Five private regions; nominal92B/32i entirely matches original. PC-derived table and physical post-call S0/S1 retained; resident identity, caller bounds and hardware unproved |
+| [ring IRQ adapter](native/irq/ring_irq_adapter.c) | Conditional frame and two MRET paths | 52B/17i;42 original noncontrol bytes, three pending edges and two UND providers; then-live SP ports, full IRQ/provider ABI unproved |
 | [native/irq](native/irq/interrupt_registers.c) | Four register helpers and IRQ initialization | Four helpers match at30B each; initializer normal outputs reviewed,180B vs original144B, asynchronous equivalence unproved |
 | [native/timer](native/timer/delay.c) | V4.1.60 delay register contract | Entire54-byte leaf matches official; separate TU, not substituted into NV callback/OTA BIN |
 | [native/nv/nv_write_frame_contract.c](native/nv/nv_write_frame_contract.c) | New NV write frame/fresh-source contract | Original32B frame/source slot and first40B outside JALs match; earlier LI0 leaves fault/IRQ gap |
@@ -46,9 +47,9 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The script selects twenty-five native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
+The script selects twenty-six native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
 
-The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed50 comparisons (100 objects). Its receipt is `build/curated-source/ring-20261023-v1/verification.json`; the earlier SPI curation receipt remains historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
+The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed52 comparisons (104 objects). Its receipt is `build/curated-source/ring-irq-20261023-v2/verification.json`; the earlier SPI curation receipt remains historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
 
 Replay an existing result without compiling:
 

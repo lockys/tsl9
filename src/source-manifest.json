@@ -417,6 +417,13 @@
       "replacements": [],
       "origin_sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d",
       "sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d"
+    },
+    {
+      "origin": "experiments/tsl9-ring-irq-adapter/src/irq_adapter.v2.c",
+      "destination": "src/native/irq/ring_irq_adapter.c",
+      "replacements": [],
+      "origin_sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596",
+      "sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596"
     }
   ],
   "native_units": [
@@ -652,6 +659,19 @@
       ],
       "scope": "Five private regions8/16/50/10/8B and3defined native edges; nominal92B/32i matches original at12BC8. C arithmetic/provider load plus explicit frame/slot/S0/S1 ports. Resident/caller/IRQ/hardware and whole firmware remain unproved.",
       "origin_unit_sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d"
+    },
+    {
+      "name": "ring-irq-adapter",
+      "profile": "irq-adapter-a0-a5",
+      "origin_unit": "experiments/tsl9-ring-irq-adapter/src/irq_adapter.v2.c",
+      "curated_unit": "src/native/irq/ring_irq_adapter.c",
+      "evidence": "experiments/tsl9-ring-irq-adapter/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-ring-irq-adapter/build/verified-v2/c/verification.json",
+        "experiments/tsl9-ring-irq-adapter/build/verified-v2/cpp/verification.json"
+      ],
+      "scope": "52B/17i across genuine14/10/18/6/4B interrupt regions;42noncontrol original bytes equal. Three pending relocations retain two genuine UND providers and a defined empty MRET branch. C word MMIO read/mask/tag plus explicit then-live SP/frame/JAL/MRET ports; no ordinary C ABI, full IRQ/resident/hardware or firmware readiness proof.",
+      "origin_unit_sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596"
     }
   ],
   "legacy_groups": [
