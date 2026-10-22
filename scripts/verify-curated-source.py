@@ -71,6 +71,8 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {2, 5, 10, 11, 12}]
     elif kind == 'leaf-a4-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {14, 15}]
+    elif kind == 'consumer-a0-a4-a5':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 14, 15}]
     elif kind == 'adc-bank':
         result += ['-ffixed-x' + str(n) for n in range(5, 32) if n not in range(10, 17)]
     return result
@@ -159,6 +161,22 @@ def audit(base, record, manifest):
                      and len(pair[1]['allocated_sections'])==1
                      and pair[1]['allocated_sections'][0]['flags']==6,
                      'Whole 76-byte status/flag IRQ leaf; complete IRQ entry context and physical hardware unproved')
+            if unit['name'] == 'irq-flag-consumer':
+                need(pair[1]['functions'] == [
+                     dict(name='tsl9_flag_consumer_body', binding=1, bytes=54,
+                          code_sha256='9172fbe7045d0324403bdecd1bf6adef23063708e1d56002adad5ad7f6167ce0'),
+                     dict(name='tsl9_flag_consumer_entry_17002', binding=1, bytes=8,
+                          code_sha256='541ee72019f08804888b256bd0e83014f2c569eb0e0b3bbf6aa8859eb4f6febc')]
+                     and pair[1]['UND'] == ['tsl9_receive_entry_16b0a']
+                     and pair[1]['relocations'] == [
+                         dict(owner='.text.tsl9_flag_consumer_body', offset=n, type=17,
+                              addend=0, symbol='tsl9_receive_entry_16b0a') for n in (14, 40)]
+                     and pair[1]['allocated_bytes'] == 62
+                     and [(s['name'], s['bytes'], s['flags'], s['type'])
+                          for s in pair[1]['allocated_sections']] == [
+                              ('.text.tsl9_flag_consumer_entry_17002', 8, 6, 1),
+                              ('.text.tsl9_flag_consumer_body', 54, 6, 1)],
+                     'Measured caller object with exactly two open calls; adjacency and original non-call bytes require separate component verifier')
             if unit['name'] == 'delay-registers':
                 need(pair[1]['functions'] == [dict(name='tsl9_delay_registers_19764', binding=1, bytes=54,
                      code_sha256='0bcb7577e755f1ca9736b0fd0b05e4d3f0a0e1e0cd3a59976b947191d3df74a4')], 'Exact original delay leaf')

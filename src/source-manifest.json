@@ -368,6 +368,13 @@
       "replacements": [],
       "origin_sha256": "a6c859e8e8a31e507bec11755aa147c622cc27ff0d1bc2606d76b9ce373d146e",
       "sha256": "a6c859e8e8a31e507bec11755aa147c622cc27ff0d1bc2606d76b9ce373d146e"
+    },
+    {
+      "origin": "experiments/tsl9-irq-flag-consumer/src/flag_consumer.c",
+      "destination": "src/native/irq/flag_consumer.c",
+      "replacements": [],
+      "origin_sha256": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12",
+      "sha256": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12"
     }
   ],
   "native_units": [
@@ -532,6 +539,15 @@
       "evidence": "experiments/tsl9-irq-flag-leaf/README.md",
       "scope": "Full76B21i handler at16FB6 equals the official function under separately measured curated flags. Two fresh word status reads, separate GP+360 byte updates and MRET retained; entry/IRQ context, physical peripheral and complete vector/APP/OTA compatibility unproved. Formal component ISA flags omit zifencei; this curated profile includes it.",
       "origin_unit_sha256": "a6c859e8e8a31e507bec11755aa147c622cc27ff0d1bc2606d76b9ce373d146e"
+    },
+    {
+      "name": "irq-flag-consumer",
+      "profile": "consumer-a0-a4-a5",
+      "origin_unit": "experiments/tsl9-irq-flag-consumer/src/flag_consumer.c",
+      "curated_unit": "src/native/irq/flag_consumer.c",
+      "evidence": "experiments/tsl9-irq-flag-consumer/README.md",
+      "scope": "62B caller17002: entry8B immediately falls through to body54B in actual ET_REL partial link. All54B outside two genuine unresolved R_RISCV_JAL windows equal official bytes; calls to receive16B0A and its provider ABI remain open. No resolved whole-code equivalence or firmware/OTA readiness.",
+      "origin_unit_sha256": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12"
     }
   ],
   "legacy_groups": [

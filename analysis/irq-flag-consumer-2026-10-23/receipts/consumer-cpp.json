@@ -1,0 +1,1499 @@
+{
+  "schema": "TSL9-flag-consumer-open-component-v1",
+  "mode": "cpp",
+  "firmware": "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "inputs_before": {
+    "${LLVM_BIN}/clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "${LLVM_BIN}/ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "${LLVM_BIN}/llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+    "${PROJECT_ROOT}/analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/component.ld": "f52c36c59ea09f93b7ce8eadc4e39d49dc1704ab4745202ef1fd102149344ba9",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/verify.py": "5a7314d3f63e20babca57443ed55efcb00ff97487503e409b68ebe1d56871550",
+    "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "inputs_after": {
+    "${LLVM_BIN}/clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "${LLVM_BIN}/ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "${LLVM_BIN}/llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+    "${PROJECT_ROOT}/analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/component.ld": "f52c36c59ea09f93b7ce8eadc4e39d49dc1704ab4745202ef1fd102149344ba9",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/verify.py": "5a7314d3f63e20babca57443ed55efcb00ff97487503e409b68ebe1d56871550",
+    "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "compiler_dependencies": {
+    "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12"
+  },
+  "commands": [
+    {
+      "label": "compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-c",
+        "-MD",
+        "-MF",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/build/verified-v2/cpp/native.d",
+        "-MT",
+        "native.o",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/build/verified-v2/cpp/native.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/build/verified-v2/cpp/native.ll"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "combine",
+      "argv": [
+        "${LLVM_BIN}/ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/component.ld",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/build/verified-v2/cpp/native.o",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/build/verified-v2/cpp/COMPONENT-OPEN-CALLS.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "object",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/build/verified-v2/cpp/native.o"
+      ],
+      "exit": 0,
+      "log_sha256": "2c0119084dd22e0f95ed94c67d3a5bb057499e1f286beced5cbedccae23a6d83"
+    },
+    {
+      "label": "combined",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/build/verified-v2/cpp/COMPONENT-OPEN-CALLS.o"
+      ],
+      "exit": 0,
+      "log_sha256": "13ccd5681c831ce67e7e5f31b8314e40ba5f0424a235cb3ee169c5a3a6f0de19"
+    }
+  ],
+  "original_resolved_trace": {
+    "bytes": 62,
+    "instructions": 21,
+    "calls": [
+      {
+        "offset": 22,
+        "encoded_displacement": -1294,
+        "resolved_target": "0x16b0a",
+        "pending_relocation": false,
+        "original_continuation": "0x1701c"
+      },
+      {
+        "offset": 48,
+        "encoded_displacement": -1320,
+        "resolved_target": "0x16b0a",
+        "pending_relocation": false,
+        "original_continuation": "0x17036"
+      }
+    ],
+    "rows": [
+      {
+        "offset": 0,
+        "bytes": 2,
+        "hex": "4111"
+      },
+      {
+        "offset": 2,
+        "bytes": 4,
+        "hex": "83c78116"
+      },
+      {
+        "offset": 6,
+        "bytes": 2,
+        "hex": "06c6"
+      },
+      {
+        "offset": 8,
+        "bytes": 4,
+        "hex": "13f71700"
+      },
+      {
+        "offset": 12,
+        "bytes": 2,
+        "hex": "09cb"
+      },
+      {
+        "offset": 14,
+        "bytes": 2,
+        "hex": "f99b"
+      },
+      {
+        "offset": 16,
+        "bytes": 2,
+        "hex": "0545"
+      },
+      {
+        "offset": 18,
+        "bytes": 4,
+        "hex": "2384f116"
+      },
+      {
+        "offset": 22,
+        "bytes": 4,
+        "hex": "eff03faf"
+      },
+      {
+        "offset": 26,
+        "bytes": 4,
+        "hex": "a3840116"
+      },
+      {
+        "offset": 30,
+        "bytes": 4,
+        "hex": "83c78116"
+      },
+      {
+        "offset": 34,
+        "bytes": 4,
+        "hex": "13f72700"
+      },
+      {
+        "offset": 38,
+        "bytes": 2,
+        "hex": "09cb"
+      },
+      {
+        "offset": 40,
+        "bytes": 2,
+        "hex": "f59b"
+      },
+      {
+        "offset": 42,
+        "bytes": 2,
+        "hex": "0945"
+      },
+      {
+        "offset": 44,
+        "bytes": 4,
+        "hex": "2384f116"
+      },
+      {
+        "offset": 48,
+        "bytes": 4,
+        "hex": "eff09fad"
+      },
+      {
+        "offset": 52,
+        "bytes": 4,
+        "hex": "23850116"
+      },
+      {
+        "offset": 56,
+        "bytes": 2,
+        "hex": "b240"
+      },
+      {
+        "offset": 58,
+        "bytes": 2,
+        "hex": "4101"
+      },
+      {
+        "offset": 60,
+        "bytes": 2,
+        "hex": "8280"
+      }
+    ],
+    "frame_bytes": 16,
+    "prefix_order": [
+      "SP-16",
+      "LBU8 liveGP+360",
+      "SW32 RA,12SP"
+    ],
+    "exit_order": [
+      "LW32 RA,12SP",
+      "SP+16",
+      "RET"
+    ],
+    "branches": [
+      [
+        12,
+        30
+      ],
+      [
+        38,
+        56
+      ]
+    ],
+    "flag_byte_load_sites": 2,
+    "flag_byte_store_sites": 4,
+    "own_GP_writes": false,
+    "C_allocator_bank": [
+      "a0",
+      "a4",
+      "a5"
+    ],
+    "architectural_port_registers": [
+      "sp",
+      "ra"
+    ]
+  },
+  "negative_controls": [
+    {
+      "label": "SP-allocation",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed SP/channel at+0",
+      "full_hash_used": false
+    },
+    {
+      "label": "first-LBU-width",
+      "category": "typed-raw",
+      "rejected_by": "Typed immediate/load at+2",
+      "full_hash_used": false
+    },
+    {
+      "label": "RA-save-slot",
+      "category": "typed-raw",
+      "rejected_by": "RA save12SP after first byte read",
+      "full_hash_used": false
+    },
+    {
+      "label": "first-mask",
+      "category": "typed-raw",
+      "rejected_by": "Typed immediate/load at+8",
+      "full_hash_used": false
+    },
+    {
+      "label": "first-branch-polarity",
+      "category": "typed-raw",
+      "rejected_by": "Typed BEQZ A4 target at+12",
+      "full_hash_used": false
+    },
+    {
+      "label": "clear-bit1",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed A5 clear mask at+14",
+      "full_hash_used": false
+    },
+    {
+      "label": "channel1",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed SP/channel at+16",
+      "full_hash_used": false
+    },
+    {
+      "label": "first-SB-width",
+      "category": "typed-raw",
+      "rejected_by": "Typed SB8 currentGP at+18",
+      "full_hash_used": false
+    },
+    {
+      "label": "JAL-not-RA",
+      "category": "typed-raw",
+      "rejected_by": "Four-byte JAL RA at+22",
+      "full_hash_used": false
+    },
+    {
+      "label": "clear361-offset",
+      "category": "typed-raw",
+      "rejected_by": "Typed SB8 currentGP at+26",
+      "full_hash_used": false
+    },
+    {
+      "label": "second-fresh-GP-source",
+      "category": "typed-raw",
+      "rejected_by": "Typed immediate/load at+30",
+      "full_hash_used": false
+    },
+    {
+      "label": "second-branch-target",
+      "category": "typed-raw",
+      "rejected_by": "Typed BEQZ A4 target at+38",
+      "full_hash_used": false
+    },
+    {
+      "label": "clear-bit2",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed A5 clear mask at+40",
+      "full_hash_used": false
+    },
+    {
+      "label": "channel2",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed SP/channel at+42",
+      "full_hash_used": false
+    },
+    {
+      "label": "nonzero-open-JAL-immediate",
+      "category": "typed-raw",
+      "rejected_by": "Open JAL raw word000000ef",
+      "full_hash_used": false
+    },
+    {
+      "label": "clear362-offset",
+      "category": "typed-raw",
+      "rejected_by": "Typed SB8 currentGP at+52",
+      "full_hash_used": false
+    },
+    {
+      "label": "fresh-RA-reload-slot",
+      "category": "typed-raw",
+      "rejected_by": "Fresh RA reload12SP after possible calls",
+      "full_hash_used": false
+    },
+    {
+      "label": "SP-restore",
+      "category": "typed-raw",
+      "rejected_by": "Typed compressed SP/channel at+58",
+      "full_hash_used": false
+    },
+    {
+      "label": "RET-other-register",
+      "category": "typed-raw",
+      "rejected_by": "RET via freshly reloaded RA",
+      "full_hash_used": false
+    },
+    {
+      "label": "prefix-read-before-save-order",
+      "category": "typed-raw",
+      "rejected_by": "Typed immediate/load at+2",
+      "full_hash_used": false
+    },
+    {
+      "label": "reloc-type",
+      "category": "actual-ELF-metadata",
+      "rejected_by": "Exactly two open R_RISCV_JAL17 sites, target UND and zero addends",
+      "full_hash_used": false
+    },
+    {
+      "label": "reloc-addend",
+      "category": "actual-ELF-metadata",
+      "rejected_by": "Exactly two open R_RISCV_JAL17 sites, target UND and zero addends",
+      "full_hash_used": false
+    },
+    {
+      "label": "reloc-site",
+      "category": "actual-ELF-metadata",
+      "rejected_by": "Exactly two open R_RISCV_JAL17 sites, target UND and zero addends",
+      "full_hash_used": false
+    },
+    {
+      "label": "fake-ABS-provider",
+      "category": "actual-ELF-metadata",
+      "rejected_by": "Exact two FUNCs and genuine sole UND; no ABS or alias provider",
+      "full_hash_used": false
+    },
+    {
+      "label": "broken-body-adjacency",
+      "category": "actual-ELF-metadata",
+      "rejected_by": "Exact two FUNCs and genuine sole UND; no ABS or alias provider",
+      "full_hash_used": false
+    },
+    {
+      "label": "false-nominal-VA",
+      "category": "actual-ELF-metadata",
+      "rejected_by": "Exact ET_REL section inventory, metadata and zero addresses",
+      "full_hash_used": false
+    },
+    {
+      "label": "GP-port",
+      "category": "IR-finite-gates",
+      "rejected_by": "Five distinct liveGP imports",
+      "full_hash_used": false
+    },
+    {
+      "label": "fresh-GP-after-first-call",
+      "category": "IR-finite-gates",
+      "rejected_by": "Five distinct liveGP imports",
+      "full_hash_used": false
+    },
+    {
+      "label": "reuse-first-flag",
+      "category": "IR-finite-gates",
+      "rejected_by": "One fresh body byte read and four volatile byte stores",
+      "full_hash_used": false
+    },
+    {
+      "label": "second-branch-CFG",
+      "category": "IR-finite-gates",
+      "rejected_by": "Fresh GP byte dataflow and separate branch CFG",
+      "full_hash_used": false
+    },
+    {
+      "label": "byte-store-width",
+      "category": "IR-finite-gates",
+      "rejected_by": "One fresh body byte read and four volatile byte stores",
+      "full_hash_used": false
+    },
+    {
+      "label": "postcall-clear361",
+      "category": "IR-finite-gates",
+      "rejected_by": "Fresh GP byte dataflow and separate branch CFG",
+      "full_hash_used": false
+    },
+    {
+      "label": "return-slot",
+      "category": "IR-finite-gates",
+      "rejected_by": "Fresh RA slot reload, SP restore, RET; no A0 normalization",
+      "full_hash_used": false
+    },
+    {
+      "label": "entry-read-order",
+      "category": "IR-finite-gates",
+      "rejected_by": "Exact architectural entry8B order in IR",
+      "full_hash_used": false
+    },
+    {
+      "label": "foreign-callee",
+      "category": "IR-finite-gates",
+      "rejected_by": "Two private JAL ports with opaque A0 result and only declared scratch bank",
+      "full_hash_used": false
+    },
+    {
+      "label": "A0-normalized-at-return",
+      "category": "IR-finite-gates",
+      "rejected_by": "Fresh RA slot reload, SP restore, RET; no A0 normalization",
+      "full_hash_used": false
+    },
+    {
+      "label": "full-SSA-store-value",
+      "category": "full-IR-SSA-hash",
+      "rejected_by": "Complete mode-specific entry/body SSA and CFG hash",
+      "full_hash_used": true
+    },
+    {
+      "label": "full-SSA-clear-dataflow",
+      "category": "full-IR-SSA-hash",
+      "rejected_by": "Complete mode-specific entry/body SSA and CFG hash",
+      "full_hash_used": true
+    }
+  ],
+  "result": {
+    "passed": true,
+    "actual_ELFs": 2,
+    "ELFs": [
+      {
+        "file_kind": "ET_REL",
+        "combined": false,
+        "entry_meaning": "none: relocatable component",
+        "defined_functions": [
+          {
+            "name": "tsl9_flag_consumer_entry_17002",
+            "value": 0,
+            "size": 8,
+            "info": 18,
+            "other": 0,
+            "index": 3
+          },
+          {
+            "name": "tsl9_flag_consumer_body",
+            "value": 0,
+            "size": 54,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          }
+        ],
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 213,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_flag_consumer_entry_17002",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 8,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_flag_consumer_body",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 54,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".rela.text.tsl9_flag_consumer_body",
+            "type": 4,
+            "flags": 64,
+            "address": 0,
+            "size": 24,
+            "link": 10,
+            "info": 4,
+            "alignment": 4,
+            "entry_size": 12
+          },
+          {
+            "name": ".comment",
+            "type": 1,
+            "flags": 48,
+            "address": 0,
+            "size": 159,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1
+          },
+          {
+            "name": ".note.GNU-stack",
+            "type": 1,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".riscv.attributes",
+            "type": 1879048195,
+            "flags": 0,
+            "address": 0,
+            "size": 64,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".llvm_addrsig",
+            "type": 1879002115,
+            "flags": 2147483648,
+            "address": 0,
+            "size": 2,
+            "link": 10,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 144,
+            "link": 1,
+            "info": 6,
+            "alignment": 4,
+            "entry_size": 16
+          }
+        ],
+        "symbols": [
+          {
+            "name": "",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 0
+          },
+          {
+            "name": "flag_consumer.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$x.0",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 3
+          },
+          {
+            "name": "$x.1",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 4
+          },
+          {
+            "name": "$d.2",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 6
+          },
+          {
+            "name": "$d.3",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 8
+          },
+          {
+            "name": "tsl9_flag_consumer_entry_17002",
+            "value": 0,
+            "size": 8,
+            "info": 18,
+            "other": 0,
+            "index": 3
+          },
+          {
+            "name": "tsl9_flag_consumer_body",
+            "value": 0,
+            "size": 54,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          },
+          {
+            "name": "tsl9_receive_entry_16b0a",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        ],
+        "relocations": [
+          {
+            "owner": ".text.tsl9_flag_consumer_body",
+            "offset": 14,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_entry_16b0a",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".text.tsl9_flag_consumer_body",
+            "offset": 40,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_entry_16b0a",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          }
+        ],
+        "allocated_bytes": 62,
+        "UND_providers": [
+          "tsl9_receive_entry_16b0a"
+        ],
+        "ABS_providers": [],
+        "local_ABS_metadata": [
+          {
+            "name": "flag_consumer.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          }
+        ],
+        "code_sha256": "0eb43a696dfaea13a8857fe5d9e35c3a43811e373644237bdac634e2aaf3f580",
+        "noncall54_sha256": "c7401860f08f143e7fd39ca6c9d85b6a539aea9c813ddb13ed67441b0403ac25",
+        "trace": {
+          "bytes": 62,
+          "instructions": 21,
+          "calls": [
+            {
+              "offset": 22,
+              "encoded_displacement": 0,
+              "resolved_target": null,
+              "pending_relocation": true,
+              "original_continuation": "0x1701c"
+            },
+            {
+              "offset": 48,
+              "encoded_displacement": 0,
+              "resolved_target": null,
+              "pending_relocation": true,
+              "original_continuation": "0x17036"
+            }
+          ],
+          "rows": [
+            {
+              "offset": 0,
+              "bytes": 2,
+              "hex": "4111"
+            },
+            {
+              "offset": 2,
+              "bytes": 4,
+              "hex": "83c78116"
+            },
+            {
+              "offset": 6,
+              "bytes": 2,
+              "hex": "06c6"
+            },
+            {
+              "offset": 8,
+              "bytes": 4,
+              "hex": "13f71700"
+            },
+            {
+              "offset": 12,
+              "bytes": 2,
+              "hex": "09cb"
+            },
+            {
+              "offset": 14,
+              "bytes": 2,
+              "hex": "f99b"
+            },
+            {
+              "offset": 16,
+              "bytes": 2,
+              "hex": "0545"
+            },
+            {
+              "offset": 18,
+              "bytes": 4,
+              "hex": "2384f116"
+            },
+            {
+              "offset": 22,
+              "bytes": 4,
+              "hex": "ef000000"
+            },
+            {
+              "offset": 26,
+              "bytes": 4,
+              "hex": "a3840116"
+            },
+            {
+              "offset": 30,
+              "bytes": 4,
+              "hex": "83c78116"
+            },
+            {
+              "offset": 34,
+              "bytes": 4,
+              "hex": "13f72700"
+            },
+            {
+              "offset": 38,
+              "bytes": 2,
+              "hex": "09cb"
+            },
+            {
+              "offset": 40,
+              "bytes": 2,
+              "hex": "f59b"
+            },
+            {
+              "offset": 42,
+              "bytes": 2,
+              "hex": "0945"
+            },
+            {
+              "offset": 44,
+              "bytes": 4,
+              "hex": "2384f116"
+            },
+            {
+              "offset": 48,
+              "bytes": 4,
+              "hex": "ef000000"
+            },
+            {
+              "offset": 52,
+              "bytes": 4,
+              "hex": "23850116"
+            },
+            {
+              "offset": 56,
+              "bytes": 2,
+              "hex": "b240"
+            },
+            {
+              "offset": 58,
+              "bytes": 2,
+              "hex": "4101"
+            },
+            {
+              "offset": 60,
+              "bytes": 2,
+              "hex": "8280"
+            }
+          ],
+          "frame_bytes": 16,
+          "prefix_order": [
+            "SP-16",
+            "LBU8 liveGP+360",
+            "SW32 RA,12SP"
+          ],
+          "exit_order": [
+            "LW32 RA,12SP",
+            "SP+16",
+            "RET"
+          ],
+          "branches": [
+            [
+              12,
+              30
+            ],
+            [
+              38,
+              56
+            ]
+          ],
+          "flag_byte_load_sites": 2,
+          "flag_byte_store_sites": 4,
+          "own_GP_writes": false,
+          "C_allocator_bank": [
+            "a0",
+            "a4",
+            "a5"
+          ],
+          "architectural_port_registers": [
+            "sp",
+            "ra"
+          ]
+        }
+      },
+      {
+        "file_kind": "ET_REL",
+        "combined": true,
+        "entry_meaning": "none: relocatable component",
+        "defined_functions": [
+          {
+            "name": "tsl9_flag_consumer_entry_17002",
+            "value": 0,
+            "size": 8,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_flag_consumer_body",
+            "value": 8,
+            "size": 54,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          }
+        ],
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".consumer",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 62,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".rela.consumer",
+            "type": 4,
+            "flags": 64,
+            "address": 0,
+            "size": 24,
+            "link": 5,
+            "info": 1,
+            "alignment": 4,
+            "entry_size": 12
+          },
+          {
+            "name": ".llvm_addrsig",
+            "type": 1879002115,
+            "flags": 2147483648,
+            "address": 0,
+            "size": 2,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 176,
+            "link": 7,
+            "info": 8,
+            "alignment": 4,
+            "entry_size": 16
+          },
+          {
+            "name": ".shstrtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 72,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 112,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 0
+          }
+        ],
+        "symbols": [
+          {
+            "name": "",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 0
+          },
+          {
+            "name": "flag_consumer.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$x.0",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "$x.1",
+            "value": 8,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "$d.3",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "",
+            "value": 0,
+            "size": 0,
+            "info": 3,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "",
+            "value": 0,
+            "size": 0,
+            "info": 3,
+            "other": 0,
+            "index": 2
+          },
+          {
+            "name": "",
+            "value": 0,
+            "size": 0,
+            "info": 3,
+            "other": 0,
+            "index": 4
+          },
+          {
+            "name": "tsl9_flag_consumer_entry_17002",
+            "value": 0,
+            "size": 8,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_flag_consumer_body",
+            "value": 8,
+            "size": 54,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "tsl9_receive_entry_16b0a",
+            "value": 0,
+            "size": 0,
+            "info": 16,
+            "other": 0,
+            "index": 0
+          }
+        ],
+        "relocations": [
+          {
+            "owner": ".consumer",
+            "offset": 22,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_entry_16b0a",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          },
+          {
+            "owner": ".consumer",
+            "offset": 48,
+            "type": 17,
+            "addend": 0,
+            "symbol": {
+              "name": "tsl9_receive_entry_16b0a",
+              "value": 0,
+              "size": 0,
+              "info": 16,
+              "other": 0,
+              "index": 0
+            }
+          }
+        ],
+        "allocated_bytes": 62,
+        "UND_providers": [
+          "tsl9_receive_entry_16b0a"
+        ],
+        "ABS_providers": [],
+        "local_ABS_metadata": [
+          {
+            "name": "flag_consumer.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$d.3",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 65521
+          }
+        ],
+        "code_sha256": "0eb43a696dfaea13a8857fe5d9e35c3a43811e373644237bdac634e2aaf3f580",
+        "noncall54_sha256": "c7401860f08f143e7fd39ca6c9d85b6a539aea9c813ddb13ed67441b0403ac25",
+        "trace": {
+          "bytes": 62,
+          "instructions": 21,
+          "calls": [
+            {
+              "offset": 22,
+              "encoded_displacement": 0,
+              "resolved_target": null,
+              "pending_relocation": true,
+              "original_continuation": "0x1701c"
+            },
+            {
+              "offset": 48,
+              "encoded_displacement": 0,
+              "resolved_target": null,
+              "pending_relocation": true,
+              "original_continuation": "0x17036"
+            }
+          ],
+          "rows": [
+            {
+              "offset": 0,
+              "bytes": 2,
+              "hex": "4111"
+            },
+            {
+              "offset": 2,
+              "bytes": 4,
+              "hex": "83c78116"
+            },
+            {
+              "offset": 6,
+              "bytes": 2,
+              "hex": "06c6"
+            },
+            {
+              "offset": 8,
+              "bytes": 4,
+              "hex": "13f71700"
+            },
+            {
+              "offset": 12,
+              "bytes": 2,
+              "hex": "09cb"
+            },
+            {
+              "offset": 14,
+              "bytes": 2,
+              "hex": "f99b"
+            },
+            {
+              "offset": 16,
+              "bytes": 2,
+              "hex": "0545"
+            },
+            {
+              "offset": 18,
+              "bytes": 4,
+              "hex": "2384f116"
+            },
+            {
+              "offset": 22,
+              "bytes": 4,
+              "hex": "ef000000"
+            },
+            {
+              "offset": 26,
+              "bytes": 4,
+              "hex": "a3840116"
+            },
+            {
+              "offset": 30,
+              "bytes": 4,
+              "hex": "83c78116"
+            },
+            {
+              "offset": 34,
+              "bytes": 4,
+              "hex": "13f72700"
+            },
+            {
+              "offset": 38,
+              "bytes": 2,
+              "hex": "09cb"
+            },
+            {
+              "offset": 40,
+              "bytes": 2,
+              "hex": "f59b"
+            },
+            {
+              "offset": 42,
+              "bytes": 2,
+              "hex": "0945"
+            },
+            {
+              "offset": 44,
+              "bytes": 4,
+              "hex": "2384f116"
+            },
+            {
+              "offset": 48,
+              "bytes": 4,
+              "hex": "ef000000"
+            },
+            {
+              "offset": 52,
+              "bytes": 4,
+              "hex": "23850116"
+            },
+            {
+              "offset": 56,
+              "bytes": 2,
+              "hex": "b240"
+            },
+            {
+              "offset": 58,
+              "bytes": 2,
+              "hex": "4101"
+            },
+            {
+              "offset": 60,
+              "bytes": 2,
+              "hex": "8280"
+            }
+          ],
+          "frame_bytes": 16,
+          "prefix_order": [
+            "SP-16",
+            "LBU8 liveGP+360",
+            "SW32 RA,12SP"
+          ],
+          "exit_order": [
+            "LW32 RA,12SP",
+            "SP+16",
+            "RET"
+          ],
+          "branches": [
+            [
+              12,
+              30
+            ],
+            [
+              38,
+              56
+            ]
+          ],
+          "flag_byte_load_sites": 2,
+          "flag_byte_store_sites": 4,
+          "own_GP_writes": false,
+          "C_allocator_bank": [
+            "a0",
+            "a4",
+            "a5"
+          ],
+          "architectural_port_registers": [
+            "sp",
+            "ra"
+          ]
+        }
+      }
+    ],
+    "IR": {
+      "entry_sha256": "c4a974c968b62b83d5b03b3dfa49a01737e46158f91cfcf73fd3625555acce8d",
+      "body_sha256": "7b5c32e78d9a600daa5e384ca9d13e345d7f3ea7bda81cd6e9c1186cfa671364",
+      "body_lines": 56,
+      "live_GP_imports": 5,
+      "C_return_ABI": false,
+      "source_body_exit": "architectural RET port followed by unreachable",
+      "A0_residue": "entry A0 if no call; opaque returned A0 from last taken JAL otherwise"
+    },
+    "objdump": [
+      {
+        "instructions": 21,
+        "bytes": 62
+      },
+      {
+        "instructions": 21,
+        "bytes": 62
+      }
+    ],
+    "original62_sha256": "dd6b0fa91982cf653657b71e2d2bfaf2d6349ccc12f2b31561483e40572b0c69",
+    "noncall54_sha256": "c7401860f08f143e7fd39ca6c9d85b6a539aea9c813ddb13ed67441b0403ac25",
+    "full62_equal_to_resolved_original": false,
+    "whole_firmware_equivalence": false,
+    "emitted_nominal_VA": null,
+    "open_JAL_sites": [
+      22,
+      48
+    ],
+    "open_provider": "tsl9_receive_entry_16b0a",
+    "provider_implemented": false,
+    "firmware_ready": false,
+    "A0_residue": [
+      "No call: entry live A0 unchanged.",
+      "First call only: opaque first returned A0.",
+      "Second call taken: opaque second returned A0."
+    ],
+    "limitations": [
+      "Only a relocatable component; no executable output or physical placement.",
+      "Two JAL relocations intentionally remain unresolved to one genuine UND provider.",
+      "Provider GP/SP/register effects, full IRQ/fault context and whole firmware are unproved."
+    ],
+    "target_execution": false,
+    "ISA_emulation": false,
+    "MMIO_execution": false,
+    "hardware": false,
+    "network": false,
+    "BIN_generated": false
+  },
+  "artifacts": {
+    "combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "combined.log": "13ccd5681c831ce67e7e5f31b8314e40ba5f0424a235cb3ee169c5a3a6f0de19",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "COMPONENT-OPEN-CALLS.o": "cf05a2213d5aab4e4d3089c15ada9563faad896939a3fde3b6bbd36861e6109d",
+    "IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native.d": "942cc4ee62acb1e7ada73f9771a8fa7d78cbefa2d09d6a79250f0c46168ec254",
+    "native.ll": "9f5bf4d16a6fa2febbb51d9f7eab03b7634555ad9dda9082da00d8f55a5e25aa",
+    "native.o": "8f5f0d67afcc1e03b6454afba267aa883cc302dcd1cf1e88b999ffd61827829d",
+    "object.log": "2c0119084dd22e0f95ed94c67d3a5bb057499e1f286beced5cbedccae23a6d83"
+  }
+}

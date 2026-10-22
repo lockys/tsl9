@@ -1,0 +1,179 @@
+{
+  "schema": "TSL9-flag-consumer-open-component-summary-v1",
+  "date": "2026-10-23",
+  "scope": "Offline C/C++ reconstruction of original17002 caller with two deliberately unresolved calls, and bounded receive-chain static analysis.",
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "consumer": {
+    "original_range": [
+      "0x17002",
+      "0x17040"
+    ],
+    "original_bytes": 62,
+    "original_instructions": 21,
+    "original_sha256": "dd6b0fa91982cf653657b71e2d2bfaf2d6349ccc12f2b31561483e40572b0c69",
+    "source": "src/native/irq/flag_consumer.c",
+    "origin": "experiments/tsl9-irq-flag-consumer/src/flag_consumer.c",
+    "source_sha256": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12",
+    "entry_bytes": 8,
+    "body_bytes": 54,
+    "actual_partial_link": true,
+    "file_kind": "ET_REL",
+    "section_address": 0,
+    "nominal_VA_claimed": false,
+    "actual_body_offset": 8,
+    "call_relocations": {
+      "type": 17,
+      "symbol": "tsl9_receive_entry_16b0a",
+      "symbol_kind": "genuine global UND",
+      "addend": 0,
+      "native_body_offsets": [
+        14,
+        40
+      ],
+      "combined_offsets": [
+        22,
+        48
+      ],
+      "placeholder_word": "0x000000EF",
+      "original_targets": [
+        "0x16B0A",
+        "0x16B0A"
+      ],
+      "original_RA_continuations": [
+        "0x1701C",
+        "0x17036"
+      ]
+    },
+    "outside_call_bytes": 54,
+    "outside_call_bytes_equal": true,
+    "outside_call_sha256": "c7401860f08f143e7fd39ca6c9d85b6a539aea9c813ddb13ed67441b0403ac25",
+    "full_resolved_62B_equal": false,
+    "open_code_sha256": "0eb43a696dfaea13a8857fe5d9e35c3a43811e373644237bdac634e2aaf3f580",
+    "native_ELF_sha256": "8f5f0d67afcc1e03b6454afba267aa883cc302dcd1cf1e88b999ffd61827829d",
+    "combined_ELF_sha256": "cf05a2213d5aab4e4d3089c15ada9563faad896939a3fde3b6bbd36861e6109d",
+    "C_CPP_complete_ELF_bytes_equal": true,
+    "frame_bytes": 16,
+    "order": [
+      "SP-16",
+      "LBU8 currentGP+360",
+      "SW32 RA,12SP",
+      "conditional clear bit0 and call channel1",
+      "SB8 zero,currentGP+361 after call",
+      "fresh LBU8 currentGP+360",
+      "conditional clear bit1 and call channel2",
+      "SB8 zero,currentGP+362 after call",
+      "fresh LW32 RA,12SP",
+      "SP+16",
+      "RET"
+    ],
+    "C_body_fresh_GP_imports": 5,
+    "C_allocator_bank": [
+      "a0",
+      "a4",
+      "a5"
+    ],
+    "reserved_architectural_port_registers": [
+      "ra",
+      "sp"
+    ],
+    "A0_result": "Entry A0 if no call; last taken callee's opaque returned A0 otherwise.",
+    "ordinary_C_ABI_claimed": false,
+    "provider_implemented": false,
+    "source_checker_sha256": "5a7314d3f63e20babca57443ed55efcb00ff97487503e409b68ebe1d56871550",
+    "per_language": {
+      "inputs": 9,
+      "MD_dependencies": 2,
+      "recipes": 5,
+      "artifacts": 9,
+      "actual_ELFs": 2,
+      "negative_controls": 38,
+      "negative_controls_without_full_hash": 36,
+      "full_SSA_hash_negative_controls": 2
+    },
+    "strict_readiness": {
+      "c_exit": 1,
+      "cpp_exit": 1,
+      "reason": "OPEN JAL provider and complete firmware remain unproved"
+    }
+  },
+  "receipts": {
+    "c": {
+      "file": "receipts/consumer-c.json",
+      "sha256": "3dd9fe38ff5ff3b3303762f31562510d069660c3a96ae5ab800fd95982599c25",
+      "byte_exact_local_receipt": true,
+      "portable_paths_produced_at_source": true
+    },
+    "cpp": {
+      "file": "receipts/consumer-cpp.json",
+      "sha256": "67ccab4f21871d1fc77767889a0590d01b66ecd71eaed65d739271f361a4dcbf",
+      "byte_exact_local_receipt": true,
+      "portable_paths_produced_at_source": true
+    }
+  },
+  "curated": {
+    "source_files": 45,
+    "native_translation_units": 19,
+    "comparisons": 38,
+    "actual_objects": 76,
+    "inputs": 92,
+    "MD_closures": 76,
+    "artifacts": 229,
+    "local_receipt": "build/curated-source/irq-consumer-20261023-v1/verification.json",
+    "local_original_sha256": "881c39d661c4d5a4945edb64d7630f6d832a4b68e270b2a79fdef7c08a1afd02",
+    "public_derivative": "receipts/curated-source.json",
+    "public_derivative_sha256": "887b9f7ee3945b66851a21cc7aee1b858667f9fe2ae2a77c4ee21623aa0e5ca6",
+    "inverse_path_mapping_equals_original_JSON": true,
+    "original_preserved_locally": true,
+    "direct_original_replay_of_public_derivative_claimed": false,
+    "scope": "Original-to-curated object facts equality, not whole-firmware or opaque provider equivalence."
+  },
+  "bounded_receive_analysis": {
+    "source_spans": "source-spans.json",
+    "spans": 7,
+    "bytes": 586,
+    "instruction_width_rows": 210,
+    "full_original_function_extents_proved": false,
+    "all_indirect_entries_proved": false,
+    "next_target": "0x16B0A receiver wrapper with original frame and status snapshot, retaining downstream providers explicitly open."
+  },
+  "SPI_candidate": {
+    "original_range": [
+      "0x16896",
+      "0x168DE"
+    ],
+    "original_bytes": 72,
+    "original_instructions": 25,
+    "original_sha256": "654d0f600794c1548c617d0f476ca4f0fa5aaf780f49be7c328b3df69e8878dc",
+    "local_candidate_source_sha256": "1e046b90ef812122186ce1fbd688d6d335f1f7d11c0261305e9996ecdedf1b18",
+    "candidate_bytes": 74,
+    "candidate_instructions": 26,
+    "candidate_code_sha256": "49d0880d6c30b9df14571f7bd02244599a3b9de8262f862074ebb98fd8fff929",
+    "full_original_equal": false,
+    "first_difference_offset": 14,
+    "promoted_to_src": false,
+    "local_probe_only": true
+  },
+  "historical_checker_v1": {
+    "raw_receipts_preserved_locally": true,
+    "changed_only_equivalent_privacy_regex_for_v2": true,
+    "equivalent_regex_samples_checked": 738,
+    "current_verifier_replay_of_v1_claimed": false
+  },
+  "unknowns": [
+    "Installed receiver/resident/SPI provider ABI and physical chip identity",
+    "Full startup, vector, IRQ/fault and memory ownership closure",
+    "Complete resolved execution image and original BLE OTA compatibility"
+  ],
+  "whole_firmware_verified": false,
+  "firmware_ready": false,
+  "hardware_OTA_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "MMIO_execution": false,
+  "hardware_access": false,
+  "BIN_generated": false,
+  "network_analysis": false
+}
