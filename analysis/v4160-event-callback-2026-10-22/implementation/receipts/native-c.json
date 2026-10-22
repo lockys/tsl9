@@ -1,0 +1,445 @@
+{
+  "schema": "TSL9-event-callback-native-diagnostic-formal-v1",
+  "passed": true,
+  "mode": "c",
+  "runner_sha256": "783918ed872b02c62321d1997bb4be2db08447f0f1d1def10a722c209f06fa8f",
+  "source_pins": {
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\implementation\\probe_native.py": "c3bfd6d48b15218ff5848fed46118e6315262648aec6d6ab1f1294cf6fc1caf0",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\implementation\\verify_native.py": "783918ed872b02c62321d1997bb4be2db08447f0f1d1def10a722c209f06fa8f",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\native.py": "ec333f3d28653c6e625a8c67e95cb1dd3a9621bb16ccfa2862ce47e7fb30abf7",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-ota-tx-2026-10-22\\implementation\\verify_native.py": "adeeaddea4c46d92dd4ce33a5beaa329779781a0611e97b965c1f023f5ef4eca",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-irq-native-2026-10-21\\compiler-review\\elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src\\callback.c": "e72776b5850802eefb888ad36f7bbda64aa509390cd436a17c369df206c9dcf9",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src\\callback.h": "4c61e9746cb30b18c9ae5cabef1e5618bfd003379df47d34f17d668bf7fc9f0b",
+    "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src\\io.h": "7e481c6637ebb35c55be824b63f6044149cd4f1c09aac0429ec506a5ba87900f",
+    "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe": "adccb8817dc234c555a7cd465fd0f99b05e0238a395c3778a89c3e55e8a45e2f",
+    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+  },
+  "commands": [
+    {
+      "label": "compiler-resource-dir",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "-print-resource-dir"
+      ],
+      "exit": 0,
+      "log": "compiler-resource-dir.log",
+      "sha256": "361046f65369d8b7cbf1cecea755e803142eaac5a708651350a8006c251ba3aa"
+    },
+    {
+      "label": "native-object",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-c",
+        "-MD",
+        "-MF",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\formal-native\\c\\callback.d",
+        "-MT",
+        "callback.o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src\\callback.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\formal-native\\c\\callback.o"
+      ],
+      "exit": 0,
+      "log": "native-object.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "native-IR",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-S",
+        "-emit-llvm",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src\\callback.c",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\formal-native\\c\\callback.ll"
+      ],
+      "exit": 0,
+      "log": "native-IR.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "component-link",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "-m",
+        "elf32lriscv",
+        "--no-relax",
+        "--build-id=none",
+        "-T",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\formal-native\\c\\component.ld",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\formal-native\\c\\callback.o",
+        "-o",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\formal-native\\c\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "log": "component-link.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "complete-static-disassembly",
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr",
+        "-d",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\formal-native\\c\\COMPONENT-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "log": "complete-static-disassembly.log",
+      "sha256": "8c52bb9783c06d47b85ccb03a431db731a4cace55fe6082736687b5b390431ba"
+    }
+  ],
+  "checks": {
+    "independent_native": {
+      "schema": "TSL9-callback-independent-native-gap-v1",
+      "actual_native_artifacts_read": true,
+      "ELF_sha256": "c807ed0693588ee4e9e6e78144f9876950537de27843d1e8c07d1b4a25020bda",
+      "IR_sha256": "d8be1766fb3cc1735ad01933b2830f0ab2521cfb0db02ddd311c9640cf20b113",
+      "actual_function_rows": 241,
+      "facts": {
+        "main_bytes": 658,
+        "helper_bytes": 0,
+        "allocated_bytes": 658,
+        "original_bytes": 632,
+        "fits_original_extent": false,
+        "main_frame_bytes": 48,
+        "helper_frame_bytes": 0,
+        "resident_call_frame_bytes": 48,
+        "source_resident_call_frame_bytes": 48,
+        "resident_call_sites": [
+          {
+            "address": 4162,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4164
+          },
+          {
+            "address": 4200,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4202
+          },
+          {
+            "address": 4212,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4214
+          },
+          {
+            "address": 4242,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4244
+          },
+          {
+            "address": 4316,
+            "rd": 1,
+            "target_register": 16,
+            "RA": 4318
+          },
+          {
+            "address": 4368,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4370
+          },
+          {
+            "address": 4428,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4430
+          },
+          {
+            "address": 4484,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4486
+          },
+          {
+            "address": 4594,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4596
+          },
+          {
+            "address": 4620,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4622
+          },
+          {
+            "address": 4634,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4636
+          },
+          {
+            "address": 4668,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4670
+          },
+          {
+            "address": 4686,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4688
+          },
+          {
+            "address": 4710,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4712
+          },
+          {
+            "address": 4748,
+            "rd": 1,
+            "target_register": 15,
+            "RA": 4750
+          }
+        ],
+        "original_fifteen_call_RAs_preserved": false,
+        "actual_return_offsets_from_entry": [
+          68,
+          106,
+          118,
+          148,
+          222,
+          274,
+          334,
+          390,
+          500,
+          526,
+          540,
+          574,
+          592,
+          616,
+          654
+        ],
+        "native_prefix_saves": [
+          {
+            "register": 1,
+            "slot": 44
+          },
+          {
+            "register": 8,
+            "slot": 40
+          },
+          {
+            "register": 9,
+            "slot": 36
+          },
+          {
+            "register": 18,
+            "slot": 32
+          },
+          {
+            "register": 19,
+            "slot": 28
+          },
+          {
+            "register": 20,
+            "slot": 24
+          },
+          {
+            "register": 21,
+            "slot": 20
+          },
+          {
+            "register": 22,
+            "slot": 16
+          },
+          {
+            "register": 23,
+            "slot": 12
+          },
+          {
+            "register": 24,
+            "slot": 8
+          },
+          {
+            "register": 25,
+            "slot": 4
+          },
+          {
+            "register": 26,
+            "slot": 0
+          }
+        ],
+        "original_unused_SP0_overwritten_by_S10": true,
+        "physical_saved_S_register_layout_preserved": false,
+        "full_original_ABI_proved": false,
+        "placement_admitted": false
+      },
+      "raw_controls": [
+        {
+          "name": "public_main_fabricated_ABS",
+          "rejected": true,
+          "reason": "Honest allocated GLOBAL main and LOCAL helper functions"
+        },
+        {
+          "name": "opaque_helper_call_loses_RA",
+          "rejected": true,
+          "reason": "Actual source-owned opaque calls retain observed RA-writing A5/A6 geometry"
+        }
+      ],
+      "conditional_conventional_C_ABI_only": true,
+      "original_full_ABI_admitted": false,
+      "no_image_integration": true,
+      "target_execution": false,
+      "ISA_emulation": false,
+      "hardware_OTA_proved": false
+    },
+    "dependency_inputs": [
+      {
+        "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h",
+        "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+      },
+      {
+        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src\\callback.c",
+        "sha256": "e72776b5850802eefb888ad36f7bbda64aa509390cd436a17c369df206c9dcf9"
+      },
+      {
+        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src\\callback.h",
+        "sha256": "4c61e9746cb30b18c9ae5cabef1e5618bfd003379df47d34f17d668bf7fc9f0b"
+      },
+      {
+        "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src\\io.h",
+        "sha256": "7e481c6637ebb35c55be824b63f6044149cd4f1c09aac0429ec506a5ba87900f"
+      }
+    ],
+    "native_recipes": 5,
+    "original_fit": false,
+    "original_ABI_admitted": false,
+    "source_frame_hooks_are_not_native_proof": true
+  },
+  "generation": {
+    "argv": [
+      "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\implementation\\probe_native.py",
+      "--project-root",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea",
+      "--tool-dir",
+      "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin",
+      "--build-root",
+      "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\formal-native",
+      "--language",
+      "both"
+    ],
+    "exit": 0,
+    "log": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\formal-native\\fresh-generation.log",
+    "sha256": "63e952968055a4f895e13804ced4b3488e95b69e159dd9e451cf2837721b4c8d"
+  },
+  "generation_language": "both",
+  "python": {
+    "path": "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+    "sha256": "adccb8817dc234c555a7cd465fd0f99b05e0238a395c3778a89c3e55e8a45e2f"
+  },
+  "tools": {
+    "clang": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "ld.lld": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "llvm-objdump": {
+      "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    }
+  },
+  "artifacts": {
+    "callback.d": {
+      "bytes": 540,
+      "sha256": "38a3af8b95f57e1fa24694eaca924875e580cd31a92f4c12ee5455c06b3f089b"
+    },
+    "callback.ll": {
+      "bytes": 21566,
+      "sha256": "d8be1766fb3cc1735ad01933b2830f0ab2521cfb0db02ddd311c9640cf20b113"
+    },
+    "callback.o": {
+      "bytes": 1520,
+      "sha256": "54400d689babe3ce74566e29bfd8cee0ff3b9c6eb0f7cb02ed63d56d437410a9"
+    },
+    "compiler-resource-dir.log": {
+      "bytes": 112,
+      "sha256": "361046f65369d8b7cbf1cecea755e803142eaac5a708651350a8006c251ba3aa"
+    },
+    "complete-static-disassembly.log": {
+      "bytes": 10303,
+      "sha256": "8c52bb9783c06d47b85ccb03a431db731a4cace55fe6082736687b5b390431ba"
+    },
+    "component-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "COMPONENT-ONLY-NOT-FIRMWARE.elf": {
+      "bytes": 5120,
+      "sha256": "c807ed0693588ee4e9e6e78144f9876950537de27843d1e8c07d1b4a25020bda"
+    },
+    "component.ld": {
+      "bytes": 238,
+      "sha256": "c9ac17f109e5c889f73f9573475b3830a5167174678af496c71748f3408fd79d"
+    },
+    "native-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native-object.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native.json": {
+      "bytes": 8916,
+      "sha256": "b02f4c0a668e9a5aaf4d706f48d613e93197018e20b38855345d0d12b53d9a25"
+    }
+  },
+  "original_fit": false,
+  "original_ABI_admitted": false,
+  "BIN_exported": false,
+  "target_execution": false
+}

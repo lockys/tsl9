@@ -1,0 +1,118 @@
+{
+  "schema": "TSL9-callback-single-native-inline-experiment-v1",
+  "source_pins": {
+    "callback.c": "e72776b5850802eefb888ad36f7bbda64aa509390cd436a17c369df206c9dcf9",
+    "callback.h": "4c61e9746cb30b18c9ae5cabef1e5618bfd003379df47d34f17d668bf7fc9f0b",
+    "host_io.c": "96b63d9f28b32b2ce9e46c995bb0c4b7305c09106422cde08511e0390f74c63e",
+    "io.h": "45f76dc02812bb1c658cf42695ecc1536e5adfbb8d8f8d9e4b9b9c0427497e2b"
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\implementation\\probe_native.py",
+        "--project-root",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea",
+        "--tool-dir",
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin",
+        "--source-dir",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\inline-diagnostic\\baseline-src",
+        "--build-root",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\inline-diagnostic\\baseline",
+        "--language",
+        "both"
+      ],
+      "exit": 0,
+      "log": "baseline.log",
+      "sha256": "0ed68ac3086cf1c438d366001fd8405b94b1397356710b78cee97c4f90e1c5bf"
+    },
+    {
+      "argv": [
+        "C:\\Users\\locky\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\implementation\\probe_native.py",
+        "--project-root",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea",
+        "--tool-dir",
+        "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin",
+        "--source-dir",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\inline-diagnostic\\always_inline-src",
+        "--build-root",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\inline-diagnostic\\always_inline",
+        "--language",
+        "both"
+      ],
+      "exit": 0,
+      "log": "always_inline.log",
+      "sha256": "969b33c79584cba70dfbf2f67fc811cad1d125c31032b963850dbf7d39543954"
+    }
+  ],
+  "results": {
+    "baseline": [
+      {
+        "receipt": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\inline-diagnostic\\baseline\\c\\native.json",
+        "sha256": "9ecbf1aad053672fe4132d85daa9b11c154c48d61ca82423749ab8a85eaff000",
+        "functions": [
+          {
+            "name": "cb_native_call",
+            "VA": 5040,
+            "bytes": 90
+          },
+          {
+            "name": "tsl9_callback_native_8614",
+            "VA": 4096,
+            "bytes": 944
+          }
+        ],
+        "allocated_bytes": 1034
+      },
+      {
+        "receipt": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\inline-diagnostic\\baseline\\cpp\\native.json",
+        "sha256": "52912d2cef7ea9b098c38869da2a3aeee839823f6857b12145f5b4736ca6c765",
+        "functions": [
+          {
+            "name": "_ZL14cb_native_callP9cb_nativejj",
+            "VA": 5040,
+            "bytes": 90
+          },
+          {
+            "name": "tsl9_callback_native_8614",
+            "VA": 4096,
+            "bytes": 944
+          }
+        ],
+        "allocated_bytes": 1034
+      }
+    ],
+    "always_inline": [
+      {
+        "receipt": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\inline-diagnostic\\always_inline\\c\\native.json",
+        "sha256": "ce0662a8f494cecc17a97b05fe55112aa2f6fe251997ca667cbaab3527c4c041",
+        "functions": [
+          {
+            "name": "tsl9_callback_native_8614",
+            "VA": 4096,
+            "bytes": 658
+          }
+        ],
+        "allocated_bytes": 658
+      },
+      {
+        "receipt": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\build\\inline-diagnostic\\always_inline\\cpp\\native.json",
+        "sha256": "b3d1dc66c05e661c24bb2281179df1734071fa20c4634c4d35957ad843cfa224",
+        "functions": [
+          {
+            "name": "tsl9_callback_native_8614",
+            "VA": 4096,
+            "bytes": 658
+          }
+        ],
+        "allocated_bytes": 658
+      }
+    ]
+  },
+  "shared_algorithm_changed": false,
+  "HOST_semantics_changed": false,
+  "target_execution": false
+}

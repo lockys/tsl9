@@ -1,0 +1,370 @@
+{
+  "schema": "TSL9-callback-independent-conditional-HOST-v1",
+  "passed": true,
+  "mode": "c",
+  "inputs": {
+    "core": {
+      "callback.c": "e72776b5850802eefb888ad36f7bbda64aa509390cd436a17c369df206c9dcf9",
+      "callback.h": "4c61e9746cb30b18c9ae5cabef1e5618bfd003379df47d34f17d668bf7fc9f0b",
+      "host_io.c": "96b63d9f28b32b2ce9e46c995bb0c4b7305c09106422cde08511e0390f74c63e",
+      "io.h": "7e481c6637ebb35c55be824b63f6044149cd4f1c09aac0429ec506a5ba87900f"
+    },
+    "oracle": "264b4378b9799add1321f16b5914c4d303dfd8fdf25c677a55d9ad6ef5e83760",
+    "runner": "7292001adcb2456011dc32bf3002e3cd538aefb5ab265491fc1e2a8b2d464be8",
+    "guard": "f1982360434f89dcf661e8b143ae5e9d4822c76d9837ec6bf1c2e94c639713eb",
+    "portable_helper": "93933fcb13a0fc45c9c5c82ebb1584a94298e28888d4f7f6a359237c7d3f8754"
+  },
+  "tests": {
+    "cases": 23,
+    "checks": 3541,
+    "conditional_HOST_only": true,
+    "physical_GPR_or_ROM_proof": false
+  },
+  "compiler": {
+    "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+    "sha256": "88c8344236a27a6e727e0a8edc49aaa2690bdc7a9464b9d18cc7abe70a9f1c0d"
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+        "/nologo",
+        "/W4",
+        "/WX",
+        "/Od",
+        "/TC",
+        "/std:c11",
+        "/DCB_HOST=1",
+        "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src",
+        "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src\\callback.c",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-v4160-event-callback\\src\\host_io.c",
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\independent_host.c",
+        "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\independent.exe",
+        "/link",
+        "/INCREMENTAL:NO"
+      ],
+      "exit": 0,
+      "log": "compile.log",
+      "log_sha256": "f1889b907195500fa5f08af97be17b5ab44a7daa2300bed6da3e9bd3f9dc0e02",
+      "host_executable_guard": null
+    },
+    {
+      "argv": [
+        "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\independent.exe"
+      ],
+      "exit": 0,
+      "log": "tests.log",
+      "log_sha256": "ef5bc7006b88222b6f6bb290d2678d0f34174bbbb8fb137f50333368dc962eb6",
+      "host_executable_guard": {
+        "format": "PE",
+        "machine": 34404,
+        "bits": 64,
+        "host_arch": "x86_64",
+        "host_platform": "win32",
+        "bytes": 161280,
+        "sha256": "9f1e40fa8b3cc3c4165f594ab5be8dcd9c6da1ebe636379f21337ea5cae182a0"
+      }
+    }
+  ],
+  "actual_compiled_semantic_controls": [
+    {
+      "name": "exact_gate_changed_to_lowbit",
+      "old": "if(a[0]!=1u)",
+      "new": "if(!(a[0]&1u))",
+      "source_sha256": "51e1572858059202791951a25948bbb52e0d1a3cc61dab3a23a8d528da3c0b45",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DCB_HOST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\exact_gate_changed_to_lowbit\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\exact_gate_changed_to_lowbit\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\exact_gate_changed_to_lowbit\\src\\callback.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\exact_gate_changed_to_lowbit\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\independent_host.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\exact_gate_changed_to_lowbit\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "f1889b907195500fa5f08af97be17b5ab44a7daa2300bed6da3e9bd3f9dc0e02",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\exact_gate_changed_to_lowbit\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "8ef1fc6469a4a00fd6487ecfb0c2e0b4413e6a5c41891d2908283011daa42141",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 161280,
+            "sha256": "f02a4c553e2b960f2ecf22ca3de07b979b04192f6de42d70f3a08e3691f214b1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "capacity_underflow_clamped",
+      "old": "capacity=(a[0]-3u)&0xffffu;",
+      "new": "capacity=a[0]<3u?0u:((a[0]-3u)&0xffffu);",
+      "source_sha256": "6703a5aa3e9d326d3ef319b86674901160ac53b1dc287fc5129ac6581ee555ec",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DCB_HOST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\capacity_underflow_clamped\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\capacity_underflow_clamped\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\capacity_underflow_clamped\\src\\callback.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\capacity_underflow_clamped\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\independent_host.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\capacity_underflow_clamped\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "f1889b907195500fa5f08af97be17b5ab44a7daa2300bed6da3e9bd3f9dc0e02",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\capacity_underflow_clamped\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "1f572a74cb9f2fb300be9e3518ce81d0f5d3fbe7e9d814fce751960750965b02",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 161280,
+            "sha256": "3e5f0ed74c3ae7c4fb962cb69bbdfae8ddcaaaf1f925f1d0df9a2d603bfd58d7"
+          }
+        }
+      ]
+    },
+    {
+      "name": "sixth_argument_wrong_task",
+      "old": "a[5]=s->task;",
+      "new": "a[5]=s->connection;",
+      "source_sha256": "15337e1436068ee85ea43290977baaea3c79a6f584c3243558f7183b60644c20",
+      "commands": [
+        {
+          "argv": [
+            "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+            "/nologo",
+            "/W4",
+            "/WX",
+            "/Od",
+            "/TC",
+            "/std:c11",
+            "/DCB_HOST=1",
+            "/IC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\sixth_argument_wrong_task\\src",
+            "/FoC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\sixth_argument_wrong_task\\",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\sixth_argument_wrong_task\\src\\callback.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\sixth_argument_wrong_task\\src\\host_io.c",
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\independent_host.c",
+            "/FeC:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\sixth_argument_wrong_task\\negative.exe",
+            "/link",
+            "/INCREMENTAL:NO"
+          ],
+          "exit": 0,
+          "log": "compile.log",
+          "log_sha256": "f1889b907195500fa5f08af97be17b5ab44a7daa2300bed6da3e9bd3f9dc0e02",
+          "host_executable_guard": null
+        },
+        {
+          "argv": [
+            "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\apk-analysis\\tsl9-v4160-event-callback-2026-10-22\\ABI-review\\build\\frozen-host-v1\\c\\controls\\sixth_argument_wrong_task\\negative.exe"
+          ],
+          "exit": 1,
+          "log": "tests.log",
+          "log_sha256": "a89741e8b98647fbf25353d140525b5a24548a8b35774c4c05c783c24ce14de8",
+          "host_executable_guard": {
+            "format": "PE",
+            "machine": 34404,
+            "bits": 64,
+            "host_arch": "x86_64",
+            "host_platform": "win32",
+            "bytes": 161280,
+            "sha256": "1df71a62195cf6d895668e134ee70c99d4410b95bbcc3750eb80049098ffaf38"
+          }
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "callback.obj": {
+      "bytes": 8240,
+      "sha256": "f8a6abc7db9f85f07881c0696b4528abb2a041eefbea9a9be845d7aec5671c71"
+    },
+    "compile.log": {
+      "bytes": 69,
+      "sha256": "f1889b907195500fa5f08af97be17b5ab44a7daa2300bed6da3e9bd3f9dc0e02"
+    },
+    "host_io.obj": {
+      "bytes": 4962,
+      "sha256": "7a32b7658ae75fafb9003a0c0de63c4e0a104bd04b8b6a4f4d72df77ac791162"
+    },
+    "independent.exe": {
+      "bytes": 161280,
+      "sha256": "9f1e40fa8b3cc3c4165f594ab5be8dcd9c6da1ebe636379f21337ea5cae182a0"
+    },
+    "independent_host.obj": {
+      "bytes": 21717,
+      "sha256": "fe0111eb1a1d20db32bba5d1099dfe43502ec364f03b58e01d4996364efaa64a"
+    },
+    "tests.log": {
+      "bytes": 91,
+      "sha256": "ef5bc7006b88222b6f6bb290d2678d0f34174bbbb8fb137f50333368dc962eb6"
+    },
+    "controls/capacity_underflow_clamped/callback.obj": {
+      "bytes": 8314,
+      "sha256": "b3d5fc2d081f10d5ab2a7f6b7b089dff9fa427c80b8c69904d090e72016765b2"
+    },
+    "controls/capacity_underflow_clamped/compile.log": {
+      "bytes": 69,
+      "sha256": "f1889b907195500fa5f08af97be17b5ab44a7daa2300bed6da3e9bd3f9dc0e02"
+    },
+    "controls/capacity_underflow_clamped/host_io.obj": {
+      "bytes": 4998,
+      "sha256": "2033781d7756663630cd8c9939a976a684c5ff8e84a26f074e8e600a4f2f43c6"
+    },
+    "controls/capacity_underflow_clamped/independent_host.obj": {
+      "bytes": 21753,
+      "sha256": "c0a89f63d59fbdd0ee97dae9d28de8eb8ef95e9317bd205a8cbb5b9d062a7ec4"
+    },
+    "controls/capacity_underflow_clamped/negative.exe": {
+      "bytes": 161280,
+      "sha256": "3e5f0ed74c3ae7c4fb962cb69bbdfae8ddcaaaf1f925f1d0df9a2d603bfd58d7"
+    },
+    "controls/capacity_underflow_clamped/tests.log": {
+      "bytes": 81,
+      "sha256": "1f572a74cb9f2fb300be9e3518ce81d0f5d3fbe7e9d814fce751960750965b02"
+    },
+    "controls/capacity_underflow_clamped/src/callback.c": {
+      "bytes": 5851,
+      "sha256": "6703a5aa3e9d326d3ef319b86674901160ac53b1dc287fc5129ac6581ee555ec"
+    },
+    "controls/capacity_underflow_clamped/src/callback.h": {
+      "bytes": 2608,
+      "sha256": "4c61e9746cb30b18c9ae5cabef1e5618bfd003379df47d34f17d668bf7fc9f0b"
+    },
+    "controls/capacity_underflow_clamped/src/host_io.c": {
+      "bytes": 2621,
+      "sha256": "96b63d9f28b32b2ce9e46c995bb0c4b7305c09106422cde08511e0390f74c63e"
+    },
+    "controls/capacity_underflow_clamped/src/io.h": {
+      "bytes": 2832,
+      "sha256": "7e481c6637ebb35c55be824b63f6044149cd4f1c09aac0429ec506a5ba87900f"
+    },
+    "controls/exact_gate_changed_to_lowbit/callback.obj": {
+      "bytes": 8284,
+      "sha256": "31fea983d1d181c4f4d9079119cab18a76de37f79df128f534a01cbedf5c99c1"
+    },
+    "controls/exact_gate_changed_to_lowbit/compile.log": {
+      "bytes": 69,
+      "sha256": "f1889b907195500fa5f08af97be17b5ab44a7daa2300bed6da3e9bd3f9dc0e02"
+    },
+    "controls/exact_gate_changed_to_lowbit/host_io.obj": {
+      "bytes": 5002,
+      "sha256": "af6da41c67e10e590536eac9d49c6ea7f59a16f9ad5a8871a455c70e8caefbbe"
+    },
+    "controls/exact_gate_changed_to_lowbit/independent_host.obj": {
+      "bytes": 21757,
+      "sha256": "c05207fd9dee15d759a118845a32da66e1f4ab2fb34b4ee862886f338b6c5e96"
+    },
+    "controls/exact_gate_changed_to_lowbit/negative.exe": {
+      "bytes": 161280,
+      "sha256": "f02a4c553e2b960f2ecf22ca3de07b979b04192f6de42d70f3a08e3691f214b1"
+    },
+    "controls/exact_gate_changed_to_lowbit/tests.log": {
+      "bytes": 70,
+      "sha256": "8ef1fc6469a4a00fd6487ecfb0c2e0b4413e6a5c41891d2908283011daa42141"
+    },
+    "controls/exact_gate_changed_to_lowbit/src/callback.c": {
+      "bytes": 5840,
+      "sha256": "51e1572858059202791951a25948bbb52e0d1a3cc61dab3a23a8d528da3c0b45"
+    },
+    "controls/exact_gate_changed_to_lowbit/src/callback.h": {
+      "bytes": 2608,
+      "sha256": "4c61e9746cb30b18c9ae5cabef1e5618bfd003379df47d34f17d668bf7fc9f0b"
+    },
+    "controls/exact_gate_changed_to_lowbit/src/host_io.c": {
+      "bytes": 2621,
+      "sha256": "96b63d9f28b32b2ce9e46c995bb0c4b7305c09106422cde08511e0390f74c63e"
+    },
+    "controls/exact_gate_changed_to_lowbit/src/io.h": {
+      "bytes": 2832,
+      "sha256": "7e481c6637ebb35c55be824b63f6044149cd4f1c09aac0429ec506a5ba87900f"
+    },
+    "controls/sixth_argument_wrong_task/callback.obj": {
+      "bytes": 8276,
+      "sha256": "f385667d00177fa09910f0370c6031081aaf1b3d58721c5d99ebfcfdf5f39033"
+    },
+    "controls/sixth_argument_wrong_task/compile.log": {
+      "bytes": 69,
+      "sha256": "f1889b907195500fa5f08af97be17b5ab44a7daa2300bed6da3e9bd3f9dc0e02"
+    },
+    "controls/sixth_argument_wrong_task/host_io.obj": {
+      "bytes": 4998,
+      "sha256": "f32a6a222fa7fc813ebbdec43d7ed427147a8f9c910146270faf7663367a9f51"
+    },
+    "controls/sixth_argument_wrong_task/independent_host.obj": {
+      "bytes": 21753,
+      "sha256": "e60e5bcbe8095a3911bd71294d2afcabb4701154f04ab49cdd1a37c29732165c"
+    },
+    "controls/sixth_argument_wrong_task/negative.exe": {
+      "bytes": 161280,
+      "sha256": "1df71a62195cf6d895668e134ee70c99d4410b95bbcc3750eb80049098ffaf38"
+    },
+    "controls/sixth_argument_wrong_task/tests.log": {
+      "bytes": 208,
+      "sha256": "a89741e8b98647fbf25353d140525b5a24548a8b35774c4c05c783c24ce14de8"
+    },
+    "controls/sixth_argument_wrong_task/src/callback.c": {
+      "bytes": 5844,
+      "sha256": "15337e1436068ee85ea43290977baaea3c79a6f584c3243558f7183b60644c20"
+    },
+    "controls/sixth_argument_wrong_task/src/callback.h": {
+      "bytes": 2608,
+      "sha256": "4c61e9746cb30b18c9ae5cabef1e5618bfd003379df47d34f17d668bf7fc9f0b"
+    },
+    "controls/sixth_argument_wrong_task/src/host_io.c": {
+      "bytes": 2621,
+      "sha256": "96b63d9f28b32b2ce9e46c995bb0c4b7305c09106422cde08511e0390f74c63e"
+    },
+    "controls/sixth_argument_wrong_task/src/io.h": {
+      "bytes": 2832,
+      "sha256": "7e481c6637ebb35c55be824b63f6044149cd4f1c09aac0429ec506a5ba87900f"
+    }
+  },
+  "target_execution": false,
+  "ISA_emulation": false,
+  "physical_GPR_or_ROM_proof": false,
+  "full_original_ABI_proved": false,
+  "hardware_OTA_proved": false
+}

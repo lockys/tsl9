@@ -1,5 +1,9 @@
 # Verified milestones
 
+## Readable event callback and native gaps
+
+The 632-byte callback at `0x8614..0x888C` now has readable C/C++ covering event priority, two context/connection records, chunk length, retries and follow-up events. A single explicit-inline diagnostic reduces native allocation from 1,034 to one 658-byte function with a 48-byte frame and fifteen indirect calls. It remains 26 bytes too large, with extra S10 saves, save order, return-address and unknown-ROM contracts unresolved. **This callback is not integrated into the complete BIN and adds no flashable image.** [Analysis and limits](../analysis/v4160-event-callback-2026-10-22/readme.en.md)
+
 ## TX source in a complete experimental BIN
 
 Fresh C11/C++17 pipelines each compile 46 units and produce the same 76,800-byte experimental BIN. Thirteen original function regions / 930 bytes use fifteen real FUNC roles; 678 other sections retain original carriers. All 93 differences from official ID2966 are inside TX; other bytes are unchanged. SHA-256: `28697eab551bd9b3ca74a69c44db24fc02e07bedbb5bf02380e4bcb1a390ce89`. **The new BIN is not verified as flashable.** [Complete integration](../analysis/v4160-tx-image-integration-2026-10-22/readme.en.md) | [Experimental image](../artifacts/offline-images/ID2966-V4.1.60-tx-integrated/readme.en.md)

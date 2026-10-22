@@ -4,6 +4,10 @@
 
 本项目保存原始 APK、22 份不同的更新器 BIN、可读 C/C++ 行为模型及静态来源证据。完整目标仍是生成与原硬件及 BLE 更新器兼容的重建 BIN，并在逆向过程中评估值得新增的功能，将提案与已实现功能分别列出。**目前尚无经验证可刷写的重建 BIN。**
 
+## 事件 callback 的可读重建与原生差距
+
+`0x8614..0x888C` 的 632-byte callback 已重建为可读 C/C++，涵盖事件优先级、两组 context／connection、分段长度、重试与后续事件。原生明确内联诊断由 1,034 bytes 降到单函数 658 bytes，取得 48-byte 栈帧／十五个间接调用；仍超出 26 bytes，且额外 S10 保存、保存顺序、返回地址与未知 ROM 契约仍待确认。**此 callback 尚未纳入完整 BIN，没有新增可刷写映像。** [分析与限制](analysis/v4160-event-callback-2026-10-22/README.md)
+
 ## TX 源码已纳入完整实验 BIN
 
 正式 C11／C++17 各新编译 46 个单元，生成相同的 76,800-byte 实验 BIN；十三个原始函数范围共 930 bytes，由十五个真实 FUNC 角色承接，678 个其余区段保留原始承载。与官方 ID2966 的 93 个差异全部位于 TX，其余 byte 相同。SHA-256：`28697eab551bd9b3ca74a69c44db24fc02e07bedbb5bf02380e4bcb1a390ce89`。**新 BIN 尚未验证可刷写。** [完整整合](analysis/v4160-tx-image-integration-2026-10-22/README.md) | [实验映像](artifacts/offline-images/ID2966-V4.1.60-tx-integrated/README.md)

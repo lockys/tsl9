@@ -1,0 +1,38 @@
+{
+  "schema": "ID2966-event-callback-readonly-C-reconciliation-v1",
+  "source_files": {
+    "experiments/tsl9-v4160-event-callback/src/callback.c": "e72776b5850802eefb888ad36f7bbda64aa509390cd436a17c369df206c9dcf9",
+    "experiments/tsl9-v4160-event-callback/src/callback.h": "4c61e9746cb30b18c9ae5cabef1e5618bfd003379df47d34f17d668bf7fc9f0b",
+    "experiments/tsl9-v4160-event-callback/src/host_io.c": "96b63d9f28b32b2ce9e46c995bb0c4b7305c09106422cde08511e0390f74c63e",
+    "experiments/tsl9-v4160-event-callback/src/io.h": "7e481c6637ebb35c55be824b63f6044149cd4f1c09aac0429ec506a5ba87900f"
+  },
+  "method": "Read-only source inspection against original217 operand records and15site call contract; no HOST test or native compilation counted here",
+  "reconciled_algorithm_properties": [
+    "mask0x8000 priority uses low16 sign condition, fullu32 XOR return",
+    "mask0x8 before lane lookup; fullu32 context versus byte IDs",
+    "exact1 first gate versus odd-only second gate",
+    "low16 difference/sign extension and low16(returned capacity-3)",
+    "descriptor pointer SW before null branch",
+    "fresh cursor/length reads, copy before freshGP gate",
+    "fresh GP+2A descriptor write, post-submit16-bit cursor update",
+    "8-bit count decrement and path-specific live ROM-base scheduling slot",
+    "unconditional message-type A4 assignment and fresh882C length A4",
+    "numeric synthetic frame save/restore order follows source word effects"
+  ],
+  "explicit_projection_limits": [
+    "defined_argument_mask is assigned algorithm projection, not all intermediate A0..A7 residues",
+    "named carried values are a readable algorithm model, not CPU state execution",
+    "HOST return_address is saved-frame bookkeeping; it is not changed to every opaque-call architectural link",
+    "HOST function returns normally after recording fresh saved RA; it does not physically JR that numeric target",
+    "HOST memory hooks cannot establish the real native stack/frame or opaque physical S/SP preservation",
+    "native callback port uses ordinaryC callee-preservation assumptions and cannot prove arbitrary unknownROM S-register mutation equivalence",
+    "native fit, whole-register ABI, nonreturn physical GPR prefixes and asynchronous equivalence are not admitted"
+  ],
+  "actual_model_sources_checked": 4,
+  "HOST_execution_performed_by_this_review": false,
+  "native_compilation_performed_by_this_review": false,
+  "native_fit_admitted": false,
+  "whole_original_ABI_admitted": false,
+  "hardware": false,
+  "OTA_ready": false
+}

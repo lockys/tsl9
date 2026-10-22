@@ -1,0 +1,271 @@
+
+C:\Users\locky\Documents\Codex\2026-10-13\rea-https-github-com-morluto-rea\experiments\tsl9-v4160-tx-image-integration\build\formal-v1\c\ADDRESS-WITNESS-ONLY.elf:	file format elf32-littleriscv
+
+Disassembly of section .text.tsl9v4160.callback_8614:
+
+00008614 <__tsl9v4160_captured_body_8614>:
+    8614: 79 71        	addi	sp, sp, -0x30
+    8616: 93 97 05 01  	slli	a5, a1, 0x10
+    861a: 22 d4        	sw	s0, 0x28(sp)
+    861c: 06 d6        	sw	ra, 0x2c(sp)
+    861e: 26 d2        	sw	s1, 0x24(sp)
+    8620: 4a d0        	sw	s2, 0x20(sp)
+    8622: 4e ce        	sw	s3, 0x1c(sp)
+    8624: 52 cc        	sw	s4, 0x18(sp)
+    8626: 56 ca        	sw	s5, 0x14(sp)
+    8628: 5a c8        	sw	s6, 0x10(sp)
+    862a: 5e c6        	sw	s7, 0xc(sp)
+    862c: 62 c4        	sw	s8, 0x8(sp)
+    862e: 66 c2        	sw	s9, 0x4(sp)
+    8630: c1 87        	srai	a5, a5, 0x10
+    8632: 2e 84        	mv	s0, a1
+    8634: 63 d9 07 04  	bgez	a5, 0x8686 <.Lcallback_00008686>
+    8638: 37 09 04 00  	lui	s2, 0x40
+    863c: 83 27 c9 06  	lw	a5, 0x6c(s2)
+    8640: 82 97        	jalr	a5
+    8642: aa 84        	mv	s1, a0
+    8644: 15 c1        	beqz	a0, 0x8668 <.Lcallback_00008668>
+    8646: 03 47 05 00  	lbu	a4, 0x0(a0)
+    864a: 93 07 00 0b  	li	a5, 0xb0
+    864e: 63 18 f7 00  	bne	a4, a5, 0x865e <.Lcallback_0000865e>
+    8652: 83 45 45 00  	lbu	a1, 0x4(a0)
+    8656: 83 27 c9 12  	lw	a5, 0x12c(s2)
+    865a: 21 05        	addi	a0, a0, 0x8
+    865c: 82 97        	jalr	a5
+
+0000865e <.Lcallback_0000865e>:
+    865e: b7 07 04 00  	lui	a5, 0x40
+    8662: bc 57        	lw	a5, 0x68(a5)
+    8664: 26 85        	mv	a0, s1
+    8666: 82 97        	jalr	a5
+
+00008668 <.Lcallback_00008668>:
+    8668: 21 65        	lui	a0, 0x8
+    866a: 21 8d        	xor	a0, a0, s0
+
+0000866c <.Lcallback_0000866c>:
+    866c: b2 50        	lw	ra, 0x2c(sp)
+    866e: 22 54        	lw	s0, 0x28(sp)
+    8670: 92 54        	lw	s1, 0x24(sp)
+    8672: 02 59        	lw	s2, 0x20(sp)
+    8674: f2 49        	lw	s3, 0x1c(sp)
+    8676: 62 4a        	lw	s4, 0x18(sp)
+    8678: d2 4a        	lw	s5, 0x14(sp)
+    867a: 42 4b        	lw	s6, 0x10(sp)
+    867c: b2 4b        	lw	s7, 0xc(sp)
+    867e: 22 4c        	lw	s8, 0x8(sp)
+    8680: 92 4c        	lw	s9, 0x4(sp)
+    8682: 45 61        	addi	sp, sp, 0x30
+    8684: 82 80        	ret
+
+00008686 <.Lcallback_00008686>:
+    8686: 93 f7 85 00  	andi	a5, a1, 0x8
+    868a: 63 94 07 1e  	bnez	a5, 0x8872 <.Lcallback_00008872>
+    868e: 83 c7 41 09  	lbu	a5, 0x94(gp)
+    8692: 2a 8a        	mv	s4, a0
+    8694: 63 88 a7 0a  	beq	a5, a0, 0x8744 <.Lcallback_00008744>
+    8698: 83 c7 81 09  	lbu	a5, 0x98(gp)
+    869c: 01 45        	li	a0, 0x0
+    869e: 05 49        	li	s2, 0x1
+    86a0: e3 96 47 fd  	bne	a5, s4, 0x866c <.Lcallback_0000866c>
+
+000086a4 <.Lcallback_000086a4>:
+    86a4: 13 17 29 00  	slli	a4, s2, 0x2
+    86a8: 93 87 41 09  	addi	a5, gp, 0x94
+    86ac: ba 97        	add	a5, a5, a4
+    86ae: 83 da 27 00  	lhu	s5, 0x2(a5)
+    86b2: 93 77 14 00  	andi	a5, s0, 0x1
+    86b6: c5 c7        	beqz	a5, 0x875e <.Lcallback_0000875e>
+    86b8: 93 07 60 42  	li	a5, 0x426
+    86bc: b3 07 f9 02  	mul	a5, s2, a5
+
+000086c0 <.Lcallback_000086c0>:
+    86c0: 97 34 00 20  	auipc	s1, 0x20003
+    86c4: 93 84 c4 ac  	addi	s1, s1, -0x534
+    86c8: b7 0b 04 00  	lui	s7, 0x40
+    86cc: 93 85 01 08  	addi	a1, gp, 0x80
+    86d0: 56 85        	mv	a0, s5
+    86d2: a6 97        	add	a5, a5, s1
+    86d4: 83 d9 27 00  	lhu	s3, 0x2(a5)
+    86d8: 03 db 47 00  	lhu	s6, 0x4(a5)
+    86dc: 83 a7 cb 13  	lw	a5, 0x13c(s7)
+    86e0: 82 97        	jalr	a5
+    86e2: 85 47        	li	a5, 0x1
+    86e4: 63 15 f5 06  	bne	a0, a5, 0x874e <.Lcallback_0000874e>
+    86e8: b3 89 69 41  	sub	s3, s3, s6
+    86ec: c2 09        	slli	s3, s3, 0x10
+    86ee: 93 d9 09 01  	srli	s3, s3, 0x10
+    86f2: 13 9b 09 01  	slli	s6, s3, 0x10
+    86f6: 13 5b 0b 41  	srai	s6, s6, 0x10
+    86fa: 63 5a 60 05  	blez	s6, 0x874e <.Lcallback_0000874e>
+    86fe: 83 a7 8b 0b  	lw	a5, 0xb8(s7)
+    8702: 56 85        	mv	a0, s5
+    8704: 82 97        	jalr	a5
+    8706: 75 15        	addi	a0, a0, -0x3
+    8708: 42 05        	slli	a0, a0, 0x10
+
+0000870a <.Lcallback_0000870a>:
+    870a: 97 37 00 20  	auipc	a5, 0x20003
+    870e: 93 87 e7 6e  	addi	a5, a5, 0x6ee
+    8712: 13 17 39 00  	slli	a4, s2, 0x3
+    8716: 41 81        	srli	a0, a0, 0x10
+    8718: ba 97        	add	a5, a5, a4
+    871a: 63 47 ab 02  	blt	s6, a0, 0x8748 <.Lcallback_00008748>
+    871e: 23 91 a7 00  	sh	a0, 0x2(a5)
+
+00008722 <.Lcallback_00008722>:
+    8722: 93 07 60 42  	li	a5, 0x426
+    8726: 33 09 f9 02  	mul	s2, s2, a5
+    872a: a9 47        	li	a5, 0xa
+    872c: 89 45        	li	a1, 0x2
+    872e: 52 85        	mv	a0, s4
+    8730: ca 94        	add	s1, s1, s2
+    8732: 23 80 f4 00  	sb	a5, 0x0(s1)
+    8736: b7 07 04 00  	lui	a5, 0x40
+    873a: bc 4b        	lw	a5, 0x50(a5)
+    873c: 82 97        	jalr	a5
+
+0000873e <.Lcallback_0000873e>:
+    873e: 13 45 14 00  	xori	a0, s0, 0x1
+    8742: 2d b7        	j	0x866c <.Lcallback_0000866c>
+
+00008744 <.Lcallback_00008744>:
+    8744: 01 49        	li	s2, 0x0
+    8746: b9 bf        	j	0x86a4 <.Lcallback_000086a4>
+
+00008748 <.Lcallback_00008748>:
+    8748: 23 91 37 01  	sh	s3, 0x2(a5)
+    874c: d9 bf        	j	0x8722 <.Lcallback_00008722>
+
+0000874e <.Lcallback_0000874e>:
+    874e: 93 07 60 42  	li	a5, 0x426
+    8752: 33 09 f9 02  	mul	s2, s2, a5
+    8756: ca 94        	add	s1, s1, s2
+    8758: 23 91 04 00  	sh	zero, 0x2(s1)
+    875c: cd b7        	j	0x873e <.Lcallback_0000873e>
+
+0000875e <.Lcallback_0000875e>:
+    875e: 93 77 24 00  	andi	a5, s0, 0x2
+    8762: e5 c7        	beqz	a5, 0x884a <.Lcallback_0000884a>
+    8764: 93 09 60 42  	li	s3, 0x426
+    8768: b3 09 39 03  	mul	s3, s2, s3
+
+0000876c <.Lcallback_0000876c>:
+    876c: 97 3c 00 20  	auipc	s9, 0x20003
+    8770: 93 8c 0c a2  	addi	s9, s9, -0x5e0
+    8774: 66 8c        	mv	s8, s9
+    8776: 33 8b 3c 01  	add	s6, s9, s3
+    877a: 83 47 0b 00  	lbu	a5, 0x0(s6)
+    877e: f9 c3        	beqz	a5, 0x8844 <.Lcallback_00008844>
+    8780: 93 17 39 00  	slli	a5, s2, 0x3
+
+00008784 <.Lcallback_00008784>:
+    8784: 97 34 00 20  	auipc	s1, 0x20003
+    8788: 93 84 44 67  	addi	s1, s1, 0x674
+    878c: be 94        	add	s1, s1, a5
+    878e: b7 0b 04 00  	lui	s7, 0x40
+    8792: 83 a7 8b 12  	lw	a5, 0x128(s7)
+    8796: 03 d6 24 00  	lhu	a2, 0x2(s1)
+    879a: 01 47        	li	a4, 0x0
+    879c: 81 46        	li	a3, 0x0
+    879e: ed 45        	li	a1, 0x1b
+    87a0: 56 85        	mv	a0, s5
+    87a2: 82 97        	jalr	a5
+    87a4: c8 c0        	sw	a0, 0x4(s1)
+    87a6: 59 c5        	beqz	a0, 0x8834 <.Lcallback_00008834>
+    87a8: 83 55 4b 00  	lhu	a1, 0x4(s6)
+    87ac: 83 a7 cb 04  	lw	a5, 0x4c(s7)
+    87b0: 03 d6 24 00  	lhu	a2, 0x2(s1)
+    87b4: 99 09        	addi	s3, s3, 0x6
+    87b6: ce 95        	add	a1, a1, s3
+    87b8: e6 95        	add	a1, a1, s9
+    87ba: 82 97        	jalr	a5
+    87bc: 83 a7 cb 13  	lw	a5, 0x13c(s7)
+    87c0: 93 85 01 08  	addi	a1, gp, 0x80
+    87c4: 56 85        	mv	a0, s5
+    87c6: 82 97        	jalr	a5
+    87c8: 05 89        	andi	a0, a0, 0x1
+    87ca: 0d e9        	bnez	a0, 0x87fc <.Lcallback_000087fc>
+
+000087cc <.Lcallback_000087cc>:
+    87cc: b7 09 04 00  	lui	s3, 0x40
+    87d0: 83 a7 c9 12  	lw	a5, 0x12c(s3)
+    87d4: ed 45        	li	a1, 0x1b
+    87d6: 26 85        	mv	a0, s1
+    87d8: 82 97        	jalr	a5
+    87da: 93 07 60 42  	li	a5, 0x426
+    87de: 33 09 f9 02  	mul	s2, s2, a5
+    87e2: 62 99        	add	s2, s2, s8
+    87e4: 83 47 09 00  	lbu	a5, 0x0(s2)
+    87e8: fd 17        	addi	a5, a5, -0x1
+    87ea: 23 00 f9 00  	sb	a5, 0x0(s2)
+    87ee: 83 a7 89 05  	lw	a5, 0x58(s3)
+
+000087f2 <.Lcallback_000087f2>:
+    87f2: 09 46        	li	a2, 0x2
+    87f4: 89 45        	li	a1, 0x2
+    87f6: 52 85        	mv	a0, s4
+    87f8: 82 97        	jalr	a5
+    87fa: 15 a8        	j	0x882e <.Lcallback_0000882e>
+
+000087fc <.Lcallback_000087fc>:
+    87fc: 93 87 01 00  	mv	a5, gp
+    8800: 83 d7 a7 02  	lhu	a5, 0x2a(a5)
+    8804: 01 46        	li	a2, 0x0
+    8806: a6 85        	mv	a1, s1
+    8808: 23 90 f4 00  	sh	a5, 0x0(s1)
+    880c: 83 a7 4b 0d  	lw	a5, 0xd4(s7)
+    8810: 56 85        	mv	a0, s5
+    8812: 82 97        	jalr	a5
+    8814: 45 fd        	bnez	a0, 0x87cc <.Lcallback_000087cc>
+    8816: 83 57 4b 00  	lhu	a5, 0x4(s6)
+    881a: 03 d7 24 00  	lhu	a4, 0x2(s1)
+    881e: 85 45        	li	a1, 0x1
+    8820: 52 85        	mv	a0, s4
+    8822: ba 97        	add	a5, a5, a4
+    8824: 23 12 fb 00  	sh	a5, 0x4(s6)
+    8828: 83 a7 0b 05  	lw	a5, 0x50(s7)
+    882c: 82 97        	jalr	a5
+
+0000882e <.Lcallback_0000882e>:
+    882e: 13 45 24 00  	xori	a0, s0, 0x2
+    8832: 2d bd        	j	0x866c <.Lcallback_0000866c>
+
+00008834 <.Lcallback_00008834>:
+    8834: 83 47 0b 00  	lbu	a5, 0x0(s6)
+    8838: fd 17        	addi	a5, a5, -0x1
+    883a: 23 00 fb 00  	sb	a5, 0x0(s6)
+    883e: 83 a7 8b 05  	lw	a5, 0x58(s7)
+    8842: 45 bf        	j	0x87f2 <.Lcallback_000087f2>
+
+00008844 <.Lcallback_00008844>:
+    8844: 23 11 0b 00  	sh	zero, 0x2(s6)
+    8848: dd b7        	j	0x882e <.Lcallback_0000882e>
+
+0000884a <.Lcallback_0000884a>:
+    884a: 93 77 44 00  	andi	a5, s0, 0x4
+    884e: 01 45        	li	a0, 0x0
+    8850: e3 8e 07 e0  	beqz	a5, 0x866c <.Lcallback_0000866c>
+    8854: b7 07 04 00  	lui	a5, 0x40
+    8858: 03 a8 87 1a  	lw	a6, 0x1a8(a5)
+    885c: 13 07 80 0c  	li	a4, 0xc8
+    8860: d2 87        	mv	a5, s4
+    8862: 81 46        	li	a3, 0x0
+    8864: 61 46        	li	a2, 0x18
+    8866: b1 45        	li	a1, 0xc
+    8868: 56 85        	mv	a0, s5
+    886a: 02 98        	jalr	a6
+    886c: 13 45 44 00  	xori	a0, s0, 0x4
+    8870: f5 bb        	j	0x866c <.Lcallback_0000866c>
+
+00008872 <.Lcallback_00008872>:
+    8872: b7 07 04 00  	lui	a5, 0x40
+    8876: 83 a7 47 1a  	lw	a5, 0x1a4(a5)
+
+0000887a <.Lcallback_0000887a>:
+    887a: 17 16 01 00  	auipc	a2, 0x11
+    887e: 13 06 66 56  	addi	a2, a2, 0x566
+    8882: 81 45        	li	a1, 0x0
+    8884: 82 97        	jalr	a5
+    8886: 13 45 84 00  	xori	a0, s0, 0x8
+    888a: cd b3        	j	0x866c <.Lcallback_0000866c>
