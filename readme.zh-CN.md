@@ -4,6 +4,12 @@
 
 本项目保存原始 APK、22 份不同的更新器 BIN、可读 C/C++ 行为模型及静态来源证据。完整目标仍是生成与原硬件及 BLE 更新器兼容的重建 BIN，并在逆向过程中评估值得新增的功能，将提案与已实现功能分别列出。**目前尚无经验证可刷写的重建 BIN。**
 
+## 完整寄存器保留配方仍不符合原始 ABI
+
+按每个原始 leaf 的可写寄存器与三个输入推导唯一完整 mask，C11／C++17 六份实际对象均编译成功。选定 compare60／fill68／copy64 bytes（23／24／22指令），但全部新增16-byte frame和RA／SP写入，fill另暂时写A2；此配方不能直接替换原机leaf。完整对象各保留十一个真实global FUNC，为454／492／418B，UND／RELA均为零。**没有新BIN，旧组件及实验映像保持不变。**
+
+另完成原始0x188E2及唯一依赖0x19160共106B／37行：对callback传入的0x40012400，掩码0x200先OR、再fresh read并AND ~mask；不能宣称恢复整字原值。此有界链在明确前提下保存SP／RA／S／GP／TP，仍未证明整个callback或config52生命周期。下一缺口为0x19896→0x1892E。[C/C++、独立ABI与来源证据](analysis/v4160-register-contract-2026-10-22/README.md)
+
 ## 原生内存 IO 入口已移除 context 与 frame
 
 沿用封存的共享 C 算法，新增真实 volatile byte／word IO 与 FENCE.I。两个实测 profile 后，C11／C++17 三参数、单值返回入口为 compare52／fill48／copy52 bytes，合计152B／52指令；三入口无 context／sret、call 或 SP／RA／S／A1／A2 明确写入。整个对象仍包含八个未使用的真实 global functions230B，总382B／138指令，0UND／0RELA。**额外寄存器、scratch与fault时序仍不同，fill也超过原范围2B；完整ABI与placement未通过，没有新BIN。**

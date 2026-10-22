@@ -1,5 +1,11 @@
 # Verified milestones
 
+## Complete fixed-register recipe still fails the original ABI
+
+One complete source-derived bank per leaf compiled successfully in six actual C11/C++17 objects. Selected compare60/fill68/copy64 bytes (23/24/22 instructions) all add16-byte frames and RA/SP writes; fill also temporarily writes A2. This recipe cannot directly replace the original leaves. Whole objects retain eleven genuine global FUNC definitions each, allocating454/492/418B, UND0/RELA0. **No new BIN; existing components and experimental image remain unchanged.**
+
+Original0x188E2 and its sole dependency0x19160 cover106B/37 rows. Callback input0x40012400 selects mask0x200: OR, then a fresh read and AND ~mask, not whole-word restoration. The bounded chain preserves SP/RA/S/GP/TP under explicit premises; whole callback/config52 lifetime remains unproved. Next gap:0x19896→0x1892E. [C/C++, independent ABI and source evidence](../analysis/v4160-register-contract-2026-10-22/readme.en.md)
+
 ## Native memory IO entries without context or stack frames
 
 Sealed shared C algorithms now have real volatile byte/word IO and FENCE.I. After two measured profiles, C11/C++17 three-u32/u32-result entries are compare52/fill48/copy52 bytes, totaling152B/52 instructions. These three entries have no context/sret, call or explicit SP/RA/S/A1/A2 write. Eight genuine unused global functions remain (230B); the whole object is382B/138 instructions, UND0/RELA0. **Extra registers, scratch residues and fault timing still differ; fill exceeds its original extent by2B. Full ABI/placement remain unproved; no new BIN.**

@@ -1,5 +1,11 @@
 # 已驗證里程碑
 
+## 完整暫存器保留配方仍未符合原始 ABI
+
+以每個原始 leaf 的可寫暫存器與三個輸入推導唯一完整 mask，C11／C++17 六份實際物件都能編譯。選定 compare60／fill68／copy64 bytes（23／24／22指令），但全部新增16-byte frame與RA／SP寫入，fill另暫時寫A2；因此此配方不能直接替換原機leaf。完整物件各保留十一個真實global FUNC，為454／492／418B，UND／RELA皆零。**沒有新BIN，舊元件及實驗映像保持不變。**
+
+另完成原始0x188E2與唯一相依0x19160共106B／37列：對callback傳入的0x40012400，遮罩0x200先OR、再fresh read並AND ~mask；不能宣稱整字恢復原值。此有界鏈在明示前提下保存SP／RA／S／GP／TP，仍未證明整個callback或config52生命期。下一來源缺口為0x19896→0x1892E。[C/C++、獨立ABI與來源證據](../analysis/v4160-register-contract-2026-10-22/README.md)
+
 ## 原生記憶體 IO 入口已移除 context 與 frame
 
 沿用封存的共享 C 演算法，新增真實 volatile byte／word IO 與 FENCE.I。兩個實測 profile 後，C11／C++17 三參數、單值回傳入口為 compare52／fill48／copy52 bytes，合計152B／52指令；三入口無 context／sret、call 或 SP／RA／S／A1／A2 明示寫入。整個物件仍包含八個未使用的真實 global functions230B，總382B／138指令，0UND／0RELA。**額外暫存器、scratch與fault時序仍不同，fill也超過原範圍2B；完整ABI與placement未通過，沒有新BIN。**

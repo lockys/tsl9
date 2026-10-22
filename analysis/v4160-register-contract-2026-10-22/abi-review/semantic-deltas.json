@@ -1,0 +1,28 @@
+{
+  "compare": {
+    "original_normal_scratch": "A4=0x40024000; A5=initial saved guard word; A3=last LBU byte when entered, otherwise original A3 unchanged",
+    "new_normal_scratch": "A5=initial saved guard word; A3=normal boolean result on every exit; A4=last LBU byte when entered, otherwise original A4 unchanged; RA and SP restored only on normal return",
+    "normal_scratch_equivalence": false,
+    "original_first_byte_fault_A0": "u32(initial address+1), because the original advances A0 before the first LBU using -1(A0)",
+    "new_first_byte_fault_A0": "initial address, because LBU at selected PC0x1c precedes A0 increment at PC0x26; mismatch also skips that increment",
+    "new_prefix": "SP-=16 and SW original RA to12(SP) precede guard READ32; RA becomes guard base. New stack faults, alias effects and async observations are possible before original guard effects.",
+    "full_ABI_equivalence": false
+  },
+  "fill": {
+    "original_normal_scratch": "A4=0x40024000; A5=initial saved guard word; A3 and A2 unchanged by every own instruction",
+    "new_normal_scratch": "A4=0x40024000 on every normal exit (reloaded after nonempty loop); A5=initial saved guard word; A3 unchanged. A2 is used as loop counter and restored from RA at PC0x3c; RA and SP restored only on normal return",
+    "original_scratch_A4_A5_normal_values_match": true,
+    "original_first_byte_fault_A0": "u32(initial destination+1), because original advances A0 before first SB using -1(A0)",
+    "new_first_byte_fault_A0": "initial destination at SB PC0x2a; incremented value exists in A4 and A0 changes only at PC0x2e",
+    "new_prefix": "SP-=16 and SW original RA to12(SP) precede guard READ32. A2 changes transiently; end-address spill to8(SP) adds memory effects. A4 no longer stays guard base throughout loop. Restoring normal values does not erase fault/async differences.",
+    "full_ABI_equivalence": false
+  },
+  "copy": {
+    "original_normal_scratch": "A5=0x40024000; A4=initial saved guard word; A3=last destination byte address and A6=last LBU byte when entered, otherwise original A3/A6 unchanged; A0/A1/A2 unchanged by every own instruction",
+    "new_normal_scratch": "A3=0x40024000 on every normal exit; entered loop leaves A4=u32(destination+count), A5=u32(destination+count), A6=last LBU byte. Skipped loop leaves A4/A5 at their original input scratch values. A0/A1/A2 remain unchanged; RA and SP restored only on normal return",
+    "normal_scratch_equivalence": false,
+    "original_and_new_byte_loop_A0": "initial destination remains unchanged",
+    "new_prefix": "SP-=16 and SW original RA to12(SP) precede guard READ32; RA holds initial guard word through byte loop. New stack faults, alias effects and async RA/SP observations remain possible.",
+    "full_ABI_equivalence": false
+  }
+}
