@@ -1,0 +1,789 @@
+{
+  "schema": "TSL9-resident-memory-independent-selected-v1",
+  "historical_observations_only": true,
+  "HOST": {
+    "c": {
+      "receipt": "apk-analysis/tsl9-v4160-resident-memory-2026-10-22/model-review/build/host-final/c/verification.json",
+      "sha256": "397d861886fd97125053af9120afb448210e0633ae068eca8b426e5e4e3933c7",
+      "tests": {
+        "narrative_cases": 16,
+        "assertions": 940,
+        "synthetic_HOST_only": true,
+        "physical_ABI_proof": false
+      },
+      "compiled_semantic_controls": 3
+    },
+    "cpp": {
+      "receipt": "apk-analysis/tsl9-v4160-resident-memory-2026-10-22/model-review/build/host-final/cpp/verification.json",
+      "sha256": "b4f2080c3ff72d86df15f9f04f09976f3952200011a86812c91955bddb649639",
+      "tests": {
+        "narrative_cases": 16,
+        "assertions": 940,
+        "synthetic_HOST_only": true,
+        "physical_ABI_proof": false
+      },
+      "compiled_semantic_controls": 3
+    }
+  },
+  "native": {
+    "c": {
+      "receipt": "apk-analysis/tsl9-v4160-resident-memory-2026-10-22/model-review/build/native-final-c.json",
+      "sha256": "d50581628602fc52640df98860fed6a1dfaf055b61b482a2995f85833364bf3a",
+      "result": {
+        "passed": true,
+        "actual_native_artifacts_read": true,
+        "mode": "c",
+        "object_sha256": "4c88c617ed76405a3cbc8cc04c52fc74270dc17ac5f5bfde5d9fa17beb455a9e",
+        "IR_sha256": "d9ecd4159e339537149d69f3772f0bb8d1f26bd5601a4ce570aa52cc50cf0c8a",
+        "functions": [
+          {
+            "name": "begin",
+            "section": ".text.begin",
+            "bytes": 86,
+            "instructions": 35,
+            "frame_bytes": 16,
+            "saves": [
+              [
+                1,
+                12
+              ],
+              [
+                8,
+                8
+              ],
+              [
+                9,
+                4
+              ]
+            ],
+            "restores": [
+              [
+                1,
+                12
+              ],
+              [
+                8,
+                8
+              ],
+              [
+                9,
+                4
+              ],
+              [
+                1,
+                12
+              ],
+              [
+                8,
+                8
+              ],
+              [
+                9,
+                4
+              ]
+            ],
+            "calls": [
+              {
+                "offset": 30,
+                "target": "ml_port_read32",
+                "link_register": 1
+              },
+              {
+                "offset": 46,
+                "target": "ml_port_write32",
+                "link_register": 1
+              },
+              {
+                "offset": 66,
+                "target": "ml_port_fence_i",
+                "link_register": 0
+              }
+            ],
+            "code_sha256": "b120b266be04a946d6e00ac86a99eb990832749ce1e7123d392b1c55d7284cdd"
+          },
+          {
+            "name": "tsl9_candidate_compare_200004bc",
+            "section": ".text.tsl9_candidate_compare_200004bc",
+            "bytes": 146,
+            "instructions": 61,
+            "frame_bytes": 48,
+            "saves": [
+              [
+                1,
+                44
+              ],
+              [
+                8,
+                40
+              ],
+              [
+                9,
+                36
+              ],
+              [
+                18,
+                32
+              ],
+              [
+                19,
+                28
+              ],
+              [
+                20,
+                24
+              ],
+              [
+                21,
+                20
+              ]
+            ],
+            "restores": [
+              [
+                1,
+                44
+              ],
+              [
+                8,
+                40
+              ],
+              [
+                9,
+                36
+              ],
+              [
+                18,
+                32
+              ],
+              [
+                19,
+                28
+              ],
+              [
+                20,
+                24
+              ],
+              [
+                21,
+                20
+              ]
+            ],
+            "calls": [
+              {
+                "offset": 30,
+                "target": "begin",
+                "link_register": 1
+              },
+              {
+                "offset": 52,
+                "target": "ml_port_read8",
+                "link_register": 1
+              },
+              {
+                "offset": 94,
+                "target": "ml_port_write32",
+                "link_register": 1
+              }
+            ],
+            "code_sha256": "b907d8c13351a73f32d13c35dfa257b0d759246437d7e8cc2703a35aefcb4f7d"
+          },
+          {
+            "name": "tsl9_candidate_fill_2000039c",
+            "section": ".text.tsl9_candidate_fill_2000039c",
+            "bytes": 138,
+            "instructions": 58,
+            "frame_bytes": 32,
+            "saves": [
+              [
+                1,
+                28
+              ],
+              [
+                8,
+                24
+              ],
+              [
+                9,
+                20
+              ],
+              [
+                18,
+                16
+              ],
+              [
+                19,
+                12
+              ],
+              [
+                20,
+                8
+              ],
+              [
+                21,
+                4
+              ]
+            ],
+            "restores": [
+              [
+                1,
+                28
+              ],
+              [
+                8,
+                24
+              ],
+              [
+                9,
+                20
+              ],
+              [
+                18,
+                16
+              ],
+              [
+                19,
+                12
+              ],
+              [
+                20,
+                8
+              ],
+              [
+                21,
+                4
+              ]
+            ],
+            "calls": [
+              {
+                "offset": 30,
+                "target": "begin",
+                "link_register": 1
+              },
+              {
+                "offset": 58,
+                "target": "ml_port_write8",
+                "link_register": 1
+              },
+              {
+                "offset": 88,
+                "target": "ml_port_write32",
+                "link_register": 1
+              }
+            ],
+            "code_sha256": "dea71f41cb1feb8a4390362827d4c6e931e56e00f63bfe7e7ad7cb1d73dd682b"
+          },
+          {
+            "name": "tsl9_candidate_copy_20000332",
+            "section": ".text.tsl9_candidate_copy_20000332",
+            "bytes": 160,
+            "instructions": 64,
+            "frame_bytes": 48,
+            "saves": [
+              [
+                1,
+                44
+              ],
+              [
+                8,
+                40
+              ],
+              [
+                9,
+                36
+              ],
+              [
+                18,
+                32
+              ],
+              [
+                19,
+                28
+              ],
+              [
+                20,
+                24
+              ],
+              [
+                21,
+                20
+              ]
+            ],
+            "restores": [
+              [
+                1,
+                44
+              ],
+              [
+                8,
+                40
+              ],
+              [
+                9,
+                36
+              ],
+              [
+                18,
+                32
+              ],
+              [
+                19,
+                28
+              ],
+              [
+                20,
+                24
+              ],
+              [
+                21,
+                20
+              ]
+            ],
+            "calls": [
+              {
+                "offset": 30,
+                "target": "begin",
+                "link_register": 1
+              },
+              {
+                "offset": 58,
+                "target": "ml_port_read8",
+                "link_register": 1
+              },
+              {
+                "offset": 76,
+                "target": "ml_port_write8",
+                "link_register": 1
+              },
+              {
+                "offset": 108,
+                "target": "ml_port_write32",
+                "link_register": 1
+              }
+            ],
+            "code_sha256": "2e02ff96f32ae494f1efb7de192f5b973923fc195f5c972da2afae4fe051e678"
+          }
+        ],
+        "allocated_bytes": 530,
+        "instructions": 218,
+        "RELA": 13,
+        "undefined_symbols": [
+          "ml_port_fence_i",
+          "ml_port_read32",
+          "ml_port_read8",
+          "ml_port_write32",
+          "ml_port_write8"
+        ],
+        "call_target_counts": {
+          "ml_port_read32": 1,
+          "ml_port_write32": 4,
+          "ml_port_fence_i": 1,
+          "begin": 3,
+          "ml_port_read8": 2,
+          "ml_port_write8": 2
+        },
+        "source_pins": {
+          "memory_leaves.c": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536",
+          "memory_leaves.h": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2",
+          "io.h": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8",
+          "host_io.c": "b19fd89b9be4f6786271c8e22f9b6971590554ee8cfd68e35b98e22903bbcd73"
+        },
+        "producer_receipt_sha256": "bb5e74399aa41cf047b14a236858881dde80f3663773732a88085e1bcd8871cf",
+        "producer_provenance_replayed": true,
+        "linked": false,
+        "BIN_exported": false,
+        "target_execution": false,
+        "ISA_emulation": false,
+        "physical_ABI_proof": false,
+        "installed_provider_proved": false
+      }
+    },
+    "cpp": {
+      "receipt": "apk-analysis/tsl9-v4160-resident-memory-2026-10-22/model-review/build/native-final-cpp.json",
+      "sha256": "50316feb5f8cb72b9d12635c1901b14cf234a50648ff565f7d1b20ffc308724f",
+      "result": {
+        "passed": true,
+        "actual_native_artifacts_read": true,
+        "mode": "cpp",
+        "object_sha256": "ea22c30f3468ca2c88c2773367964b88d1a1bac8e9a5a14ff93c9301290ed06e",
+        "IR_sha256": "e70a38303cab5b5109456421d501b43bf95be2eb704cdcf6c1449cf4a616b4f5",
+        "functions": [
+          {
+            "name": "_ZL5beginP5ml_ioPj",
+            "section": ".text._ZL5beginP5ml_ioPj",
+            "bytes": 86,
+            "instructions": 35,
+            "frame_bytes": 16,
+            "saves": [
+              [
+                1,
+                12
+              ],
+              [
+                8,
+                8
+              ],
+              [
+                9,
+                4
+              ]
+            ],
+            "restores": [
+              [
+                1,
+                12
+              ],
+              [
+                8,
+                8
+              ],
+              [
+                9,
+                4
+              ],
+              [
+                1,
+                12
+              ],
+              [
+                8,
+                8
+              ],
+              [
+                9,
+                4
+              ]
+            ],
+            "calls": [
+              {
+                "offset": 30,
+                "target": "ml_port_read32",
+                "link_register": 1
+              },
+              {
+                "offset": 46,
+                "target": "ml_port_write32",
+                "link_register": 1
+              },
+              {
+                "offset": 66,
+                "target": "ml_port_fence_i",
+                "link_register": 0
+              }
+            ],
+            "code_sha256": "b120b266be04a946d6e00ac86a99eb990832749ce1e7123d392b1c55d7284cdd"
+          },
+          {
+            "name": "tsl9_candidate_compare_200004bc",
+            "section": ".text.tsl9_candidate_compare_200004bc",
+            "bytes": 146,
+            "instructions": 61,
+            "frame_bytes": 48,
+            "saves": [
+              [
+                1,
+                44
+              ],
+              [
+                8,
+                40
+              ],
+              [
+                9,
+                36
+              ],
+              [
+                18,
+                32
+              ],
+              [
+                19,
+                28
+              ],
+              [
+                20,
+                24
+              ],
+              [
+                21,
+                20
+              ]
+            ],
+            "restores": [
+              [
+                1,
+                44
+              ],
+              [
+                8,
+                40
+              ],
+              [
+                9,
+                36
+              ],
+              [
+                18,
+                32
+              ],
+              [
+                19,
+                28
+              ],
+              [
+                20,
+                24
+              ],
+              [
+                21,
+                20
+              ]
+            ],
+            "calls": [
+              {
+                "offset": 30,
+                "target": "_ZL5beginP5ml_ioPj",
+                "link_register": 1
+              },
+              {
+                "offset": 52,
+                "target": "ml_port_read8",
+                "link_register": 1
+              },
+              {
+                "offset": 94,
+                "target": "ml_port_write32",
+                "link_register": 1
+              }
+            ],
+            "code_sha256": "b907d8c13351a73f32d13c35dfa257b0d759246437d7e8cc2703a35aefcb4f7d"
+          },
+          {
+            "name": "tsl9_candidate_fill_2000039c",
+            "section": ".text.tsl9_candidate_fill_2000039c",
+            "bytes": 138,
+            "instructions": 58,
+            "frame_bytes": 32,
+            "saves": [
+              [
+                1,
+                28
+              ],
+              [
+                8,
+                24
+              ],
+              [
+                9,
+                20
+              ],
+              [
+                18,
+                16
+              ],
+              [
+                19,
+                12
+              ],
+              [
+                20,
+                8
+              ],
+              [
+                21,
+                4
+              ]
+            ],
+            "restores": [
+              [
+                1,
+                28
+              ],
+              [
+                8,
+                24
+              ],
+              [
+                9,
+                20
+              ],
+              [
+                18,
+                16
+              ],
+              [
+                19,
+                12
+              ],
+              [
+                20,
+                8
+              ],
+              [
+                21,
+                4
+              ]
+            ],
+            "calls": [
+              {
+                "offset": 30,
+                "target": "_ZL5beginP5ml_ioPj",
+                "link_register": 1
+              },
+              {
+                "offset": 58,
+                "target": "ml_port_write8",
+                "link_register": 1
+              },
+              {
+                "offset": 88,
+                "target": "ml_port_write32",
+                "link_register": 1
+              }
+            ],
+            "code_sha256": "dea71f41cb1feb8a4390362827d4c6e931e56e00f63bfe7e7ad7cb1d73dd682b"
+          },
+          {
+            "name": "tsl9_candidate_copy_20000332",
+            "section": ".text.tsl9_candidate_copy_20000332",
+            "bytes": 160,
+            "instructions": 64,
+            "frame_bytes": 48,
+            "saves": [
+              [
+                1,
+                44
+              ],
+              [
+                8,
+                40
+              ],
+              [
+                9,
+                36
+              ],
+              [
+                18,
+                32
+              ],
+              [
+                19,
+                28
+              ],
+              [
+                20,
+                24
+              ],
+              [
+                21,
+                20
+              ]
+            ],
+            "restores": [
+              [
+                1,
+                44
+              ],
+              [
+                8,
+                40
+              ],
+              [
+                9,
+                36
+              ],
+              [
+                18,
+                32
+              ],
+              [
+                19,
+                28
+              ],
+              [
+                20,
+                24
+              ],
+              [
+                21,
+                20
+              ]
+            ],
+            "calls": [
+              {
+                "offset": 30,
+                "target": "_ZL5beginP5ml_ioPj",
+                "link_register": 1
+              },
+              {
+                "offset": 58,
+                "target": "ml_port_read8",
+                "link_register": 1
+              },
+              {
+                "offset": 76,
+                "target": "ml_port_write8",
+                "link_register": 1
+              },
+              {
+                "offset": 108,
+                "target": "ml_port_write32",
+                "link_register": 1
+              }
+            ],
+            "code_sha256": "2e02ff96f32ae494f1efb7de192f5b973923fc195f5c972da2afae4fe051e678"
+          }
+        ],
+        "allocated_bytes": 530,
+        "instructions": 218,
+        "RELA": 13,
+        "undefined_symbols": [
+          "ml_port_fence_i",
+          "ml_port_read32",
+          "ml_port_read8",
+          "ml_port_write32",
+          "ml_port_write8"
+        ],
+        "call_target_counts": {
+          "ml_port_read32": 1,
+          "ml_port_write32": 4,
+          "ml_port_fence_i": 1,
+          "_ZL5beginP5ml_ioPj": 3,
+          "ml_port_read8": 2,
+          "ml_port_write8": 2
+        },
+        "source_pins": {
+          "memory_leaves.c": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536",
+          "memory_leaves.h": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2",
+          "io.h": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8",
+          "host_io.c": "b19fd89b9be4f6786271c8e22f9b6971590554ee8cfd68e35b98e22903bbcd73"
+        },
+        "producer_receipt_sha256": "7e449509c185b422b1f56c6cf047af33017f423bb4f46e705b4a02b3b2dfce5a",
+        "producer_provenance_replayed": true,
+        "linked": false,
+        "BIN_exported": false,
+        "target_execution": false,
+        "ISA_emulation": false,
+        "physical_ABI_proof": false,
+        "installed_provider_proved": false
+      }
+    }
+  },
+  "candidate_sources": {
+    "actual_existing_segments_read": true,
+    "candidate_count": 2,
+    "body_count_per_candidate": 3,
+    "bytes": [
+      62,
+      46,
+      58
+    ],
+    "instructions": [
+      19,
+      14,
+      18
+    ]
+  },
+  "target_execution": false,
+  "physical_ABI_proof": false,
+  "installed_provider_proved": false,
+  "generated_build_archives_in_seal": false
+}

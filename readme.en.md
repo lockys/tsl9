@@ -4,6 +4,12 @@
 
 This project preserves the original APK, 22 distinct updater BINs, readable C/C++ behavior models and static source evidence. The goal remains a rebuilt BIN compatible with the original hardware and BLE updater, while identifying worthwhile new features during reverse engineering and keeping proposals separate from implemented functions. **No rebuilt BIN is currently verified as flashable.**
 
+## Three conditional resident memory leaves reconstructed in C/C++
+
+New C11/C++17 components implement compare-byte, fill and forward copy, retaining the MMIO guard/FENCE.I before argument checks and restoration on normal completion. Compare uses the full32-bit expected value; fill returns the advanced address, while copy returns the original destination and retains forward-overlap feedback. Synthetic IO tests and native-object inspection validate the authored components; **they are not installed-ROM providers and produce no new BIN**.
+
+Both complete228-byte/92-instruction initializers were read. Under explicit mapping, valid-memory, no adverse alias/asynchronous modification and normal-return premises, the staCB-zero deduction extends through config copy to the first subsequent callback entry. Its original App numeric source is197F0; the tsCB/temperature name is a header inference. Its effects and later initialization remain unresolved. [C/C++, evidence and limits](analysis/v4160-resident-memory-2026-10-22/readme.en.md)
+
 ## A 550-byte C/C++ component now owns storage at the original reply position
 
 The new C11/C++17 component has **550 bytes /186 instructions /48-byte frame**. A genuine4-byte object occupiesSP+12..15, with only its first two bytes written and no overlap with saves startingSP+16. Given the same entrySP, its reply pointer matches originalSP−36. Correlated S-length2 and empty-E0/0 edges are independently checked. **Only the storage/pointer projection closes: extraS6 saves, full callee/IRQ ABI, placement and OTA remain unproved. The existing568 component/BIN is unchanged.**

@@ -1,5 +1,11 @@
 # Verified milestones
 
+## Three conditional resident memory leaves reconstructed in C/C++
+
+New C11/C++17 components implement compare-byte, fill and forward copy, retaining the MMIO guard/FENCE.I before argument checks and restoration on normal completion. Compare uses the full32-bit expected value; fill returns the advanced address, while copy returns the original destination and retains forward-overlap feedback. Synthetic IO tests and native-object inspection validate the authored components; **they are not installed-ROM providers and produce no new BIN**.
+
+Both complete228-byte/92-instruction initializers were read. Under explicit mapping, valid-memory, no adverse alias/asynchronous modification and normal-return premises, the staCB-zero deduction extends through config copy to the first subsequent callback entry. Its original App numeric source is197F0; the tsCB/temperature name is a header inference. Its effects and later initialization remain unresolved. [C/C++, evidence and limits](../analysis/v4160-resident-memory-2026-10-22/readme.en.md)
+
 ## A genuine four-byte C object at the original reply position and the config-entry boundary
 
 Two motivated profiles first materialize the complete Flash base before copy, removing an extraS7 save and producing552B/eight saves/SP14 two-byte storage. Declaring an aligned4-byte backing then yields actual C11/C++17 550B/186 instructions/48-byte frame. OwnedSP12..15 does not overlapSP16..47 saves. Only the first two bytes are written; S2/E0/0 correlated IR edges are checked. Original seven common save locations match; extraS6/save order/callRA/full ABI remain unproved. **The narrow pointer projection matches; no new BIN or live replacement.**

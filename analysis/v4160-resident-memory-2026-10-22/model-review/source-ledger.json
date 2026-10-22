@@ -1,0 +1,49 @@
+{
+  "schema": "TSL9-resident-memory-independent-source-v1",
+  "guard_address": 1073889804,
+  "guard_order": ["read32 saved", "write32 zero", "fence.i", "initial argument tests", "ordered byte operations", "write32 saved on every normal exit"],
+  "leaves": [
+    {
+      "name": "compare",
+      "entry": 536872124,
+      "bytes": 62,
+      "instructions": 19,
+      "sha256": "39eff00fe85a0bdea780df359a1f1d1356681a168097a60b7b805faac6303581",
+      "raw_hex": "374702408327c720232607200f10000001c53307c50019e6374702402326f7200145828005058346f5ffe397b6fee31be5fe374702402326f72005458280",
+      "source_flash_entries": [264044, 263980],
+      "normal_result": "0 on initial null/count0 or first mismatch; 1 if all count bytes equal full32 A1",
+      "normal_register_effect": "A0 advances before each LBU and is finally overwritten by 0 or 1; A3/A4/A5 scratch. No own SP/RA/GP/S writes/calls."
+    },
+    {
+      "name": "fill",
+      "entry": 536871836,
+      "bytes": 46,
+      "instructions": 14,
+      "sha256": "d67147a681aca68d4d082eebf74ab6214f61f43253be91e932eebd5c3e3d05a3",
+      "raw_hex": "374702408327c720232607200f10000001c53307c50011e6374702402326f72082800505a30fb5fee31de5fef5b7",
+      "source_flash_entries": [263756, 263692],
+      "normal_result": "initial destination on null/count0; otherwise uint32(destination+count), not libc memset return",
+      "normal_register_effect": "A0 advances before each SB; low8 A1 is written. A4/A5 scratch. No own SP/RA/GP/S writes/calls."
+    },
+    {
+      "name": "copy",
+      "entry": 536871730,
+      "bytes": 58,
+      "instructions": 18,
+      "sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36",
+      "raw_hex": "b747024003a7c72023a607200f10000001c599c1814711e6b747024023a6e7208280b386f50003c80600b306f500850723800601e317f6fec5b7",
+      "source_flash_entries": [263650, 263586],
+      "normal_result": "unchanged initial destination; forward read-before-write loop, not memmove snapshot semantics",
+      "normal_register_effect": "A0/A1/A2 unchanged; A3/A4/A5/A6 scratch. No own SP/RA/GP/S writes/calls."
+    }
+  ],
+  "shared_constraints": [
+    "uint32 address arithmetic wraps, initial pointer guard is not repeated mid-loop",
+    "fresh reads and each byte store remain ordered; MMIO alias is observable",
+    "HALT/TRANSFER/UNKNOWN hosted flow reports only attempted observed prefix; no fabricated restore",
+    "portable ml_result/io signature and native external ports are not original physical register ABI",
+    "candidate mapping does not establish installed ROM identity, device faults, asynchronous semantics or provider behavior"
+  ],
+  "installed_provider_proved": false,
+  "physical_ABI_proof": false
+}

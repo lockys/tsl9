@@ -1,5 +1,11 @@
 # 已驗證里程碑
 
+## 三個候選記憶體 leaf 已重建為 C/C++
+
+新增比較固定 byte、填值與向前複製的 C11／C++17 元件，保留參數判斷前的 MMIO guard、FENCE.I 與正常退出恢復。比較採完整32-bit期望值；fill回傳前移位址，copy回傳原目的位址並保留重疊時的向前回饋。以合成 IO 測試及原生物件檢查驗證，**尚非原機 ROM provider，沒有新 BIN**。
+
+兩候選完整初始化228B／92指令已讀取；在明示映射、有效記憶體、無不利 alias／非同步修改及正常返回條件下，staCB零值推導可延伸至設定copy與第一個後續callback入口。該callback的原App數值來源為197F0；tsCB／temperature名稱仍屬header推論，其效果與後續初始化待證。 [C/C++、證據與限制](../analysis/v4160-resident-memory-2026-10-22/README.md)
+
 ## 原回覆位置的獨立4-byte C物件與設定入口界線
 
 兩個有根據的profile先將完整Flash base在copy前具體化，移除額外S7保存，得到552B／8saves／SP14兩byte；再宣告有align4的4-byte backing，實際C11／C++17為550B／186指令／48frame，物件SP12..15與保存槽SP16..47不overlap。只寫前兩byte；S2與E0/0的IR phi邊已逐對核對。原七個保存位置相同，額外S6、保存順序、callRA與完整ABI仍未證。**狹義指標位置相同，沒有新BIN或live替換。**

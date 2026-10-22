@@ -1,0 +1,48 @@
+{
+  "schema": "TSL9-candidate-memory-source-map-v1",
+  "conditional_candidates": [
+    "retained SDK V1.40",
+    "retained SDK V1.31"
+  ],
+  "candidate_reference_root": "explicit existing wch-resident-candidate-2026-10-21; not bundled opaque ROM",
+  "leaves": [
+    {
+      "name": "compare",
+      "RAM": "200004BC",
+      "bytes": 62,
+      "instructions": 19,
+      "sha256": "39eff00fe85a0bdea780df359a1f1d1356681a168097a60b7b805faac6303581",
+      "result": "0/1; full expected u32 vszeroextended byte"
+    },
+    {
+      "name": "fill",
+      "RAM": "2000039C",
+      "bytes": 46,
+      "instructions": 14,
+      "sha256": "d67147a681aca68d4d082eebf74ab6214f61f43253be91e932eebd5c3e3d05a3",
+      "result": "current destination=end on completed nonzero fill"
+    },
+    {
+      "name": "copy",
+      "RAM": "20000332",
+      "bytes": 58,
+      "instructions": 18,
+      "sha256": "558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36",
+      "result": "original destination"
+    }
+  ],
+  "common_order": [
+    "READ32 saved word4002420C",
+    "WRITE32 zero4002420C",
+    "FENCE.I",
+    "null/count tests and fresh ordered byte effects",
+    "WRITE32 original savedword4002420C on normal completion"
+  ],
+  "HOST_only_diagnostic_stop": true,
+  "stop_does_not_invent_restore": true,
+  "library_substitution": false,
+  "CPU_or_register_interpreter": false,
+  "original_bytes_code_generation": false,
+  "installed_provider_proved": false,
+  "native_candidate_ABI_proved": false
+}
