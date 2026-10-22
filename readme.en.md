@@ -4,6 +4,14 @@
 
 This project preserves the original APK, 22 distinct updater BINs, readable C/C++ behavior models and static source evidence. The goal remains a rebuilt BIN compatible with the original hardware and BLE updater, while identifying worthwhile new features during reverse engineering and keeping proposals separate from implemented functions. **No rebuilt BIN is currently verified as flashable.**
 
+## The original OTA caller now reaches real C/C++ in a complete experimental image
+
+A genuine same-TU strong alias connects the original caller to new C11/C++17. The actual JAL at `0x14094` reaches `0x1AC00`, retaining return address `0x14098`. Both languages produce the same **77,824-byte** experimental BIN. Only three bytes of that instruction change within the inherited 76,800 bytes; the original530-byte handler remains, followed by new568-byte C and456-byte non-executable FF page packaging. SHA-256: `3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee`.
+
+**This BIN is not verified as flashable.** The partial link retains a true ROM undefined symbol. The complete ELF only reuses the historical numerical `0x40000` boundary corroborated by the original JAL at `0x18730`; this supplies neither a ROM implementation nor installed identity. Added Flash/NV ownership, callee/stack ABI, physical BOOT and OTA acceptance/recovery remain unproved. Both candidate allocator paths forward ambient A2 to another unknown callback, so reply addresses cannot be declared unobserved. [Code and evidence](analysis/v4160-ota-source-wiring-2026-10-22/readme.en.md) | [Experimental image](artifacts/offline-images/ID2966-V4.1.60-ota-source-wired/readme.en.md)
+
+Historical statements below about no integration/new BIN retain their original milestone scope.
+
 ## Nine OTA providers bound in actual partial links
 
 Real `ld.lld -r` links bind all nine external references of the existing568-byte C/C++ component to allocated providers; only the original ROM entry remains undefined. **The original caller is not redirected to new C; no final ELF or new BIN.** Reply-pointer escape into allocator-slot A2 remains an ABI obligation. Candidate BOOT allows Runtime pages through95; numeric headroom is not free Flash. [Tools, raw evidence and placement limits](./analysis/v4160-ota-handler-layout-2026-10-22/readme.en.md)

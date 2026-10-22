@@ -4,6 +4,14 @@
 
 本项目保存原始 APK、22 份不同的更新器 BIN、可读 C/C++ 行为模型及静态来源证据。完整目标仍是生成与原硬件及 BLE 更新器兼容的重建 BIN，并在逆向过程中评估值得新增的功能，将提案与已实现功能分别列出。**目前尚无经验证可刷写的重建 BIN。**
 
+## OTA 原 caller 已接上真实 C/C++，新增完整实验映像
+
+新的 C11／C++17 同 TU 强别名接上原 caller；实际 `0x14094` 的 JAL 已指向 `0x1AC00`，返回地址仍为 `0x14098`。两种语言生成相同 **77,824-byte** 实验 BIN；继承的76,800 bytes中仅该指令的三个bytes改变，原530-byte handler保留，尾端新增568-byte C与456-byte非执行FF页尾数据。SHA-256：`3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee`。
+
+**这不是已经验证可刷写的 BIN。** 部分链接仍保留真实 ROM UND；完整 ELF 只沿用原始 `0x18730` 指令已指向的 `0x40000` 数值见证，不提供 ROM 实现或实机身份。新增区域的 Flash／NV 所有权、callee／堆栈 ABI、实体 BOOT 与 OTA 接受／恢复仍待证明。两份候选配置路径会把 ambient A2 传到另一个未知 callback，不能宣称回复地址不被观察。 [代码与证据](analysis/v4160-ota-source-wiring-2026-10-22/README.md) | [实验映像](artifacts/offline-images/ID2966-V4.1.60-ota-source-wired/README.md)
+
+以下里程碑中的“未整合／没有新 BIN”描述仅适用于该历史范围。
+
 ## OTA 的九个 provider 已完成真实部分链接
 
 现有 568-byte C／C++ 组件通过真实 provider 对象完成 `ld.lld -r`，九个外部引用均解析到已分配区段，只剩原有 ROM 入口未解析。**原 caller 尚未改向新 C，没有 final ELF 或新 BIN。** 同时确认回复指针会逃逸到配置 slot 的 A2；候选 BOOT 的 Runtime 页上限为95，数值余量不代表可用 Flash。 [链接工具、原始证据与配置限制](./analysis/v4160-ota-handler-layout-2026-10-22/README.md)

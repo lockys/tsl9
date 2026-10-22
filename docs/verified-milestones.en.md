@@ -1,5 +1,13 @@
 # Verified milestones
 
+## The original OTA caller now reaches real C/C++ in a complete experimental image
+
+Only the original NOTYPE global entry is weakened in a copy of the retained 691-allocation object; a genuine same-TU FUNC568 strong alias wins. C11/C++17 produce the same 77,824-byte experimental BIN, SHA-256 `3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee`. The actual JAL at `0x14094` reaches `0x1AC00` with RA `0x14098`. Only three bytes of that instruction change in the inherited 76,800-byte range. The original raw530 body remains; C568 plus non-executable FF456 add one page.
+
+The partial object retains its sole ROM undefined symbol. The complete ELF reuses the historical numerical `0x40000` boundary corroborated by the original JAL at `0x18730`; **this is an address witness, not a ROM implementation**. Both candidate slot70 wrapper/core prefixes forward ambient A2 into a fresh unknown callback. Added Flash/NV ownership, installed ROM, complete ABI, BOOT and OTA acceptance/recovery remain unproved. No RV32 or hardware execution occurs. [Code and evidence](../analysis/v4160-ota-source-wiring-2026-10-22/readme.en.md) | [Unvalidated experimental BIN](../artifacts/offline-images/ID2966-V4.1.60-ota-source-wired/readme.en.md)
+
+The historical no-integration/no-new-BIN statements below retain their original scope.
+
 ## OTA actual provider partial links and placement obligations
 
 Pinned `ld.lld -r` combines existing real C11/C++17 objects with full-image provider objects. Nine component undefined references bind to allocated providers, leaving the original ROM undefined symbol;692 nonempty allocations and8,281 relocations preserve all original allocation bytes/relocation semantics. Old raw530 and new FUNC568 coexist; the caller is not redirected. **No final-JAL/hardware-ABI admission, final ELF or BIN.**

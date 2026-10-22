@@ -1,5 +1,13 @@
 # 已驗證里程碑
 
+## OTA 原 caller 接上真實 C/C++ 完整實驗映像
+
+保留既有 691 個配置，只在副本弱化原 NOTYPE handler 全域入口，讓同 TU 的真實 FUNC568 強別名接手。C11／C++17 的完整實驗 BIN 相同，為 77,824 bytes，SHA-256 `3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee`。原 caller `0x14094` 的實際 JAL 指向 `0x1AC00`，RA 為 `0x14098`；繼承 76,800-byte 範圍僅該指令有三個 byte 差異。原 raw530 不變，新 C568 與非執行 FF456 形成新增一頁。
+
+部分物件的唯一 ROM UND 沒有被偽裝為 provider。完整 ELF 使用與原始 `0x18730` JAL 一致的既有數值 `0x40000`，**只證明地址見證**。兩份候選 slot70 wrapper／core prefix 的 A2 會流向 fresh 未知 callback；新增 Flash／NV 所有權、實機 ROM、完整 ABI、BOOT 與 OTA 接受／恢復未證。沒有執行 RV32 或硬體。 [本輪程式與證據](../analysis/v4160-ota-source-wiring-2026-10-22/README.md) | [未驗證可刷寫的 BIN](../artifacts/offline-images/ID2966-V4.1.60-ota-source-wired/README.md)
+
+下列未整合／無新 BIN 敘述保留各輪原始範圍。
+
 ## OTA 真實 provider 部分連結與配置義務
 
 以既有實際 C11／C++17 object 與完整映像 provider object 執行 pinned `ld.lld -r`。九個元件 UND 均綁至真實配置，仍有一個原 ROM UND；692個非空配置、8,281筆RELA，所有原配置 bytes／重定位語義保留。原 raw530 與新 FUNC568並存，原 caller 未改向；**不宣稱 final JAL／硬體 ABI 通過，沒有 final ELF／BIN。**
