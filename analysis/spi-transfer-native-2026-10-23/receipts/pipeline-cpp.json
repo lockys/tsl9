@@ -1,0 +1,1270 @@
+{
+  "schema": "TSL9-SPI-partial-pipeline-read-only-v1",
+  "language": "cpp",
+  "result": "PASS",
+  "checker_sha256": "3d8db99c78b514b516cb6b43bf0401eee4ab8957e312944a84c9d74b4acadf3a",
+  "inputs_before": {
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/pipeline.ld": "001d7b1647b8f17a1523a5668b47f2f1ce1bc1c6d14b55b3e46ea51c9d93a145",
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/component.ld": "755acb8fd08dcd580a1f11394f88ba68f3fb1224ccc6549eea0a9035db4a3a5e",
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12",
+    "${PROJECT_ROOT}/experiments/tsl9-receive-wrapper/src/receive_wrapper.c": "df1e1f0633c50b8b2c9f7a58d2ac1e45664057de107dc04d28eca9e931538cdc",
+    "${PROJECT_ROOT}/experiments/tsl9-register-read/src/register_read.c": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846",
+    "${PROJECT_ROOT}/experiments/tsl9-register-write/src/register_write.c": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85",
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/pipeline.ld": "5099f57908aad1bb13df777b97ca85416c94c95a15037705c3171a13128d94a4",
+    "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/cpp/verification.json": "d9b7e201658fa1f2ae56dd2afad433696ba963057bb8504ae614c4021017caf8",
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/cpp/PIPELINE-OPEN.o": "c9fb372ea89d143d78f192bebf81ddf864d9333be79564958c6cdd6e08f9cc8b",
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/native.o": "e900eae885f3601bd7f30ac8fee012a7e03db65a1d2f07bf512736acea7eb663",
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/verify_pipeline.py": "3d8db99c78b514b516cb6b43bf0401eee4ab8957e312944a84c9d74b4acadf3a",
+    "${LLVM_BIN}/clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "${LLVM_BIN}/ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "${LLVM_BIN}/llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+  },
+  "inputs_after": {
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/pipeline.ld": "001d7b1647b8f17a1523a5668b47f2f1ce1bc1c6d14b55b3e46ea51c9d93a145",
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/component.ld": "755acb8fd08dcd580a1f11394f88ba68f3fb1224ccc6549eea0a9035db4a3a5e",
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182",
+    "${PROJECT_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12",
+    "${PROJECT_ROOT}/experiments/tsl9-receive-wrapper/src/receive_wrapper.c": "df1e1f0633c50b8b2c9f7a58d2ac1e45664057de107dc04d28eca9e931538cdc",
+    "${PROJECT_ROOT}/experiments/tsl9-register-read/src/register_read.c": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846",
+    "${PROJECT_ROOT}/experiments/tsl9-register-write/src/register_write.c": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85",
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/pipeline.ld": "5099f57908aad1bb13df777b97ca85416c94c95a15037705c3171a13128d94a4",
+    "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/cpp/verification.json": "d9b7e201658fa1f2ae56dd2afad433696ba963057bb8504ae614c4021017caf8",
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/cpp/PIPELINE-OPEN.o": "c9fb372ea89d143d78f192bebf81ddf864d9333be79564958c6cdd6e08f9cc8b",
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/native.o": "e900eae885f3601bd7f30ac8fee012a7e03db65a1d2f07bf512736acea7eb663",
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/verify_pipeline.py": "3d8db99c78b514b516cb6b43bf0401eee4ab8957e312944a84c9d74b4acadf3a",
+    "${LLVM_BIN}/clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "${LLVM_BIN}/ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "${LLVM_BIN}/llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+  },
+  "artifact_inventories_before": {
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/cpp": {
+      "consumer-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "consumer-dump.log": "19a5d4c058aaf19d53d5fe040d041a68f7eb0fb633328bda8e79b6bb5ec5cfa3",
+      "consumer-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "consumer.d": "7cd23ff725e4a141c5d9166ed0da75ab4427670025f879dd35566cd9d43124a5",
+      "consumer.ll": "9f5bf4d16a6fa2febbb51d9f7eab03b7634555ad9dda9082da00d8f55a5e25aa",
+      "consumer.o": "8f5f0d67afcc1e03b6454afba267aa883cc302dcd1cf1e88b999ffd61827829d",
+      "pipeline-combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "PIPELINE-OPEN-dump.log": "14658e8c2f30d59301930c4f2313c8141805c6a9aa2f41780b0743be19d36dc7",
+      "PIPELINE-OPEN.o": "c9fb372ea89d143d78f192bebf81ddf864d9333be79564958c6cdd6e08f9cc8b",
+      "read-combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "read-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "read-dump.log": "da27d47cc517a120f100e3c6034c0a003ef6845108a8de4a6b23d965f8106d10",
+      "read-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "read-OPEN-dump.log": "1fa0c202a4fe7d0b985bca9431a15deb3a011119fc648782337c31e9ecc44a4a",
+      "read-OPEN.o": "5b0250e716362085fc73fd4b475641b88e5ed2c489a2fea23ed9ba0384746c87",
+      "read.d": "0a8f03e04dd93432fce0bbca4ab187ceeb9a3943d0e0d5a667c9aa447eb09377",
+      "read.ll": "c0d03b4dcba485297b2560710f865f669fac1daa9707b90a3f7c744e19df5bc1",
+      "read.o": "fd96f6f5df62a1c55615dd45745b6fc006a51c4dae9da6a89faf29acea1486de",
+      "receiver-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receiver-dump.log": "1c9c41eb0175a2953a8b89461a87e7202145925c9de55ccfed7f105eabf74266",
+      "receiver-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receiver.d": "922d61566bbcb0f4e5e8b3909778406a41711b4b637aad450b57b317c0b38eb7",
+      "receiver.ll": "d7811e22a8aaa80014319bbfcee3ab4fd01c7294e3d510e7d0e457476fe36d1b",
+      "receiver.o": "251ba819063b42bc1ca92f6121f1357fe112ed6b89672f37b505bb5bcdab43fa",
+      "verification.json": "d9b7e201658fa1f2ae56dd2afad433696ba963057bb8504ae614c4021017caf8",
+      "write-combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "write-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "write-dump.log": "80e67134a01d11ebca82d571b1df99ec51d1b92f35bed6601f5fa3964b868b53",
+      "write-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "write-OPEN-dump.log": "97b870cb95752ac0d997733803fd30de5ebe8b9dc279a08985a02fb91acf2bc6",
+      "write-OPEN.o": "609b1a52286887ee2077a5da92d3b0ffde1d6a8b0a278707694914f01dda4a22",
+      "write.d": "82d919839a1d74af1cb7e2be756f43c16c8f750aa9742fcaf948d5d8e2f7addc",
+      "write.ll": "6752b6e01fb7fc44413a30d5e38bd6382af3d72eed14199b0ed1f17a79d6a041",
+      "write.o": "3b54e0c9d96bf3eee2521dd0960e2e999b3dcbc226a23c8190c314d6b92ae4fb"
+    },
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp": {
+      "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "linked.elf": "e29870dec29fa8662bf1e22de3d364e88fa1a6c5fbc043933da01918214ae731",
+      "linked.log": "620ff5f92135ccce9548cc11c1b0eaf234ca2253135120ffacb51b60a8be14d7",
+      "native.d": "2dc4c8767a3dff159cfc71095af73b85e7593eff45d5ab468cce0bdfe696c12a",
+      "native.ll": "aa70573970cd2f18eef5d00e8a434b78bb45680b979189d4739cb7f4691b1360",
+      "native.o": "e900eae885f3601bd7f30ac8fee012a7e03db65a1d2f07bf512736acea7eb663",
+      "object.log": "64e0a7f43169462fd05dca4bc626566d787eeb0aaeecd665a4d32200a0ecdbc0",
+      "recipes.json": "0f8336c155c4e0be016910383417ee2c22aa9aa126fceb59ebb2a7780060cc54"
+    },
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/pipeline-v1/cpp": {
+      "combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "object.log": "3c8cfc645810c57669cee2969ae4d7a487689c838b513f2d3e1d5f6a79ee507c",
+      "PIPELINE-SPI-OPEN.o": "a9a3954a732dd1e6253ccf3756505ef8e49c2a0eb2cdefc7944600eea33dc86d",
+      "recipes.json": "53b4e65347010f280c2608d5e1955074c7415a6caa8375745cd2193545d7cf33"
+    }
+  },
+  "artifact_inventories_after": {
+    "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/cpp": {
+      "consumer-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "consumer-dump.log": "19a5d4c058aaf19d53d5fe040d041a68f7eb0fb633328bda8e79b6bb5ec5cfa3",
+      "consumer-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "consumer.d": "7cd23ff725e4a141c5d9166ed0da75ab4427670025f879dd35566cd9d43124a5",
+      "consumer.ll": "9f5bf4d16a6fa2febbb51d9f7eab03b7634555ad9dda9082da00d8f55a5e25aa",
+      "consumer.o": "8f5f0d67afcc1e03b6454afba267aa883cc302dcd1cf1e88b999ffd61827829d",
+      "pipeline-combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "PIPELINE-OPEN-dump.log": "14658e8c2f30d59301930c4f2313c8141805c6a9aa2f41780b0743be19d36dc7",
+      "PIPELINE-OPEN.o": "c9fb372ea89d143d78f192bebf81ddf864d9333be79564958c6cdd6e08f9cc8b",
+      "read-combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "read-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "read-dump.log": "da27d47cc517a120f100e3c6034c0a003ef6845108a8de4a6b23d965f8106d10",
+      "read-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "read-OPEN-dump.log": "1fa0c202a4fe7d0b985bca9431a15deb3a011119fc648782337c31e9ecc44a4a",
+      "read-OPEN.o": "5b0250e716362085fc73fd4b475641b88e5ed2c489a2fea23ed9ba0384746c87",
+      "read.d": "0a8f03e04dd93432fce0bbca4ab187ceeb9a3943d0e0d5a667c9aa447eb09377",
+      "read.ll": "c0d03b4dcba485297b2560710f865f669fac1daa9707b90a3f7c744e19df5bc1",
+      "read.o": "fd96f6f5df62a1c55615dd45745b6fc006a51c4dae9da6a89faf29acea1486de",
+      "receiver-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receiver-dump.log": "1c9c41eb0175a2953a8b89461a87e7202145925c9de55ccfed7f105eabf74266",
+      "receiver-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receiver.d": "922d61566bbcb0f4e5e8b3909778406a41711b4b637aad450b57b317c0b38eb7",
+      "receiver.ll": "d7811e22a8aaa80014319bbfcee3ab4fd01c7294e3d510e7d0e457476fe36d1b",
+      "receiver.o": "251ba819063b42bc1ca92f6121f1357fe112ed6b89672f37b505bb5bcdab43fa",
+      "verification.json": "d9b7e201658fa1f2ae56dd2afad433696ba963057bb8504ae614c4021017caf8",
+      "write-combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "write-compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "write-dump.log": "80e67134a01d11ebca82d571b1df99ec51d1b92f35bed6601f5fa3964b868b53",
+      "write-IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "write-OPEN-dump.log": "97b870cb95752ac0d997733803fd30de5ebe8b9dc279a08985a02fb91acf2bc6",
+      "write-OPEN.o": "609b1a52286887ee2077a5da92d3b0ffde1d6a8b0a278707694914f01dda4a22",
+      "write.d": "82d919839a1d74af1cb7e2be756f43c16c8f750aa9742fcaf948d5d8e2f7addc",
+      "write.ll": "6752b6e01fb7fc44413a30d5e38bd6382af3d72eed14199b0ed1f17a79d6a041",
+      "write.o": "3b54e0c9d96bf3eee2521dd0960e2e999b3dcbc226a23c8190c314d6b92ae4fb"
+    },
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp": {
+      "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "linked.elf": "e29870dec29fa8662bf1e22de3d364e88fa1a6c5fbc043933da01918214ae731",
+      "linked.log": "620ff5f92135ccce9548cc11c1b0eaf234ca2253135120ffacb51b60a8be14d7",
+      "native.d": "2dc4c8767a3dff159cfc71095af73b85e7593eff45d5ab468cce0bdfe696c12a",
+      "native.ll": "aa70573970cd2f18eef5d00e8a434b78bb45680b979189d4739cb7f4691b1360",
+      "native.o": "e900eae885f3601bd7f30ac8fee012a7e03db65a1d2f07bf512736acea7eb663",
+      "object.log": "64e0a7f43169462fd05dca4bc626566d787eeb0aaeecd665a4d32200a0ecdbc0",
+      "recipes.json": "0f8336c155c4e0be016910383417ee2c22aa9aa126fceb59ebb2a7780060cc54"
+    },
+    "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/pipeline-v1/cpp": {
+      "combine.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "object.log": "3c8cfc645810c57669cee2969ae4d7a487689c838b513f2d3e1d5f6a79ee507c",
+      "PIPELINE-SPI-OPEN.o": "a9a3954a732dd1e6253ccf3756505ef8e49c2a0eb2cdefc7944600eea33dc86d",
+      "recipes.json": "53b4e65347010f280c2608d5e1955074c7415a6caa8375745cd2193545d7cf33"
+    }
+  },
+  "commands": [
+    {
+      "label": "combine",
+      "argv": [
+        "${LLVM_BIN}/ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/pipeline.ld",
+        "${PROJECT_ROOT}/experiments/tsl9-register-providers/build/verified-v3/cpp/PIPELINE-OPEN.o",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/native.o",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/pipeline-v1/cpp/PIPELINE-SPI-OPEN.o"
+      ],
+      "returncode": 0
+    },
+    {
+      "label": "object",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr",
+        "-d",
+        "-r",
+        "-t",
+        "-h",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/pipeline-v1/cpp/PIPELINE-SPI-OPEN.o"
+      ],
+      "returncode": 0
+    }
+  ],
+  "SPI_producer_commands": [
+    {
+      "label": "compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-MD",
+        "-MF",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/native.d",
+        "-MT",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/native.o",
+        "-c",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/native.o"
+      ],
+      "returncode": 0
+    },
+    {
+      "label": "IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/native.ll"
+      ],
+      "returncode": 0
+    },
+    {
+      "label": "object",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr",
+        "-d",
+        "-r",
+        "-t",
+        "-h",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/native.o"
+      ],
+      "returncode": 0
+    },
+    {
+      "label": "link",
+      "argv": [
+        "${LLVM_BIN}/ld.lld.exe",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/component.ld",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/native.o",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/linked.elf"
+      ],
+      "returncode": 0
+    },
+    {
+      "label": "linked",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr",
+        "-d",
+        "-r",
+        "-t",
+        "-h",
+        "${PROJECT_ROOT}/experiments/tsl9-spi-transfer-leaf/build/probe-v7-symbolic/cpp/linked.elf"
+      ],
+      "returncode": 0
+    }
+  ],
+  "compiler_dependencies": [
+    "${TSL9_ROOT}/experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c",
+    "${LLVM_BIN}/../lib/clang/18/include/stdint.h"
+  ],
+  "SPI_source": {
+    "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182",
+    "architectural_regions": 8,
+    "ordinary_c_abi_functions": false
+  },
+  "SPI_IR": {
+    "normalized_sha256": "5f1a6c2b2f3cdb4363e67ef908a10fa8c8706ba9dc6fb4a78d7b01a95bc077ff",
+    "volatile_load16": 3,
+    "volatile_store16": 1,
+    "explicit_control_ports": 5,
+    "function_names": [
+      "tsl9_spi_transfer_entry_16896",
+      "tsl9_spi_tx_poll_1689e",
+      "tsl9_spi_tx_ready_168a6",
+      "tsl9_spi_rx_poll_168b6",
+      "tsl9_spi_rx_done_168be",
+      "tsl9_spi_tx_wait_168c8",
+      "tsl9_spi_timeout_168d0",
+      "tsl9_spi_rx_wait_168d4"
+    ]
+  },
+  "facts": {
+    "ET_REL": true,
+    "allocated_bytes": 352,
+    "genuine_FUNCs": 16,
+    "RELA_total": 17,
+    "defined_relocation_targets": 15,
+    "UND_calls": [
+      94,
+      108
+    ],
+    "UND_providers": [
+      "tsl9_receive_buffer_entry_16a7c"
+    ],
+    "ABS_providers": [],
+    "local_ABS_metadata": 10,
+    "preserved_provider_bytes": 280,
+    "preserved_SPI_bytes": 72,
+    "original_noncontrol_bytes": 294,
+    "original_noncontrol_sha256": "d4069f05ef663fe415e57452f09eee5d333702b58340ef64306a769fc57e7b79",
+    "unresolved_machine_JALs": 12,
+    "unresolved_machine_RVC_ports": 5,
+    "resolved_executable": false,
+    "firmware_ready": false,
+    "sections": [
+      {
+        "name_offset": 0,
+        "type": 0,
+        "flags": 0,
+        "address": 0,
+        "offset": 0,
+        "size": 0,
+        "link": 0,
+        "info": 0,
+        "align": 0,
+        "entsize": 0,
+        "index": 0,
+        "name": ""
+      },
+      {
+        "name_offset": 1,
+        "type": 1,
+        "flags": 6,
+        "address": 0,
+        "offset": 52,
+        "size": 352,
+        "link": 0,
+        "info": 0,
+        "align": 2,
+        "entsize": 0,
+        "index": 1,
+        "name": ".pipeline"
+      },
+      {
+        "name_offset": 11,
+        "type": 1,
+        "flags": 6,
+        "address": 0,
+        "offset": 404,
+        "size": 0,
+        "link": 0,
+        "info": 0,
+        "align": 2,
+        "entsize": 0,
+        "index": 2,
+        "name": ".text"
+      },
+      {
+        "name_offset": 17,
+        "type": 4,
+        "flags": 64,
+        "address": 0,
+        "offset": 404,
+        "size": 204,
+        "link": 5,
+        "info": 1,
+        "align": 4,
+        "entsize": 12,
+        "index": 3,
+        "name": ".rela.pipeline"
+      },
+      {
+        "name_offset": 32,
+        "type": 1879002115,
+        "flags": 2147483648,
+        "address": 0,
+        "offset": 608,
+        "size": 16,
+        "link": 0,
+        "info": 0,
+        "align": 1,
+        "entsize": 0,
+        "index": 4,
+        "name": ".llvm_addrsig"
+      },
+      {
+        "name_offset": 46,
+        "type": 2,
+        "flags": 0,
+        "address": 0,
+        "offset": 624,
+        "size": 752,
+        "link": 7,
+        "info": 30,
+        "align": 4,
+        "entsize": 16,
+        "index": 5,
+        "name": ".symtab"
+      },
+      {
+        "name_offset": 54,
+        "type": 3,
+        "flags": 0,
+        "address": 0,
+        "offset": 1376,
+        "size": 72,
+        "link": 0,
+        "info": 0,
+        "align": 1,
+        "entsize": 0,
+        "index": 6,
+        "name": ".shstrtab"
+      },
+      {
+        "name_offset": 64,
+        "type": 3,
+        "flags": 0,
+        "address": 0,
+        "offset": 1448,
+        "size": 628,
+        "link": 0,
+        "info": 0,
+        "align": 1,
+        "entsize": 0,
+        "index": 7,
+        "name": ".strtab"
+      }
+    ],
+    "symbols": [
+      {
+        "index": 0,
+        "name": "",
+        "value": 0,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 0
+      },
+      {
+        "index": 1,
+        "name": "flag_consumer.c",
+        "value": 0,
+        "size": 0,
+        "info": 4,
+        "other": 0,
+        "section": 65521
+      },
+      {
+        "index": 2,
+        "name": "$x.0",
+        "value": 0,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 3,
+        "name": "$x.1",
+        "value": 8,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 4,
+        "name": "$d.3",
+        "value": 0,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 65521
+      },
+      {
+        "index": 5,
+        "name": "receive_wrapper.c",
+        "value": 0,
+        "size": 0,
+        "info": 4,
+        "other": 0,
+        "section": 65521
+      },
+      {
+        "index": 6,
+        "name": "$x.0",
+        "value": 62,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 7,
+        "name": "$x.1",
+        "value": 76,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 8,
+        "name": "$d.3",
+        "value": 0,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 65521
+      },
+      {
+        "index": 9,
+        "name": "register_read.c",
+        "value": 0,
+        "size": 0,
+        "info": 4,
+        "other": 0,
+        "section": 65521
+      },
+      {
+        "index": 10,
+        "name": "$x.0",
+        "value": 132,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 11,
+        "name": "$x.1",
+        "value": 136,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 12,
+        "name": "$d.3",
+        "value": 0,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 65521
+      },
+      {
+        "index": 13,
+        "name": "register_write.c",
+        "value": 0,
+        "size": 0,
+        "info": 4,
+        "other": 0,
+        "section": 65521
+      },
+      {
+        "index": 14,
+        "name": "$x.0",
+        "value": 204,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 15,
+        "name": "$x.1",
+        "value": 208,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 16,
+        "name": "$d.3",
+        "value": 0,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 65521
+      },
+      {
+        "index": 17,
+        "name": "",
+        "value": 0,
+        "size": 0,
+        "info": 3,
+        "other": 0,
+        "section": 2
+      },
+      {
+        "index": 18,
+        "name": "",
+        "value": 0,
+        "size": 0,
+        "info": 3,
+        "other": 0,
+        "section": 4
+      },
+      {
+        "index": 19,
+        "name": "spi_transfer_ports.c",
+        "value": 0,
+        "size": 0,
+        "info": 4,
+        "other": 0,
+        "section": 65521
+      },
+      {
+        "index": 20,
+        "name": "$x.0",
+        "value": 280,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 21,
+        "name": "$x.1",
+        "value": 288,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 22,
+        "name": "$x.2",
+        "value": 296,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 23,
+        "name": "$x.3",
+        "value": 312,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 24,
+        "name": "$x.4",
+        "value": 320,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 25,
+        "name": "$x.5",
+        "value": 330,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 26,
+        "name": "$x.6",
+        "value": 338,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 27,
+        "name": "$x.7",
+        "value": 342,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 28,
+        "name": "$d.9",
+        "value": 0,
+        "size": 0,
+        "info": 0,
+        "other": 0,
+        "section": 65521
+      },
+      {
+        "index": 29,
+        "name": "",
+        "value": 0,
+        "size": 0,
+        "info": 3,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 30,
+        "name": "tsl9_flag_consumer_entry_17002",
+        "value": 0,
+        "size": 8,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 31,
+        "name": "tsl9_flag_consumer_body",
+        "value": 8,
+        "size": 54,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 32,
+        "name": "tsl9_receive_entry_16b0a",
+        "value": 62,
+        "size": 14,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 33,
+        "name": "tsl9_receive_body",
+        "value": 76,
+        "size": 56,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 34,
+        "name": "tsl9_register_read_entry_16994",
+        "value": 132,
+        "size": 4,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 35,
+        "name": "tsl9_receive_buffer_entry_16a7c",
+        "value": 0,
+        "size": 0,
+        "info": 16,
+        "other": 0,
+        "section": 0
+      },
+      {
+        "index": 36,
+        "name": "tsl9_register_write_entry_16a30",
+        "value": 204,
+        "size": 4,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 37,
+        "name": "tsl9_register_read_body",
+        "value": 136,
+        "size": 68,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 38,
+        "name": "tsl9_spi_transfer_entry_16896",
+        "value": 280,
+        "size": 8,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 39,
+        "name": "tsl9_register_write_body",
+        "value": 208,
+        "size": 72,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 40,
+        "name": "tsl9_spi_tx_poll_1689e",
+        "value": 288,
+        "size": 8,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 41,
+        "name": "tsl9_spi_tx_wait_168c8",
+        "value": 330,
+        "size": 8,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 42,
+        "name": "tsl9_spi_tx_ready_168a6",
+        "value": 296,
+        "size": 16,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 43,
+        "name": "tsl9_spi_rx_poll_168b6",
+        "value": 312,
+        "size": 8,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 44,
+        "name": "tsl9_spi_rx_wait_168d4",
+        "value": 342,
+        "size": 10,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 45,
+        "name": "tsl9_spi_rx_done_168be",
+        "value": 320,
+        "size": 10,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      },
+      {
+        "index": 46,
+        "name": "tsl9_spi_timeout_168d0",
+        "value": 338,
+        "size": 4,
+        "info": 18,
+        "other": 0,
+        "section": 1
+      }
+    ],
+    "relocations": [
+      {
+        "section": 1,
+        "offset": 22,
+        "type": 17,
+        "symbol": 32,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 48,
+        "type": 17,
+        "symbol": 32,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 76,
+        "type": 17,
+        "symbol": 34,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 94,
+        "type": 17,
+        "symbol": 35,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 108,
+        "type": 17,
+        "symbol": 35,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 128,
+        "type": 17,
+        "symbol": 36,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 170,
+        "type": 17,
+        "symbol": 38,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 178,
+        "type": 17,
+        "symbol": 38,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 184,
+        "type": 17,
+        "symbol": 38,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 244,
+        "type": 17,
+        "symbol": 38,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 252,
+        "type": 17,
+        "symbol": 38,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 260,
+        "type": 17,
+        "symbol": 38,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 294,
+        "type": 44,
+        "symbol": 41,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 318,
+        "type": 44,
+        "symbol": 44,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 336,
+        "type": 44,
+        "symbol": 40,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 348,
+        "type": 44,
+        "symbol": 43,
+        "addend": 0
+      },
+      {
+        "section": 1,
+        "offset": 350,
+        "type": 45,
+        "symbol": 46,
+        "addend": 0
+      }
+    ]
+  },
+  "negative_controls": [
+    {
+      "name": "fake_ABS_packet_provider",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "16 genuine FUNCs/one UND/no ABS providers, exact values/sizes/binding"
+    },
+    {
+      "name": "fake_ABS_SPI_provider",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "16 genuine FUNCs/one UND/no ABS providers, exact values/sizes/binding"
+    },
+    {
+      "name": "SPI_undefined_again",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "16 genuine FUNCs/one UND/no ABS providers, exact values/sizes/binding"
+    },
+    {
+      "name": "SPI_wrong_value",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "16 genuine FUNCs/one UND/no ABS providers, exact values/sizes/binding"
+    },
+    {
+      "name": "SPI_wrong_size",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "16 genuine FUNCs/one UND/no ABS providers, exact values/sizes/binding"
+    },
+    {
+      "name": "SPI_object_instead_of_FUNC",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "16 genuine FUNCs/one UND/no ABS providers, exact values/sizes/binding"
+    },
+    {
+      "name": "weak_SPI_provider",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "16 genuine FUNCs/one UND/no ABS providers, exact values/sizes/binding"
+    },
+    {
+      "name": "hidden_SPI_provider",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "16 genuine FUNCs/one UND/no ABS providers, exact values/sizes/binding"
+    },
+    {
+      "name": "receiver_wrong_frame_extent",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "16 genuine FUNCs/one UND/no ABS providers, exact values/sizes/binding"
+    },
+    {
+      "name": "extra_local_FUNC",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact local metadata, no local FUNC or aliases"
+    },
+    {
+      "name": "local_ABS_changed",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact local metadata, no local FUNC or aliases"
+    },
+    {
+      "name": "wrong_ELF_kind",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "ET_REL header/extent"
+    },
+    {
+      "name": "wrong_RVC_ELF_flags",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "ET_REL header/extent"
+    },
+    {
+      "name": "pipeline_writable",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact section ownership/metadata, no extra allocated storage"
+    },
+    {
+      "name": "extra_allocated_metadata",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact section ownership/metadata, no extra allocated storage"
+    },
+    {
+      "name": "misaligned_pipeline",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact section ownership/metadata, no extra allocated storage"
+    },
+    {
+      "name": "pipeline_size",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact section ownership/metadata, no extra allocated storage"
+    },
+    {
+      "name": "RVC_wrong_offset",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact 17 RELA graph/owner/type/addend"
+    },
+    {
+      "name": "RVC_wrong_type",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact 17 RELA graph/owner/type/addend"
+    },
+    {
+      "name": "RVC_wrong_addend",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact 17 RELA graph/owner/type/addend"
+    },
+    {
+      "name": "RVC_wrong_section",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact 17 RELA graph/owner/type/addend"
+    },
+    {
+      "name": "RVC_wrong_symbol",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact 17 RELA graph/owner/type/addend"
+    },
+    {
+      "name": "missing_RELA",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact 17 RELA graph/owner/type/addend"
+    },
+    {
+      "name": "duplicate_RELA",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact 17 RELA graph/owner/type/addend"
+    },
+    {
+      "name": "JAL_bound_to_packet",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "exact 17 RELA graph/owner/type/addend"
+    },
+    {
+      "name": "JAL_nonzero_immediate",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "zero-immediate genuine JAL/tail-JAL ports"
+    },
+    {
+      "name": "tail_JAL_wrong_rd",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "zero-immediate genuine JAL/tail-JAL ports"
+    },
+    {
+      "name": "RVC_nonzero_immediate",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "zero-immediate typed RVC ports/registers"
+    },
+    {
+      "name": "RVC_wrong_register",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "zero-immediate typed RVC ports/registers"
+    },
+    {
+      "name": "native_GPIO_instruction_changed",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "294 original noncontrol bytes"
+    },
+    {
+      "name": "SPI_fresh_read_width_changed",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "294 original noncontrol bytes"
+    },
+    {
+      "name": "SPI_timeout_result_changed",
+      "rejected": true,
+      "whole_hash_enabled": false,
+      "reason": "294 original noncontrol bytes"
+    }
+  ],
+  "prior_provider_receipt": {
+    "sha256": "d9b7e201658fa1f2ae56dd2afad433696ba963057bb8504ae614c4021017caf8",
+    "pinned_historical_receipt": true,
+    "reexecuted": false,
+    "artifacts_reread": 33,
+    "historical_checker_dependency_closure_replayed": false
+  },
+  "limits": [
+    "Only existing producer records and actual artifacts are read; no producer command is rerun.",
+    "Prior provider receipt is a pinned historical input; its checker/parser dependency closure is not replayed.",
+    "ET_REL JAL and RVC ports retain zero immediates; genuine symbol binding does not resolve machine control flow.",
+    "The packet provider is absent; original addresses, whole-image layout and private ABI/hardware are not validated.",
+    "No target, ISA, MMIO, timing, interrupt context, hardware or flash execution."
+  ]
+}

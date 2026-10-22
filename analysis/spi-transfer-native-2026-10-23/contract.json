@@ -1,0 +1,61 @@
+{
+  "schema": "TSL9-SPI-native-static-contract-v1",
+  "official_image": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "official_image_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "original_range": {"start": "0x16896", "end_exclusive": "0x168de", "image_base": "0x8000", "bytes": 72, "instructions": 25},
+  "full_original_code_sha256": "654d0f600794c1548c617d0f476ca4f0fa5aaf780f49be7c328b3df69e8878dc",
+  "selected_source": "experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c",
+  "selected_source_sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182",
+  "regions": [
+    {"symbol": "tsl9_spi_transfer_entry_16896", "offset": 0, "bytes": 8},
+    {"symbol": "tsl9_spi_tx_poll_1689e", "offset": 8, "bytes": 8},
+    {"symbol": "tsl9_spi_tx_ready_168a6", "offset": 16, "bytes": 16},
+    {"symbol": "tsl9_spi_rx_poll_168b6", "offset": 32, "bytes": 8},
+    {"symbol": "tsl9_spi_rx_done_168be", "offset": 40, "bytes": 10},
+    {"symbol": "tsl9_spi_tx_wait_168c8", "offset": 50, "bytes": 8},
+    {"symbol": "tsl9_spi_timeout_168d0", "offset": 58, "bytes": 4},
+    {"symbol": "tsl9_spi_rx_wait_168d4", "offset": 62, "bytes": 10}
+  ],
+  "control_ports": [
+    {"offset": 14, "kind": "c.beqz", "register": "a4", "relocation": 44, "target_offset": 50},
+    {"offset": 38, "kind": "c.beqz", "register": "a4", "relocation": 44, "target_offset": 62},
+    {"offset": 56, "kind": "c.bnez", "register": "a5", "relocation": 44, "target_offset": 8},
+    {"offset": 68, "kind": "c.bnez", "register": "a5", "relocation": 44, "target_offset": 32},
+    {"offset": 70, "kind": "c.j", "register": null, "relocation": 45, "target_offset": 58}
+  ],
+  "ordered_access_contract": {
+    "base": "0x40013000",
+    "status_offset": 8,
+    "status_width_bits": 16,
+    "tx_mask": 2,
+    "rx_mask": 1,
+    "budget_per_stage": 255,
+    "order": "Fresh status read, mask, ready test; only not-ready decrements (count-1)&255 and tests zero",
+    "last_allowed_read_can_succeed": true,
+    "tx_ready": "Zero-extend input low16, one SH16 at base+12, reset count=255 and base before RX polling",
+    "rx_ready": "Fresh LHU16 at base+12 then mask255",
+    "tx_timeout": "No data SH16 and no RX polling",
+    "rx_timeout": "One earlier data SH16, 255 not-ready RX status reads, no data LHU16"
+  },
+  "exits": [
+    {"kind": "success", "a0": "fresh data16 &255", "a3": "0x40013000", "a4": 1, "a5": "256-N for RX read number N in [1,255]"},
+    {"kind": "tx-timeout", "a0": 0, "a3": "0x40013000", "a4": 0, "a5": 0},
+    {"kind": "rx-timeout", "a0": 0, "a3": "0x40013000", "a4": 0, "a5": 0}
+  ],
+  "own_written_GPRs": ["a0", "a3", "a4", "a5"],
+  "own_frame_bytes": 0,
+  "calls_CSR_fence": false,
+  "feature_candidate": {
+    "name": "Distinguish valid zero data from SPI timeout in offline diagnostics",
+    "evidence": "A0=0 is ambiguous; original success leaves A4=1 and A5>0, whereas either timeout leaves A4=A5=0",
+    "implementation": "not implemented",
+    "requirements": ["Explicit private caller output ports for A4/A5", "Prove diagnostic RAM ownership and complete IRQ context before persistent counters", "Define a separate diagnostic transport without changing existing packet behavior"],
+    "cannot_distinguish": "TX versus RX timeout using exit registers alone"
+  },
+  "interpretation": "Pinned C-generated machine regions with explicit architectural branch and fall-through ports; not portable C control-flow or ordinary ABI proof",
+  "target_execution": false,
+  "ISA_emulation": false,
+  "hardware_validated": false,
+  "firmware_BIN_generated": false,
+  "remaining": ["Packet provider and indirect callback closure", "Installed resident and complete main/startup/IRQ context", "Physical silicon and peripheral identity", "Memory ownership and complete original address layout", "Original BLE OTA and hardware execution compatibility"]
+}

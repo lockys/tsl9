@@ -1,0 +1,41 @@
+{
+  "schema": "TSL9-next-packet-provider-static-boundary-v1",
+  "evidence": "Fresh offline radare2 pDj decoding of the pinned official image, not target execution",
+  "range": {"start": "0x16a7c", "end_exclusive": "0x16b0a", "bytes": 142, "instructions": 52},
+  "sha256": "d823c819bbe92c3b7ee17c92411825549084d08dc32c36378d8e60d4915f40e2",
+  "entry_order": ["SP-=48", "SW S1 at SP+36", "LUI A5=0x40011000", "SW RA at SP+44", "SW S0 at SP+40", "SW S2 at SP+32"],
+  "selection": "A4=1; S1=A0; A5-=2048; only A0==1 changes A4 to16; SW32 A4 at A5+20. This differs from the read/write providers' two independent channel-bit predicates.",
+  "SPI_calls": [
+    {"site": "0x16a9e", "a0": 3, "pre_call": "LI A0=3 before SW A1 at SP+12"},
+    {"site": "0x16aaa", "a0": "fresh LW A1 at SP+12 then MV A0,A1", "pre_call": "S0=0 and S2=13"},
+    {"site": "0x16ab0", "a0": 0, "iterations": 13, "destination": "SB returned A0 at SP+16+then-live S0; increment S0; compare against S2"}
+  ],
+  "cleanup_before_validation": "LUI A5=0x40011000; LI A4=17; SW32 A4 at A5-2032",
+  "frame_validation": {
+    "header_byte": "fresh LBU SP+17",
+    "reject_if": "(header_byte &24)!=0",
+    "length": "fresh LBU SP+20 &15",
+    "accept_length": "1..8 using unsigned ((length-1)&255)<=7",
+    "reject_zero_length": true,
+    "identifier": "(fresh LBU SP+16 <<3) | (header_byte>>5)",
+    "identifier_range": "0..2047",
+    "payload": "SP+21, up to8 bytes",
+    "buffer_range_inclusive": [16, 28]
+  },
+  "valid_packet_call": {"site": "0x16afa", "target": "0x12bc8", "RA": "0x16afe", "A0": "identifier", "A1": "SP+21", "A2": "length", "A3": "then-live S1"},
+  "restore_order": ["fresh LW RA at SP+44", "fresh LW S0 at SP+40", "fresh LW S1 at SP+36", "fresh LW S2 at SP+32", "SP+=48", "RET"],
+  "next_implementation_requirements": [
+    "Retain the interleaved entry stores and LUI, not a reordered generic frame",
+    "Retain the exact-equality channel selector rather than reuse the read/write bit-mask selector",
+    "Retain the fresh argument reload and exact13 data polls",
+    "Retain GPIO cleanup before all header and length validation",
+    "Bind three genuine SPI call sites and one real ring-insertion provider; no ABS stubs",
+    "Keep ring insertion's fresh indirect provider at0x4004c and full ABI unresolved until proved"
+  ],
+  "feature_candidate": "Offline diagnostic rejection reasons for unsupported header bits or length, without changing original filtering or packet transmission",
+  "hardware_interpretation": "11-bit packet identifier and up-to8-byte payload are consistent with a CAN-style receive layout; physical controller identity is not established here",
+  "packet_source_rebuilt_this_milestone": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "network_access": false
+}
