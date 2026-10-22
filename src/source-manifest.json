@@ -424,6 +424,13 @@
       "replacements": [],
       "origin_sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596",
       "sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596"
+    },
+    {
+      "origin": "experiments/tsl9-irq-provider/src/irq_provider.v2.c",
+      "destination": "src/native/receive/irq_provider.c",
+      "replacements": [],
+      "origin_sha256": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653",
+      "sha256": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653"
     }
   ],
   "native_units": [
@@ -672,6 +679,19 @@
       ],
       "scope": "52B/17i across genuine14/10/18/6/4B interrupt regions;42noncontrol original bytes equal. Three pending relocations retain two genuine UND providers and a defined empty MRET branch. C word MMIO read/mask/tag plus explicit then-live SP/frame/JAL/MRET ports; no ordinary C ABI, full IRQ/resident/hardware or firmware readiness proof.",
       "origin_unit_sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596"
+    },
+    {
+      "name": "irq-provider",
+      "profile": "irq-provider-a0-a1-a2-a4-a5",
+      "origin_unit": "experiments/tsl9-irq-provider/src/irq_provider.v2.c",
+      "curated_unit": "src/native/receive/irq_provider.c",
+      "evidence": "experiments/tsl9-irq-provider/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-irq-provider/build/verified-v3/c/verification.json",
+        "experiments/tsl9-irq-provider/build/verified-v3/cpp/verification.json"
+      ],
+      "scope": "Six private18/8/108/10/10/10B regions with3genuine defined native edges; nominal164B/53i is fully original-equal. C fresh volatile word reads, shifts/masks and byte/word stores plus explicit cold edges/RET ports; source-copy equivalence is not complete IRQ/silicon/firmware proof.",
+      "origin_unit_sha256": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653"
     }
   ],
   "legacy_groups": [

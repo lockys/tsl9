@@ -1,0 +1,283 @@
+{
+  "schema": "TSL9-IRQ-provider-and-nine-span-graph-milestone-v1",
+  "firmware_ready": false,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_operation": false,
+  "vendor_API_operation": false,
+  "BIN_generated": false,
+  "source_and_checker_sha256": {
+    "experiments/tsl9-irq-provider/src/irq_provider.v1.c": "db24f4e6e22c797755ea316ea8783732b6d72b369437f9c3b2a85e6c4b0b6fec",
+    "experiments/tsl9-irq-provider/src/irq_provider.v2.c": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653",
+    "experiments/tsl9-irq-provider/component.ld": "bbf51846ab09a20aff1fc620f1341a3e62a1b22f90d762b8112c3dc18a5e61f5",
+    "experiments/tsl9-irq-provider/probe.py": "d8f88950bf3d00d5f5873c856beb4380cc9f4a83653f855bc97ebcff5116f9e3",
+    "experiments/tsl9-irq-provider/verify.py": "3e0fd056537fbd189f88739862dbed70b8129423d8ef0db3e6770c7bae3e45f9",
+    "experiments/tsl9-irq-provider/receive_graph.ld": "4e642d9e4f2a6d3cbc315790ff6d68140d9ee60e042ab756a978f1a786fb6c00",
+    "experiments/tsl9-irq-provider/verify_receive_graph.py": "d78535a67b72dfc5b67302a5f70a6f6db1572c175dff82d0d19ee89d81e2a96c",
+    "src/native/receive/irq_provider.c": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653",
+    "scripts/verify-curated-source.py": "4d6d9bd76896167120e38edd51cade0f70c54c15fa576fb27a021ab678480b45",
+    "src/source-manifest.json": "d6ca74ebaab467598c516ed5cbcb58d785f4226b16a7e751c5650d3f075f6b5c"
+  },
+  "public_receipt_sha256": {
+    "analysis/irq-provider-2026-10-23/receipts/curated-source.json": "08f5035ef773a46f9cb7f97e3a701703c885efb50c87290fd385b4b3df0added",
+    "analysis/irq-provider-2026-10-23/receipts/graph-c.json": "78a155d7a59cad284dbd658987e65de864be807a4fe475febae6814e0f6bfabd",
+    "analysis/irq-provider-2026-10-23/receipts/graph-cpp.json": "5159843caa5346fd0abe5f22f2958a93cb6b8f05aced067dca2cf3c7a4fb7d16",
+    "analysis/irq-provider-2026-10-23/receipts/provider-c.json": "8ff286e24611f568857d50d4acccb9eafb8803af69b9bbaef3e16262adaab25a",
+    "analysis/irq-provider-2026-10-23/receipts/provider-cpp.json": "9ca82b0a314182630bae5aa29ca9a0b4b4140ccd2251f52691e986216269dcf4"
+  },
+  "official_input": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "bytes": 76800,
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "provider": {
+    "source": "src/native/receive/irq_provider.c",
+    "source_sha256": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653",
+    "start": "0x18D78",
+    "end": "0x18E1C",
+    "bytes": 164,
+    "instructions": 53,
+    "genuine_private_FUNCs": 6,
+    "region_bytes": [
+      18,
+      8,
+      108,
+      10,
+      10,
+      10
+    ],
+    "native_ELF_sha256": "21f174eee24576a90958cc724a55606a00928085d9deff242f0baf35a9823c00",
+    "nominal_ELF_sha256": "6e3fb128208d759cb84f3dfc112ab7c5e7bbce4b10cd613c9d0944c9c7d2d7d9",
+    "native_RELA": 3,
+    "native_noncontrol_bytes": 158,
+    "nominal_UND": 0,
+    "nominal_RELA": 0,
+    "nominal_whole_original_equal": true,
+    "original_code_sha256": "678a3cbf42bc02d5c730973675858a18e538af9fdc1cb74dd9296f220f487ae3",
+    "static_LW32_instructions": 16,
+    "static_SB8_instructions": 12,
+    "static_SW32_instructions": 4,
+    "dynamic_counts_per_call_claimed": false,
+    "preserved_GPR_scope": "all except A4/A5 within bounded component; no call/SP/RA/CSR writes; two RETs",
+    "ordinary_C_ABI_proved": false,
+    "formal_receipts": "experiments/tsl9-irq-provider/build/verified-v3/{c,cpp}/verification.json",
+    "inputs_per_language": 10,
+    "artifacts_per_language": 10,
+    "recipes_per_language": 5,
+    "MD_dependencies_per_language": 2,
+    "negative_controls_per_language": 125,
+    "negative_control_scopes": {
+      "raw_ELF_reparsed": 97,
+      "parsed_typed_rows": 7,
+      "IR_text_structural_SSA": 16,
+      "IR_text_full_normalized_pin": 2,
+      "MD_text": 3
+    }
+  },
+  "graph": {
+    "formal_receipts": "experiments/tsl9-irq-provider/build/receive-graph-verified-v3/{c,cpp}/verification.json",
+    "original_spans": [
+      {
+        "bytes": 92,
+        "end": 76836,
+        "instructions": 32,
+        "section": ".ring",
+        "sha256": "d3d9af9bcec8af13dfd424d3bfb2bd79f8fc3fd61308cb6ec0d7c18b1b78b13b",
+        "start": 76744
+      },
+      {
+        "bytes": 52,
+        "end": 76888,
+        "instructions": 17,
+        "section": ".irq",
+        "sha256": "44ab1cdae33f0151e8270b3769d9dca81847154bf88d3f691443d77200ece51a",
+        "start": 76836
+      },
+      {
+        "bytes": 72,
+        "end": 92382,
+        "instructions": 25,
+        "section": ".spi",
+        "sha256": "654d0f600794c1548c617d0f476ca4f0fa5aaf780f49be7c328b3df69e8878dc",
+        "start": 92310
+      },
+      {
+        "bytes": 72,
+        "end": 92636,
+        "instructions": 26,
+        "section": ".read",
+        "sha256": "0949ef0357f5c7543bc480b214103d78880ccba36a0551e0cb8cfb1edab2d538",
+        "start": 92564
+      },
+      {
+        "bytes": 76,
+        "end": 92796,
+        "instructions": 28,
+        "section": ".write",
+        "sha256": "cb0b2b3f0b4c676385ca97543b29c32bf0eaaa99317959e6ad2a54438f71cf6e",
+        "start": 92720
+      },
+      {
+        "bytes": 142,
+        "end": 92938,
+        "instructions": 52,
+        "section": ".packet",
+        "sha256": "d823c819bbe92c3b7ee17c92411825549084d08dc32c36378d8e60d4915f40e2",
+        "start": 92796
+      },
+      {
+        "bytes": 70,
+        "end": 93008,
+        "instructions": 26,
+        "section": ".receiver",
+        "sha256": "b12abed39cf1cc897ab42a51b6cfce8c150031819f747aab095fffd618ae6f80",
+        "start": 92938
+      },
+      {
+        "bytes": 62,
+        "end": 94272,
+        "instructions": 21,
+        "section": ".consumer",
+        "sha256": "dd6b0fa91982cf653657b71e2d2bfaf2d6349ccc12f2b31561483e40572b0c69",
+        "start": 94210
+      },
+      {
+        "bytes": 164,
+        "end": 101916,
+        "instructions": 53,
+        "section": ".provider",
+        "sha256": "678a3cbf42bc02d5c730973675858a18e538af9fdc1cb74dd9296f220f487ae3",
+        "start": 101752
+      }
+    ],
+    "allocated_bytes": 802,
+    "instructions": 280,
+    "genuine_private_FUNCs": 35,
+    "resolved_symbolic_sites": 32,
+    "UND": 0,
+    "RELA": 0,
+    "ELF_sha256": "2a2f02d0581d387d7170a1828b1e3bcc5b383975ba1f62e6e09e9f1b3db5f546",
+    "original_aggregate_sha256": "1946d38e90500f279c650b7f80df32004f05507a2bafeaeceb372ab4b53ee169",
+    "joined_input_pins": 156,
+    "dependency_inventories": 11,
+    "inherited_inventory_files": 114,
+    "own_artifacts_per_language": 4,
+    "own_recipes_per_language": 2,
+    "total_producer_recipes_per_language": 56,
+    "raw_ELF_negative_controls_per_language": 119,
+    "whole_ELF_hash_disabled_in_all_negative_controls": true,
+    "executable_LOAD_span_bytes": 25172,
+    "unvalidated_LOAD_gap_bytes": 24370,
+    "unowned_LOAD_gaps": [
+      {
+        "bytes": 15422,
+        "end": 92310,
+        "start": 76888
+      },
+      {
+        "bytes": 182,
+        "end": 92564,
+        "start": 92382
+      },
+      {
+        "bytes": 84,
+        "end": 92720,
+        "start": 92636
+      },
+      {
+        "bytes": 1202,
+        "end": 94210,
+        "start": 93008
+      },
+      {
+        "bytes": 7480,
+        "end": 101752,
+        "start": 94272
+      }
+    ],
+    "flat_firmware_image": false,
+    "resident_call": {
+      "ABI_closed": false,
+      "call_pc": 76812,
+      "link_register": "RA",
+      "pointer_word_address": 262220,
+      "return_address": 76814,
+      "source_register": "A5",
+      "target_identity": "UNKNOWN"
+    }
+  },
+  "curation": {
+    "C_header_files": 53,
+    "native_units": 27,
+    "comparisons": 54,
+    "objects": 108,
+    "input_files": 108,
+    "artifacts": 325,
+    "recipes": 108,
+    "MDs": 108,
+    "old52results_and313artifact_hashes_unchanged": true,
+    "old52file26unit_manifest_records_unchanged": true,
+    "old52compiler_flag_profiles_unchanged": true,
+    "raw_receipt": "build/curated-source/irq-provider-20261023-v1/verification.json",
+    "raw_original_sha256": "7cd1cf744430b0b98ad2862e59526515eac8f4f3bd9cb626bf2c32e595b1984f",
+    "original_preserved_locally": true,
+    "public_path_derivative_is_original": false,
+    "public_path_derivative_inverse_JSON_equal": true,
+    "original_receipt_replay_claimed_for_derivative": false
+  },
+  "validation": {
+    "provider_C_replay_exit": 0,
+    "provider_CPP_replay_exit": 0,
+    "graph_C_replay_exit": 0,
+    "graph_CPP_replay_exit": 0,
+    "provider_strict_C_exit": 1,
+    "provider_strict_CPP_exit": 1,
+    "graph_strict_C_exit": 1,
+    "graph_strict_CPP_exit": 1,
+    "root_independent_component_and_graph_reviews": true,
+    "root_both_component_and_graph_replays": true,
+    "curated_read_only_replay_exit": 0,
+    "all_four_portable_receipts_byte_exact": true
+  },
+  "historical": {
+    "v1_source_sha256": "db24f4e6e22c797755ea316ea8783732b6d72b369437f9c3b2a85e6c4b0b6fec",
+    "v1_candidate_bytes": 164,
+    "v1_candidate_instructions": 53,
+    "v1_nominal_difference_offsets": [
+      134,
+      138,
+      154,
+      158
+    ],
+    "v1_difference": "Bank paths used A1 as an extra scratch; not original-register equivalent.",
+    "v1_raw_measurement_sha256": "bcd8ce18cfd37536c6ece2e12d455838c67834c7ad7339b8eb2dd3429e175c38",
+    "v2_raw_measurement_sha256": "5df1440b196d0f030b29f384ba2b2034451ca0107cb1dbab6723d26c36d6f3fa",
+    "intermediate_formal_versions": "Provider v1 privacy rejection/v2 wording; graph v1 label/v2 tuple-JSON-list replay mismatch. Historical local artifacts retained; current only v3.",
+    "original_sources_and_receipts_unchanged": true
+  },
+  "next_consumer": {
+    "path": "analysis/irq-provider-2026-10-23/next-consumer.json",
+    "decode_sha256": "8dc9dc3d4cd75aa5e4c22812ed0a45098f83f994bf78152fad9a2f7bb4dd03ca",
+    "start": "0x12C58",
+    "end": "0x12D92",
+    "bytes": 314,
+    "instructions": 107,
+    "span_sha256": "89905d7666bbe8295d09c752f1fcd34246847ea86c6428b539406450f8980c0f",
+    "readable_C_reconstructed": false
+  },
+  "feature_opportunities": {
+    "implemented": false,
+    "evidence": "analysis/irq-provider-2026-10-23/next-consumer.md",
+    "ideas": [
+      "Offline diagnostics for length/field-validity dependencies after reachable-input proof.",
+      "Investigate ID0 occupancy and queue-full visibility before layout/counter changes."
+    ],
+    "hardware_bug_proved": false
+  },
+  "limitations": [
+    "Only nine bounded original code spans are proved;24370 RX LOAD gap bytes are not original-firmware evidence.",
+    "Dynamic resident identity and full startup/IRQ/fault/memory ownership/silicon/OTA compatibility remain unproved.",
+    "Private FUNC regions are not independent ordinary C ABI functions; complete global incoming/cold/indirect entries remain open.",
+    "No complete firmware BIN or target/ISA/MMIO/hardware execution."
+  ]
+}

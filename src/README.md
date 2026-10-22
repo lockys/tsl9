@@ -2,7 +2,7 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 52 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 53 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 ## 原始碼位置與證據範圍
 
@@ -17,6 +17,7 @@
 | [packet receive](native/receive/packet_receive.c) | 封包接收、DLC／ID與共用出口 | 142B／52指令，3區域14／116／12B；120個非控制位元組相同，4個JAL與2個finish分支仍待解析；private ABI、硬體與燒錄未證 |
 | [ring insert](native/receive/ring_insert.c) | 接收佇列與fresh resident間接呼叫 | 5個架構區域，原位連結完整92B／32指令與原廠相同；保留PC衍生table與呼叫後S0／S1；resident身分、caller bounds與硬體未證 |
 | [ring IRQ adapter](native/irq/ring_irq_adapter.c) | 條件式frame與兩個MRET出口 | 52B／17指令，42個非控制位元組相同；3個edge仍待解析、2個UND；保留then-live SP埠，完整IRQ／provider ABI未證 |
+| [IRQ provider](native/receive/irq_provider.c) | Fresh word讀取與接收欄位寫入 | 6區域18／8／108／10／10／10B，原位完整164B／53指令相同；保留A4／A5與兩RET，實體MMIO／IRQ／晶片未證 |
 | [native/irq](native/irq/interrupt_registers.c) | 四個 register helper 與 IRQ 初始化 | 四個 helper 各 30 bytes 相同；初始化正常出口有證據，180B 超出原144B，非同步等價未證 |
 | [native/timer](native/timer/delay.c) | V4.1.60 計時器暫存器契約 | 完整54-byte leaf與官方相同；獨立編譯入口，尚未替換 NV callback／OTA BIN |
 | [native/nv/nv_write_frame_contract.c](native/nv/nv_write_frame_contract.c) | 新 NV write callback frame／fresh source contract | 已量測原32B frame／source位置及前40B除JAL相同；結尾 LI0 提早，fault／IRQ等價仍未證 |
@@ -49,9 +50,9 @@ python3 scripts/verify-curated-source.py
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-腳本依 manifest 選擇二十六個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
+腳本依 manifest 選擇二十七個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
 
-本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 52 組比對（104 個物件），收據為 `build/curated-source/ring-irq-20261023-v2/verification.json`。舊 SPI 整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
+本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 54 組比對（108 個物件），收據為 `build/curated-source/irq-provider-20261023-v1/verification.json`。舊 SPI 整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
 
 既有結果可唯讀重播：
 
