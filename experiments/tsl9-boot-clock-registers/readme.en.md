@@ -2,7 +2,7 @@
 
 [繁體中文](readme.zh-TW.md) · [English](readme.en.md)
 
-Readable C plus an empty fixed-register port reconstructs BOOT/Runtime clock initialization while preserving original normal-return A2–A5. Current entry: [src/native/clock/clock_init.c](../../src/native/clock/clock_init.c).
+This version preserves original normal-return A2–A5 with readable C and an empty fixed-register port. The current [src/native/clock/clock_init.c](../../src/native/clock/clock_init.c) uses the [entry-order correction](../tsl9-boot-clock-prefix/readme.en.md); this224B version and its evidence remain for comparison.
 
 ## Measured result
 

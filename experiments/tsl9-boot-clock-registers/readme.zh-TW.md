@@ -2,7 +2,7 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-以可讀C與空的固定暫存器port重建BOOT／Runtime時鐘初始化，並保留原版正常返回時的A2–A5。現行入口為 [src/native/clock/clock_init.c](../../src/native/clock/clock_init.c)。
+本版以可讀C與空的固定暫存器port保留原版正常返回時的A2–A5。現行 [src/native/clock/clock_init.c](../../src/native/clock/clock_init.c) 已採用[入口順序修正版](../tsl9-boot-clock-prefix/README.md)；本版224B來源與驗證保留作比較。
 
 ## 本輪結果
 
