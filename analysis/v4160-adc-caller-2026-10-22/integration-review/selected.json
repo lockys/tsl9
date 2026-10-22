@@ -1,0 +1,302 @@
+{
+  "c": {
+    "passed": true,
+    "mode": "c",
+    "actual_artifacts_read": true,
+    "actual_linked_ELF_read": true,
+    "candidate_BIN_read": true,
+    "integration_sources": {
+      "actual_sources_read": true,
+      "one_symbolic_JAL": true,
+      "two_exact_RX_LOAD_script": true,
+      "no_numerical_provider": true
+    },
+    "integration_receipt_sha256": "c448ff515c04710327376c08ce1d37353bfde2aedcceac0909a1a6d887652ac5",
+    "native_ABI_receipt_sha256": "c0f156e81338337267c642c8d251f493d5d392ef28671631347f29267591b508",
+    "candidate_bytes": 78848,
+    "candidate_sha256": "ecd2a9fe757117ab8af19211a56c5090dc3a2c777422fcd12ca2fb6298565e55",
+    "selected_function_bytes": 110,
+    "selected_code_sha256": "76eca3edb4fcfd4066d646af468c775723d2a08f3812aab3550cda1f14f13b22",
+    "caller_target": 110592,
+    "caller_RA": 104602,
+    "caller_patch_hex": "ef10a076",
+    "baseline_sha256": "3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee",
+    "baseline_preserved_except_caller": true,
+    "changed_preimage_offsets": [
+      71831,
+      71832,
+      71833
+    ],
+    "LOADs": [
+      {
+        "type": 1,
+        "offset": 2198,
+        "vaddr": 104598,
+        "paddr": 104598,
+        "filesz": 4,
+        "memsz": 4,
+        "flags": 5,
+        "align": 4096,
+        "header_offset": 52
+      },
+      {
+        "type": 1,
+        "offset": 4096,
+        "vaddr": 110592,
+        "paddr": 110592,
+        "filesz": 110,
+        "memsz": 110,
+        "flags": 5,
+        "align": 4096,
+        "header_offset": 84
+      }
+    ],
+    "RELA": 0,
+    "unused_globals_GCed": [
+      "ml_port_read32",
+      "ml_port_read8",
+      "ml_port_write32",
+      "tsl9_adc_config_io"
+    ],
+    "noncode_FF_tail_bytes": 914,
+    "raw_BIN_has_no_execute_permission_metadata": true,
+    "controls": [
+      {
+        "case": "caller_RA_changed",
+        "mutated_sha256": "2af83420d17f06bb1259298f1d79940a3195e14ca305d937ca3a19e64008b79c",
+        "rejected": true
+      },
+      {
+        "case": "caller_target_changed",
+        "mutated_sha256": "5f644918bdc0b340051e635e12273fdc20a51e186ce4920d492925c0e714064a",
+        "rejected": true
+      },
+      {
+        "case": "section_size_changed",
+        "offset": 4636,
+        "mutated_sha256": "ea34a98126e6e78ab1a835bde7f93a36e6f42af9a6adfc7c973e7076de6b7ee7",
+        "rejected": true
+      },
+      {
+        "case": "LOAD_hidden_mem_hole",
+        "offset": 104,
+        "mutated_sha256": "748cbf92e8619aebe7d874a430e3127cb8a34fbc8fc5596814fb7689439e2a06",
+        "rejected": true
+      },
+      {
+        "case": "inherited_preimage_changed",
+        "offset": 0,
+        "mutated_sha256": "901bdbb9f8330aa82641c2ce987ddd2f04a36803be59e6503e714fb12c71db65",
+        "rejected": true
+      },
+      {
+        "case": "native_payload_changed",
+        "offset": 77824,
+        "mutated_sha256": "9aee8e2e45598e1168531b8913fda44373354709946876001aeefa2765d55c45",
+        "rejected": true
+      },
+      {
+        "case": "noncode_tail_changed",
+        "offset": 78847,
+        "mutated_sha256": "d67027eb5fa2cfcc7544568deb90467dec59b425d5087da2ae42e5767477d491",
+        "rejected": true
+      }
+    ],
+    "normal_caller_projection": {
+      "conditionally_supported": true,
+      "scope": "only original19896 caller normal mapped effect/result/register projection",
+      "public_A0_A1_unchanged": true,
+      "callee_frame_bytes": 16,
+      "existing_callback_stack_interval_bytes": 144,
+      "additional_stack_effect": "save/restoreRA at callbackSP-4, private unused scratch below live config at callbackSP+32",
+      "allowed_dead_caller_register_writes": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "escaping_A7_T_S_GP_TP_writes": false,
+      "required_premises": [
+        "Only replace the original 19896 call; the downstream original caller and bounded dependencies remain unchanged",
+        "The existing nonwrapping aligned private144-byte callback stack interval is valid; the new16-byte frame below callbackSP lies inside it",
+        "The new savedRA word at callbackSP-4 is disjoint from code, MMIO, the live config at callbackSP+32..63, and any other live or externally observed memory",
+        "All original14 numeric-address effects complete normally and preserve their original width, order, fresh reads and values",
+        "No fault, asynchronous register/stack/code/MMIO modification or register observer intervenes",
+        "The existing original callback polling loop eventually observes its nonzero status bit when normal whole-callback return is claimed",
+        "Private unused frame residue is excluded from this normal caller projection; whole-machine memory identity is not claimed"
+      ],
+      "source_algorithm_unchanged": true,
+      "normal_14_effect_SSA_matched": true,
+      "full_original_callee_ABI": false,
+      "private_frame_contents_not_an_observable_projection_output": true,
+      "fault_async_IRQ_equivalence": false,
+      "placement_proved": false,
+      "flashability_proved": false
+    },
+    "inherited_OTA568_and_ROM_witness_limitations": true,
+    "inherited_physical_gates_false": true,
+    "full_image_provenance_proved": false,
+    "full_original_callee_ABI_proved": false,
+    "fault_async_IRQ_equivalence": false,
+    "Flash_NV_ownership_proved": false,
+    "installed_ROM_proved": false,
+    "hardware_OTA_proved": false,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "linked": false,
+    "BIN_generated": false
+  },
+  "cpp": {
+    "passed": true,
+    "mode": "cpp",
+    "actual_artifacts_read": true,
+    "actual_linked_ELF_read": true,
+    "candidate_BIN_read": true,
+    "integration_sources": {
+      "actual_sources_read": true,
+      "one_symbolic_JAL": true,
+      "two_exact_RX_LOAD_script": true,
+      "no_numerical_provider": true
+    },
+    "integration_receipt_sha256": "f3ad729766f2b8340394b08278dfa933b3384a6ddeef5d31e374503c8d0376c1",
+    "native_ABI_receipt_sha256": "2d45d57aa9339420c207fcb934a534aa160c0f297bcd0c06f74f053f55c3add9",
+    "candidate_bytes": 78848,
+    "candidate_sha256": "ecd2a9fe757117ab8af19211a56c5090dc3a2c777422fcd12ca2fb6298565e55",
+    "selected_function_bytes": 110,
+    "selected_code_sha256": "76eca3edb4fcfd4066d646af468c775723d2a08f3812aab3550cda1f14f13b22",
+    "caller_target": 110592,
+    "caller_RA": 104602,
+    "caller_patch_hex": "ef10a076",
+    "baseline_sha256": "3be918942c03de99c8a5f3fb7d6eba40ab9af63930020efb7f4cac07cc9a10ee",
+    "baseline_preserved_except_caller": true,
+    "changed_preimage_offsets": [
+      71831,
+      71832,
+      71833
+    ],
+    "LOADs": [
+      {
+        "type": 1,
+        "offset": 2198,
+        "vaddr": 104598,
+        "paddr": 104598,
+        "filesz": 4,
+        "memsz": 4,
+        "flags": 5,
+        "align": 4096,
+        "header_offset": 52
+      },
+      {
+        "type": 1,
+        "offset": 4096,
+        "vaddr": 110592,
+        "paddr": 110592,
+        "filesz": 110,
+        "memsz": 110,
+        "flags": 5,
+        "align": 4096,
+        "header_offset": 84
+      }
+    ],
+    "RELA": 0,
+    "unused_globals_GCed": [
+      "ml_port_read32",
+      "ml_port_read8",
+      "ml_port_write32",
+      "tsl9_adc_config_io"
+    ],
+    "noncode_FF_tail_bytes": 914,
+    "raw_BIN_has_no_execute_permission_metadata": true,
+    "controls": [
+      {
+        "case": "caller_RA_changed",
+        "mutated_sha256": "2af83420d17f06bb1259298f1d79940a3195e14ca305d937ca3a19e64008b79c",
+        "rejected": true
+      },
+      {
+        "case": "caller_target_changed",
+        "mutated_sha256": "5f644918bdc0b340051e635e12273fdc20a51e186ce4920d492925c0e714064a",
+        "rejected": true
+      },
+      {
+        "case": "section_size_changed",
+        "offset": 4636,
+        "mutated_sha256": "ea34a98126e6e78ab1a835bde7f93a36e6f42af9a6adfc7c973e7076de6b7ee7",
+        "rejected": true
+      },
+      {
+        "case": "LOAD_hidden_mem_hole",
+        "offset": 104,
+        "mutated_sha256": "748cbf92e8619aebe7d874a430e3127cb8a34fbc8fc5596814fb7689439e2a06",
+        "rejected": true
+      },
+      {
+        "case": "inherited_preimage_changed",
+        "offset": 0,
+        "mutated_sha256": "901bdbb9f8330aa82641c2ce987ddd2f04a36803be59e6503e714fb12c71db65",
+        "rejected": true
+      },
+      {
+        "case": "native_payload_changed",
+        "offset": 77824,
+        "mutated_sha256": "9aee8e2e45598e1168531b8913fda44373354709946876001aeefa2765d55c45",
+        "rejected": true
+      },
+      {
+        "case": "noncode_tail_changed",
+        "offset": 78847,
+        "mutated_sha256": "d67027eb5fa2cfcc7544568deb90467dec59b425d5087da2ae42e5767477d491",
+        "rejected": true
+      }
+    ],
+    "normal_caller_projection": {
+      "conditionally_supported": true,
+      "scope": "only original19896 caller normal mapped effect/result/register projection",
+      "public_A0_A1_unchanged": true,
+      "callee_frame_bytes": 16,
+      "existing_callback_stack_interval_bytes": 144,
+      "additional_stack_effect": "save/restoreRA at callbackSP-4, private unused scratch below live config at callbackSP+32",
+      "allowed_dead_caller_register_writes": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "escaping_A7_T_S_GP_TP_writes": false,
+      "required_premises": [
+        "Only replace the original 19896 call; the downstream original caller and bounded dependencies remain unchanged",
+        "The existing nonwrapping aligned private144-byte callback stack interval is valid; the new16-byte frame below callbackSP lies inside it",
+        "The new savedRA word at callbackSP-4 is disjoint from code, MMIO, the live config at callbackSP+32..63, and any other live or externally observed memory",
+        "All original14 numeric-address effects complete normally and preserve their original width, order, fresh reads and values",
+        "No fault, asynchronous register/stack/code/MMIO modification or register observer intervenes",
+        "The existing original callback polling loop eventually observes its nonzero status bit when normal whole-callback return is claimed",
+        "Private unused frame residue is excluded from this normal caller projection; whole-machine memory identity is not claimed"
+      ],
+      "source_algorithm_unchanged": true,
+      "normal_14_effect_SSA_matched": true,
+      "full_original_callee_ABI": false,
+      "private_frame_contents_not_an_observable_projection_output": true,
+      "fault_async_IRQ_equivalence": false,
+      "placement_proved": false,
+      "flashability_proved": false
+    },
+    "inherited_OTA568_and_ROM_witness_limitations": true,
+    "inherited_physical_gates_false": true,
+    "full_image_provenance_proved": false,
+    "full_original_callee_ABI_proved": false,
+    "fault_async_IRQ_equivalence": false,
+    "Flash_NV_ownership_proved": false,
+    "installed_ROM_proved": false,
+    "hardware_OTA_proved": false,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "linked": false,
+    "BIN_generated": false
+  }
+}

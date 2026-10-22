@@ -1,0 +1,795 @@
+{
+  "schema": "TSL9-postcallback-initializer-source-review-v1",
+  "passed": true,
+  "metadata_only": false,
+  "actual_candidate_HEX_files_read": 2,
+  "actual_candidate_bodies_read": 16,
+  "raw_controls_replayed": true,
+  "candidate_source_bytes_each": 1056,
+  "candidate_source_rows_each": 359,
+  "standard_operand_rows": 646,
+  "conditional_QK_rows": 72,
+  "facts": [
+    {
+      "candidate": "carrier",
+      "bytes": 1056,
+      "rows": 359,
+      "groups": {
+        "post_init": {
+          "entry": 277450,
+          "end_exclusive": 277722,
+          "bytes": 272,
+          "rows": 87,
+          "normal_RET_PCs": [
+            277720
+          ],
+          "calls": [
+            {
+              "PC": 277502,
+              "kind": "AUIPC/JALR",
+              "target": 536871836,
+              "rs1": 1,
+              "immediate": 1954
+            },
+            {
+              "PC": 277520,
+              "kind": "AUIPC/JALR",
+              "target": 536871836,
+              "rs1": 1,
+              "immediate": 1936
+            },
+            {
+              "PC": 277524,
+              "kind": "direct",
+              "target": 274832
+            },
+            {
+              "PC": 277582,
+              "kind": "AUIPC/JALR",
+              "target": 536870976,
+              "rs1": 1,
+              "immediate": 1014
+            },
+            {
+              "PC": 277610,
+              "kind": "AUIPC/JALR",
+              "target": 536871836,
+              "rs1": 1,
+              "immediate": 1846
+            },
+            {
+              "PC": 277644,
+              "kind": "direct",
+              "target": 275238
+            },
+            {
+              "PC": 277648,
+              "kind": "direct",
+              "target": 278710
+            }
+          ],
+          "backward_edges": [],
+          "call_return_edges_conditional": true
+        },
+        "heap_init": {
+          "entry": 274832,
+          "end_exclusive": 274944,
+          "bytes": 112,
+          "rows": 36,
+          "normal_RET_PCs": [
+            274942
+          ],
+          "calls": [
+            {
+              "PC": 274928,
+              "kind": "direct",
+              "target": 274796
+            }
+          ],
+          "backward_edges": [],
+          "call_return_edges_conditional": true
+        },
+        "heap_scan": {
+          "entry": 274796,
+          "end_exclusive": 274832,
+          "bytes": 36,
+          "rows": 13,
+          "normal_RET_PCs": [
+            274818
+          ],
+          "calls": [],
+          "backward_edges": [
+            [
+              274830,
+              274814
+            ]
+          ],
+          "call_return_edges_conditional": true
+        },
+        "reset_leaf": {
+          "entry": 275238,
+          "end_exclusive": 275248,
+          "bytes": 10,
+          "rows": 3,
+          "normal_RET_PCs": [
+            275246
+          ],
+          "calls": [],
+          "backward_edges": [],
+          "call_return_edges_conditional": true
+        },
+        "table_init": {
+          "entry": 278710,
+          "end_exclusive": 278870,
+          "bytes": 160,
+          "rows": 61,
+          "normal_RET_PCs": [
+            278744
+          ],
+          "calls": [
+            {
+              "PC": 278762,
+              "kind": "computed",
+              "target": null,
+              "rs1": 15,
+              "immediate": 0
+            },
+            {
+              "PC": 278786,
+              "kind": "AUIPC/JALR",
+              "target": 536870976,
+              "rs1": 1,
+              "immediate": -190
+            },
+            {
+              "PC": 278814,
+              "kind": "AUIPC/JALR",
+              "target": 536871836,
+              "rs1": 1,
+              "immediate": 642
+            },
+            {
+              "PC": 278832,
+              "kind": "AUIPC/JALR",
+              "target": 536871184,
+              "rs1": 1,
+              "immediate": -28
+            },
+            {
+              "PC": 278866,
+              "kind": "computed",
+              "target": null,
+              "rs1": 14,
+              "immediate": 0
+            }
+          ],
+          "backward_edges": [
+            [
+              278752,
+              278732
+            ],
+            [
+              278756,
+              278732
+            ],
+            [
+              278768,
+              278732
+            ],
+            [
+              278800,
+              278732
+            ],
+            [
+              278868,
+              278818
+            ],
+            [
+              278846,
+              278734
+            ]
+          ],
+          "call_return_edges_conditional": true
+        },
+        "allocator": {
+          "entry": 536870976,
+          "end_exclusive": 536871184,
+          "bytes": 208,
+          "rows": 72,
+          "normal_RET_PCs": [
+            536871178
+          ],
+          "calls": [
+            {
+              "PC": 536871072,
+              "kind": "computed",
+              "target": null,
+              "rs1": 14,
+              "immediate": 0
+            }
+          ],
+          "backward_edges": [
+            [
+              536871084,
+              536871044
+            ],
+            [
+              536871182,
+              536871052
+            ],
+            [
+              536871064,
+              536871002
+            ],
+            [
+              536871074,
+              536871002
+            ]
+          ],
+          "call_return_edges_conditional": true
+        },
+        "fill": {
+          "entry": 536871836,
+          "end_exclusive": 536871882,
+          "bytes": 46,
+          "rows": 14,
+          "normal_RET_PCs": [
+            536871868
+          ],
+          "calls": [],
+          "backward_edges": [
+            [
+              536871876,
+              536871870
+            ],
+            [
+              536871880,
+              536871860
+            ]
+          ],
+          "call_return_edges_conditional": true
+        },
+        "free": {
+          "entry": 536871184,
+          "end_exclusive": 536871396,
+          "bytes": 212,
+          "rows": 73,
+          "normal_RET_PCs": [
+            536871206
+          ],
+          "calls": [],
+          "backward_edges": [
+            [
+              536871388,
+              536871202
+            ],
+            [
+              536871394,
+              536871228
+            ]
+          ],
+          "call_return_edges_conditional": true
+        }
+      },
+      "config_base": 536883772,
+      "config_word52": 536883824,
+      "slot400A4": 277770,
+      "post_callback_direct_call": 277976,
+      "fixed_zero_words": [
+        536883768,
+        536883840,
+        536883760
+      ],
+      "initial_byte_fill20": [
+        536883736,
+        536883756
+      ],
+      "initial_byte_fill40": [
+        536883692,
+        536883732
+      ],
+      "allocation_result_word": 536883836,
+      "initial_config21_count_formula": "let x=one fresh U8(config+21); (3*((x>>2)+(x&3))+14)&255",
+      "allocation_count_reads_not_collapsed": true,
+      "success_fill_count": "6*fresh U8(liveS0+2)+576",
+      "table_code_address_values": [
+        275248,
+        275378,
+        275378
+      ],
+      "table_function_pointer_role_inferred": true,
+      "table_code_addresses_are_store_values_not_flash_destinations": true,
+      "computed_frontiers": [
+        {
+          "PC": 536871072,
+          "pointer_field": 52,
+          "pointer_word": 536883824,
+          "A0": 1,
+          "A1": "liveA1 OR (rounded16_size<<16)",
+          "A2": "ambient entry A2 on callback-reaching paths"
+        },
+        {
+          "PC": 278762,
+          "pointer_field": 56,
+          "pointer_word": 536883828,
+          "A0": "config+8 before opaque call",
+          "A1": 1,
+          "A2": "live SP+12 writable output word"
+        },
+        {
+          "PC": 278866,
+          "pointer_field": 60,
+          "pointer_word": "fresh READ32(live S0+60)",
+          "conditional_pointer_word_if_S0_preserved": 536883832,
+          "A0": "fresh liveS0+8 plus indexed offset",
+          "A1": "fresh halfword(liveS0+12)>>2",
+          "A2": "live state+32 pointer from prior calls"
+        }
+      ],
+      "own_GP_writes": false,
+      "SP_S_preservation_requires_computed_callback_contracts": true,
+      "additional_known_stack_below_post_init_entry": 64,
+      "post_callback_known_frames_below_slot400A4_entry": 80,
+      "unknown_callback_extra_stack_unbounded": true,
+      "normal_return_or_list_loop_termination_proved": false,
+      "config52_actual_value_or_full_lifetime_proved": false,
+      "computed_heap_and_output_aliases_excluded": false,
+      "config52_unchanged_only_if_all_dynamic_writes_disjoint_and_callbacks_preserve": true,
+      "installed_identity_proved": false
+    },
+    {
+      "candidate": "carrier-dec2023",
+      "bytes": 1056,
+      "rows": 359,
+      "groups": {
+        "post_init": {
+          "entry": 277310,
+          "end_exclusive": 277582,
+          "bytes": 272,
+          "rows": 87,
+          "normal_RET_PCs": [
+            277580
+          ],
+          "calls": [
+            {
+              "PC": 277362,
+              "kind": "AUIPC/JALR",
+              "target": 536871836,
+              "rs1": 1,
+              "immediate": -2002
+            },
+            {
+              "PC": 277380,
+              "kind": "AUIPC/JALR",
+              "target": 536871836,
+              "rs1": 1,
+              "immediate": -2020
+            },
+            {
+              "PC": 277384,
+              "kind": "direct",
+              "target": 274692
+            },
+            {
+              "PC": 277442,
+              "kind": "AUIPC/JALR",
+              "target": 536870976,
+              "rs1": 1,
+              "immediate": 1154
+            },
+            {
+              "PC": 277470,
+              "kind": "AUIPC/JALR",
+              "target": 536871836,
+              "rs1": 1,
+              "immediate": 1986
+            },
+            {
+              "PC": 277504,
+              "kind": "direct",
+              "target": 275098
+            },
+            {
+              "PC": 277508,
+              "kind": "direct",
+              "target": 278562
+            }
+          ],
+          "backward_edges": [],
+          "call_return_edges_conditional": true
+        },
+        "heap_init": {
+          "entry": 274692,
+          "end_exclusive": 274804,
+          "bytes": 112,
+          "rows": 36,
+          "normal_RET_PCs": [
+            274802
+          ],
+          "calls": [
+            {
+              "PC": 274788,
+              "kind": "direct",
+              "target": 274656
+            }
+          ],
+          "backward_edges": [],
+          "call_return_edges_conditional": true
+        },
+        "heap_scan": {
+          "entry": 274656,
+          "end_exclusive": 274692,
+          "bytes": 36,
+          "rows": 13,
+          "normal_RET_PCs": [
+            274678
+          ],
+          "calls": [],
+          "backward_edges": [
+            [
+              274690,
+              274674
+            ]
+          ],
+          "call_return_edges_conditional": true
+        },
+        "reset_leaf": {
+          "entry": 275098,
+          "end_exclusive": 275108,
+          "bytes": 10,
+          "rows": 3,
+          "normal_RET_PCs": [
+            275106
+          ],
+          "calls": [],
+          "backward_edges": [],
+          "call_return_edges_conditional": true
+        },
+        "table_init": {
+          "entry": 278562,
+          "end_exclusive": 278722,
+          "bytes": 160,
+          "rows": 61,
+          "normal_RET_PCs": [
+            278596
+          ],
+          "calls": [
+            {
+              "PC": 278614,
+              "kind": "computed",
+              "target": null,
+              "rs1": 15,
+              "immediate": 0
+            },
+            {
+              "PC": 278638,
+              "kind": "AUIPC/JALR",
+              "target": 536870976,
+              "rs1": 1,
+              "immediate": -42
+            },
+            {
+              "PC": 278666,
+              "kind": "AUIPC/JALR",
+              "target": 536871836,
+              "rs1": 1,
+              "immediate": 790
+            },
+            {
+              "PC": 278684,
+              "kind": "AUIPC/JALR",
+              "target": 536871184,
+              "rs1": 1,
+              "immediate": 120
+            },
+            {
+              "PC": 278718,
+              "kind": "computed",
+              "target": null,
+              "rs1": 14,
+              "immediate": 0
+            }
+          ],
+          "backward_edges": [
+            [
+              278604,
+              278584
+            ],
+            [
+              278608,
+              278584
+            ],
+            [
+              278620,
+              278584
+            ],
+            [
+              278652,
+              278584
+            ],
+            [
+              278720,
+              278670
+            ],
+            [
+              278698,
+              278586
+            ]
+          ],
+          "call_return_edges_conditional": true
+        },
+        "allocator": {
+          "entry": 536870976,
+          "end_exclusive": 536871184,
+          "bytes": 208,
+          "rows": 72,
+          "normal_RET_PCs": [
+            536871178
+          ],
+          "calls": [
+            {
+              "PC": 536871072,
+              "kind": "computed",
+              "target": null,
+              "rs1": 14,
+              "immediate": 0
+            }
+          ],
+          "backward_edges": [
+            [
+              536871084,
+              536871044
+            ],
+            [
+              536871182,
+              536871052
+            ],
+            [
+              536871064,
+              536871002
+            ],
+            [
+              536871074,
+              536871002
+            ]
+          ],
+          "call_return_edges_conditional": true
+        },
+        "fill": {
+          "entry": 536871836,
+          "end_exclusive": 536871882,
+          "bytes": 46,
+          "rows": 14,
+          "normal_RET_PCs": [
+            536871868
+          ],
+          "calls": [],
+          "backward_edges": [
+            [
+              536871876,
+              536871870
+            ],
+            [
+              536871880,
+              536871860
+            ]
+          ],
+          "call_return_edges_conditional": true
+        },
+        "free": {
+          "entry": 536871184,
+          "end_exclusive": 536871396,
+          "bytes": 212,
+          "rows": 73,
+          "normal_RET_PCs": [
+            536871206
+          ],
+          "calls": [],
+          "backward_edges": [
+            [
+              536871388,
+              536871202
+            ],
+            [
+              536871394,
+              536871228
+            ]
+          ],
+          "call_return_edges_conditional": true
+        }
+      },
+      "config_base": 536883692,
+      "config_word52": 536883744,
+      "slot400A4": 277630,
+      "post_callback_direct_call": 277836,
+      "fixed_zero_words": [
+        536883688,
+        536883760,
+        536883680
+      ],
+      "initial_byte_fill20": [
+        536883656,
+        536883676
+      ],
+      "initial_byte_fill40": [
+        536883612,
+        536883652
+      ],
+      "allocation_result_word": 536883756,
+      "initial_config21_count_formula": "let x=one fresh U8(config+21); (3*((x>>2)+(x&3))+14)&255",
+      "allocation_count_reads_not_collapsed": true,
+      "success_fill_count": "6*fresh U8(liveS0+2)+576",
+      "table_code_address_values": [
+        275108,
+        275238,
+        275238
+      ],
+      "table_function_pointer_role_inferred": true,
+      "table_code_addresses_are_store_values_not_flash_destinations": true,
+      "computed_frontiers": [
+        {
+          "PC": 536871072,
+          "pointer_field": 52,
+          "pointer_word": 536883744,
+          "A0": 1,
+          "A1": "liveA1 OR (rounded16_size<<16)",
+          "A2": "ambient entry A2 on callback-reaching paths"
+        },
+        {
+          "PC": 278614,
+          "pointer_field": 56,
+          "pointer_word": 536883748,
+          "A0": "config+8 before opaque call",
+          "A1": 1,
+          "A2": "live SP+12 writable output word"
+        },
+        {
+          "PC": 278718,
+          "pointer_field": 60,
+          "pointer_word": "fresh READ32(live S0+60)",
+          "conditional_pointer_word_if_S0_preserved": 536883752,
+          "A0": "fresh liveS0+8 plus indexed offset",
+          "A1": "fresh halfword(liveS0+12)>>2",
+          "A2": "live state+32 pointer from prior calls"
+        }
+      ],
+      "own_GP_writes": false,
+      "SP_S_preservation_requires_computed_callback_contracts": true,
+      "additional_known_stack_below_post_init_entry": 64,
+      "post_callback_known_frames_below_slot400A4_entry": 80,
+      "unknown_callback_extra_stack_unbounded": true,
+      "normal_return_or_list_loop_termination_proved": false,
+      "config52_actual_value_or_full_lifetime_proved": false,
+      "computed_heap_and_output_aliases_excluded": false,
+      "config52_unchanged_only_if_all_dynamic_writes_disjoint_and_callbacks_preserve": true,
+      "installed_identity_proved": false
+    }
+  ],
+  "computed_callback_effects_proved": false,
+  "whole_initializer_SP_S_GP_preservation_proved": false,
+  "config52_unconditional_preservation_or_zero_proved": false,
+  "full_ABI_proved": false,
+  "whole_OTA_proved": false,
+  "installed_identity_proved": false,
+  "holes_materialized": false,
+  "parser_self_tests_or_old_HOST_matrices_run": false,
+  "target_or_ISA_or_ESIL_execution": false,
+  "compiler_or_linker_run": false,
+  "new_BIN": false,
+  "network": false,
+  "hardware": false,
+  "actual_previous_initializer_bytes": 456,
+  "raw_controls": 10,
+  "controls": [
+    {
+      "candidate": "carrier",
+      "PC": 277472,
+      "field": "immediate",
+      "bit": 2,
+      "old": 20,
+      "new": 21,
+      "raw_hex": "5546",
+      "rejected": true,
+      "reason": "Actual source field 0x43be0 {'op': 'addi', 'rd': 12, 'rs1': 0, 'immediate': 20}"
+    },
+    {
+      "candidate": "carrier",
+      "PC": 277506,
+      "field": "immediate",
+      "bit": 20,
+      "old": 492,
+      "new": 493,
+      "raw_hex": "1305d41e",
+      "rejected": true,
+      "reason": "Actual source field 0x43c02 {'op': 'addi', 'rd': 10, 'rs1': 8, 'immediate': 492}"
+    },
+    {
+      "candidate": "carrier",
+      "PC": 536871060,
+      "field": "immediate",
+      "bit": 20,
+      "old": 624,
+      "new": 625,
+      "raw_hex": "03271727",
+      "rejected": true,
+      "reason": "Actual source field 0x20000094 {'op': 'lw', 'rd': 14, 'rs1': 14, 'immediate': 624, 'memory_width': 32}"
+    },
+    {
+      "candidate": "carrier",
+      "PC": 278750,
+      "field": "immediate",
+      "bit": 5,
+      "old": 56,
+      "new": 120,
+      "raw_hex": "3c5c",
+      "rejected": true,
+      "reason": "Actual source field 0x440de {'op': 'lw', 'rd': 15, 'rs1': 8, 'immediate': 56}"
+    },
+    {
+      "candidate": "carrier",
+      "PC": 277718,
+      "field": "immediate",
+      "bit": 2,
+      "old": 16,
+      "new": 17,
+      "raw_hex": "4501",
+      "rejected": true,
+      "reason": "Only exact own SP frame changes post_init"
+    },
+    {
+      "candidate": "carrier-dec2023",
+      "PC": 277332,
+      "field": "immediate",
+      "bit": 2,
+      "old": 20,
+      "new": 21,
+      "raw_hex": "5546",
+      "rejected": true,
+      "reason": "Actual source field 0x43b54 {'op': 'addi', 'rd': 12, 'rs1': 0, 'immediate': 20}"
+    },
+    {
+      "candidate": "carrier-dec2023",
+      "PC": 277366,
+      "field": "immediate",
+      "bit": 20,
+      "old": 412,
+      "new": 413,
+      "raw_hex": "1305d419",
+      "rejected": true,
+      "reason": "Actual source field 0x43b76 {'op': 'addi', 'rd': 10, 'rs1': 8, 'immediate': 412}"
+    },
+    {
+      "candidate": "carrier-dec2023",
+      "PC": 536871060,
+      "field": "immediate",
+      "bit": 20,
+      "old": 544,
+      "new": 545,
+      "raw_hex": "03271722",
+      "rejected": true,
+      "reason": "Actual source field 0x20000094 {'op': 'lw', 'rd': 14, 'rs1': 14, 'immediate': 544, 'memory_width': 32}"
+    },
+    {
+      "candidate": "carrier-dec2023",
+      "PC": 278602,
+      "field": "immediate",
+      "bit": 5,
+      "old": 56,
+      "new": 120,
+      "raw_hex": "3c5c",
+      "rejected": true,
+      "reason": "Actual source field 0x4404a {'op': 'lw', 'rd': 15, 'rs1': 8, 'immediate': 56}"
+    },
+    {
+      "candidate": "carrier-dec2023",
+      "PC": 277578,
+      "field": "immediate",
+      "bit": 2,
+      "old": 16,
+      "new": 17,
+      "raw_hex": "4501",
+      "rejected": true,
+      "reason": "Only exact own SP frame changes post_init"
+    }
+  ]
+}

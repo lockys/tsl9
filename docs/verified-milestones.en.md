@@ -1,5 +1,13 @@
 # Verified milestones
 
+## ADC caller linked to a real C/C++ experimental image
+
+A register allocation derived from the original caller produces identical C11/C++17 functions of 110 bytes / 42 instructions, preserving A7 and T/S/GP/TP while adding a 16-byte private frame. Independent review supports the normal caller projection under explicit premises; private frame residue is outside that observation. Full original ABI, fault and interrupt equivalence remain unproved.
+
+An actual assembler JAL relocation and linker connect the function in a separate **78,848-byte offline candidate**, preserving the previous 77,824-byte image. Only three original caller bytes change; an appended page contains 110 bytes of C code and 914 bytes of explicit FF packaging data. Independent readers inspect ELF, LOADs, JAL and the entire BIN; linker GC removes four unused real functions. **The candidate remains NOT-FLASH-VALIDATED; original-hardware OTA compatibility is unproved.**
+
+Two candidate resident libraries each contribute 8 complete functions (1,056 bytes / 359 rows). Indirect callbacks at config+52, config+56 and fresh live S0+60 remain open, as do installed ROM, BOOT and Flash/NV/RAM ownership. Offline compatibility and configuration diagnostics are proposals. [C/C++, actual artifacts and source evidence](../analysis/v4160-adc-caller-2026-10-22/readme.en.md)
+
 ## ADC configuration reconstructed in C/C++; callback dependencies closed
 
 Shared C11/C++17 reconstructs the original88B/37-instruction configuration logic with14 ordered IO effects, complete high bits, alias feedback and uint32 wrap. Producer HOST has80cases/6864checks per language; independent HOST has74cases/2904checks; each suite rejects3actual compiled semantic controls per language. Native entry102B/38instructions has no call/frame; the whole254B/93-instruction object has5genuine global FUNC and UND0/RELA0. **Extra A2/A6/A7 writes and14-byte oversize remain unresolved; no newly rebuilt firmware BIN.**

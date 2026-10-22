@@ -1,0 +1,15 @@
+{
+  "required_premises": [
+    "Only replace the original 19896 call; the downstream original caller and bounded dependencies remain unchanged",
+    "The existing nonwrapping aligned private144-byte callback stack interval is valid; the new16-byte frame below callbackSP lies inside it",
+    "The new savedRA word at callbackSP-4 is disjoint from code, MMIO, the live config at callbackSP+32..63, and any other live or externally observed memory",
+    "All original14 numeric-address effects complete normally and preserve their original width, order, fresh reads and values",
+    "No fault, asynchronous register/stack/code/MMIO modification or register observer intervenes",
+    "The existing original callback polling loop eventually observes its nonzero status bit when normal whole-callback return is claimed",
+    "Private unused frame residue is excluded from this normal caller projection; whole-machine memory identity is not claimed"
+  ],
+  "full_original_callee_ABI": false,
+  "fault_async_IRQ_equivalence": false,
+  "placement_proved": false,
+  "flashability_proved": false
+}

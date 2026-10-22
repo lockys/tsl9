@@ -4,6 +4,14 @@
 
 本项目保存原始 APK、22 份不同的更新器 BIN、可读 C/C++ 行为模型及静态来源证据。完整目标仍是生成与原硬件及 BLE 更新器兼容的重建 BIN，并在逆向过程中评估值得新增的功能，将提案与已实现功能分别列出。**目前尚无经验证可刷写的重建 BIN。**
 
+## ADC caller 已接入真实 C/C++ 实验映像
+
+从原始 caller 推导寄存器配置后，C11／C++17 生成相同的 110-byte／42 指令函数，保留 A7 与 T／S／GP／TP，新增 16-byte 私有 frame。独立审查支持明确前提下的正常 caller 投影；私有 frame 残值不在此投影的观察范围，完整原 ABI、fault 与中断等价仍未证实。
+
+已通过真实 assembler JAL relocation 与 linker 接入另存的 **78,848-byte 离线候选**，原 77,824-byte 映像保留。只有原 caller 的三个 bytes 改变，另附加 110-byte C 函数及 914-byte FF 页尾数据。独立读回 ELF、LOAD、JAL 与整个 BIN；四个未用真实函数经 GC 移除。**候选仍为 NOT-FLASH-VALIDATED，尚不能宣称可供原硬件 OTA 刷写。**
+
+另外核对两份候选 resident 各 8 个完整函数（各 1,056 bytes／359 行）；尚未闭合 config+52、config+56 与 fresh live S0+60 的间接 callback，也未证实实体 ROM、BOOT、Flash／NV／RAM ownership。可新增的离线兼容性与配置诊断目前为提案。[本轮 C/C++、实际文件与来源证据](analysis/v4160-adc-caller-2026-10-22/README.md)
+
 ## ADC 配置已重建为 C/C++，callback 依赖已闭合
 
 原始88B／37指令的配置逻辑已重建为共享C11／C++17，保留14次有序IO、完整高位、alias与uint32回绕。实现HOST各80案例／6864检查，独立HOST各74案例／2904检查；两套各有3个实际编译语义反例。native入口102B／38指令、无call／frame，完整对象254B／93指令、5个真实global FUNC、UND／RELA为零。**额外A2／A6／A7写入及超出原范围14B仍未解决，没有新的重建固件BIN。**

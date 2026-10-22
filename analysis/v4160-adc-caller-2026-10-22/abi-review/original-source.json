@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "facts": {
+    "A0_A6_redefined_before_later_use_for_actual_caller": true,
+    "first_writes": {
+      "A0": 104604,
+      "A1": 104602,
+      "A2": 104626,
+      "A3": 100986,
+      "A4": 101020,
+      "A5": 100742,
+      "A6": 100798
+    },
+    "A7_T0_T2_T3_T4_T5_T6_unread_preserved": true,
+    "original_T1_normal_exit_value": 15,
+    "depends_on_actual_enabled_paths_and_channel16": true,
+    "relies_on_PSABI": false
+  },
+  "source_bytes": 946,
+  "source_rows": 352,
+  "actual_original_firmware_read": true,
+  "metadata_only": false,
+  "minimum_stack_bytes_including_nested": 144,
+  "premises": [
+    "old restricted8520 valid aligned32B zero path",
+    "valid nonwrapping144B stack interval",
+    "fixed MMIO accesses complete normally",
+    "stack/code/config-word52/MMIO write sets are disjoint",
+    "no asynchronous register/stack/code/config-word changes or register observers",
+    "poll returns nonzero on some finite read for normal return"
+  ],
+  "full_original_callee_ABI_proved": false,
+  "physical_ABI_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false
+}
