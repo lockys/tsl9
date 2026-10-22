@@ -1,0 +1,49 @@
+{
+  "schema": "TSL9-boot-clock-normal-register-source-map-v1",
+  "original_clock_source": "analysis/boot2580-clock-2026-10-22/ledger.json",
+  "original_exit_source": "analysis/boot2580-clock-exit-2026-10-22/ledger.json",
+  "BOOT_VA": "[0x2C78,0x2D62)",
+  "Runtime_VA": "[0x1874A,0x18834)",
+  "original_body_bytes": 234,
+  "original_instructions": 93,
+  "original_body_sha256": "e0debe8b77025cfb56144045a0aa7524b7a2cd2ad0bd3daa2d880408ad9758f5",
+  "source": "src/clock_registers.c",
+  "curated_source": "src/native/clock/clock_init.c",
+  "source_sha256": "9c40e345a2a66b231018a0f93a6bbfc11fb144adc74eb998d71143f4a4512205",
+  "symbol": "tsl9_boot_clock_registers_2c78",
+  "candidate": {
+    "bytes": 224,
+    "instructions": 91,
+    "code_sha256": "c315b15bf8f1197e6b9e79393538bd33d79c42e6b4833fade55372b4220a881b",
+    "frame_bytes": 16,
+    "stack_offsets": [
+      8,
+      12
+    ],
+    "own_written_GPRs": [
+      2,
+      12,
+      13,
+      14,
+      15
+    ],
+    "IR_volatile_loads": 22,
+    "IR_volatile_stores": 20
+  },
+  "conditional_normal_exit": {
+    "W": "fresh complete u32 from SP+12",
+    "A2": "0x20000",
+    "A3": "0x40021000",
+    "skip": "W!=1: A4=W,A5=1",
+    "configured": "W==1 and both later polls return: A4=A5=8"
+  },
+  "latest_build": "build/component-v2",
+  "normal_four_GPR_projection_checked": true,
+  "whole_original_code_equal": false,
+  "full_original_ABI_proved": false,
+  "fault_IRQ_equivalence": false,
+  "physical_placement_proved": false,
+  "installed_ROM_proved": false,
+  "target_execution": false,
+  "new_BIN": false
+}

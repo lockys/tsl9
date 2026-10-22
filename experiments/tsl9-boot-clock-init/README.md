@@ -4,6 +4,8 @@
 
 以普通可讀 C 重建原廠時鐘初始化；來源整理在 [src/native/clock/clock_init.c](../../src/native/clock/clock_init.c)。除了不產生指令的frame-storage port，沒有指令承載、ASM演算法或fake provider。
 
+目前 `src/` 已更新為[正常出口暫存器版](../tsl9-boot-clock-registers/README.md)。本214B里程碑仍使用本資料夾的 `src/clock_init.c` 與收據重播。
+
 ## 驗證結果
 
 - C11／C++17 object與linked元件皆為 **214B／88指令**，只有一個真正FUNC及AX區段；無UND／ABS／relocation。

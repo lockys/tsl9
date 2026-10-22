@@ -18,7 +18,7 @@ typedef char clock_frame_is_16[(sizeof(struct clock_frame) == 16) ? 1 : -1];
 #ifdef __cplusplus
 extern "C"
 #endif
-void tsl9_boot_clock_init_2c78(void)
+void tsl9_boot_clock_registers_2c78(void)
 {
     volatile uint32_t *const reg =
         (volatile uint32_t *)(uintptr_t)UINT32_C(0x40021000);
@@ -48,7 +48,10 @@ void tsl9_boot_clock_init_2c78(void)
         frame.ready = 1;
     else
         frame.ready = 0;
-    if (frame.ready == 1u) {
+    const uint32_t selected_ready = frame.ready;
+    uint32_t final_a4 = selected_ready;
+    uint32_t final_a5 = 1u;
+    if (selected_ready == 1u) {
         reg[1] = reg[1];
         reg[1] = reg[1];
         reg[1] = reg[1] | UINT32_C(0x400);
@@ -63,5 +66,13 @@ void tsl9_boot_clock_init_2c78(void)
         while ((reg[1] & UINT32_C(12)) != UINT32_C(8)) {
             /* Observation budgets must not become firmware timeouts. */
         }
+        final_a4 = 8u;
+        final_a5 = 8u;
     }
+    /* Normal exit register projection only; no extra MMIO/stack sample. */
+    register uint32_t a2 __asm__("a2") = UINT32_C(0x20000);
+    register uint32_t a3 __asm__("a3") = UINT32_C(0x40021000);
+    register uint32_t a4 __asm__("a4") = final_a4;
+    register uint32_t a5 __asm__("a5") = final_a5;
+    __asm__ volatile("" : : "r"(a2), "r"(a3), "r"(a4), "r"(a5) : "memory");
 }

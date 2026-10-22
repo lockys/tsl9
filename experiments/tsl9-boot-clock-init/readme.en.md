@@ -4,6 +4,8 @@
 
 Ordinary readable C reconstructs the original clock initialization. Curated source: [src/native/clock/clock_init.c](../../src/native/clock/clock_init.c). The only ASM is an empty frame-storage port: no instruction carrier, ASM algorithm or fake provider.
 
+Current `src/` uses the [normal-exit register version](../tsl9-boot-clock-registers/readme.en.md). This214B milestone remains reproducible from its own `src/clock_init.c` and receipts.
+
 ## Measured result
 
 - Both C11/C++17 objects and linked components contain **214B/88 instructions**, one genuine FUNC/AX allocation, with no UND/ABS/relocations.
