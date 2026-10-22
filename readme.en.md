@@ -4,6 +4,12 @@
 
 This project preserves the original APK, 22 distinct updater BINs, readable C/C++ behavior models and static source evidence. The goal remains a rebuilt BIN compatible with the original hardware and BLE updater, while identifying worthwhile new features during reverse engineering and keeping proposals separate from implemented functions. **No rebuilt BIN is currently verified as flashable.**
 
+## NV-read callback reconstructed; normal-exit scratch checked
+
+The original 30-byte NV-read callback is reconstructed as real C11/C++17: 32 bytes / 14 instructions, one global FUNC, UND0/RELA0/ABS0. Independent inspection checks the fresh slot, word-count shift, indirect-call arguments and zero return, rejecting eight controls per language. Extra A3, fault ordering and original extent fit remain limitations. **No new BIN; the function is not integrated into the existing candidate.**
+
+The ADC scratch word is overwritten with the same `0x198EA` at normal callback exit; this does not guarantee infinite polling returns or prove all-RAM/IRQ equivalence. Config+56/+60 now connect to original App read/write functions. The conditional numeric NV range is `0x08077C00..0x08077F00`; original hardware Flash ownership and OTA remain unproved. [C/C++, source and all limitations](analysis/v4160-callback-frontiers-2026-10-22/readme.en.md)
+
 ## ADC caller linked to a real C/C++ experimental image
 
 A register allocation derived from the original caller produces identical C11/C++17 functions of 110 bytes / 42 instructions, preserving A7 and T/S/GP/TP while adding a 16-byte private frame. Independent review supports the normal caller projection under explicit premises; private frame residue is outside that observation. Full original ABI, fault and interrupt equivalence remain unproved.

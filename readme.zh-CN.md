@@ -4,6 +4,12 @@
 
 本项目保存原始 APK、22 份不同的更新器 BIN、可读 C/C++ 行为模型及静态来源证据。完整目标仍是生成与原硬件及 BLE 更新器兼容的重建 BIN，并在逆向过程中评估值得新增的功能，将提案与已实现功能分别列出。**目前尚无经验证可刷写的重建 BIN。**
 
+## NV read callback 已重建，正常出口暂存字已核对
+
+原始 30-byte NV read callback 已重建为真实 C11／C++17，各 32 bytes／14 指令、1 global FUNC、UND／RELA／ABS 为零。独立检查核对 fresh slot、word 数乘四、间接调用参数及返回零，每语言拒绝八个反例。新增 A3、fault 时序和原范围大小仍有限制，**没有新 BIN，尚未整合到既有候选**。
+
+另证明 ADC 新暂存字在 callback 正常退出时被最后调用覆盖为相同的 `0x198EA`；不代表无限 poll 一定返回或所有 RAM／IRQ 等价。config+56／+60 已连到原 App read／write 函数；条件式 NV 数值范围为 `0x08077C00..0x08077F00`，仍未证明原机 Flash ownership 或 OTA。[C/C++、来源及全部限制](analysis/v4160-callback-frontiers-2026-10-22/README.md)
+
 ## ADC caller 已接入真实 C/C++ 实验映像
 
 从原始 caller 推导寄存器配置后，C11／C++17 生成相同的 110-byte／42 指令函数，保留 A7 与 T／S／GP／TP，新增 16-byte 私有 frame。独立审查支持明确前提下的正常 caller 投影；私有 frame 残值不在此投影的观察范围，完整原 ABI、fault 与中断等价仍未证实。

@@ -1,0 +1,142 @@
+{
+  "schema": "TSL9-callback-frame-actual-review-v1",
+  "checker_sha256": "191178b292224d6d2ac9dd237efc3e762984596c81a2df29f6baec977496a881",
+  "firmware": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\exports\\TSL-firmware-options-22-BINs-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin",
+  "result": {
+    "schema": "TSL9-callback-final-frame-source-v1",
+    "passed": true,
+    "metadata_only": false,
+    "actual_original_firmware_read": true,
+    "own_bounded_ranges": 3,
+    "own_source_bytes": 470,
+    "own_source_rows": 167,
+    "reused_distinct_closure_source_bytes": 946,
+    "reused_distinct_closure_source_rows": 352,
+    "own_ranges_are_subset_of_reused_closure": true,
+    "source_CFG_only": true,
+    "normal_call_summaries_not_CPU_stepping": true,
+    "facts": {
+      "callback_normal_RET": 104794,
+      "post_ADC_normal_CFG_nodes": 68,
+      "final_call_PC": 104678,
+      "final_call_target": 100578,
+      "final_call_dominates_normal_exit": true,
+      "final_call_link_RA": 104682,
+      "reset_store_PC": 100584,
+      "reset_frame_bytes": 16,
+      "reset_slot_newSP_offset": 12,
+      "slot_callbackSP_offset": -4,
+      "slot_entrySP_offset": -132,
+      "slot_width_bits": 32,
+      "normal_exit_slot_word": 104682,
+      "slot_definitely_overwritten_before_normal_exit": true,
+      "later_own_stack_store": false,
+      "later_aliasing_MMIO_store_excluded_by_premise": true,
+      "both_original_and_candidate_final_slot_equal_conditionally": true,
+      "callee_return_boundary_equality_proved": false,
+      "private_intermediate_observer_equivalence_proved": false,
+      "poll_backedge": [
+        104662,
+        104646
+      ],
+      "unconditional_termination_or_overwrite_proved": false,
+      "full_RAM_or_IRQ_equivalence_proved": false
+    },
+    "premises": [
+      "The existing original caller and its bounded normal-return dependencies remain unchanged after the new ADC returns at1989A",
+      "The aligned nonwrapping private144-byte interval from entrySP-144 through entrySP-1 is valid for the128-byte callback and16-byte deepest child",
+      "The saved word callbackSP-4..-1 is disjoint from code, live config, fixed MMIO writes and any externally observed or intervening memory use",
+      "All source memory accesses complete normally; no fault or transfer interrupts the source normal-return paths",
+      "No asynchronous register/stack/code/config/MMIO modification or register observer intervenes before the final overwrite",
+      "Each summarized direct call returns normally under its already closed source premises; no ABI preservation is guessed from PSABI",
+      "The original polling loop eventually observes the required nonzero status, if a finite whole-callback return is claimed",
+      "The conclusion concerns this one saved word at normal callback exit; it does not make intermediate traces or the whole RAM state equal"
+    ],
+    "raw_controls": [
+      {
+        "case": "final_call_link_register",
+        "PC": 104678,
+        "bit": 7,
+        "field": "rd",
+        "original": 1,
+        "mutated": 0,
+        "mutated_range_sha256": "d9c606e2cbd66463240e89e8ed650c71efa93b4bfffeedf3460be9c433729dcb",
+        "rejected": true,
+        "reason": "Only separately closed normal tail dependency"
+      },
+      {
+        "case": "same_saved_slot",
+        "PC": 100584,
+        "bit": 7,
+        "field": "immediate",
+        "original": 12,
+        "mutated": 76,
+        "mutated_range_sha256": "ea0fa011e8902087d28fdab3147d99b253674f215145aef7b96e97fdf928ead1",
+        "rejected": true,
+        "reason": "Source operand 0x188e8 {'op': 'sw', 'rs1': 2, 'rs2': 1, 'immediate': 12, 'memory_width': 32}"
+      },
+      {
+        "case": "saved_value_is_input_RA",
+        "PC": 100584,
+        "bit": 2,
+        "field": "rs2",
+        "original": 1,
+        "mutated": 0,
+        "mutated_range_sha256": "746641c63b452c9d61067c16842413ad35f2c25c6316453d7d6f995026adcaa4",
+        "rejected": true,
+        "reason": "Source operand 0x188e8 {'op': 'sw', 'rs1': 2, 'rs2': 1, 'immediate': 12, 'memory_width': 32}"
+      },
+      {
+        "case": "frame_displacement",
+        "PC": 100578,
+        "bit": 2,
+        "field": "immediate",
+        "original": -16,
+        "mutated": -15,
+        "mutated_range_sha256": "ac46a2e9fc912ff88d6d152e2ee4a3afc4ad002b37b8c892400c0a86867f71c0",
+        "rejected": true,
+        "reason": "Source operand 0x188e2 {'op': 'addi', 'rd': 2, 'rs1': 2, 'immediate': -16}"
+      },
+      {
+        "case": "outerSP_restore",
+        "PC": 104792,
+        "bit": 2,
+        "field": "immediate",
+        "original": 128,
+        "mutated": 160,
+        "mutated_range_sha256": "f99ba40a7ec4557219e93b61af37fe81bd3cab01f2f9339ab3f5cae6777dd6ca",
+        "rejected": true,
+        "reason": "Source operand 0x19958 {'op': 'addi', 'rd': 2, 'rs1': 2, 'immediate': 128}"
+      },
+      {
+        "case": "branch_bypasses_required_overwrite",
+        "PC": 104662,
+        "bits": [
+          5,
+          6,
+          12
+        ],
+        "original_target": 104646,
+        "mutated_target": 104710,
+        "original_RA_SP_restore_epilogue_still_reachable": true,
+        "normal_RET_CFG_reachable_avoiding_call": true,
+        "mutated_range_sha256": "18fe4de7054c8f275e385ce04969856488a600dbd25471d61cf90f58856e8c16",
+        "rejected": true
+      }
+    ],
+    "raw_controls_replayed": true,
+    "full_original_callee_ABI_proved": false,
+    "fault_async_IRQ_equivalence": false,
+    "whole_RAM_equivalence_proved": false,
+    "installed_identity_proved": false,
+    "Flash_NV_ownership_proved": false,
+    "hardware_OTA_proved": false,
+    "target_execution": false,
+    "ISA_emulation": false,
+    "HOST_matrix_rerun": false,
+    "network": false,
+    "hardware": false,
+    "linked": false,
+    "BIN_generated": false
+  }
+}

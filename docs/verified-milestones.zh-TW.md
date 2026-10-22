@@ -1,5 +1,11 @@
 # 已驗證里程碑
 
+## NV read callback 已重建，正常出口暫存字已核對
+
+原始 30-byte NV read callback 已重建為真實 C11／C++17，各 32 bytes／14 指令、1 global FUNC、UND／RELA／ABS 為零。獨立檢查核對 fresh slot、word 數乘四、間接呼叫參數及返回零，每語言拒絕八個反例。新增 A3、fault 時序與原範圍大小仍有限制，**沒有新 BIN，尚未整合到既有候選**。
+
+另證明 ADC 新暫存字在 callback 正常退出時被最後呼叫覆寫為同一值 `0x198EA`；不代表無限 poll 一定返回或所有 RAM／IRQ 等價。config+56／+60 已連到原 App read／write 函式；條件式 NV 數值範圍為 `0x08077C00..0x08077F00`，仍未證明原機 Flash ownership 或 OTA。[C/C++、來源與全部限制](../analysis/v4160-callback-frontiers-2026-10-22/README.md)
+
 ## ADC caller 已接上真實 C/C++ 實驗映像
 
 由原始 caller 推導暫存器配置後，C11／C++17 產生相同的 110-byte／42 指令函式，保留 A7 與 T／S／GP／TP，新增 16-byte 私有 frame。獨立審查支持明示前提下的正常 caller 投影；私有 frame 殘值不在此投影的觀察範圍，完整原 ABI、fault 與中斷等價仍未證實。

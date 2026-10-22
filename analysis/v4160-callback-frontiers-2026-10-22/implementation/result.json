@@ -1,0 +1,680 @@
+{
+  "schema": "TSL9-NV-read-native-results-v1",
+  "source_profiles": 1,
+  "native_recipe_profiles": 1,
+  "register_bank_added": false,
+  "actual_compiler_success_languages": [
+    "c",
+    "cpp"
+  ],
+  "C_CPP_function_bytes_equal": true,
+  "results": [
+    {
+      "mode": "c",
+      "receipt": "experiments/tsl9-nv-read-callback/build/verified-v1/c/verification.json",
+      "receipt_sha256": "498edfc13095d908514a71cfbd66d946c55b49b30c37dee65de88edef8bc0fdf",
+      "checks": {
+        "functions": [
+          {
+            "name": "tsl9_nv_read_callback_1979a",
+            "global_FUNC": true,
+            "bytes": 32,
+            "instructions": 14,
+            "code_sha256": "be3e03eacb688e38d8dbebdd509b900520385a2a2084136c4bdbfdd5f5caad3c",
+            "section": ".text.tsl9_nv_read_callback_1979a",
+            "own_written_GPRs": [
+              1,
+              2,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "own_extra_written_vs_original": [
+              13
+            ],
+            "frame_deltas": [
+              -16,
+              16
+            ],
+            "stack_accesses": [
+              {
+                "PC": 2,
+                "bytes": 2,
+                "raw_hex": "06c6",
+                "op": "sw",
+                "rd": null,
+                "rs1": 2,
+                "rs2": 1,
+                "immediate": 12,
+                "target": null,
+                "memory_width": 32,
+                "LLVM_mnemonic": "sw",
+                "LLVM_operands": "ra, 0xc(sp)"
+              },
+              {
+                "PC": 26,
+                "bytes": 2,
+                "raw_hex": "b240",
+                "op": "lw",
+                "rd": 1,
+                "rs1": 2,
+                "rs2": null,
+                "immediate": 12,
+                "target": null,
+                "memory_width": 32,
+                "LLVM_mnemonic": "lw",
+                "LLVM_operands": "ra, 0xc(sp)"
+              }
+            ],
+            "indirect_calls": [
+              {
+                "PC": 22,
+                "bytes": 2,
+                "raw_hex": "8297",
+                "op": "jalr",
+                "rd": 1,
+                "rs1": 15,
+                "rs2": null,
+                "immediate": 0,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "jalr",
+                "LLVM_operands": "a5"
+              }
+            ],
+            "raw_rows": [
+              {
+                "PC": 0,
+                "bytes": 2,
+                "raw_hex": "4111",
+                "op": "addi",
+                "rd": 2,
+                "rs1": 2,
+                "rs2": null,
+                "immediate": -16,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "addi",
+                "LLVM_operands": "sp, sp, -0x10"
+              },
+              {
+                "PC": 2,
+                "bytes": 2,
+                "raw_hex": "06c6",
+                "op": "sw",
+                "rd": null,
+                "rs1": 2,
+                "rs2": 1,
+                "immediate": 12,
+                "target": null,
+                "memory_width": 32,
+                "LLVM_mnemonic": "sw",
+                "LLVM_operands": "ra, 0xc(sp)"
+              },
+              {
+                "PC": 4,
+                "bytes": 4,
+                "raw_hex": "b7060400",
+                "op": "lui",
+                "rd": 13,
+                "rs1": null,
+                "rs2": null,
+                "immediate": 262144,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "lui",
+                "LLVM_operands": "a3, 0x40"
+              },
+              {
+                "PC": 8,
+                "bytes": 2,
+                "raw_hex": "fc46",
+                "op": "lw",
+                "rd": 15,
+                "rs1": 13,
+                "rs2": null,
+                "immediate": 76,
+                "target": null,
+                "memory_width": 32,
+                "LLVM_mnemonic": "lw",
+                "LLVM_operands": "a5, 0x4c(a3)"
+              },
+              {
+                "PC": 10,
+                "bytes": 2,
+                "raw_hex": "3287",
+                "op": "mv",
+                "rd": 14,
+                "rs1": 12,
+                "rs2": null,
+                "immediate": null,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "mv",
+                "LLVM_operands": "a4, a2"
+              },
+              {
+                "PC": 12,
+                "bytes": 2,
+                "raw_hex": "aa86",
+                "op": "mv",
+                "rd": 13,
+                "rs1": 10,
+                "rs2": null,
+                "immediate": null,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "mv",
+                "LLVM_operands": "a3, a0"
+              },
+              {
+                "PC": 14,
+                "bytes": 4,
+                "raw_hex": "13962500",
+                "op": "slli",
+                "rd": 12,
+                "rs1": 11,
+                "rs2": null,
+                "immediate": 2,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "slli",
+                "LLVM_operands": "a2, a1, 0x2"
+              },
+              {
+                "PC": 18,
+                "bytes": 2,
+                "raw_hex": "3a85",
+                "op": "mv",
+                "rd": 10,
+                "rs1": 14,
+                "rs2": null,
+                "immediate": null,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "mv",
+                "LLVM_operands": "a0, a4"
+              },
+              {
+                "PC": 20,
+                "bytes": 2,
+                "raw_hex": "b685",
+                "op": "mv",
+                "rd": 11,
+                "rs1": 13,
+                "rs2": null,
+                "immediate": null,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "mv",
+                "LLVM_operands": "a1, a3"
+              },
+              {
+                "PC": 22,
+                "bytes": 2,
+                "raw_hex": "8297",
+                "op": "jalr",
+                "rd": 1,
+                "rs1": 15,
+                "rs2": null,
+                "immediate": 0,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "jalr",
+                "LLVM_operands": "a5"
+              },
+              {
+                "PC": 24,
+                "bytes": 2,
+                "raw_hex": "0145",
+                "op": "addi",
+                "rd": 10,
+                "rs1": 0,
+                "rs2": null,
+                "immediate": 0,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "li",
+                "LLVM_operands": "a0, 0x0"
+              },
+              {
+                "PC": 26,
+                "bytes": 2,
+                "raw_hex": "b240",
+                "op": "lw",
+                "rd": 1,
+                "rs1": 2,
+                "rs2": null,
+                "immediate": 12,
+                "target": null,
+                "memory_width": 32,
+                "LLVM_mnemonic": "lw",
+                "LLVM_operands": "ra, 0xc(sp)"
+              },
+              {
+                "PC": 28,
+                "bytes": 2,
+                "raw_hex": "4101",
+                "op": "addi",
+                "rd": 2,
+                "rs1": 2,
+                "rs2": null,
+                "immediate": 16,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "addi",
+                "LLVM_operands": "sp, sp, 0x10"
+              },
+              {
+                "PC": 30,
+                "bytes": 2,
+                "raw_hex": "8280",
+                "op": "jalr",
+                "rd": 0,
+                "rs1": 1,
+                "rs2": null,
+                "immediate": 0,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "ret",
+                "LLVM_operands": ""
+              }
+            ]
+          }
+        ],
+        "unused_genuine_global_functions": [],
+        "allocated_bytes": 32,
+        "instructions": 14,
+        "UND": [],
+        "RELA": 0,
+        "relocations": [],
+        "global_ABS": [],
+        "actual_public_IR": "define dso_local i32 @tsl9_nv_read_callback_1979a(i32 noundef %0, i32 noundef %1, i32 noundef %2) local_unnamed_addr #0 {\n  %4 = load volatile i32, ptr inttoptr (i32 262220 to ptr), align 4, !tbaa !4\n  %5 = inttoptr i32 %4 to ptr\n  %6 = shl i32 %1, 2\n  %7 = tail call i32 %5(i32 noundef %2, i32 noundef %0, i32 noundef %6) #1\n  ret i32 0",
+        "actual_indirect_call_IR": [
+          "%7 = tail call i32 %5(i32 noundef %2, i32 noundef %0, i32 noundef %6) #1"
+        ],
+        "actual_MD_inputs": [
+          {
+            "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h",
+            "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+          },
+          {
+            "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-nv-read-callback\\src\\nv_read_callback.c",
+            "sha256": "9dedfbeef69aa3df6de14789369a69af8c79f192dec29690ee9868aca962ede2"
+          },
+          {
+            "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-nv-read-callback\\src\\nv_read_callback.h",
+            "sha256": "8a05d4c886ce5a3800017779353ad696fe32fd543a727dc120e6f37f5a925802"
+          }
+        ],
+        "normal_projection_conditional": true,
+        "full_original_ABI_proved": false,
+        "installed_provider_proved": false,
+        "placement_proved": false,
+        "HOST_tests_run": false,
+        "target_execution": false,
+        "ISA_emulation": false,
+        "linked": false,
+        "BIN_exported": false
+      }
+    },
+    {
+      "mode": "cpp",
+      "receipt": "experiments/tsl9-nv-read-callback/build/verified-v1/cpp/verification.json",
+      "receipt_sha256": "cd4cb69d1da6a9a3b653ae3effca4b96c2c6ffbf0b7c2ecf209aef2674fa187c",
+      "checks": {
+        "functions": [
+          {
+            "name": "tsl9_nv_read_callback_1979a",
+            "global_FUNC": true,
+            "bytes": 32,
+            "instructions": 14,
+            "code_sha256": "be3e03eacb688e38d8dbebdd509b900520385a2a2084136c4bdbfdd5f5caad3c",
+            "section": ".text.tsl9_nv_read_callback_1979a",
+            "own_written_GPRs": [
+              1,
+              2,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "own_extra_written_vs_original": [
+              13
+            ],
+            "frame_deltas": [
+              -16,
+              16
+            ],
+            "stack_accesses": [
+              {
+                "PC": 2,
+                "bytes": 2,
+                "raw_hex": "06c6",
+                "op": "sw",
+                "rd": null,
+                "rs1": 2,
+                "rs2": 1,
+                "immediate": 12,
+                "target": null,
+                "memory_width": 32,
+                "LLVM_mnemonic": "sw",
+                "LLVM_operands": "ra, 0xc(sp)"
+              },
+              {
+                "PC": 26,
+                "bytes": 2,
+                "raw_hex": "b240",
+                "op": "lw",
+                "rd": 1,
+                "rs1": 2,
+                "rs2": null,
+                "immediate": 12,
+                "target": null,
+                "memory_width": 32,
+                "LLVM_mnemonic": "lw",
+                "LLVM_operands": "ra, 0xc(sp)"
+              }
+            ],
+            "indirect_calls": [
+              {
+                "PC": 22,
+                "bytes": 2,
+                "raw_hex": "8297",
+                "op": "jalr",
+                "rd": 1,
+                "rs1": 15,
+                "rs2": null,
+                "immediate": 0,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "jalr",
+                "LLVM_operands": "a5"
+              }
+            ],
+            "raw_rows": [
+              {
+                "PC": 0,
+                "bytes": 2,
+                "raw_hex": "4111",
+                "op": "addi",
+                "rd": 2,
+                "rs1": 2,
+                "rs2": null,
+                "immediate": -16,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "addi",
+                "LLVM_operands": "sp, sp, -0x10"
+              },
+              {
+                "PC": 2,
+                "bytes": 2,
+                "raw_hex": "06c6",
+                "op": "sw",
+                "rd": null,
+                "rs1": 2,
+                "rs2": 1,
+                "immediate": 12,
+                "target": null,
+                "memory_width": 32,
+                "LLVM_mnemonic": "sw",
+                "LLVM_operands": "ra, 0xc(sp)"
+              },
+              {
+                "PC": 4,
+                "bytes": 4,
+                "raw_hex": "b7060400",
+                "op": "lui",
+                "rd": 13,
+                "rs1": null,
+                "rs2": null,
+                "immediate": 262144,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "lui",
+                "LLVM_operands": "a3, 0x40"
+              },
+              {
+                "PC": 8,
+                "bytes": 2,
+                "raw_hex": "fc46",
+                "op": "lw",
+                "rd": 15,
+                "rs1": 13,
+                "rs2": null,
+                "immediate": 76,
+                "target": null,
+                "memory_width": 32,
+                "LLVM_mnemonic": "lw",
+                "LLVM_operands": "a5, 0x4c(a3)"
+              },
+              {
+                "PC": 10,
+                "bytes": 2,
+                "raw_hex": "3287",
+                "op": "mv",
+                "rd": 14,
+                "rs1": 12,
+                "rs2": null,
+                "immediate": null,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "mv",
+                "LLVM_operands": "a4, a2"
+              },
+              {
+                "PC": 12,
+                "bytes": 2,
+                "raw_hex": "aa86",
+                "op": "mv",
+                "rd": 13,
+                "rs1": 10,
+                "rs2": null,
+                "immediate": null,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "mv",
+                "LLVM_operands": "a3, a0"
+              },
+              {
+                "PC": 14,
+                "bytes": 4,
+                "raw_hex": "13962500",
+                "op": "slli",
+                "rd": 12,
+                "rs1": 11,
+                "rs2": null,
+                "immediate": 2,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "slli",
+                "LLVM_operands": "a2, a1, 0x2"
+              },
+              {
+                "PC": 18,
+                "bytes": 2,
+                "raw_hex": "3a85",
+                "op": "mv",
+                "rd": 10,
+                "rs1": 14,
+                "rs2": null,
+                "immediate": null,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "mv",
+                "LLVM_operands": "a0, a4"
+              },
+              {
+                "PC": 20,
+                "bytes": 2,
+                "raw_hex": "b685",
+                "op": "mv",
+                "rd": 11,
+                "rs1": 13,
+                "rs2": null,
+                "immediate": null,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "mv",
+                "LLVM_operands": "a1, a3"
+              },
+              {
+                "PC": 22,
+                "bytes": 2,
+                "raw_hex": "8297",
+                "op": "jalr",
+                "rd": 1,
+                "rs1": 15,
+                "rs2": null,
+                "immediate": 0,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "jalr",
+                "LLVM_operands": "a5"
+              },
+              {
+                "PC": 24,
+                "bytes": 2,
+                "raw_hex": "0145",
+                "op": "addi",
+                "rd": 10,
+                "rs1": 0,
+                "rs2": null,
+                "immediate": 0,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "li",
+                "LLVM_operands": "a0, 0x0"
+              },
+              {
+                "PC": 26,
+                "bytes": 2,
+                "raw_hex": "b240",
+                "op": "lw",
+                "rd": 1,
+                "rs1": 2,
+                "rs2": null,
+                "immediate": 12,
+                "target": null,
+                "memory_width": 32,
+                "LLVM_mnemonic": "lw",
+                "LLVM_operands": "ra, 0xc(sp)"
+              },
+              {
+                "PC": 28,
+                "bytes": 2,
+                "raw_hex": "4101",
+                "op": "addi",
+                "rd": 2,
+                "rs1": 2,
+                "rs2": null,
+                "immediate": 16,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "addi",
+                "LLVM_operands": "sp, sp, 0x10"
+              },
+              {
+                "PC": 30,
+                "bytes": 2,
+                "raw_hex": "8280",
+                "op": "jalr",
+                "rd": 0,
+                "rs1": 1,
+                "rs2": null,
+                "immediate": 0,
+                "target": null,
+                "memory_width": null,
+                "LLVM_mnemonic": "ret",
+                "LLVM_operands": ""
+              }
+            ]
+          }
+        ],
+        "unused_genuine_global_functions": [],
+        "allocated_bytes": 32,
+        "instructions": 14,
+        "UND": [],
+        "RELA": 0,
+        "relocations": [],
+        "global_ABS": [],
+        "actual_public_IR": "define dso_local i32 @tsl9_nv_read_callback_1979a(i32 noundef %0, i32 noundef %1, i32 noundef %2) local_unnamed_addr #0 {\n  %4 = load volatile i32, ptr inttoptr (i32 262220 to ptr), align 4, !tbaa !4\n  %5 = inttoptr i32 %4 to ptr\n  %6 = shl i32 %1, 2\n  %7 = tail call noundef i32 %5(i32 noundef %2, i32 noundef %0, i32 noundef %6) #1\n  ret i32 0",
+        "actual_indirect_call_IR": [
+          "%7 = tail call noundef i32 %5(i32 noundef %2, i32 noundef %0, i32 noundef %6) #1"
+        ],
+        "actual_MD_inputs": [
+          {
+            "path": "C:\\Users\\locky\\AppData\\Local\\Android\\Sdk\\ndk\\27.1.12297006\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\clang\\18\\include\\stdint.h",
+            "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+          },
+          {
+            "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-nv-read-callback\\src\\nv_read_callback.c",
+            "sha256": "9dedfbeef69aa3df6de14789369a69af8c79f192dec29690ee9868aca962ede2"
+          },
+          {
+            "path": "C:\\Users\\locky\\Documents\\Codex\\2026-10-13\\rea-https-github-com-morluto-rea\\experiments\\tsl9-nv-read-callback\\src\\nv_read_callback.h",
+            "sha256": "8a05d4c886ce5a3800017779353ad696fe32fd543a727dc120e6f37f5a925802"
+          }
+        ],
+        "normal_projection_conditional": true,
+        "full_original_ABI_proved": false,
+        "installed_provider_proved": false,
+        "placement_proved": false,
+        "HOST_tests_run": false,
+        "target_execution": false,
+        "ISA_emulation": false,
+        "linked": false,
+        "BIN_exported": false
+      }
+    }
+  ],
+  "original_bytes": 30,
+  "original_rows": 13,
+  "new_bytes": 32,
+  "new_rows": 14,
+  "normal_call_argument_projection": [
+    "entryA2",
+    "entryA0",
+    "uint32(entryA1<<2)"
+  ],
+  "normal_return_A0": 0,
+  "callee_result_ignored": true,
+  "selected_frame_bytes": 16,
+  "own_written_GPRs": [
+    1,
+    2,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "own_extra_GPRs_vs_original_wrapper": [
+    13
+  ],
+  "original_slot_before_frame": true,
+  "new_frame_save_before_slot": true,
+  "original_RA_restore_before_zero_A0": true,
+  "new_zero_A0_before_RA_restore": true,
+  "no_loop_callee_A3_difference_may_escape": true,
+  "conditional_copy_callee_contract_only": true,
+  "original_C_prototype_proved": false,
+  "full_original_ABI_proved": false,
+  "full_caller_ABI_proved": false,
+  "installed_slot_identity_proved": false,
+  "placement_proved": false,
+  "HOST_tests_run": false,
+  "native_execution": false,
+  "ISA_emulation": false,
+  "linked": false,
+  "BIN_exported": false,
+  "sh_runtime_verified": false,
+  "mechanical_history": "native-v1 C compilation/replay passed and CPP compilation passed; initial probe rejected genuine CPP call noundef i32 annotation. Only optional return annotation parser repaired, same source/flags rebuilt verified-v1. Initial snapshot/raw artifacts retained as history; initial receipts are not current-probe replay evidence."
+}
