@@ -1,0 +1,835 @@
+{
+  "schema": "TSL9-init-write-sequence-static-v1",
+  "mode": "c",
+  "firmware": "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "tools": {
+    "clang": "${LLVM_BIN}/clang.exe",
+    "ld.lld": "${LLVM_BIN}/ld.lld.exe",
+    "llvm-objdump": "${LLVM_BIN}/llvm-objdump.exe"
+  },
+  "inputs_before": {
+    "${LLVM_BIN}/clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "${LLVM_BIN}/ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "${LLVM_BIN}/llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+    "${PROJECT_ROOT}/analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/component.ld": "24d23198a31fbe7338b058a16b3e5315757de0832b4756df790dce18fa7ccdb8",
+    "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/src/init_writes.c": "e318deef8975d25c84b16489388eb5cc1506a0752f362c2ca336de32d315955a",
+    "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/verify.py": "87f1e4a72c6647a842e896ed9a730314a10a2ddf628be7b908065b1962f22682",
+    "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "inputs_after": {
+    "${LLVM_BIN}/clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "${LLVM_BIN}/ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "${LLVM_BIN}/llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+    "${PROJECT_ROOT}/analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+    "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/component.ld": "24d23198a31fbe7338b058a16b3e5315757de0832b4756df790dce18fa7ccdb8",
+    "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/src/init_writes.c": "e318deef8975d25c84b16489388eb5cc1506a0752f362c2ca336de32d315955a",
+    "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/verify.py": "87f1e4a72c6647a842e896ed9a730314a10a2ddf628be7b908065b1962f22682",
+    "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "compiler_dependencies": {
+    "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+    "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/src/init_writes.c": "e318deef8975d25c84b16489388eb5cc1506a0752f362c2ca336de32d315955a"
+  },
+  "commands": [
+    {
+      "label": "compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x10",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c",
+        "-std=c11",
+        "-c",
+        "-MD",
+        "-MF",
+        "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/build/verified-v3/c/native.d",
+        "-MT",
+        "native.o",
+        "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/src/init_writes.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/build/verified-v3/c/native.o"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x10",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-x",
+        "c",
+        "-std=c11",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/src/init_writes.c",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/build/verified-v3/c/native.ll"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "link",
+      "argv": [
+        "${LLVM_BIN}/ld.lld.exe",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/component.ld",
+        "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/build/verified-v3/c/native.o",
+        "-o",
+        "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/build/verified-v3/c/COMPONENT-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "objdump",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "--mattr=+m,+a,+c,+zicsr,+zifencei",
+        "-d",
+        "-r",
+        "${PROJECT_ROOT}/experiments/tsl9-init-write-sequence/build/verified-v3/c/COMPONENT-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "log_sha256": "cfd80a96e0b39820b0746b27674014526297ac7767423af0c385679b703e2ad6"
+    }
+  ],
+  "original": {
+    "image_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "image_bytes": 76800,
+    "base": "0x8000",
+    "function_VA": "[0x9f4c,0x9f74)",
+    "file_offset": "0x1f4c",
+    "function_bytes": 40,
+    "instructions": 15,
+    "code_sha256": "59ac44eddd4fe4b479d624b08d57d3a8eea6b0cfd273db45b22ec972bb0e38d7",
+    "next_function_VA": "[0x9f74,0x9f7a)",
+    "next_function_hex": "a387010a8280",
+    "next_function_sha256": "551e0bd058e88a00ef29c2d561808a758ace0ff36fdb09af56e8a915ccdd31e8",
+    "padding_bytes": 0
+  },
+  "artifacts": {
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "COMPONENT-ONLY-NOT-FIRMWARE.elf": "c571ebfb575571066c3b84e6f7644cb7776c0c3cb2d09221521a5db90183dfe3",
+    "IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native.d": "52f88fa91dbbfa29bacf0fb79d1bf670aed2e895d5ad437b9e2955d6c380b79b",
+    "native.ll": "a0930f662b81daa0df68af4ae86d283bbec76c5d40860e2ae74a789921450966",
+    "native.o": "d629fc360b1c841ff234de41f3b284c1e9ac0b8963a50666c07c3c9c51ca2aa9",
+    "objdump.log": "cfd80a96e0b39820b0746b27674014526297ac7767423af0c385679b703e2ad6"
+  },
+  "negative_controls": [
+    {
+      "name": "changed_1500_literal",
+      "rejected": true,
+      "gate": "Exact complete 40-byte instruction trace"
+    },
+    {
+      "name": "changed_offset8_store",
+      "rejected": true,
+      "gate": "Exact complete 40-byte instruction trace"
+    },
+    {
+      "name": "changed_store_width_opcode",
+      "rejected": true,
+      "gate": "Exact complete 40-byte instruction trace"
+    },
+    {
+      "name": "missing_return",
+      "rejected": true,
+      "gate": "Exact complete 40-byte instruction trace"
+    },
+    {
+      "name": "reordered_initial_boundaries",
+      "rejected": true,
+      "gate": "Exact complete 40-byte instruction trace"
+    },
+    {
+      "name": "wrong_linked_entry",
+      "rejected": true,
+      "gate": "Exact ELF entry"
+    },
+    {
+      "name": "wrong_code_alignment",
+      "rejected": true,
+      "gate": "Exact complete section metadata"
+    },
+    {
+      "name": "unexpected_relocation_section",
+      "rejected": true,
+      "gate": "Zero relocation records or relocation sections"
+    },
+    {
+      "name": "undefined_function_provider",
+      "rejected": true,
+      "gate": "Exact symbol inventory; no UND/ABS providers"
+    },
+    {
+      "name": "nonvolatile_store",
+      "rejected": true,
+      "gate": "Exact ordered volatile-word and empty-register-port IR"
+    },
+    {
+      "name": "halfword_IR_store",
+      "rejected": true,
+      "gate": "Exact ordered volatile-word and empty-register-port IR"
+    },
+    {
+      "name": "changed_IR_literal",
+      "rejected": true,
+      "gate": "Exact ordered volatile-word and empty-register-port IR"
+    },
+    {
+      "name": "nonempty_port",
+      "rejected": true,
+      "gate": "Exact ordered volatile-word and empty-register-port IR"
+    }
+  ],
+  "result": {
+    "passed": true,
+    "actual_ELFs": 2,
+    "source_original_equal": true,
+    "ELF_facts": [
+      {
+        "kind": "object",
+        "entry": "0x0",
+        "code_sha256": "59ac44eddd4fe4b479d624b08d57d3a8eea6b0cfd273db45b22ec972bb0e38d7",
+        "function_bytes": 40,
+        "instructions": 15,
+        "function_value": "0x0",
+        "global_functions": 1,
+        "UND_providers": 0,
+        "ABS_providers": 0,
+        "local_ABS_metadata": 1,
+        "relocations": 0,
+        "allocated_bytes": 40,
+        "alignment": 2,
+        "symbols": [
+          {
+            "name": "",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 0
+          },
+          {
+            "name": "init_writes.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$x.0",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 3
+          },
+          {
+            "name": "$d.1",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 4
+          },
+          {
+            "name": "$d.2",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 6
+          },
+          {
+            "name": "tsl9_init_writes_9f4c",
+            "value": 0,
+            "size": 40,
+            "info": 18,
+            "other": 0,
+            "index": 3
+          }
+        ],
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 137,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 0,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".text.tsl9_init_writes_9f4c",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 40,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".comment",
+            "type": 1,
+            "flags": 48,
+            "address": 0,
+            "size": 159,
+            "alignment": 1,
+            "entry_size": 1
+          },
+          {
+            "name": ".note.GNU-stack",
+            "type": 1,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".riscv.attributes",
+            "type": 1879048195,
+            "flags": 0,
+            "address": 0,
+            "size": 64,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".llvm_addrsig",
+            "type": 1879002115,
+            "flags": 2147483648,
+            "address": 0,
+            "size": 1,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 96,
+            "alignment": 4,
+            "entry_size": 16
+          }
+        ],
+        "program_headers": [],
+        "instruction_rows": [
+          {
+            "VA": "0x9f4c",
+            "bytes": 2,
+            "hex": "1567",
+            "instruction": "lui a4,0x5"
+          },
+          {
+            "VA": "0x9f4e",
+            "bytes": 4,
+            "hex": "b7370040",
+            "instruction": "lui a5,0x40003"
+          },
+          {
+            "VA": "0x9f52",
+            "bytes": 4,
+            "hex": "13075755",
+            "instruction": "addi a4,a4,1365"
+          },
+          {
+            "VA": "0x9f56",
+            "bytes": 2,
+            "hex": "98c3",
+            "instruction": "sw a4,0(a5)"
+          },
+          {
+            "VA": "0x9f58",
+            "bytes": 2,
+            "hex": "0d47",
+            "instruction": "li a4,3"
+          },
+          {
+            "VA": "0x9f5a",
+            "bytes": 2,
+            "hex": "d8c3",
+            "instruction": "sw a4,4(a5)"
+          },
+          {
+            "VA": "0x9f5c",
+            "bytes": 4,
+            "hex": "1307c05d",
+            "instruction": "li a4,1500"
+          },
+          {
+            "VA": "0x9f60",
+            "bytes": 2,
+            "hex": "98c7",
+            "instruction": "sw a4,8(a5)"
+          },
+          {
+            "VA": "0x9f62",
+            "bytes": 2,
+            "hex": "2d67",
+            "instruction": "lui a4,0xb"
+          },
+          {
+            "VA": "0x9f64",
+            "bytes": 4,
+            "hex": "1307a7aa",
+            "instruction": "addi a4,a4,-1366"
+          },
+          {
+            "VA": "0x9f68",
+            "bytes": 2,
+            "hex": "98c3",
+            "instruction": "sw a4,0(a5)"
+          },
+          {
+            "VA": "0x9f6a",
+            "bytes": 2,
+            "hex": "3567",
+            "instruction": "lui a4,0xd"
+          },
+          {
+            "VA": "0x9f6c",
+            "bytes": 4,
+            "hex": "1307c7cc",
+            "instruction": "addi a4,a4,-820"
+          },
+          {
+            "VA": "0x9f70",
+            "bytes": 2,
+            "hex": "98c3",
+            "instruction": "sw a4,0(a5)"
+          },
+          {
+            "VA": "0x9f72",
+            "bytes": 2,
+            "hex": "8280",
+            "instruction": "ret"
+          }
+        ]
+      },
+      {
+        "kind": "linked",
+        "entry": "0x9f4c",
+        "code_sha256": "59ac44eddd4fe4b479d624b08d57d3a8eea6b0cfd273db45b22ec972bb0e38d7",
+        "function_bytes": 40,
+        "instructions": 15,
+        "function_value": "0x9f4c",
+        "global_functions": 1,
+        "UND_providers": 0,
+        "ABS_providers": 0,
+        "local_ABS_metadata": 2,
+        "relocations": 0,
+        "allocated_bytes": 40,
+        "alignment": 2,
+        "symbols": [
+          {
+            "name": "",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 0
+          },
+          {
+            "name": "init_writes.c",
+            "value": 0,
+            "size": 0,
+            "info": 4,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "$x.0",
+            "value": 40780,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 1
+          },
+          {
+            "name": "$d.2",
+            "value": 0,
+            "size": 0,
+            "info": 0,
+            "other": 0,
+            "index": 65521
+          },
+          {
+            "name": "tsl9_init_writes_9f4c",
+            "value": 40780,
+            "size": 40,
+            "info": 18,
+            "other": 0,
+            "index": 1
+          }
+        ],
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "size": 0,
+            "alignment": 0,
+            "entry_size": 0
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 40780,
+            "size": 40,
+            "alignment": 2,
+            "entry_size": 0
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "size": 80,
+            "alignment": 4,
+            "entry_size": 16
+          },
+          {
+            "name": ".shstrtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 33,
+            "alignment": 1,
+            "entry_size": 0
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "size": 47,
+            "alignment": 1,
+            "entry_size": 0
+          }
+        ],
+        "program_headers": [
+          [
+            6,
+            52,
+            36916,
+            36916,
+            128,
+            128,
+            4,
+            4
+          ],
+          [
+            1,
+            0,
+            36864,
+            36864,
+            180,
+            180,
+            4,
+            4096
+          ],
+          [
+            1,
+            3916,
+            40780,
+            40780,
+            40,
+            40,
+            5,
+            4096
+          ],
+          [
+            1685382481,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0
+          ]
+        ],
+        "instruction_rows": [
+          {
+            "VA": "0x9f4c",
+            "bytes": 2,
+            "hex": "1567",
+            "instruction": "lui a4,0x5"
+          },
+          {
+            "VA": "0x9f4e",
+            "bytes": 4,
+            "hex": "b7370040",
+            "instruction": "lui a5,0x40003"
+          },
+          {
+            "VA": "0x9f52",
+            "bytes": 4,
+            "hex": "13075755",
+            "instruction": "addi a4,a4,1365"
+          },
+          {
+            "VA": "0x9f56",
+            "bytes": 2,
+            "hex": "98c3",
+            "instruction": "sw a4,0(a5)"
+          },
+          {
+            "VA": "0x9f58",
+            "bytes": 2,
+            "hex": "0d47",
+            "instruction": "li a4,3"
+          },
+          {
+            "VA": "0x9f5a",
+            "bytes": 2,
+            "hex": "d8c3",
+            "instruction": "sw a4,4(a5)"
+          },
+          {
+            "VA": "0x9f5c",
+            "bytes": 4,
+            "hex": "1307c05d",
+            "instruction": "li a4,1500"
+          },
+          {
+            "VA": "0x9f60",
+            "bytes": 2,
+            "hex": "98c7",
+            "instruction": "sw a4,8(a5)"
+          },
+          {
+            "VA": "0x9f62",
+            "bytes": 2,
+            "hex": "2d67",
+            "instruction": "lui a4,0xb"
+          },
+          {
+            "VA": "0x9f64",
+            "bytes": 4,
+            "hex": "1307a7aa",
+            "instruction": "addi a4,a4,-1366"
+          },
+          {
+            "VA": "0x9f68",
+            "bytes": 2,
+            "hex": "98c3",
+            "instruction": "sw a4,0(a5)"
+          },
+          {
+            "VA": "0x9f6a",
+            "bytes": 2,
+            "hex": "3567",
+            "instruction": "lui a4,0xd"
+          },
+          {
+            "VA": "0x9f6c",
+            "bytes": 4,
+            "hex": "1307c7cc",
+            "instruction": "addi a4,a4,-820"
+          },
+          {
+            "VA": "0x9f70",
+            "bytes": 2,
+            "hex": "98c3",
+            "instruction": "sw a4,0(a5)"
+          },
+          {
+            "VA": "0x9f72",
+            "bytes": 2,
+            "hex": "8280",
+            "instruction": "ret"
+          }
+        ]
+      }
+    ],
+    "IR": {
+      "normalized_body_sha256": "1a96a983b200f831828cb1664aefeec9a123bb0560ee0c09ac8236e2980ef4ad",
+      "body_lines": 15,
+      "volatile_i32_stores": 5,
+      "empty_asm_ports": 3,
+      "normal_return": true,
+      "asm_ports_emit_instructions": false,
+      "loads": 0,
+      "calls_to_target_functions": 0
+    },
+    "objdump": {
+      "instructions": 15,
+      "bytes": 40
+    },
+    "writes": [
+      {
+        "address": "0x40003000",
+        "value": "0x5555",
+        "bits": 32
+      },
+      {
+        "address": "0x40003004",
+        "value": "0x3",
+        "bits": 32
+      },
+      {
+        "address": "0x40003008",
+        "value": "0x5dc",
+        "bits": 32
+      },
+      {
+        "address": "0x40003000",
+        "value": "0xaaaa",
+        "bits": 32
+      },
+      {
+        "address": "0x40003000",
+        "value": "0xcccc",
+        "bits": 32
+      }
+    ],
+    "normal_exit_GPR": {
+      "a4": "0xcccc",
+      "a5": "0x40003000"
+    },
+    "other_GPR_unchanged": true,
+    "SP_frame_bytes": 0,
+    "calls": 0,
+    "CSR_accesses": 0,
+    "local_instruction_trace_equal": true,
+    "firmware_ready": false,
+    "global_fault_IRQ_equivalence": false,
+    "physical_chip_identified": false,
+    "installed_ROM_proved": false,
+    "whole_firmware_equivalence": false,
+    "limitations": [
+      "Physical peripheral identity and timing are unproved.",
+      "Caller, installed resident ROM, full image closure and physical placement are unproved.",
+      "A component ELF is not an OTA or flashable firmware image."
+    ],
+    "target_execution": false,
+    "ISA_emulation": false,
+    "MMIO_execution": false,
+    "hardware": false,
+    "network": false,
+    "BIN_generated": false
+  }
+}

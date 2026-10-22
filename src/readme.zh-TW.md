@@ -2,13 +2,14 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 42 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 44 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 ## 原始碼位置與證據範圍
 
 | 目錄 | 內容 | 目前限制 |
 | --- | --- | --- |
 | [native/init_mask](native/init_mask/init_mask.c) | V4.1.60 初始化末端的 register-mask leaf | 完整 30-byte 函式與官方 BIN 相同；不證明完整啟動或實體配置 |
+| [native/irq/irq_flag.c](native/irq/irq_flag.c) | 向量slot39的狀態／旗標函式 | 完整76B／21指令與官方16FB6相同；兩次即時狀態讀取／byte更新及MRET保留，原IRQ上下文與周邊身分未證 |
 | [native/irq](native/irq/interrupt_registers.c) | 四個 register helper 與 IRQ 初始化 | 四個 helper 各 30 bytes 相同；初始化正常出口有證據，180B 超出原144B，非同步等價未證 |
 | [native/timer](native/timer/delay.c) | V4.1.60 計時器暫存器契約 | 完整54-byte leaf與官方相同；獨立編譯入口，尚未替換 NV callback／OTA BIN |
 | [native/nv/nv_write_frame_contract.c](native/nv/nv_write_frame_contract.c) | 新 NV write callback frame／fresh source contract | 已量測原32B frame／source位置及前40B除JAL相同；結尾 LI0 提早，fault／IRQ等價仍未證 |
@@ -18,6 +19,7 @@
 | [native/adc](native/adc/caller_bank.c) | caller 專用 ADC 設定與真實 volatile port | 保留已知 live register bank；新增16-byte frame及 alias／IRQ限制 |
 | [native/clock](native/clock/clock_query.c) | 較完整的 clock query／field register 結果 | fields正常出口有證據；query完整分支機器語意未證，196B超出原174B |
 | [native/clock/clock_init.c](native/clock/clock_init.c) | BOOT／Runtime 時鐘初始化 | 232B／93指令，入口直接進入C主體；原始cold tail與完整IRQ／ABI及硬體仍未證 |
+| [native/startup/init_writes.c](native/startup/init_writes.c) | 9250 初始化鏈的五筆有序寫入 | 完整40B／15指令與官方9F4C函式相同；五筆volatile word寫入，只改A4／A5；周邊身分與完整啟動未證 |
 | [native/startup](native/startup/reset_memory.c) | Runtime reset記憶體／CSR交接 | reset138B／38指令＋clock232B，保留RA18724且未覆蓋下一函式；vector／main／resident與cold／間接入口未閉合 |
 | [native/resident](native/resident/native.c) | SDK resident candidate 的 compare／fill／copy | 正常記憶體投影；並非已確認原機 ROM，scratch／fault／尺寸差異仍存在 |
 | [reference/v4100](reference/v4100/dnd_actions.c) | 免打擾、一般設定、GATT framing 行為模型 | 來源是 V4.1.00；外部 provider 仍有未知，不混入 V4.1.60 原機實作 |
@@ -40,9 +42,9 @@ python3 scripts/verify-curated-source.py
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-腳本依 manifest 選擇十六個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
+腳本依 manifest 選擇十八個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
 
-本次以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 32 組比對，收據位於本機 `build/curated-source/runtime-reset-clock-fit-20261023-v3/verification.json`。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
+本次以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 36 組比對，收據位於本機 `build/curated-source/init-and-irq-leaves-20261023-v1/verification.json`。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
 
 既有結果可唯讀重播：
 

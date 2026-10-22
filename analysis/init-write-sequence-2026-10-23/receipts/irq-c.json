@@ -1,0 +1,379 @@
+{
+  "schema": "TSL9-public-receipt-derivative-v1",
+  "original_receipt_sha256": "7f3a2c8b292cb23aa06d515520cf6b911a0fc9c2ac15f0b97a3e6285762835ea",
+  "original_receipt_preserved_locally": true,
+  "byte_exact_original": false,
+  "direct_original_replay_claimed": false,
+  "changes": "JSON content preserved in full; original CRLF formatting normalized to LF inside this explicitly labelled public wrapper.",
+  "original_JSON_content_equal": true,
+  "receipt": {
+    "schema": "TSL9-IRQ-flag-leaf-static-v1",
+    "inputs": {
+      "${LLVM_BIN}/clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+      "${LLVM_BIN}/ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+      "${LLVM_BIN}/llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+      "${CLANG_INCLUDE}/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "${PROJECT_ROOT}/analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+      "${PROJECT_ROOT}/experiments/tsl9-irq-flag-leaf/component.ld": "e4eee719bd79e4bbd254454348c9f47930361d7351bffc71517e28194e487d99",
+      "${PROJECT_ROOT}/experiments/tsl9-irq-flag-leaf/src/irq_flag.c": "a6c859e8e8a31e507bec11755aa147c622cc27ff0d1bc2606d76b9ce373d146e",
+      "${PROJECT_ROOT}/experiments/tsl9-irq-flag-leaf/verify.py": "e7bc67f99bf8293f53d0875fe2fde157825ebedb38499bde7d68d7b5292ac366",
+      "${PROJECT_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "findings": {
+      "mode": "c",
+      "passed": true,
+      "source_sha256": "a6c859e8e8a31e507bec11755aa147c622cc27ff0d1bc2606d76b9ce373d146e",
+      "original": {
+        "bytes": 76,
+        "instructions": 21,
+        "rows": [
+          {
+            "offset": 0,
+            "bytes": 4,
+            "raw": "b7 07 01 40"
+          },
+          {
+            "offset": 4,
+            "bytes": 4,
+            "raw": "03 a7 47 41"
+          },
+          {
+            "offset": 8,
+            "bytes": 4,
+            "raw": "93 87 07 40"
+          },
+          {
+            "offset": 12,
+            "bytes": 4,
+            "raw": "13 77 07 04"
+          },
+          {
+            "offset": 16,
+            "bytes": 2,
+            "raw": "11 cb"
+          },
+          {
+            "offset": 18,
+            "bytes": 4,
+            "raw": "13 07 00 04"
+          },
+          {
+            "offset": 22,
+            "bytes": 2,
+            "raw": "d8 cb"
+          },
+          {
+            "offset": 24,
+            "bytes": 4,
+            "raw": "83 c7 81 16"
+          },
+          {
+            "offset": 28,
+            "bytes": 4,
+            "raw": "93 e7 17 00"
+          },
+          {
+            "offset": 32,
+            "bytes": 4,
+            "raw": "23 84 f1 16"
+          },
+          {
+            "offset": 36,
+            "bytes": 4,
+            "raw": "b7 07 01 40"
+          },
+          {
+            "offset": 40,
+            "bytes": 4,
+            "raw": "03 a7 47 41"
+          },
+          {
+            "offset": 44,
+            "bytes": 4,
+            "raw": "93 87 07 40"
+          },
+          {
+            "offset": 48,
+            "bytes": 4,
+            "raw": "13 77 07 08"
+          },
+          {
+            "offset": 52,
+            "bytes": 2,
+            "raw": "11 cb"
+          },
+          {
+            "offset": 54,
+            "bytes": 4,
+            "raw": "13 07 00 08"
+          },
+          {
+            "offset": 58,
+            "bytes": 2,
+            "raw": "d8 cb"
+          },
+          {
+            "offset": 60,
+            "bytes": 4,
+            "raw": "83 c7 81 16"
+          },
+          {
+            "offset": 64,
+            "bytes": 4,
+            "raw": "93 e7 27 00"
+          },
+          {
+            "offset": 68,
+            "bytes": 4,
+            "raw": "23 84 f1 16"
+          },
+          {
+            "offset": 72,
+            "bytes": 4,
+            "raw": "73 00 20 30"
+          }
+        ],
+        "branches": [
+          [
+            16,
+            36
+          ],
+          [
+            52,
+            72
+          ]
+        ],
+        "own_written_GPRs": [
+          14,
+          15
+        ],
+        "SP_GP_RA_writes": false,
+        "calls": 0,
+        "status_address": "0x40010414",
+        "flag_address": "live GP+360",
+        "READ32_sites": 2,
+        "WRITE32_sites": 2,
+        "READ8_sites": 2,
+        "WRITE8_sites": 2
+      },
+      "IR": {
+        "normalized_sha256": "ba8e073b0fb175368acc929abdfeeb4d655d5299cd28e216d527017ac75b089f",
+        "mode": "c",
+        "cpp_noundef_GP_ports": false,
+        "distinct_volatile_sites_per_kind": 2,
+        "second_frame": false,
+        "whole_body_checked": true
+      },
+      "ELFs": [
+        {
+          "file": "native.o",
+          "linked": false,
+          "code_sha256": "034c35bc979f6b1385f135ad466d7303c31429d9323484a6290314885ad26f85",
+          "bytes": 76,
+          "instructions": 21,
+          "symbol": "tsl9_irq_flag_leaf_16fb6",
+          "value": 0,
+          "UND_providers": 0,
+          "ABS_providers": 0,
+          "relocations": 0,
+          "local_ABS_metadata": [
+            {
+              "name": "irq_flag.c",
+              "value": 0,
+              "size": 0,
+              "info": 4,
+              "other": 0,
+              "index": 65521
+            }
+          ],
+          "section": {
+            "name": ".text.tsl9_irq_flag_leaf_16fb6",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "size": 76,
+            "alignment": 2
+          }
+        },
+        {
+          "file": "COMPONENT-ONLY-NOT-FIRMWARE.elf",
+          "linked": true,
+          "code_sha256": "034c35bc979f6b1385f135ad466d7303c31429d9323484a6290314885ad26f85",
+          "bytes": 76,
+          "instructions": 21,
+          "symbol": "tsl9_irq_flag_leaf_16fb6",
+          "value": 94134,
+          "UND_providers": 0,
+          "ABS_providers": 0,
+          "relocations": 0,
+          "local_ABS_metadata": [
+            {
+              "name": "irq_flag.c",
+              "value": 0,
+              "size": 0,
+              "info": 4,
+              "other": 0,
+              "index": 65521
+            },
+            {
+              "name": "$d.2",
+              "value": 0,
+              "size": 0,
+              "info": 0,
+              "other": 0,
+              "index": 65521
+            }
+          ],
+          "section": {
+            "name": ".irq",
+            "type": 1,
+            "flags": 6,
+            "address": 94134,
+            "size": 76,
+            "alignment": 2
+          }
+        }
+      ],
+      "negative_controls": [
+        {
+          "label": "page-base",
+          "rejected_by": "Repeated original page-base LUI",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "first-read-offset",
+          "rejected_by": "Original typed immediate/load operand at+4",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "base-adjust",
+          "rejected_by": "Original typed immediate/load operand at+8",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "bit64",
+          "rejected_by": "Original typed immediate/load operand at+12",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "first-branch-polarity",
+          "rejected_by": "Original BEQZ A4 target and polarity",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "word-store-width",
+          "rejected_by": "Original compressed SW32 A4,20(A5)",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "flag-load-register",
+          "rejected_by": "Original typed immediate/load operand at+24",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "flag-GP-offset",
+          "rejected_by": "Original typed immediate/load operand at+24",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "OR1",
+          "rejected_by": "Original typed immediate/load operand at+28",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "second-fresh-offset",
+          "rejected_by": "Original typed immediate/load operand at+40",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "bit128",
+          "rejected_by": "Original typed immediate/load operand at+48",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "second-branch-target",
+          "rejected_by": "Original BEQZ A4 target and polarity",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "OR2",
+          "rejected_by": "Original typed immediate/load operand at+64",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "byte-store-width",
+          "rejected_by": "Original SB8 A5,360(GP)",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "MRET",
+          "rejected_by": "Original final MRET; no RET substitute",
+          "whole_code_hash_used": false
+        },
+        {
+          "label": "fresh-second-read",
+          "rejected_by": "Two distinct volatile sites: load volatile i32",
+          "whole_IR_hash_used": false
+        },
+        {
+          "label": "volatile-read",
+          "rejected_by": "Two distinct volatile sites: load volatile i32",
+          "whole_IR_hash_used": false
+        },
+        {
+          "label": "second-mask",
+          "rejected_by": "Fresh reads, byte widths, masks, CFG and output-bank dataflow",
+          "whole_IR_hash_used": false
+        },
+        {
+          "label": "GP-port",
+          "rejected_by": "Exactly two live-GP imports; C++ noundef retained",
+          "whole_IR_hash_used": false
+        },
+        {
+          "label": "byte-write",
+          "rejected_by": "Two distinct volatile sites: store volatile i32",
+          "whole_IR_hash_used": false
+        },
+        {
+          "label": "branch-CFG",
+          "rejected_by": "Fresh reads, byte widths, masks, CFG and output-bank dataflow",
+          "whole_IR_hash_used": false
+        },
+        {
+          "label": "output-bank",
+          "rejected_by": "Fresh reads, byte widths, masks, CFG and output-bank dataflow",
+          "whole_IR_hash_used": false
+        },
+        {
+          "label": "MRET-port",
+          "rejected_by": "Only architectural MRET exit",
+          "whole_IR_hash_used": false
+        }
+      ],
+      "full_76B_machine_code_equal": true,
+      "nominal_end": "0x17002",
+      "physical_IRQ_context_proved": false,
+      "vector_mode_proved": false,
+      "fault_or_async_context_proved": false,
+      "complete_firmware_proved": false,
+      "firmware_ready": false,
+      "target_execution": false,
+      "ISA_emulation": false,
+      "MMIO_execution": false,
+      "BIN_generated": false
+    },
+    "artifacts": {
+      "build.json": "7ff5d60bf7f4403dd7a8341138a038230664c16bac257cf9b08828aad9b5c252",
+      "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "COMPONENT-ONLY-NOT-FIRMWARE.elf": "5212d685a98e8e2b55c3745ba2ea712aa8364cd1525654e4c3952cbfcbdce391",
+      "IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "linked.log": "ef36036f4cf02a5b8bdf13fe68c91e1b27ca5368948280f9318a8664d3f053b5",
+      "native.d": "43099073e580d8ac225db56747dc497b6c57699bb412de6b862cc2afc3ef3bc0",
+      "native.ll": "215c6cca750163eff5cddd8826016c02e67acb5825e13b893fde424d3a674eaf",
+      "native.o": "70cfcc4963884dae922f5b9cff09b5047614aa334c685daa1da036dd9a88c8ee",
+      "object.log": "bdb3518a0857cbf29b3622ab7044dd6b1e09c107c1f7910f6ce8e19e31f3a13f"
+    }
+  }
+}

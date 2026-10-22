@@ -69,6 +69,8 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {2, 12, 13, 14, 15}]
     elif kind == 'runtime-reset':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {2, 5, 10, 11, 12}]
+    elif kind == 'leaf-a4-a5':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {14, 15}]
     elif kind == 'adc-bank':
         result += ['-ffixed-x' + str(n) for n in range(5, 32) if n not in range(10, 17)]
     return result
@@ -141,6 +143,22 @@ def audit(base, record, manifest):
             if unit['name'] == 'init-mask':
                 need(pair[1]['functions'] == [dict(name='tsl9_rebuild_register_mask_19106', binding=1, bytes=30,
                      code_sha256='69724f8e22551d238b67e52e25b3c1cbcaa62db28756da9b59a5c96ff7f16d87')], 'Exact original initialization leaf')
+            if unit['name'] == 'init-write-sequence':
+                need(pair[1]['functions']==[dict(name='tsl9_init_writes_9f4c',binding=1,bytes=40,
+                     code_sha256='59ac44eddd4fe4b479d624b08d57d3a8eea6b0cfd273db45b22ec972bb0e38d7')]
+                     and not pair[1]['UND'] and not pair[1]['relocations']
+                     and pair[1]['allocated_bytes']==40
+                     and len(pair[1]['allocated_sections'])==1
+                     and pair[1]['allocated_sections'][0]['flags']==6,
+                     'Whole 40-byte initialization write leaf; physical peripheral identity and whole startup unproved')
+            if unit['name'] == 'irq-flag-leaf':
+                need(pair[1]['functions']==[dict(name='tsl9_irq_flag_leaf_16fb6',binding=1,bytes=76,
+                     code_sha256='034c35bc979f6b1385f135ad466d7303c31429d9323484a6290314885ad26f85')]
+                     and not pair[1]['UND'] and not pair[1]['relocations']
+                     and pair[1]['allocated_bytes']==76
+                     and len(pair[1]['allocated_sections'])==1
+                     and pair[1]['allocated_sections'][0]['flags']==6,
+                     'Whole 76-byte status/flag IRQ leaf; complete IRQ entry context and physical hardware unproved')
             if unit['name'] == 'delay-registers':
                 need(pair[1]['functions'] == [dict(name='tsl9_delay_registers_19764', binding=1, bytes=54,
                      code_sha256='0bcb7577e755f1ca9736b0fd0b05e4d3f0a0e1e0cd3a59976b947191d3df74a4')], 'Exact original delay leaf')

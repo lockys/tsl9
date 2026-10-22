@@ -1,0 +1,241 @@
+{
+  "schema": "TSL9-init-and-IRQ-leaves-static-milestone-v1",
+  "date": "2026-10-23",
+  "scope": "Two exact readable-C components in the original startup/vector path; not a complete APP or firmware BIN.",
+  "image_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "components": {
+    "initialization": {
+      "source": "src/native/startup/init_writes.c",
+      "source_sha256": "e318deef8975d25c84b16489388eb5cc1506a0752f362c2ca336de32d315955a",
+      "VA": "[0x9f4c,0x9f74)",
+      "bytes": 40,
+      "instructions": 15,
+      "code_sha256": "59ac44eddd4fe4b479d624b08d57d3a8eea6b0cfd273db45b22ec972bb0e38d7",
+      "direct_caller": "0x9260",
+      "profile": "rv32imac_zicsr_zifencei, -Oz, fixed except A4/A5",
+      "formal_build": "experiments/tsl9-init-write-sequence/build/verified-v3",
+      "ELFs": 4,
+      "negative_controls_per_language": 13,
+      "inputs_per_language": 9,
+      "actual_MD_dependencies_per_language": 2,
+      "artifacts_per_language": 8,
+      "recipes_per_language": 4,
+      "writes32": [
+        [
+          "0x40003000",
+          "0x5555"
+        ],
+        [
+          "0x40003004",
+          3
+        ],
+        [
+          "0x40003008",
+          1500
+        ],
+        [
+          "0x40003000",
+          "0xaaaa"
+        ],
+        [
+          "0x40003000",
+          "0xcccc"
+        ]
+      ],
+      "normal_exit": {
+        "A4": "0xcccc",
+        "A5": "0x40003000"
+      },
+      "next_function": "0x9f74,6 bytes; no padding"
+    },
+    "IRQ": {
+      "source": "src/native/irq/irq_flag.c",
+      "source_sha256": "a6c859e8e8a31e507bec11755aa147c622cc27ff0d1bc2606d76b9ce373d146e",
+      "VA": "[0x16fb6,0x17002)",
+      "bytes": 76,
+      "instructions": 21,
+      "code_sha256": "034c35bc979f6b1385f135ad466d7303c31429d9323484a6290314885ad26f85",
+      "captured_vector_slot": 39,
+      "actual_vector_word_VA": "0x80d4",
+      "profile": "rv32imac_zicsr, -Oz, fixed except A4/A5",
+      "formal_build": "experiments/tsl9-irq-flag-leaf/build/verified-v3",
+      "ELFs": 4,
+      "negative_controls_per_language": 23,
+      "inputs_per_language": 9,
+      "actual_MD_dependencies_per_language": 2,
+      "artifacts_per_language": 10,
+      "recipes_per_language": 5,
+      "fresh_status_read32_sites": 2,
+      "conditional_status_write32_sites": 2,
+      "independent_GP_byte_read_write_sites": 2,
+      "status_address": "0x40010414",
+      "flag_byte": "fresh live GP+360",
+      "flag_masks": [
+        1,
+        2
+      ],
+      "status_masks": [
+        64,
+        128
+      ],
+      "exit": "MRET; explicit CSRR/CSRW absent, privileged state effects not claimed absent",
+      "normal_exit": {
+        "second_bit_absent": {
+          "A4": 0,
+          "A5": "0x40010400"
+        },
+        "second_bit_present": {
+          "A4": 128,
+          "A5": "fresh flag byte OR2"
+        }
+      },
+      "local_own_written_GPRs": [
+        "A4",
+        "A5"
+      ],
+      "frame_bytes": 0,
+      "calls": 0
+    }
+  },
+  "curated": {
+    "source_C_H_files": 44,
+    "native_translation_units": 18,
+    "origin_curated_C_CPP_pairs": 36,
+    "actual_objects": 72,
+    "input_hashes": 90,
+    "artifacts": 217,
+    "actual_MD_maps": 72,
+    "local_original_receipt": "build/curated-source/init-and-irq-leaves-20261023-v1/verification.json",
+    "local_original_sha256": "ac98de3be904184054c83dcca9fa79b9e1a280f8cf03a25091e1842cfeafc7cf",
+    "public_derivative": "receipts/curated-source.json",
+    "public_derivative_sha256": "cd19642df39c025c4962c1c3a49aeb553c8f502dd0a4a8bc2221f57dcb337c27",
+    "path_keys_and_values_only_changed": true,
+    "original_preserved_locally": true,
+    "IRQ_profile_difference": "Curated rv32imac_zicsr_zifencei is a separate actual compilation. Full function bytes equal both formal/original code; whole ELFs are not claimed identical across profiles."
+  },
+  "receipts": {
+    "init_c": {
+      "file": "receipts/init-c.json",
+      "sha256": "7239537cfbe668fdc826cde66d5e249d89e5b7a40068b4948941818a764d71b1",
+      "byte_exact_local_receipt": true
+    },
+    "init_cpp": {
+      "file": "receipts/init-cpp.json",
+      "sha256": "ff353ba273e3929de50f89f97dc9b8db49a41d40250d944d0382284f7e64e99d",
+      "byte_exact_local_receipt": true
+    },
+    "irq_c": {
+      "file": "receipts/irq-c.json",
+      "sha256": "3a65f38f91dabdbf82e37ed57b28f890e9a0f8de3f3002de87d927215e4bbe3d",
+      "original_sha256": "7f3a2c8b292cb23aa06d515520cf6b911a0fc9c2ac15f0b97a3e6285762835ea",
+      "byte_exact_local_receipt": false,
+      "whole_original_JSON_content_preserved": true,
+      "original_format": "CRLF",
+      "public_format": "LF wrapper"
+    },
+    "irq_cpp": {
+      "file": "receipts/irq-cpp.json",
+      "sha256": "a3ecb2ba3b8f9e0b70d57dc0396480cb85b87b4095b104f3c4e314b2b77d0ade",
+      "original_sha256": "7eb34f363e152f804ef869e4b6fc02025bf3dcbbc0be4e03f9c0bfb11896fe9a",
+      "byte_exact_local_receipt": false,
+      "whole_original_JSON_content_preserved": true,
+      "original_format": "CRLF",
+      "public_format": "LF wrapper"
+    }
+  },
+  "strict_readiness": {
+    "init_c_exit": 1,
+    "init_cpp_exit": 1,
+    "irq_c_exit": 1,
+    "irq_cpp_exit": 1
+  },
+  "source_checkers": {
+    "initialization_sha256": "87f1e4a72c6647a842e896ed9a730314a10a2ddf628be7b908065b1962f22682",
+    "IRQ_sha256": "e7bc67f99bf8293f53d0875fe2fde157825ebedb38499bde7d68d7b5292ac366"
+  },
+  "startup_context": {
+    "main": {
+      "VA": "[0x9008,0x901a)",
+      "bytes": 18,
+      "instructions": 8,
+      "sha256": "87dd87b4471d5281a6185185b66e454ac79136553f837e3c9a3c2abdfb85ead5",
+      "calls": [
+        "0x9250",
+        "0x8180"
+      ],
+      "ordinary_C_trial": {
+        "bytes": 20,
+        "full_original_equal": false,
+        "relocations": "two R_RISCV_JAL; compressed first call widened",
+        "ordering_gap": "LI0 precedes RA reload; original reloads RA first",
+        "curated": false,
+        "producer_receipt_complete": false
+      }
+    },
+    "initializer": {
+      "VA": "[0x9250,0x9290)",
+      "bytes": 64,
+      "instructions": 19,
+      "first_four_calls": [
+        "0x18834",
+        "0x9a42",
+        "0x1973c",
+        "0x9f4c"
+      ],
+      "tail": "0x17bf6"
+    },
+    "loop": {
+      "VA": "[0x8180,0x81aa)",
+      "bytes": 42,
+      "instructions": 15,
+      "sequence": [
+        "fresh READ32[0x20000000] and indirect call",
+        "call0x17002",
+        "call0x12c58",
+        "WRITE32[0x40003000]=0xaaaa",
+        "repeat"
+      ]
+    }
+  },
+  "next_target": {
+    "VA": "[0x17002,0x17040)",
+    "bytes": 62,
+    "instructions": 21,
+    "sha256": "dd6b0fa91982cf653657b71e2d2bfaf2d6349ccc12f2b31561483e40572b0c69",
+    "reason": "Original main loop consumes the new IRQ producer's GP+360 flags here.",
+    "operations": [
+      "fresh GP+360 byte; if bit1 is set, clear bit1, call0x16b0a with A0=1, clear GP+361",
+      "fresh GP+360 byte again; if bit2 is set, clear bit2, call0x16b0a with A0=2, clear GP+362"
+    ],
+    "bounded_direct_GP_scan": {
+      "candidate_32bit_starts_on_2byte_alignment": 38399,
+      "immediate_offset": 360,
+      "load_store_opcode_hits": 8,
+      "verified_in_original_code": [
+        "0x16fce",
+        "0x16fd6",
+        "0x16ff2",
+        "0x16ffa",
+        "0x17004",
+        "0x17014",
+        "0x17020",
+        "0x1702e"
+      ],
+      "limitations": "This covers direct GP-relative immediate load/store encodings only, not indirect aliases or arbitrary calculated addresses."
+    }
+  },
+  "feature_opportunity_reference": "analysis/clock-fallthrough-2026-10-23/ota-evidence-opportunity.zh-TW.md",
+  "unknowns": [
+    "Resident40000 to main9008 transfer contract, complete readable main and its providers remain open.",
+    "Full vector mode/count, IRQ saved context, asynchronous/fault behavior and physical peripheral/chip ownership remain unproved.",
+    "Full APP layout, installed ROM/RAM/stack and original BLE OTA compatibility remain unproved."
+  ],
+  "full_firmware_verified": false,
+  "firmware_ready": false,
+  "hardware_OTA_proved": false,
+  "target_execution": false,
+  "ISA_emulation": false,
+  "MMIO_execution": false,
+  "BIN_generated": false,
+  "historical_init_v2": "Original receipts preserved locally. An equivalent regex grouping removes a literal-pattern privacy-scan false positive; 1303 guard cases agree, all native/source/IR/ELF gates unchanged."
+}
