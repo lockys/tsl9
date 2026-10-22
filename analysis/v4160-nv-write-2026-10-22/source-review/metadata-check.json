@@ -1,0 +1,489 @@
+{
+  "schema": "TSL9-original-NV-write-source-v1",
+  "passed": true,
+  "metadata_only": true,
+  "actual_original_firmware_read": false,
+  "actual_original_source_bytes": 0,
+  "actual_original_source_rows": 0,
+  "source_contract": {
+    "source_bytes": 294,
+    "source_rows": 115,
+    "source_groups": {
+      "write_cb": {
+        "bytes": 50,
+        "rows": 20,
+        "RET_PCs": [
+          104430
+        ],
+        "calls": [
+          {
+            "PC": 104392,
+            "target": 102040,
+            "rs1": null
+          },
+          {
+            "PC": 104398,
+            "target": 102084,
+            "rs1": null
+          },
+          {
+            "PC": 104408,
+            "target": 102130,
+            "rs1": null
+          },
+          {
+            "PC": 104412,
+            "target": 102070,
+            "rs1": null
+          },
+          {
+            "PC": 104418,
+            "target": 104292,
+            "rs1": null
+          }
+        ],
+        "backedges": [],
+        "normal_call_returns_conditional": true
+      },
+      "timer": {
+        "bytes": 54,
+        "rows": 22,
+        "RET_PCs": [
+          104344
+        ],
+        "calls": [],
+        "backedges": [
+          [
+            104336,
+            104332
+          ]
+        ],
+        "normal_call_returns_conditional": true
+      },
+      "unlock": {
+        "bytes": 30,
+        "rows": 10,
+        "RET_PCs": [
+          102068
+        ],
+        "calls": [],
+        "backedges": [],
+        "normal_call_returns_conditional": true
+      },
+      "lock": {
+        "bytes": 14,
+        "rows": 6,
+        "RET_PCs": [
+          102082
+        ],
+        "calls": [],
+        "backedges": [],
+        "normal_call_returns_conditional": true
+      },
+      "erase": {
+        "bytes": 46,
+        "rows": 19,
+        "RET_PCs": [
+          102128
+        ],
+        "calls": [],
+        "backedges": [
+          [
+            102116,
+            102112
+          ]
+        ],
+        "normal_call_returns_conditional": true
+      },
+      "program": {
+        "bytes": 100,
+        "rows": 38,
+        "RET_PCs": [
+          102228
+        ],
+        "calls": [],
+        "backedges": [
+          [
+            102150,
+            102146
+          ],
+          [
+            102160,
+            102156
+          ],
+          [
+            102190,
+            102186
+          ],
+          [
+            102194,
+            102170
+          ],
+          [
+            102216,
+            102212
+          ]
+        ],
+        "normal_call_returns_conditional": true
+      }
+    },
+    "explicit_written_GPRs": {
+      "write_cb": [
+        1,
+        2,
+        8,
+        10,
+        11,
+        12
+      ],
+      "timer": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "unlock": [
+        13,
+        14,
+        15
+      ],
+      "lock": [
+        13,
+        14,
+        15
+      ],
+      "erase": [
+        10,
+        13,
+        14,
+        15
+      ],
+      "program": [
+        10,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    "notation": {
+      "u32": "modulo 2^32",
+      "R8": "fresh zero-extended byte read",
+      "R32": "fresh 32-bit word read",
+      "W32": "ordered 32-bit word write",
+      "D": "entry A0",
+      "S": "entry A2",
+      "F": "u32(entry SP-32)",
+      "G": "entry GP"
+    },
+    "write": {
+      "entry": 104382,
+      "end_exclusive": 104432,
+      "frame_bytes": 32,
+      "ordered_frame_accesses": [
+        [
+          "W32",
+          104384,
+          "F+28",
+          "entry RA"
+        ],
+        [
+          "W32",
+          104386,
+          "F+24",
+          "entry S0"
+        ],
+        [
+          "W32",
+          104388,
+          "F+12",
+          "S"
+        ],
+        [
+          "R32",
+          104402,
+          "F+12",
+          "source argument"
+        ],
+        [
+          "R32",
+          104422,
+          "F+28",
+          "exit RA"
+        ],
+        [
+          "R32",
+          104424,
+          "F+24",
+          "exit S0"
+        ]
+      ],
+      "entry_A1_read": false,
+      "entry_A2_saved_before_calls": true,
+      "calls": [
+        {
+          "PC": 104392,
+          "target": 102040,
+          "A0": "D",
+          "A1": "entry A1",
+          "A2": "S"
+        },
+        {
+          "PC": 104398,
+          "target": 102084,
+          "A0": "D",
+          "A1": "entry A1",
+          "A2": "S"
+        },
+        {
+          "PC": 104408,
+          "target": 102130,
+          "A0": "D",
+          "A1": "fresh R32(F+12)",
+          "A2": "same fresh R32(F+12); ignored by leaf"
+        },
+        {
+          "PC": 104412,
+          "target": 102070,
+          "A0": "D & 0xFFFFFF00",
+          "A1": "source",
+          "A2": 256
+        },
+        {
+          "PC": 104418,
+          "target": 104292,
+          "A0": 1,
+          "A1": "source",
+          "A2": 256
+        }
+      ],
+      "program_bytes": 256,
+      "source_words": 64,
+      "normal_result_A0": 0,
+      "hardware_status_checked": false,
+      "no_adverse_alias_projection": {
+        "A1": "S",
+        "A2": "zext8(R8(u32(G+382)))",
+        "A3": 0,
+        "A4": "last fresh timer CTRL & 0xFFFFFFFE",
+        "A5": 3758157824,
+        "A6": "last source R32(u32(S+252))",
+        "SP": "entry SP",
+        "RA": "entry RA",
+        "S0": "entry S0"
+      },
+      "frame_restoration_is_conditional": true,
+      "arbitrary_entry_A1_length_used": false
+    },
+    "timer": {
+      "entry": 104292,
+      "end_exclusive": 104346,
+      "frame_bytes": 0,
+      "A0_full_u32_preserved": true,
+      "A1_preserved": true,
+      "ordered_accesses": [
+        {
+          "PC": 104296,
+          "kind": "R32",
+          "address": 3758157828,
+          "result": "status0"
+        },
+        {
+          "PC": 104302,
+          "kind": "W32",
+          "address": 3758157828,
+          "value": "status0 & 0xFFFFFFFE"
+        },
+        {
+          "PC": 104304,
+          "kind": "R8",
+          "address": "u32(G+382)",
+          "result": "scale8"
+        },
+        {
+          "PC": 104312,
+          "kind": "W32",
+          "address": 3758157840,
+          "value": "u32(zext8(scale8) * entry A0)"
+        },
+        {
+          "PC": 104314,
+          "kind": "W32",
+          "address": 3758157844,
+          "value": 0
+        },
+        {
+          "PC": 104316,
+          "kind": "R32",
+          "address": 3758157824,
+          "result": "ctrl1"
+        },
+        {
+          "PC": 104322,
+          "kind": "W32",
+          "address": 3758157824,
+          "value": "ctrl1 | 0x10"
+        },
+        {
+          "PC": 104324,
+          "kind": "R32",
+          "address": 3758157824,
+          "result": "ctrl2"
+        },
+        {
+          "PC": 104330,
+          "kind": "W32",
+          "address": 3758157824,
+          "value": "ctrl2 | 0x21"
+        },
+        {
+          "PC": 104332,
+          "kind": "R32",
+          "address": 3758157828,
+          "result": "statusN",
+          "repeat": "while (statusN & 1)==0",
+          "exit": "first observed (statusN & 1)!=0"
+        },
+        {
+          "PC": 104338,
+          "kind": "R32",
+          "address": 3758157824,
+          "result": "ctrl3"
+        },
+        {
+          "PC": 104342,
+          "kind": "W32",
+          "address": 3758157824,
+          "value": "ctrl3 & 0xFFFFFFFE"
+        }
+      ],
+      "access_count": "11 + poll reads",
+      "minimum_accesses_if_return": 12,
+      "timeout": false,
+      "normal_exit": {
+        "A0": "entry A0",
+        "A1": "entry A1",
+        "A2": "u32(zext8(scale8)*entry A0)",
+        "A3": 0,
+        "A4": "ctrl3 & 0xFFFFFFFE",
+        "A5": 3758157824
+      },
+      "timing_units_proved": false,
+      "GP_scale_initialized_here": false
+    },
+    "flash": {
+      "base": 1073881088,
+      "unlock_write_sequence": [
+        [
+          "base+4",
+          1164378403
+        ],
+        [
+          "base+4",
+          3455027627
+        ],
+        [
+          "base+36",
+          1164378403
+        ],
+        [
+          "base+36",
+          3455027627
+        ]
+      ],
+      "unlock_exit": {
+        "A0": "entry A0",
+        "A1": "entry A1",
+        "A2": "entry A2",
+        "A3": 1164378403,
+        "A4": 3455027627,
+        "A5": 1073881088
+      },
+      "lock_accesses": [
+        "fresh R32(base+16)",
+        "W32(base+16, read | 0x8000)"
+      ],
+      "lock_exit": {
+        "A0": "entry A0",
+        "A1": "entry A1",
+        "A2": "entry A2",
+        "A3": 32768,
+        "A4": 1073881088,
+        "A5": "read | 0x8000"
+      },
+      "erase_accesses": [
+        "fresh R32(base+16)",
+        "W32(base+16, read | 0x20000)",
+        "W32(base+20, entry A0 & 0xFFFFFF00)",
+        "fresh R32(base+16)",
+        "W32(base+16, read | 0x40)",
+        "fresh repeated R32(base+12) until (read & 1)==0",
+        "fresh R32(base+16)",
+        "W32(base+16, read & 0xFFFDFFFF)"
+      ],
+      "erase_exit": {
+        "A0": "entry A0 & 0xFFFFFF00",
+        "A1": "entry A1",
+        "A2": "entry A2",
+        "A3": 4294836223,
+        "A4": "last fresh CTRL & 0xFFFDFFFF",
+        "A5": 1073881088
+      },
+      "program_accesses": [
+        "fresh R32(base+16)",
+        "W32(base+16, read | 0x10000)",
+        "fresh repeated R32(base+12) until (read & 1)==0",
+        "fresh repeated R32(base+12) until (read & 2)==0",
+        "for offset=0,4,...,252: fresh R32(u32(source+offset)); W32(u32((entry A0 & 0xFFFFFF00)+offset), read); fresh repeated R32(base+12) until (read & 2)==0",
+        "fresh R32(base+16)",
+        "W32(base+16, read | 0x200000)",
+        "fresh repeated R32(base+12) until (read & 1)==0",
+        "fresh R32(base+16)",
+        "W32(base+16, read & 0xFFFEFFFF)"
+      ],
+      "program_exit": {
+        "A0": "entry A0 & 0xFFFFFF00",
+        "A1": "entry A1",
+        "A2": 256,
+        "A3": 4294901759,
+        "A4": "last fresh CTRL & 0xFFFEFFFF",
+        "A5": 1073881088,
+        "A6": "last fresh source word"
+      },
+      "entry_program_A2_read": false,
+      "source_reads_interleaved_with_destination_writes": true,
+      "alignment_bytes": 256,
+      "timeout": false,
+      "poll_bits_clear": [
+        1,
+        2
+      ],
+      "polls_status_checked_as_success": false
+    },
+    "premises": [
+      "All original instruction, byte, word, return and MMIO accesses complete normally.",
+      "All busy polls eventually observe their required bits; no timeout is implemented.",
+      "No asynchronous GPR/code modification; GP byte and required pointers valid.",
+      "Restored caller RA/S0 and original source projection additionally require no adverse stack/source/destination/MMIO alias or intervening writes.",
+      "Each listed read is fresh; MMIO stability is NOT assumed."
+    ],
+    "unresolved": [
+      "Installed hardware identity, Flash ownership and hardware write success.",
+      "Whole firmware/OTA compatibility and complete original C prototype.",
+      "Fault equivalence to C/native builds and caller scratch-register compatibility.",
+      "Timer units and physical time; source does not establish milliseconds."
+    ],
+    "full_ABI_proved": false,
+    "hardware_success_proved": false,
+    "termination_proved": false
+  },
+  "raw_controls_replayed": false,
+  "source_encoding_references": "Pinned previous decoder and its standard/conditional WCH source references; no encoding generated.",
+  "ISA_or_CPU_or_ESIL_execution": false,
+  "native_or_HOST_execution": false,
+  "compiler_or_linker": false,
+  "network": false,
+  "hardware": false,
+  "new_BIN": false
+}

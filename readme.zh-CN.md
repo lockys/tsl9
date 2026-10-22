@@ -4,6 +4,12 @@
 
 本项目保存原始 APK、22 份不同的更新器 BIN、可读 C/C++ 行为模型及静态来源证据。完整目标仍是生成与原硬件及 BLE 更新器兼容的重建 BIN，并在逆向过程中评估值得新增的功能，将提案与已实现功能分别列出。**目前尚无经验证可刷写的重建 BIN。**
 
+## NV 写入回调与计时器已重建为 C/C++
+
+写入72B／26指令、计时器60B／23指令，与六个真实 Flash helper 合计八个函数394B／148指令。C11／C++17 bytes 相同；实际链接已将十个调用解析至组件内真实 C 定义，独立 ELF 审查通过。原始来源294B／115行、校准关系44B／12行及各语言12个 native 反例也已核对。
+
+**没有新固件 BIN，尚未接入现有候选。** frame／出口寄存器不同，旧 quarter 的 asm-call 另缺两个 A1 clobber 声明；完整 ABI、fault／IRQ、实体 ROM／内存及 BLE OTA 均未证实。离线校准诊断目前为功能提案。[C/C++、组件与完整限制](analysis/v4160-nv-write-2026-10-22/README.md)
+
 ## NV read callback 已重建，正常出口暂存字已核对
 
 原始 30-byte NV read callback 已重建为真实 C11／C++17，各 32 bytes／14 指令、1 global FUNC、UND／RELA／ABS 为零。独立检查核对 fresh slot、word 数乘四、间接调用参数及返回零，每语言拒绝八个反例。新增 A3、fault 时序和原范围大小仍有限制，**没有新 BIN，尚未整合到既有候选**。

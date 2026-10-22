@@ -1,0 +1,693 @@
+{
+  "schema": "TSL9-NV-write-timer-native-results-v1",
+  "source_profiles": 1,
+  "native_recipe_profiles": 1,
+  "ordinary_include_old_flash_source": true,
+  "actual_typed_C_calls": true,
+  "noinline_forward_declarations": true,
+  "old_source_bodies_changed": false,
+  "new_algorithm_assembly": "One live-GP read bridge only: mv output,gp",
+  "results": [
+    {
+      "mode": "c",
+      "receipt": "experiments/tsl9-nv-write-callback/build/native-v1/c/verification.json",
+      "receipt_sha256": "58df66d33aa1a9b2d34736a2a1727c66778aa5f1170d977e2bdceb3bbbcbd944",
+      "functions": [
+        {
+          "name": "tsl9_flash_status_18e90",
+          "bytes": 8,
+          "instructions": 3,
+          "code_sha256": "4937a9406887122dfa589dbe9fee75572e5cccd9ae20f52e7f9a59e140e2c466",
+          "own_written_GPRs": [
+            15
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_flash_unlock_18e98",
+          "bytes": 30,
+          "instructions": 10,
+          "code_sha256": "577bbb0f43bdde763561002757b9ab8611a578ab1fdd321e62ba13662cb992a2",
+          "own_written_GPRs": [
+            11,
+            13,
+            14,
+            15
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_flash_lock_18eb6",
+          "bytes": 14,
+          "instructions": 6,
+          "code_sha256": "20c1f57d6f8294aa24230996a9311f4a73ae3da72b0eed0acc4da3e2330ea7de",
+          "own_written_GPRs": [
+            13,
+            14,
+            15
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_flash_erase_18ec4",
+          "bytes": 46,
+          "instructions": 19,
+          "code_sha256": "498d12fe1749927050b5dbc5077ac1704ef412e0af29d71279882b16e65e042f",
+          "own_written_GPRs": [
+            10,
+            11,
+            13,
+            14,
+            15
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_flash_program_18ef2",
+          "bytes": 100,
+          "instructions": 38,
+          "code_sha256": "b43d396fa5e302ae8bc8d41d6b3c8f0c39107e18e58304cb99e4c67458cc0df0",
+          "own_written_GPRs": [
+            10,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_flash_quarter_9c0a",
+          "bytes": 64,
+          "instructions": 23,
+          "code_sha256": "cbbeabd3161e639a253239920558fd027f2cd585838d7963e0deef3b17036942",
+          "own_written_GPRs": [
+            1,
+            2,
+            8,
+            9,
+            10,
+            11
+          ],
+          "stack_adjustments": [
+            {
+              "offset": 0,
+              "raw": "0111",
+              "rd": 2,
+              "kind": "C.ADDI/NOP",
+              "LLVM_mnemonic": "addi",
+              "LLVM_operands": "sp, sp, -0x20"
+            },
+            {
+              "offset": 60,
+              "raw": "0561",
+              "rd": 2,
+              "kind": "C.ADDI16SP",
+              "LLVM_mnemonic": "addi",
+              "LLVM_operands": "sp, sp, 0x20"
+            }
+          ],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_delay_19764",
+          "bytes": 60,
+          "instructions": 23,
+          "code_sha256": "073b776239b3911b4268e99fd495167bbf81467ea16d2ab1d18b9534dfb5defe",
+          "own_written_GPRs": [
+            11,
+            12
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": [
+            {
+              "offset": 10,
+              "raw": "0e86",
+              "rd": 12,
+              "kind": "C.MV",
+              "LLVM_mnemonic": "mv",
+              "LLVM_operands": "a2, gp"
+            }
+          ]
+        },
+        {
+          "name": "tsl9_nv_write_callback_197be",
+          "bytes": 72,
+          "instructions": 26,
+          "code_sha256": "99f5318fd62a8a9b04e5293edd7ae1e4fdf43447d6aa4fcadc0d216f8282bcb6",
+          "own_written_GPRs": [
+            1,
+            2,
+            8,
+            9,
+            10,
+            11
+          ],
+          "stack_adjustments": [
+            {
+              "offset": 0,
+              "raw": "4111",
+              "rd": 2,
+              "kind": "C.ADDI/NOP",
+              "LLVM_mnemonic": "addi",
+              "LLVM_operands": "sp, sp, -0x10"
+            },
+            {
+              "offset": 68,
+              "raw": "4101",
+              "rd": 2,
+              "kind": "C.ADDI/NOP",
+              "LLVM_mnemonic": "addi",
+              "LLVM_operands": "sp, sp, 0x10"
+            }
+          ],
+          "GP_read_rows": []
+        }
+      ],
+      "allocated_bytes": 394,
+      "instructions": 148,
+      "UND": [],
+      "RELA": 10,
+      "relocations": [
+        {
+          "owner": ".text.tsl9_flash_quarter_9c0a",
+          "offset": 20,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_unlock_18e98",
+            "value": 0,
+            "size": 30,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          }
+        },
+        {
+          "owner": ".text.tsl9_flash_quarter_9c0a",
+          "offset": 28,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_status_18e90",
+            "value": 0,
+            "size": 8,
+            "info": 18,
+            "other": 0,
+            "index": 3
+          }
+        },
+        {
+          "owner": ".text.tsl9_flash_quarter_9c0a",
+          "offset": 34,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_erase_18ec4",
+            "value": 0,
+            "size": 46,
+            "info": 18,
+            "other": 0,
+            "index": 6
+          }
+        },
+        {
+          "owner": ".text.tsl9_flash_quarter_9c0a",
+          "offset": 42,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_program_18ef2",
+            "value": 0,
+            "size": 100,
+            "info": 18,
+            "other": 0,
+            "index": 7
+          }
+        },
+        {
+          "owner": ".text.tsl9_flash_quarter_9c0a",
+          "offset": 46,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_lock_18eb6",
+            "value": 0,
+            "size": 14,
+            "info": 18,
+            "other": 0,
+            "index": 5
+          }
+        },
+        {
+          "owner": ".text.tsl9_nv_write_callback_197be",
+          "offset": 12,
+          "type": 19,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_unlock_18e98",
+            "value": 0,
+            "size": 30,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          }
+        },
+        {
+          "owner": ".text.tsl9_nv_write_callback_197be",
+          "offset": 22,
+          "type": 19,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_erase_18ec4",
+            "value": 0,
+            "size": 46,
+            "info": 18,
+            "other": 0,
+            "index": 6
+          }
+        },
+        {
+          "owner": ".text.tsl9_nv_write_callback_197be",
+          "offset": 34,
+          "type": 19,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_program_18ef2",
+            "value": 0,
+            "size": 100,
+            "info": 18,
+            "other": 0,
+            "index": 7
+          }
+        },
+        {
+          "owner": ".text.tsl9_nv_write_callback_197be",
+          "offset": 42,
+          "type": 19,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_lock_18eb6",
+            "value": 0,
+            "size": 14,
+            "info": 18,
+            "other": 0,
+            "index": 5
+          }
+        },
+        {
+          "owner": ".text.tsl9_nv_write_callback_197be",
+          "offset": 52,
+          "type": 19,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_delay_19764",
+            "value": 0,
+            "size": 60,
+            "info": 18,
+            "other": 0,
+            "index": 10
+          }
+        }
+      ],
+      "global_ABS": [],
+      "actual_write_call_order": [
+        "tsl9_flash_unlock_18e98",
+        "tsl9_flash_erase_18ec4",
+        "tsl9_flash_program_18ef2",
+        "tsl9_flash_lock_18eb6",
+        "tsl9_delay_19764"
+      ]
+    },
+    {
+      "mode": "cpp",
+      "receipt": "experiments/tsl9-nv-write-callback/build/native-v1/cpp/verification.json",
+      "receipt_sha256": "6169f4213e1cdc2f4fff1eea1ab47c51735c0a551afc52b3fe7ab0edda1c2486",
+      "functions": [
+        {
+          "name": "tsl9_flash_status_18e90",
+          "bytes": 8,
+          "instructions": 3,
+          "code_sha256": "4937a9406887122dfa589dbe9fee75572e5cccd9ae20f52e7f9a59e140e2c466",
+          "own_written_GPRs": [
+            15
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_flash_unlock_18e98",
+          "bytes": 30,
+          "instructions": 10,
+          "code_sha256": "577bbb0f43bdde763561002757b9ab8611a578ab1fdd321e62ba13662cb992a2",
+          "own_written_GPRs": [
+            11,
+            13,
+            14,
+            15
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_flash_lock_18eb6",
+          "bytes": 14,
+          "instructions": 6,
+          "code_sha256": "20c1f57d6f8294aa24230996a9311f4a73ae3da72b0eed0acc4da3e2330ea7de",
+          "own_written_GPRs": [
+            13,
+            14,
+            15
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_flash_erase_18ec4",
+          "bytes": 46,
+          "instructions": 19,
+          "code_sha256": "498d12fe1749927050b5dbc5077ac1704ef412e0af29d71279882b16e65e042f",
+          "own_written_GPRs": [
+            10,
+            11,
+            13,
+            14,
+            15
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_flash_program_18ef2",
+          "bytes": 100,
+          "instructions": 38,
+          "code_sha256": "b43d396fa5e302ae8bc8d41d6b3c8f0c39107e18e58304cb99e4c67458cc0df0",
+          "own_written_GPRs": [
+            10,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_flash_quarter_9c0a",
+          "bytes": 64,
+          "instructions": 23,
+          "code_sha256": "cbbeabd3161e639a253239920558fd027f2cd585838d7963e0deef3b17036942",
+          "own_written_GPRs": [
+            1,
+            2,
+            8,
+            9,
+            10,
+            11
+          ],
+          "stack_adjustments": [
+            {
+              "offset": 0,
+              "raw": "0111",
+              "rd": 2,
+              "kind": "C.ADDI/NOP",
+              "LLVM_mnemonic": "addi",
+              "LLVM_operands": "sp, sp, -0x20"
+            },
+            {
+              "offset": 60,
+              "raw": "0561",
+              "rd": 2,
+              "kind": "C.ADDI16SP",
+              "LLVM_mnemonic": "addi",
+              "LLVM_operands": "sp, sp, 0x20"
+            }
+          ],
+          "GP_read_rows": []
+        },
+        {
+          "name": "tsl9_delay_19764",
+          "bytes": 60,
+          "instructions": 23,
+          "code_sha256": "073b776239b3911b4268e99fd495167bbf81467ea16d2ab1d18b9534dfb5defe",
+          "own_written_GPRs": [
+            11,
+            12
+          ],
+          "stack_adjustments": [],
+          "GP_read_rows": [
+            {
+              "offset": 10,
+              "raw": "0e86",
+              "rd": 12,
+              "kind": "C.MV",
+              "LLVM_mnemonic": "mv",
+              "LLVM_operands": "a2, gp"
+            }
+          ]
+        },
+        {
+          "name": "tsl9_nv_write_callback_197be",
+          "bytes": 72,
+          "instructions": 26,
+          "code_sha256": "99f5318fd62a8a9b04e5293edd7ae1e4fdf43447d6aa4fcadc0d216f8282bcb6",
+          "own_written_GPRs": [
+            1,
+            2,
+            8,
+            9,
+            10,
+            11
+          ],
+          "stack_adjustments": [
+            {
+              "offset": 0,
+              "raw": "4111",
+              "rd": 2,
+              "kind": "C.ADDI/NOP",
+              "LLVM_mnemonic": "addi",
+              "LLVM_operands": "sp, sp, -0x10"
+            },
+            {
+              "offset": 68,
+              "raw": "4101",
+              "rd": 2,
+              "kind": "C.ADDI/NOP",
+              "LLVM_mnemonic": "addi",
+              "LLVM_operands": "sp, sp, 0x10"
+            }
+          ],
+          "GP_read_rows": []
+        }
+      ],
+      "allocated_bytes": 394,
+      "instructions": 148,
+      "UND": [],
+      "RELA": 10,
+      "relocations": [
+        {
+          "owner": ".text.tsl9_flash_quarter_9c0a",
+          "offset": 20,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_unlock_18e98",
+            "value": 0,
+            "size": 30,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          }
+        },
+        {
+          "owner": ".text.tsl9_flash_quarter_9c0a",
+          "offset": 28,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_status_18e90",
+            "value": 0,
+            "size": 8,
+            "info": 18,
+            "other": 0,
+            "index": 3
+          }
+        },
+        {
+          "owner": ".text.tsl9_flash_quarter_9c0a",
+          "offset": 34,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_erase_18ec4",
+            "value": 0,
+            "size": 46,
+            "info": 18,
+            "other": 0,
+            "index": 6
+          }
+        },
+        {
+          "owner": ".text.tsl9_flash_quarter_9c0a",
+          "offset": 42,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_program_18ef2",
+            "value": 0,
+            "size": 100,
+            "info": 18,
+            "other": 0,
+            "index": 7
+          }
+        },
+        {
+          "owner": ".text.tsl9_flash_quarter_9c0a",
+          "offset": 46,
+          "type": 17,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_lock_18eb6",
+            "value": 0,
+            "size": 14,
+            "info": 18,
+            "other": 0,
+            "index": 5
+          }
+        },
+        {
+          "owner": ".text.tsl9_nv_write_callback_197be",
+          "offset": 12,
+          "type": 19,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_unlock_18e98",
+            "value": 0,
+            "size": 30,
+            "info": 18,
+            "other": 0,
+            "index": 4
+          }
+        },
+        {
+          "owner": ".text.tsl9_nv_write_callback_197be",
+          "offset": 22,
+          "type": 19,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_erase_18ec4",
+            "value": 0,
+            "size": 46,
+            "info": 18,
+            "other": 0,
+            "index": 6
+          }
+        },
+        {
+          "owner": ".text.tsl9_nv_write_callback_197be",
+          "offset": 34,
+          "type": 19,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_program_18ef2",
+            "value": 0,
+            "size": 100,
+            "info": 18,
+            "other": 0,
+            "index": 7
+          }
+        },
+        {
+          "owner": ".text.tsl9_nv_write_callback_197be",
+          "offset": 42,
+          "type": 19,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_flash_lock_18eb6",
+            "value": 0,
+            "size": 14,
+            "info": 18,
+            "other": 0,
+            "index": 5
+          }
+        },
+        {
+          "owner": ".text.tsl9_nv_write_callback_197be",
+          "offset": 52,
+          "type": 19,
+          "addend": 0,
+          "symbol": {
+            "name": "tsl9_delay_19764",
+            "value": 0,
+            "size": 60,
+            "info": 18,
+            "other": 0,
+            "index": 10
+          }
+        }
+      ],
+      "global_ABS": [],
+      "actual_write_call_order": [
+        "tsl9_flash_unlock_18e98",
+        "tsl9_flash_erase_18ec4",
+        "tsl9_flash_program_18ef2",
+        "tsl9_flash_lock_18eb6",
+        "tsl9_delay_19764"
+      ]
+    }
+  ],
+  "C_CPP_all_function_bytes_equal": true,
+  "original_source_bytes": 294,
+  "original_source_rows": 115,
+  "new_write_bytes": 72,
+  "new_write_instructions": 26,
+  "new_write_frame_bytes": 16,
+  "original_write_bytes": 50,
+  "original_write_rows": 20,
+  "original_write_frame_bytes": 32,
+  "new_timer_bytes": 60,
+  "new_timer_instructions": 23,
+  "original_timer_bytes": 54,
+  "original_timer_rows": 22,
+  "timer_static_volatile_sites": 12,
+  "timer_poll_unbounded": true,
+  "timer_waits_for_bit_SET": true,
+  "timer_units_proved": false,
+  "timer_A0_input_preserved": true,
+  "new_timer_ownwritten": [
+    11,
+    12
+  ],
+  "original_timer_ownwritten": [
+    12,
+    13,
+    14,
+    15
+  ],
+  "new_timer_normal_A1": "0xe000f000",
+  "new_timer_normal_A2": "last fresh READ32(0xe000f000)&0xfffffffe",
+  "original_timer_normal_A1": "entry A1",
+  "original_timer_normal_A2": "zext8(fresh READ8(GP+382))*entry A0 modulo32",
+  "new_unlock_erase_A1_clobber": true,
+  "retained_quarter_generic_ASM_A1_clobber_contract_incomplete": true,
+  "retained_quarter_bounded_path_no_live_A1_counterexample_observed": true,
+  "typed_program_entry_A2_not_original_source_value": true,
+  "program_ignores_entry_A2_before_own_count256": true,
+  "normal_effect_projection_needs_no_adverse_frame_source_destination_MMIO_alias": true,
+  "full_original_register_ABI_proved": false,
+  "installed_provider_proved": false,
+  "placement_proved": false,
+  "HOST_tests_run": false,
+  "native_execution": false,
+  "ISA_emulation": false,
+  "linked": false,
+  "BIN_exported": false,
+  "sh_runtime_verified": false
+}

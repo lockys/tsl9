@@ -1,0 +1,22 @@
+[
+  {
+    "case": "lock_program_A0_origin",
+    "before": "@tsl9_flash_lock_18eb6(i32 noundef %6)",
+    "after": "@tsl9_flash_lock_18eb6(i32 noundef %0)"
+  },
+  {
+    "case": "program_source_not_unused_A1",
+    "before": "@tsl9_flash_program_18ef2(i32 noundef %0, i32 noundef %2)",
+    "after": "@tsl9_flash_program_18ef2(i32 noundef %0, i32 noundef %1)"
+  },
+  {
+    "case": "write_timer_argument_one",
+    "before": "@tsl9_delay_19764(i32 noundef 1)",
+    "after": "@tsl9_delay_19764(i32 noundef 0)"
+  },
+  {
+    "case": "timer_full_input_product",
+    "before": "%9 = mul i32 %8, %0",
+    "after": "%9 = mul i32 %8, 1"
+  }
+]

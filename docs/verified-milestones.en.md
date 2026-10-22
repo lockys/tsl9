@@ -1,5 +1,11 @@
 # Verified milestones
 
+## NV write callback and timer reconstructed in C/C++
+
+The write entry is72B/26 instructions and timer60B/23 instructions; six genuine Flash helpers bring the complete object to eight functions,394B/148 instructions. C11/C++17 bytes match. Actual linking resolves all ten calls to genuine C definitions in the offline component, with independent ELF review. Original-source294B/115rows, calibration-relation44B/12rows and12 native controls per language were also checked.
+
+**No new firmware BIN or integration into the existing candidate.** Frame/output registers differ, and the old quarter asm-call declaration omits two A1 clobbers. Full ABI, fault/IRQ, installed ROM/memory and BLE OTA remain unproved. Offline calibration diagnostics are a feature proposal. [C/C++, component and full limits](../analysis/v4160-nv-write-2026-10-22/readme.en.md)
+
 ## NV-read callback reconstructed; normal-exit scratch checked
 
 The original 30-byte NV-read callback is reconstructed as real C11/C++17: 32 bytes / 14 instructions, one global FUNC, UND0/RELA0/ABS0. Independent inspection checks the fresh slot, word-count shift, indirect-call arguments and zero return, rejecting eight controls per language. Extra A3, fault ordering and original extent fit remain limitations. **No new BIN; the function is not integrated into the existing candidate.**

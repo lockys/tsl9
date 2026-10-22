@@ -1,0 +1,75 @@
+{
+  "schema": "TSL9-nv-timer-calibration-source-v1",
+  "original_FW_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "calibration_rows": [
+    {
+      "addr": 104252,
+      "size": 4,
+      "bytes": "9387c106",
+      "opcode": "addi a5, gp, 108"
+    },
+    {
+      "addr": 104256,
+      "size": 2,
+      "bytes": "9c43",
+      "opcode": "lw a5, 0(a5)"
+    },
+    {
+      "addr": 104258,
+      "size": 4,
+      "bytes": "37177a00",
+      "opcode": "lui a4, 0x7a1"
+    },
+    {
+      "addr": 104262,
+      "size": 4,
+      "bytes": "13070720",
+      "opcode": "addi a4, a4, 512"
+    },
+    {
+      "addr": 104266,
+      "size": 4,
+      "bytes": "b3d7e702",
+      "opcode": "divu a5, a5, a4"
+    },
+    {
+      "addr": 104270,
+      "size": 4,
+      "bytes": "93f7f70f",
+      "opcode": "andi a5, a5, 255"
+    },
+    {
+      "addr": 104274,
+      "size": 4,
+      "bytes": "238ff116",
+      "opcode": "sb a5, 382(gp)"
+    },
+    {
+      "addr": 104278,
+      "size": 4,
+      "bytes": "1307803e",
+      "opcode": "li a4, 1000"
+    },
+    {
+      "addr": 104282,
+      "size": 4,
+      "bytes": "b387e702",
+      "opcode": "mul a5, a5, a4"
+    },
+    {
+      "addr": 104286,
+      "size": 4,
+      "bytes": "239ef116",
+      "opcode": "sh a5, 380(gp)"
+    },
+    {
+      "addr": 104290,
+      "size": 2,
+      "bytes": "8280",
+      "opcode": "ret"
+    }
+  ],
+  "timer_byte_load_PC": 104304,
+  "timer_byte_load_hex": "03c7e117",
+  "same_GP_and_no_intervening_write_required": true
+}

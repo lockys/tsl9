@@ -1,0 +1,94 @@
+{
+  "scope": "Conditional normal ordered-access/call/result projection for new write and timer; not full register ABI or a new image.",
+  "normal_premises": [
+    "All code, private frame, pointers, fresh byte/word and MMIO accesses complete normally.",
+    "Original 32-byte and new 16-byte frames valid/aligned; no adverse source/destination/MMIO/frame aliases or intervening writes; private frame residue is not observed.",
+    "All original and native polls eventually observe the required bit; no timeout is added.",
+    "Live GP denotes the same readable scale byte; no asynchronous code/register changes or observers.",
+    "Actual relocation targets remain the reviewed genuine C definitions; no substitution or unproved external provider."
+  ],
+  "write": {
+    "original_bytes": 50,
+    "original_instructions": 20,
+    "native_bytes": 72,
+    "native_instructions": 26,
+    "original_frame_bytes": 32,
+    "native_frame_bytes": 16,
+    "original_source_saved_at_entry_SP_minus": 20,
+    "native_source_held_in": "S0, with incoming S0 restored from entrySP-8",
+    "native_destination_held_in": "S1, with incoming S1 restored from entrySP-12",
+    "native_RA_saved_at_entry_SP_minus": 4,
+    "C_call_order": [
+      "unlock(destination)",
+      "erase(destination)",
+      "program(destination,source)",
+      "lock(program_A0)",
+      "timer(1)"
+    ],
+    "original_program_entry_A2": "Fresh saved source; callee ignores it before own count256. New typed two-argument call does not claim that physical entry value.",
+    "normal_A0": 0,
+    "new_private_frame_word": "Incoming S1 saved at entrySP-12; original source slot entrySP-20 is not reproduced.",
+    "fault_prefix_differences": [
+      "Different frame extent, saved words and source retention; original fresh SP+12 reload after erase absent in C.",
+      "New A0 zeroed before RA/S0/S1 restores; original restores RA/S0 before zeroing A0."
+    ]
+  },
+  "timer": {
+    "original_bytes": 54,
+    "original_instructions": 22,
+    "native_bytes": 60,
+    "native_instructions": 23,
+    "native_frame_bytes": 0,
+    "minimum_fresh_effects": 12,
+    "live_GP_read_at_native_PC": 10,
+    "GP_byte_read_at_native_PC": 12,
+    "poll_PC": 42,
+    "poll_branch_PC": 46,
+    "normal_A0": "Original input, untouched by native machine code.",
+    "original_normal_registers": {
+      "A1": "entry A1",
+      "A2": "u32(zext8(fresh GP+382)*entry A0)",
+      "A3": 0,
+      "A4": "fresh final timerCTRL & FFFFFFFE",
+      "A5": "E000F000"
+    },
+    "native_normal_registers": {
+      "A1": "E000F000",
+      "A2": "fresh final timerCTRL & FFFFFFFE",
+      "A3_A4_A5": "Unwritten by native timer; retain incoming values."
+    },
+    "full_register_ABI": false,
+    "fault_prefix_equal": false,
+    "timer_units_known": false
+  },
+  "composed_new_write_normal_scratch": {
+    "A1": "E000F000",
+    "A2": "fresh final timerCTRL & FFFFFFFE",
+    "A3": "00008000 from actual lock",
+    "A4": "40022000 from actual lock",
+    "A5": "fresh final lockCTRL | 00008000",
+    "A6": "last fresh program source word"
+  },
+  "all_helpers": {
+    "program_exact_100B_38i": true,
+    "program_interleaves_64_fresh_word_reads_and_stores": true,
+    "ordinary_unlock_and_erase_additional_A1_writes": true,
+    "T_A7_GP_TP_S_clobbers_in_flash_leaf_helpers": false
+  },
+  "unused_quarter": {
+    "genuine_definition_retained": true,
+    "actually_called_by_selected_write": false,
+    "ASM_call_clobber_declarations_complete": false,
+    "missing_declarations": [
+      "unlock actual A1 write missing in ASM clobber list",
+      "erase actual A1 write missing in ASM clobber list"
+    ],
+    "bounded_actual_machine_observation": "Incoming source saved at SP+12 before calls and reloaded after erase; no encoded A1 use between these calls and the reload. Destination in preserved S1, CSR mask in preserved S0.",
+    "general_source_compiler_contract_admitted": false,
+    "complete_quarter_ABI_proved": false
+  },
+  "no_new_ROM_slot_or_wordcount_shift_in_this_scope": true,
+  "full_original_ABI_proved": false,
+  "fault_or_IRQ_equivalence": false,
+  "physical_provider_or_timer_success_proved": false
+}
