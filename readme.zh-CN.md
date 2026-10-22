@@ -8,6 +8,8 @@
 
 新的 C11／C++17 组件均为 624 bytes／223 条指令：明确保留 S10／S11，将六个 GP 使用位置改为读取当前实体 GP，并通过明确步骤交换两个已有保存指令。48-byte 栈帧、十一组保存／恢复、十五个间接调用已由独立审查核对；本轮未重跑 HOST。原始剩余 8 bytes 含有可执行指令，完整入口、调用返回 ABI、尾区所有权及原位配置尚未证实。**组件尚未集成，没有新增 BIN；原有完整 TX 映像保持不变。** [证据与限制](./analysis/v4160-callback-registers-2026-10-22/README.md)
 
+后续静态调用边界核对确认：GP+42 的半字在新旧调用前均已覆盖，没有这里的 A4 漏传；两份官方 ROM 候选的 `+0x13C` 小函数对仅按一般方式保存／返回 RA，不读取 caller S4／S7。这缩小了部分限制，但不证明实际 ROM 身份或其余 callee。候选 slot 对应 CCC 配置读取与通知发送；读取可返回 0..255，仍须区分原始 `==1` 与 `&1` gate。 [调用边界与候选条件](./analysis/v4160-callback-call-frontiers-2026-10-22/README.md)
+
 ## 先前事件 callback 的可读重建与原生差距
 
 `0x8614..0x888C` 的 632-byte callback 已重建为可读 C/C++，涵盖事件优先级、两组 context／connection、分段长度、重试与后续事件。原生明确内联诊断由 1,034 bytes 降到单函数 658 bytes，取得 48-byte 栈帧／十五个间接调用；仍超出 26 bytes，且额外 S10 保存、保存顺序、返回地址与未知 ROM 契约仍待确认。**此 callback 尚未纳入完整 BIN，没有新增可刷写映像。** [分析与限制](analysis/v4160-event-callback-2026-10-22/README.md)

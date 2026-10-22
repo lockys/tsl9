@@ -1,0 +1,54 @@
+{
+  "profile": "Conditional LLVM HasVendorXwchc, RV32 I+C standard forms plus explicitly decoded QK loads/stores",
+  "physical_ISA_proved": false,
+  "profile_inputs": [
+    {
+      "relative": "instruction-reference/RISCVInstrInfoXwch.td",
+      "bytes": 6117,
+      "sha256": "d18a5c4d0722e20d3d0398f180931118a5125c9ada56a64d32c602ad5bd71490"
+    },
+    {
+      "relative": "instruction-reference/xwchc-valid.s",
+      "bytes": 5306,
+      "sha256": "d4b64865497e1ecb8a8e3089c5bdc961b54cdedcdb8c3116bf679c70df683b32"
+    },
+    {
+      "relative": "instruction-format-reference/RISCVInstrFormatsC.td",
+      "bytes": 11173,
+      "sha256": "35bd917d2c72ddc96e5d6d1677af94479168e20d0bf1094bd4f02f9ef1ae578c"
+    },
+    {
+      "relative": "instruction-format-reference/RISCVRegisterInfo.td",
+      "bytes": 45406,
+      "sha256": "407eb7bbeae09bb83edbd3d274dadba65e7f066624375672a58b6317d4ba43e2"
+    }
+  ],
+  "header": {
+    "path": "apk-analysis/tsl9-function-hardware/hardware/wchble_rom.h",
+    "bytes": 243882,
+    "sha256": "fab43e7b8e351596a14d2a434eea4fa79587a8b9bba12738897d35ee2c3dbf2e",
+    "lines": [
+      {
+        "line": 2714,
+        "text": "#define LIB_FLASH_BASE_ADDRESSS   0x00040000"
+      },
+      {
+        "line": 2721,
+        "text": "#define FUNCITON_BASE_ADDRESSS    (LIB_FLASH_BASE_ADDRESSS+0x34)"
+      },
+      {
+        "line": 2725,
+        "text": "#define  BLE_LIB_JT(n) (*(uint32_t*)( FUNCITON_BASE_ADDRESSS+n*4 ))"
+      },
+      {
+        "line": 3241,
+        "text": "#define    GATT_Notification  ((  bStatus_t  (*)  ( uint16_t connHandle, attHandleValueNoti_t *pNoti,uint8_t authenticated ))  BLE_LIB_JT(40) )"
+      },
+      {
+        "line": 4062,
+        "text": "#define    GATTServApp_ReadCharCfg  ((  uint16_t  (*)  ( uint16_t connHandle, gattCharCfg_t *charCfgTbl ))  BLE_LIB_JT(66) )"
+      }
+    ]
+  },
+  "scope": "Header names support candidate identification only; return width and actual arguments come from source bytes. Historical candidate header not revalidated in this scope."
+}

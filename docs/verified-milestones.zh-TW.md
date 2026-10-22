@@ -4,6 +4,8 @@
 
 新的 C11／C++17 元件均為 624 bytes／223 條指令：明確保留 S10／S11，將六個 GP 使用位置改為讀取當下實體 GP，並以明示步驟交換兩個既有保存指令。48-byte frame、十一組保存／還原、十五個間接呼叫已由獨立審查核對；本輪未重跑 HOST。原始剩餘 8 bytes 含有可執行指令，完整 prefix、呼叫返回 ABI、尾區所有權及原位配置尚未證實。**元件尚未整合，沒有新增 BIN；原有完整 TX 映像維持不變。** [證據與限制](../analysis/v4160-callback-registers-2026-10-22/README.md)
 
+呼叫邊界的後續靜態核對確認：GP+42 的半字在新舊呼叫前均已覆寫，沒有這裡的 A4 漏傳；兩份官方 ROM 候選的 `+0x13C` 小函式對只按一般方式保存／返回 RA，不觀察 caller S4／S7。這縮小了部分限制，但不證明實機 ROM 身分或其餘 callee。候選 slot 對應 CCC 設定讀取與通知送出；讀取可回傳 0..255，仍須區分原始 `==1` 與 `&1` gate。 [呼叫邊界與候選條件](../analysis/v4160-callback-call-frontiers-2026-10-22/README.md)
+
 ## 先前事件 callback 的可讀重建與原生差距
 
 `0x8614..0x888C` 的 632-byte callback 已重建為可讀 C/C++，涵蓋事件優先序、兩組 context／connection、分段長度、重試與後續事件。原生明確內聯診斷由 1,034 bytes 降到單函式 658 bytes，取得 48-byte frame／十五個間接呼叫；仍超出 26 bytes，且額外 S10 保存、儲存順序、返回地址及未知 ROM 契約未閉合。**此 callback 尚未納入完整 BIN，沒有新增可刷寫映像。** [分析與限制](../analysis/v4160-event-callback-2026-10-22/README.md)
