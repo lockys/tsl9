@@ -1,0 +1,638 @@
+{
+  "schema": "TSL9-receive-dispatch-transmit-integration-spec-v1",
+  "units": [
+    {
+      "name": "fill-provider",
+      "profile": "fill-t0-t1-a0-a5",
+      "origin_unit": "experiments/tsl9-fill-provider/src/fill.v2.c",
+      "origin_unit_sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0",
+      "curated_unit": "src/native/receive/fill_provider.c"
+    },
+    {
+      "name": "tagged-dispatch",
+      "profile": "tagged-a0-a5",
+      "origin_unit": "experiments/tsl9-tagged-dispatch/src/tagged_dispatch.v1.c",
+      "origin_unit_sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69",
+      "curated_unit": "src/native/receive/tagged_dispatch.c"
+    },
+    {
+      "name": "spi-write-providers",
+      "profile": "tagged-a0-a5",
+      "origin_unit": "experiments/tsl9-spi-write-providers/src/spi_write.v1.c",
+      "origin_unit_sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2",
+      "curated_unit": "src/native/receive/spi_write_providers.c"
+    },
+    {
+      "name": "register-read",
+      "profile": "provider-a0-a5",
+      "origin_unit": "experiments/tsl9-register-read/src/register_read.c",
+      "origin_unit_sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846",
+      "curated_unit": "src/native/receive/register_read.c"
+    },
+    {
+      "name": "spi-transfer",
+      "profile": "spi-a0-a3-a4-a5",
+      "origin_unit": "experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c",
+      "origin_unit_sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182",
+      "curated_unit": "src/native/receive/spi_transfer_ports.c"
+    },
+    {
+      "name": "queue-small-providers",
+      "profile": "queue-small-a0-a5",
+      "origin_unit": "experiments/tsl9-queue-small-providers/src/providers.c",
+      "origin_unit_sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13",
+      "curated_unit": "src/native/receive/queue_small_providers.c"
+    },
+    {
+      "name": "queue-filter",
+      "profile": "queue-filter-a0-a5",
+      "origin_unit": "experiments/tsl9-queue-filter/src/queue_filter.v1.c",
+      "origin_unit_sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511",
+      "curated_unit": "src/native/receive/queue_filter.c"
+    },
+    {
+      "name": "transport-frame",
+      "profile": "transport-a0-a6",
+      "origin_unit": "experiments/tsl9-transport-frame/src/transport_frame.v6.c",
+      "origin_unit_sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8",
+      "curated_unit": "src/native/receive/transport_frame.c"
+    },
+    {
+      "name": "record-dispatch",
+      "profile": "record-a0-a5",
+      "origin_unit": "experiments/tsl9-record-dispatch/src/record_dispatch.v2.c",
+      "origin_unit_sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b",
+      "curated_unit": "src/native/receive/record_dispatch.c"
+    },
+    {
+      "name": "record-predicate",
+      "profile": "record-predicate-a0-a4-a5",
+      "origin_unit": "experiments/tsl9-record-predicate/src/predicate.v2.c",
+      "origin_unit_sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669",
+      "curated_unit": "src/native/receive/record_predicate.c"
+    },
+    {
+      "name": "peripheral-write",
+      "profile": "peripheral-a0-a6",
+      "origin_unit": "experiments/tsl9-peripheral-write/src/peripheral_write.v2.c",
+      "origin_unit_sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0",
+      "curated_unit": "src/native/receive/peripheral_write.c"
+    },
+    {
+      "name": "queue-consumer",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-queue-consumer/src/queue_consumer.v3.c",
+      "origin_unit_sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6",
+      "curated_unit": "src/native/receive/queue_consumer.c"
+    }
+  ],
+  "definitions": [
+    [
+      "tsl9_queue_external_81aa",
+      33194,
+      6
+    ],
+    [
+      "tsl9_queue_external_820c",
+      33292,
+      18
+    ],
+    [
+      "tsl9_dispatch_external_821e",
+      33310,
+      42
+    ],
+    [
+      "tsl9_queue_external_82d2",
+      33490,
+      54
+    ],
+    [
+      "tsl9_filter_scan_8308",
+      33544,
+      32
+    ],
+    [
+      "tsl9_filter_pack_8328",
+      33576,
+      48
+    ],
+    [
+      "tsl9_filter_emit_8358",
+      33624,
+      18
+    ],
+    [
+      "tsl9_filter_test_836a",
+      33642,
+      4
+    ],
+    [
+      "tsl9_filter_finish_836e",
+      33646,
+      28
+    ],
+    [
+      "tsl9_filter_second_838a",
+      33674,
+      4
+    ],
+    [
+      "tsl9_tagged_external_8520",
+      34080,
+      8
+    ],
+    [
+      "tsl9_fill_alignment_8528",
+      34088,
+      6
+    ],
+    [
+      "tsl9_fill_pattern_guard_852e",
+      34094,
+      2
+    ],
+    [
+      "tsl9_fill_word_setup_8530",
+      34096,
+      8
+    ],
+    [
+      "tsl9_fill_words_8538",
+      34104,
+      14
+    ],
+    [
+      "tsl9_fill_tail_guard_8546",
+      34118,
+      2
+    ],
+    [
+      "tsl9_fill_word_return_8548",
+      34120,
+      2
+    ],
+    [
+      "tsl9_fill_tail_dispatch_854a",
+      34122,
+      16
+    ],
+    [
+      "tsl9_fill_bytes_855a",
+      34138,
+      60
+    ],
+    [
+      "tsl9_fill_byte_return_8596",
+      34198,
+      2
+    ],
+    [
+      "tsl9_fill_pattern_8598",
+      34200,
+      18
+    ],
+    [
+      "tsl9_fill_align_dispatch_85aa",
+      34218,
+      16
+    ],
+    [
+      "tsl9_fill_align_resume_85ba",
+      34234,
+      14
+    ],
+    [
+      "tsl9_filter_external_8a56",
+      35414,
+      8
+    ],
+    [
+      "tsl9_transport_frame_8a5e",
+      35422,
+      28
+    ],
+    [
+      "tsl9_transport_first_8a7a",
+      35450,
+      22
+    ],
+    [
+      "tsl9_transport_first_result_8a90",
+      35472,
+      6
+    ],
+    [
+      "tsl9_transport_second_8a96",
+      35478,
+      32
+    ],
+    [
+      "tsl9_transport_second_result_8ab6",
+      35510,
+      8
+    ],
+    [
+      "tsl9_transport_reject_8abe",
+      35518,
+      14
+    ],
+    [
+      "tsl9_transport_select0_8acc",
+      35532,
+      2
+    ],
+    [
+      "tsl9_transport_pack_8ace",
+      35534,
+      60
+    ],
+    [
+      "tsl9_transport_test_8b0a",
+      35594,
+      10
+    ],
+    [
+      "tsl9_transport_finish_8b14",
+      35604,
+      62
+    ],
+    [
+      "tsl9_transport_copy_8b52",
+      35666,
+      26
+    ],
+    [
+      "tsl9_transport_bare_return_8b6c",
+      35692,
+      2
+    ],
+    [
+      "tsl9_queue_external_12a08",
+      76296,
+      12
+    ],
+    [
+      "tsl9_dispatch_status_12a14",
+      76308,
+      2
+    ],
+    [
+      "tsl9_dispatch_ID_12a16",
+      76310,
+      10
+    ],
+    [
+      "tsl9_dispatch_query_12a20",
+      76320,
+      8
+    ],
+    [
+      "tsl9_dispatch_tag_12a28",
+      76328,
+      6
+    ],
+    [
+      "tsl9_dispatch_copy_12a2e",
+      76334,
+      34
+    ],
+    [
+      "tsl9_dispatch_peripheral_12a50",
+      76368,
+      14
+    ],
+    [
+      "tsl9_dispatch_finish_12a5e",
+      76382,
+      8
+    ],
+    [
+      "tsl9_dispatch_tagged_12a66",
+      76390,
+      8
+    ],
+    [
+      "tsl9_queue_entry_12c58",
+      76888,
+      46
+    ],
+    [
+      "tsl9_queue_scan_12c86",
+      76934,
+      32
+    ],
+    [
+      "tsl9_queue_release_12ca6",
+      76966,
+      14
+    ],
+    [
+      "tsl9_queue_validate_12cb4",
+      76980,
+      58
+    ],
+    [
+      "tsl9_queue_advance_12cee",
+      77038,
+      10
+    ],
+    [
+      "tsl9_queue_finish_12cf8",
+      77048,
+      22
+    ],
+    [
+      "tsl9_queue_zero_12d0e",
+      77070,
+      52
+    ],
+    [
+      "tsl9_queue_emit_12d42",
+      77122,
+      10
+    ],
+    [
+      "tsl9_queue_response_12d4c",
+      77132,
+      44
+    ],
+    [
+      "tsl9_queue_other_12d78",
+      77176,
+      26
+    ],
+    [
+      "tsl9_spi_transfer_entry_16896",
+      92310,
+      8
+    ],
+    [
+      "tsl9_spi_tx_poll_1689e",
+      92318,
+      8
+    ],
+    [
+      "tsl9_spi_tx_ready_168a6",
+      92326,
+      16
+    ],
+    [
+      "tsl9_spi_rx_poll_168b6",
+      92342,
+      8
+    ],
+    [
+      "tsl9_spi_rx_done_168be",
+      92350,
+      10
+    ],
+    [
+      "tsl9_spi_tx_wait_168c8",
+      92360,
+      8
+    ],
+    [
+      "tsl9_spi_timeout_168d0",
+      92368,
+      4
+    ],
+    [
+      "tsl9_spi_rx_wait_168d4",
+      92372,
+      10
+    ],
+    [
+      "tsl9_tagged_external_168de",
+      92382,
+      8
+    ],
+    [
+      "tsl9_spi_write_guard1_168e6",
+      92390,
+      10
+    ],
+    [
+      "tsl9_spi_write_select1_168f0",
+      92400,
+      10
+    ],
+    [
+      "tsl9_spi_write_guard2_168fa",
+      92410,
+      4
+    ],
+    [
+      "tsl9_spi_write_select2_168fe",
+      92414,
+      10
+    ],
+    [
+      "tsl9_spi_write_command_16908",
+      92424,
+      8
+    ],
+    [
+      "tsl9_spi_write_address_16910",
+      92432,
+      10
+    ],
+    [
+      "tsl9_spi_write_test_1691a",
+      92442,
+      4
+    ],
+    [
+      "tsl9_spi_write_finish_1691e",
+      92446,
+      20
+    ],
+    [
+      "tsl9_spi_write_payload_16932",
+      92466,
+      12
+    ],
+    [
+      "tsl9_tagged_external_1693e",
+      92478,
+      4
+    ],
+    [
+      "tsl9_spi_modify_guard1_16942",
+      92482,
+      6
+    ],
+    [
+      "tsl9_spi_modify_select1_16948",
+      92488,
+      10
+    ],
+    [
+      "tsl9_spi_modify_guard2_16952",
+      92498,
+      4
+    ],
+    [
+      "tsl9_spi_modify_select2_16956",
+      92502,
+      10
+    ],
+    [
+      "tsl9_spi_modify_command_16960",
+      92512,
+      12
+    ],
+    [
+      "tsl9_spi_modify_address_1696c",
+      92524,
+      8
+    ],
+    [
+      "tsl9_spi_modify_mask_16974",
+      92532,
+      8
+    ],
+    [
+      "tsl9_spi_modify_value_1697c",
+      92540,
+      8
+    ],
+    [
+      "tsl9_spi_modify_finish_16984",
+      92548,
+      16
+    ],
+    [
+      "tsl9_register_read_entry_16994",
+      92564,
+      4
+    ],
+    [
+      "tsl9_register_read_body",
+      92568,
+      68
+    ],
+    [
+      "tsl9_dispatch_external_16b7c",
+      93052,
+      16
+    ],
+    [
+      "tsl9_tagged_config_16b8c",
+      93068,
+      16
+    ],
+    [
+      "tsl9_tagged_frame_16b9c",
+      93084,
+      12
+    ],
+    [
+      "tsl9_tagged_length_16ba8",
+      93096,
+      10
+    ],
+    [
+      "tsl9_tagged_header_16bb2",
+      93106,
+      32
+    ],
+    [
+      "tsl9_tagged_payload_16bd2",
+      93138,
+      40
+    ],
+    [
+      "tsl9_tagged_loop_setup_16bfa",
+      93178,
+      4
+    ],
+    [
+      "tsl9_tagged_loop_16bfe",
+      93182,
+      22
+    ],
+    [
+      "tsl9_tagged_send_16c14",
+      93204,
+      28
+    ],
+    [
+      "tsl9_tagged_request_16c30",
+      93232,
+      14
+    ],
+    [
+      "tsl9_tagged_status_16c3e",
+      93246,
+      20
+    ],
+    [
+      "tsl9_tagged_finish_16c52",
+      93266,
+      16
+    ],
+    [
+      "tsl9_tagged_busy_16c62",
+      93282,
+      10
+    ],
+    [
+      "tsl9_tagged_invalid_16c6c",
+      93292,
+      2
+    ],
+    [
+      "tsl9_tagged_early_16c6e",
+      93294,
+      4
+    ],
+    [
+      "tsl9_dispatch_external_18ca4",
+      101540,
+      34
+    ],
+    [
+      "tsl9_peripheral_selected_18cc6",
+      101574,
+      38
+    ],
+    [
+      "tsl9_peripheral_metadata_18cec",
+      101612,
+      110
+    ],
+    [
+      "tsl9_peripheral_finish_18d5a",
+      101722,
+      4
+    ],
+    [
+      "tsl9_peripheral_select0_18d5e",
+      101726,
+      4
+    ],
+    [
+      "tsl9_peripheral_select1_18d62",
+      101730,
+      4
+    ],
+    [
+      "tsl9_peripheral_alternate_18d66",
+      101734,
+      18
+    ]
+  ],
+  "missing_providers": {
+    "tsl9_queue_external_9454": 37972,
+    "tsl9_queue_external_9b36": 39734,
+    "tsl9_queue_external_12abe": 76478,
+    "tsl9_queue_external_14d2e": 85294
+  },
+  "pins": {
+    "scripts/verify-curated-source.py": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832",
+    "src/source-manifest.json": "224e6ac8fda5745bde9166b8703ef8882d198092cb11cc0e6138ef24660d9687",
+    "experiments/tsl9-tagged-native-chain/check.py": "420a06cd71a78a894ebbe1e5b7f6bb96cb1f5260b0a8f283e9a08d3c7575f81a",
+    "experiments/tsl9-peripheral-dispatch-component/check.py": "ffadcde4d5d0e7cf36371480bd1581ab7b1f0ded98f60d15a5292d41ae6ef225"
+  }
+}

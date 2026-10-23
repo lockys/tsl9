@@ -78,3 +78,5 @@ The [SPI component and pipeline](../experiments/tsl9-spi-transfer-leaf/README.md
 The [packet component](../experiments/tsl9-packet-receive/README.md) has an independent verifier; its formal local receipts are `experiments/tsl9-packet-receive/build/verified-v2/{c,cpp}/verification.json`. Source curation itself resolves neither the six control transfers nor the provider/IRQ ABI.
 
 The [ring and original-layout receive graph](../experiments/tsl9-ring-insert/README.md) distinguishes a resolved local code graph from an unknown dynamic resident provider and full firmware readiness.
+
+The [receive/dispatch/transmit integration](../analysis/receive-transmit-chain-2026-10-23/README.md) freshly compiles12 existing src units. Its9 original-PC spans reproduce1588B/555 instructions with no static UND; the full1902B partial component retains four genuine providers missing. Six opaque resident transfers and66970B of RX gaps remain unproved, so neither component is firmware-ready.

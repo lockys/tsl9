@@ -1,0 +1,2862 @@
+{
+  "schema": "TSL9-receive-transmit-integration-measurement-v1",
+  "mode": "c",
+  "inputs": {
+    "${LLVM_BIN}/clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}/ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}/llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${TSL9_ROOT}/analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py": {
+      "bytes": 3960,
+      "sha256": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-adc-caller-bank/src/caller_bank.c": {
+      "bytes": 195,
+      "sha256": "e32cb316d7d05021675070d9b0b689cd3764df23c9ef24b7c6b7970019ec6ed8"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-adc-config/src/adc_config.c": {
+      "bytes": 1462,
+      "sha256": "eb600b940fafaf15fb0d3f573e5adec59c600dee51133d8dba1908b757205643"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-adc-config/src/adc_config.h": {
+      "bytes": 482,
+      "sha256": "6b2d150c862f3317d170c450e30d4c628e7f30b1d2a0476618ca01086bba04dc"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-adc-config/src/native.c": {
+      "bytes": 1129,
+      "sha256": "c8b29856fb888a44e84e80e7a1f48866824edf4cd847e63a8a03bbd088e71e49"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-boot-clock-fallthrough/src/clock_fallthrough.c": {
+      "bytes": 3187,
+      "sha256": "a5469ac723d8f4c462049b84b0a22ac15d78c182dd2d22dc61ccec641e97066c"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-contract-model/src/ble_transport.h": {
+      "bytes": 2119,
+      "sha256": "97d3bb5e783bb841531655e491ae08289db13a01ad0d0656d36b6561aedce97b"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-contract-model/src/dnd_actions.c": {
+      "bytes": 20169,
+      "sha256": "2bd619f777ee8beab0cf674e293a54dacb8333fa0c3699b954e8ca9fd7cc2cd2"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-contract-model/src/dnd_actions.h": {
+      "bytes": 1729,
+      "sha256": "b95d4eb4c6732d549f9038364ba58598aab964765b01f1cfb8c383a916d5ca42"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-contract-model/src/feature.h": {
+      "bytes": 3069,
+      "sha256": "ace08775790c4ab39d6c7dbee3a238780ef778bac6f251f860e057a35b977401"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-contract-model/src/gatt_parser.c": {
+      "bytes": 10350,
+      "sha256": "76fccc2b6e9a92fb4880b1119fe2009b60bcdd8c63a4a8bd6a6a45ff95aa3274"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-contract-model/src/gatt_parser.h": {
+      "bytes": 2033,
+      "sha256": "5a5e872d9277cef39ee080ccf73f3ec9376c13bc4bd53bc550bb71aa233ca977"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-contract-model/src/general_ble.c": {
+      "bytes": 29161,
+      "sha256": "d28de43706c43f5fdc9832858f983b490e3c2e280395f97813fecbc2282cba90"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-contract-model/src/general_ble.h": {
+      "bytes": 3035,
+      "sha256": "1686739bcf9db5abb1c78ef85f262af27ac8438755f5e7e43d862ba8adb468aa"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-delay-register-contract/src/delay.c": {
+      "bytes": 2850,
+      "sha256": "7c18e7f7371ba503f0f5f6738139ec97c8655ebb676d798af2718978bb5b2793"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-fill-provider/src/fill.v2.c": {
+      "bytes": 6485,
+      "sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-init-mask/src/init_mask.c": {
+      "bytes": 1126,
+      "sha256": "cb06e8296bb2564243e61250fe44fe564220bc24920d2821a946060eff2707d3"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-init-write-sequence/src/init_writes.c": {
+      "bytes": 1228,
+      "sha256": "e318deef8975d25c84b16489388eb5cc1506a0752f362c2ca336de32d315955a"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-irq-flag-consumer/src/flag_consumer.c": {
+      "bytes": 2848,
+      "sha256": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-irq-flag-leaf/src/irq_flag.c": {
+      "bytes": 2803,
+      "sha256": "a6c859e8e8a31e507bec11755aa147c622cc27ff0d1bc2606d76b9ce373d146e"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-irq-provider/src/irq_provider.v2.c": {
+      "bytes": 5927,
+      "sha256": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-nv-read-callback/src/nv_read_callback.c": {
+      "bytes": 501,
+      "sha256": "9dedfbeef69aa3df6de14789369a69af8c79f192dec29690ee9868aca962ede2"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-nv-read-callback/src/nv_read_callback.h": {
+      "bytes": 636,
+      "sha256": "8a05d4c886ce5a3800017779353ad696fe32fd543a727dc120e6f37f5a925802"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-nv-read-live-count/src/read_live_count.c": {
+      "bytes": 2755,
+      "sha256": "71512907d00443a3446d240b15b74d3e834bdfaf77fbc299afbe203222ded7b9"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-nv-read-registers/src/read_registers.c": {
+      "bytes": 2110,
+      "sha256": "e165c4a4dd39376ceb52e2838145c435126b50709ad9e82b853eae152bd5023f"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-nv-write-call-contract/src/call_contract.c": {
+      "bytes": 550,
+      "sha256": "50087f3dfa154a4b784e07f081d6d9c80be7ff0e0870508eeeeabe383c2351c8"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-nv-write-callback/src/nv_write_callback.c": {
+      "bytes": 2467,
+      "sha256": "b4f41b783dbf1a780e9771c087c10631d17fd7bd7927fb4dab3e86eea7565e69"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-nv-write-callback/src/nv_write_callback.h": {
+      "bytes": 496,
+      "sha256": "6ab2541ef9f6363f435d714e189320e6e5b68af630cf958e292e0c4dc8b997bb"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-nv-write-frame-contract/src/write_frame.c": {
+      "bytes": 2776,
+      "sha256": "534eb4915432f049ea0e701c5098ca4a4f89309f028e55e23f89dde20fd5aade"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-packet-receive/src/packet_receive.v5.c": {
+      "bytes": 6333,
+      "sha256": "0e42490f8d2cc17bf9e5ab414827ee7158777f132928c61502b300089aaa520d"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-peripheral-write/src/peripheral_write.v2.c": {
+      "bytes": 7779,
+      "sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-queue-consumer/src/queue_consumer.v3.c": {
+      "bytes": 9595,
+      "sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-queue-filter/src/queue_filter.v1.c": {
+      "bytes": 5295,
+      "sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-queue-small-providers/src/providers.c": {
+      "bytes": 1468,
+      "sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build-v2.py": {
+      "bytes": 14213,
+      "sha256": "bbf9b1da0d62d2a7008b4beb1132f590dbc0888082986a25aec959cdfd96c11b"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/full.ld": {
+      "bytes": 218,
+      "sha256": "fdce18f63abbbaa6e80b81e7d3e4224bd56bdcf68fe4f36bdd92d40a1f165bef"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/nominal.ld": {
+      "bytes": 14089,
+      "sha256": "b6b87c85ea58be2045bf377ab33280e38a8e95bb80c8b2ede679d6dadf8a58da"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/spec.json": {
+      "bytes": 12104,
+      "sha256": "18d97b2c937d9405c46c89b79067f61c3ebf1c89b63432beb9a70ef9a1d2cf82"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-receive-wrapper/src/receive_wrapper.c": {
+      "bytes": 3463,
+      "sha256": "df1e1f0633c50b8b2c9f7a58d2ac1e45664057de107dc04d28eca9e931538cdc"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-record-dispatch/src/record_dispatch.v2.c": {
+      "bytes": 4652,
+      "sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-record-predicate/src/predicate.v2.c": {
+      "bytes": 1823,
+      "sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-register-read/src/register_read.c": {
+      "bytes": 2656,
+      "sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-register-write/src/register_write.c": {
+      "bytes": 3128,
+      "sha256": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-resident-copy-arch/src/copy.v1.c": {
+      "bytes": 3696,
+      "sha256": "d004661257866b3c8e11ad424dffc47c969f640f9d2bc87c6835aae9be9be660"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-resident-memory-leaves/src/io.h": {
+      "bytes": 617,
+      "sha256": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-resident-memory-leaves/src/memory_leaves.c": {
+      "bytes": 2191,
+      "sha256": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-resident-memory-leaves/src/memory_leaves.h": {
+      "bytes": 1596,
+      "sha256": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-resident-memory-native/src/native.c": {
+      "bytes": 2773,
+      "sha256": "b6cb7740f17d984a7d7a88d2090abfee5755dce97092b7fdd0b7c6284d964305"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-resident-memory-native/src/native.h": {
+      "bytes": 513,
+      "sha256": "1468fb5384938bdee808dbeab4437aa4d63fe4ccccddcbc39f0279eb7b8871ac"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-ring-insert/src/ring_insert.v3.c": {
+      "bytes": 5312,
+      "sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-ring-irq-adapter/src/irq_adapter.v2.c": {
+      "bytes": 2716,
+      "sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-runtime-reset-clock/src/reset_data.c": {
+      "bytes": 1389,
+      "sha256": "02aad93670679ef0c8c472dc998e3d41963ba33d280a5ec6baa336a3173ed1ec"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-runtime-reset-clock/src/reset_memory.c": {
+      "bytes": 3351,
+      "sha256": "cd2d0975bdab14759f41f096ce89532535544f10373532b0adb5e2e5455ebaf1"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-runtime-reset-clock/src/reset_ports.c": {
+      "bytes": 859,
+      "sha256": "5419c3d669183107771f88231080e517458e757a63868f5971b2db7f14ed9ae8"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c": {
+      "bytes": 4502,
+      "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-spi-write-providers/src/spi_write.v1.c": {
+      "bytes": 6806,
+      "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/src/tagged_dispatch.v1.c": {
+      "bytes": 6621,
+      "sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-transport-frame/src/transport_frame.v6.c": {
+      "bytes": 10272,
+      "sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-v4160-clock-registers/src/clock_fields.c": {
+      "bytes": 471,
+      "sha256": "416e0990c9ed3a142953af97ea6496bf269311f003dfec1046ab32308afd8701"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-v4160-clock-registers/src/clock_io.h": {
+      "bytes": 3088,
+      "sha256": "fd2d1bb3c780daf698c93db536ca5f2229e20553dc5543646c0667bab839e36f"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-v4160-clock-registers/src/clock_query.c": {
+      "bytes": 2088,
+      "sha256": "dcaa19f44760e16e022e73aa86fbcc3b0638c6ca1410a1fb03087366fa8eebc8"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-v4160-clock-registers/src/clock_registers.h": {
+      "bytes": 350,
+      "sha256": "c52596a6f9943912122d845e61ed5ea4298d2a205f3bdd614de96ef2e3b17552"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-v4160-flash-entry-order/src/flash_native.c": {
+      "bytes": 4838,
+      "sha256": "c2f85fd50a7def5ff4baf200415e9faa3f2a253dea51c6bc54ae6a139fef960b"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-v4160-flash-entry-order/src/flash_native.h": {
+      "bytes": 796,
+      "sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-v4160-flash-entry-order/src/native_io.h": {
+      "bytes": 6331,
+      "sha256": "e0d58fdf1ae5ebc1f497a023443a4e6432f5cd75d987c691a2dcf68b3e64af7e"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-v4160-interrupt-registers/src/interrupt_registers.h": {
+      "bytes": 607,
+      "sha256": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-v4160-irq-native/src/interrupt_registers.c": {
+      "bytes": 2266,
+      "sha256": "7bf0b338044ef635f132281c11abb516bb0b9a62108e7c8faa8857c1b5e928db"
+    },
+    "${TSL9_ROOT}/experiments/tsl9-v4160-irq-native/src/native_io.h": {
+      "bytes": 3231,
+      "sha256": "f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e"
+    },
+    "${TSL9_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${TSL9_ROOT}/scripts/verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    },
+    "${TSL9_ROOT}/src/native/adc/adc_config.c": {
+      "bytes": 1424,
+      "sha256": "8ec563dc97c30612ea313970227bd92c9b68d656a1f23f36c72eee181ba5610f"
+    },
+    "${TSL9_ROOT}/src/native/adc/adc_config.h": {
+      "bytes": 444,
+      "sha256": "03d2da2050b5d73b51dd9687524a0543192f97315ac02de054bd3ccd3d57c323"
+    },
+    "${TSL9_ROOT}/src/native/adc/caller_bank.c": {
+      "bytes": 169,
+      "sha256": "51e44b5c520ce8651217540b3c020a4ad322916ed8e4576c9799ce3357f91cf1"
+    },
+    "${TSL9_ROOT}/src/native/adc/io.h": {
+      "bytes": 617,
+      "sha256": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8"
+    },
+    "${TSL9_ROOT}/src/native/adc/memory_leaves.h": {
+      "bytes": 1596,
+      "sha256": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2"
+    },
+    "${TSL9_ROOT}/src/native/adc/native.c": {
+      "bytes": 1091,
+      "sha256": "7011badf2f84e52b0cbc7e6b78c86b2b63df32380300a42b3e56c263936cb0b5"
+    },
+    "${TSL9_ROOT}/src/native/clock/clock_fields.c": {
+      "bytes": 471,
+      "sha256": "416e0990c9ed3a142953af97ea6496bf269311f003dfec1046ab32308afd8701"
+    },
+    "${TSL9_ROOT}/src/native/clock/clock_init.c": {
+      "bytes": 3187,
+      "sha256": "a5469ac723d8f4c462049b84b0a22ac15d78c182dd2d22dc61ccec641e97066c"
+    },
+    "${TSL9_ROOT}/src/native/clock/clock_io.h": {
+      "bytes": 3088,
+      "sha256": "fd2d1bb3c780daf698c93db536ca5f2229e20553dc5543646c0667bab839e36f"
+    },
+    "${TSL9_ROOT}/src/native/clock/clock_query.c": {
+      "bytes": 2088,
+      "sha256": "dcaa19f44760e16e022e73aa86fbcc3b0638c6ca1410a1fb03087366fa8eebc8"
+    },
+    "${TSL9_ROOT}/src/native/clock/clock_registers.h": {
+      "bytes": 350,
+      "sha256": "c52596a6f9943912122d845e61ed5ea4298d2a205f3bdd614de96ef2e3b17552"
+    },
+    "${TSL9_ROOT}/src/native/init_mask/init_mask.c": {
+      "bytes": 1101,
+      "sha256": "a0523410a35c47575e5a3f7e3ed008fa1e5ef9b024f09c6a283250f1d936b562"
+    },
+    "${TSL9_ROOT}/src/native/irq/flag_consumer.c": {
+      "bytes": 2848,
+      "sha256": "9edf5f2571991062605863e88adf8028d4d54efc8d3e518c540026bd50b0ef12"
+    },
+    "${TSL9_ROOT}/src/native/irq/interrupt_registers.c": {
+      "bytes": 2225,
+      "sha256": "5da18f1b818714fea4654dcce9c3ca13fcb71371ff85832331b5619f8c53d486"
+    },
+    "${TSL9_ROOT}/src/native/irq/interrupt_registers.h": {
+      "bytes": 607,
+      "sha256": "da57cec48aa144786cd9a64c8d20aadd2bb02d9e91d43408eac6441f7ba3ae59"
+    },
+    "${TSL9_ROOT}/src/native/irq/irq_flag.c": {
+      "bytes": 2803,
+      "sha256": "a6c859e8e8a31e507bec11755aa147c622cc27ff0d1bc2606d76b9ce373d146e"
+    },
+    "${TSL9_ROOT}/src/native/irq/native_io.h": {
+      "bytes": 3231,
+      "sha256": "f98eda2e291d585b086f5e65cd4d8816855e7819350f7b93dd6002bb430a3d2e"
+    },
+    "${TSL9_ROOT}/src/native/irq/ring_irq_adapter.c": {
+      "bytes": 2716,
+      "sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596"
+    },
+    "${TSL9_ROOT}/src/native/nv/flash_native.c": {
+      "bytes": 4838,
+      "sha256": "c2f85fd50a7def5ff4baf200415e9faa3f2a253dea51c6bc54ae6a139fef960b"
+    },
+    "${TSL9_ROOT}/src/native/nv/flash_native.h": {
+      "bytes": 796,
+      "sha256": "b26fe2050e88708e7d18257841f5682ac49fcd4b402aac42ffc5aaae649dd7bd"
+    },
+    "${TSL9_ROOT}/src/native/nv/native_io.h": {
+      "bytes": 6341,
+      "sha256": "03a4c41413b799c7251e254cd104ba4d8ea5a83b2bb05bffe6a4068ce85f04da"
+    },
+    "${TSL9_ROOT}/src/native/nv/nv_read_callback.c": {
+      "bytes": 501,
+      "sha256": "9dedfbeef69aa3df6de14789369a69af8c79f192dec29690ee9868aca962ede2"
+    },
+    "${TSL9_ROOT}/src/native/nv/nv_read_callback.h": {
+      "bytes": 636,
+      "sha256": "8a05d4c886ce5a3800017779353ad696fe32fd543a727dc120e6f37f5a925802"
+    },
+    "${TSL9_ROOT}/src/native/nv/nv_read_live_count.c": {
+      "bytes": 2755,
+      "sha256": "71512907d00443a3446d240b15b74d3e834bdfaf77fbc299afbe203222ded7b9"
+    },
+    "${TSL9_ROOT}/src/native/nv/nv_read_registers.c": {
+      "bytes": 2110,
+      "sha256": "e165c4a4dd39376ceb52e2838145c435126b50709ad9e82b853eae152bd5023f"
+    },
+    "${TSL9_ROOT}/src/native/nv/nv_write_callback.c": {
+      "bytes": 2428,
+      "sha256": "9a3e998b68c35073ef15887b53dc9caf4b8c21d83645ba559e290b4fb3ef393c"
+    },
+    "${TSL9_ROOT}/src/native/nv/nv_write_callback.h": {
+      "bytes": 457,
+      "sha256": "c814e7ae426389fa43011e19e9e5cb715d7c789191ced8fcdd485399036a91e8"
+    },
+    "${TSL9_ROOT}/src/native/nv/nv_write_frame_contract.c": {
+      "bytes": 2776,
+      "sha256": "534eb4915432f049ea0e701c5098ca4a4f89309f028e55e23f89dde20fd5aade"
+    },
+    "${TSL9_ROOT}/src/native/receive/fill_provider.c": {
+      "bytes": 6485,
+      "sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0"
+    },
+    "${TSL9_ROOT}/src/native/receive/irq_provider.c": {
+      "bytes": 5927,
+      "sha256": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653"
+    },
+    "${TSL9_ROOT}/src/native/receive/packet_receive.c": {
+      "bytes": 6333,
+      "sha256": "0e42490f8d2cc17bf9e5ab414827ee7158777f132928c61502b300089aaa520d"
+    },
+    "${TSL9_ROOT}/src/native/receive/peripheral_write.c": {
+      "bytes": 7779,
+      "sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0"
+    },
+    "${TSL9_ROOT}/src/native/receive/queue_consumer.c": {
+      "bytes": 9595,
+      "sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6"
+    },
+    "${TSL9_ROOT}/src/native/receive/queue_filter.c": {
+      "bytes": 5295,
+      "sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511"
+    },
+    "${TSL9_ROOT}/src/native/receive/queue_small_providers.c": {
+      "bytes": 1468,
+      "sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13"
+    },
+    "${TSL9_ROOT}/src/native/receive/receive_wrapper.c": {
+      "bytes": 3463,
+      "sha256": "df1e1f0633c50b8b2c9f7a58d2ac1e45664057de107dc04d28eca9e931538cdc"
+    },
+    "${TSL9_ROOT}/src/native/receive/record_dispatch.c": {
+      "bytes": 4652,
+      "sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b"
+    },
+    "${TSL9_ROOT}/src/native/receive/record_predicate.c": {
+      "bytes": 1823,
+      "sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669"
+    },
+    "${TSL9_ROOT}/src/native/receive/register_read.c": {
+      "bytes": 2656,
+      "sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+    },
+    "${TSL9_ROOT}/src/native/receive/register_write.c": {
+      "bytes": 3128,
+      "sha256": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85"
+    },
+    "${TSL9_ROOT}/src/native/receive/ring_insert.c": {
+      "bytes": 5312,
+      "sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d"
+    },
+    "${TSL9_ROOT}/src/native/receive/spi_transfer_ports.c": {
+      "bytes": 4502,
+      "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+    },
+    "${TSL9_ROOT}/src/native/receive/spi_write_providers.c": {
+      "bytes": 6806,
+      "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+    },
+    "${TSL9_ROOT}/src/native/receive/tagged_dispatch.c": {
+      "bytes": 6621,
+      "sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69"
+    },
+    "${TSL9_ROOT}/src/native/receive/transport_frame.c": {
+      "bytes": 10272,
+      "sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
+    },
+    "${TSL9_ROOT}/src/native/resident/copy_arch.c": {
+      "bytes": 3696,
+      "sha256": "d004661257866b3c8e11ad424dffc47c969f640f9d2bc87c6835aae9be9be660"
+    },
+    "${TSL9_ROOT}/src/native/resident/io.h": {
+      "bytes": 617,
+      "sha256": "07ae472015938fd46557f83951dc377cb4f66ae462de3bcecef044bde09066f8"
+    },
+    "${TSL9_ROOT}/src/native/resident/memory_leaves.c": {
+      "bytes": 2191,
+      "sha256": "8ae6a79601257495da71dc4850b21021da8e1f983e5590f528da3f56f4780536"
+    },
+    "${TSL9_ROOT}/src/native/resident/memory_leaves.h": {
+      "bytes": 1596,
+      "sha256": "c2b1104675fa0980bbc3c1d8674d0dbfd7fd9fd8c11462427bb46401d3cd52c2"
+    },
+    "${TSL9_ROOT}/src/native/resident/native.c": {
+      "bytes": 2697,
+      "sha256": "70c00f11745fbb1390a44a552cf6fb1e146ebb6fcb939e6b46b9a312b410243f"
+    },
+    "${TSL9_ROOT}/src/native/resident/native.h": {
+      "bytes": 513,
+      "sha256": "1468fb5384938bdee808dbeab4437aa4d63fe4ccccddcbc39f0279eb7b8871ac"
+    },
+    "${TSL9_ROOT}/src/native/startup/init_writes.c": {
+      "bytes": 1228,
+      "sha256": "e318deef8975d25c84b16489388eb5cc1506a0752f362c2ca336de32d315955a"
+    },
+    "${TSL9_ROOT}/src/native/startup/reset_data.c": {
+      "bytes": 1389,
+      "sha256": "02aad93670679ef0c8c472dc998e3d41963ba33d280a5ec6baa336a3173ed1ec"
+    },
+    "${TSL9_ROOT}/src/native/startup/reset_memory.c": {
+      "bytes": 3351,
+      "sha256": "cd2d0975bdab14759f41f096ce89532535544f10373532b0adb5e2e5455ebaf1"
+    },
+    "${TSL9_ROOT}/src/native/startup/reset_ports.c": {
+      "bytes": 859,
+      "sha256": "5419c3d669183107771f88231080e517458e757a63868f5971b2db7f14ed9ae8"
+    },
+    "${TSL9_ROOT}/src/native/timer/delay.c": {
+      "bytes": 2850,
+      "sha256": "7c18e7f7371ba503f0f5f6738139ec97c8655ebb676d798af2718978bb5b2793"
+    },
+    "${TSL9_ROOT}/src/reference/v4100/ble_transport.h": {
+      "bytes": 2119,
+      "sha256": "97d3bb5e783bb841531655e491ae08289db13a01ad0d0656d36b6561aedce97b"
+    },
+    "${TSL9_ROOT}/src/reference/v4100/dnd_actions.c": {
+      "bytes": 20169,
+      "sha256": "2bd619f777ee8beab0cf674e293a54dacb8333fa0c3699b954e8ca9fd7cc2cd2"
+    },
+    "${TSL9_ROOT}/src/reference/v4100/dnd_actions.h": {
+      "bytes": 1729,
+      "sha256": "b95d4eb4c6732d549f9038364ba58598aab964765b01f1cfb8c383a916d5ca42"
+    },
+    "${TSL9_ROOT}/src/reference/v4100/feature.h": {
+      "bytes": 3069,
+      "sha256": "ace08775790c4ab39d6c7dbee3a238780ef778bac6f251f860e057a35b977401"
+    },
+    "${TSL9_ROOT}/src/reference/v4100/gatt_parser.c": {
+      "bytes": 10350,
+      "sha256": "76fccc2b6e9a92fb4880b1119fe2009b60bcdd8c63a4a8bd6a6a45ff95aa3274"
+    },
+    "${TSL9_ROOT}/src/reference/v4100/gatt_parser.h": {
+      "bytes": 2033,
+      "sha256": "5a5e872d9277cef39ee080ccf73f3ec9376c13bc4bd53bc550bb71aa233ca977"
+    },
+    "${TSL9_ROOT}/src/reference/v4100/general_ble.c": {
+      "bytes": 29161,
+      "sha256": "d28de43706c43f5fdc9832858f983b490e3c2e280395f97813fecbc2282cba90"
+    },
+    "${TSL9_ROOT}/src/reference/v4100/general_ble.h": {
+      "bytes": 3035,
+      "sha256": "1686739bcf9db5abb1c78ef85f262af27ac8438755f5e7e43d862ba8adb468aa"
+    },
+    "${TSL9_ROOT}/src/source-manifest.json": {
+      "bytes": 55313,
+      "sha256": "224e6ac8fda5745bde9166b8703ef8882d198092cb11cc0e6138ef24660d9687"
+    }
+  },
+  "upstream": {
+    "peripheral-c": "def205bc23cbb05f22a886648af5458f95c49bf40d05a85aae0c295c5ca1759d",
+    "peripheral-cpp": "2c20601b9e15498dabe4d8e3d6113813553ba6eff3154ab62501a1154cda8c7c",
+    "curated-source": "911ff0eeeb68fe6171dcbf1d7ba1478c7873b57ea0fcb7f470193d5b8ee544dc"
+  },
+  "full": {
+    "bytes": 1902,
+    "instructions": 662,
+    "FUNC": 107,
+    "RELA": 97,
+    "UND": [
+      "tsl9_queue_external_12abe",
+      "tsl9_queue_external_14d2e",
+      "tsl9_queue_external_9454",
+      "tsl9_queue_external_9b36"
+    ],
+    "ELF_sha256": "3fc6cd22759e179e12c17ff209e47a9aa3d7c27f21442dc527457f0dee3dbae6"
+  },
+  "nominal": {
+    "bytes": 1588,
+    "instructions": 555,
+    "FUNC": 97,
+    "UND": 0,
+    "RELA": 0,
+    "ELF_sha256": "e13c1b738b287646fe4f5e45d92291bd9eec593a1fd13877dee3a8a7c9a450c7"
+  },
+  "artifacts": {
+    "commands.json": {
+      "bytes": 59902,
+      "sha256": "7c42cbec577541f286dee0311c822d39365dbaf9a22e0394b4c3afc7fffbf9d5"
+    },
+    "fill-provider-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fill-provider-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fill-provider.d": {
+      "bytes": 351,
+      "sha256": "922a84d9dc73bb6c47e1d3c60f442b735fddb779cbd0803b44e0703b93da7d71"
+    },
+    "fill-provider.ll": {
+      "bytes": 53452,
+      "sha256": "751bd25ffe4ed2cdf82b3ab398536c63929b886c091cd855f1cff1c306e777d6"
+    },
+    "fill-provider.o": {
+      "bytes": 2768,
+      "sha256": "0a264405bae55f8374aaad7de93fdf3c65fe78778a4c2e41b84e766748a84f13"
+    },
+    "full-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "full-read.log": {
+      "bytes": 50587,
+      "sha256": "f69d0ae09b7463a0a2e5e4a8d3ef03c8c8cfe63e9ae128145349af405d6a84c5"
+    },
+    "nominal-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nominal-read.log": {
+      "bytes": 39539,
+      "sha256": "9bdbbfe1afb0c35c3cd6491f93371d6f26f6e23f894796a1ac64b42410412d93"
+    },
+    "NOMINAL-SUBCOMPONENT-NOT-FIRMWARE.elf": {
+      "bytes": 76488,
+      "sha256": "e13c1b738b287646fe4f5e45d92291bd9eec593a1fd13877dee3a8a7c9a450c7"
+    },
+    "peripheral-write-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "peripheral-write-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "peripheral-write.d": {
+      "bytes": 357,
+      "sha256": "9e8dfad71b50f561db357aa29b3f1d65177d671b44ff2eae13318564c1a6d572"
+    },
+    "peripheral-write.ll": {
+      "bytes": 59842,
+      "sha256": "cda8a5ad09449d2c52807bf4fc3463864a2d644499c29cb550829abe4e0a1a04"
+    },
+    "peripheral-write.o": {
+      "bytes": 2080,
+      "sha256": "2342ba3b461e543e81a5f04c5632555a8bafdb4c126cd2c1303d019b4813d453"
+    },
+    "queue-consumer-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "queue-consumer-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "queue-consumer.d": {
+      "bytes": 353,
+      "sha256": "00a2bc83f1aa6d091b36e907b2b11ed60df526c7300f344ab5d434865dbc7284"
+    },
+    "queue-consumer.ll": {
+      "bytes": 15965,
+      "sha256": "c82ad23b3014657b9b20df396f06525ecca76c3a2847a019c02ff543cff23fe6"
+    },
+    "queue-consumer.o": {
+      "bytes": 3144,
+      "sha256": "1e41436fd85f3df8d5086c0ec9f8fa6a4f9469dc14668ca88869b61b5f67da8b"
+    },
+    "queue-filter-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "queue-filter-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "queue-filter.d": {
+      "bytes": 349,
+      "sha256": "fd59d52bc84923c103eac4db065d6397a01d473d56fd864a564b563b477b50d4"
+    },
+    "queue-filter.ll": {
+      "bytes": 9995,
+      "sha256": "9945de871af59164515535ed9d5bc7b272ce70040d215389a4a8e2be52d1f665"
+    },
+    "queue-filter.o": {
+      "bytes": 2044,
+      "sha256": "8811d29fa28ae30f57925cb25de62b84de77a9d37cde4291345163ac4e44b870"
+    },
+    "queue-small-providers-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "queue-small-providers-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "queue-small-providers.d": {
+      "bytes": 367,
+      "sha256": "067178bcbf1ecbac995424f326ba88c9a2328c6426e292f5924151897027c5af"
+    },
+    "queue-small-providers.ll": {
+      "bytes": 3830,
+      "sha256": "caed28d5c06f03e621df167ce1c7bba7ed65a119015b8f0c1e4b6fe5b27c182f"
+    },
+    "queue-small-providers.o": {
+      "bytes": 1004,
+      "sha256": "7ad467bb350f52c483e39068456d3047f48d67b90137234d6f023ca6e7a2a505"
+    },
+    "record-dispatch-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "record-dispatch-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "record-dispatch.d": {
+      "bytes": 355,
+      "sha256": "f40206d11335ed2fee521260a32951737207047b982f8eac994568cddf43d254"
+    },
+    "record-dispatch.ll": {
+      "bytes": 9414,
+      "sha256": "88ef4751013988442a621c235d384767255970c7b1d0019a97b9c0a582296c2c"
+    },
+    "record-dispatch.o": {
+      "bytes": 2452,
+      "sha256": "d66e14b7ddb5e6dc797d5d18ef3a66481ff7003ca3ea50673a5455c887d80f0d"
+    },
+    "record-predicate-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "record-predicate-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "record-predicate.d": {
+      "bytes": 357,
+      "sha256": "14431f0069229b9d76f128dc75b4a4fa9428135451c515828da66259c64ee18c"
+    },
+    "record-predicate.ll": {
+      "bytes": 5314,
+      "sha256": "02af84c0e25b90aa8a1dedcc16f3fee729d2e942db9abf4ef594cd2b8e46393b"
+    },
+    "record-predicate.o": {
+      "bytes": 912,
+      "sha256": "29bd65ad44dd1223a3c479616fd2a5b932c6843c4646d234365ef039bbf43354"
+    },
+    "register-read-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "register-read-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "register-read.d": {
+      "bytes": 351,
+      "sha256": "2678b10b58cfbd8a76a05e5e17aa1f28dfc26371c04c7ba5cefa33707b2bc260"
+    },
+    "register-read.ll": {
+      "bytes": 7769,
+      "sha256": "d4e447e2cf37435298f9c4e0595b08cf8042c43b6fbfce9a548e3a787028892b"
+    },
+    "register-read.o": {
+      "bytes": 1188,
+      "sha256": "fd96f6f5df62a1c55615dd45745b6fc006a51c4dae9da6a89faf29acea1486de"
+    },
+    "spi-transfer-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "spi-transfer-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "spi-transfer.d": {
+      "bytes": 355,
+      "sha256": "7f1c533bfe2066cc58030570be1489b20b4adeda90e85ff4e486289f7b0ad1c1"
+    },
+    "spi-transfer.ll": {
+      "bytes": 8582,
+      "sha256": "1df0438ecd8c8fb55c3c6affc8540f68aba7fb0b4476b1efdb93689f980b894a"
+    },
+    "spi-transfer.o": {
+      "bytes": 1936,
+      "sha256": "e900eae885f3601bd7f30ac8fee012a7e03db65a1d2f07bf512736acea7eb663"
+    },
+    "spi-write-providers-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "spi-write-providers-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "spi-write-providers.d": {
+      "bytes": 363,
+      "sha256": "2696eaacbe8030fae56a23461a319bdd709b07313e1d1d651d7bf6d33a6afa1d"
+    },
+    "spi-write-providers.ll": {
+      "bytes": 37029,
+      "sha256": "ab051d4d276bb5fc9e4746a10afea7674d5c728a36da9a4eab77995d1f591d60"
+    },
+    "spi-write-providers.o": {
+      "bytes": 3952,
+      "sha256": "eb4b3e0b220f451752406538aa3fc86493766bce4e5e379dc34623a4effb0b17"
+    },
+    "tagged-dispatch-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tagged-dispatch-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tagged-dispatch.d": {
+      "bytes": 355,
+      "sha256": "0b389a2be6d5067c92d27a82cdeb5f66efae027b6208d6f7b03d91f7621cbc06"
+    },
+    "tagged-dispatch.ll": {
+      "bytes": 33115,
+      "sha256": "055400a58c9b50427fab1ea4581a4a1c4fc3d47731c5f9154c1d66b73191e7b0"
+    },
+    "tagged-dispatch.o": {
+      "bytes": 3364,
+      "sha256": "41eed30945534089e2d74b8a77187cc6678b1317e223a3784d61f40a3a619fdb"
+    },
+    "transport-frame-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "transport-frame-IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "transport-frame.d": {
+      "bytes": 355,
+      "sha256": "b2bd6df72e10c5db2981fe5907b15d56bfe026ba5e8604a293598e11ab56d9d7"
+    },
+    "transport-frame.ll": {
+      "bytes": 20005,
+      "sha256": "5f333bff845e4b293ddb4b4caa1c4b8a2821ee6153a17a740c53b9845fbb1c4c"
+    },
+    "transport-frame.o": {
+      "bytes": 2964,
+      "sha256": "c2113ed8168a97e5cc49f666231d03b10f66ecb514f3f28619c248fa3b455768"
+    },
+    "UNRESOLVED-FULL-COMPONENT.o": {
+      "bytes": 11312,
+      "sha256": "3fc6cd22759e179e12c17ff209e47a9aa3d7c27f21442dc527457f0dee3dbae6"
+    }
+  },
+  "actual_commands": [
+    {
+      "label": "fill-provider-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/fill-provider.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/fill-provider.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/fill_provider.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/fill-provider.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/fill_provider.c": {
+          "bytes": 6485,
+          "sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fill-provider-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/fill_provider.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/fill-provider.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/fill_provider.c": {
+          "bytes": 6485,
+          "sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "tagged-dispatch-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/tagged-dispatch.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/tagged-dispatch.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/tagged_dispatch.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/tagged-dispatch.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/tagged_dispatch.c": {
+          "bytes": 6621,
+          "sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "tagged-dispatch-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/tagged_dispatch.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/tagged-dispatch.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/tagged_dispatch.c": {
+          "bytes": 6621,
+          "sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "spi-write-providers-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-write-providers.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-write-providers.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/spi_write_providers.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-write-providers.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/spi_write_providers.c": {
+          "bytes": 6806,
+          "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "spi-write-providers-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/spi_write_providers.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-write-providers.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/spi_write_providers.c": {
+          "bytes": 6806,
+          "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "register-read-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/register-read.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/register-read.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/register_read.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/register-read.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/register_read.c": {
+          "bytes": 2656,
+          "sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "register-read-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/register_read.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/register-read.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/register_read.c": {
+          "bytes": 2656,
+          "sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "spi-transfer-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-transfer.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-transfer.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/spi_transfer_ports.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-transfer.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/spi_transfer_ports.c": {
+          "bytes": 4502,
+          "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "spi-transfer-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/spi_transfer_ports.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-transfer.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/spi_transfer_ports.c": {
+          "bytes": 4502,
+          "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "queue-small-providers-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x14",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-Dtsl9_queue_status_81aa=tsl9_queue_external_81aa",
+        "-Dtsl9_queue_clear_820c=tsl9_queue_external_820c",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-small-providers.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-small-providers.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/queue_small_providers.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-small-providers.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/queue_small_providers.c": {
+          "bytes": 1468,
+          "sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "queue-small-providers-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x14",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-Dtsl9_queue_status_81aa=tsl9_queue_external_81aa",
+        "-Dtsl9_queue_clear_820c=tsl9_queue_external_820c",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/queue_small_providers.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-small-providers.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/queue_small_providers.c": {
+          "bytes": 1468,
+          "sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "queue-filter-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-filter.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-filter.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/queue_filter.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-filter.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/queue_filter.c": {
+          "bytes": 5295,
+          "sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "queue-filter-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/queue_filter.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-filter.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/queue_filter.c": {
+          "bytes": 5295,
+          "sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "transport-frame-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/transport-frame.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/transport-frame.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/transport_frame.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/transport-frame.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/transport_frame.c": {
+          "bytes": 10272,
+          "sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "transport-frame-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/transport_frame.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/transport-frame.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/transport_frame.c": {
+          "bytes": 10272,
+          "sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "record-dispatch-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-dispatch.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-dispatch.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/record_dispatch.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-dispatch.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/record_dispatch.c": {
+          "bytes": 4652,
+          "sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "record-dispatch-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/record_dispatch.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-dispatch.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/record_dispatch.c": {
+          "bytes": 4652,
+          "sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "record-predicate-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-predicate.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-predicate.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/record_predicate.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-predicate.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/record_predicate.c": {
+          "bytes": 1823,
+          "sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "record-predicate-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/record_predicate.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-predicate.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/record_predicate.c": {
+          "bytes": 1823,
+          "sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "peripheral-write-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/peripheral-write.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/peripheral-write.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/peripheral_write.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/peripheral-write.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/peripheral_write.c": {
+          "bytes": 7779,
+          "sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "peripheral-write-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/peripheral_write.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/peripheral-write.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/peripheral_write.c": {
+          "bytes": 7779,
+          "sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "queue-consumer-compile",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-MD",
+        "-MF",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-consumer.d",
+        "-MT",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-consumer.o",
+        "-c",
+        "${TSL9_ROOT}/src/native/receive/queue_consumer.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-consumer.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/queue_consumer.c": {
+          "bytes": 9595,
+          "sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "queue-consumer-IR",
+      "argv": [
+        "${LLVM_BIN}/clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${TSL9_ROOT}/src/native/receive/queue_consumer.c",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-consumer.ll"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${TSL9_ROOT}/src/native/receive/queue_consumer.c": {
+          "bytes": 9595,
+          "sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6"
+        },
+        "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "full-link",
+      "argv": [
+        "${LLVM_BIN}/ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/full.ld",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/fill-provider.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/tagged-dispatch.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-write-providers.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/register-read.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-transfer.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-small-providers.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-filter.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/transport-frame.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-dispatch.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-predicate.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/peripheral-write.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-consumer.o",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/UNRESOLVED-FULL-COMPONENT.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/ld.lld.exe": {
+          "bytes": 73834600,
+          "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/full.ld": {
+          "bytes": 218,
+          "sha256": "fdce18f63abbbaa6e80b81e7d3e4224bd56bdcf68fe4f36bdd92d40a1f165bef"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/fill-provider.o": {
+          "bytes": 2768,
+          "sha256": "0a264405bae55f8374aaad7de93fdf3c65fe78778a4c2e41b84e766748a84f13"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/tagged-dispatch.o": {
+          "bytes": 3364,
+          "sha256": "41eed30945534089e2d74b8a77187cc6678b1317e223a3784d61f40a3a619fdb"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-write-providers.o": {
+          "bytes": 3952,
+          "sha256": "eb4b3e0b220f451752406538aa3fc86493766bce4e5e379dc34623a4effb0b17"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/register-read.o": {
+          "bytes": 1188,
+          "sha256": "fd96f6f5df62a1c55615dd45745b6fc006a51c4dae9da6a89faf29acea1486de"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-transfer.o": {
+          "bytes": 1936,
+          "sha256": "e900eae885f3601bd7f30ac8fee012a7e03db65a1d2f07bf512736acea7eb663"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-small-providers.o": {
+          "bytes": 1004,
+          "sha256": "7ad467bb350f52c483e39068456d3047f48d67b90137234d6f023ca6e7a2a505"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-filter.o": {
+          "bytes": 2044,
+          "sha256": "8811d29fa28ae30f57925cb25de62b84de77a9d37cde4291345163ac4e44b870"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/transport-frame.o": {
+          "bytes": 2964,
+          "sha256": "c2113ed8168a97e5cc49f666231d03b10f66ecb514f3f28619c248fa3b455768"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-dispatch.o": {
+          "bytes": 2452,
+          "sha256": "d66e14b7ddb5e6dc797d5d18ef3a66481ff7003ca3ea50673a5455c887d80f0d"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-predicate.o": {
+          "bytes": 912,
+          "sha256": "29bd65ad44dd1223a3c479616fd2a5b932c6843c4646d234365ef039bbf43354"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/peripheral-write.o": {
+          "bytes": 2080,
+          "sha256": "2342ba3b461e543e81a5f04c5632555a8bafdb4c126cd2c1303d019b4813d453"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-consumer.o": {
+          "bytes": 3144,
+          "sha256": "1e41436fd85f3df8d5086c0ec9f8fa6a4f9469dc14668ca88869b61b5f67da8b"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "full-read",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "-d",
+        "-r",
+        "-h",
+        "-t",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/UNRESOLVED-FULL-COMPONENT.o"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/llvm-objdump.exe": {
+          "bytes": 18311272,
+          "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/UNRESOLVED-FULL-COMPONENT.o": {
+          "bytes": 11312,
+          "sha256": "3fc6cd22759e179e12c17ff209e47a9aa3d7c27f21442dc527457f0dee3dbae6"
+        }
+      },
+      "log_sha256": "f69d0ae09b7463a0a2e5e4a8d3ef03c8c8cfe63e9ae128145349af405d6a84c5"
+    },
+    {
+      "label": "nominal-link",
+      "argv": [
+        "${LLVM_BIN}/ld.lld.exe",
+        "--no-relax",
+        "-T",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/nominal.ld",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/fill-provider.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/tagged-dispatch.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-write-providers.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/register-read.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-transfer.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-small-providers.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-filter.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/transport-frame.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-dispatch.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-predicate.o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/peripheral-write.o",
+        "-o",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/NOMINAL-SUBCOMPONENT-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/ld.lld.exe": {
+          "bytes": 73834600,
+          "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/nominal.ld": {
+          "bytes": 14089,
+          "sha256": "b6b87c85ea58be2045bf377ab33280e38a8e95bb80c8b2ede679d6dadf8a58da"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/fill-provider.o": {
+          "bytes": 2768,
+          "sha256": "0a264405bae55f8374aaad7de93fdf3c65fe78778a4c2e41b84e766748a84f13"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/tagged-dispatch.o": {
+          "bytes": 3364,
+          "sha256": "41eed30945534089e2d74b8a77187cc6678b1317e223a3784d61f40a3a619fdb"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-write-providers.o": {
+          "bytes": 3952,
+          "sha256": "eb4b3e0b220f451752406538aa3fc86493766bce4e5e379dc34623a4effb0b17"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/register-read.o": {
+          "bytes": 1188,
+          "sha256": "fd96f6f5df62a1c55615dd45745b6fc006a51c4dae9da6a89faf29acea1486de"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/spi-transfer.o": {
+          "bytes": 1936,
+          "sha256": "e900eae885f3601bd7f30ac8fee012a7e03db65a1d2f07bf512736acea7eb663"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-small-providers.o": {
+          "bytes": 1004,
+          "sha256": "7ad467bb350f52c483e39068456d3047f48d67b90137234d6f023ca6e7a2a505"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/queue-filter.o": {
+          "bytes": 2044,
+          "sha256": "8811d29fa28ae30f57925cb25de62b84de77a9d37cde4291345163ac4e44b870"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/transport-frame.o": {
+          "bytes": 2964,
+          "sha256": "c2113ed8168a97e5cc49f666231d03b10f66ecb514f3f28619c248fa3b455768"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-dispatch.o": {
+          "bytes": 2452,
+          "sha256": "d66e14b7ddb5e6dc797d5d18ef3a66481ff7003ca3ea50673a5455c887d80f0d"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/record-predicate.o": {
+          "bytes": 912,
+          "sha256": "29bd65ad44dd1223a3c479616fd2a5b932c6843c4646d234365ef039bbf43354"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/peripheral-write.o": {
+          "bytes": 2080,
+          "sha256": "2342ba3b461e543e81a5f04c5632555a8bafdb4c126cd2c1303d019b4813d453"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "nominal-read",
+      "argv": [
+        "${LLVM_BIN}/llvm-objdump.exe",
+        "-d",
+        "-r",
+        "-h",
+        "-t",
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/NOMINAL-SUBCOMPONENT-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "consumed": {
+        "${LLVM_BIN}/llvm-objdump.exe": {
+          "bytes": 18311272,
+          "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+        },
+        "${TSL9_ROOT}/experiments/tsl9-receive-transmit-chain/build/integration-v2/c/NOMINAL-SUBCOMPONENT-NOT-FIRMWARE.elf": {
+          "bytes": 76488,
+          "sha256": "e13c1b738b287646fe4f5e45d92291bd9eec593a1fd13877dee3a8a7c9a450c7"
+        }
+      },
+      "log_sha256": "9bdbbfe1afb0c35c3cd6491f93371d6f26f6e23f894796a1ac64b42410412d93"
+    }
+  ],
+  "target_executed": false,
+  "ISA_emulated": false,
+  "HOST_models_executed": false,
+  "firmware_ready": false
+}

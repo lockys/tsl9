@@ -80,3 +80,5 @@ python3 scripts/verify-curated-source.py --replay "/absolute/path/to/verificatio
 [Packet單體檢查](../experiments/tsl9-packet-receive/README.md)使用獨立 verifier；正式收據入口為本機 `experiments/tsl9-packet-receive/build/verified-v2/{c,cpp}/verification.json`。原始碼整理本身不解析六個控制轉移或補足 provider／IRQ ABI。
 
 [ring與接收鏈原位圖](../experiments/tsl9-ring-insert/README.md)另外區分已解析的局部程式圖、未知的動態resident provider，以及完整韌體相容性。
+
+[接收／分派／傳送整合](../analysis/receive-transmit-chain-2026-10-23/README.md)已重新編譯12個既有src單位：九段原位程式共1588B／555指令，沒有直接符號缺口；完整1902B部分連結仍保留四個真實提供者缺口。六個resident間接轉移及66970B RX間隙未證，兩者都不是可刷韌體。

@@ -1,0 +1,187 @@
+{
+  "schema": "TSL9-receive-transmit-integration-milestone-v1",
+  "date": "2026-10-23",
+  "parent_commit": "ce01e2250326abeb62acbea1cf8aeaf415bb7d0b",
+  "scope": "Actual compilation of selected src C units and genuine partial/original-PC composition, not full firmware",
+  "sources": {
+    "root": "src/native/receive",
+    "fresh_native_units_per_language": 12,
+    "nominal_units_per_language": 11,
+    "languages": [
+      "C11",
+      "C++17"
+    ],
+    "native_source_objects": 24,
+    "IR_outputs": 24,
+    "component_outputs": 4,
+    "actual_commands_per_language": 28,
+    "two_explicit_function_name_mappings": true,
+    "algorithms_changed": false,
+    "opcode_carrier_added": false
+  },
+  "full": {
+    "bytes": 1902,
+    "instructions": 662,
+    "strong_FUNC": 107,
+    "pending_RELA": 97,
+    "UND": 4,
+    "missing_providers": [
+      "0x9454",
+      "0x9B36",
+      "0x12ABE",
+      "0x14D2E"
+    ],
+    "missing_call_sites": [
+      "0x12D16",
+      "0x12D1C",
+      "0x12D2C",
+      "0x12D46",
+      "0x12D8C"
+    ],
+    "all_nonrelocation_bits_equal_original": true,
+    "all_machine_controls_resolved": false,
+    "VMA": 0,
+    "ELF_sha256": "3fc6cd22759e179e12c17ff209e47a9aa3d7c27f21442dc527457f0dee3dbae6"
+  },
+  "nominal": {
+    "bytes": 1588,
+    "instructions": 555,
+    "strong_FUNC": 97,
+    "pending_RELA": 0,
+    "UND": 0,
+    "global_ABS": 0,
+    "spans": [
+      [
+        ".flag",
+        33194,
+        6
+      ],
+      [
+        ".helpers",
+        33292,
+        60
+      ],
+      [
+        ".filter",
+        33490,
+        188
+      ],
+      [
+        ".fill",
+        34080,
+        168
+      ],
+      [
+        ".transport_frame",
+        35414,
+        280
+      ],
+      [
+        ".dispatch",
+        76296,
+        102
+      ],
+      [
+        ".spi",
+        92310,
+        326
+      ],
+      [
+        ".tagged",
+        93052,
+        246
+      ],
+      [
+        ".peripheral",
+        101540,
+        212
+      ]
+    ],
+    "whole_original_code_projection_equal": true,
+    "entry": "0x82D2",
+    "RX_LOAD_bytes": 68558,
+    "unproved_executable_gap_bytes": 66970,
+    "ELF_sha256": "e13c1b738b287646fe4f5e45d92291bd9eec593a1fd13877dee3a8a7c9a450c7"
+  },
+  "verification": {
+    "checker": "experiments/tsl9-receive-transmit-chain/verify-v2.py",
+    "C_receipt_sha256": "706150283e58de4b291d58f031471262248fe6664ecf4fd8cafadf2e1963f679",
+    "CPP_receipt_sha256": "c15ff98c0067cef7d896914c3b9a2580a08402dfb9ba582fbd5f0572966a0184",
+    "complete_LLVM_address_byte_rows_per_language": 1217,
+    "bounded_negative_controls_per_language": 1538,
+    "independent_mutations": 24,
+    "independent_rejections": 24,
+    "producer_artifacts_per_language": 67,
+    "input_groups": {
+      "producer": 139,
+      "tagged_chain": 145,
+      "peripheral_composition": 83,
+      "upstream_receipts": 5,
+      "current_proof": 3
+    },
+    "groups_may_overlap": true,
+    "strict_firmware_checks_passed": true,
+    "strict_firmware_exit": 1,
+    "strict_firmware_exit_expected": true
+  },
+  "runtime": {
+    "opaque_calls": 5,
+    "opaque_tail_transfers": 1,
+    "RET": 17,
+    "known_fill_computed_transfers": 2,
+    "known_fill_enumerated_cases": 31,
+    "known_fill_unique_targets": 16,
+    "installed_destinations_proved": false,
+    "ledger": "analysis/receive-transmit-chain-2026-10-23/runtime-boundaries.json"
+  },
+  "curated_source": {
+    "C_header_files_unchanged": 64,
+    "native_units_unchanged": 38,
+    "existing_origin_curated_comparisons_read_only_replayed": 76,
+    "existing_objects_read": 152,
+    "curated_source_changed": false
+  },
+  "privacy": {
+    "original_receipts_preserved_local": true,
+    "portable_original_public_receipts": 4,
+    "raw_logs_published": false,
+    "backup": "build/receive-transmit-chain-originals-20261023.zip",
+    "backup_members": 217,
+    "backup_bytes": 497386,
+    "backup_sha256": "8f8b16e58cf043bcb9ccf5305f715f3f340d2a1cfeb6a5e0d506e68a111dae3f",
+    "legacy_derivatives_checked": 816,
+    "legacy_residual_personal_fields": 0,
+    "Git_history_rewritten": false
+  },
+  "failures_preserved": [
+    "integration-v1 nominal-link failed due genuine small-provider name mismatch",
+    "proof-v1 structural gate accepted RX extent expansion and an extra RX LOAD when whole-ELF hash disabled; fresh verify-v2 closes both and retains full upstream provenance"
+  ],
+  "shell_entry": {
+    "path": "experiments/tsl9-receive-transmit-chain/verify.sh",
+    "syntax_check_passed": true,
+    "script_executed": false,
+    "initial_MSYS_sandbox_error": "0xC0000022",
+    "same_n_syntax_check_passed_with_scoped_permission": true,
+    "other_platforms_validated": false
+  },
+  "next_native_target": {
+    "entry": "0x9B36",
+    "evidence": "analysis/receive-transmit-chain-2026-10-23/next-provider.json",
+    "bytes": 24,
+    "instructions": 7,
+    "sha256": "3629ae9c699510146a50485e475c373cdf2ea385d086633b70f1cfc43a88fb79",
+    "purpose_unknown": true,
+    "physical_GPIO_identity_unproved": true
+  },
+  "feature_opportunity": "Offline differentiation of tagged return4 paths and SPI timeout-zero vs received-zero; proposed, not implemented",
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "vendor_API_called": false,
+  "hardware_operation": false,
+  "flashable_BIN_added": false,
+  "full_original_ABI_proved": false,
+  "hardware_OTA_proved": false,
+  "goal_complete": false
+}

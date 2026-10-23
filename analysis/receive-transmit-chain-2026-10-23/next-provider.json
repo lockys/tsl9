@@ -1,0 +1,68 @@
+{
+  "schema": "TSL9-next-direct-provider-static-frontier-v1",
+  "entry": "0x9B36",
+  "span": [
+    "0x9B36",
+    "0x9B4E"
+  ],
+  "bytes": 24,
+  "instructions": 7,
+  "sha256": "3629ae9c699510146a50485e475c373cdf2ea385d086633b70f1cfc43a88fb79",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "rows": [
+    {
+      "addr": 39734,
+      "size": 4,
+      "bytes": "83c7810a",
+      "opcode": "lbu a5, 168(gp)"
+    },
+    {
+      "addr": 39738,
+      "size": 2,
+      "bytes": "89eb",
+      "opcode": "bnez a5, 0x9b4c"
+    },
+    {
+      "addr": 39740,
+      "size": 4,
+      "bytes": "b7170140",
+      "opcode": "lui a5, 0x40011"
+    },
+    {
+      "addr": 39744,
+      "size": 4,
+      "bytes": "03a7c780",
+      "opcode": "lw a4, -2036(a5)"
+    },
+    {
+      "addr": 39748,
+      "size": 4,
+      "bytes": "13472700",
+      "opcode": "xori a4, a4, 2"
+    },
+    {
+      "addr": 39752,
+      "size": 4,
+      "bytes": "23a6e780",
+      "opcode": "sw a4, -2036(a5)"
+    },
+    {
+      "addr": 39756,
+      "size": 2,
+      "bytes": "8280",
+      "opcode": "ret"
+    }
+  ],
+  "observations": [
+    "Read unsigned byte from then-live GP+168",
+    "If nonzero, branch directly to RET",
+    "Otherwise read word4001080C, XOR2, store word4001080C",
+    "No direct call, frame, SP/RA or A0-A2 write in these bytes"
+  ],
+  "physical_peripheral_identity_proved": false,
+  "purpose": "unknown; do not name LED/buzzer without board evidence",
+  "C_reconstruction_completed": false,
+  "IRQ_or_atomicity_proved": false,
+  "target_executed": false,
+  "ISA_emulated": false
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "TSL9-receive-transmit-feature-opportunities-v1",
+  "status": "proposed-not-implemented",
+  "scope": "Offline analysis of existing user-authorized logs only; no new hardware or network operations",
+  "feature": "Separate diagnostic reasons for ambiguous result codes",
+  "evidence": [
+    {
+      "source": "src/native/receive/tagged_dispatch.c",
+      "regions": [
+        "tsl9_tagged_status_16c3e",
+        "tsl9_tagged_busy_16c62",
+        "tsl9_tagged_invalid_16c6c"
+      ],
+      "finding": "Status masked with0x70 becomes0/4; exhausted busy choices and input rejection also produce4, so return4 alone cannot identify a path."
+    },
+    {
+      "source": "src/native/receive/spi_transfer_ports.c",
+      "regions": [
+        "tsl9_spi_timeout_168d0",
+        "tsl9_spi_rx_done_168be"
+      ],
+      "finding": "Timeout and a valid received zero both return0; a zero result alone cannot distinguish them."
+    }
+  ],
+  "required_observations": [
+    "Actual callsite/path before return",
+    "SPI completion or timeout observations if already recorded",
+    "Applicable module/version context without publishing UID/VIN/MAC"
+  ],
+  "missing_evidence_result": "unclassified / insufficient evidence",
+  "physical_feature_implemented": false
+}
