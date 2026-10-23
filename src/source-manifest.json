@@ -557,6 +557,27 @@
       "replacements": [],
       "origin_sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd",
       "sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd"
+    },
+    {
+      "origin": "experiments/tsl9-feature-dispatch-tree/src/tree.v1.c",
+      "destination": "src/native/receive/feature_dispatch_tree.c",
+      "replacements": [],
+      "origin_sha256": "258b987a83d71ad81429005bc825c034636e69ba29e38587eebe4a89bbe8aae4",
+      "sha256": "258b987a83d71ad81429005bc825c034636e69ba29e38587eebe4a89bbe8aae4"
+    },
+    {
+      "origin": "experiments/tsl9-feature-dispatch-outer/src/outer.v2.c",
+      "destination": "src/native/receive/feature_dispatch_outer.c",
+      "replacements": [],
+      "origin_sha256": "bc94efda3e290fd63b65b1df058e5af59065529e9d3e19d79b6a929b96fc29f3",
+      "sha256": "bc94efda3e290fd63b65b1df058e5af59065529e9d3e19d79b6a929b96fc29f3"
+    },
+    {
+      "origin": "experiments/tsl9-feature-dispatch-handlers/src/handlers.v4.c",
+      "destination": "src/native/receive/feature_dispatch_handlers.c",
+      "replacements": [],
+      "origin_sha256": "fe42a40106ede68cb20b86ae75b4db40a22cfb4524ce8d92785cc357d9df0dfd",
+      "sha256": "fe42a40106ede68cb20b86ae75b4db40a22cfb4524ce8d92785cc357d9df0dfd"
     }
   ],
   "native_units": [
@@ -955,7 +976,9 @@
       "origin_unit": "experiments/tsl9-resident-copy-arch/src/copy.v1.c",
       "curated_unit": "src/native/resident/copy_arch.c",
       "evidence": "experiments/tsl9-resident-copy-arch/README.md",
-      "formal_receipts": ["experiments/tsl9-resident-copy-arch/build/probe-v1/verification.json"],
+      "formal_receipts": [
+        "experiments/tsl9-resident-copy-arch/build/probe-v1/verification.json"
+      ],
       "scope": "SDK V1.31 candidate only:6private regions/58B/18i with5pending object edges. Separately linked whole code equals candidate at conditional RAM20000332, with no T0/A7/SP/GP/RA or A0-A2 writes;50bounded negative controls per language. Original TSL9 installed resident identity, completed startup, physical MMIO/IRQ/fault/ISA behavior and hardware OTA remain unproved. This candidate is not injected into original Runtime and does not close the dynamic4004C provider.",
       "origin_unit_sha256": "d004661257866b3c8e11ad424dffc47c969f640f9d2bc87c6835aae9be9be660"
     },
@@ -965,7 +988,10 @@
       "origin_unit": "experiments/tsl9-gp-word-toggle/src/toggle.v2.c",
       "curated_unit": "src/native/receive/gp_word_toggle.c",
       "evidence": "experiments/tsl9-gp-word-toggle/README.md",
-      "formal_receipts": ["experiments/tsl9-gp-word-toggle/build/formal-v1/c/verification.json", "experiments/tsl9-gp-word-toggle/build/formal-v1/cpp/verification.json"],
+      "formal_receipts": [
+        "experiments/tsl9-gp-word-toggle/build/formal-v1/c/verification.json",
+        "experiments/tsl9-gp-word-toggle/build/formal-v1/cpp/verification.json"
+      ],
       "scope": "Original9B36 leaf24B/7i: ordinary C byte guard and volatile word read/XOR2/write with empty GP/A4/A5 ports. Single common exit preserves A4 on skipped path; whole emitted bytes match original, no calls/frame/UND/RELA/ABS. Physical peripheral/purpose, memory validity, IRQ/fault/interleavings, full original ABI and OTA unproved; no hardware execution.",
       "origin_unit_sha256": "eaf1c55403b07772bf919a9baa506c4c547143f1424b725631d45acb95a6e6e2"
     },
@@ -1046,6 +1072,45 @@
       ],
       "scope": "Original channel/filter configuration architecture. Actual C memory/arithmetic and explicit frame/control/register ports. Private regions are not ordinary C ABI calls. Resident identity/preservation, physical chip/MMIO purpose, memory ownership/validity, IRQ and OTA remain unproved. Whole nominal graph proof is separate from source curation; no target execution.",
       "origin_unit_sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd"
+    },
+    {
+      "name": "feature-dispatch-tree",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-feature-dispatch-tree/src/tree.v1.c",
+      "curated_unit": "src/native/receive/feature_dispatch_tree.c",
+      "evidence": "experiments/tsl9-feature-dispatch/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-feature-dispatch/build/graph-v2/c/verification.json",
+        "experiments/tsl9-feature-dispatch/build/graph-v2/cpp/verification.json"
+      ],
+      "scope": "Complete14D2E dispatch across three genuine C architectural units and829E getter; relative tables bind true symbols. C owns free-bank memory/constant/bit operations, reserved-S0/frame/control/PC effects are explicit ports. All downstream70 direct providers, ROM ABI, memory ownership, IRQ/startup/physical hardware and OTA remain unproved. Static checks only; no target execution.",
+      "origin_unit_sha256": "258b987a83d71ad81429005bc825c034636e69ba29e38587eebe4a89bbe8aae4"
+    },
+    {
+      "name": "feature-dispatch-outer",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-feature-dispatch-outer/src/outer.v2.c",
+      "curated_unit": "src/native/receive/feature_dispatch_outer.c",
+      "evidence": "experiments/tsl9-feature-dispatch/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-feature-dispatch/build/graph-v2/c/verification.json",
+        "experiments/tsl9-feature-dispatch/build/graph-v2/cpp/verification.json"
+      ],
+      "scope": "Complete14D2E dispatch across three genuine C architectural units and829E getter; relative tables bind true symbols. C owns free-bank memory/constant/bit operations, reserved-S0/frame/control/PC effects are explicit ports. All downstream70 direct providers, ROM ABI, memory ownership, IRQ/startup/physical hardware and OTA remain unproved. Static checks only; no target execution.",
+      "origin_unit_sha256": "bc94efda3e290fd63b65b1df058e5af59065529e9d3e19d79b6a929b96fc29f3"
+    },
+    {
+      "name": "feature-dispatch-handlers",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-feature-dispatch-handlers/src/handlers.v4.c",
+      "curated_unit": "src/native/receive/feature_dispatch_handlers.c",
+      "evidence": "experiments/tsl9-feature-dispatch/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-feature-dispatch/build/graph-v2/c/verification.json",
+        "experiments/tsl9-feature-dispatch/build/graph-v2/cpp/verification.json"
+      ],
+      "scope": "Complete14D2E dispatch across three genuine C architectural units and829E getter; relative tables bind true symbols. C owns free-bank memory/constant/bit operations, reserved-S0/frame/control/PC effects are explicit ports. All downstream70 direct providers, ROM ABI, memory ownership, IRQ/startup/physical hardware and OTA remain unproved. Static checks only; no target execution.",
+      "origin_unit_sha256": "fe42a40106ede68cb20b86ae75b4db40a22cfb4524ce8d92785cc357d9df0dfd"
     }
   ],
   "legacy_groups": [

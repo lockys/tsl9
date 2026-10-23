@@ -1,0 +1,17 @@
+{
+  "schema": "TSL9-original-mode-getter-static-disassembly-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "reader": "radare2 6.2.4",
+  "reader_sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+  "command": "r2 -N -q -a riscv -b 32 -m 0x8000 -c 'e scr.color=0;pDj 10 @ 0x829e;q' firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "records": [
+    {"addr": 33438, "size": 4, "bytes": "17450020", "opcode": "auipc a0, 0x20004"},
+    {"addr": 33442, "size": 4, "bytes": "034575d1", "opcode": "lbu a0, -745(a0)"},
+    {"addr": 33446, "size": 2, "bytes": "8280", "opcode": "ret"}
+  ],
+  "computed_nominal_byte_address": "0x2000bfb5",
+  "target_executed": false,
+  "ISA_emulated": false,
+  "network": false
+}

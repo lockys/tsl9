@@ -1,0 +1,106 @@
+{
+  "schema": "TSL9-feature-dispatch-offline-summary-v2",
+  "date": "2026-10-23",
+  "base_commit": "79a78e6729eff43966e18c6b1fb9a99cbcd909c5",
+  "source_units": [
+    {
+      "path": "src/native/receive/feature_dispatch_tree.c",
+      "sha256": "258b987a83d71ad81429005bc825c034636e69ba29e38587eebe4a89bbe8aae4",
+      "code_bytes": 766
+    },
+    {
+      "path": "src/native/receive/feature_dispatch_outer.c",
+      "sha256": "bc94efda3e290fd63b65b1df058e5af59065529e9d3e19d79b6a929b96fc29f3",
+      "code_bytes": 294,
+      "table_bytes": 28
+    },
+    {
+      "path": "src/native/receive/feature_dispatch_handlers.c",
+      "sha256": "fe42a40106ede68cb20b86ae75b4db40a22cfb4524ce8d92785cc357d9df0dfd",
+      "code_bytes": 862,
+      "table_bytes": 32
+    }
+  ],
+  "confirmed": {
+    "languages": [
+      "C11",
+      "C++17"
+    ],
+    "code_bytes": 1922,
+    "code_instructions": 669,
+    "table_bytes": 60,
+    "architectural_FUNC_symbols": 210,
+    "direct_control_relocations": 208,
+    "PC_relative_relocations": 4,
+    "table_relocations": 30,
+    "data_only_original_VA_relocation_matches_official_BIN": true,
+    "joined_code_bytes": 5088,
+    "joined_table_bytes": 60,
+    "joined_FUNC": 401,
+    "joined_RELA": 386,
+    "joined_direct_UND": 70,
+    "curated_C_H": 74,
+    "curated_native_units": 48,
+    "curated_comparisons": 96,
+    "curated_objects": 192,
+    "prior90_comparisons_and541_artifact_records_unchanged": true
+  },
+  "artifacts": {
+    "component_sha256": "6c20d0a07e89a6207b7bc251df98b553e75044a882ba95628e349bb7f140fe9f",
+    "joined_sha256": "5dfb742cf34cb8540950dbb693269f9e7cc76402136fbf9b71a561290d65c140",
+    "current_checker_sha256": "24d1bcf77fb1326bdc0985d7be1d3b27aced1742d964cb59ab3152eb3a132a02",
+    "current_curated_receipt_sha256": "9c7f45b9e3fab0584bee5d0ea3f1b4f1daccd17fe3acc1a488ad994317f0e922"
+  },
+  "review": {
+    "historical_v1_negative_cases_per_language": 10173,
+    "historical_v1_same_name_symbol_role_gate_incomplete": true,
+    "current_v2_checks_unique_global_names_FUNC_OBJECT_roles_and_no_global_ABS": true,
+    "current_normal_artifacts_pass_both_languages": true,
+    "new_negative_cases_executed": 0,
+    "independent_review_continuation_stopped_by_safety_check": true,
+    "stopped_review_retried_or_rerouted": false
+  },
+  "privacy": {
+    "public_receipts": 10,
+    "portable_exact_originals": 7,
+    "path_only_derivatives": 3,
+    "originals_preserved_locally": true,
+    "Git_history_rewritten": false,
+    "frozen_format_exception": {
+      "path": "experiments/tsl9-feature-dispatch-tree/elf_reader.py",
+      "sha256": "4a7697a2f84c7327e7f36b56c7deb4f1b34ea49c1b248ffa517610bcc823ff50",
+      "reason": "Historical hashed parser retains its original double EOF; the current v3 parser has a single EOF."
+    },
+    "final_private_backup": {
+      "path": "build/feature-dispatch-final-originals-20261023-v1.zip",
+      "original_files": 781,
+      "members": 782,
+      "bytes": 1170850,
+      "sha256": "2c0fcd07989cdb2e2f34f5c5719207dc10c660107023e7e757d6fa07980aa8f8",
+      "verified_against_originals": true
+    }
+  },
+  "limitations": [
+    "ET_REL sections have zero VMA; diagnostic partial-link objects are not firmware BINs.",
+    "70 direct undefined symbols plus resident and callback dependencies remain unresolved.",
+    "Callback 1069E and indirect invocation at 10846 are established static frontiers; called implementations and runtime memory assumptions remain incomplete.",
+    "Original-PC relocation arithmetic is data-only validation, not target execution or hardware proof.",
+    "No hardware MCU identity, boot, ROM, IRQ, memory, Bluetooth OTA or flash compatibility was proved.",
+    "Source layout and emitted bytes do not constitute universal C semantic proof."
+  ],
+  "execution": {
+    "network": false,
+    "hardware_accessed": false,
+    "target_executed": false,
+    "ISA_emulated": false,
+    "firmware_BIN_generated": false,
+    "flash_validated": false
+  },
+  "evidence": [
+    "publication-provenance.json",
+    "evidence/native-c.json",
+    "evidence/native-cpp.json",
+    "evidence/curated-source.json",
+    "callback-frontier.json"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "schema": "TSL9-feature-callback-frontier-v1",
+  "date": "2026-10-23",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "evidence_type": "Independent bounded original-firmware r2 instruction review; root independently rechecked four span SHA-256 values and10846 instruction bytes",
+  "reviewer_newly_disassembled_bytes": 908,
+  "literal_code_dependencies": [
+    {
+      "AUIPC": "0x15184",
+      "AUIPC_bytes": "17b5ffff",
+      "ADDI": "0x15188",
+      "ADDI_bytes": "1305a551",
+      "target": "0x1069E",
+      "callee": "0x1083C"
+    },
+    {
+      "AUIPC": "0x1523A",
+      "AUIPC_bytes": "17b5ffff",
+      "ADDI": "0x1523E",
+      "ADDI_bytes": "13054546",
+      "target": "0x1069E",
+      "callee": "0x1083C"
+    }
+  ],
+  "spans": [
+    {
+      "start": "0x1069E",
+      "end": "0x106C0",
+      "bytes": 34,
+      "instructions": 13,
+      "sha256": "e79f7c9c957f6fd415b1a69da830c13e13124a03d03c89d42b2aa92ffff84067",
+      "confirmed": "Executable callback:16B frame, callED00 at106A8, fresh byte[then-live S0+10], RA thenS0 restore, residue comparison,SP+16,RET",
+      "implemented": false
+    },
+    {
+      "start": "0x1083C",
+      "end": "0x10870",
+      "bytes": 52,
+      "sha256": "0c879779af1dabd7877f1c3b9d03dc090d5e44bde7d587ba73a3128a3b0abfa8",
+      "confirmed": "A0->A5,A1->A0;10846:8297 is C.JALR A5 with RA10848. Nonzero path calls820C and registers107C0 via9124; final A0 uses then-live S0",
+      "implemented": false
+    },
+    {
+      "start": "0x106E8",
+      "end": "0x1070A",
+      "bytes": 34,
+      "sha256": "24125dad1eda5a4c93d7eca559801e157cef5d91e5765e5c75832de2f1d885e1",
+      "confirmed": "Calls828C guardbyte2000BFB4>=4; zero path freshly reads samebyte, increments and writes. Firstguard does not boundsecondread underIRQ/externalchange",
+      "implemented": false
+    },
+    {
+      "start": "0x9124",
+      "end": "0x9250",
+      "bytes": 300,
+      "sha256": "45dd01a76fedc4bd8d01fdb7ff005f410166a68f171d52420d19da2cbba2e992",
+      "confirmed": "Stores callback at2000BE08+12*i+4; contains freshresident calls/tails",
+      "implemented": false
+    }
+  ],
+  "leaf_observation": {
+    "start": "0xED00",
+    "end": "0xED36",
+    "bytes": 54,
+    "no_call_no_store": true,
+    "source_local_SP_S0_RA_GP_preservation": true,
+    "algorithm_inference": "Checksum-like8bit sum of twoheader bytes and byte[A0+2]-lengthpayload excluding index7",
+    "unproved": "Pointer/length bounds, alignment, concurrent reads, faults and IRQ effects"
+  },
+  "scheduler_sites": [
+    {
+      "PC": "0x91B4",
+      "kind": "call",
+      "slot": "0x40068",
+      "RA": "0x91B6"
+    },
+    {
+      "PC": "0x922E",
+      "kind": "call",
+      "slot": "0x40058",
+      "RA": "0x9230"
+    },
+    {
+      "PC": "0x91FC",
+      "kind": "tail",
+      "slot": "0x4022C",
+      "RA": "inherited then-live RA"
+    },
+    {
+      "PC": "0x917E",
+      "kind": "tail",
+      "slot": "0x40050",
+      "RA": "inherited then-live RA"
+    }
+  ],
+  "deferred_registration": {
+    "entry": "0x107C0",
+    "bytes": 6,
+    "tail": "0x1074C",
+    "A1": 0,
+    "A2": 2000,
+    "A3": 0,
+    "time_units_proved": false
+  },
+  "limits": [
+    "1069E is additional code dependency absent from direct UND count.",
+    "10846 control identified from actual instruction encoding; r2 ESIL metadata was not used as execution evidence.",
+    "Resident function identity, callbacks, allocator ownership, register/frame preservation and IRQ remain unproved.",
+    "No target, HOST model, ISA, hardware, network or OTA execution."
+  ],
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_ready": false
+}

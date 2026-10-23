@@ -2,7 +2,7 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 71 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 74 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 ## 原始碼位置與證據範圍
 
@@ -21,6 +21,7 @@
 | [queue consumer](native/receive/queue_consumer.c) | 佇列釋放與條件分派 | 314B／107指令、10個private regions；230B非控制指令與2163保留位元相同，25筆relocation／八個UND仍待解析；保留實體SP／S-register／CSR及resident殘值，並非完整韌體 |
 | [record program](native/receive/record_program.c) | 93AA–94EE記錄配置／控制 | 四個函式324B／109i、19架構區塊，C/C++原位碼全等；opaque40068／40070的身份、記憶體及呼叫後索引界限未證 |
 | [通道／濾波設定](../experiments/tsl9-channel-route/README.md) | 分流12ABE、內建128FE／18BA2、外部16CC4及helpers | 六段原位址1242B／445i／94 FUNC全部相同；延伸3166B／1104i／191 FUNC／144 pending RELA，仍缺14D2E。實體晶片、resident ABI、啟動／IRQ及OTA未證明 |
+| [完整功能分派](../experiments/tsl9-feature-dispatch/README.md) | 14D2E完整本體、829E及兩張相對表 | 1922B code／60B table於純資料重定位驗算後與原廠相同；5088B＋60B圖仍有70直接provider與1069E callback。ET_REL VMA0，硬體／OTA未證明 |
 | [GP word toggle](native/receive/gp_word_toggle.c) | 9B36 byte guard與word XOR2 | 全24B／7i與原廠相同；只改A4／A5，跳過時保留A4。實體用途、GP／記憶體有效性、IRQ／OTA未證 |
 | [queue leaves](native/receive/queue_small_providers.c) | V4.1.60旗標與有界清除 | 全部6／18B與原leaf相同；C fresh GP+167 byte、unsigned index<=2清byte；無spill／UND／relocation。僅診斷VMA0，consumer實際整合與硬體尚未證 |
 | [queue filter](native/receive/queue_filter.c) | 82D2封裝／轉送條件 | 188B／69指令，166B完整非控制指令相同；7筆待解析轉移含一個C.JAL provider。保留then-live frame／S-register；非零不代表轉送成功 |
@@ -66,7 +67,7 @@ python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 
 腳本依 manifest 選擇40個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
 
-本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 80 組比對（160 個物件），收據為 `build/curated-source/channel-filter-20261023-v1/verification.json`。舊整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
+本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 80 組比對（160 個物件），收據為 `build/curated-source/feature-dispatch-20261023-v2/verification.json`。舊整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
 
 既有結果可唯讀重播：
 

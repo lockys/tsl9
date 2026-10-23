@@ -1,0 +1,438 @@
+{
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "artifacts": {
+    "IR-feature-dispatch-handlers.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "IR-feature-dispatch-outer.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "IR-feature-dispatch-tree.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "UNRESOLVED-FEATURE-GRAPH.o": {
+      "bytes": 41112,
+      "sha256": "5dfb742cf34cb8540950dbb693269f9e7cc76402136fbf9b71a561290d65c140"
+    },
+    "UNRESOLVED-ORIGINAL-ADDRESS-DISPATCH.o": {
+      "bytes": 22792,
+      "sha256": "6c20d0a07e89a6207b7bc251df98b553e75044a882ba95628e349bb7f140fe9f"
+    },
+    "component-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "component-read.log": {
+      "bytes": 78912,
+      "sha256": "ba547d3a3497b0375b9520c09bd7211b6e5df38e50ade1178fd9652d8111b317"
+    },
+    "feature-dispatch-handlers.ll": {
+      "bytes": 299432,
+      "sha256": "ff220546dd4b2041313fe11ddea791a676ba4ec5206ac15333b9f271f6a78b8a"
+    },
+    "feature-dispatch-outer.ll": {
+      "bytes": 18677,
+      "sha256": "0fd8c8be325c29a3188befecfe73c1b25d61fc2022e185bf1f43053eb89e296b"
+    },
+    "feature-dispatch-tree.ll": {
+      "bytes": 144963,
+      "sha256": "de7aff753dcf4b47520796a5ac54f94f6940f9802a11f6bb803714eefb3c08a5"
+    },
+    "joined-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "joined-read.log": {
+      "bytes": 167605,
+      "sha256": "895ebee16c1cb157bde91504ab9749324adb05d86da6fde0e2422e8d2cc1cb60"
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\feature_dispatch_tree.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\build\\graph-v2\\c\\feature-dispatch-tree.ll"
+      ],
+      "exit": 0,
+      "label": "IR-feature-dispatch-tree",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\feature_dispatch_outer.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\build\\graph-v2\\c\\feature-dispatch-outer.ll"
+      ],
+      "exit": 0,
+      "label": "IR-feature-dispatch-outer",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\feature_dispatch_handlers.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\build\\graph-v2\\c\\feature-dispatch-handlers.ll"
+      ],
+      "exit": 0,
+      "label": "IR-feature-dispatch-handlers",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\component-v2.ld",
+        "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-tree\\c\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-outer\\c\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-handlers\\c\\curated\\unit.o",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\build\\graph-v2\\c\\UNRESOLVED-ORIGINAL-ADDRESS-DISPATCH.o"
+      ],
+      "exit": 0,
+      "label": "component-link",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\llvm-objdump.exe",
+        "-dr",
+        "-t",
+        "-h",
+        "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\build\\graph-v2\\c\\UNRESOLVED-ORIGINAL-ADDRESS-DISPATCH.o"
+      ],
+      "exit": 0,
+      "label": "component-read",
+      "log_sha256": "ba547d3a3497b0375b9520c09bd7211b6e5df38e50ade1178fd9652d8111b317"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\joined-v2.ld",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\c\\UNRESOLVED-CHANNEL-GRAPH.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-tree\\c\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-outer\\c\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-handlers\\c\\curated\\unit.o",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\build\\graph-v2\\c\\UNRESOLVED-FEATURE-GRAPH.o"
+      ],
+      "exit": 0,
+      "label": "joined-link",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\llvm-objdump.exe",
+        "-dr",
+        "-t",
+        "-h",
+        "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\build\\graph-v2\\c\\UNRESOLVED-FEATURE-GRAPH.o"
+      ],
+      "exit": 0,
+      "label": "joined-read",
+      "log_sha256": "895ebee16c1cb157bde91504ab9749324adb05d86da6fde0e2422e8d2cc1cb60"
+    }
+  ],
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "hardware_accessed": false,
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\verification.json": {
+      "bytes": 879298,
+      "sha256": "12a7228f023af8c50b9041cd9b949c0d634f14abf97b357de86781794df7e8d6"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-handlers\\c\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-handlers\\c\\curated\\unit.d": {
+      "bytes": 243,
+      "sha256": "3d4d48a5945c6067717a86d9544232c1f013d713bdceee60c545e985c1964bbd"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-handlers\\c\\curated\\unit.o": {
+      "bytes": 19504,
+      "sha256": "392adab14f4cc645f0c2849c02398bcdf3c1c686fbf3073584f64d630ffc8550"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-outer\\c\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-outer\\c\\curated\\unit.d": {
+      "bytes": 240,
+      "sha256": "594da147f383de30af229d0bbbb5c2251fd07eaf11e64e8e0ef1c67038ea6347"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-outer\\c\\curated\\unit.o": {
+      "bytes": 5508,
+      "sha256": "a7266de2a2d6c8f6dabe2cfc13e5cbe444be37a888d26974438a8a2cd5067852"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-tree\\c\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-tree\\c\\curated\\unit.d": {
+      "bytes": 239,
+      "sha256": "68ff79f614853e9a27375e4a61d5df9ebd87b6cab259bcea3af2f60c62369f4b"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\feature-dispatch-tree\\c\\curated\\unit.o": {
+      "bytes": 20192,
+      "sha256": "5854ed992ee5e3bcbeb5a726d824bee60896300727890784d9ec470f1c42e885"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\feature-dispatch-20261023-v2\\verification.json": {
+      "bytes": 1219249,
+      "sha256": "9c7f45b9e3fab0584bee5d0ea3f1b4f1daccd17fe3acc1a488ad994317f0e922"
+    },
+    "${PROJECT_ROOT}\\build\\feature-dispatch-frontier-20261023-v1\\reader-output.json": {
+      "bytes": 152461,
+      "sha256": "60520b4156dd2c7f391f716135b141fb26504334eaa60839f74bb8b03b2db4b7"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\c\\UNRESOLVED-CHANNEL-GRAPH.o": {
+      "bytes": 18940,
+      "sha256": "0a72ce02c4eb6893ab5f718443e07bf510bea9d5990fd7441a12645b6ae1174b"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\c\\measurement.json": {
+      "bytes": 32962,
+      "sha256": "98cffee0562ecb81d80d627b3024e4eb9a43961971662f570636c261a9a5027e"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\c\\verification-v2.json": {
+      "bytes": 6798,
+      "sha256": "0c557c79618b369b4c69466821f678fcdf9c77bf345b33096c3bdb747930fe38"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\verify-v2.py": {
+      "bytes": 21454,
+      "sha256": "057450577dd72770384ac11acb83014f3557f9b5e30f8b6112eef091ae45aeb6"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-handlers\\src\\handlers.v4.c": {
+      "bytes": 31358,
+      "sha256": "fe42a40106ede68cb20b86ae75b4db40a22cfb4524ce8d92785cc357d9df0dfd"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-outer\\src\\outer.v2.c": {
+      "bytes": 6175,
+      "sha256": "bc94efda3e290fd63b65b1df058e5af59065529e9d3e19d79b6a929b96fc29f3"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\src\\tree.v1.c": {
+      "bytes": 36258,
+      "sha256": "258b987a83d71ad81429005bc825c034636e69ba29e38587eebe4a89bbe8aae4"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\build-v2.py": {
+      "bytes": 5568,
+      "sha256": "ae40267a56f607c4c56f3180df4730467d986826b82f009bcbac56750c7667a2"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\component-v2.ld": {
+      "bytes": 9923,
+      "sha256": "37cbbbd08e63f97861b355bcd7d22c52caabcbd56d10037a16ba1ad632ecdf60"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\describe-v2.py": {
+      "bytes": 5791,
+      "sha256": "5cd731f0e3cdac1434253a5636a026d517459e12cedf494d5ceaecdfc9bb8469"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\joined-v2.ld": {
+      "bytes": 9833,
+      "sha256": "09983200aaf55457264a8d937cad2cf51573a0ca265e212523676db493e8a67c"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch\\spec-v2.json": {
+      "bytes": 63671,
+      "sha256": "09a62ca7f513e18717846e36a0299f582e9c6dec2a16fa0215f4f3a21eecb1f2"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\feature_dispatch_handlers.c": {
+      "bytes": 31358,
+      "sha256": "fe42a40106ede68cb20b86ae75b4db40a22cfb4524ce8d92785cc357d9df0dfd"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\feature_dispatch_outer.c": {
+      "bytes": 6175,
+      "sha256": "bc94efda3e290fd63b65b1df058e5af59065529e9d3e19d79b6a929b96fc29f3"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\feature_dispatch_tree.c": {
+      "bytes": 36258,
+      "sha256": "258b987a83d71ad81429005bc825c034636e69ba29e38587eebe4a89bbe8aae4"
+    },
+    "${PROJECT_ROOT}\\src\\source-manifest.json": {
+      "bytes": 68484,
+      "sha256": "55c832cdef46d808f29b4ea3f849f08bb8d9c9e8c75efc76a5409b2a56709e9d"
+    }
+  },
+  "mode": "c",
+  "network": false,
+  "schema": "TSL9-feature-dispatch-build-v2",
+  "target_executed": false
+}
