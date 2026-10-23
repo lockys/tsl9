@@ -2,7 +2,7 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 64 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 65 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 ## 原始碼位置與證據範圍
 
@@ -19,6 +19,7 @@
 | [ring IRQ adapter](native/irq/ring_irq_adapter.c) | 條件式frame與兩個MRET出口 | 52B／17指令，42個非控制位元組相同；3個edge仍待解析、2個UND；保留then-live SP埠，完整IRQ／provider ABI未證 |
 | [IRQ provider](native/receive/irq_provider.c) | Fresh word讀取與接收欄位寫入 | 6區域18／8／108／10／10／10B，原位完整164B／53指令相同；保留A4／A5與兩RET，實體MMIO／IRQ／晶片未證 |
 | [queue consumer](native/receive/queue_consumer.c) | 佇列釋放與條件分派 | 314B／107指令、10個private regions；230B非控制指令與2163保留位元相同，25筆relocation／八個UND仍待解析；保留實體SP／S-register／CSR及resident殘值，並非完整韌體 |
+| [GP word toggle](native/receive/gp_word_toggle.c) | 9B36 byte guard與word XOR2 | 全24B／7i與原廠相同；只改A4／A5，跳過時保留A4。實體用途、GP／記憶體有效性、IRQ／OTA未證 |
 | [queue leaves](native/receive/queue_small_providers.c) | V4.1.60旗標與有界清除 | 全部6／18B與原leaf相同；C fresh GP+167 byte、unsigned index<=2清byte；無spill／UND／relocation。僅診斷VMA0，consumer實際整合與硬體尚未證 |
 | [queue filter](native/receive/queue_filter.c) | 82D2封裝／轉送條件 | 188B／69指令，166B完整非控制指令相同；7筆待解析轉移含一個C.JAL provider。保留then-live frame／S-register；非零不代表轉送成功 |
 | [transport frame](native/receive/transport_frame.c) | 8A56 admission、封裝、複製與checksum | 280B／96指令、246B完整非控制指令相同；9筆local pending RELA／0 UND。fresh4013C admission與40050 tail provider未知；初始guard不保證post-call長度有界 |
@@ -61,9 +62,9 @@ python3 scripts/verify-curated-source.py
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-腳本依 manifest 選擇三十七個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
+腳本依 manifest 選擇39個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
 
-本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 76 組比對（152 個物件），收據為 `build/curated-source/resident-copy-arch-20261023-v1/verification.json`。舊整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
+本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 78 組比對（156 個物件），收據為 `build/curated-source/gp-word-toggle-20261023-v1/verification.json`。舊整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
 
 既有結果可唯讀重播：
 
@@ -82,3 +83,5 @@ python3 scripts/verify-curated-source.py --replay "/absolute/path/to/verificatio
 [ring與接收鏈原位圖](../experiments/tsl9-ring-insert/README.md)另外區分已解析的局部程式圖、未知的動態resident provider，以及完整韌體相容性。
 
 [接收／分派／傳送整合](../analysis/receive-transmit-chain-2026-10-23/README.md)已重新編譯12個既有src單位：九段原位程式共1588B／555指令，沒有直接符號缺口；完整1902B部分連結仍保留四個真實提供者缺口。六個resident間接轉移及66970B RX間隙未證，兩者都不是可刷韌體。
+
+[9B36來源整合](../analysis/gp-word-toggle-2026-10-23/README.md)將診斷部分連結擴為1926B／669指令／108 strong FUNC／97 pending RELA／3 UND，綁定13個當前來源單位；1588B原位圖未改變。v3固定產物證明通過每語言1991個負例；實體用途及完整硬體／OTA相容性仍未證。

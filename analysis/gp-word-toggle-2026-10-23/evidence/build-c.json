@@ -1,0 +1,408 @@
+{
+  "ISA_emulated": false,
+  "artifacts": {
+    "IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "LEAF-ONLY-NOT-FIRMWARE.elf": {
+      "bytes": 3312,
+      "sha256": "6b4d7581d1d7749220ce7ca7ef33761725d5ec81d48290d5ddc833a730294cd5"
+    },
+    "UNRESOLVED-FULL-PLUS-LEAF.o": {
+      "bytes": 11436,
+      "sha256": "da50985e5af82c20d20aded44aca8449cc5ecb8a891fea82c0667d851b3bb42b"
+    },
+    "compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "joined-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "joined-read.log": {
+      "bytes": 38915,
+      "sha256": "ee8d49684f909d401a16c49dd702185f189f8ef95f6e9c25f896d4dcd444f811"
+    },
+    "leaf-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "leaf-read.log": {
+      "bytes": 534,
+      "sha256": "569f847d12a0e6f835f4ee9d673d8d355e394265bdee9d63f63f8fb282318bf9"
+    },
+    "native-read.log": {
+      "bytes": 537,
+      "sha256": "d5e9dcc147a603e5808b0edfa334ae1c2b57e5137aee5532e621c02e66cd936a"
+    },
+    "native.d": {
+      "bytes": 234,
+      "sha256": "8b65b7d924ed84300786a2f8abfe8a7207c9cf26f968dd99cd2f1eb7b5a40dac"
+    },
+    "native.ll": {
+      "bytes": 4428,
+      "sha256": "e39b56210981ea93575e5d131d8945988e3140fd3282d02bfa39fc9fab201f84"
+    },
+    "native.o": {
+      "bytes": 900,
+      "sha256": "df3f285c1996ec30c35ab85452274143d3d87f74ed96d3771db7e141b0ae4600"
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x10",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-c",
+        "-MD",
+        "-MF",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\c\\native.d",
+        "-MT",
+        "native.o",
+        "${PROJECT_ROOT}\\src\\native\\receive\\gp_word_toggle.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\c\\native.o"
+      ],
+      "exit": 0,
+      "label": "compile",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x10",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x13",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\gp_word_toggle.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\c\\native.ll"
+      ],
+      "exit": 0,
+      "label": "IR",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\llvm-objdump.exe",
+        "-dr",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\c\\native.o"
+      ],
+      "exit": 0,
+      "label": "native-read",
+      "log_sha256": "d5e9dcc147a603e5808b0edfa334ae1c2b57e5137aee5532e621c02e66cd936a"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\ld.lld.exe",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\leaf.ld",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\c\\native.o",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\c\\LEAF-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "label": "leaf-link",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\llvm-objdump.exe",
+        "-dr",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\c\\LEAF-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "label": "leaf-read",
+      "log_sha256": "569f847d12a0e6f835f4ee9d673d8d355e394265bdee9d63f63f8fb282318bf9"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\joined.ld",
+        "${PROJECT_ROOT}\\experiments\\tsl9-receive-transmit-chain\\build\\integration-v2\\c\\UNRESOLVED-FULL-COMPONENT.o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\c\\native.o",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\c\\UNRESOLVED-FULL-PLUS-LEAF.o"
+      ],
+      "exit": 0,
+      "label": "joined-link",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\llvm-objdump.exe",
+        "-dr",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\c\\UNRESOLVED-FULL-PLUS-LEAF.o"
+      ],
+      "exit": 0,
+      "label": "joined-read",
+      "log_sha256": "ee8d49684f909d401a16c49dd702185f189f8ef95f6e9c25f896d4dcd444f811"
+    }
+  ],
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "hardware_accessed": false,
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\gp-word-toggle-20261023-v1\\verification.json": {
+      "bytes": 714263,
+      "sha256": "a5dce621698f33787d66535d40c36eac64bafdd77e4dd03054eab4d5f5b19540"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-fill-provider\\src\\fill.v2.c": {
+      "bytes": 6485,
+      "sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build.py": {
+      "bytes": 5545,
+      "sha256": "e83a2f5fadf5745f7a69146792b1cdf004bbee74f7ef7bea6d49226d01a40660"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\frozen\\manifest-before-toggle.json": {
+      "bytes": 55313,
+      "sha256": "224e6ac8fda5745bde9166b8703ef8882d198092cb11cc0e6138ef24660d9687"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\joined.ld": {
+      "bytes": 352,
+      "sha256": "0e977ff6ddc1578baa55c638cd3db5c26596aac5980f6352a79186e06fb217b0"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\leaf.ld": {
+      "bytes": 319,
+      "sha256": "51adf3973ead49936247d7bd458278ba443626c969ef5733ffb88d8a12132a57"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\spec.json": {
+      "bytes": 52428,
+      "sha256": "6bfff1817335e878294682c1e97754396bad1c75496a871fcb7d54bacf6d5466"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\src\\toggle.v2.c": {
+      "bytes": 1290,
+      "sha256": "eaf1c55403b07772bf919a9baa506c4c547143f1424b725631d45acb95a6e6e2"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-peripheral-write\\src\\peripheral_write.v2.c": {
+      "bytes": 7779,
+      "sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-queue-consumer\\src\\queue_consumer.v3.c": {
+      "bytes": 9595,
+      "sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-queue-filter\\src\\queue_filter.v1.c": {
+      "bytes": 5295,
+      "sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-queue-small-providers\\src\\providers.c": {
+      "bytes": 1468,
+      "sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-receive-transmit-chain\\build\\integration-v2\\c\\UNRESOLVED-FULL-COMPONENT.o": {
+      "bytes": 11312,
+      "sha256": "3fc6cd22759e179e12c17ff209e47a9aa3d7c27f21442dc527457f0dee3dbae6"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-dispatch\\src\\record_dispatch.v2.c": {
+      "bytes": 4652,
+      "sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-predicate\\src\\predicate.v2.c": {
+      "bytes": 1823,
+      "sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-register-read\\src\\register_read.c": {
+      "bytes": 2656,
+      "sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-spi-transfer-leaf\\src\\spi_transfer_ports.c": {
+      "bytes": 4502,
+      "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-spi-transfer-leaf\\verify.py": {
+      "bytes": 29593,
+      "sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-spi-write-providers\\src\\spi_write.v1.c": {
+      "bytes": 6806,
+      "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-tagged-dispatch\\src\\tagged_dispatch.v1.c": {
+      "bytes": 6621,
+      "sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-transport-frame\\src\\transport_frame.v6.c": {
+      "bytes": 10272,
+      "sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\fill_provider.c": {
+      "bytes": 6485,
+      "sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\gp_word_toggle.c": {
+      "bytes": 1290,
+      "sha256": "eaf1c55403b07772bf919a9baa506c4c547143f1424b725631d45acb95a6e6e2"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\peripheral_write.c": {
+      "bytes": 7779,
+      "sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\queue_consumer.c": {
+      "bytes": 9595,
+      "sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\queue_filter.c": {
+      "bytes": 5295,
+      "sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\queue_small_providers.c": {
+      "bytes": 1468,
+      "sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\record_dispatch.c": {
+      "bytes": 4652,
+      "sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\record_predicate.c": {
+      "bytes": 1823,
+      "sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\register_read.c": {
+      "bytes": 2656,
+      "sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\spi_transfer_ports.c": {
+      "bytes": 4502,
+      "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\spi_write_providers.c": {
+      "bytes": 6806,
+      "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\tagged_dispatch.c": {
+      "bytes": 6621,
+      "sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\transport_frame.c": {
+      "bytes": 10272,
+      "sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
+    }
+  },
+  "mode": "c",
+  "network": false,
+  "schema": "TSL9-gp-word-toggle-build-v1",
+  "target_executed": false
+}

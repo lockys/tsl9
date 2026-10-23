@@ -508,6 +508,13 @@
       "replacements": [],
       "origin_sha256": "d004661257866b3c8e11ad424dffc47c969f640f9d2bc87c6835aae9be9be660",
       "sha256": "d004661257866b3c8e11ad424dffc47c969f640f9d2bc87c6835aae9be9be660"
+    },
+    {
+      "origin": "experiments/tsl9-gp-word-toggle/src/toggle.v2.c",
+      "destination": "src/native/receive/gp_word_toggle.c",
+      "replacements": [],
+      "origin_sha256": "eaf1c55403b07772bf919a9baa506c4c547143f1424b725631d45acb95a6e6e2",
+      "sha256": "eaf1c55403b07772bf919a9baa506c4c547143f1424b725631d45acb95a6e6e2"
     }
   ],
   "native_units": [
@@ -909,6 +916,16 @@
       "formal_receipts": ["experiments/tsl9-resident-copy-arch/build/probe-v1/verification.json"],
       "scope": "SDK V1.31 candidate only:6private regions/58B/18i with5pending object edges. Separately linked whole code equals candidate at conditional RAM20000332, with no T0/A7/SP/GP/RA or A0-A2 writes;50bounded negative controls per language. Original TSL9 installed resident identity, completed startup, physical MMIO/IRQ/fault/ISA behavior and hardware OTA remain unproved. This candidate is not injected into original Runtime and does not close the dynamic4004C provider.",
       "origin_unit_sha256": "d004661257866b3c8e11ad424dffc47c969f640f9d2bc87c6835aae9be9be660"
+    },
+    {
+      "name": "gp-word-toggle",
+      "profile": "leaf-a4-a5",
+      "origin_unit": "experiments/tsl9-gp-word-toggle/src/toggle.v2.c",
+      "curated_unit": "src/native/receive/gp_word_toggle.c",
+      "evidence": "experiments/tsl9-gp-word-toggle/README.md",
+      "formal_receipts": ["experiments/tsl9-gp-word-toggle/build/formal-v1/c/verification.json", "experiments/tsl9-gp-word-toggle/build/formal-v1/cpp/verification.json"],
+      "scope": "Original9B36 leaf24B/7i: ordinary C byte guard and volatile word read/XOR2/write with empty GP/A4/A5 ports. Single common exit preserves A4 on skipped path; whole emitted bytes match original, no calls/frame/UND/RELA/ABS. Physical peripheral/purpose, memory validity, IRQ/fault/interleavings, full original ABI and OTA unproved; no hardware execution.",
+      "origin_unit_sha256": "eaf1c55403b07772bf919a9baa506c4c547143f1424b725631d45acb95a6e6e2"
     }
   ],
   "legacy_groups": [
