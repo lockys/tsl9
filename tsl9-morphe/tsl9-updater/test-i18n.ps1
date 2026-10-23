@@ -1,7 +1,7 @@
 param(
     [string]$Serial='emulator-5562',
     [string]$AdbPath='C:/Users/locky/AppData/Local/Android/Sdk/platform-tools/adb.exe',
-    [string]$Version='0.6.1-test',
+    [string]$Version='0.7.0-test',
     [string[]]$Locales=@('en','zh-Hans','zh-Hant','system'),
     [switch]$SkipInstall,
     [switch]$NoScreenshots
@@ -26,6 +26,7 @@ $testApk=Join-Path $PSScriptRoot 'app/build/outputs/apk/androidTest/debug/app-de
 $results=@()
 [ordered]@{status='running';date_utc=[DateTime]::UtcNow.ToString('o');serial=$Serial} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $outputDir 'result.json') -Encoding utf8
 try{
+    Invoke-LocalAdb -Arguments @('wait-for-device') -Timeout 30 | Out-Null
     if(-not $SkipInstall){
         Invoke-LocalAdb -Arguments @('install','-r',$apk) | Write-Output
         Invoke-LocalAdb -Arguments @('install','-r',$testApk) | Write-Output
@@ -47,7 +48,7 @@ try{
         do{
             Invoke-LocalAdb -Arguments @('shell','uiautomator','dump','/sdcard/tsl9-i18n-ready.xml') | Out-Null
             $layout=Invoke-LocalAdb -Arguments @('shell','cat','/sdcard/tsl9-i18n-ready.xml')
-            $drawn=$layout -match 'text="TSL9 (Hardware Tools|硬件工具|硬體工具)"'
+            $drawn=$layout -match 'content-desc="TSL9 (Hardware Tools|硬件工具|硬體工具)"'
             if(-not $drawn){Start-Sleep -Milliseconds 300}
         }while(-not $drawn -and [DateTime]::UtcNow -lt $deadline)
         if(-not $drawn){throw "Translated UI not drawn for screenshot: $locale"}

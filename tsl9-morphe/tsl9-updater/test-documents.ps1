@@ -1,7 +1,7 @@
 param(
     [string]$Serial = 'emulator-5562',
     [string]$AdbPath = 'C:/Users/locky/AppData/Local/Android/Sdk/platform-tools/adb.exe',
-    [string]$Version = '0.6.1-test'
+    [string]$Version = '0.7.0-test'
 )
 $ErrorActionPreference = 'Stop'
 if ($Serial -notmatch '^emulator-[0-9]+$') { throw 'This synthetic DocumentsUI test is restricted to an emulator. Never run it during hardware OTA.' }
@@ -36,6 +36,7 @@ function Invoke-TestAdb([string[]]$AdbArguments, [int]$TimeoutSeconds = 30) {
 $apk = Join-Path $workspace "artifacts/tsl9-updater/TSL9-Updater-$Version.apk"
 $testApk = Join-Path $PSScriptRoot 'app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'
 [ordered]@{status='running'; date_utc=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $outputDir 'result.json') -Encoding utf8
+Invoke-TestAdb -AdbArguments @('wait-for-device') -TimeoutSeconds 30 | Out-Null
 Invoke-TestAdb -AdbArguments @('install', '-r', $apk) | Write-Output
 Invoke-TestAdb -AdbArguments @('install', '-r', $testApk) | Write-Output
 try {

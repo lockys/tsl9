@@ -1,8 +1,12 @@
-# TSL9 硬體工具 0.6.1-test
+# TSL9 硬體工具 0.7.0-test
 
 本機測試用 Android APK：手動連線 TSL9、擷取硬體 BLE／CAN 記錄、選擇原廠或自行修改的 APP bin，依原廠 U/S/W/R/E 協定寫入運行韌體。選檔與匯出均透過 Android 系統選檔器，沒有 INTERNET 權限，不打包韌體。
 
-APK：[`TSL9-Updater-0.6.1-test.apk`](../artifacts/tsl9-updater/TSL9-Updater-0.6.1-test.apk)。獨立套件 `com.lockys.tsl9updater.test`；debug 簽章供本機測試。原始 APK 分析見 [REA 報告](../artifacts/firmware-trace/REPORT.zh-TW.md)。0.3 的原廠流程對照與保留差異見 [OEM-ALIGNMENT.md](OEM-ALIGNMENT.md)。
+APK：[`TSL9-Updater-0.7.0-test.apk`](../artifacts/tsl9-updater/TSL9-Updater-0.7.0-test.apk)。獨立套件 `com.lockys.tsl9updater.test`；debug 簽章供本機測試。原始 APK 分析見 [REA 報告](../artifacts/firmware-trace/REPORT.zh-TW.md)。0.3 的原廠流程對照與保留差異見 [OEM-ALIGNMENT.md](OEM-ALIGNMENT.md)。
+
+0.7依確認的 mockup 改為原生淺底深綠介面與浮動膠囊導覽。三頁共享語言／連線標示；座椅改為主／副駕切換與方向按鍵，切換時要求停止。即時資料使用實際回覆的指標區塊，無效回覆或身份重置立即清空顯示。進階設定與長文收納為可展開區域，三種韌體格式、模組驗證、診斷／匯出與既有作業條件保留。詳見 [UI-REDESIGN.md](UI-REDESIGN.md) 與 [DESIGN.md](DESIGN.md)。
+
+0.7驗證：163項本機模型、1090項三語資源、472項Android介面／生命週期檢查通過；系統選檔／匯出另通過123項Android及4項匯出內容檢查（基礎斷言重疊）。[精確收據](verification/ui-0.7.0.json)／[汽車頁截圖](verification/screens/car-portrait.png)／[藍牙更新頁](verification/screens/tools-portrait.png)／[即時資料頁](verification/screens/live-portrait.png)。截圖來自API36模擬器，無實車連線；橫向與200%字型檢查圖亦在同資料夾。需原廠素材的差異／韌體fixture測試及API23–32實機未重跑。
 
 0.6.1依使用者要求移除門鎖／座椅的車型checkbox、檔位／車速限制與門鎖確認對話框。連線、正常A0、模組驗證及作業互斥仍需成立；未知檔位仍顯示未知，按門鎖直接送原廠A7，座椅放開／取消／1秒後要求停止。排隊動作在取消、身份改變或過期後不再開始。燈光A3完整設定維持原有獨立條件。詳見 [DIRECT-CONTROLS.md](DIRECT-CONTROLS.md)。下方0.5／0.6的舊門鎖／座椅操作條件屬歷史記錄。
 

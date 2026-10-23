@@ -25,6 +25,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     private TextView versionView,carVersionView,carReadiness,carStatus;private DeviceInfoSnapshot versionInfo;
     private Button pressedSeat,versionButton,carVersionButton,carRefreshButton,seatStop,lightOn,lightOff;private long lastCarPoll,lastCarInfoPoll;private boolean closeVehicleAfterStop;private String lastCarGate="";
     private final ArrayList<Button> carButtons=new ArrayList<>();
+    private LinearLayout captureDetails,languagePanel,driverPad,passengerPad;private TextView headerConnection;private Button languageButton,driverSelector,passengerSelector;private int selectedSeat;
     private HardwareCapture hardware;private boolean captureStopping,disconnectAfterCaptureStop,canStreaming,hardwareSession,hardwareDirty,hardwareScheduled;
     private File hardwareFile;private String previousHardware="";private TextView hardwareStatus,hardwareView;
     private String displayedLocale;private boolean pendingLanguageRefresh;private Spinner language;private Spinner captureMode;private EditText canIds;private CheckBox canData;
@@ -36,7 +37,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     private LinearLayout deviceList;private Spinner format;private ProgressBar progress;private CheckBox match,hw20;
     private final LinkedHashMap<String,BluetoothDevice> devices=new LinkedHashMap<>();
     private final StringBuilder logs=new StringBuilder();private File logFile;private boolean logDirty,logScheduled;
-    private static final int GREEN=0xff235d50,DARK=0xff202724,MUTED=0xff59645f;
+    private static final int GREEN=AppUi.TEAL,DARK=AppUi.INK,MUTED=AppUi.MUTED;
     @Override protected void attachBaseContext(Context base){super.attachBaseContext(LanguageSettings.wrap(base));}
     private String s(int id,Object... args){return getString(id,args);}
     private String message(UiMessage detail){return UiStrings.render(this,detail);}
@@ -51,80 +52,69 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         hardwareFile=new File(getFilesDir(),"latest-hardware.jsonl");if(hardwareFile.length()<2*1024*1024){try{previousHardware=new String(readLimited(new android.util.AtomicFile(hardwareFile).openRead(),2*1024*1024),StandardCharsets.UTF_8);}catch(IOException ignored){}}
         logFile=new File(getFilesDir(),"latest-debug.log");
         if(logFile.exists()&&logFile.length()<256*1024){try{logs.append(new String(readLimited(new FileInputStream(logFile),256*1024),StandardCharsets.UTF_8));}catch(IOException ignored){}}
-        displayedLocale=localeSignature(getResources().getConfiguration());buildUi();log("APP v0.6.1-test Android="+Build.VERSION.SDK_INT+" target=TSL9 OEM APP OTA + direct body-controls + live receive-only dashboard");
-        if(b!=null&&b.getString("tab")!=null)tabs.setCurrentTabByTag(b.getString("tab"));handler.post(ticker);refresh();
+        displayedLocale=localeSignature(getResources().getConfiguration());buildUi();log("APP v0.7.0-test Android="+Build.VERSION.SDK_INT+" target=TSL9 OEM APP OTA + direct body-controls + live receive-only dashboard");
+        if(b!=null){selectSeat(b.getInt("seat",0));if(b.getString("tab")!=null)tabs.setCurrentTabByTag(b.getString("tab"));}handler.post(ticker);refresh();
     }
     private int dp(float n){return Math.round(n*getResources().getDisplayMetrics().density);}
-    private TextView text(String value,int size,int color){TextView v=new TextView(this);v.setText(value);v.setTextSize(size);v.setTextColor(color);v.setPadding(0,dp(5),0,dp(5));return v;}
-    private Button button(String title,Runnable run){Button b=new Button(this);b.setText(title);b.setAllCaps(false);b.setOnClickListener(v->{try{run.run();}catch(SecurityException e){state(s(R.string.nearby_permission));log("PERMISSION operation blocked");}catch(IllegalArgumentException e){state(UiStrings.error(this,e));log("VALIDATION "+e.getMessage());}});return b;}
-    private TextView tabIndicator(int label){
-        TextView v=text(s(label),15,DARK);v.setGravity(Gravity.CENTER);v.setMinHeight(dp(48));v.setPadding(dp(8),dp(8),dp(8),dp(8));
-        int[][] states={new int[]{android.R.attr.state_selected},new int[0]};v.setTextColor(new android.content.res.ColorStateList(states,new int[]{Color.WHITE,DARK}));
-        android.graphics.drawable.StateListDrawable bg=new android.graphics.drawable.StateListDrawable();bg.addState(states[0],new android.graphics.drawable.ColorDrawable(GREEN));bg.addState(states[1],new android.graphics.drawable.ColorDrawable(0xffe4ebe5));v.setBackground(bg);return v;
-    }
+    private TextView text(String value,int size,int color){return AppUi.text(this,value,size,color);}
+    private Button button(String title,Runnable run){Button b=new Button(this);b.setText(title);AppUi.style(b,false);b.setOnClickListener(v->{try{run.run();}catch(SecurityException e){state(s(R.string.nearby_permission));log("PERMISSION operation blocked");}catch(IllegalArgumentException e){state(UiStrings.error(this,e));log("VALIDATION "+e.getMessage());}});return b;}
+    private TextView tabIndicator(int label,String icon){return AppUi.tab(this,s(label),icon);}
+    private void title(LinearLayout body,int title,int subtitle){TextView h=text(s(title),27,DARK);h.setTypeface(android.graphics.Typeface.create("sans-serif-medium",android.graphics.Typeface.NORMAL));body.addView(h);body.addView(text(s(subtitle),14,MUTED));}
+    private void section(LinearLayout body,int label){body.addView(AppUi.heading(this,s(label)));}
     private void buildUi(){
-        ScrollView scroll=new ScrollView(this);LinearLayout body=new LinearLayout(this);body.setOrientation(LinearLayout.VERTICAL);body.setPadding(dp(20),dp(18),dp(20),dp(28));body.setBackgroundColor(0xfff2f5f1);scroll.addView(body);
-        body.addView(text(s(R.string.app_name),27,DARK));body.addView(text(s(R.string.subtitle),14,MUTED));
-        body.addView(text(s(R.string.language),14,MUTED));
-        language=new Spinner(this);language.setContentDescription(s(R.string.language));
-        language.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,new String[]{s(R.string.system_language),"简体中文","繁體中文","English"}));
-        language.setSelection(LanguageSettings.index(this));
-        language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            public void onNothingSelected(AdapterView<?> parent){}
-            public void onItemSelected(AdapterView<?> parent,View view,int position,long id){
-                if(position==LanguageSettings.index(MainActivity.this))return;
-                if(!canChangeLanguage()){language.setSelection(LanguageSettings.index(MainActivity.this));return;}
-                LanguageSettings.select(MainActivity.this,position);
-            }
-        });body.addView(language);
+        ScrollView scroll=new ScrollView(this);scroll.setFillViewport(true);LinearLayout body=AppUi.page(this);scroll.addView(body);
+        title(body,R.string.ui_tools_title,R.string.ui_tools_subtitle);
         if(imageName.isEmpty())imageName=s(R.string.no_bin);
-        status=text(s(R.string.disconnected),16,GREEN);status.setContentDescription(s(R.string.connection_status));body.addView(status);
-        LinearLayout row=new LinearLayout(this);scanButton=button(s(R.string.scan),this::scan);disconnectButton=button(s(R.string.disconnect),this::disconnectRequested);row.addView(scanButton,new LinearLayout.LayoutParams(0,-2,1));row.addView(disconnectButton,new LinearLayout.LayoutParams(0,-2,1));body.addView(row);
-        deviceList=new LinearLayout(this);deviceList.setOrientation(LinearLayout.VERTICAL);body.addView(deviceList);
-        deviceInfo=text(s(R.string.info_hint),14,MUTED);body.addView(deviceInfo);
-        versionButton=button(s(R.string.version_read),this::requestInfo);body.addView(versionButton);
-        versionView=text(s(R.string.version_not_read),14,DARK);versionView.setTextIsSelectable(true);body.addView(versionView);
-        readButton=button(s(R.string.read_info),this::requestInfo);passwordButton=button(s(R.string.password),this::passwordDialog);body.addView(readButton);body.addView(passwordButton);
-        body.addView(text(s(R.string.capture_title),19,DARK));
-        captureMode=new Spinner(this);captureMode.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,new String[]{s(R.string.mode_ble),s(R.string.mode_can),s(R.string.mode_text)}));captureMode.setContentDescription(s(R.string.capture_mode));body.addView(captureMode);
-        canIds=new EditText(this);canIds.setSingleLine(true);canIds.setHint(s(R.string.can_ids));canIds.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);body.addView(canIds);
-        canData=new CheckBox(this);canData.setText(s(R.string.can_data));body.addView(canData);
-        body.addView(text(s(R.string.capture_help),13,MUTED));
-        captureStart=button(s(R.string.capture_start),this::startHardware);captureStop=button(s(R.string.capture_stop),()->stopHardware("manual",false));body.addView(captureStart);body.addView(captureStop);
-        hardwareStatus=text(previousHardware.isEmpty()?s(R.string.no_capture):s(R.string.previous_capture),14,GREEN);body.addView(hardwareStatus);
-        hardwareExport=button(s(R.string.hardware_export),()->{flushHardware();Intent i=new Intent(Intent.ACTION_CREATE_DOCUMENT);i.addCategory(Intent.CATEGORY_OPENABLE);i.setType("application/x-ndjson");i.putExtra(Intent.EXTRA_TITLE,"tsl9-hardware-"+new SimpleDateFormat("yyyyMMdd-HHmmss",Locale.ROOT).format(new Date())+".jsonl");startActivityForResult(i,102);});body.addView(hardwareExport);
-        hardwareView=text("",12,MUTED);hardwareView.setTypeface(android.graphics.Typeface.MONOSPACE);hardwareView.setTextIsSelectable(true);body.addView(hardwareView);
-        body.addView(text(s(R.string.firmware_title),19,DARK));
-        format=new Spinner(this);format.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,new String[]{s(R.string.format_paged),s(R.string.format_raw),s(R.string.format_pad)}));format.setContentDescription(s(R.string.format));
-        format.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> p){}public void onItemSelected(AdapterView<?> p,View v,int pos,long id){if(selectedBytes!=null)parseSelected();}});body.addView(format);
-        fileButton=button(s(R.string.pick_bin),()->{Intent i=new Intent(Intent.ACTION_OPEN_DOCUMENT);i.addCategory(Intent.CATEGORY_OPENABLE);i.setType("application/octet-stream");i.putExtra(Intent.EXTRA_MIME_TYPES,new String[]{"application/octet-stream","application/x-binary","*/*"});startActivityForResult(i,100);});body.addView(fileButton);
-        fileInfo=text(imageName,14,DARK);fileInfo.setTextIsSelectable(true);body.addView(fileInfo);
-        body.addView(text(s(R.string.firmware_help),14,MUTED));
-        body.addView(text(s(R.string.ota_help),13,MUTED));
-        hw20=new CheckBox(this);hw20.setText(s(R.string.hw20));hw20.setOnCheckedChangeListener((b,on)->{if(match!=null)match.setChecked(false);refresh();});body.addView(hw20);
-        body.addView(text(s(R.string.hw20_help),13,MUTED));
-        match=new CheckBox(this);match.setText(s(R.string.compatibility));match.setOnCheckedChangeListener((b,on)->refresh());body.addView(match);
-        flashButton=button(s(R.string.flash),this::confirmFlash);body.addView(flashButton);
-        stage=text(s(R.string.waiting),15,GREEN);body.addView(stage);progress=new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);progress.setMax(100);body.addView(progress);
+        LinearLayout device=AppUi.card(this);LinearLayout.LayoutParams deviceParams=new LinearLayout.LayoutParams(-1,-2);deviceParams.topMargin=dp(18);body.addView(device,deviceParams);
+        TextView module=text("TSL9",20,DARK);AppUi.icon(module,"bluetooth");module.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);device.addView(module);
+        status=text(s(R.string.disconnected),14,GREEN);status.setContentDescription(s(R.string.connection_status));device.addView(status);
+        LinearLayout row=new LinearLayout(this);scanButton=button(s(R.string.scan),this::scan);AppUi.style(scanButton,true);disconnectButton=button(s(R.string.disconnect),this::disconnectRequested);AppUi.row(row,scanButton,disconnectButton);device.addView(row);
+        deviceList=AppUi.column(this);device.addView(deviceList);
+        versionView=text(s(R.string.version_not_read),13,MUTED);versionView.setTextIsSelectable(true);device.addView(versionView);
+        versionButton=button(s(R.string.version_read),this::requestInfo);AppUi.icon(versionButton,"refresh");device.addView(versionButton);
+        LinearLayout moduleDetails=AppUi.column(this);deviceInfo=text(s(R.string.info_hint),13,MUTED);moduleDetails.addView(deviceInfo);
+        readButton=button(s(R.string.read_info),this::requestInfo);passwordButton=button(s(R.string.password),this::passwordDialog);moduleDetails.addView(readButton);moduleDetails.addView(passwordButton);
+        AppUi.disclosure(this,device,s(R.string.ui_module_details),moduleDetails);
+        section(body,R.string.firmware_title);
+        fileButton=button(s(R.string.pick_bin),()->{Intent i=new Intent(Intent.ACTION_OPEN_DOCUMENT);i.addCategory(Intent.CATEGORY_OPENABLE);i.setType("application/octet-stream");i.putExtra(Intent.EXTRA_MIME_TYPES,new String[]{"application/octet-stream","application/x-binary","*/*"});startActivityForResult(i,100);});AppUi.icon(fileButton,"file");body.addView(fileButton);
+        fileInfo=text(imageName,13,MUTED);fileInfo.setTextIsSelectable(true);body.addView(fileInfo);
+        format=new Spinner(this);format.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,new String[]{s(R.string.format_paged),s(R.string.format_raw),s(R.string.format_pad)}));format.setContentDescription(s(R.string.format));format.setMinimumHeight(dp(52));
+        format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> p){}public void onItemSelected(AdapterView<?> p,View v,int pos,long id){if(selectedBytes!=null)parseSelected();}});body.addView(format);
+        body.addView(text(s(R.string.ui_app_only),13,MUTED));
+        LinearLayout advanced=AppUi.column(this);advanced.addView(text(s(R.string.firmware_help),14,MUTED));advanced.addView(text(s(R.string.ota_help),13,MUTED));
+        hw20=new CheckBox(this);hw20.setText(s(R.string.hw20));hw20.setOnCheckedChangeListener((b,on)->{if(match!=null)match.setChecked(false);refresh();});advanced.addView(hw20);advanced.addView(text(s(R.string.hw20_help),13,MUTED));AppUi.disclosure(this,body,s(R.string.ui_advanced),advanced);
+        match=new CheckBox(this);match.setText(s(R.string.compatibility));match.setTextSize(14);body.addView(match);match.setOnCheckedChangeListener((b,on)->refresh());
+        flashButton=button(s(R.string.flash),this::confirmFlash);AppUi.style(flashButton,true);body.addView(flashButton);
+        stage=text(s(R.string.waiting),14,GREEN);body.addView(stage);progress=new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);progress.setMax(100);body.addView(progress);
         cancelButton=button(s(R.string.stop),()->{ota.cancel(s(R.string.user_stop));ble.close();clearIdentity();state(s(R.string.stopped));});body.addView(cancelButton);
-        body.addView(text(s(R.string.debug_title),19,DARK));body.addView(text(s(R.string.debug_help),13,MUTED));
-        exportButton=button(s(R.string.debug_export),()->{flushLog();Intent i=new Intent(Intent.ACTION_CREATE_DOCUMENT);i.addCategory(Intent.CATEGORY_OPENABLE);i.setType("text/plain");i.putExtra(Intent.EXTRA_TITLE,"tsl9-debug-"+new SimpleDateFormat("yyyyMMdd-HHmmss",Locale.ROOT).format(new Date())+".txt");startActivityForResult(i,101);});body.addView(exportButton);
-        logView=text("",12,MUTED);logView.setTypeface(android.graphics.Typeface.MONOSPACE);logView.setTextIsSelectable(true);body.addView(logView);
-        tabs=new TabHost(this);tabs.setId(android.R.id.tabhost);
-        LinearLayout tabBody=new LinearLayout(this);tabBody.setOrientation(LinearLayout.VERTICAL);
+        captureDetails=AppUi.column(this);
+        captureMode=new Spinner(this);captureMode.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,new String[]{s(R.string.mode_ble),s(R.string.mode_can),s(R.string.mode_text)}));captureMode.setContentDescription(s(R.string.capture_mode));captureMode.setMinimumHeight(dp(48));captureDetails.addView(captureMode);
+        canIds=new EditText(this);canIds.setSingleLine(true);canIds.setHint(s(R.string.can_ids));canIds.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);canIds.setMinimumHeight(dp(48));captureDetails.addView(canIds);
+        canData=new CheckBox(this);canData.setText(s(R.string.can_data));captureDetails.addView(canData);captureDetails.addView(text(s(R.string.capture_help),13,MUTED));
+        captureStart=button(s(R.string.capture_start),this::startHardware);captureStop=button(s(R.string.capture_stop),()->stopHardware("manual",false));captureDetails.addView(captureStart);captureDetails.addView(captureStop);
+        hardwareStatus=text(previousHardware.isEmpty()?s(R.string.no_capture):s(R.string.previous_capture),14,GREEN);captureDetails.addView(hardwareStatus);
+        hardwareExport=button(s(R.string.hardware_export),()->{flushHardware();Intent i=new Intent(Intent.ACTION_CREATE_DOCUMENT);i.addCategory(Intent.CATEGORY_OPENABLE);i.setType("application/x-ndjson");i.putExtra(Intent.EXTRA_TITLE,"tsl9-hardware-"+new SimpleDateFormat("yyyyMMdd-HHmmss",Locale.ROOT).format(new Date())+".jsonl");startActivityForResult(i,102);});captureDetails.addView(hardwareExport);
+        hardwareView=text("",12,MUTED);hardwareView.setTypeface(android.graphics.Typeface.MONOSPACE);hardwareView.setTextIsSelectable(true);captureDetails.addView(hardwareView);
+        section(body,R.string.ui_diagnostics);AppUi.disclosure(this,body,s(R.string.capture_title),captureDetails);
+        LinearLayout debugDetails=AppUi.column(this);debugDetails.addView(text(s(R.string.debug_help),13,MUTED));logView=text("",12,MUTED);logView.setTypeface(android.graphics.Typeface.MONOSPACE);logView.setTextIsSelectable(true);debugDetails.addView(logView);AppUi.disclosure(this,body,s(R.string.debug_title),debugDetails);
+        exportButton=button(s(R.string.debug_export),()->{flushLog();Intent i=new Intent(Intent.ACTION_CREATE_DOCUMENT);i.addCategory(Intent.CATEGORY_OPENABLE);i.setType("text/plain");i.putExtra(Intent.EXTRA_TITLE,"tsl9-debug-"+new SimpleDateFormat("yyyyMMdd-HHmmss",Locale.ROOT).format(new Date())+".txt");startActivityForResult(i,101);});AppUi.icon(exportButton,"export");body.addView(exportButton);
+        tabs=new TabHost(this);tabs.setId(android.R.id.tabhost);tabs.setBackgroundColor(AppUi.BG);
+        LinearLayout tabBody=AppUi.column(this);
+        LinearLayout header=new LinearLayout(this);header.setGravity(Gravity.CENTER_VERTICAL);header.setPadding(dp(20),dp(6),dp(20),dp(2));TextView brand=text("TSL9",22,DARK);brand.setContentDescription(s(R.string.app_name));brand.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);header.addView(brand,new LinearLayout.LayoutParams(0,-2,1));
+        headerConnection=text(s(R.string.disconnected),12,MUTED);header.addView(headerConnection);
+        languageButton=button("",()->languagePanel.setVisibility(languagePanel.getVisibility()==View.VISIBLE?View.GONE:View.VISIBLE));languageButton.setContentDescription(s(R.string.language));AppUi.icon(languageButton,"globe");languageButton.setPadding(dp(12),dp(10),dp(12),dp(10));header.addView(languageButton,new LinearLayout.LayoutParams(dp(48),dp(48)));tabBody.addView(header);
+        languagePanel=AppUi.column(this);languagePanel.setPadding(dp(20),0,dp(20),dp(8));languagePanel.addView(text(s(R.string.language),14,MUTED));
+        language=new Spinner(this);language.setContentDescription(s(R.string.language));language.setMinimumHeight(dp(48));language.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,new String[]{s(R.string.system_language),"简体中文","繁體中文","English"}));language.setSelection(LanguageSettings.index(this));
+        language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> p){}public void onItemSelected(AdapterView<?> p,View v,int position,long id){if(position==LanguageSettings.index(MainActivity.this))return;if(!canChangeLanguage()){language.setSelection(LanguageSettings.index(MainActivity.this));return;}LanguageSettings.select(MainActivity.this,position);}});
+        languagePanel.addView(language);languagePanel.setVisibility(View.GONE);tabBody.addView(languagePanel);
         FrameLayout content=new FrameLayout(this);content.setId(android.R.id.tabcontent);tabBody.addView(content,new LinearLayout.LayoutParams(-1,0,1));
-        TabWidget tabBar=new TabWidget(this);tabBar.setId(android.R.id.tabs);tabBody.addView(tabBar,new LinearLayout.LayoutParams(-1,-2));tabs.addView(tabBody);tabs.setup();
+        TabWidget tabBar=new TabWidget(this);tabBar.setId(android.R.id.tabs);tabBar.setStripEnabled(false);tabBar.setPadding(dp(5),dp(4),dp(5),dp(4));tabBar.setBackground(AppUi.shape(this,AppUi.WHITE,999,0));tabBar.setElevation(dp(5));tabBar.setClipToOutline(true);
+        LinearLayout.LayoutParams barParams=new LinearLayout.LayoutParams(-1,-2);barParams.setMargins(dp(20),dp(6),dp(20),dp(12));tabBody.addView(tabBar,barParams);tabs.addView(tabBody);tabs.setup();
         ScrollView vehicleScroll=buildVehicleUi();
-        livePanel=new LivePanel(this,new LivePanel.Host(){
-            public void query(){requestCarStatus();}public void startCan(String filter){startLiveCan(filter);}public void stopCan(){if(hardware.active()&&hardware.mode()==HardwareCapture.Mode.CAN)stopHardware("manual",false);}public void export(){if(hardwareExport.isEnabled())hardwareExport.performClick();}
-        });
-        tabs.addTab(tabs.newTabSpec("tools").setIndicator(tabIndicator(R.string.tab_tools)).setContent(tag->scroll));
-        tabs.addTab(tabs.newTabSpec("car").setIndicator(tabIndicator(R.string.tab_car)).setContent(tag->vehicleScroll));
-        tabs.addTab(tabs.newTabSpec("live").setIndicator(tabIndicator(R.string.live_tab)).setContent(tag->livePanel.view));
-        tabs.setOnTabChangedListener(tag->{if(!tag.equals("car"))car.stopSeat();if(tag.equals("car")||tag.equals("live")){lastCarPoll=0;lastCarInfoPoll=0;}refresh();});
-        setContentView(tabs);
-        tabBody.setOnApplyWindowInsetsListener((v,insets)->{tabBar.setPadding(0,0,0,insets.getSystemWindowInsetBottom());return insets;});
-        scroll.setOnApplyWindowInsetsListener((v,insets)->{int top=insets.getSystemWindowInsetTop(),bottom=insets.getSystemWindowInsetBottom();body.setPadding(dp(20),dp(18)+top,dp(20),dp(28)+bottom);return insets;});
+        livePanel=new LivePanel(this,new LivePanel.Host(){public void query(){requestCarStatus();}public void startCan(String filter){startLiveCan(filter);}public void stopCan(){if(hardware.active()&&hardware.mode()==HardwareCapture.Mode.CAN)stopHardware("manual",false);}public void export(){if(hardwareExport.isEnabled())hardwareExport.performClick();}});
+        tabs.addTab(tabs.newTabSpec("tools").setIndicator(tabIndicator(R.string.tab_tools,"bluetooth")).setContent(tag->scroll));tabs.addTab(tabs.newTabSpec("car").setIndicator(tabIndicator(R.string.tab_car,"car")).setContent(tag->vehicleScroll));tabs.addTab(tabs.newTabSpec("live").setIndicator(tabIndicator(R.string.live_tab,"chart")).setContent(tag->livePanel.view));
+        tabs.setOnTabChangedListener(tag->{if(!tag.equals("car"))car.stopSeat();if(tag.equals("car")||tag.equals("live")){lastCarPoll=0;lastCarInfoPoll=0;}refresh();});setContentView(tabs);
+        tabBody.setOnApplyWindowInsetsListener((v,insets)->{tabBody.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),insets.getSystemWindowInsetBottom());return insets.consumeSystemWindowInsets();});
     }
 
     private boolean carTabVisible(){return tabs!=null&&"car".equals(tabs.getCurrentTabTag());}
@@ -135,7 +125,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     private void displayVersions(){
         String value=s(R.string.version_not_read);
         if(versionInfo!=null)value=s(R.string.version_details,versionInfo.applicationPrefix(),versionInfo.applicationByte,versionInfo.bluetoothPrefix(),versionInfo.bluetoothByte,versionInfo.normalMode?s(R.string.run_mode):s(R.string.boot_mode),new SimpleDateFormat("HH:mm:ss",Locale.ROOT).format(new Date()));
-        putText(versionView,value);putText(carVersionView,value);
+        putText(versionView,versionInfo==null?value:s(R.string.ui_versions_short,versionInfo.applicationPrefix(),versionInfo.bluetoothPrefix(),s(versionInfo.normalMode?R.string.run_mode:R.string.boot_mode)));putText(carVersionView,value);
     }
     private void disconnectRequested(){
         if(car.active()){closeVehicleAfterStop=true;car.cancel();if(car.active()){state(s(R.string.car_seat_stopping));return;}}
@@ -157,33 +147,30 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         lastCarPoll=SystemClock.elapsedRealtime();log("CAR STATUS request B0 bytes=1");ble.send(0xb0,new byte[]{1},()->refresh());
     }
     private ScrollView buildVehicleUi(){
-        ScrollView scroll=new ScrollView(this);LinearLayout body=new LinearLayout(this);body.setOrientation(LinearLayout.VERTICAL);body.setPadding(dp(20),dp(18),dp(20),dp(28));body.setBackgroundColor(0xfff2f5f1);scroll.addView(body);
-        body.addView(text(s(R.string.car_title),27,DARK));body.addView(text(s(R.string.car_model),15,MUTED));
-        body.addView(button(s(R.string.car_connect_tab),()->tabs.setCurrentTabByTag("tools")));
-        carVersionButton=button(s(R.string.version_read),this::requestInfo);body.addView(carVersionButton);
-        carVersionView=text(s(R.string.version_not_read),14,DARK);carVersionView.setTextIsSelectable(true);body.addView(carVersionView);
+        ScrollView scroll=new ScrollView(this);scroll.setFillViewport(true);LinearLayout body=AppUi.page(this);scroll.addView(body);title(body,R.string.car_title,R.string.car_model);
+        ImageView vehicleArt=new ImageView(this);vehicleArt.setImageResource(R.drawable.vehicle_profile);vehicleArt.setScaleType(ImageView.ScaleType.FIT_CENTER);vehicleArt.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);body.addView(vehicleArt,new LinearLayout.LayoutParams(-1,dp(88)));
         carReadiness=text(s(R.string.car_telemetry_unknown),14,GREEN);body.addView(carReadiness);
-        carRefreshButton=button(s(R.string.car_read_status),this::requestCarStatus);body.addView(carRefreshButton);
-        body.addView(text(s(R.string.car_help),14,MUTED));
-        body.addView(text(s(R.string.car_locks),20,DARK));
-        LinearLayout locks=new LinearLayout(this);
-        Button lock=button(s(R.string.car_lock),()->sendCar(VehicleControls.Action.LOCK)),unlock=button(s(R.string.car_unlock),()->sendCar(VehicleControls.Action.UNLOCK));
-        carButtons.add(lock);carButtons.add(unlock);locks.addView(lock,new LinearLayout.LayoutParams(0,-2,1));locks.addView(unlock,new LinearLayout.LayoutParams(0,-2,1));body.addView(locks);
-        body.addView(text(s(R.string.car_driver),20,DARK));body.addView(seatRow(new VehicleControls.Action[]{VehicleControls.Action.DRIVER_LEFT,VehicleControls.Action.DRIVER_RIGHT,VehicleControls.Action.DRIVER_UP,VehicleControls.Action.DRIVER_DOWN}));
-        body.addView(text(s(R.string.car_passenger),20,DARK));body.addView(seatRow(new VehicleControls.Action[]{VehicleControls.Action.PASSENGER_LEFT,VehicleControls.Action.PASSENGER_RIGHT,VehicleControls.Action.PASSENGER_UP,VehicleControls.Action.PASSENGER_DOWN}));
-        body.addView(text(s(R.string.car_seat_help),13,MUTED));seatStop=button(s(R.string.car_stop_seat),()->car.stopSeat());body.addView(seatStop);
-        body.addView(text(s(R.string.car_lights),20,DARK));
-        lightLayout=new CheckBox(this);lightLayout.setText(s(R.string.car_light_layout));lightLayout.setOnCheckedChangeListener((v,on)->refresh());body.addView(lightLayout);
-        body.addView(text(s(R.string.car_light_help),13,MUTED));
-        lightOn=button(s(R.string.car_light_on),()->confirmLight(true));lightOff=button(s(R.string.car_light_off),()->confirmLight(false));body.addView(lightOn);body.addView(lightOff);
-        carStatus=text(s(R.string.car_idle),14,GREEN);body.addView(carStatus);
-        scroll.setOnApplyWindowInsetsListener((v,insets)->{body.setPadding(dp(20),dp(18)+insets.getSystemWindowInsetTop(),dp(20),dp(28));return insets;});
-        return scroll;
+        section(body,R.string.car_locks);LinearLayout locks=new LinearLayout(this);Button lock=button(s(R.string.car_lock),()->sendCar(VehicleControls.Action.LOCK)),unlock=button(s(R.string.car_unlock),()->sendCar(VehicleControls.Action.UNLOCK));AppUi.icon(lock,"lock");AppUi.icon(unlock,"unlock");carButtons.add(lock);carButtons.add(unlock);AppUi.row(locks,lock,unlock);body.addView(locks);
+        section(body,R.string.ui_seat);LinearLayout selectors=new LinearLayout(this);
+        driverSelector=button(s(R.string.ui_driver),()->selectSeat(0));passengerSelector=button(s(R.string.ui_passenger),()->selectSeat(1));AppUi.row(selectors,driverSelector,passengerSelector);body.addView(selectors);
+        driverPad=seatRow(new VehicleControls.Action[]{VehicleControls.Action.DRIVER_LEFT,VehicleControls.Action.DRIVER_RIGHT,VehicleControls.Action.DRIVER_UP,VehicleControls.Action.DRIVER_DOWN});
+        passengerPad=seatRow(new VehicleControls.Action[]{VehicleControls.Action.PASSENGER_LEFT,VehicleControls.Action.PASSENGER_RIGHT,VehicleControls.Action.PASSENGER_UP,VehicleControls.Action.PASSENGER_DOWN});body.addView(driverPad);body.addView(passengerPad);selectSeat(0);
+        body.addView(text(s(R.string.ui_seat_hint),13,MUTED));seatStop=button(s(R.string.car_stop_seat),()->car.stopSeat());body.addView(seatStop);carStatus=text(s(R.string.car_idle),13,GREEN);body.addView(carStatus);
+        LinearLayout lighting=AppUi.column(this);lightLayout=new CheckBox(this);lightLayout.setText(s(R.string.car_light_layout));lightLayout.setOnCheckedChangeListener((v,on)->refresh());lighting.addView(lightLayout);lighting.addView(text(s(R.string.car_light_help),13,MUTED));
+        lightOn=button(s(R.string.car_light_on),()->confirmLight(true));lightOff=button(s(R.string.car_light_off),()->confirmLight(false));lighting.addView(lightOn);lighting.addView(lightOff);AppUi.disclosure(this,body,s(R.string.car_lights),lighting);
+        body.addView(text(s(R.string.car_help),13,MUTED));
+        LinearLayout details=AppUi.column(this);details.addView(text(s(R.string.car_seat_help),13,MUTED));details.addView(button(s(R.string.car_connect_tab),()->tabs.setCurrentTabByTag("tools")));carVersionButton=button(s(R.string.version_read),this::requestInfo);details.addView(carVersionButton);carVersionView=text(s(R.string.version_not_read),13,MUTED);carVersionView.setTextIsSelectable(true);details.addView(carVersionView);carRefreshButton=button(s(R.string.car_read_status),this::requestCarStatus);details.addView(carRefreshButton);AppUi.disclosure(this,body,s(R.string.ui_module_details),details);return scroll;
+    }
+    private void selectSeat(int selected){
+        car.stopSeat();pressedSeat=null;selectedSeat=selected;
+        if(driverPad!=null)driverPad.setVisibility(selected==0?View.VISIBLE:View.GONE);if(passengerPad!=null)passengerPad.setVisibility(selected==1?View.VISIBLE:View.GONE);
+        AppUi.selected(driverSelector,selected==0);AppUi.selected(passengerSelector,selected==1);
     }
     private LinearLayout seatRow(VehicleControls.Action[] actions){
-        LinearLayout row=new LinearLayout(this);String[] arrows={"←","→","↑","↓"};
+        LinearLayout pad=AppUi.column(this);String[] arrows={"←","→","↑","↓"},icons={"left","right","up","down"};Button[] buttons=new Button[4];
         for(int i=0;i<actions.length;i++){
-            final VehicleControls.Action action=actions[i];final boolean[] touchClick={false};Button b=button(arrows[i],()->{if(!touchClick[0]&&carReady()&&car.beginSeat(action))handler.postDelayed(()->car.stopSeat(),200);});
+            final VehicleControls.Action action=actions[i];final boolean[] touchClick={false};Button b=button("",()->{if(!touchClick[0]&&carReady()&&car.beginSeat(action))handler.postDelayed(()->car.stopSeat(),200);});
+            AppUi.Icon icon=new AppUi.Icon(icons[i]);icon.setBounds(0,0,dp(24),dp(24));b.setCompoundDrawables(null,icon,null,null);b.setGravity(Gravity.CENTER);
             b.setContentDescription(s(R.string.car_seat_direction,s(action.name().startsWith("DRIVER")?R.string.car_driver:R.string.car_passenger),arrows[i]));
             b.setOnTouchListener((v,event)->{
                 switch(event.getActionMasked()){
@@ -193,8 +180,16 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
                     case MotionEvent.ACTION_CANCEL:case MotionEvent.ACTION_POINTER_DOWN:v.setPressed(false);car.stopSeat();return true;
                     default:return true;
                 }
-            });carButtons.add(b);row.addView(b,new LinearLayout.LayoutParams(0,-2,1));
-        }return row;
+            });carButtons.add(b);buttons[i]=b;
+        }
+        for(int r=0;r<3;r++){
+            LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER);pad.addView(row);
+            for(int col=0;col<3;col++){
+                View child=r==0&&col==1?buttons[2]:r==1&&col==0?buttons[0]:r==1&&col==2?buttons[1]:r==2&&col==1?buttons[3]:new View(this);
+                if(r==1&&col==1){ImageView seat=new ImageView(this);seat.setImageDrawable(new AppUi.Icon("seat"));seat.setPadding(dp(18),dp(12),dp(18),dp(12));seat.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);child=seat;}
+                LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,dp(48),1);p.setMargins(dp(4),dp(2),dp(4),dp(2));row.addView(child,p);
+            }
+        }return pad;
     }
     private void sendCar(VehicleControls.Action action){if(carReady())car.perform(action);}
     private void confirmLight(boolean enabled){
@@ -212,7 +207,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         lightOn.setEnabled(ready&&ble.idle()&&lightLayout.isChecked()&&car.lightingAvailable()&&!car.blinkHighBeam());
         lightOff.setEnabled(ready&&ble.idle()&&lightLayout.isChecked()&&car.lightingAvailable()&&car.blinkHighBeam());
         String line=!ble.ready()?s(R.string.disconnected):!car.telemetryFresh()?s(R.string.car_telemetry_unknown):s(R.string.car_telemetry,car.gear()==1?"P":car.gear()==2?"R":car.gear()==3?"N":car.gear()==4?"D":"?",car.speed());
-        String code=carGateCode();line+="\n"+carGateText(code);
+        String code=carGateCode();String gateText=carGateText(code);if(!line.equals(gateText))line+="\n"+gateText;
         if(carTabVisible()&&!code.equals(lastCarGate)){lastCarGate=code;log("CAR GATE "+code+" statusBytes="+car.telemetryBytes()+" fresh="+car.telemetryFresh()+" gear="+car.gear()+" speed="+car.speed()+" directBodyControl=true");}
         putText(carReadiness,line);
     }
@@ -227,7 +222,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
             case "NOT_P":return s(R.string.car_wait_park,car.gear());case "SPEED":return s(R.string.car_wait_speed);case "READY":return s(R.string.car_control_ready);case "ACTIVE":return s(R.string.car_action_busy);default:return s(R.string.car_wait_transport);
         }
     }
-    @Override protected void onSaveInstanceState(Bundle out){super.onSaveInstanceState(out);if(tabs!=null)out.putString("tab",tabs.getCurrentTabTag());}
+    @Override protected void onSaveInstanceState(Bundle out){super.onSaveInstanceState(out);out.putInt("seat",selectedSeat);if(tabs!=null)out.putString("tab",tabs.getCurrentTabTag());}
 
     private void scan(){
         if(car.active())return;
@@ -316,7 +311,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         if(flashButton==null||destroyed)return;boolean active=ota.active(),ready=ble.ready();
         boolean recording=hardware.active()||captureStopping,carActive=car.active();
         car.setAvailable(ready&&!leaving&&!active&&!recording&&info!=null&&(info[3]&1)!=0&&(!passwordRequired||passwordAccepted));
-        language.setEnabled(canChangeLanguage());
+        language.setEnabled(canChangeLanguage());languageButton.setEnabled(canChangeLanguage());putText(headerConnection,s(ready?R.string.ui_connected:R.string.disconnected));headerConnection.setTextColor(ready?GREEN:MUTED);if(recording)captureDetails.setVisibility(View.VISIBLE);
         scanButton.setEnabled(!active&&!carActive&&!ready&&!recording);disconnectButton.setEnabled(ready||active||recording);readButton.setEnabled(ready&&!active&&!recording&&!carActive);passwordButton.setEnabled(ready&&!recording&&!carActive&&(!active||ota.waitingBoot()));versionButton.setEnabled(ready&&!active&&!recording&&!carActive);
         fileButton.setEnabled(!active&&!recording&&!carActive);format.setEnabled(!active&&!recording&&!carActive);match.setEnabled(!active&&!recording&&!carActive);hw20.setEnabled(!active&&!recording&&!carActive);exportButton.setEnabled(!active&&!recording&&!carActive);flashButton.setEnabled(canFlash());cancelButton.setEnabled(active);
         captureStart.setEnabled(ready&&!active&&!carActive&&!recording&&(!passwordRequired||passwordAccepted));captureStop.setEnabled(hardware.active());captureMode.setEnabled(!active&&!recording&&!carActive);canIds.setEnabled(!active&&!recording&&!carActive);canData.setEnabled(!active&&!recording&&!carActive);hardwareExport.setEnabled(!active&&!recording&&!carActive&&(hardwareSession||!previousHardware.isEmpty()));

@@ -24,9 +24,15 @@ public final class SmokeInstrumentation extends Instrumentation {
         for(int choice:new int[]{1,2,3,0}){
             ActivityMonitor monitor=addMonitor("com.lockys.tsl9updater.MainActivity",null,false);
             final Activity old=current;final int selected=choice;
-            runOnMainSync(()->{try{((Spinner)field(old,"language")).setSelection(selected);}catch(Exception e){throw new RuntimeException(e);}});
-            Activity next=monitor.waitForActivityWithTimeout(12000);removeMonitor(monitor);
-            check(next!=null&&next!=old,"language selector recreates Activity for "+choice);
+            runOnMainSync(()->{try{((Button)field(old,"languageButton")).performClick();}catch(Exception e){throw new RuntimeException(e);}});
+            waitForIdleSync();
+            runOnMainSync(()->{try{Spinner picker=(Spinner)field(old,"language");check(picker.isShown(),"language selector is visible before choosing "+selected);picker.setSelection(selected);}catch(Exception e){throw new RuntimeException(e);}});
+            Locale actual=LanguageSettings.normalized(Build.VERSION.SDK_INT>=24?old.getResources().getConfiguration().getLocales().get(0):old.getResources().getConfiguration().locale);
+            android.content.res.Configuration systemConfig=android.content.res.Resources.getSystem().getConfiguration();Locale system=LanguageSettings.normalized(Build.VERSION.SDK_INT>=24?systemConfig.getLocales().get(0):systemConfig.locale);
+            boolean sameEffectiveSystem=selected==0&&actual.getLanguage().equals(system.getLanguage())&&actual.getScript().equals(system.getScript());
+            Activity next=monitor.waitForActivityWithTimeout(sameEffectiveSystem?2000:12000);removeMonitor(monitor);
+            if(next==null&&sameEffectiveSystem){check(LanguageSettings.index(old)==0,"return to already displayed system language clears app override");next=old;}
+            else check(next!=null&&next!=old,"language selector recreates Activity for "+choice);
             current=next;waitForIdleSync();final Activity active=current;
             runOnMainSync(()->check(LanguageSettings.index(active)==selected,"language choice persists "+selected));
         }
@@ -74,6 +80,7 @@ public final class SmokeInstrumentation extends Instrumentation {
                 CheckBox match=(CheckBox)field(a,"match");match.setChecked(true);call(a,"clearIdentity",new Class<?>[0]);check(!match.isChecked(),"new connection resets compatibility check");
                 CheckBox hw20=(CheckBox)field(a,"hw20");check(!hw20.isChecked(),"OEM hw20 profile is opt-in and not inferred from raw hardware byte");match.setChecked(true);hw20.setChecked(true);check(!match.isChecked(),"changing OEM readback policy requires compatibility reconfirmation");call(a,"clearIdentity",new Class<?>[0]);check(!hw20.isChecked(),"new idle connection resets hardware profile");
                 check(button(a,a.getString(R.string.capture_start))!=null&&!button(a,a.getString(R.string.capture_start)).isEnabled(),"capture needs physical BLE connection");
+                checks+=new MockupUiChecks(a).run();
                 checks+=new BleQueueChecks((MainActivity)a).run();
                 checks+=new VehicleUiChecks((MainActivity)a).run();
                 checks+=new LiveUiChecks((MainActivity)a).run();
