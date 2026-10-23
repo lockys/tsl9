@@ -54,7 +54,7 @@ def flags(unit, mode):
     clock = kind in ('clock-query', 'clock-fields')
     irq = kind in ('irq-bank', 'delay-bank')
     spi = kind == 'spi-a0-a3-a4-a5'
-    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'irq-provider-a0-a1-a2-a4-a5', 'queue-consumer-a0-a5', 'queue-small-a0-a5')
+    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'irq-provider-a0-a1-a2-a4-a5', 'queue-consumer-a0-a5', 'queue-small-a0-a5', 'queue-filter-a0-a5')
     ring = kind == 'ring-bank'
     result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi or packet or ring else 'rv32imac_zicsr_zifencei'),
               '-mabi=ilp32', '-Os' if clock else '-Oz']
@@ -82,7 +82,7 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'spi-a0-a3-a4-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 13, 14, 15}]
-    elif kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'queue-consumer-a0-a5'):
+    elif kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'queue-consumer-a0-a5', 'queue-filter-a0-a5'):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'queue-small-a0-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 15}]
@@ -318,6 +318,35 @@ def audit(base, record, manifest):
                         dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
                     and pair[1]['allocated_bytes'] == 24 and not pair[1]['UND'] and not pair[1]['relocations'],
                     'Two actual C leaves6/18B with fully assembler-resolved local branch; source-copy proof does not prove original placement, consumer composition or firmware readiness')
+            if unit['name'] == 'queue-filter':
+                regions = [
+                    ('tsl9_queue_external_82d2', 54, 'b2b79614061f2ccc59cadfe7a5fc41da6674926c3d0ce21b881bd8de9483781e'),
+                    ('tsl9_filter_scan_8308', 32, 'b13863c4779d5c59dc3966c930c7a4fe9b28f755b448808be34888b69f36f7d5'),
+                    ('tsl9_filter_pack_8328', 48, '2bd4fe589cd5a6cc85cb147a5f55160528429e6cd15a9075cb28056ffff4c414'),
+                    ('tsl9_filter_emit_8358', 18, 'be32c019e9db23c873d4e608e94fe09a1015f2cbbe4846bb15680a69649d0c16'),
+                    ('tsl9_filter_test_836a', 4, '4dd9686eb458bbfb45cfe08dc3a1dd0cc04825c845fc274398717f473e164796'),
+                    ('tsl9_filter_finish_836e', 28, '227907f1d643e603d33edefd0f6339b9e475e13a4654167e21f68bfdcc3997ee'),
+                    ('tsl9_filter_second_838a', 4, 'f04b6f869015ca51affa2faa6f060d45eac6a2ef0cda466f36c44248d008ce04'),
+                ]
+                edges = [
+                    ('tsl9_filter_scan_8308', 10, 16, 'tsl9_filter_test_836a'),
+                    ('tsl9_filter_scan_8308', 18, 16, 'tsl9_filter_test_836a'),
+                    ('tsl9_filter_scan_8308', 30, 44, 'tsl9_filter_test_836a'),
+                    ('tsl9_filter_pack_8328', 6, 16, 'tsl9_filter_test_836a'),
+                    ('tsl9_filter_emit_8358', 16, 45, 'tsl9_filter_external_8a56'),
+                    ('tsl9_filter_test_836a', 0, 16, 'tsl9_filter_second_838a'),
+                    ('tsl9_filter_second_838a', 2, 45, 'tsl9_filter_scan_8308'),
+                ]
+                need(pair[1]['functions'] == sorted([
+                    dict(name=n, binding=1, bytes=z, code_sha256=h) for n, z, h in regions], key=lambda x: x['name'])
+                    and pair[1]['allocated_sections'] == [
+                        dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
+                    and pair[1]['allocated_bytes'] == 188
+                    and pair[1]['UND'] == ['tsl9_filter_external_8a56']
+                    and pair[1]['relocations'] == [
+                        dict(owner='.text.'+owner, offset=at, type=kind, addend=0, symbol=target)
+                        for owner, at, kind, target in edges],
+                    'Seven private188B filter regions and7 pending edges; one real UND compressed link-call8A56. Separate typed/SSA checker proves166 whole noncontrol bytes, then-live registers and C.JAL RA; not original placement or firmware readiness')
             if unit['name'] == 'queue-consumer':
                 regions = [
                     ('tsl9_queue_entry_12c58', 46, 'b62b7b72fe9434d4f8074ef21e434b91f56c2b2bf3350be8d8ec4099ead404e5'),

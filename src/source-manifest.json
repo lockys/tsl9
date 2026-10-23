@@ -445,6 +445,13 @@
       "replacements": [],
       "origin_sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13",
       "sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13"
+    },
+    {
+      "origin": "experiments/tsl9-queue-filter/src/queue_filter.v1.c",
+      "destination": "src/native/receive/queue_filter.c",
+      "replacements": [],
+      "origin_sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511",
+      "sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511"
     }
   ],
   "native_units": [
@@ -732,6 +739,19 @@
       ],
       "scope": "Two ordinary C algorithm leaves with empty physical-register ports:6B/2i fresh GP+167 byte read and18B/6i unsigned bounded zero store. Whole object and diagnostic linked function bytes match original; no UND/ABS/REL/RELA or spills. Diagnostic VMA0 only; original placement, consumer composition, GP provenance, memory validity/alias, complete IRQ/ROM/silicon and firmware readiness remain unproved.",
       "origin_unit_sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13"
+    },
+    {
+      "name": "queue-filter",
+      "profile": "queue-filter-a0-a5",
+      "origin_unit": "experiments/tsl9-queue-filter/src/queue_filter.v1.c",
+      "curated_unit": "src/native/receive/queue_filter.c",
+      "evidence": "experiments/tsl9-queue-filter/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-queue-filter/build/verified-v1/c/verification.json",
+        "experiments/tsl9-queue-filter/build/verified-v1/cpp/verification.json"
+      ],
+      "scope": "188B/69i across seven private54/32/48/18/4/28/4B regions, including post-RET cold path. All166 whole noncontrol instruction bytes match original;7 pending RELAs include one strong UND C.JAL8A56/RA836A. C mask/shift/OR/length arithmetic plus explicit physical frame/S-register/SP/fresh-read/call ports. S4 updates before length rejection; nonzero is not proven forwarding success. Original placement, complete opaque-call/IRQ/memory/silicon/OTA compatibility remain unproved.",
+      "origin_unit_sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511"
     }
   ],
   "legacy_groups": [

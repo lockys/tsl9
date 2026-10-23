@@ -1,0 +1,10 @@
+{
+  "schema": "TSL9-queue-dispatch-metadata-repair-v1",
+  "initial_checker_sha256": "d3656516acf330c7e4a57b697efa69c5ad2552d73d02a7853217e36d2223c671",
+  "original_C_compile_receipt_sha256": "80b3ac9946c5518c30254b68ebf83d7877e7ccbffe935fe67f9f93f61b6a7683",
+  "failure": "First C compile and ld-r succeeded; reviewer incorrectly expected nineteen address-significance bytes. Actual queue/filter/adapter metadata contributes ten plus seven plus zero bytes.",
+  "repair": "Derive address-significance size from all three actual ELF inputs. Keep original C object, partial link, logs and compile receipt unchanged. Review them with corrected reader; compile C++ once using the same original source and flags.",
+  "algorithm_or_recipe_changed": false,
+  "C_recompiled_or_relinked": false,
+  "target_executed": false
+}

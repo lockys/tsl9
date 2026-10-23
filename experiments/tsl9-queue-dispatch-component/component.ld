@@ -1,0 +1,30 @@
+OUTPUT_ARCH(riscv)
+SECTIONS {
+  .dispatch : ALIGN(2) {
+    KEEP(*(.text.tsl9_queue_entry_12c58))
+    KEEP(*(.text.tsl9_queue_scan_12c86))
+    KEEP(*(.text.tsl9_queue_release_12ca6))
+    KEEP(*(.text.tsl9_queue_validate_12cb4))
+    KEEP(*(.text.tsl9_queue_advance_12cee))
+    KEEP(*(.text.tsl9_queue_finish_12cf8))
+    KEEP(*(.text.tsl9_queue_zero_12d0e))
+    KEEP(*(.text.tsl9_queue_emit_12d42))
+    KEEP(*(.text.tsl9_queue_response_12d4c))
+    KEEP(*(.text.tsl9_queue_other_12d78))
+    KEEP(*(.text.tsl9_queue_external_82d2))
+    KEEP(*(.text.tsl9_filter_scan_8308))
+    KEEP(*(.text.tsl9_filter_pack_8328))
+    KEEP(*(.text.tsl9_filter_emit_8358))
+    KEEP(*(.text.tsl9_filter_test_836a))
+    KEEP(*(.text.tsl9_filter_finish_836e))
+    KEEP(*(.text.tsl9_filter_second_838a))
+    KEEP(*(.text.tsl9_queue_external_81aa))
+    KEEP(*(.text.tsl9_queue_external_820c))
+  }
+  /DISCARD/ : { *(.comment) *(.note*) *(.riscv.attributes) }
+  ASSERT(tsl9_queue_entry_12c58 == 0, "queue region starts at diagnostic VMA zero")
+  ASSERT(tsl9_queue_external_82d2 == 314, "filter starts immediately after queue")
+  ASSERT(tsl9_queue_external_81aa == 502, "status follows complete filter")
+  ASSERT(tsl9_queue_external_820c == 508, "clear follows complete status")
+  ASSERT(SIZEOF(.dispatch) == 526, "all nineteen genuine functions retained")
+}

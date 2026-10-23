@@ -1,0 +1,1350 @@
+{
+  "schema": "TSL9-public-path-only-receipt-v1",
+  "original_local_receipt": "experiments/tsl9-queue-dispatch-component/build/component-v1/c/verification.json",
+  "original_sha256": "93e5f32a3ee49a3a150992ebc1f0ea344f6dc76614708200f38e3b5d96a11da3",
+  "original_bytes": 42773,
+  "original_preserved_local": true,
+  "receipt_is_original": false,
+  "byte_exact_original": false,
+  "original_replay_claimed": false,
+  "path_only_derivative": true,
+  "inverse_JSON_equality_verified": true,
+  "variables": [
+    "CLANG_RESOURCE"
+  ],
+  "receipt": {
+    "BIN_generated": false,
+    "HOST_execution": false,
+    "ISA_emulated": false,
+    "adapter": {
+      "IR": {
+        "tsl9_queue_clear_820c": {
+          "normalized_body_sha256": "cc3bb5b12b0a10e4d763948178ca7a24215a7bcfbdd3268e49c14002e408ff54",
+          "only_empty_register_ports": true,
+          "ordinary_C_accesses": true
+        },
+        "tsl9_queue_status_81aa": {
+          "normalized_body_sha256": "10056d8b8288d6f0b367bbbc6786485b69603cc4ba8756e6f531532ec6a586d8",
+          "only_empty_register_ports": true,
+          "ordinary_C_accesses": true
+        }
+      },
+      "MD": [
+        "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\src\\providers.c",
+        "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\src\\providers.c",
+        "${CLANG_RESOURCE}/include/stdint.h"
+      ],
+      "functions": [
+        {
+          "name": "tsl9_queue_external_81aa",
+          "offset": 0,
+          "section": ".text.tsl9_queue_external_81aa",
+          "sha256": "887c2bfb847a7e013acebac38c8be3f2bed06fd44305080ad6fc7ca3593e8fc3",
+          "size": 6
+        },
+        {
+          "name": "tsl9_queue_external_820c",
+          "offset": 6,
+          "section": ".text.tsl9_queue_external_820c",
+          "sha256": "643c424c37ca788946153c36cbfaebb37644464f84cc49f7fe2ff92b7c7c2b90",
+          "size": 18
+        }
+      ]
+    },
+    "artifacts": {
+      "IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "adapter.log": "9c5d0c947d60d80a6f3c93ccd416d1668798de7110cc878c943e27c437c2a151",
+      "compile-receipt.json": "80b3ac9946c5518c30254b68ebf83d7877e7ccbffe935fe67f9f93f61b6a7683",
+      "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compiler-help.log": "fad4b7beac426f351681828912536008c4a7c0b2e85f910c693bd017f710c4fa",
+      "dispatch.log": "ee22437ea5ad4caf8bcff710e163102f9b3bb25eb9ef70792b1f8228ff681eaa",
+      "dispatch.o": "324d132406e1aa1c770585e044fc35de01d41922c0736b2ff7577e88a8a6a292",
+      "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native.d": "29f8014eed35d106b239a02a21a063d72db83ff8c3f944286ea6ea5184a42da8",
+      "native.ll": "1ee0992c4c8bcf6e84511bd54d1513d765d9eb58c3b050790eef68eca78edd90",
+      "native.o": "46cf520920c66d840001e9b6327622024a3ab6d02a6cee74ab175dffc3c58f06",
+      "resource.log": "361046f65369d8b7cbf1cecea755e803142eaac5a708651350a8006c251ba3aa"
+    },
+    "commands": [
+      {
+        "argv": [
+          "${LLVM_BIN}\\clang.exe",
+          "--help"
+        ],
+        "exit": 0,
+        "label": "compiler-help",
+        "log_sha256": "fad4b7beac426f351681828912536008c4a7c0b2e85f910c693bd017f710c4fa"
+      },
+      {
+        "argv": [
+          "${LLVM_BIN}\\clang.exe",
+          "-print-resource-dir"
+        ],
+        "exit": 0,
+        "label": "resource",
+        "log_sha256": "361046f65369d8b7cbf1cecea755e803142eaac5a708651350a8006c251ba3aa"
+      },
+      {
+        "argv": [
+          "${LLVM_BIN}\\clang.exe",
+          "--target=riscv32-unknown-elf",
+          "-march=rv32imac_zicsr",
+          "-mabi=ilp32",
+          "-Oz",
+          "-mllvm",
+          "-enable-machine-outliner=never",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fno-unwind-tables",
+          "-fno-asynchronous-unwind-tables",
+          "-mno-relax",
+          "-ffunction-sections",
+          "-fdata-sections",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-ffixed-x1",
+          "-ffixed-x2",
+          "-ffixed-x3",
+          "-ffixed-x4",
+          "-ffixed-x5",
+          "-ffixed-x6",
+          "-ffixed-x7",
+          "-ffixed-x8",
+          "-ffixed-x9",
+          "-ffixed-x11",
+          "-ffixed-x12",
+          "-ffixed-x13",
+          "-ffixed-x14",
+          "-ffixed-x16",
+          "-ffixed-x17",
+          "-ffixed-x18",
+          "-ffixed-x19",
+          "-ffixed-x20",
+          "-ffixed-x21",
+          "-ffixed-x22",
+          "-ffixed-x23",
+          "-ffixed-x24",
+          "-ffixed-x25",
+          "-ffixed-x26",
+          "-ffixed-x27",
+          "-ffixed-x28",
+          "-ffixed-x29",
+          "-ffixed-x30",
+          "-ffixed-x31",
+          "-x",
+          "c",
+          "-std=c11",
+          "-c",
+          "-MD",
+          "-MF",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\build\\component-v1\\c\\native.d",
+          "-MT",
+          "native.o",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\src\\providers.c",
+          "-o",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\build\\component-v1\\c\\native.o"
+        ],
+        "exit": 0,
+        "label": "compile",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "argv": [
+          "${LLVM_BIN}\\clang.exe",
+          "--target=riscv32-unknown-elf",
+          "-march=rv32imac_zicsr",
+          "-mabi=ilp32",
+          "-Oz",
+          "-mllvm",
+          "-enable-machine-outliner=never",
+          "-ffreestanding",
+          "-fno-builtin",
+          "-fno-stack-protector",
+          "-fno-unwind-tables",
+          "-fno-asynchronous-unwind-tables",
+          "-mno-relax",
+          "-ffunction-sections",
+          "-fdata-sections",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-ffixed-x1",
+          "-ffixed-x2",
+          "-ffixed-x3",
+          "-ffixed-x4",
+          "-ffixed-x5",
+          "-ffixed-x6",
+          "-ffixed-x7",
+          "-ffixed-x8",
+          "-ffixed-x9",
+          "-ffixed-x11",
+          "-ffixed-x12",
+          "-ffixed-x13",
+          "-ffixed-x14",
+          "-ffixed-x16",
+          "-ffixed-x17",
+          "-ffixed-x18",
+          "-ffixed-x19",
+          "-ffixed-x20",
+          "-ffixed-x21",
+          "-ffixed-x22",
+          "-ffixed-x23",
+          "-ffixed-x24",
+          "-ffixed-x25",
+          "-ffixed-x26",
+          "-ffixed-x27",
+          "-ffixed-x28",
+          "-ffixed-x29",
+          "-ffixed-x30",
+          "-ffixed-x31",
+          "-x",
+          "c",
+          "-std=c11",
+          "-S",
+          "-emit-llvm",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\src\\providers.c",
+          "-o",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\build\\component-v1\\c\\native.ll"
+        ],
+        "exit": 0,
+        "label": "IR",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "argv": [
+          "${LLVM_BIN}\\llvm-objdump.exe",
+          "--mattr=+m,+a,+c,+zicsr",
+          "-d",
+          "-r",
+          "-t",
+          "-h",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\build\\component-v1\\c\\native.o"
+        ],
+        "exit": 0,
+        "label": "adapter",
+        "log_sha256": "9c5d0c947d60d80a6f3c93ccd416d1668798de7110cc878c943e27c437c2a151"
+      },
+      {
+        "argv": [
+          "${LLVM_BIN}\\ld.lld.exe",
+          "-r",
+          "--no-relax",
+          "-T",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\component.ld",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\build\\verified-v3\\c\\native.o",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\build\\verified-v1\\c\\native.o",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\build\\component-v1\\c\\native.o",
+          "-o",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\build\\component-v1\\c\\dispatch.o"
+        ],
+        "exit": 0,
+        "label": "link",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "argv": [
+          "${LLVM_BIN}\\llvm-objdump.exe",
+          "--mattr=+m,+a,+c,+zicsr",
+          "-d",
+          "-r",
+          "-t",
+          "-h",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\build\\component-v1\\c\\dispatch.o"
+        ],
+        "exit": 0,
+        "label": "dispatch",
+        "log_sha256": "ee22437ea5ad4caf8bcff710e163102f9b3bb25eb9ef70792b1f8228ff681eaa"
+      }
+    ],
+    "firmware_ready": false,
+    "full_LLVM_instruction_rows": 184,
+    "inputs": {
+      "${LLVM_BIN}\\clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+      "${LLVM_BIN}\\ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+      "${LLVM_BIN}\\llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+      "${TSL9_ROOT}\\analysis\\irq-provider-2026-10-23\\next-consumer.json": "8dc9dc3d4cd75aa5e4c22812ed0a45098f83f994bf78152fad9a2f7bb4dd03ca",
+      "${TSL9_ROOT}\\analysis\\queue-consumer-2026-10-23\\next-filter.json": "126704daa831099e311b3a50ac617225b27d32c0bfefcaa9f16c5272399e2e22",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\component.ld": "0892b58d98599b6aa4ffad06da24acb0463973e4d8324476342ff803c964921a",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\probe.py": "bd3ec537a705eb23ec8c6bec57bd2aa03072e3fdce3ea14801b77d9f6cf6624f",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\src\\queue_consumer.v3.c": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\verify.py": "7161985aa739f3f1a746bf5ae98cdd79121cfdc3209270a0c74eb8133a3be9d6",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\README.md": "fde7d3504546c3f537a4a48a07f0ac29f68534134d7c7b2a84b53600fb0e5cdc",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\build.py": "7f7a5560f381fcfddfdc63483f28a3e9c6a7fd90ad6e30e62ae36cc35fff6828",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\check.py": "96f87427d48f626aba6c2cc9b7a1aba30dda8bc81df4020cf8d73093f2d48f77",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\component.ld": "9a89ee848e12977348ba9b01a14756caa1d7d4b4b123d7dc5d7f4721db5ae542",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\dependencies.json": "43ba949302c4f26dc54f754d3559eb8411fccc00181d03b633a3c63e2739a50c",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\readme.en.md": "966b771595c42b38d239fe529a858d2b5ec0ded82684115342d5ddd95331a52b",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\readme.zh-TW.md": "fde7d3504546c3f537a4a48a07f0ac29f68534134d7c7b2a84b53600fb0e5cdc",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\repair-history\\history.json": "cad617bcb0f4afd8258ee3625603aeb3cbb5bcdeaf38f185465df15f54935e1d",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\repair-history\\initial-check.py": "d3656516acf330c7e4a57b697efa69c5ad2552d73d02a7853217e36d2223c671",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\src\\providers.c": "4767676947e1be746aa08351f2c2a2c4b3f3f9a7a4d749b99b881a8b44f51894",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\verify.sh": "208c5fbbc9687fead1f9f5003c3c08501e0d8b19e44e420554213927b7dd762f",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\component.ld": "1682fc10e4039ee7c950870f7c08a533e69a779e36325bd346a74324f39fd728",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\probe.py": "5c01e6c9c2a27da9649fe9ba4b57e9675d7cdbc3c0c4112d580f0c590d84fbb4",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\src\\queue_filter.v1.c": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\verify.py": "cf4dfd90cb171738d7197ade1d741a12c947fc8aa2bfa7465665814a9cd0f98d",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\build.py": "11e076c5ac7821a1ce042f356d6be17243df975421e1f281f78097b3293db473",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\check.py": "6cfa544596c32b14b6e122743f5f88ed4ba934fb8a4919c528102c668457bdc9",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\component.ld": "eb24ba262936a5c9684eef655262537a29888a7cdee9b9755dc528e139ff2f09",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\seal.json": "2e9f6fb929269cdf1bae1bdada83c50dad47626b4459adbae7ea8e1ee58794eb",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\source-map.json": "52b6fd52af064a616c1f29396640802a4cc84cd7c08c135232820586b86086ec",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\src\\providers.c": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13",
+      "${TSL9_ROOT}\\experiments\\tsl9-spi-transfer-leaf\\verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+      "${TSL9_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+      "${CLANG_RESOURCE}/include/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "installed_ROM_proved": false,
+    "mode": "c",
+    "negative_controls": [
+      "writable_dispatch",
+      "fake_ABS_clear",
+      "weak_status",
+      "lost_filter_body",
+      "wrong_filter_position",
+      "bad_binding_tsl9_queue_external_82d2",
+      "bad_binding_tsl9_queue_external_81aa",
+      "bad_binding_tsl9_queue_external_820c",
+      "JAL_without_RA_link",
+      "C_JAL_changed_to_tail_C_J",
+      "RELA_nonzero_addend",
+      "status_wrong_GP175",
+      "clear_signed_branch",
+      "trailing_unreported_bytes",
+      "typed_JAL_link_rd",
+      "typed_CJAL_link_rd",
+      "typed_GP_status_offset",
+      "typed_clear_unsigned_condition",
+      "IR_GP175",
+      "IR_signed_index",
+      "IR_nonvolatile_store",
+      "MD_missing_original_C"
+    ],
+    "network": false,
+    "ordinary_C_ABI_proved": false,
+    "passed": true,
+    "physical_placement_proved": false,
+    "result": {
+      "FUNCs": 19,
+      "VMA": 0,
+      "all_machine_controls_resolved": false,
+      "allocated": [
+        {
+          "address": 0,
+          "bytes": 526,
+          "flags": 6,
+          "name": ".dispatch",
+          "type": 1
+        }
+      ],
+      "bytes": 526,
+      "code_sha256": "6e789c535f5d9dd07f93f6d8785fc50ac5a41cdbcfc4e603285ee9052c14abdb",
+      "functions": [
+        {
+          "name": "tsl9_queue_entry_12c58",
+          "offset": 0,
+          "section": ".dispatch",
+          "sha256": "b62b7b72fe9434d4f8074ef21e434b91f56c2b2bf3350be8d8ec4099ead404e5",
+          "size": 46
+        },
+        {
+          "name": "tsl9_queue_scan_12c86",
+          "offset": 46,
+          "section": ".dispatch",
+          "sha256": "bc696cee29f69cb20c69150dbc8164d3a09f3f0bb00765b3fe9b8bd9188fff28",
+          "size": 32
+        },
+        {
+          "name": "tsl9_queue_release_12ca6",
+          "offset": 78,
+          "section": ".dispatch",
+          "sha256": "d7b85d950e815d38e8656a916588982e82ca74061763e6f6faca71891838ecaa",
+          "size": 14
+        },
+        {
+          "name": "tsl9_queue_validate_12cb4",
+          "offset": 92,
+          "section": ".dispatch",
+          "sha256": "54a596cdf010829ba79c5b8e8140b848e4caa52100036c554ba827e727c180e9",
+          "size": 58
+        },
+        {
+          "name": "tsl9_queue_advance_12cee",
+          "offset": 150,
+          "section": ".dispatch",
+          "sha256": "45d704a3c96dca21c1f6a85f19602bbf29ccfed5842290d3bf3c7a82ebc7707c",
+          "size": 10
+        },
+        {
+          "name": "tsl9_queue_finish_12cf8",
+          "offset": 160,
+          "section": ".dispatch",
+          "sha256": "fd023936c707df0065acdb505542c01aac895b4b7a048a1e7c9cbaf0c76d5ee0",
+          "size": 22
+        },
+        {
+          "name": "tsl9_queue_zero_12d0e",
+          "offset": 182,
+          "section": ".dispatch",
+          "sha256": "c8757cd2eb587e8f9bd479c3d6d351b46aebca83661b37c5934e556fa0fea897",
+          "size": 52
+        },
+        {
+          "name": "tsl9_queue_emit_12d42",
+          "offset": 234,
+          "section": ".dispatch",
+          "sha256": "8668966d892db043fd45de554f967eb3db61decb14f04bc051174c5eb0529c0d",
+          "size": 10
+        },
+        {
+          "name": "tsl9_queue_response_12d4c",
+          "offset": 244,
+          "section": ".dispatch",
+          "sha256": "57c7452d79fa688548fbc9da4c4cd94e1cc00f8ff03336f68c5e94f6d1dc166a",
+          "size": 44
+        },
+        {
+          "name": "tsl9_queue_other_12d78",
+          "offset": 288,
+          "section": ".dispatch",
+          "sha256": "c3276890fc580c91a057a2e672630d17fcb4ad264bdec1fca6bd101e67c0efd5",
+          "size": 26
+        },
+        {
+          "name": "tsl9_queue_external_82d2",
+          "offset": 314,
+          "section": ".dispatch",
+          "sha256": "b2b79614061f2ccc59cadfe7a5fc41da6674926c3d0ce21b881bd8de9483781e",
+          "size": 54
+        },
+        {
+          "name": "tsl9_filter_scan_8308",
+          "offset": 368,
+          "section": ".dispatch",
+          "sha256": "b13863c4779d5c59dc3966c930c7a4fe9b28f755b448808be34888b69f36f7d5",
+          "size": 32
+        },
+        {
+          "name": "tsl9_filter_pack_8328",
+          "offset": 400,
+          "section": ".dispatch",
+          "sha256": "2bd4fe589cd5a6cc85cb147a5f55160528429e6cd15a9075cb28056ffff4c414",
+          "size": 48
+        },
+        {
+          "name": "tsl9_filter_emit_8358",
+          "offset": 448,
+          "section": ".dispatch",
+          "sha256": "be32c019e9db23c873d4e608e94fe09a1015f2cbbe4846bb15680a69649d0c16",
+          "size": 18
+        },
+        {
+          "name": "tsl9_filter_test_836a",
+          "offset": 466,
+          "section": ".dispatch",
+          "sha256": "4dd9686eb458bbfb45cfe08dc3a1dd0cc04825c845fc274398717f473e164796",
+          "size": 4
+        },
+        {
+          "name": "tsl9_filter_finish_836e",
+          "offset": 470,
+          "section": ".dispatch",
+          "sha256": "227907f1d643e603d33edefd0f6339b9e475e13a4654167e21f68bfdcc3997ee",
+          "size": 28
+        },
+        {
+          "name": "tsl9_filter_second_838a",
+          "offset": 498,
+          "section": ".dispatch",
+          "sha256": "f04b6f869015ca51affa2faa6f060d45eac6a2ef0cda466f36c44248d008ce04",
+          "size": 4
+        },
+        {
+          "name": "tsl9_queue_external_81aa",
+          "offset": 502,
+          "section": ".dispatch",
+          "sha256": "887c2bfb847a7e013acebac38c8be3f2bed06fd44305080ad6fc7ca3593e8fc3",
+          "size": 6
+        },
+        {
+          "name": "tsl9_queue_external_820c",
+          "offset": 508,
+          "section": ".dispatch",
+          "sha256": "643c424c37ca788946153c36cbfaebb37644464f84cc49f7fe2ff92b7c7c2b90",
+          "size": 18
+        }
+      ],
+      "global_ABS": [],
+      "instructions": 184,
+      "ordinary_small_C_functions": 2,
+      "original": {
+        "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+        "masked_original_sha256": "6e789c535f5d9dd07f93f6d8785fc50ac5a41cdbcfc4e603285ee9052c14abdb",
+        "noncontrol_bits_equal": true,
+        "small_full_bytes_equal": true,
+        "spans": [
+          {
+            "bytes": 314,
+            "offset": 0,
+            "original_VA": 76888
+          },
+          {
+            "bytes": 188,
+            "offset": 314,
+            "original_VA": 33490
+          },
+          {
+            "bytes": 6,
+            "offset": 502,
+            "original_VA": 33194
+          },
+          {
+            "bytes": 18,
+            "offset": 508,
+            "original_VA": 33292
+          }
+        ],
+        "typed_control_operands": [
+          {
+            "machine_operand_resolved": false,
+            "offset": 60,
+            "operand": {
+              "kind": "C.BEQZ",
+              "rs1": 15,
+              "target": 77038,
+              "width": 2
+            },
+            "original_PC": 76948,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 76948,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 88,
+            "operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 33490,
+              "width": 4
+            },
+            "original_PC": 76976,
+            "original_target": 33490,
+            "pending_raw_immediate_target": 76976,
+            "target_symbol": "tsl9_queue_external_82d2"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 92,
+            "operand": {
+              "kind": "C.BNEZ",
+              "rs1": 10,
+              "target": 77038,
+              "width": 2
+            },
+            "original_PC": 76980,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 76980,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 98,
+            "operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 15,
+              "rs2": 20,
+              "target": 77176,
+              "width": 4
+            },
+            "original_PC": 76986,
+            "original_target": 77176,
+            "pending_raw_immediate_target": 76986,
+            "target_symbol": "tsl9_queue_other_12d78"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 108,
+            "operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 77038,
+              "width": 4
+            },
+            "original_PC": 76996,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 76996,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 120,
+            "operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 77038,
+              "width": 4
+            },
+            "original_PC": 77008,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 77008,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 132,
+            "operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 77038,
+              "width": 4
+            },
+            "original_PC": 77020,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 77020,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 140,
+            "operand": {
+              "kind": "C.BEQZ",
+              "rs1": 15,
+              "target": 77070,
+              "width": 2
+            },
+            "original_PC": 77028,
+            "original_target": 77070,
+            "pending_raw_immediate_target": 77028,
+            "target_symbol": "tsl9_queue_zero_12d0e"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 146,
+            "operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 15,
+              "rs2": 14,
+              "target": 77132,
+              "width": 4
+            },
+            "original_PC": 77034,
+            "original_target": 77132,
+            "pending_raw_immediate_target": 77034,
+            "target_symbol": "tsl9_queue_response_12d4c"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 156,
+            "operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 9,
+              "rs2": 15,
+              "target": 76934,
+              "width": 4
+            },
+            "original_PC": 77044,
+            "original_target": 76934,
+            "pending_raw_immediate_target": 77044,
+            "target_symbol": "tsl9_queue_scan_12c86"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 182,
+            "operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 33292,
+              "width": 4
+            },
+            "original_PC": 77070,
+            "original_target": 33292,
+            "pending_raw_immediate_target": 77070,
+            "target_symbol": "tsl9_queue_external_820c"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 190,
+            "operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 37972,
+              "width": 4
+            },
+            "original_PC": 77078,
+            "original_target": 37972,
+            "pending_raw_immediate_target": 77078,
+            "target_symbol": "tsl9_queue_external_9454"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 196,
+            "operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 39734,
+              "width": 4
+            },
+            "original_PC": 77084,
+            "original_target": 39734,
+            "pending_raw_immediate_target": 77084,
+            "target_symbol": "tsl9_queue_external_9b36"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 212,
+            "operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 76478,
+              "width": 4
+            },
+            "original_PC": 77100,
+            "original_target": 76478,
+            "pending_raw_immediate_target": 77100,
+            "target_symbol": "tsl9_queue_external_12abe"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 228,
+            "operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 77122,
+              "width": 4
+            },
+            "original_PC": 77116,
+            "original_target": 77122,
+            "pending_raw_immediate_target": 77116,
+            "target_symbol": "tsl9_queue_emit_12d42"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 238,
+            "operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 76478,
+              "width": 4
+            },
+            "original_PC": 77126,
+            "original_target": 76478,
+            "pending_raw_immediate_target": 77126,
+            "target_symbol": "tsl9_queue_external_12abe"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 242,
+            "operand": {
+              "kind": "C.J",
+              "rd": 0,
+              "target": 77038,
+              "width": 2
+            },
+            "original_PC": 77130,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 77130,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 252,
+            "operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 77038,
+              "width": 4
+            },
+            "original_PC": 77140,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 77140,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 282,
+            "operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 76296,
+              "width": 4
+            },
+            "original_PC": 77170,
+            "original_target": 76296,
+            "pending_raw_immediate_target": 77170,
+            "target_symbol": "tsl9_queue_external_12a08"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 286,
+            "operand": {
+              "kind": "C.J",
+              "rd": 0,
+              "target": 77038,
+              "width": 2
+            },
+            "original_PC": 77174,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 77174,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 298,
+            "operand": {
+              "kind": "C.BNEZ",
+              "rs1": 15,
+              "target": 77038,
+              "width": 2
+            },
+            "original_PC": 77186,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 77186,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 300,
+            "operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 33194,
+              "width": 4
+            },
+            "original_PC": 77188,
+            "original_target": 33194,
+            "pending_raw_immediate_target": 77188,
+            "target_symbol": "tsl9_queue_external_81aa"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 304,
+            "operand": {
+              "kind": "C.BEQZ",
+              "rs1": 10,
+              "target": 77038,
+              "width": 2
+            },
+            "original_PC": 77192,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 77192,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 308,
+            "operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 85294,
+              "width": 4
+            },
+            "original_PC": 77196,
+            "original_target": 85294,
+            "pending_raw_immediate_target": 77196,
+            "target_symbol": "tsl9_queue_external_14d2e"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 312,
+            "operand": {
+              "kind": "C.J",
+              "rd": 0,
+              "target": 77038,
+              "width": 2
+            },
+            "original_PC": 77200,
+            "original_target": 77038,
+            "pending_raw_immediate_target": 77200,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 378,
+            "operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 19,
+              "rs2": 15,
+              "target": 33642,
+              "width": 4
+            },
+            "original_PC": 33554,
+            "original_target": 33642,
+            "pending_raw_immediate_target": 33554,
+            "target_symbol": "tsl9_filter_test_836a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 386,
+            "operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 22,
+              "rs2": 15,
+              "target": 33642,
+              "width": 4
+            },
+            "original_PC": 33562,
+            "original_target": 33642,
+            "pending_raw_immediate_target": 33562,
+            "target_symbol": "tsl9_filter_test_836a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 398,
+            "operand": {
+              "kind": "C.BEQZ",
+              "rs1": 15,
+              "target": 33642,
+              "width": 2
+            },
+            "original_PC": 33574,
+            "original_target": 33642,
+            "pending_raw_immediate_target": 33574,
+            "target_symbol": "tsl9_filter_test_836a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 406,
+            "operand": {
+              "funct3": 6,
+              "kind": "BRANCH",
+              "rs1": 23,
+              "rs2": 12,
+              "target": 33642,
+              "width": 4
+            },
+            "original_PC": 33582,
+            "original_target": 33642,
+            "pending_raw_immediate_target": 33582,
+            "target_symbol": "tsl9_filter_test_836a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 464,
+            "operand": {
+              "kind": "C.JAL",
+              "rd": 1,
+              "target": 35414,
+              "width": 2
+            },
+            "original_PC": 33640,
+            "original_target": 35414,
+            "pending_raw_immediate_target": 33640,
+            "target_symbol": "tsl9_filter_external_8a56"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 466,
+            "operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 18,
+              "rs2": 0,
+              "target": 33674,
+              "width": 4
+            },
+            "original_PC": 33642,
+            "original_target": 33674,
+            "pending_raw_immediate_target": 33642,
+            "target_symbol": "tsl9_filter_second_838a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 500,
+            "operand": {
+              "kind": "C.J",
+              "rd": 0,
+              "target": 33544,
+              "width": 2
+            },
+            "original_PC": 33676,
+            "original_target": 33544,
+            "pending_raw_immediate_target": 33676,
+            "target_symbol": "tsl9_filter_scan_8308"
+          }
+        ]
+      },
+      "original_physical_placement_proved": false,
+      "pending_RELA": 32,
+      "private_architectural_regions": 17,
+      "real_symbol_bindings": [
+        {
+          "definition_offset": 314,
+          "machine_operand_resolved": false,
+          "reference_offsets": [
+            88
+          ],
+          "resolved_at_symbol_level": true,
+          "symbol": "tsl9_queue_external_82d2"
+        },
+        {
+          "definition_offset": 502,
+          "machine_operand_resolved": false,
+          "reference_offsets": [
+            300
+          ],
+          "resolved_at_symbol_level": true,
+          "symbol": "tsl9_queue_external_81aa"
+        },
+        {
+          "definition_offset": 508,
+          "machine_operand_resolved": false,
+          "reference_offsets": [
+            182
+          ],
+          "resolved_at_symbol_level": true,
+          "symbol": "tsl9_queue_external_820c"
+        }
+      ],
+      "relocations": [
+        {
+          "addend": 0,
+          "offset": 60,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 88,
+          "target": "tsl9_queue_external_82d2",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 92,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 98,
+          "target": "tsl9_queue_other_12d78",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 108,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 120,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 132,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 140,
+          "target": "tsl9_queue_zero_12d0e",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 146,
+          "target": "tsl9_queue_response_12d4c",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 156,
+          "target": "tsl9_queue_scan_12c86",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 182,
+          "target": "tsl9_queue_external_820c",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 190,
+          "target": "tsl9_queue_external_9454",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 196,
+          "target": "tsl9_queue_external_9b36",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 212,
+          "target": "tsl9_queue_external_12abe",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 228,
+          "target": "tsl9_queue_emit_12d42",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 238,
+          "target": "tsl9_queue_external_12abe",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 242,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 45
+        },
+        {
+          "addend": 0,
+          "offset": 252,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 282,
+          "target": "tsl9_queue_external_12a08",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 286,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 45
+        },
+        {
+          "addend": 0,
+          "offset": 298,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 300,
+          "target": "tsl9_queue_external_81aa",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 304,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 308,
+          "target": "tsl9_queue_external_14d2e",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 312,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 45
+        },
+        {
+          "addend": 0,
+          "offset": 378,
+          "target": "tsl9_filter_test_836a",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 386,
+          "target": "tsl9_filter_test_836a",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 398,
+          "target": "tsl9_filter_test_836a",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 406,
+          "target": "tsl9_filter_test_836a",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 464,
+          "target": "tsl9_filter_external_8a56",
+          "type": 45
+        },
+        {
+          "addend": 0,
+          "offset": 466,
+          "target": "tsl9_filter_second_838a",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 500,
+          "target": "tsl9_filter_scan_8308",
+          "type": 45
+        }
+      ],
+      "strong_UND": [
+        "tsl9_filter_external_8a56",
+        "tsl9_queue_external_12a08",
+        "tsl9_queue_external_12abe",
+        "tsl9_queue_external_14d2e",
+        "tsl9_queue_external_9454",
+        "tsl9_queue_external_9b36"
+      ]
+    },
+    "retained_pre_metadata_repair_compile": true,
+    "schema": "TSL9-queue-dispatch-component-v1",
+    "target_executed": false,
+    "upstream": {
+      "filter": {
+        "inputs": [
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-queue-filter/src/queue_filter.v1.c",
+            "sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511",
+            "size": 5295
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-queue-filter/component.ld",
+            "sha256": "1682fc10e4039ee7c950870f7c08a533e69a779e36325bd346a74324f39fd728",
+            "size": 911
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-queue-filter/probe.py",
+            "sha256": "5c01e6c9c2a27da9649fe9ba4b57e9675d7cdbc3c0c4112d580f0c590d84fbb4",
+            "size": 7532
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-spi-transfer-leaf/verify.py",
+            "sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+            "size": 29593
+          },
+          {
+            "path": "${TSL9_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+            "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+            "size": 76800
+          },
+          {
+            "path": "${TSL9_ROOT}/analysis/queue-consumer-2026-10-23/next-filter.json",
+            "sha256": "126704daa831099e311b3a50ac617225b27d32c0bfefcaa9f16c5272399e2e22",
+            "size": 9994
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-queue-filter/verify.py",
+            "sha256": "cf4dfd90cb171738d7197ade1d741a12c947fc8aa2bfa7465665814a9cd0f98d",
+            "size": 48986
+          },
+          {
+            "path": "${LLVM_BIN}/../lib/clang/18/include/stdint.h",
+            "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+            "size": 30946
+          },
+          {
+            "path": "${LLVM_BIN}/clang.exe",
+            "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+            "size": 126673512
+          },
+          {
+            "path": "${LLVM_BIN}/ld.lld.exe",
+            "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+            "size": 73834600
+          },
+          {
+            "path": "${LLVM_BIN}/llvm-objdump.exe",
+            "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+            "size": 18311272
+          }
+        ],
+        "native_sha256": "57bc33780d5860e47d5709c313092923fdbc12890a0070d0492cfa3e67745f20",
+        "receipt": "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\build\\verified-v1\\c\\verification.json",
+        "sha256": "d08dbf7d51d8f680b37c195c59ddbe443ed3141f28cb5c8446336951899ef858",
+        "source_SSA_and_typed_operands_rechecked": true
+      },
+      "queue": {
+        "inputs": [
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-queue-consumer/src/queue_consumer.v3.c",
+            "sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6",
+            "size": 9595
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-queue-consumer/component.ld",
+            "sha256": "0892b58d98599b6aa4ffad06da24acb0463973e4d8324476342ff803c964921a",
+            "size": 1224
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-queue-consumer/probe.py",
+            "sha256": "bd3ec537a705eb23ec8c6bec57bd2aa03072e3fdce3ea14801b77d9f6cf6624f",
+            "size": 7540
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-spi-transfer-leaf/verify.py",
+            "sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+            "size": 29593
+          },
+          {
+            "path": "${TSL9_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+            "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+            "size": 76800
+          },
+          {
+            "path": "${TSL9_ROOT}/analysis/irq-provider-2026-10-23/next-consumer.json",
+            "sha256": "8dc9dc3d4cd75aa5e4c22812ed0a45098f83f994bf78152fad9a2f7bb4dd03ca",
+            "size": 15848
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-queue-consumer/verify.py",
+            "sha256": "7161985aa739f3f1a746bf5ae98cdd79121cfdc3209270a0c74eb8133a3be9d6",
+            "size": 60698
+          },
+          {
+            "path": "${LLVM_BIN}/../lib/clang/18/include/stdint.h",
+            "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+            "size": 30946
+          },
+          {
+            "path": "${LLVM_BIN}/clang.exe",
+            "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+            "size": 126673512
+          },
+          {
+            "path": "${LLVM_BIN}/ld.lld.exe",
+            "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+            "size": 73834600
+          },
+          {
+            "path": "${LLVM_BIN}/llvm-objdump.exe",
+            "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+            "size": 18311272
+          }
+        ],
+        "native_sha256": "6e77c11e6107507c8641a29155615c5696ece76b2291ed36f184270804129e56",
+        "receipt": "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\build\\verified-v3\\c\\verification.json",
+        "sha256": "51b5eb361f51a1a31c2b5c5ea486a3b11826fe5e8b76153607211be28ed5f924",
+        "source_SSA_and_typed_operands_rechecked": true
+      }
+    }
+  }
+}
