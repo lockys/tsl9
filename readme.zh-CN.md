@@ -2,7 +2,11 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
+**TSL9 = 非凡司令官**。
+
 以 C/C++ 重建非凡 TSL9 固件，研究蓝牙 OTA 与原硬件兼容性。
+
+[`legacy-options-2026-10-20`](firmware-downloads/legacy-options-2026-10-20/) 收录从官方更新服务提取的固件。
 
 **免责声明：本项目使用 Codex vibe coding 搭配 REA 进行实验性重建，目前尚未成功逆向重建出已验证可用的 TSL9 固件。重建 BIN 未通过原硬件完整验证；OTA 读回成功不代表功能正常。**
 

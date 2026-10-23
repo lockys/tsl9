@@ -2,7 +2,11 @@
 
 [繁體中文](README.md) · [简体中文](readme.zh-CN.md)
 
+**TSL9 = 非凡司令官**.
+
 Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility with the original hardware.
+
+[`legacy-options-2026-10-20`](firmware-downloads/legacy-options-2026-10-20/) contains firmware captured from the official update service.
 
 **Disclaimer: This project uses Codex vibe coding with REA for experimental reconstruction. Reverse engineering has not yet produced verified, working TSL9 firmware. Rebuilt BINs have not passed full validation on the original hardware; successful OTA readback does not prove working features.**
 
