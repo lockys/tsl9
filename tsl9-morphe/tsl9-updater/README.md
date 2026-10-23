@@ -1,8 +1,14 @@
-# TSL9 硬體工具 0.7.0-test
+# TSL9 硬體工具 0.7.1-test
 
 本機測試用 Android APK：手動連線 TSL9、擷取硬體 BLE／CAN 記錄、選擇原廠或自行修改的 APP bin，依原廠 U/S/W/R/E 協定寫入運行韌體。選檔與匯出均透過 Android 系統選檔器，沒有 INTERNET 權限，不打包韌體。
 
-APK：[`TSL9-Updater-0.7.0-test.apk`](../artifacts/tsl9-updater/TSL9-Updater-0.7.0-test.apk)。獨立套件 `com.lockys.tsl9updater.test`；debug 簽章供本機測試。原始 APK 分析見 [REA 報告](../artifacts/firmware-trace/REPORT.zh-TW.md)。0.3 的原廠流程對照與保留差異見 [OEM-ALIGNMENT.md](OEM-ALIGNMENT.md)。
+APK：[`TSL9-Updater-0.7.1-test.apk`](../artifacts/tsl9-updater/TSL9-Updater-0.7.1-test.apk)。獨立套件 `dev.tsl9.morphe.test`；debug 簽章供本機測試。原始 APK 分析見 [REA 報告](../artifacts/firmware-trace/REPORT.zh-TW.md)。0.3 的原廠流程對照與保留差異見 [OEM-ALIGNMENT.md](OEM-ALIGNMENT.md)。
+
+0.7.1移除使用者專屬路徑並改用中性套件名稱。這會另行安裝，不能覆蓋舊套件；舊 App 的本機設定與記錄不會自動搬移。工具偵測與截圖重現方式見 [PORTABILITY.md](PORTABILITY.md)。0.7.0 的驗證收據保留當時真實套件與雜湊。
+
+0.7.1導覽依使用者參考圖改為置中的窄版膠囊，預設寬度約畫面52%、寬高約4:1；三語短標籤保留完整無障礙名稱，大字型會允許展寬。此規範已寫入 [DESIGN.md](DESIGN.md) 與 `.impeccable/design.json`。
+
+0.7.1驗證：8項工具偵測、163項JVM、1102項三語資源、532項Android介面／生命週期檢查通過；真實系統選檔／匯出另通過138項Android及4項匯出內容檢查，英文200%字型另128項介面檢查通過（基礎斷言重疊）。見 [精確收據](verification/ui-0.7.1.json) 與 [新版畫面截圖](verification/screens/0.7.1/)。均為本機／合成測試，未操作實車或寫入硬體。
 
 0.7依確認的 mockup 改為原生淺底深綠介面與浮動膠囊導覽。三頁共享語言／連線標示；座椅改為主／副駕切換與方向按鍵，切換時要求停止。即時資料使用實際回覆的指標區塊，無效回覆或身份重置立即清空顯示。進階設定與長文收納為可展開區域，三種韌體格式、模組驗證、診斷／匯出與既有作業條件保留。詳見 [UI-REDESIGN.md](UI-REDESIGN.md) 與 [DESIGN.md](DESIGN.md)。
 
@@ -91,12 +97,13 @@ App 內可選跟隨系統、简体中文、繁體中文、English。Android 13 �
 
 ```powershell
 pwsh -File ./test.ps1
-pwsh -File ./test.ps1 -FactoryPaged 'C:/path/to/fw-app.bin' -FactoryRaw 'C:/path/to/fw-app-stripped.bin'
-pwsh -File ./build.ps1 -GradlePath 'C:/path/to/gradle-8.13/bin/gradle.bat'
-pwsh -File ./test-documents.ps1 -Serial emulator-5562
+pwsh -File ./test.ps1 -FactoryPaged './inputs/fw-app.bin' -FactoryRaw './inputs/fw-app-stripped.bin'
+pwsh -File ../scripts/test-android-tools.ps1
+pwsh -File ./build.ps1
+pwsh -File ./test-documents.ps1 -Serial '<your-emulator-serial>'
 ```
 
-離線 build 需既有 AGP 8.13.0 cache、JDK、SDK 36，`local.properties` 指向 SDK。建置包含 debug APK、instrumentation APK、lint。測試包含合成 OTA／記錄資料、原廠兩種格式 75 頁比較、Android UI／通知橋接／私有日誌／停止斷線順序回歸。
+離線 build 需既有 AGP 8.13.0 cache、JDK、SDK 36。SDK 可由 `local.properties` 的 `sdk.dir`、`ANDROID_SDK_ROOT`、`ANDROID_HOME` 或目前帳號的標準安裝位置取得；Gradle 由 PATH 或目前帳號的 Gradle 8.x（8.13以上）快取取得，也可明確指定 `-GradlePath`。ADB 同樣可用 PATH、SDK 或 `-AdbPath`。測試需明確指定自己啟動的模擬器序號，不會預選其他裝置。建置包含 debug APK、instrumentation APK、lint。測試包含合成 OTA／記錄資料、原廠兩種格式 75 頁比較、Android UI／通知橋接／私有日誌／停止斷線順序回歸；需原廠輸入的測試仍須另備素材。
 
 `test-documents.ps1` 僅接受模擬器，需 Android 29+、英文系統文件選擇器；本次環境為 API 37。它透過真正 DocumentsUI 選入明確標記為合成資料的 1031-byte bin，再匯出兩種 log，主機 ADB 取回實際文件檢查內容與遮蔽。180 秒逾時會停止此測試 App；不掃描、不連線、不發送 BLE。合成輸入在測試結束刪除，匯出結果與執行證據依版本保留，例如 `../artifacts/tsl9-updater/documents-smoke-0.4.0/`。
 

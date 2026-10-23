@@ -40,6 +40,10 @@ typography:
     fontSize: "12sp"
     fontWeight: 400
     fontFeature: "tnum"
+  navigation-label:
+    fontFamily: "sans"
+    fontSize: "11sp"
+    fontWeight: 400
   metric:
     fontFamily: "sans-serif-medium"
     fontSize: "28sp"
@@ -93,15 +97,18 @@ components:
   navigation:
     backgroundColor: "{colors.white}"
     rounded: "{rounded.capsule}"
-    padding: "4dp 5dp"
+    padding: "3dp"
+    width: "52% of safe viewport; max 360dp; expand for accessible labels"
+    aspect: "approximately 4:1 at default font size"
+    minTarget: "48dp x 48dp per destination"
   navigation-selected:
     backgroundColor: "{colors.selected-sage}"
     textColor: "{colors.forest-teal}"
-    typography: "{typography.caption}"
+    typography: "{typography.navigation-label}"
     rounded: "{rounded.capsule}"
   navigation-inactive:
     textColor: "{colors.muted}"
-    typography: "{typography.caption}"
+    typography: "{typography.navigation-label}"
     rounded: "{rounded.capsule}"
 ---
 
@@ -122,7 +129,7 @@ This record describes the current `0.7.0-test` source, not the previously publis
 - Persistent connection context and three labeled icon destinations.
 - Advanced content behind explicit disclosures; native confirmations remain visible when invoked.
 
-Source authority: [AppUi.java](app/src/main/java/com/lockys/tsl9updater/AppUi.java), [MainActivity.java](app/src/main/java/com/lockys/tsl9updater/MainActivity.java), [LivePanel.java](app/src/main/java/com/lockys/tsl9updater/LivePanel.java), and the theme files under `app/src/main/res/values*/styles.xml`. [PRODUCT.md](PRODUCT.md) records the approved concept and product constraints; [UI-REDESIGN.md](UI-REDESIGN.md) records implementation scope.
+Source authority: [AppUi.java](app/src/main/java/dev/tsl9/morphe/AppUi.java), [MainActivity.java](app/src/main/java/dev/tsl9/morphe/MainActivity.java), [LivePanel.java](app/src/main/java/dev/tsl9/morphe/LivePanel.java), and the theme files under `app/src/main/res/values*/styles.xml`. [PRODUCT.md](PRODUCT.md) records the approved concept and product constraints; [UI-REDESIGN.md](UI-REDESIGN.md) records implementation scope.
 
 ## Colors
 
@@ -163,7 +170,8 @@ These names describe the current native implementation; platform font resolution
 - **Body:** descriptions, connection/readiness text and detailed vehicle data.
 - **Supporting:** help, summary and file/version metadata.
 - **Label:** sentence-case action labels, with all-caps transformation disabled.
-- **Caption:** navigation labels and metric field labels.
+- **Caption:** metric field labels.
+- **Navigation label:** short, single-line destination text in the compact pill.
 - **Metric:** prominent received values, using tabular figures where requested.
 - **Diagnostic:** selectable logs. CAN stream text also uses monospace at the supporting size.
 
@@ -175,7 +183,21 @@ All three destinations use a vertical `ScrollView` with a fill-viewport body. Sh
 
 Paired controls share available width equally. Each contributes a half-gap toward the adjacent item, making a central gap (10dp). Live metric tiles use the same two-column arrangement and independent content heights; the implementation does not equalize tiles or switch to a desktop grid.
 
-The bottom capsule occupies its own layout row below the scrolling content. It has horizontal page margins, a small top margin (6dp) and bottom breathing room (12dp). Each destination is at least 64dp high, with labels allowed two lines. Window insets are applied to the outer tab body.
+The bottom capsule occupies its own centered layout row below the scrolling content. Its nominal width is 52% of the safe viewport, capped at 360dp; it retains at least 16dp of side clearance, a small top margin (6dp), and bottom breathing room (12dp). Each destination is at least 48dp square. Window insets are applied to the outer tab body. See the compact pill pattern below for accessibility expansion.
+
+### Compact centered pill navigation — pinned reference
+
+The user's dialer screenshot `11138.jpg` is the proportion authority for this component. Visual estimates: image width 858px, capsule about 450px wide and 110px high, giving approximately 52% viewport width and 4.1:1 width/height. These are reference proportions, not physical-device dp measurements. Preserve the App's light/forest-teal palette; the reference pins geometry and hierarchy.
+
+- **Outer silhouette:** a compact capsule centered above the system gesture area, with visibly generous empty space on both sides. Do not stretch it across almost the full screen merely because its corners are round.
+- **Three equal destinations:** each gets one third of the usable inner width, a 20dp line icon above a short 11sp single-line label, a 2dp icon/label gap, and at least a 48dp square touch region. Inner shell padding is 3dp; normal shell height is approximately 54dp.
+- **Selection:** a filled inner pill occupies one slot and almost the full inner height. Keep a 3dp shell rim. Retain sage fill and teal content for the selected destination, muted content for the others, and native ripple/focus feedback.
+- **Copy:** compact labels are localized separately (Update / Controls / Live; 更新 / 車控 / 即時). Accessibility descriptions retain the full destination names, including Bluetooth / Update and Car controls. Page headings retain their original full copy.
+- **Sizing:** at normal font size, target `width = 0.52 × safeViewportWidth` and an aspect near 4:1. At large fonts or with longer translations, measure the actual label and expand all three slots equally before compromising readability. Minimum target size, readable labels and system insets take priority over the nominal ratio. Do not shrink text or clip it to preserve the screenshot shape. In wide windows cap the nominal width at 360dp; labels may require a larger accessible width within the safe viewport.
+- **Behavior:** selecting a destination updates its active inner pill. Preserve native tab semantics, existing destinations, state, lifecycle behavior and the stop-seat request when leaving car controls. No navigation animation may delay a stop request.
+- **Verification:** inspect the three actual App pages together at default font size, landscape and 200% text. Check horizontal centering, normal width/aspect, one-line labels, equal slots, 48dp targets, selected/inactive contrast, and full accessibility names. Screenshots must show real empty/disconnected states when no hardware is connected.
+
+Implementation authority: `AppUi.PillNavigation`, `AppUi.tab`, and `MainActivity`'s localized tab indicators. The same pattern is stored in `.impeccable/design.json` under `extensions.navigationPattern`; future App navigation changes must follow both records.
 
 The layout remains a scrollable single column in landscape and at larger font settings; no application breakpoint or alternative landscape composition is defined. Let native text measurement and scrolling carry expanded content.
 
@@ -193,7 +215,7 @@ Primary and secondary buttons use a native teal ripple with alpha `0x25`; naviga
 
 Use gently rounded control surfaces, slightly rounder content containers and a fully rounded navigation capsule. The capsule token is the implementation's large-radius sentinel; effective rounding is limited by the view's dimensions.
 
-Cards and secondary actions carry a thin boundary (1dp). Primary, disabled and selected fills have no added outline in the shared drawable. Selection is sage rather than a heavier border. Shared icons are custom geometric strokes with rounded caps and joins, drawn on a 24-unit coordinate grid with stroke width (1.7 units). Inline icons are normally 22dp; navigation icons are 23dp; directional controls use 24dp icons. Use these drawn icons instead of substituting emoji or typographic symbols.
+Cards and secondary actions carry a thin boundary (1dp). Primary, disabled and selected fills have no added outline in the shared drawable. Selection is sage rather than a heavier border. Shared icons are custom geometric strokes with rounded caps and joins, drawn on a 24-unit coordinate grid with stroke width (1.7 units). Inline icons are normally 22dp; navigation icons are 20dp; directional controls use 24dp icons. Use these drawn icons instead of substituting emoji or typographic symbols.
 
 ## Components
 

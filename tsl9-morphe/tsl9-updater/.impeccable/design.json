@@ -173,7 +173,57 @@
         "value": "Android RippleDrawable tint #19205C50",
         "purpose": "Navigation press feedback; timing is platform controlled."
       }
-    ]
+    ],
+    "navigationPattern": {
+      "name": "Compact centered pill navigation",
+      "status": "pinned user reference",
+      "reference": "User-provided dialer screenshot 11138.jpg; visual measurements only",
+      "referenceGeometry": {
+        "imageWidthPx": 858,
+        "pillWidthPxApprox": 450,
+        "pillHeightPxApprox": 110,
+        "viewportWidthRatioApprox": 0.52,
+        "aspectRatioApprox": 4.1
+      },
+      "geometry": {
+        "widthRatio": 0.52,
+        "nominalMaxWidthDp": 360,
+        "minimumSideClearanceDp": 16,
+        "normalHeightDpApprox": 54,
+        "innerPaddingDp": 3,
+        "minimumTargetDp": 48,
+        "slots": 3,
+        "equalSlotWidths": true,
+        "iconDp": 20,
+        "labelSp": 11,
+        "labelLines": 1,
+        "iconLabelGapDp": 2,
+        "bottomGapDp": 12
+      },
+      "accessibility": "Measure actual scaled localized labels; expand equal slots and height before clipping. Keep full destination accessibility names. Ratio and nominal maximum width yield to readable labels and 48dp targets.",
+      "selection": "One filled sage inner capsule, teal selected icon and label; retain white outer capsule, muted inactive content and native ripple/focus.",
+      "behavior": "Native destinations remain unchanged; leaving car controls requests seat stop immediately.",
+      "source": [
+        "AppUi.PillNavigation",
+        "AppUi.tab",
+        "MainActivity.tabIndicator"
+      ],
+      "verification": [
+        "default font width and aspect",
+        "horizontal centering",
+        "48dp square targets",
+        "full accessibility names",
+        "three locales",
+        "landscape",
+        "200 percent text"
+      ],
+      "antiPatterns": [
+        "nearly full-width bottom bar with rounded corners",
+        "font shrinking to preserve ratio",
+        "truncated labels",
+        "unconfirmed vehicle values in screenshots"
+      ]
+    }
   },
   "components": [
     {
@@ -212,9 +262,9 @@
       "name": "Destination capsule",
       "kind": "nav",
       "refersTo": "navigation",
-      "description": "Schematic three-destination capsule. Android owns the actual 5dp elevation shadow, keyboard focus and ripple.",
-      "html": "<nav class=\"ds-nav\" aria-label=\"Destinations\"><button class=\"ds-tab ds-active\" aria-current=\"page\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"23\" height=\"23\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7 17 16 12 21V3L17 8 7 17\"/></svg><span>Bluetooth / update</span></button><button class=\"ds-tab\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"23\" height=\"23\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 10H20V19H4ZM5 10 8 5H16L19 10M5 18V21M19 18V21\"/></svg><span>Car controls</span></button><button class=\"ds-tab\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"23\" height=\"23\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 20V13M12 20V4M19 20V9\"/></svg><span>Live data</span></button></nav>",
-      "css": ".ds-nav{display:flex;gap:0;padding:4px 5px;background:#fff;border-radius:999px}.ds-tab{display:flex;flex:1;min-width:0;min-height:64px;align-items:center;justify-content:center;flex-direction:column;gap:3px;padding:7px 5px;background:transparent;color:#59655f;border:0;border-radius:999px;font:12px sans-serif}.ds-tab.ds-active{background:#e1efe9;color:#205c50}.ds-tab:focus-visible{outline:auto}.ds-tab:active{background-image:linear-gradient(#205c5019,#205c5019)}"
+      "description": "Pinned centered compact capsule, nominally 52% of viewport width with an approximately 4:1 silhouette. Accessible text can expand it. Actual native screenshots are the product authority.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Destinations\"><button class=\"ds-tab ds-active\" aria-current=\"page\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7 17 16 12 21V3L17 8 7 17\"/></svg><span>Update</span></button><button class=\"ds-tab\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 10H20V19H4ZM5 10 8 5H16L19 10M5 18V21M19 18V21\"/></svg><span>Controls</span></button><button class=\"ds-tab\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 20V13M12 20V4M19 20V9\"/></svg><span>Live</span></button></nav>",
+      "css": ".ds-nav{display:flex;gap:0;box-sizing:border-box;width:clamp(156px,52vw,360px);margin-inline:auto;padding:3px;background:#fff;border-radius:999px}.ds-tab{display:flex;flex:1;min-width:48px;min-height:48px;align-items:center;justify-content:center;flex-direction:column;gap:2px;padding:3px 4px;background:transparent;color:#59655f;border:0;border-radius:999px;font:11px sans-serif;white-space:nowrap}.ds-tab.ds-active{background:#e1efe9;color:#205c50}.ds-tab:focus-visible{outline:auto}.ds-tab:active{background-image:linear-gradient(#205c5019,#205c5019)}"
     },
     {
       "name": "Detail disclosure",
@@ -234,7 +284,7 @@
   ],
   "narrative": {
     "northStar": "Concept02 — forest-teal native utility",
-    "overview": "The implemented identity pairs a warm light canvas with restrained forest teal, white containers and a floating capsule navigation bar. It is a native Android utility: controls, language handling and diagnostic text remain familiar, while shared surfaces and line icons connect the three destinations.\n\nThis record describes the current `0.7.0-test` source, not the previously published release. The implementation is the authority where the concept image or earlier screenshots differ. It does not establish physical-device, vehicle or hardware verification.",
+    "overview": "The implemented identity pairs a warm light canvas with restrained forest teal, white containers and a floating capsule navigation bar. It is a native Android utility: controls, language handling and diagnostic text remain familiar, while shared surfaces and line icons connect the three destinations.\n\nThis record describes the current `0.7.1-test` source, including the neutral Android package and portable build scripts. The implementation is the authority where the concept image or earlier screenshots differ. It does not establish physical-device, vehicle or hardware verification.",
     "keyCharacteristics": [
       "One action accent, with sage selection and explicit muted disabled states.",
       "Scrollable single-column pages with paired controls and metric tiles.",

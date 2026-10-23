@@ -1,5 +1,6 @@
-param([string]$InputApk = 'C:\Users\locky\Downloads\安卓-TSL电子模块-1.2.7.apk')
+param([Parameter(Mandatory)][string]$InputApk)
 $ErrorActionPreference = 'Stop'
+$InputApk = (Resolve-Path -LiteralPath $InputApk).Path
 $projectRoot = Split-Path $PSScriptRoot -Parent
 Set-Location -LiteralPath $projectRoot
 $expected = '10d7d92f16d7806d841fcfd152b318601f6c234a2445e99e0729709aacc9c3ee'
