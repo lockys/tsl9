@@ -473,6 +473,13 @@
       "replacements": [],
       "origin_sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669",
       "sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669"
+    },
+    {
+      "origin": "experiments/tsl9-peripheral-write/src/peripheral_write.v2.c",
+      "destination": "src/native/receive/peripheral_write.c",
+      "replacements": [],
+      "origin_sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0",
+      "sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0"
     }
   ],
   "native_units": [
@@ -812,6 +819,19 @@
       ],
       "scope": "Ordinary C predicate42B/15i entirely original-equal including unsigned branches and A4/A5 residues; only empty architecture-register/GP ports. Three volatile reads, no stores/frame/calls/UND/RELA. GP pointer provenance, memory validity, IRQ and semantic flag identity remain unknown; no physical or OTA readiness.",
       "origin_unit_sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669"
+    },
+    {
+      "name": "peripheral-write",
+      "profile": "peripheral-a0-a6",
+      "origin_unit": "experiments/tsl9-peripheral-write/src/peripheral_write.v2.c",
+      "curated_unit": "src/native/receive/peripheral_write.c",
+      "evidence": "experiments/tsl9-peripheral-write/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-peripheral-write/build/verified-v2/c/verification.json",
+        "experiments/tsl9-peripheral-write/build/verified-v2/cpp/verification.json"
+      ],
+      "scope": "212B/72i across seven private regions; C volatile reads/writes/arithmetic plus empty physical-register ports and seven explicit symbolic controls/RET. Nominal linked whole212B equals original, native7RELA/0UND. Three short-circuit fresh status reads, AND1 initial control write, full-byte8/9 ID contributions, inputbyte10 writeback, ordered payload bytes and A2/A4/A6 residues retained. No independent ordinary C ABI, physical silicon/MMIO/IRQ/ROM or OTA proof.",
+      "origin_unit_sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0"
     }
   ],
   "legacy_groups": [

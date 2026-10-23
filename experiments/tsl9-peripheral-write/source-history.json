@@ -1,0 +1,343 @@
+{
+  "schema": "TSL9-peripheral-write-finite-source-history-v1",
+  "compiler_profiles": 1,
+  "compiler_flag_search": false,
+  "source_versions": 2,
+  "active_source": "src/peripheral_write.v2.c",
+  "active_formal": "build/verified-v2",
+  "source_history": [
+    {
+      "version": 1,
+      "source": "src/peripheral_write.v1.c",
+      "sha256": "374c5bb4f1808c7b0919e559f7978b1c977a2313bb86c78238226dc521199b1d",
+      "note": "Ordinary C plus empty register ports; compiled212B but block layout/branch targets differ from original, not promoted.",
+      "raw_local_artifacts": {
+        "build/probe-v1/c/compile.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v1/c/COMPONENT-ONLY-NOT-FIRMWARE.elf": {
+          "sha256": "d609ed60e7ab68cbfb505347de252760423a8f2807527f1376c2c9050750bbba",
+          "bytes": 3884
+        },
+        "build/probe-v1/c/IR.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v1/c/link.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v1/c/linked.log": {
+          "sha256": "d5994ab8cd117bdeb5c9846e62b486de3c0db4057ddf65e17ff2fa26b1c31804",
+          "bytes": 3873
+        },
+        "build/probe-v1/c/native.d": {
+          "sha256": "5708aee13b5473eb293aebc23626b252a2460851f6ce8c8547392d8d80b9c69f",
+          "bytes": 258
+        },
+        "build/probe-v1/c/native.ll": {
+          "sha256": "e52563674a2c935ad342f98d0b1534c394387c460622293cd224acab61ece6da",
+          "bytes": 54415
+        },
+        "build/probe-v1/c/native.o": {
+          "sha256": "d5e2d858d295af02b88b1f0d6dd6bbb8c86aad33fc0a1982bfebd53c3f9e7cdd",
+          "bytes": 1084
+        },
+        "build/probe-v1/c/object.log": {
+          "sha256": "f43cf682f28da6ac4ddb3112ffb854a63d61610f55d5c8ae5df5c399d1012d79",
+          "bytes": 4225
+        },
+        "build/probe-v1/c/recipes.json": {
+          "sha256": "e27b10f6d393981643b9f7a31557b82bf5b43ffbb3ce9ee1d94950bb7178011c",
+          "bytes": 3639
+        },
+        "build/probe-v1/cpp/compile.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v1/cpp/COMPONENT-ONLY-NOT-FIRMWARE.elf": {
+          "sha256": "d609ed60e7ab68cbfb505347de252760423a8f2807527f1376c2c9050750bbba",
+          "bytes": 3884
+        },
+        "build/probe-v1/cpp/IR.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v1/cpp/link.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v1/cpp/linked.log": {
+          "sha256": "606f67a1a644610ac9bad2b212971f027fce19345de69128fbc1ce0ac039fedf",
+          "bytes": 3875
+        },
+        "build/probe-v1/cpp/native.d": {
+          "sha256": "5708aee13b5473eb293aebc23626b252a2460851f6ce8c8547392d8d80b9c69f",
+          "bytes": 258
+        },
+        "build/probe-v1/cpp/native.ll": {
+          "sha256": "73cb928209d6969f07a2abac2bea64ceae8c4d33202735a6a9073a913db268a3",
+          "bytes": 54439
+        },
+        "build/probe-v1/cpp/native.o": {
+          "sha256": "d5e2d858d295af02b88b1f0d6dd6bbb8c86aad33fc0a1982bfebd53c3f9e7cdd",
+          "bytes": 1084
+        },
+        "build/probe-v1/cpp/object.log": {
+          "sha256": "6ae58a75cb7d28097d92b5ae60076ec72e0d88f9b08a387dfb74c8fbf764ed6c",
+          "bytes": 4227
+        },
+        "build/probe-v1/cpp/recipes.json": {
+          "sha256": "ab29dc1d6384c54de0196461706386edaa26d20d7127d8fb771aa4f7e863b831",
+          "bytes": 3711
+        }
+      },
+      "original_linker": "component.v1.ld",
+      "original_linker_sha256": "6bfde0c23adf1d47548d13338aba440cfad7c25406ebd69ff13f48dad2728eaf"
+    },
+    {
+      "version": 2,
+      "source": "src/peripheral_write.v2.c",
+      "sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0",
+      "note": "Seven private regions; C owns all arithmetic/memory, explicit symbolic branch/return ports retain original layout. Nominal212B exact original; not ordinary independent C ABI.",
+      "raw_local_artifacts": {
+        "build/probe-v2/c/compile.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v2/c/COMPONENT-ONLY-NOT-FIRMWARE.elf": {
+          "sha256": "72f6b8de5c980d1b10b4db363878ffbc6237b6068661d09503e7fb0c5bb5ccda",
+          "bytes": 4288
+        },
+        "build/probe-v2/c/IR.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v2/c/link.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v2/c/linked.log": {
+          "sha256": "9df437cd376189bb1de5ce20be7225813e90311535110ff45dc7653734106802",
+          "bytes": 4851
+        },
+        "build/probe-v2/c/native.d": {
+          "sha256": "4fb4437f008e7d1895ea2aabe68cba027689a88520dfc4d463f51b888e765ba0",
+          "bytes": 258
+        },
+        "build/probe-v2/c/native.ll": {
+          "sha256": "967f2cf763cb6bdfba7beb42e309aaa4cc500ba53f8c70237798f884b2166330",
+          "bytes": 59886
+        },
+        "build/probe-v2/c/native.o": {
+          "sha256": "abf8f98e39cef9d0d5a156727ab5205f6a2de31209909de6aae020c7b1c2c281",
+          "bytes": 2084
+        },
+        "build/probe-v2/c/object.log": {
+          "sha256": "b09de446845e957e1b55644d0b8df44abac8eb37bce7ea01713204c9f96a2fc6",
+          "bytes": 7076
+        },
+        "build/probe-v2/c/recipes.json": {
+          "sha256": "d5fdfe66cd0735ed3515e74669385e9af8ec673d36463d6c10f7cefae62f9ec5",
+          "bytes": 3639
+        },
+        "build/probe-v2/cpp/compile.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v2/cpp/COMPONENT-ONLY-NOT-FIRMWARE.elf": {
+          "sha256": "72f6b8de5c980d1b10b4db363878ffbc6237b6068661d09503e7fb0c5bb5ccda",
+          "bytes": 4288
+        },
+        "build/probe-v2/cpp/IR.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v2/cpp/link.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/probe-v2/cpp/linked.log": {
+          "sha256": "d65448feaeb080c12bea2c42d098d39ef7564fb449590b8e04edc7a32ecbe9a4",
+          "bytes": 4853
+        },
+        "build/probe-v2/cpp/native.d": {
+          "sha256": "4fb4437f008e7d1895ea2aabe68cba027689a88520dfc4d463f51b888e765ba0",
+          "bytes": 258
+        },
+        "build/probe-v2/cpp/native.ll": {
+          "sha256": "619ba2ec9ea1a7290ba1116cc9475a232357f7212c3b2e991695daedbc0df506",
+          "bytes": 59988
+        },
+        "build/probe-v2/cpp/native.o": {
+          "sha256": "abf8f98e39cef9d0d5a156727ab5205f6a2de31209909de6aae020c7b1c2c281",
+          "bytes": 2084
+        },
+        "build/probe-v2/cpp/object.log": {
+          "sha256": "f0aea80c1b07cc2e733db4bcfaccf55ba9648327b4e3df1c9e1dce014cd6bebc",
+          "bytes": 7078
+        },
+        "build/probe-v2/cpp/recipes.json": {
+          "sha256": "cd76d13c277835fac0d68fb66ff56025853f7d4121113808e7ff0889cc1837ed",
+          "bytes": 3711
+        }
+      },
+      "original_linker": "component.ld",
+      "original_linker_sha256": "b1e83307573668ac87ae5adb5229328bbb636b32cc127e15901afa3c09cc8dad"
+    }
+  ],
+  "formal_history": [
+    {
+      "version": 1,
+      "mode": "c",
+      "result": "failed test setup",
+      "reason": "Negative alternate_GPR anchor used assembly load mnemonic although load is emitted from C IR. Native/IR artifacts preserved; no verification receipt.",
+      "raw_local_artifacts": {
+        "build/verified-v1/c/compile.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/verified-v1/c/COMPONENT-ONLY-NOT-FIRMWARE.elf": {
+          "sha256": "72f6b8de5c980d1b10b4db363878ffbc6237b6068661d09503e7fb0c5bb5ccda",
+          "bytes": 4288
+        },
+        "build/verified-v1/c/IR.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/verified-v1/c/link.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/verified-v1/c/linked.log": {
+          "sha256": "fa33ceb460d95a990aa724c904059a1738efbe7d60db8f2573ffbab5608c01cb",
+          "bytes": 4854
+        },
+        "build/verified-v1/c/native.d": {
+          "sha256": "4fb4437f008e7d1895ea2aabe68cba027689a88520dfc4d463f51b888e765ba0",
+          "bytes": 258
+        },
+        "build/verified-v1/c/native.ll": {
+          "sha256": "967f2cf763cb6bdfba7beb42e309aaa4cc500ba53f8c70237798f884b2166330",
+          "bytes": 59886
+        },
+        "build/verified-v1/c/native.o": {
+          "sha256": "abf8f98e39cef9d0d5a156727ab5205f6a2de31209909de6aae020c7b1c2c281",
+          "bytes": 2084
+        },
+        "build/verified-v1/c/object.log": {
+          "sha256": "6a7e8dbfe383b229219741d0d5bd6690c1f6995a2107e94eb4e146f5a778f2df",
+          "bytes": 7079
+        },
+        "build/verified-v1/c/recipes.json": {
+          "sha256": "0781844ede687b7a5ef9d977d6bef46c3d8a3a60aec683f64f372b8cdd0c3c62",
+          "bytes": 3660
+        }
+      }
+    },
+    {
+      "version": 2,
+      "result": "PASS C/CPP197 negatives",
+      "reason": "Only specification mutation anchor changes to actual c.bnez port; source/compiler flags unchanged.",
+      "raw_local_artifacts": {
+        "build/verified-v2/c/compile.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/verified-v2/c/COMPONENT-ONLY-NOT-FIRMWARE.elf": {
+          "sha256": "72f6b8de5c980d1b10b4db363878ffbc6237b6068661d09503e7fb0c5bb5ccda",
+          "bytes": 4288
+        },
+        "build/verified-v2/c/IR.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/verified-v2/c/link.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/verified-v2/c/linked.log": {
+          "sha256": "72dd63d087088b48dda9e9ba6c075b06c4fb9da47c892d5053bc4b87f2738b50",
+          "bytes": 4854
+        },
+        "build/verified-v2/c/native.d": {
+          "sha256": "4fb4437f008e7d1895ea2aabe68cba027689a88520dfc4d463f51b888e765ba0",
+          "bytes": 258
+        },
+        "build/verified-v2/c/native.ll": {
+          "sha256": "967f2cf763cb6bdfba7beb42e309aaa4cc500ba53f8c70237798f884b2166330",
+          "bytes": 59886
+        },
+        "build/verified-v2/c/native.o": {
+          "sha256": "abf8f98e39cef9d0d5a156727ab5205f6a2de31209909de6aae020c7b1c2c281",
+          "bytes": 2084
+        },
+        "build/verified-v2/c/object.log": {
+          "sha256": "bd9081f0d79882e3636c6f34feb587dd8ca3d57af1ee79845a9b5d43c3e1d588",
+          "bytes": 7079
+        },
+        "build/verified-v2/c/recipes.json": {
+          "sha256": "b266e64f7a154a022a38e97ef50a2321eb0a241ebf86e7025307bcb6578c4548",
+          "bytes": 3660
+        },
+        "build/verified-v2/c/verification.json": {
+          "sha256": "c78d8f6cdcba149067ae3c079094a94e5ea1030ce9f8fe27dcab0ce5d44b08d1",
+          "bytes": 51757
+        },
+        "build/verified-v2/cpp/compile.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/verified-v2/cpp/COMPONENT-ONLY-NOT-FIRMWARE.elf": {
+          "sha256": "72f6b8de5c980d1b10b4db363878ffbc6237b6068661d09503e7fb0c5bb5ccda",
+          "bytes": 4288
+        },
+        "build/verified-v2/cpp/IR.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/verified-v2/cpp/link.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "build/verified-v2/cpp/linked.log": {
+          "sha256": "86830f3a492650228ec9a489b2390a0fc12079ce280fe1738e525c4b9f61a4d8",
+          "bytes": 4856
+        },
+        "build/verified-v2/cpp/native.d": {
+          "sha256": "4fb4437f008e7d1895ea2aabe68cba027689a88520dfc4d463f51b888e765ba0",
+          "bytes": 258
+        },
+        "build/verified-v2/cpp/native.ll": {
+          "sha256": "619ba2ec9ea1a7290ba1116cc9475a232357f7212c3b2e991695daedbc0df506",
+          "bytes": 59988
+        },
+        "build/verified-v2/cpp/native.o": {
+          "sha256": "abf8f98e39cef9d0d5a156727ab5205f6a2de31209909de6aae020c7b1c2c281",
+          "bytes": 2084
+        },
+        "build/verified-v2/cpp/object.log": {
+          "sha256": "9243aa3ee0f9816e28353b011bcfb8e5b1a7af0d89c5eccc8710c4d8cb0cc7b7",
+          "bytes": 7081
+        },
+        "build/verified-v2/cpp/recipes.json": {
+          "sha256": "63bdd36986659af457b595db12c30ced532e769bbd3df8482deedd9ba9f3e03b",
+          "bytes": 3732
+        },
+        "build/verified-v2/cpp/verification.json": {
+          "sha256": "f66b821ff06c17954617ad10f3c42d82130208ec18a229c878e50e391ad3ed30",
+          "bytes": 51835
+        }
+      }
+    }
+  ],
+  "failed_spec_original": {
+    "path": "history/spec.pre-ir-anchor-fix.json",
+    "sha256": "44b93c71f6f1a45c001b2b0a84491b2e4e969e34b5413480958c85a0cde9b1d2"
+  },
+  "active_spec_sha256": "e8901de396c4e1f918c2202a5d9bd6adab2bc1b0b48aa8588d1fb80f1f033328",
+  "probe_history_input_replay_claimed": false,
+  "all_original_build_files_preserved_local": true,
+  "firmware_ready": false
+}

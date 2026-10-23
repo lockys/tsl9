@@ -1,0 +1,154 @@
+{
+  "schema": "TSL9-offline-CAN-SDK-correspondence-v1",
+  "references": {
+    "wch-ch32v20x.h": {
+      "path": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wch-ch32v20x.h",
+      "sha256": "f7afdff0cca29cea10ea104915a5a21675e49c980f07af789daf37ea80fd142b",
+      "bytes": 348992
+    },
+    "wch-ch32v20x_can.h": {
+      "path": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wch-ch32v20x_can.h",
+      "sha256": "d8b342706b6d4f83f6a7588f1d1d740724faf954e61cf8682734406957db6346",
+      "bytes": 20133
+    },
+    "wch-ch32v20x_can.c": {
+      "path": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wch-ch32v20x_can.c",
+      "sha256": "3e336267e39b9a9a513d179009752f6d5d1a0a3e285150dbacc36de137a46371",
+      "bytes": 32424
+    }
+  },
+  "defines": [
+    {
+      "file": "wch-ch32v20x.h",
+      "line": 819,
+      "text": "#define PERIPH_BASE                             ((uint32_t)0x40000000) /* Peripheral base address in the alias region */"
+    },
+    {
+      "file": "wch-ch32v20x.h",
+      "line": 821,
+      "text": "#define APB1PERIPH_BASE                         (PERIPH_BASE)"
+    },
+    {
+      "file": "wch-ch32v20x.h",
+      "line": 838,
+      "text": "#define CAN1_BASE                               (APB1PERIPH_BASE + 0x6400)"
+    },
+    {
+      "file": "wch-ch32v20x.h",
+      "line": 1478,
+      "text": "#define CAN_TSTATR_TME0                         ((uint32_t)0x04000000) /* Transmit Mailbox 0 Empty */"
+    },
+    {
+      "file": "wch-ch32v20x.h",
+      "line": 1479,
+      "text": "#define CAN_TSTATR_TME1                         ((uint32_t)0x08000000) /* Transmit Mailbox 1 Empty */"
+    },
+    {
+      "file": "wch-ch32v20x.h",
+      "line": 1480,
+      "text": "#define CAN_TSTATR_TME2                         ((uint32_t)0x10000000) /* Transmit Mailbox 2 Empty */"
+    },
+    {
+      "file": "wch-ch32v20x_can.h",
+      "line": 227,
+      "text": "#define CAN_Id_Standard                     ((uint32_t)0x00000000) /* Standard Id */"
+    },
+    {
+      "file": "wch-ch32v20x_can.h",
+      "line": 238,
+      "text": "#define CAN_TxStatus_NoMailBox              ((uint8_t)0x04) /* CAN cell did not provide an empty mailbox */"
+    },
+    {
+      "file": "wch-ch32v20x_can.c",
+      "line": 19,
+      "text": "#define TMIDxR_TXRQ                  ((uint32_t)0x00000001)"
+    }
+  ],
+  "SDK_function": {
+    "file": "wch-ch32v20x_can.c",
+    "name": "CAN_Transmit",
+    "first_line": 399,
+    "last_line": 451
+  },
+  "firmware_span": "0x18CA4..0x18D78",
+  "firmware_span_sha256": "f2e7e2a7bc63053c45f5951e801c84bd0b83dc603168267e54bde8aa4bd86960",
+  "confirmed_static_correspondences": [
+    {
+      "original": "caller base0x40006400",
+      "SDK": "CAN1_BASE = APB1PERIPH_BASE+0x6400; APB1=0x40000000"
+    },
+    {
+      "original": "fresh statusword at+8, bits26/27/28",
+      "SDK": "CAN_TypeDef.TSTATR at+8 and CAN_TSTATR_TME0/1/2"
+    },
+    {
+      "original": "three banks, stride16, offsets384/388/392/396",
+      "SDK": "8words+88reserved words =384; sTxMailBox[3], each four32-bit words TXMIR/TXMDTR/TXMDLR/TXMDHR"
+    },
+    {
+      "original": "record words0/4, bytes8/9/10, payload11..18",
+      "SDK": "CanTxMsg StdId/ExtId/IDE/RTR/DLC/Data[8]"
+    },
+    {
+      "original": "StdId<<21 or ExtId<<3 with complete IDE/RTR bytes",
+      "SDK": "CAN_Transmit identifier composition"
+    },
+    {
+      "original": "old control AND1; DLC AND15; two fresh length RMWs; payload two words; final OR1",
+      "SDK": "CAN_Transmit control/length/data operations"
+    },
+    {
+      "original": "selector0/1/2 or4",
+      "SDK": "mailbox index or CAN_TxStatus_NoMailBox"
+    }
+  ],
+  "inference": "Strong correspondence to a CAN_Transmit/bxCAN-style SDK routine; CH32V20x family remains a candidate, not unique physical identification.",
+  "not_proved": [
+    "Actual board/part marking, pinout and transceiver topology",
+    "Exact SDK origin/compiler provenance of the firmware",
+    "C expression evaluation order or all memory aliases/asynchronous effects",
+    "Observed CAN transmission, caller/resident ABI, complete ROM/startup/IRQ and BLE OTA compatibility"
+  ],
+  "network_access": false,
+  "target_executed": false,
+  "SDK_executed": false,
+  "hardware_access": false,
+  "CanTxMsg_layout": {
+    "source_file": "wch-ch32v20x_can.h",
+    "first_line": 109,
+    "last_line": 131,
+    "method": "Static plain-struct declaration parsing under recorded RV32 ILP32 uint32=4/uint8=1 alignments; no target execution",
+    "fields": [
+      {
+        "name": "StdId",
+        "offset": 0,
+        "bytes": 4
+      },
+      {
+        "name": "ExtId",
+        "offset": 4,
+        "bytes": 4
+      },
+      {
+        "name": "IDE",
+        "offset": 8,
+        "bytes": 1
+      },
+      {
+        "name": "RTR",
+        "offset": 9,
+        "bytes": 1
+      },
+      {
+        "name": "DLC",
+        "offset": 10,
+        "bytes": 1
+      },
+      {
+        "name": "Data",
+        "offset": 11,
+        "bytes": 8
+      }
+    ]
+  }
+}
