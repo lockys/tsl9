@@ -322,6 +322,61 @@ def audit(base, record, manifest):
                         dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
                     and pair[1]['allocated_bytes'] == 24 and not pair[1]['UND'] and not pair[1]['relocations'],
                     'Two actual C leaves6/18B with fully assembler-resolved local branch; source-copy proof does not prove original placement, consumer composition or firmware readiness')
+            if unit['name'] == 'spi-write-providers':
+                regions = [
+                    ('tsl9_tagged_external_168de', 8, 'a1d0ec6423335f195d383894deb05dce5a077d9c260f5354925d5630a0874e4a'),
+                    ('tsl9_spi_write_guard1_168e6', 10, 'fef5e0881e1bb44f8a259a200031a3c1bc65cc2ffb765b4c5f376bb1a8cfb26f'),
+                    ('tsl9_spi_write_select1_168f0', 10, '13a82687c82caf281355e52fa209ce84f10efbe5860bd64bd94acc4508a0cd62'),
+                    ('tsl9_spi_write_guard2_168fa', 4, '181d92240cb60774eafd0ba9b6add77325bfd14897d3c23c06bcd7bc40c51583'),
+                    ('tsl9_spi_write_select2_168fe', 10, '6113643b23c3baff7dd65a0e47cedec2eba597e7e21553c8b4c8f90c1be85470'),
+                    ('tsl9_spi_write_command_16908', 8, 'd1909fab0aabeea35b5109be25915263d591adc0510d340f77bb4bc168bc8757'),
+                    ('tsl9_spi_write_address_16910', 10, '53694d26bc7834a1e0800dafa7c45b7d691d805c5fbef5d0b786946c67e54698'),
+                    ('tsl9_spi_write_test_1691a', 4, 'aa357e51c42208c36bcd1ae834962f6eb2f1fc99ae5056ae880187a90d1fe635'),
+                    ('tsl9_spi_write_finish_1691e', 20, 'ecdf8a5bc400a0d7efc337c1feb805edc02ff5b9b0df9d4408a7583bb6800034'),
+                    ('tsl9_spi_write_payload_16932', 12, '5ec4e3d86ef01b179da9d4ed544bdbe934606b68b4eb4c22107c4d82e8e6fa16'),
+                    ('tsl9_tagged_external_1693e', 4, 'ebd7cd0772b876a27b944db11292d9d2a9964546bdfac87c32dd522230eedb5f'),
+                    ('tsl9_spi_modify_guard1_16942', 6, '4442414edbddcb593816aa2be465c2e3f8d74b5d2931427d682f3788c166cb7b'),
+                    ('tsl9_spi_modify_select1_16948', 10, '13a82687c82caf281355e52fa209ce84f10efbe5860bd64bd94acc4508a0cd62'),
+                    ('tsl9_spi_modify_guard2_16952', 4, '181d92240cb60774eafd0ba9b6add77325bfd14897d3c23c06bcd7bc40c51583'),
+                    ('tsl9_spi_modify_select2_16956', 10, '6113643b23c3baff7dd65a0e47cedec2eba597e7e21553c8b4c8f90c1be85470'),
+                    ('tsl9_spi_modify_command_16960', 12, 'fa33116ad5c19c31e53b1c1c5b19602d571b5aedde4f1e66cc51b4006e999b59'),
+                    ('tsl9_spi_modify_address_1696c', 8, 'b9751c6c7ad7d272e7e0bb4127f1396bf9697146d26bd7370eae55480bc6051b'),
+                    ('tsl9_spi_modify_mask_16974', 8, 'd1a5eeec6d19a38ee14bfca73a736a53a4e09e58dc2e87829c637495205ad04e'),
+                    ('tsl9_spi_modify_value_1697c', 8, '9f6eacb7622e52ef27fc913a48577ca52c537786a3793d68bdf0529442649867'),
+                    ('tsl9_spi_modify_finish_16984', 16, '60337d614e6f38fa910e343b1ee1eb9e47287df824794eb72f7f50bb742aa9b8'),
+                ]
+                edges = [
+                    ('tsl9_spi_write_guard1_168e6', 8, 44, 'tsl9_spi_write_guard2_168fa'),
+                    ('tsl9_spi_write_guard2_168fa', 2, 44, 'tsl9_spi_write_command_16908'),
+                    ('tsl9_spi_write_command_16908', 4, 17, 'tsl9_spi_transfer_entry_16896'),
+                    ('tsl9_spi_write_address_16910', 6, 17, 'tsl9_spi_transfer_entry_16896'),
+                    ('tsl9_spi_write_test_1691a', 0, 16, 'tsl9_spi_write_payload_16932'),
+                    ('tsl9_spi_write_payload_16932', 6, 17, 'tsl9_spi_transfer_entry_16896'),
+                    ('tsl9_spi_write_payload_16932', 10, 45, 'tsl9_spi_write_test_1691a'),
+                    ('tsl9_spi_modify_guard1_16942', 4, 44, 'tsl9_spi_modify_guard2_16952'),
+                    ('tsl9_spi_modify_guard2_16952', 2, 44, 'tsl9_spi_modify_command_16960'),
+                    ('tsl9_spi_modify_command_16960', 8, 17, 'tsl9_spi_transfer_entry_16896'),
+                    ('tsl9_spi_modify_address_1696c', 4, 17, 'tsl9_spi_transfer_entry_16896'),
+                    ('tsl9_spi_modify_mask_16974', 4, 17, 'tsl9_spi_transfer_entry_16896'),
+                    ('tsl9_spi_modify_value_1697c', 4, 17, 'tsl9_spi_transfer_entry_16896'),
+                ]
+                need(pair[1]['functions'] == sorted([
+                    dict(name=n,binding=1,bytes=z,code_sha256=h) for n,z,h in regions],key=lambda x:x['name'])
+                    and pair[1]['allocated_sections'] == [
+                        dict(name='.text.'+n,bytes=z,flags=6,type=1,sha256=h) for n,z,h in regions]
+                    and pair[1]['allocated_bytes'] == 182
+                    and pair[1]['UND'] == ['tsl9_spi_transfer_entry_16896']
+                    and not pair[1]['global_ABS']
+                    and pair[1]['relocations'] == [
+                        dict(owner='.text.'+n,offset=o,type=k,addend=0,symbol=t) for n,o,k,t in edges],
+                    'Twenty private182B regions/13pending controls/one genuine16896 UND; exact source bodies and live-state ports do not prove hardware or firmware readiness')
+                for variant in ('origin','curated'):
+                    symbols = reader(base/unit['name']/mode/variant/'unit.o').symbols
+                    globals_ = [s for s in symbols if s['info']>>4]
+                    need(all(s['info']>>4 == 1 and s['other'] == 0 and s['index'] != 0xfff1 for s in globals_)
+                        and [s for s in globals_ if s['index'] == 0] == [
+                            dict(name='tsl9_spi_transfer_entry_16896',value=0,size=0,info=16,other=0,index=0)],
+                        'Strong visible genuine definitions and exact zero-value/size unresolved SPI provider')
             if unit['name'] == 'tagged-dispatch':
                 regions = [
                     ('tsl9_dispatch_external_16b7c', 16, '7555b3ff425bfe27d122aa9f0fa3751b0474b3b146aff45df72527c948acff8b'),

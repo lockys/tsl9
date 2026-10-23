@@ -1,0 +1,917 @@
+{
+  "schema": "TSL9-SPI-write-frozen-spec-v1",
+  "reader": "experiments/tsl9-spi-transfer-leaf/verify.py",
+  "evidence": "analysis/spi-write-2026-10-23/original-window.json",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "span_sha256": "f7e6faa9ea1fd357a35e2c7a726a901dd233225fd726c15a3d006733cfba792f",
+  "pins": {
+    "experiments/tsl9-spi-write-providers/src/spi_write.v1.c": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2",
+    "experiments/tsl9-spi-write-providers/probe.py": "553c8b7e944bee5d5fd10c4c18ac275a7fba3efe26c0cbfab3f4d8c7fc56c2ba",
+    "experiments/tsl9-spi-write-providers/component.ld": "3373a7a26974ad2da8837a1a3b579dd829b74be192c07d66886985239ed69d0b",
+    "experiments/tsl9-spi-write-providers/decode.py": "8286fb6c85e3bcb7a12fc0422b66334e38b21721db5cae5597423b79e46409c2",
+    "experiments/tsl9-spi-transfer-leaf/verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+    "analysis/spi-write-2026-10-23/original-window.json": "8703d01d9950c4878ca3142e3a8f8bc829fe5fcb7b5ee20c8b43025e906841a7"
+  },
+  "tools": {
+    "clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+  },
+  "stdint_sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+  "regions": [
+    [
+      "tsl9_tagged_external_168de",
+      0,
+      8
+    ],
+    [
+      "tsl9_spi_write_guard1_168e6",
+      8,
+      10
+    ],
+    [
+      "tsl9_spi_write_select1_168f0",
+      18,
+      10
+    ],
+    [
+      "tsl9_spi_write_guard2_168fa",
+      28,
+      4
+    ],
+    [
+      "tsl9_spi_write_select2_168fe",
+      32,
+      10
+    ],
+    [
+      "tsl9_spi_write_command_16908",
+      42,
+      8
+    ],
+    [
+      "tsl9_spi_write_address_16910",
+      50,
+      10
+    ],
+    [
+      "tsl9_spi_write_test_1691a",
+      60,
+      4
+    ],
+    [
+      "tsl9_spi_write_finish_1691e",
+      64,
+      20
+    ],
+    [
+      "tsl9_spi_write_payload_16932",
+      84,
+      12
+    ],
+    [
+      "tsl9_tagged_external_1693e",
+      96,
+      4
+    ],
+    [
+      "tsl9_spi_modify_guard1_16942",
+      100,
+      6
+    ],
+    [
+      "tsl9_spi_modify_select1_16948",
+      106,
+      10
+    ],
+    [
+      "tsl9_spi_modify_guard2_16952",
+      116,
+      4
+    ],
+    [
+      "tsl9_spi_modify_select2_16956",
+      120,
+      10
+    ],
+    [
+      "tsl9_spi_modify_command_16960",
+      130,
+      12
+    ],
+    [
+      "tsl9_spi_modify_address_1696c",
+      142,
+      8
+    ],
+    [
+      "tsl9_spi_modify_mask_16974",
+      150,
+      8
+    ],
+    [
+      "tsl9_spi_modify_value_1697c",
+      158,
+      8
+    ],
+    [
+      "tsl9_spi_modify_finish_16984",
+      166,
+      16
+    ]
+  ],
+  "relocations": [
+    [
+      16,
+      44,
+      "tsl9_spi_write_guard2_168fa",
+      0
+    ],
+    [
+      30,
+      44,
+      "tsl9_spi_write_command_16908",
+      0
+    ],
+    [
+      46,
+      17,
+      "tsl9_spi_transfer_entry_16896",
+      0
+    ],
+    [
+      56,
+      17,
+      "tsl9_spi_transfer_entry_16896",
+      0
+    ],
+    [
+      60,
+      16,
+      "tsl9_spi_write_payload_16932",
+      0
+    ],
+    [
+      90,
+      17,
+      "tsl9_spi_transfer_entry_16896",
+      0
+    ],
+    [
+      94,
+      45,
+      "tsl9_spi_write_test_1691a",
+      0
+    ],
+    [
+      104,
+      44,
+      "tsl9_spi_modify_guard2_16952",
+      0
+    ],
+    [
+      118,
+      44,
+      "tsl9_spi_modify_command_16960",
+      0
+    ],
+    [
+      138,
+      17,
+      "tsl9_spi_transfer_entry_16896",
+      0
+    ],
+    [
+      146,
+      17,
+      "tsl9_spi_transfer_entry_16896",
+      0
+    ],
+    [
+      154,
+      17,
+      "tsl9_spi_transfer_entry_16896",
+      0
+    ],
+    [
+      162,
+      17,
+      "tsl9_spi_transfer_entry_16896",
+      0
+    ]
+  ],
+  "undefined": [
+    "tsl9_spi_transfer_entry_16896"
+  ],
+  "typed_rows": [
+    [
+      0,
+      2,
+      "ADDI",
+      2,
+      2,
+      -32
+    ],
+    [
+      2,
+      2,
+      "SW32",
+      8,
+      2,
+      24
+    ],
+    [
+      4,
+      2,
+      "SW32",
+      9,
+      2,
+      20
+    ],
+    [
+      6,
+      2,
+      "SW32",
+      1,
+      2,
+      28
+    ],
+    [
+      8,
+      4,
+      "ANDI",
+      15,
+      10,
+      1
+    ],
+    [
+      12,
+      2,
+      "MV",
+      8,
+      12
+    ],
+    [
+      14,
+      2,
+      "MV",
+      9,
+      13
+    ],
+    [
+      16,
+      2,
+      "BEQZ",
+      15,
+      92410
+    ],
+    [
+      18,
+      4,
+      "LUI",
+      15,
+      1073811456
+    ],
+    [
+      22,
+      2,
+      "ADDI",
+      14,
+      0,
+      16
+    ],
+    [
+      24,
+      4,
+      "SW32",
+      14,
+      15,
+      -2028
+    ],
+    [
+      28,
+      2,
+      "ANDI",
+      10,
+      10,
+      2
+    ],
+    [
+      30,
+      2,
+      "BEQZ",
+      10,
+      92424
+    ],
+    [
+      32,
+      4,
+      "LUI",
+      15,
+      1073811456
+    ],
+    [
+      36,
+      2,
+      "ADDI",
+      14,
+      0,
+      1
+    ],
+    [
+      38,
+      4,
+      "SW32",
+      14,
+      15,
+      -2028
+    ],
+    [
+      42,
+      2,
+      "ADDI",
+      10,
+      0,
+      2
+    ],
+    [
+      44,
+      2,
+      "SW32",
+      11,
+      2,
+      12
+    ],
+    [
+      46,
+      4,
+      "JAL",
+      1,
+      92310
+    ],
+    [
+      50,
+      2,
+      "LW32",
+      11,
+      2,
+      12
+    ],
+    [
+      52,
+      2,
+      "ADD",
+      9,
+      9,
+      8
+    ],
+    [
+      54,
+      2,
+      "MV",
+      10,
+      11
+    ],
+    [
+      56,
+      4,
+      "JAL",
+      1,
+      92310
+    ],
+    [
+      60,
+      4,
+      "BNE",
+      8,
+      9,
+      92466
+    ],
+    [
+      64,
+      2,
+      "LW32",
+      1,
+      2,
+      28
+    ],
+    [
+      66,
+      2,
+      "LW32",
+      8,
+      2,
+      24
+    ],
+    [
+      68,
+      4,
+      "LUI",
+      15,
+      1073811456
+    ],
+    [
+      72,
+      2,
+      "ADDI",
+      14,
+      0,
+      17
+    ],
+    [
+      74,
+      4,
+      "SW32",
+      14,
+      15,
+      -2032
+    ],
+    [
+      78,
+      2,
+      "LW32",
+      9,
+      2,
+      20
+    ],
+    [
+      80,
+      2,
+      "ADDI",
+      2,
+      2,
+      32
+    ],
+    [
+      82,
+      2,
+      "RET",
+      1
+    ],
+    [
+      84,
+      4,
+      "LBU8",
+      10,
+      8,
+      0
+    ],
+    [
+      88,
+      2,
+      "ADDI",
+      8,
+      8,
+      1
+    ],
+    [
+      90,
+      4,
+      "JAL",
+      1,
+      92310
+    ],
+    [
+      94,
+      2,
+      "J",
+      92442
+    ],
+    [
+      96,
+      2,
+      "ADDI",
+      2,
+      2,
+      -32
+    ],
+    [
+      98,
+      2,
+      "SW32",
+      1,
+      2,
+      28
+    ],
+    [
+      100,
+      4,
+      "ANDI",
+      15,
+      10,
+      1
+    ],
+    [
+      104,
+      2,
+      "BEQZ",
+      15,
+      92498
+    ],
+    [
+      106,
+      4,
+      "LUI",
+      15,
+      1073811456
+    ],
+    [
+      110,
+      2,
+      "ADDI",
+      14,
+      0,
+      16
+    ],
+    [
+      112,
+      4,
+      "SW32",
+      14,
+      15,
+      -2028
+    ],
+    [
+      116,
+      2,
+      "ANDI",
+      10,
+      10,
+      2
+    ],
+    [
+      118,
+      2,
+      "BEQZ",
+      10,
+      92512
+    ],
+    [
+      120,
+      4,
+      "LUI",
+      15,
+      1073811456
+    ],
+    [
+      124,
+      2,
+      "ADDI",
+      14,
+      0,
+      1
+    ],
+    [
+      126,
+      4,
+      "SW32",
+      14,
+      15,
+      -2028
+    ],
+    [
+      130,
+      2,
+      "ADDI",
+      10,
+      0,
+      5
+    ],
+    [
+      132,
+      2,
+      "SW32",
+      13,
+      2,
+      12
+    ],
+    [
+      134,
+      2,
+      "SW32",
+      12,
+      2,
+      8
+    ],
+    [
+      136,
+      2,
+      "SW32",
+      11,
+      2,
+      4
+    ],
+    [
+      138,
+      4,
+      "JAL",
+      1,
+      92310
+    ],
+    [
+      142,
+      2,
+      "LW32",
+      11,
+      2,
+      4
+    ],
+    [
+      144,
+      2,
+      "MV",
+      10,
+      11
+    ],
+    [
+      146,
+      4,
+      "JAL",
+      1,
+      92310
+    ],
+    [
+      150,
+      2,
+      "LW32",
+      12,
+      2,
+      8
+    ],
+    [
+      152,
+      2,
+      "MV",
+      10,
+      12
+    ],
+    [
+      154,
+      4,
+      "JAL",
+      1,
+      92310
+    ],
+    [
+      158,
+      2,
+      "LW32",
+      13,
+      2,
+      12
+    ],
+    [
+      160,
+      2,
+      "MV",
+      10,
+      13
+    ],
+    [
+      162,
+      4,
+      "JAL",
+      1,
+      92310
+    ],
+    [
+      166,
+      2,
+      "LW32",
+      1,
+      2,
+      28
+    ],
+    [
+      168,
+      4,
+      "LUI",
+      15,
+      1073811456
+    ],
+    [
+      172,
+      2,
+      "ADDI",
+      14,
+      0,
+      17
+    ],
+    [
+      174,
+      4,
+      "SW32",
+      14,
+      15,
+      -2032
+    ],
+    [
+      178,
+      2,
+      "ADDI",
+      2,
+      2,
+      32
+    ],
+    [
+      180,
+      2,
+      "RET",
+      1
+    ]
+  ],
+  "ELF_sha256": {
+    "native": "f2b47ccfb591bbe7e8673629ad87d6c5faec7caba4461a62ee7e98726cf9f4ad",
+    "partial": "c3b218ffa37b90f1783d1fc4286b88853feec7165f57a7420c764280bbf09381"
+  },
+  "IR_scalars": {
+    "c": {
+      "tsl9_tagged_external_168de": [],
+      "tsl9_spi_write_guard1_168e6": [
+        "%7 = and i32 %2, 1"
+      ],
+      "tsl9_spi_write_select1_168f0": [
+        "%20 = add i32 %19, -2028",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ],
+      "tsl9_spi_write_guard2_168fa": [
+        "%8 = and i32 %2, 2"
+      ],
+      "tsl9_spi_write_select2_168fe": [
+        "%20 = add i32 %19, -2028",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ],
+      "tsl9_spi_write_command_16908": [],
+      "tsl9_spi_write_address_16910": [],
+      "tsl9_spi_write_test_1691a": [],
+      "tsl9_spi_write_finish_1691e": [
+        "%20 = add i32 %19, -2032",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ],
+      "tsl9_spi_write_payload_16932": [],
+      "tsl9_tagged_external_1693e": [],
+      "tsl9_spi_modify_guard1_16942": [
+        "%7 = and i32 %2, 1"
+      ],
+      "tsl9_spi_modify_select1_16948": [
+        "%20 = add i32 %19, -2028",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ],
+      "tsl9_spi_modify_guard2_16952": [
+        "%8 = and i32 %2, 2"
+      ],
+      "tsl9_spi_modify_select2_16956": [
+        "%20 = add i32 %19, -2028",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ],
+      "tsl9_spi_modify_command_16960": [],
+      "tsl9_spi_modify_address_1696c": [],
+      "tsl9_spi_modify_mask_16974": [],
+      "tsl9_spi_modify_value_1697c": [],
+      "tsl9_spi_modify_finish_16984": [
+        "%20 = add i32 %19, -2032",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ]
+    },
+    "cpp": {
+      "tsl9_tagged_external_168de": [],
+      "tsl9_spi_write_guard1_168e6": [
+        "%7 = and i32 %2, 1"
+      ],
+      "tsl9_spi_write_select1_168f0": [
+        "%20 = add i32 %19, -2028",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ],
+      "tsl9_spi_write_guard2_168fa": [
+        "%8 = and i32 %2, 2"
+      ],
+      "tsl9_spi_write_select2_168fe": [
+        "%20 = add i32 %19, -2028",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ],
+      "tsl9_spi_write_command_16908": [],
+      "tsl9_spi_write_address_16910": [],
+      "tsl9_spi_write_test_1691a": [],
+      "tsl9_spi_write_finish_1691e": [
+        "%20 = add i32 %19, -2032",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ],
+      "tsl9_spi_write_payload_16932": [],
+      "tsl9_tagged_external_1693e": [],
+      "tsl9_spi_modify_guard1_16942": [
+        "%7 = and i32 %2, 1"
+      ],
+      "tsl9_spi_modify_select1_16948": [
+        "%20 = add i32 %19, -2028",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ],
+      "tsl9_spi_modify_guard2_16952": [
+        "%8 = and i32 %2, 2"
+      ],
+      "tsl9_spi_modify_select2_16956": [
+        "%20 = add i32 %19, -2028",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ],
+      "tsl9_spi_modify_command_16960": [],
+      "tsl9_spi_modify_address_1696c": [],
+      "tsl9_spi_modify_mask_16974": [],
+      "tsl9_spi_modify_value_1697c": [],
+      "tsl9_spi_modify_finish_16984": [
+        "%20 = add i32 %19, -2032",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %18, ptr %21, align 4, !tbaa !12"
+      ]
+    }
+  },
+  "IR_sha256": {
+    "c": "0845598c8d90613a318b5ff31a656f336a0b1774daf692007484ab720783ca5f",
+    "cpp": "1a36ae9d259af41053945182968469fd669e54ba9c98f7d5a0a78fa080eb7498"
+  },
+  "IR_ports": [
+    "addi sp, sp, -32\\0Asw s0, 24(sp)\\0Asw s1, 20(sp)\\0Asw ra, 28(sp)\\0A",
+    "mv s0, a2\\0Amv s1, a3\\0A",
+    ".Lwrite_skip1:\\0Ac.beqz a5, .Lwrite_skip1\\0A.reloc .-2, R_RISCV_RVC_BRANCH, tsl9_spi_write_guard2_168fa\\0A",
+    ".Lwrite_skip2:\\0Ac.beqz a0, .Lwrite_skip2\\0A.reloc .-2, R_RISCV_RVC_BRANCH, tsl9_spi_write_command_16908\\0A",
+    "sw a1, 12(sp)\\0A",
+    ".Lwrite_command:\\0A.option push\\0A.option norvc\\0Ajal ra, .Lwrite_command\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_spi_transfer_entry_16896\\0A",
+    "lw a1, 12(sp)\\0Aadd s1, s1, s0\\0A",
+    ".Lwrite_address:\\0A.option push\\0A.option norvc\\0Ajal ra, .Lwrite_address\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_spi_transfer_entry_16896\\0A",
+    ".Lwrite_more:\\0Abne s0, s1, .Lwrite_more\\0A.reloc .-4, R_RISCV_BRANCH, tsl9_spi_write_payload_16932\\0A",
+    "lw ra, 28(sp)\\0Alw s0, 24(sp)\\0A",
+    "lw s1, 20(sp)\\0Aaddi sp, sp, 32\\0Aret\\0A",
+    "lbu a0, 0(s0)\\0Aaddi s0, s0, 1\\0A",
+    ".Lwrite_payload:\\0A.option push\\0A.option norvc\\0Ajal ra, .Lwrite_payload\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_spi_transfer_entry_16896\\0A",
+    ".Lwrite_repeat:\\0Ac.j .Lwrite_repeat\\0A.reloc .-2, R_RISCV_RVC_JUMP, tsl9_spi_write_test_1691a\\0A",
+    "addi sp, sp, -32\\0Asw ra, 28(sp)\\0A",
+    ".Lmodify_skip1:\\0Ac.beqz a5, .Lmodify_skip1\\0A.reloc .-2, R_RISCV_RVC_BRANCH, tsl9_spi_modify_guard2_16952\\0A",
+    ".Lmodify_skip2:\\0Ac.beqz a0, .Lmodify_skip2\\0A.reloc .-2, R_RISCV_RVC_BRANCH, tsl9_spi_modify_command_16960\\0A",
+    "sw a3, 12(sp)\\0Asw a2, 8(sp)\\0Asw a1, 4(sp)\\0A",
+    ".Lmodify_command:\\0A.option push\\0A.option norvc\\0Ajal ra, .Lmodify_command\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_spi_transfer_entry_16896\\0A",
+    "lw a1, 4(sp)\\0A",
+    ".Lmodify_address:\\0A.option push\\0A.option norvc\\0Ajal ra, .Lmodify_address\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_spi_transfer_entry_16896\\0A",
+    "lw a2, 8(sp)\\0A",
+    ".Lmodify_mask:\\0A.option push\\0A.option norvc\\0Ajal ra, .Lmodify_mask\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_spi_transfer_entry_16896\\0A",
+    "lw a3, 12(sp)\\0A",
+    ".Lmodify_value:\\0A.option push\\0A.option norvc\\0Ajal ra, .Lmodify_value\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_spi_transfer_entry_16896\\0A",
+    "lw ra, 28(sp)\\0A",
+    "addi sp, sp, 32\\0Aret\\0A"
+  ],
+  "scalar_mutations": {
+    "c": [
+      [
+        "and i32 %2, 1",
+        "and i32 %2, 3"
+      ],
+      [
+        "and i32 %2, 2",
+        "and i32 %2, 0"
+      ],
+      [
+        "add i32 %19, -2028",
+        "add i32 %19, -2032"
+      ],
+      [
+        "store volatile i32",
+        "store i32"
+      ],
+      [
+        "and i32 %2, 1",
+        "and i32 %3, 1"
+      ]
+    ],
+    "cpp": [
+      [
+        "and i32 %2, 1",
+        "and i32 %2, 3"
+      ],
+      [
+        "and i32 %2, 2",
+        "and i32 %2, 0"
+      ],
+      [
+        "add i32 %19, -2028",
+        "add i32 %19, -2032"
+      ],
+      [
+        "store volatile i32",
+        "store i32"
+      ],
+      [
+        "and i32 %2, 1",
+        "and i32 %3, 1"
+      ]
+    ]
+  }
+}

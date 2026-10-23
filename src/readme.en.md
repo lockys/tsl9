@@ -2,7 +2,7 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 61 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
+This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 62 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
 
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
@@ -22,6 +22,7 @@ This directory is the working entry point for the readable source with the stron
 | [transport frame](native/receive/transport_frame.c) | 8A56 admission, frame, copy and checksum | 280B/96i,246 whole noncontrol bytes match;9 local pending RELAs/0 UND. Fresh4013C admissions and40050 tail provider remain unknown; post-call length is not bounded by the initial guard |
 | [record dispatch](native/receive/record_dispatch.c) | 12A08 status/ID/tag/copy/peripheral dispatch | 102B/35i across9 private regions;4 genuine UND/9 pending RELAs. Then-live SP/S0/call residues retained; full provider ABI and hardware remain open |
 | [record predicate](native/receive/record_predicate.c) | 821E pointer-bit/index/byte predicate | Complete42B/15i original-equal C/C++; no frame/stores/calls/UND/relocations. GP/memory/flag meaning and hardware unproved |
+| [SPI command providers](native/receive/spi_write_providers.c) | 168DE buffer path and1693E command path | Twenty private regions182B/68i;13pending controls/one genuine16896 provider reference.32B frames,fullwidth fresh slots,zero-length pre-test,GPIO word writes and RA restore ordering retained; physical transmission and OTA unproved |
 | [tagged dispatch](native/receive/tagged_dispatch.c) | 16B7C tagged path,64B frame and record handling | Fifteen private regions246B/86i;11pending controls/four genuine UND. Early returns,then-live SP/S0-S3,opaque residues and inequality loop retained. Independent native proof checks original fixed bits/symbolic destinations; provider ABI,hardware and OTA remain open |
 | [peripheral write](native/receive/peripheral_write.c) | 18CA4 selected-bank ID/length/payload writes | Seven private regions,212B/72i nominal code entirely original-equal. Three fresh status reads, ordered22 static loads/eight stores and exit residues retained; physical peripheral/ABI/OTA unproved |
 | [native/irq](native/irq/interrupt_registers.c) | Four register helpers and IRQ initialization | Four helpers match at30B each; initializer normal outputs reviewed,180B vs original144B, asynchronous equivalence unproved |
@@ -56,9 +57,9 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The script selects thirty-five native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
+The script selects thirty-six native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
 
-The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed70 comparisons (140 objects). Its receipt is `build/curated-source/tagged-dispatch-20261023-v1/verification.json`; the earlier SPI curation receipt remains historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
+The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed72 comparisons (144 objects). Its receipt is `build/curated-source/spi-write-20261023-v1/verification.json`; the earlier SPI curation receipt remains historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
 
 Replay an existing result without compiling:
 

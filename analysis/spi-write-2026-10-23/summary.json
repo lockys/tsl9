@@ -1,0 +1,183 @@
+{
+  "schema": "TSL9-SPI-write-milestone-v1",
+  "parent_HEAD": "9eab075a395ceca3da646100ccd381f10cf85b16",
+  "original": {
+    "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "window": "original-window.json",
+    "start": "0x168DE",
+    "end_exclusive": "0x16994",
+    "bytes": 182,
+    "instructions": 68,
+    "sha256_span": "f7e6faa9ea1fd357a35e2c7a726a901dd233225fd726c15a3d006733cfba792f",
+    "global_extent_confirmed": false
+  },
+  "source": {
+    "origin": "experiments/tsl9-spi-write-providers/src/spi_write.v1.c",
+    "curated": "src/native/receive/spi_write_providers.c",
+    "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2",
+    "kind": "C masks/constants/volatile MMIO stores with explicit architectural stack/register/call/control ports",
+    "ordinary_C_ABI_proved": false
+  },
+  "native": {
+    "actual_languages": [
+      "C11",
+      "C++17"
+    ],
+    "bytes": 182,
+    "instructions": 68,
+    "private_regions": 20,
+    "pending_RELA": 13,
+    "strong_UND": 1,
+    "undefined": "tsl9_spi_transfer_entry_16896",
+    "global_ABS": 0,
+    "nonrelocation_bits_equal_original": true,
+    "negative_controls_per_language": 133,
+    "negative_controls_whole_hash_disabled": true,
+    "exact_SSA_operands_and_volatile_stores_checked": true,
+    "strong_FUNC_binding_mutations_checked": true,
+    "ELF_sha256": "f2b47ccfb591bbe7e8673629ad87d6c5faec7caba4461a62ee7e98726cf9f4ad",
+    "C_receipt": "evidence/native-c.json",
+    "CPP_receipt": "evidence/native-cpp.json"
+  },
+  "nominal": {
+    "original_start": "0x16896",
+    "original_end_exclusive": "0x16994",
+    "bytes": 254,
+    "instructions": 93,
+    "FUNC": 28,
+    "strong_UND": 0,
+    "pending_RELA": 0,
+    "global_ABS": 0,
+    "whole_original_code_equal": true,
+    "original_code_sha256": "3406e88c0c823a0a5e1ed882e1ed5d6171177746f5e5a71e4110ab93129d818d",
+    "ELF_sha256": "f75662fed21cd6b134983e238ad0d1cb68e288dfdf15875ad3e8a41d67f5c55a",
+    "actual_commands_per_language": 4,
+    "inputs": 62,
+    "artifacts_per_language": 9,
+    "negative_controls_per_language": 97,
+    "full_LLVM_address_byte_rows": 93,
+    "entry_AX_allocation_file_mapping_checked": true,
+    "full_ELF_metadata_recorded": true,
+    "per_command_consumed_hashes_checked": true,
+    "reused_native_object_in_snapshot": true,
+    "C_receipt": "evidence/nominal-c.json",
+    "CPP_receipt": "evidence/nominal-cpp.json",
+    "actual_read_only_replay_passed": true,
+    "strict_firmware_exit_code": 1,
+    "full_image_proved": false
+  },
+  "findings": {
+    "block_write": {
+      "start": "0x168DE",
+      "bytes": 96,
+      "instructions": 36,
+      "span_sha256": "b78dcba7bd78bb506751aa59cae9981168dbe41bc97b8900e9eb7106f60d935f",
+      "normal_return_CFG_nodes": 36,
+      "normal_return_CFG_edges": 38,
+      "opcode": 2,
+      "frame_bytes": 32,
+      "zero_length": "Two SPI provider calls, no payload byte reads; physical transmission not asserted",
+      "loop": "Pre-test then-live S0!=S1; byte read then S0 increment before SPI call; post-RET body retained"
+    },
+    "bit_modify": {
+      "start": "0x1693E",
+      "bytes": 86,
+      "instructions": 32,
+      "span_sha256": "2ca1290ceca255bcbf9776107820b20f8b1fed06cb2f7eed3ada3c4b397b7e5b",
+      "normal_return_CFG_nodes": 32,
+      "normal_return_CFG_edges": 33,
+      "opcode": 5,
+      "frame_bytes": 32,
+      "arguments": "Fresh full32-bit then-live stack slots4/8/12; no assumed A3 preservation"
+    },
+    "MMIO": {
+      "select_write": "SW32 @0x40010814; selectorbit0=>16, selectorbit1=>1, independent writes in that order",
+      "exit_write": "Unconditional SW32 17 @0x40010810, including selector0; RA restored before this store",
+      "physical_mapping_proved": false
+    },
+    "return_value": "A0 remains last SPI provider result, no boolean normalization"
+  },
+  "curated": {
+    "C_and_headers": 62,
+    "native_units": 36,
+    "C_CPP_comparisons": 72,
+    "objects": 144,
+    "inputs": 126,
+    "artifacts": 433,
+    "old_70_profiles_unchanged": true,
+    "old_70_results_unchanged": true,
+    "old_421_artifact_hashes_unchanged": true,
+    "actual_build_and_root_read_only_replay_passed": true,
+    "receipt_local": "build/curated-source/spi-write-20261023-v1/verification.json",
+    "receipt_sha256": "3583e582b0fc91517d6c73da3feef65ce80ce1a41fe41adc9c2f51d0e763e58d",
+    "public_derivative": "evidence/curated-source.json"
+  },
+  "repair_history": {
+    "v1": "C link succeeded, checker MD target expected native.o instead of actual spi.o; no v1 formal receipt",
+    "v2": "MD repaired; all254B matched, but independent review found entry/permissions/LLVM fields/reused-input gate gaps",
+    "pre_MD_checker": "experiments/tsl9-spi-write-providers/history/nominal.pre-md-fix.py",
+    "pre_metadata_checker": "experiments/tsl9-spi-write-providers/history/nominal.pre-metadata-fix.py",
+    "v3": "Fresh C/C++ build closes those concrete checks; ELF identical to v1/v2; raw earlier originals retained local"
+  },
+  "privacy": {
+    "provenance": "publication-provenance.json",
+    "portable_originals": 4,
+    "path_only_derivatives": 1,
+    "originals_preserved_local": true,
+    "Git_history_rewritten": false,
+    "backups": [
+      {
+        "path": "build/spi-write-original-receipts-20261023.zip",
+        "files": 76,
+        "bytes": 145849,
+        "sha256": "157fa4b0c7e2ff104dd8246e479edfc4afa31076b7646c057788af05e1132a12",
+        "all_members_exact": true
+      },
+      {
+        "path": "build/spi-write-nominal-v3-originals-20261023.zip",
+        "files": 23,
+        "bytes": 42251,
+        "sha256": "eef79e21ed2e1ef8ce1645488034a77dea142c9fc13f40d507e3450d97138e62",
+        "exact_members": true
+      }
+    ]
+  },
+  "independent_review": {
+    "source_frames_slots_GPRs_fullwidth_arguments_and_MMIO_order_checked": true,
+    "original_182_rows_fresh_byte_checked": true,
+    "SPI_72B_frozen_proof_replayed": true,
+    "nominal_v3_full_read_only_replay_passed": true,
+    "all_93_LLVM_fields_independently_checked": true,
+    "no_material_gap_within_bounded_code_claim": true
+  },
+  "hardware": {
+    "correspondence": "hardware-correspondence.json",
+    "confirmed_physical_chip": false,
+    "confirmed_controller_count": false
+  },
+  "feature_opportunity": {
+    "name": "Explicit SPI timeout/raw-status diagnostics",
+    "basis": "Known SPI leaf returns0 for either timeout or successful received0; writes retain/ignore the raw result and tagged status path masks0x70",
+    "status": "Conditional research lead only; trace genuine16994 wrapper before asserting upper-layer fault",
+    "implemented": false
+  },
+  "prior_components": {
+    "dispatch_1162B_unchanged": true,
+    "tagged_246B_unchanged": true,
+    "joined_new_providers_to_tagged_or_1162B": false
+  },
+  "next": {
+    "VA": "0x8520",
+    "reason": "Remaining tagged header-preparation provider; verify actual bytes/effects instead of assuming memset",
+    "scope": "Offline boundary/dataflow analysis, then C reconstruction and later genuine composition"
+  },
+  "target_executed": false,
+  "ISA_emulated": false,
+  "HOST_models_executed": false,
+  "hardware_tested": false,
+  "network_vendor_access": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_status": "active"
+}

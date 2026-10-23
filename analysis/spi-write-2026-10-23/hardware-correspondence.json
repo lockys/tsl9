@@ -1,0 +1,37 @@
+{
+  "schema": "TSL9-offline-GPIO-SPI-correspondence-v1",
+  "cached_header": {
+    "path": "${REA_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wch-ch32v20x.h",
+    "sha256": "f7afdff0cca29cea10ea104915a5a21675e49c980f07af789daf37ea80fd142b",
+    "lines": {
+      "peripheral_base": 819,
+      "APB2_base": 822,
+      "GPIOA_base": 844,
+      "SPI1_base": 851,
+      "GPIO_struct": 400,
+      "BSHR": 406,
+      "BCR": 407
+    }
+  },
+  "static_correspondence": {
+    "APB2_base": "0x40010000",
+    "GPIOA_candidate_base": "0x40010800",
+    "BSHR_candidate": "0x40010810",
+    "BCR_candidate": "0x40010814",
+    "SPI1_candidate_base": "0x40013000",
+    "GPIO32_struct_word_offsets": {
+      "BSHR": 16,
+      "BCR": 20
+    }
+  },
+  "observed": "New96B/86B providers write16/1 to0x40010814 and17 to0x40010810; genuine SPI leaf uses0x40013000. See original-window.json and SPI proof.",
+  "inference": "Under this cached WCH register map, writes correspond to GPIOA bits4/0 reset and joint set. Together with SPI1 and opcode2/5/read3, this motivates an external CAN-register-protocol hypothesis.",
+  "limitations": [
+    "CH32V20x-compatible address correspondence is not a unique chip identity.",
+    "No physical pin voltage, routing, SPI devices, controller model or count was observed.",
+    "No peripheral initialization, IRQ interleaving or board compatibility is proved by this comparison."
+  ],
+  "network": false,
+  "target_executed": false,
+  "hardware_tested": false
+}

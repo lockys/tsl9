@@ -2,7 +2,7 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 61 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 62 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 ## 原始碼位置與證據範圍
 
@@ -24,6 +24,7 @@
 | [transport frame](native/receive/transport_frame.c) | 8A56 admission、封裝、複製與checksum | 280B／96指令、246B完整非控制指令相同；9筆local pending RELA／0 UND。fresh4013C admission與40050 tail provider未知；初始guard不保證post-call長度有界 |
 | [record dispatch](native/receive/record_dispatch.c) | 12A08 status／ID／tag／copy／peripheral 分派 | 102B／35i、9個私有區塊；4 genuine UND／9 pending RELA；保留 then-live SP／S0／呼叫殘值，provider ABI／硬體仍未證 |
 | [record predicate](native/receive/record_predicate.c) | 821E pointer bit／index／byte 條件判斷 | 完整42B／15i C/C++與原BIN相同；無frame／store／call／UND／relocation；GP／記憶體／flag功能與硬體未證 |
+| [SPI command providers](native/receive/spi_write_providers.c) | 168DE 緩衝路徑與1693E命令路徑 | 20個架構區域182B／68i，13個pending控制與1個真實16896提供者參照；保留32B frame、全寬fresh槽位、零長度前置測試、GPIO word寫入與RA還原順序。實體傳輸與OTA未證 |
 | [tagged dispatch](native/receive/tagged_dispatch.c) | 16B7C 標記路徑、64B frame 與記錄處理 | 15個架構區域246B／86i，11個pending控制與4個真實UND；保留early return、then-live SP／S0-S3、opaque residue及不等式迴圈。原廠固定位元與符號目的地由獨立原生實驗核對；提供者ABI、硬體與OTA未證 |
 | [peripheral write](native/receive/peripheral_write.c) | 18CA4 bank選擇與ID／長度／payload寫入 | 七個私有區塊、212B／72i原位診斷碼全部相同；保留三次fresh status、22個static load／8個store次序及退出殘值；實體周邊／ABI／OTA未證 |
 | [native/irq](native/irq/interrupt_registers.c) | 四個 register helper 與 IRQ 初始化 | 四個 helper 各 30 bytes 相同；初始化正常出口有證據，180B 超出原144B，非同步等價未證 |
@@ -58,9 +59,9 @@ python3 scripts/verify-curated-source.py
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-腳本依 manifest 選擇三十五個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
+腳本依 manifest 選擇三十六個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
 
-本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 70 組比對（140 個物件），收據為 `build/curated-source/tagged-dispatch-20261023-v1/verification.json`。舊 SPI 整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
+本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 72 組比對（144 個物件），收據為 `build/curated-source/spi-write-20261023-v1/verification.json`。舊 SPI 整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
 
 既有結果可唯讀重播：
 
