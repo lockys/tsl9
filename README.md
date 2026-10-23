@@ -21,3 +21,7 @@ python3 scripts/portable_verify.py --model runtime-loop --language both
 Windows 使用 `py -3` 取代 `python3`；不連接或刷寫硬體。
 
 [重建程式](src/) · [編譯實驗](experiments/) · [分析證據](analysis/) · [原廠 BIN](firmware-downloads/) · [APK／實驗映像](artifacts/)
+
+## Android 藍牙工具
+
+獨立 Android App 與 Morphe patch 原始碼位於 [tsl9-morphe/](tsl9-morphe/)。App 提供 TSL9 藍牙連線、運行韌體更新、門鎖／座椅控制與即時 CAN 監看；建置與本機測試方式見 [App 文件](tsl9-morphe/tsl9-updater/README.md)。App 的本機／模擬器測試不代表已驗證本 repo 重建韌體或實車動作。
