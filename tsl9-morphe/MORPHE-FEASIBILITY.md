@@ -8,7 +8,7 @@
 
 | 項目 | 本機靜態結果 |
 | --- | --- |
-| 輸入 | `C:/Users/locky/Downloads/安卓-TSL电子模块-1.2.7.apk` |
+| 輸入 | 本機另備 `安卓-TSL电子模块-1.2.7.apk`，透過 `-InputApk` 指定 |
 | 大小 | 48,067,278 bytes |
 | SHA-256 | `10d7d92f16d7806d841fcfd152b318601f6c234a2445e99e0729709aacc9c3ee` |
 | Package / 版本 | `com.tencent.weauth` / `1.2.7`，versionCode `127` |

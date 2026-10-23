@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import java.util.Locale;
 /** A0 local fields only. The OEM's complete revision is server metadata, not an A0 byte. */
 public final class DeviceInfoSnapshot {

@@ -122,7 +122,7 @@ This record describes the current `0.7.0-test` source, not the previously publis
 - Persistent connection context and three labeled icon destinations.
 - Advanced content behind explicit disclosures; native confirmations remain visible when invoked.
 
-Source authority: [AppUi.java](app/src/main/java/com/lockys/tsl9updater/AppUi.java), [MainActivity.java](app/src/main/java/com/lockys/tsl9updater/MainActivity.java), [LivePanel.java](app/src/main/java/com/lockys/tsl9updater/LivePanel.java), and the theme files under `app/src/main/res/values*/styles.xml`. [PRODUCT.md](PRODUCT.md) records the approved concept and product constraints; [UI-REDESIGN.md](UI-REDESIGN.md) records implementation scope.
+Source authority: [AppUi.java](app/src/main/java/dev/tsl9/morphe/AppUi.java), [MainActivity.java](app/src/main/java/dev/tsl9/morphe/MainActivity.java), [LivePanel.java](app/src/main/java/dev/tsl9/morphe/LivePanel.java), and the theme files under `app/src/main/res/values*/styles.xml`. [PRODUCT.md](PRODUCT.md) records the approved concept and product constraints; [UI-REDESIGN.md](UI-REDESIGN.md) records implementation scope.
 
 ## Colors
 

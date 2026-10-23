@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = $PSScriptRoot
 $testOutput = Join-Path $projectRoot 'build\core-tests'
 New-Item -ItemType Directory -Force -Path $testOutput | Out-Null
-$sources = @('UiMessage.java','UiException.java','Protocol.java','FirmwareImage.java','OtaSession.java','HardwareCapture.java','DeviceInfoSnapshot.java','VehicleControls.java','LiveVehicleData.java') | ForEach-Object { Join-Path $projectRoot "app\src\main\java\com\lockys\tsl9updater\$_" }
+$sources = @('UiMessage.java','UiException.java','Protocol.java','FirmwareImage.java','OtaSession.java','HardwareCapture.java','DeviceInfoSnapshot.java','VehicleControls.java','LiveVehicleData.java') | ForEach-Object { Join-Path $projectRoot "app\src\main\java\dev\tsl9\morphe\$_" }
 & javac -encoding UTF-8 -d $testOutput @sources (Join-Path $projectRoot 'tests\CoreTests.java') (Join-Path $projectRoot 'tests\HardwareCaptureTests.java') (Join-Path $projectRoot 'tests\OemCompatibilityTests.java') (Join-Path $projectRoot 'tests\DeviceInfoTests.java') (Join-Path $projectRoot 'tests\VehicleControlsTests.java')
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 $originalJs = Join-Path $projectRoot '..\artifacts\firmware-trace\miniapp\app-service.js'
@@ -15,27 +15,27 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 [System.IO.File]::WriteAllLines($referenceTrace, [string[]]$referenceLines, [System.Text.UTF8Encoding]::new($false))
 $compatArgs = @($referenceTrace)
 if ($UserRaw) { $compatArgs += $UserRaw }
-& java -cp $testOutput com.lockys.tsl9updater.OemCompatibilityTests @compatArgs
+& java -cp $testOutput dev.tsl9.morphe.OemCompatibilityTests @compatArgs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 $referenceArgs = @()
 if ($FactoryPaged -and $FactoryRaw) { $referenceArgs = @($FactoryPaged, $FactoryRaw) }
-& java -cp $testOutput com.lockys.tsl9updater.CoreTests @referenceArgs
+& java -cp $testOutput dev.tsl9.morphe.CoreTests @referenceArgs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-& java -cp $testOutput com.lockys.tsl9updater.HardwareCaptureTests
+& java -cp $testOutput dev.tsl9.morphe.HardwareCaptureTests
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-& java -cp $testOutput com.lockys.tsl9updater.DeviceInfoTests
+& java -cp $testOutput dev.tsl9.morphe.DeviceInfoTests
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-& java -cp $testOutput com.lockys.tsl9updater.VehicleControlsTests
+& java -cp $testOutput dev.tsl9.morphe.VehicleControlsTests
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & javac -encoding UTF-8 -cp $testOutput -d $testOutput (Join-Path $projectRoot 'tests\LiveVehicleTests.java')
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-& java -cp $testOutput com.lockys.tsl9updater.LiveVehicleTests
+& java -cp $testOutput dev.tsl9.morphe.LiveVehicleTests
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & javac -encoding UTF-8 -cp $testOutput -d $testOutput (Join-Path $projectRoot 'tests\DirectControlTests.java')
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-& java -cp $testOutput com.lockys.tsl9updater.DirectControlTests
+& java -cp $testOutput dev.tsl9.morphe.DirectControlTests
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & javac -encoding UTF-8 -cp $testOutput -d $testOutput (Join-Path $projectRoot 'tests\PendingControlTests.java')
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-& java -cp $testOutput com.lockys.tsl9updater.PendingControlTests
+& java -cp $testOutput dev.tsl9.morphe.PendingControlTests
 exit $LASTEXITCODE

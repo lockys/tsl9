@@ -1,6 +1,9 @@
-param([string]$SdkBuildTools = 'C:\Users\locky\AppData\Local\Android\Sdk\build-tools\35.0.0')
+param([Parameter(Mandatory)][string]$InputApk, [string]$SdkBuildTools)
 $ErrorActionPreference = 'Stop'
+$InputApk = (Resolve-Path -LiteralPath $InputApk).Path
 $projectRoot = Split-Path $PSScriptRoot -Parent
+. (Join-Path $PSScriptRoot 'android-tools.ps1')
+$SdkBuildTools = Resolve-AndroidBuildTools (Join-Path $projectRoot 'tsl9-updater') $SdkBuildTools
 Set-Location -LiteralPath $projectRoot
 $sdk = $SdkBuildTools
 $keystore = Join-Path $projectRoot 'artifacts\test-only.jks'
@@ -15,5 +18,5 @@ if ($LASTEXITCODE -ne 0) { throw 'APK signing failed.' }
 if ($LASTEXITCODE -ne 0) { throw 'APK signature verification failed.' }
 & "$sdk\zipalign.exe" -c 4 artifacts\tsl-text-smoke.apk
 if ($LASTEXITCODE -ne 0) { throw 'ZIP alignment verification failed.' }
-& python scripts\verify-patch.py 'C:\Users\locky\Downloads\安卓-TSL电子模块-1.2.7.apk' artifacts\tsl-text-smoke.apk
+& python scripts\verify-patch.py $InputApk artifacts\tsl-text-smoke.apk
 if ($LASTEXITCODE -ne 0) { throw 'Signed APK payload verification failed.' }

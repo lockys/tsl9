@@ -1,7 +1,7 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 
 import java.util.*;
-import static com.lockys.tsl9updater.UiMessage.m;
+import static dev.tsl9.morphe.UiMessage.m;
 
 /** APP-only OEM OTA wire flow. Original APK app-service.js offsets 0x18c05..0x19a0c. */
 public final class OtaSession {

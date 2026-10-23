@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 
 import android.app.*;
 import android.content.*;
@@ -22,7 +22,7 @@ public final class SmokeInstrumentation extends Instrumentation {
     private Button find(View v,String label){if(v instanceof Button&&((Button)v).getText().toString().equals(label))return(Button)v;if(v instanceof ViewGroup){ViewGroup g=(ViewGroup)v;for(int i=0;i<g.getChildCount();i++){Button b=find(g.getChildAt(i),label);if(b!=null)return b;}}return null;}
     private Activity exerciseSwitches(Activity current)throws Exception{
         for(int choice:new int[]{1,2,3,0}){
-            ActivityMonitor monitor=addMonitor("com.lockys.tsl9updater.MainActivity",null,false);
+            ActivityMonitor monitor=addMonitor("dev.tsl9.morphe.MainActivity",null,false);
             final Activity old=current;final int selected=choice;
             runOnMainSync(()->{try{((Button)field(old,"languageButton")).performClick();}catch(Exception e){throw new RuntimeException(e);}});
             waitForIdleSync();
@@ -48,7 +48,7 @@ public final class SmokeInstrumentation extends Instrumentation {
                     if(Build.VERSION.SDK_INT>=33)getTargetContext().getSystemService(LocaleManager.class).setApplicationLocales(tag.isEmpty()?LocaleList.getEmptyLocaleList():LocaleList.forLanguageTags(tag));
                 });waitForIdleSync();
             }
-            Intent intent=new Intent().setClassName(getTargetContext().getPackageName(),"com.lockys.tsl9updater.MainActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            Intent intent=new Intent().setClassName(getTargetContext().getPackageName(),"dev.tsl9.morphe.MainActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             activity=startActivitySync(intent);waitForIdleSync();
             if(switches)activity=exerciseSwitches(activity);
             final Activity a=activity;
@@ -114,9 +114,11 @@ public final class SmokeInstrumentation extends Instrumentation {
                 format.setSelection(2);bytes.set(a,new byte[1025]);call(a,"parseSelected",new Class<?>[0]);FirmwareImage custom=(FirmwareImage)field(a,"image");
                 check(custom!=null&&custom.paddingBytes==1023,"custom unaligned bin explicit FF format");
                 call(a,"log",new Class<?>[]{String.class},"SMOKE local-ui-check no BLE");call(a,"flushLog",new Class<?>[0]);
+                // Observe the completed write on its owning thread: a delayed flush
+                // can briefly truncate the file while an off-main length check runs.
+                File log=new File(getTargetContext().getFilesDir(),"latest-debug.log");check(log.isFile()&&log.length()>0,"debug log persisted");
             }catch(Throwable t){failure[0]=t;}});
             if(failure[0]!=null)throw new RuntimeException(failure[0]);waitForIdleSync();
-            File log=new File(getTargetContext().getFilesDir(),"latest-debug.log");check(log.isFile()&&log.length()>0,"debug log persisted");
             check(getTargetContext().checkCallingOrSelfPermission("android.permission.INTERNET")!=android.content.pm.PackageManager.PERMISSION_GRANTED,"no INTERNET permission");
             if(documents)checks+=new DocumentJourney(this,a).run();
             result.putString("result","PASS "+checks+" Android UI/lifecycle assertions; no physical BLE tested");finish(Activity.RESULT_OK,result);

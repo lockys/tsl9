@@ -1,6 +1,6 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import java.util.*;
-import static com.lockys.tsl9updater.UiMessage.m;
+import static dev.tsl9.morphe.UiMessage.m;
 /** Bounded OEM body controls. No raw CAN API, motion replay, or automatic actuation retries. */
 public final class VehicleControls {
     public interface WriteGuard {boolean allow();}

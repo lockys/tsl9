@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import java.lang.reflect.*;
 import java.util.*;
 
@@ -10,7 +10,7 @@ final class BleQueueChecks {
     private void check(boolean ok,String why){checks++;if(!ok)throw new AssertionError(why);}
     @SuppressWarnings("unchecked") int run()throws Exception{
         BleClient client=(BleClient)get(activity,"ble");ArrayDeque<Object> queue=(ArrayDeque<Object>)get(client,"queue");check(!client.ready()&&queue.isEmpty(),"queue test starts with closed transport");
-        Class<?> write=Class.forName("com.lockys.tsl9updater.BleClient$Write");Constructor<?> ctor=write.getDeclaredConstructor(int.class,byte[].class,Runnable.class,VehicleControls.WriteGuard.class);ctor.setAccessible(true);Method next=BleClient.class.getDeclaredMethod("writeNext");next.setAccessible(true);
+        Class<?> write=Class.forName("dev.tsl9.morphe.BleClient$Write");Constructor<?> ctor=write.getDeclaredConstructor(int.class,byte[].class,Runnable.class,VehicleControls.WriteGuard.class);ctor.setAccessible(true);Method next=BleClient.class.getDeclaredMethod("writeNext");next.setAccessible(true);
         long[] now={0};VehicleControls.Listener wire=new VehicleControls.Listener(){
             public void send(int cmd,byte[] p,Runnable done){sendGuarded(cmd,p,done,null);}
             public void sendGuarded(int cmd,byte[] p,Runnable done,VehicleControls.WriteGuard guard){try{queue.add(ctor.newInstance(cmd,Protocol.encode(cmd,p),done,guard));}catch(Exception e){throw new RuntimeException(e);}}

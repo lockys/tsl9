@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import android.app.Activity;
 import android.app.LocaleManager;
 import android.content.Context;

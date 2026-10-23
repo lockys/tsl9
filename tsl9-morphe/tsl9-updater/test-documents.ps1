@@ -1,9 +1,11 @@
 param(
-    [string]$Serial = 'emulator-5562',
-    [string]$AdbPath = 'C:/Users/locky/AppData/Local/Android/Sdk/platform-tools/adb.exe',
-    [string]$Version = '0.7.0-test'
+    [Parameter(Mandatory)][string]$Serial,
+    [string]$AdbPath,
+    [string]$Version = '0.7.1-test'
 )
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot '../scripts/android-tools.ps1')
+$AdbPath = Resolve-AndroidAdb $PSScriptRoot $AdbPath
 if ($Serial -notmatch '^emulator-[0-9]+$') { throw 'This synthetic DocumentsUI test is restricted to an emulator. Never run it during hardware OTA.' }
 $workspace = Split-Path -Parent $PSScriptRoot
 $outputDir = Join-Path $workspace ("artifacts/tsl9-updater/documents-smoke-" + $Version.Replace('-test',''))
@@ -40,9 +42,9 @@ Invoke-TestAdb -AdbArguments @('wait-for-device') -TimeoutSeconds 30 | Out-Null
 Invoke-TestAdb -AdbArguments @('install', '-r', $apk) | Write-Output
 Invoke-TestAdb -AdbArguments @('install', '-r', $testApk) | Write-Output
 try {
-    $run = Invoke-TestAdb -AdbArguments @('shell', 'am', 'instrument', '-w', '-e', 'documents', 'true', 'com.lockys.tsl9updater.test.test/com.lockys.tsl9updater.SmokeInstrumentation') -TimeoutSeconds 180
+    $run = Invoke-TestAdb -AdbArguments @('shell', 'am', 'instrument', '-w', '-e', 'documents', 'true', 'dev.tsl9.morphe.test.test/dev.tsl9.morphe.SmokeInstrumentation') -TimeoutSeconds 180
 } catch {
-    Invoke-TestAdb -AdbArguments @('shell', 'am', 'force-stop', 'com.lockys.tsl9updater.test') | Out-Null
+    Invoke-TestAdb -AdbArguments @('shell', 'am', 'force-stop', 'dev.tsl9.morphe.test') | Out-Null
     throw
 }
 Set-Content -LiteralPath (Join-Path $outputDir 'instrumentation.txt') -Value $run -Encoding utf8

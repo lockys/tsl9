@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 
 import android.app.*;
 import android.content.*;
@@ -51,7 +51,20 @@ final class DocumentJourney {
     private boolean inRoots(AccessibilityNodeInfo n){for(AccessibilityNodeInfo p=n;p!=null;p=p.getParent()){String id=p.getViewIdResourceName();if(id!=null&&id.endsWith(":id/roots_list"))return true;}return false;}
     private void downloads(){
         click(n->text(n,"Show roots"),"Show roots");
-        click(n->text(n,"Downloads")&&inRoots(n),"Downloads entry in roots_list");
+        try{ui.waitForIdle(300,3000);}catch(java.util.concurrent.TimeoutException e){throw new AssertionError("Roots drawer did not become idle",e);}
+        // DocumentsUI can acknowledge ACTION_CLICK on an ancestor without
+        // selecting the root. Touch the actual visible Downloads label instead.
+        AccessibilityNodeInfo downloads=waitNode(n->n.isVisibleToUser()&&n.isEnabled()&&text(n,"Downloads")&&inRoots(n),"Downloads entry in roots_list");
+        Rect bounds=new Rect();downloads.getBoundsInScreen(bounds);if(bounds.isEmpty())throw new AssertionError("Downloads root has no visible bounds");
+        long time=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(time,time,MotionEvent.ACTION_DOWN,bounds.centerX(),bounds.centerY(),0),up=MotionEvent.obtain(time,time+40,MotionEvent.ACTION_UP,bounds.centerX(),bounds.centerY(),0);
+        down.setSource(InputDevice.SOURCE_TOUCHSCREEN);up.setSource(InputDevice.SOURCE_TOUCHSCREEN);
+        try{boolean accepted=ui.injectInputEvent(down,true);accepted=ui.injectInputEvent(up,true)&&accepted;if(!accepted)throw new AssertionError("Downloads root touch rejected");}finally{down.recycle();up.recycle();}
+        try{ui.waitForIdle(300,3000);}catch(java.util.concurrent.TimeoutException e){throw new AssertionError("Downloads root did not become idle",e);}
+        // Re-selecting the current root may leave the drawer open on this
+        // system provider. Close it with Back only after verifying Downloads.
+        AccessibilityNodeInfo directory=find(ui.getRootInActiveWindow(),n->{String id=n.getViewIdResourceName();return id!=null&&id.endsWith(":id/breadcrumb_text")&&text(n,"Downloads");});
+        AccessibilityNodeInfo drawer=find(ui.getRootInActiveWindow(),n->{String id=n.getViewIdResourceName();return id!=null&&id.endsWith(":id/roots_list")&&n.isVisibleToUser();});
+        if(directory!=null&&drawer!=null)test.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
         long end=SystemClock.elapsedRealtime()+10000;do{AccessibilityNodeInfo root=find(ui.getRootInActiveWindow(),n->{String id=n.getViewIdResourceName();return id!=null&&id.endsWith(":id/roots_list")&&n.isVisibleToUser();});if(root==null)return;SystemClock.sleep(200);}while(SystemClock.elapsedRealtime()<end);
         throw new AssertionError("DocumentsUI roots drawer did not close");
     }
@@ -60,7 +73,7 @@ final class DocumentJourney {
         AccessibilityNodeInfo input=waitNode(n->"android.widget.EditText".contentEquals(n.getClassName()==null?"":n.getClassName()),"save filename");
         Bundle args=new Bundle();args.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE,name);check(input.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT,args),"set export filename");
         click(n->text(n,"Save")||text(n,"SAVE"),"Save");
-        waitNode(n->"com.lockys.tsl9updater.test".contentEquals(n.getPackageName()==null?"":n.getPackageName()),"return from save provider");
+        waitNode(n->"dev.tsl9.morphe.test".contentEquals(n.getPackageName()==null?"":n.getPackageName()),"return from save provider");
         // The host runner reads the real files through ADB after this test finishes.
         Bundle receipt=new Bundle();receipt.putString("documentFile",name);test.sendStatus(1,receipt);return name;
     }

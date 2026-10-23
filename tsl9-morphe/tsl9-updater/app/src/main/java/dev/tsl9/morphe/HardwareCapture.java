@@ -1,5 +1,5 @@
-package com.lockys.tsl9updater;
-import static com.lockys.tsl9updater.UiMessage.m;
+package dev.tsl9.morphe;
+import static dev.tsl9.morphe.UiMessage.m;
 
 import java.io.*;
 import java.nio.*;

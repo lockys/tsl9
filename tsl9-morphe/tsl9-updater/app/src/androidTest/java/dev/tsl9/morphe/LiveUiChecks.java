@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import android.widget.*;
 import java.lang.reflect.*;
 /** Tests the real Activity packet bridge and dashboard with synthetic packets; no BLE. */

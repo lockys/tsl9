@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import android.content.Context;
 final class UiStrings {
     static String render(Context c,UiMessage m){

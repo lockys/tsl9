@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 /** Typed validation failure rendered only at the Android UI boundary. */
 public final class UiException extends IllegalArgumentException {
     public final UiMessage detail;

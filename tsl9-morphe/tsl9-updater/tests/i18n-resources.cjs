@@ -17,7 +17,7 @@ for(let i=1;i<maps.length;i++){
   assert(maps[i].get(key).trim(),key+' empty');checks++;
  }
 }
-const srcDir=path.join(root,'app/src/main/java/com/lockys/tsl9updater');
+const srcDir=path.join(root,'app/src/main/java/dev/tsl9/morphe');
 for(const file of ['OtaSession.java','FirmwareImage.java','HardwareCapture.java']){
  const source=fs.readFileSync(path.join(srcDir,file),'utf8');
  for(const m of source.matchAll(/\bm\("([^"]+)"/g)){assert(maps[0].has(m[1]),file+': '+m[1]);checks++;}

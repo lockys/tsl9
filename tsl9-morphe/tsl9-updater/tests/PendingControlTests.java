@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import java.util.*;
 public final class PendingControlTests {
     static int checks;static void check(boolean ok,String why){checks++;if(!ok)throw new AssertionError(why);}

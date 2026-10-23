@@ -1,6 +1,6 @@
 # TSL 1.2.7 minimal Morphe smoke patch
 
-此目錄同時收錄獨立的 [TSL9 Android 硬體工具](tsl9-updater/README.md)，目前來源版本為 `0.7.0-test`。App 原始碼、三語資源、JVM 與 Android 測試位於 `tsl9-updater/`；下方內容記錄較早的 Morphe 文字 patch 實驗。
+此目錄同時收錄獨立的 [TSL9 Android 硬體工具](tsl9-updater/README.md)，目前來源版本為 `0.7.1-test`。App 原始碼、三語資源、JVM 與 Android 測試位於 `tsl9-updater/`；下方內容記錄較早的 Morphe 文字 patch 實驗。
 
 此來源快照不包含原廠 APK／BIN、附件、實車日誌、反編譯輸出、工具、簽章金鑰或建置快取。部分證據連結與 OEM 差異測試依賴本機 `artifacts/firmware-trace/`，需在本機另備相符輸入，不能將缺少素材視為該測試通過。Android 建置需依文件配置本機 SDK／Gradle；`local.properties` 不納入版本控制。
 
@@ -34,12 +34,12 @@ Kotlin ZIP: 7cc140e76daf416a0424a5557f99afd7ca89ebd463ea1101261e3e01c33e75cd
 These hashes identify this run's downloads; they are not an independent authenticity attestation.
 
 ```powershell
-.\scripts\build.ps1
-.\scripts\sign.ps1
-python scripts\verify-patch.py 'C:\Users\locky\Downloads\安卓-TSL电子模块-1.2.7.apk' artifacts\tsl-text-smoke.apk
+.\scripts\build.ps1 -InputApk './inputs/original.apk'
+.\scripts\sign.ps1 -InputApk './inputs/original.apk'
+python scripts\verify-patch.py './inputs/original.apk' artifacts\tsl-text-smoke.apk
 ```
 
-`build.ps1` checks the original APK SHA-256, compiles the Kotlin patch against the actual Morphe API, asks Morphe to load the `.mpp`, executes the raw-resource patch, and verifies its output. `sign.ps1` uses installed Android SDK Build Tools 35.0.0 (override `-SdkBuildTools` if needed) and a disposable local debug key. Its public `android` password is suitable only for this local test key. Do not publish the private key.
+`build.ps1` checks the original APK SHA-256, compiles the Kotlin patch against the actual Morphe API, asks Morphe to load the `.mpp`, executes the raw-resource patch, and verifies its output. `sign.ps1` discovers the newest installed stable Android SDK Build Tools (override `-SdkBuildTools` if needed) and uses a disposable local debug key. Its public `android` password is suitable only for this local test key. Do not publish the private key.
 
 The Kotlin patch separately requires package `com.tencent.weauth`, version `1.2.7` / code `127`, and the exact original wxapkg SHA-256. A different or already patched wxapkg is rejected before writing. No compatibility force flag or continue-on-error is used.
 

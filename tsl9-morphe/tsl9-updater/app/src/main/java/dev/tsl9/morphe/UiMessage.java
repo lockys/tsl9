@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import java.util.Arrays;
 /** Locale-independent message data; protocol code has no Android dependency. */
 public final class UiMessage {
