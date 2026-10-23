@@ -54,7 +54,7 @@ def flags(unit, mode):
     clock = kind in ('clock-query', 'clock-fields')
     irq = kind in ('irq-bank', 'delay-bank')
     spi = kind == 'spi-a0-a3-a4-a5'
-    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'irq-provider-a0-a1-a2-a4-a5')
+    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'irq-provider-a0-a1-a2-a4-a5', 'queue-consumer-a0-a5', 'queue-small-a0-a5')
     ring = kind == 'ring-bank'
     result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi or packet or ring else 'rv32imac_zicsr_zifencei'),
               '-mabi=ilp32', '-Os' if clock else '-Oz']
@@ -82,8 +82,10 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'spi-a0-a3-a4-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 13, 14, 15}]
-    elif kind in ('packet-a0-a5', 'irq-adapter-a0-a5'):
+    elif kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'queue-consumer-a0-a5'):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
+    elif kind == 'queue-small-a0-a5':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 15}]
     elif kind == 'irq-provider-a0-a1-a2-a4-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 14, 15}]
     elif kind == 'ring-bank':
@@ -305,6 +307,67 @@ def audit(base, record, manifest):
                         dict(owner='.text.'+owner, offset=offset, type=kind, addend=0, symbol=target)
                         for owner, offset, kind, target in edges],
                     'Six private provider regions and three defined edges; nominal verifier proves original164B/fresh reads/registers, not IRQ/silicon or firmware readiness')
+            if unit['name'] == 'queue-small-providers':
+                regions = [
+                    ('tsl9_queue_status_81aa', 6, '887c2bfb847a7e013acebac38c8be3f2bed06fd44305080ad6fc7ca3593e8fc3'),
+                    ('tsl9_queue_clear_820c', 18, '643c424c37ca788946153c36cbfaebb37644464f84cc49f7fe2ff92b7c7c2b90'),
+                ]
+                need(pair[1]['functions'] == sorted([
+                    dict(name=n, binding=1, bytes=z, code_sha256=h) for n, z, h in regions], key=lambda x: x['name'])
+                    and pair[1]['allocated_sections'] == [
+                        dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
+                    and pair[1]['allocated_bytes'] == 24 and not pair[1]['UND'] and not pair[1]['relocations'],
+                    'Two actual C leaves6/18B with fully assembler-resolved local branch; source-copy proof does not prove original placement, consumer composition or firmware readiness')
+            if unit['name'] == 'queue-consumer':
+                regions = [
+                    ('tsl9_queue_entry_12c58', 46, 'b62b7b72fe9434d4f8074ef21e434b91f56c2b2bf3350be8d8ec4099ead404e5'),
+                    ('tsl9_queue_scan_12c86', 32, 'bc696cee29f69cb20c69150dbc8164d3a09f3f0bb00765b3fe9b8bd9188fff28'),
+                    ('tsl9_queue_release_12ca6', 14, 'd7b85d950e815d38e8656a916588982e82ca74061763e6f6faca71891838ecaa'),
+                    ('tsl9_queue_validate_12cb4', 58, '54a596cdf010829ba79c5b8e8140b848e4caa52100036c554ba827e727c180e9'),
+                    ('tsl9_queue_advance_12cee', 10, '45d704a3c96dca21c1f6a85f19602bbf29ccfed5842290d3bf3c7a82ebc7707c'),
+                    ('tsl9_queue_finish_12cf8', 22, 'fd023936c707df0065acdb505542c01aac895b4b7a048a1e7c9cbaf0c76d5ee0'),
+                    ('tsl9_queue_zero_12d0e', 52, 'c8757cd2eb587e8f9bd479c3d6d351b46aebca83661b37c5934e556fa0fea897'),
+                    ('tsl9_queue_emit_12d42', 10, '8668966d892db043fd45de554f967eb3db61decb14f04bc051174c5eb0529c0d'),
+                    ('tsl9_queue_response_12d4c', 44, '57c7452d79fa688548fbc9da4c4cd94e1cc00f8ff03336f68c5e94f6d1dc166a'),
+                    ('tsl9_queue_other_12d78', 26, 'c3276890fc580c91a057a2e672630d17fcb4ad264bdec1fca6bd101e67c0efd5'),
+                ]
+                edges = [
+                    ('tsl9_queue_scan_12c86', 14, 44, 'tsl9_queue_advance_12cee'),
+                    ('tsl9_queue_release_12ca6', 10, 17, 'tsl9_queue_external_82d2'),
+                    ('tsl9_queue_validate_12cb4', 0, 44, 'tsl9_queue_advance_12cee'),
+                    ('tsl9_queue_validate_12cb4', 6, 16, 'tsl9_queue_other_12d78'),
+                    ('tsl9_queue_validate_12cb4', 16, 16, 'tsl9_queue_advance_12cee'),
+                    ('tsl9_queue_validate_12cb4', 28, 16, 'tsl9_queue_advance_12cee'),
+                    ('tsl9_queue_validate_12cb4', 40, 16, 'tsl9_queue_advance_12cee'),
+                    ('tsl9_queue_validate_12cb4', 48, 44, 'tsl9_queue_zero_12d0e'),
+                    ('tsl9_queue_validate_12cb4', 54, 16, 'tsl9_queue_response_12d4c'),
+                    ('tsl9_queue_advance_12cee', 6, 16, 'tsl9_queue_scan_12c86'),
+                    ('tsl9_queue_zero_12d0e', 0, 17, 'tsl9_queue_external_820c'),
+                    ('tsl9_queue_zero_12d0e', 8, 17, 'tsl9_queue_external_9454'),
+                    ('tsl9_queue_zero_12d0e', 14, 17, 'tsl9_queue_external_9b36'),
+                    ('tsl9_queue_zero_12d0e', 30, 17, 'tsl9_queue_external_12abe'),
+                    ('tsl9_queue_zero_12d0e', 46, 16, 'tsl9_queue_emit_12d42'),
+                    ('tsl9_queue_emit_12d42', 4, 17, 'tsl9_queue_external_12abe'),
+                    ('tsl9_queue_emit_12d42', 8, 45, 'tsl9_queue_advance_12cee'),
+                    ('tsl9_queue_response_12d4c', 8, 16, 'tsl9_queue_advance_12cee'),
+                    ('tsl9_queue_response_12d4c', 38, 17, 'tsl9_queue_external_12a08'),
+                    ('tsl9_queue_response_12d4c', 42, 45, 'tsl9_queue_advance_12cee'),
+                    ('tsl9_queue_other_12d78', 10, 44, 'tsl9_queue_advance_12cee'),
+                    ('tsl9_queue_other_12d78', 12, 17, 'tsl9_queue_external_81aa'),
+                    ('tsl9_queue_other_12d78', 16, 44, 'tsl9_queue_advance_12cee'),
+                    ('tsl9_queue_other_12d78', 20, 17, 'tsl9_queue_external_14d2e'),
+                    ('tsl9_queue_other_12d78', 24, 45, 'tsl9_queue_advance_12cee'),
+                ]
+                need(pair[1]['functions'] == sorted([
+                    dict(name=n, binding=1, bytes=z, code_sha256=h) for n, z, h in regions], key=lambda x: x['name'])
+                    and pair[1]['allocated_sections'] == [
+                        dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
+                    and pair[1]['allocated_bytes'] == 314
+                    and pair[1]['UND'] == ['tsl9_queue_external_12a08', 'tsl9_queue_external_12abe', 'tsl9_queue_external_14d2e', 'tsl9_queue_external_81aa', 'tsl9_queue_external_820c', 'tsl9_queue_external_82d2', 'tsl9_queue_external_9454', 'tsl9_queue_external_9b36']
+                    and pair[1]['relocations'] == [
+                        dict(owner='.text.'+owner, offset=at, type=kind, addend=0, symbol=target)
+                        for owner, at, kind, target in edges],
+                    'Ten private queue regions with25 pending edges/eight genuine UND; separate formal checker proves107 instructions/230 complete noncontrol bytes/2163 retained bits, not resolved calls or firmware readiness')
             if unit['name'] == 'ring-irq-adapter':
                 regions = [
                     ('tsl9_ring_irq_entry_12c24', 14, '203ff4761ab235fd4dc972c1319ac55557cab310bf1eb01c58dfe7fa5583a094'),

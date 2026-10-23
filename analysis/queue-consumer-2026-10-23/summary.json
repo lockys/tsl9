@@ -1,0 +1,206 @@
+{
+  "schema": "TSL9-queue-consumer-milestone-v1",
+  "goal_status": "active",
+  "firmware_ready": false,
+  "rebuilt_flashable_BIN": false,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_executed": false,
+  "network_API_called": false,
+  "official_firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "bytes": 76800
+  },
+  "queue": {
+    "original_range": "[0x12C58,0x12D92)",
+    "original_sha256": "89905d7666bbe8295d09c752f1fcd34246847ea86c6428b539406450f8980c0f",
+    "candidate": "experiments/tsl9-queue-consumer/src/queue_consumer.v3.c",
+    "candidate_sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6",
+    "curated": "src/native/receive/queue_consumer.c",
+    "curated_sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6",
+    "trailing_newline_normalization_only": true,
+    "bytes": 314,
+    "instructions": 107,
+    "private_regions": 10,
+    "complete_noncontrol_instruction_bytes": 230,
+    "retained_nonrelocation_bits": 2163,
+    "all_retained_bits_match_original": true,
+    "partial_VMA": 0,
+    "pending_relocations": 25,
+    "UND_providers": 8,
+    "defined_local_relocation_targets": 16,
+    "direct_call_sites": 9,
+    "indirect_call_sites": 2,
+    "conditional_branches": 13,
+    "jumps": 3,
+    "RET": 1,
+    "call_split_CFG_nodes": 107,
+    "call_split_CFG_local_edges": 119,
+    "path_feasibility_proved": false,
+    "formal_receipts": [
+      "experiments/tsl9-queue-consumer/build/verified-v3/c/verification.json",
+      "experiments/tsl9-queue-consumer/build/verified-v3/cpp/verification.json"
+    ],
+    "formal_controls_per_language": {
+      "total": 295,
+      "raw_ELF_reparsed": 264,
+      "parsed_typed": 8,
+      "structural_SSA": 18,
+      "full_IR": 2,
+      "MD": 3,
+      "whole_ELF_hash_enabled": false,
+      "controls_with_full_IR_disabled": 293
+    },
+    "root_formal_read_only_replays": 2,
+    "root_firmware_ready_strict_C_exit": 1,
+    "ordinary_C_ABI_proved": false,
+    "consumer_full_composition_proved": false,
+    "source_and_curated_byte_identical": true
+  },
+  "small_providers": {
+    "source": "src/native/receive/queue_small_providers.c",
+    "source_sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13",
+    "source_seal": "experiments/tsl9-queue-small-providers/seal.json",
+    "original_ranges": [
+      "[0x81AA,0x81B0)",
+      "[0x820C,0x821E)"
+    ],
+    "function_bytes": [
+      6,
+      18
+    ],
+    "function_instructions": [
+      2,
+      6
+    ],
+    "whole_object_and_linked_function_bytes_equal_original": true,
+    "only_empty_register_ASM_ports": true,
+    "own_memory_logic": "C volatile byte read GP+167, unsigned index<=2 zero byte store at u32(GP+193+index)",
+    "diagnostic_VMA": 0,
+    "linked_function_spans": [
+      [
+        0,
+        6
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "UND": 0,
+    "global_ABS": 0,
+    "relocations": 0,
+    "actual_local_branch_fully_resolved": true,
+    "controls_per_language": {
+      "raw_ELF_reparsed": 12,
+      "IR": 3
+    },
+    "root_read_only_replays": 2,
+    "physical_placement_proved": false,
+    "composition_with_consumer_proved": false
+  },
+  "curation": {
+    "files": 55,
+    "native_translation_units": 29,
+    "C_CPP_pairs": 58,
+    "actual_objects": 116,
+    "raw_local_receipt": "build/curated-source/queue-consumer-20261023-v4/verification.json",
+    "sha256": "8d2919440b56b76cde565e2de3c2976b338c6934ff6c3e2aa82ec823dcc06fe2",
+    "bytes": 479920,
+    "comparisons": 58,
+    "artifacts": 349,
+    "inputs": 112,
+    "recipes": 116,
+    "old_results_unchanged": 54,
+    "old_artifact_hashes_unchanged": 325,
+    "previous_53_source_records_and_27_unit_records_unchanged": true,
+    "previous_54_flag_profiles_unchanged": true,
+    "read_only_replay_passed": true
+  },
+  "next_target": {
+    "range": "[0x82D2,0x838E)",
+    "bytes": 188,
+    "instructions": 69,
+    "span_sha256": "7a49eb89a2c698b0a9d4a97083329c2a12e200c1f27fbdadec16784a6edb0e30",
+    "evidence": "analysis/queue-consumer-2026-10-23/next-filter.json",
+    "compressed_JAL_PC": "0x8368",
+    "compressed_JAL_target": "0x8A56",
+    "compressed_JAL_RA": "0x836A",
+    "source_reconstruction_complete": false
+  },
+  "feature_candidates": [
+    "Offline ID0-versus-empty representation diagnostic; reachability and synchronization unresolved",
+    "Separate communication receipt, dispatch, provider effect and observed feature states",
+    "Version-aware GP-offset diagnostic: V4.1.60 167 differs from older model175"
+  ],
+  "remaining": [
+    "Eight consumer direct provider symbols remain UND in actual component, despite two separately reconstructed candidates",
+    "Dynamic resident identity and full effects on then-live SP/S-registers and A1/A2 residues",
+    "Frame/caller/IRQ/fault/memory ownership, startup/vectors/main and installed ROM",
+    "Physical silicon identification and complete original hardware/OTA compatibility",
+    "Actual seat and DND feature attribution in V4.1.60"
+  ],
+  "evidence_members": {
+    "src/native/receive/queue_consumer.c": {
+      "bytes": 9595,
+      "sha256": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6"
+    },
+    "src/native/receive/queue_small_providers.c": {
+      "bytes": 1468,
+      "sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13"
+    },
+    "experiments/tsl9-queue-consumer/verify.py": {
+      "bytes": 60698,
+      "sha256": "7161985aa739f3f1a746bf5ae98cdd79121cfdc3209270a0c74eb8133a3be9d6"
+    },
+    "experiments/tsl9-queue-small-providers/check.py": {
+      "bytes": 19820,
+      "sha256": "6cfa544596c32b14b6e122743f5f88ed4ba934fb8a4919c528102c668457bdc9"
+    },
+    "experiments/tsl9-queue-small-providers/seal.json": {
+      "bytes": 2722,
+      "sha256": "2e9f6fb929269cdf1bae1bdada83c50dad47626b4459adbae7ea8e1ee58794eb"
+    },
+    "analysis/queue-consumer-2026-10-23/root-native-review.json": {
+      "bytes": 14813,
+      "sha256": "738586c9e94671489d6160763a97813b40fdb47eb6e05d02d046118f96e8878f"
+    },
+    "analysis/queue-consumer-2026-10-23/next-filter.json": {
+      "bytes": 9994,
+      "sha256": "126704daa831099e311b3a50ac617225b27d32c0bfefcaa9f16c5272399e2e22"
+    },
+    "analysis/queue-consumer-2026-10-23/receipts/queue-c.json": {
+      "bytes": 174698,
+      "sha256": "51b5eb361f51a1a31c2b5c5ea486a3b11826fe5e8b76153607211be28ed5f924"
+    },
+    "analysis/queue-consumer-2026-10-23/receipts/queue-cpp.json": {
+      "bytes": 174798,
+      "sha256": "f8f57464760dc1bb211ef1e6c599bca5ab9a823467ff31d829a17263b784a0b6"
+    },
+    "analysis/queue-consumer-2026-10-23/receipts/small-providers-c.json": {
+      "bytes": 7442,
+      "sha256": "f27786bb9c4b16525e89fb3ef5cf53573aaaa732236b2db3a48b48eeac495141"
+    },
+    "analysis/queue-consumer-2026-10-23/receipts/small-providers-cpp.json": {
+      "bytes": 7446,
+      "sha256": "5f755291f1d96d3bc82f7576467371e4ead18564bbf67545f90030f871cdf16f"
+    },
+    "analysis/queue-consumer-2026-10-23/receipts/curated-source.json": {
+      "bytes": 453084,
+      "sha256": "49e3021d084ed9b3eea6dd8c169cbe46d30df7486ac0e273d4e16aa26d84dc8b"
+    }
+  },
+  "source_LF_correction": {
+    "private_originals_backup": "build/queue-eof-originals-20261023.zip",
+    "private_backup_sha256": "ef94f500140eaa4c3087a0773ecd38635fd78996c124343584eabda1fc37f7f3",
+    "original_source_and_receipts_preserved": true,
+    "only_trailing_LF_changed": true,
+    "all_machine_ELFs_byte_identical": true,
+    "each_IR_only_9_macro_srcloc_values_shifted_minus2": true,
+    "all_typed_SSA_negative_ELF_gates_unchanged": true,
+    "final_formal_version": 3,
+    "failed_formal_v2_C_artifacts_preserved_no_receipt": true,
+    "final_curation_version": 4
+  }
+}

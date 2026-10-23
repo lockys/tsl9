@@ -1,0 +1,231 @@
+{
+  "schema": "TSL9-public-path-only-receipt-v1",
+  "original_local_receipt": "experiments/tsl9-queue-small-providers/build/component-v1/c/verification.json",
+  "original_sha256": "f7ca912cc121c026056e91f4366bb45fc7ec0ba054899d8320bfa0c2c29125c9",
+  "original_bytes": 6590,
+  "original_preserved_local": true,
+  "receipt_is_original": false,
+  "byte_exact_original": false,
+  "original_replay_claimed": false,
+  "path_only_derivative": true,
+  "inverse_JSON_equality_verified": true,
+  "variables": [
+    "PROJECT_ROOT",
+    "LLVM_BIN",
+    "CLANG_RESOURCE"
+  ],
+  "receipt": {
+    "passed": true,
+    "schema": "TSL9-queue-small-provider-review-v1",
+    "mode": "c",
+    "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "analysis_base": 32768,
+    "original": {
+      "status": {
+        "original_VA": "[0x81AA,0x81B0)",
+        "bytes": 6,
+        "instructions": 2,
+        "load_width": 8,
+        "GP_offset": 167,
+        "own_written_GPRs": [
+          10
+        ]
+      },
+      "clear": {
+        "original_VA": "[0x820C,0x821E)",
+        "bytes": 18,
+        "instructions": 6,
+        "own_written_GPRs": [
+          15
+        ],
+        "branch": {
+          "offset": 2,
+          "kind": "BLTU",
+          "rs1": 15,
+          "rs2": 10,
+          "target_offset": 16
+        },
+        "normal_skip": "u32(entry_A0)>2: no memory access; A5=2",
+        "normal_store": "u32(entry_A0)<=2: WRITE8(u32(live_GP+193+entry_A0),0); A5=u32(live_GP+192+entry_A0)",
+        "entry_A0_preserved": true
+      },
+      "original_callees": [],
+      "stack_accesses": [],
+      "GP_own_write": false
+    },
+    "ELF_facts": [
+      {
+        "kind": 1,
+        "flags": 1,
+        "functions": {
+          "tsl9_queue_status_81aa": {
+            "value": 0,
+            "bytes": 6,
+            "section": ".text.tsl9_queue_status_81aa",
+            "code_sha256": "887c2bfb847a7e013acebac38c8be3f2bed06fd44305080ad6fc7ca3593e8fc3",
+            "symbol_record_at": 384,
+            "file_offset": 52
+          },
+          "tsl9_queue_clear_820c": {
+            "value": 0,
+            "bytes": 18,
+            "section": ".text.tsl9_queue_clear_820c",
+            "code_sha256": "643c424c37ca788946153c36cbfaebb37644464f84cc49f7fe2ff92b7c7c2b90",
+            "symbol_record_at": 400,
+            "file_offset": 58
+          }
+        },
+        "allocated": [
+          {
+            "name": ".text.tsl9_queue_status_81aa",
+            "size": 6,
+            "flags": 6,
+            "type": 1,
+            "address": 0
+          },
+          {
+            "name": ".text.tsl9_queue_clear_820c",
+            "size": 18,
+            "flags": 6,
+            "type": 1,
+            "address": 0
+          }
+        ],
+        "UND": [],
+        "global_ABS": [],
+        "REL_RELA": [],
+        "branch_resolved_in_assembler": true,
+        "LLVM_readback": {
+          "instructions": 8,
+          "whole_function_raw_readback": true,
+          "local_branch_target_is_real_RET": true
+        }
+      },
+      {
+        "kind": 2,
+        "flags": 1,
+        "functions": {
+          "tsl9_queue_status_81aa": {
+            "value": 0,
+            "bytes": 6,
+            "section": ".text",
+            "code_sha256": "887c2bfb847a7e013acebac38c8be3f2bed06fd44305080ad6fc7ca3593e8fc3",
+            "symbol_record_at": 4448,
+            "file_offset": 4096
+          },
+          "tsl9_queue_clear_820c": {
+            "value": 6,
+            "bytes": 18,
+            "section": ".text",
+            "code_sha256": "643c424c37ca788946153c36cbfaebb37644464f84cc49f7fe2ff92b7c7c2b90",
+            "symbol_record_at": 4464,
+            "file_offset": 4102
+          }
+        },
+        "allocated": [
+          {
+            "name": ".text",
+            "size": 24,
+            "flags": 6,
+            "type": 1,
+            "address": 0
+          }
+        ],
+        "UND": [],
+        "global_ABS": [],
+        "REL_RELA": [],
+        "branch_resolved_in_assembler": true,
+        "LLVM_readback": {
+          "instructions": 8,
+          "whole_function_raw_readback": true,
+          "local_branch_target_is_real_RET": true
+        }
+      }
+    ],
+    "IR_facts": {
+      "tsl9_queue_status_81aa": {
+        "normalized_body_sha256": "10056d8b8288d6f0b367bbbc6786485b69603cc4ba8756e6f531532ec6a586d8",
+        "ordinary_C_accesses": true,
+        "only_empty_register_ports": true
+      },
+      "tsl9_queue_clear_820c": {
+        "normalized_body_sha256": "cc3bb5b12b0a10e4d763948178ca7a24215a7bcfbdd3268e49c14002e408ff54",
+        "ordinary_C_accesses": true,
+        "only_empty_register_ports": true
+      }
+    },
+    "negative_controls": [
+      {
+        "kind": "object",
+        "actual_raw_ELF_controls": [
+          "machine",
+          "GP167_to175",
+          "unsigned_branch_to_signed",
+          "store_offset1_to0",
+          "fake_ABS_function",
+          "writable_alloc"
+        ]
+      },
+      {
+        "kind": "linked",
+        "actual_raw_ELF_controls": [
+          "machine",
+          "GP167_to175",
+          "unsigned_branch_to_signed",
+          "store_offset1_to0",
+          "fake_ABS_function",
+          "writable_alloc"
+        ]
+      }
+    ],
+    "actual_IR_controls": [
+      "old_GP175",
+      "signed_index",
+      "nonvolatile_store"
+    ],
+    "mutations_in_memory_only": true,
+    "compiler_dependencies": {
+      "${CLANG_RESOURCE}/include/stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "${PROJECT_ROOT}/experiments/tsl9-queue-small-providers/src/providers.c": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13"
+    },
+    "compile_receipt_sha256": "1ce350fdd25da6de483fb76032eb001849bea39808f5a85b3282ddffca989042",
+    "authored_source_closure": {
+      "build.py": "11e076c5ac7821a1ce042f356d6be17243df975421e1f281f78097b3293db473",
+      "check.py": "6cfa544596c32b14b6e122743f5f88ed4ba934fb8a4919c528102c668457bdc9",
+      "component.ld": "eb24ba262936a5c9684eef655262537a29888a7cdee9b9755dc528e139ff2f09",
+      "readme.en.md": "65e96fe36b91d59f67ee3ddfbea7b92868a25649a31e477287d79eb3226fac2a",
+      "README.md": "98c6a161432227af4104183f93e9bd1b0cc76bbde4ea44dbe7f1592418014741",
+      "readme.zh-TW.md": "98c6a161432227af4104183f93e9bd1b0cc76bbde4ea44dbe7f1592418014741",
+      "source-map.json": "52b6fd52af064a616c1f29396640802a4cc84cd7c08c135232820586b86086ec",
+      "src/providers.c": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13",
+      "verify.sh": "995f6069a7100665897767be26197c3306310d8ad3b12da7a3c39e1ff9f20edf"
+    },
+    "actual_tool_invocations": "compile/link/static disassembly only; help availability is not a machine-effects proof",
+    "whole_function_bytes_equal_original": true,
+    "local_branch_resolved": true,
+    "relocation_count": 0,
+    "diagnostic_linked_function_spans": {
+      "tsl9_queue_status_81aa": [
+        0,
+        6
+      ],
+      "tsl9_queue_clear_820c": [
+        6,
+        24
+      ]
+    },
+    "physical_placement_proved": false,
+    "full_callsite_composition_proved": false,
+    "global_fault_IRQ_context_proved": false,
+    "installed_ROM_proved": false,
+    "firmware_ready": false,
+    "OTA_ready": false,
+    "rebuilt_flashable_BIN": false,
+    "target_execution": false,
+    "HOST_execution": false,
+    "ISA_emulation": false,
+    "MMIO_execution": false,
+    "network": false,
+    "BIN_generated": false
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "TSL9-V4160-queue-small-provider-source-map-v1",
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "analysis_base": "0x8000",
+    "bytes": 76800
+  },
+  "source": "src/providers.c",
+  "source_sha256": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13",
+  "profile": "build.py:flags(mode); single profile, A0/A5 free, all other x1..x31 reserved",
+  "functions": [
+    {
+      "symbol": "tsl9_queue_status_81aa",
+      "original_VA": "[0x81AA,0x81B0)",
+      "file_offset": "0x1AA",
+      "bytes": 6,
+      "instructions": 2,
+      "sha256": "887c2bfb847a7e013acebac38c8be3f2bed06fd44305080ad6fc7ca3593e8fc3",
+      "raw_hex": "03c5710a8280",
+      "normal_effect": "A0=zext_u8[GP+167]; other own GPRs unchanged",
+      "own_written_GPRs": [
+        10
+      ],
+      "diagnostic_linked_span": [
+        0,
+        6
+      ]
+    },
+    {
+      "symbol": "tsl9_queue_clear_820c",
+      "original_VA": "[0x820C,0x821E)",
+      "file_offset": "0x20C",
+      "bytes": 18,
+      "instructions": 6,
+      "sha256": "643c424c37ca788946153c36cbfaebb37644464f84cc49f7fe2ff92b7c7c2b90",
+      "raw_hex": "894763e7a7009387010caa97a38007008280",
+      "normal_effect": "u32(A0)>2: no memory access,A5=2; otherwise WRITE8(u32(GP+193+A0),0),A5=u32(GP+192+A0); A0 preserved",
+      "own_written_GPRs": [
+        15
+      ],
+      "diagnostic_linked_span": [
+        6,
+        24
+      ],
+      "branch": {
+        "offset": 2,
+        "kind": "BLTU",
+        "rs1": 15,
+        "rs2": 10,
+        "local_target_offset": 16
+      }
+    }
+  ],
+  "current_build": "build/component-v1",
+  "byte_exact_object_and_linked": true,
+  "assembler_resolved_local_branch": true,
+  "REL_RELA": 0,
+  "genuine_C_functions": 2,
+  "hidden_provider": false,
+  "first_pass_no_source_or_flag_retry": true,
+  "physical_placement_proved": false,
+  "full_callsite_composition_proved": false,
+  "global_fault_IRQ_context_proved": false,
+  "installed_ROM_proved": false,
+  "firmware_ready": false,
+  "OTA_ready": false,
+  "rebuilt_flashable_BIN": false,
+  "target_execution": false,
+  "HOST_execution": false,
+  "network": false
+}
