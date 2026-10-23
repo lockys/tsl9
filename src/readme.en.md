@@ -44,6 +44,7 @@ This directory is the working entry point for the readable source with the stron
 | [native/resident](native/resident/native.c) | SDK-candidate compare/fill/copy | Normal memory projection only; installed ROM identity, scratch/fault behavior and sizes remain unresolved |
 | [resident copy architecture](native/resident/copy_arch.c) | WCH V1.31 SDK candidate copy | Full58B/18i matches candidate at conditional RAM20000332; preserves T0/A7 and fault-prefix ordering. Installed TSL9 resident identity remains unknown; not linked into firmware |
 | [reference/v4100](reference/v4100/dnd_actions.c) | DND, general settings and GATT framing models | V4.1.00 behavior references with unresolved providers; separate from V4.1.60 native source |
+| [callback/checksum](native/receive/feature_callback.c) | Seven spans314B/109i, including checksum and deferred callback paths | All original-VA bytes equal in C/C++; genuine5402B+60B graph,75 unresolved symbols; scheduler/resident/hardware/OTA remain unproved |
 
 [source-manifest.json](source-manifest.json) records every origin, original/curated SHA256, individual include adaptations, the two A1 declaration repairs, and each compile entry's evidence and limits. The newer volatile-source experiment still has frame/slot differences and remains in experiments.
 
@@ -63,9 +64,9 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The script selects 48 native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
+The script selects 49 native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
 
-The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed96 comparisons (192 objects). Its receipt is `build/curated-source/feature-dispatch-20261023-v2/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
+The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed98 comparisons (196 objects). Its receipt is `build/curated-source/feature-callback-20261023-v2/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
 
 Replay an existing result without compiling:
 

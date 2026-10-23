@@ -1,0 +1,381 @@
+{
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build-v2.py": {
+      "bytes": 12031,
+      "sha256": "86216a2f987b46640e74383916cff552f2a777c25b7df5f22989e15247df1fdf"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\spec-v2.json": {
+      "bytes": 11181,
+      "sha256": "20f8502f26f5d484484c96c3a74a5d73d6a0c21108d57b8c26f8fad1a2e2d222"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\src\\callback.v2.c": {
+      "bytes": 9437,
+      "sha256": "5cc798a932273528d4cc8f24b01d7ca1515aa29628f8a856244e3201e977f211"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    }
+  },
+  "modes": {
+    "c": {
+      "artifacts": {
+        "IR.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native.d": {
+          "bytes": 250,
+          "sha256": "3f472b1ec1aa1e8d46b7d28c4d46cc6c8b00bcc8244f3222f3c1ba4fa50cf5fa"
+        },
+        "native.ll": {
+          "bytes": 23653,
+          "sha256": "bf2812599a9c609bc1c5d25705a9fc86e7fbb13a638380d895dc9123281d7ec1"
+        },
+        "native.o": {
+          "bytes": 6212,
+          "sha256": "1ead096331781a8f7c7aef6186504bf6e0258d833eaa378a1d3339b44d093b67"
+        },
+        "read.log": {
+          "bytes": 18966,
+          "sha256": "88cfa252f22cd9e14650d5ffd081138300cd981e6c51634b84d7b3e7e5604864"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v2\\c\\native.d",
+            "-MT",
+            "native.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\src\\callback.v2.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v2\\c\\native.o"
+          ],
+          "exit": 0,
+          "label": "compile",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-S",
+            "-emit-llvm",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\src\\callback.v2.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v2\\c\\native.ll"
+          ],
+          "exit": 0,
+          "label": "IR",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v2\\c\\native.o"
+          ],
+          "exit": 0,
+          "label": "read",
+          "log_sha256": "88cfa252f22cd9e14650d5ffd081138300cd981e6c51634b84d7b3e7e5604864"
+        }
+      ],
+      "result": {
+        "error": "tsl9_callback_checksum_ed24: nonrelocation bits differ; actual=b306a70083c63600b69793f7f70f original=b306e50083c63600b69793f7f70f",
+        "passed": false
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "IR.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native.d": {
+          "bytes": 250,
+          "sha256": "3f472b1ec1aa1e8d46b7d28c4d46cc6c8b00bcc8244f3222f3c1ba4fa50cf5fa"
+        },
+        "native.ll": {
+          "bytes": 24080,
+          "sha256": "039e4099b082d59ebedaf9cd86e1fca666ed45abe356c7081cb499b4902b3177"
+        },
+        "native.o": {
+          "bytes": 6212,
+          "sha256": "1ead096331781a8f7c7aef6186504bf6e0258d833eaa378a1d3339b44d093b67"
+        },
+        "read.log": {
+          "bytes": 18968,
+          "sha256": "f6fe77522c261571ba3c606e439635a2f981fa8abcf9a1a6dcc80d92197afeaa"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v2\\cpp\\native.d",
+            "-MT",
+            "native.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\src\\callback.v2.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v2\\cpp\\native.o"
+          ],
+          "exit": 0,
+          "label": "compile",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-S",
+            "-emit-llvm",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\src\\callback.v2.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v2\\cpp\\native.ll"
+          ],
+          "exit": 0,
+          "label": "IR",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v2\\cpp\\native.o"
+          ],
+          "exit": 0,
+          "label": "read",
+          "log_sha256": "f6fe77522c261571ba3c606e439635a2f981fa8abcf9a1a6dcc80d92197afeaa"
+        }
+      ],
+      "result": {
+        "error": "tsl9_callback_checksum_ed24: nonrelocation bits differ; actual=b306a70083c63600b69793f7f70f original=b306e50083c63600b69793f7f70f",
+        "passed": false
+      }
+    }
+  },
+  "schema": "TSL9-callback-native-build-v1"
+}

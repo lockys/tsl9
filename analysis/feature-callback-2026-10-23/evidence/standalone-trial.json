@@ -1,0 +1,763 @@
+{
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build-v4.py": {
+      "bytes": 12031,
+      "sha256": "6e06d3310b72bfab17a855df00a7d13972665850a779f5d548af74f0a29667cd"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\spec-v4.json": {
+      "bytes": 11181,
+      "sha256": "0db1ad9a3c050346427b1dd5685ecfe66012b06c36d34cf3a44d337026cd23c9"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\src\\callback.v4.c": {
+      "bytes": 9443,
+      "sha256": "6de8a0bd3b39b9f9d5fd420fd924ed742b30658c015b1d2644260bca14a695f5"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    }
+  },
+  "modes": {
+    "c": {
+      "artifacts": {
+        "IR.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native.d": {
+          "bytes": 250,
+          "sha256": "bde29c37cf11fd727b6e6afd3a9f20d3c710d14ae2792b3911dabffea7b91c4f"
+        },
+        "native.ll": {
+          "bytes": 23659,
+          "sha256": "4ce287dec2e3c772e3e47697de2b70c8e7c0611f0c92d1c5e10f310aecdf1ce5"
+        },
+        "native.o": {
+          "bytes": 6216,
+          "sha256": "af8b36897ad57d0f36ba1e45361c50d92f1eef36cff4a2f2641e0743dce6a016"
+        },
+        "read.log": {
+          "bytes": 18975,
+          "sha256": "2bc36e42767edd3a802ca47974c4d803a984c361aba1361b207ed04880e229ed"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v4\\c\\native.d",
+            "-MT",
+            "native.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\src\\callback.v4.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v4\\c\\native.o"
+          ],
+          "exit": 0,
+          "label": "compile",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-S",
+            "-emit-llvm",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\src\\callback.v4.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v4\\c\\native.ll"
+          ],
+          "exit": 0,
+          "label": "IR",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v4\\c\\native.o"
+          ],
+          "exit": 0,
+          "label": "read",
+          "log_sha256": "2bc36e42767edd3a802ca47974c4d803a984c361aba1361b207ed04880e229ed"
+        }
+      ],
+      "result": {
+        "FUNC": 31,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "PC_relative_RELA": 6,
+        "RELA": 26,
+        "UND": [
+          "tsl9_callback_external_10032",
+          "tsl9_callback_external_10630",
+          "tsl9_callback_external_12b24",
+          "tsl9_callback_external_13d48",
+          "tsl9_callback_external_9124",
+          "tsl9_callback_external_9b36",
+          "tsl9_callback_external_b0fc",
+          "tsl9_callback_external_d272",
+          "tsl9_queue_external_820c"
+        ],
+        "all_code_bytes_equal_after_data_only_original_VA_relocation": true,
+        "code_bytes": 314,
+        "direct_control_RELA": 20,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "hardware_accessed": false,
+        "indirect_callback": {
+          "PC": 67654,
+          "RA": 67656,
+          "bytes": "8297",
+          "register": "a5"
+        },
+        "instructions": 109,
+        "native_object_sha256": "af8b36897ad57d0f36ba1e45361c50d92f1eef36cff4a2f2641e0743dce6a016",
+        "negative_cases_executed": 0,
+        "network": false,
+        "passed": true,
+        "provider_implementations_assumed": false,
+        "relocations": [
+          {
+            "PC": 60696,
+            "symbol": "tsl9_callback_checksum_ed20",
+            "target": 60704,
+            "type": 16
+          },
+          {
+            "PC": 60704,
+            "symbol": "tsl9_callback_checksum_ed32",
+            "target": 60722,
+            "type": 16
+          },
+          {
+            "PC": 60724,
+            "symbol": "tsl9_callback_checksum_ed14",
+            "target": 60692,
+            "type": 45
+          },
+          {
+            "PC": 67240,
+            "symbol": "tsl9_callback_checksum_ed00",
+            "target": 60672,
+            "type": 17
+          },
+          {
+            "PC": 67308,
+            "symbol": "tsl9_callback_guard_828c",
+            "target": 33420,
+            "type": 17
+          },
+          {
+            "PC": 67312,
+            "symbol": "tsl9_callback_count_10704",
+            "target": 67332,
+            "type": 44
+          },
+          {
+            "PC": 67412,
+            "symbol": "tsl9_callback_external_d272",
+            "target": 53874,
+            "type": 17
+          },
+          {
+            "PC": 67416,
+            "symbol": "tsl9_callback_external_b0fc",
+            "target": 45308,
+            "type": 17
+          },
+          {
+            "PC": 67422,
+            "symbol": "tsl9_queue_external_820c",
+            "target": 33292,
+            "type": 17
+          },
+          {
+            "PC": 67426,
+            "symbol": "tsl9_callback_external_10032",
+            "target": 65586,
+            "type": 17
+          },
+          {
+            "PC": 67450,
+            "symbol": "tsl9_callback_external_12b24",
+            "target": 76580,
+            "type": 17
+          },
+          {
+            "PC": 67454,
+            "symbol": "tsl9_callback_state_10794",
+            "target": 67476,
+            "type": 44
+          },
+          {
+            "PC": 67464,
+            "symbol": "tsl9_callback_external_9b36",
+            "target": 39734,
+            "type": 23
+          },
+          {
+            "PC": 67468,
+            "symbol": ".Lcallback_address5",
+            "target": 39734,
+            "type": 24
+          },
+          {
+            "PC": 67472,
+            "symbol": "tsl9_callback_external_9124",
+            "target": 37156,
+            "type": 17
+          },
+          {
+            "PC": 67478,
+            "symbol": "tsl9_callback_external_13d48",
+            "target": 81224,
+            "type": 17
+          },
+          {
+            "PC": 67484,
+            "symbol": "tsl9_callback_state_107b8",
+            "target": 67512,
+            "type": 16
+          },
+          {
+            "PC": 67498,
+            "symbol": "tsl9_callback_external_10630",
+            "target": 67120,
+            "type": 23
+          },
+          {
+            "PC": 67502,
+            "symbol": ".Lcallback_address7",
+            "target": 67120,
+            "type": 24
+          },
+          {
+            "PC": 67508,
+            "symbol": "tsl9_callback_external_9124",
+            "target": 37156,
+            "type": 17
+          },
+          {
+            "PC": 67522,
+            "symbol": "tsl9_feature_external_1074c",
+            "target": 67404,
+            "type": 17
+          },
+          {
+            "PC": 67658,
+            "symbol": "tsl9_callback_wrapper_10866",
+            "target": 67686,
+            "type": 44
+          },
+          {
+            "PC": 67662,
+            "symbol": "tsl9_queue_external_820c",
+            "target": 33292,
+            "type": 17
+          },
+          {
+            "PC": 67674,
+            "symbol": "tsl9_callback_deferred_107c0",
+            "target": 67520,
+            "type": 23
+          },
+          {
+            "PC": 67678,
+            "symbol": ".Lcallback_address9",
+            "target": 67520,
+            "type": 24
+          },
+          {
+            "PC": 67682,
+            "symbol": "tsl9_callback_external_9124",
+            "target": 37156,
+            "type": 17
+          }
+        ],
+        "target_executed": false
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "IR.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native.d": {
+          "bytes": 250,
+          "sha256": "bde29c37cf11fd727b6e6afd3a9f20d3c710d14ae2792b3911dabffea7b91c4f"
+        },
+        "native.ll": {
+          "bytes": 24086,
+          "sha256": "f704b88431c8078cdcefa71befb30e62102e104350fb6804f8680af0ffc71701"
+        },
+        "native.o": {
+          "bytes": 6216,
+          "sha256": "af8b36897ad57d0f36ba1e45361c50d92f1eef36cff4a2f2641e0743dce6a016"
+        },
+        "read.log": {
+          "bytes": 18977,
+          "sha256": "404d007be8af75769f247f2104f8e30b5e31dd0403645e360a6122999b29190b"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v4\\cpp\\native.d",
+            "-MT",
+            "native.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\src\\callback.v4.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v4\\cpp\\native.o"
+          ],
+          "exit": 0,
+          "label": "compile",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-S",
+            "-emit-llvm",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\src\\callback.v4.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v4\\cpp\\native.ll"
+          ],
+          "exit": 0,
+          "label": "IR",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-feature-callback\\build\\trial-v4\\cpp\\native.o"
+          ],
+          "exit": 0,
+          "label": "read",
+          "log_sha256": "404d007be8af75769f247f2104f8e30b5e31dd0403645e360a6122999b29190b"
+        }
+      ],
+      "result": {
+        "FUNC": 31,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "PC_relative_RELA": 6,
+        "RELA": 26,
+        "UND": [
+          "tsl9_callback_external_10032",
+          "tsl9_callback_external_10630",
+          "tsl9_callback_external_12b24",
+          "tsl9_callback_external_13d48",
+          "tsl9_callback_external_9124",
+          "tsl9_callback_external_9b36",
+          "tsl9_callback_external_b0fc",
+          "tsl9_callback_external_d272",
+          "tsl9_queue_external_820c"
+        ],
+        "all_code_bytes_equal_after_data_only_original_VA_relocation": true,
+        "code_bytes": 314,
+        "direct_control_RELA": 20,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "hardware_accessed": false,
+        "indirect_callback": {
+          "PC": 67654,
+          "RA": 67656,
+          "bytes": "8297",
+          "register": "a5"
+        },
+        "instructions": 109,
+        "native_object_sha256": "af8b36897ad57d0f36ba1e45361c50d92f1eef36cff4a2f2641e0743dce6a016",
+        "negative_cases_executed": 0,
+        "network": false,
+        "passed": true,
+        "provider_implementations_assumed": false,
+        "relocations": [
+          {
+            "PC": 60696,
+            "symbol": "tsl9_callback_checksum_ed20",
+            "target": 60704,
+            "type": 16
+          },
+          {
+            "PC": 60704,
+            "symbol": "tsl9_callback_checksum_ed32",
+            "target": 60722,
+            "type": 16
+          },
+          {
+            "PC": 60724,
+            "symbol": "tsl9_callback_checksum_ed14",
+            "target": 60692,
+            "type": 45
+          },
+          {
+            "PC": 67240,
+            "symbol": "tsl9_callback_checksum_ed00",
+            "target": 60672,
+            "type": 17
+          },
+          {
+            "PC": 67308,
+            "symbol": "tsl9_callback_guard_828c",
+            "target": 33420,
+            "type": 17
+          },
+          {
+            "PC": 67312,
+            "symbol": "tsl9_callback_count_10704",
+            "target": 67332,
+            "type": 44
+          },
+          {
+            "PC": 67412,
+            "symbol": "tsl9_callback_external_d272",
+            "target": 53874,
+            "type": 17
+          },
+          {
+            "PC": 67416,
+            "symbol": "tsl9_callback_external_b0fc",
+            "target": 45308,
+            "type": 17
+          },
+          {
+            "PC": 67422,
+            "symbol": "tsl9_queue_external_820c",
+            "target": 33292,
+            "type": 17
+          },
+          {
+            "PC": 67426,
+            "symbol": "tsl9_callback_external_10032",
+            "target": 65586,
+            "type": 17
+          },
+          {
+            "PC": 67450,
+            "symbol": "tsl9_callback_external_12b24",
+            "target": 76580,
+            "type": 17
+          },
+          {
+            "PC": 67454,
+            "symbol": "tsl9_callback_state_10794",
+            "target": 67476,
+            "type": 44
+          },
+          {
+            "PC": 67464,
+            "symbol": "tsl9_callback_external_9b36",
+            "target": 39734,
+            "type": 23
+          },
+          {
+            "PC": 67468,
+            "symbol": ".Lcallback_address5",
+            "target": 39734,
+            "type": 24
+          },
+          {
+            "PC": 67472,
+            "symbol": "tsl9_callback_external_9124",
+            "target": 37156,
+            "type": 17
+          },
+          {
+            "PC": 67478,
+            "symbol": "tsl9_callback_external_13d48",
+            "target": 81224,
+            "type": 17
+          },
+          {
+            "PC": 67484,
+            "symbol": "tsl9_callback_state_107b8",
+            "target": 67512,
+            "type": 16
+          },
+          {
+            "PC": 67498,
+            "symbol": "tsl9_callback_external_10630",
+            "target": 67120,
+            "type": 23
+          },
+          {
+            "PC": 67502,
+            "symbol": ".Lcallback_address7",
+            "target": 67120,
+            "type": 24
+          },
+          {
+            "PC": 67508,
+            "symbol": "tsl9_callback_external_9124",
+            "target": 37156,
+            "type": 17
+          },
+          {
+            "PC": 67522,
+            "symbol": "tsl9_feature_external_1074c",
+            "target": 67404,
+            "type": 17
+          },
+          {
+            "PC": 67658,
+            "symbol": "tsl9_callback_wrapper_10866",
+            "target": 67686,
+            "type": 44
+          },
+          {
+            "PC": 67662,
+            "symbol": "tsl9_queue_external_820c",
+            "target": 33292,
+            "type": 17
+          },
+          {
+            "PC": 67674,
+            "symbol": "tsl9_callback_deferred_107c0",
+            "target": 67520,
+            "type": 23
+          },
+          {
+            "PC": 67678,
+            "symbol": ".Lcallback_address9",
+            "target": 67520,
+            "type": 24
+          },
+          {
+            "PC": 67682,
+            "symbol": "tsl9_callback_external_9124",
+            "target": 37156,
+            "type": 17
+          }
+        ],
+        "target_executed": false
+      }
+    }
+  },
+  "schema": "TSL9-callback-native-build-v1"
+}
