@@ -1,0 +1,120 @@
+{
+  "schema": "TSL9-tagged-dispatch-milestone-v1",
+  "parent_HEAD": "9fa2125c01a17a06613dd6382c2f3e2ecbd47483",
+  "original": {
+    "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "start": "0x16B7C",
+    "end_exclusive": "0x16C72",
+    "bytes": 246,
+    "instructions": 86,
+    "span_sha256": "f7711c4ac4195be6dd04aa57f8e2069e6c3275ae1f5377fd84c4d151d81adf47",
+    "global_function_extent_confirmed": false
+  },
+  "source": {
+    "experimental": "experiments/tsl9-tagged-dispatch/src/tagged_dispatch.v1.c",
+    "curated": "src/native/receive/tagged_dispatch.c",
+    "sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69",
+    "kind": "C-owned scalar arithmetic with explicit architectural memory/register/frame/control ports",
+    "ordinary_C_ABI_proved": false
+  },
+  "native": {
+    "languages": [
+      "C11",
+      "C++17"
+    ],
+    "actual_recipes_per_language": 5,
+    "bytes": 246,
+    "instructions": 86,
+    "private_regions": 15,
+    "pending_RELA": 11,
+    "strong_UND": 4,
+    "global_ABS": 0,
+    "native_ELF_sha256": "4806a133544b8d7c43301f1a71868361493288a3e950be6869bf59b6bbb126ca",
+    "partial_ELF_sha256": "31b5551622f0044c520f9f7ed03d8460ef2574ebb3c71e7ff308a47429a3fb39",
+    "all_nonrelocation_bits_equal": true,
+    "whole_bytes_equal_original": false,
+    "negative_controls_per_language": 132,
+    "negative_controls_whole_hash_disabled": true,
+    "read_only_replay_passed": true,
+    "strict_firmware_exit_code": 1,
+    "proof_C": "evidence/native-c.json",
+    "proof_CPP": "evidence/native-cpp.json",
+    "unknown_resident_pointer": "fresh [0x4004C]"
+  },
+  "findings": {
+    "confirmed": [
+      "Tags1/2 and global pointer byte4 bit3 checked before frame",
+      "64B frame saves/restores RA/S0/S1/S2/S3 from then-live SP",
+      "Original stack table30/40/50 and identifier packing preserved",
+      "Fresh postcallee length/tag reads; initial length bound is not extended across opaque calls",
+      "Busy test uses then-live S1!=S3; final status&0x70 maps to0/4"
+    ],
+    "inference": "Possible three-buffer transmit-register protocol; physical CAN controller identity/count unproved",
+    "feature_opportunity": "Future local diagnostics could retain distinct failure reason and raw masked status; no behavior modification implemented"
+  },
+  "unresolved_providers": [
+    "0x8520",
+    "0x16994",
+    "0x168DE",
+    "0x1693E"
+  ],
+  "previous_composition": {
+    "bytes": 1162,
+    "instructions": 402,
+    "FUNC": 49,
+    "pending_RELA": 57,
+    "strong_UND": 5,
+    "unchanged": true,
+    "new_candidate_joined": false
+  },
+  "curated": {
+    "C_and_headers": 61,
+    "native_translation_units": 35,
+    "C_CPP_comparisons": 70,
+    "objects": 140,
+    "original_receipt": "build/curated-source/tagged-dispatch-20261023-v1/verification.json",
+    "original_sha256": "196f9e453d6b7bcbd3a1dd1cb3f05d0ab70bb92881846e11dd7497cf3ad0b2ce",
+    "public_path": "evidence/curated-source.json",
+    "public_receipt_is_original": false
+  },
+  "provenance": {
+    "file": "publication-provenance.json",
+    "portable_originals": 2,
+    "path_only_derivatives": 1,
+    "originals_preserved_local": true,
+    "Git_history_rewritten": false,
+    "private_native_backup": {
+      "path": "build/tagged-original-receipts-20261023.zip",
+      "files": 65,
+      "sha256": "73081fd6441e3374cef97815ece24e961ca61fcefa8194bae1a13f4cf74a32af"
+    },
+    "private_curation_backup": {
+      "path": "build/tagged-curation-original-20261023.zip",
+      "files": 1,
+      "sha256": "c250bfba1b9cbe40afd7074f0a8254853e3a4b9ba11f17b803284f8dff46d6d2"
+    }
+  },
+  "checker_repair": {
+    "failed_folder": "experiments/tsl9-tagged-dispatch/build/verified-v1",
+    "error": "KeyError: portable",
+    "compilation_succeeded": true,
+    "formal_receipts_created": false,
+    "original_checker": "experiments/tsl9-tagged-dispatch/history/verify.pre-portable-fix.py",
+    "original_checker_sha256": "31fc151911b77a53899e7da13cb6b582b3426d174c5acaaaffcaf15134fbcbc9",
+    "repair": "Use frozen ELF reader portable helper directly; source, profile and tools unchanged",
+    "fresh_passing_folder": "experiments/tsl9-tagged-dispatch/build/verified-v2"
+  },
+  "goal_status": "active",
+  "firmware_ready": false,
+  "new_BIN": false,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_tested": false,
+  "network_vendor_access": false,
+  "next": {
+    "VA": "0x168DE",
+    "reason": "Genuine unresolved direct call from candidate send path at0x16C2C",
+    "scope": "Offline original-byte boundary/dataflow analysis before C reconstruction"
+  }
+}

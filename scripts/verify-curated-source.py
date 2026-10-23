@@ -54,7 +54,7 @@ def flags(unit, mode):
     clock = kind in ('clock-query', 'clock-fields')
     irq = kind in ('irq-bank', 'delay-bank')
     spi = kind == 'spi-a0-a3-a4-a5'
-    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'irq-provider-a0-a1-a2-a4-a5', 'queue-consumer-a0-a5', 'queue-small-a0-a5', 'queue-filter-a0-a5', 'transport-a0-a6', 'record-a0-a5', 'record-predicate-a0-a4-a5', 'peripheral-a0-a6')
+    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'irq-provider-a0-a1-a2-a4-a5', 'queue-consumer-a0-a5', 'queue-small-a0-a5', 'queue-filter-a0-a5', 'transport-a0-a6', 'record-a0-a5', 'record-predicate-a0-a4-a5', 'peripheral-a0-a6', 'tagged-a0-a5')
     ring = kind == 'ring-bank'
     result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi or packet or ring else 'rv32imac_zicsr_zifencei'),
               '-mabi=ilp32', '-Os' if clock else '-Oz']
@@ -82,7 +82,7 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'spi-a0-a3-a4-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 13, 14, 15}]
-    elif kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'queue-consumer-a0-a5', 'queue-filter-a0-a5', 'record-a0-a5'):
+    elif kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'queue-consumer-a0-a5', 'queue-filter-a0-a5', 'record-a0-a5', 'tagged-a0-a5'):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind in ('transport-a0-a6', 'peripheral-a0-a6'):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15, 16}]
@@ -322,6 +322,47 @@ def audit(base, record, manifest):
                         dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
                     and pair[1]['allocated_bytes'] == 24 and not pair[1]['UND'] and not pair[1]['relocations'],
                     'Two actual C leaves6/18B with fully assembler-resolved local branch; source-copy proof does not prove original placement, consumer composition or firmware readiness')
+            if unit['name'] == 'tagged-dispatch':
+                regions = [
+                    ('tsl9_dispatch_external_16b7c', 16, '7555b3ff425bfe27d122aa9f0fa3751b0474b3b146aff45df72527c948acff8b'),
+                    ('tsl9_tagged_config_16b8c', 16, '17883f6c5542aee34744e26c3904c97d8b95cc2ae662fa2e8d843c36f2cac7c9'),
+                    ('tsl9_tagged_frame_16b9c', 12, '63171dcd3b860fff2c39673390d00c53a96f142593ede9e24d94a7dc2e6286e2'),
+                    ('tsl9_tagged_length_16ba8', 10, '5469b9d86ae87c8659771ef3a672fdebef3a93e531522e8db7f31baaa2b835fe'),
+                    ('tsl9_tagged_header_16bb2', 32, '96ee0b2191cb6ea5e2e6af8686afef2de6e7075663d233624bcb8ba55fd8961e'),
+                    ('tsl9_tagged_payload_16bd2', 40, '2108f92a4956bc700f688bc30ea72f79506fd262974c756d99aace8e71eeb4ef'),
+                    ('tsl9_tagged_loop_setup_16bfa', 4, '5aa13f56a2a40d8db468e1b0331efbced5ae2b64482a5034fe5661da78b446be'),
+                    ('tsl9_tagged_loop_16bfe', 22, '16ea94d3d1f26c28988d440f76548fe1dffb603f1e211a1403b579ab65f704b7'),
+                    ('tsl9_tagged_send_16c14', 28, '8876ee5a6c0f2cbfe038e2bb2fde9f9bcf4b0637623260f64ee53133514f41ae'),
+                    ('tsl9_tagged_request_16c30', 14, 'df514c0a8d44351703e77d6a5f1fea9ff9c2b91599dfb0999ebb27d7863f0e50'),
+                    ('tsl9_tagged_status_16c3e', 20, 'd722a9d5a53a7ee3b1fe3cb2c9bbb26386859cb1c9117481282a6a691429d9b4'),
+                    ('tsl9_tagged_finish_16c52', 16, '6fdfaeea019a0e0af3a293b252ee98fc085112b3a4b557bc99a257cd74da0f4a'),
+                    ('tsl9_tagged_busy_16c62', 10, '481ae38d48d1fac7662a3ff96f344955364caeb467c42d46dfe0b7e068d653ec'),
+                    ('tsl9_tagged_invalid_16c6c', 2, '06a82e72be7d2ece7c31910654dd3b389ee65282466e1b34daa1d60b0d3b42e3'),
+                    ('tsl9_tagged_early_16c6e', 4, '9357712eb4a240a5427265f17c9e858a95d8d53bdcfe72f1583660a9819053f9'),
+                ]
+                edges = [
+                    ('tsl9_dispatch_external_16b7c', 12, 16, 'tsl9_tagged_invalid_16c6c'),
+                    ('tsl9_tagged_config_16b8c', 14, 44, 'tsl9_tagged_early_16c6e'),
+                    ('tsl9_tagged_length_16ba8', 6, 16, 'tsl9_tagged_finish_16c52'),
+                    ('tsl9_tagged_header_16bb2', 28, 17, 'tsl9_tagged_external_8520'),
+                    ('tsl9_tagged_loop_16bfe', 14, 17, 'tsl9_register_read_entry_16994'),
+                    ('tsl9_tagged_loop_16bfe', 20, 44, 'tsl9_tagged_busy_16c62'),
+                    ('tsl9_tagged_send_16c14', 24, 17, 'tsl9_tagged_external_168de'),
+                    ('tsl9_tagged_request_16c30', 10, 17, 'tsl9_tagged_external_1693e'),
+                    ('tsl9_tagged_status_16c3e', 6, 17, 'tsl9_register_read_entry_16994'),
+                    ('tsl9_tagged_busy_16c62', 2, 16, 'tsl9_tagged_loop_16bfe'),
+                    ('tsl9_tagged_busy_16c62', 8, 45, 'tsl9_tagged_finish_16c52'),
+                ]
+                need(pair[1]['functions'] == sorted([
+                    dict(name=n,binding=1,bytes=z,code_sha256=h) for n,z,h in regions],key=lambda x:x['name'])
+                    and pair[1]['allocated_sections'] == [
+                        dict(name='.text.'+n,bytes=z,flags=6,type=1,sha256=h) for n,z,h in regions]
+                    and pair[1]['allocated_bytes'] == 246
+                    and pair[1]['UND'] == ["tsl9_register_read_entry_16994","tsl9_tagged_external_168de","tsl9_tagged_external_1693e","tsl9_tagged_external_8520"]
+                    and not pair[1]['global_ABS']
+                    and pair[1]['relocations'] == [
+                        dict(owner='.text.'+n,offset=o,type=k,addend=0,symbol=t) for n,o,k,t in edges],
+                    'Fifteen private246B regions/11pending controls/four genuine UND retain exact source-object bodies; then-live stack/register ports are not ordinary ABI, provider composition or firmware readiness')
             if unit['name'] == 'peripheral-write':
                 regions = [
                     ('tsl9_dispatch_external_18ca4', 34, '117dfb3a3f1c230701512ac1faff9633d91a8bddb11f039ae709872c6aa8573e'),

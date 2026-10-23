@@ -1,0 +1,965 @@
+{
+  "schema": "TSL9-tagged-dispatch-frozen-spec-v1",
+  "reader": "experiments/tsl9-spi-transfer-leaf/verify.py",
+  "evidence": "analysis/peripheral-write-2026-10-23/next-provider-window.json",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "span_sha256": "f7711c4ac4195be6dd04aa57f8e2069e6c3275ae1f5377fd84c4d151d81adf47",
+  "pins": {
+    "experiments/tsl9-tagged-dispatch/src/tagged_dispatch.v1.c": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69",
+    "experiments/tsl9-tagged-dispatch/probe.py": "c6caa1d9e70b5b5ee4f59e1c672c9a72d50269591e987fe8bf7fc6d6f2dd128a",
+    "experiments/tsl9-tagged-dispatch/component.ld": "0dc406fd48d72910139c85c941f72c0113b6bd0e388ad11c95a61f7d40a94db8",
+    "experiments/tsl9-tagged-dispatch/decode.py": "4a8e5ee2976337fa9ed693e4d5a846de95836f0d2d7e7c35e414b89b522c3dc4",
+    "experiments/tsl9-spi-transfer-leaf/verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+    "analysis/peripheral-write-2026-10-23/next-provider-window.json": "9ca830c6c7a4baa6ae063b856a7a68ff71971ce837484c99ae0d0fa5a93abc1e"
+  },
+  "tools": {
+    "clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+  },
+  "stdint_sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+  "regions": [
+    [
+      "tsl9_dispatch_external_16b7c",
+      0,
+      16
+    ],
+    [
+      "tsl9_tagged_config_16b8c",
+      16,
+      16
+    ],
+    [
+      "tsl9_tagged_frame_16b9c",
+      32,
+      12
+    ],
+    [
+      "tsl9_tagged_length_16ba8",
+      44,
+      10
+    ],
+    [
+      "tsl9_tagged_header_16bb2",
+      54,
+      32
+    ],
+    [
+      "tsl9_tagged_payload_16bd2",
+      86,
+      40
+    ],
+    [
+      "tsl9_tagged_loop_setup_16bfa",
+      126,
+      4
+    ],
+    [
+      "tsl9_tagged_loop_16bfe",
+      130,
+      22
+    ],
+    [
+      "tsl9_tagged_send_16c14",
+      152,
+      28
+    ],
+    [
+      "tsl9_tagged_request_16c30",
+      180,
+      14
+    ],
+    [
+      "tsl9_tagged_status_16c3e",
+      194,
+      20
+    ],
+    [
+      "tsl9_tagged_finish_16c52",
+      214,
+      16
+    ],
+    [
+      "tsl9_tagged_busy_16c62",
+      230,
+      10
+    ],
+    [
+      "tsl9_tagged_invalid_16c6c",
+      240,
+      2
+    ],
+    [
+      "tsl9_tagged_early_16c6e",
+      242,
+      4
+    ]
+  ],
+  "relocations": [
+    [
+      12,
+      16,
+      "tsl9_tagged_invalid_16c6c",
+      0
+    ],
+    [
+      30,
+      44,
+      "tsl9_tagged_early_16c6e",
+      0
+    ],
+    [
+      50,
+      16,
+      "tsl9_tagged_finish_16c52",
+      0
+    ],
+    [
+      82,
+      17,
+      "tsl9_tagged_external_8520",
+      0
+    ],
+    [
+      144,
+      17,
+      "tsl9_register_read_entry_16994",
+      0
+    ],
+    [
+      150,
+      44,
+      "tsl9_tagged_busy_16c62",
+      0
+    ],
+    [
+      176,
+      17,
+      "tsl9_tagged_external_168de",
+      0
+    ],
+    [
+      190,
+      17,
+      "tsl9_tagged_external_1693e",
+      0
+    ],
+    [
+      200,
+      17,
+      "tsl9_register_read_entry_16994",
+      0
+    ],
+    [
+      232,
+      16,
+      "tsl9_tagged_loop_16bfe",
+      0
+    ],
+    [
+      238,
+      45,
+      "tsl9_tagged_finish_16c52",
+      0
+    ]
+  ],
+  "undefined": [
+    "tsl9_tagged_external_8520",
+    "tsl9_register_read_entry_16994",
+    "tsl9_tagged_external_168de",
+    "tsl9_tagged_external_1693e"
+  ],
+  "typed_rows": [
+    [
+      0,
+      4,
+      "LBU8",
+      15,
+      10,
+      11
+    ],
+    [
+      4,
+      2,
+      "ADDI",
+      14,
+      0,
+      1
+    ],
+    [
+      6,
+      2,
+      "ADDI",
+      15,
+      15,
+      -1
+    ],
+    [
+      8,
+      4,
+      "ANDI",
+      15,
+      15,
+      255
+    ],
+    [
+      12,
+      4,
+      "BLTU",
+      14,
+      15,
+      93292
+    ],
+    [
+      16,
+      4,
+      "ADDI",
+      15,
+      3,
+      84
+    ],
+    [
+      20,
+      2,
+      "LW32",
+      15,
+      15,
+      0
+    ],
+    [
+      22,
+      4,
+      "LBU8",
+      14,
+      15,
+      4
+    ],
+    [
+      26,
+      2,
+      "ADDI",
+      15,
+      0,
+      4
+    ],
+    [
+      28,
+      2,
+      "ANDI",
+      14,
+      14,
+      8
+    ],
+    [
+      30,
+      2,
+      "BNEZ",
+      14,
+      93294
+    ],
+    [
+      32,
+      2,
+      "ADDI",
+      2,
+      2,
+      -64
+    ],
+    [
+      34,
+      2,
+      "SW32",
+      1,
+      2,
+      60
+    ],
+    [
+      36,
+      2,
+      "SW32",
+      8,
+      2,
+      56
+    ],
+    [
+      38,
+      2,
+      "SW32",
+      9,
+      2,
+      52
+    ],
+    [
+      40,
+      2,
+      "SW32",
+      18,
+      2,
+      48
+    ],
+    [
+      42,
+      2,
+      "SW32",
+      19,
+      2,
+      44
+    ],
+    [
+      44,
+      4,
+      "LBU8",
+      9,
+      10,
+      2
+    ],
+    [
+      48,
+      2,
+      "ADDI",
+      14,
+      0,
+      8
+    ],
+    [
+      50,
+      4,
+      "BLTU",
+      14,
+      9,
+      93266
+    ],
+    [
+      54,
+      2,
+      "LUI",
+      15,
+      16384
+    ],
+    [
+      56,
+      4,
+      "ADDI",
+      15,
+      15,
+      48
+    ],
+    [
+      60,
+      2,
+      "MV",
+      8,
+      10
+    ],
+    [
+      62,
+      4,
+      "SH16",
+      15,
+      2,
+      12
+    ],
+    [
+      66,
+      2,
+      "ADDI",
+      12,
+      0,
+      11
+    ],
+    [
+      68,
+      4,
+      "ADDI",
+      15,
+      0,
+      80
+    ],
+    [
+      72,
+      2,
+      "ADDI",
+      11,
+      0,
+      0
+    ],
+    [
+      74,
+      4,
+      "ADDI",
+      10,
+      2,
+      18
+    ],
+    [
+      78,
+      4,
+      "SB8",
+      15,
+      2,
+      14
+    ],
+    [
+      82,
+      4,
+      "JAL",
+      1,
+      34080
+    ],
+    [
+      86,
+      4,
+      "LHU16",
+      15,
+      8,
+      0
+    ],
+    [
+      90,
+      4,
+      "SB8",
+      9,
+      2,
+      20
+    ],
+    [
+      94,
+      2,
+      "MV",
+      12,
+      9
+    ],
+    [
+      96,
+      4,
+      "SRLI",
+      14,
+      15,
+      3
+    ],
+    [
+      100,
+      2,
+      "SLLI",
+      15,
+      15,
+      5
+    ],
+    [
+      102,
+      4,
+      "SB8",
+      15,
+      2,
+      17
+    ],
+    [
+      106,
+      4,
+      "SB8",
+      14,
+      2,
+      16
+    ],
+    [
+      110,
+      4,
+      "LUI",
+      15,
+      262144
+    ],
+    [
+      114,
+      2,
+      "LW32",
+      15,
+      15,
+      76
+    ],
+    [
+      116,
+      4,
+      "ADDI",
+      11,
+      8,
+      3
+    ],
+    [
+      120,
+      4,
+      "ADDI",
+      10,
+      2,
+      21
+    ],
+    [
+      124,
+      2,
+      "JALR",
+      1,
+      15,
+      0
+    ],
+    [
+      126,
+      2,
+      "ADDI",
+      9,
+      0,
+      0
+    ],
+    [
+      128,
+      2,
+      "ADDI",
+      19,
+      0,
+      3
+    ],
+    [
+      130,
+      2,
+      "ADDI",
+      15,
+      2,
+      12
+    ],
+    [
+      132,
+      2,
+      "ADD",
+      15,
+      15,
+      9
+    ],
+    [
+      134,
+      4,
+      "LBU8",
+      18,
+      15,
+      0
+    ],
+    [
+      138,
+      4,
+      "LBU8",
+      10,
+      8,
+      11
+    ],
+    [
+      142,
+      2,
+      "MV",
+      11,
+      18
+    ],
+    [
+      144,
+      4,
+      "JAL",
+      1,
+      92564
+    ],
+    [
+      148,
+      2,
+      "ANDI",
+      10,
+      10,
+      8
+    ],
+    [
+      150,
+      2,
+      "BNEZ",
+      10,
+      93282
+    ],
+    [
+      152,
+      4,
+      "LBU8",
+      13,
+      8,
+      2
+    ],
+    [
+      156,
+      4,
+      "LBU8",
+      10,
+      8,
+      11
+    ],
+    [
+      160,
+      4,
+      "ADDI",
+      11,
+      18,
+      1
+    ],
+    [
+      164,
+      2,
+      "ADDI",
+      13,
+      13,
+      5
+    ],
+    [
+      166,
+      4,
+      "ANDI",
+      13,
+      13,
+      255
+    ],
+    [
+      170,
+      2,
+      "ADDI",
+      12,
+      2,
+      16
+    ],
+    [
+      172,
+      4,
+      "ANDI",
+      11,
+      11,
+      255
+    ],
+    [
+      176,
+      4,
+      "JAL",
+      1,
+      92382
+    ],
+    [
+      180,
+      4,
+      "LBU8",
+      10,
+      8,
+      11
+    ],
+    [
+      184,
+      2,
+      "ADDI",
+      13,
+      0,
+      8
+    ],
+    [
+      186,
+      2,
+      "ADDI",
+      12,
+      0,
+      8
+    ],
+    [
+      188,
+      2,
+      "MV",
+      11,
+      18
+    ],
+    [
+      190,
+      4,
+      "JAL",
+      1,
+      92478
+    ],
+    [
+      194,
+      4,
+      "LBU8",
+      10,
+      8,
+      11
+    ],
+    [
+      198,
+      2,
+      "MV",
+      11,
+      18
+    ],
+    [
+      200,
+      4,
+      "JAL",
+      1,
+      92564
+    ],
+    [
+      204,
+      4,
+      "ANDI",
+      10,
+      10,
+      112
+    ],
+    [
+      208,
+      4,
+      "SLTU",
+      15,
+      0,
+      10
+    ],
+    [
+      212,
+      2,
+      "SLLI",
+      15,
+      15,
+      2
+    ],
+    [
+      214,
+      2,
+      "LW32",
+      1,
+      2,
+      60
+    ],
+    [
+      216,
+      2,
+      "LW32",
+      8,
+      2,
+      56
+    ],
+    [
+      218,
+      2,
+      "LW32",
+      9,
+      2,
+      52
+    ],
+    [
+      220,
+      2,
+      "LW32",
+      18,
+      2,
+      48
+    ],
+    [
+      222,
+      2,
+      "LW32",
+      19,
+      2,
+      44
+    ],
+    [
+      224,
+      2,
+      "MV",
+      10,
+      15
+    ],
+    [
+      226,
+      2,
+      "ADDI",
+      2,
+      2,
+      64
+    ],
+    [
+      228,
+      2,
+      "RET",
+      1
+    ],
+    [
+      230,
+      2,
+      "ADDI",
+      9,
+      9,
+      1
+    ],
+    [
+      232,
+      4,
+      "BNE",
+      9,
+      19,
+      93182
+    ],
+    [
+      236,
+      2,
+      "ADDI",
+      15,
+      0,
+      4
+    ],
+    [
+      238,
+      2,
+      "J",
+      93266
+    ],
+    [
+      240,
+      2,
+      "ADDI",
+      15,
+      0,
+      4
+    ],
+    [
+      242,
+      2,
+      "MV",
+      10,
+      15
+    ],
+    [
+      244,
+      2,
+      "RET",
+      1
+    ]
+  ],
+  "ELF_sha256": {
+    "native": "4806a133544b8d7c43301f1a71868361493288a3e950be6869bf59b6bbb126ca",
+    "partial": "31b5551622f0044c520f9f7ed03d8460ef2574ebb3c71e7ff308a47429a3fb39"
+  },
+  "IR_scalars": {
+    "c": {
+      "tsl9_dispatch_external_16b7c": [
+        "%v = add i32 %v, -1",
+        "%v = and i32 %v, 255"
+      ],
+      "tsl9_tagged_config_16b8c": [
+        "%v = inttoptr i32 %v to ptr",
+        "%v = load volatile i32, ptr %v, align 4, !tbaa !12",
+        "%v = and i32 %v, 8"
+      ],
+      "tsl9_tagged_frame_16b9c": [],
+      "tsl9_tagged_length_16ba8": [],
+      "tsl9_tagged_header_16bb2": [],
+      "tsl9_tagged_payload_16bd2": [
+        "%v = lshr i32 %v, 3",
+        "%v = shl i32 %v, 5",
+        "%v = add i32 %v, 76",
+        "%v = inttoptr i32 %v to ptr",
+        "%v = load volatile i32, ptr %v, align 4, !tbaa !12"
+      ],
+      "tsl9_tagged_loop_setup_16bfa": [],
+      "tsl9_tagged_loop_16bfe": [
+        "%v = and i32 %v, 8"
+      ],
+      "tsl9_tagged_send_16c14": [
+        "%v = add i32 %v, 5",
+        "%v = and i32 %v, 255",
+        "%v = and i32 %v, 255"
+      ],
+      "tsl9_tagged_request_16c30": [],
+      "tsl9_tagged_status_16c3e": [
+        "%v = and i32 %v, 112",
+        "%v = icmp ne i32 %v, 0",
+        "%v = zext i1 %v to i32",
+        "%v = shl i32 %v, 2"
+      ],
+      "tsl9_tagged_finish_16c52": [],
+      "tsl9_tagged_busy_16c62": [],
+      "tsl9_tagged_invalid_16c6c": [],
+      "tsl9_tagged_early_16c6e": []
+    },
+    "cpp": {
+      "tsl9_dispatch_external_16b7c": [
+        "%v = add i32 %v, -1",
+        "%v = and i32 %v, 255"
+      ],
+      "tsl9_tagged_config_16b8c": [
+        "%v = inttoptr i32 %v to ptr",
+        "%v = load volatile i32, ptr %v, align 4, !tbaa !12",
+        "%v = and i32 %v, 8"
+      ],
+      "tsl9_tagged_frame_16b9c": [],
+      "tsl9_tagged_length_16ba8": [],
+      "tsl9_tagged_header_16bb2": [],
+      "tsl9_tagged_payload_16bd2": [
+        "%v = lshr i32 %v, 3",
+        "%v = shl i32 %v, 5",
+        "%v = add i32 %v, 76",
+        "%v = inttoptr i32 %v to ptr",
+        "%v = load volatile i32, ptr %v, align 4, !tbaa !12"
+      ],
+      "tsl9_tagged_loop_setup_16bfa": [],
+      "tsl9_tagged_loop_16bfe": [
+        "%v = and i32 %v, 8"
+      ],
+      "tsl9_tagged_send_16c14": [
+        "%v = add i32 %v, 5",
+        "%v = and i32 %v, 255",
+        "%v = and i32 %v, 255"
+      ],
+      "tsl9_tagged_request_16c30": [],
+      "tsl9_tagged_status_16c3e": [
+        "%v = and i32 %v, 112",
+        "%v = icmp ne i32 %v, 0",
+        "%v = zext i1 %v to i32",
+        "%v = shl i32 %v, 2"
+      ],
+      "tsl9_tagged_finish_16c52": [],
+      "tsl9_tagged_busy_16c62": [],
+      "tsl9_tagged_invalid_16c6c": [],
+      "tsl9_tagged_early_16c6e": []
+    }
+  },
+  "IR_sha256": {
+    "c": "ee524556e210e10d646f8b9ccd404bec1791015ab40100ffe48bd75745061a23",
+    "cpp": "3792acb77c0a5846a2a5152d80c22f03792147e04964bd0bdd20b21a772fcfb0"
+  },
+  "IR_ports": [
+    "lbu a5, 11(a0)\\0A",
+    ".Ltag_invalid:\\0Abltu a4, a5, .Ltag_invalid\\0A.reloc .-4, R_RISCV_BRANCH, tsl9_tagged_invalid_16c6c\\0A",
+    "addi a5, gp, 84\\0A",
+    "lbu a4, 4(a5)\\0A",
+    ".Ltag_config_blocked:\\0Ac.bnez a4, .Ltag_config_blocked\\0A.reloc .-2, R_RISCV_RVC_BRANCH, tsl9_tagged_early_16c6e\\0A",
+    "addi sp, sp, -64\\0Asw ra, 60(sp)\\0Asw s0, 56(sp)\\0Asw s1, 52(sp)\\0Asw s2, 48(sp)\\0Asw s3, 44(sp)\\0A",
+    "lbu s1, 2(a0)\\0A",
+    ".Ltag_length_reject:\\0Abltu a4, s1, .Ltag_length_reject\\0A.reloc .-4, R_RISCV_BRANCH, tsl9_tagged_finish_16c52\\0A",
+    "mv s0, a0\\0Ash a5, 12(sp)\\0A",
+    "addi a0, sp, 18\\0Asb a5, 14(sp)\\0A",
+    ".Ltag_prepare_call:\\0A.option push\\0A.option norvc\\0Ajal ra, .Ltag_prepare_call\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_tagged_external_8520\\0A",
+    "lhu a5, 0(s0)\\0Asb s1, 20(sp)\\0Amv a2, s1\\0A",
+    "sb a5, 17(sp)\\0Asb a4, 16(sp)\\0A",
+    "addi a1, s0, 3\\0Aaddi a0, sp, 21\\0Ajalr a5\\0A",
+    "li s1, 0\\0Ali s3, 3\\0A",
+    "addi a5, sp, 12\\0Aadd a5, a5, s1\\0Albu s2, 0(a5)\\0Albu a0, 11(s0)\\0Amv a1, s2\\0A",
+    ".Ltag_busy_read:\\0A.option push\\0A.option norvc\\0Ajal ra, .Ltag_busy_read\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_register_read_entry_16994\\0A",
+    ".Ltag_busy_branch:\\0Ac.bnez a0, .Ltag_busy_branch\\0A.reloc .-2, R_RISCV_RVC_BRANCH, tsl9_tagged_busy_16c62\\0A",
+    "lbu a3, 2(s0)\\0Albu a0, 11(s0)\\0Aaddi a1, s2, 1\\0A",
+    "addi a2, sp, 16\\0A",
+    ".Ltag_send_call:\\0A.option push\\0A.option norvc\\0Ajal ra, .Ltag_send_call\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_tagged_external_168de\\0A",
+    "lbu a0, 11(s0)\\0A",
+    "mv a1, s2\\0A",
+    ".Ltag_request_call:\\0A.option push\\0A.option norvc\\0Ajal ra, .Ltag_request_call\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_tagged_external_1693e\\0A",
+    "lbu a0, 11(s0)\\0Amv a1, s2\\0A",
+    ".Ltag_status_read:\\0A.option push\\0A.option norvc\\0Ajal ra, .Ltag_status_read\\0A.option pop\\0A.reloc .-4, R_RISCV_JAL, tsl9_register_read_entry_16994\\0A",
+    "lw ra, 60(sp)\\0Alw s0, 56(sp)\\0Alw s1, 52(sp)\\0Alw s2, 48(sp)\\0Alw s3, 44(sp)\\0Amv a0, a5\\0Aaddi sp, sp, 64\\0Aret\\0A",
+    "addi s1, s1, 1\\0A.Ltag_try_next:\\0Abne s1, s3, .Ltag_try_next\\0A.reloc .-4, R_RISCV_BRANCH, tsl9_tagged_loop_16bfe\\0A",
+    ".Ltag_all_busy:\\0Ac.j .Ltag_all_busy\\0A.reloc .-2, R_RISCV_RVC_JUMP, tsl9_tagged_finish_16c52\\0A",
+    "mv a0, a5\\0Aret\\0A"
+  ]
+}

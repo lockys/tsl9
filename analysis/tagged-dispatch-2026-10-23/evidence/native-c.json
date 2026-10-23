@@ -1,0 +1,299 @@
+{
+  "schema": "TSL9-tagged-dispatch-offline-proof-v1",
+  "passed": true,
+  "language": "c",
+  "bytes": 246,
+  "instructions": 86,
+  "private_regions": 15,
+  "pending_relocations": 11,
+  "strong_undefined": 4,
+  "global_ABS": 0,
+  "nonrelocation_bits_equal_original": true,
+  "whole_bytes_equal_original": false,
+  "source_owned_scalar_SSA": {
+    "tsl9_dispatch_external_16b7c": [
+      "%v = add i32 %v, -1",
+      "%v = and i32 %v, 255"
+    ],
+    "tsl9_tagged_config_16b8c": [
+      "%v = inttoptr i32 %v to ptr",
+      "%v = load volatile i32, ptr %v, align 4, !tbaa !12",
+      "%v = and i32 %v, 8"
+    ],
+    "tsl9_tagged_frame_16b9c": [],
+    "tsl9_tagged_length_16ba8": [],
+    "tsl9_tagged_header_16bb2": [],
+    "tsl9_tagged_payload_16bd2": [
+      "%v = lshr i32 %v, 3",
+      "%v = shl i32 %v, 5",
+      "%v = add i32 %v, 76",
+      "%v = inttoptr i32 %v to ptr",
+      "%v = load volatile i32, ptr %v, align 4, !tbaa !12"
+    ],
+    "tsl9_tagged_loop_setup_16bfa": [],
+    "tsl9_tagged_loop_16bfe": [
+      "%v = and i32 %v, 8"
+    ],
+    "tsl9_tagged_send_16c14": [
+      "%v = add i32 %v, 5",
+      "%v = and i32 %v, 255",
+      "%v = and i32 %v, 255"
+    ],
+    "tsl9_tagged_request_16c30": [],
+    "tsl9_tagged_status_16c3e": [
+      "%v = and i32 %v, 112",
+      "%v = icmp ne i32 %v, 0",
+      "%v = zext i1 %v to i32",
+      "%v = shl i32 %v, 2"
+    ],
+    "tsl9_tagged_finish_16c52": [],
+    "tsl9_tagged_busy_16c62": [],
+    "tsl9_tagged_invalid_16c6c": [],
+    "tsl9_tagged_early_16c6e": []
+  },
+  "negative_controls": [
+    "instruction-0",
+    "instruction-4",
+    "instruction-6",
+    "instruction-8",
+    "instruction-12",
+    "instruction-16",
+    "instruction-20",
+    "instruction-22",
+    "instruction-26",
+    "instruction-28",
+    "instruction-30",
+    "instruction-32",
+    "instruction-34",
+    "instruction-36",
+    "instruction-38",
+    "instruction-40",
+    "instruction-42",
+    "instruction-44",
+    "instruction-48",
+    "instruction-50",
+    "instruction-54",
+    "instruction-56",
+    "instruction-60",
+    "instruction-62",
+    "instruction-66",
+    "instruction-68",
+    "instruction-72",
+    "instruction-74",
+    "instruction-78",
+    "instruction-82",
+    "instruction-86",
+    "instruction-90",
+    "instruction-94",
+    "instruction-96",
+    "instruction-100",
+    "instruction-102",
+    "instruction-106",
+    "instruction-110",
+    "instruction-114",
+    "instruction-116",
+    "instruction-120",
+    "instruction-124",
+    "instruction-126",
+    "instruction-128",
+    "instruction-130",
+    "instruction-132",
+    "instruction-134",
+    "instruction-138",
+    "instruction-142",
+    "instruction-144",
+    "instruction-148",
+    "instruction-150",
+    "instruction-152",
+    "instruction-156",
+    "instruction-160",
+    "instruction-164",
+    "instruction-166",
+    "instruction-170",
+    "instruction-172",
+    "instruction-176",
+    "instruction-180",
+    "instruction-184",
+    "instruction-186",
+    "instruction-188",
+    "instruction-190",
+    "instruction-194",
+    "instruction-198",
+    "instruction-200",
+    "instruction-204",
+    "instruction-208",
+    "instruction-212",
+    "instruction-214",
+    "instruction-216",
+    "instruction-218",
+    "instruction-220",
+    "instruction-222",
+    "instruction-224",
+    "instruction-226",
+    "instruction-228",
+    "instruction-230",
+    "instruction-232",
+    "instruction-236",
+    "instruction-238",
+    "instruction-240",
+    "instruction-242",
+    "instruction-244",
+    "relocation-addend-0",
+    "relocation-addend-1",
+    "relocation-addend-2",
+    "relocation-addend-3",
+    "relocation-addend-4",
+    "relocation-addend-5",
+    "relocation-addend-6",
+    "relocation-addend-7",
+    "relocation-addend-8",
+    "relocation-addend-9",
+    "relocation-addend-10",
+    "IR-port-97",
+    "IR-port-98",
+    "IR-port-99",
+    "IR-port-100",
+    "IR-port-101",
+    "IR-port-102",
+    "IR-port-103",
+    "IR-port-104",
+    "IR-port-105",
+    "IR-port-106",
+    "IR-port-107",
+    "IR-port-108",
+    "IR-port-109",
+    "IR-port-110",
+    "IR-port-111",
+    "IR-port-112",
+    "IR-port-113",
+    "IR-port-114",
+    "IR-port-115",
+    "IR-port-116",
+    "IR-port-117",
+    "IR-port-118",
+    "IR-port-119",
+    "IR-port-120",
+    "IR-port-121",
+    "IR-port-122",
+    "IR-port-123",
+    "IR-port-124",
+    "IR-port-125",
+    "IR-port-126",
+    "IR-scalar-127",
+    "IR-scalar-128",
+    "IR-scalar-129",
+    "IR-scalar-130",
+    "IR-scalar-131"
+  ],
+  "negative_controls_complete_hash_disabled": true,
+  "real_compile_and_link_recipes": 5,
+  "artifacts": [
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/build/verified-v2/c/compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/build/verified-v2/c/IR.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/build/verified-v2/c/link.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/build/verified-v2/c/native.d",
+      "bytes": 357,
+      "sha256": "cb5a92cae23061cf1224979b7edb0f3375ef49d555eeb4a958aba14960bf977a"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/build/verified-v2/c/native.ll",
+      "bytes": 33157,
+      "sha256": "88aac19506f48ae65a6832363a627d850c8ecb0b42820c1119db659d518a70af"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/build/verified-v2/c/native.o",
+      "bytes": 3364,
+      "sha256": "4806a133544b8d7c43301f1a71868361493288a3e950be6869bf59b6bbb126ca"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/build/verified-v2/c/object.log",
+      "bytes": 10505,
+      "sha256": "34247cb4557a8883e8da2fd8f59dc75a069dc505671ebebf4b831018d1dcea0c"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/build/verified-v2/c/partial.log",
+      "bytes": 7655,
+      "sha256": "b1bcce57ed0d6680ee49240791ba792fa7fcf103aca5ab5da0fb998f3056549d"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/build/verified-v2/c/partial.o",
+      "bytes": 2092,
+      "sha256": "31b5551622f0044c520f9f7ed03d8460ef2574ebb3c71e7ff308a47429a3fb39"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/build/verified-v2/c/recipes.json",
+      "bytes": 3725,
+      "sha256": "48226bb6028482bf89fc189e01c86963ad9b6f91029ec3545464ec8380ca7dcb"
+    }
+  ],
+  "function_extent_globally_confirmed": false,
+  "ordinary_C_ABI_proved": false,
+  "resident_0x4004C_target_known": false,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_tested": false,
+  "firmware_ready": false,
+  "inputs": {
+    "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/spec.json": {
+      "sha256": "02cfc41410ba52844621cba2d038e4e11fa6bf4458da14a220f6a2c7216edbd9",
+      "bytes": 15243
+    },
+    "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/verify.py": {
+      "sha256": "18465fbe6ee4c66d3071ab6402d411edcf4e1904813c5d45cca0fe9019a2e2fb",
+      "bytes": 12212
+    },
+    "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/src/tagged_dispatch.v1.c": {
+      "sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69",
+      "bytes": 6621
+    },
+    "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/probe.py": {
+      "sha256": "c6caa1d9e70b5b5ee4f59e1c672c9a72d50269591e987fe8bf7fc6d6f2dd128a",
+      "bytes": 7677
+    },
+    "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/component.ld": {
+      "sha256": "0dc406fd48d72910139c85c941f72c0113b6bd0e388ad11c95a61f7d40a94db8",
+      "bytes": 1682
+    },
+    "${TSL9_ROOT}/experiments/tsl9-tagged-dispatch/decode.py": {
+      "sha256": "4a8e5ee2976337fa9ed693e4d5a846de95836f0d2d7e7c35e414b89b522c3dc4",
+      "bytes": 4326
+    },
+    "${TSL9_ROOT}/experiments/tsl9-spi-transfer-leaf/verify.py": {
+      "sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+      "bytes": 29593
+    },
+    "${TSL9_ROOT}/analysis/peripheral-write-2026-10-23/next-provider-window.json": {
+      "sha256": "9ca830c6c7a4baa6ae063b856a7a68ff71971ce837484c99ae0d0fa5a93abc1e",
+      "bytes": 12555
+    },
+    "${LLVM_BIN}/clang.exe": {
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+      "bytes": 126673512
+    },
+    "${LLVM_BIN}/ld.lld.exe": {
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+      "bytes": 73834600
+    },
+    "${LLVM_BIN}/llvm-objdump.exe": {
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+      "bytes": 18311272
+    },
+    "${LLVM_BIN}/../lib/clang/18/include/stdint.h": {
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "bytes": 30946
+    }
+  }
+}

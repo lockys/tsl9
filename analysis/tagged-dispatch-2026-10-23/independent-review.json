@@ -1,0 +1,46 @@
+{
+  "schema": "TSL9-tagged-independent-review-v1",
+  "review_scope": "Read-only independent original-byte, architectural-port, curation and native-checker review",
+  "original_span": {
+    "bytes": 246,
+    "instructions": 86,
+    "sha256": "f7711c4ac4195be6dd04aa57f8e2069e6c3275ae1f5377fd84c4d151d81adf47",
+    "all_15_region_boundaries_verified": true
+  },
+  "architectural_review": {
+    "then_live_SP_S0_S1_S2_S3_preserved": true,
+    "opaque_call_ABI_not_assumed": true,
+    "loop_condition": "S1!=S3",
+    "fresh_postcall_reads_preserved": true
+  },
+  "curation": {
+    "files": 61,
+    "native_units": 35,
+    "C_CPP_comparisons": 70,
+    "objects": 140,
+    "inputs": 124,
+    "artifacts": 421,
+    "old_68_profiles_unchanged": true,
+    "old_68_results_unchanged": true,
+    "old_409_artifact_hashes_unchanged": true,
+    "actual_build_and_read_only_replay_passed": true,
+    "source_manifest_sha256": "8f870aa0981e565a2866b60560412964d481d5e7465245e3108870009adc26d5",
+    "curation_checker_sha256": "223b1a3c91475707d687866ce732b00e0fa6028aaf450a7453dfee47eb4ce105",
+    "original_receipt_sha256": "196f9e453d6b7bcbd3a1dd1cb3f05d0ab70bb92881846e11dd7497cf3ad0b2ce"
+  },
+  "native_review": {
+    "current_complete_ELF_and_IR_gates_passed": true,
+    "all_11_relocation_symbol_suffixes_match_original_destinations": true,
+    "all_15_actual_FUNC_bindings_strong": true,
+    "negative_coverage_limits": [
+      "Defined FUNC binding corruption is rejected by the complete ELF digest gate; no independent binding-mutation control is claimed.",
+      "Normalized scalar-operation rows discard SSA IDs. Operand rewiring is rejected by the complete IR digest gate, not by the scalar-operation-only negative controls."
+    ],
+    "no_exhaustive_metadata_or_SSA_wiring_mutation_coverage_claimed": true
+  },
+  "target_executed": false,
+  "ISA_emulated": false,
+  "HOST_models_executed": false,
+  "network": false,
+  "firmware_ready": false
+}

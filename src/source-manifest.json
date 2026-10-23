@@ -480,6 +480,13 @@
       "replacements": [],
       "origin_sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0",
       "sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0"
+    },
+    {
+      "origin": "experiments/tsl9-tagged-dispatch/src/tagged_dispatch.v1.c",
+      "destination": "src/native/receive/tagged_dispatch.c",
+      "replacements": [],
+      "origin_sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69",
+      "sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69"
     }
   ],
   "native_units": [
@@ -832,6 +839,19 @@
       ],
       "scope": "212B/72i across seven private regions; C volatile reads/writes/arithmetic plus empty physical-register ports and seven explicit symbolic controls/RET. Nominal linked whole212B equals original, native7RELA/0UND. Three short-circuit fresh status reads, AND1 initial control write, full-byte8/9 ID contributions, inputbyte10 writeback, ordered payload bytes and A2/A4/A6 residues retained. No independent ordinary C ABI, physical silicon/MMIO/IRQ/ROM or OTA proof.",
       "origin_unit_sha256": "d05ca086089dc6759c979414c0b521a48f7a4f38c6e7d68aff4d3e3f94ea23e0"
+    },
+    {
+      "name": "tagged-dispatch",
+      "profile": "tagged-a0-a5",
+      "origin_unit": "experiments/tsl9-tagged-dispatch/src/tagged_dispatch.v1.c",
+      "curated_unit": "src/native/receive/tagged_dispatch.c",
+      "evidence": "experiments/tsl9-tagged-dispatch/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-tagged-dispatch/build/verified-v2/c/verification.json",
+        "experiments/tsl9-tagged-dispatch/build/verified-v2/cpp/verification.json"
+      ],
+      "scope": "246B/86i across15 private architectural regions;11pending RELAs/four genuine UND retain fixed original bits and original symbolic destinations. Tag1/2/global-bit early no-frame exits,64B frame/fresh metadata, full then-live SP/S0-S3 and A0-A5 residues across opaque calls, inequality loop and post-RET paths retained. Independent formal132 controls per language; no assumed memset, controller identity, ordinary independent ABI, resident ownership, IRQ or OTA proof.",
+      "origin_unit_sha256": "9fbd48ce9d977db453dbd0fd6829504e7c28d5d86821a11a7f3a50d17e12bf69"
     }
   ],
   "legacy_groups": [
