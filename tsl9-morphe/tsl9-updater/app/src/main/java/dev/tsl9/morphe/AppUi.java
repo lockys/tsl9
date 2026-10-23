@@ -35,10 +35,25 @@ final class AppUi {
         Context c=row.getContext();LinearLayout.LayoutParams left=new LinearLayout.LayoutParams(0,-2,1);left.setMarginEnd(dp(c,5));LinearLayout.LayoutParams right=new LinearLayout.LayoutParams(0,-2,1);right.setMarginStart(dp(c,5));row.addView(a,left);row.addView(b,right);
     }
     static TextView tab(Context c,String title,String kind){
-        TextView v=text(c,title,12,INK);v.setGravity(Gravity.CENTER);v.setMinHeight(dp(c,64));v.setPadding(dp(c,5),dp(c,7),dp(c,5),dp(c,7));v.setMaxLines(2);v.setContentDescription(title);
+        TextView v=text(c,title,11,INK);v.setGravity(Gravity.CENTER);v.setMinHeight(dp(c,48));v.setMinWidth(dp(c,48));v.setIncludeFontPadding(false);v.setPadding(dp(c,4),dp(c,3),dp(c,4),dp(c,3));v.setSingleLine(true);v.setContentDescription(title);
         int[][] states={new int[]{android.R.attr.state_selected},new int[0]};v.setTextColor(new ColorStateList(states,new int[]{TEAL,MUTED}));
         StateListDrawable bg=new StateListDrawable();bg.addState(states[0],shape(c,SAGE,999,0));bg.addState(states[1],shape(c,Color.TRANSPARENT,999,0));v.setBackground(new RippleDrawable(ColorStateList.valueOf(0x19205c50),bg,null));
-        Icon icon=new Icon(kind,true);icon.setBounds(0,0,dp(c,23),dp(c,23));v.setCompoundDrawables(null,icon,null,null);v.setCompoundDrawablePadding(dp(c,3));return v;
+        Icon icon=new Icon(kind,true);icon.setBounds(0,0,dp(c,20),dp(c,20));v.setCompoundDrawables(null,icon,null,null);v.setCompoundDrawablePadding(dp(c,2));return v;
+    }
+    /** Pinned compact navigation geometry. Labels can expand the nominal ratio. */
+    static final class PillNavigation extends TabWidget {
+        static final float WIDTH_RATIO=0.52f;
+        PillNavigation(Context c){super(c);setId(android.R.id.tabs);setStripEnabled(false);setPadding(dp(c,3),dp(c,3),dp(c,3),dp(c,3));setBackground(shape(c,WHITE,999,0));setElevation(dp(c,5));setClipToOutline(true);}
+        @Override protected void onMeasure(int widthSpec,int heightSpec){
+            Context c=getContext();int available=View.MeasureSpec.getSize(widthSpec);
+            if(View.MeasureSpec.getMode(widthSpec)==View.MeasureSpec.UNSPECIFIED)available=c.getResources().getDisplayMetrics().widthPixels-dp(c,32);
+            int slot=dp(c,48),height=dp(c,48);
+            for(int i=0;i<getChildCount();i++)if(getChildAt(i) instanceof TextView){TextView label=(TextView)getChildAt(i);slot=Math.max(slot,(int)Math.ceil(label.getPaint().measureText(label.getText().toString()))+label.getPaddingLeft()+label.getPaddingRight()+dp(c,2));Paint.FontMetrics metrics=label.getPaint().getFontMetrics();height=Math.max(height,(int)Math.ceil(metrics.descent-metrics.ascent)+label.getPaddingTop()+label.getPaddingBottom()+dp(c,22));}
+            int nominal=Math.min(dp(c,360),Math.round((available+dp(c,32))*WIDTH_RATIO));
+            int desired=Math.min(available,Math.max(nominal,slot*getChildCount()+getPaddingLeft()+getPaddingRight()));
+            int desiredHeight=height+getPaddingTop()+getPaddingBottom();
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(desired,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(View.resolveSize(desiredHeight,heightSpec),View.MeasureSpec.EXACTLY));
+        }
     }
     static LinearLayout disclosure(Context c,LinearLayout parent,String title,LinearLayout detail){
         Button header=new Button(c);header.setText(title);style(header,false);header.setGravity(Gravity.START|Gravity.CENTER_VERTICAL);icon(header,"chevron");

@@ -58,7 +58,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     private int dp(float n){return Math.round(n*getResources().getDisplayMetrics().density);}
     private TextView text(String value,int size,int color){return AppUi.text(this,value,size,color);}
     private Button button(String title,Runnable run){Button b=new Button(this);b.setText(title);AppUi.style(b,false);b.setOnClickListener(v->{try{run.run();}catch(SecurityException e){state(s(R.string.nearby_permission));log("PERMISSION operation blocked");}catch(IllegalArgumentException e){state(UiStrings.error(this,e));log("VALIDATION "+e.getMessage());}});return b;}
-    private TextView tabIndicator(int label,String icon){return AppUi.tab(this,s(label),icon);}
+    private TextView tabIndicator(int label,int compactLabel,String icon){TextView tab=AppUi.tab(this,s(compactLabel),icon);tab.setContentDescription(s(label));return tab;}
     private void title(LinearLayout body,int title,int subtitle){TextView h=text(s(title),27,DARK);h.setTypeface(android.graphics.Typeface.create("sans-serif-medium",android.graphics.Typeface.NORMAL));body.addView(h);body.addView(text(s(subtitle),14,MUTED));}
     private void section(LinearLayout body,int label){body.addView(AppUi.heading(this,s(label)));}
     private void buildUi(){
@@ -108,11 +108,11 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> p){}public void onItemSelected(AdapterView<?> p,View v,int position,long id){if(position==LanguageSettings.index(MainActivity.this))return;if(!canChangeLanguage()){language.setSelection(LanguageSettings.index(MainActivity.this));return;}LanguageSettings.select(MainActivity.this,position);}});
         languagePanel.addView(language);languagePanel.setVisibility(View.GONE);tabBody.addView(languagePanel);
         FrameLayout content=new FrameLayout(this);content.setId(android.R.id.tabcontent);tabBody.addView(content,new LinearLayout.LayoutParams(-1,0,1));
-        TabWidget tabBar=new TabWidget(this);tabBar.setId(android.R.id.tabs);tabBar.setStripEnabled(false);tabBar.setPadding(dp(5),dp(4),dp(5),dp(4));tabBar.setBackground(AppUi.shape(this,AppUi.WHITE,999,0));tabBar.setElevation(dp(5));tabBar.setClipToOutline(true);
-        LinearLayout.LayoutParams barParams=new LinearLayout.LayoutParams(-1,-2);barParams.setMargins(dp(20),dp(6),dp(20),dp(12));tabBody.addView(tabBar,barParams);tabs.addView(tabBody);tabs.setup();
+        TabWidget tabBar=new AppUi.PillNavigation(this);
+        LinearLayout.LayoutParams barParams=new LinearLayout.LayoutParams(-2,-2);barParams.gravity=Gravity.CENTER_HORIZONTAL;barParams.setMargins(dp(16),dp(6),dp(16),dp(12));tabBody.addView(tabBar,barParams);tabs.addView(tabBody);tabs.setup();
         ScrollView vehicleScroll=buildVehicleUi();
         livePanel=new LivePanel(this,new LivePanel.Host(){public void query(){requestCarStatus();}public void startCan(String filter){startLiveCan(filter);}public void stopCan(){if(hardware.active()&&hardware.mode()==HardwareCapture.Mode.CAN)stopHardware("manual",false);}public void export(){if(hardwareExport.isEnabled())hardwareExport.performClick();}});
-        tabs.addTab(tabs.newTabSpec("tools").setIndicator(tabIndicator(R.string.tab_tools,"bluetooth")).setContent(tag->scroll));tabs.addTab(tabs.newTabSpec("car").setIndicator(tabIndicator(R.string.tab_car,"car")).setContent(tag->vehicleScroll));tabs.addTab(tabs.newTabSpec("live").setIndicator(tabIndicator(R.string.live_tab,"chart")).setContent(tag->livePanel.view));
+        tabs.addTab(tabs.newTabSpec("tools").setIndicator(tabIndicator(R.string.tab_tools,R.string.nav_tools,"bluetooth")).setContent(tag->scroll));tabs.addTab(tabs.newTabSpec("car").setIndicator(tabIndicator(R.string.tab_car,R.string.nav_car,"car")).setContent(tag->vehicleScroll));tabs.addTab(tabs.newTabSpec("live").setIndicator(tabIndicator(R.string.live_tab,R.string.nav_live,"chart")).setContent(tag->livePanel.view));
         tabs.setOnTabChangedListener(tag->{if(!tag.equals("car"))car.stopSeat();if(tag.equals("car")||tag.equals("live")){lastCarPoll=0;lastCarInfoPoll=0;}refresh();});setContentView(tabs);
         tabBody.setOnApplyWindowInsetsListener((v,insets)->{tabBody.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),insets.getSystemWindowInsetBottom());return insets.consumeSystemWindowInsets();});
     }

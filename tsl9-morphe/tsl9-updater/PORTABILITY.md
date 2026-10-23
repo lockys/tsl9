@@ -20,3 +20,5 @@ pwsh -File ./capture-ui.ps1 -Serial '<your-emulator-serial>'
 ```
 
 The script runs synthetic instrumentation, verifies the visible App title, selects each real tab and captures screenshots under `../artifacts/ui-screenshots/`. It does not fabricate connection status or vehicle data.
+
+Add `-AdditionalStatesOnly` for landscape and 200% text captures, including English label-fit checks. This changes only the explicitly selected emulator's font/rotation settings and restores them in `finally`.
