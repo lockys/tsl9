@@ -94,6 +94,8 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 14, 15}]
     elif kind == 'fill-t0-t1-a0-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {5, 6, 10, 11, 12, 13, 14, 15}]
+    elif kind == 'resident-copy-arch':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15, 16}]
     elif kind == 'ring-bank':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {6, 10, 11, 12, 13, 14, 15, 16, 17, 28}]
     elif kind == 'adc-bank':

@@ -501,6 +501,13 @@
       "replacements": [],
       "origin_sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0",
       "sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0"
+    },
+    {
+      "origin": "experiments/tsl9-resident-copy-arch/src/copy.v1.c",
+      "destination": "src/native/resident/copy_arch.c",
+      "replacements": [],
+      "origin_sha256": "d004661257866b3c8e11ad424dffc47c969f640f9d2bc87c6835aae9be9be660",
+      "sha256": "d004661257866b3c8e11ad424dffc47c969f640f9d2bc87c6835aae9be9be660"
     }
   ],
   "native_units": [
@@ -892,6 +899,16 @@
       ],
       "scope": "168B/55i in13 private architectural regions,8pending RELAs/no UND. C volatile word/descending-byte stores and uint32 arithmetic preserve original unsigned pointer-loop/wrap behavior; explicit AUIPC/computed JALR/local RA-T0 save/restore ports retain16 short-tail and15 alignment targets only under original-PC linkage. Independent native94 negative controls per language. A0 unchanged; no SP/S/GP writes. Final-memory fill resemblance assumes valid ordinary nonwrapping memory; no libc substitution, ordinary independent ABI, IRQ/fault/MMIO/whole-image/OTA proof.",
       "origin_unit_sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0"
+    },
+    {
+      "name": "resident-copy-arch",
+      "profile": "resident-copy-arch",
+      "origin_unit": "experiments/tsl9-resident-copy-arch/src/copy.v1.c",
+      "curated_unit": "src/native/resident/copy_arch.c",
+      "evidence": "experiments/tsl9-resident-copy-arch/README.md",
+      "formal_receipts": ["experiments/tsl9-resident-copy-arch/build/probe-v1/verification.json"],
+      "scope": "SDK V1.31 candidate only:6private regions/58B/18i with5pending object edges. Separately linked whole code equals candidate at conditional RAM20000332, with no T0/A7/SP/GP/RA or A0-A2 writes;50bounded negative controls per language. Original TSL9 installed resident identity, completed startup, physical MMIO/IRQ/fault/ISA behavior and hardware OTA remain unproved. This candidate is not injected into original Runtime and does not close the dynamic4004C provider.",
+      "origin_unit_sha256": "d004661257866b3c8e11ad424dffc47c969f640f9d2bc87c6835aae9be9be660"
     }
   ],
   "legacy_groups": [

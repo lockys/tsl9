@@ -2,7 +2,7 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 63 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
+This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 64 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
 
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
@@ -38,6 +38,7 @@ This directory is the working entry point for the readable source with the stron
 | [native/startup/init_writes.c](native/startup/init_writes.c) | Ordered initialization writes called from9250 | Whole40B/15i equals the official9F4C leaf; five volatile word writes, only A4/A5 modified; peripheral identity and full startup unproved |
 | [native/startup](native/startup/reset_memory.c) | Runtime reset memory/CSR handoff | Reset138B/38i + clock232B retains RA18724 without next-function overlap; vector/main/resident and cold/indirect entries remain unresolved |
 | [native/resident](native/resident/native.c) | SDK-candidate compare/fill/copy | Normal memory projection only; installed ROM identity, scratch/fault behavior and sizes remain unresolved |
+| [resident copy architecture](native/resident/copy_arch.c) | WCH V1.31 SDK candidate copy | Full58B/18i matches candidate at conditional RAM20000332; preserves T0/A7 and fault-prefix ordering. Installed TSL9 resident identity remains unknown; not linked into firmware |
 | [reference/v4100](reference/v4100/dnd_actions.c) | DND, general settings and GATT framing models | V4.1.00 behavior references with unresolved providers; separate from V4.1.60 native source |
 
 [source-manifest.json](source-manifest.json) records every origin, original/curated SHA256, individual include adaptations, the two A1 declaration repairs, and each compile entry's evidence and limits. The newer volatile-source experiment still has frame/slot differences and remains in experiments.
@@ -60,7 +61,7 @@ python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 
 The script selects thirty-seven native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
 
-The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed74 comparisons (148 objects). Its receipt is `build/curated-source/fill-provider-20261023-v1/verification.json`; the earlier SPI curation receipt remains historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
+The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed76 comparisons (152 objects). Its receipt is `build/curated-source/resident-copy-arch-20261023-v1/verification.json`; the earlier curation receipts remains historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
 
 Replay an existing result without compiling:
 

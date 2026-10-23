@@ -2,7 +2,7 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 63 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 64 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 ## 原始碼位置與證據範圍
 
@@ -40,6 +40,7 @@
 | [native/startup/init_writes.c](native/startup/init_writes.c) | 9250 初始化鏈的五筆有序寫入 | 完整40B／15指令與官方9F4C函式相同；五筆volatile word寫入，只改A4／A5；周邊身分與完整啟動未證 |
 | [native/startup](native/startup/reset_memory.c) | Runtime reset記憶體／CSR交接 | reset138B／38指令＋clock232B，保留RA18724且未覆蓋下一函式；vector／main／resident與cold／間接入口未閉合 |
 | [native/resident](native/resident/native.c) | SDK resident candidate 的 compare／fill／copy | 正常記憶體投影；並非已確認原機 ROM，scratch／fault／尺寸差異仍存在 |
+| [resident copy 架構](native/resident/copy_arch.c) | WCH V1.31 SDK 候選 copy | 條件式RAM20000332連結後完整58B／18指令吻合；保留T0／A7與故障前綴順序。尚未確認為裝置resident，未連入韌體 |
 | [reference/v4100](reference/v4100/dnd_actions.c) | 免打擾、一般設定、GATT framing 行為模型 | 來源是 V4.1.00；外部 provider 仍有未知，不混入 V4.1.60 原機實作 |
 
 [source-manifest.json](source-manifest.json) 記錄每個檔案的原始來源、來源／整理後 SHA256、逐項 include 調整、兩處 A1 宣告修正，以及每個編譯入口的證據與限制。較新的 volatile source 實驗尚未解決 frame／slot 差異，仍保留在實驗目錄。
@@ -62,7 +63,7 @@ python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 
 腳本依 manifest 選擇三十七個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
 
-本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 74 組比對（148 個物件），收據為 `build/curated-source/fill-provider-20261023-v1/verification.json`。舊 SPI 整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
+本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 76 組比對（152 個物件），收據為 `build/curated-source/resident-copy-arch-20261023-v1/verification.json`。舊整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
 
 既有結果可唯讀重播：
 

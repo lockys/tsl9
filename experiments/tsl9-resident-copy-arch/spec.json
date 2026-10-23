@@ -1,0 +1,125 @@
+{
+  "schema": "TSL9-SDK-candidate-copy-arch-spec-v1",
+  "regions": [
+    [
+      "tsl9_candidate_copy_arch_20000332",
+      0,
+      18
+    ],
+    [
+      "tsl9_candidate_copy_source_guard_20000344",
+      18,
+      2
+    ],
+    [
+      "tsl9_candidate_copy_count_20000346",
+      20,
+      4
+    ],
+    [
+      "tsl9_candidate_copy_restore_2000034a",
+      24,
+      10
+    ],
+    [
+      "tsl9_candidate_copy_loop_20000354",
+      34,
+      22
+    ],
+    [
+      "tsl9_candidate_copy_finish_2000036a",
+      56,
+      2
+    ]
+  ],
+  "relocations": [
+    [
+      16,
+      44,
+      "tsl9_candidate_copy_restore_2000034a",
+      0
+    ],
+    [
+      18,
+      44,
+      "tsl9_candidate_copy_restore_2000034a",
+      0
+    ],
+    [
+      22,
+      44,
+      "tsl9_candidate_copy_loop_20000354",
+      0
+    ],
+    [
+      52,
+      16,
+      "tsl9_candidate_copy_loop_20000354",
+      0
+    ],
+    [
+      56,
+      45,
+      "tsl9_candidate_copy_restore_2000034a",
+      0
+    ]
+  ],
+  "pins": {
+    "experiments/tsl9-resident-copy-arch/src/copy.v1.c": "d004661257866b3c8e11ad424dffc47c969f640f9d2bc87c6835aae9be9be660",
+    "experiments/tsl9-resident-copy-arch/component.ld": "1363e30d8c870ad17c837cfa9aaef22f194e74c4437e97e847841f44a6f3b293",
+    "experiments/tsl9-resident-copy-arch/probe.py": "ffa4209aacd6af69b1658168454a6924bd0e00c4575a5f3a20a66e5f8d77de44",
+    "experiments/tsl9-spi-transfer-leaf/verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+    "analysis/resident-copy-reference-2026-10-21/source/retained-source.json": "9dc8ec6d725cfd0d93896bdf132863a0cfad7ee9aad255ac2a494ee17dc8c832",
+    "analysis/resident-copy-reference-2026-10-21/source/contract.json": "fa9d58135f1b6c599d6f2e16f65f6a0000589a10e921ab649dc4e046287efc36"
+  },
+  "IR_sha256": {
+    "c": "be060f4d25e65c9eb41d28382b8544a003bdb90f0fc8ced29fab846e0730492d",
+    "cpp": "f8a6303ff7fbbe780496a7a83bde96539a2647efe48d87c62038c16e9f62e1cc"
+  },
+  "scalar_rows": {
+    "c": [
+      "%15 = add i32 %13, 524",
+      "%16 = inttoptr i32 %15 to ptr",
+      "%17 = load volatile i32, ptr %16, align 4, !tbaa !6",
+      "%26 = add i32 %24, 524",
+      "%27 = inttoptr i32 %26 to ptr",
+      "store volatile i32 0, ptr %27, align 4, !tbaa !6",
+      "%16 = add i32 %14, 524",
+      "%17 = inttoptr i32 %16 to ptr",
+      "store volatile i32 %13, ptr %17, align 4, !tbaa !6",
+      "%8 = add i32 %3, %6",
+      "%16 = inttoptr i32 %13 to ptr",
+      "%17 = load volatile i8, ptr %16, align 1, !tbaa !25",
+      "%18 = zext i8 %17 to i32",
+      "%26 = add i32 %20, %24",
+      "%35 = add i32 %33, 1",
+      "%44 = trunc i32 %43 to i8",
+      "%45 = inttoptr i32 %40 to ptr",
+      "store volatile i8 %44, ptr %45, align 1, !tbaa !25"
+    ],
+    "cpp": [
+      "%15 = add i32 %13, 524",
+      "%16 = inttoptr i32 %15 to ptr",
+      "%17 = load volatile i32, ptr %16, align 4, !tbaa !6",
+      "%26 = add i32 %24, 524",
+      "%27 = inttoptr i32 %26 to ptr",
+      "store volatile i32 0, ptr %27, align 4, !tbaa !6",
+      "%16 = add i32 %14, 524",
+      "%17 = inttoptr i32 %16 to ptr",
+      "store volatile i32 %13, ptr %17, align 4, !tbaa !6",
+      "%8 = add i32 %3, %6",
+      "%16 = inttoptr i32 %13 to ptr",
+      "%17 = load volatile i8, ptr %16, align 1, !tbaa !25",
+      "%18 = zext i8 %17 to i32",
+      "%26 = add i32 %20, %24",
+      "%35 = add i32 %33, 1",
+      "%44 = trunc i32 %43 to i8",
+      "%45 = inttoptr i32 %40 to ptr",
+      "store volatile i8 %44, ptr %45, align 1, !tbaa !25"
+    ]
+  },
+  "ELF_sha256": {
+    "object": "cd156594e435f13038a40342bf67f1f71405fba24f81bab1bbb71aaa40c83fd2",
+    "linked": "a7a4157ed51c60ad5d21e88ec913079b379c83dad40add0968f60fe4f95ed317"
+  }
+}
