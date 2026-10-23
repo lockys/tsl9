@@ -1,0 +1,35 @@
+OUTPUT_ARCH(riscv)
+SECTIONS
+{
+  .transport : ALIGN(2)
+  {
+    KEEP(*(.text.tsl9_filter_external_8a56))
+    KEEP(*(.text.tsl9_transport_frame_8a5e))
+    KEEP(*(.text.tsl9_transport_first_8a7a))
+    KEEP(*(.text.tsl9_transport_first_result_8a90))
+    KEEP(*(.text.tsl9_transport_second_8a96))
+    KEEP(*(.text.tsl9_transport_second_result_8ab6))
+    KEEP(*(.text.tsl9_transport_reject_8abe))
+    KEEP(*(.text.tsl9_transport_select0_8acc))
+    KEEP(*(.text.tsl9_transport_pack_8ace))
+    KEEP(*(.text.tsl9_transport_test_8b0a))
+    KEEP(*(.text.tsl9_transport_finish_8b14))
+    KEEP(*(.text.tsl9_transport_copy_8b52))
+    KEEP(*(.text.tsl9_transport_bare_return_8b6c))
+  }
+  /DISCARD/ : { *(.comment) *(.note*) *(.riscv.attributes) }
+  ASSERT(SIZEOF(.transport) == 280, "Original 280B transport span")
+  ASSERT(tsl9_filter_external_8a56 == 0, "Private bare dispatcher entry")
+  ASSERT(tsl9_transport_frame_8a5e == 8, "Private frame entry")
+  ASSERT(tsl9_transport_first_8a7a == 36, "First path")
+  ASSERT(tsl9_transport_first_result_8a90 == 58, "First provider result")
+  ASSERT(tsl9_transport_second_8a96 == 64, "Second path")
+  ASSERT(tsl9_transport_second_result_8ab6 == 96, "Second provider result")
+  ASSERT(tsl9_transport_reject_8abe == 104, "Rejection path")
+  ASSERT(tsl9_transport_select0_8acc == 118, "Selector zero")
+  ASSERT(tsl9_transport_pack_8ace == 120, "C framing arithmetic")
+  ASSERT(tsl9_transport_test_8b0a == 180, "Then-live selector")
+  ASSERT(tsl9_transport_finish_8b14 == 190, "Private frame return")
+  ASSERT(tsl9_transport_copy_8b52 == 252, "Post-RET copy path")
+  ASSERT(tsl9_transport_bare_return_8b6c == 278, "Bare return")
+}

@@ -1,0 +1,2833 @@
+{
+  "schema": "TSL9-transport-frame-v6-independent-native-review-v1",
+  "source": {
+    "path": "experiments/tsl9-transport-frame/src/transport_frame.v6.c",
+    "sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
+  },
+  "original_contract": {
+    "path": "analysis/transport-frame-2026-10-23/original-contract.json",
+    "sha256": "c597c6e6c9beb33848b69669f55b6c4d910accde7be32b052222defffa0e6f25"
+  },
+  "measurement": {
+    "path": "experiments/tsl9-transport-frame/build/probe-v6/measurement.json",
+    "sha256": "afdc0efe54cdf7d46a1fd93d14f7e44027d926bc2b5eb18e489087efd0fdfb6e"
+  },
+  "inputs": [
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-transport-frame/src/transport_frame.v6.c",
+      "sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-transport-frame/component.ld",
+      "sha256": "5e30a96739dfdebe25d5e028602279c56754c2496c395ff9a7488609be0e6c9e"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-transport-frame/probe.py",
+      "sha256": "23f666f4f9acccad76b094401b1655c6a6a826156380a6962fbce321f5b5df3c"
+    },
+    {
+      "path": "${TSL9_ROOT}/experiments/tsl9-spi-transfer-leaf/verify.py",
+      "sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8"
+    },
+    {
+      "path": "${TSL9_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    {
+      "path": "${LLVM_BIN}/clang.exe",
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    {
+      "path": "${LLVM_BIN}/ld.lld.exe",
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    {
+      "path": "${LLVM_BIN}/llvm-objdump.exe",
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    {
+      "path": "${LLVM_BIN}/../lib/clang/18/include/stdint.h",
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    }
+  ],
+  "modes": {
+    "c": {
+      "artifacts": {
+        "compile.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "IR.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "link.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "native.d": {
+          "sha256": "4ca0677db5084f59a9d64b1d965a17954639d2839f80ac145fb38d844709dd3a",
+          "size": 354
+        },
+        "native.ll": {
+          "sha256": "6acc754dad21e1c467c7c1c39d96f3a8e20e5f71824105e6f076627a21ce9df0",
+          "size": 20047
+        },
+        "native.o": {
+          "sha256": "e722e2ce3361c930be307507328e1305280e5cc06c4f854fa84b6882b07d6984",
+          "size": 2968
+        },
+        "object.log": {
+          "sha256": "2857f15abbfb3b8e4384daf3e85083987157a3fe1f58933863b3ec293c2bdb6e",
+          "size": 10221
+        },
+        "partial.log": {
+          "sha256": "475c6d682328198bb97a8fba13eacdb7ec754d9db71f26f5e1941070e92e7946",
+          "size": 7259
+        },
+        "partial.o": {
+          "sha256": "8c9c84504250b95495d9a82bb8ce1c58d3e333c0801a46fe1174a792a3cd20de",
+          "size": 1820
+        },
+        "recipes.json": {
+          "sha256": "3b7cb5520e4eb4a35dbeded42f070003f20630166648654b7ab4bbbe192d9920",
+          "size": 3659
+        }
+      },
+      "recipes_checked": 5,
+      "MD_dependencies": [
+        "${TSL9_ROOT}/experiments/tsl9-transport-frame/src/transport_frame.v6.c",
+        "${CLANG_INCLUDE}/stdint.h"
+      ],
+      "ELFs": {
+        "native.o": {
+          "sha256": "e722e2ce3361c930be307507328e1305280e5cc06c4f854fa84b6882b07d6984",
+          "file_bytes": 2968,
+          "ET_REL": true,
+          "section_VA_zero": true,
+          "code_bytes": 280,
+          "code_sha256": "37fb135a626ba30af8786ae9735dc121f561ebe08db6126afa75ae109ef5b265",
+          "functions": [
+            {
+              "name": "tsl9_filter_external_8a56",
+              "offset": 0,
+              "size": 8,
+              "section": ".text.tsl9_filter_external_8a56"
+            },
+            {
+              "name": "tsl9_transport_frame_8a5e",
+              "offset": 8,
+              "size": 28,
+              "section": ".text.tsl9_transport_frame_8a5e"
+            },
+            {
+              "name": "tsl9_transport_first_8a7a",
+              "offset": 36,
+              "size": 22,
+              "section": ".text.tsl9_transport_first_8a7a"
+            },
+            {
+              "name": "tsl9_transport_first_result_8a90",
+              "offset": 58,
+              "size": 6,
+              "section": ".text.tsl9_transport_first_result_8a90"
+            },
+            {
+              "name": "tsl9_transport_second_8a96",
+              "offset": 64,
+              "size": 32,
+              "section": ".text.tsl9_transport_second_8a96"
+            },
+            {
+              "name": "tsl9_transport_second_result_8ab6",
+              "offset": 96,
+              "size": 8,
+              "section": ".text.tsl9_transport_second_result_8ab6"
+            },
+            {
+              "name": "tsl9_transport_reject_8abe",
+              "offset": 104,
+              "size": 14,
+              "section": ".text.tsl9_transport_reject_8abe"
+            },
+            {
+              "name": "tsl9_transport_select0_8acc",
+              "offset": 118,
+              "size": 2,
+              "section": ".text.tsl9_transport_select0_8acc"
+            },
+            {
+              "name": "tsl9_transport_pack_8ace",
+              "offset": 120,
+              "size": 60,
+              "section": ".text.tsl9_transport_pack_8ace"
+            },
+            {
+              "name": "tsl9_transport_test_8b0a",
+              "offset": 180,
+              "size": 10,
+              "section": ".text.tsl9_transport_test_8b0a"
+            },
+            {
+              "name": "tsl9_transport_finish_8b14",
+              "offset": 190,
+              "size": 62,
+              "section": ".text.tsl9_transport_finish_8b14"
+            },
+            {
+              "name": "tsl9_transport_copy_8b52",
+              "offset": 252,
+              "size": 26,
+              "section": ".text.tsl9_transport_copy_8b52"
+            },
+            {
+              "name": "tsl9_transport_bare_return_8b6c",
+              "offset": 278,
+              "size": 2,
+              "section": ".text.tsl9_transport_bare_return_8b6c"
+            }
+          ],
+          "relocations": [
+            {
+              "offset": 4,
+              "original_pc": 35418,
+              "type": 16,
+              "target": "tsl9_transport_bare_return_8b6c",
+              "target_original_address": 35692,
+              "addend": 0,
+              "word_hex": "63e0d700",
+              "pending": true
+            },
+            {
+              "offset": 32,
+              "original_pc": 35446,
+              "type": 16,
+              "target": "tsl9_transport_second_8a96",
+              "target_original_address": 35478,
+              "addend": 0,
+              "word_hex": "6310a700",
+              "pending": true
+            },
+            {
+              "offset": 40,
+              "original_pc": 35454,
+              "type": 16,
+              "target": "tsl9_transport_second_8a96",
+              "target_original_address": 35478,
+              "addend": 0,
+              "word_hex": "6300f700",
+              "pending": true
+            },
+            {
+              "offset": 60,
+              "original_pc": 35474,
+              "type": 16,
+              "target": "tsl9_transport_select0_8acc",
+              "target_original_address": 35532,
+              "addend": 0,
+              "word_hex": "6300f500",
+              "pending": true
+            },
+            {
+              "offset": 68,
+              "original_pc": 35482,
+              "type": 16,
+              "target": "tsl9_transport_reject_8abe",
+              "target_original_address": 35518,
+              "addend": 0,
+              "word_hex": "63902701",
+              "pending": true
+            },
+            {
+              "offset": 76,
+              "original_pc": 35490,
+              "type": 16,
+              "target": "tsl9_transport_reject_8abe",
+              "target_original_address": 35518,
+              "addend": 0,
+              "word_hex": "6300f900",
+              "pending": true
+            },
+            {
+              "offset": 100,
+              "original_pc": 35514,
+              "type": 16,
+              "target": "tsl9_transport_pack_8ace",
+              "target_original_address": 35534,
+              "addend": 0,
+              "word_hex": "6300f500",
+              "pending": true
+            },
+            {
+              "offset": 186,
+              "original_pc": 35600,
+              "type": 16,
+              "target": "tsl9_transport_copy_8b52",
+              "target_original_address": 35666,
+              "addend": 0,
+              "word_hex": "63608500",
+              "pending": true
+            },
+            {
+              "offset": 276,
+              "original_pc": 35690,
+              "type": 45,
+              "target": "tsl9_transport_test_8b0a",
+              "target_original_address": 35594,
+              "addend": 0,
+              "word_hex": "01a0",
+              "pending": true
+            }
+          ],
+          "UND": [],
+          "global_ABS": [],
+          "no_extra_ALLOC": true,
+          "all_96_rows_nonrelocation_bits_equal": true,
+          "pending_control_count": 9,
+          "fully_compared_noncontrol_bytes": 246,
+          "fixed_bits": 2133
+        },
+        "partial.o": {
+          "sha256": "8c9c84504250b95495d9a82bb8ce1c58d3e333c0801a46fe1174a792a3cd20de",
+          "file_bytes": 1820,
+          "ET_REL": true,
+          "section_VA_zero": true,
+          "code_bytes": 280,
+          "code_sha256": "37fb135a626ba30af8786ae9735dc121f561ebe08db6126afa75ae109ef5b265",
+          "functions": [
+            {
+              "name": "tsl9_filter_external_8a56",
+              "offset": 0,
+              "size": 8,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_frame_8a5e",
+              "offset": 8,
+              "size": 28,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_first_8a7a",
+              "offset": 36,
+              "size": 22,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_first_result_8a90",
+              "offset": 58,
+              "size": 6,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_second_8a96",
+              "offset": 64,
+              "size": 32,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_second_result_8ab6",
+              "offset": 96,
+              "size": 8,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_reject_8abe",
+              "offset": 104,
+              "size": 14,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_select0_8acc",
+              "offset": 118,
+              "size": 2,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_pack_8ace",
+              "offset": 120,
+              "size": 60,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_test_8b0a",
+              "offset": 180,
+              "size": 10,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_finish_8b14",
+              "offset": 190,
+              "size": 62,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_copy_8b52",
+              "offset": 252,
+              "size": 26,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_bare_return_8b6c",
+              "offset": 278,
+              "size": 2,
+              "section": ".transport"
+            }
+          ],
+          "relocations": [
+            {
+              "offset": 4,
+              "original_pc": 35418,
+              "type": 16,
+              "target": "tsl9_transport_bare_return_8b6c",
+              "target_original_address": 35692,
+              "addend": 0,
+              "word_hex": "63e0d700",
+              "pending": true
+            },
+            {
+              "offset": 32,
+              "original_pc": 35446,
+              "type": 16,
+              "target": "tsl9_transport_second_8a96",
+              "target_original_address": 35478,
+              "addend": 0,
+              "word_hex": "6310a700",
+              "pending": true
+            },
+            {
+              "offset": 40,
+              "original_pc": 35454,
+              "type": 16,
+              "target": "tsl9_transport_second_8a96",
+              "target_original_address": 35478,
+              "addend": 0,
+              "word_hex": "6300f700",
+              "pending": true
+            },
+            {
+              "offset": 60,
+              "original_pc": 35474,
+              "type": 16,
+              "target": "tsl9_transport_select0_8acc",
+              "target_original_address": 35532,
+              "addend": 0,
+              "word_hex": "6300f500",
+              "pending": true
+            },
+            {
+              "offset": 68,
+              "original_pc": 35482,
+              "type": 16,
+              "target": "tsl9_transport_reject_8abe",
+              "target_original_address": 35518,
+              "addend": 0,
+              "word_hex": "63902701",
+              "pending": true
+            },
+            {
+              "offset": 76,
+              "original_pc": 35490,
+              "type": 16,
+              "target": "tsl9_transport_reject_8abe",
+              "target_original_address": 35518,
+              "addend": 0,
+              "word_hex": "6300f900",
+              "pending": true
+            },
+            {
+              "offset": 100,
+              "original_pc": 35514,
+              "type": 16,
+              "target": "tsl9_transport_pack_8ace",
+              "target_original_address": 35534,
+              "addend": 0,
+              "word_hex": "6300f500",
+              "pending": true
+            },
+            {
+              "offset": 186,
+              "original_pc": 35600,
+              "type": 16,
+              "target": "tsl9_transport_copy_8b52",
+              "target_original_address": 35666,
+              "addend": 0,
+              "word_hex": "63608500",
+              "pending": true
+            },
+            {
+              "offset": 276,
+              "original_pc": 35690,
+              "type": 45,
+              "target": "tsl9_transport_test_8b0a",
+              "target_original_address": 35594,
+              "addend": 0,
+              "word_hex": "01a0",
+              "pending": true
+            }
+          ],
+          "UND": [],
+          "global_ABS": [],
+          "no_extra_ALLOC": true,
+          "all_96_rows_nonrelocation_bits_equal": true,
+          "pending_control_count": 9,
+          "fully_compared_noncontrol_bytes": 246,
+          "fixed_bits": 2133
+        }
+      },
+      "native_controls": [
+        {
+          "offset": 4,
+          "original_pc": 35418,
+          "type": 16,
+          "target": "tsl9_transport_bare_return_8b6c",
+          "target_original_address": 35692,
+          "addend": 0,
+          "word_hex": "63e0d700",
+          "pending": true
+        },
+        {
+          "offset": 32,
+          "original_pc": 35446,
+          "type": 16,
+          "target": "tsl9_transport_second_8a96",
+          "target_original_address": 35478,
+          "addend": 0,
+          "word_hex": "6310a700",
+          "pending": true
+        },
+        {
+          "offset": 40,
+          "original_pc": 35454,
+          "type": 16,
+          "target": "tsl9_transport_second_8a96",
+          "target_original_address": 35478,
+          "addend": 0,
+          "word_hex": "6300f700",
+          "pending": true
+        },
+        {
+          "offset": 60,
+          "original_pc": 35474,
+          "type": 16,
+          "target": "tsl9_transport_select0_8acc",
+          "target_original_address": 35532,
+          "addend": 0,
+          "word_hex": "6300f500",
+          "pending": true
+        },
+        {
+          "offset": 68,
+          "original_pc": 35482,
+          "type": 16,
+          "target": "tsl9_transport_reject_8abe",
+          "target_original_address": 35518,
+          "addend": 0,
+          "word_hex": "63902701",
+          "pending": true
+        },
+        {
+          "offset": 76,
+          "original_pc": 35490,
+          "type": 16,
+          "target": "tsl9_transport_reject_8abe",
+          "target_original_address": 35518,
+          "addend": 0,
+          "word_hex": "6300f900",
+          "pending": true
+        },
+        {
+          "offset": 100,
+          "original_pc": 35514,
+          "type": 16,
+          "target": "tsl9_transport_pack_8ace",
+          "target_original_address": 35534,
+          "addend": 0,
+          "word_hex": "6300f500",
+          "pending": true
+        },
+        {
+          "offset": 186,
+          "original_pc": 35600,
+          "type": 16,
+          "target": "tsl9_transport_copy_8b52",
+          "target_original_address": 35666,
+          "addend": 0,
+          "word_hex": "63608500",
+          "pending": true
+        },
+        {
+          "offset": 276,
+          "original_pc": 35690,
+          "type": 45,
+          "target": "tsl9_transport_test_8b0a",
+          "target_original_address": 35594,
+          "addend": 0,
+          "word_hex": "01a0",
+          "pending": true
+        }
+      ],
+      "typed_rows": [
+        {
+          "pc": 35414,
+          "width": 4,
+          "original_hex": "9307f040",
+          "pending_native_hex": "9307f040",
+          "opcode": "li a5, 1039",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35418,
+          "width": 4,
+          "original_hex": "63e9d710",
+          "pending_native_hex": "63e0d700",
+          "opcode": "bltu a5, a3, 0x8b6c",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35422,
+          "width": 2,
+          "original_hex": "0111",
+          "pending_native_hex": "0111",
+          "opcode": "addi sp, sp, -32",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35424,
+          "width": 2,
+          "original_hex": "22cc",
+          "pending_native_hex": "22cc",
+          "opcode": "sw s0, 24(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35426,
+          "width": 2,
+          "original_hex": "26ca",
+          "pending_native_hex": "26ca",
+          "opcode": "sw s1, 20(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35428,
+          "width": 2,
+          "original_hex": "4ac8",
+          "pending_native_hex": "4ac8",
+          "opcode": "sw s2, 16(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35430,
+          "width": 2,
+          "original_hex": "4ec6",
+          "pending_native_hex": "4ec6",
+          "opcode": "sw s3, 12(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35432,
+          "width": 2,
+          "original_hex": "06ce",
+          "pending_native_hex": "06ce",
+          "opcode": "sw ra, 28(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35434,
+          "width": 4,
+          "original_hex": "03d76109",
+          "pending_native_hex": "03d76109",
+          "opcode": "lhu a4, 150(gp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35438,
+          "width": 2,
+          "original_hex": "2a89",
+          "pending_native_hex": "2a89",
+          "opcode": "mv s2, a0",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35440,
+          "width": 2,
+          "original_hex": "3684",
+          "pending_native_hex": "3684",
+          "opcode": "mv s0, a3",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35442,
+          "width": 2,
+          "original_hex": "b284",
+          "pending_native_hex": "b284",
+          "opcode": "mv s1, a2",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35444,
+          "width": 2,
+          "original_hex": "ae89",
+          "pending_native_hex": "ae89",
+          "opcode": "mv s3, a1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35446,
+          "width": 4,
+          "original_hex": "6310a702",
+          "pending_native_hex": "6310a700",
+          "opcode": "bne a4, a0, 0x8a96",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35450,
+          "width": 2,
+          "original_hex": "c167",
+          "pending_native_hex": "c167",
+          "opcode": "lui a5, 0x10",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35452,
+          "width": 2,
+          "original_hex": "f917",
+          "pending_native_hex": "f917",
+          "opcode": "addi a5, a5, -2",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35454,
+          "width": 4,
+          "original_hex": "630cf700",
+          "pending_native_hex": "6300f700",
+          "opcode": "beq a4, a5, 0x8a96",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35458,
+          "width": 4,
+          "original_hex": "b7070400",
+          "pending_native_hex": "b7070400",
+          "opcode": "lui a5, 0x40",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35462,
+          "width": 4,
+          "original_hex": "83a7c713",
+          "pending_native_hex": "83a7c713",
+          "opcode": "lw a5, 316(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35466,
+          "width": 4,
+          "original_hex": "93850108",
+          "pending_native_hex": "93850108",
+          "opcode": "addi a1, gp, 128",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35470,
+          "width": 2,
+          "original_hex": "8297",
+          "pending_native_hex": "8297",
+          "opcode": "jalr a5",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35472,
+          "width": 2,
+          "original_hex": "8547",
+          "pending_native_hex": "8547",
+          "opcode": "li a5, 1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35474,
+          "width": 4,
+          "original_hex": "630df502",
+          "pending_native_hex": "6300f500",
+          "opcode": "beq a0, a5, 0x8acc",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35478,
+          "width": 4,
+          "original_hex": "83d7a109",
+          "pending_native_hex": "83d7a109",
+          "opcode": "lhu a5, 154(gp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35482,
+          "width": 4,
+          "original_hex": "63922703",
+          "pending_native_hex": "63902701",
+          "opcode": "bne a5, s2, 0x8abe",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35486,
+          "width": 2,
+          "original_hex": "c167",
+          "pending_native_hex": "c167",
+          "opcode": "lui a5, 0x10",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35488,
+          "width": 2,
+          "original_hex": "f917",
+          "pending_native_hex": "f917",
+          "opcode": "addi a5, a5, -2",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35490,
+          "width": 4,
+          "original_hex": "630ef900",
+          "pending_native_hex": "6300f900",
+          "opcode": "beq s2, a5, 0x8abe",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35494,
+          "width": 4,
+          "original_hex": "b7070400",
+          "pending_native_hex": "b7070400",
+          "opcode": "lui a5, 0x40",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35498,
+          "width": 4,
+          "original_hex": "83a7c713",
+          "pending_native_hex": "83a7c713",
+          "opcode": "lw a5, 316(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35502,
+          "width": 4,
+          "original_hex": "93850108",
+          "pending_native_hex": "93850108",
+          "opcode": "addi a1, gp, 128",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35506,
+          "width": 2,
+          "original_hex": "4a85",
+          "pending_native_hex": "4a85",
+          "opcode": "mv a0, s2",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35508,
+          "width": 2,
+          "original_hex": "8297",
+          "pending_native_hex": "8297",
+          "opcode": "jalr a5",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35510,
+          "width": 2,
+          "original_hex": "8547",
+          "pending_native_hex": "8547",
+          "opcode": "li a5, 1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35512,
+          "width": 2,
+          "original_hex": "0546",
+          "pending_native_hex": "0546",
+          "opcode": "li a2, 1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35514,
+          "width": 4,
+          "original_hex": "630af500",
+          "pending_native_hex": "6300f500",
+          "opcode": "beq a0, a5, 0x8ace",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35518,
+          "width": 2,
+          "original_hex": "f240",
+          "pending_native_hex": "f240",
+          "opcode": "lw ra, 28(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35520,
+          "width": 2,
+          "original_hex": "6244",
+          "pending_native_hex": "6244",
+          "opcode": "lw s0, 24(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35522,
+          "width": 2,
+          "original_hex": "d244",
+          "pending_native_hex": "d244",
+          "opcode": "lw s1, 20(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35524,
+          "width": 2,
+          "original_hex": "4249",
+          "pending_native_hex": "4249",
+          "opcode": "lw s2, 16(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35526,
+          "width": 2,
+          "original_hex": "b249",
+          "pending_native_hex": "b249",
+          "opcode": "lw s3, 12(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35528,
+          "width": 2,
+          "original_hex": "0561",
+          "pending_native_hex": "0561",
+          "opcode": "addi sp, sp, 32",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35530,
+          "width": 2,
+          "original_hex": "8280",
+          "pending_native_hex": "8280",
+          "opcode": "ret",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35532,
+          "width": 2,
+          "original_hex": "0146",
+          "pending_native_hex": "0146",
+          "opcode": "li a2, 0",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35534,
+          "width": 4,
+          "original_hex": "93076042",
+          "pending_native_hex": "93076042",
+          "opcode": "li a5, 1062",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35538,
+          "width": 4,
+          "original_hex": "b307f602",
+          "pending_native_hex": "b307f602",
+          "opcode": "mul a5, a2, a5",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35542,
+          "width": 4,
+          "original_hex": "97260020",
+          "pending_native_hex": "97260020",
+          "opcode": "auipc a3, 0x20002",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35546,
+          "width": 4,
+          "original_hex": "9386666b",
+          "pending_native_hex": "9386666b",
+          "opcode": "addi a3, a3, 1718",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35550,
+          "width": 2,
+          "original_hex": "6177",
+          "pending_native_hex": "6177",
+          "opcode": "lui a4, 0xffff8",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35552,
+          "width": 4,
+          "original_hex": "134757f5",
+          "pending_native_hex": "134757f5",
+          "opcode": "xori a4, a4, -171",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35556,
+          "width": 4,
+          "original_hex": "9375f40f",
+          "pending_native_hex": "9375f40f",
+          "opcode": "andi a1, s0, 255",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35560,
+          "width": 2,
+          "original_hex": "9907",
+          "pending_native_hex": "9907",
+          "opcode": "addi a5, a5, 6",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35562,
+          "width": 2,
+          "original_hex": "b697",
+          "pending_native_hex": "b697",
+          "opcode": "add a5, a5, a3",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35564,
+          "width": 4,
+          "original_hex": "2390e700",
+          "pending_native_hex": "2390e700",
+          "opcode": "sh a4, 0(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35568,
+          "width": 4,
+          "original_hex": "2382b700",
+          "pending_native_hex": "2382b700",
+          "opcode": "sb a1, 4(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35572,
+          "width": 4,
+          "original_hex": "13578400",
+          "pending_native_hex": "13578400",
+          "opcode": "srli a4, s0, 0x8",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35576,
+          "width": 2,
+          "original_hex": "ce95",
+          "pending_native_hex": "ce95",
+          "opcode": "add a1, a1, s3",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35578,
+          "width": 4,
+          "original_hex": "a381e700",
+          "pending_native_hex": "a381e700",
+          "opcode": "sb a4, 3(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35582,
+          "width": 2,
+          "original_hex": "2e97",
+          "pending_native_hex": "2e97",
+          "opcode": "add a4, a4, a1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35584,
+          "width": 4,
+          "original_hex": "23813701",
+          "pending_native_hex": "23813701",
+          "opcode": "sb s3, 2(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35588,
+          "width": 4,
+          "original_hex": "1377f70f",
+          "pending_native_hex": "1377f70f",
+          "opcode": "andi a4, a4, 255",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35592,
+          "width": 2,
+          "original_hex": "8145",
+          "pending_native_hex": "8145",
+          "opcode": "li a1, 0",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35594,
+          "width": 4,
+          "original_hex": "13950501",
+          "pending_native_hex": "13950501",
+          "opcode": "slli a0, a1, 0x10",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35598,
+          "width": 2,
+          "original_hex": "4181",
+          "pending_native_hex": "4181",
+          "opcode": "srli a0, a0, 0x10",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35600,
+          "width": 4,
+          "original_hex": "63618504",
+          "pending_native_hex": "63608500",
+          "opcode": "bltu a0, s0, 0x8b52",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35604,
+          "width": 2,
+          "original_hex": "a297",
+          "pending_native_hex": "a297",
+          "opcode": "add a5, a5, s0",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35606,
+          "width": 4,
+          "original_hex": "a382e700",
+          "pending_native_hex": "a382e700",
+          "opcode": "sb a4, 5(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35610,
+          "width": 4,
+          "original_hex": "93076042",
+          "pending_native_hex": "93076042",
+          "opcode": "li a5, 1062",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35614,
+          "width": 4,
+          "original_hex": "b307f602",
+          "pending_native_hex": "b307f602",
+          "opcode": "mul a5, a2, a5",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35618,
+          "width": 2,
+          "original_hex": "1904",
+          "pending_native_hex": "1904",
+          "opcode": "addi s0, s0, 6",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35620,
+          "width": 2,
+          "original_hex": "0a06",
+          "pending_native_hex": "0a06",
+          "opcode": "slli a2, a2, 0x2",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35622,
+          "width": 2,
+          "original_hex": "f240",
+          "pending_native_hex": "f240",
+          "opcode": "lw ra, 28(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35624,
+          "width": 2,
+          "original_hex": "d244",
+          "pending_native_hex": "d244",
+          "opcode": "lw s1, 20(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35626,
+          "width": 2,
+          "original_hex": "4249",
+          "pending_native_hex": "4249",
+          "opcode": "lw s2, 16(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35628,
+          "width": 2,
+          "original_hex": "b249",
+          "pending_native_hex": "b249",
+          "opcode": "lw s3, 12(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35630,
+          "width": 2,
+          "original_hex": "8545",
+          "pending_native_hex": "8545",
+          "opcode": "li a1, 1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35632,
+          "width": 2,
+          "original_hex": "b697",
+          "pending_native_hex": "b697",
+          "opcode": "add a5, a5, a3",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35634,
+          "width": 4,
+          "original_hex": "23918700",
+          "pending_native_hex": "23918700",
+          "opcode": "sh s0, 2(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35638,
+          "width": 4,
+          "original_hex": "23920700",
+          "pending_native_hex": "23920700",
+          "opcode": "sh zero, 4(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35642,
+          "width": 4,
+          "original_hex": "93874109",
+          "pending_native_hex": "93874109",
+          "opcode": "addi a5, gp, 148",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35646,
+          "width": 2,
+          "original_hex": "3e96",
+          "pending_native_hex": "3e96",
+          "opcode": "add a2, a2, a5",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35648,
+          "width": 2,
+          "original_hex": "6244",
+          "pending_native_hex": "6244",
+          "opcode": "lw s0, 24(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35650,
+          "width": 4,
+          "original_hex": "b7070400",
+          "pending_native_hex": "b7070400",
+          "opcode": "lui a5, 0x40",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35654,
+          "width": 4,
+          "original_hex": "03a30705",
+          "pending_native_hex": "03a30705",
+          "opcode": "lw t1, 80(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35658,
+          "width": 4,
+          "original_hex": "03450600",
+          "pending_native_hex": "03450600",
+          "opcode": "lbu a0, 0(a2)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35662,
+          "width": 2,
+          "original_hex": "0561",
+          "pending_native_hex": "0561",
+          "opcode": "addi sp, sp, 32",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35664,
+          "width": 2,
+          "original_hex": "0283",
+          "pending_native_hex": "0283",
+          "opcode": "jr t1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35666,
+          "width": 4,
+          "original_hex": "3385b400",
+          "pending_native_hex": "3385b400",
+          "opcode": "add a0, s1, a1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35670,
+          "width": 4,
+          "original_hex": "03450500",
+          "pending_native_hex": "03450500",
+          "opcode": "lbu a0, 0(a0)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35674,
+          "width": 4,
+          "original_hex": "3388b700",
+          "pending_native_hex": "3388b700",
+          "opcode": "add a6, a5, a1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35678,
+          "width": 2,
+          "original_hex": "8505",
+          "pending_native_hex": "8505",
+          "opcode": "addi a1, a1, 1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35680,
+          "width": 2,
+          "original_hex": "2a97",
+          "pending_native_hex": "2a97",
+          "opcode": "add a4, a4, a0",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35682,
+          "width": 4,
+          "original_hex": "a302a800",
+          "pending_native_hex": "a302a800",
+          "opcode": "sb a0, 5(a6)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35686,
+          "width": 4,
+          "original_hex": "1377f70f",
+          "pending_native_hex": "1377f70f",
+          "opcode": "andi a4, a4, 255",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35690,
+          "width": 2,
+          "original_hex": "45b7",
+          "pending_native_hex": "01a0",
+          "opcode": "j 0x8b0a",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35692,
+          "width": 2,
+          "original_hex": "8280",
+          "pending_native_hex": "8280",
+          "opcode": "ret",
+          "all_nonrelocation_bits_equal": true
+        }
+      ],
+      "operand_review": {
+        "raw_addresses": {
+          "first_admission": {
+            "pc": 35458,
+            "address": 262460,
+            "raw_hex": "b707040083a7c713"
+          },
+          "second_admission": {
+            "pc": 35494,
+            "address": 262460,
+            "raw_hex": "b707040083a7c713"
+          },
+          "tail": {
+            "pc": 35650,
+            "address": 262224,
+            "raw_hex": "b707040003a30705"
+          }
+        },
+        "C_JALR_RA_under_original_placement": [
+          35472,
+          35510
+        ],
+        "tail_writes_RA": false,
+        "A6_body_references": [
+          {
+            "addr": 35674,
+            "size": 4,
+            "bytes": "3388b700",
+            "opcode": "add a6, a5, a1",
+            "type": "add"
+          },
+          {
+            "addr": 35682,
+            "size": 4,
+            "bytes": "a302a800",
+            "opcode": "sb a0, 5(a6)",
+            "type": "store"
+          }
+        ],
+        "zero_copy_A6_preserved_by_body": true,
+        "IR_observations": {
+          "functions": 13,
+          "volatile_loads": {
+            "i32": 2,
+            "i8": 2
+          },
+          "volatile_stores": {
+            "i16": 2,
+            "i8": 4
+          },
+          "physical_port_anchors": [
+            "andi a1, s0, 255",
+            "srli a4, s0, 8",
+            "add a1, a1, s3",
+            "sb s3, 2(a5)",
+            "bltu a0, s0",
+            "add a5, a5, s0",
+            "addi s0, s0, 6",
+            "sh s0, 2(a5)",
+            "add a0, s1, a1",
+            "lw t1, 80(a5)",
+            "jr t1"
+          ],
+          "scope": "Finite manual/source/native review, not a full SSA proof or a formal checker replay."
+        }
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "compile.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "IR.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "link.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "native.d": {
+          "sha256": "8ebbca129220418eedabceead034412eeaa0517dcd1195a266ddc86b13f4c1c3",
+          "size": 356
+        },
+        "native.ll": {
+          "sha256": "b9852b0a4a23ac0d91e165410c66151f80779670507f9637dd6e59471d8e52b7",
+          "size": 20240
+        },
+        "native.o": {
+          "sha256": "e722e2ce3361c930be307507328e1305280e5cc06c4f854fa84b6882b07d6984",
+          "size": 2968
+        },
+        "object.log": {
+          "sha256": "e87870390c61d9e297e79c1c219b62a54a50a292a8b99b879f1e988cf1de2556",
+          "size": 10223
+        },
+        "partial.log": {
+          "sha256": "81e128af7717620b160ef9b32d5c43a5a3c87d71114014bd0b39320b0c7091ba",
+          "size": 7261
+        },
+        "partial.o": {
+          "sha256": "8c9c84504250b95495d9a82bb8ce1c58d3e333c0801a46fe1174a792a3cd20de",
+          "size": 1820
+        },
+        "recipes.json": {
+          "sha256": "1ce6804f9eb12b351e7926b288ab0138d5f409fd075e8e4737070730e7530b96",
+          "size": 3733
+        }
+      },
+      "recipes_checked": 5,
+      "MD_dependencies": [
+        "${TSL9_ROOT}/experiments/tsl9-transport-frame/src/transport_frame.v6.c",
+        "${CLANG_INCLUDE}/stdint.h"
+      ],
+      "ELFs": {
+        "native.o": {
+          "sha256": "e722e2ce3361c930be307507328e1305280e5cc06c4f854fa84b6882b07d6984",
+          "file_bytes": 2968,
+          "ET_REL": true,
+          "section_VA_zero": true,
+          "code_bytes": 280,
+          "code_sha256": "37fb135a626ba30af8786ae9735dc121f561ebe08db6126afa75ae109ef5b265",
+          "functions": [
+            {
+              "name": "tsl9_filter_external_8a56",
+              "offset": 0,
+              "size": 8,
+              "section": ".text.tsl9_filter_external_8a56"
+            },
+            {
+              "name": "tsl9_transport_frame_8a5e",
+              "offset": 8,
+              "size": 28,
+              "section": ".text.tsl9_transport_frame_8a5e"
+            },
+            {
+              "name": "tsl9_transport_first_8a7a",
+              "offset": 36,
+              "size": 22,
+              "section": ".text.tsl9_transport_first_8a7a"
+            },
+            {
+              "name": "tsl9_transport_first_result_8a90",
+              "offset": 58,
+              "size": 6,
+              "section": ".text.tsl9_transport_first_result_8a90"
+            },
+            {
+              "name": "tsl9_transport_second_8a96",
+              "offset": 64,
+              "size": 32,
+              "section": ".text.tsl9_transport_second_8a96"
+            },
+            {
+              "name": "tsl9_transport_second_result_8ab6",
+              "offset": 96,
+              "size": 8,
+              "section": ".text.tsl9_transport_second_result_8ab6"
+            },
+            {
+              "name": "tsl9_transport_reject_8abe",
+              "offset": 104,
+              "size": 14,
+              "section": ".text.tsl9_transport_reject_8abe"
+            },
+            {
+              "name": "tsl9_transport_select0_8acc",
+              "offset": 118,
+              "size": 2,
+              "section": ".text.tsl9_transport_select0_8acc"
+            },
+            {
+              "name": "tsl9_transport_pack_8ace",
+              "offset": 120,
+              "size": 60,
+              "section": ".text.tsl9_transport_pack_8ace"
+            },
+            {
+              "name": "tsl9_transport_test_8b0a",
+              "offset": 180,
+              "size": 10,
+              "section": ".text.tsl9_transport_test_8b0a"
+            },
+            {
+              "name": "tsl9_transport_finish_8b14",
+              "offset": 190,
+              "size": 62,
+              "section": ".text.tsl9_transport_finish_8b14"
+            },
+            {
+              "name": "tsl9_transport_copy_8b52",
+              "offset": 252,
+              "size": 26,
+              "section": ".text.tsl9_transport_copy_8b52"
+            },
+            {
+              "name": "tsl9_transport_bare_return_8b6c",
+              "offset": 278,
+              "size": 2,
+              "section": ".text.tsl9_transport_bare_return_8b6c"
+            }
+          ],
+          "relocations": [
+            {
+              "offset": 4,
+              "original_pc": 35418,
+              "type": 16,
+              "target": "tsl9_transport_bare_return_8b6c",
+              "target_original_address": 35692,
+              "addend": 0,
+              "word_hex": "63e0d700",
+              "pending": true
+            },
+            {
+              "offset": 32,
+              "original_pc": 35446,
+              "type": 16,
+              "target": "tsl9_transport_second_8a96",
+              "target_original_address": 35478,
+              "addend": 0,
+              "word_hex": "6310a700",
+              "pending": true
+            },
+            {
+              "offset": 40,
+              "original_pc": 35454,
+              "type": 16,
+              "target": "tsl9_transport_second_8a96",
+              "target_original_address": 35478,
+              "addend": 0,
+              "word_hex": "6300f700",
+              "pending": true
+            },
+            {
+              "offset": 60,
+              "original_pc": 35474,
+              "type": 16,
+              "target": "tsl9_transport_select0_8acc",
+              "target_original_address": 35532,
+              "addend": 0,
+              "word_hex": "6300f500",
+              "pending": true
+            },
+            {
+              "offset": 68,
+              "original_pc": 35482,
+              "type": 16,
+              "target": "tsl9_transport_reject_8abe",
+              "target_original_address": 35518,
+              "addend": 0,
+              "word_hex": "63902701",
+              "pending": true
+            },
+            {
+              "offset": 76,
+              "original_pc": 35490,
+              "type": 16,
+              "target": "tsl9_transport_reject_8abe",
+              "target_original_address": 35518,
+              "addend": 0,
+              "word_hex": "6300f900",
+              "pending": true
+            },
+            {
+              "offset": 100,
+              "original_pc": 35514,
+              "type": 16,
+              "target": "tsl9_transport_pack_8ace",
+              "target_original_address": 35534,
+              "addend": 0,
+              "word_hex": "6300f500",
+              "pending": true
+            },
+            {
+              "offset": 186,
+              "original_pc": 35600,
+              "type": 16,
+              "target": "tsl9_transport_copy_8b52",
+              "target_original_address": 35666,
+              "addend": 0,
+              "word_hex": "63608500",
+              "pending": true
+            },
+            {
+              "offset": 276,
+              "original_pc": 35690,
+              "type": 45,
+              "target": "tsl9_transport_test_8b0a",
+              "target_original_address": 35594,
+              "addend": 0,
+              "word_hex": "01a0",
+              "pending": true
+            }
+          ],
+          "UND": [],
+          "global_ABS": [],
+          "no_extra_ALLOC": true,
+          "all_96_rows_nonrelocation_bits_equal": true,
+          "pending_control_count": 9,
+          "fully_compared_noncontrol_bytes": 246,
+          "fixed_bits": 2133
+        },
+        "partial.o": {
+          "sha256": "8c9c84504250b95495d9a82bb8ce1c58d3e333c0801a46fe1174a792a3cd20de",
+          "file_bytes": 1820,
+          "ET_REL": true,
+          "section_VA_zero": true,
+          "code_bytes": 280,
+          "code_sha256": "37fb135a626ba30af8786ae9735dc121f561ebe08db6126afa75ae109ef5b265",
+          "functions": [
+            {
+              "name": "tsl9_filter_external_8a56",
+              "offset": 0,
+              "size": 8,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_frame_8a5e",
+              "offset": 8,
+              "size": 28,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_first_8a7a",
+              "offset": 36,
+              "size": 22,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_first_result_8a90",
+              "offset": 58,
+              "size": 6,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_second_8a96",
+              "offset": 64,
+              "size": 32,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_second_result_8ab6",
+              "offset": 96,
+              "size": 8,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_reject_8abe",
+              "offset": 104,
+              "size": 14,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_select0_8acc",
+              "offset": 118,
+              "size": 2,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_pack_8ace",
+              "offset": 120,
+              "size": 60,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_test_8b0a",
+              "offset": 180,
+              "size": 10,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_finish_8b14",
+              "offset": 190,
+              "size": 62,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_copy_8b52",
+              "offset": 252,
+              "size": 26,
+              "section": ".transport"
+            },
+            {
+              "name": "tsl9_transport_bare_return_8b6c",
+              "offset": 278,
+              "size": 2,
+              "section": ".transport"
+            }
+          ],
+          "relocations": [
+            {
+              "offset": 4,
+              "original_pc": 35418,
+              "type": 16,
+              "target": "tsl9_transport_bare_return_8b6c",
+              "target_original_address": 35692,
+              "addend": 0,
+              "word_hex": "63e0d700",
+              "pending": true
+            },
+            {
+              "offset": 32,
+              "original_pc": 35446,
+              "type": 16,
+              "target": "tsl9_transport_second_8a96",
+              "target_original_address": 35478,
+              "addend": 0,
+              "word_hex": "6310a700",
+              "pending": true
+            },
+            {
+              "offset": 40,
+              "original_pc": 35454,
+              "type": 16,
+              "target": "tsl9_transport_second_8a96",
+              "target_original_address": 35478,
+              "addend": 0,
+              "word_hex": "6300f700",
+              "pending": true
+            },
+            {
+              "offset": 60,
+              "original_pc": 35474,
+              "type": 16,
+              "target": "tsl9_transport_select0_8acc",
+              "target_original_address": 35532,
+              "addend": 0,
+              "word_hex": "6300f500",
+              "pending": true
+            },
+            {
+              "offset": 68,
+              "original_pc": 35482,
+              "type": 16,
+              "target": "tsl9_transport_reject_8abe",
+              "target_original_address": 35518,
+              "addend": 0,
+              "word_hex": "63902701",
+              "pending": true
+            },
+            {
+              "offset": 76,
+              "original_pc": 35490,
+              "type": 16,
+              "target": "tsl9_transport_reject_8abe",
+              "target_original_address": 35518,
+              "addend": 0,
+              "word_hex": "6300f900",
+              "pending": true
+            },
+            {
+              "offset": 100,
+              "original_pc": 35514,
+              "type": 16,
+              "target": "tsl9_transport_pack_8ace",
+              "target_original_address": 35534,
+              "addend": 0,
+              "word_hex": "6300f500",
+              "pending": true
+            },
+            {
+              "offset": 186,
+              "original_pc": 35600,
+              "type": 16,
+              "target": "tsl9_transport_copy_8b52",
+              "target_original_address": 35666,
+              "addend": 0,
+              "word_hex": "63608500",
+              "pending": true
+            },
+            {
+              "offset": 276,
+              "original_pc": 35690,
+              "type": 45,
+              "target": "tsl9_transport_test_8b0a",
+              "target_original_address": 35594,
+              "addend": 0,
+              "word_hex": "01a0",
+              "pending": true
+            }
+          ],
+          "UND": [],
+          "global_ABS": [],
+          "no_extra_ALLOC": true,
+          "all_96_rows_nonrelocation_bits_equal": true,
+          "pending_control_count": 9,
+          "fully_compared_noncontrol_bytes": 246,
+          "fixed_bits": 2133
+        }
+      },
+      "native_controls": [
+        {
+          "offset": 4,
+          "original_pc": 35418,
+          "type": 16,
+          "target": "tsl9_transport_bare_return_8b6c",
+          "target_original_address": 35692,
+          "addend": 0,
+          "word_hex": "63e0d700",
+          "pending": true
+        },
+        {
+          "offset": 32,
+          "original_pc": 35446,
+          "type": 16,
+          "target": "tsl9_transport_second_8a96",
+          "target_original_address": 35478,
+          "addend": 0,
+          "word_hex": "6310a700",
+          "pending": true
+        },
+        {
+          "offset": 40,
+          "original_pc": 35454,
+          "type": 16,
+          "target": "tsl9_transport_second_8a96",
+          "target_original_address": 35478,
+          "addend": 0,
+          "word_hex": "6300f700",
+          "pending": true
+        },
+        {
+          "offset": 60,
+          "original_pc": 35474,
+          "type": 16,
+          "target": "tsl9_transport_select0_8acc",
+          "target_original_address": 35532,
+          "addend": 0,
+          "word_hex": "6300f500",
+          "pending": true
+        },
+        {
+          "offset": 68,
+          "original_pc": 35482,
+          "type": 16,
+          "target": "tsl9_transport_reject_8abe",
+          "target_original_address": 35518,
+          "addend": 0,
+          "word_hex": "63902701",
+          "pending": true
+        },
+        {
+          "offset": 76,
+          "original_pc": 35490,
+          "type": 16,
+          "target": "tsl9_transport_reject_8abe",
+          "target_original_address": 35518,
+          "addend": 0,
+          "word_hex": "6300f900",
+          "pending": true
+        },
+        {
+          "offset": 100,
+          "original_pc": 35514,
+          "type": 16,
+          "target": "tsl9_transport_pack_8ace",
+          "target_original_address": 35534,
+          "addend": 0,
+          "word_hex": "6300f500",
+          "pending": true
+        },
+        {
+          "offset": 186,
+          "original_pc": 35600,
+          "type": 16,
+          "target": "tsl9_transport_copy_8b52",
+          "target_original_address": 35666,
+          "addend": 0,
+          "word_hex": "63608500",
+          "pending": true
+        },
+        {
+          "offset": 276,
+          "original_pc": 35690,
+          "type": 45,
+          "target": "tsl9_transport_test_8b0a",
+          "target_original_address": 35594,
+          "addend": 0,
+          "word_hex": "01a0",
+          "pending": true
+        }
+      ],
+      "typed_rows": [
+        {
+          "pc": 35414,
+          "width": 4,
+          "original_hex": "9307f040",
+          "pending_native_hex": "9307f040",
+          "opcode": "li a5, 1039",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35418,
+          "width": 4,
+          "original_hex": "63e9d710",
+          "pending_native_hex": "63e0d700",
+          "opcode": "bltu a5, a3, 0x8b6c",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35422,
+          "width": 2,
+          "original_hex": "0111",
+          "pending_native_hex": "0111",
+          "opcode": "addi sp, sp, -32",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35424,
+          "width": 2,
+          "original_hex": "22cc",
+          "pending_native_hex": "22cc",
+          "opcode": "sw s0, 24(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35426,
+          "width": 2,
+          "original_hex": "26ca",
+          "pending_native_hex": "26ca",
+          "opcode": "sw s1, 20(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35428,
+          "width": 2,
+          "original_hex": "4ac8",
+          "pending_native_hex": "4ac8",
+          "opcode": "sw s2, 16(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35430,
+          "width": 2,
+          "original_hex": "4ec6",
+          "pending_native_hex": "4ec6",
+          "opcode": "sw s3, 12(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35432,
+          "width": 2,
+          "original_hex": "06ce",
+          "pending_native_hex": "06ce",
+          "opcode": "sw ra, 28(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35434,
+          "width": 4,
+          "original_hex": "03d76109",
+          "pending_native_hex": "03d76109",
+          "opcode": "lhu a4, 150(gp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35438,
+          "width": 2,
+          "original_hex": "2a89",
+          "pending_native_hex": "2a89",
+          "opcode": "mv s2, a0",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35440,
+          "width": 2,
+          "original_hex": "3684",
+          "pending_native_hex": "3684",
+          "opcode": "mv s0, a3",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35442,
+          "width": 2,
+          "original_hex": "b284",
+          "pending_native_hex": "b284",
+          "opcode": "mv s1, a2",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35444,
+          "width": 2,
+          "original_hex": "ae89",
+          "pending_native_hex": "ae89",
+          "opcode": "mv s3, a1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35446,
+          "width": 4,
+          "original_hex": "6310a702",
+          "pending_native_hex": "6310a700",
+          "opcode": "bne a4, a0, 0x8a96",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35450,
+          "width": 2,
+          "original_hex": "c167",
+          "pending_native_hex": "c167",
+          "opcode": "lui a5, 0x10",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35452,
+          "width": 2,
+          "original_hex": "f917",
+          "pending_native_hex": "f917",
+          "opcode": "addi a5, a5, -2",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35454,
+          "width": 4,
+          "original_hex": "630cf700",
+          "pending_native_hex": "6300f700",
+          "opcode": "beq a4, a5, 0x8a96",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35458,
+          "width": 4,
+          "original_hex": "b7070400",
+          "pending_native_hex": "b7070400",
+          "opcode": "lui a5, 0x40",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35462,
+          "width": 4,
+          "original_hex": "83a7c713",
+          "pending_native_hex": "83a7c713",
+          "opcode": "lw a5, 316(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35466,
+          "width": 4,
+          "original_hex": "93850108",
+          "pending_native_hex": "93850108",
+          "opcode": "addi a1, gp, 128",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35470,
+          "width": 2,
+          "original_hex": "8297",
+          "pending_native_hex": "8297",
+          "opcode": "jalr a5",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35472,
+          "width": 2,
+          "original_hex": "8547",
+          "pending_native_hex": "8547",
+          "opcode": "li a5, 1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35474,
+          "width": 4,
+          "original_hex": "630df502",
+          "pending_native_hex": "6300f500",
+          "opcode": "beq a0, a5, 0x8acc",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35478,
+          "width": 4,
+          "original_hex": "83d7a109",
+          "pending_native_hex": "83d7a109",
+          "opcode": "lhu a5, 154(gp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35482,
+          "width": 4,
+          "original_hex": "63922703",
+          "pending_native_hex": "63902701",
+          "opcode": "bne a5, s2, 0x8abe",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35486,
+          "width": 2,
+          "original_hex": "c167",
+          "pending_native_hex": "c167",
+          "opcode": "lui a5, 0x10",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35488,
+          "width": 2,
+          "original_hex": "f917",
+          "pending_native_hex": "f917",
+          "opcode": "addi a5, a5, -2",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35490,
+          "width": 4,
+          "original_hex": "630ef900",
+          "pending_native_hex": "6300f900",
+          "opcode": "beq s2, a5, 0x8abe",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35494,
+          "width": 4,
+          "original_hex": "b7070400",
+          "pending_native_hex": "b7070400",
+          "opcode": "lui a5, 0x40",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35498,
+          "width": 4,
+          "original_hex": "83a7c713",
+          "pending_native_hex": "83a7c713",
+          "opcode": "lw a5, 316(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35502,
+          "width": 4,
+          "original_hex": "93850108",
+          "pending_native_hex": "93850108",
+          "opcode": "addi a1, gp, 128",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35506,
+          "width": 2,
+          "original_hex": "4a85",
+          "pending_native_hex": "4a85",
+          "opcode": "mv a0, s2",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35508,
+          "width": 2,
+          "original_hex": "8297",
+          "pending_native_hex": "8297",
+          "opcode": "jalr a5",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35510,
+          "width": 2,
+          "original_hex": "8547",
+          "pending_native_hex": "8547",
+          "opcode": "li a5, 1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35512,
+          "width": 2,
+          "original_hex": "0546",
+          "pending_native_hex": "0546",
+          "opcode": "li a2, 1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35514,
+          "width": 4,
+          "original_hex": "630af500",
+          "pending_native_hex": "6300f500",
+          "opcode": "beq a0, a5, 0x8ace",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35518,
+          "width": 2,
+          "original_hex": "f240",
+          "pending_native_hex": "f240",
+          "opcode": "lw ra, 28(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35520,
+          "width": 2,
+          "original_hex": "6244",
+          "pending_native_hex": "6244",
+          "opcode": "lw s0, 24(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35522,
+          "width": 2,
+          "original_hex": "d244",
+          "pending_native_hex": "d244",
+          "opcode": "lw s1, 20(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35524,
+          "width": 2,
+          "original_hex": "4249",
+          "pending_native_hex": "4249",
+          "opcode": "lw s2, 16(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35526,
+          "width": 2,
+          "original_hex": "b249",
+          "pending_native_hex": "b249",
+          "opcode": "lw s3, 12(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35528,
+          "width": 2,
+          "original_hex": "0561",
+          "pending_native_hex": "0561",
+          "opcode": "addi sp, sp, 32",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35530,
+          "width": 2,
+          "original_hex": "8280",
+          "pending_native_hex": "8280",
+          "opcode": "ret",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35532,
+          "width": 2,
+          "original_hex": "0146",
+          "pending_native_hex": "0146",
+          "opcode": "li a2, 0",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35534,
+          "width": 4,
+          "original_hex": "93076042",
+          "pending_native_hex": "93076042",
+          "opcode": "li a5, 1062",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35538,
+          "width": 4,
+          "original_hex": "b307f602",
+          "pending_native_hex": "b307f602",
+          "opcode": "mul a5, a2, a5",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35542,
+          "width": 4,
+          "original_hex": "97260020",
+          "pending_native_hex": "97260020",
+          "opcode": "auipc a3, 0x20002",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35546,
+          "width": 4,
+          "original_hex": "9386666b",
+          "pending_native_hex": "9386666b",
+          "opcode": "addi a3, a3, 1718",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35550,
+          "width": 2,
+          "original_hex": "6177",
+          "pending_native_hex": "6177",
+          "opcode": "lui a4, 0xffff8",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35552,
+          "width": 4,
+          "original_hex": "134757f5",
+          "pending_native_hex": "134757f5",
+          "opcode": "xori a4, a4, -171",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35556,
+          "width": 4,
+          "original_hex": "9375f40f",
+          "pending_native_hex": "9375f40f",
+          "opcode": "andi a1, s0, 255",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35560,
+          "width": 2,
+          "original_hex": "9907",
+          "pending_native_hex": "9907",
+          "opcode": "addi a5, a5, 6",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35562,
+          "width": 2,
+          "original_hex": "b697",
+          "pending_native_hex": "b697",
+          "opcode": "add a5, a5, a3",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35564,
+          "width": 4,
+          "original_hex": "2390e700",
+          "pending_native_hex": "2390e700",
+          "opcode": "sh a4, 0(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35568,
+          "width": 4,
+          "original_hex": "2382b700",
+          "pending_native_hex": "2382b700",
+          "opcode": "sb a1, 4(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35572,
+          "width": 4,
+          "original_hex": "13578400",
+          "pending_native_hex": "13578400",
+          "opcode": "srli a4, s0, 0x8",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35576,
+          "width": 2,
+          "original_hex": "ce95",
+          "pending_native_hex": "ce95",
+          "opcode": "add a1, a1, s3",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35578,
+          "width": 4,
+          "original_hex": "a381e700",
+          "pending_native_hex": "a381e700",
+          "opcode": "sb a4, 3(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35582,
+          "width": 2,
+          "original_hex": "2e97",
+          "pending_native_hex": "2e97",
+          "opcode": "add a4, a4, a1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35584,
+          "width": 4,
+          "original_hex": "23813701",
+          "pending_native_hex": "23813701",
+          "opcode": "sb s3, 2(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35588,
+          "width": 4,
+          "original_hex": "1377f70f",
+          "pending_native_hex": "1377f70f",
+          "opcode": "andi a4, a4, 255",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35592,
+          "width": 2,
+          "original_hex": "8145",
+          "pending_native_hex": "8145",
+          "opcode": "li a1, 0",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35594,
+          "width": 4,
+          "original_hex": "13950501",
+          "pending_native_hex": "13950501",
+          "opcode": "slli a0, a1, 0x10",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35598,
+          "width": 2,
+          "original_hex": "4181",
+          "pending_native_hex": "4181",
+          "opcode": "srli a0, a0, 0x10",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35600,
+          "width": 4,
+          "original_hex": "63618504",
+          "pending_native_hex": "63608500",
+          "opcode": "bltu a0, s0, 0x8b52",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35604,
+          "width": 2,
+          "original_hex": "a297",
+          "pending_native_hex": "a297",
+          "opcode": "add a5, a5, s0",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35606,
+          "width": 4,
+          "original_hex": "a382e700",
+          "pending_native_hex": "a382e700",
+          "opcode": "sb a4, 5(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35610,
+          "width": 4,
+          "original_hex": "93076042",
+          "pending_native_hex": "93076042",
+          "opcode": "li a5, 1062",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35614,
+          "width": 4,
+          "original_hex": "b307f602",
+          "pending_native_hex": "b307f602",
+          "opcode": "mul a5, a2, a5",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35618,
+          "width": 2,
+          "original_hex": "1904",
+          "pending_native_hex": "1904",
+          "opcode": "addi s0, s0, 6",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35620,
+          "width": 2,
+          "original_hex": "0a06",
+          "pending_native_hex": "0a06",
+          "opcode": "slli a2, a2, 0x2",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35622,
+          "width": 2,
+          "original_hex": "f240",
+          "pending_native_hex": "f240",
+          "opcode": "lw ra, 28(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35624,
+          "width": 2,
+          "original_hex": "d244",
+          "pending_native_hex": "d244",
+          "opcode": "lw s1, 20(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35626,
+          "width": 2,
+          "original_hex": "4249",
+          "pending_native_hex": "4249",
+          "opcode": "lw s2, 16(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35628,
+          "width": 2,
+          "original_hex": "b249",
+          "pending_native_hex": "b249",
+          "opcode": "lw s3, 12(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35630,
+          "width": 2,
+          "original_hex": "8545",
+          "pending_native_hex": "8545",
+          "opcode": "li a1, 1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35632,
+          "width": 2,
+          "original_hex": "b697",
+          "pending_native_hex": "b697",
+          "opcode": "add a5, a5, a3",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35634,
+          "width": 4,
+          "original_hex": "23918700",
+          "pending_native_hex": "23918700",
+          "opcode": "sh s0, 2(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35638,
+          "width": 4,
+          "original_hex": "23920700",
+          "pending_native_hex": "23920700",
+          "opcode": "sh zero, 4(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35642,
+          "width": 4,
+          "original_hex": "93874109",
+          "pending_native_hex": "93874109",
+          "opcode": "addi a5, gp, 148",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35646,
+          "width": 2,
+          "original_hex": "3e96",
+          "pending_native_hex": "3e96",
+          "opcode": "add a2, a2, a5",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35648,
+          "width": 2,
+          "original_hex": "6244",
+          "pending_native_hex": "6244",
+          "opcode": "lw s0, 24(sp)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35650,
+          "width": 4,
+          "original_hex": "b7070400",
+          "pending_native_hex": "b7070400",
+          "opcode": "lui a5, 0x40",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35654,
+          "width": 4,
+          "original_hex": "03a30705",
+          "pending_native_hex": "03a30705",
+          "opcode": "lw t1, 80(a5)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35658,
+          "width": 4,
+          "original_hex": "03450600",
+          "pending_native_hex": "03450600",
+          "opcode": "lbu a0, 0(a2)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35662,
+          "width": 2,
+          "original_hex": "0561",
+          "pending_native_hex": "0561",
+          "opcode": "addi sp, sp, 32",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35664,
+          "width": 2,
+          "original_hex": "0283",
+          "pending_native_hex": "0283",
+          "opcode": "jr t1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35666,
+          "width": 4,
+          "original_hex": "3385b400",
+          "pending_native_hex": "3385b400",
+          "opcode": "add a0, s1, a1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35670,
+          "width": 4,
+          "original_hex": "03450500",
+          "pending_native_hex": "03450500",
+          "opcode": "lbu a0, 0(a0)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35674,
+          "width": 4,
+          "original_hex": "3388b700",
+          "pending_native_hex": "3388b700",
+          "opcode": "add a6, a5, a1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35678,
+          "width": 2,
+          "original_hex": "8505",
+          "pending_native_hex": "8505",
+          "opcode": "addi a1, a1, 1",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35680,
+          "width": 2,
+          "original_hex": "2a97",
+          "pending_native_hex": "2a97",
+          "opcode": "add a4, a4, a0",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35682,
+          "width": 4,
+          "original_hex": "a302a800",
+          "pending_native_hex": "a302a800",
+          "opcode": "sb a0, 5(a6)",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35686,
+          "width": 4,
+          "original_hex": "1377f70f",
+          "pending_native_hex": "1377f70f",
+          "opcode": "andi a4, a4, 255",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35690,
+          "width": 2,
+          "original_hex": "45b7",
+          "pending_native_hex": "01a0",
+          "opcode": "j 0x8b0a",
+          "all_nonrelocation_bits_equal": true
+        },
+        {
+          "pc": 35692,
+          "width": 2,
+          "original_hex": "8280",
+          "pending_native_hex": "8280",
+          "opcode": "ret",
+          "all_nonrelocation_bits_equal": true
+        }
+      ],
+      "operand_review": {
+        "raw_addresses": {
+          "first_admission": {
+            "pc": 35458,
+            "address": 262460,
+            "raw_hex": "b707040083a7c713"
+          },
+          "second_admission": {
+            "pc": 35494,
+            "address": 262460,
+            "raw_hex": "b707040083a7c713"
+          },
+          "tail": {
+            "pc": 35650,
+            "address": 262224,
+            "raw_hex": "b707040003a30705"
+          }
+        },
+        "C_JALR_RA_under_original_placement": [
+          35472,
+          35510
+        ],
+        "tail_writes_RA": false,
+        "A6_body_references": [
+          {
+            "addr": 35674,
+            "size": 4,
+            "bytes": "3388b700",
+            "opcode": "add a6, a5, a1",
+            "type": "add"
+          },
+          {
+            "addr": 35682,
+            "size": 4,
+            "bytes": "a302a800",
+            "opcode": "sb a0, 5(a6)",
+            "type": "store"
+          }
+        ],
+        "zero_copy_A6_preserved_by_body": true,
+        "IR_observations": {
+          "functions": 13,
+          "volatile_loads": {
+            "i32": 2,
+            "i8": 2
+          },
+          "volatile_stores": {
+            "i16": 2,
+            "i8": 4
+          },
+          "physical_port_anchors": [
+            "andi a1, s0, 255",
+            "srli a4, s0, 8",
+            "add a1, a1, s3",
+            "sb s3, 2(a5)",
+            "bltu a0, s0",
+            "add a5, a5, s0",
+            "addi s0, s0, 6",
+            "sh s0, 2(a5)",
+            "add a0, s1, a1",
+            "lw t1, 80(a5)",
+            "jr t1"
+          ],
+          "scope": "Finite manual/source/native review, not a full SSA proof or a formal checker replay."
+        }
+      }
+    }
+  },
+  "target_executed": false,
+  "ISA_emulated": false,
+  "network_used": false,
+  "compiler_run_by_reviewer": false,
+  "firmware_ready": false,
+  "review_result": "PASS within the explicitly bounded v6 source/native/partial scope; no additional concrete operand or then-live-source mismatch was identified.",
+  "source_review": {
+    "allocator_profile": "Only X10..X16 are allocatable; GP/SP/RA/S0..S3/T1 and all other GPRs are reserved by the recorded fixed flags. Architectural S-register operations read/write physical registers directly rather than introducing C S-register locals or an ordinary callee-save frame.",
+    "source_line_evidence": [
+      {
+        "lines": [
+          48,
+          50,
+          77,
+          79
+        ],
+        "claim": "Both admission pointer loads compute0x40000+316=0x4013C; actual LUI/LW bytes independently confirm this."
+      },
+      {
+        "lines": [
+          125,
+          132,
+          134,
+          140
+        ],
+        "claim": "Header fields use then-live S0/S3 through physical ports; no pre-admission C snapshot is reused."
+      },
+      {
+        "lines": [
+          155,
+          168,
+          173,
+          180,
+          184
+        ],
+        "claim": "Full32 S0 is used in the u16-index predicate, checksum placement, length+6 metadata and late fresh S0 restore in original order."
+      },
+      {
+        "lines": [
+          199,
+          202,
+          208
+        ],
+        "claim": "Cold copy imports then-live S1/index/buffer/checksum, performs the source byte read and destination write, and is the body's only A6-writing region."
+      },
+      {
+        "lines": [
+          184,
+          187
+        ],
+        "claim": "Tail loads T1 freshly, adjusts then-live SP and C.JRs without a new link."
+      }
+    ],
+    "call_boundaries": "Each C.JALR ends a private region; continuation regions and later physical ports do not assume ordinary S-register/SP/GP preservation. A2/A3 before the second admission are residues unless explicitly written by original instructions.",
+    "zero_copy_A6": "The two admission port clobber declarations do not imply a hardware write in later code. The measured96-row stream writes A6 only at8B5A, so entering the selected pack/test path with zero copy iterations preserves that path's incoming A6 through the tail.",
+    "unchanged_historical_contract": true,
+    "historical_v1_error": "The earlier v1 pointer literal mismatch is recorded in original-contract.json; this review is exclusively of frozen v6."
+  },
+  "proof_limits": [
+    "Four actual ELF files were read: native.o and partial.o in each language. C/CPP native ELFs are byte-identical, as are the partial ELFs.",
+    "All246 bytes outside the nine symbolic controls are fully original-equal. All branch opcode/register/condition fields are also equal:2133 fixed bits total, with107 branch-immediate bits deliberately pending.",
+    "All nine relocations remain real ET_REL records with zero encoded immediates and addend0. Their targets are genuine defined FUNCs. No machine branch displacement is claimed resolved; whole code is not original-equal.",
+    "No UND/global ABS provider exists in the objects, but dynamic admission [0x4013C] and tail [0x40050] still have UNKNOWN target identity/ABI.",
+    "Link/return addresses8A90/8AB6 describe intended original placement. ET_REL section VAs are zero; the PC-relative buffer base is not validated for execution at that zero address.",
+    "All source/tool/header and recorded artifact hashes plus exact recipes/MD dependencies were checked. Existing compiler/reader logs were read, not rerun by this reviewer.",
+    "IR observations are finite source/native review anchors, not a complete SSA or formal verifier proof. No new compiler invocation, formal builder/replay, negative-control suite, target/ISA/ESIL/MMIO/hardware/network execution occurred.",
+    "The guard1039 precedes opaque calls; the post-call bound, loop termination, memory validity/aliasing, full resident/private ABI, protocol identity, feature identity and successful physical delivery remain unproved."
+  ],
+  "original_bytes_sha256": "3b01d76ded6b08cb239ca3c8d7e789db8b0b7149d4c6d4e48c50d987a1ef2f0b",
+  "pending_code_sha256": "37fb135a626ba30af8786ae9735dc121f561ebe08db6126afa75ae109ef5b265",
+  "reviewer_compiled": false,
+  "reviewer_linked": false
+}

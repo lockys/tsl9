@@ -1,0 +1,917 @@
+{
+  "schema": "TSL9-next-provider-primary-original-contract-v1",
+  "source_window": {
+    "path": "analysis/transport-frame-2026-10-23/next-provider.json",
+    "sha256": "9dbe20f22d95848af10d09560e4d9eb34ed810a5057f35bced41a8656d354eb5",
+    "start": 76296,
+    "end_exclusive": 76478,
+    "bytes": 182,
+    "instructions": 68,
+    "primary_rows_equal_fresh": true,
+    "other_entries": [
+      {
+        "start": 76398,
+        "end_exclusive": 76448,
+        "bytes": 50
+      },
+      {
+        "start": 76448,
+        "end_exclusive": 76478,
+        "bytes": 30
+      }
+    ],
+    "not_one_function": true
+  },
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "mapping_base": 32768
+  },
+  "span": {
+    "start": 76296,
+    "end_exclusive": 76398,
+    "bytes": 102,
+    "instructions": 35,
+    "sha256": "334494853a765e550af99f0e8dd95523efaf7cbb86d392e0340a5d5f004940c9"
+  },
+  "producer": {
+    "tool": "radare2",
+    "sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+    "argv": [
+      "${RADARE2}",
+      "-N",
+      "-q",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-c",
+      "e scr.color=0;pDj 102 @ 0x12a08;q",
+      "${FIRMWARE}"
+    ]
+  },
+  "rows": [
+    {
+      "addr": 76296,
+      "size": 2,
+      "bytes": "7971",
+      "opcode": "addi sp, sp, -48",
+      "type": "add"
+    },
+    {
+      "addr": 76298,
+      "size": 2,
+      "bytes": "22d4",
+      "opcode": "sw s0, 40(sp)",
+      "type": "store"
+    },
+    {
+      "addr": 76300,
+      "size": 2,
+      "bytes": "06d6",
+      "opcode": "sw ra, 44(sp)",
+      "type": "store"
+    },
+    {
+      "addr": 76302,
+      "size": 2,
+      "bytes": "2a84",
+      "opcode": "mv s0, a0",
+      "type": "mov"
+    },
+    {
+      "addr": 76304,
+      "size": 4,
+      "bytes": "ef50aff9",
+      "opcode": "jal ra, 0x81aa",
+      "type": "call",
+      "jump": 33194,
+      "fail": 76308
+    },
+    {
+      "addr": 76308,
+      "size": 2,
+      "bytes": "11e5",
+      "opcode": "bnez a0, 0x12a20",
+      "type": "cjmp",
+      "jump": 76320,
+      "fail": 76310
+    },
+    {
+      "addr": 76310,
+      "size": 4,
+      "bytes": "03570400",
+      "opcode": "lhu a4, 0(s0)",
+      "type": "load"
+    },
+    {
+      "addr": 76314,
+      "size": 2,
+      "bytes": "8547",
+      "opcode": "li a5, 1",
+      "type": "mov"
+    },
+    {
+      "addr": 76316,
+      "size": 4,
+      "bytes": "6311f704",
+      "opcode": "bne a4, a5, 0x12a5e",
+      "type": "cjmp",
+      "jump": 76382,
+      "fail": 76320
+    },
+    {
+      "addr": 76320,
+      "size": 2,
+      "bytes": "0145",
+      "opcode": "li a0, 0",
+      "type": "mov"
+    },
+    {
+      "addr": 76322,
+      "size": 4,
+      "bytes": "ef50cfff",
+      "opcode": "jal ra, 0x821e",
+      "type": "call",
+      "jump": 33310,
+      "fail": 76326
+    },
+    {
+      "addr": 76326,
+      "size": 2,
+      "bytes": "05cd",
+      "opcode": "beqz a0, 0x12a5e",
+      "type": "cjmp",
+      "jump": 76382,
+      "fail": 76328
+    },
+    {
+      "addr": 76328,
+      "size": 4,
+      "bytes": "8347b400",
+      "opcode": "lbu a5, 11(s0)",
+      "type": "load"
+    },
+    {
+      "addr": 76332,
+      "size": 2,
+      "bytes": "8def",
+      "opcode": "bnez a5, 0x12a66",
+      "type": "cjmp",
+      "jump": 76390,
+      "fail": 76334
+    },
+    {
+      "addr": 76334,
+      "size": 4,
+      "bytes": "83570400",
+      "opcode": "lhu a5, 0(s0)",
+      "type": "load"
+    },
+    {
+      "addr": 76338,
+      "size": 4,
+      "bytes": "03462400",
+      "opcode": "lbu a2, 2(s0)",
+      "type": "load"
+    },
+    {
+      "addr": 76342,
+      "size": 4,
+      "bytes": "231a0100",
+      "opcode": "sh zero, 20(sp)",
+      "type": "store"
+    },
+    {
+      "addr": 76346,
+      "size": 2,
+      "bytes": "3ec6",
+      "opcode": "sw a5, 12(sp)",
+      "type": "store"
+    },
+    {
+      "addr": 76348,
+      "size": 4,
+      "bytes": "230bc100",
+      "opcode": "sb a2, 22(sp)",
+      "type": "store"
+    },
+    {
+      "addr": 76352,
+      "size": 4,
+      "bytes": "b7070400",
+      "opcode": "lui a5, 0x40",
+      "type": "mov"
+    },
+    {
+      "addr": 76356,
+      "size": 2,
+      "bytes": "fc47",
+      "opcode": "lw a5, 76(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 76358,
+      "size": 4,
+      "bytes": "93053400",
+      "opcode": "addi a1, s0, 3",
+      "type": "add"
+    },
+    {
+      "addr": 76362,
+      "size": 4,
+      "bytes": "13057101",
+      "opcode": "addi a0, sp, 23",
+      "type": "add"
+    },
+    {
+      "addr": 76366,
+      "size": 2,
+      "bytes": "8297",
+      "opcode": "jalr a5",
+      "type": "ucall"
+    },
+    {
+      "addr": 76368,
+      "size": 4,
+      "bytes": "37650040",
+      "opcode": "lui a0, 0x40006",
+      "type": "mov"
+    },
+    {
+      "addr": 76372,
+      "size": 2,
+      "bytes": "6c00",
+      "opcode": "addi a1, sp, 12",
+      "type": "add"
+    },
+    {
+      "addr": 76374,
+      "size": 4,
+      "bytes": "13050540",
+      "opcode": "addi a0, a0, 1024",
+      "type": "add"
+    },
+    {
+      "addr": 76378,
+      "size": 4,
+      "bytes": "ef60a024",
+      "opcode": "jal ra, 0x18ca4",
+      "type": "call",
+      "jump": 101540,
+      "fail": 76382
+    },
+    {
+      "addr": 76382,
+      "size": 2,
+      "bytes": "b250",
+      "opcode": "lw ra, 44(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 76384,
+      "size": 2,
+      "bytes": "2254",
+      "opcode": "lw s0, 40(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 76386,
+      "size": 2,
+      "bytes": "4561",
+      "opcode": "addi sp, sp, 48",
+      "type": "add"
+    },
+    {
+      "addr": 76388,
+      "size": 2,
+      "bytes": "8280",
+      "opcode": "ret",
+      "type": "ret"
+    },
+    {
+      "addr": 76390,
+      "size": 2,
+      "bytes": "2285",
+      "opcode": "mv a0, s0",
+      "type": "mov"
+    },
+    {
+      "addr": 76392,
+      "size": 4,
+      "bytes": "ef404011",
+      "opcode": "jal ra, 0x16b7c",
+      "type": "call",
+      "jump": 93052,
+      "fail": 76396
+    },
+    {
+      "addr": 76396,
+      "size": 2,
+      "bytes": "cdbf",
+      "opcode": "j 0x12a5e",
+      "type": "jmp",
+      "jump": 76382
+    }
+  ],
+  "regions": [
+    {
+      "start": 76296,
+      "end_exclusive": 76310,
+      "name": "frame_status_and_branch",
+      "bytes": 14,
+      "instructions": 6,
+      "sha256": "9fba8b4f112d7b5f6a8f933fe6972cdbce6c1bc180f4a86207802892f03a320f"
+    },
+    {
+      "start": 76310,
+      "end_exclusive": 76320,
+      "name": "status_zero_ID_fallback",
+      "bytes": 10,
+      "instructions": 3,
+      "sha256": "3132cc1b2156951d7cea3becc765ce318b3316ea2405d0245d696f103a619672"
+    },
+    {
+      "start": 76320,
+      "end_exclusive": 76328,
+      "name": "predicate_index0",
+      "bytes": 8,
+      "instructions": 3,
+      "sha256": "f43738fec1723c586345be0457428a35ca13238527af1df08ada7c9197f5b7b1"
+    },
+    {
+      "start": 76328,
+      "end_exclusive": 76334,
+      "name": "tag_split",
+      "bytes": 6,
+      "instructions": 2,
+      "sha256": "11de9ec17b69e375b02af693b74d3cdd3253f80f9a5fe8f7175aa119391aabbc"
+    },
+    {
+      "start": 76334,
+      "end_exclusive": 76368,
+      "name": "record_metadata_and_resident_copy",
+      "bytes": 34,
+      "instructions": 10,
+      "sha256": "56e5092e3b6a322ae156ffff2c32611fde2e8c0f00169bc699b0fe1a5cd4d658"
+    },
+    {
+      "start": 76368,
+      "end_exclusive": 76382,
+      "name": "peripheral_call",
+      "bytes": 14,
+      "instructions": 4,
+      "sha256": "6b7f696220a402831f8d91dea72ac3475126f54bc610451a6b37f3421d0d868b"
+    },
+    {
+      "start": 76382,
+      "end_exclusive": 76390,
+      "name": "fresh_restore_return",
+      "bytes": 8,
+      "instructions": 4,
+      "sha256": "b0805dbb6b57307623b544f18b6ae086d0024607adbba3f3c43944984c8c5c84"
+    },
+    {
+      "start": 76390,
+      "end_exclusive": 76398,
+      "name": "post_RET_tagged_call",
+      "bytes": 8,
+      "instructions": 3,
+      "sha256": "e0c13fd1a274649bd0b70c858f8021db756f7ee279bba974799ea77d27a3012c"
+    }
+  ],
+  "cfg": {
+    "nodes": 35,
+    "edges": 38,
+    "all_rows_syntactically_reachable": true,
+    "opaque_calls_assumed_to_return": true,
+    "successors": {
+      "76296": [
+        76298
+      ],
+      "76298": [
+        76300
+      ],
+      "76300": [
+        76302
+      ],
+      "76302": [
+        76304
+      ],
+      "76304": [
+        76308
+      ],
+      "76308": [
+        76320,
+        76310
+      ],
+      "76310": [
+        76314
+      ],
+      "76314": [
+        76316
+      ],
+      "76316": [
+        76382,
+        76320
+      ],
+      "76320": [
+        76322
+      ],
+      "76322": [
+        76326
+      ],
+      "76326": [
+        76382,
+        76328
+      ],
+      "76328": [
+        76332
+      ],
+      "76332": [
+        76390,
+        76334
+      ],
+      "76334": [
+        76338
+      ],
+      "76338": [
+        76342
+      ],
+      "76342": [
+        76346
+      ],
+      "76346": [
+        76348
+      ],
+      "76348": [
+        76352
+      ],
+      "76352": [
+        76356
+      ],
+      "76356": [
+        76358
+      ],
+      "76358": [
+        76362
+      ],
+      "76362": [
+        76366
+      ],
+      "76366": [
+        76368
+      ],
+      "76368": [
+        76372
+      ],
+      "76372": [
+        76374
+      ],
+      "76374": [
+        76378
+      ],
+      "76378": [
+        76382
+      ],
+      "76382": [
+        76384
+      ],
+      "76384": [
+        76386
+      ],
+      "76386": [
+        76388
+      ],
+      "76388": [],
+      "76390": [
+        76392
+      ],
+      "76392": [
+        76396
+      ],
+      "76396": [
+        76382
+      ]
+    },
+    "raw_control_decode": [
+      {
+        "pc": 76304,
+        "width": 4,
+        "kind": "JAL",
+        "rd": 1,
+        "target": 33194,
+        "return_address": 76308
+      },
+      {
+        "pc": 76308,
+        "width": 2,
+        "target": 76320,
+        "kind": "C.branch",
+        "f3": 7,
+        "rs1": 10
+      },
+      {
+        "pc": 76316,
+        "width": 4,
+        "target": 76382,
+        "kind": "branch",
+        "f3": 1,
+        "rs1": 14,
+        "rs2": 15
+      },
+      {
+        "pc": 76322,
+        "width": 4,
+        "kind": "JAL",
+        "rd": 1,
+        "target": 33310,
+        "return_address": 76326
+      },
+      {
+        "pc": 76326,
+        "width": 2,
+        "target": 76382,
+        "kind": "C.branch",
+        "f3": 6,
+        "rs1": 10
+      },
+      {
+        "pc": 76332,
+        "width": 2,
+        "target": 76390,
+        "kind": "C.branch",
+        "f3": 7,
+        "rs1": 15
+      },
+      {
+        "pc": 76366,
+        "width": 2,
+        "kind": "C.JALR",
+        "rd": 1,
+        "rs1": 15,
+        "return_address": 76368,
+        "target": "UNKNOWN"
+      },
+      {
+        "pc": 76378,
+        "width": 4,
+        "kind": "JAL",
+        "rd": 1,
+        "target": 101540,
+        "return_address": 76382
+      },
+      {
+        "pc": 76388,
+        "width": 2,
+        "kind": "RET",
+        "rd": 0,
+        "rs1": 1,
+        "target": "then-live RA"
+      },
+      {
+        "pc": 76392,
+        "width": 4,
+        "kind": "JAL",
+        "rd": 1,
+        "target": 93052,
+        "return_address": 76396
+      },
+      {
+        "pc": 76396,
+        "width": 2,
+        "kind": "C.J",
+        "rd": 0,
+        "target": 76382
+      }
+    ]
+  },
+  "known_status_leaf": {
+    "start": 33194,
+    "end_exclusive": 33200,
+    "bytes": 6,
+    "hex": "03c5710a8280",
+    "sha256": "887c2bfb847a7e013acebac38c8be3f2bed06fd44305080ad6fc7ca3593e8fc3",
+    "semantics": "LBU A0,[GP+167]; RET through RA. Own code writes only A0 and does not change GP/SP/S0."
+  },
+  "target_executed": false,
+  "ISA_emulated": false,
+  "ESIL_used": false,
+  "network_used": false,
+  "compiler_run": false,
+  "firmware_ready": false,
+  "scope_note": "Only the primary102-byte local extent is reviewed. The retained182-byte window includes later entries12A6E and12AA0 and must not be reconstructed as a single12A08 function.",
+  "register_contract": {
+    "entry": {
+      "A0": "record pointer candidate",
+      "SP": "incoming physical SP",
+      "RA": "incoming physical RA",
+      "GP": "incoming physical GP"
+    },
+    "frame": {
+      "pc": 76296,
+      "delta": -48,
+      "stores": [
+        {
+          "pc": 76298,
+          "register": "S0",
+          "offset": 40,
+          "width": 4
+        },
+        {
+          "pc": 76300,
+          "register": "RA",
+          "offset": 44,
+          "width": 4
+        }
+      ],
+      "capture": {
+        "pc": 76302,
+        "equation": "S0=A0"
+      }
+    },
+    "own_written_registers": [
+      "SP",
+      "RA",
+      "S0",
+      "A0",
+      "A1",
+      "A2",
+      "A4",
+      "A5"
+    ],
+    "own_GP_writes": false,
+    "own_CSR_instructions": [],
+    "post_call_rule": "81AA's actual6-byte normal code changes only A0. Other callee preservation/normal return/fault/memory/IRQ contracts are not established. After those calls, S0/SP/GP/arguments/memory are then-live physical values, not cached entry state.",
+    "exit": {
+      "range": [
+        76382,
+        76390
+      ],
+      "sequence": [
+        "LW RA,[then-live SP+44]",
+        "LW S0,[then-live SP+40]",
+        "SP=u32(SP+48)",
+        "RET through then-live RA"
+      ],
+      "A0": "No uniform return assignment; zero on some gate-failure paths and callee residue on other paths.",
+      "condition": "The frame's initial contents and numeric SP cannot be assumed to survive unknown calls or alias effects."
+    }
+  },
+  "flow": [
+    {
+      "pc": 76304,
+      "action": "JAL81AA, RA12A14; returned A0 is fresh LBU[GP+167]."
+    },
+    {
+      "pc": 76308,
+      "predicate": "A0!=0",
+      "true_target": 76320,
+      "false_target": 76310
+    },
+    {
+      "range": [
+        76310,
+        76320
+      ],
+      "action": "Only status-zero path reads LHU16[S0]. Continue only if that16-bit ID equals1; otherwise restore/return."
+    },
+    {
+      "pc": 76320,
+      "action": "A0=0, then JAL821E; RA12A26. No other arguments are established here."
+    },
+    {
+      "pc": 76326,
+      "predicate": "then-live returned A0==0",
+      "true_target": 76382,
+      "false_target": 76328
+    },
+    {
+      "pc": 76328,
+      "action": "fresh LBU8[then-live S0+11]"
+    },
+    {
+      "pc": 76332,
+      "predicate": "tag byte!=0",
+      "true_target": 76390,
+      "false_target": 76334
+    },
+    {
+      "range": [
+        76334,
+        76368
+      ],
+      "action": "Prepare original metadata widths/order and call fresh resident target through A5."
+    },
+    {
+      "range": [
+        76368,
+        76382
+      ],
+      "action": "After resident return, form A0=0x40006400 and A1=then-live SP+12; JAL18CA4, RA12A5E. A2/A3/etc are not restored to pre-resident values."
+    },
+    {
+      "range": [
+        76390,
+        76398
+      ],
+      "action": "Post-RET cold block: A0=then-live S0, JAL16B7C, RA12A6C, C.J12A5E."
+    }
+  ],
+  "calls": [
+    {
+      "pc": 76304,
+      "kind": "JAL",
+      "rd": "RA",
+      "target": 33194,
+      "return_address": 76308,
+      "A0": "entry record pointer, ignored by known6B callee body",
+      "contract": "Known normal-path6-byte status read: LBU A0,[GP+167]; RET. No whole feature attribution."
+    },
+    {
+      "pc": 76322,
+      "kind": "JAL",
+      "rd": "RA",
+      "target": 33310,
+      "return_address": 76326,
+      "A0": "0",
+      "other_inputs": "then-live residues",
+      "contract": "UNKNOWN complete callee/ABI; only caller's zero/nonzero test is established"
+    },
+    {
+      "pc": 76366,
+      "kind": "C.JALR",
+      "rd": "RA",
+      "rs1": "A5",
+      "target_word_address": 262220,
+      "target_identity": "UNKNOWN",
+      "return_address": 76368,
+      "inputs": {
+        "A0": "then-live SP+23",
+        "A1": "then-live S0+3",
+        "A2": "fresh LBU8[S0+2], loaded at12A32; not a documented memcpy contract"
+      },
+      "contract": "Fresh LW[0x4004C], no copy implementation/preservation/delivery/IRQ/fault behavior proved"
+    },
+    {
+      "pc": 76378,
+      "kind": "JAL",
+      "rd": "RA",
+      "target": 101540,
+      "return_address": 76382,
+      "inputs": {
+        "A0": "0x40006400",
+        "A1": "then-live SP+12",
+        "A2": "resident-return residue; not reloaded",
+        "A3": "resident-return residue; not reloaded"
+      },
+      "contract": "UNKNOWN callee/ABI and meaning of peripheral-looking base"
+    },
+    {
+      "pc": 76392,
+      "kind": "JAL",
+      "rd": "RA",
+      "target": 93052,
+      "return_address": 76396,
+      "inputs": {
+        "A0": "then-live S0"
+      },
+      "contract": "UNKNOWN callee/ABI; nonzero tag only selects this path"
+    }
+  ],
+  "address_derivations": [
+    {
+      "pcs": [
+        76352,
+        76356
+      ],
+      "raw_hex": [
+        "b7070400",
+        "fc47"
+      ],
+      "equation": "LUI A5 field0x40 ->0x00040000; C.LW A5,76(A5) -> fresh word at0x0004004C, not a known function identity."
+    },
+    {
+      "pcs": [
+        76368,
+        76374
+      ],
+      "raw_hex": [
+        "37650040",
+        "13050540"
+      ],
+      "equation": "LUI A0 field0x40006 ->0x40006000; ADDI A0,A0,1024 ->0x40006400. ADDI A1,SP,12 is interleaved between them."
+    }
+  ],
+  "metadata_sequence": [
+    {
+      "pc": 76334,
+      "equation": "A5=LHU16[then-live S0+0], zero extended"
+    },
+    {
+      "pc": 76338,
+      "equation": "A2=LBU8[then-live S0+2]"
+    },
+    {
+      "pc": 76342,
+      "width": 2,
+      "equation": "SH16[then-live SP+20]=0"
+    },
+    {
+      "pc": 76346,
+      "width": 4,
+      "equation": "SW32[then-live SP+12]=A5; this is a word store, not merely a halfword ID store"
+    },
+    {
+      "pc": 76348,
+      "width": 1,
+      "equation": "SB8[then-live SP+22]=u8(A2)"
+    },
+    {
+      "pc": 76352,
+      "equation": "A5=0x00040000"
+    },
+    {
+      "pc": 76356,
+      "equation": "A5=fresh LW32[A5+76]"
+    },
+    {
+      "pc": 76358,
+      "equation": "A1=then-live S0+3"
+    },
+    {
+      "pc": 76362,
+      "equation": "A0=then-live SP+23"
+    },
+    {
+      "pc": 76366,
+      "equation": "C.JALR A5, RA12A50; opaque target"
+    },
+    {
+      "pc": 76372,
+      "equation": "A1=then-live SP+12 after opaque return; may not designate the same numeric address as before the call"
+    }
+  ],
+  "memory_and_length_limits": [
+    "This primary body has no length<=8/1039 or source/destination range validation. The length argument is a byte0..255 loaded before the resident call.",
+    "No memcpy interpretation is established; source/destination validity, number of bytes touched, termination and callee effects are unknown.",
+    "Within the initial48B frame the destination argument is SP+23 and saved S0/RA are atSP+40/44. This layout can support a bounded offline overlap diagnostic with explicit assumptions/snapshots, but does not prove overflow, reachable corruption or hardware behavior.",
+    "Record bytesSP+16..19 are not initialized by these own metadata stores; only a wordSP+12, halfwordSP+20 and byteSP+22 are explicitly written before the resident call. Do not infer a fully zero-initialized structure or C struct layout.",
+    "The root queue consumer's earlier record-copy and command filters are not silently imported as this function's universal input guarantees."
+  ],
+  "reconstruction_plan": [
+    "Reconstruct only102B/35i, retaining four conditional branches, the sole RET and post-RET tagged cold block.",
+    "Readable C can supply ID/tag loads, zero/nonzero admission tests, metadata stores and argument arithmetic, while explicit ports retain S0/SP/frame/call/restore ordering.",
+    "Keep raw4B JAL rd1 and each encoded RA distinct; dynamic resident C.JALR remains a fresh A5 port.",
+    "81AA can reuse the existing status C/readable6B component subject to actual linkage evidence;821E/18CA4/16B7C remain genuine unknown providers until independently proved.",
+    "Independent builder gates must check all35 typed rows, metadata widths/order, original resident/peripheral address derivations, normal/cold exits, then-live post-call inputs, and actual unresolved/resolved relocation status."
+  ],
+  "existing_status_source": {
+    "path": "src/native/receive/queue_small_providers.c",
+    "symbol": "tsl9_queue_status_81aa",
+    "scope": "Source read plus independent original6B raw check; no new compilation or curation replay performed here.",
+    "important_version_boundary": "Current V4.1.60 raw readsGP+167. OlderGP+175 naming/data is not reused."
+  },
+  "potential_diagnostics": [
+    {
+      "basis": [
+        "12A14",
+        "12A1C",
+        "12A26",
+        "12A2C"
+      ],
+      "proposal": "Given known input/callee-result snapshots, explain which gate selected ordinary return, metadata path or tagged path; leave unknown gates unknown.",
+      "limit": "No seat/DND/CAN feature attribution or inferred successful physical action."
+    },
+    {
+      "basis": [
+        "12A36",
+        "12A3A",
+        "12A3C",
+        "12A54"
+      ],
+      "proposal": "Render the three explicitly written metadata ranges and distinguish pre-resident SP from post-resident SP.",
+      "limit": "Do not fill unwritten bytes or assume a standard C structure/copy routine."
+    },
+    {
+      "basis": [
+        "12A4A",
+        "12A4E",
+        "12A5E",
+        "12A60"
+      ],
+      "proposal": "With explicitly supplied memory/copy assumptions only, compare candidate output intervals with saved-register ranges.",
+      "limit": "This is an offline diagnostic hypothesis, not proof of a vulnerability, overflow or exploitability."
+    }
+  ],
+  "unknowns": [
+    "Complete821E/18CA4/16B7C callee contracts",
+    "Fresh resident target identity and normal return/preservation/memory effects",
+    "Post-call SP/S0/GP/numeric addresses and saved-frame contents",
+    "Full global incoming/interior xrefs and external IRQ/fault behavior",
+    "Physical peripheral/protocol/seat/DND/CAN identity and successful delivery",
+    "Whole firmware equivalence, execution or flash compatibility"
+  ]
+}

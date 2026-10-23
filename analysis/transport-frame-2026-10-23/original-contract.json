@@ -1,0 +1,1749 @@
+{
+  "schema": "TSL9-transport-frame-original-contract-v1",
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "mapping_base": 32768
+  },
+  "source_evidence": {
+    "path": "analysis/queue-filter-2026-10-23/next-transport.json",
+    "sha256": "0579c86255421f8e313dffb88c4289d2db8087a0632f832389fa9d474a06237a",
+    "rows_equal_fresh_decode": true
+  },
+  "span": {
+    "start": 35414,
+    "end_exclusive": 35694,
+    "bytes": 280,
+    "instructions": 96,
+    "sha256": "3b01d76ded6b08cb239ca3c8d7e789db8b0b7149d4c6d4e48c50d987a1ef2f0b"
+  },
+  "producer": {
+    "tool": "radare2",
+    "sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+    "argv": [
+      "${RADARE2}",
+      "-N",
+      "-q",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-c",
+      "e scr.color=0;pDj 280 @ 0x8a56;q",
+      "${FIRMWARE}"
+    ]
+  },
+  "rows": [
+    {
+      "addr": 35414,
+      "size": 4,
+      "bytes": "9307f040",
+      "opcode": "li a5, 1039",
+      "type": "mov"
+    },
+    {
+      "addr": 35418,
+      "size": 4,
+      "bytes": "63e9d710",
+      "opcode": "bltu a5, a3, 0x8b6c",
+      "type": "cjmp",
+      "jump": 35692,
+      "fail": 35422
+    },
+    {
+      "addr": 35422,
+      "size": 2,
+      "bytes": "0111",
+      "opcode": "addi sp, sp, -32",
+      "type": "add"
+    },
+    {
+      "addr": 35424,
+      "size": 2,
+      "bytes": "22cc",
+      "opcode": "sw s0, 24(sp)",
+      "type": "store"
+    },
+    {
+      "addr": 35426,
+      "size": 2,
+      "bytes": "26ca",
+      "opcode": "sw s1, 20(sp)",
+      "type": "store"
+    },
+    {
+      "addr": 35428,
+      "size": 2,
+      "bytes": "4ac8",
+      "opcode": "sw s2, 16(sp)",
+      "type": "store"
+    },
+    {
+      "addr": 35430,
+      "size": 2,
+      "bytes": "4ec6",
+      "opcode": "sw s3, 12(sp)",
+      "type": "store"
+    },
+    {
+      "addr": 35432,
+      "size": 2,
+      "bytes": "06ce",
+      "opcode": "sw ra, 28(sp)",
+      "type": "store"
+    },
+    {
+      "addr": 35434,
+      "size": 4,
+      "bytes": "03d76109",
+      "opcode": "lhu a4, 150(gp)",
+      "type": "load"
+    },
+    {
+      "addr": 35438,
+      "size": 2,
+      "bytes": "2a89",
+      "opcode": "mv s2, a0",
+      "type": "mov"
+    },
+    {
+      "addr": 35440,
+      "size": 2,
+      "bytes": "3684",
+      "opcode": "mv s0, a3",
+      "type": "mov"
+    },
+    {
+      "addr": 35442,
+      "size": 2,
+      "bytes": "b284",
+      "opcode": "mv s1, a2",
+      "type": "mov"
+    },
+    {
+      "addr": 35444,
+      "size": 2,
+      "bytes": "ae89",
+      "opcode": "mv s3, a1",
+      "type": "mov"
+    },
+    {
+      "addr": 35446,
+      "size": 4,
+      "bytes": "6310a702",
+      "opcode": "bne a4, a0, 0x8a96",
+      "type": "cjmp",
+      "jump": 35478,
+      "fail": 35450
+    },
+    {
+      "addr": 35450,
+      "size": 2,
+      "bytes": "c167",
+      "opcode": "lui a5, 0x10",
+      "type": "mov"
+    },
+    {
+      "addr": 35452,
+      "size": 2,
+      "bytes": "f917",
+      "opcode": "addi a5, a5, -2",
+      "type": "add"
+    },
+    {
+      "addr": 35454,
+      "size": 4,
+      "bytes": "630cf700",
+      "opcode": "beq a4, a5, 0x8a96",
+      "type": "cjmp",
+      "jump": 35478,
+      "fail": 35458
+    },
+    {
+      "addr": 35458,
+      "size": 4,
+      "bytes": "b7070400",
+      "opcode": "lui a5, 0x40",
+      "type": "mov"
+    },
+    {
+      "addr": 35462,
+      "size": 4,
+      "bytes": "83a7c713",
+      "opcode": "lw a5, 316(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 35466,
+      "size": 4,
+      "bytes": "93850108",
+      "opcode": "addi a1, gp, 128",
+      "type": "add"
+    },
+    {
+      "addr": 35470,
+      "size": 2,
+      "bytes": "8297",
+      "opcode": "jalr a5",
+      "type": "ucall"
+    },
+    {
+      "addr": 35472,
+      "size": 2,
+      "bytes": "8547",
+      "opcode": "li a5, 1",
+      "type": "mov"
+    },
+    {
+      "addr": 35474,
+      "size": 4,
+      "bytes": "630df502",
+      "opcode": "beq a0, a5, 0x8acc",
+      "type": "cjmp",
+      "jump": 35532,
+      "fail": 35478
+    },
+    {
+      "addr": 35478,
+      "size": 4,
+      "bytes": "83d7a109",
+      "opcode": "lhu a5, 154(gp)",
+      "type": "load"
+    },
+    {
+      "addr": 35482,
+      "size": 4,
+      "bytes": "63922703",
+      "opcode": "bne a5, s2, 0x8abe",
+      "type": "cjmp",
+      "jump": 35518,
+      "fail": 35486
+    },
+    {
+      "addr": 35486,
+      "size": 2,
+      "bytes": "c167",
+      "opcode": "lui a5, 0x10",
+      "type": "mov"
+    },
+    {
+      "addr": 35488,
+      "size": 2,
+      "bytes": "f917",
+      "opcode": "addi a5, a5, -2",
+      "type": "add"
+    },
+    {
+      "addr": 35490,
+      "size": 4,
+      "bytes": "630ef900",
+      "opcode": "beq s2, a5, 0x8abe",
+      "type": "cjmp",
+      "jump": 35518,
+      "fail": 35494
+    },
+    {
+      "addr": 35494,
+      "size": 4,
+      "bytes": "b7070400",
+      "opcode": "lui a5, 0x40",
+      "type": "mov"
+    },
+    {
+      "addr": 35498,
+      "size": 4,
+      "bytes": "83a7c713",
+      "opcode": "lw a5, 316(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 35502,
+      "size": 4,
+      "bytes": "93850108",
+      "opcode": "addi a1, gp, 128",
+      "type": "add"
+    },
+    {
+      "addr": 35506,
+      "size": 2,
+      "bytes": "4a85",
+      "opcode": "mv a0, s2",
+      "type": "mov"
+    },
+    {
+      "addr": 35508,
+      "size": 2,
+      "bytes": "8297",
+      "opcode": "jalr a5",
+      "type": "ucall"
+    },
+    {
+      "addr": 35510,
+      "size": 2,
+      "bytes": "8547",
+      "opcode": "li a5, 1",
+      "type": "mov"
+    },
+    {
+      "addr": 35512,
+      "size": 2,
+      "bytes": "0546",
+      "opcode": "li a2, 1",
+      "type": "mov"
+    },
+    {
+      "addr": 35514,
+      "size": 4,
+      "bytes": "630af500",
+      "opcode": "beq a0, a5, 0x8ace",
+      "type": "cjmp",
+      "jump": 35534,
+      "fail": 35518
+    },
+    {
+      "addr": 35518,
+      "size": 2,
+      "bytes": "f240",
+      "opcode": "lw ra, 28(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 35520,
+      "size": 2,
+      "bytes": "6244",
+      "opcode": "lw s0, 24(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 35522,
+      "size": 2,
+      "bytes": "d244",
+      "opcode": "lw s1, 20(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 35524,
+      "size": 2,
+      "bytes": "4249",
+      "opcode": "lw s2, 16(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 35526,
+      "size": 2,
+      "bytes": "b249",
+      "opcode": "lw s3, 12(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 35528,
+      "size": 2,
+      "bytes": "0561",
+      "opcode": "addi sp, sp, 32",
+      "type": "add"
+    },
+    {
+      "addr": 35530,
+      "size": 2,
+      "bytes": "8280",
+      "opcode": "ret",
+      "type": "ret"
+    },
+    {
+      "addr": 35532,
+      "size": 2,
+      "bytes": "0146",
+      "opcode": "li a2, 0",
+      "type": "mov"
+    },
+    {
+      "addr": 35534,
+      "size": 4,
+      "bytes": "93076042",
+      "opcode": "li a5, 1062",
+      "type": "mov"
+    },
+    {
+      "addr": 35538,
+      "size": 4,
+      "bytes": "b307f602",
+      "opcode": "mul a5, a2, a5",
+      "type": "mul"
+    },
+    {
+      "addr": 35542,
+      "size": 4,
+      "bytes": "97260020",
+      "opcode": "auipc a3, 0x20002",
+      "type": "lea"
+    },
+    {
+      "addr": 35546,
+      "size": 4,
+      "bytes": "9386666b",
+      "opcode": "addi a3, a3, 1718",
+      "type": "add"
+    },
+    {
+      "addr": 35550,
+      "size": 2,
+      "bytes": "6177",
+      "opcode": "lui a4, 0xffff8",
+      "type": "mov"
+    },
+    {
+      "addr": 35552,
+      "size": 4,
+      "bytes": "134757f5",
+      "opcode": "xori a4, a4, -171",
+      "type": "xor"
+    },
+    {
+      "addr": 35556,
+      "size": 4,
+      "bytes": "9375f40f",
+      "opcode": "andi a1, s0, 255",
+      "type": "and"
+    },
+    {
+      "addr": 35560,
+      "size": 2,
+      "bytes": "9907",
+      "opcode": "addi a5, a5, 6",
+      "type": "add"
+    },
+    {
+      "addr": 35562,
+      "size": 2,
+      "bytes": "b697",
+      "opcode": "add a5, a5, a3",
+      "type": "add"
+    },
+    {
+      "addr": 35564,
+      "size": 4,
+      "bytes": "2390e700",
+      "opcode": "sh a4, 0(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 35568,
+      "size": 4,
+      "bytes": "2382b700",
+      "opcode": "sb a1, 4(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 35572,
+      "size": 4,
+      "bytes": "13578400",
+      "opcode": "srli a4, s0, 0x8",
+      "type": "shr"
+    },
+    {
+      "addr": 35576,
+      "size": 2,
+      "bytes": "ce95",
+      "opcode": "add a1, a1, s3",
+      "type": "add"
+    },
+    {
+      "addr": 35578,
+      "size": 4,
+      "bytes": "a381e700",
+      "opcode": "sb a4, 3(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 35582,
+      "size": 2,
+      "bytes": "2e97",
+      "opcode": "add a4, a4, a1",
+      "type": "add"
+    },
+    {
+      "addr": 35584,
+      "size": 4,
+      "bytes": "23813701",
+      "opcode": "sb s3, 2(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 35588,
+      "size": 4,
+      "bytes": "1377f70f",
+      "opcode": "andi a4, a4, 255",
+      "type": "and"
+    },
+    {
+      "addr": 35592,
+      "size": 2,
+      "bytes": "8145",
+      "opcode": "li a1, 0",
+      "type": "mov"
+    },
+    {
+      "addr": 35594,
+      "size": 4,
+      "bytes": "13950501",
+      "opcode": "slli a0, a1, 0x10",
+      "type": "shl"
+    },
+    {
+      "addr": 35598,
+      "size": 2,
+      "bytes": "4181",
+      "opcode": "srli a0, a0, 0x10",
+      "type": "shr"
+    },
+    {
+      "addr": 35600,
+      "size": 4,
+      "bytes": "63618504",
+      "opcode": "bltu a0, s0, 0x8b52",
+      "type": "cjmp",
+      "jump": 35666,
+      "fail": 35604
+    },
+    {
+      "addr": 35604,
+      "size": 2,
+      "bytes": "a297",
+      "opcode": "add a5, a5, s0",
+      "type": "add"
+    },
+    {
+      "addr": 35606,
+      "size": 4,
+      "bytes": "a382e700",
+      "opcode": "sb a4, 5(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 35610,
+      "size": 4,
+      "bytes": "93076042",
+      "opcode": "li a5, 1062",
+      "type": "mov"
+    },
+    {
+      "addr": 35614,
+      "size": 4,
+      "bytes": "b307f602",
+      "opcode": "mul a5, a2, a5",
+      "type": "mul"
+    },
+    {
+      "addr": 35618,
+      "size": 2,
+      "bytes": "1904",
+      "opcode": "addi s0, s0, 6",
+      "type": "add"
+    },
+    {
+      "addr": 35620,
+      "size": 2,
+      "bytes": "0a06",
+      "opcode": "slli a2, a2, 0x2",
+      "type": "shl"
+    },
+    {
+      "addr": 35622,
+      "size": 2,
+      "bytes": "f240",
+      "opcode": "lw ra, 28(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 35624,
+      "size": 2,
+      "bytes": "d244",
+      "opcode": "lw s1, 20(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 35626,
+      "size": 2,
+      "bytes": "4249",
+      "opcode": "lw s2, 16(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 35628,
+      "size": 2,
+      "bytes": "b249",
+      "opcode": "lw s3, 12(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 35630,
+      "size": 2,
+      "bytes": "8545",
+      "opcode": "li a1, 1",
+      "type": "mov"
+    },
+    {
+      "addr": 35632,
+      "size": 2,
+      "bytes": "b697",
+      "opcode": "add a5, a5, a3",
+      "type": "add"
+    },
+    {
+      "addr": 35634,
+      "size": 4,
+      "bytes": "23918700",
+      "opcode": "sh s0, 2(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 35638,
+      "size": 4,
+      "bytes": "23920700",
+      "opcode": "sh zero, 4(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 35642,
+      "size": 4,
+      "bytes": "93874109",
+      "opcode": "addi a5, gp, 148",
+      "type": "add"
+    },
+    {
+      "addr": 35646,
+      "size": 2,
+      "bytes": "3e96",
+      "opcode": "add a2, a2, a5",
+      "type": "add"
+    },
+    {
+      "addr": 35648,
+      "size": 2,
+      "bytes": "6244",
+      "opcode": "lw s0, 24(sp)",
+      "type": "load"
+    },
+    {
+      "addr": 35650,
+      "size": 4,
+      "bytes": "b7070400",
+      "opcode": "lui a5, 0x40",
+      "type": "mov"
+    },
+    {
+      "addr": 35654,
+      "size": 4,
+      "bytes": "03a30705",
+      "opcode": "lw t1, 80(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 35658,
+      "size": 4,
+      "bytes": "03450600",
+      "opcode": "lbu a0, 0(a2)",
+      "type": "load"
+    },
+    {
+      "addr": 35662,
+      "size": 2,
+      "bytes": "0561",
+      "opcode": "addi sp, sp, 32",
+      "type": "add"
+    },
+    {
+      "addr": 35664,
+      "size": 2,
+      "bytes": "0283",
+      "opcode": "jr t1",
+      "type": "rjmp"
+    },
+    {
+      "addr": 35666,
+      "size": 4,
+      "bytes": "3385b400",
+      "opcode": "add a0, s1, a1",
+      "type": "add"
+    },
+    {
+      "addr": 35670,
+      "size": 4,
+      "bytes": "03450500",
+      "opcode": "lbu a0, 0(a0)",
+      "type": "load"
+    },
+    {
+      "addr": 35674,
+      "size": 4,
+      "bytes": "3388b700",
+      "opcode": "add a6, a5, a1",
+      "type": "add"
+    },
+    {
+      "addr": 35678,
+      "size": 2,
+      "bytes": "8505",
+      "opcode": "addi a1, a1, 1",
+      "type": "add"
+    },
+    {
+      "addr": 35680,
+      "size": 2,
+      "bytes": "2a97",
+      "opcode": "add a4, a4, a0",
+      "type": "add"
+    },
+    {
+      "addr": 35682,
+      "size": 4,
+      "bytes": "a302a800",
+      "opcode": "sb a0, 5(a6)",
+      "type": "store"
+    },
+    {
+      "addr": 35686,
+      "size": 4,
+      "bytes": "1377f70f",
+      "opcode": "andi a4, a4, 255",
+      "type": "and"
+    },
+    {
+      "addr": 35690,
+      "size": 2,
+      "bytes": "45b7",
+      "opcode": "j 0x8b0a",
+      "type": "jmp",
+      "jump": 35594
+    },
+    {
+      "addr": 35692,
+      "size": 2,
+      "bytes": "8280",
+      "opcode": "ret",
+      "type": "ret"
+    }
+  ],
+  "regions": [
+    {
+      "name": "entry_guard",
+      "start": 35414,
+      "end_exclusive": 35422,
+      "bytes": 8,
+      "instructions": 2,
+      "sha256": "c88a7276ca3e5d8122a3d2a3f1bbc17695927cdda17dd0929c184dc53a389960"
+    },
+    {
+      "name": "frame_capture_and_first_channel_match",
+      "start": 35422,
+      "end_exclusive": 35450,
+      "bytes": 28,
+      "instructions": 12,
+      "sha256": "787880160b23964ce15a80726a3b2335e63036c24d1a989cc7726a603839a44d"
+    },
+    {
+      "name": "first_admission_call",
+      "start": 35450,
+      "end_exclusive": 35472,
+      "bytes": 22,
+      "instructions": 7,
+      "sha256": "7586e1519c68435690d830deb2ff45026aaea2690f7afee8bd8d8a1b1531db91"
+    },
+    {
+      "name": "first_admission_result",
+      "start": 35472,
+      "end_exclusive": 35478,
+      "bytes": 6,
+      "instructions": 2,
+      "sha256": "77527e6cf70593f8eed764fbeb468545258eeabfe28699b49d19143cd74f3ecf"
+    },
+    {
+      "name": "second_admission_call",
+      "start": 35478,
+      "end_exclusive": 35510,
+      "bytes": 32,
+      "instructions": 10,
+      "sha256": "5e9b5cc9222596669507606c31e6ab7e70437198a2ba0c72d7077cd7fbf7ed10"
+    },
+    {
+      "name": "second_admission_result",
+      "start": 35510,
+      "end_exclusive": 35518,
+      "bytes": 8,
+      "instructions": 3,
+      "sha256": "fe7336a36b1bf9f41d7796382b9052c01b14a17ca7e626a284307c96fa36324c"
+    },
+    {
+      "name": "ordinary_restore",
+      "start": 35518,
+      "end_exclusive": 35532,
+      "bytes": 14,
+      "instructions": 7,
+      "sha256": "e17a53ead25bd1a6fe0a310d0d21e5de5d89c8273e1e27d1919183fe17b55ac7"
+    },
+    {
+      "name": "select_bank_zero",
+      "start": 35532,
+      "end_exclusive": 35534,
+      "bytes": 2,
+      "instructions": 1,
+      "sha256": "6a632187a3abf9bebb66d43368fccd612f631cbcfb6fdcc90337233c41ff1c7a"
+    },
+    {
+      "name": "header_and_checksum_seed",
+      "start": 35534,
+      "end_exclusive": 35594,
+      "bytes": 60,
+      "instructions": 18,
+      "sha256": "8ef4caa383cbac0fe8f88537008b4513ec65c48c6cf4d39aeb89d77f92ca338a"
+    },
+    {
+      "name": "copy_test",
+      "start": 35594,
+      "end_exclusive": 35604,
+      "bytes": 10,
+      "instructions": 3,
+      "sha256": "12d3655f6f928811ce537d32727f028af6d886f4a397e4c1eb310c2e435b5ff6"
+    },
+    {
+      "name": "checksum_metadata_restore_tail",
+      "start": 35604,
+      "end_exclusive": 35666,
+      "bytes": 62,
+      "instructions": 22,
+      "sha256": "aebf41c8da4c992eb96144b63d6f8385a09ff5e058eedc6abe66643fe5b85c11"
+    },
+    {
+      "name": "cold_copy_body",
+      "start": 35666,
+      "end_exclusive": 35692,
+      "bytes": 26,
+      "instructions": 8,
+      "sha256": "dfe580df1cb4287b20cd022e13fbe514093a28304cb293a18a59c274ede7c24f"
+    },
+    {
+      "name": "unframed_reject_return",
+      "start": 35692,
+      "end_exclusive": 35694,
+      "bytes": 2,
+      "instructions": 1,
+      "sha256": "7529d4e6ceb037815e2664a7277abb404b02f0bf9ddbf5c11658f52448221cba"
+    }
+  ],
+  "cfg": {
+    "model": "Syntactic local reachability; opaque calls are assumed to return to encoded RA, without preservation assumptions.",
+    "instruction_nodes": 96,
+    "edges": 101,
+    "all_rows_locally_reachable": true,
+    "successors": {
+      "35414": [
+        35418
+      ],
+      "35418": [
+        35692,
+        35422
+      ],
+      "35422": [
+        35424
+      ],
+      "35424": [
+        35426
+      ],
+      "35426": [
+        35428
+      ],
+      "35428": [
+        35430
+      ],
+      "35430": [
+        35432
+      ],
+      "35432": [
+        35434
+      ],
+      "35434": [
+        35438
+      ],
+      "35438": [
+        35440
+      ],
+      "35440": [
+        35442
+      ],
+      "35442": [
+        35444
+      ],
+      "35444": [
+        35446
+      ],
+      "35446": [
+        35478,
+        35450
+      ],
+      "35450": [
+        35452
+      ],
+      "35452": [
+        35454
+      ],
+      "35454": [
+        35478,
+        35458
+      ],
+      "35458": [
+        35462
+      ],
+      "35462": [
+        35466
+      ],
+      "35466": [
+        35470
+      ],
+      "35470": [
+        35472
+      ],
+      "35472": [
+        35474
+      ],
+      "35474": [
+        35532,
+        35478
+      ],
+      "35478": [
+        35482
+      ],
+      "35482": [
+        35518,
+        35486
+      ],
+      "35486": [
+        35488
+      ],
+      "35488": [
+        35490
+      ],
+      "35490": [
+        35518,
+        35494
+      ],
+      "35494": [
+        35498
+      ],
+      "35498": [
+        35502
+      ],
+      "35502": [
+        35506
+      ],
+      "35506": [
+        35508
+      ],
+      "35508": [
+        35510
+      ],
+      "35510": [
+        35512
+      ],
+      "35512": [
+        35514
+      ],
+      "35514": [
+        35534,
+        35518
+      ],
+      "35518": [
+        35520
+      ],
+      "35520": [
+        35522
+      ],
+      "35522": [
+        35524
+      ],
+      "35524": [
+        35526
+      ],
+      "35526": [
+        35528
+      ],
+      "35528": [
+        35530
+      ],
+      "35530": [],
+      "35532": [
+        35534
+      ],
+      "35534": [
+        35538
+      ],
+      "35538": [
+        35542
+      ],
+      "35542": [
+        35546
+      ],
+      "35546": [
+        35550
+      ],
+      "35550": [
+        35552
+      ],
+      "35552": [
+        35556
+      ],
+      "35556": [
+        35560
+      ],
+      "35560": [
+        35562
+      ],
+      "35562": [
+        35564
+      ],
+      "35564": [
+        35568
+      ],
+      "35568": [
+        35572
+      ],
+      "35572": [
+        35576
+      ],
+      "35576": [
+        35578
+      ],
+      "35578": [
+        35582
+      ],
+      "35582": [
+        35584
+      ],
+      "35584": [
+        35588
+      ],
+      "35588": [
+        35592
+      ],
+      "35592": [
+        35594
+      ],
+      "35594": [
+        35598
+      ],
+      "35598": [
+        35600
+      ],
+      "35600": [
+        35666,
+        35604
+      ],
+      "35604": [
+        35606
+      ],
+      "35606": [
+        35610
+      ],
+      "35610": [
+        35614
+      ],
+      "35614": [
+        35618
+      ],
+      "35618": [
+        35620
+      ],
+      "35620": [
+        35622
+      ],
+      "35622": [
+        35624
+      ],
+      "35624": [
+        35626
+      ],
+      "35626": [
+        35628
+      ],
+      "35628": [
+        35630
+      ],
+      "35630": [
+        35632
+      ],
+      "35632": [
+        35634
+      ],
+      "35634": [
+        35638
+      ],
+      "35638": [
+        35642
+      ],
+      "35642": [
+        35646
+      ],
+      "35646": [
+        35648
+      ],
+      "35648": [
+        35650
+      ],
+      "35650": [
+        35654
+      ],
+      "35654": [
+        35658
+      ],
+      "35658": [
+        35662
+      ],
+      "35662": [
+        35664
+      ],
+      "35664": [],
+      "35666": [
+        35670
+      ],
+      "35670": [
+        35674
+      ],
+      "35674": [
+        35678
+      ],
+      "35678": [
+        35680
+      ],
+      "35680": [
+        35682
+      ],
+      "35682": [
+        35686
+      ],
+      "35686": [
+        35690
+      ],
+      "35690": [
+        35594
+      ],
+      "35692": []
+    },
+    "raw_control_decode": [
+      {
+        "pc": 35418,
+        "width": 4,
+        "kind": "branch",
+        "f3": 6,
+        "rs1": 15,
+        "rs2": 13,
+        "target": 35692
+      },
+      {
+        "pc": 35446,
+        "width": 4,
+        "kind": "branch",
+        "f3": 1,
+        "rs1": 14,
+        "rs2": 10,
+        "target": 35478
+      },
+      {
+        "pc": 35454,
+        "width": 4,
+        "kind": "branch",
+        "f3": 0,
+        "rs1": 14,
+        "rs2": 15,
+        "target": 35478
+      },
+      {
+        "pc": 35470,
+        "width": 2,
+        "kind": "C.JALR",
+        "rs1": 15,
+        "rd": 1,
+        "return_address": 35472,
+        "target": "UNKNOWN"
+      },
+      {
+        "pc": 35474,
+        "width": 4,
+        "kind": "branch",
+        "f3": 0,
+        "rs1": 10,
+        "rs2": 15,
+        "target": 35532
+      },
+      {
+        "pc": 35482,
+        "width": 4,
+        "kind": "branch",
+        "f3": 1,
+        "rs1": 15,
+        "rs2": 18,
+        "target": 35518
+      },
+      {
+        "pc": 35490,
+        "width": 4,
+        "kind": "branch",
+        "f3": 0,
+        "rs1": 18,
+        "rs2": 15,
+        "target": 35518
+      },
+      {
+        "pc": 35508,
+        "width": 2,
+        "kind": "C.JALR",
+        "rs1": 15,
+        "rd": 1,
+        "return_address": 35510,
+        "target": "UNKNOWN"
+      },
+      {
+        "pc": 35514,
+        "width": 4,
+        "kind": "branch",
+        "f3": 0,
+        "rs1": 10,
+        "rs2": 15,
+        "target": 35534
+      },
+      {
+        "pc": 35530,
+        "width": 2,
+        "kind": "RET",
+        "rs1": 1,
+        "rd": 0,
+        "target": "UNKNOWN"
+      },
+      {
+        "pc": 35600,
+        "width": 4,
+        "kind": "branch",
+        "f3": 6,
+        "rs1": 10,
+        "rs2": 8,
+        "target": 35666
+      },
+      {
+        "pc": 35664,
+        "width": 2,
+        "kind": "C.JR",
+        "rs1": 6,
+        "rd": 0,
+        "target": "UNKNOWN"
+      },
+      {
+        "pc": 35690,
+        "width": 2,
+        "kind": "C.J",
+        "rd": 0,
+        "target": 35594
+      },
+      {
+        "pc": 35692,
+        "width": 2,
+        "kind": "RET",
+        "rs1": 1,
+        "rd": 0,
+        "target": "UNKNOWN"
+      }
+    ]
+  },
+  "target_executed": false,
+  "ISA_emulated": false,
+  "ESIL_used": false,
+  "numeric_model": {
+    "register_arithmetic": "RV32 unsigned bitvector arithmetic modulo 2^32 unless an explicit comparison/shift/truncation says otherwise",
+    "u8": "least significant 8 bits",
+    "u16": "least significant 16 bits",
+    "memory": "Individual observed byte/halfword/word operations in original order; no restrict, memcpy, nonaliasing, atomicity or physical protocol assumption"
+  },
+  "register_contract": {
+    "entry": {
+      "A0": "channel candidate, full 32 bits",
+      "A1": "command candidate, full 32 bits",
+      "A2": "payload pointer candidate",
+      "A3": "length candidate, full 32 bits",
+      "GP": "incoming physical GP; numeric value not established",
+      "SP": "incoming physical SP",
+      "RA": "incoming physical RA"
+    },
+    "frame": {
+      "pc": 35422,
+      "delta": -32,
+      "stores": [
+        {
+          "pc": 35424,
+          "register": "S0",
+          "offset": 24
+        },
+        {
+          "pc": 35426,
+          "register": "S1",
+          "offset": 20
+        },
+        {
+          "pc": 35428,
+          "register": "S2",
+          "offset": 16
+        },
+        {
+          "pc": 35430,
+          "register": "S3",
+          "offset": 12
+        },
+        {
+          "pc": 35432,
+          "register": "RA",
+          "offset": 28
+        }
+      ],
+      "capture": [
+        {
+          "pc": 35438,
+          "equation": "S2=A0"
+        },
+        {
+          "pc": 35440,
+          "equation": "S0=A3"
+        },
+        {
+          "pc": 35442,
+          "equation": "S1=A2"
+        },
+        {
+          "pc": 35444,
+          "equation": "S3=A1"
+        }
+      ]
+    },
+    "owned_written_registers": [
+      "SP",
+      "RA",
+      "S0",
+      "S1",
+      "S2",
+      "S3",
+      "A0",
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "T1"
+    ],
+    "GP_written_by_this_body": false,
+    "CSR_instructions": [],
+    "opaque_call_rule": "The encoded call and continuation are known. A callee's preservation of GP/SP/RA/S-registers/arguments, memory, fault behavior and normal return is not proved. Every later use refers to the then-live physical register. Saving a register in this frame does not prove its value survives an opaque call.",
+    "ordinary_restore": {
+      "range": [
+        35518,
+        35532
+      ],
+      "order": [
+        "LW RA,[SP+28]",
+        "LW S0,[SP+24]",
+        "LW S1,[SP+20]",
+        "LW S2,[SP+16]",
+        "LW S3,[SP+12]",
+        "SP=SP+32",
+        "RET through then-live RA"
+      ],
+      "A0": "left as residue; not an assigned status"
+    },
+    "tail_restore": {
+      "range": [
+        35622,
+        35666
+      ],
+      "order": [
+        "LW RA,[SP+28]",
+        "LW S1,[SP+20]",
+        "LW S2,[SP+16]",
+        "LW S3,[SP+12]",
+        "A1=1",
+        "A5=A5+A3",
+        "SH S0,[A5+2]",
+        "SH zero,[A5+4]",
+        "A5=GP+148",
+        "A2=A2+A5",
+        "LW S0,[SP+24]",
+        "A5=0x40000",
+        "LW T1,[A5+80]",
+        "LBU A0,[A2]",
+        "SP=SP+32",
+        "C.JR T1 without writing RA"
+      ],
+      "warning": "Memory metadata writes are interleaved with fresh restores, and S0 is restored later than S1/S2/S3/RA."
+    }
+  },
+  "guards": [
+    {
+      "pc": 35418,
+      "equation": "if unsigned(A3)>1039 -> 0x8B6C",
+      "scope": "Before frame allocation and all opaque calls; rejection preserves incoming A0 and SP in this body's own instructions, sets A5=1039, returns through incoming RA."
+    },
+    {
+      "pc": 35446,
+      "equation": "LHU16[then-live GP+150] == full32 A0",
+      "otherwise": 35478
+    },
+    {
+      "pc": 35454,
+      "equation": "the matching halfword must not equal 0xFFFE",
+      "otherwise": 35478
+    },
+    {
+      "pc": 35482,
+      "equation": "fresh LHU16[then-live GP+154] == full32 then-live S2",
+      "otherwise": 35518
+    },
+    {
+      "pc": 35490,
+      "equation": "then-live S2 != 0xFFFE",
+      "otherwise": 35518
+    }
+  ],
+  "opaque_ports": [
+    {
+      "pc": 35470,
+      "kind": "C.JALR",
+      "target_equation": "fresh LW32[0x4013C] into A5",
+      "rd": "RA",
+      "return_address": 35472,
+      "inputs": {
+        "A0": "entry channel; not rewritten before this first call",
+        "A1": "then-live GP+128",
+        "A2": "entry payload pointer; not rewritten before this first call",
+        "A3": "entry length; not rewritten before this first call"
+      },
+      "continuation": "A0==1 -> 0x8ACC sets A2=0; otherwise 0x8A96 reads fresh GP+154."
+    },
+    {
+      "pc": 35508,
+      "kind": "C.JALR",
+      "target_equation": "fresh LW32[0x4013C] into A5",
+      "rd": "RA",
+      "return_address": 35510,
+      "inputs": {
+        "A0": "then-live S2",
+        "A1": "then-live GP+128",
+        "A2": "then-live residue, including any earlier admission effects; not reloaded from S1",
+        "A3": "then-live residue, including any earlier admission effects; not reloaded from S0"
+      },
+      "continuation": "A5=1; A2=1; A0==A5 -> 0x8ACE, otherwise ordinary restore."
+    },
+    {
+      "pc": 35664,
+      "kind": "C.JR",
+      "target_equation": "fresh LW32[0x40050] into T1",
+      "rd": "zero",
+      "return_address_written": false,
+      "inputs": {
+        "A0": "fresh LBU8[then-live GP+148+4*bank]",
+        "A1": "1",
+        "A2": "then-live GP+148+4*bank",
+        "A3": "0x2000B18C",
+        "A4": "checksum modulo 256",
+        "A5": "0x40000",
+        "A6": "last copy destination address if loop executed; otherwise earlier residue",
+        "RA": "fresh LW32[then-live SP+28], loaded at 0x8B26",
+        "SP": "then-live SP+32 at 0x8B4E"
+      },
+      "target_identity": "UNKNOWN"
+    }
+  ],
+  "framing_equations": {
+    "entry_length_bound_does_not_prove_post_call_bound": true,
+    "inputs_at_0x8ACE": {
+      "bank": "A2, explicitly set to 0 or 1 after the selected admission call",
+      "L": "then-live S0",
+      "P": "then-live S1",
+      "C": "then-live S3",
+      "SP": "then-live SP",
+      "GP": "then-live GP"
+    },
+    "base": {
+      "equation": "B=0x8AD6+0x20002000+1718=0x2000B18C",
+      "pc": 35542,
+      "placement_dependent": true
+    },
+    "bank_stride": 1062,
+    "sequence": [
+      {
+        "range": [
+          35534,
+          35564
+        ],
+        "equations": [
+          "A5=bank*1062",
+          "A3=B",
+          "A4=0xFFFF8000 XOR 0xFFFFFF55=0x7F55",
+          "A1=L&255",
+          "A5=bank*1062+B+6; call this D"
+        ]
+      },
+      {
+        "pc": 35564,
+        "width": 2,
+        "equation": "SH16[D+0]=0x7F55"
+      },
+      {
+        "pc": 35568,
+        "width": 1,
+        "equation": "SB8[D+4]=u8(L)"
+      },
+      {
+        "pc": 35572,
+        "equation": "A4=L>>8 (logical)"
+      },
+      {
+        "pc": 35576,
+        "equation": "A1=u32(u8(L)+C)"
+      },
+      {
+        "pc": 35578,
+        "width": 1,
+        "equation": "SB8[D+3]=u8(L>>8)"
+      },
+      {
+        "pc": 35582,
+        "equation": "A4=u32((L>>8)+u8(L)+C)"
+      },
+      {
+        "pc": 35584,
+        "width": 1,
+        "equation": "SB8[D+2]=u8(C)"
+      },
+      {
+        "pc": 35588,
+        "equation": "A4=A4&255; checksum seed"
+      },
+      {
+        "pc": 35592,
+        "equation": "A1=0; full32 copy index"
+      },
+      {
+        "range": [
+          35594,
+          35604
+        ],
+        "equation": "A0=u16(A1); unsigned(A0)<unsigned(S0) -> cold block 0x8B52, else finish 0x8B14"
+      },
+      {
+        "range": [
+          35666,
+          35692
+        ],
+        "equations": [
+          "A0=LBU8[S1+A1]",
+          "A6=A5+A1",
+          "A1=u32(A1+1)",
+          "A4=u32(A4+A0)",
+          "SB8[A6+5]=u8(A0)",
+          "A4=A4&255",
+          "C.J 0x8B0A"
+        ]
+      },
+      {
+        "pc": 35604,
+        "equation": "A5=A5+S0"
+      },
+      {
+        "pc": 35606,
+        "width": 1,
+        "equation": "SB8[D+L+5]=checksum"
+      },
+      {
+        "range": [
+          35610,
+          35622
+        ],
+        "equations": [
+          "A5=bank*1062",
+          "S0=u32(L+6)",
+          "A2=bank*4"
+        ]
+      },
+      {
+        "pc": 35634,
+        "width": 2,
+        "equation": "SH16[B+bank*1062+2]=u16(L+6)"
+      },
+      {
+        "pc": 35638,
+        "width": 2,
+        "equation": "SH16[B+bank*1062+4]=0"
+      }
+    ],
+    "checksum": "u8(C + u8(L) + (L>>8) + sum of the freshly read payload bytes), with original per-iteration u8 mask; this is an algebraic description when the observed loop terminates normally.",
+    "loop_risk": "The index is compared after u16 truncation, while S0 remains full32 then-live. The entry 1039 guard is not repeated after admission. Without a provider contract, termination, maximum writes, pointer validity and nonoverlap are unproved.",
+    "observed_frame_format_only": "Magic/header/payload/checksum are observed byte equations; no named physical protocol, BLE/UART/CAN semantics, delivery, atomicity, buffer ownership or successful transmission is proved."
+  },
+  "filter_caller_crosscheck": {
+    "source_evidence": "analysis/queue-consumer-2026-10-23/next-filter.json",
+    "direct_call": {
+      "pc": 33640,
+      "kind": "C.JAL",
+      "rd": "RA",
+      "target": 35414,
+      "return_address": 33642
+    },
+    "after_resident_0x8356": [
+      "0x8358 fresh LBU A3,[then-live S1+2]",
+      "0x835C fresh LHU A0,[then-live S0+2]",
+      "0x8360 A2=then-live SP+4",
+      "0x8362 A3=A3+2",
+      "0x8364 A1=192"
+    ],
+    "filter_return": "0x832C captures routing byte in S4 before 0x832E rejects length>8. 0x8372 returns then-live S4, not a measured successful-delivery flag.",
+    "source_evidence_sha256": "126704daa831099e311b3a50ac617225b27d32c0bfefcaa9f16c5272399e2e22"
+  },
+  "practical_source_ports": [
+    "Preserve pre-frame guard and both ordinary/unframed returns, including A0 residue.",
+    "Explicit frame/register capture ports preserve original interleaving rather than ordinary C callee-save assumptions.",
+    "Fresh GP reads at 8A6A/8A96, GP+128 at each admission and GP+148 at tail.",
+    "Two distinct admission ports, physical RA continuations, post-call S0/S1/S2/S3/SP/GP imports and unmodified argument residues.",
+    "C may express channel comparisons, bank multiply, byte extraction, checksum and unsigned copy loop; volatile accesses preserve individual widths/order.",
+    "Explicit PC-relative base port and split cold loop retain original placement/control signatures.",
+    "Tail restore must remain interleaved with metadata stores and fresh T1 load; genuine C.JR does not write RA."
+  ],
+  "potential_offline_diagnostics": [
+    {
+      "id": "D1",
+      "basis": [
+        "8A5A",
+        "8A8E",
+        "8AB4",
+        "8B0A"
+      ],
+      "proposal": "Given explicitly sourced before/after-call snapshots, report entry guard result, admission result and whether post-call S0 still satisfies a chosen bound. Unknown inputs remain unknown.",
+      "limit": "Do not invent or execute a provider; no claim of a reachable overflow or hardware fault."
+    },
+    {
+      "id": "D2",
+      "basis": [
+        "8AEC",
+        "8B16",
+        "8B32",
+        "8B36"
+      ],
+      "proposal": "Validate magic, byte lengths, checksum and metadata equations for an explicitly supplied offline byte record.",
+      "limit": "Format integrity does not prove protocol identity, acceptance, compatibility or delivery."
+    },
+    {
+      "id": "D3",
+      "basis": [
+        "8B52",
+        "8B62"
+      ],
+      "proposal": "With known snapshot pointers/length only, compare payload/output/frame intervals and flag possible overlap or u16-index wrap conditions.",
+      "limit": "No restrict/nonalias assumption, automatic repair, physical memory or exploit claim."
+    },
+    {
+      "id": "D4",
+      "basis": [
+        "8356",
+        "8358",
+        "835C",
+        "8360",
+        "832C",
+        "832E",
+        "8372"
+      ],
+      "proposal": "Explain filter result separately from an observed transport action, with then-live register provenance.",
+      "limit": "Nonzero is not a success counter; no radio or vehicle operation."
+    }
+  ],
+  "unknowns": [
+    "Resident admission/tail identities and private ABI",
+    "Normal-return, IRQ/fault and memory alias effects of opaque calls",
+    "GP value and physical buffer ownership/lifetime",
+    "Global incoming/interior references or full firmware control-flow coverage",
+    "Named physical protocol, seat/DND feature attribution, successful send or hardware execution"
+  ],
+  "firmware_ready": false,
+  "region_note": "Analysis cuts only, not original FUNC symbols. Admission regions are split at encoded return continuations 0x8A90 and 0x8AB6 so post-call imports can be reviewed separately.",
+  "candidate_source_review": {
+    "path": "experiments/tsl9-transport-frame/src/transport_frame.v1.c",
+    "sha256": "6dad92397a447d83103fbddbfda661117089968967cba4676473785e92ba5f13",
+    "scope": "Independent source reading only; no compiler/native artifact or IR evidence in this review.",
+    "result": "Concrete mismatch found: v1 uses admission pointer literal 0x0040013C, but original raw LUI/LW computes 0x0004013C. The previous no-mismatch source-reading conclusion is withdrawn. This historical v1 source is not promoted.",
+    "mandatory_native_gates": [
+      "Exactly original 13 region sizes/96 typed instructions/no extra frame or spills",
+      "Fixed allocator bank plus reserved GP/SP/RA/S0..S3/T1 physical port profile",
+      "C.JALR A5 encoded links 8A90/8AB6 and tail C.JR T1 rd=zero",
+      "No ownership/preservation assumption for S0/S1/S2/S3/SP/GP or return residues",
+      "Original memory/restore order and zero-copy A6 residue",
+      "Actual source/IR/native/relocation proof is separate and pending"
+    ],
+    "mismatches": [
+      {
+        "kind": "admission pointer address",
+        "original_address": 262460,
+        "v1_address": 4194620,
+        "original_pcs": [
+          [
+            35458,
+            35462
+          ],
+          [
+            35494,
+            35498
+          ]
+        ],
+        "source_scope": "Both volatile provider loads in historical transport_frame.v1.c",
+        "status": "Reported to owner; source is outside this evidence-only write scope."
+      }
+    ]
+  },
+  "address_derivations": [
+    {
+      "pcs": [
+        35458,
+        35462
+      ],
+      "raw_hex": [
+        "b7070400",
+        "83a7c713"
+      ],
+      "equation": "LUI word 0x000407B7: (word&0xFFFFF000)=0x00040000. LW word 0x13C7A783: signed imm12=0x13C=316. EA=0x00040000+0x13C=0x0004013C."
+    },
+    {
+      "pcs": [
+        35494,
+        35498
+      ],
+      "raw_hex": [
+        "b7070400",
+        "83a7c713"
+      ],
+      "equation": "Same separately executed LUI/LW sequence; fresh admission target word at 0x0004013C."
+    },
+    {
+      "pcs": [
+        35650,
+        35654
+      ],
+      "raw_hex": [
+        "b7070400",
+        "03a30705"
+      ],
+      "equation": "LUI base 0x00040000, LW offset80=0x50; EA=0x00040050."
+    }
+  ],
+  "correction_history": [
+    {
+      "scope": "This original-contract and the historical v1 source review",
+      "incorrect_admission_address": "0x0040013C",
+      "correct_original_admission_address": "0x0004013C",
+      "basis": "Original LUI immediate 0x40 is shifted by12, not16; adding316 gives0x4013C. Both original raw pairs independently checked.",
+      "effect": "Corrected current evidence only. No prior committed evidence/source file was altered by this worker. Earlier no-mismatch source-review wording is explicitly withdrawn."
+    }
+  ]
+}

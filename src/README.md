@@ -2,7 +2,7 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 56 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 57 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 ## 原始碼位置與證據範圍
 
@@ -21,6 +21,7 @@
 | [queue consumer](native/receive/queue_consumer.c) | 佇列釋放與條件分派 | 314B／107指令、10個private regions；230B非控制指令與2163保留位元相同，25筆relocation／八個UND仍待解析；保留實體SP／S-register／CSR及resident殘值，並非完整韌體 |
 | [queue leaves](native/receive/queue_small_providers.c) | V4.1.60旗標與有界清除 | 全部6／18B與原leaf相同；C fresh GP+167 byte、unsigned index<=2清byte；無spill／UND／relocation。僅診斷VMA0，consumer實際整合與硬體尚未證 |
 | [queue filter](native/receive/queue_filter.c) | 82D2封裝／轉送條件 | 188B／69指令，166B完整非控制指令相同；7筆待解析轉移含一個C.JAL provider。保留then-live frame／S-register；非零不代表轉送成功 |
+| [transport frame](native/receive/transport_frame.c) | 8A56 admission、封裝、複製與checksum | 280B／96指令、246B完整非控制指令相同；9筆local pending RELA／0 UND。fresh4013C admission與40050 tail provider未知；初始guard不保證post-call長度有界 |
 | [native/irq](native/irq/interrupt_registers.c) | 四個 register helper 與 IRQ 初始化 | 四個 helper 各 30 bytes 相同；初始化正常出口有證據，180B 超出原144B，非同步等價未證 |
 | [native/timer](native/timer/delay.c) | V4.1.60 計時器暫存器契約 | 完整54-byte leaf與官方相同；獨立編譯入口，尚未替換 NV callback／OTA BIN |
 | [native/nv/nv_write_frame_contract.c](native/nv/nv_write_frame_contract.c) | 新 NV write callback frame／fresh source contract | 已量測原32B frame／source位置及前40B除JAL相同；結尾 LI0 提早，fault／IRQ等價仍未證 |
@@ -53,9 +54,9 @@ python3 scripts/verify-curated-source.py
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-腳本依 manifest 選擇三十個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
+腳本依 manifest 選擇三十一個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。
 
-本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 60 組比對（120 個物件），收據為 `build/curated-source/queue-filter-20261023-v1/verification.json`。舊 SPI 整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
+本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 62 組比對（124 個物件），收據為 `build/curated-source/transport-frame-20261023-v1/verification.json`。舊 SPI 整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。
 
 既有結果可唯讀重播：
 

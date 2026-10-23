@@ -452,6 +452,13 @@
       "replacements": [],
       "origin_sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511",
       "sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511"
+    },
+    {
+      "origin": "experiments/tsl9-transport-frame/src/transport_frame.v6.c",
+      "destination": "src/native/receive/transport_frame.c",
+      "replacements": [],
+      "origin_sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8",
+      "sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
     }
   ],
   "native_units": [
@@ -752,6 +759,19 @@
       ],
       "scope": "188B/69i across seven private54/32/48/18/4/28/4B regions, including post-RET cold path. All166 whole noncontrol instruction bytes match original;7 pending RELAs include one strong UND C.JAL8A56/RA836A. C mask/shift/OR/length arithmetic plus explicit physical frame/S-register/SP/fresh-read/call ports. S4 updates before length rejection; nonzero is not proven forwarding success. Original placement, complete opaque-call/IRQ/memory/silicon/OTA compatibility remain unproved.",
       "origin_unit_sha256": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511"
+    },
+    {
+      "name": "transport-frame",
+      "profile": "transport-a0-a6",
+      "origin_unit": "experiments/tsl9-transport-frame/src/transport_frame.v6.c",
+      "curated_unit": "src/native/receive/transport_frame.c",
+      "evidence": "experiments/tsl9-transport-frame/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-transport-frame/build/verified-v1/c/verification.json",
+        "experiments/tsl9-transport-frame/build/verified-v1/cpp/verification.json"
+      ],
+      "scope": "280B/96i in13 private regions with9 pending local RELAs and0 UND. All246 whole noncontrol instruction bytes and2133 retained bits match original. Initial1039 guard, then-live registers/GP/SP after2 fresh admission calls4013C, uint16 comparison/full32-bit copy index, volatile ordered checksum/header/metadata stores and no-link tail40050. Diagnostic VMA0; original placement/full ABI/IRQ/memory/ROM/silicon/OTA compatibility remain unproved.",
+      "origin_unit_sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
     }
   ],
   "legacy_groups": [
