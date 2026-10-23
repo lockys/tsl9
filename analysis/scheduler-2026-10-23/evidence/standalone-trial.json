@@ -1,0 +1,603 @@
+{
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\build-v1.py": {
+      "bytes": 12072,
+      "sha256": "96b7648941041868542cc79fe64e25b5de276d8502fc42c693fa1477c7f8f0b4"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\spec-v1.json": {
+      "bytes": 9409,
+      "sha256": "c4d38a012259b8d6d3ca7eaa63c648830f45f9294bd6e2c1757183617985f700"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\src\\scheduler.v1.c": {
+      "bytes": 9406,
+      "sha256": "95d54f0277f717f7b79dc49a1b55f7e4988e05ffdb6dd53e9195153159b94457"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    }
+  },
+  "modes": {
+    "c": {
+      "artifacts": {
+        "IR.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native.d": {
+          "bytes": 244,
+          "sha256": "f25442362d6160e827cdda33823b5a77d5f420be79e98134eadc5c885ee00275"
+        },
+        "native.ll": {
+          "bytes": 23928,
+          "sha256": "81441637c6ff36a2ed3dd4554fef9bee62092636e7dc9ca173df217573a99e52"
+        },
+        "native.o": {
+          "bytes": 4620,
+          "sha256": "802a2f88a0171ed3d727b9b3837c39d83d6415235094a730a80be24a9de638d1"
+        },
+        "read.log": {
+          "bytes": 14427,
+          "sha256": "102a509bf171257f3cefb2134fe403f96637a2533f65bae676e6eda872e88eb7"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\build\\trial-v1\\c\\native.d",
+            "-MT",
+            "native.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\src\\scheduler.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\build\\trial-v1\\c\\native.o"
+          ],
+          "exit": 0,
+          "label": "compile",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-S",
+            "-emit-llvm",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\src\\scheduler.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\build\\trial-v1\\c\\native.ll"
+          ],
+          "exit": 0,
+          "label": "IR",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\build\\trial-v1\\c\\native.o"
+          ],
+          "exit": 0,
+          "label": "read",
+          "log_sha256": "102a509bf171257f3cefb2134fe403f96637a2533f65bae676e6eda872e88eb7"
+        }
+      ],
+      "result": {
+        "FUNC": 28,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "PC_relative_RELA": 0,
+        "RELA": 11,
+        "UND": [],
+        "all_code_bytes_equal_after_data_only_original_VA_relocation": true,
+        "code_bytes": 300,
+        "direct_control_RELA": 11,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "hardware_accessed": false,
+        "indirect_calls_and_tails": [
+          {
+            "PC": 37246,
+            "RA": "inherited then-live RA",
+            "bytes": "0283",
+            "kind": "tail",
+            "register": "t1",
+            "slot": 262224
+          },
+          {
+            "PC": 37300,
+            "RA": 37302,
+            "bytes": "8297",
+            "kind": "call",
+            "register": "a5",
+            "slot": 262248
+          },
+          {
+            "PC": 37372,
+            "RA": "inherited then-live RA",
+            "bytes": "0283",
+            "kind": "tail",
+            "register": "t1",
+            "slot": 262700
+          },
+          {
+            "PC": 37422,
+            "RA": 37424,
+            "bytes": "8297",
+            "kind": "call",
+            "register": "a5",
+            "slot": 262232
+          }
+        ],
+        "instructions": 115,
+        "native_object_sha256": "802a2f88a0171ed3d727b9b3837c39d83d6415235094a730a80be24a9de638d1",
+        "negative_cases_executed": 0,
+        "network": false,
+        "passed": true,
+        "provider_implementations_assumed": false,
+        "relocations": [
+          {
+            "PC": 37178,
+            "symbol": "tsl9_scheduler_9188",
+            "target": 37256,
+            "type": 44
+          },
+          {
+            "PC": 37190,
+            "symbol": "tsl9_scheduler_9180",
+            "target": 37248,
+            "type": 16
+          },
+          {
+            "PC": 37252,
+            "symbol": "tsl9_scheduler_9142",
+            "target": 37186,
+            "type": 16
+          },
+          {
+            "PC": 37278,
+            "symbol": "tsl9_scheduler_91fe",
+            "target": 37374,
+            "type": 16
+          },
+          {
+            "PC": 37292,
+            "symbol": "tsl9_scheduler_91b6",
+            "target": 37302,
+            "type": 44
+          },
+          {
+            "PC": 37352,
+            "symbol": "tsl9_scheduler_922c",
+            "target": 37420,
+            "type": 44
+          },
+          {
+            "PC": 37378,
+            "symbol": "tsl9_scheduler_919c",
+            "target": 37276,
+            "type": 16
+          },
+          {
+            "PC": 37388,
+            "symbol": "tsl9_scheduler_9244",
+            "target": 37444,
+            "type": 44
+          },
+          {
+            "PC": 37418,
+            "symbol": "tsl9_scheduler_91d0",
+            "target": 37328,
+            "type": 45
+          },
+          {
+            "PC": 37448,
+            "symbol": "tsl9_scheduler_920a",
+            "target": 37386,
+            "type": 16
+          },
+          {
+            "PC": 37454,
+            "symbol": "tsl9_scheduler_9234",
+            "target": 37428,
+            "type": 45
+          }
+        ],
+        "target_executed": false
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "IR.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native.d": {
+          "bytes": 244,
+          "sha256": "f25442362d6160e827cdda33823b5a77d5f420be79e98134eadc5c885ee00275"
+        },
+        "native.ll": {
+          "bytes": 24316,
+          "sha256": "83f97d2643b994e574936c18d7b167a9ff6f199afae9047160464aec28a92b23"
+        },
+        "native.o": {
+          "bytes": 4620,
+          "sha256": "802a2f88a0171ed3d727b9b3837c39d83d6415235094a730a80be24a9de638d1"
+        },
+        "read.log": {
+          "bytes": 14429,
+          "sha256": "200e80790bcc563088613ba5909f66ed11bdc88705103b73c9d0e40ebcece050"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\build\\trial-v1\\cpp\\native.d",
+            "-MT",
+            "native.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\src\\scheduler.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\build\\trial-v1\\cpp\\native.o"
+          ],
+          "exit": 0,
+          "label": "compile",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-S",
+            "-emit-llvm",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\src\\scheduler.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\build\\trial-v1\\cpp\\native.ll"
+          ],
+          "exit": 0,
+          "label": "IR",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-scheduler\\build\\trial-v1\\cpp\\native.o"
+          ],
+          "exit": 0,
+          "label": "read",
+          "log_sha256": "200e80790bcc563088613ba5909f66ed11bdc88705103b73c9d0e40ebcece050"
+        }
+      ],
+      "result": {
+        "FUNC": 28,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "PC_relative_RELA": 0,
+        "RELA": 11,
+        "UND": [],
+        "all_code_bytes_equal_after_data_only_original_VA_relocation": true,
+        "code_bytes": 300,
+        "direct_control_RELA": 11,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "hardware_accessed": false,
+        "indirect_calls_and_tails": [
+          {
+            "PC": 37246,
+            "RA": "inherited then-live RA",
+            "bytes": "0283",
+            "kind": "tail",
+            "register": "t1",
+            "slot": 262224
+          },
+          {
+            "PC": 37300,
+            "RA": 37302,
+            "bytes": "8297",
+            "kind": "call",
+            "register": "a5",
+            "slot": 262248
+          },
+          {
+            "PC": 37372,
+            "RA": "inherited then-live RA",
+            "bytes": "0283",
+            "kind": "tail",
+            "register": "t1",
+            "slot": 262700
+          },
+          {
+            "PC": 37422,
+            "RA": 37424,
+            "bytes": "8297",
+            "kind": "call",
+            "register": "a5",
+            "slot": 262232
+          }
+        ],
+        "instructions": 115,
+        "native_object_sha256": "802a2f88a0171ed3d727b9b3837c39d83d6415235094a730a80be24a9de638d1",
+        "negative_cases_executed": 0,
+        "network": false,
+        "passed": true,
+        "provider_implementations_assumed": false,
+        "relocations": [
+          {
+            "PC": 37178,
+            "symbol": "tsl9_scheduler_9188",
+            "target": 37256,
+            "type": 44
+          },
+          {
+            "PC": 37190,
+            "symbol": "tsl9_scheduler_9180",
+            "target": 37248,
+            "type": 16
+          },
+          {
+            "PC": 37252,
+            "symbol": "tsl9_scheduler_9142",
+            "target": 37186,
+            "type": 16
+          },
+          {
+            "PC": 37278,
+            "symbol": "tsl9_scheduler_91fe",
+            "target": 37374,
+            "type": 16
+          },
+          {
+            "PC": 37292,
+            "symbol": "tsl9_scheduler_91b6",
+            "target": 37302,
+            "type": 44
+          },
+          {
+            "PC": 37352,
+            "symbol": "tsl9_scheduler_922c",
+            "target": 37420,
+            "type": 44
+          },
+          {
+            "PC": 37378,
+            "symbol": "tsl9_scheduler_919c",
+            "target": 37276,
+            "type": 16
+          },
+          {
+            "PC": 37388,
+            "symbol": "tsl9_scheduler_9244",
+            "target": 37444,
+            "type": 44
+          },
+          {
+            "PC": 37418,
+            "symbol": "tsl9_scheduler_91d0",
+            "target": 37328,
+            "type": 45
+          },
+          {
+            "PC": 37448,
+            "symbol": "tsl9_scheduler_920a",
+            "target": 37386,
+            "type": 16
+          },
+          {
+            "PC": 37454,
+            "symbol": "tsl9_scheduler_9234",
+            "target": 37428,
+            "type": 45
+          }
+        ],
+        "target_executed": false
+      }
+    }
+  },
+  "schema": "TSL9-scheduler-native-build-v1"
+}

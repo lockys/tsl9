@@ -1,0 +1,49 @@
+{
+  "schema": "TSL9-scheduler-integration-contract-v1",
+  "base_commit": "686a20095943faaf241c0cac61375e19d6647f17",
+  "previous_manifest_sha256": "6d45afc02df1ed9b684293cdb8b752b9505eb24e0a11f744e5139e81c4463183",
+  "new_file_entry": {
+    "origin": "experiments/tsl9-scheduler/src/scheduler.v1.c",
+    "destination": "src/native/receive/scheduler.c",
+    "replacements": [],
+    "origin_sha256": "95d54f0277f717f7b79dc49a1b55f7e4988e05ffdb6dd53e9195153159b94457",
+    "sha256": "95d54f0277f717f7b79dc49a1b55f7e4988e05ffdb6dd53e9195153159b94457"
+  },
+  "new_unit_entry": {
+    "name": "scheduler",
+    "profile": "ring-bank",
+    "origin_unit": "experiments/tsl9-scheduler/src/scheduler.v1.c",
+    "curated_unit": "src/native/receive/scheduler.c",
+    "evidence": "experiments/tsl9-scheduler/README.md",
+    "formal_receipts": [
+      "experiments/tsl9-scheduler/build/trial-v1/measurement.json"
+    ],
+    "scope": "Whole9124-9250 scheduler300B115i28architectural regions. C owns free-bank arithmetic/masks/loads/constants; frames/reserved-S operations/PC/control are explicit architectural ports. All original-VA bytes match in C/C++.15-slot scans, low32 multiply/divide and low5 shift semantics retained. Four resident transfers/ABI, IRQ, memory validity, time units, physical MCU and OTA remain unproved. Normal compile/static checks only; no target/HOST execution.",
+    "origin_unit_sha256": "95d54f0277f717f7b79dc49a1b55f7e4988e05ffdb6dd53e9195153159b94457"
+  },
+  "previous_curation": "build/curated-source/feature-callback-20261023-v2/verification.json",
+  "previous_curation_sha256": "315a2f029379db887f2d4cc118e00e7f0fa9ad3cbfc853ad1b2f18f99492bb93",
+  "curation": "build/curated-source/scheduler-20261023-v1/verification.json",
+  "curation_sha256": "9a60abb6716063b7359d6e56bbb17cd3a6646418ebf8378e7b353dda706751f4",
+  "previous_graph": "experiments/tsl9-feature-callback/build/graph-v2",
+  "parent_object_name": "UNRESOLVED-CALLBACK-GRAPH.o",
+  "previous_graph_sha256": "0fb3e4dba4a5b1708eb42703cfe9ac8a883c1c02555587689f71d9582386f4e5",
+  "parent_v2_receipts": {
+    "c": "f2be772b1c96d52af2abea6fed06bdcdb9c5c29c5e09c047e399ecae0290de9a",
+    "cpp": "cb49d129bd2378185a667363559c14962b6d4fcd90ce307d4969e263814184e1"
+  },
+  "parent_checker": "experiments/tsl9-feature-callback/integrate-v2.py",
+  "parent_checker_sha256": "e2d2d496f27cecd55704600352419d2cded692d7c69258a7204344908396730c",
+  "standalone_receipt": "experiments/tsl9-scheduler/build/trial-v1/measurement.json",
+  "standalone_receipt_sha256": "8bea9f0918e487b37bfdfbeb73feabe4544fba5898a110d4d3f47dce6d72be84",
+  "native_object_sha256": "802a2f88a0171ed3d727b9b3837c39d83d6415235094a730a80be24a9de638d1",
+  "curated_native_object_sha256": "2e8b5d2e4b8d6ab67011486c8483910d322c2420e36c39354aad01dcf371fbf8",
+  "old_graph_code_bytes": 5402,
+  "new_code_bytes": 300,
+  "total_code_bytes": 5702,
+  "table_bytes": 60,
+  "scoped_parent_source_extension_only": true,
+  "parent_normal_artifact_replay_passed_before_manifest_extension": true,
+  "new_negative_cases_executed": 0,
+  "prior_safety_stopped_review_retried_or_rerouted": false
+}

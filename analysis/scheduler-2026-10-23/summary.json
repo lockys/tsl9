@@ -1,0 +1,252 @@
+{
+  "schema": "TSL9-scheduler-offline-milestone-v1",
+  "date": "2026-10-23",
+  "base_commit": "686a20095943faaf241c0cac61375e19d6647f17",
+  "source": {
+    "path": "src/native/receive/scheduler.c",
+    "origin": "experiments/tsl9-scheduler/src/scheduler.v1.c",
+    "sha256": "95d54f0277f717f7b79dc49a1b55f7e4988e05ffdb6dd53e9195153159b94457",
+    "original_span": {
+      "start": "0x9124",
+      "end": "0x9250",
+      "bytes": 300,
+      "sha256": "45dd01a76fedc4bd8d01fdb7ff005f410166a68f171d52420d19da2cbba2e992"
+    },
+    "C_modes": [
+      "C11",
+      "C++17"
+    ],
+    "architectural_regions": 28,
+    "instructions": 115,
+    "direct_control_RELA": 11,
+    "native_standalone_sha256": "802a2f88a0171ed3d727b9b3837c39d83d6415235094a730a80be24a9de638d1",
+    "curated_native_sha256": "2e8b5d2e4b8d6ab67011486c8483910d322c2420e36c39354aad01dcf371fbf8"
+  },
+  "confirmed_static_behavior": {
+    "slots": 15,
+    "stride": 12,
+    "nominal_table_base": "0x2000BE08",
+    "slot_fields": {
+      "0": "byte flag",
+      "4": "callback word",
+      "8": "argument/handle word"
+    },
+    "zero_A2_full_initial_scan_falls_through_to_general_search": true,
+    "duration_arithmetic": "Low32 product of then-live S3*1000, unsigned DIVU625; physical units unknown.",
+    "shift_arithmetic": "Hardware low5 count followed by low16 truncation; free-bank C explicitly masks counts.",
+    "indirect_calls_and_tails": [
+      {
+        "PC": 37246,
+        "bytes": "0283",
+        "kind": "tail",
+        "register": "t1",
+        "slot": 262224,
+        "RA": "inherited then-live RA"
+      },
+      {
+        "PC": 37300,
+        "bytes": "8297",
+        "kind": "call",
+        "register": "a5",
+        "slot": 262248,
+        "RA": 37302
+      },
+      {
+        "PC": 37372,
+        "bytes": "0283",
+        "kind": "tail",
+        "register": "t1",
+        "slot": 262700,
+        "RA": "inherited then-live RA"
+      },
+      {
+        "PC": 37422,
+        "bytes": "8297",
+        "kind": "call",
+        "register": "a5",
+        "slot": 262232,
+        "RA": 37424
+      }
+    ]
+  },
+  "graph": {
+    "code_bytes": 5702,
+    "table_bytes": 60,
+    "FUNC": 460,
+    "RELA": 423,
+    "UND": [
+      "tsl9_callback_external_10032",
+      "tsl9_callback_external_10630",
+      "tsl9_callback_external_12b24",
+      "tsl9_callback_external_13d48",
+      "tsl9_callback_external_9b36",
+      "tsl9_callback_external_b0fc",
+      "tsl9_callback_external_d272",
+      "tsl9_feature_external_10044",
+      "tsl9_feature_external_10096",
+      "tsl9_feature_external_100d6",
+      "tsl9_feature_external_10100",
+      "tsl9_feature_external_10288",
+      "tsl9_feature_external_10440",
+      "tsl9_feature_external_10870",
+      "tsl9_feature_external_108d8",
+      "tsl9_feature_external_10936",
+      "tsl9_feature_external_10944",
+      "tsl9_feature_external_109c4",
+      "tsl9_feature_external_10a00",
+      "tsl9_feature_external_10a16",
+      "tsl9_feature_external_10ac6",
+      "tsl9_feature_external_10b0a",
+      "tsl9_feature_external_10b60",
+      "tsl9_feature_external_13bd2",
+      "tsl9_feature_external_185d8",
+      "tsl9_feature_external_82a8",
+      "tsl9_feature_external_a054",
+      "tsl9_feature_external_a6d8",
+      "tsl9_feature_external_abc4",
+      "tsl9_feature_external_add6",
+      "tsl9_feature_external_b036",
+      "tsl9_feature_external_b05c",
+      "tsl9_feature_external_b14a",
+      "tsl9_feature_external_b1b6",
+      "tsl9_feature_external_b2fe",
+      "tsl9_feature_external_b372",
+      "tsl9_feature_external_b390",
+      "tsl9_feature_external_b402",
+      "tsl9_feature_external_b730",
+      "tsl9_feature_external_bd88",
+      "tsl9_feature_external_c3d4",
+      "tsl9_feature_external_c472",
+      "tsl9_feature_external_c60e",
+      "tsl9_feature_external_c6a8",
+      "tsl9_feature_external_c8a2",
+      "tsl9_feature_external_c94e",
+      "tsl9_feature_external_cd4e",
+      "tsl9_feature_external_cec0",
+      "tsl9_feature_external_cedc",
+      "tsl9_feature_external_cf96",
+      "tsl9_feature_external_d104",
+      "tsl9_feature_external_d14a",
+      "tsl9_feature_external_d1b2",
+      "tsl9_feature_external_d288",
+      "tsl9_feature_external_d332",
+      "tsl9_feature_external_d378",
+      "tsl9_feature_external_d3f6",
+      "tsl9_feature_external_d47c",
+      "tsl9_feature_external_d632",
+      "tsl9_feature_external_d64a",
+      "tsl9_feature_external_d69c",
+      "tsl9_feature_external_da74",
+      "tsl9_feature_external_dac8",
+      "tsl9_feature_external_dbcc",
+      "tsl9_feature_external_def2",
+      "tsl9_feature_external_f0d0",
+      "tsl9_feature_external_f14a",
+      "tsl9_feature_external_f1c2",
+      "tsl9_feature_external_f860",
+      "tsl9_feature_external_fa62",
+      "tsl9_feature_external_fa7c",
+      "tsl9_feature_external_fba2",
+      "tsl9_feature_external_ff56",
+      "tsl9_feature_external_ffa4"
+    ],
+    "UND_symbol_count": 74,
+    "direct_UND_symbols": 72,
+    "literal_code_UND_symbols": 2,
+    "resolved_previous_direct_UND": [
+      "tsl9_callback_external_9124"
+    ],
+    "sha256": "2b3bb28187d6c46d4e57c8398ea0c19f3fbffab2d6eb95f600a522992ebd94e4",
+    "previous5402_code_and60_table_bytes_unchanged": true,
+    "ELF_type": "ET_REL",
+    "VMA_zero": true,
+    "executable": false
+  },
+  "curation": {
+    "C_H_files": 76,
+    "native_units": 50,
+    "comparisons": 100,
+    "objects": 200,
+    "inputs": 154,
+    "artifacts": 601,
+    "receipt": "build/curated-source/scheduler-20261023-v1/verification.json",
+    "receipt_sha256": "9a60abb6716063b7359d6e56bbb17cd3a6646418ebf8378e7b353dda706751f4",
+    "prior98_comparisons_and589_artifact_records_unchanged": true
+  },
+  "verification": {
+    "native_checker_sha256": "96b7648941041868542cc79fe64e25b5de276d8502fc42c693fa1477c7f8f0b4",
+    "integrator_sha256": "747a2626bea4343ccc5ff5d900be3d574f3feeafdbd4037c16e2ab0f8dc91568",
+    "all300_bytes_equal_after_data_only_original_VA_relocation": true,
+    "normal_replays_pass_both_languages": true,
+    "scope": "Exact one-file/one-unit extension of pinned parent manifest; all other parent producer inputs unchanged.",
+    "original_parent_global_manifest_replay_claimed": false,
+    "standalone_curated_local_FILE_identity_differs": true,
+    "other_parsed_symbols_and_code_relocation_carriers_equal": true,
+    "independent_review_completed_this_milestone": false,
+    "prior_safety_stopped_review_retried_or_rerouted": false,
+    "new_negative_cases_executed": 0
+  },
+  "resident_references": {
+    "report": "resident-reference-association.json",
+    "checker": "scripts/check-scheduler-resident-references.py",
+    "checker_sha256": "7f8e69470bf0456069b0b5ca6cbe69cf92f6d9604be53fe61ac264fc98c41c65",
+    "retained_versions": [
+      "CH32V20x_BLE_LIB_V1.31",
+      "CH32V20x_BLE_LIB_V1.40"
+    ],
+    "historical_header_declarations": [
+      "tmos_set_event",
+      "tmos_start_task",
+      "tmos_start_reload_task",
+      "tmos_msg_deallocate"
+    ],
+    "pointer_words_differ_between_candidate_images": true,
+    "reference_checks_pass": true,
+    "installed_ROM_identity_proved": false,
+    "candidate_provider_implementations_bound": false
+  },
+  "feature_opportunities": [
+    {
+      "name": "Passive scheduler occupancy and saturation diagnostics",
+      "basis": "15-entry callback/mode scans with an explicit full-scan exit.",
+      "implemented": false,
+      "hardware_validated": false
+    },
+    {
+      "name": "Registration/update outcome visibility",
+      "basis": "The scheduler has preserved raw tail returns and a separate SEQZ-normalized return path; interpretation remains unproved.",
+      "implemented": false,
+      "hardware_validated": false
+    }
+  ],
+  "privacy": {
+    "public_receipts": 5,
+    "portable_exact_originals": 4,
+    "path_only_derivatives": 1,
+    "originals_preserved_local": true,
+    "private_backup": {
+      "path": "build/scheduler-originals-20261023-v1.zip",
+      "original_files": 675,
+      "members": 676,
+      "bytes": 3983807,
+      "sha256": "f456ef4ba73a8f9f1c9364c3c651877d6470cafb3acafa62d175fa23365c389f",
+      "verified_against_originals": true
+    },
+    "Git_history_rewritten": false
+  },
+  "remaining": [
+    "74 direct/literal symbol obligations plus resident/computed transfers remain unresolved.",
+    "Candidate header/API association does not identify installed ROM or prove its ABI/side effects.",
+    "Memory initialization/ownership,bounds,IRQ/concurrency,stack/startup and physical MCU/OTA compatibility remain unproved.",
+    "The diagnostic VMA0 graph has no executable loading layout and is not a final BIN."
+  ],
+  "execution": {
+    "network": false,
+    "hardware_accessed": false,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "firmware_BIN_generated": false,
+    "firmware_ready": false
+  }
+}
