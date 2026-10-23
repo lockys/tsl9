@@ -1,0 +1,330 @@
+{
+  "ISA_emulated": false,
+  "artifacts": {
+    "IR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "PROGRAM-ONLY-NOT-FIRMWARE.elf": {
+      "bytes": 2824,
+      "sha256": "2407d47f2895f2413357ba910fafb2f4ccf561eb64a667c00ee5e506a6ae508e"
+    },
+    "UNRESOLVED-PROGRAM-GRAPH.o": {
+      "bytes": 13140,
+      "sha256": "abcb6e2b50ca1ca500fcf81fc851dcd258e76cab63c882b7bb4dd343ef946798"
+    },
+    "compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "joined-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "joined-read.log": {
+      "bytes": 44992,
+      "sha256": "2d74a9805e0fcf9454bdf0fb9684c9171fe02a5b06b7101b9b00e9392d794769"
+    },
+    "native-read.log": {
+      "bytes": 7291,
+      "sha256": "1d12f12b20f6fc7c82be7bbe8783323e6eb96de57e391af77814275f7f7c5d6c"
+    },
+    "native.d": {
+      "bytes": 234,
+      "sha256": "7ad6bf913596340168a5c4783a914a1da83c561857956638db91ba68b7a7399b"
+    },
+    "native.ll": {
+      "bytes": 20969,
+      "sha256": "04e5631724aa47806ca58434eab809d2b04a801752caffc24907a58d7bb588b4"
+    },
+    "native.o": {
+      "bytes": 3820,
+      "sha256": "185ce91910bb6139463202eb16405a9ff5d13bb30f3a84dc9da98d9ce8d19980"
+    },
+    "nominal-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nominal-read.log": {
+      "bytes": 5557,
+      "sha256": "99b8d473ff1d73e436ec42f8e0a063ba3c922bfe6e4e8ca36460f8573c8b7374"
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-c",
+        "-MD",
+        "-MF",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\native.d",
+        "-MT",
+        "native.o",
+        "${PROJECT_ROOT}\\src\\native\\receive\\record_program.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\native.o"
+      ],
+      "exit": 0,
+      "label": "compile",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\record_program.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\native.ll"
+      ],
+      "exit": 0,
+      "label": "IR",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\llvm-objdump.exe",
+        "-dr",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\native.o"
+      ],
+      "exit": 0,
+      "label": "native-read",
+      "log_sha256": "1d12f12b20f6fc7c82be7bbe8783323e6eb96de57e391af77814275f7f7c5d6c"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\ld.lld.exe",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\nominal.ld",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\native.o",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\PROGRAM-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "label": "nominal-link",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\llvm-objdump.exe",
+        "-dr",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\PROGRAM-ONLY-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "label": "nominal-read",
+      "log_sha256": "99b8d473ff1d73e436ec42f8e0a063ba3c922bfe6e4e8ca36460f8573c8b7374"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\joined.ld",
+        "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\cpp\\UNRESOLVED-FULL-PLUS-LEAF.o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\native.o",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\UNRESOLVED-PROGRAM-GRAPH.o"
+      ],
+      "exit": 0,
+      "label": "joined-link",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\llvm-objdump.exe",
+        "-dr",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\UNRESOLVED-PROGRAM-GRAPH.o"
+      ],
+      "exit": 0,
+      "label": "joined-read",
+      "log_sha256": "2d74a9805e0fcf9454bdf0fb9684c9171fe02a5b06b7101b9b00e9392d794769"
+    }
+  ],
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "hardware_accessed": false,
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\record-program-20261023-v1\\record-program\\cpp\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\record-program-20261023-v1\\record-program\\cpp\\curated\\unit.d": {
+      "bytes": 232,
+      "sha256": "8884744498eb451781f48d60f2ac4680084b68bb2d0dcb8684052b9990e1934d"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\record-program-20261023-v1\\record-program\\cpp\\curated\\unit.o": {
+      "bytes": 3820,
+      "sha256": "185ce91910bb6139463202eb16405a9ff5d13bb30f3a84dc9da98d9ce8d19980"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\record-program-20261023-v1\\verification.json": {
+      "bytes": 748563,
+      "sha256": "981ef27999ac675df5f218dfa1383200e60c6263a49515f56886586508851b0f"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\cpp\\UNRESOLVED-FULL-PLUS-LEAF.o": {
+      "bytes": 11436,
+      "sha256": "da50985e5af82c20d20aded44aca8449cc5ecb8a891fea82c0667d851b3bb42b"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\build\\formal-v1\\cpp\\verification-v3.json": {
+      "bytes": 18829,
+      "sha256": "3f2ab6aab0582303d14ac88922d53de5426c754811d8a39828979cc828e270d4"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-gp-word-toggle\\verify-v3.py": {
+      "bytes": 23117,
+      "sha256": "fe4c52143f951cb82668f3dd9f49475cb74d01f6c923b64e55b4138a41a34c5c"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build.py": {
+      "bytes": 5447,
+      "sha256": "dd29288a7ac2ae917e49b566943119fdd331adc5bd86734ec38e1bb3e6b319e5"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\joined.ld": {
+      "bytes": 1162,
+      "sha256": "905e4e4125357d95dfdf2f8964f15a2679a3be52e670fd783080a62a3ccb2b34"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\nominal.ld": {
+      "bytes": 2460,
+      "sha256": "6b085d7921658dbe95e913656ccdffebfea52c3b17d92856b7f01ca8bfb2f34f"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\proof-spec.json": {
+      "bytes": 1529,
+      "sha256": "9d1c1a1d7e744a19becf4c3ddded0c474b49494dd2086951078d1daa0c90d039"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\spec.json": {
+      "bytes": 5418,
+      "sha256": "36ec24f33abe8c440c557b5fc9f0da9150406dd884b866435c61dc2881564624"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\src\\record_program.v3.c": {
+      "bytes": 8954,
+      "sha256": "51af3e56a2132a60a56bd4290817129608d54b3843c846fb4f56313c1a47117b"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\verify.py": {
+      "bytes": 12892,
+      "sha256": "dca29337e9d4041cc492848db1bd00dcb2393cdfe75995db1198af4c75d3a283"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-spi-transfer-leaf\\verify.py": {
+      "bytes": 29593,
+      "sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\record_program.c": {
+      "bytes": 8954,
+      "sha256": "51af3e56a2132a60a56bd4290817129608d54b3843c846fb4f56313c1a47117b"
+    }
+  },
+  "mode": "cpp",
+  "network": false,
+  "schema": "TSL9-record-program-build-v1",
+  "target_executed": false
+}

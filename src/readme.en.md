@@ -2,7 +2,7 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 65 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
+This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 66 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
 
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
@@ -17,6 +17,7 @@ This directory is the working entry point for the readable source with the stron
 | [ring IRQ adapter](native/irq/ring_irq_adapter.c) | Conditional frame and two MRET paths | 52B/17i;42 original noncontrol bytes, three pending edges and two UND providers; then-live SP ports, full IRQ/provider ABI unproved |
 | [IRQ provider](native/receive/irq_provider.c) | Fresh word reads and receive-data fields | Six18/8/108/10/10/10B regions; full164B/53i nominal code equals original, retaining A4/A5 effects and two RETs; physical MMIO/IRQ/silicon unproved |
 | [queue consumer](native/receive/queue_consumer.c) | Queue release and conditional dispatch | 314B/107i across10 private regions;230 complete noncontrol bytes and2163 retained bits match;25 pending RELAs/eight UND remain, with physical SP/S-register/CSR and resident residue ports; not full firmware |
+| [record program](native/receive/record_program.c) | 93AA–94EE record setup and control | Four routines324B/109i,19 architectural regions; complete nominal code equals original in C/C++. Opaque40068/40070 do not imply an installed allocator ABI, valid memory or bounded post-call indices |
 | [GP word toggle](native/receive/gp_word_toggle.c) | 9B36 byte guard and word XOR2 | All24B/7i match; only A4/A5 written, skip retains A4. Physical purpose, GP/memory validity and IRQ/OTA remain unknown |
 | [queue leaves](native/receive/queue_small_providers.c) | V4.1.60 status and bounded clear | Fully original-equal6/18B C leaves; fresh GP+167 byte, unsigned index<=2 byte clear; no spills/UND/relocations. Diagnostic VMA0 only; actual consumer composition and hardware remain open |
 | [queue filter](native/receive/queue_filter.c) | Packaging/forwarding gate at82D2 | 188B/69i,166 whole noncontrol bytes match;7 pending edges with one real C.JAL provider. Then-live frame/S-register state retained; nonzero is not forwarding success |
@@ -60,9 +61,9 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The script selects 39 native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
+The script selects 40 native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
 
-The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed78 comparisons (156 objects). Its receipt is `build/curated-source/gp-word-toggle-20261023-v1/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
+The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed80 comparisons (160 objects). Its receipt is `build/curated-source/record-program-20261023-v1/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
 
 Replay an existing result without compiling:
 
@@ -83,3 +84,5 @@ The [ring and original-layout receive graph](../experiments/tsl9-ring-insert/REA
 The [receive/dispatch/transmit integration](../analysis/receive-transmit-chain-2026-10-23/README.md) freshly compiles12 existing src units. Its9 original-PC spans reproduce1588B/555 instructions with no static UND; the full1902B partial component retains four genuine providers missing. Six opaque resident transfers and66970B of RX gaps remain unproved, so neither component is firmware-ready.
 
 [9B36 source integration](../analysis/gp-word-toggle-2026-10-23/readme.en.md) extends the diagnostic partial link to1926B/669 instructions/108 strong FUNC/97 pending RELA/3 UND, binding13 current source units. The1588B nominal-address graph remains unchanged. The fixed-body v3 proof passes1991 negative controls per language; physical purpose and full hardware/OTA compatibility remain unproved.
+
+[Record setup/control integration](../analysis/record-program-2026-10-23/readme.en.md) extends the genuine partial component to2250B/778i/127FUNC/109pending RELA/2UND (12ABE,14D2E). Eight resident transfers remain opaque; VMA0 AUIPC values are not executable original placement. Version2 passes2600 static negatives per language. No full-firmware or hardware/OTA claim is made.
