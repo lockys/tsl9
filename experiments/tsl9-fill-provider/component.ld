@@ -1,0 +1,33 @@
+OUTPUT_ARCH(riscv)
+SECTIONS {
+  .fill_provider : ALIGN(2) {
+    KEEP(*(.text.tsl9_tagged_external_8520))
+    KEEP(*(.text.tsl9_fill_alignment_8528))
+    KEEP(*(.text.tsl9_fill_pattern_guard_852e))
+    KEEP(*(.text.tsl9_fill_word_setup_8530))
+    KEEP(*(.text.tsl9_fill_words_8538))
+    KEEP(*(.text.tsl9_fill_tail_guard_8546))
+    KEEP(*(.text.tsl9_fill_word_return_8548))
+    KEEP(*(.text.tsl9_fill_tail_dispatch_854a))
+    KEEP(*(.text.tsl9_fill_bytes_855a))
+    KEEP(*(.text.tsl9_fill_byte_return_8596))
+    KEEP(*(.text.tsl9_fill_pattern_8598))
+    KEEP(*(.text.tsl9_fill_align_dispatch_85aa))
+    KEEP(*(.text.tsl9_fill_align_resume_85ba))
+  }
+  /DISCARD/ : { *(.comment) *(.note*) *(.riscv.attributes) }
+  ASSERT(SIZEOF(.fill_provider) == 168, "Original168B fill candidate")
+  ASSERT(tsl9_tagged_external_8520 == 0, "Original region 8520")
+  ASSERT(tsl9_fill_alignment_8528 == 8, "Original region 8528")
+  ASSERT(tsl9_fill_pattern_guard_852e == 14, "Original region 852e")
+  ASSERT(tsl9_fill_word_setup_8530 == 16, "Original region 8530")
+  ASSERT(tsl9_fill_words_8538 == 24, "Original region 8538")
+  ASSERT(tsl9_fill_tail_guard_8546 == 38, "Original region 8546")
+  ASSERT(tsl9_fill_word_return_8548 == 40, "Original region 8548")
+  ASSERT(tsl9_fill_tail_dispatch_854a == 42, "Original region 854a")
+  ASSERT(tsl9_fill_bytes_855a == 58, "Original region 855a")
+  ASSERT(tsl9_fill_byte_return_8596 == 118, "Original region 8596")
+  ASSERT(tsl9_fill_pattern_8598 == 120, "Original region 8598")
+  ASSERT(tsl9_fill_align_dispatch_85aa == 138, "Original region 85aa")
+  ASSERT(tsl9_fill_align_resume_85ba == 154, "Original region 85ba")
+}

@@ -1,0 +1,859 @@
+{
+  "schema": "TSL9-fill-frozen-spec-v1",
+  "reader": "experiments/tsl9-spi-transfer-leaf/verify.py",
+  "evidence": "analysis/fill-provider-2026-10-23/original-window.json",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "span_sha256": "50232f532bf996f5d738050c60480fab6069d6ef4cb842cfc582170e351630c6",
+  "pins": {
+    "experiments/tsl9-fill-provider/src/fill.v2.c": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0",
+    "experiments/tsl9-fill-provider/probe.py": "4f02c8aeeb8abc2bdb8e8bb06ce4abf0a0f1e44a61bf76f3df35d947e583ebf9",
+    "experiments/tsl9-fill-provider/component.ld": "a6a74f3fc95d6cd871cdeff5545b3aed134460384ff1b7d24c51e8ef0e85be50",
+    "experiments/tsl9-fill-provider/decode.py": "cc5adfc05f1dca2b3b8f4ff40d749648d23a2353276fc5e780d9dd2a77d3e988",
+    "experiments/tsl9-spi-transfer-leaf/verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+    "analysis/fill-provider-2026-10-23/original-window.json": "88c7eba705b29ac2410c6ddace3597e01bf811d83c16893b181266e7516b9470"
+  },
+  "tools": {
+    "clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+  },
+  "stdint_sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+  "regions": [
+    [
+      "tsl9_tagged_external_8520",
+      0,
+      8
+    ],
+    [
+      "tsl9_fill_alignment_8528",
+      8,
+      6
+    ],
+    [
+      "tsl9_fill_pattern_guard_852e",
+      14,
+      2
+    ],
+    [
+      "tsl9_fill_word_setup_8530",
+      16,
+      8
+    ],
+    [
+      "tsl9_fill_words_8538",
+      24,
+      14
+    ],
+    [
+      "tsl9_fill_tail_guard_8546",
+      38,
+      2
+    ],
+    [
+      "tsl9_fill_word_return_8548",
+      40,
+      2
+    ],
+    [
+      "tsl9_fill_tail_dispatch_854a",
+      42,
+      16
+    ],
+    [
+      "tsl9_fill_bytes_855a",
+      58,
+      60
+    ],
+    [
+      "tsl9_fill_byte_return_8596",
+      118,
+      2
+    ],
+    [
+      "tsl9_fill_pattern_8598",
+      120,
+      18
+    ],
+    [
+      "tsl9_fill_align_dispatch_85aa",
+      138,
+      16
+    ],
+    [
+      "tsl9_fill_align_resume_85ba",
+      154,
+      14
+    ]
+  ],
+  "relocations": [
+    [
+      4,
+      16,
+      "tsl9_fill_tail_dispatch_854a",
+      0
+    ],
+    [
+      12,
+      44,
+      "tsl9_fill_align_dispatch_85aa",
+      0
+    ],
+    [
+      14,
+      44,
+      "tsl9_fill_pattern_8598",
+      0
+    ],
+    [
+      34,
+      16,
+      "tsl9_fill_words_8538",
+      0
+    ],
+    [
+      38,
+      44,
+      "tsl9_fill_tail_dispatch_854a",
+      0
+    ],
+    [
+      136,
+      45,
+      "tsl9_fill_word_setup_8530",
+      0
+    ],
+    [
+      162,
+      16,
+      "tsl9_fill_tail_dispatch_854a",
+      0
+    ],
+    [
+      166,
+      45,
+      "tsl9_fill_pattern_guard_852e",
+      0
+    ]
+  ],
+  "undefined": [],
+  "typed_rows": [
+    [
+      0,
+      2,
+      "ADDI",
+      6,
+      0,
+      15
+    ],
+    [
+      2,
+      2,
+      "MV",
+      14,
+      10
+    ],
+    [
+      4,
+      4,
+      "BGEU",
+      6,
+      12,
+      34122
+    ],
+    [
+      8,
+      4,
+      "ANDI",
+      15,
+      14,
+      15
+    ],
+    [
+      12,
+      2,
+      "BNEZ",
+      15,
+      34218
+    ],
+    [
+      14,
+      2,
+      "BNEZ",
+      11,
+      34200
+    ],
+    [
+      16,
+      4,
+      "ANDI",
+      13,
+      12,
+      -16
+    ],
+    [
+      20,
+      2,
+      "ANDI",
+      12,
+      12,
+      15
+    ],
+    [
+      22,
+      2,
+      "ADD",
+      13,
+      13,
+      14
+    ],
+    [
+      24,
+      2,
+      "SW32",
+      11,
+      14,
+      0
+    ],
+    [
+      26,
+      2,
+      "SW32",
+      11,
+      14,
+      4
+    ],
+    [
+      28,
+      2,
+      "SW32",
+      11,
+      14,
+      8
+    ],
+    [
+      30,
+      2,
+      "SW32",
+      11,
+      14,
+      12
+    ],
+    [
+      32,
+      2,
+      "ADDI",
+      14,
+      14,
+      16
+    ],
+    [
+      34,
+      4,
+      "BLTU",
+      14,
+      13,
+      34104
+    ],
+    [
+      38,
+      2,
+      "BNEZ",
+      12,
+      34122
+    ],
+    [
+      40,
+      2,
+      "RET",
+      1
+    ],
+    [
+      42,
+      4,
+      "SUB",
+      13,
+      6,
+      12
+    ],
+    [
+      46,
+      2,
+      "SLLI",
+      13,
+      13,
+      2
+    ],
+    [
+      48,
+      4,
+      "AUIPC",
+      5,
+      0
+    ],
+    [
+      52,
+      2,
+      "ADD",
+      13,
+      13,
+      5
+    ],
+    [
+      54,
+      4,
+      "JALR",
+      0,
+      13,
+      10
+    ],
+    [
+      58,
+      4,
+      "SB8",
+      11,
+      14,
+      14
+    ],
+    [
+      62,
+      4,
+      "SB8",
+      11,
+      14,
+      13
+    ],
+    [
+      66,
+      4,
+      "SB8",
+      11,
+      14,
+      12
+    ],
+    [
+      70,
+      4,
+      "SB8",
+      11,
+      14,
+      11
+    ],
+    [
+      74,
+      4,
+      "SB8",
+      11,
+      14,
+      10
+    ],
+    [
+      78,
+      4,
+      "SB8",
+      11,
+      14,
+      9
+    ],
+    [
+      82,
+      4,
+      "SB8",
+      11,
+      14,
+      8
+    ],
+    [
+      86,
+      4,
+      "SB8",
+      11,
+      14,
+      7
+    ],
+    [
+      90,
+      4,
+      "SB8",
+      11,
+      14,
+      6
+    ],
+    [
+      94,
+      4,
+      "SB8",
+      11,
+      14,
+      5
+    ],
+    [
+      98,
+      4,
+      "SB8",
+      11,
+      14,
+      4
+    ],
+    [
+      102,
+      4,
+      "SB8",
+      11,
+      14,
+      3
+    ],
+    [
+      106,
+      4,
+      "SB8",
+      11,
+      14,
+      2
+    ],
+    [
+      110,
+      4,
+      "SB8",
+      11,
+      14,
+      1
+    ],
+    [
+      114,
+      4,
+      "SB8",
+      11,
+      14,
+      0
+    ],
+    [
+      118,
+      2,
+      "RET",
+      1
+    ],
+    [
+      120,
+      4,
+      "ANDI",
+      11,
+      11,
+      255
+    ],
+    [
+      124,
+      4,
+      "SLLI",
+      13,
+      11,
+      8
+    ],
+    [
+      128,
+      2,
+      "OR",
+      11,
+      11,
+      13
+    ],
+    [
+      130,
+      4,
+      "SLLI",
+      13,
+      11,
+      16
+    ],
+    [
+      134,
+      2,
+      "OR",
+      11,
+      11,
+      13
+    ],
+    [
+      136,
+      2,
+      "J",
+      34096
+    ],
+    [
+      138,
+      4,
+      "SLLI",
+      13,
+      15,
+      2
+    ],
+    [
+      142,
+      4,
+      "AUIPC",
+      5,
+      0
+    ],
+    [
+      146,
+      2,
+      "ADD",
+      13,
+      13,
+      5
+    ],
+    [
+      148,
+      2,
+      "MV",
+      5,
+      1
+    ],
+    [
+      150,
+      4,
+      "JALR",
+      1,
+      13,
+      -88
+    ],
+    [
+      154,
+      2,
+      "MV",
+      1,
+      5
+    ],
+    [
+      156,
+      2,
+      "ADDI",
+      15,
+      15,
+      -16
+    ],
+    [
+      158,
+      2,
+      "SUB",
+      14,
+      14,
+      15
+    ],
+    [
+      160,
+      2,
+      "ADD",
+      12,
+      12,
+      15
+    ],
+    [
+      162,
+      4,
+      "BGEU",
+      6,
+      12,
+      34122
+    ],
+    [
+      166,
+      2,
+      "J",
+      34094
+    ]
+  ],
+  "ELF_sha256": {
+    "native": "b81d4fb9f5cb243048791a150d9d85af7466c79b0102a4c6f536c24ab13e433f",
+    "partial": "94e708cd57c8e3c776a5c8b65546959d8aa9d2e09e8fe0922c9adbad04486f03"
+  },
+  "IR_scalars": {
+    "c": {
+      "tsl9_tagged_external_8520": [],
+      "tsl9_fill_alignment_8528": [
+        "%9 = and i32 %8, 15"
+      ],
+      "tsl9_fill_pattern_guard_852e": [],
+      "tsl9_fill_word_setup_8530": [
+        "%9 = and i32 %6, -16",
+        "%19 = and i32 %15, 15",
+        "%29 = add i32 %26, %27"
+      ],
+      "tsl9_fill_words_8538": [
+        "%10 = inttoptr i32 %8 to ptr",
+        "store volatile i32 %5, ptr %10, align 4, !tbaa !18",
+        "%20 = add i32 %18, 4",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %15, ptr %21, align 4, !tbaa !18",
+        "%31 = add i32 %29, 8",
+        "%32 = inttoptr i32 %31 to ptr",
+        "store volatile i32 %26, ptr %32, align 4, !tbaa !18",
+        "%42 = add i32 %40, 12",
+        "%43 = inttoptr i32 %42 to ptr",
+        "store volatile i32 %37, ptr %43, align 4, !tbaa !18",
+        "%53 = add i32 %51, 16"
+      ],
+      "tsl9_fill_tail_guard_8546": [],
+      "tsl9_fill_word_return_8548": [],
+      "tsl9_fill_tail_dispatch_854a": [
+        "%9 = sub i32 %3, %6",
+        "%19 = shl i32 %16, 2",
+        "%38 = add i32 %35, %30"
+      ],
+      "tsl9_fill_bytes_855a": [
+        "%10 = trunc i32 %5 to i8",
+        "%11 = add i32 %8, 14",
+        "%12 = inttoptr i32 %11 to ptr",
+        "store volatile i8 %10, ptr %12, align 1, !tbaa !39",
+        "%22 = trunc i32 %17 to i8",
+        "%23 = add i32 %20, 13",
+        "%24 = inttoptr i32 %23 to ptr",
+        "store volatile i8 %22, ptr %24, align 1, !tbaa !39",
+        "%34 = trunc i32 %29 to i8",
+        "%35 = add i32 %32, 12",
+        "%36 = inttoptr i32 %35 to ptr",
+        "store volatile i8 %34, ptr %36, align 1, !tbaa !39",
+        "%46 = trunc i32 %41 to i8",
+        "%47 = add i32 %44, 11",
+        "%48 = inttoptr i32 %47 to ptr",
+        "store volatile i8 %46, ptr %48, align 1, !tbaa !39",
+        "%58 = trunc i32 %53 to i8",
+        "%59 = add i32 %56, 10",
+        "%60 = inttoptr i32 %59 to ptr",
+        "store volatile i8 %58, ptr %60, align 1, !tbaa !39",
+        "%70 = trunc i32 %65 to i8",
+        "%71 = add i32 %68, 9",
+        "%72 = inttoptr i32 %71 to ptr",
+        "store volatile i8 %70, ptr %72, align 1, !tbaa !39",
+        "%82 = trunc i32 %77 to i8",
+        "%83 = add i32 %80, 8",
+        "%84 = inttoptr i32 %83 to ptr",
+        "store volatile i8 %82, ptr %84, align 1, !tbaa !39",
+        "%94 = trunc i32 %89 to i8",
+        "%95 = add i32 %92, 7",
+        "%96 = inttoptr i32 %95 to ptr",
+        "store volatile i8 %94, ptr %96, align 1, !tbaa !39",
+        "%106 = trunc i32 %101 to i8",
+        "%107 = add i32 %104, 6",
+        "%108 = inttoptr i32 %107 to ptr",
+        "store volatile i8 %106, ptr %108, align 1, !tbaa !39",
+        "%118 = trunc i32 %113 to i8",
+        "%119 = add i32 %116, 5",
+        "%120 = inttoptr i32 %119 to ptr",
+        "store volatile i8 %118, ptr %120, align 1, !tbaa !39",
+        "%130 = trunc i32 %125 to i8",
+        "%131 = add i32 %128, 4",
+        "%132 = inttoptr i32 %131 to ptr",
+        "store volatile i8 %130, ptr %132, align 1, !tbaa !39",
+        "%142 = trunc i32 %137 to i8",
+        "%143 = add i32 %140, 3",
+        "%144 = inttoptr i32 %143 to ptr",
+        "store volatile i8 %142, ptr %144, align 1, !tbaa !39",
+        "%154 = trunc i32 %149 to i8",
+        "%155 = add i32 %152, 2",
+        "%156 = inttoptr i32 %155 to ptr",
+        "store volatile i8 %154, ptr %156, align 1, !tbaa !39",
+        "%166 = trunc i32 %161 to i8",
+        "%167 = add i32 %164, 1",
+        "%168 = inttoptr i32 %167 to ptr",
+        "store volatile i8 %166, ptr %168, align 1, !tbaa !39",
+        "%178 = trunc i32 %173 to i8",
+        "%179 = inttoptr i32 %176 to ptr",
+        "store volatile i8 %178, ptr %179, align 1, !tbaa !39"
+      ],
+      "tsl9_fill_byte_return_8596": [],
+      "tsl9_fill_pattern_8598": [
+        "%10 = and i32 %5, 255",
+        "%19 = shl i32 %15, 8",
+        "%29 = or i32 %24, %26",
+        "%38 = shl i32 %34, 16",
+        "%48 = or i32 %43, %45"
+      ],
+      "tsl9_fill_align_dispatch_85aa": [
+        "%9 = shl i32 %8, 2",
+        "%28 = add i32 %25, %20"
+      ],
+      "tsl9_fill_align_resume_85ba": [
+        "%19 = add i32 %18, -16",
+        "%29 = sub i32 %27, %28",
+        "%39 = add i32 %35, %38"
+      ]
+    },
+    "cpp": {
+      "tsl9_tagged_external_8520": [],
+      "tsl9_fill_alignment_8528": [
+        "%9 = and i32 %8, 15"
+      ],
+      "tsl9_fill_pattern_guard_852e": [],
+      "tsl9_fill_word_setup_8530": [
+        "%9 = and i32 %6, -16",
+        "%19 = and i32 %15, 15",
+        "%29 = add i32 %26, %27"
+      ],
+      "tsl9_fill_words_8538": [
+        "%10 = inttoptr i32 %8 to ptr",
+        "store volatile i32 %5, ptr %10, align 4, !tbaa !18",
+        "%20 = add i32 %18, 4",
+        "%21 = inttoptr i32 %20 to ptr",
+        "store volatile i32 %15, ptr %21, align 4, !tbaa !18",
+        "%31 = add i32 %29, 8",
+        "%32 = inttoptr i32 %31 to ptr",
+        "store volatile i32 %26, ptr %32, align 4, !tbaa !18",
+        "%42 = add i32 %40, 12",
+        "%43 = inttoptr i32 %42 to ptr",
+        "store volatile i32 %37, ptr %43, align 4, !tbaa !18",
+        "%53 = add i32 %51, 16"
+      ],
+      "tsl9_fill_tail_guard_8546": [],
+      "tsl9_fill_word_return_8548": [],
+      "tsl9_fill_tail_dispatch_854a": [
+        "%9 = sub i32 %3, %6",
+        "%19 = shl i32 %16, 2",
+        "%38 = add i32 %35, %30"
+      ],
+      "tsl9_fill_bytes_855a": [
+        "%10 = trunc i32 %5 to i8",
+        "%11 = add i32 %8, 14",
+        "%12 = inttoptr i32 %11 to ptr",
+        "store volatile i8 %10, ptr %12, align 1, !tbaa !39",
+        "%22 = trunc i32 %17 to i8",
+        "%23 = add i32 %20, 13",
+        "%24 = inttoptr i32 %23 to ptr",
+        "store volatile i8 %22, ptr %24, align 1, !tbaa !39",
+        "%34 = trunc i32 %29 to i8",
+        "%35 = add i32 %32, 12",
+        "%36 = inttoptr i32 %35 to ptr",
+        "store volatile i8 %34, ptr %36, align 1, !tbaa !39",
+        "%46 = trunc i32 %41 to i8",
+        "%47 = add i32 %44, 11",
+        "%48 = inttoptr i32 %47 to ptr",
+        "store volatile i8 %46, ptr %48, align 1, !tbaa !39",
+        "%58 = trunc i32 %53 to i8",
+        "%59 = add i32 %56, 10",
+        "%60 = inttoptr i32 %59 to ptr",
+        "store volatile i8 %58, ptr %60, align 1, !tbaa !39",
+        "%70 = trunc i32 %65 to i8",
+        "%71 = add i32 %68, 9",
+        "%72 = inttoptr i32 %71 to ptr",
+        "store volatile i8 %70, ptr %72, align 1, !tbaa !39",
+        "%82 = trunc i32 %77 to i8",
+        "%83 = add i32 %80, 8",
+        "%84 = inttoptr i32 %83 to ptr",
+        "store volatile i8 %82, ptr %84, align 1, !tbaa !39",
+        "%94 = trunc i32 %89 to i8",
+        "%95 = add i32 %92, 7",
+        "%96 = inttoptr i32 %95 to ptr",
+        "store volatile i8 %94, ptr %96, align 1, !tbaa !39",
+        "%106 = trunc i32 %101 to i8",
+        "%107 = add i32 %104, 6",
+        "%108 = inttoptr i32 %107 to ptr",
+        "store volatile i8 %106, ptr %108, align 1, !tbaa !39",
+        "%118 = trunc i32 %113 to i8",
+        "%119 = add i32 %116, 5",
+        "%120 = inttoptr i32 %119 to ptr",
+        "store volatile i8 %118, ptr %120, align 1, !tbaa !39",
+        "%130 = trunc i32 %125 to i8",
+        "%131 = add i32 %128, 4",
+        "%132 = inttoptr i32 %131 to ptr",
+        "store volatile i8 %130, ptr %132, align 1, !tbaa !39",
+        "%142 = trunc i32 %137 to i8",
+        "%143 = add i32 %140, 3",
+        "%144 = inttoptr i32 %143 to ptr",
+        "store volatile i8 %142, ptr %144, align 1, !tbaa !39",
+        "%154 = trunc i32 %149 to i8",
+        "%155 = add i32 %152, 2",
+        "%156 = inttoptr i32 %155 to ptr",
+        "store volatile i8 %154, ptr %156, align 1, !tbaa !39",
+        "%166 = trunc i32 %161 to i8",
+        "%167 = add i32 %164, 1",
+        "%168 = inttoptr i32 %167 to ptr",
+        "store volatile i8 %166, ptr %168, align 1, !tbaa !39",
+        "%178 = trunc i32 %173 to i8",
+        "%179 = inttoptr i32 %176 to ptr",
+        "store volatile i8 %178, ptr %179, align 1, !tbaa !39"
+      ],
+      "tsl9_fill_byte_return_8596": [],
+      "tsl9_fill_pattern_8598": [
+        "%10 = and i32 %5, 255",
+        "%19 = shl i32 %15, 8",
+        "%29 = or i32 %24, %26",
+        "%38 = shl i32 %34, 16",
+        "%48 = or i32 %43, %45"
+      ],
+      "tsl9_fill_align_dispatch_85aa": [
+        "%9 = shl i32 %8, 2",
+        "%28 = add i32 %25, %20"
+      ],
+      "tsl9_fill_align_resume_85ba": [
+        "%19 = add i32 %18, -16",
+        "%29 = sub i32 %27, %28",
+        "%39 = add i32 %35, %38"
+      ]
+    }
+  },
+  "IR_sha256": {
+    "c": "dc867116bf3e13152c211b15be7ae6cc60b8d582dc451a5ce84f5cb8bb073a67",
+    "cpp": "5b7b26e196fe1223ef3756e86d2d85ac314dcf86f8e802c452a6e4cd2053fbf0"
+  },
+  "IR_ports": [
+    ".Lfill_short:\\0Abgeu t1, a2, .Lfill_short\\0A.reloc .-4, R_RISCV_BRANCH, tsl9_fill_tail_dispatch_854a\\0A",
+    ".Lfill_unaligned:\\0Ac.bnez a5, .Lfill_unaligned\\0A.reloc .-2, R_RISCV_RVC_BRANCH, tsl9_fill_align_dispatch_85aa\\0A",
+    ".Lfill_nonzero:\\0Ac.bnez a1, .Lfill_nonzero\\0A.reloc .-2, R_RISCV_RVC_BRANCH, tsl9_fill_pattern_8598\\0A",
+    ".Lfill_words:\\0Abltu a4, a3, .Lfill_words\\0A.reloc .-4, R_RISCV_BRANCH, tsl9_fill_words_8538\\0A",
+    ".Lfill_remainder:\\0Ac.bnez a2, .Lfill_remainder\\0A.reloc .-2, R_RISCV_RVC_BRANCH, tsl9_fill_tail_dispatch_854a\\0A",
+    "ret\\0A",
+    "auipc t0, 0\\0A",
+    "jalr zero, 10(a3)\\0A",
+    ".Lfill_pattern_done:\\0Ac.j .Lfill_pattern_done\\0A.reloc .-2, R_RISCV_RVC_JUMP, tsl9_fill_word_setup_8530\\0A",
+    "mv t0, ra\\0Ajalr ra, -88(a3)\\0A",
+    "mv ra, t0\\0A",
+    ".Lfill_aligned_short:\\0Abgeu t1, a2, .Lfill_aligned_short\\0A.reloc .-4, R_RISCV_BRANCH, tsl9_fill_tail_dispatch_854a\\0A",
+    ".Lfill_align_done:\\0Ac.j .Lfill_align_done\\0A.reloc .-2, R_RISCV_RVC_JUMP, tsl9_fill_pattern_guard_852e\\0A"
+  ],
+  "scalar_mutations": {
+    "c": [
+      [
+        "and i32 %8, 15",
+        "and i32 %8, 7"
+      ],
+      [
+        "and i32 %6, -16",
+        "and i32 %6, -8"
+      ],
+      [
+        "sub i32 %3, %6",
+        "sub i32 %3, %7"
+      ],
+      [
+        "store volatile i32",
+        "store i32"
+      ],
+      [
+        "store volatile i8",
+        "store i8"
+      ]
+    ],
+    "cpp": [
+      [
+        "and i32 %8, 15",
+        "and i32 %8, 7"
+      ],
+      [
+        "and i32 %6, -16",
+        "and i32 %6, -8"
+      ],
+      [
+        "sub i32 %3, %6",
+        "sub i32 %3, %7"
+      ],
+      [
+        "store volatile i32",
+        "store i32"
+      ],
+      [
+        "store volatile i8",
+        "store i8"
+      ]
+    ]
+  }
+}

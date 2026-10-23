@@ -1,0 +1,154 @@
+{
+  "schema": "TSL9-fill-and-tagged-chain-milestone-v1",
+  "parent_HEAD": "ee756351fad58f5e22960861bcd1c68e157c6a7a",
+  "original": {
+    "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "window": "original-window.json",
+    "candidate_start": "0x8520",
+    "candidate_end_exclusive": "0x85C8",
+    "bytes": 168,
+    "instructions": 55,
+    "span_sha256": "50232f532bf996f5d738050c60480fab6069d6ef4cb842cfc582170e351630c6",
+    "global_function_extent_confirmed": false
+  },
+  "source": {
+    "selected": "experiments/tsl9-fill-provider/src/fill.v2.c",
+    "curated": "src/native/receive/fill_provider.c",
+    "sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0",
+    "kind": "C arithmetic and volatile stores with architectural PC/register/control ports",
+    "ordinary_independent_C_ABI_claimed": false,
+    "libc_substitution": false
+  },
+  "native": {
+    "bytes": 168,
+    "instructions": 55,
+    "private_regions": 13,
+    "pending_RELA": 8,
+    "strong_UND": 0,
+    "global_ABS": 0,
+    "all_nonrelocation_bits_equal_original": true,
+    "ELF_sha256": "b81d4fb9f5cb243048791a150d9d85af7466c79b0102a4c6f536c24ab13e433f",
+    "negative_controls_per_language": 94,
+    "negative_controls_full_hash_disabled": true,
+    "C_receipt": "evidence/native-c.json",
+    "CPP_receipt": "evidence/native-cpp.json",
+    "actual_read_only_replay_passed": true
+  },
+  "native_chain": {
+    "sources": 5,
+    "code_bytes": 740,
+    "instructions": 260,
+    "strong_FUNC": 58,
+    "strong_UND": 0,
+    "pending_RELA": 0,
+    "global_ABS": 0,
+    "spans": [
+      {
+        "start": "0x8520",
+        "bytes": 168
+      },
+      {
+        "start": "0x16896",
+        "bytes": 326
+      },
+      {
+        "start": "0x16B7C",
+        "bytes": 246
+      }
+    ],
+    "whole_original_code_projection_equal": true,
+    "executable_LOAD_bytes_including_unproved_gaps": 59218,
+    "whole_image_proved": false,
+    "ELF_sha256": "873217aa2f4c7ef914050b346930d9699c49fc9c8e258e30a61c19d91fdd728c",
+    "commands_per_language": 12,
+    "inputs": 145,
+    "artifacts_per_language": 29,
+    "negative_controls_per_language": 264,
+    "full_LLVM_address_byte_rows": 260,
+    "direct_JALs": 15,
+    "all_direct_targets_are_genuine_providers": true,
+    "computed_control_cases": 31,
+    "unique_computed_destinations": 16,
+    "resident_pointer_slot": "0x4004C",
+    "resident_target_known": false,
+    "resident_ABI_proved": false,
+    "C_receipt": "evidence/chain-c.json",
+    "CPP_receipt": "evidence/chain-cpp.json",
+    "actual_root_and_independent_read_only_replay_passed": true,
+    "strict_firmware_exit_code": 1
+  },
+  "findings": {
+    "fill": "Short cases write bytes descending; aligned bulk writes words0/4/8/12 then increments16 and uses unsigned pointer comparison; prefix alignment uses local computed JALR and saves caller RA inT0.",
+    "computed_tail": "n0..15 ->0x8596-4n; zero goes directlyRET",
+    "computed_prefix": "m1..15 ->0x8556+4m;16-m descending prefix bytes; temporary RA0x85BA",
+    "registers": "A0/SP/S/GP untouched; RA restored viaT0; A1/A2/A3/A4/A5/T0 residues are path-dependent",
+    "memset_like_inference": "Only final-memory projection on valid ordinary nonwrapping memory; no ordering/fault/IRQ/MMIO/ABI equivalence or libc replacement",
+    "specific_tagged_call": {
+      "arguments": "A0=SP+18,A1=0,A2=11,A5=80,RA0x16BD2",
+      "writes": "SB offsets SP+28 down toSP+18",
+      "return": "A0 unchanged,A1=0,A2=11,A3=0x8560,A4=SP+18,A5=80,T0=0x8550,T1=15,SP/S0-S3 unchanged",
+      "boundary": "Next resident4004C call remains opaque; no extension of non-interference across it"
+    }
+  },
+  "history": {
+    "unselected": "experiments/tsl9-fill-provider/src/fill.v1.c",
+    "probe_v1": "168B but LLVM swapped RA restoration and A5 adjustment; four nonrelocation-byte differences",
+    "selected_v2": "One LIVE constraint after RA restore; flags unchanged; all nonrelocation bits equal",
+    "original_measurements_retained_local": true
+  },
+  "curated": {
+    "C_and_headers": 63,
+    "native_units": 37,
+    "C_CPP_comparisons": 74,
+    "objects": 148,
+    "inputs": 128,
+    "artifacts": 445,
+    "old_72_profiles_unchanged": true,
+    "old_72_results_unchanged": true,
+    "old_433_artifact_hashes_unchanged": true,
+    "actual_root_and_independent_build_replay_passed": true,
+    "receipt_local": "build/curated-source/fill-provider-20261023-v1/verification.json",
+    "receipt_sha256": "74ac2ab6cb85064db6a6ad52c5e28c1a3cb27cd850b846f6e51f18567a0eb983",
+    "public_path_derivative": "evidence/curated-source.json"
+  },
+  "privacy": {
+    "provenance": "publication-provenance.json",
+    "portable_originals": 4,
+    "path_only_derivatives": 1,
+    "originals_preserved_local": true,
+    "inverse_JSON_equality_verified": true,
+    "Git_history_rewritten": false,
+    "backup": {
+      "path": "build/fill-and-tagged-originals-20261023.zip",
+      "files": 126,
+      "bytes": 244952,
+      "sha256": "7f71cb3f06ec2456f5d553935ca8062a157c50352fb826395af1ba6252685c48",
+      "all_members_exact": true
+    }
+  },
+  "feature_opportunity": {
+    "name": "Explicit SPI timeout and raw-status diagnostics",
+    "status": "Previously identified conditional research lead remains; no behavior modification",
+    "new_evidence": "The count11 fill itself only initializes stack bytes; all direct helper code is now bound, narrowing the unknown boundary to resident[4004C] and physical effects",
+    "implemented": false
+  },
+  "next": {
+    "kind": "data-pointer-slot",
+    "slot": "0x4004C",
+    "reason": "Fresh indirect target loaded by tagged dispatcher remains unidentified; trace provenance and callback/copy contract offline across available artifacts",
+    "no_assumed_target_VA": true,
+    "no_assumed_memcpy_identity": true
+  },
+  "prior_1162B_component_unchanged": true,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "HOST_models_executed": false,
+  "hardware_tested": false,
+  "physical_placement_proved": false,
+  "IRQ_interleavings_proved": false,
+  "network_vendor_access": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_status": "active"
+}

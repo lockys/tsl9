@@ -494,6 +494,13 @@
       "replacements": [],
       "origin_sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2",
       "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+    },
+    {
+      "origin": "experiments/tsl9-fill-provider/src/fill.v2.c",
+      "destination": "src/native/receive/fill_provider.c",
+      "replacements": [],
+      "origin_sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0",
+      "sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0"
     }
   ],
   "native_units": [
@@ -872,6 +879,19 @@
       ],
       "scope": "182B/68i across20 private architectural regions:96B168DE and86B1693E,13pending RELAs/one genuine16896 UND. Full-width fresh SP-slot arguments,then-live SP/S0/S1,32B frames,pre-test zero-length behavior,post-RET loop,word MMIO stores and RA/MMIO/restore ordering retained. Independent native133 negative controls per language. The existing72B SPI leaf has separate proof; nominal full254B linkage and any physical chip/IRQ/ABI/OTA result are separate obligations.",
       "origin_unit_sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+    },
+    {
+      "name": "fill-provider",
+      "profile": "fill-t0-t1-a0-a5",
+      "origin_unit": "experiments/tsl9-fill-provider/src/fill.v2.c",
+      "curated_unit": "src/native/receive/fill_provider.c",
+      "evidence": "experiments/tsl9-fill-provider/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-fill-provider/build/verified-v1/c/verification.json",
+        "experiments/tsl9-fill-provider/build/verified-v1/cpp/verification.json"
+      ],
+      "scope": "168B/55i in13 private architectural regions,8pending RELAs/no UND. C volatile word/descending-byte stores and uint32 arithmetic preserve original unsigned pointer-loop/wrap behavior; explicit AUIPC/computed JALR/local RA-T0 save/restore ports retain16 short-tail and15 alignment targets only under original-PC linkage. Independent native94 negative controls per language. A0 unchanged; no SP/S/GP writes. Final-memory fill resemblance assumes valid ordinary nonwrapping memory; no libc substitution, ordinary independent ABI, IRQ/fault/MMIO/whole-image/OTA proof.",
+      "origin_unit_sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0"
     }
   ],
   "legacy_groups": [

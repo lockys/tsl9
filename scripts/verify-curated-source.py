@@ -54,7 +54,7 @@ def flags(unit, mode):
     clock = kind in ('clock-query', 'clock-fields')
     irq = kind in ('irq-bank', 'delay-bank')
     spi = kind == 'spi-a0-a3-a4-a5'
-    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'irq-provider-a0-a1-a2-a4-a5', 'queue-consumer-a0-a5', 'queue-small-a0-a5', 'queue-filter-a0-a5', 'transport-a0-a6', 'record-a0-a5', 'record-predicate-a0-a4-a5', 'peripheral-a0-a6', 'tagged-a0-a5')
+    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'irq-provider-a0-a1-a2-a4-a5', 'queue-consumer-a0-a5', 'queue-small-a0-a5', 'queue-filter-a0-a5', 'transport-a0-a6', 'record-a0-a5', 'record-predicate-a0-a4-a5', 'peripheral-a0-a6', 'tagged-a0-a5', 'fill-t0-t1-a0-a5')
     ring = kind == 'ring-bank'
     result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi or packet or ring else 'rv32imac_zicsr_zifencei'),
               '-mabi=ilp32', '-Os' if clock else '-Oz']
@@ -92,6 +92,8 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 15}]
     elif kind == 'irq-provider-a0-a1-a2-a4-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 14, 15}]
+    elif kind == 'fill-t0-t1-a0-a5':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {5, 6, 10, 11, 12, 13, 14, 15}]
     elif kind == 'ring-bank':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {6, 10, 11, 12, 13, 14, 15, 16, 17, 28}]
     elif kind == 'adc-bank':
@@ -322,6 +324,46 @@ def audit(base, record, manifest):
                         dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
                     and pair[1]['allocated_bytes'] == 24 and not pair[1]['UND'] and not pair[1]['relocations'],
                     'Two actual C leaves6/18B with fully assembler-resolved local branch; source-copy proof does not prove original placement, consumer composition or firmware readiness')
+            if unit['name'] == 'fill-provider':
+                regions = [
+                    ('tsl9_tagged_external_8520', 8, 'd9f89a922aea09fe03b6ef414cf475dad31cb02ef4a72a4a91ec0feff75011d6'),
+                    ('tsl9_fill_alignment_8528', 6, '8e3ae20d482e43437eb70e1ca1aca3bdbdf102f029c5acfe4f9f170069c539e8'),
+                    ('tsl9_fill_pattern_guard_852e', 2, 'c15b621facedd8f05139b5355ffee0d5cebff1f44f2e9fa4b49283c729fbbeab'),
+                    ('tsl9_fill_word_setup_8530', 8, 'e3cd487341845da0212d508c6f42041f4d5e338fecf820817dd5540c8c571c92'),
+                    ('tsl9_fill_words_8538', 14, '9f23570f4255303cab57f39cb8281ba568d889f53a2d78c559b995abbc7d9b2a'),
+                    ('tsl9_fill_tail_guard_8546', 2, '374c77acc24b8d85cfb3491c96a0c74f5ffe6797e92d1bf22e53940b46ca256f'),
+                    ('tsl9_fill_word_return_8548', 2, '7529d4e6ceb037815e2664a7277abb404b02f0bf9ddbf5c11658f52448221cba'),
+                    ('tsl9_fill_tail_dispatch_854a', 16, 'b4b8ad86bb604e2b6dee42f510bad6f2c60d0baf2e6b07c43e49c0f5ef90de5b'),
+                    ('tsl9_fill_bytes_855a', 60, 'da4bf0f3f9d9960012485f393dec598287cee27232d7ca70ee1d746e7498c3cb'),
+                    ('tsl9_fill_byte_return_8596', 2, '7529d4e6ceb037815e2664a7277abb404b02f0bf9ddbf5c11658f52448221cba'),
+                    ('tsl9_fill_pattern_8598', 18, 'b91b239c0d51984be3512a7072673ced6edb5213fcf4d88d46f91057f3c06575'),
+                    ('tsl9_fill_align_dispatch_85aa', 16, '62c28a8583f4be716d661b5d4a1146291c618d02a4ebae1bf790cbbe5485ca57'),
+                    ('tsl9_fill_align_resume_85ba', 14, '20761d68204419c082008cb1e62473ee1000e11f0ae707783fe6d4f451b6b5d2'),
+                ]
+                edges = [
+                    ('tsl9_tagged_external_8520', 4, 16, 'tsl9_fill_tail_dispatch_854a'),
+                    ('tsl9_fill_alignment_8528', 4, 44, 'tsl9_fill_align_dispatch_85aa'),
+                    ('tsl9_fill_pattern_guard_852e', 0, 44, 'tsl9_fill_pattern_8598'),
+                    ('tsl9_fill_words_8538', 10, 16, 'tsl9_fill_words_8538'),
+                    ('tsl9_fill_tail_guard_8546', 0, 44, 'tsl9_fill_tail_dispatch_854a'),
+                    ('tsl9_fill_pattern_8598', 16, 45, 'tsl9_fill_word_setup_8530'),
+                    ('tsl9_fill_align_resume_85ba', 8, 16, 'tsl9_fill_tail_dispatch_854a'),
+                    ('tsl9_fill_align_resume_85ba', 12, 45, 'tsl9_fill_pattern_guard_852e'),
+                ]
+                need(pair[1]['functions'] == sorted([
+                    dict(name=n,binding=1,bytes=z,code_sha256=h) for n,z,h in regions],key=lambda x:x['name'])
+                    and pair[1]['allocated_sections'] == [
+                        dict(name='.text.'+n,bytes=z,flags=6,type=1,sha256=h) for n,z,h in regions]
+                    and pair[1]['allocated_bytes'] == 168
+                    and not pair[1]['UND'] and not pair[1]['global_ABS']
+                    and pair[1]['relocations'] == [
+                        dict(owner='.text.'+n,offset=o,type=k,addend=0,symbol=t) for n,o,k,t in edges],
+                    'Thirteen private168B regions/eight pending controls/no UND; computed AUIPC/JALR table/RA residues require original-PC linkage and are not libc or hardware proof')
+                for variant in ('origin','curated'):
+                    symbols = reader(base/unit['name']/mode/variant/'unit.o').symbols
+                    globals_ = [s for s in symbols if s['info']>>4]
+                    need(all(s['info']>>4 == 1 and s['other'] == 0 and s['index'] not in (0,0xfff1) for s in globals_),
+                        'Strong visible genuine fill definitions without unresolved or absolute providers')
             if unit['name'] == 'spi-write-providers':
                 regions = [
                     ('tsl9_tagged_external_168de', 8, 'a1d0ec6423335f195d383894deb05dce5a077d9c260f5354925d5630a0874e4a'),
