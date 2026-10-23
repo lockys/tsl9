@@ -1,0 +1,274 @@
+{
+  "schema": "TSL9-channel-filter-independent-review-v2",
+  "reviewer": "independent can_functions worker",
+  "scope": "Offline compiled-artifact/static-data review only; no target, HOST model or ISA execution",
+  "nominal_bytes": 1242,
+  "nominal_instructions": 445,
+  "FUNC": 94,
+  "native_RELA": 56,
+  "all_original_code_equal_both_languages": true,
+  "parent127_FUNC_preserved": true,
+  "full_graph": {
+    "bytes": 3166,
+    "instructions": 1104,
+    "FUNC": 191,
+    "RELA": 144,
+    "UND": [
+      "14D2E"
+    ],
+    "indirects": 19,
+    "resident_sites": 17,
+    "local_computed_controls": 2
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "proof-scope",
+      "v1": "Unpinned DEST import and undercounted resident sites",
+      "v2": "Decoder inlined in versioned checker;19 actual sites enumerated;17resident count includes12CA4/12D62"
+    },
+    {
+      "id": "F2",
+      "severity": "structural-gate",
+      "v1_probe_accepted": true,
+      "actual_baseline_corrupt": false,
+      "probe": "Remove native RELA and restore original fixed-displacement branch",
+      "v2_independent_cases_rejected": 2,
+      "rejection": "Complete exact symbolic-control inventory"
+    },
+    {
+      "id": "F3",
+      "severity": "structural-gate",
+      "v1_probe_accepted": true,
+      "actual_baseline_corrupt": false,
+      "probe": "Append identical section bytes, point SHDR at copy, corrupt original LOAD bytes without changing PHDR",
+      "v2_independent_cases_rejected": 2,
+      "rejection": "Section bytes are actual LOAD bytes"
+    },
+    {
+      "id": "F4",
+      "severity": "scope",
+      "v2": "IR names and no-opcode-embedding checks are structural, not universal semantic proof"
+    }
+  ],
+  "fixed_and_frozen": {
+    "v1_retained": true,
+    "v2_checker_sha256": "057450577dd72770384ac11acb83014f3557f9b5e30f8b6112eef091ae45aeb6",
+    "v2_negative_controls_per_language": 5903,
+    "independent_full_negative_matrix_rerun": false,
+    "root_full_negative_matrix_completed_both_languages": true,
+    "input_bytes_unchanged": true
+  },
+  "indirect_inventory": [
+    {
+      "owner": "tsl9_channel_clock_frame_81b6",
+      "offset": 4,
+      "original_PC": 33210,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_filter_pack_8328",
+      "offset": 46,
+      "original_PC": 33622,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_fill_tail_dispatch_854a",
+      "offset": 12,
+      "original_PC": 34134,
+      "code_hex": "6780a600",
+      "kind": "tail",
+      "register": 13,
+      "classification": "internal-computed-control"
+    },
+    {
+      "owner": "tsl9_fill_align_dispatch_85aa",
+      "offset": 12,
+      "original_PC": 34230,
+      "code_hex": "e78086fa",
+      "kind": "call",
+      "register": 13,
+      "classification": "internal-computed-control"
+    },
+    {
+      "owner": "tsl9_transport_first_8a7a",
+      "offset": 20,
+      "original_PC": 35470,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_transport_second_8a96",
+      "offset": 30,
+      "original_PC": 35508,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_transport_finish_8b14",
+      "offset": 60,
+      "original_PC": 35664,
+      "code_hex": "0283",
+      "kind": "tail",
+      "register": 6,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_program_free_9424",
+      "offset": 6,
+      "original_PC": 37930,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_program_allocate_tail_943e",
+      "offset": 20,
+      "original_PC": 37970,
+      "code_hex": "0283",
+      "kind": "tail",
+      "register": 6,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_filter_input_fill_1290a",
+      "offset": 20,
+      "original_PC": 76062,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_filter_input_copy_12930",
+      "offset": 10,
+      "original_PC": 76090,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_dispatch_copy_12a2e",
+      "offset": 32,
+      "original_PC": 76366,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_queue_scan_12c86",
+      "offset": 30,
+      "original_PC": 76964,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_queue_response_12d4c",
+      "offset": 22,
+      "original_PC": 77154,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_channel_timer_nonzero_16876",
+      "offset": 16,
+      "original_PC": 92294,
+      "code_hex": "0283",
+      "kind": "tail",
+      "register": 6,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_channel_timer_zero_16888",
+      "offset": 12,
+      "original_PC": 92308,
+      "code_hex": "0283",
+      "kind": "tail",
+      "register": 6,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_tagged_payload_16bd2",
+      "offset": 38,
+      "original_PC": 93176,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_setup_clear_16ce6",
+      "offset": 18,
+      "original_PC": 93432,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_setup_copy_16d06",
+      "offset": 10,
+      "original_PC": 93456,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    }
+  ],
+  "dynamic_pointer_slots": [
+    {
+      "PC": "0x8356",
+      "formula": "then-live S9+76"
+    },
+    {
+      "PC": "0x12CA4",
+      "formula": "then-live S3+76"
+    },
+    {
+      "PC": "0x12D62",
+      "formula": "then-live S3+76"
+    }
+  ],
+  "feature_dispatch": {
+    "start": "0x14D2E",
+    "end": "0x154A6",
+    "bytes": 1912,
+    "instructions": 666,
+    "call_sites": 21,
+    "tail_sites": 59,
+    "distinct_external_direct_targets": 71,
+    "relative_jump_tables": 2,
+    "independent_readonly_replay_passed": true,
+    "limits": "Syntactic CFG overapproximation assuming ordinary call return; not runtime reachability or completed C reconstruction"
+  },
+  "feature_candidate": "Strictly offline filter request/provenance inspector; not implemented; configuration helpers are not read-only hardware diagnostics",
+  "unproved": [
+    "Installed ROM identity and ABI/SP/S-register/memory preservation",
+    "Physical MCU/controller/transceiver/board identity",
+    "Actual memory ownership, alignment, interrupts, startup and clock",
+    "Whole firmware, flash placement and OTA compatibility"
+  ],
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_ready": false
+}

@@ -1,0 +1,498 @@
+{
+  "inverse_JSON_equality_verified": true,
+  "original_bytes": 15515,
+  "original_local_receipt": "experiments/tsl9-spi-filter-setup/build/trial-v2/trial.json",
+  "original_replay_claimed": false,
+  "original_sha256": "389648e200b7f518418b1a1129aba768f68535e2bfa1a2f5ec39ef6a126ee29b",
+  "originals_preserved_local": true,
+  "path_only_redaction": true,
+  "receipt": {
+    "HOST_models_executed": false,
+    "ISA_emulated": false,
+    "firmware_ready": false,
+    "inputs": {
+      "${PUBLIC_CLANG_RESOURCE_WINDOWS}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "${PUBLIC_LLVM_BIN_WINDOWS}\\clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+      "${PUBLIC_LLVM_BIN_WINDOWS}\\ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+      "${PUBLIC_LLVM_BIN_WINDOWS}\\llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+      "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-record-program\\spec.json": "36ec24f33abe8c440c557b5fc9f0da9150406dd884b866435c61dc2881564624",
+      "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\probe.py": "63cd166733c2ad293e4f91e6c57fe998b219f6a87ce7ec82c310d16ad590e001",
+      "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\src\\filter_setup.v2.c": "630d3bc15ed25a2fc800f1a29f239ae9ed1a8dd6f5e6f7ae5c4a3a0bdcd09a9b",
+      "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-transfer-leaf\\verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+      "${PUBLIC_TSL9_ROOT_WINDOWS}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "modes": {
+      "c": {
+        "FUNC": 17,
+        "RELA": 9,
+        "UND": [
+          "tsl9_channel_external_16858",
+          "tsl9_channel_external_169dc",
+          "tsl9_register_write_entry_16a30",
+          "tsl9_tagged_external_168de"
+        ],
+        "all_original_nonrelocation_bits_equal": true,
+        "artifacts": {
+          "IR.log": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "compile.log": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "native.d": {
+            "bytes": 254,
+            "sha256": "4dc6de6e36b6d6eaeff321b4ed0da105037e17d64dcd68618ce62d7a230978af"
+          },
+          "native.ll": {
+            "bytes": 30850,
+            "sha256": "ed5a43242940358c11ef15de75bf254434c9509f670c95fb21a659dea9f3118f"
+          },
+          "native.o": {
+            "bytes": 3524,
+            "sha256": "2dba5fd5152bf57149ec0dfcadaab50c125d41cf16a2b4bb8e53a22b4df476ef"
+          },
+          "read.log": {
+            "bytes": 10733,
+            "sha256": "1afa10544e3fd34a88a8b3dab41229bc4a92d91e72a0b2b3989e3294aab8bffb"
+          }
+        },
+        "bytes": 232,
+        "commands": [
+          {
+            "argv": [
+              "${PUBLIC_LLVM_BIN_WINDOWS}\\clang.exe",
+              "--target=riscv32-unknown-elf",
+              "-march=rv32imac_zicsr",
+              "-mabi=ilp32",
+              "-Oz",
+              "-mllvm",
+              "-enable-machine-outliner=never",
+              "-ffreestanding",
+              "-fno-builtin",
+              "-fno-stack-protector",
+              "-fno-unwind-tables",
+              "-fno-asynchronous-unwind-tables",
+              "-mno-relax",
+              "-ffunction-sections",
+              "-fdata-sections",
+              "-Wall",
+              "-Wextra",
+              "-Werror",
+              "-x",
+              "c",
+              "-std=c11",
+              "-ffixed-x1",
+              "-ffixed-x2",
+              "-ffixed-x3",
+              "-ffixed-x4",
+              "-ffixed-x5",
+              "-ffixed-x6",
+              "-ffixed-x7",
+              "-ffixed-x8",
+              "-ffixed-x9",
+              "-ffixed-x16",
+              "-ffixed-x17",
+              "-ffixed-x18",
+              "-ffixed-x19",
+              "-ffixed-x20",
+              "-ffixed-x21",
+              "-ffixed-x22",
+              "-ffixed-x23",
+              "-ffixed-x24",
+              "-ffixed-x25",
+              "-ffixed-x26",
+              "-ffixed-x27",
+              "-ffixed-x28",
+              "-ffixed-x29",
+              "-ffixed-x30",
+              "-ffixed-x31",
+              "-MD",
+              "-MF",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\build\\trial-v2\\c\\native.d",
+              "-MT",
+              "native.o",
+              "-c",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\src\\filter_setup.v2.c",
+              "-o",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\build\\trial-v2\\c\\native.o"
+            ],
+            "exit": 0,
+            "label": "compile"
+          },
+          {
+            "argv": [
+              "${PUBLIC_LLVM_BIN_WINDOWS}\\clang.exe",
+              "--target=riscv32-unknown-elf",
+              "-march=rv32imac_zicsr",
+              "-mabi=ilp32",
+              "-Oz",
+              "-mllvm",
+              "-enable-machine-outliner=never",
+              "-ffreestanding",
+              "-fno-builtin",
+              "-fno-stack-protector",
+              "-fno-unwind-tables",
+              "-fno-asynchronous-unwind-tables",
+              "-mno-relax",
+              "-ffunction-sections",
+              "-fdata-sections",
+              "-Wall",
+              "-Wextra",
+              "-Werror",
+              "-x",
+              "c",
+              "-std=c11",
+              "-ffixed-x1",
+              "-ffixed-x2",
+              "-ffixed-x3",
+              "-ffixed-x4",
+              "-ffixed-x5",
+              "-ffixed-x6",
+              "-ffixed-x7",
+              "-ffixed-x8",
+              "-ffixed-x9",
+              "-ffixed-x16",
+              "-ffixed-x17",
+              "-ffixed-x18",
+              "-ffixed-x19",
+              "-ffixed-x20",
+              "-ffixed-x21",
+              "-ffixed-x22",
+              "-ffixed-x23",
+              "-ffixed-x24",
+              "-ffixed-x25",
+              "-ffixed-x26",
+              "-ffixed-x27",
+              "-ffixed-x28",
+              "-ffixed-x29",
+              "-ffixed-x30",
+              "-ffixed-x31",
+              "-S",
+              "-emit-llvm",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\src\\filter_setup.v2.c",
+              "-o",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\build\\trial-v2\\c\\native.ll"
+            ],
+            "exit": 0,
+            "label": "IR"
+          },
+          {
+            "argv": [
+              "${PUBLIC_LLVM_BIN_WINDOWS}\\llvm-objdump.exe",
+              "-dr",
+              "-t",
+              "-h",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\build\\trial-v2\\c\\native.o"
+            ],
+            "exit": 0,
+            "label": "read"
+          }
+        ],
+        "controls": [
+          [
+            "0x16cce",
+            16,
+            "tsl9_setup_early_16daa"
+          ],
+          [
+            "0x16d00",
+            16,
+            "tsl9_setup_copy_16d06"
+          ],
+          [
+            "0x16d18",
+            17,
+            "tsl9_channel_external_169dc"
+          ],
+          [
+            "0x16d26",
+            17,
+            "tsl9_register_write_entry_16a30"
+          ],
+          [
+            "0x16d3a",
+            17,
+            "tsl9_register_write_entry_16a30"
+          ],
+          [
+            "0x16d7e",
+            17,
+            "tsl9_tagged_external_168de"
+          ],
+          [
+            "0x16d82",
+            16,
+            "tsl9_setup_loop_16d4c"
+          ],
+          [
+            "0x16d8a",
+            17,
+            "tsl9_channel_external_169dc"
+          ],
+          [
+            "0x16d92",
+            17,
+            "tsl9_channel_external_16858"
+          ]
+        ],
+        "instructions": 86,
+        "machine_controls_resolved": false,
+        "passed": true
+      },
+      "cpp": {
+        "FUNC": 17,
+        "RELA": 9,
+        "UND": [
+          "tsl9_channel_external_16858",
+          "tsl9_channel_external_169dc",
+          "tsl9_register_write_entry_16a30",
+          "tsl9_tagged_external_168de"
+        ],
+        "all_original_nonrelocation_bits_equal": true,
+        "artifacts": {
+          "IR.log": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "compile.log": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "native.d": {
+            "bytes": 254,
+            "sha256": "4dc6de6e36b6d6eaeff321b4ed0da105037e17d64dcd68618ce62d7a230978af"
+          },
+          "native.ll": {
+            "bytes": 31095,
+            "sha256": "6758438aabf28489b1513ee516e772793a81258b3c37d3e62a06a7ca6ef2c5e5"
+          },
+          "native.o": {
+            "bytes": 3524,
+            "sha256": "2dba5fd5152bf57149ec0dfcadaab50c125d41cf16a2b4bb8e53a22b4df476ef"
+          },
+          "read.log": {
+            "bytes": 10735,
+            "sha256": "095a68b8bff34ab784851d762850319e03731c3f03a448ae9178f19720ebd4e2"
+          }
+        },
+        "bytes": 232,
+        "commands": [
+          {
+            "argv": [
+              "${PUBLIC_LLVM_BIN_WINDOWS}\\clang.exe",
+              "--target=riscv32-unknown-elf",
+              "-march=rv32imac_zicsr",
+              "-mabi=ilp32",
+              "-Oz",
+              "-mllvm",
+              "-enable-machine-outliner=never",
+              "-ffreestanding",
+              "-fno-builtin",
+              "-fno-stack-protector",
+              "-fno-unwind-tables",
+              "-fno-asynchronous-unwind-tables",
+              "-mno-relax",
+              "-ffunction-sections",
+              "-fdata-sections",
+              "-Wall",
+              "-Wextra",
+              "-Werror",
+              "-x",
+              "c++",
+              "-std=c++17",
+              "-fno-exceptions",
+              "-ffixed-x1",
+              "-ffixed-x2",
+              "-ffixed-x3",
+              "-ffixed-x4",
+              "-ffixed-x5",
+              "-ffixed-x6",
+              "-ffixed-x7",
+              "-ffixed-x8",
+              "-ffixed-x9",
+              "-ffixed-x16",
+              "-ffixed-x17",
+              "-ffixed-x18",
+              "-ffixed-x19",
+              "-ffixed-x20",
+              "-ffixed-x21",
+              "-ffixed-x22",
+              "-ffixed-x23",
+              "-ffixed-x24",
+              "-ffixed-x25",
+              "-ffixed-x26",
+              "-ffixed-x27",
+              "-ffixed-x28",
+              "-ffixed-x29",
+              "-ffixed-x30",
+              "-ffixed-x31",
+              "-MD",
+              "-MF",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\build\\trial-v2\\cpp\\native.d",
+              "-MT",
+              "native.o",
+              "-c",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\src\\filter_setup.v2.c",
+              "-o",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\build\\trial-v2\\cpp\\native.o"
+            ],
+            "exit": 0,
+            "label": "compile"
+          },
+          {
+            "argv": [
+              "${PUBLIC_LLVM_BIN_WINDOWS}\\clang.exe",
+              "--target=riscv32-unknown-elf",
+              "-march=rv32imac_zicsr",
+              "-mabi=ilp32",
+              "-Oz",
+              "-mllvm",
+              "-enable-machine-outliner=never",
+              "-ffreestanding",
+              "-fno-builtin",
+              "-fno-stack-protector",
+              "-fno-unwind-tables",
+              "-fno-asynchronous-unwind-tables",
+              "-mno-relax",
+              "-ffunction-sections",
+              "-fdata-sections",
+              "-Wall",
+              "-Wextra",
+              "-Werror",
+              "-x",
+              "c++",
+              "-std=c++17",
+              "-fno-exceptions",
+              "-ffixed-x1",
+              "-ffixed-x2",
+              "-ffixed-x3",
+              "-ffixed-x4",
+              "-ffixed-x5",
+              "-ffixed-x6",
+              "-ffixed-x7",
+              "-ffixed-x8",
+              "-ffixed-x9",
+              "-ffixed-x16",
+              "-ffixed-x17",
+              "-ffixed-x18",
+              "-ffixed-x19",
+              "-ffixed-x20",
+              "-ffixed-x21",
+              "-ffixed-x22",
+              "-ffixed-x23",
+              "-ffixed-x24",
+              "-ffixed-x25",
+              "-ffixed-x26",
+              "-ffixed-x27",
+              "-ffixed-x28",
+              "-ffixed-x29",
+              "-ffixed-x30",
+              "-ffixed-x31",
+              "-S",
+              "-emit-llvm",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\src\\filter_setup.v2.c",
+              "-o",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\build\\trial-v2\\cpp\\native.ll"
+            ],
+            "exit": 0,
+            "label": "IR"
+          },
+          {
+            "argv": [
+              "${PUBLIC_LLVM_BIN_WINDOWS}\\llvm-objdump.exe",
+              "-dr",
+              "-t",
+              "-h",
+              "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-spi-filter-setup\\build\\trial-v2\\cpp\\native.o"
+            ],
+            "exit": 0,
+            "label": "read"
+          }
+        ],
+        "controls": [
+          [
+            "0x16cce",
+            16,
+            "tsl9_setup_early_16daa"
+          ],
+          [
+            "0x16d00",
+            16,
+            "tsl9_setup_copy_16d06"
+          ],
+          [
+            "0x16d18",
+            17,
+            "tsl9_channel_external_169dc"
+          ],
+          [
+            "0x16d26",
+            17,
+            "tsl9_register_write_entry_16a30"
+          ],
+          [
+            "0x16d3a",
+            17,
+            "tsl9_register_write_entry_16a30"
+          ],
+          [
+            "0x16d7e",
+            17,
+            "tsl9_tagged_external_168de"
+          ],
+          [
+            "0x16d82",
+            16,
+            "tsl9_setup_loop_16d4c"
+          ],
+          [
+            "0x16d8a",
+            17,
+            "tsl9_channel_external_169dc"
+          ],
+          [
+            "0x16d92",
+            17,
+            "tsl9_channel_external_16858"
+          ]
+        ],
+        "instructions": 86,
+        "machine_controls_resolved": false,
+        "passed": true
+      }
+    },
+    "schema": "TSL9-filter-setup-static-trial-v1",
+    "source": "experiments\\tsl9-spi-filter-setup\\src\\filter_setup.v2.c",
+    "target_executed": false
+  },
+  "receipt_is_original": false,
+  "schema": "TSL9-path-only-public-receipt-derivative-v1",
+  "substitutions": [
+    {
+      "meaning": "Local CLANG_RESOURCE_WINDOWS prefix",
+      "placeholder": "${PUBLIC_CLANG_RESOURCE_WINDOWS}"
+    },
+    {
+      "meaning": "Local CLANG_RESOURCE_POSIX prefix",
+      "placeholder": "${PUBLIC_CLANG_RESOURCE_POSIX}"
+    },
+    {
+      "meaning": "Local LLVM_BIN_WINDOWS prefix",
+      "placeholder": "${PUBLIC_LLVM_BIN_WINDOWS}"
+    },
+    {
+      "meaning": "Local LLVM_BIN_POSIX prefix",
+      "placeholder": "${PUBLIC_LLVM_BIN_POSIX}"
+    },
+    {
+      "meaning": "Local TSL9_ROOT_WINDOWS prefix",
+      "placeholder": "${PUBLIC_TSL9_ROOT_WINDOWS}"
+    },
+    {
+      "meaning": "Local TSL9_ROOT_POSIX prefix",
+      "placeholder": "${PUBLIC_TSL9_ROOT_POSIX}"
+    }
+  ]
+}

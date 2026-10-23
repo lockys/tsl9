@@ -1,0 +1,780 @@
+{
+  "schema": "TSL9-channel-filter-static-graph-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "reader": "experiments/tsl9-spi-transfer-leaf/verify.py",
+  "reader_sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+  "tools": {
+    "clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+  },
+  "stdint_sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+  "curation_root": "build/curated-source/channel-filter-20261023-v1",
+  "curation_receipt_sha256": "12a7228f023af8c50b9041cd9b949c0d634f14abf97b357de86781794df7e8d6",
+  "curation_checker": "scripts/verify-curated-source.py",
+  "curation_checker_sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832",
+  "parent_checker": "experiments/tsl9-record-program/verify-v2.py",
+  "parent_checker_sha256": "ad11d4d85838bd73b9541e7de51667d9df32aa8a017d1dbed181166017f46613",
+  "parent_object_sha256": "abcb6e2b50ca1ca500fcf81fc851dcd258e76cab63c882b7bb4dd343ef946798",
+  "units": [
+    {
+      "name": "channel-route",
+      "source": "src/native/receive/channel_route.c",
+      "origin": "experiments/tsl9-channel-route/src/channel_route.v1.c",
+      "profile": "queue-consumer-a0-a5",
+      "source_sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd",
+      "definitions": [
+        [
+          "tsl9_queue_external_12abe",
+          76478,
+          4
+        ],
+        [
+          "tsl9_channel_zero_12ac2",
+          76482,
+          8
+        ],
+        [
+          "tsl9_channel_nonzero_12aca",
+          76490,
+          6
+        ]
+      ],
+      "file_entry": {
+        "origin": "experiments/tsl9-channel-route/src/channel_route.v1.c",
+        "destination": "src/native/receive/channel_route.c",
+        "replacements": [],
+        "origin_sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd",
+        "sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd"
+      },
+      "unit_identity": {
+        "name": "channel-route",
+        "profile": "queue-consumer-a0-a5",
+        "origin_unit": "experiments/tsl9-channel-route/src/channel_route.v1.c",
+        "curated_unit": "src/native/receive/channel_route.c",
+        "origin_unit_sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd"
+      }
+    },
+    {
+      "name": "filter-input",
+      "source": "src/native/receive/filter_input.c",
+      "origin": "experiments/tsl9-filter-input/src/filter_input.v2.c",
+      "profile": "queue-consumer-a0-a5",
+      "source_sha256": "f8e5ae4b05abd72b2a5ec60c441effd06c5490b272c862ef435d2b2c3a37b547",
+      "definitions": [
+        [
+          "tsl9_channel_external_128fe",
+          76030,
+          6
+        ],
+        [
+          "tsl9_filter_input_frame_12904",
+          76036,
+          6
+        ],
+        [
+          "tsl9_filter_input_fill_1290a",
+          76042,
+          22
+        ],
+        [
+          "tsl9_filter_input_cap_12920",
+          76064,
+          12
+        ],
+        [
+          "tsl9_filter_input_small_1292c",
+          76076,
+          4
+        ],
+        [
+          "tsl9_filter_input_copy_12930",
+          76080,
+          12
+        ],
+        [
+          "tsl9_filter_input_loop_init_1293c",
+          76092,
+          10
+        ],
+        [
+          "tsl9_filter_input_loop_12946",
+          76102,
+          68
+        ],
+        [
+          "tsl9_filter_input_next_1298a",
+          76170,
+          4
+        ],
+        [
+          "tsl9_filter_input_finish_1298e",
+          76174,
+          16
+        ]
+      ],
+      "file_entry": {
+        "origin": "experiments/tsl9-filter-input/src/filter_input.v2.c",
+        "destination": "src/native/receive/filter_input.c",
+        "replacements": [],
+        "origin_sha256": "f8e5ae4b05abd72b2a5ec60c441effd06c5490b272c862ef435d2b2c3a37b547",
+        "sha256": "f8e5ae4b05abd72b2a5ec60c441effd06c5490b272c862ef435d2b2c3a37b547"
+      },
+      "unit_identity": {
+        "name": "filter-input",
+        "profile": "queue-consumer-a0-a5",
+        "origin_unit": "experiments/tsl9-filter-input/src/filter_input.v2.c",
+        "curated_unit": "src/native/receive/filter_input.c",
+        "origin_unit_sha256": "f8e5ae4b05abd72b2a5ec60c441effd06c5490b272c862ef435d2b2c3a37b547"
+      }
+    },
+    {
+      "name": "filter-program",
+      "source": "src/native/receive/filter_program.c",
+      "origin": "experiments/tsl9-filter-input/src/filter_leaf.v2.c",
+      "profile": "transport-a0-a6",
+      "source_sha256": "bb2735ae1cb35abb4d80989625aa696bb006d0abe7e30d0c7e87ed8de7fc4ab6",
+      "definitions": [
+        [
+          "tsl9_filter_program_18ba2",
+          101282,
+          50
+        ],
+        [
+          "tsl9_filter_scale16_18bd4",
+          101332,
+          42
+        ],
+        [
+          "tsl9_filter_fr2_18bfe",
+          101374,
+          6
+        ],
+        [
+          "tsl9_filter_mode_18c04",
+          101380,
+          14
+        ],
+        [
+          "tsl9_filter_mode_mask_18c12",
+          101394,
+          6
+        ],
+        [
+          "tsl9_filter_mode_store_18c18",
+          101400,
+          4
+        ],
+        [
+          "tsl9_filter_fifo_18c1c",
+          101404,
+          14
+        ],
+        [
+          "tsl9_filter_fifo0_18c2a",
+          101418,
+          10
+        ],
+        [
+          "tsl9_filter_activation_18c34",
+          101428,
+          8
+        ],
+        [
+          "tsl9_filter_activate_18c3c",
+          101436,
+          14
+        ],
+        [
+          "tsl9_filter_finish_18c4a",
+          101450,
+          16
+        ],
+        [
+          "tsl9_filter_scale_test_18c5a",
+          101466,
+          4
+        ],
+        [
+          "tsl9_filter_scale32_18c5e",
+          101470,
+          44
+        ],
+        [
+          "tsl9_filter_mode_list_18c8a",
+          101514,
+          8
+        ],
+        [
+          "tsl9_filter_fifo_test_18c92",
+          101522,
+          6
+        ],
+        [
+          "tsl9_filter_fifo1_18c98",
+          101528,
+          12
+        ]
+      ],
+      "file_entry": {
+        "origin": "experiments/tsl9-filter-input/src/filter_leaf.v2.c",
+        "destination": "src/native/receive/filter_program.c",
+        "replacements": [],
+        "origin_sha256": "bb2735ae1cb35abb4d80989625aa696bb006d0abe7e30d0c7e87ed8de7fc4ab6",
+        "sha256": "bb2735ae1cb35abb4d80989625aa696bb006d0abe7e30d0c7e87ed8de7fc4ab6"
+      },
+      "unit_identity": {
+        "name": "filter-program",
+        "profile": "transport-a0-a6",
+        "origin_unit": "experiments/tsl9-filter-input/src/filter_leaf.v2.c",
+        "curated_unit": "src/native/receive/filter_program.c",
+        "origin_unit_sha256": "bb2735ae1cb35abb4d80989625aa696bb006d0abe7e30d0c7e87ed8de7fc4ab6"
+      }
+    },
+    {
+      "name": "spi-filter-setup",
+      "source": "src/native/receive/spi_filter_setup.c",
+      "origin": "experiments/tsl9-spi-filter-setup/src/filter_setup.v2.c",
+      "profile": "queue-consumer-a0-a5",
+      "source_sha256": "630d3bc15ed25a2fc800f1a29f239ae9ed1a8dd6f5e6f7ae5c4a3a0bdcd09a9b",
+      "definitions": [
+        [
+          "tsl9_channel_external_16cc4",
+          93380,
+          14
+        ],
+        [
+          "tsl9_setup_resident_16cd2",
+          93394,
+          6
+        ],
+        [
+          "tsl9_setup_frame_16cd8",
+          93400,
+          14
+        ],
+        [
+          "tsl9_setup_clear_16ce6",
+          93414,
+          20
+        ],
+        [
+          "tsl9_setup_length_16cfa",
+          93434,
+          10
+        ],
+        [
+          "tsl9_setup_clamp_16d04",
+          93444,
+          2
+        ],
+        [
+          "tsl9_setup_copy_16d06",
+          93446,
+          12
+        ],
+        [
+          "tsl9_setup_mode_16d12",
+          93458,
+          10
+        ],
+        [
+          "tsl9_setup_write0_16d1c",
+          93468,
+          14
+        ],
+        [
+          "tsl9_setup_write1_16d2a",
+          93482,
+          20
+        ],
+        [
+          "tsl9_setup_loop_init_16d3e",
+          93502,
+          14
+        ],
+        [
+          "tsl9_setup_loop_16d4c",
+          93516,
+          54
+        ],
+        [
+          "tsl9_setup_test_16d82",
+          93570,
+          4
+        ],
+        [
+          "tsl9_setup_normal_16d86",
+          93574,
+          8
+        ],
+        [
+          "tsl9_setup_final_16d8e",
+          93582,
+          8
+        ],
+        [
+          "tsl9_setup_return_16d96",
+          93590,
+          20
+        ],
+        [
+          "tsl9_setup_early_16daa",
+          93610,
+          2
+        ]
+      ],
+      "file_entry": {
+        "origin": "experiments/tsl9-spi-filter-setup/src/filter_setup.v2.c",
+        "destination": "src/native/receive/spi_filter_setup.c",
+        "replacements": [],
+        "origin_sha256": "630d3bc15ed25a2fc800f1a29f239ae9ed1a8dd6f5e6f7ae5c4a3a0bdcd09a9b",
+        "sha256": "630d3bc15ed25a2fc800f1a29f239ae9ed1a8dd6f5e6f7ae5c4a3a0bdcd09a9b"
+      },
+      "unit_identity": {
+        "name": "spi-filter-setup",
+        "profile": "queue-consumer-a0-a5",
+        "origin_unit": "experiments/tsl9-spi-filter-setup/src/filter_setup.v2.c",
+        "curated_unit": "src/native/receive/spi_filter_setup.c",
+        "origin_unit_sha256": "630d3bc15ed25a2fc800f1a29f239ae9ed1a8dd6f5e6f7ae5c4a3a0bdcd09a9b"
+      }
+    },
+    {
+      "name": "spi-filter-helpers",
+      "source": "src/native/receive/spi_filter_helpers.c",
+      "origin": "experiments/tsl9-spi-filter-setup/src/helpers.v2.c",
+      "profile": "queue-consumer-a0-a5",
+      "source_sha256": "0636bd841598403d7d76fd2e7068c71bc359cc668f3bec760081d4bddff35553",
+      "definitions": [
+        [
+          "tsl9_channel_external_81b0",
+          33200,
+          6
+        ],
+        [
+          "tsl9_channel_clock_frame_81b6",
+          33206,
+          6
+        ],
+        [
+          "tsl9_channel_clock_scale_81bc",
+          33212,
+          14
+        ],
+        [
+          "tsl9_channel_external_16858",
+          92248,
+          2
+        ],
+        [
+          "tsl9_channel_timer_args_1685a",
+          92250,
+          28
+        ],
+        [
+          "tsl9_channel_timer_nonzero_16876",
+          92278,
+          18
+        ],
+        [
+          "tsl9_channel_timer_zero_16888",
+          92296,
+          14
+        ],
+        [
+          "tsl9_channel_external_169dc",
+          92636,
+          6
+        ],
+        [
+          "tsl9_channel_mode_write_169e2",
+          92642,
+          22
+        ],
+        [
+          "tsl9_channel_clock_start_169f8",
+          92664,
+          4
+        ],
+        [
+          "tsl9_channel_poll_setup_169fc",
+          92668,
+          4
+        ],
+        [
+          "tsl9_channel_poll_clock_16a00",
+          92672,
+          12
+        ],
+        [
+          "tsl9_channel_timeout_16a0c",
+          92684,
+          2
+        ],
+        [
+          "tsl9_channel_mode_return_16a0e",
+          92686,
+          14
+        ],
+        [
+          "tsl9_channel_poll_read_16a1c",
+          92700,
+          16
+        ],
+        [
+          "tsl9_channel_mode_done_16a2c",
+          92716,
+          4
+        ]
+      ],
+      "file_entry": {
+        "origin": "experiments/tsl9-spi-filter-setup/src/helpers.v2.c",
+        "destination": "src/native/receive/spi_filter_helpers.c",
+        "replacements": [],
+        "origin_sha256": "0636bd841598403d7d76fd2e7068c71bc359cc668f3bec760081d4bddff35553",
+        "sha256": "0636bd841598403d7d76fd2e7068c71bc359cc668f3bec760081d4bddff35553"
+      },
+      "unit_identity": {
+        "name": "spi-filter-helpers",
+        "profile": "queue-consumer-a0-a5",
+        "origin_unit": "experiments/tsl9-spi-filter-setup/src/helpers.v2.c",
+        "curated_unit": "src/native/receive/spi_filter_helpers.c",
+        "origin_unit_sha256": "0636bd841598403d7d76fd2e7068c71bc359cc668f3bec760081d4bddff35553"
+      }
+    },
+    {
+      "name": "spi-write-providers",
+      "source": "src/native/receive/spi_write_providers.c",
+      "origin": "experiments/tsl9-spi-write-providers/src/spi_write.v1.c",
+      "profile": "tagged-a0-a5",
+      "source_sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2",
+      "definitions": [
+        [
+          "tsl9_tagged_external_168de",
+          92382,
+          8
+        ],
+        [
+          "tsl9_spi_write_guard1_168e6",
+          92390,
+          10
+        ],
+        [
+          "tsl9_spi_write_select1_168f0",
+          92400,
+          10
+        ],
+        [
+          "tsl9_spi_write_guard2_168fa",
+          92410,
+          4
+        ],
+        [
+          "tsl9_spi_write_select2_168fe",
+          92414,
+          10
+        ],
+        [
+          "tsl9_spi_write_command_16908",
+          92424,
+          8
+        ],
+        [
+          "tsl9_spi_write_address_16910",
+          92432,
+          10
+        ],
+        [
+          "tsl9_spi_write_test_1691a",
+          92442,
+          4
+        ],
+        [
+          "tsl9_spi_write_finish_1691e",
+          92446,
+          20
+        ],
+        [
+          "tsl9_spi_write_payload_16932",
+          92466,
+          12
+        ],
+        [
+          "tsl9_tagged_external_1693e",
+          92478,
+          4
+        ],
+        [
+          "tsl9_spi_modify_guard1_16942",
+          92482,
+          6
+        ],
+        [
+          "tsl9_spi_modify_select1_16948",
+          92488,
+          10
+        ],
+        [
+          "tsl9_spi_modify_guard2_16952",
+          92498,
+          4
+        ],
+        [
+          "tsl9_spi_modify_select2_16956",
+          92502,
+          10
+        ],
+        [
+          "tsl9_spi_modify_command_16960",
+          92512,
+          12
+        ],
+        [
+          "tsl9_spi_modify_address_1696c",
+          92524,
+          8
+        ],
+        [
+          "tsl9_spi_modify_mask_16974",
+          92532,
+          8
+        ],
+        [
+          "tsl9_spi_modify_value_1697c",
+          92540,
+          8
+        ],
+        [
+          "tsl9_spi_modify_finish_16984",
+          92548,
+          16
+        ]
+      ],
+      "file_entry": {
+        "origin": "experiments/tsl9-spi-write-providers/src/spi_write.v1.c",
+        "destination": "src/native/receive/spi_write_providers.c",
+        "replacements": [],
+        "origin_sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2",
+        "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+      },
+      "unit_identity": {
+        "name": "spi-write-providers",
+        "profile": "tagged-a0-a5",
+        "origin_unit": "experiments/tsl9-spi-write-providers/src/spi_write.v1.c",
+        "curated_unit": "src/native/receive/spi_write_providers.c",
+        "origin_unit_sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+      }
+    },
+    {
+      "name": "register-read",
+      "source": "src/native/receive/register_read.c",
+      "origin": "experiments/tsl9-register-read/src/register_read.c",
+      "profile": "provider-a0-a5",
+      "source_sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846",
+      "definitions": [
+        [
+          "tsl9_register_read_entry_16994",
+          92564,
+          4
+        ],
+        [
+          "tsl9_register_read_body",
+          92568,
+          68
+        ]
+      ],
+      "file_entry": {
+        "origin": "experiments/tsl9-register-read/src/register_read.c",
+        "destination": "src/native/receive/register_read.c",
+        "replacements": [],
+        "origin_sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846",
+        "sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+      },
+      "unit_identity": {
+        "name": "register-read",
+        "profile": "provider-a0-a5",
+        "origin_unit": "experiments/tsl9-register-read/src/register_read.c",
+        "curated_unit": "src/native/receive/register_read.c",
+        "origin_unit_sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+      }
+    },
+    {
+      "name": "register-write",
+      "source": "src/native/receive/register_write.c",
+      "origin": "experiments/tsl9-register-write/src/register_write.c",
+      "profile": "provider-a0-a5",
+      "source_sha256": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85",
+      "definitions": [
+        [
+          "tsl9_register_write_entry_16a30",
+          92720,
+          4
+        ],
+        [
+          "tsl9_register_write_body",
+          92724,
+          72
+        ]
+      ],
+      "file_entry": {
+        "origin": "experiments/tsl9-register-write/src/register_write.c",
+        "destination": "src/native/receive/register_write.c",
+        "replacements": [],
+        "origin_sha256": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85",
+        "sha256": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85"
+      },
+      "unit_identity": {
+        "name": "register-write",
+        "profile": "provider-a0-a5",
+        "origin_unit": "experiments/tsl9-register-write/src/register_write.c",
+        "curated_unit": "src/native/receive/register_write.c",
+        "origin_unit_sha256": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85"
+      }
+    },
+    {
+      "name": "spi-transfer",
+      "source": "src/native/receive/spi_transfer_ports.c",
+      "origin": "experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c",
+      "profile": "spi-a0-a3-a4-a5",
+      "source_sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182",
+      "definitions": [
+        [
+          "tsl9_spi_transfer_entry_16896",
+          92310,
+          8
+        ],
+        [
+          "tsl9_spi_tx_poll_1689e",
+          92318,
+          8
+        ],
+        [
+          "tsl9_spi_tx_ready_168a6",
+          92326,
+          16
+        ],
+        [
+          "tsl9_spi_rx_poll_168b6",
+          92342,
+          8
+        ],
+        [
+          "tsl9_spi_rx_done_168be",
+          92350,
+          10
+        ],
+        [
+          "tsl9_spi_tx_wait_168c8",
+          92360,
+          8
+        ],
+        [
+          "tsl9_spi_timeout_168d0",
+          92368,
+          4
+        ],
+        [
+          "tsl9_spi_rx_wait_168d4",
+          92372,
+          10
+        ]
+      ],
+      "file_entry": {
+        "origin": "experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c",
+        "destination": "src/native/receive/spi_transfer_ports.c",
+        "replacements": [],
+        "origin_sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182",
+        "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+      },
+      "unit_identity": {
+        "name": "spi-transfer",
+        "profile": "spi-a0-a3-a4-a5",
+        "origin_unit": "experiments/tsl9-spi-transfer-leaf/src/spi_transfer_ports.c",
+        "curated_unit": "src/native/receive/spi_transfer_ports.c",
+        "origin_unit_sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+      }
+    }
+  ],
+  "spans": [
+    [
+      33200,
+      33226,
+      "f03a9478d6361df881745068e9c322098ea7317e3bb4d1be5f62f97ff7e4c239"
+    ],
+    [
+      76030,
+      76190,
+      "0191afe9afa2ecad8b58295c50301bfac35115a1e33140f61c4678b5997dda4e"
+    ],
+    [
+      76478,
+      76496,
+      "8fdc4d82dfdbe25f1f7ef646f2436ac3fbd87a5c423a5f61a39e5a4e1ced3306"
+    ],
+    [
+      92248,
+      92796,
+      "29a17548f7dbf62ffabee2106495ab26b7ff9ed03a11c335e68cd73b6b22723a"
+    ],
+    [
+      93380,
+      93612,
+      "9522255b0cd785c2fb07aaea6c96ace7a60bd80dce18f87f75aa5a3c48ed5155"
+    ],
+    [
+      101282,
+      101540,
+      "a7740d7785b0ab0def54148e8d56242da4341de1d4041a0ee7fffceed37338cc"
+    ]
+  ],
+  "new_units": [
+    "channel-route",
+    "filter-input",
+    "filter-program",
+    "spi-filter-setup",
+    "spi-filter-helpers",
+    "register-write"
+  ],
+  "opaque_sites": [
+    [
+      76062,
+      262216,
+      "call"
+    ],
+    [
+      76090,
+      262220,
+      "call"
+    ],
+    [
+      93432,
+      262216,
+      "call"
+    ],
+    [
+      93456,
+      262220,
+      "call"
+    ],
+    [
+      33210,
+      262268,
+      "call"
+    ],
+    [
+      92294,
+      262700,
+      "tail"
+    ],
+    [
+      92308,
+      262236,
+      "tail"
+    ]
+  ],
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_OTA_proved": false,
+  "firmware_BIN_generated": false
+}

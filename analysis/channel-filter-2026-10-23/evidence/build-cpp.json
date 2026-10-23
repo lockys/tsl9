@@ -1,0 +1,955 @@
+{
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "artifacts": {
+    "IR-channel-route.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "IR-filter-input.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "IR-filter-program.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "IR-register-read.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "IR-register-write.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "IR-spi-filter-helpers.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "IR-spi-filter-setup.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "IR-spi-transfer.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "IR-spi-write-providers.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ORIGINAL-PC-COMPONENT-NOT-FIRMWARE.elf": {
+      "bytes": 75888,
+      "sha256": "9a622c026ffa0f46ade5e0427f9788004e3ed9ab52eb683e540adf3947926fcf"
+    },
+    "UNRESOLVED-CHANNEL-GRAPH.o": {
+      "bytes": 18940,
+      "sha256": "0a72ce02c4eb6893ab5f718443e07bf510bea9d5990fd7441a12645b6ae1174b"
+    },
+    "channel-route.ll": {
+      "bytes": 4374,
+      "sha256": "c24b537a697653008da7698e1750b5630433f4272e73d81f845bd5ac347cbc20"
+    },
+    "filter-input.ll": {
+      "bytes": 10532,
+      "sha256": "84360ddccc4853af1d0c2c7bfb52c3a69a3e40d9489df2ab80781017e57bc84f"
+    },
+    "filter-program.ll": {
+      "bytes": 21197,
+      "sha256": "3666de7ca6e1027045f310dc5caff1194345a935d81581c50cfdb890fe6533cc"
+    },
+    "joined-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "joined-read.log": {
+      "bytes": 87324,
+      "sha256": "f5e5845c9b4e19d76d4548de44b5cdbef95a7ad20dab0f5cc45af3823456fa4c"
+    },
+    "nominal-link.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nominal-read.log": {
+      "bytes": 34594,
+      "sha256": "110e4ac8fddb17665d49cd005b32b3b842f88b313debba8f4e148b2e5eada8f4"
+    },
+    "register-read.ll": {
+      "bytes": 7819,
+      "sha256": "31b06c52acb080352399511e5636d32cc89668ab563a12bc7b37cb383e432b72"
+    },
+    "register-write.ll": {
+      "bytes": 8464,
+      "sha256": "aafcdb51ac16e6c4a2ee4d11ac43c6036fc5235c30505f3c33464eec249cfb92"
+    },
+    "spi-filter-helpers.ll": {
+      "bytes": 28897,
+      "sha256": "2dfb2ab694ea9e02ee2de39f2a9783b8fd9286063341a3f7e0f245a493b3f144"
+    },
+    "spi-filter-setup.ll": {
+      "bytes": 31059,
+      "sha256": "8f7b40759284a350edee2d3f4db851f1122955fc48b45f96f142245153a9a134"
+    },
+    "spi-transfer.ll": {
+      "bytes": 8710,
+      "sha256": "5bec11dbbf5c8a6791ce8257ac780c7bcbc51ea885cfac70105fa5e01adee73f"
+    },
+    "spi-write-providers.ll": {
+      "bytes": 37313,
+      "sha256": "d9024f613eeefb77e1694a76f98b66ce31789e6de595d8fc096ac03385a5d2b8"
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\channel_route.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\channel-route.ll"
+      ],
+      "exit": 0,
+      "label": "IR-channel-route",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\filter_input.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\filter-input.ll"
+      ],
+      "exit": 0,
+      "label": "IR-filter-input",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\filter_program.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\filter-program.ll"
+      ],
+      "exit": 0,
+      "label": "IR-filter-program",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\spi_filter_setup.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\spi-filter-setup.ll"
+      ],
+      "exit": 0,
+      "label": "IR-spi-filter-setup",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\spi_filter_helpers.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\spi-filter-helpers.ll"
+      ],
+      "exit": 0,
+      "label": "IR-spi-filter-helpers",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\spi_write_providers.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\spi-write-providers.ll"
+      ],
+      "exit": 0,
+      "label": "IR-spi-write-providers",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\register_read.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\register-read.ll"
+      ],
+      "exit": 0,
+      "label": "IR-register-read",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr_zifencei",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\register_write.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\register-write.ll"
+      ],
+      "exit": 0,
+      "label": "IR-register-write",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\clang.exe",
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-Oz",
+        "-mllvm",
+        "-enable-machine-outliner=never",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-stack-protector",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-mno-relax",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17",
+        "-fno-exceptions",
+        "-ffixed-x1",
+        "-ffixed-x2",
+        "-ffixed-x3",
+        "-ffixed-x4",
+        "-ffixed-x5",
+        "-ffixed-x6",
+        "-ffixed-x7",
+        "-ffixed-x8",
+        "-ffixed-x9",
+        "-ffixed-x11",
+        "-ffixed-x12",
+        "-ffixed-x16",
+        "-ffixed-x17",
+        "-ffixed-x18",
+        "-ffixed-x19",
+        "-ffixed-x20",
+        "-ffixed-x21",
+        "-ffixed-x22",
+        "-ffixed-x23",
+        "-ffixed-x24",
+        "-ffixed-x25",
+        "-ffixed-x26",
+        "-ffixed-x27",
+        "-ffixed-x28",
+        "-ffixed-x29",
+        "-ffixed-x30",
+        "-ffixed-x31",
+        "-S",
+        "-emit-llvm",
+        "${PROJECT_ROOT}\\src\\native\\receive\\spi_transfer_ports.c",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\spi-transfer.ll"
+      ],
+      "exit": 0,
+      "label": "IR-spi-transfer",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\ld.lld.exe",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\nominal.ld",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\channel-route\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\filter-input\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\filter-program\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-filter-setup\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-filter-helpers\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-write-providers\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\register-read\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\register-write\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-transfer\\cpp\\curated\\unit.o",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\ORIGINAL-PC-COMPONENT-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "label": "nominal-link",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\llvm-objdump.exe",
+        "-dr",
+        "-t",
+        "-h",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\ORIGINAL-PC-COMPONENT-NOT-FIRMWARE.elf"
+      ],
+      "exit": 0,
+      "label": "nominal-read",
+      "log_sha256": "110e4ac8fddb17665d49cd005b32b3b842f88b313debba8f4e148b2e5eada8f4"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\ld.lld.exe",
+        "-r",
+        "--no-relax",
+        "-T",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\joined.ld",
+        "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\UNRESOLVED-PROGRAM-GRAPH.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\channel-route\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\filter-input\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\filter-program\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-filter-setup\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-filter-helpers\\cpp\\curated\\unit.o",
+        "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\register-write\\cpp\\curated\\unit.o",
+        "-o",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\UNRESOLVED-CHANNEL-GRAPH.o"
+      ],
+      "exit": 0,
+      "label": "joined-link",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "${LLVM_BIN}\\llvm-objdump.exe",
+        "-dr",
+        "-t",
+        "-h",
+        "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build\\graph-v1\\cpp\\UNRESOLVED-CHANNEL-GRAPH.o"
+      ],
+      "exit": 0,
+      "label": "joined-read",
+      "log_sha256": "f5e5845c9b4e19d76d4548de44b5cdbef95a7ad20dab0f5cc45af3823456fa4c"
+    }
+  ],
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\channel-route\\cpp\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\channel-route\\cpp\\curated\\unit.d": {
+      "bytes": 231,
+      "sha256": "650976c4be0e21f492181a43f44dd02e4db68e5f3298809decc1b816fda4be74"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\channel-route\\cpp\\curated\\unit.o": {
+      "bytes": 1364,
+      "sha256": "1dcab7218d201863324cf36005394bdca5b0221fbd2312d27fdbeadd2cfd8f72"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\filter-input\\cpp\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\filter-input\\cpp\\curated\\unit.d": {
+      "bytes": 230,
+      "sha256": "5511f7ea6f1ca3c319595a29d2e04c7f12bedc2284d624a8120bce17f2e5646a"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\filter-input\\cpp\\curated\\unit.o": {
+      "bytes": 2268,
+      "sha256": "ae6da21fba4ad16a12f50974aa2d80e7038cf4d74cb04cea712482513a62d441"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\filter-program\\cpp\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\filter-program\\cpp\\curated\\unit.d": {
+      "bytes": 232,
+      "sha256": "0ed2597f50b0f0af83b69a07d4eed32105c0e9ab49e3dc31f3055e1844edc83f"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\filter-program\\cpp\\curated\\unit.o": {
+      "bytes": 3300,
+      "sha256": "72605edd05deaff5a3e7aea47348b567f400df3cf09a504d59dfb71cc429c82a"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\register-read\\cpp\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\register-read\\cpp\\curated\\unit.d": {
+      "bytes": 231,
+      "sha256": "5851117dd4ba2bc2072aab97bb8a6235dc153eb8d7282bc1844398633f00ac41"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\register-read\\cpp\\curated\\unit.o": {
+      "bytes": 1188,
+      "sha256": "fd96f6f5df62a1c55615dd45745b6fc006a51c4dae9da6a89faf29acea1486de"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\register-write\\cpp\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\register-write\\cpp\\curated\\unit.d": {
+      "bytes": 232,
+      "sha256": "f19bc4ea34e45d8c972030cdfa0bb0e5b508558bf0f34556c2fd1d34dd9c274a"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\register-write\\cpp\\curated\\unit.o": {
+      "bytes": 1196,
+      "sha256": "3b54e0c9d96bf3eee2521dd0960e2e999b3dcbc226a23c8190c314d6b92ae4fb"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-filter-helpers\\cpp\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-filter-helpers\\cpp\\curated\\unit.d": {
+      "bytes": 236,
+      "sha256": "842e215bc8ee75c35d0333ce67610ee31d256ecc0daa0ce8f63a78c09f1f30cc"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-filter-helpers\\cpp\\curated\\unit.o": {
+      "bytes": 3212,
+      "sha256": "a9dea97800ab3ffdc7aef07c36e77ef3f295eea1cb3ccdd75eefbd1bdc573575"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-filter-setup\\cpp\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-filter-setup\\cpp\\curated\\unit.d": {
+      "bytes": 234,
+      "sha256": "59b7d5e85701d27931345d97dff42bda65b9634bf4d1cebea6449be637b0978a"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-filter-setup\\cpp\\curated\\unit.o": {
+      "bytes": 3524,
+      "sha256": "a59dc9e705c755a9261701fb37cede16bca56907731b63714a04f83dfac718e2"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-transfer\\cpp\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-transfer\\cpp\\curated\\unit.d": {
+      "bytes": 236,
+      "sha256": "6231982f7e9b3db328b6c7921fe517f96c9b1ebc22bb0479cbebe2deec70cf68"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-transfer\\cpp\\curated\\unit.o": {
+      "bytes": 1936,
+      "sha256": "e900eae885f3601bd7f30ac8fee012a7e03db65a1d2f07bf512736acea7eb663"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-write-providers\\cpp\\curated\\compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-write-providers\\cpp\\curated\\unit.d": {
+      "bytes": 237,
+      "sha256": "2165d111eaa718c74675c749291da653b63349c91fd3de47d5e963698ecd2f2a"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\spi-write-providers\\cpp\\curated\\unit.o": {
+      "bytes": 3952,
+      "sha256": "eb4b3e0b220f451752406538aa3fc86493766bce4e5e379dc34623a4effb0b17"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\channel-filter-20261023-v1\\verification.json": {
+      "bytes": 879298,
+      "sha256": "12a7228f023af8c50b9041cd9b949c0d634f14abf97b357de86781794df7e8d6"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\build.py": {
+      "bytes": 5439,
+      "sha256": "31eee20f5753e9184dd36ff5311ea002d3c1f1f6799b04312f258812b28c8294"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\joined.ld": {
+      "bytes": 3172,
+      "sha256": "4759eb2708326d83c4faf6768642cd03b05bbb2887f97db3c364b1c03db8c075"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\nominal.ld": {
+      "bytes": 11989,
+      "sha256": "4b0a71827388989d61e34a2f93a2ad10c99d86d6e7198a80186770ea58f915b7"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\spec.json": {
+      "bytes": 20757,
+      "sha256": "62fb32624c4439f039018cdfd811ade4d0d8d670c4499c4dc07d422adae46e7f"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-channel-route\\src\\channel_route.v1.c": {
+      "bytes": 1861,
+      "sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-filter-input\\src\\filter_input.v2.c": {
+      "bytes": 4169,
+      "sha256": "f8e5ae4b05abd72b2a5ec60c441effd06c5490b272c862ef435d2b2c3a37b547"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-filter-input\\src\\filter_leaf.v2.c": {
+      "bytes": 7050,
+      "sha256": "bb2735ae1cb35abb4d80989625aa696bb006d0abe7e30d0c7e87ed8de7fc4ab6"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\UNRESOLVED-PROGRAM-GRAPH.o": {
+      "bytes": 13140,
+      "sha256": "abcb6e2b50ca1ca500fcf81fc851dcd258e76cab63c882b7bb4dd343ef946798"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\build\\formal-v1\\cpp\\verification-v2.json": {
+      "bytes": 1841,
+      "sha256": "928e8d020a34b7cb0a2e10dc9fc892a52f328806867b61b350748dea9f4a1f18"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-record-program\\verify-v2.py": {
+      "bytes": 13947,
+      "sha256": "ad11d4d85838bd73b9541e7de51667d9df32aa8a017d1dbed181166017f46613"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-register-read\\src\\register_read.c": {
+      "bytes": 2656,
+      "sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-register-write\\src\\register_write.c": {
+      "bytes": 3128,
+      "sha256": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-spi-filter-setup\\src\\filter_setup.v2.c": {
+      "bytes": 5125,
+      "sha256": "630d3bc15ed25a2fc800f1a29f239ae9ed1a8dd6f5e6f7ae5c4a3a0bdcd09a9b"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-spi-filter-setup\\src\\helpers.v2.c": {
+      "bytes": 4664,
+      "sha256": "0636bd841598403d7d76fd2e7068c71bc359cc668f3bec760081d4bddff35553"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-spi-transfer-leaf\\src\\spi_transfer_ports.c": {
+      "bytes": 4502,
+      "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-spi-transfer-leaf\\verify.py": {
+      "bytes": 29593,
+      "sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-spi-write-providers\\src\\spi_write.v1.c": {
+      "bytes": 6806,
+      "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\channel_route.c": {
+      "bytes": 1861,
+      "sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\filter_input.c": {
+      "bytes": 4169,
+      "sha256": "f8e5ae4b05abd72b2a5ec60c441effd06c5490b272c862ef435d2b2c3a37b547"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\filter_program.c": {
+      "bytes": 7050,
+      "sha256": "bb2735ae1cb35abb4d80989625aa696bb006d0abe7e30d0c7e87ed8de7fc4ab6"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\register_read.c": {
+      "bytes": 2656,
+      "sha256": "5d0dfffde0adf21490e9108fbb95920595a851d67ac95b376549e20be3989846"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\register_write.c": {
+      "bytes": 3128,
+      "sha256": "d4a0669559aeb497f787c98066db28da8fa9f285bf3b9be2bce574c0ed016f85"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\spi_filter_helpers.c": {
+      "bytes": 4664,
+      "sha256": "0636bd841598403d7d76fd2e7068c71bc359cc668f3bec760081d4bddff35553"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\spi_filter_setup.c": {
+      "bytes": 5125,
+      "sha256": "630d3bc15ed25a2fc800f1a29f239ae9ed1a8dd6f5e6f7ae5c4a3a0bdcd09a9b"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\spi_transfer_ports.c": {
+      "bytes": 4502,
+      "sha256": "1f68851e9ae71d1ef56147e554fdaa53ae0918e2bfac73bad32a110549fe3182"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\spi_write_providers.c": {
+      "bytes": 6806,
+      "sha256": "5d95cb6f012ea2bba92135e714090176fc0375ce4f697625a5c6197314af31a2"
+    },
+    "${PROJECT_ROOT}\\src\\source-manifest.json": {
+      "bytes": 64371,
+      "sha256": "ae0b407623df2158e916293746e95b85ca131309c4085af240463ebfbb25c39c"
+    }
+  },
+  "mode": "cpp",
+  "network": false,
+  "schema": "TSL9-channel-filter-build-v1",
+  "target_executed": false
+}

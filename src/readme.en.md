@@ -2,7 +2,7 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 66 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
+This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 71 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
 
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
@@ -18,6 +18,7 @@ This directory is the working entry point for the readable source with the stron
 | [IRQ provider](native/receive/irq_provider.c) | Fresh word reads and receive-data fields | Six18/8/108/10/10/10B regions; full164B/53i nominal code equals original, retaining A4/A5 effects and two RETs; physical MMIO/IRQ/silicon unproved |
 | [queue consumer](native/receive/queue_consumer.c) | Queue release and conditional dispatch | 314B/107i across10 private regions;230 complete noncontrol bytes and2163 retained bits match;25 pending RELAs/eight UND remain, with physical SP/S-register/CSR and resident residue ports; not full firmware |
 | [record program](native/receive/record_program.c) | 93AA–94EE record setup and control | Four routines324B/109i,19 architectural regions; complete nominal code equals original in C/C++. Opaque40068/40070 do not imply an installed allocator ABI, valid memory or bounded post-call indices |
+| [channel/filter backends](../experiments/tsl9-channel-route/readme.en.md) | Router12ABE, built-in128FE/18BA2, external16CC4 and helpers | Six original-PC spans1242B/445i/94 FUNC entirely equal; extended3166B/1104i/191 FUNC/144 pending RELA retains direct UND14D2E. Physical MCU/controller, resident ABI, startup/IRQ and OTA remain unproved |
 | [GP word toggle](native/receive/gp_word_toggle.c) | 9B36 byte guard and word XOR2 | All24B/7i match; only A4/A5 written, skip retains A4. Physical purpose, GP/memory validity and IRQ/OTA remain unknown |
 | [queue leaves](native/receive/queue_small_providers.c) | V4.1.60 status and bounded clear | Fully original-equal6/18B C leaves; fresh GP+167 byte, unsigned index<=2 byte clear; no spills/UND/relocations. Diagnostic VMA0 only; actual consumer composition and hardware remain open |
 | [queue filter](native/receive/queue_filter.c) | Packaging/forwarding gate at82D2 | 188B/69i,166 whole noncontrol bytes match;7 pending edges with one real C.JAL provider. Then-live frame/S-register state retained; nonzero is not forwarding success |
@@ -61,9 +62,9 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The script selects 40 native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
+The script selects 45 native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
 
-The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed80 comparisons (160 objects). Its receipt is `build/curated-source/record-program-20261023-v1/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
+The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed90 comparisons (180 objects). Its receipt is `build/curated-source/channel-filter-20261023-v1/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
 
 Replay an existing result without compiling:
 

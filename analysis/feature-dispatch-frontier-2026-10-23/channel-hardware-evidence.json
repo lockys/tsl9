@@ -1,0 +1,85 @@
+{
+  "schema": "TSL9-channel-route-hardware-evidence-v1",
+  "scope": "Offline shipped-code/locally retained SDK comparison; no physical board or installed ROM identification",
+  "router": {
+    "span": [
+      "0x12ABE",
+      "0x12AD0"
+    ],
+    "bytes": 18,
+    "instructions": 7,
+    "original_sha256": "8fdc4d82dfdbe25f1f7ef646f2436ac3fbd87a5c423a5f61a39e5a4e1ced3306",
+    "zero_tail": "0x128FE",
+    "nonzero_tail": "0x16CC4",
+    "nonzero_preserves_full_A0_A1_A2": true,
+    "nonzero_forces_A3_zero": true
+  },
+  "builtin_backend": {
+    "front": "0x128FE",
+    "front_bytes": 160,
+    "leaf": "0x18BA2",
+    "leaf_bytes": 258,
+    "leaf_SHA256": "a7740d7785b0ab0def54148e8d56242da4341de1d4041a0ee7fffceed37338cc",
+    "evidence": [
+      "20B descriptor offsets match SDK filter id/mask/FIFO/bank/mode/scale/activation layout",
+      "MMIO base40006400; setup registers+200/+204/+20C/+214/+21C; bank*8+240/+244",
+      "Conditional14-bank input loop produces16-bit list-mode/FIFO0/active descriptors after two opaque calls"
+    ],
+    "static_identification": "bxCAN-style filter programming compatible with retained WCH CAN_FilterInit structure",
+    "SDK_errata_profile_proved": false
+  },
+  "spi_backend": {
+    "front": "0x16CC4",
+    "bytes": 232,
+    "instructions": 86,
+    "evidence": [
+      "SPI write02/read03/bitmodify05",
+      "Write reg0F maskE0 mode80/00; poll reg0E maskE0",
+      "RX control addresses60/70 and six filter register bases00/04/08/10/14/18",
+      "11-bit ID packing into four bytes"
+    ],
+    "candidate": "MCP2515/MCP25625-compatible controller family",
+    "exact_chip_proved": false,
+    "primary_datasheet_available_for_exact_comparison": false
+  },
+  "official_SDK": {
+    "commit": "baef0054588f4826548429ff4e7a9257d752ef2f",
+    "source_URL": "https://raw.githubusercontent.com/openwch/ch32v20x/baef0054588f4826548429ff4e7a9257d752ef2f/EVT/EXAM/SRC/Peripheral/src/ch32v20x_can.c",
+    "source_SHA256": "3e336267e39b9a9a513d179009752f6d5d1a0a3e285150dbacc36de137a46371",
+    "header_URL": "https://raw.githubusercontent.com/openwch/ch32v20x/baef0054588f4826548429ff4e7a9257d752ef2f/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_can.h",
+    "header_SHA256": "d8b342706b6d4f83f6a7588f1d1d740724faf954e61cf8682734406957db6346",
+    "source_function": "CAN_FilterInit",
+    "source_start_line": 195,
+    "header_struct_lines": [
+      73,
+      105
+    ],
+    "original_local_manifest_SHA256": "25f730b045cf1d5ce27ee255c5770be87a62c584c39bf779505a9a7f48ffe398",
+    "downloaded_this_turn": false
+  },
+  "resident_slots": [
+    "0x40048",
+    "0x4004C",
+    "0x4007C",
+    "0x4022C",
+    "0x4005C"
+  ],
+  "minimum_router_backend_graph": {
+    "bytes": 1242,
+    "instructions": 445,
+    "whole_code_C_reconstruction_complete": true,
+    "scope": "Six private architectural code spans only; actual C11/CPP17 nominal bytes equal, not full firmware or hardware proof",
+    "evidence": "analysis/channel-filter-2026-10-23/summary.json"
+  },
+  "unknowns": [
+    "Physical MCU and external controller BOM",
+    "Installed resident identity and ABI",
+    "Actual memory validity/ownership/alignment",
+    "IRQ/concurrency and hardware side effects",
+    "Whole firmware and OTA compatibility"
+  ],
+  "target_executed": false,
+  "network": false,
+  "hardware_proved": false,
+  "firmware_ready": false
+}

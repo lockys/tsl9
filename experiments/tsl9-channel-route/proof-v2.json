@@ -1,0 +1,597 @@
+{
+  "schema": "TSL9-channel-filter-proof-correction-v2",
+  "v1_checker_sha256": "838d81ae729d58d55fdf1549dce4a996d6b7b61614e8d64131792e4bc51440e6",
+  "native_controls": {
+    "channel-route": [
+      [
+        "tsl9_channel_nonzero_12aca",
+        2,
+        17,
+        "tsl9_channel_external_16cc4",
+        0
+      ],
+      [
+        "tsl9_channel_zero_12ac2",
+        4,
+        17,
+        "tsl9_channel_external_128fe",
+        0
+      ],
+      [
+        "tsl9_queue_external_12abe",
+        2,
+        44,
+        "tsl9_channel_nonzero_12aca",
+        0
+      ]
+    ],
+    "filter-input": [
+      [
+        "tsl9_filter_input_cap_12920",
+        8,
+        16,
+        "tsl9_filter_input_copy_12930",
+        0
+      ],
+      [
+        "tsl9_filter_input_loop_12946",
+        64,
+        17,
+        "tsl9_filter_program_18ba2",
+        0
+      ],
+      [
+        "tsl9_filter_input_next_1298a",
+        0,
+        16,
+        "tsl9_filter_input_loop_12946",
+        0
+      ]
+    ],
+    "filter-program": [
+      [
+        "tsl9_filter_activation_18c34",
+        4,
+        16,
+        "tsl9_filter_finish_18c4a",
+        0
+      ],
+      [
+        "tsl9_filter_fifo1_18c98",
+        10,
+        45,
+        "tsl9_filter_activation_18c34",
+        0
+      ],
+      [
+        "tsl9_filter_fifo_18c1c",
+        12,
+        44,
+        "tsl9_filter_fifo_test_18c92",
+        0
+      ],
+      [
+        "tsl9_filter_fifo_test_18c92",
+        2,
+        16,
+        "tsl9_filter_activation_18c34",
+        0
+      ],
+      [
+        "tsl9_filter_mode_18c04",
+        12,
+        44,
+        "tsl9_filter_mode_list_18c8a",
+        0
+      ],
+      [
+        "tsl9_filter_mode_list_18c8a",
+        6,
+        45,
+        "tsl9_filter_mode_store_18c18",
+        0
+      ],
+      [
+        "tsl9_filter_program_18ba2",
+        48,
+        44,
+        "tsl9_filter_scale_test_18c5a",
+        0
+      ],
+      [
+        "tsl9_filter_scale32_18c5e",
+        42,
+        45,
+        "tsl9_filter_fr2_18bfe",
+        0
+      ],
+      [
+        "tsl9_filter_scale_test_18c5a",
+        0,
+        16,
+        "tsl9_filter_mode_18c04",
+        0
+      ]
+    ],
+    "spi-filter-setup": [
+      [
+        "tsl9_channel_external_16cc4",
+        10,
+        16,
+        "tsl9_setup_early_16daa",
+        0
+      ],
+      [
+        "tsl9_setup_final_16d8e",
+        4,
+        17,
+        "tsl9_channel_external_16858",
+        0
+      ],
+      [
+        "tsl9_setup_length_16cfa",
+        6,
+        16,
+        "tsl9_setup_copy_16d06",
+        0
+      ],
+      [
+        "tsl9_setup_loop_16d4c",
+        50,
+        17,
+        "tsl9_tagged_external_168de",
+        0
+      ],
+      [
+        "tsl9_setup_mode_16d12",
+        6,
+        17,
+        "tsl9_channel_external_169dc",
+        0
+      ],
+      [
+        "tsl9_setup_normal_16d86",
+        4,
+        17,
+        "tsl9_channel_external_169dc",
+        0
+      ],
+      [
+        "tsl9_setup_test_16d82",
+        0,
+        16,
+        "tsl9_setup_loop_16d4c",
+        0
+      ],
+      [
+        "tsl9_setup_write0_16d1c",
+        10,
+        17,
+        "tsl9_register_write_entry_16a30",
+        0
+      ],
+      [
+        "tsl9_setup_write1_16d2a",
+        16,
+        17,
+        "tsl9_register_write_entry_16a30",
+        0
+      ]
+    ],
+    "spi-filter-helpers": [
+      [
+        "tsl9_channel_clock_start_169f8",
+        0,
+        17,
+        "tsl9_channel_external_81b0",
+        0
+      ],
+      [
+        "tsl9_channel_mode_done_16a2c",
+        2,
+        45,
+        "tsl9_channel_mode_return_16a0e",
+        0
+      ],
+      [
+        "tsl9_channel_mode_write_169e2",
+        18,
+        17,
+        "tsl9_tagged_external_1693e",
+        0
+      ],
+      [
+        "tsl9_channel_poll_clock_16a00",
+        0,
+        17,
+        "tsl9_channel_external_81b0",
+        0
+      ],
+      [
+        "tsl9_channel_poll_clock_16a00",
+        8,
+        16,
+        "tsl9_channel_poll_read_16a1c",
+        0
+      ],
+      [
+        "tsl9_channel_poll_read_16a1c",
+        4,
+        17,
+        "tsl9_register_read_entry_16994",
+        0
+      ],
+      [
+        "tsl9_channel_poll_read_16a1c",
+        12,
+        16,
+        "tsl9_channel_poll_clock_16a00",
+        0
+      ],
+      [
+        "tsl9_channel_timer_args_1685a",
+        26,
+        44,
+        "tsl9_channel_timer_zero_16888",
+        0
+      ]
+    ],
+    "spi-write-providers": [
+      [
+        "tsl9_spi_modify_address_1696c",
+        4,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_spi_modify_command_16960",
+        8,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_spi_modify_guard1_16942",
+        4,
+        44,
+        "tsl9_spi_modify_guard2_16952",
+        0
+      ],
+      [
+        "tsl9_spi_modify_guard2_16952",
+        2,
+        44,
+        "tsl9_spi_modify_command_16960",
+        0
+      ],
+      [
+        "tsl9_spi_modify_mask_16974",
+        4,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_spi_modify_value_1697c",
+        4,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_spi_write_address_16910",
+        6,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_spi_write_command_16908",
+        4,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_spi_write_guard1_168e6",
+        8,
+        44,
+        "tsl9_spi_write_guard2_168fa",
+        0
+      ],
+      [
+        "tsl9_spi_write_guard2_168fa",
+        2,
+        44,
+        "tsl9_spi_write_command_16908",
+        0
+      ],
+      [
+        "tsl9_spi_write_payload_16932",
+        6,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_spi_write_payload_16932",
+        10,
+        45,
+        "tsl9_spi_write_test_1691a",
+        0
+      ],
+      [
+        "tsl9_spi_write_test_1691a",
+        0,
+        16,
+        "tsl9_spi_write_payload_16932",
+        0
+      ]
+    ],
+    "register-read": [
+      [
+        "tsl9_register_read_body",
+        34,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_register_read_body",
+        42,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_register_read_body",
+        48,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ]
+    ],
+    "register-write": [
+      [
+        "tsl9_register_write_body",
+        36,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_register_write_body",
+        44,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ],
+      [
+        "tsl9_register_write_body",
+        52,
+        17,
+        "tsl9_spi_transfer_entry_16896",
+        0
+      ]
+    ],
+    "spi-transfer": [
+      [
+        "tsl9_spi_rx_poll_168b6",
+        6,
+        44,
+        "tsl9_spi_rx_wait_168d4",
+        0
+      ],
+      [
+        "tsl9_spi_rx_wait_168d4",
+        6,
+        44,
+        "tsl9_spi_rx_poll_168b6",
+        0
+      ],
+      [
+        "tsl9_spi_rx_wait_168d4",
+        8,
+        45,
+        "tsl9_spi_timeout_168d0",
+        0
+      ],
+      [
+        "tsl9_spi_tx_poll_1689e",
+        6,
+        44,
+        "tsl9_spi_tx_wait_168c8",
+        0
+      ],
+      [
+        "tsl9_spi_tx_wait_168c8",
+        6,
+        44,
+        "tsl9_spi_tx_poll_1689e",
+        0
+      ]
+    ]
+  },
+  "indirect_transfers": [
+    {
+      "owner": "tsl9_channel_clock_frame_81b6",
+      "offset": 4,
+      "original_PC": 33210,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_filter_pack_8328",
+      "offset": 46,
+      "original_PC": 33622,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_fill_tail_dispatch_854a",
+      "offset": 12,
+      "original_PC": 34134,
+      "code_hex": "6780a600",
+      "kind": "tail",
+      "register": 13,
+      "classification": "internal-computed-control"
+    },
+    {
+      "owner": "tsl9_fill_align_dispatch_85aa",
+      "offset": 12,
+      "original_PC": 34230,
+      "code_hex": "e78086fa",
+      "kind": "call",
+      "register": 13,
+      "classification": "internal-computed-control"
+    },
+    {
+      "owner": "tsl9_transport_first_8a7a",
+      "offset": 20,
+      "original_PC": 35470,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_transport_second_8a96",
+      "offset": 30,
+      "original_PC": 35508,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_transport_finish_8b14",
+      "offset": 60,
+      "original_PC": 35664,
+      "code_hex": "0283",
+      "kind": "tail",
+      "register": 6,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_program_free_9424",
+      "offset": 6,
+      "original_PC": 37930,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_program_allocate_tail_943e",
+      "offset": 20,
+      "original_PC": 37970,
+      "code_hex": "0283",
+      "kind": "tail",
+      "register": 6,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_filter_input_fill_1290a",
+      "offset": 20,
+      "original_PC": 76062,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_filter_input_copy_12930",
+      "offset": 10,
+      "original_PC": 76090,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_dispatch_copy_12a2e",
+      "offset": 32,
+      "original_PC": 76366,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_queue_scan_12c86",
+      "offset": 30,
+      "original_PC": 76964,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_queue_response_12d4c",
+      "offset": 22,
+      "original_PC": 77154,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_channel_timer_nonzero_16876",
+      "offset": 16,
+      "original_PC": 92294,
+      "code_hex": "0283",
+      "kind": "tail",
+      "register": 6,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_channel_timer_zero_16888",
+      "offset": 12,
+      "original_PC": 92308,
+      "code_hex": "0283",
+      "kind": "tail",
+      "register": 6,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_tagged_payload_16bd2",
+      "offset": 38,
+      "original_PC": 93176,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_setup_clear_16ce6",
+      "offset": 18,
+      "original_PC": 93432,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    },
+    {
+      "owner": "tsl9_setup_copy_16d06",
+      "offset": 10,
+      "original_PC": 93456,
+      "code_hex": "8297",
+      "kind": "call",
+      "register": 15,
+      "classification": "opaque-resident"
+    }
+  ],
+  "corrections": [
+    "Frozen v1 count15 omitted resident transfers12CA4 and12D62; actual count17, plus2 local computed controls.",
+    "Dynamic8356 and12CA4/12D62 bases remain then-live S9/S3; no fixed4004C guarantee.",
+    "V2 native gates require exact complete typed edge inventory; v1 native-only missing-edge probe was accepted, while full source-bound replay rejected artifact drift.",
+    "IR identity/embedding checks are bounded structural checks, not universal C semantic proof."
+  ],
+  "target_executed": false,
+  "ISA_emulated": false
+}

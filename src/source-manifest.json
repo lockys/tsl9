@@ -522,6 +522,41 @@
       "replacements": [],
       "origin_sha256": "51af3e56a2132a60a56bd4290817129608d54b3843c846fb4f56313c1a47117b",
       "sha256": "51af3e56a2132a60a56bd4290817129608d54b3843c846fb4f56313c1a47117b"
+    },
+    {
+      "origin": "experiments/tsl9-filter-input/src/filter_input.v2.c",
+      "destination": "src/native/receive/filter_input.c",
+      "replacements": [],
+      "origin_sha256": "f8e5ae4b05abd72b2a5ec60c441effd06c5490b272c862ef435d2b2c3a37b547",
+      "sha256": "f8e5ae4b05abd72b2a5ec60c441effd06c5490b272c862ef435d2b2c3a37b547"
+    },
+    {
+      "origin": "experiments/tsl9-filter-input/src/filter_leaf.v2.c",
+      "destination": "src/native/receive/filter_program.c",
+      "replacements": [],
+      "origin_sha256": "bb2735ae1cb35abb4d80989625aa696bb006d0abe7e30d0c7e87ed8de7fc4ab6",
+      "sha256": "bb2735ae1cb35abb4d80989625aa696bb006d0abe7e30d0c7e87ed8de7fc4ab6"
+    },
+    {
+      "origin": "experiments/tsl9-spi-filter-setup/src/filter_setup.v2.c",
+      "destination": "src/native/receive/spi_filter_setup.c",
+      "replacements": [],
+      "origin_sha256": "630d3bc15ed25a2fc800f1a29f239ae9ed1a8dd6f5e6f7ae5c4a3a0bdcd09a9b",
+      "sha256": "630d3bc15ed25a2fc800f1a29f239ae9ed1a8dd6f5e6f7ae5c4a3a0bdcd09a9b"
+    },
+    {
+      "origin": "experiments/tsl9-spi-filter-setup/src/helpers.v2.c",
+      "destination": "src/native/receive/spi_filter_helpers.c",
+      "replacements": [],
+      "origin_sha256": "0636bd841598403d7d76fd2e7068c71bc359cc668f3bec760081d4bddff35553",
+      "sha256": "0636bd841598403d7d76fd2e7068c71bc359cc668f3bec760081d4bddff35553"
+    },
+    {
+      "origin": "experiments/tsl9-channel-route/src/channel_route.v1.c",
+      "destination": "src/native/receive/channel_route.c",
+      "replacements": [],
+      "origin_sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd",
+      "sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd"
     }
   ],
   "native_units": [
@@ -946,6 +981,71 @@
       ],
       "scope": "Original93AA-94EE324B109i in19 architectural regions. C volatile/record/index/bit operations plus physical frame/control/S-register/PC-relative ports. Then-live S0/S1/SP after slots40068/40070 are not assumed preserved. Free/allocate and timer are candidate meanings; memory validity/ownership/IRQ/installedROM/hardware/OTA remain unproved. No target execution.",
       "origin_unit_sha256": "51af3e56a2132a60a56bd4290817129608d54b3843c846fb4f56313c1a47117b"
+    },
+    {
+      "name": "filter-input",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-filter-input/src/filter_input.v2.c",
+      "curated_unit": "src/native/receive/filter_input.c",
+      "evidence": "experiments/tsl9-channel-route/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-channel-route/build/graph-v1/c/verification.json",
+        "experiments/tsl9-channel-route/build/graph-v1/cpp/verification.json"
+      ],
+      "scope": "Original channel/filter configuration architecture. Actual C memory/arithmetic and explicit frame/control/register ports. Private regions are not ordinary C ABI calls. Resident identity/preservation, physical chip/MMIO purpose, memory ownership/validity, IRQ and OTA remain unproved. Whole nominal graph proof is separate from source curation; no target execution.",
+      "origin_unit_sha256": "f8e5ae4b05abd72b2a5ec60c441effd06c5490b272c862ef435d2b2c3a37b547"
+    },
+    {
+      "name": "filter-program",
+      "profile": "transport-a0-a6",
+      "origin_unit": "experiments/tsl9-filter-input/src/filter_leaf.v2.c",
+      "curated_unit": "src/native/receive/filter_program.c",
+      "evidence": "experiments/tsl9-channel-route/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-channel-route/build/graph-v1/c/verification.json",
+        "experiments/tsl9-channel-route/build/graph-v1/cpp/verification.json"
+      ],
+      "scope": "Original channel/filter configuration architecture. Actual C memory/arithmetic and explicit frame/control/register ports. Private regions are not ordinary C ABI calls. Resident identity/preservation, physical chip/MMIO purpose, memory ownership/validity, IRQ and OTA remain unproved. Whole nominal graph proof is separate from source curation; no target execution.",
+      "origin_unit_sha256": "bb2735ae1cb35abb4d80989625aa696bb006d0abe7e30d0c7e87ed8de7fc4ab6"
+    },
+    {
+      "name": "spi-filter-setup",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-spi-filter-setup/src/filter_setup.v2.c",
+      "curated_unit": "src/native/receive/spi_filter_setup.c",
+      "evidence": "experiments/tsl9-channel-route/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-channel-route/build/graph-v1/c/verification.json",
+        "experiments/tsl9-channel-route/build/graph-v1/cpp/verification.json"
+      ],
+      "scope": "Original channel/filter configuration architecture. Actual C memory/arithmetic and explicit frame/control/register ports. Private regions are not ordinary C ABI calls. Resident identity/preservation, physical chip/MMIO purpose, memory ownership/validity, IRQ and OTA remain unproved. Whole nominal graph proof is separate from source curation; no target execution.",
+      "origin_unit_sha256": "630d3bc15ed25a2fc800f1a29f239ae9ed1a8dd6f5e6f7ae5c4a3a0bdcd09a9b"
+    },
+    {
+      "name": "spi-filter-helpers",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-spi-filter-setup/src/helpers.v2.c",
+      "curated_unit": "src/native/receive/spi_filter_helpers.c",
+      "evidence": "experiments/tsl9-channel-route/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-channel-route/build/graph-v1/c/verification.json",
+        "experiments/tsl9-channel-route/build/graph-v1/cpp/verification.json"
+      ],
+      "scope": "Original channel/filter configuration architecture. Actual C memory/arithmetic and explicit frame/control/register ports. Private regions are not ordinary C ABI calls. Resident identity/preservation, physical chip/MMIO purpose, memory ownership/validity, IRQ and OTA remain unproved. Whole nominal graph proof is separate from source curation; no target execution.",
+      "origin_unit_sha256": "0636bd841598403d7d76fd2e7068c71bc359cc668f3bec760081d4bddff35553"
+    },
+    {
+      "name": "channel-route",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-channel-route/src/channel_route.v1.c",
+      "curated_unit": "src/native/receive/channel_route.c",
+      "evidence": "experiments/tsl9-channel-route/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-channel-route/build/graph-v1/c/verification.json",
+        "experiments/tsl9-channel-route/build/graph-v1/cpp/verification.json"
+      ],
+      "scope": "Original channel/filter configuration architecture. Actual C memory/arithmetic and explicit frame/control/register ports. Private regions are not ordinary C ABI calls. Resident identity/preservation, physical chip/MMIO purpose, memory ownership/validity, IRQ and OTA remain unproved. Whole nominal graph proof is separate from source curation; no target execution.",
+      "origin_unit_sha256": "b7ff24d892b1ba7f90ae8eb8270e466f5eedb1fd0cf2b4922114905d013eabbd"
     }
   ],
   "legacy_groups": [
