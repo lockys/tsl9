@@ -2,7 +2,7 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 57 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
+This directory is the working entry point for the readable source with the strongest currently available evidence. It contains 59 C/header files. The same C source is compiled separately as C11 and C++17 using the recorded profiles. Original experiments and frozen evidence remain in `experiments/` and `analysis/`.
 
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
@@ -20,6 +20,8 @@ This directory is the working entry point for the readable source with the stron
 | [queue leaves](native/receive/queue_small_providers.c) | V4.1.60 status and bounded clear | Fully original-equal6/18B C leaves; fresh GP+167 byte, unsigned index<=2 byte clear; no spills/UND/relocations. Diagnostic VMA0 only; actual consumer composition and hardware remain open |
 | [queue filter](native/receive/queue_filter.c) | Packaging/forwarding gate at82D2 | 188B/69i,166 whole noncontrol bytes match;7 pending edges with one real C.JAL provider. Then-live frame/S-register state retained; nonzero is not forwarding success |
 | [transport frame](native/receive/transport_frame.c) | 8A56 admission, frame, copy and checksum | 280B/96i,246 whole noncontrol bytes match;9 local pending RELAs/0 UND. Fresh4013C admissions and40050 tail provider remain unknown; post-call length is not bounded by the initial guard |
+| [record dispatch](native/receive/record_dispatch.c) | 12A08 status/ID/tag/copy/peripheral dispatch | 102B/35i across9 private regions;4 genuine UND/9 pending RELAs. Then-live SP/S0/call residues retained; full provider ABI and hardware remain open |
+| [record predicate](native/receive/record_predicate.c) | 821E pointer-bit/index/byte predicate | Complete42B/15i original-equal C/C++; no frame/stores/calls/UND/relocations. GP/memory/flag meaning and hardware unproved |
 | [native/irq](native/irq/interrupt_registers.c) | Four register helpers and IRQ initialization | Four helpers match at30B each; initializer normal outputs reviewed,180B vs original144B, asynchronous equivalence unproved |
 | [native/timer](native/timer/delay.c) | V4.1.60 delay register contract | Entire54-byte leaf matches official; separate TU, not substituted into NV callback/OTA BIN |
 | [native/nv/nv_write_frame_contract.c](native/nv/nv_write_frame_contract.c) | New NV write frame/fresh-source contract | Original32B frame/source slot and first40B outside JALs match; earlier LI0 leaves fault/IRQ gap |
@@ -52,9 +54,9 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The script selects thirty-one native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
+The script selects thirty-three native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun.
 
-The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed62 comparisons (124 objects). Its receipt is `build/curated-source/transport-frame-20261023-v1/verification.json`; the earlier SPI curation receipt remains historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
+The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed66 comparisons (132 objects). Its receipt is `build/curated-source/record-dispatch-20261023-v1/verification.json`; the earlier SPI curation receipt remains historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed.
 
 Replay an existing result without compiling:
 

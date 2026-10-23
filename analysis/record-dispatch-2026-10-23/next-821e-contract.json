@@ -1,0 +1,489 @@
+{
+  "schema": "TSL9-record-predicate-821E-original-contract-v1",
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "mapping_base": 32768
+  },
+  "producer": {
+    "tool": "radare2",
+    "sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+    "argv": [
+      "${RADARE2}",
+      "-N",
+      "-q",
+      "-a",
+      "riscv",
+      "-b",
+      "32",
+      "-m",
+      "0x8000",
+      "-c",
+      "e scr.color=0;pDj 180 @ 0x821e;q",
+      "${FIRMWARE}"
+    ]
+  },
+  "window": {
+    "start": 33310,
+    "end_exclusive": 33490,
+    "bytes": 180,
+    "instructions": 65,
+    "sha256": "e5b1e27a29cd4a84ef3dfe5cced5389b8864cad1b0c425a60530713c6ebca893",
+    "not_one_function": true,
+    "surrounding_entries": [
+      {
+        "start": 33310,
+        "end_exclusive": 33352,
+        "bytes": 42,
+        "instructions": 15,
+        "name": "primary_record_predicate",
+        "sha256": "4af30f18b196e304a5b6d30bb167ee2a02c567c4ffcf4e36bb4f72e6204bcdcd"
+      },
+      {
+        "start": 33352,
+        "end_exclusive": 33420,
+        "bytes": 68,
+        "instructions": 26,
+        "name": "neighbor_with_call_tail_and_cold_returns",
+        "sha256": "7265b3ae7d84c21d25613a98895694f2b3ba6cc1e1d4716c6bd9785624b25152"
+      },
+      {
+        "start": 33420,
+        "end_exclusive": 33438,
+        "bytes": 18,
+        "instructions": 5,
+        "name": "PC_relative_unsigned_predicate",
+        "sha256": "924c2b5714ea2ebc824812cfd1a524bb5466c9774a97ec45068d42fe138f45fa"
+      },
+      {
+        "start": 33438,
+        "end_exclusive": 33448,
+        "bytes": 10,
+        "instructions": 3,
+        "name": "PC_relative_byte_leaf",
+        "sha256": "237f5833a80ead32ef214fce5c360966f882b57191ef5e76b99e9c855a243c5e"
+      },
+      {
+        "start": 33448,
+        "end_exclusive": 33490,
+        "bytes": 42,
+        "instructions": 16,
+        "name": "directional_resident_record_copy_tail",
+        "sha256": "28d890ee09b7d7eb6f4565cd0829521eae728973a961d142a817c80901f94af0"
+      }
+    ]
+  },
+  "span": {
+    "start": 33310,
+    "end_exclusive": 33352,
+    "bytes": 42,
+    "instructions": 15,
+    "name": "primary_record_predicate",
+    "sha256": "4af30f18b196e304a5b6d30bb167ee2a02c567c4ffcf4e36bb4f72e6204bcdcd"
+  },
+  "rows": [
+    {
+      "addr": 33310,
+      "size": 4,
+      "bytes": "93874105",
+      "opcode": "addi a5, gp, 84",
+      "type": "add"
+    },
+    {
+      "addr": 33314,
+      "size": 2,
+      "bytes": "9c43",
+      "opcode": "lw a5, 0(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 33316,
+      "size": 4,
+      "bytes": "03c74700",
+      "opcode": "lbu a4, 4(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 33320,
+      "size": 2,
+      "bytes": "8147",
+      "opcode": "li a5, 0",
+      "type": "mov"
+    },
+    {
+      "addr": 33322,
+      "size": 2,
+      "bytes": "218b",
+      "opcode": "andi a4, a4, 8",
+      "type": "and"
+    },
+    {
+      "addr": 33324,
+      "size": 2,
+      "bytes": "01ef",
+      "opcode": "bnez a4, 0x8244",
+      "type": "cjmp",
+      "jump": 33348,
+      "fail": 33326
+    },
+    {
+      "addr": 33326,
+      "size": 2,
+      "bytes": "0947",
+      "opcode": "li a4, 2",
+      "type": "mov"
+    },
+    {
+      "addr": 33328,
+      "size": 2,
+      "bytes": "8147",
+      "opcode": "li a5, 0",
+      "type": "mov"
+    },
+    {
+      "addr": 33330,
+      "size": 4,
+      "bytes": "6369a700",
+      "opcode": "bltu a4, a0, 0x8244",
+      "type": "cjmp",
+      "jump": 33348,
+      "fail": 33334
+    },
+    {
+      "addr": 33334,
+      "size": 4,
+      "bytes": "9387010c",
+      "opcode": "addi a5, gp, 192",
+      "type": "add"
+    },
+    {
+      "addr": 33338,
+      "size": 2,
+      "bytes": "aa97",
+      "opcode": "add a5, a5, a0",
+      "type": "add"
+    },
+    {
+      "addr": 33340,
+      "size": 4,
+      "bytes": "83c71700",
+      "opcode": "lbu a5, 1(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 33344,
+      "size": 4,
+      "bytes": "93b73700",
+      "opcode": "sltiu a5, a5, 3",
+      "type": "unk"
+    },
+    {
+      "addr": 33348,
+      "size": 2,
+      "bytes": "3e85",
+      "opcode": "mv a0, a5",
+      "type": "mov"
+    },
+    {
+      "addr": 33350,
+      "size": 2,
+      "bytes": "8280",
+      "opcode": "ret",
+      "type": "ret"
+    }
+  ],
+  "regions": [
+    {
+      "start": 33310,
+      "end_exclusive": 33326,
+      "bytes": 16,
+      "instructions": 6,
+      "name": "config_byte_read_and_bit3_gate",
+      "sha256": "c5db028aaa2c603bee4c722ec40121ce3aba98efdc09db558c60b9a1fc89455b"
+    },
+    {
+      "start": 33326,
+      "end_exclusive": 33334,
+      "bytes": 8,
+      "instructions": 3,
+      "name": "unsigned_index_gate",
+      "sha256": "43d06fc74089ede2dc3296a8a27ad8d4afadbed1d2317562095863f9d658a114"
+    },
+    {
+      "start": 33334,
+      "end_exclusive": 33348,
+      "bytes": 14,
+      "instructions": 4,
+      "name": "fresh_state_byte_and_unsigned_less3",
+      "sha256": "fa3cedc1889e227a9ce09ed2d8013d8d5d37876ab4ff6ddd759fee02ff3ec02c"
+    },
+    {
+      "start": 33348,
+      "end_exclusive": 33352,
+      "bytes": 4,
+      "instructions": 2,
+      "name": "A0_result_and_return",
+      "sha256": "9357712eb4a240a5427265f17c9e858a95d8d53bdcfe72f1583660a9819053f9"
+    }
+  ],
+  "cfg": {
+    "nodes": 15,
+    "edges": 16,
+    "all_rows_locally_reachable": true,
+    "successors": {
+      "33310": [
+        33314
+      ],
+      "33314": [
+        33316
+      ],
+      "33316": [
+        33320
+      ],
+      "33320": [
+        33322
+      ],
+      "33322": [
+        33324
+      ],
+      "33324": [
+        33348,
+        33326
+      ],
+      "33326": [
+        33328
+      ],
+      "33328": [
+        33330
+      ],
+      "33330": [
+        33348,
+        33334
+      ],
+      "33334": [
+        33338
+      ],
+      "33338": [
+        33340
+      ],
+      "33340": [
+        33344
+      ],
+      "33344": [
+        33348
+      ],
+      "33348": [
+        33350
+      ],
+      "33350": []
+    },
+    "controls": [
+      {
+        "pc": 33324,
+        "width": 2,
+        "target": 33348,
+        "kind": "C.BNEZ",
+        "rs1": 14,
+        "condition": "!=0"
+      },
+      {
+        "pc": 33330,
+        "width": 4,
+        "target": 33348,
+        "kind": "BLTU",
+        "f3": 6,
+        "rs1": 14,
+        "rs2": 10,
+        "condition": "unsigned rs1<rs2"
+      }
+    ],
+    "RET": 33350,
+    "no_calls": true,
+    "no_primary_cold_region_after_RET": true
+  },
+  "target_executed": false,
+  "ISA_emulated": false,
+  "ESIL_used": false,
+  "compiler_run": false,
+  "network_used": false,
+  "firmware_ready": false,
+  "semantics": {
+    "input": "Full32-bit unsigned A0=index. Do not truncate to uint8_t/uint16_t before the unsigned bound.",
+    "read_sequence": [
+      {
+        "pc": 33310,
+        "equation": "A5=u32(GP+84)"
+      },
+      {
+        "pc": 33314,
+        "width": 4,
+        "equation": "A5=LW32[A5]; call its value P"
+      },
+      {
+        "pc": 33316,
+        "width": 1,
+        "equation": "A4=LBU8[P+4]"
+      },
+      {
+        "pc": 33320,
+        "equation": "A5=0"
+      },
+      {
+        "pc": 33322,
+        "equation": "A4=A4&8"
+      },
+      {
+        "pc": 33324,
+        "equation": "if A4!=0 ->8244; A0=A5=0 and A4=8"
+      },
+      {
+        "pc": 33326,
+        "equation": "A4=2"
+      },
+      {
+        "pc": 33328,
+        "equation": "A5=0, even though an earlier A5=0 exists"
+      },
+      {
+        "pc": 33330,
+        "equation": "if unsigned(A4)<unsigned(A0) ->8244; A0=A5=0 and A4=2"
+      },
+      {
+        "pc": 33334,
+        "equation": "A5=u32(fresh GP+192)"
+      },
+      {
+        "pc": 33338,
+        "equation": "A5=u32(A5+full32 A0)"
+      },
+      {
+        "pc": 33340,
+        "width": 1,
+        "equation": "A5=LBU8[A5+1], therefore state byte atGP+193+index, notGP+192+index"
+      },
+      {
+        "pc": 33344,
+        "equation": "SLTIU A5,A5,3; output1 iff unsigned byte<3"
+      },
+      {
+        "pc": 33348,
+        "equation": "A0=A5"
+      },
+      {
+        "pc": 33350,
+        "equation": "RET through incoming RA"
+      }
+    ],
+    "normal_return": "A0=A5 is0 or1; returns1 iff loaded config byte bit3 is clear, full unsigned index<=2, and loaded state byte<3.",
+    "memory_order_warning": "The config pointer LW and its byte LBU occur before the index bound. Index>2 does not skip those reads or prove their validity. The state byte read occurs only after both gates.",
+    "GP_rule": "Two direct GP-address computations occur at821E and8236. No own GP write/call/CSR exists, but source ports should preserve the original fresh physical GP samples/read order rather than hardcode a numeric GP.",
+    "caller_12A22": {
+      "incoming_A0": 0,
+      "effect": "On this caller's normal path the index guard is satisfied; config read still occurs first. If bit3 clear, state byte is[GP+193], not[GP+192]. S0/SP/RA/GP are not modified by this leaf's own code.",
+      "boundary": "This closes only the leaf's own normal-path ABI effects, not physical memory/IRQ/fault behavior or the caller's other callees."
+    }
+  },
+  "register_contract": {
+    "own_writes": [
+      "A0",
+      "A4",
+      "A5"
+    ],
+    "own_memory_writes": [],
+    "frame_bytes": 0,
+    "calls": [],
+    "CSR": [],
+    "own_GP_SP_RA_S_register_writes": false,
+    "exits": [
+      {
+        "condition": "config bit3 set",
+        "A0": 0,
+        "A5": 0,
+        "A4": 8
+      },
+      {
+        "condition": "config bit3 clear and unsigned input index>2",
+        "A0": 0,
+        "A5": 0,
+        "A4": 2
+      },
+      {
+        "condition": "both gates pass",
+        "A0": "0 or1 from LBU8<3",
+        "A5": "same asA0",
+        "A4": 2
+      }
+    ],
+    "all_other_GPRs": "Unchanged by this own42B code on normal return. No ordinary C ABI assumption is needed to derive this raw-instruction fact.",
+    "traps": "Both loads depend on incoming GP/config pointer; no memory validity, MMIO/RAM identity, synchronization, alignment-fault behavior or exception recovery is proved."
+  },
+  "unsigned_checks": {
+    "index_width": 32,
+    "maximum_index": 2,
+    "accepted_indices": [
+      0,
+      1,
+      2
+    ],
+    "state_load_width": 8,
+    "state_threshold_exclusive": 3,
+    "accepted_state_values": [
+      0,
+      1,
+      2
+    ],
+    "config_mask": 8
+  },
+  "surrounding_notes": [
+    {
+      "range": [
+        33352,
+        33420
+      ],
+      "note": "Separate68B entry with D052 call,167A6 tail and reachable early/restore RET blocks. None belongs to821E."
+    },
+    {
+      "range": [
+        33420,
+        33438
+      ],
+      "note": "Separate18B leaf; AUIPC828C +0x20004000-728 ->byte address2000BFB4; unsigned byte>=4 predicate. No feature attribution."
+    },
+    {
+      "range": [
+        33438,
+        33448
+      ],
+      "note": "Separate10B byte leaf; AUIPC829E +0x20004000-745 ->byte address2000BFB5. No model-name inference."
+    },
+    {
+      "range": [
+        33448,
+        33490
+      ],
+      "note": "Separate42B directional tail; fresh pointer word4004C, PC-relative tablebase82B6+20004000-254=2000C1B8,12-byte argument, shared C.JR T1/cold direction path. Resident identity remains UNKNOWN."
+    },
+    {
+      "range": [
+        33292,
+        33310
+      ],
+      "note": "Known preceding clear helper is outside this fresh180B window; its existing GP+192+index then+1 store is consistent with state byteGP+193+index, but it is not reconstructed again here."
+    }
+  ],
+  "readable_reconstruction_plan": [
+    "Use exact public symbol tsl9_dispatch_external_821e; keep uint32_t A0 input and return0/1.",
+    "Readable C can own volatile config pointer/byte reads, bit mask, unsigned comparison, conditional state byte read and unsigned<3 result.",
+    "Fresh GP/fixed A0/A4/A5 architectural ports may preserve original register selection and incidental A4/A5 residues without raw opcode arrays.",
+    "Single initial flags profile: RV32IMAC_Zicsr/ILP32/Oz/noRelax, onlyX10/X14/X15 allocatable, C11/CPP17; no flag search.",
+    "Actual native proof must retain both LI A5,0 instructions, config-read-before-index order, late GP+192 plusLBU+1, both original branch conditions/targets, all15 typed instructions, no frame/call/UND/extra allocation.",
+    "IR/source evidence alone is not full code equality; compile artifacts/relocations/actual closure/replay/readiness need independent evidence."
+  ],
+  "feature_limits": "This is a bounded config/state eligibility predicate. Its own code does not identify seat, DND, CAN, a physical protocol, successful action or hardware compatibility. A previously reconstructed algebraic predicate is not proof of an entire feature.",
+  "diagnostics": [
+    "For explicit offline snapshots, display config-bit gate, full32 index bound, and state<3 as separate known/unknown conditions.",
+    "Do not display an invalid config pointer or unavailable byte as false/disabled. Index rejection does not eliminate the earlier config reads.",
+    "Preserve[GP+193..195] versus[GP+192..194] distinction and full unsigned input width when comparing models.",
+    "No provider execution, hardware read or write is added by this contract."
+  ]
+}

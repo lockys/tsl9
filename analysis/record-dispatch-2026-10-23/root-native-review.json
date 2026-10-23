@@ -1,0 +1,463 @@
+{
+  "schema": "TSL9-root-record-dispatch-native-review-v1",
+  "review_kind": "Read-only independent old ELF/control parser and fresh original bytes; separate from complete formal SSA checker",
+  "passed": true,
+  "inputs": {
+    "experiments/tsl9-queue-dispatch-component/check.py": "96f87427d48f626aba6c2cc9b7a1aba30dda8bc81df4020cf8d73093f2d48f77",
+    "experiments/tsl9-spi-transfer-leaf/verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+    "experiments/tsl9-record-dispatch/src/record_dispatch.v2.c": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b",
+    "src/native/receive/record_dispatch.c": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b",
+    "analysis/transport-frame-2026-10-23/next-provider-contract.json": "56031c4665154685e0617391647d6b21806ff95bc759901c410019db2f4c56af",
+    "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "original_range": "[0x12A08,0x12A6E)",
+  "original_sha256": "334494853a765e550af99f0e8dd95523efaf7cbb86d392e0340a5d5f004940c9",
+  "modes": {
+    "c": {
+      "native_sha256": "10bd9009cbabec329a43cf2ab4c94d77bf465d8c219b37ad4bc18ba0f90fc913",
+      "partial_sha256": "6692bce88ae9437f0932c0ace22c4c103f696733d3de8fe4cda19cc591ada58e",
+      "functions": [
+        {
+          "name": "tsl9_queue_external_12a08",
+          "offset": 0,
+          "bytes": 12
+        },
+        {
+          "name": "tsl9_dispatch_status_12a14",
+          "offset": 12,
+          "bytes": 2
+        },
+        {
+          "name": "tsl9_dispatch_ID_12a16",
+          "offset": 14,
+          "bytes": 10
+        },
+        {
+          "name": "tsl9_dispatch_query_12a20",
+          "offset": 24,
+          "bytes": 8
+        },
+        {
+          "name": "tsl9_dispatch_tag_12a28",
+          "offset": 32,
+          "bytes": 6
+        },
+        {
+          "name": "tsl9_dispatch_copy_12a2e",
+          "offset": 38,
+          "bytes": 34
+        },
+        {
+          "name": "tsl9_dispatch_peripheral_12a50",
+          "offset": 72,
+          "bytes": 14
+        },
+        {
+          "name": "tsl9_dispatch_finish_12a5e",
+          "offset": 86,
+          "bytes": 8
+        },
+        {
+          "name": "tsl9_dispatch_tagged_12a66",
+          "offset": 94,
+          "bytes": 8
+        }
+      ],
+      "controls": [
+        {
+          "offset": 8,
+          "type": 17,
+          "target_symbol": "tsl9_queue_external_81aa",
+          "original_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 33194
+          },
+          "pending_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 76304
+          }
+        },
+        {
+          "offset": 12,
+          "type": 44,
+          "target_symbol": "tsl9_dispatch_query_12a20",
+          "original_operand": {
+            "kind": "C.BNEZ",
+            "width": 2,
+            "rs1": 10,
+            "target": 76320
+          },
+          "pending_operand": {
+            "kind": "C.BNEZ",
+            "width": 2,
+            "rs1": 10,
+            "target": 76308
+          }
+        },
+        {
+          "offset": 20,
+          "type": 16,
+          "target_symbol": "tsl9_dispatch_finish_12a5e",
+          "original_operand": {
+            "kind": "BRANCH",
+            "width": 4,
+            "funct3": 1,
+            "rs1": 14,
+            "rs2": 15,
+            "target": 76382
+          },
+          "pending_operand": {
+            "kind": "BRANCH",
+            "width": 4,
+            "funct3": 1,
+            "rs1": 14,
+            "rs2": 15,
+            "target": 76316
+          }
+        },
+        {
+          "offset": 26,
+          "type": 17,
+          "target_symbol": "tsl9_dispatch_external_821e",
+          "original_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 33310
+          },
+          "pending_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 76322
+          }
+        },
+        {
+          "offset": 30,
+          "type": 44,
+          "target_symbol": "tsl9_dispatch_finish_12a5e",
+          "original_operand": {
+            "kind": "C.BEQZ",
+            "width": 2,
+            "rs1": 10,
+            "target": 76382
+          },
+          "pending_operand": {
+            "kind": "C.BEQZ",
+            "width": 2,
+            "rs1": 10,
+            "target": 76326
+          }
+        },
+        {
+          "offset": 36,
+          "type": 44,
+          "target_symbol": "tsl9_dispatch_tagged_12a66",
+          "original_operand": {
+            "kind": "C.BNEZ",
+            "width": 2,
+            "rs1": 15,
+            "target": 76390
+          },
+          "pending_operand": {
+            "kind": "C.BNEZ",
+            "width": 2,
+            "rs1": 15,
+            "target": 76332
+          }
+        },
+        {
+          "offset": 82,
+          "type": 17,
+          "target_symbol": "tsl9_dispatch_external_18ca4",
+          "original_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 101540
+          },
+          "pending_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 76378
+          }
+        },
+        {
+          "offset": 96,
+          "type": 17,
+          "target_symbol": "tsl9_dispatch_external_16b7c",
+          "original_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 93052
+          },
+          "pending_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 76392
+          }
+        },
+        {
+          "offset": 100,
+          "type": 45,
+          "target_symbol": "tsl9_dispatch_finish_12a5e",
+          "original_operand": {
+            "kind": "C.J",
+            "width": 2,
+            "rd": 0,
+            "target": 76382
+          },
+          "pending_operand": {
+            "kind": "C.J",
+            "width": 2,
+            "rd": 0,
+            "target": 76396
+          }
+        }
+      ],
+      "retained_bits": 689,
+      "whole_noncontrol_bytes": 74,
+      "resident_CJALR": {
+        "PC": "0x12A4E",
+        "width": 2,
+        "RA": "0x12A50",
+        "raw": "8297"
+      },
+      "source_and_curated_identical": true
+    },
+    "cpp": {
+      "native_sha256": "10bd9009cbabec329a43cf2ab4c94d77bf465d8c219b37ad4bc18ba0f90fc913",
+      "partial_sha256": "6692bce88ae9437f0932c0ace22c4c103f696733d3de8fe4cda19cc591ada58e",
+      "functions": [
+        {
+          "name": "tsl9_queue_external_12a08",
+          "offset": 0,
+          "bytes": 12
+        },
+        {
+          "name": "tsl9_dispatch_status_12a14",
+          "offset": 12,
+          "bytes": 2
+        },
+        {
+          "name": "tsl9_dispatch_ID_12a16",
+          "offset": 14,
+          "bytes": 10
+        },
+        {
+          "name": "tsl9_dispatch_query_12a20",
+          "offset": 24,
+          "bytes": 8
+        },
+        {
+          "name": "tsl9_dispatch_tag_12a28",
+          "offset": 32,
+          "bytes": 6
+        },
+        {
+          "name": "tsl9_dispatch_copy_12a2e",
+          "offset": 38,
+          "bytes": 34
+        },
+        {
+          "name": "tsl9_dispatch_peripheral_12a50",
+          "offset": 72,
+          "bytes": 14
+        },
+        {
+          "name": "tsl9_dispatch_finish_12a5e",
+          "offset": 86,
+          "bytes": 8
+        },
+        {
+          "name": "tsl9_dispatch_tagged_12a66",
+          "offset": 94,
+          "bytes": 8
+        }
+      ],
+      "controls": [
+        {
+          "offset": 8,
+          "type": 17,
+          "target_symbol": "tsl9_queue_external_81aa",
+          "original_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 33194
+          },
+          "pending_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 76304
+          }
+        },
+        {
+          "offset": 12,
+          "type": 44,
+          "target_symbol": "tsl9_dispatch_query_12a20",
+          "original_operand": {
+            "kind": "C.BNEZ",
+            "width": 2,
+            "rs1": 10,
+            "target": 76320
+          },
+          "pending_operand": {
+            "kind": "C.BNEZ",
+            "width": 2,
+            "rs1": 10,
+            "target": 76308
+          }
+        },
+        {
+          "offset": 20,
+          "type": 16,
+          "target_symbol": "tsl9_dispatch_finish_12a5e",
+          "original_operand": {
+            "kind": "BRANCH",
+            "width": 4,
+            "funct3": 1,
+            "rs1": 14,
+            "rs2": 15,
+            "target": 76382
+          },
+          "pending_operand": {
+            "kind": "BRANCH",
+            "width": 4,
+            "funct3": 1,
+            "rs1": 14,
+            "rs2": 15,
+            "target": 76316
+          }
+        },
+        {
+          "offset": 26,
+          "type": 17,
+          "target_symbol": "tsl9_dispatch_external_821e",
+          "original_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 33310
+          },
+          "pending_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 76322
+          }
+        },
+        {
+          "offset": 30,
+          "type": 44,
+          "target_symbol": "tsl9_dispatch_finish_12a5e",
+          "original_operand": {
+            "kind": "C.BEQZ",
+            "width": 2,
+            "rs1": 10,
+            "target": 76382
+          },
+          "pending_operand": {
+            "kind": "C.BEQZ",
+            "width": 2,
+            "rs1": 10,
+            "target": 76326
+          }
+        },
+        {
+          "offset": 36,
+          "type": 44,
+          "target_symbol": "tsl9_dispatch_tagged_12a66",
+          "original_operand": {
+            "kind": "C.BNEZ",
+            "width": 2,
+            "rs1": 15,
+            "target": 76390
+          },
+          "pending_operand": {
+            "kind": "C.BNEZ",
+            "width": 2,
+            "rs1": 15,
+            "target": 76332
+          }
+        },
+        {
+          "offset": 82,
+          "type": 17,
+          "target_symbol": "tsl9_dispatch_external_18ca4",
+          "original_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 101540
+          },
+          "pending_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 76378
+          }
+        },
+        {
+          "offset": 96,
+          "type": 17,
+          "target_symbol": "tsl9_dispatch_external_16b7c",
+          "original_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 93052
+          },
+          "pending_operand": {
+            "kind": "JAL",
+            "width": 4,
+            "rd": 1,
+            "target": 76392
+          }
+        },
+        {
+          "offset": 100,
+          "type": 45,
+          "target_symbol": "tsl9_dispatch_finish_12a5e",
+          "original_operand": {
+            "kind": "C.J",
+            "width": 2,
+            "rd": 0,
+            "target": 76382
+          },
+          "pending_operand": {
+            "kind": "C.J",
+            "width": 2,
+            "rd": 0,
+            "target": 76396
+          }
+        }
+      ],
+      "retained_bits": 689,
+      "whole_noncontrol_bytes": 74,
+      "resident_CJALR": {
+        "PC": "0x12A4E",
+        "width": 2,
+        "RA": "0x12A50",
+        "raw": "8297"
+      },
+      "source_and_curated_identical": true
+    }
+  },
+  "all_noncontrol_bits_equal": true,
+  "nine_symbolic_targets_match_original": true,
+  "machine_control_immediates_resolved": false,
+  "original_placement_proved": false,
+  "ordinary_C_ABI_proved": false,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "firmware_ready": false
+}

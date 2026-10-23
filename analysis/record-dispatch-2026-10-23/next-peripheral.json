@@ -1,0 +1,547 @@
+{
+  "schema": "TSL9-bounded-static-decode-v1",
+  "firmware_path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "mapping_base": "0x8000",
+  "start": "0x18ca4",
+  "end_exclusive": "0x18d78",
+  "bytes": 212,
+  "instructions": 72,
+  "span_sha256": "f2e7e2a7bc63053c45f5951e801c84bd0b83dc603168267e54bde8aa4bd86960",
+  "producer": "${RADARE2}",
+  "producer_sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+  "command": [
+    "-N",
+    "-q",
+    "-a",
+    "riscv",
+    "-b",
+    "32",
+    "-m",
+    "0x8000",
+    "-c",
+    "e scr.color=0;pDj 212 @ 0x18ca4;q",
+    "${FIRMWARE}"
+  ],
+  "target_executed": false,
+  "ISA_emulated": false,
+  "ESIL_not_used": true,
+  "scope": "Bounded window from direct provider18CA4 to already-known18D78; complete primary extent and adjacent entries require separate CFG review.",
+  "rows": [
+    {
+      "addr": 101540,
+      "size": 2,
+      "bytes": "1c45",
+      "opcode": "lw a5, 8(a0)",
+      "type": "load"
+    },
+    {
+      "addr": 101542,
+      "size": 4,
+      "bytes": "13975700",
+      "opcode": "slli a4, a5, 0x5",
+      "type": "shl"
+    },
+    {
+      "addr": 101546,
+      "size": 4,
+      "bytes": "634a070a",
+      "opcode": "bltz a4, 0x18d5e",
+      "type": "cjmp",
+      "jump": 101726,
+      "fail": 101550
+    },
+    {
+      "addr": 101550,
+      "size": 2,
+      "bytes": "1c45",
+      "opcode": "lw a5, 8(a0)",
+      "type": "load"
+    },
+    {
+      "addr": 101552,
+      "size": 4,
+      "bytes": "13974700",
+      "opcode": "slli a4, a5, 0x4",
+      "type": "shl"
+    },
+    {
+      "addr": 101556,
+      "size": 4,
+      "bytes": "6347070a",
+      "opcode": "bltz a4, 0x18d62",
+      "type": "cjmp",
+      "jump": 101730,
+      "fail": 101560
+    },
+    {
+      "addr": 101560,
+      "size": 2,
+      "bytes": "1c45",
+      "opcode": "lw a5, 8(a0)",
+      "type": "load"
+    },
+    {
+      "addr": 101562,
+      "size": 2,
+      "bytes": "9146",
+      "opcode": "li a3, 4",
+      "type": "mov"
+    },
+    {
+      "addr": 101564,
+      "size": 4,
+      "bytes": "13973700",
+      "opcode": "slli a4, a5, 0x3",
+      "type": "shl"
+    },
+    {
+      "addr": 101568,
+      "size": 4,
+      "bytes": "635d0708",
+      "opcode": "bgez a4, 0x18d5a",
+      "type": "cjmp",
+      "jump": 101722,
+      "fail": 101572
+    },
+    {
+      "addr": 101572,
+      "size": 2,
+      "bytes": "8946",
+      "opcode": "li a3, 2",
+      "type": "mov"
+    },
+    {
+      "addr": 101574,
+      "size": 4,
+      "bytes": "93974600",
+      "opcode": "slli a5, a3, 0x4",
+      "type": "shl"
+    },
+    {
+      "addr": 101578,
+      "size": 2,
+      "bytes": "aa97",
+      "opcode": "add a5, a5, a0",
+      "type": "add"
+    },
+    {
+      "addr": 101580,
+      "size": 4,
+      "bytes": "03a70718",
+      "opcode": "lw a4, 384(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 101584,
+      "size": 2,
+      "bytes": "058b",
+      "opcode": "andi a4, a4, 1",
+      "type": "and"
+    },
+    {
+      "addr": 101586,
+      "size": 4,
+      "bytes": "23a0e718",
+      "opcode": "sw a4, 384(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 101590,
+      "size": 4,
+      "bytes": "03c68500",
+      "opcode": "lbu a2, 8(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101594,
+      "size": 4,
+      "bytes": "03c59500",
+      "opcode": "lbu a0, 9(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101598,
+      "size": 2,
+      "bytes": "41e6",
+      "opcode": "bnez a2, 0x18d66",
+      "type": "cjmp",
+      "jump": 101734,
+      "fail": 101600
+    },
+    {
+      "addr": 101600,
+      "size": 2,
+      "bytes": "9841",
+      "opcode": "lw a4, 0(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101602,
+      "size": 4,
+      "bytes": "03a60718",
+      "opcode": "lw a2, 384(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 101606,
+      "size": 2,
+      "bytes": "5607",
+      "opcode": "slli a4, a4, 0x15",
+      "type": "shl"
+    },
+    {
+      "addr": 101608,
+      "size": 2,
+      "bytes": "498f",
+      "opcode": "or a4, a4, a0",
+      "type": "or"
+    },
+    {
+      "addr": 101610,
+      "size": 2,
+      "bytes": "518f",
+      "opcode": "or a4, a4, a2",
+      "type": "or"
+    },
+    {
+      "addr": 101612,
+      "size": 4,
+      "bytes": "23a0e718",
+      "opcode": "sw a4, 384(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 101616,
+      "size": 4,
+      "bytes": "03c7a500",
+      "opcode": "lbu a4, 10(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101620,
+      "size": 2,
+      "bytes": "3d8b",
+      "opcode": "andi a4, a4, 15",
+      "type": "and"
+    },
+    {
+      "addr": 101622,
+      "size": 4,
+      "bytes": "2385e500",
+      "opcode": "sb a4, 10(a1)",
+      "type": "store"
+    },
+    {
+      "addr": 101626,
+      "size": 4,
+      "bytes": "03a64718",
+      "opcode": "lw a2, 388(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 101630,
+      "size": 2,
+      "bytes": "419a",
+      "opcode": "andi a2, a2, -16",
+      "type": "and"
+    },
+    {
+      "addr": 101632,
+      "size": 4,
+      "bytes": "23a2c718",
+      "opcode": "sw a2, 388(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 101636,
+      "size": 4,
+      "bytes": "03a64718",
+      "opcode": "lw a2, 388(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 101640,
+      "size": 2,
+      "bytes": "518f",
+      "opcode": "or a4, a4, a2",
+      "type": "or"
+    },
+    {
+      "addr": 101642,
+      "size": 4,
+      "bytes": "23a2e718",
+      "opcode": "sw a4, 388(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 101646,
+      "size": 4,
+      "bytes": "03c6c500",
+      "opcode": "lbu a2, 12(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101650,
+      "size": 4,
+      "bytes": "03c7b500",
+      "opcode": "lbu a4, 11(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101654,
+      "size": 2,
+      "bytes": "2206",
+      "opcode": "slli a2, a2, 0x8",
+      "type": "shl"
+    },
+    {
+      "addr": 101656,
+      "size": 2,
+      "bytes": "598e",
+      "opcode": "or a2, a2, a4",
+      "type": "or"
+    },
+    {
+      "addr": 101658,
+      "size": 4,
+      "bytes": "03c7d500",
+      "opcode": "lbu a4, 13(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101662,
+      "size": 2,
+      "bytes": "4207",
+      "opcode": "slli a4, a4, 0x10",
+      "type": "shl"
+    },
+    {
+      "addr": 101664,
+      "size": 2,
+      "bytes": "598e",
+      "opcode": "or a2, a2, a4",
+      "type": "or"
+    },
+    {
+      "addr": 101666,
+      "size": 4,
+      "bytes": "03c7e500",
+      "opcode": "lbu a4, 14(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101670,
+      "size": 2,
+      "bytes": "6207",
+      "opcode": "slli a4, a4, 0x18",
+      "type": "shl"
+    },
+    {
+      "addr": 101672,
+      "size": 2,
+      "bytes": "518f",
+      "opcode": "or a4, a4, a2",
+      "type": "or"
+    },
+    {
+      "addr": 101674,
+      "size": 4,
+      "bytes": "23a4e718",
+      "opcode": "sw a4, 392(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 101678,
+      "size": 4,
+      "bytes": "03c60501",
+      "opcode": "lbu a2, 16(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101682,
+      "size": 4,
+      "bytes": "03c7f500",
+      "opcode": "lbu a4, 15(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101686,
+      "size": 2,
+      "bytes": "2206",
+      "opcode": "slli a2, a2, 0x8",
+      "type": "shl"
+    },
+    {
+      "addr": 101688,
+      "size": 2,
+      "bytes": "598e",
+      "opcode": "or a2, a2, a4",
+      "type": "or"
+    },
+    {
+      "addr": 101690,
+      "size": 4,
+      "bytes": "03c71501",
+      "opcode": "lbu a4, 17(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101694,
+      "size": 2,
+      "bytes": "4207",
+      "opcode": "slli a4, a4, 0x10",
+      "type": "shl"
+    },
+    {
+      "addr": 101696,
+      "size": 2,
+      "bytes": "598e",
+      "opcode": "or a2, a2, a4",
+      "type": "or"
+    },
+    {
+      "addr": 101698,
+      "size": 4,
+      "bytes": "03c72501",
+      "opcode": "lbu a4, 18(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101702,
+      "size": 2,
+      "bytes": "6207",
+      "opcode": "slli a4, a4, 0x18",
+      "type": "shl"
+    },
+    {
+      "addr": 101704,
+      "size": 2,
+      "bytes": "518f",
+      "opcode": "or a4, a4, a2",
+      "type": "or"
+    },
+    {
+      "addr": 101706,
+      "size": 4,
+      "bytes": "23a6e718",
+      "opcode": "sw a4, 396(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 101710,
+      "size": 4,
+      "bytes": "03a70718",
+      "opcode": "lw a4, 384(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 101714,
+      "size": 4,
+      "bytes": "13671700",
+      "opcode": "ori a4, a4, 1",
+      "type": "or"
+    },
+    {
+      "addr": 101718,
+      "size": 4,
+      "bytes": "23a0e718",
+      "opcode": "sw a4, 384(a5)",
+      "type": "store"
+    },
+    {
+      "addr": 101722,
+      "size": 2,
+      "bytes": "3685",
+      "opcode": "mv a0, a3",
+      "type": "mov"
+    },
+    {
+      "addr": 101724,
+      "size": 2,
+      "bytes": "8280",
+      "opcode": "ret",
+      "type": "ret"
+    },
+    {
+      "addr": 101726,
+      "size": 2,
+      "bytes": "8146",
+      "opcode": "li a3, 0",
+      "type": "mov"
+    },
+    {
+      "addr": 101728,
+      "size": 2,
+      "bytes": "9db7",
+      "opcode": "j 0x18cc6",
+      "type": "jmp",
+      "jump": 101574
+    },
+    {
+      "addr": 101730,
+      "size": 2,
+      "bytes": "8546",
+      "opcode": "li a3, 1",
+      "type": "mov"
+    },
+    {
+      "addr": 101732,
+      "size": 2,
+      "bytes": "8db7",
+      "opcode": "j 0x18cc6",
+      "type": "jmp",
+      "jump": 101574
+    },
+    {
+      "addr": 101734,
+      "size": 2,
+      "bytes": "d841",
+      "opcode": "lw a4, 4(a1)",
+      "type": "load"
+    },
+    {
+      "addr": 101736,
+      "size": 4,
+      "bytes": "03a80718",
+      "opcode": "lw a6, 384(a5)",
+      "type": "load"
+    },
+    {
+      "addr": 101740,
+      "size": 2,
+      "bytes": "0e07",
+      "opcode": "slli a4, a4, 0x3",
+      "type": "shl"
+    },
+    {
+      "addr": 101742,
+      "size": 2,
+      "bytes": "498f",
+      "opcode": "or a4, a4, a0",
+      "type": "or"
+    },
+    {
+      "addr": 101744,
+      "size": 2,
+      "bytes": "518f",
+      "opcode": "or a4, a4, a2",
+      "type": "or"
+    },
+    {
+      "addr": 101746,
+      "size": 4,
+      "bytes": "33670701",
+      "opcode": "or a4, a4, a6",
+      "type": "or"
+    },
+    {
+      "addr": 101750,
+      "size": 2,
+      "bytes": "9dbf",
+      "opcode": "j 0x18cec",
+      "type": "jmp",
+      "jump": 101612
+    }
+  ]
+}

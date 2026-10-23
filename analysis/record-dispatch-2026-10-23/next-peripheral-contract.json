@@ -1,0 +1,50 @@
+{
+  "schema": "TSL9-next-peripheral-bounded-contract-v1",
+  "source_evidence": "analysis/record-dispatch-2026-10-23/next-peripheral.json",
+  "span": {
+    "start": "0x18ca4",
+    "end_exclusive": "0x18d78",
+    "bytes": 212,
+    "instructions": 72,
+    "sha256": "f2e7e2a7bc63053c45f5951e801c84bd0b83dc603168267e54bde8aa4bd86960"
+  },
+  "bounded_CFG": {
+    "nodes": 72,
+    "local_edges": 75,
+    "all_direct_targets_local": true,
+    "calls": 0,
+    "frames": 0,
+    "returns": 1,
+    "cold_blocks_after_RET": [
+      "0x18D5E",
+      "0x18D62",
+      "0x18D66"
+    ]
+  },
+  "entry_inputs": {
+    "A0": "base pointer supplied as0x40006400 by12A50 caller",
+    "A1": "then-live caller record pointer; not an ownership proof",
+    "other_registers": "inherited"
+  },
+  "static_observations": [
+    "Three separate fresh LW32[base+8] reads test bits26,27,28 in order; they are not one cached read.",
+    "Selector0/1/2 uses base+16*selector; absence path returns4 without the subsequent writes.",
+    "Read/modify/write at selected base+384; input byte8 selects standard versus alternate ID path, with fresh registers and resident effects unknown at the caller.",
+    "Byte10 of the input record is masked with15 and stored back before register+388 updates.",
+    "Eight payload bytes are read in explicit order12,11,13,14,16,15,17,18 and packed into two words at register+392/+396, regardless of the masked length.",
+    "Final fresh read at+384, OR1 and write occur before selector return; software store is not observed physical transmission."
+  ],
+  "remaining": [
+    "Complete original C/C++ physical-register reconstruction and actual compiler/link proof.",
+    "Memory alias, asynchronous register effects, controller and silicon identity, bus behavior and OTA compatibility.",
+    "Extended path writes A6; standard path leaves it inherited. Preserve every read/write and return residue."
+  ],
+  "inference": {
+    "label": "Three-bank transmit-register operation is a candidate interpretation",
+    "confirmed_peripheral_name": false,
+    "confirmed_physical_delivery": false
+  },
+  "firmware_ready": false,
+  "target_executed": false,
+  "ISA_emulated": false
+}

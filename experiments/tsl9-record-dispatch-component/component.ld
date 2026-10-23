@@ -1,0 +1,30 @@
+OUTPUT_ARCH(riscv)
+SECTIONS {
+  .record_dispatch_component : ALIGN(2) {
+    KEEP(*(.transport_dispatch))
+    KEEP(*(.text.tsl9_queue_external_12a08))
+    KEEP(*(.text.tsl9_dispatch_status_12a14))
+    KEEP(*(.text.tsl9_dispatch_ID_12a16))
+    KEEP(*(.text.tsl9_dispatch_query_12a20))
+    KEEP(*(.text.tsl9_dispatch_tag_12a28))
+    KEEP(*(.text.tsl9_dispatch_copy_12a2e))
+    KEEP(*(.text.tsl9_dispatch_peripheral_12a50))
+    KEEP(*(.text.tsl9_dispatch_finish_12a5e))
+    KEEP(*(.text.tsl9_dispatch_tagged_12a66))
+    KEEP(*(.text.tsl9_dispatch_external_821e))
+  }
+  /DISCARD/ : { *(.comment) *(.note*) *(.riscv.attributes) }
+  ASSERT(tsl9_queue_entry_12c58 == 0, "Complete prior806B dispatch retained")
+  ASSERT(tsl9_queue_external_81aa == 502, "Existing genuine status provider retained")
+  ASSERT(tsl9_queue_external_12a08 == 806, "Genuine record dispatcher appended")
+  ASSERT(tsl9_dispatch_status_12a14 == 818, "Then-live status")
+  ASSERT(tsl9_dispatch_ID_12a16 == 820, "Identifier read")
+  ASSERT(tsl9_dispatch_query_12a20 == 830, "Query provider")
+  ASSERT(tsl9_dispatch_tag_12a28 == 838, "Tag path")
+  ASSERT(tsl9_dispatch_copy_12a2e == 844, "Indirect copy")
+  ASSERT(tsl9_dispatch_peripheral_12a50 == 878, "Peripheral provider")
+  ASSERT(tsl9_dispatch_finish_12a5e == 892, "Frame return")
+  ASSERT(tsl9_dispatch_tagged_12a66 == 900, "Retained post-RET path")
+  ASSERT(tsl9_dispatch_external_821e == 908, "Genuine eligibility predicate appended")
+  ASSERT(SIZEOF(.record_dispatch_component) == 950, "All806 plus102 plus42 genuine bytes")
+}

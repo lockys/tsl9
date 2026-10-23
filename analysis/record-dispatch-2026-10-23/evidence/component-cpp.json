@@ -1,0 +1,1796 @@
+{
+  "inverse_JSON_equality_verified": true,
+  "original_bytes": 63913,
+  "original_local_receipt": "experiments/tsl9-record-dispatch-component/build/component-v1/cpp/verification.json",
+  "original_replay_claimed": false,
+  "original_sha256": "e53238f6285bd9bb87849ed9da0d61c3180c14e8fb37df402316c0435e3f56e6",
+  "originals_preserved_local": true,
+  "path_only_redaction": true,
+  "receipt": {
+    "BIN_generated": false,
+    "HOST_execution": false,
+    "ISA_emulated": false,
+    "actual_commands": [
+      {
+        "argv": [
+          "${LLVM_BIN}\\ld.lld.exe",
+          "-r",
+          "--no-relax",
+          "-T",
+          "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\component.ld",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\build\\component-v1\\cpp\\dispatch.o",
+          "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch\\build\\verified-v1\\cpp\\native.o",
+          "${TSL9_ROOT}\\experiments\\tsl9-record-predicate\\build\\verified-v3\\cpp\\native.o",
+          "-o",
+          "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\build\\component-v1\\cpp\\dispatch.o"
+        ],
+        "exit": 0,
+        "label": "link",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "argv": [
+          "${LLVM_BIN}\\llvm-objdump.exe",
+          "--mattr=+m,+a,+c,+zicsr",
+          "-d",
+          "-r",
+          "-t",
+          "-h",
+          "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\build\\component-v1\\cpp\\dispatch.o"
+        ],
+        "exit": 0,
+        "label": "dispatch",
+        "log_sha256": "c254e580266c2f0463e201f69b556d09d291bc7f0d43b07fdc426801388fb496"
+      }
+    ],
+    "artifacts": {
+      "dispatch.log": "c254e580266c2f0463e201f69b556d09d291bc7f0d43b07fdc426801388fb496",
+      "dispatch.o": "4eb716c272de618d738cf58a182f082ea328ce07fbf34a2587ce2cbe812a8b0b",
+      "link-receipt.json": "64491b84a119ed87b3207bf737c66285805bcac6aa3a0f44bf77bde61414e225",
+      "link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "firmware_ready": false,
+    "full_LLVM_instruction_rows": 330,
+    "inputs": {
+      "${LLVM_BIN}\\clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+      "${LLVM_BIN}\\ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+      "${LLVM_BIN}\\llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+      "${PUBLIC_CLANG_RESOURCE_WINDOWS}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "${TSL9_ROOT}\\analysis\\irq-provider-2026-10-23\\next-consumer.json": "8dc9dc3d4cd75aa5e4c22812ed0a45098f83f994bf78152fad9a2f7bb4dd03ca",
+      "${TSL9_ROOT}\\analysis\\queue-consumer-2026-10-23\\next-filter.json": "126704daa831099e311b3a50ac617225b27d32c0bfefcaa9f16c5272399e2e22",
+      "${TSL9_ROOT}\\analysis\\queue-filter-2026-10-23\\next-transport.json": "0579c86255421f8e313dffb88c4289d2db8087a0632f832389fa9d474a06237a",
+      "${TSL9_ROOT}\\analysis\\record-dispatch-2026-10-23\\next-821e-contract.json": "ed51619ac720d13d14f31b9ba1e3c8362104e0e6a7a1cce84ed26652dd3e0ade",
+      "${TSL9_ROOT}\\analysis\\transport-frame-2026-10-23\\next-provider-contract.json": "56031c4665154685e0617391647d6b21806ff95bc759901c410019db2f4c56af",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\component.ld": "0892b58d98599b6aa4ffad06da24acb0463973e4d8324476342ff803c964921a",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\probe.py": "bd3ec537a705eb23ec8c6bec57bd2aa03072e3fdce3ea14801b77d9f6cf6624f",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\src\\queue_consumer.v3.c": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\verify.py": "7161985aa739f3f1a746bf5ae98cdd79121cfdc3209270a0c74eb8133a3be9d6",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\README.md": "fde7d3504546c3f537a4a48a07f0ac29f68534134d7c7b2a84b53600fb0e5cdc",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\build.py": "7f7a5560f381fcfddfdc63483f28a3e9c6a7fd90ad6e30e62ae36cc35fff6828",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\check.py": "96f87427d48f626aba6c2cc9b7a1aba30dda8bc81df4020cf8d73093f2d48f77",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\component.ld": "9a89ee848e12977348ba9b01a14756caa1d7d4b4b123d7dc5d7f4721db5ae542",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\dependencies.json": "43ba949302c4f26dc54f754d3559eb8411fccc00181d03b633a3c63e2739a50c",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\readme.en.md": "966b771595c42b38d239fe529a858d2b5ec0ded82684115342d5ddd95331a52b",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\readme.zh-TW.md": "fde7d3504546c3f537a4a48a07f0ac29f68534134d7c7b2a84b53600fb0e5cdc",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\repair-history\\history.json": "cad617bcb0f4afd8258ee3625603aeb3cbb5bcdeaf38f185465df15f54935e1d",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\repair-history\\initial-check.py": "d3656516acf330c7e4a57b697efa69c5ad2552d73d02a7853217e36d2223c671",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\seal.json": "1e0234c192e7ad248225654c6bba293548624c00108f4dc40b238a27cd3c3acd",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\src\\providers.c": "4767676947e1be746aa08351f2c2a2c4b3f3f9a7a4d749b99b881a8b44f51894",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\verify.sh": "208c5fbbc9687fead1f9f5003c3c08501e0d8b19e44e420554213927b7dd762f",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\component.ld": "1682fc10e4039ee7c950870f7c08a533e69a779e36325bd346a74324f39fd728",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\probe.py": "5c01e6c9c2a27da9649fe9ba4b57e9675d7cdbc3c0c4112d580f0c590d84fbb4",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\src\\queue_filter.v1.c": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\verify.py": "cf4dfd90cb171738d7197ade1d741a12c947fc8aa2bfa7465665814a9cd0f98d",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\build.py": "11e076c5ac7821a1ce042f356d6be17243df975421e1f281f78097b3293db473",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\check.py": "6cfa544596c32b14b6e122743f5f88ed4ba934fb8a4919c528102c668457bdc9",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\component.ld": "eb24ba262936a5c9684eef655262537a29888a7cdee9b9755dc528e139ff2f09",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\seal.json": "2e9f6fb929269cdf1bae1bdada83c50dad47626b4459adbae7ea8e1ee58794eb",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\source-map.json": "52b6fd52af064a616c1f29396640802a4cc84cd7c08c135232820586b86086ec",
+      "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\src\\providers.c": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\README.md": "c5c5c91f9f21c1e525c223ad1c82c19c3b8be663e98d7c81e01486d189db44b6",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\build.py": "1faecbb0ddec93d39175f360ef81ef93de8cdecb3aec7dbba04af5b3b4439e1c",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\check.py": "dd0bad94866c4dd3a7d572cdca007003d6fed52ee298e66c7803e63a2b12f9e2",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\component.ld": "617c4f4b42336f4dcc0d11bf1b72efff9d440ea8ba66f93c57f3eb580617b4f7",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\dependencies.json": "5d3bd5918e1a978966b1be47a67330d6f646109139fce766e3bd4a2ac4a993d3",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\readme.en.md": "2686d071c7a92d1bfe32367950ccec3ce380a76d5958f3991fc096e411764bdc",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\readme.zh-TW.md": "c5c5c91f9f21c1e525c223ad1c82c19c3b8be663e98d7c81e01486d189db44b6",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch-component\\verify.sh": "208c5fbbc9687fead1f9f5003c3c08501e0d8b19e44e420554213927b7dd762f",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch\\component.ld": "96163b2a7a9de7040b9d36bac23b158b17dbdc729a6f6e59426491bd0ce01dff",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch\\probe.py": "a4c01d657fc0188c9f965affff5f8698232c4c71cd030cfcc35630666a53a2a2",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch\\src\\record_dispatch.v2.c": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch\\verify.py": "3a0ee55f642859b91a72147e57b7600629f1be827f1e88481f8c2e89be3e266f",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-predicate\\component.ld": "f76d45856e05279e551e9368f43331d2082e4703d61580eb3bf33d53fecd39f6",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-predicate\\probe.py": "5b18783d17976cfddba71fc3c0ccacb7744bd86e444e99442a4e4af7db15c78b",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-predicate\\src\\predicate.v2.c": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669",
+      "${TSL9_ROOT}\\experiments\\tsl9-record-predicate\\verify.py": "1c9e6c62a5e57cd49aa019d752f94bda5752a7c1d2c15de1600fe7bdd4aae0a3",
+      "${TSL9_ROOT}\\experiments\\tsl9-spi-transfer-leaf\\verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\README.md": "eaa3d1062a47e084428ef403e4a423c2ad2f3a579e99befe8d48123415042488",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\build.py": "4126fbaa9ed9fe066d50ad918ea7be81100846939dddd9ba85e268b4be2df23b",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\check.py": "0b0261e6ac5de1d8c23b185967a5046e948730f2a13e92d99b72ee8c2deefd60",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\component.ld": "ed995d454377f4aa4f639056514911ad6df21ba5f38413e5784037030d61d629",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\dependencies.json": "f6cc4b9125821caee6dfa86682f4f3de0d0fd4660c6ea0ecda8f3556612e50d2",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\readme.en.md": "0bd905894176d1560d1734417f1d24d64d8ff4af3eb53061d3966ad22aff3b56",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\readme.zh-TW.md": "eaa3d1062a47e084428ef403e4a423c2ad2f3a579e99befe8d48123415042488",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\seal.json": "63eda6a1402de4a09573c130e14d0523561a96bb829e9ac3833d1f5b508cede7",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\verify.sh": "208c5fbbc9687fead1f9f5003c3c08501e0d8b19e44e420554213927b7dd762f",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-frame\\component.ld": "5e30a96739dfdebe25d5e028602279c56754c2496c395ff9a7488609be0e6c9e",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-frame\\probe.py": "23f666f4f9acccad76b094401b1655c6a6a826156380a6962fbce321f5b5df3c",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-frame\\src\\transport_frame.v6.c": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8",
+      "${TSL9_ROOT}\\experiments\\tsl9-transport-frame\\verify.py": "1f9eb6057b43c962b53e80e90a895c229e0114e223f711c94015dc6b0430221e",
+      "${TSL9_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "installed_ROM_proved": false,
+    "mode": "cpp",
+    "negative_controls": [
+      "writable_code",
+      "fake_ABS_record_provider",
+      "weak_record_provider",
+      "wrong_record_position",
+      "lost_record_copy_bytes",
+      "fake_ABS_predicate",
+      "wrong_predicate_position",
+      "lost_predicate_bytes",
+      "nonzero_remaining_UND",
+      "wrong_binding_tsl9_queue_external_12a08",
+      "wrong_binding_tsl9_queue_external_81aa",
+      "wrong_binding_tsl9_dispatch_external_821e",
+      "wrong_RELA_family",
+      "wrong_RELA_offset",
+      "nonzero_RELA_addend",
+      "record_call_without_RA",
+      "record_frame",
+      "record_copy_byte",
+      "retained_GP175",
+      "unreported_trailing_bytes",
+      "typed_record_JAL_link",
+      "typed_status_JAL_link",
+      "typed_predicate_JAL_link",
+      "typed_GP167",
+      "full_original_predicate_byte"
+    ],
+    "network": false,
+    "new_compilation": false,
+    "passed": true,
+    "physical_placement_proved": false,
+    "result": {
+      "FUNCs": 42,
+      "VMA": 0,
+      "all_machine_controls_resolved": false,
+      "bytes": 950,
+      "code_sha256": "5f6bdde8e51f1bfac7bccfd458ec83d35c2d603dae21533adb83c09fe735f13c",
+      "functions": [
+        {
+          "bytes": 46,
+          "name": "tsl9_queue_entry_12c58",
+          "offset": 0,
+          "sha256": "b62b7b72fe9434d4f8074ef21e434b91f56c2b2bf3350be8d8ec4099ead404e5"
+        },
+        {
+          "bytes": 32,
+          "name": "tsl9_queue_scan_12c86",
+          "offset": 46,
+          "sha256": "bc696cee29f69cb20c69150dbc8164d3a09f3f0bb00765b3fe9b8bd9188fff28"
+        },
+        {
+          "bytes": 14,
+          "name": "tsl9_queue_release_12ca6",
+          "offset": 78,
+          "sha256": "d7b85d950e815d38e8656a916588982e82ca74061763e6f6faca71891838ecaa"
+        },
+        {
+          "bytes": 58,
+          "name": "tsl9_queue_validate_12cb4",
+          "offset": 92,
+          "sha256": "54a596cdf010829ba79c5b8e8140b848e4caa52100036c554ba827e727c180e9"
+        },
+        {
+          "bytes": 10,
+          "name": "tsl9_queue_advance_12cee",
+          "offset": 150,
+          "sha256": "45d704a3c96dca21c1f6a85f19602bbf29ccfed5842290d3bf3c7a82ebc7707c"
+        },
+        {
+          "bytes": 22,
+          "name": "tsl9_queue_finish_12cf8",
+          "offset": 160,
+          "sha256": "fd023936c707df0065acdb505542c01aac895b4b7a048a1e7c9cbaf0c76d5ee0"
+        },
+        {
+          "bytes": 52,
+          "name": "tsl9_queue_zero_12d0e",
+          "offset": 182,
+          "sha256": "c8757cd2eb587e8f9bd479c3d6d351b46aebca83661b37c5934e556fa0fea897"
+        },
+        {
+          "bytes": 10,
+          "name": "tsl9_queue_emit_12d42",
+          "offset": 234,
+          "sha256": "8668966d892db043fd45de554f967eb3db61decb14f04bc051174c5eb0529c0d"
+        },
+        {
+          "bytes": 44,
+          "name": "tsl9_queue_response_12d4c",
+          "offset": 244,
+          "sha256": "57c7452d79fa688548fbc9da4c4cd94e1cc00f8ff03336f68c5e94f6d1dc166a"
+        },
+        {
+          "bytes": 26,
+          "name": "tsl9_queue_other_12d78",
+          "offset": 288,
+          "sha256": "c3276890fc580c91a057a2e672630d17fcb4ad264bdec1fca6bd101e67c0efd5"
+        },
+        {
+          "bytes": 54,
+          "name": "tsl9_queue_external_82d2",
+          "offset": 314,
+          "sha256": "b2b79614061f2ccc59cadfe7a5fc41da6674926c3d0ce21b881bd8de9483781e"
+        },
+        {
+          "bytes": 32,
+          "name": "tsl9_filter_scan_8308",
+          "offset": 368,
+          "sha256": "b13863c4779d5c59dc3966c930c7a4fe9b28f755b448808be34888b69f36f7d5"
+        },
+        {
+          "bytes": 48,
+          "name": "tsl9_filter_pack_8328",
+          "offset": 400,
+          "sha256": "2bd4fe589cd5a6cc85cb147a5f55160528429e6cd15a9075cb28056ffff4c414"
+        },
+        {
+          "bytes": 18,
+          "name": "tsl9_filter_emit_8358",
+          "offset": 448,
+          "sha256": "be32c019e9db23c873d4e608e94fe09a1015f2cbbe4846bb15680a69649d0c16"
+        },
+        {
+          "bytes": 4,
+          "name": "tsl9_filter_test_836a",
+          "offset": 466,
+          "sha256": "4dd9686eb458bbfb45cfe08dc3a1dd0cc04825c845fc274398717f473e164796"
+        },
+        {
+          "bytes": 28,
+          "name": "tsl9_filter_finish_836e",
+          "offset": 470,
+          "sha256": "227907f1d643e603d33edefd0f6339b9e475e13a4654167e21f68bfdcc3997ee"
+        },
+        {
+          "bytes": 4,
+          "name": "tsl9_filter_second_838a",
+          "offset": 498,
+          "sha256": "f04b6f869015ca51affa2faa6f060d45eac6a2ef0cda466f36c44248d008ce04"
+        },
+        {
+          "bytes": 6,
+          "name": "tsl9_queue_external_81aa",
+          "offset": 502,
+          "sha256": "887c2bfb847a7e013acebac38c8be3f2bed06fd44305080ad6fc7ca3593e8fc3"
+        },
+        {
+          "bytes": 18,
+          "name": "tsl9_queue_external_820c",
+          "offset": 508,
+          "sha256": "643c424c37ca788946153c36cbfaebb37644464f84cc49f7fe2ff92b7c7c2b90"
+        },
+        {
+          "bytes": 8,
+          "name": "tsl9_filter_external_8a56",
+          "offset": 526,
+          "sha256": "487c6497a4cdd3be5d1018e698b41718911d4f4e55c950749df0587a5b69fb99"
+        },
+        {
+          "bytes": 28,
+          "name": "tsl9_transport_frame_8a5e",
+          "offset": 534,
+          "sha256": "bd8820e474fdbaa88c3e78fa10c67e4c26c12a6f336d9419c9f30536346a9a29"
+        },
+        {
+          "bytes": 22,
+          "name": "tsl9_transport_first_8a7a",
+          "offset": 562,
+          "sha256": "5e05e1908298292725f46deaa0965504ed78f273a11365930a64c9912472bebf"
+        },
+        {
+          "bytes": 6,
+          "name": "tsl9_transport_first_result_8a90",
+          "offset": 584,
+          "sha256": "2825abb712313e407039a5408d13c40eff1aafe5afe21bdda2b0b8524823df82"
+        },
+        {
+          "bytes": 32,
+          "name": "tsl9_transport_second_8a96",
+          "offset": 590,
+          "sha256": "57212634633f2bd2921798e224c6ef06bb29d029a6f7837d3a69d75d7b0cb4fc"
+        },
+        {
+          "bytes": 8,
+          "name": "tsl9_transport_second_result_8ab6",
+          "offset": 622,
+          "sha256": "31228a28aac242ce247efd7cef8d196d609e3938b48650737a7cefea156840d5"
+        },
+        {
+          "bytes": 14,
+          "name": "tsl9_transport_reject_8abe",
+          "offset": 630,
+          "sha256": "e17a53ead25bd1a6fe0a310d0d21e5de5d89c8273e1e27d1919183fe17b55ac7"
+        },
+        {
+          "bytes": 2,
+          "name": "tsl9_transport_select0_8acc",
+          "offset": 644,
+          "sha256": "6a632187a3abf9bebb66d43368fccd612f631cbcfb6fdcc90337233c41ff1c7a"
+        },
+        {
+          "bytes": 60,
+          "name": "tsl9_transport_pack_8ace",
+          "offset": 646,
+          "sha256": "8ef4caa383cbac0fe8f88537008b4513ec65c48c6cf4d39aeb89d77f92ca338a"
+        },
+        {
+          "bytes": 10,
+          "name": "tsl9_transport_test_8b0a",
+          "offset": 706,
+          "sha256": "04322d6fd6038c11eb526b48469f31e0326d8429a0d19cdaba3b96380b0429a1"
+        },
+        {
+          "bytes": 62,
+          "name": "tsl9_transport_finish_8b14",
+          "offset": 716,
+          "sha256": "aebf41c8da4c992eb96144b63d6f8385a09ff5e058eedc6abe66643fe5b85c11"
+        },
+        {
+          "bytes": 26,
+          "name": "tsl9_transport_copy_8b52",
+          "offset": 778,
+          "sha256": "143abdbf675255dee05bf932901b1d601769989e1c4491ea77f8305d84ad4c34"
+        },
+        {
+          "bytes": 2,
+          "name": "tsl9_transport_bare_return_8b6c",
+          "offset": 804,
+          "sha256": "7529d4e6ceb037815e2664a7277abb404b02f0bf9ddbf5c11658f52448221cba"
+        },
+        {
+          "bytes": 12,
+          "name": "tsl9_queue_external_12a08",
+          "offset": 806,
+          "sha256": "e7bcac7f140b8e55de4726bdf047e433134849d4c1ae0dbd7e28a231d7a0298a"
+        },
+        {
+          "bytes": 2,
+          "name": "tsl9_dispatch_status_12a14",
+          "offset": 818,
+          "sha256": "c57aa6a4279377063b17c554d3e33a3490e67a9a65e9d9e4ced2e6c2301d1cd7"
+        },
+        {
+          "bytes": 10,
+          "name": "tsl9_dispatch_ID_12a16",
+          "offset": 820,
+          "sha256": "0e22610b42410b43c5b454a1aa54ff39f928f6ff55d26fe0dbd1b97016a4aa87"
+        },
+        {
+          "bytes": 8,
+          "name": "tsl9_dispatch_query_12a20",
+          "offset": 830,
+          "sha256": "95ddd71bde22e4e24b8cd11af59a6e7564fc54fcbb82513f2d1867e7574bb005"
+        },
+        {
+          "bytes": 6,
+          "name": "tsl9_dispatch_tag_12a28",
+          "offset": 838,
+          "sha256": "1fff6d6a046d95cbf88f3c7d4e9da5fefa988feaf6c2b0bddeceec16991117d5"
+        },
+        {
+          "bytes": 34,
+          "name": "tsl9_dispatch_copy_12a2e",
+          "offset": 844,
+          "sha256": "56e5092e3b6a322ae156ffff2c32611fde2e8c0f00169bc699b0fe1a5cd4d658"
+        },
+        {
+          "bytes": 14,
+          "name": "tsl9_dispatch_peripheral_12a50",
+          "offset": 878,
+          "sha256": "33b5904c8f2b3a0c4c22b3dbf5ecc354f98caef3f666e2eb836125188be4dbd9"
+        },
+        {
+          "bytes": 8,
+          "name": "tsl9_dispatch_finish_12a5e",
+          "offset": 892,
+          "sha256": "b0805dbb6b57307623b544f18b6ae086d0024607adbba3f3c43944984c8c5c84"
+        },
+        {
+          "bytes": 8,
+          "name": "tsl9_dispatch_tagged_12a66",
+          "offset": 900,
+          "sha256": "2e37ed26ba9ac0da23a0ef499161b42709bf82fda093533dec882c2c63869f7b"
+        },
+        {
+          "bytes": 42,
+          "name": "tsl9_dispatch_external_821e",
+          "offset": 908,
+          "sha256": "4af30f18b196e304a5b6d30bb167ee2a02c567c4ffcf4e36bb4f72e6204bcdcd"
+        }
+      ],
+      "global_ABS": [],
+      "instructions": 330,
+      "ordinary_C_ABI_proved": false,
+      "ordinary_small_C_functions": 3,
+      "original": {
+        "all_noncontrol_bits_equal": true,
+        "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+        "original_masked_sha256": "5f6bdde8e51f1bfac7bccfd458ec83d35c2d603dae21533adb83c09fe735f13c",
+        "spans": [
+          {
+            "bytes": 314,
+            "offset": 0,
+            "original_VA": 76888
+          },
+          {
+            "bytes": 188,
+            "offset": 314,
+            "original_VA": 33490
+          },
+          {
+            "bytes": 6,
+            "offset": 502,
+            "original_VA": 33194
+          },
+          {
+            "bytes": 18,
+            "offset": 508,
+            "original_VA": 33292
+          },
+          {
+            "bytes": 280,
+            "offset": 526,
+            "original_VA": 35414
+          },
+          {
+            "bytes": 102,
+            "offset": 806,
+            "original_VA": 76296
+          },
+          {
+            "bytes": 42,
+            "offset": 908,
+            "original_VA": 33310
+          }
+        ],
+        "typed_controls": [
+          {
+            "machine_operand_resolved": false,
+            "offset": 60,
+            "original_PC": 76948,
+            "original_operand": {
+              "kind": "C.BEQZ",
+              "rs1": 15,
+              "target": 77038,
+              "width": 2
+            },
+            "pending_raw_target": 76948,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 88,
+            "original_PC": 76976,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 33490,
+              "width": 4
+            },
+            "pending_raw_target": 76976,
+            "target_symbol": "tsl9_queue_external_82d2"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 92,
+            "original_PC": 76980,
+            "original_operand": {
+              "kind": "C.BNEZ",
+              "rs1": 10,
+              "target": 77038,
+              "width": 2
+            },
+            "pending_raw_target": 76980,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 98,
+            "original_PC": 76986,
+            "original_operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 15,
+              "rs2": 20,
+              "target": 77176,
+              "width": 4
+            },
+            "pending_raw_target": 76986,
+            "target_symbol": "tsl9_queue_other_12d78"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 108,
+            "original_PC": 76996,
+            "original_operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 77038,
+              "width": 4
+            },
+            "pending_raw_target": 76996,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 120,
+            "original_PC": 77008,
+            "original_operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 77038,
+              "width": 4
+            },
+            "pending_raw_target": 77008,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 132,
+            "original_PC": 77020,
+            "original_operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 77038,
+              "width": 4
+            },
+            "pending_raw_target": 77020,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 140,
+            "original_PC": 77028,
+            "original_operand": {
+              "kind": "C.BEQZ",
+              "rs1": 15,
+              "target": 77070,
+              "width": 2
+            },
+            "pending_raw_target": 77028,
+            "target_symbol": "tsl9_queue_zero_12d0e"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 146,
+            "original_PC": 77034,
+            "original_operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 15,
+              "rs2": 14,
+              "target": 77132,
+              "width": 4
+            },
+            "pending_raw_target": 77034,
+            "target_symbol": "tsl9_queue_response_12d4c"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 156,
+            "original_PC": 77044,
+            "original_operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 9,
+              "rs2": 15,
+              "target": 76934,
+              "width": 4
+            },
+            "pending_raw_target": 77044,
+            "target_symbol": "tsl9_queue_scan_12c86"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 182,
+            "original_PC": 77070,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 33292,
+              "width": 4
+            },
+            "pending_raw_target": 77070,
+            "target_symbol": "tsl9_queue_external_820c"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 190,
+            "original_PC": 77078,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 37972,
+              "width": 4
+            },
+            "pending_raw_target": 77078,
+            "target_symbol": "tsl9_queue_external_9454"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 196,
+            "original_PC": 77084,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 39734,
+              "width": 4
+            },
+            "pending_raw_target": 77084,
+            "target_symbol": "tsl9_queue_external_9b36"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 212,
+            "original_PC": 77100,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 76478,
+              "width": 4
+            },
+            "pending_raw_target": 77100,
+            "target_symbol": "tsl9_queue_external_12abe"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 228,
+            "original_PC": 77116,
+            "original_operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 77122,
+              "width": 4
+            },
+            "pending_raw_target": 77116,
+            "target_symbol": "tsl9_queue_emit_12d42"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 238,
+            "original_PC": 77126,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 76478,
+              "width": 4
+            },
+            "pending_raw_target": 77126,
+            "target_symbol": "tsl9_queue_external_12abe"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 242,
+            "original_PC": 77130,
+            "original_operand": {
+              "kind": "C.J",
+              "rd": 0,
+              "target": 77038,
+              "width": 2
+            },
+            "pending_raw_target": 77130,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 252,
+            "original_PC": 77140,
+            "original_operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 77038,
+              "width": 4
+            },
+            "pending_raw_target": 77140,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 282,
+            "original_PC": 77170,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 76296,
+              "width": 4
+            },
+            "pending_raw_target": 77170,
+            "target_symbol": "tsl9_queue_external_12a08"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 286,
+            "original_PC": 77174,
+            "original_operand": {
+              "kind": "C.J",
+              "rd": 0,
+              "target": 77038,
+              "width": 2
+            },
+            "pending_raw_target": 77174,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 298,
+            "original_PC": 77186,
+            "original_operand": {
+              "kind": "C.BNEZ",
+              "rs1": 15,
+              "target": 77038,
+              "width": 2
+            },
+            "pending_raw_target": 77186,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 300,
+            "original_PC": 77188,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 33194,
+              "width": 4
+            },
+            "pending_raw_target": 77188,
+            "target_symbol": "tsl9_queue_external_81aa"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 304,
+            "original_PC": 77192,
+            "original_operand": {
+              "kind": "C.BEQZ",
+              "rs1": 10,
+              "target": 77038,
+              "width": 2
+            },
+            "pending_raw_target": 77192,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 308,
+            "original_PC": 77196,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 85294,
+              "width": 4
+            },
+            "pending_raw_target": 77196,
+            "target_symbol": "tsl9_queue_external_14d2e"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 312,
+            "original_PC": 77200,
+            "original_operand": {
+              "kind": "C.J",
+              "rd": 0,
+              "target": 77038,
+              "width": 2
+            },
+            "pending_raw_target": 77200,
+            "target_symbol": "tsl9_queue_advance_12cee"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 378,
+            "original_PC": 33554,
+            "original_operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 19,
+              "rs2": 15,
+              "target": 33642,
+              "width": 4
+            },
+            "pending_raw_target": 33554,
+            "target_symbol": "tsl9_filter_test_836a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 386,
+            "original_PC": 33562,
+            "original_operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 22,
+              "rs2": 15,
+              "target": 33642,
+              "width": 4
+            },
+            "pending_raw_target": 33562,
+            "target_symbol": "tsl9_filter_test_836a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 398,
+            "original_PC": 33574,
+            "original_operand": {
+              "kind": "C.BEQZ",
+              "rs1": 15,
+              "target": 33642,
+              "width": 2
+            },
+            "pending_raw_target": 33574,
+            "target_symbol": "tsl9_filter_test_836a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 406,
+            "original_PC": 33582,
+            "original_operand": {
+              "funct3": 6,
+              "kind": "BRANCH",
+              "rs1": 23,
+              "rs2": 12,
+              "target": 33642,
+              "width": 4
+            },
+            "pending_raw_target": 33582,
+            "target_symbol": "tsl9_filter_test_836a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 464,
+            "original_PC": 33640,
+            "original_operand": {
+              "kind": "C.JAL",
+              "rd": 1,
+              "target": 35414,
+              "width": 2
+            },
+            "pending_raw_target": 33640,
+            "target_symbol": "tsl9_filter_external_8a56"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 466,
+            "original_PC": 33642,
+            "original_operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 18,
+              "rs2": 0,
+              "target": 33674,
+              "width": 4
+            },
+            "pending_raw_target": 33642,
+            "target_symbol": "tsl9_filter_second_838a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 500,
+            "original_PC": 33676,
+            "original_operand": {
+              "kind": "C.J",
+              "rd": 0,
+              "target": 33544,
+              "width": 2
+            },
+            "pending_raw_target": 33676,
+            "target_symbol": "tsl9_filter_scan_8308"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 530,
+            "original_PC": 35418,
+            "original_operand": {
+              "funct3": 6,
+              "kind": "BRANCH",
+              "rs1": 15,
+              "rs2": 13,
+              "target": 35692,
+              "width": 4
+            },
+            "pending_raw_target": 35418,
+            "target_symbol": "tsl9_transport_bare_return_8b6c"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 558,
+            "original_PC": 35446,
+            "original_operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 10,
+              "target": 35478,
+              "width": 4
+            },
+            "pending_raw_target": 35446,
+            "target_symbol": "tsl9_transport_second_8a96"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 566,
+            "original_PC": 35454,
+            "original_operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 35478,
+              "width": 4
+            },
+            "pending_raw_target": 35454,
+            "target_symbol": "tsl9_transport_second_8a96"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 586,
+            "original_PC": 35474,
+            "original_operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 10,
+              "rs2": 15,
+              "target": 35532,
+              "width": 4
+            },
+            "pending_raw_target": 35474,
+            "target_symbol": "tsl9_transport_select0_8acc"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 594,
+            "original_PC": 35482,
+            "original_operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 15,
+              "rs2": 18,
+              "target": 35518,
+              "width": 4
+            },
+            "pending_raw_target": 35482,
+            "target_symbol": "tsl9_transport_reject_8abe"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 602,
+            "original_PC": 35490,
+            "original_operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 18,
+              "rs2": 15,
+              "target": 35518,
+              "width": 4
+            },
+            "pending_raw_target": 35490,
+            "target_symbol": "tsl9_transport_reject_8abe"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 626,
+            "original_PC": 35514,
+            "original_operand": {
+              "funct3": 0,
+              "kind": "BRANCH",
+              "rs1": 10,
+              "rs2": 15,
+              "target": 35534,
+              "width": 4
+            },
+            "pending_raw_target": 35514,
+            "target_symbol": "tsl9_transport_pack_8ace"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 712,
+            "original_PC": 35600,
+            "original_operand": {
+              "funct3": 6,
+              "kind": "BRANCH",
+              "rs1": 10,
+              "rs2": 8,
+              "target": 35666,
+              "width": 4
+            },
+            "pending_raw_target": 35600,
+            "target_symbol": "tsl9_transport_copy_8b52"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 802,
+            "original_PC": 35690,
+            "original_operand": {
+              "kind": "C.J",
+              "rd": 0,
+              "target": 35594,
+              "width": 2
+            },
+            "pending_raw_target": 35690,
+            "target_symbol": "tsl9_transport_test_8b0a"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 814,
+            "original_PC": 76304,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 33194,
+              "width": 4
+            },
+            "pending_raw_target": 76304,
+            "target_symbol": "tsl9_queue_external_81aa"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 818,
+            "original_PC": 76308,
+            "original_operand": {
+              "kind": "C.BNEZ",
+              "rs1": 10,
+              "target": 76320,
+              "width": 2
+            },
+            "pending_raw_target": 76308,
+            "target_symbol": "tsl9_dispatch_query_12a20"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 826,
+            "original_PC": 76316,
+            "original_operand": {
+              "funct3": 1,
+              "kind": "BRANCH",
+              "rs1": 14,
+              "rs2": 15,
+              "target": 76382,
+              "width": 4
+            },
+            "pending_raw_target": 76316,
+            "target_symbol": "tsl9_dispatch_finish_12a5e"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 832,
+            "original_PC": 76322,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 33310,
+              "width": 4
+            },
+            "pending_raw_target": 76322,
+            "target_symbol": "tsl9_dispatch_external_821e"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 836,
+            "original_PC": 76326,
+            "original_operand": {
+              "kind": "C.BEQZ",
+              "rs1": 10,
+              "target": 76382,
+              "width": 2
+            },
+            "pending_raw_target": 76326,
+            "target_symbol": "tsl9_dispatch_finish_12a5e"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 842,
+            "original_PC": 76332,
+            "original_operand": {
+              "kind": "C.BNEZ",
+              "rs1": 15,
+              "target": 76390,
+              "width": 2
+            },
+            "pending_raw_target": 76332,
+            "target_symbol": "tsl9_dispatch_tagged_12a66"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 888,
+            "original_PC": 76378,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 101540,
+              "width": 4
+            },
+            "pending_raw_target": 76378,
+            "target_symbol": "tsl9_dispatch_external_18ca4"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 902,
+            "original_PC": 76392,
+            "original_operand": {
+              "kind": "JAL",
+              "rd": 1,
+              "target": 93052,
+              "width": 4
+            },
+            "pending_raw_target": 76392,
+            "target_symbol": "tsl9_dispatch_external_16b7c"
+          },
+          {
+            "machine_operand_resolved": false,
+            "offset": 906,
+            "original_PC": 76396,
+            "original_operand": {
+              "kind": "C.J",
+              "rd": 0,
+              "target": 76382,
+              "width": 2
+            },
+            "pending_raw_target": 76396,
+            "target_symbol": "tsl9_dispatch_finish_12a5e"
+          }
+        ]
+      },
+      "original_placement_proved": false,
+      "pending_RELA": 50,
+      "private_architectural_regions": 39,
+      "relocations": [
+        {
+          "addend": 0,
+          "offset": 60,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 88,
+          "target": "tsl9_queue_external_82d2",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 92,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 98,
+          "target": "tsl9_queue_other_12d78",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 108,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 120,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 132,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 140,
+          "target": "tsl9_queue_zero_12d0e",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 146,
+          "target": "tsl9_queue_response_12d4c",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 156,
+          "target": "tsl9_queue_scan_12c86",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 182,
+          "target": "tsl9_queue_external_820c",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 190,
+          "target": "tsl9_queue_external_9454",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 196,
+          "target": "tsl9_queue_external_9b36",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 212,
+          "target": "tsl9_queue_external_12abe",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 228,
+          "target": "tsl9_queue_emit_12d42",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 238,
+          "target": "tsl9_queue_external_12abe",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 242,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 45
+        },
+        {
+          "addend": 0,
+          "offset": 252,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 282,
+          "target": "tsl9_queue_external_12a08",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 286,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 45
+        },
+        {
+          "addend": 0,
+          "offset": 298,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 300,
+          "target": "tsl9_queue_external_81aa",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 304,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 308,
+          "target": "tsl9_queue_external_14d2e",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 312,
+          "target": "tsl9_queue_advance_12cee",
+          "type": 45
+        },
+        {
+          "addend": 0,
+          "offset": 378,
+          "target": "tsl9_filter_test_836a",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 386,
+          "target": "tsl9_filter_test_836a",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 398,
+          "target": "tsl9_filter_test_836a",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 406,
+          "target": "tsl9_filter_test_836a",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 464,
+          "target": "tsl9_filter_external_8a56",
+          "type": 45
+        },
+        {
+          "addend": 0,
+          "offset": 466,
+          "target": "tsl9_filter_second_838a",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 500,
+          "target": "tsl9_filter_scan_8308",
+          "type": 45
+        },
+        {
+          "addend": 0,
+          "offset": 530,
+          "target": "tsl9_transport_bare_return_8b6c",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 558,
+          "target": "tsl9_transport_second_8a96",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 566,
+          "target": "tsl9_transport_second_8a96",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 586,
+          "target": "tsl9_transport_select0_8acc",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 594,
+          "target": "tsl9_transport_reject_8abe",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 602,
+          "target": "tsl9_transport_reject_8abe",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 626,
+          "target": "tsl9_transport_pack_8ace",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 712,
+          "target": "tsl9_transport_copy_8b52",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 802,
+          "target": "tsl9_transport_test_8b0a",
+          "type": 45
+        },
+        {
+          "addend": 0,
+          "offset": 814,
+          "target": "tsl9_queue_external_81aa",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 818,
+          "target": "tsl9_dispatch_query_12a20",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 826,
+          "target": "tsl9_dispatch_finish_12a5e",
+          "type": 16
+        },
+        {
+          "addend": 0,
+          "offset": 832,
+          "target": "tsl9_dispatch_external_821e",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 836,
+          "target": "tsl9_dispatch_finish_12a5e",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 842,
+          "target": "tsl9_dispatch_tagged_12a66",
+          "type": 44
+        },
+        {
+          "addend": 0,
+          "offset": 888,
+          "target": "tsl9_dispatch_external_18ca4",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 902,
+          "target": "tsl9_dispatch_external_16b7c",
+          "type": 17
+        },
+        {
+          "addend": 0,
+          "offset": 906,
+          "target": "tsl9_dispatch_finish_12a5e",
+          "type": 45
+        }
+      ],
+      "strong_UND": [
+        "tsl9_dispatch_external_16b7c",
+        "tsl9_dispatch_external_18ca4",
+        "tsl9_queue_external_12abe",
+        "tsl9_queue_external_14d2e",
+        "tsl9_queue_external_9454",
+        "tsl9_queue_external_9b36"
+      ],
+      "symbol_bindings": [
+        {
+          "definition_offset": 806,
+          "genuine_FUNC": true,
+          "machine_control_resolved": false,
+          "reference_offsets": [
+            282
+          ],
+          "resolved_at_symbol_level": true,
+          "symbol": "tsl9_queue_external_12a08"
+        },
+        {
+          "definition_offset": 502,
+          "genuine_FUNC": true,
+          "machine_control_resolved": false,
+          "reference_offsets": [
+            300,
+            814
+          ],
+          "resolved_at_symbol_level": true,
+          "symbol": "tsl9_queue_external_81aa"
+        },
+        {
+          "definition_offset": 908,
+          "genuine_FUNC": true,
+          "machine_control_resolved": false,
+          "reference_offsets": [
+            832
+          ],
+          "resolved_at_symbol_level": true,
+          "symbol": "tsl9_dispatch_external_821e"
+        }
+      ]
+    },
+    "schema": "TSL9-record-dispatch-component-v1",
+    "target_executed": false,
+    "upstream": {
+      "dispatch": {
+        "inputs": {
+          "${LLVM_BIN}\\clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+          "${LLVM_BIN}\\ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+          "${LLVM_BIN}\\llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+          "${PUBLIC_CLANG_RESOURCE_WINDOWS}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+          "${TSL9_ROOT}\\analysis\\irq-provider-2026-10-23\\next-consumer.json": "8dc9dc3d4cd75aa5e4c22812ed0a45098f83f994bf78152fad9a2f7bb4dd03ca",
+          "${TSL9_ROOT}\\analysis\\queue-consumer-2026-10-23\\next-filter.json": "126704daa831099e311b3a50ac617225b27d32c0bfefcaa9f16c5272399e2e22",
+          "${TSL9_ROOT}\\analysis\\queue-filter-2026-10-23\\next-transport.json": "0579c86255421f8e313dffb88c4289d2db8087a0632f832389fa9d474a06237a",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\component.ld": "0892b58d98599b6aa4ffad06da24acb0463973e4d8324476342ff803c964921a",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\probe.py": "bd3ec537a705eb23ec8c6bec57bd2aa03072e3fdce3ea14801b77d9f6cf6624f",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\src\\queue_consumer.v3.c": "7347a1b541e034ff2a677dd32af78764993f5d542e2d5c85c0dc5e66ccdcf0e6",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-consumer\\verify.py": "7161985aa739f3f1a746bf5ae98cdd79121cfdc3209270a0c74eb8133a3be9d6",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\README.md": "fde7d3504546c3f537a4a48a07f0ac29f68534134d7c7b2a84b53600fb0e5cdc",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\build.py": "7f7a5560f381fcfddfdc63483f28a3e9c6a7fd90ad6e30e62ae36cc35fff6828",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\check.py": "96f87427d48f626aba6c2cc9b7a1aba30dda8bc81df4020cf8d73093f2d48f77",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\component.ld": "9a89ee848e12977348ba9b01a14756caa1d7d4b4b123d7dc5d7f4721db5ae542",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\dependencies.json": "43ba949302c4f26dc54f754d3559eb8411fccc00181d03b633a3c63e2739a50c",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\readme.en.md": "966b771595c42b38d239fe529a858d2b5ec0ded82684115342d5ddd95331a52b",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\readme.zh-TW.md": "fde7d3504546c3f537a4a48a07f0ac29f68534134d7c7b2a84b53600fb0e5cdc",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\repair-history\\history.json": "cad617bcb0f4afd8258ee3625603aeb3cbb5bcdeaf38f185465df15f54935e1d",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\repair-history\\initial-check.py": "d3656516acf330c7e4a57b697efa69c5ad2552d73d02a7853217e36d2223c671",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\seal.json": "1e0234c192e7ad248225654c6bba293548624c00108f4dc40b238a27cd3c3acd",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\src\\providers.c": "4767676947e1be746aa08351f2c2a2c4b3f3f9a7a4d749b99b881a8b44f51894",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-dispatch-component\\verify.sh": "208c5fbbc9687fead1f9f5003c3c08501e0d8b19e44e420554213927b7dd762f",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\component.ld": "1682fc10e4039ee7c950870f7c08a533e69a779e36325bd346a74324f39fd728",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\probe.py": "5c01e6c9c2a27da9649fe9ba4b57e9675d7cdbc3c0c4112d580f0c590d84fbb4",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\src\\queue_filter.v1.c": "14b1dd7be476e51e4ab53da33008996932e6f94962ab62f13876c44c3413c511",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-filter\\verify.py": "cf4dfd90cb171738d7197ade1d741a12c947fc8aa2bfa7465665814a9cd0f98d",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\build.py": "11e076c5ac7821a1ce042f356d6be17243df975421e1f281f78097b3293db473",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\check.py": "6cfa544596c32b14b6e122743f5f88ed4ba934fb8a4919c528102c668457bdc9",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\component.ld": "eb24ba262936a5c9684eef655262537a29888a7cdee9b9755dc528e139ff2f09",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\seal.json": "2e9f6fb929269cdf1bae1bdada83c50dad47626b4459adbae7ea8e1ee58794eb",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\source-map.json": "52b6fd52af064a616c1f29396640802a4cc84cd7c08c135232820586b86086ec",
+          "${TSL9_ROOT}\\experiments\\tsl9-queue-small-providers\\src\\providers.c": "40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13",
+          "${TSL9_ROOT}\\experiments\\tsl9-spi-transfer-leaf\\verify.py": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\README.md": "eaa3d1062a47e084428ef403e4a423c2ad2f3a579e99befe8d48123415042488",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\build.py": "4126fbaa9ed9fe066d50ad918ea7be81100846939dddd9ba85e268b4be2df23b",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\check.py": "0b0261e6ac5de1d8c23b185967a5046e948730f2a13e92d99b72ee8c2deefd60",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\component.ld": "ed995d454377f4aa4f639056514911ad6df21ba5f38413e5784037030d61d629",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\dependencies.json": "f6cc4b9125821caee6dfa86682f4f3de0d0fd4660c6ea0ecda8f3556612e50d2",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\readme.en.md": "0bd905894176d1560d1734417f1d24d64d8ff4af3eb53061d3966ad22aff3b56",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\readme.zh-TW.md": "eaa3d1062a47e084428ef403e4a423c2ad2f3a579e99befe8d48123415042488",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\verify.sh": "208c5fbbc9687fead1f9f5003c3c08501e0d8b19e44e420554213927b7dd762f",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-frame\\component.ld": "5e30a96739dfdebe25d5e028602279c56754c2496c395ff9a7488609be0e6c9e",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-frame\\probe.py": "23f666f4f9acccad76b094401b1655c6a6a826156380a6962fbce321f5b5df3c",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-frame\\src\\transport_frame.v6.c": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8",
+          "${TSL9_ROOT}\\experiments\\tsl9-transport-frame\\verify.py": "1f9eb6057b43c962b53e80e90a895c229e0114e223f711c94015dc6b0430221e",
+          "${TSL9_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+        },
+        "object_sha256": "fee2e931754f45c88d5086dc2fb219883e227928451562522bb21782d952f09a",
+        "receipt": "${TSL9_ROOT}\\experiments\\tsl9-transport-dispatch-component\\build\\component-v1\\cpp\\verification.json",
+        "sha256": "1bbc25c422c60e7057527afba1454d0316bc01dd007c8bf0b7112f8ab8949882",
+        "whole_actual_proof_replayed": true
+      },
+      "predicate": {
+        "inputs": [
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-record-predicate/src/predicate.v2.c",
+            "sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669",
+            "size": 1823
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-record-predicate/probe.py",
+            "sha256": "5b18783d17976cfddba71fc3c0ccacb7744bd86e444e99442a4e4af7db15c78b",
+            "size": 3701
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-record-predicate/component.ld",
+            "sha256": "f76d45856e05279e551e9368f43331d2082e4703d61580eb3bf33d53fecd39f6",
+            "size": 351
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-spi-transfer-leaf/verify.py",
+            "sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+            "size": 29593
+          },
+          {
+            "path": "${TSL9_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+            "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+            "size": 76800
+          },
+          {
+            "path": "${TSL9_ROOT}/analysis/record-dispatch-2026-10-23/next-821e-contract.json",
+            "sha256": "ed51619ac720d13d14f31b9ba1e3c8362104e0e6a7a1cce84ed26652dd3e0ade",
+            "size": 13291
+          },
+          {
+            "path": "${CLANG_INCLUDE}/stdint.h",
+            "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+            "size": 30946
+          },
+          {
+            "path": "${LLVM_BIN}/clang.exe",
+            "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+            "size": 126673512
+          },
+          {
+            "path": "${LLVM_BIN}/ld.lld.exe",
+            "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+            "size": 73834600
+          },
+          {
+            "path": "${LLVM_BIN}/llvm-objdump.exe",
+            "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+            "size": 18311272
+          },
+          {
+            "path": "${PYTHON_EXECUTABLE}",
+            "sha256": "adccb8817dc234c555a7cd465fd0f99b05e0238a395c3778a89c3e55e8a45e2f",
+            "size": 45568
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-record-predicate/verify.py",
+            "sha256": "1c9e6c62a5e57cd49aa019d752f94bda5752a7c1d2c15de1600fe7bdd4aae0a3",
+            "size": 22713
+          },
+          {
+            "path": "${PYTHON_STDLIB}/argparse.py",
+            "sha256": "e878677e158d0bc0fb5119e0df74d94236f3653777bc9f2ea3fee49c167fe001",
+            "size": 100283
+          },
+          {
+            "path": "${PYTHON_STDLIB}/hashlib.py",
+            "sha256": "e2bffb462e4d43e6637b9450e259e8ba2a56626ba3037d68aa1cee68b3f61d4a",
+            "size": 11765
+          },
+          {
+            "path": "${PYTHON_STDLIB}/json/__init__.py",
+            "sha256": "d5d41e2c29049515d295d81a6d40b4890fbec8d8482cfb401630f8ef2f77e4d5",
+            "size": 14020
+          },
+          {
+            "path": "${PYTHON_STDLIB}/json/decoder.py",
+            "sha256": "9f02654649816145bc76f8c210a5fe3ba1de142d4d97a1c93105732e747c285b",
+            "size": 12473
+          },
+          {
+            "path": "${PYTHON_STDLIB}/json/encoder.py",
+            "sha256": "af7bd40a0d0d0a3e726a9b4b3a2a543019f6ab97a340d0162a9c29ca9da97869",
+            "size": 16070
+          },
+          {
+            "path": "${PYTHON_STDLIB}/json/scanner.py",
+            "sha256": "8604d9d03786d0d509abb49e9f069337278ea988c244069ae8ca2c89acc2cb08",
+            "size": 2425
+          },
+          {
+            "path": "${PYTHON_STDLIB}/os.py",
+            "sha256": "8a5d4ac7b87c6c5b31fcb5081f7f7c06f8403a2fdb3eb23692c48933baeb899e",
+            "size": 39530
+          },
+          {
+            "path": "${PYTHON_STDLIB}/re/__init__.py",
+            "sha256": "029ead61f362489e9bb034f4c2503abee95462056541e9ad07715de3c353b0da",
+            "size": 15889
+          },
+          {
+            "path": "${PYTHON_STDLIB}/struct.py",
+            "sha256": "9c231f9497caf513a22dee8f790b07f969b0e45854a0bdd6dd84b492e08c2856",
+            "size": 257
+          },
+          {
+            "path": "${PYTHON_STDLIB}/subprocess.py",
+            "sha256": "baa9f9138d8d20df6284f67e7d2e790f847f65e2c5370de322d54cccd737f2d9",
+            "size": 88725
+          },
+          {
+            "path": "${PYTHON_STDLIB}/runpy.py",
+            "sha256": "f7af4206d8cbb27fce7731174b190edd6569ec3fad060a727d4bfcde69dd965c",
+            "size": 13159
+          },
+          {
+            "path": "${PYTHON_STDLIB}/re/_parser.py",
+            "sha256": "4748e39c77d6dc14f81af80e68a62ad99031a8182d5e0b219a6666d0cfb1626f",
+            "size": 42420
+          },
+          {
+            "path": "${PYTHON_STDLIB}/re/_compiler.py",
+            "sha256": "c05067f8bfa4c13cbbf1eedc4d5cafc9b621bcb6ebc5771ba0518a18095af15a",
+            "size": 26089
+          },
+          {
+            "path": "${PYTHON_STDLIB}/re/_constants.py",
+            "sha256": "3e4463dc8ba87c4a3563be46d2d593e82ca9a0fb91768cfe5a07554ed3de82c5",
+            "size": 5930
+          }
+        ],
+        "object_sha256": "26d3ca185e03cf880f6dbc96e73c1820824b986b22521c4e83124c89ad2f2b1f",
+        "receipt": "${TSL9_ROOT}\\experiments\\tsl9-record-predicate\\build\\verified-v3\\cpp\\verification.json",
+        "sha256": "57805ad2ff30b0ff3e30758fab025fbd4343978d0ff5cbec3d358f7f6e89d7d5",
+        "whole_actual_proof_replayed": true
+      },
+      "record": {
+        "inputs": [
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-spi-transfer-leaf/verify.py",
+            "sha256": "8c8eb8e01b9fc30eb7150682aa8848e47fe4a1254c6f87b05e657244a11b6de8",
+            "size": 29593
+          },
+          {
+            "path": "${TSL9_ROOT}/firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+            "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+            "size": 76800
+          },
+          {
+            "path": "${TSL9_ROOT}/analysis/transport-frame-2026-10-23/next-provider-contract.json",
+            "sha256": "56031c4665154685e0617391647d6b21806ff95bc759901c410019db2f4c56af",
+            "size": 22122
+          },
+          {
+            "path": "${TSL9_ROOT}/analysis/transport-frame-2026-10-23/next-provider.json",
+            "sha256": "9dbe20f22d95848af10d09560e4d9eb34ed810a5057f35bced41a8656d354eb5",
+            "size": 10411
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-record-dispatch/src/record_dispatch.v2.c",
+            "sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b",
+            "size": 4652
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-record-dispatch/probe.py",
+            "sha256": "a4c01d657fc0188c9f965affff5f8698232c4c71cd030cfcc35630666a53a2a2",
+            "size": 7677
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-record-dispatch/component.ld",
+            "sha256": "96163b2a7a9de7040b9d36bac23b158b17dbdc729a6f6e59426491bd0ce01dff",
+            "size": 1177
+          },
+          {
+            "path": "${TSL9_ROOT}/experiments/tsl9-record-dispatch/verify.py",
+            "sha256": "3a0ee55f642859b91a72147e57b7600629f1be827f1e88481f8c2e89be3e266f",
+            "size": 56107
+          },
+          {
+            "path": "${LLVM_BIN}/../lib/clang/18/include/stdint.h",
+            "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+            "size": 30946
+          },
+          {
+            "path": "${LLVM_BIN}/clang.exe",
+            "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+            "size": 126673512
+          },
+          {
+            "path": "${LLVM_BIN}/ld.lld.exe",
+            "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+            "size": 73834600
+          },
+          {
+            "path": "${LLVM_BIN}/llvm-objdump.exe",
+            "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+            "size": 18311272
+          }
+        ],
+        "object_sha256": "10bd9009cbabec329a43cf2ab4c94d77bf465d8c219b37ad4bc18ba0f90fc913",
+        "receipt": "${TSL9_ROOT}\\experiments\\tsl9-record-dispatch\\build\\verified-v1\\cpp\\verification.json",
+        "sha256": "2e53f818674f4146c0f9b1af7c8b1e48d056571904d21c88ad5cf4043de0ad9a",
+        "whole_actual_proof_replayed": true
+      }
+    }
+  },
+  "receipt_is_original": false,
+  "schema": "TSL9-path-only-public-receipt-derivative-v1",
+  "substitutions": [
+    {
+      "meaning": "Local CLANG_RESOURCE_WINDOWS prefix",
+      "placeholder": "${PUBLIC_CLANG_RESOURCE_WINDOWS}"
+    },
+    {
+      "meaning": "Local CLANG_RESOURCE_POSIX prefix",
+      "placeholder": "${PUBLIC_CLANG_RESOURCE_POSIX}"
+    },
+    {
+      "meaning": "Local LLVM_BIN_WINDOWS prefix",
+      "placeholder": "${PUBLIC_LLVM_BIN_WINDOWS}"
+    },
+    {
+      "meaning": "Local LLVM_BIN_POSIX prefix",
+      "placeholder": "${PUBLIC_LLVM_BIN_POSIX}"
+    },
+    {
+      "meaning": "Local TSL9_ROOT_WINDOWS prefix",
+      "placeholder": "${PUBLIC_TSL9_ROOT_WINDOWS}"
+    },
+    {
+      "meaning": "Local TSL9_ROOT_POSIX prefix",
+      "placeholder": "${PUBLIC_TSL9_ROOT_POSIX}"
+    }
+  ]
+}

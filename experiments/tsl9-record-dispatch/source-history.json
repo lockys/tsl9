@@ -1,0 +1,109 @@
+{
+  "schema": "TSL9-record-dispatch-finite-source-history-v1",
+  "active_version": 2,
+  "compiler_profile_count": 1,
+  "compiler_flag_search": false,
+  "originals_preserved_local": true,
+  "versions": [
+    {
+      "version": 1,
+      "source": "experiments/tsl9-record-dispatch/src/record_dispatch.v1.c",
+      "source_sha256": "f51c1c0264721e7708c5df6c4dafbcaeeb90f9e52756ddfef22a38810ffe7b59",
+      "promoted_to_src": false,
+      "raw_local_measurement": "experiments/tsl9-record-dispatch/build/probe-v1/measurement.json",
+      "measurement_sha256": "2f6c4190fae426583df03aacb4a85b08a68026cbe3cb7c7f127accfad04a66a7",
+      "inputs_unchanged": true,
+      "explanation": "Rejected: assembler compressed four original4B JALs to2B, changing RA continuations and relocation positions.",
+      "modes": {
+        "c": {
+          "all_recipes_succeeded": false,
+          "ELF_sha256": "70eb18e034dec071afd23a0b17e0b37dece6494e2eea52af1aaf7785b7f4a574",
+          "code_bytes": 94,
+          "instructions": 35,
+          "all_nonrelocation_bits_equal": false
+        },
+        "cpp": {
+          "all_recipes_succeeded": false,
+          "ELF_sha256": "70eb18e034dec071afd23a0b17e0b37dece6494e2eea52af1aaf7785b7f4a574",
+          "code_bytes": 94,
+          "instructions": 35,
+          "all_nonrelocation_bits_equal": false
+        }
+      },
+      "raw_local_artifacts": {
+        "c/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "c/IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "c/link.log": "f74a04aa90332378c48aedd8550aa6a534e994c3408645ad842f182cf8f6838e",
+        "c/native.d": "cd995c9531ccc806945bacef3d46b49456d6bb3513ba9c05499ea68e4d6b4384",
+        "c/native.ll": "c7a2783f91bfe5b26de48168b0501d8485ad4553d0f516aea15c4e831ff22c88",
+        "c/native.o": "70eb18e034dec071afd23a0b17e0b37dece6494e2eea52af1aaf7785b7f4a574",
+        "c/object.log": "1ddc4ba481f574f1ac618c7e211085e2c26317cd17854bda18ce2735b0178a7a",
+        "c/recipes.json": "a785e1cf3ab256d83fa579bfab51e7f76c78b03239bb2a237b88aebed425a895",
+        "cpp/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cpp/IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cpp/link.log": "f74a04aa90332378c48aedd8550aa6a534e994c3408645ad842f182cf8f6838e",
+        "cpp/native.d": "4810449c12b546e821b0c91b022c06910e5112d9a947573546fc9d928c14dc01",
+        "cpp/native.ll": "7164159394ff1941f583a46bf8c12503005065b73efe9b6c472c15be1a148168",
+        "cpp/native.o": "70eb18e034dec071afd23a0b17e0b37dece6494e2eea52af1aaf7785b7f4a574",
+        "cpp/object.log": "128b69d935f17725a9624a6d30899f7dad8be7efba3b0cac3099fcb2ce701586",
+        "cpp/recipes.json": "6ca71254f67823da9d3786212e476cd72759946d4a7c28d40fd67abecbce1106"
+      }
+    },
+    {
+      "version": 2,
+      "source": "experiments/tsl9-record-dispatch/src/record_dispatch.v2.c",
+      "source_sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b",
+      "promoted_to_src": true,
+      "raw_local_measurement": "experiments/tsl9-record-dispatch/build/probe-v2/measurement.json",
+      "measurement_sha256": "fec0b3a8857ac68aa0f957fbb479ccc2b6b8317607bebb3941c907b4de443de3",
+      "inputs_unchanged": true,
+      "explanation": "Explicit .option push/norvc/pop around only the four JAL architecture ports preserves original4B width; all102B35i boundaries and fixed bits match.",
+      "modes": {
+        "c": {
+          "all_recipes_succeeded": true,
+          "ELF_sha256": "10bd9009cbabec329a43cf2ab4c94d77bf465d8c219b37ad4bc18ba0f90fc913",
+          "code_bytes": 102,
+          "instructions": 35,
+          "all_nonrelocation_bits_equal": true,
+          "partial_ELF_sha256": "6692bce88ae9437f0932c0ace22c4c103f696733d3de8fe4cda19cc591ada58e",
+          "partial_code_sha256": "55b0a1925d2ea44d23be6ebf174fd97a1f9aba86593f1a622b40199f2e0c8643",
+          "retained_relocations": 9
+        },
+        "cpp": {
+          "all_recipes_succeeded": true,
+          "ELF_sha256": "10bd9009cbabec329a43cf2ab4c94d77bf465d8c219b37ad4bc18ba0f90fc913",
+          "code_bytes": 102,
+          "instructions": 35,
+          "all_nonrelocation_bits_equal": true,
+          "partial_ELF_sha256": "6692bce88ae9437f0932c0ace22c4c103f696733d3de8fe4cda19cc591ada58e",
+          "partial_code_sha256": "55b0a1925d2ea44d23be6ebf174fd97a1f9aba86593f1a622b40199f2e0c8643",
+          "retained_relocations": 9
+        }
+      },
+      "raw_local_artifacts": {
+        "c/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "c/IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "c/link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "c/native.d": "f82ed8066ac8d4dfeced0d3d248046e7cca2302e48d253541a723c03d4333060",
+        "c/native.ll": "c72213e5163eef02133606517c2bda2917128faee9e4f28ca8d20e6044a5a86f",
+        "c/native.o": "10bd9009cbabec329a43cf2ab4c94d77bf465d8c219b37ad4bc18ba0f90fc913",
+        "c/object.log": "e98960ca7ec184209a31f38b8a0ed0ee18766b8e242dd6e380f8d4b660ab6b55",
+        "c/partial.log": "2e7e2a220fd03236728e6f49e36270d60c2ea2eee1a492b0678977dc06829fe0",
+        "c/partial.o": "6692bce88ae9437f0932c0ace22c4c103f696733d3de8fe4cda19cc591ada58e",
+        "c/recipes.json": "d73975f0a63c891f30b1141f45892e4bc7a981b501d78b2d03f496cff230ce5d",
+        "cpp/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cpp/IR.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cpp/link.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cpp/native.d": "b44ad8955b22f7367865acd6edacf90791140e8941afa403cbaeec43d32ba268",
+        "cpp/native.ll": "54d49fcdc9b98d49e646229f61f98030d77e1a190ac00298c8339747acab49cd",
+        "cpp/native.o": "10bd9009cbabec329a43cf2ab4c94d77bf465d8c219b37ad4bc18ba0f90fc913",
+        "cpp/object.log": "f5df65eb4b02b11cca359a561e2466400b0eb1495fa79d90837574135d5f803c",
+        "cpp/partial.log": "976438323baf70199263ad69c5d60238880c56b20f7b27a95f5b252bd97854cb",
+        "cpp/partial.o": "6692bce88ae9437f0932c0ace22c4c103f696733d3de8fe4cda19cc591ada58e",
+        "cpp/recipes.json": "61a4dbc5afd3910586bb94333ba3b26f958bc7ab7f9b3cc5c45884201bbdb8e6"
+      }
+    }
+  ],
+  "target_executed": false,
+  "firmware_ready": false
+}

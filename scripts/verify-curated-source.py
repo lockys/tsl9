@@ -54,7 +54,7 @@ def flags(unit, mode):
     clock = kind in ('clock-query', 'clock-fields')
     irq = kind in ('irq-bank', 'delay-bank')
     spi = kind == 'spi-a0-a3-a4-a5'
-    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'irq-provider-a0-a1-a2-a4-a5', 'queue-consumer-a0-a5', 'queue-small-a0-a5', 'queue-filter-a0-a5', 'transport-a0-a6')
+    packet = kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'irq-provider-a0-a1-a2-a4-a5', 'queue-consumer-a0-a5', 'queue-small-a0-a5', 'queue-filter-a0-a5', 'transport-a0-a6', 'record-a0-a5', 'record-predicate-a0-a4-a5')
     ring = kind == 'ring-bank'
     result = ['--target=riscv32-unknown-elf', '-march=' + ('rv32imac' if clock else 'rv32imac_zicsr' if irq or spi or packet or ring else 'rv32imac_zicsr_zifencei'),
               '-mabi=ilp32', '-Os' if clock else '-Oz']
@@ -82,10 +82,12 @@ def flags(unit, mode):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'spi-a0-a3-a4-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 13, 14, 15}]
-    elif kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'queue-consumer-a0-a5', 'queue-filter-a0-a5'):
+    elif kind in ('packet-a0-a5', 'irq-adapter-a0-a5', 'queue-consumer-a0-a5', 'queue-filter-a0-a5', 'record-a0-a5'):
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15}]
     elif kind == 'transport-a0-a6':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 11, 12, 13, 14, 15, 16}]
+    elif kind == 'record-predicate-a0-a4-a5':
+        result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 14, 15}]
     elif kind == 'queue-small-a0-a5':
         result += ['-ffixed-x' + str(n) for n in range(1, 32) if n not in {10, 15}]
     elif kind == 'irq-provider-a0-a1-a2-a4-a5':
@@ -320,6 +322,48 @@ def audit(base, record, manifest):
                         dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
                     and pair[1]['allocated_bytes'] == 24 and not pair[1]['UND'] and not pair[1]['relocations'],
                     'Two actual C leaves6/18B with fully assembler-resolved local branch; source-copy proof does not prove original placement, consumer composition or firmware readiness')
+            if unit['name'] == 'record-predicate':
+                name = 'tsl9_dispatch_external_821e'
+                pin = '4af30f18b196e304a5b6d30bb167ee2a02c567c4ffcf4e36bb4f72e6204bcdcd'
+                need(pair[1]['functions'] == [dict(name=name, binding=1, bytes=42, code_sha256=pin)]
+                     and pair[1]['allocated_sections'] == [dict(name='.text.'+name, bytes=42, flags=6, type=1, sha256=pin)]
+                     and pair[1]['allocated_bytes'] == 42 and not pair[1]['UND'] and not pair[1]['relocations'],
+                     'One complete original42B/15i predicate; source equality does not establish GP/memory/IRQ or firmware readiness')
+            if unit['name'] == 'record-dispatch':
+                regions = [
+                    ('tsl9_queue_external_12a08', 12, 'e7bcac7f140b8e55de4726bdf047e433134849d4c1ae0dbd7e28a231d7a0298a'),
+                    ('tsl9_dispatch_status_12a14', 2, 'c57aa6a4279377063b17c554d3e33a3490e67a9a65e9d9e4ced2e6c2301d1cd7'),
+                    ('tsl9_dispatch_ID_12a16', 10, '0e22610b42410b43c5b454a1aa54ff39f928f6ff55d26fe0dbd1b97016a4aa87'),
+                    ('tsl9_dispatch_query_12a20', 8, '95ddd71bde22e4e24b8cd11af59a6e7564fc54fcbb82513f2d1867e7574bb005'),
+                    ('tsl9_dispatch_tag_12a28', 6, '1fff6d6a046d95cbf88f3c7d4e9da5fefa988feaf6c2b0bddeceec16991117d5'),
+                    ('tsl9_dispatch_copy_12a2e', 34, '56e5092e3b6a322ae156ffff2c32611fde2e8c0f00169bc699b0fe1a5cd4d658'),
+                    ('tsl9_dispatch_peripheral_12a50', 14, '33b5904c8f2b3a0c4c22b3dbf5ecc354f98caef3f666e2eb836125188be4dbd9'),
+                    ('tsl9_dispatch_finish_12a5e', 8, 'b0805dbb6b57307623b544f18b6ae086d0024607adbba3f3c43944984c8c5c84'),
+                    ('tsl9_dispatch_tagged_12a66', 8, '2e37ed26ba9ac0da23a0ef499161b42709bf82fda093533dec882c2c63869f7b'),
+                ]
+                edges = [
+                    ('tsl9_queue_external_12a08', 8, 17, 'tsl9_queue_external_81aa'),
+                    ('tsl9_dispatch_status_12a14', 0, 44, 'tsl9_dispatch_query_12a20'),
+                    ('tsl9_dispatch_ID_12a16', 6, 16, 'tsl9_dispatch_finish_12a5e'),
+                    ('tsl9_dispatch_query_12a20', 2, 17, 'tsl9_dispatch_external_821e'),
+                    ('tsl9_dispatch_query_12a20', 6, 44, 'tsl9_dispatch_finish_12a5e'),
+                    ('tsl9_dispatch_tag_12a28', 4, 44, 'tsl9_dispatch_tagged_12a66'),
+                    ('tsl9_dispatch_peripheral_12a50', 10, 17, 'tsl9_dispatch_external_18ca4'),
+                    ('tsl9_dispatch_tagged_12a66', 2, 17, 'tsl9_dispatch_external_16b7c'),
+                    ('tsl9_dispatch_tagged_12a66', 6, 45, 'tsl9_dispatch_finish_12a5e'),
+                ]
+
+                need(pair[1]['functions'] == sorted([
+                    dict(name=n, binding=1, bytes=z, code_sha256=h) for n, z, h in regions], key=lambda x: x['name'])
+                    and pair[1]['allocated_sections'] == [
+                        dict(name='.text.'+n, bytes=z, flags=6, type=1, sha256=h) for n, z, h in regions]
+                    and pair[1]['allocated_bytes'] == 102
+                    and pair[1]['UND'] == sorted(['tsl9_queue_external_81aa', 'tsl9_dispatch_external_821e',
+                                                 'tsl9_dispatch_external_18ca4', 'tsl9_dispatch_external_16b7c'])
+                    and pair[1]['relocations'] == [
+                        dict(owner='.text.'+owner, offset=at, type=kind, addend=0, symbol=target)
+                        for owner, at, kind, target in edges],
+                    'Nine private102B regions with4 real UND and9 pending controls. All74 whole noncontrol bytes/689 retained bits and then-live frame/call residues require the separate formal checker; not physical firmware readiness')
             if unit['name'] == 'transport-frame':
                 regions = [
                     ('tsl9_filter_external_8a56', 8, '487c6497a4cdd3be5d1018e698b41718911d4f4e55c950749df0587a5b69fb99'),

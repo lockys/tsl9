@@ -459,6 +459,20 @@
       "replacements": [],
       "origin_sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8",
       "sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
+    },
+    {
+      "origin": "experiments/tsl9-record-dispatch/src/record_dispatch.v2.c",
+      "destination": "src/native/receive/record_dispatch.c",
+      "replacements": [],
+      "origin_sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b",
+      "sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b"
+    },
+    {
+      "origin": "experiments/tsl9-record-predicate/src/predicate.v2.c",
+      "destination": "src/native/receive/record_predicate.c",
+      "replacements": [],
+      "origin_sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669",
+      "sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669"
     }
   ],
   "native_units": [
@@ -772,6 +786,32 @@
       ],
       "scope": "280B/96i in13 private regions with9 pending local RELAs and0 UND. All246 whole noncontrol instruction bytes and2133 retained bits match original. Initial1039 guard, then-live registers/GP/SP after2 fresh admission calls4013C, uint16 comparison/full32-bit copy index, volatile ordered checksum/header/metadata stores and no-link tail40050. Diagnostic VMA0; original placement/full ABI/IRQ/memory/ROM/silicon/OTA compatibility remain unproved.",
       "origin_unit_sha256": "6908f14f0fc37e6491cdcd043a909059117eee04a0e15cf0013fda2950a119e8"
+    },
+    {
+      "name": "record-dispatch",
+      "profile": "record-a0-a5",
+      "origin_unit": "experiments/tsl9-record-dispatch/src/record_dispatch.v2.c",
+      "curated_unit": "src/native/receive/record_dispatch.c",
+      "evidence": "experiments/tsl9-record-dispatch/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-record-dispatch/build/verified-v1/c/verification.json",
+        "experiments/tsl9-record-dispatch/build/verified-v1/cpp/verification.json"
+      ],
+      "scope": "102B/35i in9 private regions including post-RET tagged call;74 whole noncontrol bytes/689 retained bits original-equal with9 pending RELAs and4 genuine UND. Four4B JAL RA links and fresh4004C resident; ordered metadata stores leaveSP16..19 untouched, then-liveSP/S0/A2 after opaque calls. No ordinary independent ABI, physical interface, successful transmission, full startup/IRQ/ROM/silicon/OTA proof.",
+      "origin_unit_sha256": "6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b"
+    },
+    {
+      "name": "record-predicate",
+      "profile": "record-predicate-a0-a4-a5",
+      "origin_unit": "experiments/tsl9-record-predicate/src/predicate.v2.c",
+      "curated_unit": "src/native/receive/record_predicate.c",
+      "evidence": "experiments/tsl9-record-predicate/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-record-predicate/build/verified-v3/c/verification.json",
+        "experiments/tsl9-record-predicate/build/verified-v3/cpp/verification.json"
+      ],
+      "scope": "Ordinary C predicate42B/15i entirely original-equal including unsigned branches and A4/A5 residues; only empty architecture-register/GP ports. Three volatile reads, no stores/frame/calls/UND/RELA. GP pointer provenance, memory validity, IRQ and semantic flag identity remain unknown; no physical or OTA readiness.",
+      "origin_unit_sha256": "ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669"
     }
   ],
   "legacy_groups": [
