@@ -2,9 +2,9 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-[最新原始位址驗證](../analysis/record-helpers-2026-10-25/README.md)：39,122B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 145 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
+[最新原始位址驗證](../analysis/resident-startup-2026-10-25/README.md)：40,225B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 165 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 128 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 129 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC資料組裝、記錄處理與立即／延後通知 | 1308B／461指令原位址碼吻合；真實7346B＋60B圖；接通2個入口、新增27個getter依賴，共93個UND；硬體／OTA未證 |
 | [state access](native/receive/state_access.c) | 82A8 記錄搬移、10032 清除與四組狀態更新／讀取 | 336B／108指令，C/C++原位址碼吻合；實際6038B＋60B圖有68個UND；ROM、13C4E用途、索引界限與硬體／OTA未證 |
@@ -12,6 +12,7 @@
 
 | 目錄 | 內容 | 目前限制 |
 | --- | --- | --- |
+| [常駐程式啟動與 ROM 設定](native/startup/resident_startup.c) | 八個完整函式1082B／385i＋21B版本資料 | 預期 CH32V20x ROM 版本、設定／工作註冊與回呼；接上兩入口，新增22依賴。主元件38454B code＋1771B data／2534RELA／165UND；40225B原址吻合。[證據](../analysis/resident-startup-2026-10-25/README.md) |
 | [記錄 helper 與週期回呼](native/receive/record_helpers.c) | 十二個完整函式910B／306i | 共用 wrapper、週期回呼、表格選擇與排程；接上十二入口，新增十依賴。主元件37372B code＋1750B data／2468RELA／145UND；39122B原址吻合。[證據](../analysis/record-helpers-2026-10-25/README.md) |
 | [記錄動作與共用修改器](native/receive/record_actions.c) | 十九個完整函式1506B／479i | 記錄建立、共用修改及條件通知；接上十九入口，新增五依賴。主元件36462B code＋1750B data／2395RELA／147UND；38212B原址吻合。[證據](../analysis/record-actions-2026-10-25/README.md) |
 | [狀態控制與記錄傳輸](native/receive/state_controls.c) | 十個完整函式1266B／452i | 條件控制、記錄傳輸及清理順序；接上七入口，無新依賴。主元件34956B code＋1750B data／2316RELA／161UND；36706B原址吻合。[證據](../analysis/state-controls-2026-10-25/README.md) |

@@ -956,6 +956,13 @@
       "replacements": [],
       "origin_sha256": "deebd11bf4d9f852eade96fb581004ae2edbbbc14e3fbd11c5811bcd64e9e2f6",
       "sha256": "deebd11bf4d9f852eade96fb581004ae2edbbbc14e3fbd11c5811bcd64e9e2f6"
+    },
+    {
+      "origin": "experiments/tsl9-resident-startup/src/resident_startup.v1.c",
+      "destination": "src/native/startup/resident_startup.c",
+      "replacements": [],
+      "origin_sha256": "b7994cdf067b05a04910a87f7264f17c750189d75e8db120b4bc1036a2384980",
+      "sha256": "b7994cdf067b05a04910a87f7264f17c750189d75e8db120b4bc1036a2384980"
     }
   ],
   "native_units": [
@@ -2126,6 +2133,18 @@
       ],
       "scope": "Twelve whole helper/callback functions:910B/306i,68 genuine private regions,51 direct controls and11 typed address pairs. Preserve full-width wrapper inputs,conditional callback/cancellation order,forced record submission,one-bit toggling,counter modulo256 before unsigned threshold3,and numeric schedule tuples. Three static table addresses remain unprovided;no data contents copied. Private ABI,RAM/ROM/IRQ,time units,product labels and physical startup/OTA unproved;no target/HOST/ISA execution,hardware or network.",
       "origin_unit_sha256": "deebd11bf4d9f852eade96fb581004ae2edbbbc14e3fbd11c5811bcd64e9e2f6"
+    },
+    {
+      "name": "resident-startup",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-resident-startup/src/resident_startup.v1.c",
+      "curated_unit": "src/native/startup/resident_startup.c",
+      "evidence": "analysis/resident-startup-2026-10-25/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-resident-startup/build/native-v1/measurement.json"
+      ],
+      "scope": "Eight complete resident startup functions:1082B/385i,74 genuine private regions,52 direct controls and7 typed address pairs;one21Breadonly CH32V20x_BLE_LIB_V1.3 comparison prefix. Preserve all version/heap/init failure loops,the64-byte config frame and6-byte dynamic MAC copy,ADC register backup/restore,event priority,saved Flash callback arguments and timer setup order. Installed ROM/private ABI,physical MCU/RAM/IRQ/Flash/OTA unproved;no target/HOST/ISA execution,hardware or network.",
+      "origin_unit_sha256": "b7994cdf067b05a04910a87f7264f17c750189d75e8db120b4bc1036a2384980"
     }
   ],
   "native_data_units": [
