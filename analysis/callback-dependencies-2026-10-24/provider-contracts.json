@@ -1,0 +1,160 @@
+{
+  "schema": "TSL9-callback-dependency-contracts-v1",
+  "evidence": "evidence.json",
+  "raw_opcode_checks": {
+    "0x11356": "auipc a5, 0x1fffb",
+    "0x11360": "beqz a4, 0x11440",
+    "0x11384": "addi s4, gp, 88",
+    "0x1138e": "li s3, 252",
+    "0x1139c": "lhu a4, 4(a5)",
+    "0x113a0": "lhu a2, 2(a5)",
+    "0x113a8": "bne a4, a3, 0x113d6",
+    "0x113ac": "beq s1, s5, 0x11436",
+    "0x113be": "jal ra, 0x155d0",
+    "0x113c6": "li a2, 160",
+    "0x113ca": "li a1, 16",
+    "0x113d6": "addi s0, s0, 6",
+    "0x113d8": "bne s0, s3, 0x11392",
+    "0x11400": "jal ra, 0x10dcc",
+    "0x11426": "li a2, 32",
+    "0x1142a": "li a1, 8",
+    "0x1142e": "jr t1",
+    "0x11436": "li a0, 255",
+    "0x11440": "ret",
+    "0x13ce4": "lw a5, 112(s1)",
+    "0x13cee": "addi a0, a1, 1",
+    "0x13cf6": "beqz a0, 0x13d3c",
+    "0x13cfe": "sb a2, 0(a0)",
+    "0x13d02": "lw a5, 76(s1)",
+    "0x13d08": "jal ra, 0x135e6",
+    "0x13d0c": "li a2, 100",
+    "0x13d12": "li a2, 10",
+    "0x13d20": "jal ra, 0x9124",
+    "0x13d24": "beqz a0, 0x13d3c",
+    "0x13d34": "lw t1, 104(a5)",
+    "0x13d3a": "jr t1",
+    "0x13d46": "ret",
+    "0x16e92": "jal ra, 0x16e0c",
+    "0x16e98": "bnez a0, 0x16ef4",
+    "0x16e9a": "li a1, 128",
+    "0x16ea0": "jal ra, 0x169dc",
+    "0x16eac": "jal ra, 0x16a30",
+    "0x16ed0": "jal ra, 0x16b50",
+    "0x16ed8": "jal ra, 0x16b50",
+    "0x16ef8": "mv a0, s1",
+    "0x16efe": "ret"
+  },
+  "confirmed_static": {
+    "scan_11356": {
+      "range": [
+        70486,
+        70722
+      ],
+      "bytes": 236,
+      "instructions": 83,
+      "table_pointer_GP_offset": 88,
+      "record_stride": 6,
+      "byte_span": 252,
+      "maximum_iterations": 42,
+      "record_key": "LHU(record+4)<<16 | LHU(record+2)",
+      "record_key_matches_saved_state_word_offset": 4,
+      "mode1_calls_155d0_with": 255,
+      "other_mode_value": "Byte0 or byte1 selected by saved state byte10",
+      "state_byte1_nonzero_path": "Zero bytes1/10,call10DCC; mode0 tail-calls ROM40058 with A1=8,A2=32.",
+      "ROM_slot": 262232,
+      "record_match_schedule_arguments": {
+        "A1": 16,
+        "A2": 160
+      },
+      "physical_record_type_proved": false
+    },
+    "payload_13cdc": {
+      "range": [
+        81116,
+        81224
+      ],
+      "bytes": 108,
+      "instructions": 44,
+      "input": "A0 source pointer,A1 length",
+      "allocation_ROM_slot": 262256,
+      "allocation_size": "Original32-bit A1+1",
+      "prefix": "SB of original length at buffer+0",
+      "copy_ROM_slot": 262220,
+      "copy_arguments": "A0=buffer+1,A1=original source,A2=original full length",
+      "predicate": 79334,
+      "queue_arguments": {
+        "A0": 81588,
+        "A1": 0,
+        "A2_nonzero_predicate": 100,
+        "A2_zero_predicate": 10,
+        "A3": "allocated buffer"
+      },
+      "queue_call": 37156,
+      "queue_nonzero_result_cleanup_ROM_slot": 262248,
+      "queue_zero_result_skips_cleanup": true,
+      "callback_13eb4_body_provided": false,
+      "length_bounds_and_ownership_proved": false
+    },
+    "channel_16e88": {
+      "range": [
+        93832,
+        93952
+      ],
+      "bytes": 120,
+      "instructions": 43,
+      "predicate": 93708,
+      "nonzero_result_skips_configuration": true,
+      "return": "Original predicate result preserved in S1",
+      "selector": "Original A0 saved in S0 and forwarded",
+      "first_call": {
+        "target": 92636,
+        "A1": 128
+      },
+      "register_writes": [
+        {
+          "address": 42,
+          "value": 0
+        },
+        {
+          "address": 41,
+          "value": 144
+        },
+        {
+          "address": 40,
+          "value": 130
+        },
+        {
+          "address": 44,
+          "value": 0
+        },
+        {
+          "address": 43,
+          "value": 3
+        }
+      ],
+      "write_provider": 92720,
+      "middle_calls": [
+        {
+          "target": 93008,
+          "A1": 0
+        },
+        {
+          "target": 93008,
+          "A1": 1
+        }
+      ],
+      "physical_channel_or_radio_proved": false
+    }
+  },
+  "inferences": {
+    "payload_13cdc": "Allocation/copy/queue/cleanup wrapper; numeric ROM identities and callback/payload ABI require installed-ROM proof.",
+    "channel_16e88": "Status-gated channel configuration consistent with existing register-write ports;physical chip and effects are unproved."
+  },
+  "unknown": [
+    "155D0,16B50,13EB4 implementations",
+    "Installed ROM ABI,allocator ownership and length domain",
+    "Time units,record meaning and mapping to product features",
+    "Physical MCU/startup/RAM/IRQ/OTA compatibility"
+  ],
+  "firmware_ready": false
+}
