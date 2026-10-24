@@ -52,10 +52,13 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         hardwareFile=new File(getFilesDir(),"latest-hardware.jsonl");if(hardwareFile.length()<2*1024*1024){try{previousHardware=new String(readLimited(new android.util.AtomicFile(hardwareFile).openRead(),2*1024*1024),StandardCharsets.UTF_8);}catch(IOException ignored){}}
         logFile=new File(getFilesDir(),"latest-debug.log");
         if(logFile.exists()&&logFile.length()<256*1024){try{logs.append(new String(readLimited(new FileInputStream(logFile),256*1024),StandardCharsets.UTF_8));}catch(IOException ignored){}}
-        displayedLocale=localeSignature(getResources().getConfiguration());buildUi();log("APP v0.7.0-test Android="+Build.VERSION.SDK_INT+" target=TSL9 OEM APP OTA + direct body-controls + live receive-only dashboard");
+        displayedLocale=localeSignature(getResources().getConfiguration());buildUi();log("APP "+appBuild()+" package="+getPackageName()+" Android="+Build.VERSION.SDK_INT+" target=TSL9 OEM APP OTA + direct body-controls + live receive-only dashboard");
         if(b!=null){selectSeat(b.getInt("seat",0));if(b.getString("tab")!=null)tabs.setCurrentTabByTag(b.getString("tab"));}handler.post(ticker);refresh();
     }
     private int dp(float n){return Math.round(n*getResources().getDisplayMetrics().density);}
+    private String appBuild(){
+        try{android.content.pm.PackageInfo installed=getPackageManager().getPackageInfo(getPackageName(),0);return installed.versionName+"/"+installed.versionCode;}catch(android.content.pm.PackageManager.NameNotFoundException ignored){return "unknown";}
+    }
     private TextView text(String value,int size,int color){return AppUi.text(this,value,size,color);}
     private Button button(String title,Runnable run){Button b=new Button(this);b.setText(title);AppUi.style(b,false);b.setOnClickListener(v->{try{run.run();}catch(SecurityException e){state(s(R.string.nearby_permission));log("PERMISSION operation blocked");}catch(IllegalArgumentException e){state(UiStrings.error(this,e));log("VALIDATION "+e.getMessage());}});return b;}
     private TextView tabIndicator(int label,int compactLabel,String icon){TextView tab=AppUi.tab(this,s(compactLabel),icon);tab.setContentDescription(s(label));return tab;}
@@ -115,6 +118,21 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         tabs.addTab(tabs.newTabSpec("tools").setIndicator(tabIndicator(R.string.tab_tools,R.string.nav_tools,"bluetooth")).setContent(tag->scroll));tabs.addTab(tabs.newTabSpec("car").setIndicator(tabIndicator(R.string.tab_car,R.string.nav_car,"car")).setContent(tag->vehicleScroll));tabs.addTab(tabs.newTabSpec("live").setIndicator(tabIndicator(R.string.live_tab,R.string.nav_live,"chart")).setContent(tag->livePanel.view));
         tabs.setOnTabChangedListener(tag->{if(!tag.equals("car"))car.stopSeat();if(tag.equals("car")||tag.equals("live")){lastCarPoll=0;lastCarInfoPoll=0;}refresh();});setContentView(tabs);
         tabBody.setOnApplyWindowInsetsListener((v,insets)->{tabBody.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),insets.getSystemWindowInsetBottom());return insets.consumeSystemWindowInsets();});
+        // Record only geometry changes. No vehicle/device identifiers or file contents.
+        final String[] lastNavigationGeometry={""};
+        tabBar.getViewTreeObserver().addOnGlobalLayoutListener(()->{
+            if(destroyed||tabBar.getWidth()==0)return;
+            StringBuilder labels=new StringBuilder();
+            for(int index=0;index<tabBar.getChildCount();index++){
+                if(index>0)labels.append('/');
+                View child=tabBar.getChildAt(index);
+                if(child instanceof TextView)labels.append(((TextView)child).getText());
+            }
+            String geometry="window="+tabs.getWidth()+" safe="+(tabBody.getWidth()-tabBody.getPaddingLeft()-tabBody.getPaddingRight())+" bar="+tabBar.getWidth()+"x"+tabBar.getHeight()+" font="+getResources().getConfiguration().fontScale+" density="+getResources().getDisplayMetrics().density+" labels="+labels;
+            if(geometry.equals(lastNavigationGeometry[0]))return;
+            lastNavigationGeometry[0]=geometry;
+            log("UI_NAV package="+getPackageName()+" version="+appBuild()+" api="+android.os.Build.VERSION.SDK_INT+" "+geometry);
+        });
     }
 
     private boolean carTabVisible(){return tabs!=null&&"car".equals(tabs.getCurrentTabTag());}

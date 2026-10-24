@@ -13,8 +13,8 @@ import java.util.*;
 /** Runs only against the local test APK. Never scans, connects, or sends BLE. */
 public final class SmokeInstrumentation extends Instrumentation {
     private int checks;
-    private boolean documents,switches;private String locale;
-    @Override public void onCreate(Bundle b){super.onCreate(b);documents=b!=null&&"true".equals(b.getString("documents"));switches=b!=null&&"true".equals(b.getString("switches"));locale=b==null?null:b.getString("locale");start();}
+    private boolean documents,switches,navigation;private String locale;
+    @Override public void onCreate(Bundle b){super.onCreate(b);documents=b!=null&&"true".equals(b.getString("documents"));switches=b!=null&&"true".equals(b.getString("switches"));navigation=b!=null&&"true".equals(b.getString("navigation"));locale=b==null?null:b.getString("locale");start();}
     private void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
     private Object field(Object o,String name)throws Exception{Field f=o.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(o);}
     private Object call(Object o,String name,Class<?>[] types,Object... args)throws Exception{Method m=o.getClass().getDeclaredMethod(name,types);m.setAccessible(true);return m.invoke(o,args);}
@@ -51,6 +51,7 @@ public final class SmokeInstrumentation extends Instrumentation {
             Intent intent=new Intent().setClassName(getTargetContext().getPackageName(),"dev.tsl9.morphe.MainActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             activity=startActivitySync(intent);waitForIdleSync();
             if(switches)activity=exerciseSwitches(activity);
+            if(navigation){NavigationLifecycleChecks navigationChecks=new NavigationLifecycleChecks(this,activity);result.putString("result",navigationChecks.run());activity=navigationChecks.activity();finish(Activity.RESULT_OK,result);return;}
             final Activity a=activity;
             final Throwable[] failure={null};runOnMainSync(()->{try{
                 android.content.res.Configuration config=a.getResources().getConfiguration();String tag=(Build.VERSION.SDK_INT>=24?config.getLocales().get(0):config.locale).toLanguageTag();
