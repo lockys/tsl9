@@ -1,0 +1,73 @@
+OUTPUT_ARCH(riscv)
+SECTIONS
+{
+ .boot_code 0 : SUBALIGN(2) { *(.boot_code)
+  *(.text.tsl9_action_primitives_provider_9ae4)
+  *(.text.tsl9_record_dispatch_provider_b6f4)
+  *(.text.tsl9_output_builder_block_b702)
+  *(.text.tsl9_output_builder_block_b70e)
+  *(.text.tsl9_output_builder_block_b714)
+  *(.text.tsl9_output_builder_block_b71a)
+  *(.text.tsl9_output_builder_block_b71e)
+  *(.text.tsl9_output_builder_block_b72e)
+  *(.text.tsl9_record_dispatch_provider_dea0)
+  *(.text.tsl9_output_builder_block_deac)
+  *(.text.tsl9_output_builder_block_deae)
+  *(.text.tsl9_output_builder_block_deba)
+  *(.text.tsl9_output_builder_block_debc)
+  *(.text.tsl9_output_builder_block_dec2)
+  *(.text.tsl9_output_builder_block_dece)
+  *(.text.tsl9_output_builder_block_ded4)
+  *(.text.tsl9_output_builder_block_ded6)
+  *(.text.tsl9_action_primitives_provider_17c4e)
+  *(.text.tsl9_output_builder_block_17cac)
+  *(.text.tsl9_output_builder_provider_17cb2)
+  *(.text.tsl9_output_builder_block_17cba)
+  *(.text.tsl9_output_builder_block_17cc6)
+  *(.text.tsl9_output_builder_block_17ccc)
+  *(.text.tsl9_output_builder_block_17cd2)
+  *(.text.tsl9_output_builder_block_17cda)
+  *(.text.tsl9_output_builder_block_17cde)
+  *(.text.tsl9_output_builder_block_17ce0)
+  *(.text.tsl9_output_builder_block_17ce2)
+  *(.text.tsl9_output_builder_block_17cee)
+  *(.text.tsl9_output_builder_provider_17cf4)
+  *(.text.tsl9_output_builder_block_17d0a)
+  *(.text.tsl9_output_builder_block_17d14)
+  *(.text.tsl9_output_builder_block_17d48)
+  *(.text.tsl9_output_builder_block_17d84)
+  *(.text.tsl9_output_builder_block_17dac)
+  *(.text.tsl9_output_builder_block_17dde)
+  *(.text.tsl9_output_builder_block_17de8)
+  *(.text.tsl9_output_builder_block_17df2)
+  *(.text.tsl9_output_builder_block_17dfc)
+  *(.text.tsl9_output_builder_block_17e06)
+  *(.text.tsl9_output_builder_block_17e0e)
+  *(.text.tsl9_output_builder_block_17e1a)
+  *(.text.tsl9_output_builder_block_17e24)
+  *(.text.tsl9_output_builder_block_17e58)
+  *(.text.tsl9_output_builder_block_17e90)
+  *(.text.tsl9_output_builder_block_17eb8)
+  *(.text.tsl9_output_builder_block_17eea)
+  *(.text.tsl9_output_builder_block_17ef4)
+  *(.text.tsl9_output_builder_block_17efe)
+  *(.text.tsl9_output_builder_block_17f08)
+  *(.text.tsl9_output_builder_block_17f12)
+  *(.text.tsl9_output_builder_block_17f1a)
+  *(.text.tsl9_output_builder_block_17f36)
+  *(.text.tsl9_output_builder_block_17f48)
+  *(.text.tsl9_output_builder_block_17f56)
+  *(.text.tsl9_output_builder_block_17f60)
+  *(.text.tsl9_output_builder_block_17f6a)
+  *(.text.tsl9_output_builder_block_17f76)
+ }
+ .initializer 0 : SUBALIGN(4) { *(.initializer) }
+ .vectors 0 : SUBALIGN(4) { *(.vectors) }
+ .feature_tables 0 : SUBALIGN(4) { *(.feature_tables) }
+ .callback_constants 0 : SUBALIGN(4) { *(.callback_constants) }
+ .callback_flow_constants 0 : SUBALIGN(4) { *(.callback_flow_constants) }
+ .incoming_constants 0 : SUBALIGN(4) { *(.incoming_constants) }
+ .action_table 0 : SUBALIGN(4) { *(.action_table) }
+ .phase_table 0 : SUBALIGN(4) { *(.phase_table) }
+ /DISCARD/ : { *(.comment) *(.riscv.attributes) *(.llvm_addrsig) }
+}
