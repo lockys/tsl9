@@ -2,9 +2,9 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-[最新原始位址驗證](../analysis/settings-defaults-2026-10-24/README.md)：22,580B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 70 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
+[最新原始位址驗證](../analysis/main-services-2026-10-24/README.md)：23,554B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 96 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 116 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 117 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC資料組裝、記錄處理與立即／延後通知 | 1308B／461指令原位址碼吻合；真實7346B＋60B圖；接通2個入口、新增27個getter依賴，共93個UND；硬體／OTA未證 |
 | [state access](native/receive/state_access.c) | 82A8 記錄搬移、10032 清除與四組狀態更新／讀取 | 336B／108指令，C/C++原位址碼吻合；實際6038B＋60B圖有68個UND；ROM、13C4E用途、索引界限與硬體／OTA未證 |
@@ -12,6 +12,7 @@
 
 | 目錄 | 內容 | 目前限制 |
 | --- | --- | --- |
+| [主程式服務與周邊設定](native/startup/main_services.c) | 五個完整原始函式974B／328i | 接上五個入口、展開31個依賴；主元件22840B code＋714B data／1419RELA／96UND；23554B原址吻合，三個回呼與不透明預設資料仍未提供。[證據](../analysis/main-services-2026-10-24/README.md) |
 | [設定預設與持久化](native/startup/settings_defaults.c) | 十二個完整原始函式878B／297i | 接上六個入口，四byte預設資料仍未提供；主元件21866B code＋714B data／1368RELA／70UND；選定22580B原址吻合。[證據](../analysis/settings-defaults-2026-10-24/README.md) |
 | [周邊初始化與描述子](native/can/peripheral_initializer.c) | 完整18AB0函式242B／99i與32B描述子型別 | 接上一個入口且無新依賴；主元件20988B code＋714B data／1354RELA／75UND；全部21702B原址吻合。[證據](../analysis/peripheral-initializer-2026-10-24/README.md) |
 | [主初始化與設定載入](native/startup/main_initializers.c) | 兩個完整原始函式522B／155i | 接上兩個入口、展開七個預設值／周邊依賴；主元件20746B code＋714B data／1337RELA／76UND；全部21460B原址吻合。[證據](../analysis/main-initializers-2026-10-24/README.md) |
@@ -116,7 +117,7 @@ python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 
 腳本依 manifest 選擇84個 native translation units，對原始與整理後版本分別編譯 C11／C++17，再讀取物件並比較所有函式、配置區段與 relocation。包含式 C core 由對應入口編入，不能把所有 `.c` 當成互不重複的連結單元。V4.1.00 reference 不納入此原機物件編譯；本次未重跑舊 HOST 矩陣。 另有1個native_data_units純指標資料單位，由experiments/tsl9-original-vectors/build-v1.py獨立驗證，不以假函式納入舊檢查。
 
-本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 178 組比對（356 個物件），收據為 `build/curated-source/settings-defaults-20261024-v1/verification.json`。舊整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。 指標資料另外通過2組來源比對／4物件；兩個範圍合計180組／360物件。
+本輪以 Android NDK 27.1.12297006 的 LLVM 18 在 Windows 實際通過 180 組比對（360 個物件），收據為 `build/curated-source/main-services-20261024-v1/verification.json`。舊整理收據保留為歷史快照。Python 入口使用標準函式庫，未實機驗證其他作業系統；更換工具鏈需重新通過相同檢查，不下載工具或搜尋編譯旗標。 指標資料另外通過2組來源比對／4物件；兩個範圍合計182組／364物件。
 
 既有結果可唯讀重播：
 

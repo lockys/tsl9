@@ -1,0 +1,446 @@
+{
+  "schema": "TSL9-main-services-initialization-contracts-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "evidence": "analysis/main-services-2026-10-24/evidence.json",
+  "confirmed_static": {
+    "input_fold_9334": {
+      "function_start": 37684,
+      "function_end": 37758,
+      "frame_bytes": 32,
+      "producer_PC": 37696,
+      "producer_target": 37562,
+      "selected_input_bytes": 12,
+      "initial_state": 23205,
+      "byte_sum_mask": 255,
+      "loop_head": 37710,
+      "fold_target": 37520,
+      "fold_call_PCs": [
+        37728,
+        37732,
+        37738
+      ],
+      "second_argument_roles": [
+        "current stack byte",
+        "running sum modulo256",
+        "low8 of preceding return A0"
+      ],
+      "loop_back_PC": 37742,
+      "live_input_bytes_read": false,
+      "fold_body_provided": false
+    },
+    "rom_initialization_12506": {
+      "function_start": 75014,
+      "function_end": 75342,
+      "frame_bytes": 48,
+      "zero_fill_slot": 262216,
+      "ram_clear_requests": [
+        {
+          "PC": 75046,
+          "address": 536920020,
+          "bytes": 24
+        },
+        {
+          "PC": 75066,
+          "address": 536920044,
+          "bytes": 36
+        },
+        {
+          "PC": 75308,
+          "address": 536920008,
+          "bytes": 12
+        }
+      ],
+      "combined_nominal_contiguous_start": 536920008,
+      "combined_nominal_contiguous_end": 536920080,
+      "callback_slot": 262272,
+      "callback_address_requests": [
+        {
+          "PC": 75086,
+          "callback": 72136,
+          "return_store": 536920020,
+          "store_bits": 8
+        },
+        {
+          "PC": 75322,
+          "callback": 70722,
+          "return_store": 536920008,
+          "store_bits": 8
+        }
+      ],
+      "scalar_slot": 262484,
+      "scalar_requests": [
+        {
+          "PC": 75102,
+          "A0": 2,
+          "A1": 80
+        },
+        {
+          "PC": 75112,
+          "A0": 7,
+          "A1": 6
+        },
+        {
+          "PC": 75124,
+          "A0": 8,
+          "A1": 160
+        },
+        {
+          "PC": 75136,
+          "A0": 13,
+          "A1": 100
+        }
+      ],
+      "buffer_slot": 262504,
+      "buffer_requests": [
+        {
+          "PC": 75174,
+          "A0": 1039,
+          "A1": 4,
+          "A2_SP_offset": 12,
+          "initialized_bytes_hex": "00000000"
+        },
+        {
+          "PC": 75188,
+          "A0": 1032,
+          "A1": 1,
+          "A2_SP_offset": 8,
+          "initialized_bytes_hex": "02"
+        },
+        {
+          "PC": 75204,
+          "A0": 1033,
+          "A1": 1,
+          "A2_SP_offset": 9,
+          "initialized_bytes_hex": "01"
+        },
+        {
+          "PC": 75220,
+          "A0": 1034,
+          "A1": 1,
+          "A2_SP_offset": 10,
+          "initialized_bytes_hex": "03"
+        },
+        {
+          "PC": 75236,
+          "A0": 1037,
+          "A1": 1,
+          "A2_SP_offset": 11,
+          "initialized_bytes_hex": "01"
+        }
+      ],
+      "additional_indirect_requests": [
+        {
+          "PC": 75270,
+          "slot": 262340
+        },
+        {
+          "PC": 75288,
+          "slot": 262344,
+          "A0_source": "u8 at nominal0x2000BFD4"
+        },
+        {
+          "PC": 75298,
+          "slot": 262224,
+          "A0_source": "u8 at nominal0x2000BFD4",
+          "A1": 1
+        }
+      ],
+      "record_array": {
+        "base": 536920044,
+        "record_count": 3,
+        "stride": 12,
+        "byte_offsets": [
+          0,
+          12,
+          24
+        ],
+        "byte_value": 128,
+        "halfword_offsets": [
+          2,
+          14,
+          26
+        ],
+        "halfword_value": 65534
+      }
+    },
+    "state_clear_14c8a": {
+      "function_start": 85130,
+      "function_end": 85192,
+      "frame_bytes": 16,
+      "zero_fill_slot": 262216,
+      "clear_PC": 85156,
+      "ram_address": 536922004,
+      "bytes": 10,
+      "halfword_store_PCs": [
+        85160,
+        85172
+      ],
+      "halfword_offsets": [
+        2,
+        6
+      ],
+      "halfword_value": 65534,
+      "byte_zero_store_PCs": [
+        85164,
+        85168,
+        85176,
+        85180
+      ],
+      "byte_zero_offsets": [
+        4,
+        5,
+        8,
+        9
+      ],
+      "adjacent_previous_settings_nominal_end": 536922004
+    },
+    "initializer_chain_154a6": {
+      "function_start": 87206,
+      "function_end": 87338,
+      "frame_bytes": 16,
+      "zero_fill_PC": 87224,
+      "zero_fill_slot": 262216,
+      "destination": "originalGP+352",
+      "bytes": 6,
+      "direct_calls": [
+        {
+          "PC": 87226,
+          "target": 68638
+        },
+        {
+          "PC": 87230,
+          "target": 53874
+        },
+        {
+          "PC": 87234,
+          "target": 41852
+        },
+        {
+          "PC": 87238,
+          "target": 45308
+        },
+        {
+          "PC": 87242,
+          "target": 55130
+        },
+        {
+          "PC": 87246,
+          "target": 53654
+        },
+        {
+          "PC": 87250,
+          "target": 65880
+        },
+        {
+          "PC": 87254,
+          "target": 51096
+        },
+        {
+          "PC": 87258,
+          "target": 65586
+        },
+        {
+          "PC": 87262,
+          "target": 54516
+        },
+        {
+          "PC": 87266,
+          "target": 45634
+        },
+        {
+          "PC": 87270,
+          "target": 46560
+        },
+        {
+          "PC": 87274,
+          "target": 57508
+        },
+        {
+          "PC": 87278,
+          "target": 52906
+        },
+        {
+          "PC": 87282,
+          "target": 53486
+        },
+        {
+          "PC": 87286,
+          "target": 63562
+        },
+        {
+          "PC": 87290,
+          "target": 64268
+        },
+        {
+          "PC": 87294,
+          "target": 64080
+        },
+        {
+          "PC": 87298,
+          "target": 65348
+        },
+        {
+          "PC": 87302,
+          "target": 45242
+        },
+        {
+          "PC": 87306,
+          "target": 43544
+        },
+        {
+          "PC": 87310,
+          "target": 50110
+        },
+        {
+          "PC": 87314,
+          "target": 50810
+        },
+        {
+          "PC": 87318,
+          "target": 54922
+        },
+        {
+          "PC": 87322,
+          "target": 61616
+        },
+        {
+          "PC": 87326,
+          "target": 66166
+        }
+      ],
+      "terminal_tail_PC": 87334,
+      "terminal_tail_target": 99844,
+      "original_RA_and_SP_restored_before_tail": true
+    },
+    "peripheral_setup_17040": {
+      "function_start": 94272,
+      "function_end": 94650,
+      "frame_bytes": 48,
+      "zero_fill_PC": 94296,
+      "zero_fill_slot": 262216,
+      "destination": "originalGP+360",
+      "bytes": 3,
+      "callback_PC": 94314,
+      "callback_slot": 262272,
+      "callback": 93952,
+      "callback_return_store": "u8 at originalGP+363",
+      "timer_like_block_base": 1073743872,
+      "timer_reset_halfword_PC": 94342,
+      "timer_reset_offset": 40,
+      "timer_control_reads_and_writes": [
+        {
+          "load_PC": 94346,
+          "store_PC": 94362,
+          "offset": 28,
+          "OR_mask": 96
+        },
+        {
+          "load_PC": 94366,
+          "store_PC": 94382,
+          "offset": 32,
+          "OR_mask": 256
+        }
+      ],
+      "period": {
+        "clock_load_PC": 94390,
+        "clock_source": "u32 at originalGP+108",
+        "divisor": 8000000,
+        "DIVU_PC": 94396,
+        "subtract_one_PC": 94404,
+        "truncate_low16_PCs": [
+          94406,
+          94408
+        ],
+        "store_PC": 94410,
+        "offset": 44,
+        "fresh_read_PC": 94414,
+        "compare_shift_right": 1,
+        "compare_shift_PC": 94418,
+        "compare_store_PC": 94420,
+        "compare_offset": 60,
+        "zero_clock_guard_present": false
+      },
+      "enable_halfword": {
+        "load_PC": 94424,
+        "OR_PC": 94428,
+        "store_PC": 94432,
+        "offset": 0,
+        "OR_mask": 1
+      },
+      "spi_like_descriptor": {
+        "base_operand": 1073819648,
+        "initializer_PC": 94614,
+        "initializer_target": 104132,
+        "stack_offset": 12,
+        "initialized_extent_bytes": 18,
+        "halfwords": [
+          0,
+          260,
+          0,
+          0,
+          0,
+          512,
+          16,
+          0,
+          7
+        ],
+        "enable_PC": 94624,
+        "enable_target": 104222,
+        "A1": 1
+      },
+      "gpio_helper": 39460,
+      "gpio_call_PCs": [
+        94334,
+        94436,
+        94452,
+        94520,
+        94530,
+        94542,
+        94556,
+        94568
+      ],
+      "additional_targets": [
+        102474,
+        101916
+      ],
+      "final_slot": 262224,
+      "final_call_PC": 94636,
+      "A0_source": "u8 at originalGP+363",
+      "A1": 1
+    }
+  },
+  "inferences": [
+    {
+      "idea": "ROM initialization follows callback/task-registration and numeric configuration patterns",
+      "basis": "0x40080 receives original code addresses; u8 return values become selectors for0x400C8/0x40050",
+      "confirmed_vendor_API_identity": false
+    },
+    {
+      "idea": "SPI-like block plus programmable timer-like output may constrain external peripheral candidates",
+      "basis": "0x40013000 descriptor/enable calls and0x40000800 quotient/period/compare sequence",
+      "physical_chip_pin_and_external_device_identified": false
+    }
+  ],
+  "unknowns": [
+    "physical MCU and silicon revision",
+    "installed ROM slot identities and callback ABI",
+    "actual live GP/clock/slot values",
+    "GPIO pad mapping, bus clocks and external peripheral model",
+    "return/error semantics for indirect providers",
+    "complete initialized descriptor interpretation until196C4/1971E/18E1C are recovered",
+    "boot/interrupt/memory/OTA compatibility"
+  ],
+  "feature_opportunity": {
+    "idea": "Read-only startup diagnostics for registered callback selectors and clock/period/compare values",
+    "basis": "Existing initialization overwrites u8 callback returns and computes timer-like values without an explicit zero-clock guard.",
+    "implemented": false,
+    "hardware_interface_or_new_OTA_command_added": false,
+    "gate": "Recover ROM and peripheral providers plus real board mapping before assigning units,checking acceptance or exposing diagnostics."
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
