@@ -1,0 +1,905 @@
+{
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "ROM_wrappers": [
+    {
+      "ROM_target_and_physical_binding_proved": false,
+      "arguments": "A0=0x2000BF38,A1=0,A2=16",
+      "entry": 53486,
+      "semantic_memset_candidate": true,
+      "slot_address": 262216
+    }
+  ],
+  "bitmap_gate": {
+    "bitmap": 1630,
+    "bitmap_gate": "class_byte<=10 and ((0x65E>>class_byte)&1)!=0",
+    "condition_entry": 33262,
+    "entry": 52586,
+    "frame_bytes": 32,
+    "full_width_A0_A1_and_condition_result_preserved": true,
+    "late_class_byte_GP_offset": 357,
+    "mode_byte_address": 536919852,
+    "original_A0_saved_in": "S0",
+    "original_A1_saved_at_frame_offset": 12,
+    "outside_bitmap_callee": 46836,
+    "outside_bitmap_numeric_arguments": [
+      6,
+      7
+    ],
+    "pending_byte_address": 536919851,
+    "pending_reloaded_after_branch_stores": true,
+    "semantic_product_label": null,
+    "special_pending_test": "Nonzero pending with ((pending-4)&251)==0 enters A658 then tail FE6A(A0=1);other nonzero pending stores mode4 only"
+  },
+  "callback_pairs": [
+    {
+      "cancel_target": 64350,
+      "cancel_when_status": [
+        1,
+        7
+      ],
+      "entry": 64286,
+      "otherwise": "Write GP+288=1;tail schedule self",
+      "schedule_tuple": {
+        "A0": 64286,
+        "A1": 0,
+        "A2": 1500,
+        "A3": 0
+      },
+      "status_entry": 43486
+    },
+    {
+      "entry": 64350,
+      "other_effect": "Write GP+288=0;tail cancel FB1E",
+      "repeat_effect": "Write GP+288=2,GP+291=0;tail schedule self",
+      "repeat_when_status": 7,
+      "schedule_tuple": {
+        "A0": 64350,
+        "A1": 0,
+        "A2": 1500,
+        "A3": 0
+      },
+      "status_entry": 43486
+    }
+  ],
+  "enable_leaf": {
+    "clear_byte_GP_offset": 291,
+    "clear_condition": "original full-width A0==0",
+    "entry": 65014,
+    "mode_byte_GP_offset": 288,
+    "operation": "uint32(original_A0==0)+1"
+  },
+  "evidence": "analysis/control-gates-2026-10-25/evidence.json",
+  "evidence_sha256": "6219c98b24b464891bc9a1b0a8388db7d8f738129b8d8358dd4fd52702780c09",
+  "evidence_type": "static-original-instructions",
+  "firmware_ready": false,
+  "hardware_accessed": false,
+  "mode_toggle": {
+    "entry": 64874,
+    "full_width_special_input": 3,
+    "other_input": "Store low8(original_A0) without special toggle",
+    "special_nonzero_current": "current1 becomes2;other nonzero becomes1",
+    "special_zero_current": "fallback byte0x2000C257 low2bits==1 selects2;otherwise1",
+    "target_byte_GP_offset": 290
+  },
+  "network": false,
+  "opcode_checks": [
+    {
+      "PC": 33266,
+      "opcode": "lbu a0, -793(a0)"
+    },
+    {
+      "PC": 42584,
+      "opcode": "li a5, 1"
+    },
+    {
+      "PC": 42590,
+      "opcode": "sb a5, -1930(a4)"
+    },
+    {
+      "PC": 43490,
+      "opcode": "lbu a0, 1278(a0)"
+    },
+    {
+      "PC": 52586,
+      "opcode": "addi sp, sp, -32"
+    },
+    {
+      "PC": 52590,
+      "opcode": "sw a1, 12(sp)"
+    },
+    {
+      "PC": 52594,
+      "opcode": "mv s0, a0"
+    },
+    {
+      "PC": 52596,
+      "opcode": "jal ra, 0x81ee"
+    },
+    {
+      "PC": 52600,
+      "opcode": "lbu a4, 357(gp)"
+    },
+    {
+      "PC": 52604,
+      "opcode": "li a5, 10"
+    },
+    {
+      "PC": 52606,
+      "opcode": "lw a1, 12(sp)"
+    },
+    {
+      "PC": 52608,
+      "opcode": "bltu a5, a4, 0xcd90"
+    },
+    {
+      "PC": 52612,
+      "opcode": "li a5, 1630"
+    },
+    {
+      "PC": 52616,
+      "opcode": "srl a5, a5, a4"
+    },
+    {
+      "PC": 52620,
+      "opcode": "andi a5, a5, 1"
+    },
+    {
+      "PC": 52622,
+      "opcode": "bnez a5, 0xcda6"
+    },
+    {
+      "PC": 52626,
+      "opcode": "beq a1, a5, 0xce58"
+    },
+    {
+      "PC": 52630,
+      "opcode": "beqz a1, 0xce48"
+    },
+    {
+      "PC": 52634,
+      "opcode": "beq a1, a4, 0xce7a"
+    },
+    {
+      "PC": 52650,
+      "opcode": "sb zero, 389(a5)"
+    },
+    {
+      "PC": 52672,
+      "opcode": "lbu a5, 367(a5)"
+    },
+    {
+      "PC": 52676,
+      "opcode": "beqz a5, 0xcd9e"
+    },
+    {
+      "PC": 52678,
+      "opcode": "addi a5, a5, -4"
+    },
+    {
+      "PC": 52680,
+      "opcode": "andi a5, a5, 251"
+    },
+    {
+      "PC": 52684,
+      "opcode": "bnez a5, 0xce3c"
+    },
+    {
+      "PC": 52692,
+      "opcode": "sb a5, 348(a4)"
+    },
+    {
+      "PC": 52696,
+      "opcode": "jal ra, 0xa658"
+    },
+    {
+      "PC": 52704,
+      "opcode": "li a0, 1"
+    },
+    {
+      "PC": 52708,
+      "opcode": "j 0xfe6a"
+    },
+    {
+      "PC": 52726,
+      "opcode": "sb a0, 313(a5)"
+    },
+    {
+      "PC": 52738,
+      "opcode": "sb a5, 301(a4)"
+    },
+    {
+      "PC": 52802,
+      "opcode": "sb a5, 238(a4)"
+    },
+    {
+      "PC": 52842,
+      "opcode": "jal ra, 0xb6f4"
+    },
+    {
+      "PC": 52846,
+      "opcode": "bnez s0, 0xcdd8"
+    },
+    {
+      "PC": 53376,
+      "opcode": "lbu a5, -312(a5)"
+    },
+    {
+      "PC": 53380,
+      "opcode": "beq a5, a0, 0xd0ec"
+    },
+    {
+      "PC": 53390,
+      "opcode": "mv s0, a0"
+    },
+    {
+      "PC": 53392,
+      "opcode": "jal ra, 0x10402"
+    },
+    {
+      "PC": 53396,
+      "opcode": "li a5, 8"
+    },
+    {
+      "PC": 53398,
+      "opcode": "bltu a5, a0, 0xd0cc"
+    },
+    {
+      "PC": 53402,
+      "opcode": "lbu a5, 354(gp)"
+    },
+    {
+      "PC": 53406,
+      "opcode": "bnez a5, 0xd0de"
+    },
+    {
+      "PC": 53410,
+      "opcode": "beq s0, a5, 0xd0d4"
+    },
+    {
+      "PC": 53416,
+      "opcode": "beq s0, a5, 0xd0bc"
+    },
+    {
+      "PC": 53422,
+      "opcode": "bne s0, a5, 0xd0cc"
+    },
+    {
+      "PC": 53426,
+      "opcode": "lui a5, 0x1000"
+    },
+    {
+      "PC": 53430,
+      "opcode": "addi a5, a5, 1281"
+    },
+    {
+      "PC": 53436,
+      "opcode": "lui a5, 0x1000"
+    },
+    {
+      "PC": 53440,
+      "opcode": "addi a5, a5, 1025"
+    },
+    {
+      "PC": 53448,
+      "opcode": "sw a5, -396(a4)"
+    },
+    {
+      "PC": 53460,
+      "opcode": "lui a5, 0x1000"
+    },
+    {
+      "PC": 53464,
+      "opcode": "addi a5, a5, 513"
+    },
+    {
+      "PC": 53470,
+      "opcode": "mv a0, s0"
+    },
+    {
+      "PC": 53476,
+      "opcode": "li a1, 0"
+    },
+    {
+      "PC": 53480,
+      "opcode": "j 0x10022"
+    },
+    {
+      "PC": 53490,
+      "opcode": "lw t1, 72(a5)"
+    },
+    {
+      "PC": 53494,
+      "opcode": "li a2, 16"
+    },
+    {
+      "PC": 53496,
+      "opcode": "li a1, 0"
+    },
+    {
+      "PC": 53506,
+      "opcode": "jr t1"
+    },
+    {
+      "PC": 64290,
+      "opcode": "jal ra, 0xa9de"
+    },
+    {
+      "PC": 64296,
+      "opcode": "beq a0, a5, 0xfb4e"
+    },
+    {
+      "PC": 64302,
+      "opcode": "beq a0, a4, 0xfb4e"
+    },
+    {
+      "PC": 64308,
+      "opcode": "sb a5, 288(gp)"
+    },
+    {
+      "PC": 64314,
+      "opcode": "li a2, 1500"
+    },
+    {
+      "PC": 64330,
+      "opcode": "j 0x9124"
+    },
+    {
+      "PC": 64346,
+      "opcode": "j 0x90b0"
+    },
+    {
+      "PC": 64354,
+      "opcode": "jal ra, 0xa9de"
+    },
+    {
+      "PC": 64360,
+      "opcode": "bne a0, a5, 0xfb8e"
+    },
+    {
+      "PC": 64368,
+      "opcode": "sb a5, 288(gp)"
+    },
+    {
+      "PC": 64372,
+      "opcode": "sb zero, 291(gp)"
+    },
+    {
+      "PC": 64378,
+      "opcode": "li a2, 1500"
+    },
+    {
+      "PC": 64394,
+      "opcode": "j 0x9124"
+    },
+    {
+      "PC": 64400,
+      "opcode": "sb zero, 288(gp)"
+    },
+    {
+      "PC": 64414,
+      "opcode": "j 0x90b0"
+    },
+    {
+      "PC": 64874,
+      "opcode": "li a5, 3"
+    },
+    {
+      "PC": 64876,
+      "opcode": "bne a0, a5, 0xfd9a"
+    },
+    {
+      "PC": 64880,
+      "opcode": "lbu a4, 290(gp)"
+    },
+    {
+      "PC": 64884,
+      "opcode": "beqz a4, 0xfd86"
+    },
+    {
+      "PC": 64890,
+      "opcode": "beq a4, a3, 0xfd80"
+    },
+    {
+      "PC": 64896,
+      "opcode": "sb a5, 290(gp)"
+    },
+    {
+      "PC": 64906,
+      "opcode": "lbu a4, 1233(a4)"
+    },
+    {
+      "PC": 64910,
+      "opcode": "andi a4, a4, 3"
+    },
+    {
+      "PC": 64914,
+      "opcode": "bne a4, a5, 0xfd80"
+    },
+    {
+      "PC": 64922,
+      "opcode": "sb a0, 290(gp)"
+    },
+    {
+      "PC": 65014,
+      "opcode": "seqz a5, a0"
+    },
+    {
+      "PC": 65018,
+      "opcode": "addi a5, a5, 1"
+    },
+    {
+      "PC": 65020,
+      "opcode": "sb a5, 288(gp)"
+    },
+    {
+      "PC": 65024,
+      "opcode": "bnez a0, 0xfe06"
+    },
+    {
+      "PC": 65026,
+      "opcode": "sb zero, 291(gp)"
+    },
+    {
+      "PC": 65136,
+      "opcode": "lbu a4, 9(a4)"
+    },
+    {
+      "PC": 65140,
+      "opcode": "andi a4, a4, 12"
+    },
+    {
+      "PC": 65142,
+      "opcode": "beqz a4, 0xff42"
+    },
+    {
+      "PC": 65156,
+      "opcode": "mv s1, a0"
+    },
+    {
+      "PC": 65158,
+      "opcode": "jal ra, 0x828c"
+    },
+    {
+      "PC": 65162,
+      "opcode": "beqz a0, 0xfee4"
+    },
+    {
+      "PC": 65164,
+      "opcode": "beqz s1, 0xff16"
+    },
+    {
+      "PC": 65166,
+      "opcode": "jal ra, 0xa9de"
+    },
+    {
+      "PC": 65172,
+      "opcode": "lbu a5, 292(gp)"
+    },
+    {
+      "PC": 65176,
+      "opcode": "beq a0, a4, 0xfea2"
+    },
+    {
+      "PC": 65182,
+      "opcode": "bne a0, a4, 0xfeee"
+    },
+    {
+      "PC": 65186,
+      "opcode": "bnez a5, 0xfee4"
+    },
+    {
+      "PC": 65188,
+      "opcode": "jal ra, 0x81b0"
+    },
+    {
+      "PC": 65192,
+      "opcode": "sw a0, 296(gp)"
+    },
+    {
+      "PC": 65196,
+      "opcode": "lbu a4, 291(gp)"
+    },
+    {
+      "PC": 65204,
+      "opcode": "lw a5, 0(s0)"
+    },
+    {
+      "PC": 65206,
+      "opcode": "lbu a5, 9(a5)"
+    },
+    {
+      "PC": 65210,
+      "opcode": "srli a5, a5, 0x2"
+    },
+    {
+      "PC": 65212,
+      "opcode": "andi a5, a5, 3"
+    },
+    {
+      "PC": 65222,
+      "opcode": "sb a5, 292(gp)"
+    },
+    {
+      "PC": 65226,
+      "opcode": "jal ra, 0x90b0"
+    },
+    {
+      "PC": 65238,
+      "opcode": "jal ra, 0x90b0"
+    },
+    {
+      "PC": 65244,
+      "opcode": "sb a5, 288(gp)"
+    },
+    {
+      "PC": 65248,
+      "opcode": "sb zero, 291(gp)"
+    },
+    {
+      "PC": 65262,
+      "opcode": "beqz a5, 0xfee4"
+    },
+    {
+      "PC": 65268,
+      "opcode": "bnez a5, 0xfee4"
+    },
+    {
+      "PC": 65270,
+      "opcode": "jal ra, 0x81ee"
+    },
+    {
+      "PC": 65274,
+      "opcode": "bnez a0, 0xfee4"
+    },
+    {
+      "PC": 65276,
+      "opcode": "jal ra, 0x81b0"
+    },
+    {
+      "PC": 65284,
+      "opcode": "lw a5, 0(a5)"
+    },
+    {
+      "PC": 65286,
+      "opcode": "sub a0, a0, a5"
+    },
+    {
+      "PC": 65288,
+      "opcode": "li a5, 1499"
+    },
+    {
+      "PC": 65292,
+      "opcode": "bleu a0, a5, 0xfee4"
+    },
+    {
+      "PC": 65296,
+      "opcode": "sb zero, 292(gp)"
+    },
+    {
+      "PC": 65302,
+      "opcode": "lbu a5, 292(gp)"
+    },
+    {
+      "PC": 65306,
+      "opcode": "beqz a5, 0xfee4"
+    },
+    {
+      "PC": 65310,
+      "opcode": "bne a5, a4, 0xff10"
+    },
+    {
+      "PC": 65322,
+      "opcode": "jal ra, 0x90b0"
+    },
+    {
+      "PC": 65334,
+      "opcode": "jal ra, 0x90b0"
+    },
+    {
+      "PC": 65340,
+      "opcode": "sb a5, 288(gp)"
+    },
+    {
+      "PC": 65344,
+      "opcode": "j 0xff10"
+    },
+    {
+      "PC": 65570,
+      "opcode": "sb a0, 300(gp)"
+    },
+    {
+      "PC": 65574,
+      "opcode": "li a5, 10"
+    },
+    {
+      "PC": 65576,
+      "opcode": "bnez a1, 0x1002c"
+    },
+    {
+      "PC": 65578,
+      "opcode": "li a5, 1"
+    },
+    {
+      "PC": 65580,
+      "opcode": "sb a5, 301(gp)"
+    }
+  ],
+  "pair_leaf": {
+    "entry": 65570,
+    "full_width_A1_zero_test": true,
+    "ordered_stores": [
+      "byte[GP+300]=low8(A0)",
+      "byte[GP+301]=A1!=0 ?10:1"
+    ]
+  },
+  "pending_leaf": {
+    "address": 536919760,
+    "entry": 42584,
+    "value": 1,
+    "width_bits": 8
+  },
+  "schema": "TSL9-control-gates-static-contracts-v1",
+  "state_reads": [
+    {
+      "address": 536919765,
+      "entry": 33262,
+      "unsigned": true,
+      "width_bits": 8
+    },
+    {
+      "address": 536919772,
+      "entry": 43486,
+      "unsigned": true,
+      "width_bits": 8
+    }
+  ],
+  "static_addresses": [
+    {
+      "PC": 33262,
+      "address": 536919765,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 33266,
+      "next_opcode": "lbu a0, -793(a0)",
+      "opcode": "auipc a0, 0x20004"
+    },
+    {
+      "PC": 42586,
+      "address": 536919760,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 42590,
+      "next_opcode": "sb a5, -1930(a4)",
+      "opcode": "auipc a4, 0x20002"
+    },
+    {
+      "PC": 43486,
+      "address": 536919772,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 43490,
+      "next_opcode": "lbu a0, 1278(a0)",
+      "opcode": "auipc a0, 0x20001"
+    },
+    {
+      "PC": 52646,
+      "address": 536919851,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 52650,
+      "next_opcode": "sb zero, 389(a5)",
+      "opcode": "auipc a5, 0x1ffff"
+    },
+    {
+      "PC": 52668,
+      "address": 536919851,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 52672,
+      "next_opcode": "lbu a5, 367(a5)",
+      "opcode": "auipc a5, 0x1ffff"
+    },
+    {
+      "PC": 52688,
+      "address": 536919852,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 52692,
+      "next_opcode": "sb a5, 348(a4)",
+      "opcode": "auipc a4, 0x1ffff"
+    },
+    {
+      "PC": 52722,
+      "address": 536919851,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 52726,
+      "next_opcode": "sb a0, 313(a5)",
+      "opcode": "auipc a5, 0x1ffff"
+    },
+    {
+      "PC": 52734,
+      "address": 536919851,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 52738,
+      "next_opcode": "sb a5, 301(a4)",
+      "opcode": "auipc a4, 0x1ffff"
+    },
+    {
+      "PC": 52798,
+      "address": 536919852,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 52802,
+      "next_opcode": "sb a5, 238(a4)",
+      "opcode": "auipc a4, 0x1ffff"
+    },
+    {
+      "PC": 53372,
+      "address": 536919876,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 53376,
+      "next_opcode": "lbu a5, -312(a5)",
+      "opcode": "auipc a5, 0x1ffff"
+    },
+    {
+      "PC": 53444,
+      "address": 536919864,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 53448,
+      "next_opcode": "sw a5, -396(a4)",
+      "opcode": "auipc a4, 0x1ffff"
+    },
+    {
+      "PC": 53498,
+      "address": 536919864,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 53502,
+      "next_opcode": "addi a0, a0, -450",
+      "opcode": "auipc a0, 0x1ffff"
+    },
+    {
+      "PC": 64320,
+      "address": 64286,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 64324,
+      "next_opcode": "addi a0, a0, -34",
+      "opcode": "auipc a0, 0x0"
+    },
+    {
+      "PC": 64336,
+      "address": 64350,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 64340,
+      "next_opcode": "addi a0, a0, 14",
+      "opcode": "auipc a0, 0x0"
+    },
+    {
+      "PC": 64384,
+      "address": 64350,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 64388,
+      "next_opcode": "addi a0, a0, -34",
+      "opcode": "auipc a0, 0x0"
+    },
+    {
+      "PC": 64404,
+      "address": 64286,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 64408,
+      "next_opcode": "addi a0, a0, -118",
+      "opcode": "auipc a0, 0x0"
+    },
+    {
+      "PC": 64902,
+      "address": 536920663,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 64906,
+      "next_opcode": "lbu a4, 1233(a4)",
+      "opcode": "auipc a4, 0x1fffc"
+    },
+    {
+      "PC": 65214,
+      "address": 64286,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 65218,
+      "next_opcode": "addi a0, a0, -928",
+      "opcode": "auipc a0, 0x0"
+    },
+    {
+      "PC": 65230,
+      "address": 64350,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 65234,
+      "next_opcode": "addi a0, a0, -880",
+      "opcode": "auipc a0, 0x0"
+    },
+    {
+      "PC": 65314,
+      "address": 64286,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 65318,
+      "next_opcode": "addi a0, a0, -1028",
+      "opcode": "auipc a0, 0x0"
+    },
+    {
+      "PC": 65326,
+      "address": 64350,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 65330,
+      "next_opcode": "addi a0, a0, -976",
+      "opcode": "auipc a0, 0x0"
+    }
+  ],
+  "target_executed": false,
+  "timed_gate": {
+    "cancellation_targets": [
+      64286,
+      64350
+    ],
+    "concurrent_state_stability_proved": false,
+    "config_pointer_and_byte_reloaded_after_counter_call": true,
+    "counter_entry": 33200,
+    "disable_state2_post_cancel": "GP+288=1;then clear GP+292",
+    "elapsed_condition": "uint32(fresh_counter - freshly reloaded stored_counter)>1499",
+    "entry": 65130,
+    "guard_entry": 33420,
+    "initial_config_byte_offset": 9,
+    "initial_config_mask": 12,
+    "initial_config_pointer_GP_offset": 84,
+    "input_preserved_full_width": true,
+    "late_status_entry": 43486,
+    "post_cancel_store_order": [
+      "GP+288=2",
+      "GP+291=0"
+    ],
+    "state_byte_GP_offset": 292,
+    "status_trigger_values": [
+      1,
+      7
+    ],
+    "stored_counter_word_GP_offset": 296,
+    "threshold": 1499,
+    "time_unit": null
+  },
+  "unknowns": [
+    "Physical MCU/ROM table and RAM permissions",
+    "Product names for numeric modes,bitmap classes and pending bytes",
+    "Counter/scheduler time unit and runtime delivery",
+    "Private caller ABI and asynchronous changes around opaque calls",
+    "Actual indirect targets,IRQ/BOOT startup and original OTA compatibility"
+  ],
+  "word_gate": {
+    "condition_entry": 66562,
+    "entry": 53372,
+    "full_width_input_compared_to_fresh_byte_at": 536919876,
+    "input_to_word": {
+      "1": 16778497,
+      "2": 16777729,
+      "4": 16778241
+    },
+    "late_flag_GP_offset": 354,
+    "nonzero_flag_tail": {
+      "A0": "original full-width input",
+      "A1": 0,
+      "callee": 65570
+    },
+    "physical_record_meaning": null,
+    "upper_condition_value": 8,
+    "word_address": 536919864
+  }
+}

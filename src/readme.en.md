@@ -2,14 +2,15 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/output-dependencies-2026-10-25/readme.en.md): all 34,548B of measured code/data match the official BIN after native address placement; 173 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/control-gates-2026-10-25/readme.en.md): all 35,440B of measured code/data match the official BIN after native address placement; 168 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:124 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:125 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
+| [Control gates and callbacks](native/receive/control_gates.c) | Twelve whole functions892B/308i | Bitmap dispatch,word modes,toggle and paired callbacks;five entries resolved,no new dependencies. Main33690B code+1750B data/2257RELA/168UND;all35440B original-address equal. [Evidence](../analysis/control-gates-2026-10-25/readme.en.md) |
 | [Output dependencies](native/receive/output_dependencies.c) | Ten whole functions374B/130i | Delayed flag/state dispatch,record submission and ROM/RAM wrappers;six entries resolved,no new dependencies. Main32798B code+1750B data/2142RELA/173UND;all34548B original-address equal. [Evidence](../analysis/output-dependencies-2026-10-25/readme.en.md) |
 | [Output builder and comparison](native/receive/output_builder.c) | Six whole functions956B/298i | Record0x04F3,eight comparison tuples,countdown and full-width control;four entries resolved,two dependencies exposed. Main32424B code+1750B data/2117RELA/179UND;all34174B original-address equal. [Evidence](../analysis/output-builder-2026-10-25/readme.en.md) |
 | [Action primitives](native/receive/action_primitives.c) | Nine whole functions684B/231i +24B phase table | Six old imports resolved,two exposed;main31468B code+1750B data/2069RELA/181UND;all33218B original-address equal. Timing/product names and physical/OTA unproved. [Evidence](../analysis/action-primitives-2026-10-24/readme.en.md) |

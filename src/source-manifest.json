@@ -928,6 +928,13 @@
       "replacements": [],
       "origin_sha256": "969527580050b01dc3acecef8f6606303d9ddc3e7842d9b4796707049d76de73",
       "sha256": "969527580050b01dc3acecef8f6606303d9ddc3e7842d9b4796707049d76de73"
+    },
+    {
+      "origin": "experiments/tsl9-control-gates/src/control_gates.v1.c",
+      "destination": "src/native/receive/control_gates.c",
+      "replacements": [],
+      "origin_sha256": "9eea3fd95c0bc7c0972a805cfa6473cba39a59c31bf33c50aece8413c96dfbe7",
+      "sha256": "9eea3fd95c0bc7c0972a805cfa6473cba39a59c31bf33c50aece8413c96dfbe7"
     }
   ],
   "native_units": [
@@ -2050,6 +2057,18 @@
       ],
       "scope": "Ten whole functions8E6A,9F7A,9FC8,D7D4,D810,F818,F822,F82C,F838,F84A:374B/130i,36 private regions,23 direct controls and one callback-address pair. Preserve ROM slot88 tuple,late flag reload/low-bit XOR,conditional delay10000,original state dispatch,32-byte record frame with signed byte OR and two calls on the same pointer,RAM byte leaves and ROM slot72 tuple. No target/HOST/ISA execution,hardware or network;physical chip/ROM/RAM/IRQ/OTA unproved.",
       "origin_unit_sha256": "969527580050b01dc3acecef8f6606303d9ddc3e7842d9b4796707049d76de73"
+    },
+    {
+      "name": "control-gates",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-control-gates/src/control_gates.v1.c",
+      "curated_unit": "src/native/receive/control_gates.c",
+      "evidence": "analysis/control-gates-2026-10-25/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-control-gates/build/native-v1/measurement.json"
+      ],
+      "scope": "Twelve whole functions81EE,A658,A9DE,CD6A,D07C,D0EE,FB1E,FB5E,FD6A,FDF6,FE6A,10022:892B/308i,123 genuine private regions,99 direct controls and8 callback-address pairs. Preserve full-width input gates,0x65E state bitmap,late reads and private calls,mode3 toggle,numeric1499 elapsed threshold and1500 scheduling tuples,shared callback cancellation,ROM slot72 tuple and exact byte/word widths. Product names,time units,private ABI and physical chip/ROM/RAM/IRQ/OTA unproved;no target/HOST/ISA execution,hardware or network.",
+      "origin_unit_sha256": "9eea3fd95c0bc7c0972a805cfa6473cba39a59c31bf33c50aece8413c96dfbe7"
     }
   ],
   "native_data_units": [
