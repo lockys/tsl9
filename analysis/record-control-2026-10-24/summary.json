@@ -1,0 +1,107 @@
+{
+  "schema": "TSL9-record-control-summary-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/record_control.c",
+  "range": {
+    "start": 96650,
+    "end": 96764,
+    "bytes": 114,
+    "instructions": 44,
+    "regions": 12
+  },
+  "noncontrol_bytes": 98,
+  "typed_direct_references": 6,
+  "component": {
+    "code_bytes": 2730,
+    "instructions": 983,
+    "data_bytes": 456,
+    "FUNC_regions": 256,
+    "entry_aliases": 10,
+    "RELA": 231,
+    "direct_UND": 17,
+    "sha256": "5f49adf6cc4308e2a1d99e287d678ee6eebf496bbcad4c20e8fa40655335a7c6",
+    "bound_nonzero_vector_words": 62
+  },
+  "source_comparisons": {
+    "C_H_files": 88,
+    "native_code_units": 61,
+    "independent_data_units": 1,
+    "function_comparisons": 122,
+    "function_objects": 244,
+    "data_comparisons": 2,
+    "data_objects": 4,
+    "total_comparisons": 124,
+    "total_objects": 248
+  },
+  "observations": [
+    {
+      "PC": 96654,
+      "fact": "UnsignedA1>35 returns before allocating32B frame. The entry guard doesnot establish limits after opaque calls."
+    },
+    {
+      "PC": 96664,
+      "fact": "A0=0 path passes7-byte record arguments:source word[GP+100]+7*A1,destinationSP+8,via tableword4004C."
+    },
+    {
+      "PC": 96690,
+      "fact": "FullwordSP+8 load;bits10..15 formmask. Bit0 permitsGP+367 update;bit1 permitsGP+368 update. Each update usesbit23 ofa freshfullwordSP+12 load."
+    },
+    {
+      "PC": 96728,
+      "fact": "SP+8 is passed directly to1787C with realJAL. A restored32B frame follows."
+    },
+    {
+      "PC": 96740,
+      "fact": "Nonzero-mode path storeslowA1 toGP+376,then passesGP+379,A1=2,A2=2 through tableword40058 before sharedrestore."
+    }
+  ],
+  "limits": [
+    "Copy7 argument doesnot prove actual ROM copy implementation. FullwordSP+12 includesbyteSP+15, outside seven-byte destination window; the native fullword load is retained.",
+    "No initialization or semantics were invented forGP367/368/376/379.",
+    "Original ABI,ROM pointer identities,physical RAM/MMIO/MCU/startup/IRQ/OTA andwhole behavior remain unproved."
+  ],
+  "inference": "Indexed7B record processing and task/event scheduling correspond to default SDK memcpy/start-task macros only.",
+  "next_family": {
+    "entry": 96380,
+    "start": 96380,
+    "end": 96650,
+    "bytes": 270,
+    "ranges": [
+      {
+        "start": 96380,
+        "end": 96504,
+        "bytes": 124,
+        "instructions": 43
+      },
+      {
+        "start": 96504,
+        "end": 96584,
+        "bytes": 80,
+        "instructions": 29
+      },
+      {
+        "start": 96584,
+        "end": 96650,
+        "bytes": 66,
+        "instructions": 22
+      }
+    ],
+    "outgoing_direct_provider": 95846,
+    "ABI_proved": false
+  },
+  "potential_feature": {
+    "idea": "Offline seven-byte record inspector showing raw field masks,selector andevent references.",
+    "status": "Research candidate; not implemented in runtime firmware.",
+    "limits": "Present numeric/raw fields until application semantics andmemory ownership are established."
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit_or_push": false,
+  "history_privacy_clean": false
+}

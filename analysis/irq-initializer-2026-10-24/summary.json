@@ -1,0 +1,546 @@
+{
+  "schema": "TSL9-complete-IRQ-initializer-integration-v1",
+  "date": "2026-10-24",
+  "goal_status": "active",
+  "source": "src/native/irq/irq_initializer.c",
+  "origin": "experiments/tsl9-irq-initializer/src/irq_initializer.v1.c",
+  "new_original_spans": [
+    {
+      "start": 39490,
+      "end": 39634,
+      "sha256": "3d86f7124c682f02bbcc3b85162bfc37ebebbcd2631bbc3f5b2dfacf5e4c36c4"
+    },
+    {
+      "start": 102692,
+      "end": 102722,
+      "sha256": "ca3d4aef350f5c783ee6eeae7d25ba85b74055551058135024d07edf1804e864"
+    },
+    {
+      "start": 102722,
+      "end": 102752,
+      "sha256": "e74e208ea699962ecf8c71269627881ab8edfd64787710b410c6c74a3607d6d5"
+    },
+    {
+      "start": 102752,
+      "end": 102782,
+      "sha256": "a5541a42d8ec2844fcd1d2df5492c90e2b140ce22ae79b02f50e330277c31b60"
+    },
+    {
+      "start": 102782,
+      "end": 102812,
+      "sha256": "bec2619b2d742c8bfa1b82087f6cea1ed8a133adb89b25258a487ef2e2d2648e"
+    }
+  ],
+  "new_code_bytes": 264,
+  "new_original_instructions": 94,
+  "new_private_regions": 19,
+  "new_control_relocations": 10,
+  "new_external_providers": 0,
+  "leaf_result": {
+    "FUNC": 19,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "RELA": 10,
+    "UND": [],
+    "all_original_code_VA_encoded_bytes_equal": true,
+    "asynchronous_IRQ_state_equivalence_proved": false,
+    "code_bytes": 264,
+    "data_bytes": 0,
+    "direct_control_relocations": 10,
+    "firmware_BIN_generated": false,
+    "firmware_ready": false,
+    "hardware_accessed": false,
+    "native_object_sha256": "4de10934513f80893bd905d0a9a9d5d3f16dfb46a97ae59c05b37d89d3638e0e",
+    "negative_cases_executed": 0,
+    "network": false,
+    "noncontrol_bytes_equal": 232,
+    "original16B_frame_and_save_restore_order_retained": true,
+    "original_CSR800_mask_clear_set_and_MMIO_order_retained": true,
+    "original_address_placement_proved": false,
+    "original_functions": 5,
+    "original_instructions": 94,
+    "passed": true,
+    "physical_MCU_ROM_RAM_IRQ_OTA_proved": false,
+    "private_caller_ABI_proved": false,
+    "six_original_calls_and_complete_RCC_helpers_retained": true,
+    "target_executed": false
+  },
+  "native_result": {
+    "ABS_providers": 0,
+    "FUNC": 1246,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "RELA": 961,
+    "UND": [
+      "tsl9_boot_resident_40000",
+      "tsl9_callback_flow_external_16dac",
+      "tsl9_callback_flow_external_171ba",
+      "tsl9_callback_flow_external_181c4",
+      "tsl9_callback_flow_external_8440",
+      "tsl9_callback_flow_external_92ba",
+      "tsl9_callback_flow_external_9af0",
+      "tsl9_callback_flow_external_9e84",
+      "tsl9_callback_flow_external_b1b0",
+      "tsl9_callback_flow_external_b5b4",
+      "tsl9_callback_flow_external_c35a",
+      "tsl9_callback_flow_external_cd44",
+      "tsl9_callback_flow_external_d1a8",
+      "tsl9_callback_flow_external_d314",
+      "tsl9_callback_flow_external_d3e8",
+      "tsl9_callback_flow_external_f6b0",
+      "tsl9_callback_flow_external_f6e2",
+      "tsl9_callback_flow_external_f714",
+      "tsl9_callback_flow_external_f746",
+      "tsl9_callback_flow_external_fa2a",
+      "tsl9_callback_flow_external_fa36",
+      "tsl9_feature_external_10288",
+      "tsl9_feature_external_10440",
+      "tsl9_feature_external_10870",
+      "tsl9_feature_external_108d8",
+      "tsl9_feature_external_10936",
+      "tsl9_feature_external_10944",
+      "tsl9_feature_external_109c4",
+      "tsl9_feature_external_10a00",
+      "tsl9_feature_external_10a16",
+      "tsl9_feature_external_10ac6",
+      "tsl9_feature_external_10b0a",
+      "tsl9_feature_external_10b60",
+      "tsl9_feature_external_185d8",
+      "tsl9_feature_external_a054",
+      "tsl9_feature_external_a6d8",
+      "tsl9_feature_external_abc4",
+      "tsl9_feature_external_add6",
+      "tsl9_feature_external_b036",
+      "tsl9_feature_external_b05c",
+      "tsl9_feature_external_b14a",
+      "tsl9_feature_external_b1b6",
+      "tsl9_feature_external_b2fe",
+      "tsl9_feature_external_b372",
+      "tsl9_feature_external_b390",
+      "tsl9_feature_external_b402",
+      "tsl9_feature_external_b730",
+      "tsl9_feature_external_bd88",
+      "tsl9_feature_external_c3d4",
+      "tsl9_feature_external_c472",
+      "tsl9_feature_external_c60e",
+      "tsl9_feature_external_c8a2",
+      "tsl9_feature_external_c94e",
+      "tsl9_feature_external_cd4e",
+      "tsl9_feature_external_cec0",
+      "tsl9_feature_external_cedc",
+      "tsl9_feature_external_cf96",
+      "tsl9_feature_external_d104",
+      "tsl9_feature_external_d14a",
+      "tsl9_feature_external_d1b2",
+      "tsl9_feature_external_d288",
+      "tsl9_feature_external_d332",
+      "tsl9_feature_external_d378",
+      "tsl9_feature_external_d3f6",
+      "tsl9_feature_external_d47c",
+      "tsl9_feature_external_d632",
+      "tsl9_feature_external_d64a",
+      "tsl9_feature_external_d69c",
+      "tsl9_feature_external_da74",
+      "tsl9_feature_external_dac8",
+      "tsl9_feature_external_dbcc",
+      "tsl9_feature_external_def2",
+      "tsl9_feature_external_f0d0",
+      "tsl9_feature_external_f14a",
+      "tsl9_feature_external_f1c2",
+      "tsl9_feature_external_f860",
+      "tsl9_feature_external_fa62",
+      "tsl9_feature_external_fa7c",
+      "tsl9_feature_external_fba2",
+      "tsl9_feature_external_ff56",
+      "tsl9_feature_external_ffa4",
+      "tsl9_main_provider_12d92",
+      "tsl9_main_provider_131c2",
+      "tsl9_main_provider_14c8a",
+      "tsl9_main_provider_154a6",
+      "tsl9_main_provider_17040",
+      "tsl9_main_provider_173a2",
+      "tsl9_main_provider_8e88",
+      "tsl9_main_provider_9958",
+      "tsl9_main_provider_9b4e",
+      "tsl9_main_provider_9f12"
+    ],
+    "all_new_code_carriers_and_reference_roles_preserved": true,
+    "all_parent14260B_code_and674B_data_preserved": true,
+    "asynchronous_IRQ_state_equivalence_proved": false,
+    "code_bytes": 14524,
+    "data_bytes": 674,
+    "executable": false,
+    "firmware_BIN_generated": false,
+    "firmware_ready": false,
+    "hardware_accessed": false,
+    "mode": "c",
+    "native_object_sha256": "95e470b37b9618169f65f9d858b91d48d978e3128b67e92238fbf298eca7cc6e",
+    "negative_cases_executed": 0,
+    "network": false,
+    "new_code_bytes": 264,
+    "new_data_bytes": 0,
+    "new_original_instructions": 94,
+    "new_true_aliases": 0,
+    "no_new_external_providers": true,
+    "no_stub_added": true,
+    "original16B_frame_CSR_and_MMIO_order_retained": true,
+    "original_address_placement_proved": false,
+    "original_instructions": 5049,
+    "passed": true,
+    "physical_MCU_ROM_RAM_IRQ_OTA_proved": false,
+    "private_ABI_proved": false,
+    "resolved_original_providers": [
+      "tsl9_main_provider_9a42"
+    ],
+    "target_executed": false,
+    "true_aliases": 71,
+    "whole9A42_initializer_and_four_RCC_helpers_are_genuine_code": true
+  },
+  "source_C_H_files": 101,
+  "native_code_units": 74,
+  "independent_data_units": 1,
+  "source_comparisons": {
+    "function_pairs": 148,
+    "function_objects": 296,
+    "data_pairs": 2,
+    "data_objects": 4,
+    "total_pairs": 150,
+    "total_objects": 300,
+    "prior146_results_and877_artifacts_unchanged": true,
+    "current_artifacts": 889,
+    "current_inputs": 204
+  },
+  "new_unit_merged_into_startup_component": true,
+  "resolved_original_providers": [
+    "tsl9_main_provider_9a42"
+  ],
+  "prior_source_undefined_providers": 92,
+  "current_source_undefined_providers": 91,
+  "no_new_external_providers": true,
+  "C_CPP_component_sha256": "95e470b37b9618169f65f9d858b91d48d978e3128b67e92238fbf298eca7cc6e",
+  "curated_unit_sha256": "43c3150785f2ae620237ab96069ad15367d225e1491a67d87faa63ad661eacc3",
+  "component_measurement": "experiments/tsl9-irq-initializer/build/component-v1/measurement.json",
+  "component_measurement_sha256": "bea466f414c29b0671ee86fd7fecc39549a325b8762b489a60ebd5305a6ede95",
+  "source_proof": "experiments/tsl9-irq-initializer/build/source-proof-v1.json",
+  "source_proof_sha256": "8b9db0367556bf5272cd7f7bf8c771a53eb684f736dc6ed541e55110089983d8",
+  "original_layout": {
+    "measurement": "experiments/tsl9-original-layout/build/irq-initializer-v1/measurement.json",
+    "measurement_sha256": "152dae2a16a6942af8446a9630a9720ec79316f37811fd7d6d2caed44629d562",
+    "result": {
+      "ABS_FUNC_providers": 0,
+      "ELF_sha256": "b4720332c2e93c83057bd54810b6cd27c342e7ab0656d4a454ae91ae51063858",
+      "ELF_type": 2,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "PT_LOAD_count": 0,
+      "adjacent_only_spans": 68,
+      "applied_relocations_retained": 961,
+      "code_bytes": 14524,
+      "code_regions": 1246,
+      "data_bytes": 674,
+      "entry": 0,
+      "firmware_BIN_generated": false,
+      "firmware_ready": false,
+      "full_image_rebuilt": false,
+      "hardware_accessed": false,
+      "native_linker_addresses_and_bytes_equal_original": true,
+      "network": false,
+      "original_coordinate_bytes_equal": 15198,
+      "passed": true,
+      "physical_MCU_ROM_RAM_IRQ_OTA_proved": false,
+      "private_ABI_proved": false,
+      "readonly_objects": 7,
+      "reference_only_ABS_constants": 91,
+      "source_byte_carriers_preserved_before_actual_link": true,
+      "source_unreconstructed_providers": 91,
+      "target_executed": false,
+      "whole_firmware_original_layout_proved": false
+    },
+    "active_spec_v4_captured": true
+  },
+  "flow": {
+    "evidence": "experiments/tsl9-original-layout/build/irq-initializer-flow-v1/c-flow.json",
+    "instructions": 5049,
+    "direct_transfers": 836,
+    "applied_control_relocations": 819,
+    "unchanged_intra_owner_immediate_transfers": 17,
+    "direct_target_roles": {
+      "measured_instruction": 744,
+      "unimplemented_reference_only": 92
+    },
+    "ordinary_next_positions": 4645,
+    "ordinary_next_position_gaps": 0,
+    "potential_call_return_positions": 292,
+    "register_indirect_transfers": 226,
+    "MRET_returns": 10,
+    "breakpoint": {
+      "PC": 32820,
+      "next_sequential_PC": 32824,
+      "trap_or_debug_resume_proved": false
+    },
+    "whole_CFG_or_runtime_targets_proved": false
+  },
+  "initializer_facts": {
+    "start": 39490,
+    "end_exclusive": 39634,
+    "bytes": 144,
+    "instructions": 46,
+    "original_frame": {
+      "bytes": 16,
+      "saves": [
+        {
+          "register": "s2",
+          "offset": 0
+        },
+        {
+          "register": "ra",
+          "offset": 12
+        },
+        {
+          "register": "s0",
+          "offset": 8
+        },
+        {
+          "register": "s1",
+          "offset": 4
+        }
+      ],
+      "restores": [
+        {
+          "register": "ra",
+          "offset": 12
+        },
+        {
+          "register": "s0",
+          "offset": 8
+        },
+        {
+          "register": "s1",
+          "offset": 4
+        },
+        {
+          "register": "s2",
+          "offset": 0
+        }
+      ]
+    },
+    "CSR_pair": {
+      "CSR": 2048,
+      "source_register": "s2",
+      "mask": 136,
+      "clear_PC": 39504,
+      "set_PC": 39618,
+      "prior_state_snapshot_or_restore": false,
+      "physical_CSR_meaning_proved": false
+    },
+    "helper_call_order": [
+      {
+        "PC": 39518,
+        "target": 102722,
+        "mask": 33685510,
+        "enabled": 1
+      },
+      {
+        "PC": 39530,
+        "target": 102692,
+        "mask": 4125,
+        "enabled": 1
+      },
+      {
+        "PC": 39540,
+        "target": 102782,
+        "mask": 33685510,
+        "enabled": 1
+      },
+      {
+        "PC": 39550,
+        "target": 102782,
+        "mask": 33685510,
+        "enabled": 0
+      },
+      {
+        "PC": 39560,
+        "target": 102752,
+        "mask": 4125,
+        "enabled": 1
+      },
+      {
+        "PC": 39570,
+        "target": 102752,
+        "mask": 4125,
+        "enabled": 0
+      }
+    ],
+    "MMIO_write_order": [
+      {
+        "PC": 39578,
+        "address": 3758154797,
+        "width": 8,
+        "value": 0
+      },
+      {
+        "PC": 39584,
+        "address": 3758153988,
+        "width": 32,
+        "value": 8192
+      },
+      {
+        "PC": 39592,
+        "address": 3758154788,
+        "width": 8,
+        "value": 32
+      },
+      {
+        "PC": 39598,
+        "address": 3758153988,
+        "width": 32,
+        "value": 16
+      },
+      {
+        "PC": 39606,
+        "address": 3758154791,
+        "width": 8,
+        "value": 48
+      },
+      {
+        "PC": 39614,
+        "address": 3758153988,
+        "width": 32,
+        "value": 128
+      }
+    ]
+  },
+  "helper_facts": {
+    "count": 4,
+    "bytes": 120,
+    "instructions": 48,
+    "complete_enable_and_disable_paths": true,
+    "word_offsets": [
+      24,
+      28,
+      12,
+      16
+    ],
+    "word_base": 1073876992,
+    "physical_RCC_ownership_proved": false
+  },
+  "reset_vector_setup": {
+    "start": 100112,
+    "bytes": 16,
+    "raw_hex": "9702ffff9382829293e2320073905230",
+    "base": 32824,
+    "ORI_value": 3,
+    "CSR": 773,
+    "write_value": 32827,
+    "static_immediate_arithmetic_only": true,
+    "physical_controller_mode_proved": false
+  },
+  "vector_index_correlation": {
+    "priority_byte_base": 3758154752,
+    "enable_word": 3758153988,
+    "priority_indices": [
+      45,
+      36,
+      39
+    ],
+    "one_bit_positions": [
+      13,
+      4,
+      7
+    ],
+    "candidate_bank_base": 32,
+    "arithmetic_correspondence_only": true,
+    "physical_controller_mapping_proved": false,
+    "vector_base": 32824
+  },
+  "bound_vector_references": [
+    {
+      "index": 45,
+      "word_address": 33004,
+      "symbol": "tsl9_vector_entry_979e",
+      "target": 38814,
+      "info": 18,
+      "section_flags": 6,
+      "reference_addend": 0
+    },
+    {
+      "index": 36,
+      "word_address": 32968,
+      "symbol": "tsl9_vector_entry_12c24",
+      "target": 76836,
+      "info": 18,
+      "section_flags": 6,
+      "reference_addend": 0
+    },
+    {
+      "index": 39,
+      "word_address": 32980,
+      "symbol": "tsl9_vector_entry_16fb6",
+      "target": 94134,
+      "info": 18,
+      "section_flags": 6,
+      "reference_addend": 0
+    }
+  ],
+  "retained_earlier_IRQ_unit": {
+    "unit": "irq",
+    "source": "src/native/irq/interrupt_registers.c",
+    "functions": [
+      {
+        "name": "tsl9_rebuild_rcc_registers_19124",
+        "bytes": 30
+      },
+      {
+        "name": "tsl9_rebuild_rcc_registers_19142",
+        "bytes": 30
+      },
+      {
+        "name": "tsl9_rebuild_rcc_registers_19160",
+        "bytes": 30
+      },
+      {
+        "name": "tsl9_rebuild_rcc_registers_1917e",
+        "bytes": 30
+      },
+      {
+        "name": "tsl9_rebuild_interrupt_registers_9a42",
+        "bytes": 180
+      }
+    ]
+  },
+  "earlier180B_initializer_bound_into_active_component": false,
+  "limitations": [
+    "All15198 selected code/data bytes link at original coordinates;the complete76800B image has not been rebuilt.",
+    "CSR0x800 mask clear/set order is retained;its physical meaning and asynchronous IRQ-state equivalence are unproved.",
+    "Priority-style byte offsets45/36/39,one-bit positions13/4/7 and genuine vector indices45/36/39 correspond arithmetically;physical controller indexing/peripheral roles remain unproved.",
+    "91 source implementations remain absent;91 hidden local NOTYPE ABS constants in the non-loadable diagnostic preserve reference addresses only.",
+    "226 register-indirect transfers,10 MRET destinations and8034 EBREAK resume behavior remain unproved.",
+    "Physical MCU,resident,private ABI,RAM ownership and OTA compatibility remain unproved."
+  ],
+  "feature_candidates": [
+    {
+      "name": "Offline interrupt-startup map",
+      "status": "implemented_as_static_report",
+      "evidence": "Ordered frame/CSR/helper/MMIO facts and actual compiled vector references are retained in this report.",
+      "limit": "No device feature,live IRQ observation or physical-controller validation."
+    },
+    {
+      "name": "Read-only startup/interrupt diagnostics",
+      "status": "candidate_only_not_implemented_in_firmware",
+      "limit": "Requires proven hardware/register semantics,private ABI and interrupt context before adding instrumentation."
+    }
+  ],
+  "next_action": "Inspect the complete181C4 shared provider and its real dependent scope,next rank the remaining91 providers including installed-resident40000 obligations;continue proving private indirect/IRQ context without target execution.",
+  "historical_privacy_clean": false,
+  "publication": "held-historical-personal-information",
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "physical_MCU_ROM_RAM_IRQ_OTA_proved": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "commit": false,
+  "push": false
+}

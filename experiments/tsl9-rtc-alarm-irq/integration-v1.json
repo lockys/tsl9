@@ -1,0 +1,64 @@
+{
+  "schema": "TSL9-RTC-alarm-native-integration-contract-v1",
+  "parent_checker": "experiments/tsl9-ecall-restore/integrate-v1.py",
+  "parent_checker_sha256": "ed7034e8513ec48f59e48fda92633b6d49a21bc2869fe35f22910a9c9172fcdf",
+  "parent_component": "experiments/tsl9-ecall-restore/build/component-v1",
+  "parent_object": "UNRESOLVED-STARTUP-ECALL.o",
+  "parent_object_sha256": "f7cba095af1566d374488ffc8b65af333807e46213cecb9fdbd82f8ad3e8941b",
+  "parent_receipt_sha256": "390cac85660ab31c4e052f5e7e82712ebafeb7da2955bb3ab662266dea5bf599",
+  "parent_manifest_deriver": "experiments/tsl9-rtc-alarm-irq/parent-manifest-v1.py",
+  "parent_manifest_deriver_sha256": "8b042f8178657bea289493ea732a0f186ad49b0bc509108ac9df052baa92b1b7",
+  "previous_manifest_sha256": "9660c145ff144816d44e3772ad854349cae85acd91263c1a71dc4ec8f90a730e",
+  "current_manifest_sha256": "60f37af49e5bd75938d85201f7f693797630cb6b354952400642730aa0f81ea6",
+  "previous_curation": "build/curated-source/ecall-restore-20261024-v1/verification.json",
+  "previous_curation_sha256": "54b5f5248c7e9801a9d184b46b62931e17c76375df83c640ae17a2c0dc7d4c0d",
+  "curation": "build/curated-source/rtc-alarm-irq-20261024-v1/verification.json",
+  "curation_sha256": "7d4e0277a213571d6d95ffed96cf0a355ddd225f82acc017be98fa568291246d",
+  "standalone_receipt": "experiments/tsl9-rtc-alarm-irq/build/trial-v1/measurement.json",
+  "standalone_receipt_sha256": "11f37215221ff4a741fca709ee088ea282889c9e1a1b899240d3bd8bd58b0c5d",
+  "standalone_native_object_sha256": "58f9ea017629894f5206f6f5fd57c14bf5a68cce53c5ddc00fda88807b19fd07",
+  "curated_native_object_sha256": "63dd3741b64f0f78b50f27b6122e9043dab5b9fd8b458622ae1099623687574a",
+  "new_file_entry": {
+    "origin": "experiments/tsl9-rtc-alarm-irq/src/rtc_alarm.v1.c",
+    "destination": "src/native/irq/rtc_alarm.c",
+    "replacements": [],
+    "origin_sha256": "fbd88287341b86dae920d809d11f7fd375dac0fe37214c6649a89ae6a7f9ee3a",
+    "sha256": "fbd88287341b86dae920d809d11f7fd375dac0fe37214c6649a89ae6a7f9ee3a"
+  },
+  "new_unit_entry": {
+    "name": "rtc-alarm-irq",
+    "profile": "ring-bank",
+    "origin_unit": "experiments/tsl9-rtc-alarm-irq/src/rtc_alarm.v1.c",
+    "curated_unit": "src/native/irq/rtc_alarm.c",
+    "evidence": "experiments/tsl9-rtc-alarm-irq/README.md",
+    "formal_receipts": [
+      "experiments/tsl9-rtc-alarm-irq/build/trial-v1/measurement.json"
+    ],
+    "scope": "Five original regions:19BD4 IRQ28B,18E86 write10B,19272 poll16B,19282 clear20B,19296 tail alias4B;total78B23i. C11/C++17 preserve62 noncontrol bytes and four typed direct references;static original-VA encoding matches all78B. Original unbounded halfword polling,GP+392 store,word write,halfword read/complement-mask/write andMRET retained. Physical MCU,IRQ/ROM/frame contracts,loop termination,final layout andOTA remain unproved;no target execution.",
+    "origin_unit_sha256": "fbd88287341b86dae920d809d11f7fd375dac0fe37214c6649a89ae6a7f9ee3a"
+  },
+  "data_builder": "experiments/tsl9-original-vectors/build-v1.py",
+  "data_builder_sha256": "1093da71234405fb3c575a8e598927f63a0028758e3dec776ca3374cbf937c8b",
+  "data_receipt": "experiments/tsl9-original-vectors/build/data-v1/measurement.json",
+  "data_receipt_sha256": "0bf1faf626cb26da03cc29a32dfda8af96aa559adde9b998dc7ad35ecd61af64",
+  "alias": "tsl9_vector_entry_19bd4",
+  "provider_entry": "tsl9_rtc_alarm_entry_19bd4",
+  "vector_indices": [
+    57
+  ],
+  "vector_word_PCs": [
+    33052
+  ],
+  "vector_original_target": 105428,
+  "vector_spec": "experiments/tsl9-original-vectors/spec-v1.json",
+  "parent_code_bytes": 1168,
+  "new_code_bytes": 1246,
+  "data_bytes": 456,
+  "remaining_undefined": [
+    "tsl9_boot_main_9008",
+    "tsl9_boot_resident_40000",
+    "tsl9_vector_entry_979e"
+  ],
+  "final_original_placement_proved": false,
+  "IRQ_context_or_peripheral_hardware_proved": false
+}

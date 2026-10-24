@@ -1,0 +1,592 @@
+{
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "reader": "experiments/tsl9-feature-dispatch-tree/elf_reader-v3.py",
+  "reader_sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a",
+  "curation_checker": "scripts/verify-curated-source.py",
+  "curation_checker_sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832",
+  "tools": {
+    "clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "llvm-objcopy.exe": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+  },
+  "stdint_sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+  "profile": "ring-bank",
+  "flags": {
+    "c": [
+      "--target=riscv32-unknown-elf",
+      "-march=rv32imac_zicsr",
+      "-mabi=ilp32",
+      "-Oz",
+      "-mllvm",
+      "-enable-machine-outliner=never",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-stack-protector",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-mno-relax",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-x",
+      "c",
+      "-std=c11",
+      "-ffixed-x1",
+      "-ffixed-x2",
+      "-ffixed-x3",
+      "-ffixed-x4",
+      "-ffixed-x5",
+      "-ffixed-x7",
+      "-ffixed-x8",
+      "-ffixed-x9",
+      "-ffixed-x18",
+      "-ffixed-x19",
+      "-ffixed-x20",
+      "-ffixed-x21",
+      "-ffixed-x22",
+      "-ffixed-x23",
+      "-ffixed-x24",
+      "-ffixed-x25",
+      "-ffixed-x26",
+      "-ffixed-x27",
+      "-ffixed-x29",
+      "-ffixed-x30",
+      "-ffixed-x31"
+    ],
+    "cpp": [
+      "--target=riscv32-unknown-elf",
+      "-march=rv32imac_zicsr",
+      "-mabi=ilp32",
+      "-Oz",
+      "-mllvm",
+      "-enable-machine-outliner=never",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-stack-protector",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-mno-relax",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-x",
+      "c++",
+      "-std=c++17",
+      "-fno-exceptions",
+      "-ffixed-x1",
+      "-ffixed-x2",
+      "-ffixed-x3",
+      "-ffixed-x4",
+      "-ffixed-x5",
+      "-ffixed-x7",
+      "-ffixed-x8",
+      "-ffixed-x9",
+      "-ffixed-x18",
+      "-ffixed-x19",
+      "-ffixed-x20",
+      "-ffixed-x21",
+      "-ffixed-x22",
+      "-ffixed-x23",
+      "-ffixed-x24",
+      "-ffixed-x25",
+      "-ffixed-x26",
+      "-ffixed-x27",
+      "-ffixed-x29",
+      "-ffixed-x30",
+      "-ffixed-x31"
+    ]
+  },
+  "schema": "TSL9-event-consumer-native-v1",
+  "source": "experiments/tsl9-event-consumer/src/event_consumer.v1.c",
+  "source_sha256": "31b76583edf237343e5653c14b19c25b49a355a75a91a804f0da5e5f1f838967",
+  "curated_source": "src/native/receive/event_consumer.c",
+  "reference_candidate": "analysis/record-queue-2026-10-24/next-17666-frontier.json",
+  "reference_candidate_sha256": "593121e0d7ab5e1bb0a065078a9583664ea100c1926f6886b83ad5cc89bdae3b",
+  "source_deriver": "experiments/tsl9-event-consumer/derive-v1.py",
+  "source_deriver_sha256": "ba609b078438532b167b7b607a5cf4fbc9f1adc640fb0eec09b9e338ea49cf26",
+  "ranges": [
+    {
+      "start": 95846,
+      "end": 95904
+    },
+    {
+      "start": 95904,
+      "end": 95992
+    },
+    {
+      "start": 95992,
+      "end": 96380
+    }
+  ],
+  "original_sha256": "23a68d44d65b6647797727a0cda8e541fdcc2e9aadb49a6d9ebe34e3a2e57553",
+  "bytes": 534,
+  "instructions": 187,
+  "regions": [
+    {
+      "name": "tsl9_event_consumer_entry_17666",
+      "start": 95846,
+      "end": 95870,
+      "bytes": 24,
+      "original_sha256": "06cce468a3c1fc2cb08f360a21faf766d46d4fb806597d5cffc816333638bc50"
+    },
+    {
+      "name": "tsl9_event_consumer_block_1767e",
+      "start": 95870,
+      "end": 95872,
+      "bytes": 2,
+      "original_sha256": "373e92ee463fb5e09bf103c821519534f746f89344dde3da5e1ff5e64cc2c93f"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17680",
+      "start": 95872,
+      "end": 95878,
+      "bytes": 6,
+      "original_sha256": "c81f3c9bcae0c9eef5247259d51d605588820c8b712ce0131dc7b2743ae5e9a7"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17686",
+      "start": 95878,
+      "end": 95890,
+      "bytes": 12,
+      "original_sha256": "c1794718730cac62ce80bd90b67c73cc55c80fb3e1f4f68c7f92aae54a6a4bca"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17692",
+      "start": 95890,
+      "end": 95896,
+      "bytes": 6,
+      "original_sha256": "86804f9e1aa8971aa10da8f5bea26c1029e7d1c7055b68605193f639fc4609b4"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17698",
+      "start": 95896,
+      "end": 95904,
+      "bytes": 8,
+      "original_sha256": "e3d5ad34818c24218c21f8627f9c42eb49b623b85d34b44a94c5ff75799f1284"
+    },
+    {
+      "name": "tsl9_event_consumer_entry_176a0",
+      "start": 95904,
+      "end": 95944,
+      "bytes": 40,
+      "original_sha256": "2a8880ee79a238bbb8c35d1d0aac51c27a74b935766a5d375593a654b901f21c"
+    },
+    {
+      "name": "tsl9_event_consumer_block_176c8",
+      "start": 95944,
+      "end": 95946,
+      "bytes": 2,
+      "original_sha256": "c4ef9312581f2a17ea97768653df6ae9ff7808c990739bd27d531265e769dbed"
+    },
+    {
+      "name": "tsl9_event_consumer_block_176ca",
+      "start": 95946,
+      "end": 95966,
+      "bytes": 20,
+      "original_sha256": "62b71df4d9ac69c8f60e14f4c97ccfaec48b6db9797ab1ef7bab04be0e2f1ee9"
+    },
+    {
+      "name": "tsl9_event_consumer_block_176de",
+      "start": 95966,
+      "end": 95986,
+      "bytes": 20,
+      "original_sha256": "aa22e47f596ae74bdec6bc03ba97fd43daf5127d6bd23bb6bdcecb2d54959ea7"
+    },
+    {
+      "name": "tsl9_event_consumer_block_176f2",
+      "start": 95986,
+      "end": 95992,
+      "bytes": 6,
+      "original_sha256": "044544a3109dd5bb812ee926e9c71f5aeb91b74af521108c256526b09d5b8973"
+    },
+    {
+      "name": "tsl9_event_consumer_entry_176f8",
+      "start": 95992,
+      "end": 96012,
+      "bytes": 20,
+      "original_sha256": "af131dda887bf2470f92769191bdf302f8dfc0b57dea580c6a5abd58df93337a"
+    },
+    {
+      "name": "tsl9_event_consumer_block_1770c",
+      "start": 96012,
+      "end": 96030,
+      "bytes": 18,
+      "original_sha256": "06b3e19105019d170b3825b4650fb8426ecc858ed33a19ff7ddc18f9aea9dcc8"
+    },
+    {
+      "name": "tsl9_event_consumer_block_1771e",
+      "start": 96030,
+      "end": 96068,
+      "bytes": 38,
+      "original_sha256": "e774e1bd72ed039554efc6047fd8d7035521ee13edc626bcbe26cce06a5318b9"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17744",
+      "start": 96068,
+      "end": 96070,
+      "bytes": 2,
+      "original_sha256": "ae02c13af37b1ae234d08b3ed3953438af4911b205a4903ad4807836623f1d6e"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17746",
+      "start": 96070,
+      "end": 96100,
+      "bytes": 30,
+      "original_sha256": "8260af6bbd5e23820d066ace0cd8dbdebd161ef706fedbbdaa2a50d8cc93c691"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17764",
+      "start": 96100,
+      "end": 96104,
+      "bytes": 4,
+      "original_sha256": "4eaebca711021b126eb13645366b58ffc5e4e73105a8554fac14160a85749d33"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17768",
+      "start": 96104,
+      "end": 96118,
+      "bytes": 14,
+      "original_sha256": "d67dd7e9d86ec384957e43a5e03a26176b11596a1a585f9c96afdabff009bc26"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17776",
+      "start": 96118,
+      "end": 96128,
+      "bytes": 10,
+      "original_sha256": "f29712d747a3be08fc5a0d79412c4a5fc2f6830aee9b16a14193b36eb64b2ceb"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17780",
+      "start": 96128,
+      "end": 96162,
+      "bytes": 34,
+      "original_sha256": "c672383624159067139ac3feb748c57f0c22cc9a136a782367b518e9e21d6935"
+    },
+    {
+      "name": "tsl9_event_consumer_block_177a2",
+      "start": 96162,
+      "end": 96168,
+      "bytes": 6,
+      "original_sha256": "902b70ac936e5f25c3f71be3574708766289230b66902116e903e5f39f3ee11d"
+    },
+    {
+      "name": "tsl9_event_consumer_block_177a8",
+      "start": 96168,
+      "end": 96178,
+      "bytes": 10,
+      "original_sha256": "b52d765036447bedf1702dab2e456d0b1bada83252da6675a5ef1dca766cfd72"
+    },
+    {
+      "name": "tsl9_event_consumer_block_177b2",
+      "start": 96178,
+      "end": 96196,
+      "bytes": 18,
+      "original_sha256": "273e5d33ca2ecc404d98fcfc350bc0c0b05e72d8cbb50766621e35aee191dd8c"
+    },
+    {
+      "name": "tsl9_event_consumer_block_177c4",
+      "start": 96196,
+      "end": 96204,
+      "bytes": 8,
+      "original_sha256": "6b041c8268f123395206d7d097a7b98042b33d564c871701a273b0009f2999ed"
+    },
+    {
+      "name": "tsl9_event_consumer_block_177cc",
+      "start": 96204,
+      "end": 96220,
+      "bytes": 16,
+      "original_sha256": "524b1e21c3d9ad04de74b4aee0aa6a59411f1c3844a6784f21004544df4aa199"
+    },
+    {
+      "name": "tsl9_event_consumer_block_177dc",
+      "start": 96220,
+      "end": 96226,
+      "bytes": 6,
+      "original_sha256": "8254999f322a900eeac374a498975b48b0470bc15a9a3718e6614e0af3db7495"
+    },
+    {
+      "name": "tsl9_event_consumer_block_177e2",
+      "start": 96226,
+      "end": 96232,
+      "bytes": 6,
+      "original_sha256": "98fc4de4687447982a6dee8921d969ca6d71f1974260f49eadb8b961b73a7c2a"
+    },
+    {
+      "name": "tsl9_event_consumer_block_177e8",
+      "start": 96232,
+      "end": 96238,
+      "bytes": 6,
+      "original_sha256": "09211932538088c5a0fb5c90d575672c426e963e6413b06aa7add680410a49ed"
+    },
+    {
+      "name": "tsl9_event_consumer_block_177ee",
+      "start": 96238,
+      "end": 96248,
+      "bytes": 10,
+      "original_sha256": "ced81c5a2d68cb50f85d9047da4d672003cda792f9457dbab7be4e361e8c4b7f"
+    },
+    {
+      "name": "tsl9_event_consumer_block_177f8",
+      "start": 96248,
+      "end": 96262,
+      "bytes": 14,
+      "original_sha256": "48192665c585a279fb6d3e26dd14c41ee0160be8804ba467c6b4b36f4e88feab"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17806",
+      "start": 96262,
+      "end": 96278,
+      "bytes": 16,
+      "original_sha256": "5fd1dfa427d60508553fcdceb32da7dd4267d0d00798fbd301fc5f749ff342eb"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17816",
+      "start": 96278,
+      "end": 96294,
+      "bytes": 16,
+      "original_sha256": "925148afec1960dc612152a6099c35bfe4466d1c9089e9507835079721879afe"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17826",
+      "start": 96294,
+      "end": 96304,
+      "bytes": 10,
+      "original_sha256": "a79390eb3bb2091f6661805379c35cbbe66a2a171f5a9c4f1bce519d11377d18"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17830",
+      "start": 96304,
+      "end": 96306,
+      "bytes": 2,
+      "original_sha256": "cf23c77712c2162315dbb19fc67b16a7d6f13dd9775ffd977ca45d4a91b5d9ee"
+    },
+    {
+      "name": "tsl9_event_consumer_block_17832",
+      "start": 96306,
+      "end": 96380,
+      "bytes": 74,
+      "original_sha256": "651ddb7d363256c52fef5562dbcbf2785928ca0f6f80c9dada661e6f210c7c90"
+    }
+  ],
+  "controls": [
+    {
+      "owner": "tsl9_event_consumer_block_1767e",
+      "offset": 0,
+      "PC": 95870,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_17698",
+      "target_PC": 95896
+    },
+    {
+      "owner": "tsl9_event_consumer_block_17680",
+      "offset": 4,
+      "PC": 95876,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_17698",
+      "target_PC": 95896
+    },
+    {
+      "owner": "tsl9_event_consumer_block_17686",
+      "offset": 8,
+      "PC": 95886,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_main_provider_90b0",
+      "target_PC": 37040
+    },
+    {
+      "owner": "tsl9_event_consumer_entry_176a0",
+      "offset": 36,
+      "PC": 95940,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_event_consumer_provider_1753a",
+      "target_PC": 95546
+    },
+    {
+      "owner": "tsl9_event_consumer_block_176c8",
+      "offset": 0,
+      "PC": 95944,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_176f2",
+      "target_PC": 95986
+    },
+    {
+      "owner": "tsl9_event_consumer_block_176ca",
+      "offset": 16,
+      "PC": 95962,
+      "size": 4,
+      "type": 16,
+      "target": "tsl9_event_consumer_block_176f2",
+      "target_PC": 95986
+    },
+    {
+      "owner": "tsl9_event_consumer_block_176de",
+      "offset": 16,
+      "PC": 95982,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_callback_external_9124",
+      "target_PC": 37156
+    },
+    {
+      "owner": "tsl9_event_consumer_entry_176f8",
+      "offset": 18,
+      "PC": 96010,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_17776",
+      "target_PC": 96118
+    },
+    {
+      "owner": "tsl9_event_consumer_block_1770c",
+      "offset": 16,
+      "PC": 96028,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_17764",
+      "target_PC": 96100
+    },
+    {
+      "owner": "tsl9_event_consumer_block_1771e",
+      "offset": 34,
+      "PC": 96064,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_event_consumer_provider_1753a",
+      "target_PC": 95546
+    },
+    {
+      "owner": "tsl9_event_consumer_block_17744",
+      "offset": 0,
+      "PC": 96068,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_17764",
+      "target_PC": 96100
+    },
+    {
+      "owner": "tsl9_event_consumer_block_17776",
+      "offset": 8,
+      "PC": 96126,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_17768",
+      "target_PC": 96104
+    },
+    {
+      "owner": "tsl9_event_consumer_block_177a2",
+      "offset": 4,
+      "PC": 96166,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_177c4",
+      "target_PC": 96196
+    },
+    {
+      "owner": "tsl9_event_consumer_block_177a8",
+      "offset": 8,
+      "PC": 96176,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_177c4",
+      "target_PC": 96196
+    },
+    {
+      "owner": "tsl9_event_consumer_block_177c4",
+      "offset": 6,
+      "PC": 96202,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_177e2",
+      "target_PC": 96226
+    },
+    {
+      "owner": "tsl9_event_consumer_block_177cc",
+      "offset": 12,
+      "PC": 96216,
+      "size": 4,
+      "type": 16,
+      "target": "tsl9_event_consumer_block_177ee",
+      "target_PC": 96238
+    },
+    {
+      "owner": "tsl9_event_consumer_block_177dc",
+      "offset": 2,
+      "PC": 96222,
+      "size": 4,
+      "type": 16,
+      "target": "tsl9_event_consumer_block_17832",
+      "target_PC": 96306
+    },
+    {
+      "owner": "tsl9_event_consumer_block_177e2",
+      "offset": 2,
+      "PC": 96228,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_event_consumer_provider_c776",
+      "target_PC": 51062
+    },
+    {
+      "owner": "tsl9_event_consumer_block_177e8",
+      "offset": 4,
+      "PC": 96236,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_event_consumer_block_17768",
+      "target_PC": 96104
+    },
+    {
+      "owner": "tsl9_event_consumer_block_177ee",
+      "offset": 8,
+      "PC": 96246,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_177e2",
+      "target_PC": 96226
+    },
+    {
+      "owner": "tsl9_event_consumer_block_177f8",
+      "offset": 12,
+      "PC": 96260,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_event_consumer_block_17816",
+      "target_PC": 96278
+    },
+    {
+      "owner": "tsl9_event_consumer_block_17830",
+      "offset": 0,
+      "PC": 96304,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_event_consumer_block_177e2",
+      "target_PC": 96226
+    },
+    {
+      "owner": "tsl9_event_consumer_block_17832",
+      "offset": 72,
+      "PC": 96378,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_event_consumer_block_17826",
+      "target_PC": 96294
+    }
+  ],
+  "undefined": [
+    "tsl9_callback_external_9124",
+    "tsl9_event_consumer_provider_1753a",
+    "tsl9_event_consumer_provider_c776",
+    "tsl9_main_provider_90b0"
+  ]
+}

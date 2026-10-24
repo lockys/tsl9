@@ -1,0 +1,121 @@
+{
+  "inputs": {
+    "${LLVM_BIN}\\llvm-objcopy.exe": {
+      "bytes": 5830248,
+      "sha256": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\timer3-irq-20261024-v1\\init-write-sequence\\c\\curated\\unit.o": {
+      "bytes": 912,
+      "sha256": "d629fc360b1c841ff234de41f3b284c1e9ac0b8963a50666c07c3c9c51ca2aa9"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\timer3-irq-20261024-v1\\init-write-sequence\\cpp\\curated\\unit.o": {
+      "bytes": 912,
+      "sha256": "d629fc360b1c841ff234de41f3b284c1e9ac0b8963a50666c07c3c9c51ca2aa9"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\timer3-irq-20261024-v1\\verification.json": {
+      "bytes": 1779267,
+      "sha256": "6d242b6039eee866b5ad5b7f70d7a4fd9dfa5a67ae4a0976cf081a6cbe2b053f"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-main-family\\build-v1.py": {
+      "bytes": 9084,
+      "sha256": "c74d66089779c4d8f963680447c9ddb8c0c3a0bacb4c909c5f2a176738c0a481"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-main-family\\providers-v1.json": {
+      "bytes": 1009,
+      "sha256": "3888b5258a132610c97760cc8b235049282d11cc51cad4ed0e0d47f05d19c448"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-main-family\\select-providers-v1.py": {
+      "bytes": 5113,
+      "sha256": "d745f651b00b35a2358f2697fb70b7a75e011b62b0dafdb8559004cefd338c6b"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-main-family\\spec-v1.json": {
+      "bytes": 13227,
+      "sha256": "3147148f29f9addad9f89f6657151ed9588563fdc9855965872f77af4b1df678"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\src\\native\\startup\\init_writes.c": {
+      "bytes": 1228,
+      "sha256": "e318deef8975d25c84b16489388eb5cc1506a0752f362c2ca336de32d315955a"
+    }
+  },
+  "modes": {
+    "c": {
+      "artifacts": {
+        "init-write-sequence.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "init-write-sequence.o": {
+          "bytes": 332,
+          "sha256": "fbcc2d2efcedbe592d560f67408803fba2093c42c72e4d1d859ea97c95c95823"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objcopy.exe",
+            "--strip-unneeded",
+            "--only-section=.text.tsl9_init_writes_9f4c",
+            "${PROJECT_ROOT}\\build\\curated-source\\timer3-irq-20261024-v1\\init-write-sequence\\c\\curated\\unit.o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-main-family\\build\\providers-v1\\c\\init-write-sequence.o"
+          ],
+          "exit": 0
+        }
+      ],
+      "results": {
+        "init-write-sequence": {
+          "FUNC": 1,
+          "RELA": 0,
+          "UND": 0,
+          "all_original_bytes_equal": true,
+          "code_bytes": 40,
+          "object_sha256": "fbcc2d2efcedbe592d560f67408803fba2093c42c72e4d1d859ea97c95c95823",
+          "passed": true
+        }
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "init-write-sequence.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "init-write-sequence.o": {
+          "bytes": 332,
+          "sha256": "fbcc2d2efcedbe592d560f67408803fba2093c42c72e4d1d859ea97c95c95823"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objcopy.exe",
+            "--strip-unneeded",
+            "--only-section=.text.tsl9_init_writes_9f4c",
+            "${PROJECT_ROOT}\\build\\curated-source\\timer3-irq-20261024-v1\\init-write-sequence\\cpp\\curated\\unit.o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-main-family\\build\\providers-v1\\cpp\\init-write-sequence.o"
+          ],
+          "exit": 0
+        }
+      ],
+      "results": {
+        "init-write-sequence": {
+          "FUNC": 1,
+          "RELA": 0,
+          "UND": 0,
+          "all_original_bytes_equal": true,
+          "code_bytes": 40,
+          "object_sha256": "fbcc2d2efcedbe592d560f67408803fba2093c42c72e4d1d859ea97c95c95823",
+          "passed": true
+        }
+      }
+    }
+  },
+  "schema": "TSL9-main-family-provider-selection-build-v1"
+}

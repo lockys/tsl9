@@ -1,0 +1,129 @@
+{
+  "schema": "TSL9-rf-callbacks-summary-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/rf_callbacks.c",
+  "range": {
+    "start": 95350,
+    "end": 95546,
+    "bytes": 196,
+    "instructions": 65,
+    "regions": 23
+  },
+  "noncontrol_bytes": 144,
+  "typed_direct_references": 16,
+  "component": {
+    "code_bytes": 4030,
+    "instructions": 1432,
+    "data_bytes": 456,
+    "FUNC_regions": 340,
+    "entry_aliases": 13,
+    "RELA": 278,
+    "direct_UND": 19,
+    "sha256": "e9e23681328c91f1728b88ad1f30221102b99275a29509a53ca553833f1e91bf",
+    "bound_nonzero_vector_words": 62
+  },
+  "source_comparisons": {
+    "C_H_files": 92,
+    "native_code_units": 65,
+    "independent_data_units": 1,
+    "function_comparisons": 130,
+    "function_objects": 260,
+    "data_comparisons": 2,
+    "data_objects": 4,
+    "total_comparisons": 132,
+    "total_objects": 264
+  },
+  "accepted_trial": "trial-v1",
+  "address_correction": {
+    "task_callback": 95350,
+    "RF_status_callback": 95470,
+    "producer_evidence": [
+      {
+        "AUIPC_PC": 95756,
+        "AUIPC_bytes": "17050000",
+        "ADDI_PC": 95760,
+        "ADDI_bytes": "1305a5e6",
+        "signed_upper": 0,
+        "signed_lower": -406,
+        "target": 95350
+      },
+      {
+        "AUIPC_PC": 95812,
+        "AUIPC_bytes": "97070000",
+        "ADDI_PC": 95816,
+        "ADDI_bytes": "9387a7ea",
+        "signed_upper": 0,
+        "signed_lower": -342,
+        "target": 95470
+      }
+    ],
+    "record": "analysis/rf-callbacks-2026-10-24/literal-address-correction.json",
+    "prior_candidate_begins_inside_instruction": {
+      "addr": 95332,
+      "size": 4,
+      "opcode": "lw t1, 88(a5)",
+      "bytes": "03a38705",
+      "type": "load"
+    },
+    "native_parent_objects_or_receipts_modified": false
+  },
+  "observations": [
+    {
+      "PC": 95350,
+      "fact": "Task16B frame;signed low16-bit event test;message receive/deallocate throughthen-liveS1+108/+104;sharedrestore."
+    },
+    {
+      "PC": 95404,
+      "fact": "Eventbit1 callsfresh S1+464 thenS1+460 withoriginalstate buffer/length andA2/A3=255;return then-liveS0 XOR1."
+    },
+    {
+      "PC": 95450,
+      "fact": "Eventbit2 passesA0=1 to173EE thenreturns then-liveS0 XOR2 throughsame restore;other events returnA0=0."
+    },
+    {
+      "PC": 95470,
+      "fact": "Frameless status checks preserveA0==2,nonzeroA1 andthree byte comparisons atA2+1/+2/+3. Failure-tail17442 andmatching-tail173EE remain;other statuses useoriginalunsigned tests and8-bit arithmetic."
+    }
+  ],
+  "literal_constructor_binding_proved": false,
+  "packet_buffer_bounds_proved": false,
+  "installed_SDK_ABI_proved": false,
+  "SDK_layout_probe_reused_from_parent": true,
+  "feature_opportunity": {
+    "idea": "Passive RF-result diagnostics separatingrawstatus,receive-status andheader mismatch afterABI/memory proof.",
+    "implemented_in_firmware": false
+  },
+  "next_family": {
+    "entry": 95214,
+    "start": 95214,
+    "end": 95350,
+    "bytes": 136,
+    "instructions": 45,
+    "ranges": [
+      {
+        "start": 95214,
+        "end": 95298,
+        "bytes": 84,
+        "instructions": 29
+      },
+      {
+        "start": 95298,
+        "end": 95350,
+        "bytes": 52,
+        "instructions": 16
+      }
+    ],
+    "outgoing_direct_targets": [],
+    "ABI_proved": false
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit_or_push": false,
+  "history_privacy_clean": false
+}

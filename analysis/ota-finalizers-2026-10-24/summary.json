@@ -1,0 +1,117 @@
+{
+  "schema": "TSL9-original-OTA-finalizers-summary-v1",
+  "passed": true,
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/ota_finalizers.c",
+  "new_functions": 2,
+  "new_code_bytes": 182,
+  "new_instructions": 69,
+  "new_private_regions": 22,
+  "new_control_relocations": 14,
+  "new_data_bytes": 0,
+  "native_receipt": "experiments/tsl9-ota-finalizers/build/native-v1/measurement.json",
+  "source_proof": "experiments/tsl9-ota-finalizers/build/source-proof-v1.json",
+  "source_files": 113,
+  "native_code_units": 86,
+  "independent_data_units": 1,
+  "source_comparisons": 174,
+  "source_objects": 348,
+  "previous_112_C_H_files_preserved": true,
+  "prior170_results_and1021_artifact_records_preserved": true,
+  "component": "experiments/tsl9-ota-finalizers/build/component-v1",
+  "component_object": "UNRESOLVED-STARTUP-OTA-FINALIZERS.o",
+  "component_C_CPP_sha256": "aea3c4bc50373e8aa19b8074bd16a231592b7be1018d8f1728f5afa8ade9879b",
+  "code_bytes": 20224,
+  "data_bytes": 714,
+  "instructions": 7033,
+  "nonzero_code_FUNC": 1770,
+  "true_aliases": 71,
+  "RELA": 1314,
+  "genuine_undefined_providers": 71,
+  "resolved_original_providers": [
+    "tsl9_ota_reply_external_16e0c",
+    "tsl9_ota_reply_external_9ea6"
+  ],
+  "new_undefined": [],
+  "layout": "experiments/tsl9-original-layout/build/ota-finalizers-v1",
+  "layout_C_CPP_ELF_sha256": "fdb649babc6e4853cfd347585d60288f9b5035355bdecc91422b7e9606c3040d",
+  "original_coordinate_bytes_equal": 20938,
+  "adjacent_only_spans": 93,
+  "PT_LOAD": 0,
+  "entry": 0,
+  "reference_only_ABS_constants": 71,
+  "ABS_FUNC_providers": 0,
+  "flow": "experiments/tsl9-original-layout/build/ota-finalizers-flow-v1",
+  "direct_transfers": 1160,
+  "measured_direct_targets": 1089,
+  "reference_only_direct_targets": 71,
+  "ordinary_next_positions": 6487,
+  "ordinary_gaps": 0,
+  "call_return_positions": 431,
+  "register_indirect_transfers": 363,
+  "MRET": 10,
+  "EBREAK": 1,
+  "EBREAK_resume_unproved": true,
+  "complete_CFG_proved": false,
+  "literal_only_undefined": 0,
+  "functions": [
+    {
+      "name": "tsl9_ota_reply_external_9ea6",
+      "start": 40614,
+      "end": 40672,
+      "bytes": 58,
+      "instructions": 25
+    },
+    {
+      "name": "tsl9_ota_reply_external_16e0c",
+      "start": 93708,
+      "end": 93832,
+      "bytes": 124,
+      "instructions": 44
+    }
+  ],
+  "confirmed_static_findings": [
+    {
+      "PC": 40614,
+      "fact": "Compares full32-bit input to a byte in an eight-byte record;writes low8(input) on mismatch. At most five writes. The fifth write is followed by return1 without a post-write read; return0 requires an earlier observed match."
+    },
+    {
+      "PC": 40678,
+      "fact": "Existing caller invokes9EA6 with1,does not branch on its returned value,and passes0 to99E8."
+    },
+    {
+      "PC": 93708,
+      "fact": "Input bits0/1 select writes16/1 to0x40010814,thenSPI16896(192),write17 to0x40010810. Polls16994(input,14)&0xE0==0x80; unsigned tick difference>2 returns1,matching state returns0. Units/hardware effect unproved."
+    }
+  ],
+  "report_correction": {
+    "PC": 36454,
+    "target_PC": 36426,
+    "skipped_PC": 36424,
+    "fact": "Jump lands directly onJR T1,skipping SP+=16. Previous stack-imbalance claim was incorrect; original C/C++ and bytes are unchanged.",
+    "corrected_reports": [
+      "analysis/ota-replies-2026-10-24/README.md",
+      "analysis/ota-replies-2026-10-24/readme.en.md",
+      "analysis/ota-replies-2026-10-24/summary.json"
+    ],
+    "old_report_snapshots": "Retained locally in task workspace exports/ota-replies-before-tail-correction-20261024; prior final receipt remains a historical snapshot."
+  },
+  "next_action": "Reconstruct main initialization providers131C2 and12D92;continue tracing ROM and original BOOT/APP mapping. Preserve authentication/state/range/readback guards;no hardware/network.",
+  "candidate_new_functionality": {
+    "idea": "OTA completion evidence states",
+    "state": "proposal-only",
+    "purpose": "Distinguish E reply,page readback,flag readback,reset and application-function observations. Original final-write status is not verified and does not gate reset; do not equate E with success."
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit": false,
+  "push": false,
+  "historical_privacy_clean": false,
+  "goal_status": "active"
+}

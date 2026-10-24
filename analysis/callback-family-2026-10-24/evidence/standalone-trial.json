@@ -1,0 +1,332 @@
+{
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objcopy.exe": {
+      "bytes": 5830248,
+      "sha256": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\analysis\\init-tail-2026-10-24\\next-callback-family.json": {
+      "bytes": 18739,
+      "sha256": "3810c562f3901d0b27f173af775bda1b7c4f6496dd18162abafc64d9dafd9e0a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\build-v1.py": {
+      "bytes": 9057,
+      "sha256": "911562d8754b483c729d0fccace371df8bbc9e84bde9f10222ea4bfecbbdfcc6"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\derive-v1.py": {
+      "bytes": 6344,
+      "sha256": "ec89183a7f5e05a1c79bd2b608de27154f420a572791e8fde91c87f718626853"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\spec-v1.json": {
+      "bytes": 9694,
+      "sha256": "8c555bfd4c339e3d326ac0576cdeca181caea5c4f073accc7eb2df7614f7042b"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\src\\callback_table.v1.c": {
+      "bytes": 7856,
+      "sha256": "3c5d7a3cb3c02e301c158c136a1cdbb1a70839100f2b54bb89431160d92bfeb2"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build-v1.py": {
+      "bytes": 12139,
+      "sha256": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    }
+  },
+  "modes": {
+    "c": {
+      "artifacts": {
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "read.log": {
+          "bytes": 12882,
+          "sha256": "e2c5e16c6a62ec452f6b3ee342086abd5e1d7ad5a1b22ebd4d7f79b68e9bd737"
+        },
+        "unit.d": {
+          "bytes": 253,
+          "sha256": "5398a91c9c444bca75b88bad58d64846856a1afe763ce62325cfe5af0a216cef"
+        },
+        "unit.o": {
+          "bytes": 3796,
+          "sha256": "9cbdd7a6ab9ff175532a3de598a79be0e53916a430429def7a1a5921ca9ccb81"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\build\\trial-v1\\c\\unit.d",
+            "-MT",
+            "unit.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\src\\callback_table.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\build\\trial-v1\\c\\unit.o"
+          ],
+          "exit": 0,
+          "label": "compile"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\build\\trial-v1\\c\\unit.o"
+          ],
+          "exit": 0,
+          "label": "read"
+        }
+      ],
+      "dependencies": {
+        "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\src\\callback_table.v1.c": "3c5d7a3cb3c02e301c158c136a1cdbb1a70839100f2b54bb89431160d92bfeb2"
+      },
+      "result": {
+        "FUNC": 20,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "RELA": 8,
+        "UND": 0,
+        "call_port_registers": [
+          "a3",
+          "a5",
+          "a5",
+          "a5"
+        ],
+        "candidate_range901A_9070_90B0_are_not_three_functions": true,
+        "code_bytes": 266,
+        "complete_original_VA_encoded_bytes_equal": true,
+        "entry_and_callee_ABI_proved": false,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "four_indirect_calls_and_one_indirect_tail_retained": true,
+        "genuine_frame_entries": [
+          36890,
+          36986,
+          37040
+        ],
+        "hardware_accessed": false,
+        "instructions": 102,
+        "native_object_sha256": "9cbdd7a6ab9ff175532a3de598a79be0e53916a430429def7a1a5921ca9ccb81",
+        "negative_cases_executed": 0,
+        "network": false,
+        "noncontrol_bytes_equal": 244,
+        "original_address_placement_proved": false,
+        "original_direct_references": 8,
+        "original_frame_bytes": 16,
+        "passed": true,
+        "physical_MCU_or_peripheral_proved": false,
+        "shared9070_loop_and9066_exit_retained": true,
+        "tail_port_register": "t1",
+        "target_executed": false,
+        "undefined": []
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "read.log": {
+          "bytes": 12884,
+          "sha256": "9ab3e926219770ff10d54122ed888f6f7a309f2dadfea01dbee56a1f1487995a"
+        },
+        "unit.d": {
+          "bytes": 253,
+          "sha256": "5398a91c9c444bca75b88bad58d64846856a1afe763ce62325cfe5af0a216cef"
+        },
+        "unit.o": {
+          "bytes": 3796,
+          "sha256": "9cbdd7a6ab9ff175532a3de598a79be0e53916a430429def7a1a5921ca9ccb81"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\build\\trial-v1\\cpp\\unit.d",
+            "-MT",
+            "unit.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\src\\callback_table.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\build\\trial-v1\\cpp\\unit.o"
+          ],
+          "exit": 0,
+          "label": "compile"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\build\\trial-v1\\cpp\\unit.o"
+          ],
+          "exit": 0,
+          "label": "read"
+        }
+      ],
+      "dependencies": {
+        "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "${PROJECT_ROOT}\\experiments\\tsl9-callback-family\\src\\callback_table.v1.c": "3c5d7a3cb3c02e301c158c136a1cdbb1a70839100f2b54bb89431160d92bfeb2"
+      },
+      "result": {
+        "FUNC": 20,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "RELA": 8,
+        "UND": 0,
+        "call_port_registers": [
+          "a3",
+          "a5",
+          "a5",
+          "a5"
+        ],
+        "candidate_range901A_9070_90B0_are_not_three_functions": true,
+        "code_bytes": 266,
+        "complete_original_VA_encoded_bytes_equal": true,
+        "entry_and_callee_ABI_proved": false,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "four_indirect_calls_and_one_indirect_tail_retained": true,
+        "genuine_frame_entries": [
+          36890,
+          36986,
+          37040
+        ],
+        "hardware_accessed": false,
+        "instructions": 102,
+        "native_object_sha256": "9cbdd7a6ab9ff175532a3de598a79be0e53916a430429def7a1a5921ca9ccb81",
+        "negative_cases_executed": 0,
+        "network": false,
+        "noncontrol_bytes_equal": 244,
+        "original_address_placement_proved": false,
+        "original_direct_references": 8,
+        "original_frame_bytes": 16,
+        "passed": true,
+        "physical_MCU_or_peripheral_proved": false,
+        "shared9070_loop_and9066_exit_retained": true,
+        "tail_port_register": "t1",
+        "target_executed": false,
+        "undefined": []
+      }
+    }
+  },
+  "schema": "TSL9-original-CALLBACK-FAMILY-native-build-v1"
+}

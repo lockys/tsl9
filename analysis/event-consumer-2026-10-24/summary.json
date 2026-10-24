@@ -1,0 +1,118 @@
+{
+  "schema": "TSL9-event-consumer-summary-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/event_consumer.c",
+  "range": {
+    "start": 95846,
+    "end": 96380,
+    "bytes": 534,
+    "instructions": 187,
+    "regions": 35
+  },
+  "noncontrol_bytes": 472,
+  "typed_direct_references": 23,
+  "component": {
+    "code_bytes": 3534,
+    "instructions": 1264,
+    "data_bytes": 456,
+    "FUNC_regions": 305,
+    "entry_aliases": 12,
+    "RELA": 261,
+    "direct_UND": 18,
+    "sha256": "775b7ddb9897015460737b7fbb6c7583f15992fef532e20e9e9aa721ced54cdf",
+    "bound_nonzero_vector_words": 62
+  },
+  "source_comparisons": {
+    "C_H_files": 90,
+    "native_code_units": 63,
+    "independent_data_units": 1,
+    "function_comparisons": 126,
+    "function_objects": 252,
+    "data_comparisons": 2,
+    "data_objects": 4,
+    "total_comparisons": 128,
+    "total_objects": 256
+  },
+  "accepted_trial": "trial-v2",
+  "unaccepted_trial": {
+    "name": "trial-v1",
+    "reason": "Original4B ADDI compiled as2B;not accepted. Localoutputs retained."
+  },
+  "observations": [
+    {
+      "PC": 95846,
+      "fact": "16B frame;GP379/event1/time2 throughslot40058;then-liveS0 andfreshGP378 conditionally callactual90B0 withoriginal176A0 literal andsetGP378=1."
+    },
+    {
+      "PC": 95904,
+      "fact": "32B frame;halfword62B5;calls1753A withA0=B562/A1=21/A2=15/A3=SP+12/A4=2/A5=original17666. Onzeroresult increments8-bitGP377;values<=4 schedulesoriginal176A0 through9124 withtime500."
+    },
+    {
+      "PC": 95992,
+      "fact": "48B frame;eventbit1 selectsqueue consumption. OriginalAUIPC expressions encodebase2000C8AC/count2000C8AE. Onlyzero1753A result updatesfresh then-liveS1 index/count;sharedreturn uses then-liveS0 XOR1."
+    },
+    {
+      "PC": 96128,
+      "fact": "Eventbit2 usesfreshGP376 selector andword[GP104] for7-bytecopy through4004C;condition mayresetGP376 andreloadrecord. Cases dependonrecordfields;C776 isdirect provider."
+    },
+    {
+      "PC": 96306,
+      "fact": "FreshGP370 byte isused toloadwordat original1AAE8+4*index beforeincrement/signedREM7. Original data shape suggests24-bit palette;initial lookup bounds unproved."
+    }
+  ],
+  "pre_lookup_index_bound_proved": false,
+  "post_call_queue_count_bound_proved": false,
+  "literal_callback_placement_proved": false,
+  "selected_readonly_data": {
+    "path": "analysis/event-consumer-2026-10-24/selected-1aae8-data.json",
+    "bytes": 28,
+    "included_in_current_component": false,
+    "full_extent_or_ownership_proved": false
+  },
+  "inferences": [
+    "Event-consumer/task scheduling withqueue andrecord cases;actual installed callback ABI remains unproved.",
+    "Seven24-bit constants withlaterREM7 suggest a cycling palette;RGB/BGR order andphysical lighting purpose unproved."
+  ],
+  "potential_feature": {
+    "idea": "User-defined seven-step palette andoffline preview ofraw color constants.",
+    "status": "Research candidate;not implemented in firmware.",
+    "prerequisites": [
+      "Prove RGB/BGR/channel order andfeature-to-hardware mapping",
+      "Establish readonly-data ownership andinitial index bounds",
+      "Pass memory/startup/IRQ/OTA gates before target deployment"
+    ]
+  },
+  "next_family": {
+    "entry": 95546,
+    "start": 95546,
+    "end": 95846,
+    "bytes": 300,
+    "instructions": 103,
+    "ranges": [
+      {
+        "start": 95546,
+        "end": 95720,
+        "bytes": 174,
+        "instructions": 59
+      },
+      {
+        "start": 95720,
+        "end": 95846,
+        "bytes": 126,
+        "instructions": 44
+      }
+    ],
+    "outgoing_direct_targets": [],
+    "ABI_proved": false
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit_or_push": false,
+  "history_privacy_clean": false
+}

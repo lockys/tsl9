@@ -1,0 +1,167 @@
+{
+  "schema": "TSL9-rf-completion-summary-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/rf_completion.c",
+  "range": {
+    "start": 95214,
+    "end": 95350,
+    "bytes": 136,
+    "instructions": 45,
+    "regions": 7
+  },
+  "noncontrol_bytes": 126,
+  "typed_direct_references": 3,
+  "component": {
+    "code_bytes": 4166,
+    "instructions": 1477,
+    "data_bytes": 456,
+    "FUNC_regions": 347,
+    "entry_aliases": 15,
+    "RELA": 281,
+    "direct_UND": 17,
+    "sha256": "99aea050d1f85da2542c6473eae659b41c71a95a1c82430e5700753bcc6d7fc0",
+    "bound_nonzero_vector_words": 62
+  },
+  "source_comparisons": {
+    "C_H_files": 93,
+    "native_code_units": 66,
+    "independent_data_units": 1,
+    "function_comparisons": 132,
+    "function_objects": 264,
+    "data_comparisons": 2,
+    "data_objects": 4,
+    "total_comparisons": 134,
+    "total_objects": 268
+  },
+  "accepted_trial": "trial-v1",
+  "observations": [
+    {
+      "PC": 95214,
+      "fact": "Original16B frame;stop-event2 through4005C beforefreshAUIPC statebyte clears;conditional captured callbackword withthen-liveS0 argument."
+    },
+    {
+      "PC": 95272,
+      "fact": "RestoreS0/RA beforeclearing callbackword,thenpopSPandtail throughcapturedT1. Zero callback usesseparate original restore/return path."
+    },
+    {
+      "PC": 95298,
+      "fact": "Freshbyte decrement/mask255/store;zero tail173EE withA0=1,nonzero tails40058 withtask/event1/timeargument2. No pre-decrement zero guard."
+    }
+  ],
+  "counter_initialization_or_bounded_retry_on_hardware_proved": false,
+  "callback_semantics_or_ABI_proved": false,
+  "RF_relative_layout": {
+    "evidence": "analysis/rf-completion-2026-10-24/evidence/rf-relative-c.json",
+    "range_start": 95214,
+    "range_end": 96764,
+    "bytes": 1550,
+    "instructions": 538,
+    "real_FUNC_regions": 103,
+    "entry_aliases": 5,
+    "RELA": 56,
+    "internal_reference_sites_owned": 53,
+    "external_reference_sites_unbound": 3,
+    "external_UND": [
+      "tsl9_callback_external_9124",
+      "tsl9_event_consumer_provider_c776",
+      "tsl9_main_provider_90b0"
+    ],
+    "local_literal_sites": [
+      {
+        "native_AUIPC_PC": 542,
+        "native_target": 136,
+        "original_ADDI_PC": 95760,
+        "original_AUIPC_PC": 95756,
+        "original_target": 95350,
+        "owner": "tsl9_rf_callbacks_entry_17476"
+      },
+      {
+        "native_AUIPC_PC": 598,
+        "native_target": 256,
+        "original_ADDI_PC": 95816,
+        "original_AUIPC_PC": 95812,
+        "original_target": 95470,
+        "owner": "tsl9_rf_callbacks_entry_174ee"
+      },
+      {
+        "native_AUIPC_PC": 664,
+        "native_target": 690,
+        "original_ADDI_PC": 95882,
+        "original_AUIPC_PC": 95878,
+        "original_target": 95904,
+        "owner": "tsl9_event_consumer_entry_176a0"
+      },
+      {
+        "native_AUIPC_PC": 706,
+        "native_target": 632,
+        "original_ADDI_PC": 95924,
+        "original_AUIPC_PC": 95920,
+        "original_target": 95846,
+        "owner": "tsl9_event_consumer_entry_17666"
+      },
+      {
+        "native_AUIPC_PC": 760,
+        "native_target": 690,
+        "original_ADDI_PC": 95978,
+        "original_AUIPC_PC": 95974,
+        "original_target": 95904,
+        "owner": "tsl9_event_consumer_entry_176a0"
+      },
+      {
+        "native_AUIPC_PC": 830,
+        "native_target": 632,
+        "original_ADDI_PC": 96048,
+        "original_AUIPC_PC": 96044,
+        "original_target": 95846,
+        "owner": "tsl9_event_consumer_entry_17666"
+      }
+    ],
+    "native_section_VMA": 0,
+    "original_relative_offsets_verified": true,
+    "absolute_original_VMA_placement_proved": false,
+    "readonly_table1AAE8_included": false,
+    "source_units": 6,
+    "sha256": "da4fdf0715d35f23e4cb1392c6376559e5e8808b9a2878c4fa267752706e25ac"
+  },
+  "unaccepted_absolute_VMA_attempt": {
+    "folder": "experiments/tsl9-rf-completion/build/original-rf-v1",
+    "link_succeeded": true,
+    "actual_section_VMA": 0,
+    "requested_section_VMA": 95214,
+    "claimed_as_passed": false,
+    "note": "LLD-r preservesrelativeET_REL layout;no ELF header patch,no executable stubs andno fake absolute providers were used."
+  },
+  "feature_opportunity": {
+    "idea": "Passive retry/completion diagnostics distinguishingcounter states andcaptured callback delivery.",
+    "implemented_in_firmware": false,
+    "preconditions": [
+      "Memory ownership andconcurrency contract",
+      "Installed resident/callback ABI",
+      "Hardware/OTA validation gates"
+    ]
+  },
+  "next_candidate": {
+    "evidence": "analysis/rf-completion-2026-10-24/next-c776-candidate.json",
+    "entry": 51062,
+    "end": 51176,
+    "bytes": 114,
+    "instructions": 42,
+    "direct_provider_targets": [
+      33448,
+      50856,
+      64248,
+      76296
+    ],
+    "ABI_proved": false
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit_or_push": false,
+  "history_privacy_clean": false
+}

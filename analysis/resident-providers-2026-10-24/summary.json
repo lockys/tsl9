@@ -1,0 +1,125 @@
+{
+  "schema": "TSL9-resident-providers-summary-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/resident_providers.c",
+  "range": {
+    "start": 95546,
+    "end": 95846,
+    "bytes": 300,
+    "instructions": 103,
+    "regions": 12
+  },
+  "noncontrol_bytes": 298,
+  "typed_direct_references": 1,
+  "component": {
+    "code_bytes": 3834,
+    "instructions": 1367,
+    "data_bytes": 456,
+    "FUNC_regions": 317,
+    "entry_aliases": 13,
+    "RELA": 262,
+    "direct_UND": 17,
+    "sha256": "f51b8d63df626509b623738b5f3bb54843c39cb6072dbf216cf1a5ac88855058",
+    "bound_nonzero_vector_words": 62
+  },
+  "source_comparisons": {
+    "C_H_files": 91,
+    "native_code_units": 64,
+    "independent_data_units": 1,
+    "function_comparisons": 128,
+    "function_objects": 256,
+    "data_comparisons": 2,
+    "data_objects": 4,
+    "total_comparisons": 130,
+    "total_objects": 260
+  },
+  "accepted_trial": "trial-v1",
+  "SDK_layout_probe": {
+    "languages": [
+      "c",
+      "cpp"
+    ],
+    "objects": 2,
+    "allocated_data_bytes_each": 64,
+    "FUNC": 0,
+    "RF_struct_size": 32,
+    "RF_struct_alignment": 4,
+    "callback_pointer_bytes": 4,
+    "compiled_profile_only": true,
+    "installed_ABI_proved": false,
+    "included_in_firmware_component": false,
+    "source_comparison_totals_include_probe": false
+  },
+  "observations": [
+    {
+      "PC": 95546,
+      "fact": "OriginalA2 savedinA7;AUIPC flag2000C7A9;nonzero flag returnsA0=1 beforeframe. GP366 increment/mask15 usesA6 thenpacket bytes updated."
+    },
+    {
+      "PC": 95558,
+      "fact": "Original16B frame andfresh then-liveS0 loads preservecopy/channel/start-task/set-event callports;initialS0=40000,offsets76/512/88/80. Normalpath returnsA0=0 without claiming physical TX success."
+    },
+    {
+      "PC": 95720,
+      "fact": "48B frame;original state pointer2000C7A0,length268 cleararguments,taskcallback17476 literal andlowA0 store;then32B stack cleararguments."
+    },
+    {
+      "PC": 95782,
+      "fact": "Configuration writesatstackoffsets0,8,12,16,25 alignwithcompiled selectedrfConfig_t profile;callback literal174EE andcallthroughthen-liveS0+452 retained."
+    }
+  ],
+  "inferences": [
+    "RFconfiguration/channels andTMOS event scheduling correspond todefaultSDKslots andselected32B ILP32 declaration.",
+    "Software profile correspondence doesnot establish physical MCU/radio topology,installed ROM version,live callee identity orABI."
+  ],
+  "physical_MCU_ROM_proved": false,
+  "literal_callback_placement_proved": false,
+  "RF_or_BLE_runtime_success_proved": false,
+  "RF_channel_or_timing_verified_on_device": false,
+  "next_family": {
+    "entry": 95350,
+    "start": 95350,
+    "end": 95546,
+    "bytes": 196,
+    "instructions": 65,
+    "ranges": [
+      {
+        "start": 95350,
+        "end": 95470,
+        "bytes": 120,
+        "instructions": 43
+      },
+      {
+        "start": 95470,
+        "end": 95546,
+        "bytes": 76,
+        "instructions": 22
+      }
+    ],
+    "outgoing_direct_targets": [
+      95214,
+      95298
+    ],
+    "ABI_proved": false
+  },
+  "C776_backlog": {
+    "evidence": "analysis/resident-providers-2026-10-24/c776-bounded-backlog.json",
+    "requested_bytes": 256,
+    "full_function_extent_proved": false
+  },
+  "feature_opportunities": {
+    "RF_status_diagnostics": "Passive state/channel/timeout inspection aftermemory andABI proof;not implemented.",
+    "palette_candidate_reference": "analysis/event-consumer-2026-10-24/README.md"
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit_or_push": false,
+  "history_privacy_clean": false,
+  "literal_callback_correction": "analysis/rf-callbacks-2026-10-24/literal-address-correction.json"
+}

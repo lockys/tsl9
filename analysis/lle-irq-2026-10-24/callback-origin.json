@@ -1,0 +1,109 @@
+{
+  "schema": "TSL9-LLE-callback-static-origin-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "r2_sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+  "original_LLE_callback_word_address": "then-live GP+384",
+  "raw_direct_GP384_SW_candidate_count": 1,
+  "prefix": {
+    "start": 104930,
+    "end": 104960,
+    "bytes": 30,
+    "sha256": "c9305cc5e39a8411e7b316409e4fe2ee1acd294631e0c34e569aebde2220a961",
+    "operations": [
+      {
+        "addr": 104930,
+        "size": 4,
+        "opcode": "lui a5, 0x20000",
+        "bytes": "b7070020"
+      },
+      {
+        "addr": 104934,
+        "size": 2,
+        "opcode": "lw a5, 8(a5)",
+        "bytes": "9c47"
+      },
+      {
+        "addr": 104936,
+        "size": 2,
+        "opcode": "addi sp, sp, -96",
+        "bytes": "1d71"
+      },
+      {
+        "addr": 104938,
+        "size": 2,
+        "opcode": "sw s0, 88(sp)",
+        "bytes": "a2cc"
+      },
+      {
+        "addr": 104940,
+        "size": 4,
+        "opcode": "sw a5, 384(gp)",
+        "bytes": "23a0f118"
+      },
+      {
+        "addr": 104944,
+        "size": 4,
+        "opcode": "lui s0, 0x40",
+        "bytes": "37040400"
+      },
+      {
+        "addr": 104948,
+        "size": 2,
+        "opcode": "lw a5, 60(s0)",
+        "bytes": "5c5c"
+      },
+      {
+        "addr": 104950,
+        "size": 2,
+        "opcode": "lw a0, 52(s0)",
+        "bytes": "4858"
+      },
+      {
+        "addr": 104952,
+        "size": 2,
+        "opcode": "sw ra, 92(sp)",
+        "bytes": "86ce"
+      },
+      {
+        "addr": 104954,
+        "size": 2,
+        "opcode": "li a2, 21",
+        "bytes": "5546"
+      },
+      {
+        "addr": 104956,
+        "size": 4,
+        "opcode": "auipc a1, 0x1",
+        "bytes": "97150000"
+      }
+    ],
+    "full_function_proved": false
+  },
+  "static_pointer_copy": {
+    "load_PC": 104934,
+    "source_literal_address": 536870920,
+    "store_PC": 104940,
+    "destination": "then-live GP+384",
+    "no_intervening_A5_assignment_or_control_in_selected_prefix": true,
+    "runtime_value_observed": false,
+    "actual_callback_code_identity_proved": false
+  },
+  "raw_direct_call_encoding_candidates": [
+    {
+      "PC": 36520,
+      "bytes": "ef00b133",
+      "width": 4,
+      "original_target": 104930
+    }
+  ],
+  "call_scan_scope": "Only JAL rdRA and C.JAL encoded targets at two-byte file offsets; not full CFG, initialization uniqueness, execution reachability or alias analysis.",
+  "preliminary_misaligned_prefix_not_used_for_proof": {
+    "start": 104916,
+    "reason": "The leading halfword was decoded as FLW; instruction boundary and containing procedure were not established."
+  },
+  "target_executed": false,
+  "ISA_or_register_state_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

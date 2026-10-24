@@ -1,0 +1,235 @@
+{
+  "schema": "TSL9-CAN-RX0-local-SDK-match-v1",
+  "scope": "Offline static correspondence; no physical chip attribution",
+  "references": {
+    "wch-ch32v20x.h": {
+      "path": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wch-ch32v20x.h",
+      "sha256": "f7afdff0cca29cea10ea104915a5a21675e49c980f07af789daf37ea80fd142b",
+      "bytes": 348992
+    },
+    "wch-ch32v20x_can.h": {
+      "path": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wch-ch32v20x_can.h",
+      "sha256": "d8b342706b6d4f83f6a7588f1d1d740724faf954e61cf8682734406957db6346",
+      "bytes": 20133
+    },
+    "wch-ch32v20x_can.c": {
+      "path": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wch-ch32v20x_can.c",
+      "sha256": "3e336267e39b9a9a513d179009752f6d5d1a0a3e285150dbacc36de137a46371",
+      "bytes": 32424
+    }
+  },
+  "SDK_CAN_Receive": {
+    "file": "wch-ch32v20x_can.c",
+    "first_line": 575,
+    "last_line": 608
+  },
+  "SDK_definitions": {
+    "USB_LP_CAN1_RX0_IRQn": {
+      "line": 86,
+      "value": 36
+    },
+    "CAN1_BASE": {
+      "line": 838,
+      "derived_value": 1073767424
+    },
+    "CAN_FIFO0": {
+      "file": "wch-ch32v20x_can.h",
+      "line": 241,
+      "value": 0
+    },
+    "CAN_RFIFO0_RFOM0": {
+      "line": 1491,
+      "value": 32
+    }
+  },
+  "CAN_register_layout": {
+    "file": "wch-ch32v20x.h",
+    "type": "CAN_TypeDef",
+    "first_line": 308,
+    "last_line": 332,
+    "RFIFO0_offset": 12,
+    "RFIFO1_offset": 16,
+    "receive_mailbox_array_offset": 432,
+    "receive_mailbox_array_offset_arithmetic": "8*4 +88*4 +3*(4*4) =432",
+    "receive_mailbox_stride": 16,
+    "mailbox_fields": [
+      {
+        "line": 294,
+        "name": "RXMIR",
+        "byte_offset": 0
+      },
+      {
+        "line": 295,
+        "name": "RXMDTR",
+        "byte_offset": 4
+      },
+      {
+        "line": 296,
+        "name": "RXMDLR",
+        "byte_offset": 8
+      },
+      {
+        "line": 297,
+        "name": "RXMDHR",
+        "byte_offset": 12
+      }
+    ]
+  },
+  "CanRxMsg_layout": {
+    "file": "wch-ch32v20x_can.h",
+    "first_line": 134,
+    "last_line": 159,
+    "bytes": 20,
+    "fields": [
+      {
+        "name": "StdId",
+        "offset": 0,
+        "bytes": 4
+      },
+      {
+        "name": "ExtId",
+        "offset": 4,
+        "bytes": 4
+      },
+      {
+        "name": "IDE",
+        "offset": 8,
+        "bytes": 1
+      },
+      {
+        "name": "RTR",
+        "offset": 9,
+        "bytes": 1
+      },
+      {
+        "name": "DLC",
+        "offset": 10,
+        "bytes": 1
+      },
+      {
+        "name": "Data",
+        "offset": 11,
+        "bytes": 8
+      },
+      {
+        "name": "FMI",
+        "offset": 19,
+        "bytes": 1
+      }
+    ]
+  },
+  "original_firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "vector_index": 36,
+    "vector_word_PC": 32968,
+    "vector_entry": 76836,
+    "status_base_literal": 1073767424,
+    "status_offset": 12,
+    "status_mask": 3,
+    "conditional_frame_bytes": 32,
+    "output_SP_offset": 12,
+    "selected_FIFO": 0,
+    "provider_entry": 101752,
+    "provider_bytes": 164,
+    "standard_ID_shift": 21,
+    "extended_ID_shift": 3,
+    "IDE_mask": 4,
+    "RTR_mask": 2,
+    "DLC_mask": 15,
+    "FMI_shift": 8,
+    "mailbox_stride": 16,
+    "register_offsets": [
+      432,
+      436,
+      440,
+      444
+    ],
+    "FIFO_release_OR_mask": 32
+  },
+  "confirmed_static_correspondences": [
+    "Vector36 matches saved SDK USB_LP_CAN1_RX0_IRQn36.",
+    "Literal40006400 and status offset12 match saved CAN1_BASE and RFIFO0.",
+    "Provider selector stride16, mailbox offsets1B0/1B4/1B8/1BC and record fields match saved CAN_Receive structure/algorithm.",
+    "FIFO0 selector0 and OR20 write match the saved FIFO0 release definitions."
+  ],
+  "record_to_ring": {
+    "record_at_IRQ_SP_plus": 12,
+    "record_bytes": 20,
+    "identifier_source": "lhu at SP+12: low16 bits of StdId field",
+    "length_source": "lbu at SP+22: DLC field",
+    "payload_source": "SP+23: Data field",
+    "tag": 0,
+    "ring_entry": 76744,
+    "ring_table_from_original_PC": 536920120,
+    "slot_count": 32,
+    "slot_stride": 12,
+    "payload_byte_offset": 3,
+    "tag_byte_offset": 11,
+    "indirect_copy_pointer_word": 262220,
+    "installed_pointer_identity_or_ABI_proved": false,
+    "DLC_le8_and_extended_ID_filter_policy_proved": false
+  },
+  "BLE_profile_candidate": {
+    "file": "wch-ch32v20x.h",
+    "guard_line": 125,
+    "guard": "CH32V20x_D8W",
+    "BB_definition_line": 128,
+    "BB_index": 63,
+    "BB_original_vector_target": 100158,
+    "LLE_definition_line": 129,
+    "LLE_index": 64,
+    "LLE_original_vector_target": 33944,
+    "inference": "Original BB/LLE vector use matches the saved D8W-only SDK branch; this is a software-profile candidate, not physical chip identification.",
+    "LLE_candidate_bytes": 134,
+    "LLE_candidate_instructions": 64,
+    "LLE_candidate_end": 34078,
+    "LLE_trailing_zero_data_bytes": 2,
+    "LLE_callback_load": "fresh word at then-live GP+384",
+    "LLE_indirect_call_PC": 34010,
+    "LLE_IRQ_context_or_callback_identity_proved": false
+  },
+  "next_LLE_candidate": {
+    "evidence": "analysis/can-rx0-irq-bind-2026-10-24/static-frontier.json",
+    "entry": 33944,
+    "end": 34078,
+    "bytes": 134,
+    "instructions": 64,
+    "proposed_regions": [
+      {
+        "start": 33944,
+        "end": 34004,
+        "bytes": 60,
+        "role": "128-byte frame and29 original physical register stores"
+      },
+      {
+        "start": 34004,
+        "end": 34014,
+        "bytes": 10,
+        "role": "GP+384 address, fresh callback word load and full-width JALR"
+      },
+      {
+        "start": 34014,
+        "end": 34078,
+        "bytes": 64,
+        "role": "29 then-live SP register loads, frame release and MRET"
+      }
+    ],
+    "GP_saved_by_wrapper": false,
+    "source_reconstructed": false,
+    "compiled": false
+  },
+  "not_proved": [
+    "Exact MCU/board population or silicon revision",
+    "Active physical CAN/BLE hardware or radio behavior",
+    "Installed resident copy callback and BLE callback identities/preservation contracts",
+    "Caller/filter restrictions for DLC and extended identifiers",
+    "Final original-PC placement, RAM ownership/capacity and complete IRQ/fault context",
+    "Full application/main/ROM closure, hardware boot and BLE OTA"
+  ],
+  "target_executed": false,
+  "SDK_executed": false,
+  "register_or_memory_state_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

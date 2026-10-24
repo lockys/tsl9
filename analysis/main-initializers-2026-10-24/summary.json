@@ -1,0 +1,126 @@
+{
+  "schema": "TSL9-original-main-initializers-summary-v1",
+  "passed": true,
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/startup/main_initializers.c",
+  "new_functions": 2,
+  "new_code_bytes": 522,
+  "new_instructions": 155,
+  "new_private_regions": 36,
+  "new_control_relocations": 23,
+  "new_data_bytes": 0,
+  "native_receipt": "experiments/tsl9-main-initializers/build/native-v1/measurement.json",
+  "source_proof": "experiments/tsl9-main-initializers/build/source-proof-v1.json",
+  "source_files": 114,
+  "native_code_units": 87,
+  "independent_data_units": 1,
+  "source_comparisons": 176,
+  "source_objects": 352,
+  "previous_113_C_H_files_preserved": true,
+  "prior172_results_and1033_artifact_records_preserved": true,
+  "component": "experiments/tsl9-main-initializers/build/component-v1",
+  "component_object": "UNRESOLVED-STARTUP-MAIN-INITIALIZERS.o",
+  "component_C_CPP_sha256": "123325d86f5701bf678b7b21934e69143a6f06a03a4d28f046a17f94d5b0ce60",
+  "code_bytes": 20746,
+  "data_bytes": 714,
+  "instructions": 7188,
+  "nonzero_code_FUNC": 1806,
+  "true_aliases": 71,
+  "RELA": 1337,
+  "genuine_undefined_providers": 76,
+  "resolved_original_providers": [
+    "tsl9_main_provider_12d92",
+    "tsl9_main_provider_131c2"
+  ],
+  "new_undefined": [
+    "tsl9_main_init_external_12e86",
+    "tsl9_main_init_external_12f18",
+    "tsl9_main_init_external_12f7a",
+    "tsl9_main_init_external_13084",
+    "tsl9_main_init_external_13108",
+    "tsl9_main_init_external_1316a",
+    "tsl9_main_init_external_18ab0"
+  ],
+  "layout": "experiments/tsl9-original-layout/build/main-initializers-v1",
+  "layout_C_CPP_ELF_sha256": "0cdedd8659ca4e8bd7f3445dcd54970556a92e65db8db65c53428e2cb575ab05",
+  "original_coordinate_bytes_equal": 21460,
+  "adjacent_only_spans": 94,
+  "PT_LOAD": 0,
+  "entry": 0,
+  "reference_only_ABS_constants": 76,
+  "ABS_FUNC_providers": 0,
+  "flow": "experiments/tsl9-original-layout/build/main-initializers-flow-v1",
+  "direct_transfers": 1183,
+  "measured_direct_targets": 1107,
+  "reference_only_direct_targets": 76,
+  "ordinary_next_positions": 6636,
+  "ordinary_gaps": 0,
+  "call_return_positions": 448,
+  "register_indirect_transfers": 373,
+  "MRET": 10,
+  "EBREAK": 1,
+  "EBREAK_resume_unproved": true,
+  "complete_CFG_proved": false,
+  "literal_only_undefined": 0,
+  "functions": [
+    {
+      "name": "tsl9_main_provider_12d92",
+      "start": 77202,
+      "end": 77396,
+      "bytes": 194,
+      "instructions": 62
+    },
+    {
+      "name": "tsl9_main_provider_131c2",
+      "start": 78274,
+      "end": 78602,
+      "bytes": 328,
+      "instructions": 93
+    }
+  ],
+  "storage_operand_map": "analysis/main-initializers-2026-10-24/storage-regions.json",
+  "confirmed_static_findings": [
+    {
+      "PC": 77202,
+      "fact": "Retains48B frame;two ROM40048 calls clear384B+228B at2000C038/2000C1B8,32B stack descriptor setup,three clock comparisons and post-first-RET divider branches. Descriptor plus40006400 passed to18AB0; physical peripheral semantics unproved."
+    },
+    {
+      "PC": 78274,
+      "fact": "Six ROM4004C operand tuples load112,256,256,256,256,133B. First record checks four bytes for32..126,others check final0x5A and call genuine missing default providers. No actual storage/RAM values observed."
+    }
+  ],
+  "unknowns": {
+    "loaded_bytes": 1269,
+    "RAM_operand_span": [
+      536920732,
+      536922004
+    ],
+    "uncovered_RAM_operand_gap": [
+      536921233,
+      536921236
+    ],
+    "source_operands_outside_nominal_APP": true,
+    "physical_aliases_proved": false,
+    "actual_storage_contents_proved": false,
+    "MCU_identity_proved": false,
+    "default_record_semantics_proved": false
+  },
+  "next_action": "Inspect complete18AB0 peripheral initializer and the six actual fallback providers12E86/12F18/12F7A/13084/13108/1316A. Review privacy before exporting any fixed authentication/default values. Continue original ROM/BOOT/APP mapping offline;no bypass or hardware/network operations.",
+  "candidate_new_functionality": {
+    "idea": "Offline startup and persistent-region inspector",
+    "state": "proposal-only",
+    "purpose": "Show original clear/load tuples,record-validation gates,uncovered holes and unknown physical mappings before producing any OTA image. Do not fill or overwrite unknown regions."
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit": false,
+  "push": false,
+  "historical_privacy_clean": false,
+  "goal_status": "active"
+}

@@ -1,0 +1,191 @@
+{
+  "inputs": {
+    "${LLVM_BIN}\\llvm-objcopy.exe": {
+      "bytes": 5830248,
+      "sha256": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\rtc-alarm-irq-20261024-v1\\record-program\\c\\curated\\unit.o": {
+      "bytes": 3820,
+      "sha256": "185ce91910bb6139463202eb16405a9ff5d13bb30f3a84dc9da98d9ce8d19980"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\rtc-alarm-irq-20261024-v1\\record-program\\cpp\\curated\\unit.o": {
+      "bytes": 3820,
+      "sha256": "185ce91910bb6139463202eb16405a9ff5d13bb30f3a84dc9da98d9ce8d19980"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\rtc-alarm-irq-20261024-v1\\spi-filter-helpers\\c\\curated\\unit.o": {
+      "bytes": 3212,
+      "sha256": "a9dea97800ab3ffdc7aef07c36e77ef3f295eea1cb3ccdd75eefbd1bdc573575"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\rtc-alarm-irq-20261024-v1\\spi-filter-helpers\\cpp\\curated\\unit.o": {
+      "bytes": 3212,
+      "sha256": "a9dea97800ab3ffdc7aef07c36e77ef3f295eea1cb3ccdd75eefbd1bdc573575"
+    },
+    "${PROJECT_ROOT}\\build\\curated-source\\rtc-alarm-irq-20261024-v1\\verification.json": {
+      "bytes": 1730523,
+      "sha256": "7d4e0277a213571d6d95ffed96cf0a355ddd225f82acc017be98fa568291246d"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-timer3-irq\\build-v1.py": {
+      "bytes": 8809,
+      "sha256": "39284ccadd0463241753fcfef0f404d6ae3cb6c33573e3029394df5d981e3702"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-timer3-irq\\providers-v1.json": {
+      "bytes": 2185,
+      "sha256": "fea90dc86d4304bdda09a80177ff7443260e90846745829a10278dadaf6ae5b7"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-timer3-irq\\select-providers-v1.py": {
+      "bytes": 5106,
+      "sha256": "47a1641c696a5a4ffba3e6704de2c61bbe05462e85315b888d112c649753b1f0"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-timer3-irq\\spec-v1.json": {
+      "bytes": 15003,
+      "sha256": "b8da0adb9c7c12baf4a92a2c05707e9e7b13e30748a28f45fd43a98550c87751"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\record_program.c": {
+      "bytes": 8954,
+      "sha256": "51af3e56a2132a60a56bd4290817129608d54b3843c846fb4f56313c1a47117b"
+    },
+    "${PROJECT_ROOT}\\src\\native\\receive\\spi_filter_helpers.c": {
+      "bytes": 4664,
+      "sha256": "0636bd841598403d7d76fd2e7068c71bc359cc668f3bec760081d4bddff35553"
+    }
+  },
+  "modes": {
+    "c": {
+      "artifacts": {
+        "record-program.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "record-program.o": {
+          "bytes": 328,
+          "sha256": "184b3317f4d4119d6deccbf2f222a575863de11f76182d05fa38d8c8177e691c"
+        },
+        "spi-filter-helpers.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "spi-filter-helpers.o": {
+          "bytes": 508,
+          "sha256": "d973b07f67f5e3a6a9209a27c6daeb81e0e7df637f2c7ee60598dbf0dcf9c411"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objcopy.exe",
+            "--strip-unneeded",
+            "--only-section=.text.tsl9_channel_external_81b0",
+            "--only-section=.text.tsl9_channel_clock_frame_81b6",
+            "--only-section=.text.tsl9_channel_clock_scale_81bc",
+            "${PROJECT_ROOT}\\build\\curated-source\\rtc-alarm-irq-20261024-v1\\spi-filter-helpers\\c\\curated\\unit.o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-timer3-irq\\build\\providers-v1\\c\\spi-filter-helpers.o"
+          ],
+          "exit": 0
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objcopy.exe",
+            "--strip-unneeded",
+            "--only-section=.text.tsl9_program_disarm_93ee",
+            "${PROJECT_ROOT}\\build\\curated-source\\rtc-alarm-irq-20261024-v1\\record-program\\c\\curated\\unit.o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-timer3-irq\\build\\providers-v1\\c\\record-program.o"
+          ],
+          "exit": 0
+        }
+      ],
+      "results": {
+        "record-program": {
+          "FUNC": 1,
+          "RELA": 0,
+          "UND": 0,
+          "all_original_bytes_equal": true,
+          "code_bytes": 34,
+          "object_sha256": "184b3317f4d4119d6deccbf2f222a575863de11f76182d05fa38d8c8177e691c",
+          "passed": true
+        },
+        "spi-filter-helpers": {
+          "FUNC": 3,
+          "RELA": 0,
+          "UND": 0,
+          "all_original_bytes_equal": true,
+          "code_bytes": 26,
+          "object_sha256": "d973b07f67f5e3a6a9209a27c6daeb81e0e7df637f2c7ee60598dbf0dcf9c411",
+          "passed": true
+        }
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "record-program.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "record-program.o": {
+          "bytes": 328,
+          "sha256": "184b3317f4d4119d6deccbf2f222a575863de11f76182d05fa38d8c8177e691c"
+        },
+        "spi-filter-helpers.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "spi-filter-helpers.o": {
+          "bytes": 508,
+          "sha256": "d973b07f67f5e3a6a9209a27c6daeb81e0e7df637f2c7ee60598dbf0dcf9c411"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objcopy.exe",
+            "--strip-unneeded",
+            "--only-section=.text.tsl9_channel_external_81b0",
+            "--only-section=.text.tsl9_channel_clock_frame_81b6",
+            "--only-section=.text.tsl9_channel_clock_scale_81bc",
+            "${PROJECT_ROOT}\\build\\curated-source\\rtc-alarm-irq-20261024-v1\\spi-filter-helpers\\cpp\\curated\\unit.o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-timer3-irq\\build\\providers-v1\\cpp\\spi-filter-helpers.o"
+          ],
+          "exit": 0
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objcopy.exe",
+            "--strip-unneeded",
+            "--only-section=.text.tsl9_program_disarm_93ee",
+            "${PROJECT_ROOT}\\build\\curated-source\\rtc-alarm-irq-20261024-v1\\record-program\\cpp\\curated\\unit.o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-timer3-irq\\build\\providers-v1\\cpp\\record-program.o"
+          ],
+          "exit": 0
+        }
+      ],
+      "results": {
+        "record-program": {
+          "FUNC": 1,
+          "RELA": 0,
+          "UND": 0,
+          "all_original_bytes_equal": true,
+          "code_bytes": 34,
+          "object_sha256": "184b3317f4d4119d6deccbf2f222a575863de11f76182d05fa38d8c8177e691c",
+          "passed": true
+        },
+        "spi-filter-helpers": {
+          "FUNC": 3,
+          "RELA": 0,
+          "UND": 0,
+          "all_original_bytes_equal": true,
+          "code_bytes": 26,
+          "object_sha256": "d973b07f67f5e3a6a9209a27c6daeb81e0e7df637f2c7ee60598dbf0dcf9c411",
+          "passed": true
+        }
+      }
+    }
+  },
+  "schema": "TSL9-TIM3-provider-selection-build-v1"
+}

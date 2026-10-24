@@ -1,0 +1,45 @@
+/* Real-code diagnostic link only; final original placement remains open. */
+SECTIONS {
+ .boot_code 0 : SUBALIGN(1) {
+  *(.boot_code)
+  *(.text.tsl9_timer3_entry_979e)
+  *(.text.tsl9_timer3_block_97b6)
+  *(.text.tsl9_timer3_block_97d6)
+  *(.text.tsl9_timer3_block_97de)
+  *(.text.tsl9_timer3_block_97ec)
+  *(.text.tsl9_timer3_block_97ee)
+  *(.text.tsl9_timer3_block_97f4)
+  *(.text.tsl9_timer3_block_97fa)
+  *(.text.tsl9_timer3_block_9806)
+  *(.text.tsl9_timer3_block_9842)
+  *(.text.tsl9_timer3_block_984c)
+  *(.text.tsl9_timer3_block_9864)
+  *(.text.tsl9_timer3_block_9868)
+  *(.text.tsl9_timer3_block_986c)
+  *(.text.tsl9_timer3_block_988c)
+  *(.text.tsl9_timer3_block_9892)
+  *(.text.tsl9_timer3_block_989a)
+  *(.text.tsl9_timer3_block_98c0)
+  *(.text.tsl9_timer3_block_98cc)
+  *(.text.tsl9_timer3_block_98f0)
+  *(.text.tsl9_timer3_block_98f2)
+  *(.text.tsl9_timer3_block_98fa)
+  *(.text.tsl9_timer3_block_9902)
+  *(.text.tsl9_timer3_block_990c)
+  *(.text.tsl9_timer3_block_9910)
+  *(.text.tsl9_timer3_block_992c)
+  *(.text.tsl9_timer3_block_992e)
+  *(.text.tsl9_timer3_block_9930)
+  *(.text.tsl9_timer3_block_993a)
+  *(.text.tsl9_timer3_block_993c)
+  *(.text.tsl9_timer3_block_9942)
+  *(.text.tsl9_timer3_block_994e)
+  *(.text.tsl9_channel_external_81b0)
+  *(.text.tsl9_channel_clock_frame_81b6)
+  *(.text.tsl9_channel_clock_scale_81bc)
+  *(.text.tsl9_program_disarm_93ee)
+  tsl9_vector_entry_979e = tsl9_timer3_entry_979e;
+ }
+ .initializer 0 : SUBALIGN(1) { *(.initializer) }
+ .vectors 0 : SUBALIGN(1) { *(.vectors) }
+}

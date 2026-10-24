@@ -1,0 +1,1423 @@
+{
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\author-v1.py": {
+      "bytes": 12333,
+      "sha256": "a9766c0729d46c57cb2c0f53e5c7509c2a3ea718a5161ba26978846d46a06ebe"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build-v1.py": {
+      "bytes": 12139,
+      "sha256": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\source-map-v1.json": {
+      "bytes": 21602,
+      "sha256": "31c5965cce82f511cf3687091a419b715a095945c7b1af24d41434e0fb33ddc0"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\spec-v1.json": {
+      "bytes": 23406,
+      "sha256": "1cea2a21e04904840270152d07b99d2b9e670250371b69809b51b96878a25489"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\src\\boot_original.v1.c": {
+      "bytes": 36810,
+      "sha256": "0b462f8a93b5bf60c4f3096dcc5315fce682c9e780b120f10a5ec0d6e4fa0c9a"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    }
+  },
+  "modes": {
+    "c": {
+      "artifacts": {
+        "IR.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native.d": {
+          "bytes": 255,
+          "sha256": "de30d808eea8d0dee98f646a42a756a08d8ddca9913b3b0e4fed382ef66a1be0"
+        },
+        "native.ll": {
+          "bytes": 79274,
+          "sha256": "259f30516bd4a429cc9f68383125475d1e50ebd2ded9049fc5a3dbf51f0edad0"
+        },
+        "native.o": {
+          "bytes": 16136,
+          "sha256": "1ce007df470d0034a52afe3b5a22cb03ce90095a55a0df55c308ad56f01e1dc2"
+        },
+        "read.log": {
+          "bytes": 43517,
+          "sha256": "05d64819564d820fd7eeecadd874a93f169c4eb5341875ac02f81a08918c09e6"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build\\trial-v1\\c\\native.d",
+            "-MT",
+            "native.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\src\\boot_original.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build\\trial-v1\\c\\native.o"
+          ],
+          "exit": 0,
+          "label": "compile",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-S",
+            "-emit-llvm",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\src\\boot_original.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build\\trial-v1\\c\\native.ll"
+          ],
+          "exit": 0,
+          "label": "IR",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build\\trial-v1\\c\\native.o"
+          ],
+          "exit": 0,
+          "label": "read",
+          "log_sha256": "05d64819564d820fd7eeecadd874a93f169c4eb5341875ac02f81a08918c09e6"
+        }
+      ],
+      "result": {
+        "FUNC": 99,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "PC_relative_RELA": 6,
+        "RELA": 82,
+        "UND": [
+          "tsl9_boot_initializer_1ab60",
+          "tsl9_boot_main_9008",
+          "tsl9_boot_resident_40000",
+          "tsl9_boot_vector_data_8038"
+        ],
+        "all_code_bytes_equal_after_data_only_original_VA_relocation": true,
+        "code_bytes": 572,
+        "direct_control_RELA": 76,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "hardware_accessed": false,
+        "indirect_calls_and_tails": [
+          {
+            "PC": 100164,
+            "bytes": "8297",
+            "identity": "unknown",
+            "kind": "call",
+            "register": "a5"
+          }
+        ],
+        "instructions": 212,
+        "native_object_sha256": "1ce007df470d0034a52afe3b5a22cb03ce90095a55a0df55c308ad56f01e1dc2",
+        "negative_cases_executed": 0,
+        "network": false,
+        "passed": true,
+        "provider_implementations_assumed": false,
+        "relocations": [
+          {
+            "PC": 32768,
+            "symbol": "tsl9_reset_original_186aa",
+            "target": 100010,
+            "type": 17
+          },
+          {
+            "PC": 99888,
+            "symbol": "tsl9_boot_18630",
+            "target": 99888,
+            "type": 45
+          },
+          {
+            "PC": 99890,
+            "symbol": "tsl9_boot_18632",
+            "target": 99890,
+            "type": 45
+          },
+          {
+            "PC": 99892,
+            "symbol": "tsl9_boot_18634",
+            "target": 99892,
+            "type": 45
+          },
+          {
+            "PC": 99894,
+            "symbol": "tsl9_boot_18636",
+            "target": 99894,
+            "type": 45
+          },
+          {
+            "PC": 99896,
+            "symbol": "tsl9_boot_18638",
+            "target": 99896,
+            "type": 45
+          },
+          {
+            "PC": 99898,
+            "symbol": "tsl9_boot_1863a",
+            "target": 99898,
+            "type": 45
+          },
+          {
+            "PC": 99900,
+            "symbol": "tsl9_boot_1863c",
+            "target": 99900,
+            "type": 45
+          },
+          {
+            "PC": 99902,
+            "symbol": "tsl9_boot_1863e",
+            "target": 99902,
+            "type": 45
+          },
+          {
+            "PC": 99904,
+            "symbol": "tsl9_boot_18640",
+            "target": 99904,
+            "type": 45
+          },
+          {
+            "PC": 99906,
+            "symbol": "tsl9_boot_18642",
+            "target": 99906,
+            "type": 45
+          },
+          {
+            "PC": 99908,
+            "symbol": "tsl9_boot_18644",
+            "target": 99908,
+            "type": 45
+          },
+          {
+            "PC": 99910,
+            "symbol": "tsl9_boot_18646",
+            "target": 99910,
+            "type": 45
+          },
+          {
+            "PC": 99912,
+            "symbol": "tsl9_boot_18648",
+            "target": 99912,
+            "type": 45
+          },
+          {
+            "PC": 99914,
+            "symbol": "tsl9_boot_1864a",
+            "target": 99914,
+            "type": 45
+          },
+          {
+            "PC": 99916,
+            "symbol": "tsl9_boot_1864c",
+            "target": 99916,
+            "type": 45
+          },
+          {
+            "PC": 99918,
+            "symbol": "tsl9_boot_1864e",
+            "target": 99918,
+            "type": 45
+          },
+          {
+            "PC": 99920,
+            "symbol": "tsl9_boot_18650",
+            "target": 99920,
+            "type": 45
+          },
+          {
+            "PC": 99922,
+            "symbol": "tsl9_boot_18652",
+            "target": 99922,
+            "type": 45
+          },
+          {
+            "PC": 99924,
+            "symbol": "tsl9_boot_18654",
+            "target": 99924,
+            "type": 45
+          },
+          {
+            "PC": 99926,
+            "symbol": "tsl9_boot_18656",
+            "target": 99926,
+            "type": 45
+          },
+          {
+            "PC": 99928,
+            "symbol": "tsl9_boot_18658",
+            "target": 99928,
+            "type": 45
+          },
+          {
+            "PC": 99930,
+            "symbol": "tsl9_boot_1865a",
+            "target": 99930,
+            "type": 45
+          },
+          {
+            "PC": 99932,
+            "symbol": "tsl9_boot_1865c",
+            "target": 99932,
+            "type": 45
+          },
+          {
+            "PC": 99934,
+            "symbol": "tsl9_boot_1865e",
+            "target": 99934,
+            "type": 45
+          },
+          {
+            "PC": 99936,
+            "symbol": "tsl9_boot_18660",
+            "target": 99936,
+            "type": 45
+          },
+          {
+            "PC": 99938,
+            "symbol": "tsl9_boot_18662",
+            "target": 99938,
+            "type": 45
+          },
+          {
+            "PC": 99940,
+            "symbol": "tsl9_boot_18664",
+            "target": 99940,
+            "type": 45
+          },
+          {
+            "PC": 99942,
+            "symbol": "tsl9_boot_18666",
+            "target": 99942,
+            "type": 45
+          },
+          {
+            "PC": 99944,
+            "symbol": "tsl9_boot_18668",
+            "target": 99944,
+            "type": 45
+          },
+          {
+            "PC": 99946,
+            "symbol": "tsl9_boot_1866a",
+            "target": 99946,
+            "type": 45
+          },
+          {
+            "PC": 99948,
+            "symbol": "tsl9_boot_1866c",
+            "target": 99948,
+            "type": 45
+          },
+          {
+            "PC": 99950,
+            "symbol": "tsl9_boot_1866e",
+            "target": 99950,
+            "type": 45
+          },
+          {
+            "PC": 99952,
+            "symbol": "tsl9_boot_18670",
+            "target": 99952,
+            "type": 45
+          },
+          {
+            "PC": 99954,
+            "symbol": "tsl9_boot_18672",
+            "target": 99954,
+            "type": 45
+          },
+          {
+            "PC": 99956,
+            "symbol": "tsl9_boot_18674",
+            "target": 99956,
+            "type": 45
+          },
+          {
+            "PC": 99958,
+            "symbol": "tsl9_boot_18676",
+            "target": 99958,
+            "type": 45
+          },
+          {
+            "PC": 99960,
+            "symbol": "tsl9_boot_18678",
+            "target": 99960,
+            "type": 45
+          },
+          {
+            "PC": 99962,
+            "symbol": "tsl9_boot_1867a",
+            "target": 99962,
+            "type": 45
+          },
+          {
+            "PC": 99964,
+            "symbol": "tsl9_boot_1867c",
+            "target": 99964,
+            "type": 45
+          },
+          {
+            "PC": 99966,
+            "symbol": "tsl9_boot_1867e",
+            "target": 99966,
+            "type": 45
+          },
+          {
+            "PC": 99968,
+            "symbol": "tsl9_boot_18680",
+            "target": 99968,
+            "type": 45
+          },
+          {
+            "PC": 99970,
+            "symbol": "tsl9_boot_18682",
+            "target": 99970,
+            "type": 45
+          },
+          {
+            "PC": 99972,
+            "symbol": "tsl9_boot_18684",
+            "target": 99972,
+            "type": 45
+          },
+          {
+            "PC": 99974,
+            "symbol": "tsl9_boot_18686",
+            "target": 99974,
+            "type": 45
+          },
+          {
+            "PC": 99976,
+            "symbol": "tsl9_boot_18688",
+            "target": 99976,
+            "type": 45
+          },
+          {
+            "PC": 99978,
+            "symbol": "tsl9_boot_1868a",
+            "target": 99978,
+            "type": 45
+          },
+          {
+            "PC": 99980,
+            "symbol": "tsl9_boot_1868c",
+            "target": 99980,
+            "type": 45
+          },
+          {
+            "PC": 99982,
+            "symbol": "tsl9_boot_1868e",
+            "target": 99982,
+            "type": 45
+          },
+          {
+            "PC": 99984,
+            "symbol": "tsl9_boot_18690",
+            "target": 99984,
+            "type": 45
+          },
+          {
+            "PC": 99986,
+            "symbol": "tsl9_boot_18692",
+            "target": 99986,
+            "type": 45
+          },
+          {
+            "PC": 99988,
+            "symbol": "tsl9_boot_18694",
+            "target": 99988,
+            "type": 45
+          },
+          {
+            "PC": 99990,
+            "symbol": "tsl9_boot_18696",
+            "target": 99990,
+            "type": 45
+          },
+          {
+            "PC": 99992,
+            "symbol": "tsl9_boot_18698",
+            "target": 99992,
+            "type": 45
+          },
+          {
+            "PC": 99994,
+            "symbol": "tsl9_boot_1869a",
+            "target": 99994,
+            "type": 45
+          },
+          {
+            "PC": 99996,
+            "symbol": "tsl9_boot_1869c",
+            "target": 99996,
+            "type": 45
+          },
+          {
+            "PC": 99998,
+            "symbol": "tsl9_boot_1869e",
+            "target": 99998,
+            "type": 45
+          },
+          {
+            "PC": 100000,
+            "symbol": "tsl9_boot_186a0",
+            "target": 100000,
+            "type": 45
+          },
+          {
+            "PC": 100002,
+            "symbol": "tsl9_boot_186a2",
+            "target": 100002,
+            "type": 45
+          },
+          {
+            "PC": 100004,
+            "symbol": "tsl9_boot_186a4",
+            "target": 100004,
+            "type": 45
+          },
+          {
+            "PC": 100006,
+            "symbol": "tsl9_boot_186a6",
+            "target": 100006,
+            "type": 45
+          },
+          {
+            "PC": 100008,
+            "symbol": "tsl9_boot_186a8",
+            "target": 100008,
+            "type": 45
+          },
+          {
+            "PC": 100026,
+            "symbol": "tsl9_boot_initializer_1ab60",
+            "target": 109408,
+            "type": 23
+          },
+          {
+            "PC": 100030,
+            "symbol": ".Levent_hi_186ba",
+            "target": 109408,
+            "type": 24
+          },
+          {
+            "PC": 100042,
+            "symbol": "tsl9_boot_186de",
+            "target": 100062,
+            "type": 16
+          },
+          {
+            "PC": 100058,
+            "symbol": "tsl9_boot_186ce",
+            "target": 100046,
+            "type": 16
+          },
+          {
+            "PC": 100074,
+            "symbol": "tsl9_boot_186f8",
+            "target": 100088,
+            "type": 16
+          },
+          {
+            "PC": 100084,
+            "symbol": "tsl9_boot_186ee",
+            "target": 100078,
+            "type": 16
+          },
+          {
+            "PC": 100112,
+            "symbol": "tsl9_boot_vector_data_8038",
+            "target": 32824,
+            "type": 23
+          },
+          {
+            "PC": 100116,
+            "symbol": ".Levent_hi_18710",
+            "target": 32824,
+            "type": 24
+          },
+          {
+            "PC": 100128,
+            "symbol": "tsl9_clock_original_1874a",
+            "target": 100170,
+            "type": 17
+          },
+          {
+            "PC": 100132,
+            "symbol": "tsl9_boot_main_9008",
+            "target": 36872,
+            "type": 23
+          },
+          {
+            "PC": 100136,
+            "symbol": ".Levent_hi_18724",
+            "target": 36872,
+            "type": 24
+          },
+          {
+            "PC": 100144,
+            "symbol": "tsl9_boot_resident_40000",
+            "target": 262144,
+            "type": 17
+          },
+          {
+            "PC": 100156,
+            "symbol": "tsl9_boot_1873c",
+            "target": 100156,
+            "type": 45
+          },
+          {
+            "PC": 100272,
+            "symbol": "tsl9_boot_187b8",
+            "target": 100280,
+            "type": 44
+          },
+          {
+            "PC": 100276,
+            "symbol": "tsl9_boot_187a2",
+            "target": 100258,
+            "type": 16
+          },
+          {
+            "PC": 100290,
+            "symbol": "tsl9_boot_18830",
+            "target": 100400,
+            "type": 16
+          },
+          {
+            "PC": 100302,
+            "symbol": "tsl9_boot_1882c",
+            "target": 100396,
+            "type": 16
+          },
+          {
+            "PC": 100364,
+            "symbol": "tsl9_boot_18806",
+            "target": 100358,
+            "type": 16
+          },
+          {
+            "PC": 100392,
+            "symbol": "tsl9_boot_18824",
+            "target": 100388,
+            "type": 16
+          },
+          {
+            "PC": 100402,
+            "symbol": "tsl9_boot_187ca",
+            "target": 100298,
+            "type": 45
+          }
+        ],
+        "target_executed": false
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "IR.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "native.d": {
+          "bytes": 255,
+          "sha256": "de30d808eea8d0dee98f646a42a756a08d8ddca9913b3b0e4fed382ef66a1be0"
+        },
+        "native.ll": {
+          "bytes": 80585,
+          "sha256": "511120edbe864953dc6002cd23122bef2c2a320111eac3710d1e4728bd546d06"
+        },
+        "native.o": {
+          "bytes": 16136,
+          "sha256": "1ce007df470d0034a52afe3b5a22cb03ce90095a55a0df55c308ad56f01e1dc2"
+        },
+        "read.log": {
+          "bytes": 43519,
+          "sha256": "a928072b688ff0e8a3f7b67f50984749ff620c04e76287fd8c5994b49e69cd38"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build\\trial-v1\\cpp\\native.d",
+            "-MT",
+            "native.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\src\\boot_original.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build\\trial-v1\\cpp\\native.o"
+          ],
+          "exit": 0,
+          "label": "compile",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-S",
+            "-emit-llvm",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\src\\boot_original.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build\\trial-v1\\cpp\\native.ll"
+          ],
+          "exit": 0,
+          "label": "IR",
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build\\trial-v1\\cpp\\native.o"
+          ],
+          "exit": 0,
+          "label": "read",
+          "log_sha256": "a928072b688ff0e8a3f7b67f50984749ff620c04e76287fd8c5994b49e69cd38"
+        }
+      ],
+      "result": {
+        "FUNC": 99,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "PC_relative_RELA": 6,
+        "RELA": 82,
+        "UND": [
+          "tsl9_boot_initializer_1ab60",
+          "tsl9_boot_main_9008",
+          "tsl9_boot_resident_40000",
+          "tsl9_boot_vector_data_8038"
+        ],
+        "all_code_bytes_equal_after_data_only_original_VA_relocation": true,
+        "code_bytes": 572,
+        "direct_control_RELA": 76,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "hardware_accessed": false,
+        "indirect_calls_and_tails": [
+          {
+            "PC": 100164,
+            "bytes": "8297",
+            "identity": "unknown",
+            "kind": "call",
+            "register": "a5"
+          }
+        ],
+        "instructions": 212,
+        "native_object_sha256": "1ce007df470d0034a52afe3b5a22cb03ce90095a55a0df55c308ad56f01e1dc2",
+        "negative_cases_executed": 0,
+        "network": false,
+        "passed": true,
+        "provider_implementations_assumed": false,
+        "relocations": [
+          {
+            "PC": 32768,
+            "symbol": "tsl9_reset_original_186aa",
+            "target": 100010,
+            "type": 17
+          },
+          {
+            "PC": 99888,
+            "symbol": "tsl9_boot_18630",
+            "target": 99888,
+            "type": 45
+          },
+          {
+            "PC": 99890,
+            "symbol": "tsl9_boot_18632",
+            "target": 99890,
+            "type": 45
+          },
+          {
+            "PC": 99892,
+            "symbol": "tsl9_boot_18634",
+            "target": 99892,
+            "type": 45
+          },
+          {
+            "PC": 99894,
+            "symbol": "tsl9_boot_18636",
+            "target": 99894,
+            "type": 45
+          },
+          {
+            "PC": 99896,
+            "symbol": "tsl9_boot_18638",
+            "target": 99896,
+            "type": 45
+          },
+          {
+            "PC": 99898,
+            "symbol": "tsl9_boot_1863a",
+            "target": 99898,
+            "type": 45
+          },
+          {
+            "PC": 99900,
+            "symbol": "tsl9_boot_1863c",
+            "target": 99900,
+            "type": 45
+          },
+          {
+            "PC": 99902,
+            "symbol": "tsl9_boot_1863e",
+            "target": 99902,
+            "type": 45
+          },
+          {
+            "PC": 99904,
+            "symbol": "tsl9_boot_18640",
+            "target": 99904,
+            "type": 45
+          },
+          {
+            "PC": 99906,
+            "symbol": "tsl9_boot_18642",
+            "target": 99906,
+            "type": 45
+          },
+          {
+            "PC": 99908,
+            "symbol": "tsl9_boot_18644",
+            "target": 99908,
+            "type": 45
+          },
+          {
+            "PC": 99910,
+            "symbol": "tsl9_boot_18646",
+            "target": 99910,
+            "type": 45
+          },
+          {
+            "PC": 99912,
+            "symbol": "tsl9_boot_18648",
+            "target": 99912,
+            "type": 45
+          },
+          {
+            "PC": 99914,
+            "symbol": "tsl9_boot_1864a",
+            "target": 99914,
+            "type": 45
+          },
+          {
+            "PC": 99916,
+            "symbol": "tsl9_boot_1864c",
+            "target": 99916,
+            "type": 45
+          },
+          {
+            "PC": 99918,
+            "symbol": "tsl9_boot_1864e",
+            "target": 99918,
+            "type": 45
+          },
+          {
+            "PC": 99920,
+            "symbol": "tsl9_boot_18650",
+            "target": 99920,
+            "type": 45
+          },
+          {
+            "PC": 99922,
+            "symbol": "tsl9_boot_18652",
+            "target": 99922,
+            "type": 45
+          },
+          {
+            "PC": 99924,
+            "symbol": "tsl9_boot_18654",
+            "target": 99924,
+            "type": 45
+          },
+          {
+            "PC": 99926,
+            "symbol": "tsl9_boot_18656",
+            "target": 99926,
+            "type": 45
+          },
+          {
+            "PC": 99928,
+            "symbol": "tsl9_boot_18658",
+            "target": 99928,
+            "type": 45
+          },
+          {
+            "PC": 99930,
+            "symbol": "tsl9_boot_1865a",
+            "target": 99930,
+            "type": 45
+          },
+          {
+            "PC": 99932,
+            "symbol": "tsl9_boot_1865c",
+            "target": 99932,
+            "type": 45
+          },
+          {
+            "PC": 99934,
+            "symbol": "tsl9_boot_1865e",
+            "target": 99934,
+            "type": 45
+          },
+          {
+            "PC": 99936,
+            "symbol": "tsl9_boot_18660",
+            "target": 99936,
+            "type": 45
+          },
+          {
+            "PC": 99938,
+            "symbol": "tsl9_boot_18662",
+            "target": 99938,
+            "type": 45
+          },
+          {
+            "PC": 99940,
+            "symbol": "tsl9_boot_18664",
+            "target": 99940,
+            "type": 45
+          },
+          {
+            "PC": 99942,
+            "symbol": "tsl9_boot_18666",
+            "target": 99942,
+            "type": 45
+          },
+          {
+            "PC": 99944,
+            "symbol": "tsl9_boot_18668",
+            "target": 99944,
+            "type": 45
+          },
+          {
+            "PC": 99946,
+            "symbol": "tsl9_boot_1866a",
+            "target": 99946,
+            "type": 45
+          },
+          {
+            "PC": 99948,
+            "symbol": "tsl9_boot_1866c",
+            "target": 99948,
+            "type": 45
+          },
+          {
+            "PC": 99950,
+            "symbol": "tsl9_boot_1866e",
+            "target": 99950,
+            "type": 45
+          },
+          {
+            "PC": 99952,
+            "symbol": "tsl9_boot_18670",
+            "target": 99952,
+            "type": 45
+          },
+          {
+            "PC": 99954,
+            "symbol": "tsl9_boot_18672",
+            "target": 99954,
+            "type": 45
+          },
+          {
+            "PC": 99956,
+            "symbol": "tsl9_boot_18674",
+            "target": 99956,
+            "type": 45
+          },
+          {
+            "PC": 99958,
+            "symbol": "tsl9_boot_18676",
+            "target": 99958,
+            "type": 45
+          },
+          {
+            "PC": 99960,
+            "symbol": "tsl9_boot_18678",
+            "target": 99960,
+            "type": 45
+          },
+          {
+            "PC": 99962,
+            "symbol": "tsl9_boot_1867a",
+            "target": 99962,
+            "type": 45
+          },
+          {
+            "PC": 99964,
+            "symbol": "tsl9_boot_1867c",
+            "target": 99964,
+            "type": 45
+          },
+          {
+            "PC": 99966,
+            "symbol": "tsl9_boot_1867e",
+            "target": 99966,
+            "type": 45
+          },
+          {
+            "PC": 99968,
+            "symbol": "tsl9_boot_18680",
+            "target": 99968,
+            "type": 45
+          },
+          {
+            "PC": 99970,
+            "symbol": "tsl9_boot_18682",
+            "target": 99970,
+            "type": 45
+          },
+          {
+            "PC": 99972,
+            "symbol": "tsl9_boot_18684",
+            "target": 99972,
+            "type": 45
+          },
+          {
+            "PC": 99974,
+            "symbol": "tsl9_boot_18686",
+            "target": 99974,
+            "type": 45
+          },
+          {
+            "PC": 99976,
+            "symbol": "tsl9_boot_18688",
+            "target": 99976,
+            "type": 45
+          },
+          {
+            "PC": 99978,
+            "symbol": "tsl9_boot_1868a",
+            "target": 99978,
+            "type": 45
+          },
+          {
+            "PC": 99980,
+            "symbol": "tsl9_boot_1868c",
+            "target": 99980,
+            "type": 45
+          },
+          {
+            "PC": 99982,
+            "symbol": "tsl9_boot_1868e",
+            "target": 99982,
+            "type": 45
+          },
+          {
+            "PC": 99984,
+            "symbol": "tsl9_boot_18690",
+            "target": 99984,
+            "type": 45
+          },
+          {
+            "PC": 99986,
+            "symbol": "tsl9_boot_18692",
+            "target": 99986,
+            "type": 45
+          },
+          {
+            "PC": 99988,
+            "symbol": "tsl9_boot_18694",
+            "target": 99988,
+            "type": 45
+          },
+          {
+            "PC": 99990,
+            "symbol": "tsl9_boot_18696",
+            "target": 99990,
+            "type": 45
+          },
+          {
+            "PC": 99992,
+            "symbol": "tsl9_boot_18698",
+            "target": 99992,
+            "type": 45
+          },
+          {
+            "PC": 99994,
+            "symbol": "tsl9_boot_1869a",
+            "target": 99994,
+            "type": 45
+          },
+          {
+            "PC": 99996,
+            "symbol": "tsl9_boot_1869c",
+            "target": 99996,
+            "type": 45
+          },
+          {
+            "PC": 99998,
+            "symbol": "tsl9_boot_1869e",
+            "target": 99998,
+            "type": 45
+          },
+          {
+            "PC": 100000,
+            "symbol": "tsl9_boot_186a0",
+            "target": 100000,
+            "type": 45
+          },
+          {
+            "PC": 100002,
+            "symbol": "tsl9_boot_186a2",
+            "target": 100002,
+            "type": 45
+          },
+          {
+            "PC": 100004,
+            "symbol": "tsl9_boot_186a4",
+            "target": 100004,
+            "type": 45
+          },
+          {
+            "PC": 100006,
+            "symbol": "tsl9_boot_186a6",
+            "target": 100006,
+            "type": 45
+          },
+          {
+            "PC": 100008,
+            "symbol": "tsl9_boot_186a8",
+            "target": 100008,
+            "type": 45
+          },
+          {
+            "PC": 100026,
+            "symbol": "tsl9_boot_initializer_1ab60",
+            "target": 109408,
+            "type": 23
+          },
+          {
+            "PC": 100030,
+            "symbol": ".Levent_hi_186ba",
+            "target": 109408,
+            "type": 24
+          },
+          {
+            "PC": 100042,
+            "symbol": "tsl9_boot_186de",
+            "target": 100062,
+            "type": 16
+          },
+          {
+            "PC": 100058,
+            "symbol": "tsl9_boot_186ce",
+            "target": 100046,
+            "type": 16
+          },
+          {
+            "PC": 100074,
+            "symbol": "tsl9_boot_186f8",
+            "target": 100088,
+            "type": 16
+          },
+          {
+            "PC": 100084,
+            "symbol": "tsl9_boot_186ee",
+            "target": 100078,
+            "type": 16
+          },
+          {
+            "PC": 100112,
+            "symbol": "tsl9_boot_vector_data_8038",
+            "target": 32824,
+            "type": 23
+          },
+          {
+            "PC": 100116,
+            "symbol": ".Levent_hi_18710",
+            "target": 32824,
+            "type": 24
+          },
+          {
+            "PC": 100128,
+            "symbol": "tsl9_clock_original_1874a",
+            "target": 100170,
+            "type": 17
+          },
+          {
+            "PC": 100132,
+            "symbol": "tsl9_boot_main_9008",
+            "target": 36872,
+            "type": 23
+          },
+          {
+            "PC": 100136,
+            "symbol": ".Levent_hi_18724",
+            "target": 36872,
+            "type": 24
+          },
+          {
+            "PC": 100144,
+            "symbol": "tsl9_boot_resident_40000",
+            "target": 262144,
+            "type": 17
+          },
+          {
+            "PC": 100156,
+            "symbol": "tsl9_boot_1873c",
+            "target": 100156,
+            "type": 45
+          },
+          {
+            "PC": 100272,
+            "symbol": "tsl9_boot_187b8",
+            "target": 100280,
+            "type": 44
+          },
+          {
+            "PC": 100276,
+            "symbol": "tsl9_boot_187a2",
+            "target": 100258,
+            "type": 16
+          },
+          {
+            "PC": 100290,
+            "symbol": "tsl9_boot_18830",
+            "target": 100400,
+            "type": 16
+          },
+          {
+            "PC": 100302,
+            "symbol": "tsl9_boot_1882c",
+            "target": 100396,
+            "type": 16
+          },
+          {
+            "PC": 100364,
+            "symbol": "tsl9_boot_18806",
+            "target": 100358,
+            "type": 16
+          },
+          {
+            "PC": 100392,
+            "symbol": "tsl9_boot_18824",
+            "target": 100388,
+            "type": 16
+          },
+          {
+            "PC": 100402,
+            "symbol": "tsl9_boot_187ca",
+            "target": 100298,
+            "type": 45
+          }
+        ],
+        "target_executed": false
+      }
+    }
+  },
+  "schema": "TSL9-original-startup-native-build-v1"
+}

@@ -1,0 +1,204 @@
+{
+  "schema": "TSL9-ECALL-context-restore-milestone-v1",
+  "date": "2026-10-24",
+  "status": "offline-native-partial-component-verified",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/irq/ecall_restore.c",
+  "source_sha256": "cd463f23997f2ec64c81d9d52af6277636552bfe73016ce0dc2b96362395e13d",
+  "original": {
+    "start": 33864,
+    "end": 33942,
+    "bytes": 78,
+    "instructions": 35,
+    "code_sha256": "73aa41f786d162c82daf96fd6db44a01d962d253f50b842aef2b49e5fef290b9",
+    "regions": [
+      {
+        "name": "tsl9_ecall_restore_entry_8448",
+        "start": 33864,
+        "end": 33878,
+        "bytes": 14,
+        "original_sha256": "59182c99ec877e2c47be65fe6b9cc65ed0e0cfbe6834eb605cbc2d91c803e732"
+      },
+      {
+        "name": "tsl9_ecall_restore_finish_8456",
+        "start": 33878,
+        "end": 33942,
+        "bytes": 64,
+        "original_sha256": "7da5dcd1cb5f8b9459c158fe922e58df038977cf1ac5ec69ed20be5546f3a9eb"
+      }
+    ],
+    "then_live_SP0_supplies_MEPC": true,
+    "CSR_operation": "CSRS 0x804 with mask32; not an unconditional write of32",
+    "register_loads": 29,
+    "frame_bytes_consumed": 128,
+    "frame_allocated": false,
+    "GP_explicitly_loaded": false,
+    "trailing_zero_data": {
+      "start": 33942,
+      "end": 33944,
+      "bytes_hex": "0000",
+      "compile_as_code": false
+    }
+  },
+  "component": {
+    "ABS_providers": 0,
+    "CSR_full_value_assumed": false,
+    "CSR_set_mask": 32,
+    "CSR_set_number": 2052,
+    "ELF_VMA_zero": true,
+    "GP_explicitly_loaded": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "MEPC_source": "then-live SP+0",
+    "RELA": 153,
+    "UND": [
+      "tsl9_boot_main_9008",
+      "tsl9_boot_resident_40000",
+      "tsl9_vector_entry_19bd4",
+      "tsl9_vector_entry_979e"
+    ],
+    "alias_owns_true14B_entry_in_full78B_restore": true,
+    "all78_new_code_bytes_equal_original": true,
+    "all_global_local_relocation_targets_owned": true,
+    "code_bytes": 1168,
+    "component_sha256": "f7cba095af1566d374488ffc8b65af333807e46213cecb9fdbd82f8ad3e8941b",
+    "executable": false,
+    "existing_frame_bytes_consumed": 128,
+    "explicit_register_loads": 29,
+    "final_original_address_placement_proved": false,
+    "firmware_BIN_generated": false,
+    "firmware_ready": false,
+    "frame_allocated_by_entry": false,
+    "hardware_accessed": false,
+    "initializer_bytes": 128,
+    "installed_ROM_or_physical_MCU_proved": false,
+    "mode": "both_languages",
+    "negative_cases_executed": 0,
+    "network": false,
+    "new_code_bytes": 78,
+    "new_native_regions": 2,
+    "new_original_instructions": 35,
+    "newly_bound_vectors": [
+      5,
+      8
+    ],
+    "no_executable_stub_added": true,
+    "nonzero_FUNC_regions": 121,
+    "original_code_instructions": 434,
+    "original_vector_target": 33864,
+    "original_vector_word_PCs": [
+      32844,
+      32856
+    ],
+    "parent1090B_code_and456B_data_unchanged": true,
+    "passed": true,
+    "remaining_unique_vector_entries": 2,
+    "target_executed": false,
+    "then_live_SP_and_MRET_retained": true,
+    "total_data_bytes": 456,
+    "trailing2zero_bytes_compiled_as_code": false,
+    "trap_ABI_or_special_CSR_semantics_proved": false,
+    "vector_carrier_bytes": 328,
+    "vector_slots_bound_to_real_code": 60,
+    "vector_slots_still_external": 2,
+    "zero_size_FUNC_aliases": 4
+  },
+  "source_proof": {
+    "all_other_recorded_parent_inputs_unchanged": true,
+    "exact_one_source_unit_manifest_extension": true,
+    "function_source_comparisons": 110,
+    "function_source_objects": 220,
+    "historical_negative_matrices_executed": false,
+    "independent_data_comparisons": 2,
+    "independent_data_objects": 4,
+    "independent_data_units": 1,
+    "native_code_units": 55,
+    "negative_cases_executed": 0,
+    "old_parent_whole_manifest_replay_claimed": false,
+    "passed": true,
+    "prior108_results_and649_artifact_records_unchanged": true,
+    "retained_positive_ancestor_code_and_data_audits_passed": true,
+    "source_C_H_files": 82,
+    "standalone_and_curated_complete78B_equal": true,
+    "target_executed": false,
+    "total_current_source_comparisons": 112,
+    "total_current_source_objects": 224
+  },
+  "curation": {
+    "manifest": "src/source-manifest.json",
+    "manifest_sha256": "9660c145ff144816d44e3772ad854349cae85acd91263c1a71dc4ec8f90a730e",
+    "raw_receipt": "build/curated-source/ecall-restore-20261024-v1/verification.json",
+    "raw_receipt_sha256": "54b5f5248c7e9801a9d184b46b62931e17c76375df83c640ae17a2c0dc7d4c0d",
+    "inputs": 166,
+    "artifacts": 661
+  },
+  "evidence": {
+    "normal_C11_CPP17_replays_passed": true,
+    "frame_correspondence": "frame-correspondence.json",
+    "remaining_vector_prefixes": "remaining-vector-frontier.json",
+    "public_receipts": "publication-provenance.json",
+    "raw_receipts_preserved_local": true
+  },
+  "remaining": {
+    "direct_symbols": [
+      "tsl9_boot_main_9008",
+      "tsl9_boot_resident_40000",
+      "tsl9_vector_entry_19bd4",
+      "tsl9_vector_entry_979e"
+    ],
+    "unresolved_dynamic_boundaries": [
+      "ring callback pointer word4004C identity and ABI",
+      "LLE then-live GP+384 callback;initializer199E2 candidate does not establish its runtime value",
+      "specialCSR0x804 and trap/frame creator contract"
+    ],
+    "full_firmware_main_and_resident_closure": false,
+    "physical_MCU_board_and_ROM": false,
+    "final_original_PC_and_memory_ownership": false,
+    "BLE_OTA_boot_and_reboot": false
+  },
+  "feature_opportunity": {
+    "idea": "Read-only context/frame diagnostic report",
+    "implemented": "Offline frame-correspondence evidence only",
+    "possible_future_value": "Explain trap origin and saved-context layout before investigating OTA/reboot failures",
+    "prerequisites": [
+      "Prove trap/frame creator and CSR semantics",
+      "Prove RAM ownership and safe readout path"
+    ],
+    "hardware_feature_implemented": false
+  },
+  "next_action": {
+    "primary": "RTC-associated vector57 entry19BD4; verify bounded28B straight-line MRET candidate and three real callees",
+    "secondary": "Timer-associated vector45 entry979E; current128B prefix has branches to9892,98CC,993A, so first MRET is not a whole-function bound",
+    "evidence": "remaining-vector-frontier.json"
+  },
+  "pins": {
+    "src/native/irq/ecall_restore.c": "cd463f23997f2ec64c81d9d52af6277636552bfe73016ce0dc2b96362395e13d",
+    "src/source-manifest.json": "9660c145ff144816d44e3772ad854349cae85acd91263c1a71dc4ec8f90a730e",
+    "experiments/tsl9-ecall-restore/build-v1.py": "a54edd2b1db7192f8eb88c0945075b8701f9093ce460f287bd1654c12eb5b109",
+    "experiments/tsl9-ecall-restore/integrate-v1.py": "ed7034e8513ec48f59e48fda92633b6d49a21bc2869fe35f22910a9c9172fcdf",
+    "experiments/tsl9-ecall-restore/parent-manifest-v1.py": "f15e7938fcf0deea744ea0d43deaec8c2e87e12c75d527225a446c7ba97e6e0d",
+    "experiments/tsl9-ecall-restore/integration-v1.json": "d6a092c22540aafd17d42e9601eafd34967aa26c1339ed7d78f2e0e7ae613dae",
+    "experiments/tsl9-ecall-restore/joined-v1.ld": "6b041b41157ded4ac1e147ab89d81b57984d208e1fa67f605e72b92606da1648",
+    "experiments/tsl9-ecall-restore/spec-v1.json": "616be15d82083f569e40726b6e52db42c14c22120df06d8999e32260608ef56e",
+    "scripts/check-ecall-restore-publication.py": "33fa5807b8290fd89400d019abece391c52df20dd1f417744191b78c4ee9a406",
+    "analysis/ecall-restore-2026-10-24/frame-correspondence.json": "5789deaf2260680e8d24a17b593453daf464fc1a5bf5863b2b5b34f6dc4d5189",
+    "analysis/ecall-restore-2026-10-24/remaining-vector-frontier.json": "a1c3d70af0636ac64b5e6902d08f61931ddfa28adf7636763e7700839f948189",
+    "build/curated-source/ecall-restore-20261024-v1/verification.json": "54b5f5248c7e9801a9d184b46b62931e17c76375df83c640ae17a2c0dc7d4c0d"
+  },
+  "execution": {
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false,
+    "network": false,
+    "new_firmware_BIN": false,
+    "flashable_claim": false
+  },
+  "publication": {
+    "Git_history_contains_personal_information": true,
+    "commit_or_push": false,
+    "history_rewritten": false
+  },
+  "goal_complete": false
+}

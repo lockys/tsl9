@@ -1,0 +1,298 @@
+{
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\build-v1.py": {
+      "bytes": 7636,
+      "sha256": "a54edd2b1db7192f8eb88c0945075b8701f9093ce460f287bd1654c12eb5b109"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\spec-v1.json": {
+      "bytes": 4051,
+      "sha256": "616be15d82083f569e40726b6e52db42c14c22120df06d8999e32260608ef56e"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\src\\ecall_restore.v1.c": {
+      "bytes": 1827,
+      "sha256": "cd463f23997f2ec64c81d9d52af6277636552bfe73016ce0dc2b96362395e13d"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build-v1.py": {
+      "bytes": 12139,
+      "sha256": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    }
+  },
+  "modes": {
+    "c": {
+      "artifacts": {
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "read.log": {
+          "bytes": 2890,
+          "sha256": "a7c5509bff964b159fd17688d7709007d680ab6493ee9b8ead52f9cf2a113e1b"
+        },
+        "unit.d": {
+          "bytes": 250,
+          "sha256": "b905ec8642b4a45bc31edf111454089286273c3670d6169135bc5653a70b8b6c"
+        },
+        "unit.o": {
+          "bytes": 1068,
+          "sha256": "ea2466f000202fd62eafd35bfd49034f47b4ce4f94843754c02411c9d4abf90c"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\build\\trial-v1\\c\\unit.d",
+            "-MT",
+            "unit.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\src\\ecall_restore.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\build\\trial-v1\\c\\unit.o"
+          ],
+          "exit": 0,
+          "label": "compile"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\build\\trial-v1\\c\\unit.o"
+          ],
+          "exit": 0,
+          "label": "read"
+        }
+      ],
+      "dependencies": {
+        "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\src\\ecall_restore.v1.c": "cd463f23997f2ec64c81d9d52af6277636552bfe73016ce0dc2b96362395e13d"
+      },
+      "result": {
+        "CSR_full_value_assumed": false,
+        "CSR_set_mask": 32,
+        "CSR_set_number": 2052,
+        "FUNC": 2,
+        "GP_explicitly_loaded": false,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "MEPC_source": "then-live SP+0",
+        "RELA": 0,
+        "UND": 0,
+        "code_bytes": 78,
+        "complete_original_bytes_equal": true,
+        "existing_frame_bytes_consumed": 128,
+        "explicit_register_loads": 29,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "frame_allocated_by_entry": false,
+        "hardware_accessed": false,
+        "instructions": 35,
+        "native_object_sha256": "ea2466f000202fd62eafd35bfd49034f47b4ce4f94843754c02411c9d4abf90c",
+        "negative_cases_executed": 0,
+        "network": false,
+        "passed": true,
+        "target_executed": false,
+        "then_live_SP_and_MRET_retained": true,
+        "trailing_zero_data_compiled_as_code": false,
+        "trap_context_or_special_CSR_semantics_proved": false
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "read.log": {
+          "bytes": 2892,
+          "sha256": "13081414f6549c907186d3eaf6aba948c8020b414d83ad1d790c7f3e219d231e"
+        },
+        "unit.d": {
+          "bytes": 250,
+          "sha256": "b905ec8642b4a45bc31edf111454089286273c3670d6169135bc5653a70b8b6c"
+        },
+        "unit.o": {
+          "bytes": 1068,
+          "sha256": "ea2466f000202fd62eafd35bfd49034f47b4ce4f94843754c02411c9d4abf90c"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\build\\trial-v1\\cpp\\unit.d",
+            "-MT",
+            "unit.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\src\\ecall_restore.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\build\\trial-v1\\cpp\\unit.o"
+          ],
+          "exit": 0,
+          "label": "compile"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\build\\trial-v1\\cpp\\unit.o"
+          ],
+          "exit": 0,
+          "label": "read"
+        }
+      ],
+      "dependencies": {
+        "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "${PROJECT_ROOT}\\experiments\\tsl9-ecall-restore\\src\\ecall_restore.v1.c": "cd463f23997f2ec64c81d9d52af6277636552bfe73016ce0dc2b96362395e13d"
+      },
+      "result": {
+        "CSR_full_value_assumed": false,
+        "CSR_set_mask": 32,
+        "CSR_set_number": 2052,
+        "FUNC": 2,
+        "GP_explicitly_loaded": false,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "MEPC_source": "then-live SP+0",
+        "RELA": 0,
+        "UND": 0,
+        "code_bytes": 78,
+        "complete_original_bytes_equal": true,
+        "existing_frame_bytes_consumed": 128,
+        "explicit_register_loads": 29,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "frame_allocated_by_entry": false,
+        "hardware_accessed": false,
+        "instructions": 35,
+        "native_object_sha256": "ea2466f000202fd62eafd35bfd49034f47b4ce4f94843754c02411c9d4abf90c",
+        "negative_cases_executed": 0,
+        "network": false,
+        "passed": true,
+        "target_executed": false,
+        "then_live_SP_and_MRET_retained": true,
+        "trailing_zero_data_compiled_as_code": false,
+        "trap_context_or_special_CSR_semantics_proved": false
+      }
+    }
+  },
+  "schema": "TSL9-original-ECALL-native-build-v1"
+}

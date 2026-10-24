@@ -1,0 +1,163 @@
+{
+  "schema": "TSL9-TIM3-IRQ-native-milestone-v1",
+  "date": "2026-10-24",
+  "source": "src/native/irq/timer3_irq.c",
+  "source_sha256": "676132b03e498a161a25ccad9a7c546b17b4e2d561ac22da386a1423e6fa80d7",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "timer": {
+    "start": 38814,
+    "end": 39256,
+    "bytes": 442,
+    "instructions": 138,
+    "regions": 32,
+    "noncontrol_bytes_equal": 376,
+    "typed_direct_edges": 24,
+    "complete_original_VA_encoded_bytes_equal": true,
+    "raw_unrelocated_carrier_equals_original_firmware": false,
+    "ordinary_C_function_ABI_proved": false,
+    "signed_DIV_retained": true,
+    "original_16B_frame_and_S0_S1_S2_retained": true
+  },
+  "component": {
+    "ABS_providers": 0,
+    "ELF_VMA_zero": true,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "RELA": 181,
+    "UND": [
+      "tsl9_boot_main_9008",
+      "tsl9_boot_resident_40000"
+    ],
+    "alias_owns_true24B_entry_in_full442B_timer": true,
+    "all60_provider_bytes_equal_original": true,
+    "all_global_local_relocation_targets_owned": true,
+    "code_bytes": 1748,
+    "component_sha256": "d820166f8a5ba90ce719a50038df3c216703cae0973424dd57c7435038fbe8af",
+    "dynamic_provider_identities_and_ABI_proved": false,
+    "executable": false,
+    "final_original_address_placement_proved": false,
+    "firmware_BIN_generated": false,
+    "firmware_ready": false,
+    "hardware_accessed": false,
+    "initializer_bytes": 128,
+    "mode": "both_languages",
+    "negative_cases_executed": 0,
+    "network": false,
+    "new_timer_bytes": 442,
+    "new_timer_instructions": 138,
+    "new_timer_regions": 32,
+    "newly_bound_vectors": [
+      45
+    ],
+    "no_executable_stub_added": true,
+    "nonzero_FUNC_regions": 162,
+    "original_code_instructions": 618,
+    "original_vector_target": 38814,
+    "original_vector_word_PC": 33004,
+    "parent1246B_code_and456B_data_unchanged": true,
+    "passed": true,
+    "physical_MCU_ROM_IRQ_proved": false,
+    "remaining_unique_vector_entries": 0,
+    "reused_provider_bytes": 60,
+    "reused_provider_functions": 4,
+    "reused_provider_instructions": 23,
+    "target_executed": false,
+    "timer442B_original_VA_encoded_equal": true,
+    "total_data_bytes": 456,
+    "vector_carrier_bytes": 328,
+    "vector_slots_bound_to_real_code": 62,
+    "vector_slots_still_external": 0,
+    "zero_size_FUNC_aliases": 6
+  },
+  "source_proof": {
+    "all_other_recorded_parent_inputs_unchanged": true,
+    "exact_one_source_unit_manifest_extension": true,
+    "function_source_comparisons": 114,
+    "function_source_objects": 228,
+    "genuine_selected_provider_bytes": 60,
+    "genuine_selected_provider_functions": 4,
+    "historical_negative_matrices_executed": false,
+    "independent_data_comparisons": 2,
+    "independent_data_objects": 4,
+    "independent_data_units": 1,
+    "native_code_units": 57,
+    "negative_cases_executed": 0,
+    "old_parent_whole_manifest_replay_claimed": false,
+    "passed": true,
+    "prior112_results_and673_artifact_records_unchanged": true,
+    "retained_positive_ancestor_code_and_data_audits_passed": true,
+    "source_C_H_files": 84,
+    "standalone_and_curated442B_original_VA_encoded_equal": true,
+    "target_executed": false,
+    "total_current_source_comparisons": 116,
+    "total_current_source_objects": 232
+  },
+  "curation": {
+    "receipt": "build/curated-source/timer3-irq-20261024-v1/verification.json",
+    "receipt_sha256": "6d242b6039eee866b5ad5b7f70d7a4fd9dfa5a67ae4a0976cf081a6cbe2b053f",
+    "manifest_sha256": "75becc3cb134e6eba6b36bf9a1d5ad6334e97ca2397ab69a311468f1efc48d03",
+    "inputs": 170,
+    "results": 114,
+    "artifacts": 685
+  },
+  "selected_providers": {
+    "functions": 4,
+    "bytes": 60,
+    "origins": [
+      "src/native/receive/spi_filter_helpers.c",
+      "src/native/receive/record_program.c"
+    ],
+    "fake_provider_added": false
+  },
+  "evidence": {
+    "publication": "publication-provenance.json",
+    "pointer_boundaries": "pointer-boundaries.json",
+    "main_prefix": "next-main-frontier.json",
+    "main_candidate": "next-main-candidate.json"
+  },
+  "confirmed": [
+    "Both native languages bind vector45 to real24B entry within full442B timer source,plus60B whole existing providers.",
+    "All parent1246B code and456B data remain unchanged.",
+    "All62 nonzero words in the selected328B vector carrier bind real code;this does not prove physical IRQ count or IRQ ABI.",
+    "The component retains two direct undefined entries:main9008 andresident40000."
+  ],
+  "inferences": [
+    "Saved WCH register layout matches TIM3 autoreload andchannel3 compare accesses.",
+    "Stride6 table halfwords andphase/index paths suggest a timed waveform/sequence. Physical output load remains unknown."
+  ],
+  "not_proved": [
+    "Runtime identities and preservation contracts for word40068,then-liveS2+12 andclock word4007C",
+    "Other existing dynamic callback andresident boundaries",
+    "Physical MCU/board,ROM,memory ownership andfinal original-PC placement",
+    "Full application/main/initialization closure,hardware boot,BLE OTA and reboot behavior"
+  ],
+  "feature_opportunity": {
+    "candidate": "Offline six-byte sequence/timing preview;later optional custom notification patterns",
+    "evidence": "Stride6 halfword fields+0/+2/+4,original1,000,000 signedDIV,phase/index andcompare/autoreload operations",
+    "limitations": "Live table contents,time units,physical load/pins andcaller bounds are unknown. No buzzer/light attribution or hardware feature implementation.",
+    "implemented": false
+  },
+  "next_target": {
+    "start": 36872,
+    "end": 36890,
+    "bytes": 18,
+    "instructions": 8,
+    "direct_targets": [
+      37456,
+      33152
+    ],
+    "source_candidate_compiled": false
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "new_firmware_BIN": false,
+  "flashable_claim": false,
+  "Git_history_personal_information_unresolved": true,
+  "commit_or_push": false,
+  "history_rewritten": false,
+  "goal_complete": false
+}

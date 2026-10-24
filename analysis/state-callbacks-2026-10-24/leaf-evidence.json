@@ -1,0 +1,3651 @@
+{
+  "schema": "TSL9-state-callback-read-helper-evidence-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "tool": "${USERPROFILE}/Tools/radare2/bin/r2.exe",
+  "tool_sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+  "initial_bounded_scan": {
+    "schema": "TSL9-state-event-getter-bounded-leaf-evidence-v1",
+    "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "tool": "${USERPROFILE}/Tools/radare2/bin/r2.exe",
+    "tool_sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+    "requested_bytes_per_root": 64,
+    "roots": [
+      {
+        "caller_symbol": "tsl9_events_external_81f8",
+        "start": 33272,
+        "end": 33282,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 33272,
+            "size": 4,
+            "bytes": "17450020",
+            "opcode": "auipc a0, 0x20004",
+            "type": "lea"
+          },
+          {
+            "addr": 33276,
+            "size": 4,
+            "bytes": "034525cf",
+            "opcode": "lbu a0, -782(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 33280,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "cd57432127c8b5dbfdbbb47a78625f77971648f26c433129003559b036a15e7c",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_a976",
+        "start": 43382,
+        "end": 43418,
+        "bytes": 36,
+        "operations": [
+          {
+            "addr": 43382,
+            "size": 4,
+            "bytes": "17150020",
+            "opcode": "auipc a0, 0x20001",
+            "type": "lea"
+          },
+          {
+            "addr": 43386,
+            "size": 4,
+            "bytes": "03453556",
+            "opcode": "lbu a0, 1379(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 43390,
+            "size": 4,
+            "bytes": "17170020",
+            "opcode": "auipc a4, 0x20001",
+            "type": "lea"
+          },
+          {
+            "addr": 43394,
+            "size": 4,
+            "bytes": "0347a755",
+            "opcode": "lbu a4, 1370(a4)",
+            "type": "load"
+          },
+          {
+            "addr": 43398,
+            "size": 2,
+            "bytes": "7d15",
+            "opcode": "addi a0, a0, -1",
+            "type": "add"
+          },
+          {
+            "addr": 43400,
+            "size": 4,
+            "bytes": "93171700",
+            "opcode": "slli a5, a4, 0x1",
+            "type": "shl"
+          },
+          {
+            "addr": 43404,
+            "size": 4,
+            "bytes": "13352500",
+            "opcode": "sltiu a0, a0, 2",
+            "type": "unk"
+          },
+          {
+            "addr": 43408,
+            "size": 2,
+            "bytes": "5d8d",
+            "opcode": "or a0, a0, a5",
+            "type": "or"
+          },
+          {
+            "addr": 43410,
+            "size": 2,
+            "bytes": "6205",
+            "opcode": "slli a0, a0, 0x18",
+            "type": "shl"
+          },
+          {
+            "addr": 43412,
+            "size": 2,
+            "bytes": "6185",
+            "opcode": "srai a0, a0, 0x18",
+            "type": "sar"
+          },
+          {
+            "addr": 43414,
+            "size": 2,
+            "bytes": "9147",
+            "opcode": "li a5, 4",
+            "type": "mov"
+          },
+          {
+            "addr": 43416,
+            "size": 2,
+            "bytes": "01eb",
+            "opcode": "bnez a4, 0xa9a8",
+            "type": "cjmp",
+            "jump": 43432
+          }
+        ],
+        "accepted_straight_line_leaf": false,
+        "rejection_reason": "Not a proven straight-line read/arithmetic leaf",
+        "producer_stdout_sha256": "885873137f336e65943f1f4f910d81f467c9624d8574a2354958e2172ccddca6",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_a9bc",
+        "start": 43452,
+        "end": 43480,
+        "bytes": 28,
+        "operations": [
+          {
+            "addr": 43452,
+            "size": 4,
+            "bytes": "17150020",
+            "opcode": "auipc a0, 0x20001",
+            "type": "lea"
+          },
+          {
+            "addr": 43456,
+            "size": 4,
+            "bytes": "0345a551",
+            "opcode": "lbu a0, 1306(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 43460,
+            "size": 2,
+            "bytes": "7915",
+            "opcode": "addi a0, a0, -2",
+            "type": "add"
+          },
+          {
+            "addr": 43462,
+            "size": 4,
+            "bytes": "17170020",
+            "opcode": "auipc a4, 0x20001",
+            "type": "lea"
+          },
+          {
+            "addr": 43466,
+            "size": 4,
+            "bytes": "03471751",
+            "opcode": "lbu a4, 1297(a4)",
+            "type": "load"
+          },
+          {
+            "addr": 43470,
+            "size": 2,
+            "bytes": "8947",
+            "opcode": "li a5, 2",
+            "type": "mov"
+          },
+          {
+            "addr": 43472,
+            "size": 4,
+            "bytes": "13351500",
+            "opcode": "seqz a0, a0",
+            "type": "unk"
+          },
+          {
+            "addr": 43476,
+            "size": 4,
+            "bytes": "6314f700",
+            "opcode": "bne a4, a5, 0xa9dc",
+            "type": "cjmp",
+            "jump": 43484
+          }
+        ],
+        "accepted_straight_line_leaf": false,
+        "rejection_reason": "Not a proven straight-line read/arithmetic leaf",
+        "producer_stdout_sha256": "76b65d4053f613826219349a74f1f27765c7552c93a3b537d6bf4fe60f5e12bc",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_ab68",
+        "start": 43880,
+        "end": 43890,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 43880,
+            "size": 4,
+            "bytes": "17150020",
+            "opcode": "auipc a0, 0x20001",
+            "type": "lea"
+          },
+          {
+            "addr": 43884,
+            "size": 4,
+            "bytes": "03450538",
+            "opcode": "lbu a0, 896(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 43888,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "89809a590bb3f4fb5db169133e8288165636e8766e002b31b11aa36dd6a08971",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_ab72",
+        "start": 43890,
+        "end": 43900,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 43890,
+            "size": 4,
+            "bytes": "17150020",
+            "opcode": "auipc a0, 0x20001",
+            "type": "lea"
+          },
+          {
+            "addr": 43894,
+            "size": 4,
+            "bytes": "03455537",
+            "opcode": "lbu a0, 885(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 43898,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "3494e64d9097d7777d17d7b3f1f106b41dfa7b4aec034e9377833c520bc72a1c",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_b082",
+        "start": 45186,
+        "end": 45190,
+        "bytes": 4,
+        "operations": [
+          {
+            "addr": 45186,
+            "size": 2,
+            "bytes": "4111",
+            "opcode": "addi sp, sp, -16",
+            "type": "add"
+          },
+          {
+            "addr": 45188,
+            "size": 2,
+            "bytes": "06c6",
+            "opcode": "sw ra, 12(sp)",
+            "type": "store"
+          }
+        ],
+        "accepted_straight_line_leaf": false,
+        "rejection_reason": "Not a proven straight-line read/arithmetic leaf",
+        "producer_stdout_sha256": "8fb0b86b91bfa30d9a7ff98fc3e196a19f32cf1393f24031fc02c8ebde09985d",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_b3da",
+        "start": 46042,
+        "end": 46052,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 46042,
+            "size": 4,
+            "bytes": "17150020",
+            "opcode": "auipc a0, 0x20001",
+            "type": "lea"
+          },
+          {
+            "addr": 46046,
+            "size": 4,
+            "bytes": "0355c5b1",
+            "opcode": "lhu a0, -1252(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 46050,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "7b3e2644680582c53fae12bf36b9b0f7377cef85bae706e73f031e3965028c44",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_b3e4",
+        "start": 46052,
+        "end": 46062,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 46052,
+            "size": 4,
+            "bytes": "17150020",
+            "opcode": "auipc a0, 0x20001",
+            "type": "lea"
+          },
+          {
+            "addr": 46056,
+            "size": 4,
+            "bytes": "034505b1",
+            "opcode": "lbu a0, -1264(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 46060,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "db824d9da303e0c71c6f560a68864aadca7448c251bf8843451fbe233b55835a",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_b3ee",
+        "start": 46062,
+        "end": 46072,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 46062,
+            "size": 4,
+            "bytes": "17150020",
+            "opcode": "auipc a0, 0x20001",
+            "type": "lea"
+          },
+          {
+            "addr": 46066,
+            "size": 4,
+            "bytes": "0355c5b0",
+            "opcode": "lhu a0, -1268(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 46070,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "2eb2bd77ce702fbc49f93ad0fa21da0b7ef640120236e727903ed4539775451a",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_b3f8",
+        "start": 46072,
+        "end": 46082,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 46072,
+            "size": 4,
+            "bytes": "17150020",
+            "opcode": "auipc a0, 0x20001",
+            "type": "lea"
+          },
+          {
+            "addr": 46076,
+            "size": 4,
+            "bytes": "035505b0",
+            "opcode": "lhu a0, -1280(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 46080,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "54c85c93b7a0e3e24bb630d51bd046c4817d7962fa2388b11db89968441b29eb",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_c462",
+        "start": 50274,
+        "end": 50290,
+        "bytes": 16,
+        "operations": [
+          {
+            "addr": 50274,
+            "size": 4,
+            "bytes": "17050020",
+            "opcode": "auipc a0, 0x20000",
+            "type": "lea"
+          },
+          {
+            "addr": 50278,
+            "size": 4,
+            "bytes": "034565ab",
+            "opcode": "lbu a0, -1354(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 50282,
+            "size": 2,
+            "bytes": "7d15",
+            "opcode": "addi a0, a0, -1",
+            "type": "add"
+          },
+          {
+            "addr": 50284,
+            "size": 4,
+            "bytes": "13351500",
+            "opcode": "seqz a0, a0",
+            "type": "unk"
+          },
+          {
+            "addr": 50288,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "dea8a7800908cb8c49c21c971be9d0e2df77787574f6f29bc0138bb1b7fdc792",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_d048",
+        "start": 53320,
+        "end": 53330,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 53320,
+            "size": 4,
+            "bytes": "17f5ff1f",
+            "opcode": "auipc a0, 0x1ffff",
+            "type": "lea"
+          },
+          {
+            "addr": 53324,
+            "size": 4,
+            "bytes": "0345d5ef",
+            "opcode": "lbu a0, -259(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 53328,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "76ff05eda6b64b561f2b7dfeb6b30b667449d5251f966ed51a910858b379f923",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_d052",
+        "start": 53330,
+        "end": 53340,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 53330,
+            "size": 4,
+            "bytes": "17f5ff1f",
+            "opcode": "auipc a0, 0x1ffff",
+            "type": "lea"
+          },
+          {
+            "addr": 53334,
+            "size": 4,
+            "bytes": "034525ef",
+            "opcode": "lbu a0, -270(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 53338,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "108be495c92e68194c44646d3075c5d37c82cee22c1655acf4c6a399a668cde7",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_d190",
+        "start": 53648,
+        "end": 53654,
+        "bytes": 6,
+        "operations": [
+          {
+            "addr": 53648,
+            "size": 4,
+            "bytes": "1385810e",
+            "opcode": "addi a0, gp, 232",
+            "type": "add"
+          },
+          {
+            "addr": 53652,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "399b16a43a9e13ec06cc9406681b80da092d328bec3d9a15c0dded6746b51185",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_d322",
+        "start": 54050,
+        "end": 54066,
+        "bytes": 16,
+        "operations": [
+          {
+            "addr": 54050,
+            "size": 4,
+            "bytes": "17f5ff1f",
+            "opcode": "auipc a0, 0x1ffff",
+            "type": "lea"
+          },
+          {
+            "addr": 54054,
+            "size": 4,
+            "bytes": "0355a5c3",
+            "opcode": "lhu a0, -966(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 54058,
+            "size": 4,
+            "bytes": "3335a000",
+            "opcode": "snez a0, a0",
+            "type": "unk"
+          },
+          {
+            "addr": 54062,
+            "size": 2,
+            "bytes": "0605",
+            "opcode": "slli a0, a0, 0x1",
+            "type": "shl"
+          },
+          {
+            "addr": 54064,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "8369f92d0670ae84516d2e6bedc86f13d41b5806df1bca911c3a1574362213f6",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_d468",
+        "start": 54376,
+        "end": 54386,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 54376,
+            "size": 4,
+            "bytes": "17f5ff1f",
+            "opcode": "auipc a0, 0x1ffff",
+            "type": "lea"
+          },
+          {
+            "addr": 54380,
+            "size": 4,
+            "bytes": "035585af",
+            "opcode": "lhu a0, -1288(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 54384,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "b3cf24a1857dc261fa7e5b9b425b2aa22f2300f80b2af275ef7493ec6c252e79",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_d472",
+        "start": 54386,
+        "end": 54396,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 54386,
+            "size": 4,
+            "bytes": "17f5ff1f",
+            "opcode": "auipc a0, 0x1ffff",
+            "type": "lea"
+          },
+          {
+            "addr": 54390,
+            "size": 4,
+            "bytes": "035505af",
+            "opcode": "lhu a0, -1296(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 54394,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "2bffc87a3fadc359504e383a4ee0598a4e5c9841e415129eb8e1c5d5cd1c6605",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_d4e0",
+        "start": 54496,
+        "end": 54506,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 54496,
+            "size": 4,
+            "bytes": "17f5ff1f",
+            "opcode": "auipc a0, 0x1ffff",
+            "type": "lea"
+          },
+          {
+            "addr": 54500,
+            "size": 4,
+            "bytes": "034545a8",
+            "opcode": "lbu a0, -1404(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 54504,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "27113170b14c4cff1cd24361478592da8e04a3533934b3c430961f5b750c2b8f",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_d4ea",
+        "start": 54506,
+        "end": 54516,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 54506,
+            "size": 4,
+            "bytes": "17f5ff1f",
+            "opcode": "auipc a0, 0x1ffff",
+            "type": "lea"
+          },
+          {
+            "addr": 54510,
+            "size": 4,
+            "bytes": "0355c5a7",
+            "opcode": "lhu a0, -1412(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 54514,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "336e713062a202a869c11bcaadf4005ccd409c067dc6aa7fe285ed8d3fd6fc15",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_d754",
+        "start": 55124,
+        "end": 55130,
+        "bytes": 6,
+        "operations": [
+          {
+            "addr": 55124,
+            "size": 4,
+            "bytes": "1385c10f",
+            "opcode": "addi a0, gp, 252",
+            "type": "add"
+          },
+          {
+            "addr": 55128,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "749512af63ca01d0750f08b1dc4bb8b6f6abe00304297c53986cf1346758ff6e",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_dee2",
+        "start": 57058,
+        "end": 57068,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 57058,
+            "size": 4,
+            "bytes": "17e5ff1f",
+            "opcode": "auipc a0, 0x1fffe",
+            "type": "lea"
+          },
+          {
+            "addr": 57062,
+            "size": 4,
+            "bytes": "03456508",
+            "opcode": "lbu a0, 134(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 57066,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "4bb831dc0a99c213b641b41e9f04dade4436fa86fa3f503e10361b6ac9fb82b7",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_e038",
+        "start": 57400,
+        "end": 57410,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 57400,
+            "size": 4,
+            "bytes": "17e5ff1f",
+            "opcode": "auipc a0, 0x1fffe",
+            "type": "lea"
+          },
+          {
+            "addr": 57404,
+            "size": 4,
+            "bytes": "034515f3",
+            "opcode": "lbu a0, -207(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 57408,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "771916e2948465d1021981e5ab1ab8e2fdb96fd6ec7b0f67574584188ed3e861",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_e058",
+        "start": 57432,
+        "end": 57462,
+        "bytes": 30,
+        "operations": [
+          {
+            "addr": 57432,
+            "size": 4,
+            "bytes": "97e7ff1f",
+            "opcode": "auipc a5, 0x1fffe",
+            "type": "lea"
+          },
+          {
+            "addr": 57436,
+            "size": 4,
+            "bytes": "83c727f1",
+            "opcode": "lbu a5, -238(a5)",
+            "type": "load"
+          },
+          {
+            "addr": 57440,
+            "size": 2,
+            "bytes": "fd17",
+            "opcode": "addi a5, a5, -1",
+            "type": "add"
+          },
+          {
+            "addr": 57442,
+            "size": 4,
+            "bytes": "97e6ff1f",
+            "opcode": "auipc a3, 0x1fffe",
+            "type": "lea"
+          },
+          {
+            "addr": 57446,
+            "size": 4,
+            "bytes": "83c6a6f0",
+            "opcode": "lbu a3, -246(a3)",
+            "type": "load"
+          },
+          {
+            "addr": 57450,
+            "size": 2,
+            "bytes": "0547",
+            "opcode": "li a4, 1",
+            "type": "mov"
+          },
+          {
+            "addr": 57452,
+            "size": 4,
+            "bytes": "93b71700",
+            "opcode": "seqz a5, a5",
+            "type": "unk"
+          },
+          {
+            "addr": 57456,
+            "size": 2,
+            "bytes": "0945",
+            "opcode": "li a0, 2",
+            "type": "mov"
+          },
+          {
+            "addr": 57458,
+            "size": 4,
+            "bytes": "6383e600",
+            "opcode": "beq a3, a4, 0xe078",
+            "type": "cjmp",
+            "jump": 57464
+          }
+        ],
+        "accepted_straight_line_leaf": false,
+        "rejection_reason": "Not a proven straight-line read/arithmetic leaf",
+        "producer_stdout_sha256": "68c321ec19b1e9f174f6612c16e37bbfb8c23d2ea8b8515782f06750cb4c0f81",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_f65c",
+        "start": 63068,
+        "end": 63078,
+        "bytes": 10,
+        "operations": [
+          {
+            "addr": 63068,
+            "size": 4,
+            "bytes": "17d5ff1f",
+            "opcode": "auipc a0, 0x1fffd",
+            "type": "lea"
+          },
+          {
+            "addr": 63072,
+            "size": 4,
+            "bytes": "03459593",
+            "opcode": "lbu a0, -1735(a0)",
+            "type": "load"
+          },
+          {
+            "addr": 63076,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "224cc74c243b748605ceff80ad32ce5ace17146a3f1caf39012bc34e09ce0ba0",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_f992",
+        "start": 63890,
+        "end": 63896,
+        "bytes": 6,
+        "operations": [
+          {
+            "addr": 63890,
+            "size": 4,
+            "bytes": "03c55111",
+            "opcode": "lbu a0, 277(gp)",
+            "type": "load"
+          },
+          {
+            "addr": 63894,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "2ada9a3ae5cfd4db15588b9c7ba207d6f02de45acff307e8fb0b1bf692f9e4f3",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_10402",
+        "start": 66562,
+        "end": 66568,
+        "bytes": 6,
+        "operations": [
+          {
+            "addr": 66562,
+            "size": 4,
+            "bytes": "03d50105",
+            "opcode": "lhu a0, 80(gp)",
+            "type": "load"
+          },
+          {
+            "addr": 66566,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "d52452285e6da1e0c17cb999476dfb6ca15c5a24b6a6d73b10ebe299c13fc0b6",
+        "stderr_bytes": 0
+      },
+      {
+        "caller_symbol": "tsl9_events_external_10408",
+        "start": 66568,
+        "end": 66574,
+        "bytes": 6,
+        "operations": [
+          {
+            "addr": 66568,
+            "size": 4,
+            "bytes": "03c52105",
+            "opcode": "lbu a0, 82(gp)",
+            "type": "load"
+          },
+          {
+            "addr": 66572,
+            "size": 2,
+            "bytes": "8280",
+            "opcode": "ret",
+            "type": "ret"
+          }
+        ],
+        "accepted_straight_line_leaf": true,
+        "rejection_reason": null,
+        "producer_stdout_sha256": "557520039d157f8676ba65446a8e8dc6adff558ff0b3b956b3ef3c87206aa25b",
+        "stderr_bytes": 0
+      }
+    ],
+    "original_target_or_HOST_executed": false,
+    "ISA_emulated": false,
+    "network": false
+  },
+  "extended_bounded_windows": [
+    {
+      "start": 43382,
+      "requested_bytes": 96,
+      "operations": [
+        {
+          "addr": 43382,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43386,
+          "size": 4,
+          "bytes": "03453556",
+          "opcode": "lbu a0, 1379(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43390,
+          "size": 4,
+          "bytes": "17170020",
+          "opcode": "auipc a4, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43394,
+          "size": 4,
+          "bytes": "0347a755",
+          "opcode": "lbu a4, 1370(a4)",
+          "type": "load"
+        },
+        {
+          "addr": 43398,
+          "size": 2,
+          "bytes": "7d15",
+          "opcode": "addi a0, a0, -1",
+          "type": "add"
+        },
+        {
+          "addr": 43400,
+          "size": 4,
+          "bytes": "93171700",
+          "opcode": "slli a5, a4, 0x1",
+          "type": "shl"
+        },
+        {
+          "addr": 43404,
+          "size": 4,
+          "bytes": "13352500",
+          "opcode": "sltiu a0, a0, 2",
+          "type": "unk"
+        },
+        {
+          "addr": 43408,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5",
+          "type": "or"
+        },
+        {
+          "addr": 43410,
+          "size": 2,
+          "bytes": "6205",
+          "opcode": "slli a0, a0, 0x18",
+          "type": "shl"
+        },
+        {
+          "addr": 43412,
+          "size": 2,
+          "bytes": "6185",
+          "opcode": "srai a0, a0, 0x18",
+          "type": "sar"
+        },
+        {
+          "addr": 43414,
+          "size": 2,
+          "bytes": "9147",
+          "opcode": "li a5, 4",
+          "type": "mov"
+        },
+        {
+          "addr": 43416,
+          "size": 2,
+          "bytes": "01eb",
+          "opcode": "bnez a4, 0xa9a8",
+          "type": "cjmp",
+          "jump": 43432
+        },
+        {
+          "addr": 43418,
+          "size": 4,
+          "bytes": "97170020",
+          "opcode": "auipc a5, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43422,
+          "size": 4,
+          "bytes": "83c71754",
+          "opcode": "lbu a5, 1345(a5)",
+          "type": "load"
+        },
+        {
+          "addr": 43426,
+          "size": 2,
+          "bytes": "8a07",
+          "opcode": "slli a5, a5, 0x2",
+          "type": "shl"
+        },
+        {
+          "addr": 43428,
+          "size": 2,
+          "bytes": "e207",
+          "opcode": "slli a5, a5, 0x18",
+          "type": "shl"
+        },
+        {
+          "addr": 43430,
+          "size": 2,
+          "bytes": "e187",
+          "opcode": "srai a5, a5, 0x18",
+          "type": "sar"
+        },
+        {
+          "addr": 43432,
+          "size": 4,
+          "bytes": "17170020",
+          "opcode": "auipc a4, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43436,
+          "size": 4,
+          "bytes": "03472753",
+          "opcode": "lbu a4, 1330(a4)",
+          "type": "load"
+        },
+        {
+          "addr": 43440,
+          "size": 2,
+          "bytes": "0e07",
+          "opcode": "slli a4, a4, 0x3",
+          "type": "shl"
+        },
+        {
+          "addr": 43442,
+          "size": 2,
+          "bytes": "598d",
+          "opcode": "or a0, a0, a4",
+          "type": "or"
+        },
+        {
+          "addr": 43444,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5",
+          "type": "or"
+        },
+        {
+          "addr": 43446,
+          "size": 4,
+          "bytes": "1375f50f",
+          "opcode": "andi a0, a0, 255",
+          "type": "and"
+        },
+        {
+          "addr": 43450,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        },
+        {
+          "addr": 43452,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43456,
+          "size": 4,
+          "bytes": "0345a551",
+          "opcode": "lbu a0, 1306(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43460,
+          "size": 2,
+          "bytes": "7915",
+          "opcode": "addi a0, a0, -2",
+          "type": "add"
+        },
+        {
+          "addr": 43462,
+          "size": 4,
+          "bytes": "17170020",
+          "opcode": "auipc a4, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43466,
+          "size": 4,
+          "bytes": "03471751",
+          "opcode": "lbu a4, 1297(a4)",
+          "type": "load"
+        },
+        {
+          "addr": 43470,
+          "size": 2,
+          "bytes": "8947",
+          "opcode": "li a5, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 43472,
+          "size": 4,
+          "bytes": "13351500",
+          "opcode": "seqz a0, a0",
+          "type": "unk"
+        }
+      ],
+      "excluded_decoder_rows": [
+        {
+          "addr": 43476,
+          "size": 4,
+          "bytes": "6314",
+          "opcode": "invalid",
+          "type": "unk"
+        }
+      ],
+      "producer_stdout_sha256": "32329a3accf03c0860761c105ae6044fa582a659327f75a9a944f27126aff2a5",
+      "stderr_bytes": 0
+    },
+    {
+      "start": 43452,
+      "requested_bytes": 64,
+      "operations": [
+        {
+          "addr": 43452,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43456,
+          "size": 4,
+          "bytes": "0345a551",
+          "opcode": "lbu a0, 1306(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43460,
+          "size": 2,
+          "bytes": "7915",
+          "opcode": "addi a0, a0, -2",
+          "type": "add"
+        },
+        {
+          "addr": 43462,
+          "size": 4,
+          "bytes": "17170020",
+          "opcode": "auipc a4, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43466,
+          "size": 4,
+          "bytes": "03471751",
+          "opcode": "lbu a4, 1297(a4)",
+          "type": "load"
+        },
+        {
+          "addr": 43470,
+          "size": 2,
+          "bytes": "8947",
+          "opcode": "li a5, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 43472,
+          "size": 4,
+          "bytes": "13351500",
+          "opcode": "seqz a0, a0",
+          "type": "unk"
+        },
+        {
+          "addr": 43476,
+          "size": 4,
+          "bytes": "6314f700",
+          "opcode": "bne a4, a5, 0xa9dc",
+          "type": "cjmp",
+          "jump": 43484
+        },
+        {
+          "addr": 43480,
+          "size": 4,
+          "bytes": "13652500",
+          "opcode": "ori a0, a0, 2",
+          "type": "or"
+        },
+        {
+          "addr": 43484,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        },
+        {
+          "addr": 43486,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43490,
+          "size": 4,
+          "bytes": "0345e54f",
+          "opcode": "lbu a0, 1278(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43494,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        },
+        {
+          "addr": 43496,
+          "size": 4,
+          "bytes": "97270020",
+          "opcode": "auipc a5, 0x20002",
+          "type": "lea"
+        },
+        {
+          "addr": 43500,
+          "size": 4,
+          "bytes": "83d7a788",
+          "opcode": "lhu a5, -1910(a5)",
+          "type": "load"
+        },
+        {
+          "addr": 43504,
+          "size": 4,
+          "bytes": "13d54700",
+          "opcode": "srli a0, a5, 0x4",
+          "type": "shr"
+        },
+        {
+          "addr": 43508,
+          "size": 2,
+          "bytes": "0d89",
+          "opcode": "andi a0, a0, 3",
+          "type": "and"
+        },
+        {
+          "addr": 43510,
+          "size": 2,
+          "bytes": "b183",
+          "opcode": "srli a5, a5, 0xc",
+          "type": "shr"
+        },
+        {
+          "addr": 43512,
+          "size": 2,
+          "bytes": "0547",
+          "opcode": "li a4, 1",
+          "type": "mov"
+        },
+        {
+          "addr": 43514,
+          "size": 2,
+          "bytes": "8d8b",
+          "opcode": "andi a5, a5, 3",
+          "type": "and"
+        }
+      ],
+      "excluded_decoder_rows": [],
+      "producer_stdout_sha256": "76b65d4053f613826219349a74f1f27765c7552c93a3b537d6bf4fe60f5e12bc",
+      "stderr_bytes": 0
+    },
+    {
+      "start": 45186,
+      "requested_bytes": 64,
+      "operations": [
+        {
+          "addr": 45186,
+          "size": 2,
+          "bytes": "4111",
+          "opcode": "addi sp, sp, -16",
+          "type": "add"
+        },
+        {
+          "addr": 45188,
+          "size": 2,
+          "bytes": "06c6",
+          "opcode": "sw ra, 12(sp)",
+          "type": "store"
+        },
+        {
+          "addr": 45190,
+          "size": 4,
+          "bytes": "eff03f8e",
+          "opcode": "jal ra, 0xa968",
+          "type": "call",
+          "jump": 43368
+        },
+        {
+          "addr": 45194,
+          "size": 2,
+          "bytes": "8947",
+          "opcode": "li a5, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 45196,
+          "size": 2,
+          "bytes": "11ed",
+          "opcode": "bnez a0, 0xb0a8",
+          "type": "cjmp",
+          "jump": 45224
+        },
+        {
+          "addr": 45198,
+          "size": 4,
+          "bytes": "efd04f97",
+          "opcode": "jal ra, 0x8202",
+          "type": "call",
+          "jump": 33282
+        },
+        {
+          "addr": 45202,
+          "size": 2,
+          "bytes": "8547",
+          "opcode": "li a5, 1",
+          "type": "mov"
+        },
+        {
+          "addr": 45204,
+          "size": 2,
+          "bytes": "11e9",
+          "opcode": "bnez a0, 0xb0a8",
+          "type": "cjmp",
+          "jump": 45224
+        },
+        {
+          "addr": 45206,
+          "size": 4,
+          "bytes": "97160020",
+          "opcode": "auipc a3, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 45210,
+          "size": 4,
+          "bytes": "83c636e5",
+          "opcode": "lbu a3, -429(a3)",
+          "type": "load"
+        },
+        {
+          "addr": 45214,
+          "size": 2,
+          "bytes": "0947",
+          "opcode": "li a4, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 45216,
+          "size": 2,
+          "bytes": "8147",
+          "opcode": "li a5, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 45218,
+          "size": 4,
+          "bytes": "6393e600",
+          "opcode": "bne a3, a4, 0xb0a8",
+          "type": "cjmp",
+          "jump": 45224
+        },
+        {
+          "addr": 45222,
+          "size": 2,
+          "bytes": "8d47",
+          "opcode": "li a5, 3",
+          "type": "mov"
+        },
+        {
+          "addr": 45224,
+          "size": 2,
+          "bytes": "b240",
+          "opcode": "lw ra, 12(sp)",
+          "type": "load"
+        },
+        {
+          "addr": 45226,
+          "size": 2,
+          "bytes": "3e85",
+          "opcode": "mv a0, a5",
+          "type": "mov"
+        },
+        {
+          "addr": 45228,
+          "size": 2,
+          "bytes": "4101",
+          "opcode": "addi sp, sp, 16",
+          "type": "add"
+        },
+        {
+          "addr": 45230,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        },
+        {
+          "addr": 45232,
+          "size": 4,
+          "bytes": "97170020",
+          "opcode": "auipc a5, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 45236,
+          "size": 4,
+          "bytes": "a38da7e2",
+          "opcode": "sb a0, -453(a5)",
+          "type": "store"
+        },
+        {
+          "addr": 45240,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        },
+        {
+          "addr": 45242,
+          "size": 4,
+          "bytes": "b7070400",
+          "opcode": "lui a5, 0x40",
+          "type": "mov"
+        },
+        {
+          "addr": 45246,
+          "size": 4,
+          "bytes": "03a38704",
+          "opcode": "lw t1, 72(a5)",
+          "type": "load"
+        }
+      ],
+      "excluded_decoder_rows": [],
+      "producer_stdout_sha256": "8fb0b86b91bfa30d9a7ff98fc3e196a19f32cf1393f24031fc02c8ebde09985d",
+      "stderr_bytes": 0
+    },
+    {
+      "start": 57432,
+      "requested_bytes": 128,
+      "operations": [
+        {
+          "addr": 57432,
+          "size": 4,
+          "bytes": "97e7ff1f",
+          "opcode": "auipc a5, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57436,
+          "size": 4,
+          "bytes": "83c727f1",
+          "opcode": "lbu a5, -238(a5)",
+          "type": "load"
+        },
+        {
+          "addr": 57440,
+          "size": 2,
+          "bytes": "fd17",
+          "opcode": "addi a5, a5, -1",
+          "type": "add"
+        },
+        {
+          "addr": 57442,
+          "size": 4,
+          "bytes": "97e6ff1f",
+          "opcode": "auipc a3, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57446,
+          "size": 4,
+          "bytes": "83c6a6f0",
+          "opcode": "lbu a3, -246(a3)",
+          "type": "load"
+        },
+        {
+          "addr": 57450,
+          "size": 2,
+          "bytes": "0547",
+          "opcode": "li a4, 1",
+          "type": "mov"
+        },
+        {
+          "addr": 57452,
+          "size": 4,
+          "bytes": "93b71700",
+          "opcode": "seqz a5, a5",
+          "type": "unk"
+        },
+        {
+          "addr": 57456,
+          "size": 2,
+          "bytes": "0945",
+          "opcode": "li a0, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 57458,
+          "size": 4,
+          "bytes": "6383e600",
+          "opcode": "beq a3, a4, 0xe078",
+          "type": "cjmp",
+          "jump": 57464
+        },
+        {
+          "addr": 57462,
+          "size": 2,
+          "bytes": "0145",
+          "opcode": "li a0, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 57464,
+          "size": 4,
+          "bytes": "97e6ff1f",
+          "opcode": "auipc a3, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57468,
+          "size": 4,
+          "bytes": "83c636ef",
+          "opcode": "lbu a3, -269(a3)",
+          "type": "load"
+        },
+        {
+          "addr": 57472,
+          "size": 2,
+          "bytes": "0547",
+          "opcode": "li a4, 1",
+          "type": "mov"
+        },
+        {
+          "addr": 57474,
+          "size": 2,
+          "bytes": "c98f",
+          "opcode": "or a5, a5, a0",
+          "type": "or"
+        },
+        {
+          "addr": 57476,
+          "size": 2,
+          "bytes": "1145",
+          "opcode": "li a0, 4",
+          "type": "mov"
+        },
+        {
+          "addr": 57478,
+          "size": 4,
+          "bytes": "6383e600",
+          "opcode": "beq a3, a4, 0xe08c",
+          "type": "cjmp",
+          "jump": 57484
+        },
+        {
+          "addr": 57482,
+          "size": 2,
+          "bytes": "0145",
+          "opcode": "li a0, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 57484,
+          "size": 4,
+          "bytes": "97e6ff1f",
+          "opcode": "auipc a3, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57488,
+          "size": 4,
+          "bytes": "83c616ee",
+          "opcode": "lbu a3, -287(a3)",
+          "type": "load"
+        },
+        {
+          "addr": 57492,
+          "size": 2,
+          "bytes": "0547",
+          "opcode": "li a4, 1",
+          "type": "mov"
+        },
+        {
+          "addr": 57494,
+          "size": 2,
+          "bytes": "c98f",
+          "opcode": "or a5, a5, a0",
+          "type": "or"
+        },
+        {
+          "addr": 57496,
+          "size": 2,
+          "bytes": "2145",
+          "opcode": "li a0, 8",
+          "type": "mov"
+        },
+        {
+          "addr": 57498,
+          "size": 4,
+          "bytes": "6383e600",
+          "opcode": "beq a3, a4, 0xe0a0",
+          "type": "cjmp",
+          "jump": 57504
+        },
+        {
+          "addr": 57502,
+          "size": 2,
+          "bytes": "0145",
+          "opcode": "li a0, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 57504,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5",
+          "type": "or"
+        },
+        {
+          "addr": 57506,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        },
+        {
+          "addr": 57508,
+          "size": 4,
+          "bytes": "b7070400",
+          "opcode": "lui a5, 0x40",
+          "type": "mov"
+        },
+        {
+          "addr": 57512,
+          "size": 4,
+          "bytes": "03a38704",
+          "opcode": "lw t1, 72(a5)",
+          "type": "load"
+        },
+        {
+          "addr": 57516,
+          "size": 2,
+          "bytes": "7146",
+          "opcode": "li a2, 28",
+          "type": "mov"
+        },
+        {
+          "addr": 57518,
+          "size": 2,
+          "bytes": "8145",
+          "opcode": "li a1, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 57520,
+          "size": 4,
+          "bytes": "17e5ff1f",
+          "opcode": "auipc a0, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57524,
+          "size": 4,
+          "bytes": "130585eb",
+          "opcode": "addi a0, a0, -328",
+          "type": "add"
+        },
+        {
+          "addr": 57528,
+          "size": 2,
+          "bytes": "0283",
+          "opcode": "jr t1",
+          "type": "rjmp"
+        },
+        {
+          "addr": 57530,
+          "size": 2,
+          "bytes": "4111",
+          "opcode": "addi sp, sp, -16",
+          "type": "add"
+        },
+        {
+          "addr": 57532,
+          "size": 2,
+          "bytes": "0145",
+          "opcode": "li a0, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 57534,
+          "size": 2,
+          "bytes": "06c6",
+          "opcode": "sw ra, 12(sp)",
+          "type": "store"
+        },
+        {
+          "addr": 57536,
+          "size": 4,
+          "bytes": "efd01fc4",
+          "opcode": "jal ra, 0xbd00",
+          "type": "call",
+          "jump": 48384
+        },
+        {
+          "addr": 57540,
+          "size": 4,
+          "bytes": "ef109017",
+          "opcode": "jal ra, 0xfa3c",
+          "type": "call",
+          "jump": 64060
+        },
+        {
+          "addr": 57544,
+          "size": 2,
+          "bytes": "0145",
+          "opcode": "li a0, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 57546,
+          "size": 4,
+          "bytes": "ef10104a",
+          "opcode": "jal ra, 0xfd6a",
+          "type": "call",
+          "jump": 64874
+        },
+        {
+          "addr": 57550,
+          "size": 4,
+          "bytes": "ef10d017",
+          "opcode": "jal ra, 0xfa4a",
+          "type": "call",
+          "jump": 64074
+        },
+        {
+          "addr": 57554,
+          "size": 4,
+          "bytes": "ef10d022",
+          "opcode": "jal ra, 0xfafe",
+          "type": "call",
+          "jump": 64254
+        }
+      ],
+      "excluded_decoder_rows": [
+        {
+          "addr": 57558,
+          "size": 4,
+          "bytes": "ef10",
+          "opcode": "invalid",
+          "type": "unk"
+        }
+      ],
+      "producer_stdout_sha256": "487ffc372890e6e783f119b22650c764934c8655fbc72e8a39916f1099509d75",
+      "stderr_bytes": 0
+    },
+    {
+      "start": 43368,
+      "requested_bytes": 64,
+      "operations": [
+        {
+          "addr": 43368,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43372,
+          "size": 4,
+          "bytes": "03459556",
+          "opcode": "lbu a0, 1385(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43376,
+          "size": 4,
+          "bytes": "3335a000",
+          "opcode": "snez a0, a0",
+          "type": "unk"
+        },
+        {
+          "addr": 43380,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        },
+        {
+          "addr": 43382,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43386,
+          "size": 4,
+          "bytes": "03453556",
+          "opcode": "lbu a0, 1379(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43390,
+          "size": 4,
+          "bytes": "17170020",
+          "opcode": "auipc a4, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43394,
+          "size": 4,
+          "bytes": "0347a755",
+          "opcode": "lbu a4, 1370(a4)",
+          "type": "load"
+        },
+        {
+          "addr": 43398,
+          "size": 2,
+          "bytes": "7d15",
+          "opcode": "addi a0, a0, -1",
+          "type": "add"
+        },
+        {
+          "addr": 43400,
+          "size": 4,
+          "bytes": "93171700",
+          "opcode": "slli a5, a4, 0x1",
+          "type": "shl"
+        },
+        {
+          "addr": 43404,
+          "size": 4,
+          "bytes": "13352500",
+          "opcode": "sltiu a0, a0, 2",
+          "type": "unk"
+        },
+        {
+          "addr": 43408,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5",
+          "type": "or"
+        },
+        {
+          "addr": 43410,
+          "size": 2,
+          "bytes": "6205",
+          "opcode": "slli a0, a0, 0x18",
+          "type": "shl"
+        },
+        {
+          "addr": 43412,
+          "size": 2,
+          "bytes": "6185",
+          "opcode": "srai a0, a0, 0x18",
+          "type": "sar"
+        },
+        {
+          "addr": 43414,
+          "size": 2,
+          "bytes": "9147",
+          "opcode": "li a5, 4",
+          "type": "mov"
+        },
+        {
+          "addr": 43416,
+          "size": 2,
+          "bytes": "01eb",
+          "opcode": "bnez a4, 0xa9a8",
+          "type": "cjmp",
+          "jump": 43432
+        },
+        {
+          "addr": 43418,
+          "size": 4,
+          "bytes": "97170020",
+          "opcode": "auipc a5, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43422,
+          "size": 4,
+          "bytes": "83c71754",
+          "opcode": "lbu a5, 1345(a5)",
+          "type": "load"
+        },
+        {
+          "addr": 43426,
+          "size": 2,
+          "bytes": "8a07",
+          "opcode": "slli a5, a5, 0x2",
+          "type": "shl"
+        },
+        {
+          "addr": 43428,
+          "size": 2,
+          "bytes": "e207",
+          "opcode": "slli a5, a5, 0x18",
+          "type": "shl"
+        },
+        {
+          "addr": 43430,
+          "size": 2,
+          "bytes": "e187",
+          "opcode": "srai a5, a5, 0x18",
+          "type": "sar"
+        }
+      ],
+      "excluded_decoder_rows": [],
+      "producer_stdout_sha256": "2bf602991ce4477b1caa1296fe08edcfe0754382a443b7120f0ab5febcbb122c",
+      "stderr_bytes": 0
+    },
+    {
+      "start": 33282,
+      "requested_bytes": 64,
+      "operations": [
+        {
+          "addr": 33282,
+          "size": 4,
+          "bytes": "17450020",
+          "opcode": "auipc a0, 0x20004",
+          "type": "lea"
+        },
+        {
+          "addr": 33286,
+          "size": 4,
+          "bytes": "0345f5cd",
+          "opcode": "lbu a0, -801(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 33290,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        },
+        {
+          "addr": 33292,
+          "size": 2,
+          "bytes": "8947",
+          "opcode": "li a5, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 33294,
+          "size": 4,
+          "bytes": "63e7a700",
+          "opcode": "bltu a5, a0, 0x821c",
+          "type": "cjmp",
+          "jump": 33308
+        },
+        {
+          "addr": 33298,
+          "size": 4,
+          "bytes": "9387010c",
+          "opcode": "addi a5, gp, 192",
+          "type": "add"
+        },
+        {
+          "addr": 33302,
+          "size": 2,
+          "bytes": "aa97",
+          "opcode": "add a5, a5, a0",
+          "type": "add"
+        },
+        {
+          "addr": 33304,
+          "size": 4,
+          "bytes": "a3800700",
+          "opcode": "sb zero, 1(a5)",
+          "type": "store"
+        },
+        {
+          "addr": 33308,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        },
+        {
+          "addr": 33310,
+          "size": 4,
+          "bytes": "93874105",
+          "opcode": "addi a5, gp, 84",
+          "type": "add"
+        },
+        {
+          "addr": 33314,
+          "size": 2,
+          "bytes": "9c43",
+          "opcode": "lw a5, 0(a5)",
+          "type": "load"
+        },
+        {
+          "addr": 33316,
+          "size": 4,
+          "bytes": "03c74700",
+          "opcode": "lbu a4, 4(a5)",
+          "type": "load"
+        },
+        {
+          "addr": 33320,
+          "size": 2,
+          "bytes": "8147",
+          "opcode": "li a5, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 33322,
+          "size": 2,
+          "bytes": "218b",
+          "opcode": "andi a4, a4, 8",
+          "type": "and"
+        },
+        {
+          "addr": 33324,
+          "size": 2,
+          "bytes": "01ef",
+          "opcode": "bnez a4, 0x8244",
+          "type": "cjmp",
+          "jump": 33348
+        },
+        {
+          "addr": 33326,
+          "size": 2,
+          "bytes": "0947",
+          "opcode": "li a4, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 33328,
+          "size": 2,
+          "bytes": "8147",
+          "opcode": "li a5, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 33330,
+          "size": 4,
+          "bytes": "6369a700",
+          "opcode": "bltu a4, a0, 0x8244",
+          "type": "cjmp",
+          "jump": 33348
+        },
+        {
+          "addr": 33334,
+          "size": 4,
+          "bytes": "9387010c",
+          "opcode": "addi a5, gp, 192",
+          "type": "add"
+        },
+        {
+          "addr": 33338,
+          "size": 2,
+          "bytes": "aa97",
+          "opcode": "add a5, a5, a0",
+          "type": "add"
+        },
+        {
+          "addr": 33340,
+          "size": 4,
+          "bytes": "83c71700",
+          "opcode": "lbu a5, 1(a5)",
+          "type": "load"
+        }
+      ],
+      "excluded_decoder_rows": [
+        {
+          "addr": 33344,
+          "size": 4,
+          "bytes": "93b7",
+          "opcode": "invalid",
+          "type": "unk"
+        }
+      ],
+      "producer_stdout_sha256": "77e251c0958556a238334c69b0835513f86b114fd8b94401c142b75b0ceeca48",
+      "stderr_bytes": 0
+    }
+  ],
+  "selected_functions": [
+    {
+      "start": 33272,
+      "end": 33282,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_81f8"
+      ],
+      "operations": [
+        {
+          "addr": 33272,
+          "size": 4,
+          "bytes": "17450020",
+          "opcode": "auipc a0, 0x20004",
+          "type": "lea"
+        },
+        {
+          "addr": 33276,
+          "size": 4,
+          "bytes": "034525cf",
+          "opcode": "lbu a0, -782(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 33280,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 33282,
+      "end": 33292,
+      "bytes": 10,
+      "caller_symbols": [],
+      "operations": [
+        {
+          "addr": 33282,
+          "size": 4,
+          "bytes": "17450020",
+          "opcode": "auipc a0, 0x20004",
+          "type": "lea"
+        },
+        {
+          "addr": 33286,
+          "size": 4,
+          "bytes": "0345f5cd",
+          "opcode": "lbu a0, -801(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 33290,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "complete bounded static branch/call CFG"
+    },
+    {
+      "start": 43368,
+      "end": 43382,
+      "bytes": 14,
+      "caller_symbols": [],
+      "operations": [
+        {
+          "addr": 43368,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43372,
+          "size": 4,
+          "bytes": "03459556",
+          "opcode": "lbu a0, 1385(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43376,
+          "size": 4,
+          "bytes": "3335a000",
+          "opcode": "snez a0, a0",
+          "type": "unk"
+        },
+        {
+          "addr": 43380,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "complete bounded static branch/call CFG"
+    },
+    {
+      "start": 43382,
+      "end": 43452,
+      "bytes": 70,
+      "caller_symbols": [
+        "tsl9_events_external_a976"
+      ],
+      "operations": [
+        {
+          "addr": 43382,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43386,
+          "size": 4,
+          "bytes": "03453556",
+          "opcode": "lbu a0, 1379(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43390,
+          "size": 4,
+          "bytes": "17170020",
+          "opcode": "auipc a4, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43394,
+          "size": 4,
+          "bytes": "0347a755",
+          "opcode": "lbu a4, 1370(a4)",
+          "type": "load"
+        },
+        {
+          "addr": 43398,
+          "size": 2,
+          "bytes": "7d15",
+          "opcode": "addi a0, a0, -1",
+          "type": "add"
+        },
+        {
+          "addr": 43400,
+          "size": 4,
+          "bytes": "93171700",
+          "opcode": "slli a5, a4, 0x1",
+          "type": "shl"
+        },
+        {
+          "addr": 43404,
+          "size": 4,
+          "bytes": "13352500",
+          "opcode": "sltiu a0, a0, 2",
+          "type": "unk"
+        },
+        {
+          "addr": 43408,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5",
+          "type": "or"
+        },
+        {
+          "addr": 43410,
+          "size": 2,
+          "bytes": "6205",
+          "opcode": "slli a0, a0, 0x18",
+          "type": "shl"
+        },
+        {
+          "addr": 43412,
+          "size": 2,
+          "bytes": "6185",
+          "opcode": "srai a0, a0, 0x18",
+          "type": "sar"
+        },
+        {
+          "addr": 43414,
+          "size": 2,
+          "bytes": "9147",
+          "opcode": "li a5, 4",
+          "type": "mov"
+        },
+        {
+          "addr": 43416,
+          "size": 2,
+          "bytes": "01eb",
+          "opcode": "bnez a4, 0xa9a8",
+          "type": "cjmp",
+          "jump": 43432
+        },
+        {
+          "addr": 43418,
+          "size": 4,
+          "bytes": "97170020",
+          "opcode": "auipc a5, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43422,
+          "size": 4,
+          "bytes": "83c71754",
+          "opcode": "lbu a5, 1345(a5)",
+          "type": "load"
+        },
+        {
+          "addr": 43426,
+          "size": 2,
+          "bytes": "8a07",
+          "opcode": "slli a5, a5, 0x2",
+          "type": "shl"
+        },
+        {
+          "addr": 43428,
+          "size": 2,
+          "bytes": "e207",
+          "opcode": "slli a5, a5, 0x18",
+          "type": "shl"
+        },
+        {
+          "addr": 43430,
+          "size": 2,
+          "bytes": "e187",
+          "opcode": "srai a5, a5, 0x18",
+          "type": "sar"
+        },
+        {
+          "addr": 43432,
+          "size": 4,
+          "bytes": "17170020",
+          "opcode": "auipc a4, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43436,
+          "size": 4,
+          "bytes": "03472753",
+          "opcode": "lbu a4, 1330(a4)",
+          "type": "load"
+        },
+        {
+          "addr": 43440,
+          "size": 2,
+          "bytes": "0e07",
+          "opcode": "slli a4, a4, 0x3",
+          "type": "shl"
+        },
+        {
+          "addr": 43442,
+          "size": 2,
+          "bytes": "598d",
+          "opcode": "or a0, a0, a4",
+          "type": "or"
+        },
+        {
+          "addr": 43444,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5",
+          "type": "or"
+        },
+        {
+          "addr": 43446,
+          "size": 4,
+          "bytes": "1375f50f",
+          "opcode": "andi a0, a0, 255",
+          "type": "and"
+        },
+        {
+          "addr": 43450,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "complete bounded static branch/call CFG"
+    },
+    {
+      "start": 43452,
+      "end": 43486,
+      "bytes": 34,
+      "caller_symbols": [
+        "tsl9_events_external_a9bc"
+      ],
+      "operations": [
+        {
+          "addr": 43452,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43456,
+          "size": 4,
+          "bytes": "0345a551",
+          "opcode": "lbu a0, 1306(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43460,
+          "size": 2,
+          "bytes": "7915",
+          "opcode": "addi a0, a0, -2",
+          "type": "add"
+        },
+        {
+          "addr": 43462,
+          "size": 4,
+          "bytes": "17170020",
+          "opcode": "auipc a4, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43466,
+          "size": 4,
+          "bytes": "03471751",
+          "opcode": "lbu a4, 1297(a4)",
+          "type": "load"
+        },
+        {
+          "addr": 43470,
+          "size": 2,
+          "bytes": "8947",
+          "opcode": "li a5, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 43472,
+          "size": 4,
+          "bytes": "13351500",
+          "opcode": "seqz a0, a0",
+          "type": "unk"
+        },
+        {
+          "addr": 43476,
+          "size": 4,
+          "bytes": "6314f700",
+          "opcode": "bne a4, a5, 0xa9dc",
+          "type": "cjmp",
+          "jump": 43484
+        },
+        {
+          "addr": 43480,
+          "size": 4,
+          "bytes": "13652500",
+          "opcode": "ori a0, a0, 2",
+          "type": "or"
+        },
+        {
+          "addr": 43484,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "complete bounded static branch/call CFG"
+    },
+    {
+      "start": 43880,
+      "end": 43890,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_ab68"
+      ],
+      "operations": [
+        {
+          "addr": 43880,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43884,
+          "size": 4,
+          "bytes": "03450538",
+          "opcode": "lbu a0, 896(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43888,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 43890,
+      "end": 43900,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_ab72"
+      ],
+      "operations": [
+        {
+          "addr": 43890,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 43894,
+          "size": 4,
+          "bytes": "03455537",
+          "opcode": "lbu a0, 885(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 43898,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 45186,
+      "end": 45232,
+      "bytes": 46,
+      "caller_symbols": [
+        "tsl9_events_external_b082"
+      ],
+      "operations": [
+        {
+          "addr": 45186,
+          "size": 2,
+          "bytes": "4111",
+          "opcode": "addi sp, sp, -16",
+          "type": "add"
+        },
+        {
+          "addr": 45188,
+          "size": 2,
+          "bytes": "06c6",
+          "opcode": "sw ra, 12(sp)",
+          "type": "store"
+        },
+        {
+          "addr": 45190,
+          "size": 4,
+          "bytes": "eff03f8e",
+          "opcode": "jal ra, 0xa968",
+          "type": "call",
+          "jump": 43368
+        },
+        {
+          "addr": 45194,
+          "size": 2,
+          "bytes": "8947",
+          "opcode": "li a5, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 45196,
+          "size": 2,
+          "bytes": "11ed",
+          "opcode": "bnez a0, 0xb0a8",
+          "type": "cjmp",
+          "jump": 45224
+        },
+        {
+          "addr": 45198,
+          "size": 4,
+          "bytes": "efd04f97",
+          "opcode": "jal ra, 0x8202",
+          "type": "call",
+          "jump": 33282
+        },
+        {
+          "addr": 45202,
+          "size": 2,
+          "bytes": "8547",
+          "opcode": "li a5, 1",
+          "type": "mov"
+        },
+        {
+          "addr": 45204,
+          "size": 2,
+          "bytes": "11e9",
+          "opcode": "bnez a0, 0xb0a8",
+          "type": "cjmp",
+          "jump": 45224
+        },
+        {
+          "addr": 45206,
+          "size": 4,
+          "bytes": "97160020",
+          "opcode": "auipc a3, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 45210,
+          "size": 4,
+          "bytes": "83c636e5",
+          "opcode": "lbu a3, -429(a3)",
+          "type": "load"
+        },
+        {
+          "addr": 45214,
+          "size": 2,
+          "bytes": "0947",
+          "opcode": "li a4, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 45216,
+          "size": 2,
+          "bytes": "8147",
+          "opcode": "li a5, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 45218,
+          "size": 4,
+          "bytes": "6393e600",
+          "opcode": "bne a3, a4, 0xb0a8",
+          "type": "cjmp",
+          "jump": 45224
+        },
+        {
+          "addr": 45222,
+          "size": 2,
+          "bytes": "8d47",
+          "opcode": "li a5, 3",
+          "type": "mov"
+        },
+        {
+          "addr": 45224,
+          "size": 2,
+          "bytes": "b240",
+          "opcode": "lw ra, 12(sp)",
+          "type": "load"
+        },
+        {
+          "addr": 45226,
+          "size": 2,
+          "bytes": "3e85",
+          "opcode": "mv a0, a5",
+          "type": "mov"
+        },
+        {
+          "addr": 45228,
+          "size": 2,
+          "bytes": "4101",
+          "opcode": "addi sp, sp, 16",
+          "type": "add"
+        },
+        {
+          "addr": 45230,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "complete bounded static branch/call CFG"
+    },
+    {
+      "start": 46042,
+      "end": 46052,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_b3da"
+      ],
+      "operations": [
+        {
+          "addr": 46042,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 46046,
+          "size": 4,
+          "bytes": "0355c5b1",
+          "opcode": "lhu a0, -1252(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 46050,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 46052,
+      "end": 46062,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_b3e4"
+      ],
+      "operations": [
+        {
+          "addr": 46052,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 46056,
+          "size": 4,
+          "bytes": "034505b1",
+          "opcode": "lbu a0, -1264(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 46060,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 46062,
+      "end": 46072,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_b3ee"
+      ],
+      "operations": [
+        {
+          "addr": 46062,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 46066,
+          "size": 4,
+          "bytes": "0355c5b0",
+          "opcode": "lhu a0, -1268(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 46070,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 46072,
+      "end": 46082,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_b3f8"
+      ],
+      "operations": [
+        {
+          "addr": 46072,
+          "size": 4,
+          "bytes": "17150020",
+          "opcode": "auipc a0, 0x20001",
+          "type": "lea"
+        },
+        {
+          "addr": 46076,
+          "size": 4,
+          "bytes": "035505b0",
+          "opcode": "lhu a0, -1280(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 46080,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 50274,
+      "end": 50290,
+      "bytes": 16,
+      "caller_symbols": [
+        "tsl9_events_external_c462"
+      ],
+      "operations": [
+        {
+          "addr": 50274,
+          "size": 4,
+          "bytes": "17050020",
+          "opcode": "auipc a0, 0x20000",
+          "type": "lea"
+        },
+        {
+          "addr": 50278,
+          "size": 4,
+          "bytes": "034565ab",
+          "opcode": "lbu a0, -1354(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 50282,
+          "size": 2,
+          "bytes": "7d15",
+          "opcode": "addi a0, a0, -1",
+          "type": "add"
+        },
+        {
+          "addr": 50284,
+          "size": 4,
+          "bytes": "13351500",
+          "opcode": "seqz a0, a0",
+          "type": "unk"
+        },
+        {
+          "addr": 50288,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 53320,
+      "end": 53330,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_d048"
+      ],
+      "operations": [
+        {
+          "addr": 53320,
+          "size": 4,
+          "bytes": "17f5ff1f",
+          "opcode": "auipc a0, 0x1ffff",
+          "type": "lea"
+        },
+        {
+          "addr": 53324,
+          "size": 4,
+          "bytes": "0345d5ef",
+          "opcode": "lbu a0, -259(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 53328,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 53330,
+      "end": 53340,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_d052"
+      ],
+      "operations": [
+        {
+          "addr": 53330,
+          "size": 4,
+          "bytes": "17f5ff1f",
+          "opcode": "auipc a0, 0x1ffff",
+          "type": "lea"
+        },
+        {
+          "addr": 53334,
+          "size": 4,
+          "bytes": "034525ef",
+          "opcode": "lbu a0, -270(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 53338,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 53648,
+      "end": 53654,
+      "bytes": 6,
+      "caller_symbols": [
+        "tsl9_events_external_d190"
+      ],
+      "operations": [
+        {
+          "addr": 53648,
+          "size": 4,
+          "bytes": "1385810e",
+          "opcode": "addi a0, gp, 232",
+          "type": "add"
+        },
+        {
+          "addr": 53652,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 54050,
+      "end": 54066,
+      "bytes": 16,
+      "caller_symbols": [
+        "tsl9_events_external_d322"
+      ],
+      "operations": [
+        {
+          "addr": 54050,
+          "size": 4,
+          "bytes": "17f5ff1f",
+          "opcode": "auipc a0, 0x1ffff",
+          "type": "lea"
+        },
+        {
+          "addr": 54054,
+          "size": 4,
+          "bytes": "0355a5c3",
+          "opcode": "lhu a0, -966(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 54058,
+          "size": 4,
+          "bytes": "3335a000",
+          "opcode": "snez a0, a0",
+          "type": "unk"
+        },
+        {
+          "addr": 54062,
+          "size": 2,
+          "bytes": "0605",
+          "opcode": "slli a0, a0, 0x1",
+          "type": "shl"
+        },
+        {
+          "addr": 54064,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 54376,
+      "end": 54386,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_d468"
+      ],
+      "operations": [
+        {
+          "addr": 54376,
+          "size": 4,
+          "bytes": "17f5ff1f",
+          "opcode": "auipc a0, 0x1ffff",
+          "type": "lea"
+        },
+        {
+          "addr": 54380,
+          "size": 4,
+          "bytes": "035585af",
+          "opcode": "lhu a0, -1288(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 54384,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 54386,
+      "end": 54396,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_d472"
+      ],
+      "operations": [
+        {
+          "addr": 54386,
+          "size": 4,
+          "bytes": "17f5ff1f",
+          "opcode": "auipc a0, 0x1ffff",
+          "type": "lea"
+        },
+        {
+          "addr": 54390,
+          "size": 4,
+          "bytes": "035505af",
+          "opcode": "lhu a0, -1296(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 54394,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 54496,
+      "end": 54506,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_d4e0"
+      ],
+      "operations": [
+        {
+          "addr": 54496,
+          "size": 4,
+          "bytes": "17f5ff1f",
+          "opcode": "auipc a0, 0x1ffff",
+          "type": "lea"
+        },
+        {
+          "addr": 54500,
+          "size": 4,
+          "bytes": "034545a8",
+          "opcode": "lbu a0, -1404(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 54504,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 54506,
+      "end": 54516,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_d4ea"
+      ],
+      "operations": [
+        {
+          "addr": 54506,
+          "size": 4,
+          "bytes": "17f5ff1f",
+          "opcode": "auipc a0, 0x1ffff",
+          "type": "lea"
+        },
+        {
+          "addr": 54510,
+          "size": 4,
+          "bytes": "0355c5a7",
+          "opcode": "lhu a0, -1412(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 54514,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 55124,
+      "end": 55130,
+      "bytes": 6,
+      "caller_symbols": [
+        "tsl9_events_external_d754"
+      ],
+      "operations": [
+        {
+          "addr": 55124,
+          "size": 4,
+          "bytes": "1385c10f",
+          "opcode": "addi a0, gp, 252",
+          "type": "add"
+        },
+        {
+          "addr": 55128,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 57058,
+      "end": 57068,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_dee2"
+      ],
+      "operations": [
+        {
+          "addr": 57058,
+          "size": 4,
+          "bytes": "17e5ff1f",
+          "opcode": "auipc a0, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57062,
+          "size": 4,
+          "bytes": "03456508",
+          "opcode": "lbu a0, 134(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 57066,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 57400,
+      "end": 57410,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_e038"
+      ],
+      "operations": [
+        {
+          "addr": 57400,
+          "size": 4,
+          "bytes": "17e5ff1f",
+          "opcode": "auipc a0, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57404,
+          "size": 4,
+          "bytes": "034515f3",
+          "opcode": "lbu a0, -207(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 57408,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 57432,
+      "end": 57508,
+      "bytes": 76,
+      "caller_symbols": [
+        "tsl9_events_external_e058"
+      ],
+      "operations": [
+        {
+          "addr": 57432,
+          "size": 4,
+          "bytes": "97e7ff1f",
+          "opcode": "auipc a5, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57436,
+          "size": 4,
+          "bytes": "83c727f1",
+          "opcode": "lbu a5, -238(a5)",
+          "type": "load"
+        },
+        {
+          "addr": 57440,
+          "size": 2,
+          "bytes": "fd17",
+          "opcode": "addi a5, a5, -1",
+          "type": "add"
+        },
+        {
+          "addr": 57442,
+          "size": 4,
+          "bytes": "97e6ff1f",
+          "opcode": "auipc a3, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57446,
+          "size": 4,
+          "bytes": "83c6a6f0",
+          "opcode": "lbu a3, -246(a3)",
+          "type": "load"
+        },
+        {
+          "addr": 57450,
+          "size": 2,
+          "bytes": "0547",
+          "opcode": "li a4, 1",
+          "type": "mov"
+        },
+        {
+          "addr": 57452,
+          "size": 4,
+          "bytes": "93b71700",
+          "opcode": "seqz a5, a5",
+          "type": "unk"
+        },
+        {
+          "addr": 57456,
+          "size": 2,
+          "bytes": "0945",
+          "opcode": "li a0, 2",
+          "type": "mov"
+        },
+        {
+          "addr": 57458,
+          "size": 4,
+          "bytes": "6383e600",
+          "opcode": "beq a3, a4, 0xe078",
+          "type": "cjmp",
+          "jump": 57464
+        },
+        {
+          "addr": 57462,
+          "size": 2,
+          "bytes": "0145",
+          "opcode": "li a0, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 57464,
+          "size": 4,
+          "bytes": "97e6ff1f",
+          "opcode": "auipc a3, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57468,
+          "size": 4,
+          "bytes": "83c636ef",
+          "opcode": "lbu a3, -269(a3)",
+          "type": "load"
+        },
+        {
+          "addr": 57472,
+          "size": 2,
+          "bytes": "0547",
+          "opcode": "li a4, 1",
+          "type": "mov"
+        },
+        {
+          "addr": 57474,
+          "size": 2,
+          "bytes": "c98f",
+          "opcode": "or a5, a5, a0",
+          "type": "or"
+        },
+        {
+          "addr": 57476,
+          "size": 2,
+          "bytes": "1145",
+          "opcode": "li a0, 4",
+          "type": "mov"
+        },
+        {
+          "addr": 57478,
+          "size": 4,
+          "bytes": "6383e600",
+          "opcode": "beq a3, a4, 0xe08c",
+          "type": "cjmp",
+          "jump": 57484
+        },
+        {
+          "addr": 57482,
+          "size": 2,
+          "bytes": "0145",
+          "opcode": "li a0, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 57484,
+          "size": 4,
+          "bytes": "97e6ff1f",
+          "opcode": "auipc a3, 0x1fffe",
+          "type": "lea"
+        },
+        {
+          "addr": 57488,
+          "size": 4,
+          "bytes": "83c616ee",
+          "opcode": "lbu a3, -287(a3)",
+          "type": "load"
+        },
+        {
+          "addr": 57492,
+          "size": 2,
+          "bytes": "0547",
+          "opcode": "li a4, 1",
+          "type": "mov"
+        },
+        {
+          "addr": 57494,
+          "size": 2,
+          "bytes": "c98f",
+          "opcode": "or a5, a5, a0",
+          "type": "or"
+        },
+        {
+          "addr": 57496,
+          "size": 2,
+          "bytes": "2145",
+          "opcode": "li a0, 8",
+          "type": "mov"
+        },
+        {
+          "addr": 57498,
+          "size": 4,
+          "bytes": "6383e600",
+          "opcode": "beq a3, a4, 0xe0a0",
+          "type": "cjmp",
+          "jump": 57504
+        },
+        {
+          "addr": 57502,
+          "size": 2,
+          "bytes": "0145",
+          "opcode": "li a0, 0",
+          "type": "mov"
+        },
+        {
+          "addr": 57504,
+          "size": 2,
+          "bytes": "5d8d",
+          "opcode": "or a0, a0, a5",
+          "type": "or"
+        },
+        {
+          "addr": 57506,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "complete bounded static branch/call CFG"
+    },
+    {
+      "start": 63068,
+      "end": 63078,
+      "bytes": 10,
+      "caller_symbols": [
+        "tsl9_events_external_f65c"
+      ],
+      "operations": [
+        {
+          "addr": 63068,
+          "size": 4,
+          "bytes": "17d5ff1f",
+          "opcode": "auipc a0, 0x1fffd",
+          "type": "lea"
+        },
+        {
+          "addr": 63072,
+          "size": 4,
+          "bytes": "03459593",
+          "opcode": "lbu a0, -1735(a0)",
+          "type": "load"
+        },
+        {
+          "addr": 63076,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 63890,
+      "end": 63896,
+      "bytes": 6,
+      "caller_symbols": [
+        "tsl9_events_external_f992"
+      ],
+      "operations": [
+        {
+          "addr": 63890,
+          "size": 4,
+          "bytes": "03c55111",
+          "opcode": "lbu a0, 277(gp)",
+          "type": "load"
+        },
+        {
+          "addr": 63894,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 66562,
+      "end": 66568,
+      "bytes": 6,
+      "caller_symbols": [
+        "tsl9_events_external_10402"
+      ],
+      "operations": [
+        {
+          "addr": 66562,
+          "size": 4,
+          "bytes": "03d50105",
+          "opcode": "lhu a0, 80(gp)",
+          "type": "load"
+        },
+        {
+          "addr": 66566,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    },
+    {
+      "start": 66568,
+      "end": 66574,
+      "bytes": 6,
+      "caller_symbols": [
+        "tsl9_events_external_10408"
+      ],
+      "operations": [
+        {
+          "addr": 66568,
+          "size": 4,
+          "bytes": "03c52105",
+          "opcode": "lbu a0, 82(gp)",
+          "type": "load"
+        },
+        {
+          "addr": 66572,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret"
+        }
+      ],
+      "scope": "straight-line-to-RET"
+    }
+  ],
+  "selected_bytes": 472,
+  "all_direct_call_targets_are_selected_helpers": true,
+  "source_scope_is_instruction_bytes_and_CFG_only": true,
+  "physical_read_side_effects_memory_ownership_and_ABI_unproved": true,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "network": false
+}

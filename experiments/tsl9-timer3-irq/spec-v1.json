@@ -1,0 +1,566 @@
+{
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "reader": "experiments/tsl9-feature-dispatch-tree/elf_reader-v3.py",
+  "reader_sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a",
+  "curation_checker": "scripts/verify-curated-source.py",
+  "curation_checker_sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832",
+  "tools": {
+    "clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "llvm-objcopy.exe": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+  },
+  "stdint_sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+  "profile": "ring-bank",
+  "flags": {
+    "c": [
+      "--target=riscv32-unknown-elf",
+      "-march=rv32imac_zicsr",
+      "-mabi=ilp32",
+      "-Oz",
+      "-mllvm",
+      "-enable-machine-outliner=never",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-stack-protector",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-mno-relax",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-x",
+      "c",
+      "-std=c11",
+      "-ffixed-x1",
+      "-ffixed-x2",
+      "-ffixed-x3",
+      "-ffixed-x4",
+      "-ffixed-x5",
+      "-ffixed-x7",
+      "-ffixed-x8",
+      "-ffixed-x9",
+      "-ffixed-x18",
+      "-ffixed-x19",
+      "-ffixed-x20",
+      "-ffixed-x21",
+      "-ffixed-x22",
+      "-ffixed-x23",
+      "-ffixed-x24",
+      "-ffixed-x25",
+      "-ffixed-x26",
+      "-ffixed-x27",
+      "-ffixed-x29",
+      "-ffixed-x30",
+      "-ffixed-x31"
+    ],
+    "cpp": [
+      "--target=riscv32-unknown-elf",
+      "-march=rv32imac_zicsr",
+      "-mabi=ilp32",
+      "-Oz",
+      "-mllvm",
+      "-enable-machine-outliner=never",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-stack-protector",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-mno-relax",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-x",
+      "c++",
+      "-std=c++17",
+      "-fno-exceptions",
+      "-ffixed-x1",
+      "-ffixed-x2",
+      "-ffixed-x3",
+      "-ffixed-x4",
+      "-ffixed-x5",
+      "-ffixed-x7",
+      "-ffixed-x8",
+      "-ffixed-x9",
+      "-ffixed-x18",
+      "-ffixed-x19",
+      "-ffixed-x20",
+      "-ffixed-x21",
+      "-ffixed-x22",
+      "-ffixed-x23",
+      "-ffixed-x24",
+      "-ffixed-x25",
+      "-ffixed-x26",
+      "-ffixed-x27",
+      "-ffixed-x29",
+      "-ffixed-x30",
+      "-ffixed-x31"
+    ]
+  },
+  "schema": "TSL9-TIM3-IRQ-native-v1",
+  "source": "experiments/tsl9-timer3-irq/src/timer3_irq.v1.c",
+  "source_sha256": "676132b03e498a161a25ccad9a7c546b17b4e2d561ac22da386a1423e6fa80d7",
+  "curated_source": "src/native/irq/timer3_irq.c",
+  "reference_candidate": "analysis/rtc-alarm-irq-2026-10-24/next-timer-frontier.json",
+  "reference_candidate_sha256": "f4a5edd30dcfebfd197b36c6db4319e82b601b13838a28b83db6f37c6de27007",
+  "source_deriver": "experiments/tsl9-timer3-irq/derive-v1.py",
+  "source_deriver_sha256": "f26d761cf5c880de0a25c7e8116f1c678100088baf4220d7e101b5deb75239ba",
+  "bytes": 442,
+  "instructions": 138,
+  "start": 38814,
+  "end": 39256,
+  "original_sha256": "c24d45784eaa11349b211b6f9519af2f3e03ec54f89d930bc31e8d216a9d61a6",
+  "regions": [
+    {
+      "name": "tsl9_timer3_entry_979e",
+      "start": 38814,
+      "end": 38838,
+      "bytes": 24,
+      "original_sha256": "bedcc121b3c334e95978e51944552a51e98ca90f77f0f1de58cd9f665bfaa072"
+    },
+    {
+      "name": "tsl9_timer3_block_97b6",
+      "start": 38838,
+      "end": 38870,
+      "bytes": 32,
+      "original_sha256": "3bc66e776b0d0a11d5451e0c8c51a6edcfd1a8134594283244298b80a8165f87"
+    },
+    {
+      "name": "tsl9_timer3_block_97d6",
+      "start": 38870,
+      "end": 38878,
+      "bytes": 8,
+      "original_sha256": "e03ec8d0acd51c8e4f4fb2c8940718fc0eb29651b552b67fce49f625d50bc91d"
+    },
+    {
+      "name": "tsl9_timer3_block_97de",
+      "start": 38878,
+      "end": 38892,
+      "bytes": 14,
+      "original_sha256": "4cf4c0f9e2a454cc12d731a1917d4c5b86fdfc7111758699f94963b8d3ad0874"
+    },
+    {
+      "name": "tsl9_timer3_block_97ec",
+      "start": 38892,
+      "end": 38894,
+      "bytes": 2,
+      "original_sha256": "b44e13c3729587d2de8b44f7e7334dbbf83e7a32b3950f81f8cb059b4f791f01"
+    },
+    {
+      "name": "tsl9_timer3_block_97ee",
+      "start": 38894,
+      "end": 38900,
+      "bytes": 6,
+      "original_sha256": "1ff89237ab77b5d7135a639ed9dd44f27f7cb3e75782f2a9c2acf25e3300f433"
+    },
+    {
+      "name": "tsl9_timer3_block_97f4",
+      "start": 38900,
+      "end": 38906,
+      "bytes": 6,
+      "original_sha256": "47189514e12866c55d8e8b256a4284be0d9744e112aa89757892784029a1a307"
+    },
+    {
+      "name": "tsl9_timer3_block_97fa",
+      "start": 38906,
+      "end": 38918,
+      "bytes": 12,
+      "original_sha256": "56ef124a0e5953b949a81fed5cdba27ec75c3d9e391215177c8e08288d9c874f"
+    },
+    {
+      "name": "tsl9_timer3_block_9806",
+      "start": 38918,
+      "end": 38978,
+      "bytes": 60,
+      "original_sha256": "f621a385ae09c3363bac456666e77eda5990f34696732f3a34411d9c5464ab66"
+    },
+    {
+      "name": "tsl9_timer3_block_9842",
+      "start": 38978,
+      "end": 38988,
+      "bytes": 10,
+      "original_sha256": "bf650b3badf74d97d356c6e9d77748397acccad71904472fbdc5978e06e7a185"
+    },
+    {
+      "name": "tsl9_timer3_block_984c",
+      "start": 38988,
+      "end": 39012,
+      "bytes": 24,
+      "original_sha256": "329da8c86e9fb0dff79a45f9d16858009b55fef27969bd5338e317419d054881"
+    },
+    {
+      "name": "tsl9_timer3_block_9864",
+      "start": 39012,
+      "end": 39016,
+      "bytes": 4,
+      "original_sha256": "c2c6aaa9f12b407a2715181d76d08a439450520947dbf02bddb76f6142db4390"
+    },
+    {
+      "name": "tsl9_timer3_block_9868",
+      "start": 39016,
+      "end": 39020,
+      "bytes": 4,
+      "original_sha256": "22d4d568455c13c861d36bac5ce4840f71c33b624e752d43c5f2878aaeb12ecf"
+    },
+    {
+      "name": "tsl9_timer3_block_986c",
+      "start": 39020,
+      "end": 39052,
+      "bytes": 32,
+      "original_sha256": "5d0f426dcd7d7edba863e18150d0c50d279dc1886d7d8f8d10b060b829dc5a9b"
+    },
+    {
+      "name": "tsl9_timer3_block_988c",
+      "start": 39052,
+      "end": 39058,
+      "bytes": 6,
+      "original_sha256": "a597c1a386a644a296b5fcdd43cb96549d2acf876a0a9be0a945066ae4f36a7c"
+    },
+    {
+      "name": "tsl9_timer3_block_9892",
+      "start": 39058,
+      "end": 39066,
+      "bytes": 8,
+      "original_sha256": "e29c5a7b37dfefb0d996d7e620a6a7dec36a0b175c625dc414b4048217a3f617"
+    },
+    {
+      "name": "tsl9_timer3_block_989a",
+      "start": 39066,
+      "end": 39104,
+      "bytes": 38,
+      "original_sha256": "bb076399a9de6badcb439dd0170571b01ac55f73dc1873820ba6031f11d22e4e"
+    },
+    {
+      "name": "tsl9_timer3_block_98c0",
+      "start": 39104,
+      "end": 39116,
+      "bytes": 12,
+      "original_sha256": "b5b24aa083cd0b7f02ce51d394518fd35b560d47d6559f5214ce311213a0cde4"
+    },
+    {
+      "name": "tsl9_timer3_block_98cc",
+      "start": 39116,
+      "end": 39152,
+      "bytes": 36,
+      "original_sha256": "43aac8c009b81aae992afe89256dfaae5afb015996a75ab66f47f6ac899fab78"
+    },
+    {
+      "name": "tsl9_timer3_block_98f0",
+      "start": 39152,
+      "end": 39154,
+      "bytes": 2,
+      "original_sha256": "4a3b3968114eb8720a7590f62fb892f759940f70d4336562d4a1df94fe1baa1c"
+    },
+    {
+      "name": "tsl9_timer3_block_98f2",
+      "start": 39154,
+      "end": 39162,
+      "bytes": 8,
+      "original_sha256": "61c23fac091d56efd94b50d9f678e8d0e5b0d052858e7290f68ca7964bb2a942"
+    },
+    {
+      "name": "tsl9_timer3_block_98fa",
+      "start": 39162,
+      "end": 39170,
+      "bytes": 8,
+      "original_sha256": "524bc51f9563c5687539dc438d8369dd9cbc8fd4cea70b6343cb5ded3592b21e"
+    },
+    {
+      "name": "tsl9_timer3_block_9902",
+      "start": 39170,
+      "end": 39180,
+      "bytes": 10,
+      "original_sha256": "416d1e282c98307d41c38a7741294267c11ea01b639a90c672fad2a5bbeb9de0"
+    },
+    {
+      "name": "tsl9_timer3_block_990c",
+      "start": 39180,
+      "end": 39184,
+      "bytes": 4,
+      "original_sha256": "dd1d1d81251ba2708eb5b1b229f1e0e4077fed3458d2e800b02a03c81692a759"
+    },
+    {
+      "name": "tsl9_timer3_block_9910",
+      "start": 39184,
+      "end": 39212,
+      "bytes": 28,
+      "original_sha256": "9e14318e89bdd8dbaa64cc6760669e9472c2524eb7c1979edf5cfbd02e723820"
+    },
+    {
+      "name": "tsl9_timer3_block_992c",
+      "start": 39212,
+      "end": 39214,
+      "bytes": 2,
+      "original_sha256": "4cd55cf235765166fb1b06dacd65d8463cd9ae7ef2d738bb301cc75e149e3cf1"
+    },
+    {
+      "name": "tsl9_timer3_block_992e",
+      "start": 39214,
+      "end": 39216,
+      "bytes": 2,
+      "original_sha256": "dc1350cbba91e9ba35faea54c5fb751fd5b3bce6d39d8a19db769ba55fc73a0f"
+    },
+    {
+      "name": "tsl9_timer3_block_9930",
+      "start": 39216,
+      "end": 39226,
+      "bytes": 10,
+      "original_sha256": "1867b6cc8ebef7ee8de4a55adb75ceb5cefbfff195a1dc52263d50b98e431dc9"
+    },
+    {
+      "name": "tsl9_timer3_block_993a",
+      "start": 39226,
+      "end": 39228,
+      "bytes": 2,
+      "original_sha256": "2f5fcc429cdb67c9b047cf2508950865c4d7413403be60d2bef8a9a072e5a469"
+    },
+    {
+      "name": "tsl9_timer3_block_993c",
+      "start": 39228,
+      "end": 39234,
+      "bytes": 6,
+      "original_sha256": "53587148f38a6d27f3bd1f141583d7184e5eaae9efbf02aec8c870bcf378528a"
+    },
+    {
+      "name": "tsl9_timer3_block_9942",
+      "start": 39234,
+      "end": 39246,
+      "bytes": 12,
+      "original_sha256": "c568e552b3d7fe030f314024bd1f4dc7281252a0d4e8fa554f00fb1082b5b06d"
+    },
+    {
+      "name": "tsl9_timer3_block_994e",
+      "start": 39246,
+      "end": 39256,
+      "bytes": 10,
+      "original_sha256": "359895b610dfee589093509ce2111aac5d7554ee448cbc5a241ccd5d4d31d8d6"
+    }
+  ],
+  "controls": [
+    {
+      "owner": "tsl9_timer3_entry_979e",
+      "offset": 22,
+      "PC": 38836,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_timer3_block_97fa",
+      "target_PC": 38906
+    },
+    {
+      "owner": "tsl9_timer3_block_97b6",
+      "offset": 28,
+      "PC": 38866,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_channel_external_81b0",
+      "target_PC": 33200
+    },
+    {
+      "owner": "tsl9_timer3_block_97d6",
+      "offset": 4,
+      "PC": 38874,
+      "size": 4,
+      "type": 16,
+      "target": "tsl9_timer3_block_97fa",
+      "target_PC": 38906
+    },
+    {
+      "owner": "tsl9_timer3_block_97de",
+      "offset": 10,
+      "PC": 38888,
+      "size": 4,
+      "type": 16,
+      "target": "tsl9_timer3_block_9892",
+      "target_PC": 39058
+    },
+    {
+      "owner": "tsl9_timer3_block_97ec",
+      "offset": 0,
+      "PC": 38892,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_timer3_block_9806",
+      "target_PC": 38918
+    },
+    {
+      "owner": "tsl9_timer3_block_97ee",
+      "offset": 2,
+      "PC": 38896,
+      "size": 4,
+      "type": 16,
+      "target": "tsl9_timer3_block_98cc",
+      "target_PC": 39116
+    },
+    {
+      "owner": "tsl9_timer3_block_97f4",
+      "offset": 2,
+      "PC": 38902,
+      "size": 4,
+      "type": 16,
+      "target": "tsl9_timer3_block_993a",
+      "target_PC": 39226
+    },
+    {
+      "owner": "tsl9_timer3_block_9806",
+      "offset": 58,
+      "PC": 38976,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_timer3_block_984c",
+      "target_PC": 38988
+    },
+    {
+      "owner": "tsl9_timer3_block_984c",
+      "offset": 20,
+      "PC": 39008,
+      "size": 4,
+      "type": 16,
+      "target": "tsl9_timer3_block_9868",
+      "target_PC": 39016
+    },
+    {
+      "owner": "tsl9_timer3_block_9868",
+      "offset": 0,
+      "PC": 39016,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_channel_external_81b0",
+      "target_PC": 33200
+    },
+    {
+      "owner": "tsl9_timer3_block_988c",
+      "offset": 4,
+      "PC": 39056,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_timer3_block_98c0",
+      "target_PC": 39104
+    },
+    {
+      "owner": "tsl9_timer3_block_9892",
+      "offset": 4,
+      "PC": 39062,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_channel_external_81b0",
+      "target_PC": 33200
+    },
+    {
+      "owner": "tsl9_timer3_block_98c0",
+      "offset": 10,
+      "PC": 39114,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_timer3_block_97fa",
+      "target_PC": 38906
+    },
+    {
+      "owner": "tsl9_timer3_block_98cc",
+      "offset": 34,
+      "PC": 39150,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_timer3_block_9930",
+      "target_PC": 39216
+    },
+    {
+      "owner": "tsl9_timer3_block_98f0",
+      "offset": 0,
+      "PC": 39152,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_timer3_block_9902",
+      "target_PC": 39170
+    },
+    {
+      "owner": "tsl9_timer3_block_9902",
+      "offset": 8,
+      "PC": 39178,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_timer3_block_992c",
+      "target_PC": 39212
+    },
+    {
+      "owner": "tsl9_timer3_block_990c",
+      "offset": 0,
+      "PC": 39180,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_channel_external_81b0",
+      "target_PC": 33200
+    },
+    {
+      "owner": "tsl9_timer3_block_9910",
+      "offset": 26,
+      "PC": 39210,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_timer3_block_988c",
+      "target_PC": 39052
+    },
+    {
+      "owner": "tsl9_timer3_block_992c",
+      "offset": 0,
+      "PC": 39212,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_program_disarm_93ee",
+      "target_PC": 37870
+    },
+    {
+      "owner": "tsl9_timer3_block_992e",
+      "offset": 0,
+      "PC": 39214,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_timer3_block_97fa",
+      "target_PC": 38906
+    },
+    {
+      "owner": "tsl9_timer3_block_9930",
+      "offset": 8,
+      "PC": 39224,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_timer3_block_97fa",
+      "target_PC": 38906
+    },
+    {
+      "owner": "tsl9_timer3_block_993a",
+      "offset": 0,
+      "PC": 39226,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_program_disarm_93ee",
+      "target_PC": 37870
+    },
+    {
+      "owner": "tsl9_timer3_block_993c",
+      "offset": 4,
+      "PC": 39232,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_timer3_block_994e",
+      "target_PC": 39246
+    },
+    {
+      "owner": "tsl9_timer3_block_994e",
+      "offset": 8,
+      "PC": 39254,
+      "size": 2,
+      "type": 45,
+      "target": "tsl9_timer3_block_97fa",
+      "target_PC": 38906
+    }
+  ],
+  "undefined": [
+    "tsl9_channel_external_81b0",
+    "tsl9_program_disarm_93ee"
+  ]
+}

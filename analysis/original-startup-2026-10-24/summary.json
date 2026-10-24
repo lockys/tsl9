@@ -1,0 +1,213 @@
+{
+  "schema": "TSL9-original-startup-summary-v1",
+  "date": "2026-10-24",
+  "worktree_uncommitted": true,
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "nominal_base": 32768
+  },
+  "source": {
+    "path": "src/native/startup/boot_original.c",
+    "origin": "experiments/tsl9-original-startup/src/boot_original.v1.c",
+    "sha256": "0b462f8a93b5bf60c4f3096dcc5315fce682c9e780b120f10a5ec0d6e4fa0c9a",
+    "languages": [
+      "C11",
+      "C++17"
+    ],
+    "architecture_ports_explicit": true,
+    "normal_C_ABI_claimed": false
+  },
+  "source_proof": {
+    "actual_standalone_and_curated_code_original_VA_equal": true,
+    "current_comparisons": 106,
+    "current_objects": 212,
+    "native_units": 53,
+    "negative_cases_executed": 0,
+    "passed": true,
+    "prior104_comparisons_and625_artifacts_unchanged": true,
+    "source_C_H_files": 79,
+    "source_extension": "One source and one native unit; exact retained parent manifest",
+    "target_executed": false
+  },
+  "original_spans": [
+    {
+      "start": 32768,
+      "end": 32824,
+      "bytes": 56,
+      "instructions": 14,
+      "role": "Header: J to186AA; twelve full-width NOPs and full-width EBREAK"
+    },
+    {
+      "start": 99888,
+      "end": 100010,
+      "bytes": 122,
+      "instructions": 61,
+      "role": "Genuine original compressed self-loop default entries"
+    },
+    {
+      "start": 100010,
+      "end": 100148,
+      "bytes": 138,
+      "instructions": 37,
+      "role": "Original reset, copy/zero, CSR and clock/ROM handoff"
+    },
+    {
+      "start": 100148,
+      "end": 100170,
+      "bytes": 22,
+      "instructions": 7,
+      "role": "Original MRET/default/indirect IRQ trampoline code"
+    },
+    {
+      "start": 100170,
+      "end": 100404,
+      "bytes": 234,
+      "instructions": 93,
+      "role": "Complete original clock span including reachable cold store/backward edge"
+    }
+  ],
+  "component": {
+    "ABS_providers": 0,
+    "ELF_VMA_zero": true,
+    "FUNC": 99,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "PC_relative_RELA": 6,
+    "RELA": 82,
+    "UND": [
+      "tsl9_boot_main_9008",
+      "tsl9_boot_resident_40000",
+      "tsl9_boot_vector_data_8038"
+    ],
+    "alias_section_relative": true,
+    "all_code_carriers_unchanged": true,
+    "all_code_original_VA_equal": true,
+    "all_global_and_local_relocation_targets_owned": true,
+    "all_initializer_bytes_original_equal": true,
+    "code_bytes": 572,
+    "component_sha256": "2c82081887e5ca639773fd83ab212175a5a87089f8867053cee22245dc59f03a",
+    "data_alias": "tsl9_boot_initializer_1ab60",
+    "data_provider": "tsl9_runtime_reset_initializer",
+    "diagnostic_RAM_stack_excluded": true,
+    "direct_control_RELA": 76,
+    "executable": false,
+    "firmware_BIN_generated": false,
+    "firmware_ready": false,
+    "hardware_accessed": false,
+    "instructions": 212,
+    "mode": "both_languages",
+    "negative_cases_executed": 0,
+    "network": false,
+    "original_initializer_bytes": 128,
+    "passed": true,
+    "target_executed": false
+  },
+  "selected_data": {
+    "diagnostic_BSS_or_stack_retained": false,
+    "object_sha256": "62b50f3ae90e6381ee839cd2d1bb027ae7cb8343c4ba81ecb6d2e353a3331a49",
+    "original_initializer_sha256": "d2f2eac71b3c4f04686d1179aebb430b70088394c46552914bec908c98558e0c",
+    "passed": true,
+    "selected_bytes": 128,
+    "source_carrier_modified": false
+  },
+  "observed_static_constants": {
+    "GP": 536887296,
+    "SP": 536936448,
+    "initializer_source": 109408,
+    "copy_destination_start": 536887296,
+    "copy_destination_end": 536887424,
+    "zero_end": 536922456,
+    "mtvec_base": 32824,
+    "mtvec_OR_mask": 3,
+    "mepc_target": 36872,
+    "resident_no_link_jump": 262144,
+    "mstatus_operation": "CSRS with mask0x1888; not an absolute final mstatus value",
+    "memory_capacity_or_ownership_proved": false
+  },
+  "clock_cold_path": {
+    "branch_PC": 100290,
+    "cold_entry": 100400,
+    "store": "sw zero,12(sp)",
+    "jump_PC": 100402,
+    "jump_target": 100298,
+    "physical_clock_result_observed": false
+  },
+  "remaining_interfaces": [
+    "tsl9_boot_main_9008",
+    "tsl9_boot_resident_40000",
+    "tsl9_boot_vector_data_8038"
+  ],
+  "evidence_files": {
+    "experiments/tsl9-original-startup/build/component-v1/measurement.json": {
+      "bytes": 14258,
+      "sha256": "f68de66bcb99ac5149ab83e4979059b242fc69b3dcc2a1a258d1cf8023529439"
+    },
+    "experiments/tsl9-original-startup/build/component-v1/c/verification.json": {
+      "bytes": 1052,
+      "sha256": "6fcdeb8376ca925d2819b5419f58a9e8add12b37aa75de0593f4a224865250b9"
+    },
+    "experiments/tsl9-original-startup/build/component-v1/cpp/verification.json": {
+      "bytes": 1054,
+      "sha256": "51cc8ea617e2668c027dd3adb9264dba0f911cc376971cb4e54513706a938e6b"
+    },
+    "experiments/tsl9-original-startup/integrate-v1.py": {
+      "bytes": 15602,
+      "sha256": "2f83d3462e854bf6f717f75846ae4521908057b8115cb110a91bc607d95a4d5a"
+    },
+    "experiments/tsl9-original-startup/integration-v1.json": {
+      "bytes": 3197,
+      "sha256": "350fee9924407b0f43b7244f96d2185146be7ae2259444414d39f9482ce9d042"
+    },
+    "experiments/tsl9-original-startup/joined-v1.ld": {
+      "bytes": 3170,
+      "sha256": "188ea2f02b8e94948717e577c70d8148d374a35f17ad48015a4a1e937f8843d4"
+    }
+  },
+  "curation_full_local_receipt": {
+    "path": "build/curated-source/original-startup-20261024-v1/verification.json",
+    "sha256": "0950c9ea3e056db91c42834373e2f532f11a0a5dea1460159218592ce75c3a5e",
+    "public_full_copy": false
+  },
+  "full_goal_gates": {
+    "original_hardware_identified": false,
+    "installed_resident_ROM_identified": false,
+    "memory_ownership_and_capacity_proved": false,
+    "complete_vector_IRQ_context_proved": false,
+    "main_and_application_closure_proved": false,
+    "final_original_VMA_link_proved": false,
+    "hardware_boot_verified": false,
+    "BLE_OTA_compatibility_verified": false,
+    "flashable_BIN": false
+  },
+  "candidate_features": [
+    {
+      "name": "Offline image compatibility descriptor",
+      "status": "candidate_not_implemented",
+      "basis": "This component distinguishes exact source/image identities, GP/SP constants and unresolved ROM/vector/main dependencies.",
+      "required_evidence": "A complete image and confirmed hardware/ROM identity; do not infer compatibility from a version label."
+    },
+    {
+      "name": "Read-only boot/clock diagnostic snapshot",
+      "status": "candidate_not_implemented",
+      "basis": "Original234B clock path contains polling and a reachable cold tail; CSR handoff ordering is explicit.",
+      "required_evidence": "Document register meaning and safe observation context first; no new MMIO reads or hardware writes added."
+    }
+  ],
+  "publication": {
+    "held_for_history_privacy": true,
+    "commit_or_push": false,
+    "history_rewritten": false,
+    "raw_receipts_preserved_local": true
+  },
+  "execution": {
+    "target": false,
+    "ISA_emulation": false,
+    "HOST_model": false,
+    "hardware": false,
+    "network": false,
+    "negative_cases": 0,
+    "firmware_BIN_generated": false
+  }
+}
+

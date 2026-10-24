@@ -1,0 +1,1227 @@
+{
+  "schema": "TSL9-ROM-dependency-family-evidence-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "r2_sha256": "cf307a66636960527e1511d00d2be6484b3b45929bf49f3d0923b24b13e17e58",
+  "recipe": "Bounded read-only r2 pDj windows at9792,9FC2,A2EE,ABF2,81DE,A204,9F74;retain only explicit full function ranges below. Truncated decoder rows outside these ranges are excluded.",
+  "selected_functions": [
+    {
+      "name": "tsl9_rom_dependency_entry_81de",
+      "start": 33246,
+      "end": 33262,
+      "operations": [
+        {
+          "addr": 33246,
+          "size": 4,
+          "opcode": "addi a5, gp, 84",
+          "bytes": "93874105",
+          "type": "add"
+        },
+        {
+          "addr": 33250,
+          "size": 2,
+          "opcode": "lw a5, 0(a5)",
+          "bytes": "9c43",
+          "type": "load"
+        },
+        {
+          "addr": 33252,
+          "size": 4,
+          "opcode": "lbu a0, 5(a5)",
+          "bytes": "03c55700",
+          "type": "load"
+        },
+        {
+          "addr": 33256,
+          "size": 2,
+          "opcode": "andi a0, a0, 3",
+          "bytes": "0d89",
+          "type": "and"
+        },
+        {
+          "addr": 33258,
+          "size": 2,
+          "opcode": "addi a0, a0, 1",
+          "bytes": "0505",
+          "type": "add"
+        },
+        {
+          "addr": 33260,
+          "size": 2,
+          "opcode": "ret",
+          "bytes": "8280",
+          "type": "ret"
+        }
+      ]
+    },
+    {
+      "name": "tsl9_rom_driver_external_9792",
+      "start": 38802,
+      "end": 38814,
+      "operations": [
+        {
+          "addr": 38802,
+          "size": 4,
+          "opcode": "li a5, 250",
+          "bytes": "9307a00f",
+          "type": "mov"
+        },
+        {
+          "addr": 38806,
+          "size": 2,
+          "opcode": "bnez a0, 0x979a",
+          "bytes": "11e1",
+          "type": "cjmp",
+          "jump": 38810,
+          "fail": 38808
+        },
+        {
+          "addr": 38808,
+          "size": 2,
+          "opcode": "li a5, 2",
+          "bytes": "8947",
+          "type": "mov"
+        },
+        {
+          "addr": 38810,
+          "size": 2,
+          "opcode": "mv a0, a5",
+          "bytes": "3e85",
+          "type": "mov"
+        },
+        {
+          "addr": 38812,
+          "size": 2,
+          "opcode": "j 0x9454",
+          "bytes": "65b9",
+          "type": "jmp",
+          "jump": 37972
+        }
+      ]
+    },
+    {
+      "name": "tsl9_rom_dependency_entry_9f74",
+      "start": 40820,
+      "end": 40826,
+      "operations": [
+        {
+          "addr": 40820,
+          "size": 4,
+          "opcode": "sb zero, 175(gp)",
+          "bytes": "a387010a",
+          "type": "store"
+        },
+        {
+          "addr": 40824,
+          "size": 2,
+          "opcode": "ret",
+          "bytes": "8280",
+          "type": "ret"
+        }
+      ]
+    },
+    {
+      "name": "tsl9_rom_driver_external_9fc2",
+      "start": 40898,
+      "end": 40904,
+      "operations": [
+        {
+          "addr": 40898,
+          "size": 4,
+          "opcode": "lbu a0, 172(gp)",
+          "bytes": "03c5c10a",
+          "type": "load"
+        },
+        {
+          "addr": 40902,
+          "size": 2,
+          "opcode": "ret",
+          "bytes": "8280",
+          "type": "ret"
+        }
+      ]
+    },
+    {
+      "name": "tsl9_rom_dependency_entry_a204",
+      "start": 41476,
+      "end": 41706,
+      "operations": [
+        {
+          "addr": 41476,
+          "size": 2,
+          "opcode": "addi sp, sp, -16",
+          "bytes": "4111",
+          "type": "add"
+        },
+        {
+          "addr": 41478,
+          "size": 2,
+          "opcode": "sw ra, 12(sp)",
+          "bytes": "06c6",
+          "type": "store"
+        },
+        {
+          "addr": 41480,
+          "size": 4,
+          "opcode": "lbu a5, 172(gp)",
+          "bytes": "83c7c10a",
+          "type": "load"
+        },
+        {
+          "addr": 41484,
+          "size": 2,
+          "opcode": "beqz a5, 0xa228",
+          "bytes": "91cf",
+          "type": "cjmp",
+          "jump": 41512,
+          "fail": 41486
+        },
+        {
+          "addr": 41486,
+          "size": 4,
+          "opcode": "beqz a0, 0xa2e4",
+          "bytes": "630b050c",
+          "type": "cjmp",
+          "jump": 41700,
+          "fail": 41490
+        },
+        {
+          "addr": 41490,
+          "size": 4,
+          "opcode": "jal ra, 0x8202",
+          "bytes": "efd01fff",
+          "type": "call",
+          "jump": 33282,
+          "fail": 41494
+        },
+        {
+          "addr": 41494,
+          "size": 4,
+          "opcode": "beqz a0, 0xa2e4",
+          "bytes": "6307050c",
+          "type": "cjmp",
+          "jump": 41700,
+          "fail": 41498
+        },
+        {
+          "addr": 41498,
+          "size": 2,
+          "opcode": "lw ra, 12(sp)",
+          "bytes": "b240",
+          "type": "load"
+        },
+        {
+          "addr": 41500,
+          "size": 2,
+          "opcode": "li a2, 0",
+          "bytes": "0146",
+          "type": "mov"
+        },
+        {
+          "addr": 41502,
+          "size": 2,
+          "opcode": "li a1, 1",
+          "bytes": "8545",
+          "type": "mov"
+        },
+        {
+          "addr": 41504,
+          "size": 2,
+          "opcode": "li a0, 3",
+          "bytes": "0d45",
+          "type": "mov"
+        },
+        {
+          "addr": 41506,
+          "size": 2,
+          "opcode": "addi sp, sp, 16",
+          "bytes": "4101",
+          "type": "add"
+        },
+        {
+          "addr": 41508,
+          "size": 4,
+          "opcode": "j 0xd05c",
+          "bytes": "6f209063",
+          "type": "jmp",
+          "jump": 53340
+        },
+        {
+          "addr": 41512,
+          "size": 4,
+          "opcode": "lbu a5, 179(gp)",
+          "bytes": "83c7310b",
+          "type": "load"
+        },
+        {
+          "addr": 41516,
+          "size": 2,
+          "opcode": "beqz a0, 0xa2a8",
+          "bytes": "35cd",
+          "type": "cjmp",
+          "jump": 41640,
+          "fail": 41518
+        },
+        {
+          "addr": 41518,
+          "size": 2,
+          "opcode": "bnez a5, 0xa2e4",
+          "bytes": "ddeb",
+          "type": "cjmp",
+          "jump": 41700,
+          "fail": 41520
+        },
+        {
+          "addr": 41520,
+          "size": 4,
+          "opcode": "sb a0, 179(gp)",
+          "bytes": "a389a10a",
+          "type": "store"
+        },
+        {
+          "addr": 41524,
+          "size": 4,
+          "opcode": "addi a5, gp, 84",
+          "bytes": "93874105",
+          "type": "add"
+        },
+        {
+          "addr": 41528,
+          "size": 2,
+          "opcode": "lw a4, 0(a5)",
+          "bytes": "9843",
+          "type": "load"
+        },
+        {
+          "addr": 41530,
+          "size": 2,
+          "opcode": "li a3, 2",
+          "bytes": "8946",
+          "type": "mov"
+        },
+        {
+          "addr": 41532,
+          "size": 4,
+          "opcode": "lbu a5, 4(a4)",
+          "bytes": "83474700",
+          "type": "load"
+        },
+        {
+          "addr": 41536,
+          "size": 2,
+          "opcode": "srli a5, a5, 0x6",
+          "bytes": "9983",
+          "type": "shr"
+        },
+        {
+          "addr": 41538,
+          "size": 4,
+          "opcode": "beq a5, a3, 0xa286",
+          "bytes": "6382d704",
+          "type": "cjmp",
+          "jump": 41606,
+          "fail": 41542
+        },
+        {
+          "addr": 41542,
+          "size": 4,
+          "opcode": "bltu a3, a5, 0xa294",
+          "bytes": "63e7f604",
+          "type": "cjmp",
+          "jump": 41620,
+          "fail": 41546
+        },
+        {
+          "addr": 41546,
+          "size": 2,
+          "opcode": "li a3, 1",
+          "bytes": "8546",
+          "type": "mov"
+        },
+        {
+          "addr": 41548,
+          "size": 4,
+          "opcode": "beq a5, a3, 0xa28e",
+          "bytes": "6381d704",
+          "type": "cjmp",
+          "jump": 41614,
+          "fail": 41552
+        },
+        {
+          "addr": 41552,
+          "size": 4,
+          "opcode": "sb zero, 180(gp)",
+          "bytes": "238a010a",
+          "type": "store"
+        },
+        {
+          "addr": 41556,
+          "size": 4,
+          "opcode": "lbu a5, 9(a4)",
+          "bytes": "83479700",
+          "type": "load"
+        },
+        {
+          "addr": 41560,
+          "size": 2,
+          "opcode": "li a4, 2",
+          "bytes": "0947",
+          "type": "mov"
+        },
+        {
+          "addr": 41562,
+          "size": 2,
+          "opcode": "andi a5, a5, 3",
+          "bytes": "8d8b",
+          "type": "and"
+        },
+        {
+          "addr": 41564,
+          "size": 4,
+          "opcode": "beq a5, a4, 0xa26e",
+          "bytes": "6389e700",
+          "type": "cjmp",
+          "jump": 41582,
+          "fail": 41568
+        },
+        {
+          "addr": 41568,
+          "size": 4,
+          "opcode": "bltu a4, a5, 0xa298",
+          "bytes": "636cf702",
+          "type": "cjmp",
+          "jump": 41624,
+          "fail": 41572
+        },
+        {
+          "addr": 41572,
+          "size": 2,
+          "opcode": "li a4, 1",
+          "bytes": "0547",
+          "type": "mov"
+        },
+        {
+          "addr": 41574,
+          "size": 4,
+          "opcode": "beq a5, a4, 0xa2be",
+          "bytes": "638ce704",
+          "type": "cjmp",
+          "jump": 41662,
+          "fail": 41578
+        },
+        {
+          "addr": 41578,
+          "size": 4,
+          "opcode": "sb zero, 178(gp)",
+          "bytes": "2389010a",
+          "type": "store"
+        },
+        {
+          "addr": 41582,
+          "size": 4,
+          "opcode": "lbu a4, 180(gp)",
+          "bytes": "03c7410b",
+          "type": "load"
+        },
+        {
+          "addr": 41586,
+          "size": 2,
+          "opcode": "bnez a4, 0xa2d2",
+          "bytes": "25e3",
+          "type": "cjmp",
+          "jump": 41682,
+          "fail": 41588
+        },
+        {
+          "addr": 41588,
+          "size": 4,
+          "opcode": "lbu a5, 174(gp)",
+          "bytes": "83c7e10a",
+          "type": "load"
+        },
+        {
+          "addr": 41592,
+          "size": 2,
+          "opcode": "bnez a5, 0xa2e4",
+          "bytes": "b5e7",
+          "type": "cjmp",
+          "jump": 41700,
+          "fail": 41594
+        },
+        {
+          "addr": 41594,
+          "size": 4,
+          "opcode": "lbu a5, 178(gp)",
+          "bytes": "83c7210b",
+          "type": "load"
+        },
+        {
+          "addr": 41598,
+          "size": 2,
+          "opcode": "li a0, 3",
+          "bytes": "0d45",
+          "type": "mov"
+        },
+        {
+          "addr": 41600,
+          "size": 2,
+          "opcode": "bnez a5, 0xa2ca",
+          "bytes": "a9e7",
+          "type": "cjmp",
+          "jump": 41674,
+          "fail": 41602
+        },
+        {
+          "addr": 41602,
+          "size": 2,
+          "opcode": "li a0, 1",
+          "bytes": "0545",
+          "type": "mov"
+        },
+        {
+          "addr": 41604,
+          "size": 2,
+          "opcode": "j 0xa2ca",
+          "bytes": "99a0",
+          "type": "jmp",
+          "jump": 41674
+        },
+        {
+          "addr": 41606,
+          "size": 4,
+          "opcode": "lbu a5, 180(gp)",
+          "bytes": "83c7410b",
+          "type": "load"
+        },
+        {
+          "addr": 41610,
+          "size": 4,
+          "opcode": "seqz a5, a5",
+          "bytes": "93b71700",
+          "type": "unk"
+        },
+        {
+          "addr": 41614,
+          "size": 4,
+          "opcode": "sb a5, 180(gp)",
+          "bytes": "238af10a",
+          "type": "store"
+        },
+        {
+          "addr": 41618,
+          "size": 2,
+          "opcode": "j 0xa254",
+          "bytes": "c9b7",
+          "type": "jmp",
+          "jump": 41556
+        },
+        {
+          "addr": 41620,
+          "size": 2,
+          "opcode": "li a5, 3",
+          "bytes": "8d47",
+          "type": "mov"
+        },
+        {
+          "addr": 41622,
+          "size": 2,
+          "opcode": "j 0xa28e",
+          "bytes": "e5bf",
+          "type": "jmp",
+          "jump": 41614
+        },
+        {
+          "addr": 41624,
+          "size": 4,
+          "opcode": "lui a5, 0x40",
+          "bytes": "b7070400",
+          "type": "mov"
+        },
+        {
+          "addr": 41628,
+          "size": 2,
+          "opcode": "lw a5, 56(a5)",
+          "bytes": "9c5f",
+          "type": "load"
+        },
+        {
+          "addr": 41630,
+          "size": 2,
+          "opcode": "jalr a5",
+          "bytes": "8297",
+          "type": "ucall"
+        },
+        {
+          "addr": 41632,
+          "size": 2,
+          "opcode": "andi a0, a0, 1",
+          "bytes": "0589",
+          "type": "and"
+        },
+        {
+          "addr": 41634,
+          "size": 4,
+          "opcode": "sb a0, 178(gp)",
+          "bytes": "2389a10a",
+          "type": "store"
+        },
+        {
+          "addr": 41638,
+          "size": 2,
+          "opcode": "j 0xa26e",
+          "bytes": "e1b7",
+          "type": "jmp",
+          "jump": 41582
+        },
+        {
+          "addr": 41640,
+          "size": 2,
+          "opcode": "beqz a5, 0xa2e4",
+          "bytes": "95cf",
+          "type": "cjmp",
+          "jump": 41700,
+          "fail": 41642
+        },
+        {
+          "addr": 41642,
+          "size": 2,
+          "opcode": "addi a5, a5, -1",
+          "bytes": "fd17",
+          "type": "add"
+        },
+        {
+          "addr": 41644,
+          "size": 4,
+          "opcode": "andi a5, a5, 255",
+          "bytes": "93f7f70f",
+          "type": "and"
+        },
+        {
+          "addr": 41648,
+          "size": 4,
+          "opcode": "sb a5, 179(gp)",
+          "bytes": "a389f10a",
+          "type": "store"
+        },
+        {
+          "addr": 41652,
+          "size": 2,
+          "opcode": "bnez a5, 0xa2e4",
+          "bytes": "85eb",
+          "type": "cjmp",
+          "jump": 41700,
+          "fail": 41654
+        },
+        {
+          "addr": 41654,
+          "size": 4,
+          "opcode": "lbu a5, 178(gp)",
+          "bytes": "83c7210b",
+          "type": "load"
+        },
+        {
+          "addr": 41658,
+          "size": 4,
+          "opcode": "seqz a5, a5",
+          "bytes": "93b71700",
+          "type": "unk"
+        },
+        {
+          "addr": 41662,
+          "size": 4,
+          "opcode": "sb a5, 178(gp)",
+          "bytes": "2389f10a",
+          "type": "store"
+        },
+        {
+          "addr": 41666,
+          "size": 2,
+          "opcode": "j 0xa26e",
+          "bytes": "75b7",
+          "type": "jmp",
+          "jump": 41582
+        },
+        {
+          "addr": 41668,
+          "size": 2,
+          "opcode": "li a0, 10",
+          "bytes": "2945",
+          "type": "mov"
+        },
+        {
+          "addr": 41670,
+          "size": 2,
+          "opcode": "bnez a5, 0xa2ca",
+          "bytes": "91e3",
+          "type": "cjmp",
+          "jump": 41674,
+          "fail": 41672
+        },
+        {
+          "addr": 41672,
+          "size": 2,
+          "opcode": "li a0, 12",
+          "bytes": "3145",
+          "type": "mov"
+        },
+        {
+          "addr": 41674,
+          "size": 2,
+          "opcode": "lw ra, 12(sp)",
+          "bytes": "b240",
+          "type": "load"
+        },
+        {
+          "addr": 41676,
+          "size": 2,
+          "opcode": "addi sp, sp, 16",
+          "bytes": "4101",
+          "type": "add"
+        },
+        {
+          "addr": 41678,
+          "size": 4,
+          "opcode": "j 0xb6ea",
+          "bytes": "6f10c041",
+          "type": "jmp",
+          "jump": 46826
+        },
+        {
+          "addr": 41682,
+          "size": 2,
+          "opcode": "li a3, 3",
+          "bytes": "8d46",
+          "type": "mov"
+        },
+        {
+          "addr": 41684,
+          "size": 4,
+          "opcode": "lbu a5, 178(gp)",
+          "bytes": "83c7210b",
+          "type": "load"
+        },
+        {
+          "addr": 41688,
+          "size": 4,
+          "opcode": "beq a4, a3, 0xa2c4",
+          "bytes": "e306d7fe",
+          "type": "cjmp",
+          "jump": 41668,
+          "fail": 41692
+        },
+        {
+          "addr": 41692,
+          "size": 2,
+          "opcode": "li a0, 11",
+          "bytes": "2d45",
+          "type": "mov"
+        },
+        {
+          "addr": 41694,
+          "size": 2,
+          "opcode": "bnez a5, 0xa2ca",
+          "bytes": "f5f7",
+          "type": "cjmp",
+          "jump": 41674,
+          "fail": 41696
+        },
+        {
+          "addr": 41696,
+          "size": 2,
+          "opcode": "li a0, 9",
+          "bytes": "2545",
+          "type": "mov"
+        },
+        {
+          "addr": 41698,
+          "size": 2,
+          "opcode": "j 0xa2ca",
+          "bytes": "e5b7",
+          "type": "jmp",
+          "jump": 41674
+        },
+        {
+          "addr": 41700,
+          "size": 2,
+          "opcode": "lw ra, 12(sp)",
+          "bytes": "b240",
+          "type": "load"
+        },
+        {
+          "addr": 41702,
+          "size": 2,
+          "opcode": "addi sp, sp, 16",
+          "bytes": "4101",
+          "type": "add"
+        },
+        {
+          "addr": 41704,
+          "size": 2,
+          "opcode": "ret",
+          "bytes": "8280",
+          "type": "ret"
+        }
+      ]
+    },
+    {
+      "name": "tsl9_rom_driver_external_a2ee",
+      "start": 41710,
+      "end": 41852,
+      "operations": [
+        {
+          "addr": 41710,
+          "size": 2,
+          "opcode": "addi sp, sp, -16",
+          "bytes": "4111",
+          "type": "add"
+        },
+        {
+          "addr": 41712,
+          "size": 2,
+          "opcode": "sw s0, 8(sp)",
+          "bytes": "22c4",
+          "type": "store"
+        },
+        {
+          "addr": 41714,
+          "size": 2,
+          "opcode": "sw ra, 12(sp)",
+          "bytes": "06c6",
+          "type": "store"
+        },
+        {
+          "addr": 41716,
+          "size": 2,
+          "opcode": "sw s1, 4(sp)",
+          "bytes": "26c2",
+          "type": "store"
+        },
+        {
+          "addr": 41718,
+          "size": 2,
+          "opcode": "mv s0, a0",
+          "bytes": "2a84",
+          "type": "mov"
+        },
+        {
+          "addr": 41720,
+          "size": 4,
+          "opcode": "jal ra, 0x829e",
+          "bytes": "efd07ffa",
+          "type": "call",
+          "jump": 33438,
+          "fail": 41724
+        },
+        {
+          "addr": 41724,
+          "size": 2,
+          "opcode": "li a5, 1",
+          "bytes": "8547",
+          "type": "mov"
+        },
+        {
+          "addr": 41726,
+          "size": 4,
+          "opcode": "bne a0, a5, 0xa364",
+          "bytes": "6313f506",
+          "type": "cjmp",
+          "jump": 41828,
+          "fail": 41730
+        },
+        {
+          "addr": 41730,
+          "size": 4,
+          "opcode": "jal ra, 0x81de",
+          "bytes": "efd0dfed",
+          "type": "call",
+          "jump": 33246,
+          "fail": 41734
+        },
+        {
+          "addr": 41734,
+          "size": 4,
+          "opcode": "andi a5, a0, 1",
+          "bytes": "93771500",
+          "type": "and"
+        },
+        {
+          "addr": 41738,
+          "size": 2,
+          "opcode": "mv s1, a0",
+          "bytes": "aa84",
+          "type": "mov"
+        },
+        {
+          "addr": 41740,
+          "size": 2,
+          "opcode": "beqz a5, 0xa312",
+          "bytes": "99c3",
+          "type": "cjmp",
+          "jump": 41746,
+          "fail": 41742
+        },
+        {
+          "addr": 41742,
+          "size": 2,
+          "opcode": "mv a0, s0",
+          "bytes": "2285",
+          "type": "mov"
+        },
+        {
+          "addr": 41744,
+          "size": 2,
+          "opcode": "jal 0xa204",
+          "bytes": "d53d",
+          "type": "call",
+          "jump": 41476,
+          "fail": 41746
+        },
+        {
+          "addr": 41746,
+          "size": 2,
+          "opcode": "andi s1, s1, 2",
+          "bytes": "8988",
+          "type": "and"
+        },
+        {
+          "addr": 41748,
+          "size": 2,
+          "opcode": "beqz s1, 0xa372",
+          "bytes": "b9cc",
+          "type": "cjmp",
+          "jump": 41842,
+          "fail": 41750
+        },
+        {
+          "addr": 41750,
+          "size": 2,
+          "opcode": "li a0, 2",
+          "bytes": "0945",
+          "type": "mov"
+        },
+        {
+          "addr": 41752,
+          "size": 4,
+          "opcode": "jal ra, 0x821e",
+          "bytes": "efd07ff0",
+          "type": "call",
+          "jump": 33310,
+          "fail": 41756
+        },
+        {
+          "addr": 41756,
+          "size": 2,
+          "opcode": "beqz a0, 0xa372",
+          "bytes": "39c9",
+          "type": "cjmp",
+          "jump": 41842,
+          "fail": 41758
+        },
+        {
+          "addr": 41758,
+          "size": 2,
+          "opcode": "beqz s0, 0xa372",
+          "bytes": "31c8",
+          "type": "cjmp",
+          "jump": 41842,
+          "fail": 41760
+        },
+        {
+          "addr": 41760,
+          "size": 4,
+          "opcode": "addi a5, gp, 84",
+          "bytes": "93874105",
+          "type": "add"
+        },
+        {
+          "addr": 41764,
+          "size": 2,
+          "opcode": "lw a5, 0(a5)",
+          "bytes": "9c43",
+          "type": "load"
+        },
+        {
+          "addr": 41766,
+          "size": 2,
+          "opcode": "li a4, 15",
+          "bytes": "3d47",
+          "type": "mov"
+        },
+        {
+          "addr": 41768,
+          "size": 4,
+          "opcode": "lbu a5, 3(a5)",
+          "bytes": "83c73700",
+          "type": "load"
+        },
+        {
+          "addr": 41772,
+          "size": 2,
+          "opcode": "andi a5, a5, 15",
+          "bytes": "bd8b",
+          "type": "and"
+        },
+        {
+          "addr": 41774,
+          "size": 4,
+          "opcode": "beq a5, a4, 0xa372",
+          "bytes": "6382e704",
+          "type": "cjmp",
+          "jump": 41842,
+          "fail": 41778
+        },
+        {
+          "addr": 41778,
+          "size": 4,
+          "opcode": "li a2, 1000",
+          "bytes": "1306803e",
+          "type": "mov"
+        },
+        {
+          "addr": 41782,
+          "size": 4,
+          "opcode": "mul a2, s0, a2",
+          "bytes": "3306c402",
+          "type": "mul"
+        },
+        {
+          "addr": 41786,
+          "size": 4,
+          "opcode": "lbu a5, 176(gp)",
+          "bytes": "83c7010b",
+          "type": "load"
+        },
+        {
+          "addr": 41790,
+          "size": 2,
+          "opcode": "addi a5, a5, 1",
+          "bytes": "8507",
+          "type": "add"
+        },
+        {
+          "addr": 41792,
+          "size": 2,
+          "opcode": "andi a5, a5, 3",
+          "bytes": "8d8b",
+          "type": "and"
+        },
+        {
+          "addr": 41794,
+          "size": 2,
+          "opcode": "lw s0, 8(sp)",
+          "bytes": "2244",
+          "type": "load"
+        },
+        {
+          "addr": 41796,
+          "size": 4,
+          "opcode": "sb a5, 176(gp)",
+          "bytes": "2388f10a",
+          "type": "store"
+        },
+        {
+          "addr": 41800,
+          "size": 2,
+          "opcode": "lw ra, 12(sp)",
+          "bytes": "b240",
+          "type": "load"
+        },
+        {
+          "addr": 41802,
+          "size": 2,
+          "opcode": "lw s1, 4(sp)",
+          "bytes": "9244",
+          "type": "load"
+        },
+        {
+          "addr": 41804,
+          "size": 2,
+          "opcode": "li a5, 1",
+          "bytes": "8547",
+          "type": "mov"
+        },
+        {
+          "addr": 41806,
+          "size": 4,
+          "opcode": "sb a5, 175(gp)",
+          "bytes": "a387f10a",
+          "type": "store"
+        },
+        {
+          "addr": 41810,
+          "size": 2,
+          "opcode": "li a3, 0",
+          "bytes": "8146",
+          "type": "mov"
+        },
+        {
+          "addr": 41812,
+          "size": 2,
+          "opcode": "li a1, 0",
+          "bytes": "8145",
+          "type": "mov"
+        },
+        {
+          "addr": 41814,
+          "size": 4,
+          "opcode": "auipc a0, 0x0",
+          "bytes": "17050000",
+          "type": "lea"
+        },
+        {
+          "addr": 41818,
+          "size": 4,
+          "opcode": "addi a0, a0, -994",
+          "bytes": "1305e5c1",
+          "type": "add"
+        },
+        {
+          "addr": 41822,
+          "size": 2,
+          "opcode": "addi sp, sp, 16",
+          "bytes": "4101",
+          "type": "add"
+        },
+        {
+          "addr": 41824,
+          "size": 4,
+          "opcode": "j 0x9124",
+          "bytes": "6fe05fdc",
+          "type": "jmp",
+          "jump": 37156
+        },
+        {
+          "addr": 41828,
+          "size": 2,
+          "opcode": "mv a0, s0",
+          "bytes": "2285",
+          "type": "mov"
+        },
+        {
+          "addr": 41830,
+          "size": 2,
+          "opcode": "lw s0, 8(sp)",
+          "bytes": "2244",
+          "type": "load"
+        },
+        {
+          "addr": 41832,
+          "size": 2,
+          "opcode": "lw ra, 12(sp)",
+          "bytes": "b240",
+          "type": "load"
+        },
+        {
+          "addr": 41834,
+          "size": 2,
+          "opcode": "lw s1, 4(sp)",
+          "bytes": "9244",
+          "type": "load"
+        },
+        {
+          "addr": 41836,
+          "size": 2,
+          "opcode": "addi sp, sp, 16",
+          "bytes": "4101",
+          "type": "add"
+        },
+        {
+          "addr": 41838,
+          "size": 4,
+          "opcode": "j 0x10816",
+          "bytes": "6f60804a",
+          "type": "jmp",
+          "jump": 67606
+        },
+        {
+          "addr": 41842,
+          "size": 2,
+          "opcode": "lw ra, 12(sp)",
+          "bytes": "b240",
+          "type": "load"
+        },
+        {
+          "addr": 41844,
+          "size": 2,
+          "opcode": "lw s0, 8(sp)",
+          "bytes": "2244",
+          "type": "load"
+        },
+        {
+          "addr": 41846,
+          "size": 2,
+          "opcode": "lw s1, 4(sp)",
+          "bytes": "9244",
+          "type": "load"
+        },
+        {
+          "addr": 41848,
+          "size": 2,
+          "opcode": "addi sp, sp, 16",
+          "bytes": "4101",
+          "type": "add"
+        },
+        {
+          "addr": 41850,
+          "size": 2,
+          "opcode": "ret",
+          "bytes": "8280",
+          "type": "ret"
+        }
+      ]
+    },
+    {
+      "name": "tsl9_rom_driver_external_abf2",
+      "start": 44018,
+      "end": 44028,
+      "operations": [
+        {
+          "addr": 44018,
+          "size": 4,
+          "opcode": "auipc a0, 0x20001",
+          "bytes": "17150020",
+          "type": "lea"
+        },
+        {
+          "addr": 44022,
+          "size": 4,
+          "opcode": "lbu a0, 750(a0)",
+          "bytes": "0345e52e",
+          "type": "load"
+        },
+        {
+          "addr": 44026,
+          "size": 2,
+          "opcode": "ret",
+          "bytes": "8280",
+          "type": "ret"
+        }
+      ]
+    }
+  ],
+  "target_names": {
+    "33246": "tsl9_rom_dependency_entry_81de",
+    "33282": "tsl9_state_leaf_entry_8202",
+    "33310": "tsl9_dispatch_external_821e",
+    "33438": "tsl9_feature_mode_getter_829e",
+    "37156": "tsl9_callback_external_9124",
+    "37972": "tsl9_queue_external_9454",
+    "38802": "tsl9_rom_driver_external_9792",
+    "40820": "tsl9_rom_dependency_entry_9f74",
+    "40898": "tsl9_rom_driver_external_9fc2",
+    "41476": "tsl9_rom_dependency_entry_a204",
+    "41710": "tsl9_rom_driver_external_a2ee",
+    "44018": "tsl9_rom_driver_external_abf2",
+    "46826": "tsl9_rom_dependency_external_b6ea",
+    "53340": "tsl9_rom_dependency_external_d05c",
+    "67606": "tsl9_rom_dependency_external_10816"
+  },
+  "coverage": "Seven complete original functions;all internal branch paths and relevant post-RET exits retained. No unrequested adjacent function bodies included.",
+  "limitations": [
+    "Static values and relative addressing only;GP/runtime memory ownership,units and physical command effects unproved.",
+    "One callback address is forwarded to9124;registration and callback execution are unobserved.",
+    "No target/HOST/ISA execution,network,hardware or flash."
+  ],
+  "target_executed": false,
+  "network": false
+}

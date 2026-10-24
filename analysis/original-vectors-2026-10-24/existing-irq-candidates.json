@@ -1,0 +1,71 @@
+{
+  "schema": "TSL9-existing-IRQ-native-candidates-v1",
+  "date": "2026-10-24",
+  "curation": "build/curated-source/original-vectors-20261024-v1/verification.json",
+  "curation_sha256": "e579d914a905cb635995d513558a6e56656708477ff6ae3a5b8f75874533cdf8",
+  "candidates": [
+    {
+      "unit": "irq-flag-leaf",
+      "source": "src/native/irq/irq_flag.c",
+      "object_sha256": "e9ee3a891258d423b7c353d29501a071b11233dd0a2cd34903f2aa765a8cd419",
+      "FUNC": [
+        {
+          "name": "tsl9_irq_flag_leaf_16fb6",
+          "size": 76,
+          "value": 0,
+          "section": 3
+        }
+      ],
+      "UND": [],
+      "RELA": 0
+    },
+    {
+      "unit": "ring-irq-adapter",
+      "source": "src/native/irq/ring_irq_adapter.c",
+      "object_sha256": "492dfd8840e0546c35de72ca699e4715fe48b6ca4dd983cd0a9125c467e16ba6",
+      "FUNC": [
+        {
+          "name": "tsl9_ring_irq_entry_12c24",
+          "size": 14,
+          "value": 0,
+          "section": 3
+        },
+        {
+          "name": "tsl9_ring_irq_empty_12c54",
+          "size": 4,
+          "value": 0,
+          "section": 10
+        },
+        {
+          "name": "tsl9_ring_irq_frame_12c32",
+          "size": 10,
+          "value": 0,
+          "section": 5
+        },
+        {
+          "name": "tsl9_ring_irq_dispatch_12c3c",
+          "size": 18,
+          "value": 0,
+          "section": 7
+        },
+        {
+          "name": "tsl9_ring_irq_finish_12c4e",
+          "size": 6,
+          "value": 0,
+          "section": 9
+        }
+      ],
+      "UND": [
+        "tsl9_irq_provider_18d78",
+        "tsl9_ring_insert_entry_12bc8"
+      ],
+      "RELA": 3
+    }
+  ],
+  "priority": "Bind the genuine complete76B16FB6 C/C++ provider first; prove any section-relative alias ownership and original-address mapping explicitly.",
+  "original_hardware_IRQ_context_proved": false,
+  "automatic_stub_or_unknown_provider_substitution_allowed": false,
+  "target_executed": false,
+  "network": false,
+  "hardware_accessed": false
+}

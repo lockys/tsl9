@@ -1,0 +1,115 @@
+{
+  "schema": "TSL9-original-peripheral-initializer-summary-v1",
+  "passed": true,
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/can/peripheral_initializer.c",
+  "new_functions": 1,
+  "new_code_bytes": 242,
+  "new_instructions": 99,
+  "new_private_regions": 27,
+  "new_control_relocations": 17,
+  "new_data_bytes": 0,
+  "native_receipt": "experiments/tsl9-peripheral-initializer/build/native-v1/measurement.json",
+  "source_proof": "experiments/tsl9-peripheral-initializer/build/source-proof-v1.json",
+  "source_files": 115,
+  "native_code_units": 88,
+  "independent_data_units": 1,
+  "source_comparisons": 178,
+  "source_objects": 356,
+  "previous_114_C_H_files_preserved": true,
+  "prior174_results_and1045_artifact_records_preserved": true,
+  "component": "experiments/tsl9-peripheral-initializer/build/component-v2",
+  "component_object": "UNRESOLVED-STARTUP-PERIPHERAL-INITIALIZER.o",
+  "component_C_CPP_sha256": "4293ffa906615761b38162b3ad50ca08bc3bd13bd160150e697b685c9eee248d",
+  "code_bytes": 20988,
+  "data_bytes": 714,
+  "instructions": 7287,
+  "nonzero_code_FUNC": 1833,
+  "true_aliases": 71,
+  "RELA": 1354,
+  "genuine_undefined_providers": 75,
+  "resolved_original_providers": [
+    "tsl9_main_init_external_18ab0"
+  ],
+  "new_undefined": [],
+  "layout": "experiments/tsl9-original-layout/build/peripheral-initializer-v1",
+  "layout_C_CPP_ELF_sha256": "fb5542d3e712bde6ae1f5c476696aff07fab383b0526c2ac9e608c4e0189cc1e",
+  "original_coordinate_bytes_equal": 21702,
+  "adjacent_only_spans": 94,
+  "PT_LOAD": 0,
+  "entry": 0,
+  "reference_only_ABS_constants": 75,
+  "ABS_FUNC_providers": 0,
+  "flow": "experiments/tsl9-original-layout/build/peripheral-initializer-flow-v1",
+  "direct_transfers": 1200,
+  "measured_direct_targets": 1125,
+  "reference_only_direct_targets": 75,
+  "ordinary_next_positions": 6728,
+  "ordinary_gaps": 0,
+  "call_return_positions": 448,
+  "register_indirect_transfers": 374,
+  "MRET": 10,
+  "EBREAK": 1,
+  "EBREAK_resume_unproved": true,
+  "complete_CFG_proved": false,
+  "literal_only_undefined": 0,
+  "functions": [
+    {
+      "name": "tsl9_main_init_external_18ab0",
+      "start": 101040,
+      "end": 101282,
+      "bytes": 242,
+      "instructions": 99
+    }
+  ],
+  "descriptor_bytes": 32,
+  "descriptor_compile_time_assertions": 7,
+  "typed_layout_executed": false,
+  "polling_counter_initial_values": [
+    65536,
+    65536
+  ],
+  "polling_time_units_proved": false,
+  "physical_bitrate_proved": false,
+  "superseded_component_v1": {
+    "reason": "Inherited plural receipt-field label corrected;fresh component-v2 generated with the same actual C/C++ object bytes. Component-v1 retained,not used as the current receipt.",
+    "source_code_changed": false,
+    "audit_guards_loosened": false
+  },
+  "confirmed_static_findings": [
+    {
+      "PC": 101040,
+      "fact": "Clears controlbit1,setsbit0,polls statusbit0 using65536 counter,then performs a fresh status read. Missing entry acknowledgment returns0."
+    },
+    {
+      "PC": 101076,
+      "fact": "Six32-bit descriptor fields at8/12/16/20/24/28 enable controlbits7/6/5/4/3/2 only when exactly1. All other values take original clear branches18B78..18BA2."
+    },
+    {
+      "PC": 101172,
+      "fact": "Descriptor bytes2/3/4/5 shifted30/24/16/20 and ORed with halfword0 minus1,written at base+28. No new masks or validation added."
+    },
+    {
+      "PC": 101212,
+      "fact": "Clears controlbit0,polls statusbit0 using65536 counter,and returns(~fresh_status)&1. A loop counter is not a time duration."
+    }
+  ],
+  "next_action": "Inspect six complete fallback providers12E86/12F18/12F7A/13084/13108/1316A,reviewing privacy before exporting fixed values;continue original ROM/BOOT/APP/IRQ evidence offline. Do not assume a physical CAN bitrate or MCU from register shape.",
+  "candidate_new_functionality": {
+    "idea": "Offline descriptor and clock-contract inspector",
+    "state": "proposal-only",
+    "purpose": "Display exact field widths,bit shifts,word-equality flag gates and polling/readback stages;mark peripheral clock,bitrate and physical board mapping unknown until separately proved."
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit": false,
+  "push": false,
+  "historical_privacy_clean": false,
+  "goal_status": "active"
+}

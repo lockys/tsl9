@@ -1,0 +1,102 @@
+OUTPUT_ARCH(riscv)
+SECTIONS
+{
+ .boot_code 0 : SUBALIGN(2)
+ {
+  *(.boot_code)
+  *(.text.tsl9_callback_flow_entry_1061c)
+  *(.text.tsl9_callback_flow_entry_1070a)
+  *(.text.tsl9_callback_flow_block_10712)
+  *(.text.tsl9_callback_flow_block_10718)
+  *(.text.tsl9_callback_flow_block_1072c)
+  *(.text.tsl9_callback_flow_block_10730)
+  *(.text.tsl9_callback_flow_block_1073c)
+  *(.text.tsl9_callback_flow_entry_1299e)
+  *(.text.tsl9_callback_flow_block_129b4)
+  *(.text.tsl9_callback_flow_block_129be)
+  *(.text.tsl9_callback_flow_entry_129c4)
+  *(.text.tsl9_callback_flow_block_129d8)
+  *(.text.tsl9_callback_flow_block_129f6)
+  *(.text.tsl9_callback_flow_block_129fa)
+  *(.text.tsl9_callback_flow_entry_12aa0)
+  *(.text.tsl9_callback_flow_block_12aaa)
+  *(.text.tsl9_callback_flow_block_12aae)
+  *(.text.tsl9_callback_flow_block_12ab6)
+  *(.text.tsl9_callback_flow_entry_1333c)
+  *(.text.tsl9_callback_flow_entry_13346)
+  *(.text.tsl9_callback_flow_block_13362)
+  *(.text.tsl9_callback_flow_block_13382)
+  *(.text.tsl9_callback_flow_block_133a6)
+  *(.text.tsl9_callback_flow_block_133ac)
+  *(.text.tsl9_callback_flow_block_133b4)
+  *(.text.tsl9_callback_flow_block_133c4)
+  *(.text.tsl9_callback_flow_block_133d4)
+  *(.text.tsl9_callback_flow_block_133e0)
+  *(.text.tsl9_callback_flow_block_133f0)
+  *(.text.tsl9_callback_flow_block_133f4)
+  *(.text.tsl9_callback_flow_block_13404)
+  *(.text.tsl9_callback_flow_block_13414)
+  *(.text.tsl9_callback_flow_block_1342c)
+  *(.text.tsl9_callback_flow_block_13434)
+  *(.text.tsl9_callback_flow_block_13444)
+  *(.text.tsl9_callback_flow_block_13454)
+  *(.text.tsl9_callback_flow_block_13466)
+  *(.text.tsl9_callback_flow_block_13478)
+  *(.text.tsl9_callback_flow_block_13488)
+  *(.text.tsl9_callback_flow_block_13498)
+  *(.text.tsl9_callback_flow_block_134a8)
+  *(.text.tsl9_callback_flow_block_134b0)
+  *(.text.tsl9_callback_flow_block_134c0)
+  *(.text.tsl9_callback_flow_block_134d0)
+  *(.text.tsl9_callback_flow_block_134e0)
+  *(.text.tsl9_callback_flow_block_134f0)
+  *(.text.tsl9_callback_flow_block_13500)
+  *(.text.tsl9_callback_flow_block_13512)
+  *(.text.tsl9_callback_flow_block_13516)
+  *(.text.tsl9_callback_flow_block_13526)
+  *(.text.tsl9_callback_flow_block_13536)
+  *(.text.tsl9_callback_flow_block_1353e)
+  *(.text.tsl9_callback_flow_block_13552)
+  *(.text.tsl9_callback_flow_block_1355c)
+  *(.text.tsl9_callback_flow_block_1356e)
+  *(.text.tsl9_callback_flow_block_13586)
+  *(.text.tsl9_callback_flow_block_13598)
+  *(.text.tsl9_callback_flow_block_135ac)
+  *(.text.tsl9_callback_flow_block_135b0)
+  *(.text.tsl9_callback_flow_block_135c6)
+  *(.text.tsl9_callback_flow_block_135ca)
+  *(.text.tsl9_callback_flow_block_135d8)
+  *(.text.tsl9_callback_flow_block_135e4)
+  *(.text.tsl9_callback_flow_entry_135e6)
+  *(.text.tsl9_callback_flow_block_135fe)
+  *(.text.tsl9_callback_flow_block_13608)
+  *(.text.tsl9_callback_flow_block_13612)
+  *(.text.tsl9_callback_flow_block_13620)
+  *(.text.tsl9_callback_flow_block_1362a)
+  *(.text.tsl9_callback_flow_block_13634)
+  *(.text.tsl9_callback_flow_block_13656)
+  *(.text.tsl9_callback_flow_block_1365e)
+  *(.text.tsl9_callback_flow_entry_16dd4)
+  *(.text.tsl9_callback_flow_block_16de2)
+  *(.text.tsl9_callback_flow_block_16dea)
+  *(.text.tsl9_callback_flow_block_16dec)
+  *(.text.tsl9_callback_flow_block_16df6)
+  *(.text.tsl9_callback_flow_block_16dfc)
+  *(.text.tsl9_callback_flow_block_16e02)
+ }
+ .initializer 0 : { *(.initializer) }
+ .vectors 0 : { *(.vectors) }
+ .feature_tables 0 : SUBALIGN(4) { *(.feature_tables) }
+ .callback_constants 0 : SUBALIGN(4) { *(.callback_constants) }
+ .callback_flow_constants 0 : SUBALIGN(4) {
+  *(.rodata.tsl9_callback_flow_constants_19ca8)
+ }
+ tsl9_callback_provider_external_1070a = tsl9_callback_flow_entry_1070a;
+ tsl9_callback_provider_external_129c4 = tsl9_callback_flow_entry_129c4;
+ tsl9_callback_provider_external_12aa0 = tsl9_callback_flow_entry_12aa0;
+ tsl9_callback_provider_external_1299e = tsl9_callback_flow_entry_1299e;
+ tsl9_callback_provider_external_16dd4 = tsl9_callback_flow_entry_16dd4;
+ tsl9_callback_provider_external_135e6 = tsl9_callback_flow_entry_135e6;
+ tsl9_callback_provider_external_13346 = tsl9_callback_flow_entry_13346;
+ /DISCARD/ : { *(.comment) *(.riscv.attributes) *(.llvm_addrsig) }
+}

@@ -1,0 +1,240 @@
+{
+  "schema": "TSL9-resident-providers-ROM-RF-profile-v1",
+  "header_reference": "analysis/init-tail-2026-10-24/rom-header-correspondence.json",
+  "header_sha256": "fab43e7b8e351596a14d2a434eea4fa79587a8b9bba12738897d35ee2c3dbf2e",
+  "default_library_base": 262144,
+  "default_function_table_base": 262196,
+  "slot_addresses_are_not_function_entries": true,
+  "installed_implementation_proved": false,
+  "correspondence": [
+    {
+      "header_line": 2776,
+      "name": "tmos_memset",
+      "index": 5,
+      "macro": "#define    tmos_memset  ((  void (*)  ( void * pDst, uint8_t Value, uint32_t len ))  BLE_LIB_JT(5))",
+      "slot_address": 262216,
+      "scope": "Default SDK profile only;calls load then-live S0+offset afterinitialS0=40000;installed ABI unproved."
+    },
+    {
+      "header_line": 2777,
+      "name": "tmos_memcpy",
+      "index": 6,
+      "macro": "#define    tmos_memcpy  ((  void (*)  ( void *dst, const void *src, uint32_t len ))  BLE_LIB_JT(6))",
+      "slot_address": 262220,
+      "scope": "Default SDK profile only;calls load then-live S0+offset afterinitialS0=40000;installed ABI unproved."
+    },
+    {
+      "header_line": 2787,
+      "name": "tmos_set_event",
+      "index": 7,
+      "macro": "#define    tmos_set_event  ((  bStatus_t  (*)  ( tmosTaskID taskID, tmosEvents event ))  BLE_LIB_JT(7))",
+      "slot_address": 262224,
+      "scope": "Default SDK profile only;calls load then-live S0+offset afterinitialS0=40000;installed ABI unproved."
+    },
+    {
+      "header_line": 2808,
+      "name": "tmos_start_task",
+      "index": 9,
+      "macro": "#define    tmos_start_task  ((  BOOL  (*)  ( tmosTaskID taskID, tmosEvents event, tmosTimer time  ))  BLE_LIB_JT(9))",
+      "slot_address": 262232,
+      "scope": "Default SDK profile only;calls load then-live S0+offset afterinitialS0=40000;installed ABI unproved."
+    },
+    {
+      "header_line": 2938,
+      "name": "TMOS_ProcessEventRegister",
+      "index": 19,
+      "macro": "#define    TMOS_ProcessEventRegister  ((  tmosTaskID (*)  ( pTaskEventHandlerFn eventCb ))  BLE_LIB_JT(19))",
+      "slot_address": 262272,
+      "scope": "Default SDK profile only;calls load then-live S0+offset afterinitialS0=40000;installed ABI unproved."
+    },
+    {
+      "header_line": 4735,
+      "name": "RF_Config",
+      "index": 100,
+      "macro": "#define    RF_Config  ((  bStatus_t  (*)  ( rfConfig_t *pConfig ))  BLE_LIB_JT(100) )",
+      "slot_address": 262596,
+      "scope": "Default SDK profile only;calls load then-live S0+offset afterinitialS0=40000;installed ABI unproved."
+    },
+    {
+      "header_line": 4785,
+      "name": "RF_SetChannel",
+      "index": 115,
+      "macro": "#define    RF_SetChannel  ((  void   (*)  ( uint32_t channel ))  BLE_LIB_JT(115) )",
+      "slot_address": 262656,
+      "scope": "Default SDK profile only;calls load then-live S0+offset afterinitialS0=40000;installed ABI unproved."
+    }
+  ],
+  "layout_declarations": [
+    {
+      "line": 2676,
+      "ascii": "#define  LLE_MODE_NON_RSSI            (1<<7)"
+    },
+    {
+      "line": 2677,
+      "ascii": ""
+    },
+    {
+      "line": 2678,
+      "ascii": "/**"
+    },
+    {
+      "line": 2679,
+      "ascii": " * RFRole Event Callback Function"
+    },
+    {
+      "line": 2680,
+      "ascii": " */"
+    },
+    {
+      "line": 2681,
+      "ascii": "typedef void (*pfnRFStatusCB_t)( uint8_t sta, uint8_t rsr, uint8_t *rxBuf );"
+    },
+    {
+      "line": 2682,
+      "ascii": "// sta - current status@ref RF_ROLE_STATUS_TYPE"
+    },
+    {
+      "line": 2683,
+      "ascii": "// rsr - receive status: bit0- crc check result,bit1- type matching result"
+    },
+    {
+      "line": 2684,
+      "ascii": "// rxBuf - receive data buffer"
+    },
+    {
+      "line": 2685,
+      "ascii": ""
+    },
+    {
+      "line": 2686,
+      "ascii": "typedef struct tag_rf_config"
+    },
+    {
+      "line": 2687,
+      "ascii": "{"
+    },
+    {
+      "line": 2688,
+      "ascii": "    uint8_t LLEMode;                  //!< BIT0   0=basic, 1=auto def@LLE_MODE_TYPE"
+    },
+    {
+      "line": 2689,
+      "ascii": "                                      //!< BIT1   0=whitening on, 1=whitening off def@LLE_WHITENING_TYPE"
+    },
+    {
+      "line": 2690,
+      "ascii": "                                      //!< BIT4-5 00-1M  01-2M  10-coded(S8) 11-coded(S2) def@LLE_PHY_TYPE"
+    },
+    {
+      "line": 2691,
+      "ascii": "                                      //!< BIT6   0=data channel(0-39)"
+    },
+    {
+      "line": 2692,
+      "ascii": "                                      //!<        1=rf frequency (2400000kHz-2483500kHz)"
+    },
+    {
+      "line": 2693,
+      "ascii": "                                      //!< BIT7   0=the first byte of the receive buffer is rssi"
+    },
+    {
+      "line": 2694,
+      "ascii": "                                      //!<        1=the first byte of the receive buffer is package type"
+    },
+    {
+      "line": 2695,
+      "ascii": "    uint8_t Channel;                  //!< rf channel(0-39)"
+    },
+    {
+      "line": 2696,
+      "ascii": "    uint32_t Frequency;               //!< rf frequency (2400000kHz-2483500kHz)"
+    },
+    {
+      "line": 2697,
+      "ascii": "    uint32_t accessAddress;           //!< access address,32bit PHY address"
+    },
+    {
+      "line": 2698,
+      "ascii": "    uint32_t CRCInit;                 //!< crc initial value"
+    },
+    {
+      "line": 2699,
+      "ascii": "    pfnRFStatusCB_t rfStatusCB;       //!< status call back"
+    },
+    {
+      "line": 2700,
+      "ascii": "    uint32_t ChannelMap;              //!< indicating  Used and Unused data channels.Every channel is represented with a"
+    },
+    {
+      "line": 2701,
+      "ascii": "                                      //!< bit positioned as per the data channel index,The LSB represents data channel index 0"
+    },
+    {
+      "line": 2702,
+      "ascii": "    uint8_t Resv;"
+    },
+    {
+      "line": 2703,
+      "ascii": "    uint8_t HeartPeriod;              //!< The heart package interval shall be an integer multiple of 100ms"
+    },
+    {
+      "line": 2704,
+      "ascii": "    uint8_t HopPeriod;                //!< hop period( T=32n*RTC clock ),default is 8"
+    },
+    {
+      "line": 2705,
+      "ascii": "    uint8_t HopIndex;                 //!< indicate the hopIncrement used in the data channel selection algorithm,default is 17"
+    },
+    {
+      "line": 2706,
+      "ascii": "    uint8_t RxMaxlen;                 //!< Maximum data length received in rf-mode(default 251)"
+    },
+    {
+      "line": 2707,
+      "ascii": "    uint8_t TxMaxlen;                 //!< Maximum data length transmit in rf-mode(default 251)"
+    },
+    {
+      "line": 2708,
+      "ascii": "} rfConfig_t;"
+    }
+  ],
+  "compiled_layout_receipt": "analysis/resident-providers-2026-10-24/evidence/rf-layout.json",
+  "configuration_writes": [
+    {
+      "offset": 0,
+      "width": 2,
+      "value": 9473,
+      "profile_fields": {
+        "LLEMode": 1,
+        "Channel": 37
+      }
+    },
+    {
+      "offset": 8,
+      "width": 4,
+      "value": 2391391958,
+      "profile_field": "accessAddress"
+    },
+    {
+      "offset": 12,
+      "width": 4,
+      "value": 5592405,
+      "profile_field": "CRCInit"
+    },
+    {
+      "offset": 16,
+      "width": 4,
+      "value": 95470,
+      "profile_field": "rfStatusCB;original literal pointer,not final diagnostic binding"
+    },
+    {
+      "offset": 25,
+      "width": 1,
+      "value": 4,
+      "profile_field": "HeartPeriod;physical timing unproved"
+    }
+  ],
+  "target_executed": false,
+  "network": false,
+  "literal_callback_correction": "analysis/rf-callbacks-2026-10-24/literal-address-correction.json"
+}

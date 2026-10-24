@@ -1,0 +1,292 @@
+{
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\build-v1.py": {
+      "bytes": 7812,
+      "sha256": "7585052f3ea776b1d50804568e5aeb8e96142add3106971d3b935299a0a7e0d2"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\spec-v1.json": {
+      "bytes": 4166,
+      "sha256": "118363decb450196db39476b5e5b5515a0377c88f5a3a3716c06c3981fa728f5"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\src\\lle_irq.v1.c": {
+      "bytes": 3209,
+      "sha256": "cece2254819f0ec9b972a599c5e982adb17b8bbf20f7e7a86bb7d26af3e5ceed"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build-v1.py": {
+      "bytes": 12139,
+      "sha256": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    }
+  },
+  "modes": {
+    "c": {
+      "artifacts": {
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "read.log": {
+          "bytes": 4246,
+          "sha256": "8f35b8f3bfe16f94e8d4d8ecfbda10bb9b33d6ef0478fb264188f00e3dc7cfa9"
+        },
+        "unit.d": {
+          "bytes": 238,
+          "sha256": "51de5ef1e6b5032231a28e3b720663fbae1c72ac421c78bc234ecc4bc874c2e8"
+        },
+        "unit.o": {
+          "bytes": 1216,
+          "sha256": "5f85a3e4dc718ba1f919b1e1aa141bf5a8657fa41822356a4fff46e524c96028"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\build\\trial-v1\\c\\unit.d",
+            "-MT",
+            "unit.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\src\\lle_irq.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\build\\trial-v1\\c\\unit.o"
+          ],
+          "exit": 0,
+          "label": "compile"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\build\\trial-v1\\c\\unit.o"
+          ],
+          "exit": 0,
+          "label": "read"
+        }
+      ],
+      "dependencies": {
+        "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\src\\lle_irq.v1.c": "cece2254819f0ec9b972a599c5e982adb17b8bbf20f7e7a86bb7d26af3e5ceed"
+      },
+      "result": {
+        "FUNC": 3,
+        "GP_saved": false,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "RELA": 0,
+        "UND": 0,
+        "callback_word_address": "then-live GP+384",
+        "code_bytes": 134,
+        "complete_original_bytes_equal": true,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "frame_bytes": 128,
+        "full_width_JALR_retained": true,
+        "hardware_accessed": false,
+        "instructions": 64,
+        "native_object_sha256": "5f85a3e4dc718ba1f919b1e1aa141bf5a8657fa41822356a4fff46e524c96028",
+        "negative_cases_executed": 0,
+        "network": false,
+        "original_callback_identity_or_IRQ_ABI_proved": false,
+        "passed": true,
+        "saved_and_loaded_register_count": 29,
+        "target_executed": false,
+        "then_live_SP_exit_and_MRET_retained": true,
+        "trailing_zero_data_compiled_as_code": false
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "read.log": {
+          "bytes": 4248,
+          "sha256": "91b5db6cf647d2ff23455e988b245b8a8594fe41d22c63d71846bd539f67d982"
+        },
+        "unit.d": {
+          "bytes": 238,
+          "sha256": "51de5ef1e6b5032231a28e3b720663fbae1c72ac421c78bc234ecc4bc874c2e8"
+        },
+        "unit.o": {
+          "bytes": 1216,
+          "sha256": "5f85a3e4dc718ba1f919b1e1aa141bf5a8657fa41822356a4fff46e524c96028"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\build\\trial-v1\\cpp\\unit.d",
+            "-MT",
+            "unit.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\src\\lle_irq.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\build\\trial-v1\\cpp\\unit.o"
+          ],
+          "exit": 0,
+          "label": "compile"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\build\\trial-v1\\cpp\\unit.o"
+          ],
+          "exit": 0,
+          "label": "read"
+        }
+      ],
+      "dependencies": {
+        "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "${PROJECT_ROOT}\\experiments\\tsl9-lle-irq\\src\\lle_irq.v1.c": "cece2254819f0ec9b972a599c5e982adb17b8bbf20f7e7a86bb7d26af3e5ceed"
+      },
+      "result": {
+        "FUNC": 3,
+        "GP_saved": false,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "RELA": 0,
+        "UND": 0,
+        "callback_word_address": "then-live GP+384",
+        "code_bytes": 134,
+        "complete_original_bytes_equal": true,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "frame_bytes": 128,
+        "full_width_JALR_retained": true,
+        "hardware_accessed": false,
+        "instructions": 64,
+        "native_object_sha256": "5f85a3e4dc718ba1f919b1e1aa141bf5a8657fa41822356a4fff46e524c96028",
+        "negative_cases_executed": 0,
+        "network": false,
+        "original_callback_identity_or_IRQ_ABI_proved": false,
+        "passed": true,
+        "saved_and_loaded_register_count": 29,
+        "target_executed": false,
+        "then_live_SP_exit_and_MRET_retained": true,
+        "trailing_zero_data_compiled_as_code": false
+      }
+    }
+  },
+  "schema": "TSL9-original-LLE-native-build-v1"
+}

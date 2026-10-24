@@ -1,0 +1,574 @@
+{
+  "inverse_JSON_equality_verified": true,
+  "original_bytes": 19961,
+  "original_local_receipt": "experiments/tsl9-original-vectors/build/data-v1/measurement.json",
+  "original_replay_claimed": false,
+  "original_sha256": "0bf1faf626cb26da03cc29a32dfda8af96aa559adde9b998dc7ad35ecd61af64",
+  "originals_preserved_local": true,
+  "path_only_redaction": true,
+  "receipt": {
+    "inputs": {
+      "${CLANG_RESOURCE}\\include\\stdint.h": {
+        "bytes": 30946,
+        "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+      },
+      "${LLVM_BIN}\\clang.exe": {
+        "bytes": 126673512,
+        "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+      },
+      "${LLVM_BIN}\\ld.lld.exe": {
+        "bytes": 73834600,
+        "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+      },
+      "${LLVM_BIN}\\llvm-objdump.exe": {
+        "bytes": 18311272,
+        "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+      },
+      "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+        "bytes": 4326,
+        "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+      },
+      "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build-v1.py": {
+        "bytes": 12139,
+        "sha256": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5"
+      },
+      "${PROJECT_ROOT}\\experiments\\tsl9-original-vectors\\build-v1.py": {
+        "bytes": 10319,
+        "sha256": "1093da71234405fb3c575a8e598927f63a0028758e3dec776ca3374cbf937c8b"
+      },
+      "${PROJECT_ROOT}\\experiments\\tsl9-original-vectors\\spec-v1.json": {
+        "bytes": 10350,
+        "sha256": "d353debf734b748305c80c8977aaad069315924c4c6b3db08a699f21450eb565"
+      },
+      "${PROJECT_ROOT}\\experiments\\tsl9-original-vectors\\src\\boot_vectors.v1.c": {
+        "bytes": 7082,
+        "sha256": "7b477d6c0066f90835d574a97288aad4326f248e6b5d0f6ada79444a5d032035"
+      },
+      "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+        "bytes": 76800,
+        "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+      },
+      "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+        "bytes": 63664,
+        "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+      },
+      "${PROJECT_ROOT}\\src\\native\\startup\\boot_vectors.c": {
+        "bytes": 7082,
+        "sha256": "7b477d6c0066f90835d574a97288aad4326f248e6b5d0f6ada79444a5d032035"
+      }
+    },
+    "modes": {
+      "c": {
+        "curated": {
+          "artifacts": {
+            "compile.log": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "read.log": {
+              "bytes": 4079,
+              "sha256": "be74c5666c35efdbb428899d6036e0ebd77f9aaea94331c3bf66e61b53782c53"
+            },
+            "unit.d": {
+              "bytes": 230,
+              "sha256": "ca80402dd3e62913a7ca71170f46ea1ce902a152161beae82008c09b356ce358"
+            },
+            "unit.o": {
+              "bytes": 4068,
+              "sha256": "99a3871274664c9594a0e6b1b414b34611e085cf1128e0979c74e1e337f93f9a"
+            }
+          },
+          "commands": [
+            {
+              "argv": [
+                "${PUBLIC_LLVM_BIN_WINDOWS}\\clang.exe",
+                "--target=riscv32-unknown-elf",
+                "-march=rv32imac_zicsr",
+                "-mabi=ilp32",
+                "-Oz",
+                "-mllvm",
+                "-enable-machine-outliner=never",
+                "-ffreestanding",
+                "-fno-builtin",
+                "-fno-stack-protector",
+                "-fno-unwind-tables",
+                "-fno-asynchronous-unwind-tables",
+                "-mno-relax",
+                "-ffunction-sections",
+                "-fdata-sections",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "-x",
+                "c",
+                "-std=c11",
+                "-ffixed-x1",
+                "-ffixed-x2",
+                "-ffixed-x3",
+                "-ffixed-x4",
+                "-ffixed-x5",
+                "-ffixed-x7",
+                "-ffixed-x8",
+                "-ffixed-x9",
+                "-ffixed-x18",
+                "-ffixed-x19",
+                "-ffixed-x20",
+                "-ffixed-x21",
+                "-ffixed-x22",
+                "-ffixed-x23",
+                "-ffixed-x24",
+                "-ffixed-x25",
+                "-ffixed-x26",
+                "-ffixed-x27",
+                "-ffixed-x29",
+                "-ffixed-x30",
+                "-ffixed-x31",
+                "-MD",
+                "-MF",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\c\\curated\\unit.d",
+                "-MT",
+                "unit.o",
+                "-c",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\src\\native\\startup\\boot_vectors.c",
+                "-o",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\c\\curated\\unit.o"
+              ],
+              "exit": 0,
+              "label": "compile"
+            },
+            {
+              "argv": [
+                "${PUBLIC_LLVM_BIN_WINDOWS}\\llvm-objdump.exe",
+                "-dr",
+                "-t",
+                "-h",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\c\\curated\\unit.o"
+              ],
+              "exit": 0,
+              "label": "read"
+            }
+          ],
+          "dependencies": {
+            "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+            "${PROJECT_ROOT}\\src\\native\\startup\\boot_vectors.c": "7b477d6c0066f90835d574a97288aad4326f248e6b5d0f6ada79444a5d032035"
+          },
+          "result": {
+            "ABS_providers": 0,
+            "FUNC": 0,
+            "HOST_model_executed": false,
+            "ISA_emulated": false,
+            "OBJECT": 1,
+            "RELA": 62,
+            "R_RISCV_32": 62,
+            "UND": 61,
+            "all_relocation_slots_types_addends_and_targets_exact": true,
+            "all_words_original_equal_after_data_only_encoding": true,
+            "allocated_bytes": 328,
+            "firmware_BIN_generated": false,
+            "firmware_ready": false,
+            "hardware_IRQ_count_or_table_extent_proved": false,
+            "hardware_accessed": false,
+            "negative_cases_executed": 0,
+            "network": false,
+            "null_words": 20,
+            "object_sha256": "99a3871274664c9594a0e6b1b414b34611e085cf1128e0979c74e1e337f93f9a",
+            "passed": true,
+            "stored_function_addresses_prove_C_ABI": false,
+            "target_executed": false
+          }
+        },
+        "origin": {
+          "artifacts": {
+            "compile.log": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "read.log": {
+              "bytes": 4081,
+              "sha256": "883203945abeeffd0ad11e60af787e88583425733bb08f4dc4fffda3d15efe47"
+            },
+            "unit.d": {
+              "bytes": 252,
+              "sha256": "d7874708fa2ca712a6bd6112d8ef5670e7daba4293ceb8e9cf489f1d91d39c32"
+            },
+            "unit.o": {
+              "bytes": 4072,
+              "sha256": "18771d8740afff6b002c2d7b4a0f090dae1b5c9b247da3e3550531031f23517f"
+            }
+          },
+          "commands": [
+            {
+              "argv": [
+                "${PUBLIC_LLVM_BIN_WINDOWS}\\clang.exe",
+                "--target=riscv32-unknown-elf",
+                "-march=rv32imac_zicsr",
+                "-mabi=ilp32",
+                "-Oz",
+                "-mllvm",
+                "-enable-machine-outliner=never",
+                "-ffreestanding",
+                "-fno-builtin",
+                "-fno-stack-protector",
+                "-fno-unwind-tables",
+                "-fno-asynchronous-unwind-tables",
+                "-mno-relax",
+                "-ffunction-sections",
+                "-fdata-sections",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "-x",
+                "c",
+                "-std=c11",
+                "-ffixed-x1",
+                "-ffixed-x2",
+                "-ffixed-x3",
+                "-ffixed-x4",
+                "-ffixed-x5",
+                "-ffixed-x7",
+                "-ffixed-x8",
+                "-ffixed-x9",
+                "-ffixed-x18",
+                "-ffixed-x19",
+                "-ffixed-x20",
+                "-ffixed-x21",
+                "-ffixed-x22",
+                "-ffixed-x23",
+                "-ffixed-x24",
+                "-ffixed-x25",
+                "-ffixed-x26",
+                "-ffixed-x27",
+                "-ffixed-x29",
+                "-ffixed-x30",
+                "-ffixed-x31",
+                "-MD",
+                "-MF",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\c\\origin\\unit.d",
+                "-MT",
+                "unit.o",
+                "-c",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\src\\boot_vectors.v1.c",
+                "-o",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\c\\origin\\unit.o"
+              ],
+              "exit": 0,
+              "label": "compile"
+            },
+            {
+              "argv": [
+                "${PUBLIC_LLVM_BIN_WINDOWS}\\llvm-objdump.exe",
+                "-dr",
+                "-t",
+                "-h",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\c\\origin\\unit.o"
+              ],
+              "exit": 0,
+              "label": "read"
+            }
+          ],
+          "dependencies": {
+            "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-vectors\\src\\boot_vectors.v1.c": "7b477d6c0066f90835d574a97288aad4326f248e6b5d0f6ada79444a5d032035"
+          },
+          "result": {
+            "ABS_providers": 0,
+            "FUNC": 0,
+            "HOST_model_executed": false,
+            "ISA_emulated": false,
+            "OBJECT": 1,
+            "RELA": 62,
+            "R_RISCV_32": 62,
+            "UND": 61,
+            "all_relocation_slots_types_addends_and_targets_exact": true,
+            "all_words_original_equal_after_data_only_encoding": true,
+            "allocated_bytes": 328,
+            "firmware_BIN_generated": false,
+            "firmware_ready": false,
+            "hardware_IRQ_count_or_table_extent_proved": false,
+            "hardware_accessed": false,
+            "negative_cases_executed": 0,
+            "network": false,
+            "null_words": 20,
+            "object_sha256": "18771d8740afff6b002c2d7b4a0f090dae1b5c9b247da3e3550531031f23517f",
+            "passed": true,
+            "stored_function_addresses_prove_C_ABI": false,
+            "target_executed": false
+          }
+        }
+      },
+      "cpp": {
+        "curated": {
+          "artifacts": {
+            "compile.log": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "read.log": {
+              "bytes": 4081,
+              "sha256": "6b3d352515c66544c59897d0ade90f7fe31bd7e76d0891bff3b15e6acbd3214f"
+            },
+            "unit.d": {
+              "bytes": 230,
+              "sha256": "ca80402dd3e62913a7ca71170f46ea1ce902a152161beae82008c09b356ce358"
+            },
+            "unit.o": {
+              "bytes": 4068,
+              "sha256": "99a3871274664c9594a0e6b1b414b34611e085cf1128e0979c74e1e337f93f9a"
+            }
+          },
+          "commands": [
+            {
+              "argv": [
+                "${PUBLIC_LLVM_BIN_WINDOWS}\\clang.exe",
+                "--target=riscv32-unknown-elf",
+                "-march=rv32imac_zicsr",
+                "-mabi=ilp32",
+                "-Oz",
+                "-mllvm",
+                "-enable-machine-outliner=never",
+                "-ffreestanding",
+                "-fno-builtin",
+                "-fno-stack-protector",
+                "-fno-unwind-tables",
+                "-fno-asynchronous-unwind-tables",
+                "-mno-relax",
+                "-ffunction-sections",
+                "-fdata-sections",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "-x",
+                "c++",
+                "-std=c++17",
+                "-fno-exceptions",
+                "-ffixed-x1",
+                "-ffixed-x2",
+                "-ffixed-x3",
+                "-ffixed-x4",
+                "-ffixed-x5",
+                "-ffixed-x7",
+                "-ffixed-x8",
+                "-ffixed-x9",
+                "-ffixed-x18",
+                "-ffixed-x19",
+                "-ffixed-x20",
+                "-ffixed-x21",
+                "-ffixed-x22",
+                "-ffixed-x23",
+                "-ffixed-x24",
+                "-ffixed-x25",
+                "-ffixed-x26",
+                "-ffixed-x27",
+                "-ffixed-x29",
+                "-ffixed-x30",
+                "-ffixed-x31",
+                "-MD",
+                "-MF",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\cpp\\curated\\unit.d",
+                "-MT",
+                "unit.o",
+                "-c",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\src\\native\\startup\\boot_vectors.c",
+                "-o",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\cpp\\curated\\unit.o"
+              ],
+              "exit": 0,
+              "label": "compile"
+            },
+            {
+              "argv": [
+                "${PUBLIC_LLVM_BIN_WINDOWS}\\llvm-objdump.exe",
+                "-dr",
+                "-t",
+                "-h",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\cpp\\curated\\unit.o"
+              ],
+              "exit": 0,
+              "label": "read"
+            }
+          ],
+          "dependencies": {
+            "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+            "${PROJECT_ROOT}\\src\\native\\startup\\boot_vectors.c": "7b477d6c0066f90835d574a97288aad4326f248e6b5d0f6ada79444a5d032035"
+          },
+          "result": {
+            "ABS_providers": 0,
+            "FUNC": 0,
+            "HOST_model_executed": false,
+            "ISA_emulated": false,
+            "OBJECT": 1,
+            "RELA": 62,
+            "R_RISCV_32": 62,
+            "UND": 61,
+            "all_relocation_slots_types_addends_and_targets_exact": true,
+            "all_words_original_equal_after_data_only_encoding": true,
+            "allocated_bytes": 328,
+            "firmware_BIN_generated": false,
+            "firmware_ready": false,
+            "hardware_IRQ_count_or_table_extent_proved": false,
+            "hardware_accessed": false,
+            "negative_cases_executed": 0,
+            "network": false,
+            "null_words": 20,
+            "object_sha256": "99a3871274664c9594a0e6b1b414b34611e085cf1128e0979c74e1e337f93f9a",
+            "passed": true,
+            "stored_function_addresses_prove_C_ABI": false,
+            "target_executed": false
+          }
+        },
+        "origin": {
+          "artifacts": {
+            "compile.log": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "read.log": {
+              "bytes": 4083,
+              "sha256": "1b1f5bd657cd9b849c20add4250c3719e02f8927eed5804e5f3c390373b2c226"
+            },
+            "unit.d": {
+              "bytes": 252,
+              "sha256": "d7874708fa2ca712a6bd6112d8ef5670e7daba4293ceb8e9cf489f1d91d39c32"
+            },
+            "unit.o": {
+              "bytes": 4072,
+              "sha256": "18771d8740afff6b002c2d7b4a0f090dae1b5c9b247da3e3550531031f23517f"
+            }
+          },
+          "commands": [
+            {
+              "argv": [
+                "${PUBLIC_LLVM_BIN_WINDOWS}\\clang.exe",
+                "--target=riscv32-unknown-elf",
+                "-march=rv32imac_zicsr",
+                "-mabi=ilp32",
+                "-Oz",
+                "-mllvm",
+                "-enable-machine-outliner=never",
+                "-ffreestanding",
+                "-fno-builtin",
+                "-fno-stack-protector",
+                "-fno-unwind-tables",
+                "-fno-asynchronous-unwind-tables",
+                "-mno-relax",
+                "-ffunction-sections",
+                "-fdata-sections",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "-x",
+                "c++",
+                "-std=c++17",
+                "-fno-exceptions",
+                "-ffixed-x1",
+                "-ffixed-x2",
+                "-ffixed-x3",
+                "-ffixed-x4",
+                "-ffixed-x5",
+                "-ffixed-x7",
+                "-ffixed-x8",
+                "-ffixed-x9",
+                "-ffixed-x18",
+                "-ffixed-x19",
+                "-ffixed-x20",
+                "-ffixed-x21",
+                "-ffixed-x22",
+                "-ffixed-x23",
+                "-ffixed-x24",
+                "-ffixed-x25",
+                "-ffixed-x26",
+                "-ffixed-x27",
+                "-ffixed-x29",
+                "-ffixed-x30",
+                "-ffixed-x31",
+                "-MD",
+                "-MF",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\cpp\\origin\\unit.d",
+                "-MT",
+                "unit.o",
+                "-c",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\src\\boot_vectors.v1.c",
+                "-o",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\cpp\\origin\\unit.o"
+              ],
+              "exit": 0,
+              "label": "compile"
+            },
+            {
+              "argv": [
+                "${PUBLIC_LLVM_BIN_WINDOWS}\\llvm-objdump.exe",
+                "-dr",
+                "-t",
+                "-h",
+                "${PUBLIC_TSL9_ROOT_WINDOWS}\\experiments\\tsl9-original-vectors\\build\\data-v1\\cpp\\origin\\unit.o"
+              ],
+              "exit": 0,
+              "label": "read"
+            }
+          ],
+          "dependencies": {
+            "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+            "${PROJECT_ROOT}\\experiments\\tsl9-original-vectors\\src\\boot_vectors.v1.c": "7b477d6c0066f90835d574a97288aad4326f248e6b5d0f6ada79444a5d032035"
+          },
+          "result": {
+            "ABS_providers": 0,
+            "FUNC": 0,
+            "HOST_model_executed": false,
+            "ISA_emulated": false,
+            "OBJECT": 1,
+            "RELA": 62,
+            "R_RISCV_32": 62,
+            "UND": 61,
+            "all_relocation_slots_types_addends_and_targets_exact": true,
+            "all_words_original_equal_after_data_only_encoding": true,
+            "allocated_bytes": 328,
+            "firmware_BIN_generated": false,
+            "firmware_ready": false,
+            "hardware_IRQ_count_or_table_extent_proved": false,
+            "hardware_accessed": false,
+            "negative_cases_executed": 0,
+            "network": false,
+            "null_words": 20,
+            "object_sha256": "18771d8740afff6b002c2d7b4a0f090dae1b5c9b247da3e3550531031f23517f",
+            "passed": true,
+            "stored_function_addresses_prove_C_ABI": false,
+            "target_executed": false
+          }
+        }
+      }
+    },
+    "schema": "TSL9-original-vector-data-native-build-v1",
+    "variants": [
+      "origin",
+      "curated"
+    ]
+  },
+  "receipt_is_original": false,
+  "schema": "TSL9-path-only-public-receipt-derivative-v1",
+  "substitutions": [
+    {
+      "meaning": "Local CLANG_RESOURCE_WINDOWS prefix",
+      "placeholder": "${PUBLIC_CLANG_RESOURCE_WINDOWS}"
+    },
+    {
+      "meaning": "Local CLANG_RESOURCE_POSIX prefix",
+      "placeholder": "${PUBLIC_CLANG_RESOURCE_POSIX}"
+    },
+    {
+      "meaning": "Local LLVM_BIN_WINDOWS prefix",
+      "placeholder": "${PUBLIC_LLVM_BIN_WINDOWS}"
+    },
+    {
+      "meaning": "Local LLVM_BIN_POSIX prefix",
+      "placeholder": "${PUBLIC_LLVM_BIN_POSIX}"
+    },
+    {
+      "meaning": "Local TSL9_ROOT_WINDOWS prefix",
+      "placeholder": "${PUBLIC_TSL9_ROOT_WINDOWS}"
+    },
+    {
+      "meaning": "Local TSL9_ROOT_POSIX prefix",
+      "placeholder": "${PUBLIC_TSL9_ROOT_POSIX}"
+    }
+  ]
+}

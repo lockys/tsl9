@@ -1,0 +1,245 @@
+{
+  "schema": "TSL9-CAN-RX0-IRQ-binding-contract-v1",
+  "parent_checker": "experiments/tsl9-vector-irq-bind/integrate-v1.py",
+  "parent_checker_sha256": "9d0d3e67eb64452e5382ff7a3071753d87ecb829b95c5359e6365008cd8c38a4",
+  "parent_component": "experiments/tsl9-vector-irq-bind/build/component-v1",
+  "parent_object": "UNRESOLVED-STARTUP-VECTOR-IRQ.o",
+  "parent_object_sha256": "a4eb9db707f8f99b6c2bf794500bdc9233ce5082dd659a1c21d7e3ab89f099b9",
+  "parent_receipt_sha256": "bbcc6231bae8f1002d9806968930517cbe9cb075f9d69969d3a35f01cf831f47",
+  "curation": "build/curated-source/original-vectors-20261024-v1/verification.json",
+  "curation_sha256": "e579d914a905cb635995d513558a6e56656708477ff6ae3a5b8f75874533cdf8",
+  "manifest_sha256": "22b04189ed25a36c9f196b6080c0b7309525363f34beed0e7c072f7783a18ed8",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "reader": "experiments/tsl9-feature-dispatch-tree/elf_reader-v3.py",
+  "reader_sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a",
+  "curation_checker": "scripts/verify-curated-source.py",
+  "curation_checker_sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832",
+  "tools": {
+    "clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+  },
+  "original_encoding_helper": "experiments/tsl9-original-startup/build-v1.py",
+  "original_encoding_helper_sha256": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5",
+  "units": [
+    {
+      "unit": {
+        "name": "ring-insert",
+        "profile": "ring-bank",
+        "origin_unit": "experiments/tsl9-ring-insert/src/ring_insert.v3.c",
+        "curated_unit": "src/native/receive/ring_insert.c",
+        "evidence": "experiments/tsl9-ring-insert/README.md",
+        "formal_receipts": [
+          "experiments/tsl9-ring-insert/build/verified-v1/c/verification.json",
+          "experiments/tsl9-ring-insert/build/verified-v1/cpp/verification.json"
+        ],
+        "scope": "Five private regions8/16/50/10/8B and3defined native edges; nominal92B/32i matches original at12BC8. C arithmetic/provider load plus explicit frame/slot/S0/S1 ports. Resident/caller/IRQ/hardware and whole firmware remain unproved.",
+        "origin_unit_sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d"
+      },
+      "start": 76744,
+      "end": 76836,
+      "bytes": 92,
+      "instructions": 32,
+      "regions": [
+        {
+          "name": "tsl9_ring_insert_entry_12bc8",
+          "start": 76744,
+          "end": 76752,
+          "bytes": 8,
+          "original_sha256": "157b2d92ee3de3dd29a04ed155700152f87a87db4fcbb174b147c2c7ddc1809d"
+        },
+        {
+          "name": "tsl9_ring_init_12bd0",
+          "start": 76752,
+          "end": 76768,
+          "bytes": 16,
+          "original_sha256": "f7710fc92bad19150fa81576d8ff876a010a63ece699187c888ad1041b5656f9"
+        },
+        {
+          "name": "tsl9_ring_scan_12be0",
+          "start": 76768,
+          "end": 76818,
+          "bytes": 50,
+          "original_sha256": "9e20d67b0ae477818071f9ba9e93b444523ca882974f5d68ae02191fb586c5d9"
+        },
+        {
+          "name": "tsl9_ring_finish_12c12",
+          "start": 76818,
+          "end": 76828,
+          "bytes": 10,
+          "original_sha256": "5337349bd213a4afedd4bb2b40e85f8a135ca2a3ee774b3c2da607774b084509"
+        },
+        {
+          "name": "tsl9_ring_advance_12c1c",
+          "start": 76828,
+          "end": 76836,
+          "bytes": 8,
+          "original_sha256": "076a43f5d5055eda9292bd6e98884d1d5aa778f4dfcc1c309533270c4c60db06"
+        }
+      ],
+      "object_sha256": "ee281c4f0e625e08a3ed4b3cb5f206657d0a2a5010bd929dc94f57c76da00cca",
+      "source_sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d",
+      "original_span_sha256": "d3d9af9bcec8af13dfd424d3bfb2bd79f8fc3fd61308cb6ec0d7c18b1b78b13b",
+      "RELA": 3,
+      "UND": []
+    },
+    {
+      "unit": {
+        "name": "ring-irq-adapter",
+        "profile": "irq-adapter-a0-a5",
+        "origin_unit": "experiments/tsl9-ring-irq-adapter/src/irq_adapter.v2.c",
+        "curated_unit": "src/native/irq/ring_irq_adapter.c",
+        "evidence": "experiments/tsl9-ring-irq-adapter/README.md",
+        "formal_receipts": [
+          "experiments/tsl9-ring-irq-adapter/build/verified-v2/c/verification.json",
+          "experiments/tsl9-ring-irq-adapter/build/verified-v2/cpp/verification.json"
+        ],
+        "scope": "52B/17i across genuine14/10/18/6/4B interrupt regions;42noncontrol original bytes equal. Three pending relocations retain two genuine UND providers and a defined empty MRET branch. C word MMIO read/mask/tag plus explicit then-live SP/frame/JAL/MRET ports; no ordinary C ABI, full IRQ/resident/hardware or firmware readiness proof.",
+        "origin_unit_sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596"
+      },
+      "start": 76836,
+      "end": 76888,
+      "bytes": 52,
+      "instructions": 17,
+      "regions": [
+        {
+          "name": "tsl9_ring_irq_entry_12c24",
+          "start": 76836,
+          "end": 76850,
+          "bytes": 14,
+          "original_sha256": "2a988021ba3bfcfa1e34de9fe8a89d3918ed0bdf3e37bef0851c029beba02f7f"
+        },
+        {
+          "name": "tsl9_ring_irq_frame_12c32",
+          "start": 76850,
+          "end": 76860,
+          "bytes": 10,
+          "original_sha256": "f38f9e7d60fd29373005249f4b28e57b3d71b5b4e757afaf73c717cd57b8f4f8"
+        },
+        {
+          "name": "tsl9_ring_irq_dispatch_12c3c",
+          "start": 76860,
+          "end": 76878,
+          "bytes": 18,
+          "original_sha256": "f732a5d4e6f2dad309b3ddd18f3f49c4a4273a578a112172f3cb43676ad8509e"
+        },
+        {
+          "name": "tsl9_ring_irq_finish_12c4e",
+          "start": 76878,
+          "end": 76884,
+          "bytes": 6,
+          "original_sha256": "0bec86c6da5a0b7ae81fe8c9270303a2abb145a525d5b7986c0f673d1d464857"
+        },
+        {
+          "name": "tsl9_ring_irq_empty_12c54",
+          "start": 76884,
+          "end": 76888,
+          "bytes": 4,
+          "original_sha256": "1e7046a0a49788a582f66b43e7121816806539f4491168ed6b45d72da350013a"
+        }
+      ],
+      "object_sha256": "492dfd8840e0546c35de72ca699e4715fe48b6ca4dd983cd0a9125c467e16ba6",
+      "source_sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596",
+      "original_span_sha256": "44ab1cdae33f0151e8270b3769d9dca81847154bf88d3f691443d77200ece51a",
+      "RELA": 3,
+      "UND": [
+        "tsl9_irq_provider_18d78",
+        "tsl9_ring_insert_entry_12bc8"
+      ]
+    },
+    {
+      "unit": {
+        "name": "irq-provider",
+        "profile": "irq-provider-a0-a1-a2-a4-a5",
+        "origin_unit": "experiments/tsl9-irq-provider/src/irq_provider.v2.c",
+        "curated_unit": "src/native/receive/irq_provider.c",
+        "evidence": "experiments/tsl9-irq-provider/README.md",
+        "formal_receipts": [
+          "experiments/tsl9-irq-provider/build/verified-v3/c/verification.json",
+          "experiments/tsl9-irq-provider/build/verified-v3/cpp/verification.json"
+        ],
+        "scope": "Six private18/8/108/10/10/10B regions with3genuine defined native edges; nominal164B/53i is fully original-equal. C fresh volatile word reads, shifts/masks and byte/word stores plus explicit cold edges/RET ports; source-copy equivalence is not complete IRQ/silicon/firmware proof.",
+        "origin_unit_sha256": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653"
+      },
+      "start": 101752,
+      "end": 101916,
+      "bytes": 164,
+      "instructions": 53,
+      "regions": [
+        {
+          "name": "tsl9_irq_provider_18d78",
+          "start": 101752,
+          "end": 101770,
+          "bytes": 18,
+          "original_sha256": "6e2788c45901d20b3109dc566415cd73f2b05ab58f125acc0edd156e74f5c8a5"
+        },
+        {
+          "name": "tsl9_irq_provider_standard_18d8a",
+          "start": 101770,
+          "end": 101778,
+          "bytes": 8,
+          "original_sha256": "f1fb8fa6ddc64973cfb807577252763272e8079836acefecc7acf4dadc174efd"
+        },
+        {
+          "name": "tsl9_irq_provider_common_18d92",
+          "start": 101778,
+          "end": 101886,
+          "bytes": 108,
+          "original_sha256": "f70d8a225f02873ceb3366e862cb2b9cf0abf9f43d756c62431f5a53e5a30f30"
+        },
+        {
+          "name": "tsl9_irq_provider_bank0_18dfe",
+          "start": 101886,
+          "end": 101896,
+          "bytes": 10,
+          "original_sha256": "8f92d05c88032ebb9b0446388802b40c9c4a5e049eb4e76c4ad7a161c2877a23"
+        },
+        {
+          "name": "tsl9_irq_provider_extended_18e08",
+          "start": 101896,
+          "end": 101906,
+          "bytes": 10,
+          "original_sha256": "4af663dc1b4c8890083677f4da29c3f47518ad5aa128dc0dd0b4bc66b96b884c"
+        },
+        {
+          "name": "tsl9_irq_provider_bank1_18e12",
+          "start": 101906,
+          "end": 101916,
+          "bytes": 10,
+          "original_sha256": "b7c975b1366122e19f4bb75ab1da3e19f42404e4ff2e6d1321d115db36afe7d8"
+        }
+      ],
+      "object_sha256": "cbe12b65871c162912899c082565f0e92f53befe21f2ce286ab379770a499c90",
+      "source_sha256": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653",
+      "original_span_sha256": "678a3cbf42bc02d5c730973675858a18e538af9fdc1cb74dd9296f220f487ae3",
+      "RELA": 3,
+      "UND": []
+    }
+  ],
+  "vector_spec": "experiments/tsl9-original-vectors/spec-v1.json",
+  "parent_code_bytes": 648,
+  "new_code_bytes": 956,
+  "new_original_code_bytes": 308,
+  "new_original_code_instructions": 102,
+  "parent_data_bytes": 456,
+  "alias": "tsl9_vector_entry_12c24",
+  "provider_entry_name": "tsl9_ring_irq_entry_12c24",
+  "vector_word_index": 36,
+  "vector_original_word_PC": 32968,
+  "vector_original_target": 76836,
+  "remaining_undefined": [
+    "tsl9_boot_main_9008",
+    "tsl9_boot_resident_40000",
+    "tsl9_vector_entry_19bd4",
+    "tsl9_vector_entry_8448",
+    "tsl9_vector_entry_8498",
+    "tsl9_vector_entry_979e"
+  ],
+  "resident_pointer_word_address": 262220,
+  "resident_pointer_identity_proved": false,
+  "PC_sensitive_ring_AUIPC_original_PC": 76754,
+  "original_ring_table_literal_target": 536920120,
+  "final_original_address_placement_proved": false,
+  "normal_C_or_IRQ_ABI_proved": false
+}

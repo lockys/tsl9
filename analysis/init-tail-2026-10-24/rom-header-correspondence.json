@@ -1,0 +1,125 @@
+{
+  "schema": "TSL9-observed-WCH-ROM-header-correspondence-v1",
+  "source_header": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wchble_rom.h",
+  "source_sha256": "fab43e7b8e351596a14d2a434eea4fa79587a8b9bba12738897d35ee2c3dbf2e",
+  "default_flash_base": {
+    "line": 2714,
+    "value": 262144
+  },
+  "flash_table_base": {
+    "line": 2721,
+    "value": 262196
+  },
+  "flash_table_expression_line": 2725,
+  "RAM_base": {
+    "line": 2719,
+    "value": 536870912
+  },
+  "RAM_table_expression_line": 2724,
+  "word_stride": 4,
+  "entries": [
+    {
+      "name": "tmos_memset",
+      "line": 2776,
+      "index": 5,
+      "kind": "FLASH table",
+      "profile_parameters": [
+        "pointer dst",
+        "uint8 value",
+        "uint32 length"
+      ],
+      "observed": "17C0A/17C1C resident calls;A1=0,A2=3/115",
+      "installed_implementation_proved": false,
+      "slot_address": 262216
+    },
+    {
+      "name": "tmos_memcpy",
+      "line": 2777,
+      "index": 6,
+      "kind": "FLASH table",
+      "profile_parameters": [
+        "pointer dst",
+        "const pointer src",
+        "uint32 length"
+      ],
+      "observed": "retained ring resident pointer boundary;argument/callee proof remains separate",
+      "installed_implementation_proved": false,
+      "slot_address": 262220
+    },
+    {
+      "name": "tmos_msg_deallocate",
+      "line": 2862,
+      "index": 13,
+      "kind": "FLASH table",
+      "profile_parameters": [
+        "pointer message"
+      ],
+      "observed": "retained TIM3 indirect pointer word40068",
+      "installed_implementation_proved": false,
+      "slot_address": 262248
+    },
+    {
+      "name": "TMOS_GetSystemClock",
+      "line": 2929,
+      "index": 18,
+      "kind": "FLASH table",
+      "profile_return": "uint32 clock;header line2927 documents0.625ms",
+      "observed": "retained81B0 wrapper loads word4007C,uses low32 MUL10 then logical shift4",
+      "installed_implementation_proved": false,
+      "slot_address": 262268
+    },
+    {
+      "name": "TMOS_ProcessEventRegister",
+      "line": 2938,
+      "index": 19,
+      "kind": "FLASH table",
+      "profile_parameters": [
+        "event callback"
+      ],
+      "profile_return": "tmosTaskID defaultuint8;line51",
+      "observed": "17C2A resident call;returned lowbyte storedGP+379",
+      "installed_implementation_proved": false,
+      "slot_address": 262272
+    },
+    {
+      "name": "TMOS_SystemProcess",
+      "line": 2920,
+      "index": 0,
+      "kind": "RAM table",
+      "observed": "8180 application uses then-liveS2+0;setupS2=20000000",
+      "installed_implementation_proved": false,
+      "slot_address": 536870912
+    },
+    {
+      "name": "BB_IRQLibHandler",
+      "line": 3082,
+      "index": 1,
+      "kind": "RAM table",
+      "observed": "profile reference;retained original startup evidence must prove its actual port",
+      "installed_implementation_proved": false,
+      "slot_address": 536870916
+    },
+    {
+      "name": "LLE_IRQLibHandler",
+      "line": 3091,
+      "index": 2,
+      "kind": "RAM table",
+      "observed": "retained199E2 initializer candidate copiesRAM+8 toGP+384;LLE uses then-liveGP+384",
+      "installed_implementation_proved": false,
+      "slot_address": 536870920
+    }
+  ],
+  "confirmed": "Saved header macros anddefault types match observed literal table addresses andseveral original argument/return shapes.",
+  "inferred": "The application is consistent with the saved WCH BLE/TMOS ROM-interface profile.",
+  "not_proved": [
+    "Installed ROM bytes,version orbuild configuration",
+    "Physical MCU/board oractive library state",
+    "Runtime function-pointer values,callee preservation orIRQ contracts"
+  ],
+  "source_header_used_to_change_native_calls": false,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "slot_address_note": "Table slot addresses hold runtime/library function pointers;they are not the function entry addresses."
+}

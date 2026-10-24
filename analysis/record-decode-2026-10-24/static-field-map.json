@@ -1,0 +1,113 @@
+{
+  "schema": "TSL9-record-decode-static-field-map-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/record_decode.c",
+  "evidence": "../record-consumer-2026-10-24/next-providers.json",
+  "status": "instruction_level_facts_plus_explicit_snapshot_inference",
+  "source_base": "GP+220",
+  "target_base": "incoming A0",
+  "facts": [
+    {
+      "PCs": [
+        "C6A8",
+        "C6AC",
+        "C6AE",
+        "C6B0",
+        "C6B2"
+      ],
+      "fact": "Read fullsourceword0; ifbit9 isclear, return withouttarget writes."
+    },
+    {
+      "PCs": [
+        "C6B4",
+        "C6B8",
+        "C6BA",
+        "C6BE",
+        "C6C0",
+        "C6C6",
+        "C6D4",
+        "C6DA",
+        "C6DE"
+      ],
+      "fact": "Fresh sourceword0 bits10..15 nonzero enables three targetbyte writes at4,5,6,from extracted24-bit expression. Underunchangedsource these correspond to sourcebytes2,3,4."
+    },
+    {
+      "PCs": [
+        "C6E4",
+        "C6EC",
+        "C6F8",
+        "C712",
+        "C718",
+        "C720",
+        "C724",
+        "C732",
+        "C754",
+        "C75E"
+      ],
+      "fact": "Fresh sourceword+4 bits8..12 selectnumeric branches. Retainoriginal unsignedmultiply/masks anduint8 beforeunsigned100 clamp;alternate21..31 path writeszero tolowseven bits."
+    },
+    {
+      "PCs": [
+        "C724",
+        "C728",
+        "C72C",
+        "C730",
+        "C732"
+      ],
+      "fact": "Preserve targetbyte7 bit7 while writingcomputedlow7bits."
+    },
+    {
+      "PCs": [
+        "C6EA",
+        "C772",
+        "C736",
+        "C73A"
+      ],
+      "fact": "Zero delta returns unlesspriorcopyflag set; targetbyte2 zero suppressesfinaldispatch afterearliertarget writes mayalreadyoccur."
+    },
+    {
+      "PCs": [
+        "C73C",
+        "C73E",
+        "C740",
+        "C744",
+        "C748",
+        "C74A",
+        "C74C",
+        "C750"
+      ],
+      "fact": "Fresh sourceword+4 bits13..14 replace targetbyte8 low2bits, preservingupper6; no-linktail to12A08 keepsincomingtarget pointer."
+    },
+    {
+      "PCs": [
+        "FAF8",
+        "FAFC"
+      ],
+      "fact": "StoreA0 lowbyte toGP+284 andRET; noframe ornewdirectdependency."
+    }
+  ],
+  "stable_snapshot_inferences": {
+    "assumption": "Sourceandtarget bytesdo notchange duringallfreshreads; this isnotproved onhardware.",
+    "source_byte5_low5": "d=source_byte5&31",
+    "d_zero": "No byte7 update; continueonlyifthree-byte copy flagset.",
+    "d_1_to_10": "candidate=((target_byte7&127)+10*d)&255;low=min_unsigned(candidate,100)&127.",
+    "d_11_to_20": "candidate=(10*(d-10))&255;low=min_unsigned(candidate,100)&127.",
+    "d_21_to_31": "low=0.",
+    "target_byte7": "(fresh_target_byte7&128)|low",
+    "target_byte8": "(fresh_target_byte8&252)|((fresh_source_byte5>>5)&3), onlyaftertarget_byte2nonzero."
+  },
+  "important_limits": [
+    "The sourceword atGP+224 covers8sourcebytesintotal,whileprecedingcopywrites7; originalwidthretained andmemoryboundsunproved.",
+    "Targetwritesreachoffset8,requiringaccessibletargetstorage; extent/ownership unproved.",
+    "Do notreplacefreshvolatile readswithonesnapshot intherebuiltfirmware.",
+    "No fieldisconfirmed as seat,DND,temperature,speed,brightness orphysicalunit.",
+    "No originaltarget,HOSTmodel orISA execution; nohardware observations."
+  ],
+  "feature_candidate": {
+    "idea": "Read-only offline raw-record preview showinggate,rawcopyfields,numericbranches andpreservedbits,withfact/inferencelabels.",
+    "implemented": false
+  },
+  "target_executed": false,
+  "network": false
+}

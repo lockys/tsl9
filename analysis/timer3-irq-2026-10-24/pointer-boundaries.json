@@ -1,0 +1,79 @@
+{
+  "schema": "TSL9-TIM3-static-pointer-and-SDK-boundaries-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "table_base_original_expression": {
+    "PC": 38842,
+    "AUIPC_addend": 536879104,
+    "ADDI": 1794,
+    "value": 536919740
+  },
+  "pointers": [
+    {
+      "call_PC": 39160,
+      "source": "literal32-bit word40068",
+      "original_load_PC": 39158,
+      "identity_proved": false
+    },
+    {
+      "call_PC": 39244,
+      "source": "then-live S2+12",
+      "original_load_PC": 39228,
+      "conditional_original_base_address": 536919752,
+      "condition": "S2 retains original2000BEBC base across all earlier providers",
+      "identity_proved": false
+    },
+    {
+      "owner": "reused81B0 clock wrapper",
+      "source": "literal32-bit word4007C",
+      "identity_proved": false
+    }
+  ],
+  "SDK": {
+    "header": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wch-ch32v20x.h",
+    "sha256": "f7afdff0cca29cea10ea104915a5a21675e49c980f07af789daf37ea80fd142b",
+    "vector": {
+      "name": "TIM3_IRQn",
+      "line": 95,
+      "value": 45
+    },
+    "base": {
+      "line": 826,
+      "value": 1073742848
+    },
+    "registers": [
+      {
+        "offset": 16,
+        "width": 16,
+        "name": "INTFR",
+        "line": 539
+      },
+      {
+        "offset": 44,
+        "width": 16,
+        "name": "ATRLR",
+        "line": 565
+      },
+      {
+        "offset": 60,
+        "width": 16,
+        "name": "CH3CVR",
+        "line": 594
+      }
+    ]
+  },
+  "observed_table_accesses": "entry stride6;halfwords+0,+2,+4. Division uses signed DIV with numerator1000000;time-return sums and phase/index bytes are retained.",
+  "inferences": [
+    "Saved SDK layout corresponds to TIM3 channel3 compare and autoreload registers.",
+    "A timed waveform/sequence function is plausible;the physical load may be a buzzer,light or another device and is not identified."
+  ],
+  "not_proved": [
+    "Physical MCU,pin routing or output load",
+    "Time units,timer prescaler/clock state or live table contents",
+    "Callback identities,return/register-preservation contracts and actual GP/S2 ownership"
+  ],
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

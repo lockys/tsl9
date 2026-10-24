@@ -1,0 +1,197 @@
+{
+  "schema": "TSL9-CAN-RX0-IRQ-summary-v1",
+  "date": "2026-10-24",
+  "worktree_uncommitted": true,
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+  },
+  "sources": [
+    {
+      "path": "src/native/receive/ring_insert.c",
+      "origin": "experiments/tsl9-ring-insert/src/ring_insert.v3.c",
+      "sha256": "5ad18a4a6cb607edd0fa26e475a58b544c3bbdef6929a3b9d53bd0c834c2262d",
+      "original_start": 76744,
+      "original_end": 76836,
+      "bytes": 92,
+      "instructions": 32,
+      "architectural_regions": 5
+    },
+    {
+      "path": "src/native/irq/ring_irq_adapter.c",
+      "origin": "experiments/tsl9-ring-irq-adapter/src/irq_adapter.v2.c",
+      "sha256": "229b5510d9cf354bf27634e2edac5518dd4fa76f1054997e353cf9e0ef64b596",
+      "original_start": 76836,
+      "original_end": 76888,
+      "bytes": 52,
+      "instructions": 17,
+      "architectural_regions": 5
+    },
+    {
+      "path": "src/native/receive/irq_provider.c",
+      "origin": "experiments/tsl9-irq-provider/src/irq_provider.v2.c",
+      "sha256": "f6d76a207fc3415ff8362c580d225f4a4e1d2714fdfcfeac63d54a77ad1ce653",
+      "original_start": 101752,
+      "original_end": 101916,
+      "bytes": 164,
+      "instructions": 53,
+      "architectural_regions": 6
+    }
+  ],
+  "source_proof": {
+    "all_three_units_original_VA_equal": true,
+    "current_source_comparisons": 108,
+    "current_source_objects": 216,
+    "existing_C_and_manifest_unchanged": true,
+    "independent_data_units": 1,
+    "native_code_units": 53,
+    "negative_cases_executed": 0,
+    "new_original_bytes": 308,
+    "new_original_instructions": 102,
+    "passed": true,
+    "reused_native_units": 3,
+    "source_C_H_files": 80,
+    "target_executed": false,
+    "whole_parent_inputs_and_current_source_replayed": true
+  },
+  "component": {
+    "ABS_providers": 0,
+    "ELF_VMA_zero": true,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "RELA": 153,
+    "UND": [
+      "tsl9_boot_main_9008",
+      "tsl9_boot_resident_40000",
+      "tsl9_vector_entry_19bd4",
+      "tsl9_vector_entry_8448",
+      "tsl9_vector_entry_8498",
+      "tsl9_vector_entry_979e"
+    ],
+    "all_global_local_relocation_targets_owned": true,
+    "all_new_code_original_VA_equal": true,
+    "all_new_native_carriers_unchanged": true,
+    "code_bytes": 956,
+    "component_sha256": "4eae528cb37385be62796c96d11177dc0ec87066425e6a0015ef39a9bc47b798",
+    "conditional_frame_and_both_MRET_paths_retained": true,
+    "executable": false,
+    "final_original_address_placement_proved": false,
+    "firmware_BIN_generated": false,
+    "firmware_ready": false,
+    "hardware_accessed": false,
+    "initializer_bytes": 128,
+    "length_and_extended_ID_caller_policy_proved": false,
+    "mode": "both_languages",
+    "negative_cases_executed": 0,
+    "network": false,
+    "new_code_bytes": 308,
+    "new_native_regions": 16,
+    "new_original_instructions": 102,
+    "newly_bound_vector": 36,
+    "no_executable_stub_added": true,
+    "nonzero_FUNC_regions": 116,
+    "original_code_instructions": 335,
+    "original_ring_table_literal_target": 536920120,
+    "original_vector_target": 76836,
+    "original_vector_word_PC": 32968,
+    "parent648B_code_and456B_data_unchanged": true,
+    "passed": true,
+    "physical_MCU_or_IRQ_context_proved": false,
+    "raw_PC_sensitive_AUIPC_retained": true,
+    "real_direct_IRQ_providers_resolved": [
+      "tsl9_irq_provider_18d78",
+      "tsl9_ring_insert_entry_12bc8"
+    ],
+    "remaining_unique_vector_entries": 4,
+    "resident_indirect_pointer_word": 262220,
+    "resident_pointer_identity_or_ABI_proved": false,
+    "target_executed": false,
+    "total_data_bytes": 456,
+    "vector_carrier_bytes": 328,
+    "vector_slots_bound_to_real_code": 57,
+    "vector_slots_still_external": 5,
+    "zero_size_FUNC_aliases": 2,
+    "zero_size_alias_owns_real_entry": true
+  },
+  "evidence_files": {
+    "experiments/tsl9-can-rx0-irq-bind/build/component-v1/measurement.json": {
+      "bytes": 21417,
+      "sha256": "3c66072c571db5d6120c709ccd6b54f900d4336e9104b3e166bcd8ccc139ae4e"
+    },
+    "experiments/tsl9-can-rx0-irq-bind/build/component-v1/c/verification.json": {
+      "bytes": 1930,
+      "sha256": "1ee23f745b326944b69499d51e74c88c9a7e8f8b6696493957b849ba2634fcb7"
+    },
+    "experiments/tsl9-can-rx0-irq-bind/build/component-v1/cpp/verification.json": {
+      "bytes": 1932,
+      "sha256": "9b835c0322910142d1380987c5c34092536e8c3d958b6a5f0f1475a8152eb158"
+    },
+    "experiments/tsl9-can-rx0-irq-bind/integrate-v1.py": {
+      "bytes": 19808,
+      "sha256": "3d00bb4ccae67bd163983d849ff8b5f3d272ca1d22442bfbf76385b993df0703"
+    },
+    "experiments/tsl9-can-rx0-irq-bind/contract-v1.json": {
+      "bytes": 10620,
+      "sha256": "b83b0ab4c7c1a8d22093ea1442d6ccf5e65d50392a49ae6386088985165caa1a"
+    },
+    "experiments/tsl9-can-rx0-irq-bind/joined-v1.ld": {
+      "bytes": 953,
+      "sha256": "aefc8f9540703e92f201cc3b0ee26b6d7b76c49fdc07283586b55a26ef760d7f"
+    }
+  },
+  "hardware_match": "analysis/can-rx0-irq-bind-2026-10-24/hardware-sdk-match.json",
+  "static_frontier": "analysis/can-rx0-irq-bind-2026-10-24/static-frontier.json",
+  "hardware_inference": {
+    "CAN1_RX0_layout_matches_saved_CH32V20x_SDK": true,
+    "CAN_Receive_record_and_algorithm_correspondence": true,
+    "BLE_vectors_match_saved_CH32V20x_D8W_branch": true,
+    "exact_physical_MCU_identified": false
+  },
+  "limitations": [
+    "VMA0 packed code is not final original execution placement; ring AUIPC must retain original12BD2 placement or receive separately proven handling.",
+    "The indirect ring callback word4004C and its preservation contract remain unknown.",
+    "DLC<=8 and extended-ID/caller/filter policies are not proved.",
+    "IRQ register context, actual physical MCU/board/ROM, memory ownership and hardware behavior remain unproved.",
+    "Remaining original entries8448,8498,979E,19BD4,main9008 and resident40000 remain open."
+  ],
+  "next_source_target": {
+    "name": "Original LLE candidate",
+    "entry": 33944,
+    "end": 34078,
+    "bytes": 134,
+    "instructions": 64,
+    "original_vector_index": 64,
+    "callback_address": "then-live GP+384",
+    "original_JALR_PC": 34010,
+    "trailing_851e_8520_zero_bytes": 2,
+    "source_reconstructed": false,
+    "compiled": false
+  },
+  "feature_opportunities": [
+    {
+      "name": "Offline CAN receive-record and ring-layout report",
+      "status": "implemented_as_static_evidence",
+      "evidence": "analysis/can-rx0-irq-bind-2026-10-24/hardware-sdk-match.json"
+    },
+    {
+      "name": "Per-channel IRQ and queue-full diagnostics",
+      "status": "candidate_only_not_implemented",
+      "requirements": "Confirmed physical channel mapping, IRQ/RAM ownership, resident preservation contract and safe diagnostics interface."
+    }
+  ],
+  "publication": {
+    "held_for_history_privacy": true,
+    "commit_or_push": false,
+    "history_rewritten": false,
+    "raw_receipts_preserved_local": true
+  },
+  "target_executed": false,
+  "ISA_emulated": false,
+  "HOST_model_executed": false,
+  "hardware_accessed": false,
+  "network": false,
+  "negative_cases_executed": 0,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "full_goal_complete": false
+}

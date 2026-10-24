@@ -1,0 +1,124 @@
+{
+  "schema": "TSL9-vector-IRQ-local-SDK-correspondence-v1",
+  "scope": "Offline comparison of pinned local SDK reference and original firmware constants; no hardware observation",
+  "reference": {
+    "path": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wch-ch32v20x.h",
+    "sha256": "f7afdff0cca29cea10ea104915a5a21675e49c980f07af789daf37ea80fd142b",
+    "bytes": 348992,
+    "definitions": [
+      {
+        "line": 89,
+        "name": "EXTI9_5_IRQn",
+        "value": 39
+      },
+      {
+        "line": 819,
+        "name": "PERIPH_BASE",
+        "value": 1073741824
+      },
+      {
+        "line": 822,
+        "name": "APB2PERIPH_BASE",
+        "expression": "PERIPH_BASE +0x10000",
+        "derived_value": 1073807360
+      },
+      {
+        "line": 843,
+        "name": "EXTI_BASE",
+        "expression": "APB2PERIPH_BASE +0x0400",
+        "derived_value": 1073808384
+      }
+    ],
+    "struct": {
+      "name": "EXTI_TypeDef",
+      "first_line": 361,
+      "last_line": 369,
+      "uint32_fields": [
+        {
+          "line": 363,
+          "name": "INTENR",
+          "byte_offset": 0
+        },
+        {
+          "line": 364,
+          "name": "EVENR",
+          "byte_offset": 4
+        },
+        {
+          "line": 365,
+          "name": "RTENR",
+          "byte_offset": 8
+        },
+        {
+          "line": 366,
+          "name": "FTENR",
+          "byte_offset": 12
+        },
+        {
+          "line": 367,
+          "name": "SWIEVR",
+          "byte_offset": 16
+        },
+        {
+          "line": 368,
+          "name": "INTFR",
+          "byte_offset": 20
+        }
+      ]
+    }
+  },
+  "firmware": {
+    "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+    "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "vector_slot": 39,
+    "vector_word_PC": 32980,
+    "vector_word_target": 94134,
+    "full_handler_start": 94134,
+    "full_handler_end": 94210,
+    "full_handler_sha256": "034c35bc979f6b1385f135ad466d7303c31429d9323484a6290314885ad26f85",
+    "status_read_PCs": [
+      94138,
+      94174
+    ],
+    "status_address_from_literal_arithmetic": 1073808404,
+    "status_mask_values": [
+      64,
+      128
+    ],
+    "mask_write_PCs": [
+      94156,
+      94192
+    ],
+    "mask_write_address_from_literal_arithmetic": 1073808404,
+    "GP_flag_byte_offset": 360,
+    "GP_OR_values": [
+      1,
+      2
+    ],
+    "MRET_PC": 94206
+  },
+  "confirmed_static_correspondences": [
+    "Original vector index39 equals local SDK EXTI9_5_IRQn39.",
+    "Original literal load/store address40010414 equals local SDK EXTI_BASE plus INTFR offset14.",
+    "The handler tests bits6 and7 and separately ORs1 or2 into live GP+360; each condition uses a fresh status read."
+  ],
+  "inference": "The entry is consistent with the saved CH32V20x-compatible EXTI9_5 register layout; this strengthens a register-family candidate, not physical chip attribution.",
+  "not_proved": [
+    "Exact installed MCU, silicon revision or board population",
+    "Physical GPIO port/pin mapping or connected external module",
+    "Write-one-to-clear semantics from an official peripheral reference or implementation source",
+    "IRQ register save/restore, nesting, fault or installed ROM context",
+    "Runtime execution, final placement, boot or BLE OTA compatibility"
+  ],
+  "new_feature_candidate": {
+    "name": "Per-source interrupt diagnostics",
+    "status": "candidate_only_not_implemented",
+    "basis": "Two distinct status masks converge on separate bits of the same software flag byte.",
+    "requirements": "Confirm actual line mapping, IRQ context, safe state ownership and read-only diagnostics protocol before adding counters or logs."
+  },
+  "target_executed": false,
+  "SDK_executed": false,
+  "register_state_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

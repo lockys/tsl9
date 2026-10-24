@@ -1,0 +1,38 @@
+SECTIONS {
+  .feature_graph : {
+    KEEP(*(.feature_graph))
+    KEEP(*(.text.tsl9_callback_external_9124))
+    KEEP(*(.text.tsl9_scheduler_913a))
+    KEEP(*(.text.tsl9_scheduler_913c))
+    KEEP(*(.text.tsl9_scheduler_913e))
+    KEEP(*(.text.tsl9_scheduler_9142))
+    KEEP(*(.text.tsl9_scheduler_914a))
+    KEEP(*(.text.tsl9_scheduler_9150))
+    KEEP(*(.text.tsl9_scheduler_9152))
+    KEEP(*(.text.tsl9_scheduler_915c))
+    KEEP(*(.text.tsl9_scheduler_9164))
+    KEEP(*(.text.tsl9_scheduler_916e))
+    KEEP(*(.text.tsl9_scheduler_9180))
+    KEEP(*(.text.tsl9_scheduler_9188))
+    KEEP(*(.text.tsl9_scheduler_919c))
+    KEEP(*(.text.tsl9_scheduler_91a2))
+    KEEP(*(.text.tsl9_scheduler_91ae))
+    KEEP(*(.text.tsl9_scheduler_91b6))
+    KEEP(*(.text.tsl9_scheduler_91d0))
+    KEEP(*(.text.tsl9_scheduler_91ea))
+    KEEP(*(.text.tsl9_scheduler_91fe))
+    KEEP(*(.text.tsl9_scheduler_9206))
+    KEEP(*(.text.tsl9_scheduler_920a))
+    KEEP(*(.text.tsl9_scheduler_920e))
+    KEEP(*(.text.tsl9_scheduler_922c))
+    KEEP(*(.text.tsl9_scheduler_9230))
+    KEEP(*(.text.tsl9_scheduler_9234))
+    KEEP(*(.text.tsl9_scheduler_9244))
+    KEEP(*(.text.tsl9_scheduler_924c))
+  }
+  .table_0 : { KEEP(*(.table_0)) }
+  .table_1 : { KEEP(*(.table_1)) }
+}
+ASSERT(SIZEOF(.feature_graph) == 5702, "Exact parent plus scheduler code extent")
+ASSERT(SIZEOF(.table_0) == 28, "Exact outer relative table extent")
+ASSERT(SIZEOF(.table_1) == 32, "Exact nested relative table extent")

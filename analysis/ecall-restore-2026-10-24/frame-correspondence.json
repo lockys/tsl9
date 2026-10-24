@@ -1,0 +1,63 @@
+{
+  "schema": "TSL9-ECALL-LLE-frame-correspondence-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "ECALL_original_range": [
+    33878,
+    33942
+  ],
+  "LLE_original_range": [
+    34014,
+    34078
+  ],
+  "equal_bytes": 64,
+  "code_sha256": "7da5dcd1cb5f8b9459c158fe922e58df038977cf1ac5ec69ed20be5546f3a9eb",
+  "native_objects": [
+    {
+      "unit": "ecall-restore",
+      "mode": "c",
+      "object_path": "build/curated-source/ecall-restore-20261024-v1/ecall-restore/c/curated/unit.o",
+      "object_sha256": "05376ffb5fd82521ad5aa0f00981eaa30dc11c120435fa0205bdcec6fbb39b4f",
+      "function": "tsl9_ecall_restore_finish_8456",
+      "function_bytes": 64,
+      "function_code_sha256": "7da5dcd1cb5f8b9459c158fe922e58df038977cf1ac5ec69ed20be5546f3a9eb"
+    },
+    {
+      "unit": "lle-irq",
+      "mode": "c",
+      "object_path": "build/curated-source/ecall-restore-20261024-v1/lle-irq/c/curated/unit.o",
+      "object_sha256": "4cf425c3df83c449abe4f0bf00cbe8f18abc67b7c653891ba3177efe0cfbd0b2",
+      "function": "tsl9_lle_irq_finish_84de",
+      "function_bytes": 64,
+      "function_code_sha256": "7da5dcd1cb5f8b9459c158fe922e58df038977cf1ac5ec69ed20be5546f3a9eb"
+    },
+    {
+      "unit": "ecall-restore",
+      "mode": "cpp",
+      "object_path": "build/curated-source/ecall-restore-20261024-v1/ecall-restore/cpp/curated/unit.o",
+      "object_sha256": "05376ffb5fd82521ad5aa0f00981eaa30dc11c120435fa0205bdcec6fbb39b4f",
+      "function": "tsl9_ecall_restore_finish_8456",
+      "function_bytes": 64,
+      "function_code_sha256": "7da5dcd1cb5f8b9459c158fe922e58df038977cf1ac5ec69ed20be5546f3a9eb"
+    },
+    {
+      "unit": "lle-irq",
+      "mode": "cpp",
+      "object_path": "build/curated-source/ecall-restore-20261024-v1/lle-irq/cpp/curated/unit.o",
+      "object_sha256": "4cf425c3df83c449abe4f0bf00cbe8f18abc67b7c653891ba3177efe0cfbd0b2",
+      "function": "tsl9_lle_irq_finish_84de",
+      "function_bytes": 64,
+      "function_code_sha256": "7da5dcd1cb5f8b9459c158fe922e58df038977cf1ac5ec69ed20be5546f3a9eb"
+    }
+  ],
+  "confirmed": "The two original64B suffixes and their real C/C++ objects have identical bytes.",
+  "not_proved": [
+    "Who creates the ECALL frame or suppliesSP+0 MEPC",
+    "IRQ/trap entry,fault,nesting and hardware-assisted save/restore rules",
+    "Installed callback/ROM contracts or final original placement"
+  ],
+  "target_executed": false,
+  "ISA_or_register_state_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

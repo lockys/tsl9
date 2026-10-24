@@ -1,0 +1,326 @@
+{
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objcopy.exe": {
+      "bytes": 5830248,
+      "sha256": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v3.py": {
+      "bytes": 4326,
+      "sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\build-v1.py": {
+      "bytes": 9047,
+      "sha256": "d944619687881b76f508fea5fd5039eede2ad971784f0aabc691fed845775e81"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\derive-v1.py": {
+      "bytes": 6781,
+      "sha256": "d763423135618bdccb21715f1d273cee4d25e589ffc700023fd6747ec126c4fe"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\original-scopes-v1.json": {
+      "bytes": 27335,
+      "sha256": "38ae6975f450d100d38a51f088bb42a55b3ad0f02a8056e5cda8f92ad5e0f9d4"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\spec-v1.json": {
+      "bytes": 6964,
+      "sha256": "d3142ee44fb15b9d3ed907edbefc71de84d6a35965678016448d736e94ceb1f0"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\src\\init_tail.v1.c": {
+      "bytes": 5068,
+      "sha256": "801836e68a24de3ca8e56afe0148b4683d777d3925884a179770046fe2effe02"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build-v1.py": {
+      "bytes": 12139,
+      "sha256": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    }
+  },
+  "modes": {
+    "c": {
+      "artifacts": {
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "read.log": {
+          "bytes": 6673,
+          "sha256": "422d4b97af27e49ba49e0a100664241d0f1422da6ea9f038145db98ea3ea7a3a"
+        },
+        "unit.d": {
+          "bytes": 242,
+          "sha256": "cc167c0ef2fd6c948e9730b01a77bc85e0bdd9aae5581d8a62e6464843af517d"
+        },
+        "unit.o": {
+          "bytes": 2416,
+          "sha256": "16aea1be27acd25828169bf5dbf383b693716f7bfa64c91f4c8b5ca438efc8c5"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\build\\trial-v1\\c\\unit.d",
+            "-MT",
+            "unit.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\src\\init_tail.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\build\\trial-v1\\c\\unit.o"
+          ],
+          "exit": 0,
+          "label": "compile"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\build\\trial-v1\\c\\unit.o"
+          ],
+          "exit": 0,
+          "label": "read"
+        }
+      ],
+      "dependencies": {
+        "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\src\\init_tail.v1.c": "801836e68a24de3ca8e56afe0148b4683d777d3925884a179770046fe2effe02"
+      },
+      "result": {
+        "FUNC": 10,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "RELA": 5,
+        "UND": 3,
+        "code_bytes": 138,
+        "complete_original_VA_encoded_bytes_equal": true,
+        "conditional_shared_frame_bytes": 16,
+        "constructor_S0_RA_restore_before_shared_tail_retained": true,
+        "constructor_frame_bytes": 16,
+        "entry_and_callee_ABI_proved": false,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "hardware_accessed": false,
+        "instructions": 47,
+        "native_object_sha256": "16aea1be27acd25828169bf5dbf383b693716f7bfa64c91f4c8b5ca438efc8c5",
+        "negative_cases_executed": 0,
+        "network": false,
+        "noncontrol_bytes_equal": 120,
+        "original_address_placement_proved": false,
+        "original_direct_references": 5,
+        "passed": true,
+        "physical_MCU_or_peripheral_proved": false,
+        "resident_pointer_sources": [
+          "then-liveS0+72",
+          "then-liveS0+128;setupS0=40000"
+        ],
+        "shared_GP378_fresh_reads_and_both_returns_retained": true,
+        "target_executed": false,
+        "three_resident_indirect_calls_retained": true,
+        "undefined": [
+          "tsl9_callback_external_9124",
+          "tsl9_main_provider_1798a",
+          "tsl9_main_provider_90b0"
+        ]
+      }
+    },
+    "cpp": {
+      "artifacts": {
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "read.log": {
+          "bytes": 6675,
+          "sha256": "8e68fffb19675b47e6d1ed2d9a8e01580418bce30baf763e83761ba1963fb18a"
+        },
+        "unit.d": {
+          "bytes": 242,
+          "sha256": "cc167c0ef2fd6c948e9730b01a77bc85e0bdd9aae5581d8a62e6464843af517d"
+        },
+        "unit.o": {
+          "bytes": 2416,
+          "sha256": "16aea1be27acd25828169bf5dbf383b693716f7bfa64c91f4c8b5ca438efc8c5"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\build\\trial-v1\\cpp\\unit.d",
+            "-MT",
+            "unit.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\src\\init_tail.v1.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\build\\trial-v1\\cpp\\unit.o"
+          ],
+          "exit": 0,
+          "label": "compile"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-dr",
+            "-t",
+            "-h",
+            "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\build\\trial-v1\\cpp\\unit.o"
+          ],
+          "exit": 0,
+          "label": "read"
+        }
+      ],
+      "dependencies": {
+        "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "${PROJECT_ROOT}\\experiments\\tsl9-init-tail\\src\\init_tail.v1.c": "801836e68a24de3ca8e56afe0148b4683d777d3925884a179770046fe2effe02"
+      },
+      "result": {
+        "FUNC": 10,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "RELA": 5,
+        "UND": 3,
+        "code_bytes": 138,
+        "complete_original_VA_encoded_bytes_equal": true,
+        "conditional_shared_frame_bytes": 16,
+        "constructor_S0_RA_restore_before_shared_tail_retained": true,
+        "constructor_frame_bytes": 16,
+        "entry_and_callee_ABI_proved": false,
+        "firmware_BIN_generated": false,
+        "firmware_ready": false,
+        "hardware_accessed": false,
+        "instructions": 47,
+        "native_object_sha256": "16aea1be27acd25828169bf5dbf383b693716f7bfa64c91f4c8b5ca438efc8c5",
+        "negative_cases_executed": 0,
+        "network": false,
+        "noncontrol_bytes_equal": 120,
+        "original_address_placement_proved": false,
+        "original_direct_references": 5,
+        "passed": true,
+        "physical_MCU_or_peripheral_proved": false,
+        "resident_pointer_sources": [
+          "then-liveS0+72",
+          "then-liveS0+128;setupS0=40000"
+        ],
+        "shared_GP378_fresh_reads_and_both_returns_retained": true,
+        "target_executed": false,
+        "three_resident_indirect_calls_retained": true,
+        "undefined": [
+          "tsl9_callback_external_9124",
+          "tsl9_main_provider_1798a",
+          "tsl9_main_provider_90b0"
+        ]
+      }
+    }
+  },
+  "schema": "TSL9-original-INIT-TAIL-native-build-v1"
+}

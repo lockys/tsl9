@@ -1,0 +1,57 @@
+OUTPUT_ARCH(riscv)
+SECTIONS
+{
+ .boot_code 0 : SUBALIGN(2) { *(.boot_code)
+  *(.text.tsl9_main_provider_8e88)
+  *(.text.tsl9_main_runtime_block_8ea8)
+  *(.text.tsl9_main_runtime_block_8eac)
+  *(.text.tsl9_main_runtime_block_8eb0)
+  *(.text.tsl9_main_runtime_block_8eb2)
+  *(.text.tsl9_main_runtime_block_8eb8)
+  *(.text.tsl9_main_runtime_block_8ebe)
+  *(.text.tsl9_main_runtime_block_8ec4)
+  *(.text.tsl9_main_runtime_block_8ed2)
+  *(.text.tsl9_main_runtime_block_8ef8)
+  *(.text.tsl9_main_runtime_block_8f06)
+  *(.text.tsl9_main_runtime_block_8f16)
+  *(.text.tsl9_main_runtime_block_8f22)
+  *(.text.tsl9_main_runtime_block_8f2e)
+  *(.text.tsl9_main_runtime_block_8f32)
+  *(.text.tsl9_main_runtime_block_8f44)
+  *(.text.tsl9_main_runtime_block_8f5e)
+  *(.text.tsl9_main_runtime_block_8f76)
+  *(.text.tsl9_main_runtime_block_8f7e)
+  *(.text.tsl9_main_runtime_block_8f8c)
+  *(.text.tsl9_main_runtime_block_8fa2)
+  *(.text.tsl9_main_runtime_block_8fb8)
+  *(.text.tsl9_main_runtime_block_8fce)
+  *(.text.tsl9_main_runtime_block_8fd8)
+  *(.text.tsl9_main_runtime_block_8fdc)
+  *(.text.tsl9_main_runtime_block_8fe0)
+  *(.text.tsl9_main_runtime_block_8fec)
+  *(.text.tsl9_main_runtime_block_8ffa)
+  *(.text.tsl9_main_runtime_entry_937e)
+  *(.text.tsl9_main_runtime_block_9388)
+  *(.text.tsl9_main_runtime_block_9392)
+  *(.text.tsl9_main_provider_9958)
+  *(.text.tsl9_main_runtime_block_9970)
+  *(.text.tsl9_main_runtime_block_998c)
+  *(.text.tsl9_main_runtime_entry_9e5c)
+  *(.text.tsl9_main_runtime_block_9e70)
+  *(.text.tsl9_main_runtime_block_9e7c)
+  *(.text.tsl9_callback_flow_external_9e84)
+  *(.text.tsl9_main_runtime_block_9e9c)
+  *(.text.tsl9_main_provider_9f12)
+  *(.text.tsl9_main_runtime_block_9f1c)
+  *(.text.tsl9_main_runtime_block_9f2a)
+  *(.text.tsl9_main_runtime_block_9f34)
+  *(.text.tsl9_main_runtime_block_9f42)
+  *(.text.tsl9_main_runtime_block_9f46)
+ }
+ .initializer 0 : SUBALIGN(4) { *(.initializer) }
+ .vectors 0 : SUBALIGN(4) { *(.vectors) }
+ .feature_tables 0 : SUBALIGN(4) { *(.feature_tables) }
+ .callback_constants 0 : SUBALIGN(4) { *(.callback_constants) }
+ .callback_flow_constants 0 : SUBALIGN(4) { *(.callback_flow_constants) }
+ /DISCARD/ : { *(.comment) *(.riscv.attributes) *(.llvm_addrsig) }
+}

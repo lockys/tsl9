@@ -1,0 +1,57 @@
+{
+  "schema": "TSL9-state-events-integration-v1",
+  "previous_manifest_sha256": "2c26c3efcbcf916dc40fc090919c6417d9c80612832dc1ade1b8bf2ba68e5f80",
+  "parent_manifest_deriver": "experiments/tsl9-state-events/parent-manifest-v1.py",
+  "parent_manifest_deriver_sha256": "bac80a840dfa03d439dcad38f594a5ae45a2adc8b1fd8e0b8a29f2642d0a8b49",
+  "previous_curation": "build/curated-source/state-access-20261023-v1/verification.json",
+  "previous_curation_sha256": "9aea3b30160a8dc08118992a85aa55782cedad7b24bcd5765127b12933fcf758",
+  "curation": "build/curated-source/state-events-20261023-v1/verification.json",
+  "curation_sha256": "c18c398a21cc41cbc5b7a42b3cc6acbfe613c01bddec79522af0ab8cd2f8d7fc",
+  "previous_graph": "experiments/tsl9-state-access/build/graph-v2",
+  "parent_object_name": "UNRESOLVED-STATE-ACCESS-GRAPH.o",
+  "previous_graph_sha256": "b08198b15e4aadb47821972a1e7e1d28cca861359c4cc3826077d9e6400b31a4",
+  "parent_v2_receipts": {
+    "c": "4d9616516c8455fbc5ae3e86eafb69f8779258a3539ae6f8c12d5106021505e3",
+    "cpp": "723e09bb0ffcc9709f9f8c5c7ae378b6708072b8463e1ca35eb98dd9e2903089"
+  },
+  "parent_checker": "experiments/tsl9-state-access/integrate-v2.py",
+  "parent_checker_sha256": "fad389f1e753d5908699f3cb994c5103689dd1d4bbe276f10d862b5f3142b8f8",
+  "standalone_receipt": "experiments/tsl9-state-events/build/trial-v2/measurement.json",
+  "standalone_receipt_sha256": "61df54ff9122cc61dd0d7c3af1e713ead0068fd404642a3a51e9ee67a3a390b6",
+  "native_object_sha256": "842bb99afe0816d6eed7e8e76aa3d5dc5997a2c231b0d978eb137cec3b470955",
+  "curated_native_object_sha256": "ad93511f073af04278da67526917629ce693f6dfc0fcd670908f926a88884c80",
+  "old_graph_code_bytes": 6038,
+  "new_code_bytes": 1308,
+  "total_code_bytes": 7346,
+  "table_bytes": 60,
+  "scoped_parent_source_extension_only": true,
+  "parent_normal_artifact_replay_passed_before_manifest_extension": true,
+  "new_negative_cases_executed": 0,
+  "prior_safety_stopped_review_retried_or_rerouted": false,
+  "reused_helper": {
+    "name": "tsl9_channel_external_81b0",
+    "start": 33200,
+    "bytes": 26,
+    "graph_offset": 2250,
+    "sha256": "f03a9478d6361df881745068e9c322098ea7317e3bb4d1be5f62f97ff7e4c239"
+  },
+  "new_file_entry": {
+    "origin": "experiments/tsl9-state-events/src/state_events.v2.c",
+    "destination": "src/native/receive/state_events.c",
+    "replacements": [],
+    "origin_sha256": "c33e586aa7fd0eea2aef5367f3408675aa4615fc5e2d50d2243cc7a3350d55cf",
+    "sha256": "c33e586aa7fd0eea2aef5367f3408675aa4615fc5e2d50d2243cc7a3350d55cf"
+  },
+  "new_unit_entry": {
+    "name": "state-events",
+    "profile": "ring-bank",
+    "origin_unit": "experiments/tsl9-state-events/src/state_events.v2.c",
+    "curated_unit": "src/native/receive/state_events.c",
+    "evidence": "experiments/tsl9-state-events/README.md",
+    "formal_receipts": [
+      "experiments/tsl9-state-events/build/trial-v2/measurement.json"
+    ],
+    "scope": "Complete original137C0-13CDC:1308B461i191architectural regions, exact original-VA bytes in actual C11/C++17. Five original spans include state packing/record processing and immediate/deferred notification. Existing81B0 time wrapper reused. C free-bank bit/constant/memory logic plus explicit SP/GP/S/frame/PC/control ports. Getter/ROM identity, bounds, time units, full startup/IRQ/hardware/OTA remain unproved; no target/HOST execution.",
+    "origin_unit_sha256": "c33e586aa7fd0eea2aef5367f3408675aa4615fc5e2d50d2243cc7a3350d55cf"
+  }
+}

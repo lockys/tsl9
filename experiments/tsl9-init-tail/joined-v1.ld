@@ -1,0 +1,47 @@
+/* Genuine diagnostic composition; not final original-PC placement. */
+SECTIONS {
+ .boot_code 0 : SUBALIGN(1) {
+  *(.boot_code)
+  *(.text.tsl9_init_tail_entry_17b92)
+  *(.text.tsl9_init_tail_block_17b98)
+  *(.text.tsl9_init_tail_block_17bb4)
+  *(.text.tsl9_init_tail_block_17bbe)
+  *(.text.tsl9_init_tail_entry_17bf6)
+  *(.text.tsl9_init_tail_block_17c0c)
+  *(.text.tsl9_init_tail_block_17c1e)
+  *(.text.tsl9_init_tail_block_17c2c)
+  *(.text.tsl9_init_tail_block_17c3c)
+  *(.text.tsl9_init_tail_block_17c44)
+  *(.text.tsl9_callback_external_9124)
+  *(.text.tsl9_scheduler_913a)
+  *(.text.tsl9_scheduler_913c)
+  *(.text.tsl9_scheduler_913e)
+  *(.text.tsl9_scheduler_9142)
+  *(.text.tsl9_scheduler_914a)
+  *(.text.tsl9_scheduler_9150)
+  *(.text.tsl9_scheduler_9152)
+  *(.text.tsl9_scheduler_915c)
+  *(.text.tsl9_scheduler_9164)
+  *(.text.tsl9_scheduler_916e)
+  *(.text.tsl9_scheduler_9180)
+  *(.text.tsl9_scheduler_9188)
+  *(.text.tsl9_scheduler_919c)
+  *(.text.tsl9_scheduler_91a2)
+  *(.text.tsl9_scheduler_91ae)
+  *(.text.tsl9_scheduler_91b6)
+  *(.text.tsl9_scheduler_91d0)
+  *(.text.tsl9_scheduler_91ea)
+  *(.text.tsl9_scheduler_91fe)
+  *(.text.tsl9_scheduler_9206)
+  *(.text.tsl9_scheduler_920a)
+  *(.text.tsl9_scheduler_920e)
+  *(.text.tsl9_scheduler_922c)
+  *(.text.tsl9_scheduler_9230)
+  *(.text.tsl9_scheduler_9234)
+  *(.text.tsl9_scheduler_9244)
+  *(.text.tsl9_scheduler_924c)
+  tsl9_main_provider_17bf6 = tsl9_init_tail_entry_17bf6;
+ }
+ .initializer 0 : SUBALIGN(1) { *(.initializer) }
+ .vectors 0 : SUBALIGN(1) { *(.vectors) }
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "TSL9-init-mask-source-map-v1",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "analysis_load_base": "0x8000",
+  "leaf": {
+    "VA": "0x19106",
+    "file_offset": "0x11106",
+    "bytes": 30,
+    "instructions": 12,
+    "raw_hex": "99c5371702405c4b5d8d48cb8280b7170240d84b1345f5ff798dc8cb8280",
+    "sha256": "69724f8e22551d238b67e52e25b3c1cbcaa62db28756da9b59a5c96ff7f16d87",
+    "C_source": "src/init_mask.c",
+    "whole_linked_C_CPP_code_equality_verified": true
+  },
+  "app_tail_static_reading": {
+    "VA": "0x19AEE",
+    "file_offset": "0x11AEE",
+    "bytes": 40,
+    "instructions": 14,
+    "raw_hex": "11c101a0854513050004eff0efe0b7e700e037070080f640664423a2e710054723a4e71025618280",
+    "normal_path_requires_prior_A0_zero": true,
+    "nonzero_prior_A0_self_loop": "0x19AF0",
+    "call_site": "0x19AF8",
+    "call_inputs": {"A0": 64, "A1": 1},
+    "after_call_return_address": "0x19AFC",
+    "ordered_normal_accesses": [
+      "R32(0x40021014)",
+      "W32(0x40021014, fresh_word OR 0x40)",
+      "R32(active_App_SP+92) -> RA",
+      "R32(active_App_SP+88) -> S0",
+      "W32(0xE000E104, 0x80000000)",
+      "W32(0xE000E108, 1)"
+    ],
+    "return_site": "0x19B14",
+    "return_target": "fresh saved RA; external caller unresolved",
+    "C_App_reconstructed": false,
+    "included_in_leaf_checker_pass_scope": false
+  },
+  "target_execution": false,
+  "physical_chip_identified": false,
+  "hardware_OTA_proved": false,
+  "rebuilt_flashable_BIN": false
+}

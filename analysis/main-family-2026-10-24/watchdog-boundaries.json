@@ -1,0 +1,77 @@
+{
+  "schema": "TSL9-main-family-watchdog-callback-boundaries-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "application_register_setup": {
+    "S2": 536870912,
+    "S1": 1073754112,
+    "S0": 43690
+  },
+  "actual_ports": {
+    "callback": "load word from then-live S2+0 at8198;compressed JALR at819C",
+    "watchdog": "store then-live S0 as a word through then-live S1 at81A6"
+  },
+  "limitations": "The register setup is observed in original code. Unknown callbacks/providers/IRQ context are not assumed to preserve those registers or memory.",
+  "watchdog_initializer": {
+    "provider": "tsl9_init_writes_9f4c",
+    "original_range": [
+      40780,
+      40820
+    ],
+    "bytes": 40,
+    "instructions": 15,
+    "ordered_word_writes": [
+      {
+        "address": 1073754112,
+        "value": 21845
+      },
+      {
+        "address": 1073754116,
+        "value": 3
+      },
+      {
+        "address": 1073754120,
+        "value": 1500
+      },
+      {
+        "address": 1073754112,
+        "value": 43690
+      },
+      {
+        "address": 1073754112,
+        "value": 52428
+      }
+    ]
+  },
+  "SDK_profile": {
+    "header": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wch-ch32v20x.h",
+    "sha256": "f7afdff0cca29cea10ea104915a5a21675e49c980f07af789daf37ea80fd142b",
+    "IWDG_base_line": 831,
+    "IWDG_base": 1073754112,
+    "fields": [
+      {
+        "name": "CTLR",
+        "offset": 0,
+        "width": 32,
+        "line": 447
+      },
+      {
+        "name": "PSCR",
+        "offset": 4,
+        "width": 32,
+        "line": 448
+      },
+      {
+        "name": "RLDR",
+        "offset": 8,
+        "width": 32,
+        "line": 449
+      }
+    ]
+  },
+  "inference": "Application store and selected initializer correspond to the saved WCH independent-watchdog register profile. Exact timeout,clock source,runtime servicing andphysical MCU remain unproved.",
+  "target_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

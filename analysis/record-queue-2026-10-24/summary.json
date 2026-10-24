@@ -1,0 +1,133 @@
+{
+  "schema": "TSL9-record-queue-summary-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/record_queue.c",
+  "range": {
+    "start": 96380,
+    "end": 96650,
+    "bytes": 270,
+    "instructions": 94,
+    "regions": 14
+  },
+  "noncontrol_bytes": 246,
+  "typed_direct_references": 7,
+  "component": {
+    "code_bytes": 3000,
+    "instructions": 1077,
+    "data_bytes": 456,
+    "FUNC_regions": 270,
+    "entry_aliases": 11,
+    "RELA": 238,
+    "direct_UND": 17,
+    "sha256": "60b00f588270602e7fea0f025e50b25782bf6deacd2e6c73eba13e1bbd3262d3",
+    "bound_nonzero_vector_words": 62
+  },
+  "source_comparisons": {
+    "C_H_files": 89,
+    "native_code_units": 62,
+    "independent_data_units": 1,
+    "function_comparisons": 124,
+    "function_objects": 248,
+    "data_comparisons": 2,
+    "data_objects": 4,
+    "total_comparisons": 126,
+    "total_objects": 252
+  },
+  "accepted_trial": "trial-v2",
+  "unaccepted_trial": {
+    "name": "trial-v1",
+    "reason": "Assembler compressed original4B ADDI port to2B;not accepted. Outputs retained locally."
+  },
+  "observations": [
+    {
+      "PC": 96386,
+      "fact": "Original AUIPC S1 count address2000C8AE;second fresh count load at17890 uses same original address. A4>15 skips copy."
+    },
+    {
+      "PC": 96410,
+      "fact": "Original AUIPC expression encodesbase2000C8AC;copy arguments aredest=then-liveS0+3+7*byte[S0+1],src=originalA0,len7,through tableword4004C."
+    },
+    {
+      "PC": 96446,
+      "fact": "After opaque call,fresh then-liveS0+1 read increments andmasks15 beforeSB2000C8AD;fresh then-liveS0+2 read increments beforeSB2000C8AE."
+    },
+    {
+      "PC": 96476,
+      "fact": "Then-liveS1 choosesnormal16B restore/return orrestore thenA0=255/no-link tail17666."
+    },
+    {
+      "PC": 96504,
+      "fact": "32B constructor passeszero/7 arguments throughword40048,retains word/halfword/byte masking/store order,anddirectly calls1787C."
+    },
+    {
+      "PC": 96584,
+      "fact": "Frameless encoder changesrecord bits10..15 usingA0&63,setsbyte6 bit7,andconditionally ORsrecord halfword+4 with1F00 beforetailing1787C;A1=0 returns."
+    }
+  ],
+  "pre_copy_index_bound_proved": false,
+  "post_call_count_bound_proved": false,
+  "limits": [
+    "Index isloaded before copy without a local mask. Later mask15 cannot prove theearlier copy bounded.",
+    "Then-live S0/S1 andresident side effects areunknown; original encoded addressing isnot installed memory ownership.",
+    "Full private ABI,original placement,physical MCU/ROM/RAM/startup/IRQ/OTA andwhole behavior remain unproved.",
+    "Original178F8 literal callback addresses remain placement-dependent;the diagnostic entry doesnot make runtime callback linkage proved."
+  ],
+  "inference": "Sixteen-slot,seven-byte ring-like record queue withconstructor andshared encoding paths; full data-structure ownership/initialization unproved.",
+  "next_family": {
+    "entry": 95846,
+    "start": 95846,
+    "end": 96380,
+    "bytes": 534,
+    "instructions": 187,
+    "ranges": [
+      {
+        "start": 95846,
+        "end": 95904,
+        "bytes": 58,
+        "instructions": 22
+      },
+      {
+        "start": 95904,
+        "end": 95992,
+        "bytes": 88,
+        "instructions": 30
+      },
+      {
+        "start": 95992,
+        "end": 96380,
+        "bytes": 388,
+        "instructions": 135
+      }
+    ],
+    "outgoing_direct_targets": [
+      37040,
+      95546,
+      37156,
+      51062
+    ],
+    "existing_parent_definitions": [
+      37040,
+      37156
+    ],
+    "ABI_proved": false
+  },
+  "potential_feature": {
+    "idea": "Offline queue/record inspector reporting raw index,count,bit masks anduncertain-bound annotations.",
+    "status": "Research candidate,not implemented in runtime firmware.",
+    "prerequisites": [
+      "Establish queue initialization andmemory ownership",
+      "Prove stable observation andresident ABI",
+      "Keep diagnostics read-only until hardware/OTA gates areproved"
+    ]
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit_or_push": false,
+  "history_privacy_clean": false
+}

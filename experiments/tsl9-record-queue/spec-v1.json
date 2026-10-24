@@ -1,0 +1,298 @@
+{
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "reader": "experiments/tsl9-feature-dispatch-tree/elf_reader-v3.py",
+  "reader_sha256": "112e90f7a1786bd1e388718e80086ba937035364d926c89cd5875eba68ce543a",
+  "curation_checker": "scripts/verify-curated-source.py",
+  "curation_checker_sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832",
+  "tools": {
+    "clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+    "llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+    "llvm-objcopy.exe": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+  },
+  "stdint_sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+  "profile": "ring-bank",
+  "flags": {
+    "c": [
+      "--target=riscv32-unknown-elf",
+      "-march=rv32imac_zicsr",
+      "-mabi=ilp32",
+      "-Oz",
+      "-mllvm",
+      "-enable-machine-outliner=never",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-stack-protector",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-mno-relax",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-x",
+      "c",
+      "-std=c11",
+      "-ffixed-x1",
+      "-ffixed-x2",
+      "-ffixed-x3",
+      "-ffixed-x4",
+      "-ffixed-x5",
+      "-ffixed-x7",
+      "-ffixed-x8",
+      "-ffixed-x9",
+      "-ffixed-x18",
+      "-ffixed-x19",
+      "-ffixed-x20",
+      "-ffixed-x21",
+      "-ffixed-x22",
+      "-ffixed-x23",
+      "-ffixed-x24",
+      "-ffixed-x25",
+      "-ffixed-x26",
+      "-ffixed-x27",
+      "-ffixed-x29",
+      "-ffixed-x30",
+      "-ffixed-x31"
+    ],
+    "cpp": [
+      "--target=riscv32-unknown-elf",
+      "-march=rv32imac_zicsr",
+      "-mabi=ilp32",
+      "-Oz",
+      "-mllvm",
+      "-enable-machine-outliner=never",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-stack-protector",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-mno-relax",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-x",
+      "c++",
+      "-std=c++17",
+      "-fno-exceptions",
+      "-ffixed-x1",
+      "-ffixed-x2",
+      "-ffixed-x3",
+      "-ffixed-x4",
+      "-ffixed-x5",
+      "-ffixed-x7",
+      "-ffixed-x8",
+      "-ffixed-x9",
+      "-ffixed-x18",
+      "-ffixed-x19",
+      "-ffixed-x20",
+      "-ffixed-x21",
+      "-ffixed-x22",
+      "-ffixed-x23",
+      "-ffixed-x24",
+      "-ffixed-x25",
+      "-ffixed-x26",
+      "-ffixed-x27",
+      "-ffixed-x29",
+      "-ffixed-x30",
+      "-ffixed-x31"
+    ]
+  },
+  "schema": "TSL9-record-queue-native-v1",
+  "source": "experiments/tsl9-record-queue/src/record_queue.v1.c",
+  "source_sha256": "9ac3e383fe16cf89178bbc41074a505634122ecf7225e89a7aac769e266c0014",
+  "curated_source": "src/native/receive/record_queue.c",
+  "reference_candidate": "analysis/record-control-2026-10-24/next-1787c-frontier.json",
+  "reference_candidate_sha256": "3d408247a77beb33a1055d290c6c290f36c8f41af137e1c1f2982582738cbea8",
+  "source_deriver": "experiments/tsl9-record-queue/derive-v1.py",
+  "source_deriver_sha256": "854d8d90f3830dec47e5aa5517d1546214141fafd3bc7c242b884205db1fa477",
+  "ranges": [
+    {
+      "start": 96380,
+      "end": 96504
+    },
+    {
+      "start": 96504,
+      "end": 96584
+    },
+    {
+      "start": 96584,
+      "end": 96650
+    }
+  ],
+  "original_sha256": "6b918f74ac41ca5827e447db41ab6dfdeca989ddbf14a4162e3c7afd80da3b5e",
+  "bytes": 270,
+  "instructions": 94,
+  "regions": [
+    {
+      "name": "tsl9_record_queue_entry_1787c",
+      "start": 96380,
+      "end": 96410,
+      "bytes": 30,
+      "original_sha256": "5e909892cf57f57de21c2a267e23a0cac945f4eaff68cec23b706819d4c15a4e"
+    },
+    {
+      "name": "tsl9_record_queue_block_1789a",
+      "start": 96410,
+      "end": 96446,
+      "bytes": 36,
+      "original_sha256": "c37851133adc1bb7748ba16064640b79b1778854a1f1ddda330cb9e0784a0200"
+    },
+    {
+      "name": "tsl9_record_queue_block_178be",
+      "start": 96446,
+      "end": 96476,
+      "bytes": 30,
+      "original_sha256": "23cbe7549a040364aa51546aa43948dacf9f8fcfe47774343aa93519dfe36de2"
+    },
+    {
+      "name": "tsl9_record_queue_block_178dc",
+      "start": 96476,
+      "end": 96478,
+      "bytes": 2,
+      "original_sha256": "1eafaf1e83618c9f051be8d0fdbd78cbbc1b668268d564392da9d6c25fc7b8f9"
+    },
+    {
+      "name": "tsl9_record_queue_block_178de",
+      "start": 96478,
+      "end": 96494,
+      "bytes": 16,
+      "original_sha256": "5003fc4b731d668ba280a857c3b51a5b8f2570b0b0f40e9c0b47fd4cbac27c97"
+    },
+    {
+      "name": "tsl9_record_queue_block_178ee",
+      "start": 96494,
+      "end": 96504,
+      "bytes": 10,
+      "original_sha256": "5337349bd213a4afedd4bb2b40e85f8a135ca2a3ee774b3c2da607774b084509"
+    },
+    {
+      "name": "tsl9_record_queue_entry_178f8",
+      "start": 96504,
+      "end": 96522,
+      "bytes": 18,
+      "original_sha256": "57df5df8ea30ca58d7f63d464ed53b263dff4ead2ffcfdf7a2b4085030229112"
+    },
+    {
+      "name": "tsl9_record_queue_block_1790a",
+      "start": 96522,
+      "end": 96578,
+      "bytes": 56,
+      "original_sha256": "30a396747ed05ab81499181e368b74b4c3db553abee9b6f1065400fc30df13cb"
+    },
+    {
+      "name": "tsl9_record_queue_block_17942",
+      "start": 96578,
+      "end": 96584,
+      "bytes": 6,
+      "original_sha256": "044544a3109dd5bb812ee926e9c71f5aeb91b74af521108c256526b09d5b8973"
+    },
+    {
+      "name": "tsl9_record_queue_entry_17948",
+      "start": 96584,
+      "end": 96620,
+      "bytes": 36,
+      "original_sha256": "2d950ee2383a7faada68b05bec6bbe51931fa5e9de1c921bcaeae0ddc1030896"
+    },
+    {
+      "name": "tsl9_record_queue_block_1796c",
+      "start": 96620,
+      "end": 96626,
+      "bytes": 6,
+      "original_sha256": "5028412cb801e604eaf6f5a7f6f014d18eea029b464ccac420b134f648347e35"
+    },
+    {
+      "name": "tsl9_record_queue_block_17972",
+      "start": 96626,
+      "end": 96642,
+      "bytes": 16,
+      "original_sha256": "e33f777b5632397b4939bd1d09657281d7748a8648fd54951ef1ff8e12cf9a86"
+    },
+    {
+      "name": "tsl9_record_queue_block_17982",
+      "start": 96642,
+      "end": 96648,
+      "bytes": 6,
+      "original_sha256": "9ce7393efa7ba99d8b5ea31e6eecdfdcc9848e71b8074dbd255ed11abadf6971"
+    },
+    {
+      "name": "tsl9_record_queue_block_17988",
+      "start": 96648,
+      "end": 96650,
+      "bytes": 2,
+      "original_sha256": "7529d4e6ceb037815e2664a7277abb404b02f0bf9ddbf5c11658f52448221cba"
+    }
+  ],
+  "controls": [
+    {
+      "owner": "tsl9_record_queue_entry_1787c",
+      "offset": 26,
+      "PC": 96406,
+      "size": 4,
+      "type": 16,
+      "target": "tsl9_record_queue_block_178dc",
+      "target_PC": 96476
+    },
+    {
+      "owner": "tsl9_record_queue_block_178dc",
+      "offset": 0,
+      "PC": 96476,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_record_queue_block_178ee",
+      "target_PC": 96494
+    },
+    {
+      "owner": "tsl9_record_queue_block_178de",
+      "offset": 12,
+      "PC": 96490,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_record_queue_provider_17666",
+      "target_PC": 95846
+    },
+    {
+      "owner": "tsl9_record_queue_block_1790a",
+      "offset": 52,
+      "PC": 96574,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_record_queue_entry_1787c",
+      "target_PC": 96380
+    },
+    {
+      "owner": "tsl9_record_queue_entry_17948",
+      "offset": 34,
+      "PC": 96618,
+      "size": 2,
+      "type": 44,
+      "target": "tsl9_record_queue_block_17988",
+      "target_PC": 96648
+    },
+    {
+      "owner": "tsl9_record_queue_block_1796c",
+      "offset": 2,
+      "PC": 96622,
+      "size": 4,
+      "type": 16,
+      "target": "tsl9_record_queue_block_17982",
+      "target_PC": 96642
+    },
+    {
+      "owner": "tsl9_record_queue_block_17982",
+      "offset": 2,
+      "PC": 96644,
+      "size": 4,
+      "type": 17,
+      "target": "tsl9_record_queue_entry_1787c",
+      "target_PC": 96380
+    }
+  ],
+  "undefined": [
+    "tsl9_record_queue_provider_17666"
+  ]
+}

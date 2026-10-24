@@ -1,0 +1,83 @@
+{
+  "schema": "TSL9-main9008-next-candidate-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "start": 36872,
+  "end": 36890,
+  "bytes": 18,
+  "instructions": 8,
+  "original_sha256": "87dd87b4471d5281a6185185b66e454ac79136553f837e3c9a3c2abdfb85ead5",
+  "operations": [
+    {
+      "addr": 36872,
+      "size": 2,
+      "opcode": "addi sp, sp, -16",
+      "bytes": "4111",
+      "type": "add"
+    },
+    {
+      "addr": 36874,
+      "size": 2,
+      "opcode": "sw ra, 12(sp)",
+      "bytes": "06c6",
+      "type": "store"
+    },
+    {
+      "addr": 36876,
+      "size": 2,
+      "opcode": "jal 0x9250",
+      "bytes": "9124",
+      "type": "call",
+      "jump": 37456
+    },
+    {
+      "addr": 36878,
+      "size": 4,
+      "opcode": "jal ra, 0x8180",
+      "bytes": "eff02f97",
+      "type": "call",
+      "jump": 33152
+    },
+    {
+      "addr": 36882,
+      "size": 2,
+      "opcode": "lw ra, 12(sp)",
+      "bytes": "b240",
+      "type": "load"
+    },
+    {
+      "addr": 36884,
+      "size": 2,
+      "opcode": "li a0, 0",
+      "bytes": "0145",
+      "type": "mov"
+    },
+    {
+      "addr": 36886,
+      "size": 2,
+      "opcode": "addi sp, sp, 16",
+      "bytes": "4101",
+      "type": "add"
+    },
+    {
+      "addr": 36888,
+      "size": 2,
+      "opcode": "ret",
+      "bytes": "8280",
+      "type": "ret"
+    }
+  ],
+  "explicit_direct_targets": [
+    37456,
+    33152
+  ],
+  "observed": "16B SP frame,RA save,two calls,RA restore,A0=0,SP+16,RET.",
+  "scope_note": "The284B decoder window includes multiple returns and later procedures. Only9008-901A is selected here;caller/callee ABI and return behavior remain unproved.",
+  "next_action": "Reconstruct the18B main wrapper with its real frame and two typed calls;then trace9250 initialization and8180 application entry. Do not replace either provider with a stub.",
+  "C_CPP_candidate_compiled": false,
+  "hardware_or_entry_ABI_proved": false,
+  "target_executed": false,
+  "ISA_emulated": false,
+  "network": false,
+  "hardware_accessed": false
+}

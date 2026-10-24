@@ -1,0 +1,149 @@
+{
+  "schema": "TSL9-original-OTA-replies-summary-v1",
+  "passed": true,
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/ota_replies.c",
+  "new_functions": 6,
+  "new_code_bytes": 334,
+  "new_instructions": 127,
+  "new_private_regions": 29,
+  "new_control_relocations": 18,
+  "new_data_bytes": 0,
+  "native_receipt": "experiments/tsl9-ota-replies/build/native-v1/measurement.json",
+  "source_proof": "experiments/tsl9-ota-replies/build/source-proof-v1.json",
+  "source_files": 112,
+  "native_code_units": 85,
+  "independent_data_units": 1,
+  "source_comparisons": 172,
+  "source_objects": 344,
+  "previous_111_C_H_files_preserved": true,
+  "prior168_results_and1009_artifact_records_preserved": true,
+  "component": "experiments/tsl9-ota-replies/build/component-v2",
+  "component_object": "UNRESOLVED-STARTUP-OTA-REPLIES.o",
+  "component_C_CPP_sha256": "8c72daacf6d81814a751cae60c10ccf3a77af851402ac8b80ac134be052a1597",
+  "code_bytes": 20042,
+  "data_bytes": 714,
+  "instructions": 6964,
+  "nonzero_code_FUNC": 1748,
+  "true_aliases": 71,
+  "RELA": 1300,
+  "genuine_undefined_providers": 73,
+  "resolved_original_providers": [
+    "tsl9_ota_external_13e98",
+    "tsl9_ota_external_13f66",
+    "tsl9_ota_external_8e18",
+    "tsl9_ota_external_99e8",
+    "tsl9_ota_external_9b8e",
+    "tsl9_ota_external_9ee0"
+  ],
+  "new_undefined": [
+    "tsl9_ota_reply_external_16e0c",
+    "tsl9_ota_reply_external_9ea6"
+  ],
+  "layout": "experiments/tsl9-original-layout/build/ota-replies-v1",
+  "layout_C_CPP_ELF_sha256": "f24ee7838c058699e6e07bdd9d5e31eacc8fd8ca85537ed98f307953a0e9cddd",
+  "original_coordinate_bytes_equal": 20756,
+  "adjacent_only_spans": 94,
+  "PT_LOAD": 0,
+  "entry": 0,
+  "reference_only_ABS_constants": 73,
+  "ABS_FUNC_providers": 0,
+  "flow": "experiments/tsl9-original-layout/build/ota-replies-flow-v1",
+  "direct_transfers": 1146,
+  "measured_direct_targets": 1072,
+  "reference_only_direct_targets": 74,
+  "ordinary_next_positions": 6422,
+  "ordinary_gaps": 0,
+  "call_return_positions": 425,
+  "register_indirect_transfers": 361,
+  "MRET": 10,
+  "EBREAK": 1,
+  "EBREAK_resume_unproved": true,
+  "complete_CFG_proved": false,
+  "literal_only_undefined": 0,
+  "functions": [
+    {
+      "name": "tsl9_ota_external_8e18",
+      "start": 36376,
+      "end": 36458,
+      "bytes": 82,
+      "instructions": 29
+    },
+    {
+      "name": "tsl9_ota_external_99e8",
+      "start": 39400,
+      "end": 39460,
+      "bytes": 60,
+      "instructions": 19
+    },
+    {
+      "name": "tsl9_ota_external_9b8e",
+      "start": 39822,
+      "end": 39946,
+      "bytes": 124,
+      "instructions": 50
+    },
+    {
+      "name": "tsl9_ota_external_9ee0",
+      "start": 40672,
+      "end": 40688,
+      "bytes": 16,
+      "instructions": 8
+    },
+    {
+      "name": "tsl9_ota_external_13e98",
+      "start": 81560,
+      "end": 81588,
+      "bytes": 28,
+      "instructions": 12
+    },
+    {
+      "name": "tsl9_ota_external_13f66",
+      "start": 81766,
+      "end": 81790,
+      "bytes": 24,
+      "instructions": 9
+    }
+  ],
+  "compatibility_findings": [
+    {
+      "PC": 36454,
+      "target_PC": 36426,
+      "fact": "Original8E66 branches directly to8E4A JR T1,skipping8E48 SP+=16. The previously reported stack imbalance is not supported. Original code was already correct; private ROM/caller ABI remains unproved."
+    },
+    {
+      "PC": 39400,
+      "fact": "Original calls1917E twice and16E0C twice,clearsCSR0x800 bits0x88,writes0xBEEF0080 to0xE000E048,and loops at9A22. Physical reset effect unproved."
+    }
+  ],
+  "failed_trial": {
+    "folder": "experiments/tsl9-ota-replies/build/component-v1",
+    "accepted": false,
+    "reason": "Initial configuration incorrectly counted three already-defined parent functions as new imports. Whole-component audit rejected it; configuration corrected; fresh component-v2 passed. No source or audit guard loosened."
+  },
+  "next_action": "Reconstruct16E0C and9EA6;trace8E18 sentinel-tail caller/ROM contract. Keep BOOT/APP mapping and physical compatibility unproved.",
+  "candidate_new_functionality": {
+    "idea": "Offline OTA image-region and completion-stage inspector",
+    "state": "proposal-only",
+    "purpose": "Separate transport reply,readback,cleanup and reset evidence without claiming physical success or changing identifier/state/range guards."
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit": false,
+  "push": false,
+  "historical_privacy_clean": false,
+  "goal_status": "active",
+  "report_correction": {
+    "date": "2026-10-24",
+    "scope": "8E66 jump target",
+    "source_code_changed": false,
+    "original_instructions_changed": false,
+    "old_report_snapshot": "Retained locally in the task workspace; prior final receipt is a historical snapshot and does not pin these corrected report bytes."
+  }
+}

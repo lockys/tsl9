@@ -1,0 +1,97 @@
+{
+  "schema": "TSL9-callback-family-summary-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/callback_table.c",
+  "range": {
+    "start": 36890,
+    "end": 37156,
+    "bytes": 266,
+    "instructions": 102,
+    "regions": 20
+  },
+  "genuine_frame_entries": [
+    36890,
+    36986,
+    37040
+  ],
+  "shared_loop": 36976,
+  "shared_exit": 36966,
+  "noncontrol_bytes": 244,
+  "typed_direct_references": 8,
+  "component": {
+    "code_bytes": 2616,
+    "instructions": 939,
+    "data_bytes": 456,
+    "FUNC_regions": 244,
+    "entry_aliases": 9,
+    "RELA": 225,
+    "direct_UND": 17,
+    "sha256": "331a17197d3e930eb66d850f442cbe0672773cbe069efac76ea301672b0fde55",
+    "bound_nonzero_vector_words": 62
+  },
+  "source_comparisons": {
+    "C_H_files": 87,
+    "native_code_units": 60,
+    "independent_data_units": 1,
+    "function_comparisons": 120,
+    "function_objects": 240,
+    "data_comparisons": 2,
+    "data_objects": 4,
+    "total_comparisons": 122,
+    "total_objects": 244
+  },
+  "observations": [
+    {
+      "PC": 36902,
+      "fact": "Arithmetic-right-shift A1 by then-live S0; test low bit. Bit miss uses9070 loop and9066 shared restore."
+    },
+    {
+      "PC": 36916,
+      "fact": "Original AUIPC plus immediate encodes2000BE08; descriptor stride12 andloop bound15."
+    },
+    {
+      "PC": 36944,
+      "fact": "Zero descriptor callback/data words when flag byte iszero, before indirect call throughA3 withpayload inA0."
+    },
+    {
+      "PC": 36986,
+      "fact": "Original frame; indirect40048 call withA1=0/A2=180; indirect40080 receives original901A address; returned lowA0 storedGP+166."
+    },
+    {
+      "PC": 37062,
+      "fact": "Compare descriptor callback withA0;first matching slot optionally callsword40068 withpayload; clearsdescriptor+4/+8 andtails throughword4005C withGP166 and16-bit eventmask."
+    }
+  ],
+  "inferences": [
+    {
+      "claim": "15-slot callback/event table with event dispatch, initialization andcancellation",
+      "basis": "Shared2000BE08 expression,12-byte records,15 bound,four indirectcalls andone tail;defaultSDK macro correspondence",
+      "limit": "No proof of actual installed ROM, originalCtypes, memory ownership or full callback ABI."
+    }
+  ],
+  "potential_feature": {
+    "idea": "Read-only callback queue diagnostics with occupancy, pending event masks and labelled cancellation state.",
+    "implementation_status": "Not implemented in firmware; future research candidate only.",
+    "prerequisites": [
+      "Establish original memory ownership andstable snapshot boundary",
+      "Resolve installed ROM/task callback ABI",
+      "Prove target startup/IRQ/OTA gates before hardware deployment"
+    ]
+  },
+  "next_target": {
+    "entry": 96650,
+    "candidate_end": 96764,
+    "direct_provider": 96380,
+    "full_ABI_proved": false
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit_or_push": false,
+  "history_privacy_clean": false
+}

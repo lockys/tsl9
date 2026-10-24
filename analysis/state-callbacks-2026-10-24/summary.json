@@ -1,0 +1,133 @@
+{
+  "schema": "TSL9-state-readers-offline-source-milestone-v1",
+  "goal_status": "active",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "source": "src/native/receive/state_leaf_reads.c",
+  "source_sha256": "28678f21b07c71613fe5f7b0f3e4f8a69d2b732a98e98d9d9be125653c2f7487",
+  "selected_original_functions": 29,
+  "state_event_reader_roots": 27,
+  "actual_helper_callees": 2,
+  "original_code_bytes": 472,
+  "original_instructions": 153,
+  "architectural_regions": 45,
+  "typed_control_relocations": 10,
+  "noncontrol_bytes_equal": 438,
+  "unresolved_symbols_in_leaf_unit": 0,
+  "C11_CPP17_original_byte_proof": true,
+  "original_address_encoding_is_static_arithmetic_only": true,
+  "standalone_object_sha256": "12359c0a2d0d6e27e2a00167c0768fa29f97a9926399ceb0c1a3ec63a207c522",
+  "curated_object_sha256": {
+    "c": "86cf8c11d61d4ef0bb80fc7472bdd26218b29c9d59a978339981a126d0099914",
+    "cpp": "86cf8c11d61d4ef0bb80fc7472bdd26218b29c9d59a978339981a126d0099914"
+  },
+  "standalone_receipt": "experiments/tsl9-state-callbacks/build/native-v1/measurement.json",
+  "standalone_receipt_sha256": "3e3657f1725a718c3ebe1a70084818e7f43ffeea779bd480d2ddcc07a4297cac",
+  "source_extension_proof": "experiments/tsl9-state-callbacks/build/source-proof-v1.json",
+  "source_extension_proof_sha256": "cb174baba24863792d58c4818d21de3fa5a393b84704671394b6f7ea5971c8b5",
+  "curation": {
+    "C_H_files": 96,
+    "native_code_units": 69,
+    "independent_data_units": 1,
+    "function_comparisons": 138,
+    "function_objects": 276,
+    "independent_data_comparisons": 2,
+    "independent_data_objects": 4,
+    "total_comparisons": 140,
+    "total_objects": 280,
+    "receipt": "build/curated-source/state-readers-20261024-v1/verification.json",
+    "receipt_sha256": "81a7bba52e5670de7ba5769b437865c22e44b535066a0a02524d5e7a8d847282",
+    "prior136_results_and817_artifact_records_unchanged": true
+  },
+  "retained_startup_component": {
+    "code_bytes": 9836,
+    "data_bytes": 516,
+    "RELA": 698,
+    "UND": 82,
+    "sha256": "72b27b4b8d751ed1996a76d015d73b3f194e9fa70008fbbd2e5b42aa753d0810",
+    "unchanged": true,
+    "new_leaf_unit_merged": false,
+    "old_whole_manifest_replay_claimed": false,
+    "positive_component_audit_replayed": true
+  },
+  "future_provider_full_original_byte_audits": {
+    "c": {
+      "feature-callback": {
+        "FUNC": 31,
+        "RELA": 26,
+        "code_bytes": 314,
+        "instructions": 109,
+        "native_object_sha256": "9179c2ac48595ed6f9f512bef54f39dde4a1100ee6b35307fd293c65a9bbbb7f",
+        "passed": true
+      },
+      "state-access": {
+        "FUNC": 24,
+        "RELA": 12,
+        "code_bytes": 336,
+        "instructions": 108,
+        "native_object_sha256": "9f53b70200cfa2f8a46e673b539e2077186cffb1555246f4ac6dcfaeb82248bc",
+        "passed": true
+      },
+      "state-events": {
+        "FUNC": 191,
+        "RELA": 63,
+        "code_bytes": 1308,
+        "instructions": 461,
+        "native_object_sha256": "ad93511f073af04278da67526917629ce693f6dfc0fcd670908f926a88884c80",
+        "passed": true
+      }
+    },
+    "cpp": {
+      "feature-callback": {
+        "FUNC": 31,
+        "RELA": 26,
+        "code_bytes": 314,
+        "instructions": 109,
+        "native_object_sha256": "9179c2ac48595ed6f9f512bef54f39dde4a1100ee6b35307fd293c65a9bbbb7f",
+        "passed": true
+      },
+      "state-access": {
+        "FUNC": 24,
+        "RELA": 12,
+        "code_bytes": 336,
+        "instructions": 108,
+        "native_object_sha256": "9f53b70200cfa2f8a46e673b539e2077186cffb1555246f4ac6dcfaeb82248bc",
+        "passed": true
+      },
+      "state-events": {
+        "FUNC": 191,
+        "RELA": 63,
+        "code_bytes": 1308,
+        "instructions": 461,
+        "native_object_sha256": "ad93511f073af04278da67526917629ce693f6dfc0fcd670908f926a88884c80",
+        "passed": true
+      }
+    }
+  },
+  "confirmed": [
+    "27 getter roots plus both actual helpers have complete selected instruction spans",
+    "A976,A9BC,E058 preserve conditional packed reads",
+    "B082 preserves both helper calls,16-byte frame and RA save/restore",
+    "D190/D754 return GP-relative addresses; they are not direct field reads"
+  ],
+  "inferences": [
+    "A read-only diagnostic field/provenance view may be useful once field ownership and meaning are proven"
+  ],
+  "unknown": [
+    "physical state-field meanings",
+    "valid original RAM mapping and ownership",
+    "private entry/callee ABI",
+    "final original-PC placement and fall-through adjacency",
+    "physical MCU,installed ROM,IRQ and OTA compatibility"
+  ],
+  "next_action": "Integrate complete 1308B state-events,314B feature-callback,294B nonduplicate state-access and472B new reader bodies; prove all owner/alias/reference roles and retain genuine remaining providers.",
+  "network": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "commit": false,
+  "push": false
+}

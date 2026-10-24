@@ -1,0 +1,70 @@
+{
+  "schema": "TSL9-ECALL-native-integration-contract-v1",
+  "parent_checker": "experiments/tsl9-lle-irq/integrate-v1.py",
+  "parent_checker_sha256": "79b381c18eca29e82959cb1710c8d4133aed772adf54fff4bbbea8c26428ecba",
+  "parent_component": "experiments/tsl9-lle-irq/build/component-v1",
+  "parent_object": "UNRESOLVED-STARTUP-LLE.o",
+  "parent_object_sha256": "19b14c682b2b29813fb258426b4c9b7e67d599e4562640fdb6d64084ef15d02e",
+  "parent_receipt_sha256": "9dc75d1b9369fee2fd501a1b5de18307e33b7a0aa64c8c41af461b0ba3f598df",
+  "parent_manifest_deriver": "experiments/tsl9-ecall-restore/parent-manifest-v1.py",
+  "parent_manifest_deriver_sha256": "f15e7938fcf0deea744ea0d43deaec8c2e87e12c75d527225a446c7ba97e6e0d",
+  "previous_manifest_sha256": "21b963751363a015497de279b2e2561a62b8a6c69a1b72f8227fcf0df2223a81",
+  "current_manifest_sha256": "9660c145ff144816d44e3772ad854349cae85acd91263c1a71dc4ec8f90a730e",
+  "previous_curation": "build/curated-source/lle-irq-20261024-v1/verification.json",
+  "previous_curation_sha256": "74ccdf74a6ede04c60adb190cf23d1621f7378063a7aa727841fe223b15fa485",
+  "curation": "build/curated-source/ecall-restore-20261024-v1/verification.json",
+  "curation_sha256": "54b5f5248c7e9801a9d184b46b62931e17c76375df83c640ae17a2c0dc7d4c0d",
+  "standalone_receipt": "experiments/tsl9-ecall-restore/build/trial-v1/measurement.json",
+  "standalone_receipt_sha256": "c6a17844fd663abcc4f1b80c7f794feac7e97fb9b124cb7db187a62293f4f721",
+  "standalone_native_object_sha256": "ea2466f000202fd62eafd35bfd49034f47b4ce4f94843754c02411c9d4abf90c",
+  "curated_native_object_sha256": "05376ffb5fd82521ad5aa0f00981eaa30dc11c120435fa0205bdcec6fbb39b4f",
+  "new_file_entry": {
+    "origin": "experiments/tsl9-ecall-restore/src/ecall_restore.v1.c",
+    "destination": "src/native/irq/ecall_restore.c",
+    "replacements": [],
+    "origin_sha256": "cd463f23997f2ec64c81d9d52af6277636552bfe73016ce0dc2b96362395e13d",
+    "sha256": "cd463f23997f2ec64c81d9d52af6277636552bfe73016ce0dc2b96362395e13d"
+  },
+  "new_unit_entry": {
+    "name": "ecall-restore",
+    "profile": "ring-bank",
+    "origin_unit": "experiments/tsl9-ecall-restore/src/ecall_restore.v1.c",
+    "curated_unit": "src/native/irq/ecall_restore.c",
+    "evidence": "experiments/tsl9-ecall-restore/README.md",
+    "formal_receipts": [
+      "experiments/tsl9-ecall-restore/build/trial-v1/measurement.json"
+    ],
+    "scope": "Complete78B35i original8448-8496 context restore;two14/64B architectural regions. C11/C++17 bytes equal original,retainingCSRS804 mask32,then-live SP+0 MEPC read,29physical register loads,SP+128 and MRET. No new frame allocation or explicit GP frame load. Following2zero bytes remain separate data. Special CSR meaning,trap context,physical MCU/ROM,final layout and OTA remain unproved.",
+    "origin_unit_sha256": "cd463f23997f2ec64c81d9d52af6277636552bfe73016ce0dc2b96362395e13d"
+  },
+  "data_builder": "experiments/tsl9-original-vectors/build-v1.py",
+  "data_builder_sha256": "1093da71234405fb3c575a8e598927f63a0028758e3dec776ca3374cbf937c8b",
+  "data_receipt": "experiments/tsl9-original-vectors/build/data-v1/measurement.json",
+  "data_receipt_sha256": "0bf1faf626cb26da03cc29a32dfda8af96aa559adde9b998dc7ad35ecd61af64",
+  "alias": "tsl9_vector_entry_8448",
+  "provider_entry": "tsl9_ecall_restore_entry_8448",
+  "vector_indices": [
+    5,
+    8
+  ],
+  "vector_word_PCs": [
+    32844,
+    32856
+  ],
+  "vector_original_target": 33864,
+  "vector_spec": "experiments/tsl9-original-vectors/spec-v1.json",
+  "parent_code_bytes": 1090,
+  "new_code_bytes": 1168,
+  "data_bytes": 456,
+  "remaining_undefined": [
+    "tsl9_boot_main_9008",
+    "tsl9_boot_resident_40000",
+    "tsl9_vector_entry_19bd4",
+    "tsl9_vector_entry_979e"
+  ],
+  "CSR_set_number": 2052,
+  "CSR_set_mask": 32,
+  "MEPC_source": "then-live SP+0",
+  "trap_context_or_special_CSR_meaning_proved": false,
+  "final_original_placement_proved": false
+}
