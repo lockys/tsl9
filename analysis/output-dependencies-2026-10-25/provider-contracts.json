@@ -1,0 +1,545 @@
+{
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "byte_leaves": [
+    {
+      "address": 536919953,
+      "entry": 63512,
+      "operation": "store low8(A0)"
+    },
+    {
+      "address": 536919975,
+      "entry": 63522,
+      "operation": "load unsigned byte into A0"
+    },
+    {
+      "address": 536919962,
+      "entry": 63532,
+      "operation": "store byte1"
+    },
+    {
+      "destination_address": 536919956,
+      "entry": 63544,
+      "operation": "copy fresh byte",
+      "source_address": 536919955
+    }
+  ],
+  "delayed_flag": {
+    "callback": "Reload config and condition; if both allow,write lowbit(flag354 XOR1);otherwise write0",
+    "callback_entry": 40826,
+    "condition_entry": 33282,
+    "config_byte_offset": 8,
+    "config_mask": 16,
+    "config_pointer_GP_offset": 84,
+    "flag354_is_not_assumed_boolean": true,
+    "late_flag_GP_offset": 354,
+    "no_scheduling_snapshot_substituted_for_callback_reads": true,
+    "pending_byte_GP_offset": 172,
+    "schedule_tuple": {
+      "A0_callback": 40826,
+      "A1": 0,
+      "A2": 10000,
+      "A3": 0
+    },
+    "scheduler": "Always clear pending; schedule only when config bit16 set,8202 nonzero and fresh flag354==0",
+    "scheduler_entry": 40904,
+    "time_unit": null
+  },
+  "evidence": "analysis/output-dependencies-2026-10-25/evidence.json",
+  "evidence_sha256": "2dc7a1126c1510d83a31054882c46a5a9959c393540cbe667f6f66dcdf49267d",
+  "evidence_type": "static-original-instructions",
+  "firmware_ready": false,
+  "hardware_accessed": false,
+  "network": false,
+  "opcode_checks": [
+    {
+      "PC": 36458,
+      "opcode": "addi a5, gp, 144"
+    },
+    {
+      "PC": 36462,
+      "opcode": "sb a0, 1(a5)"
+    },
+    {
+      "PC": 36466,
+      "opcode": "lui a4, 0x40"
+    },
+    {
+      "PC": 36470,
+      "opcode": "lw t1, 88(a4)"
+    },
+    {
+      "PC": 36474,
+      "opcode": "lbu a0, 0(a5)"
+    },
+    {
+      "PC": 36478,
+      "opcode": "sb a1, 2(a5)"
+    },
+    {
+      "PC": 36482,
+      "opcode": "li a2, 2"
+    },
+    {
+      "PC": 36484,
+      "opcode": "li a1, 1"
+    },
+    {
+      "PC": 36486,
+      "opcode": "jr t1"
+    },
+    {
+      "PC": 40826,
+      "opcode": "addi a5, gp, 84"
+    },
+    {
+      "PC": 40830,
+      "opcode": "lw a5, 0(a5)"
+    },
+    {
+      "PC": 40832,
+      "opcode": "lbu a5, 8(a5)"
+    },
+    {
+      "PC": 40836,
+      "opcode": "andi a5, a5, 16"
+    },
+    {
+      "PC": 40838,
+      "opcode": "bnez a5, 0x9f92"
+    },
+    {
+      "PC": 40840,
+      "opcode": "li a5, 0"
+    },
+    {
+      "PC": 40842,
+      "opcode": "andi a5, a5, 1"
+    },
+    {
+      "PC": 40844,
+      "opcode": "sb a5, 172(gp)"
+    },
+    {
+      "PC": 40854,
+      "opcode": "jal ra, 0x8202"
+    },
+    {
+      "PC": 40858,
+      "opcode": "li a5, 0"
+    },
+    {
+      "PC": 40860,
+      "opcode": "beqz a0, 0x9fa6"
+    },
+    {
+      "PC": 40862,
+      "opcode": "lbu a5, 354(gp)"
+    },
+    {
+      "PC": 40866,
+      "opcode": "xori a5, a5, 1"
+    },
+    {
+      "PC": 40872,
+      "opcode": "andi a5, a5, 1"
+    },
+    {
+      "PC": 40874,
+      "opcode": "sb a5, 172(gp)"
+    },
+    {
+      "PC": 40904,
+      "opcode": "sb zero, 172(gp)"
+    },
+    {
+      "PC": 40918,
+      "opcode": "andi a5, a5, 16"
+    },
+    {
+      "PC": 40920,
+      "opcode": "beqz a5, 0xa00a"
+    },
+    {
+      "PC": 40926,
+      "opcode": "jal ra, 0x8202"
+    },
+    {
+      "PC": 40930,
+      "opcode": "beqz a0, 0xa004"
+    },
+    {
+      "PC": 40932,
+      "opcode": "lbu a5, 354(gp)"
+    },
+    {
+      "PC": 40936,
+      "opcode": "bnez a5, 0xa004"
+    },
+    {
+      "PC": 40940,
+      "opcode": "lui a2, 0x2"
+    },
+    {
+      "PC": 40942,
+      "opcode": "li a3, 0"
+    },
+    {
+      "PC": 40944,
+      "opcode": "addi a2, a2, 1808"
+    },
+    {
+      "PC": 40948,
+      "opcode": "li a1, 0"
+    },
+    {
+      "PC": 40960,
+      "opcode": "j 0x9124"
+    },
+    {
+      "PC": 55252,
+      "opcode": "addi sp, sp, -32"
+    },
+    {
+      "PC": 55256,
+      "opcode": "addi a2, sp, 4"
+    },
+    {
+      "PC": 55258,
+      "opcode": "mv s0, a0"
+    },
+    {
+      "PC": 55260,
+      "opcode": "li a1, 8"
+    },
+    {
+      "PC": 55262,
+      "opcode": "li a0, 1"
+    },
+    {
+      "PC": 55266,
+      "opcode": "jal ra, 0x82a8"
+    },
+    {
+      "PC": 55270,
+      "opcode": "lbu a5, 6(sp)"
+    },
+    {
+      "PC": 55274,
+      "opcode": "beqz a5, 0xd808"
+    },
+    {
+      "PC": 55276,
+      "opcode": "lb a5, 7(sp)"
+    },
+    {
+      "PC": 55280,
+      "opcode": "seqz a0, s0"
+    },
+    {
+      "PC": 55284,
+      "opcode": "addi a0, a0, 1"
+    },
+    {
+      "PC": 55286,
+      "opcode": "or a0, a0, a5"
+    },
+    {
+      "PC": 55288,
+      "opcode": "sb a0, 7(sp)"
+    },
+    {
+      "PC": 55292,
+      "opcode": "addi a0, sp, 4"
+    },
+    {
+      "PC": 55294,
+      "opcode": "jal ra, 0x12a08"
+    },
+    {
+      "PC": 55298,
+      "opcode": "addi a0, sp, 4"
+    },
+    {
+      "PC": 55300,
+      "opcode": "jal ra, 0x12a08"
+    },
+    {
+      "PC": 55324,
+      "opcode": "li a4, 24"
+    },
+    {
+      "PC": 55326,
+      "opcode": "beq a5, a4, 0xd85e"
+    },
+    {
+      "PC": 55330,
+      "opcode": "bltu a4, a5, 0xd842"
+    },
+    {
+      "PC": 55334,
+      "opcode": "addi a4, a5, -1"
+    },
+    {
+      "PC": 55338,
+      "opcode": "andi a4, a4, 255"
+    },
+    {
+      "PC": 55342,
+      "opcode": "li a3, 18"
+    },
+    {
+      "PC": 55344,
+      "opcode": "bleu a4, a3, 0xd854"
+    },
+    {
+      "PC": 55362,
+      "opcode": "li a4, 25"
+    },
+    {
+      "PC": 55364,
+      "opcode": "beq a5, a4, 0xd862"
+    },
+    {
+      "PC": 55368,
+      "opcode": "li a4, 26"
+    },
+    {
+      "PC": 55370,
+      "opcode": "li a0, 1"
+    },
+    {
+      "PC": 55372,
+      "opcode": "bne a5, a4, 0xd834"
+    },
+    {
+      "PC": 55376,
+      "opcode": "jal 0xd7d4"
+    },
+    {
+      "PC": 55378,
+      "opcode": "j 0xd834"
+    },
+    {
+      "PC": 55388,
+      "opcode": "j 0xd834"
+    },
+    {
+      "PC": 55390,
+      "opcode": "li a0, 0"
+    },
+    {
+      "PC": 55392,
+      "opcode": "j 0xd850"
+    },
+    {
+      "PC": 55394,
+      "opcode": "jal ra, 0xf82c"
+    },
+    {
+      "PC": 55398,
+      "opcode": "j 0xd834"
+    },
+    {
+      "PC": 63516,
+      "opcode": "sb a0, 1913(a5)"
+    },
+    {
+      "PC": 63526,
+      "opcode": "lbu a0, 1925(a0)"
+    },
+    {
+      "PC": 63532,
+      "opcode": "li a5, 1"
+    },
+    {
+      "PC": 63538,
+      "opcode": "sb a5, 1900(a4)"
+    },
+    {
+      "PC": 63552,
+      "opcode": "lbu a4, 3(a5)"
+    },
+    {
+      "PC": 63556,
+      "opcode": "sb a4, 4(a5)"
+    },
+    {
+      "PC": 63562,
+      "opcode": "lui a5, 0x40"
+    },
+    {
+      "PC": 63566,
+      "opcode": "lw t1, 72(a5)"
+    },
+    {
+      "PC": 63570,
+      "opcode": "li a2, 24"
+    },
+    {
+      "PC": 63572,
+      "opcode": "li a1, 0"
+    },
+    {
+      "PC": 63582,
+      "opcode": "jr t1"
+    }
+  ],
+  "record_update": {
+    "call_entry": 76296,
+    "call_sites": [
+      55294,
+      55300
+    ],
+    "condition": "record byte2 nonzero",
+    "entry": 55252,
+    "field_operation": "record byte3 |= original_A0==0 ? 2 : 1",
+    "frame_bytes": 32,
+    "original_byte_load_signed": true,
+    "payload_identity_between_calls_proved": false,
+    "read_tuple": {
+      "A0": 1,
+      "A1": 8,
+      "A2": "entry_SP-32+4"
+    },
+    "same_pointer_passed_twice": true
+  },
+  "rom_wrappers": [
+    {
+      "GP_byte_writes": [
+        145,
+        146
+      ],
+      "ROM_target_and_physical_binding_proved": false,
+      "arguments": "A0=byte[GP+144],A1=1,A2=2",
+      "entry": 36458,
+      "ordering": "Store low8(original_A0),load slot,load fresh GP+144,store low8(original_A1),set A2/A1,tail indirect transfer",
+      "slot_address": 262232
+    },
+    {
+      "ROM_target_and_physical_binding_proved": false,
+      "arguments": "A0=0x2000BF90,A1=0,A2=24",
+      "entry": 63562,
+      "semantic_memset_candidate": true,
+      "slot_address": 262216
+    }
+  ],
+  "schema": "TSL9-output-dependencies-static-contracts-v1",
+  "state_dispatch": {
+    "common_clear_address": 536919936,
+    "common_clear_order": "After the selected store/call returns,write selected byte0",
+    "dynamic_completion_or_reachability_proved": false,
+    "entry": 55312,
+    "range_effect": "For selected1..19 store selected at0x2000BF6E",
+    "range_guard": "uint8(selected-1)<=18",
+    "selected_byte_address": 536919936,
+    "special_cases": [
+      {
+        "A0": 0,
+        "callee": 55252,
+        "selected": 24
+      },
+      {
+        "callee": 63532,
+        "selected": 25
+      },
+      {
+        "A0": 1,
+        "callee": 55252,
+        "selected": 26
+      }
+    ]
+  },
+  "static_addresses": [
+    {
+      "PC": 40950,
+      "address": 40826,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 40954,
+      "next_opcode": "addi a0, a0, -124",
+      "opcode": "auipc a0, 0x0"
+    },
+    {
+      "PC": 55316,
+      "address": 536919936,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 55320,
+      "next_opcode": "lbu a5, 1900(a5)",
+      "opcode": "auipc a5, 0x1fffe"
+    },
+    {
+      "PC": 55350,
+      "address": 536919936,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 55354,
+      "next_opcode": "sb zero, 1866(a5)",
+      "opcode": "auipc a5, 0x1fffe"
+    },
+    {
+      "PC": 55380,
+      "address": 536919918,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 55384,
+      "next_opcode": "sb a5, 1818(a4)",
+      "opcode": "auipc a4, 0x1fffe"
+    },
+    {
+      "PC": 63512,
+      "address": 536919953,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 63516,
+      "next_opcode": "sb a0, 1913(a5)",
+      "opcode": "auipc a5, 0x1fffc"
+    },
+    {
+      "PC": 63522,
+      "address": 536919975,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 63526,
+      "next_opcode": "lbu a0, 1925(a0)",
+      "opcode": "auipc a0, 0x1fffc"
+    },
+    {
+      "PC": 63534,
+      "address": 536919962,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 63538,
+      "next_opcode": "sb a5, 1900(a4)",
+      "opcode": "auipc a4, 0x1fffc"
+    },
+    {
+      "PC": 63544,
+      "address": 536919952,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 63548,
+      "next_opcode": "addi a5, a5, 1880",
+      "opcode": "auipc a5, 0x1fffc"
+    },
+    {
+      "PC": 63574,
+      "address": 536919952,
+      "contents_or_physical_mapping_proved": false,
+      "kind": "static-address-operand",
+      "next_PC": 63578,
+      "next_opcode": "addi a0, a0, 1850",
+      "opcode": "auipc a0, 0x1fffc"
+    }
+  ],
+  "target_executed": false,
+  "unknowns": [
+    "Physical MCU/board and installed ROM table targets",
+    "Product names for the config bit,state values and record8",
+    "Scheduler time unit and asynchronous state changes",
+    "ROM/private caller ABI and exact RAM permissions",
+    "Whether12A08 changes the passed record before its second invocation",
+    "Startup/IRQ/BOOT and original OTA compatibility"
+  ]
+}
