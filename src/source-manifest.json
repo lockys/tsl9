@@ -963,6 +963,13 @@
       "replacements": [],
       "origin_sha256": "b7994cdf067b05a04910a87f7264f17c750189d75e8db120b4bc1036a2384980",
       "sha256": "b7994cdf067b05a04910a87f7264f17c750189d75e8db120b4bc1036a2384980"
+    },
+    {
+      "origin": "experiments/tsl9-peripheral-primitives/src/peripheral_primitives.v1.c",
+      "destination": "src/native/startup/peripheral_primitives.c",
+      "replacements": [],
+      "origin_sha256": "343d1ef340dc44b5396ae9f7462022e8253c137aadfd8fecd28189abf43f7822",
+      "sha256": "343d1ef340dc44b5396ae9f7462022e8253c137aadfd8fecd28189abf43f7822"
     }
   ],
   "native_units": [
@@ -2145,6 +2152,18 @@
       ],
       "scope": "Eight complete resident startup functions:1082B/385i,74 genuine private regions,52 direct controls and7 typed address pairs;one21Breadonly CH32V20x_BLE_LIB_V1.3 comparison prefix. Preserve all version/heap/init failure loops,the64-byte config frame and6-byte dynamic MAC copy,ADC register backup/restore,event priority,saved Flash callback arguments and timer setup order. Installed ROM/private ABI,physical MCU/RAM/IRQ/Flash/OTA unproved;no target/HOST/ISA execution,hardware or network.",
       "origin_unit_sha256": "b7994cdf067b05a04910a87f7264f17c750189d75e8db120b4bc1036a2384980"
+    },
+    {
+      "name": "peripheral-primitives",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-peripheral-primitives/src/peripheral_primitives.v1.c",
+      "curated_unit": "src/native/startup/peripheral_primitives.c",
+      "evidence": "analysis/peripheral-primitives-2026-10-25/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-peripheral-primitives/build/native-v1/measurement.json"
+      ],
+      "scope": "Twenty-four complete peripheral functions:2020B/677i,120 genuine private regions,64 direct controls and no static-address pairs or new data. Preserve ADC register masks,rank/shift paths,MAC bytes from fixed readonly addresses,clock RMW and split-halfword accesses,repeated-read counter,all signed DIV/rounding/calibration/polling operations and GP-scaled hardware delay. Only external19160 is already provided;no target/HOST/ISA execution,hardware or network. Physical silicon,private ABI,timebase,IRQ and OTA unproved.",
+      "origin_unit_sha256": "343d1ef340dc44b5396ae9f7462022e8253c137aadfd8fecd28189abf43f7822"
     }
   ],
   "native_data_units": [
