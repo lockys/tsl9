@@ -977,6 +977,13 @@
       "replacements": [],
       "origin_sha256": "47273e498fcddecdb2ac0131c3aa871335788ccfcf0769752f4befe350052d91",
       "sha256": "47273e498fcddecdb2ac0131c3aa871335788ccfcf0769752f4befe350052d91"
+    },
+    {
+      "origin": "experiments/tsl9-record-continuations/src/record_continuations.v1.c",
+      "destination": "src/native/receive/record_continuations.c",
+      "replacements": [],
+      "origin_sha256": "8f3e6bf141c89a8236e9eb075aa7d6af604c58e7ff8aec5b382462dd5a52d85e",
+      "sha256": "8f3e6bf141c89a8236e9eb075aa7d6af604c58e7ff8aec5b382462dd5a52d85e"
     }
   ],
   "native_units": [
@@ -2183,6 +2190,18 @@
       ],
       "scope": "Four complete record-profile functions:978B/310i,61 private regions,43 direct transfers and3 code-address pairs. Preserve original field extraction,comparison and clamping,8-byte copies including the uninitialized eighth stack byte,mode3/4 gating and fresh RAM reads. No field units or vehicle-feature attribution proved; no target/HOST/ISA execution,hardware or network. Private ABI,memory,IRQ and OTA unproved.",
       "origin_unit_sha256": "47273e498fcddecdb2ac0131c3aa871335788ccfcf0769752f4befe350052d91"
+    },
+    {
+      "name": "record-continuations",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-record-continuations/src/record_continuations.v1.c",
+      "curated_unit": "src/native/receive/record_continuations.c",
+      "evidence": "analysis/record-continuations-2026-10-25/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-record-continuations/build/native-v1/measurement.json"
+      ],
+      "scope": "Eight complete timed-record/flag functions:418B/138i,33 private regions,20 direct transfers and4 callback-address pairs. Preserve full-byte XOR toggle,record9 bit2 placement,fresh state loads,halfword sequence bounds/counter and indexed delay,callback tuples,8-bit decrement/wrap and11/50/100/200 delay parameters. Units,feature attribution and private ABI unproved;no target/HOST/ISA execution,hardware or network.",
+      "origin_unit_sha256": "8f3e6bf141c89a8236e9eb075aa7d6af604c58e7ff8aec5b382462dd5a52d85e"
     }
   ],
   "native_data_units": [
