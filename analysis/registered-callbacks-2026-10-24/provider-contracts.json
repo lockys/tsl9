@@ -1,0 +1,131 @@
+{
+  "schema": "TSL9-registered-callback-contracts-v1",
+  "evidence": "evidence.json",
+  "raw_opcode_checks": {
+    "0x1144a": "andi a5, a1, 2",
+    "0x11454": "jal ra, 0x11356",
+    "0x1146e": "andi a5, a1, 1",
+    "0x11480": "andi a5, a1, 16",
+    "0x1149a": "andi a5, a1, 8",
+    "0x114c4": "andi a5, a1, 4",
+    "0x16f08": "andi a5, a1, 2",
+    "0x16f10": "lbu a5, 361(gp)",
+    "0x16f1c": "bltu a4, a5, 0x16f32",
+    "0x16f34": "sb zero, 361(gp)",
+    "0x16f38": "jal ra, 0x16e88",
+    "0x16f46": "andi a5, a1, 4",
+    "0x16f66": "li a0, 2",
+    "0x16f7a": "andi a5, a1, 1",
+    "0x16f86": "jal ra, 0x16e88",
+    "0x16f8e": "jal ra, 0x16e88",
+    "0x16f94": "jal ra, 0x9af0",
+    "0x16f9a": "jal ra, 0x12b24",
+    "0x16fb2": "jalr a5",
+    "0x119e8": "mv s1, a1",
+    "0x119ea": "bgez a5, 0x12292",
+    "0x119f2": "lw a5, 108(a5)",
+    "0x119f4": "jalr a5",
+    "0x119fc": "lbu a4, 0(a0)",
+    "0x11a00": "li a5, 176",
+    "0x12410": "lw a5, 300(a5)",
+    "0x12422": "lw a5, 104(a5)",
+    "0x1242a": "xor a5, a5, s1",
+    "0x12444": "mv a0, a5",
+    "0x12448": "ret"
+  },
+  "confirmed_static": {
+    "callback_11442": {
+      "range": [
+        70722,
+        70882
+      ],
+      "bytes": 160,
+      "instructions": 55,
+      "flag_priority": [
+        2,
+        1,
+        16,
+        8,
+        4
+      ],
+      "one_recognized_flag_per_invocation": true,
+      "return": "Saved mask XOR handled bit; zero for no recognized flag.",
+      "calls": [
+        70486,
+        81116
+      ],
+      "ROM_slot": 262232,
+      "ROM_numeric_arguments": {
+        "flag8": {
+          "A1": 4,
+          "A2": 2
+        }
+      },
+      "nominal_RAM_addresses": [
+        536920009,
+        536920012,
+        536920019
+      ]
+    },
+    "callback_119c8": {
+      "range": [
+        72136,
+        75014
+      ],
+      "bytes": 2878,
+      "instructions": 912,
+      "saved_input": "Full original A1 in S1; signed low-halfword test selects bit15 path.",
+      "return_type_uint16_proved": false,
+      "message_path_evidence": [
+        72178,
+        72180,
+        72188,
+        72192,
+        74768,
+        74786,
+        74794
+      ],
+      "ROM_slots": [
+        262252,
+        262444,
+        262248
+      ],
+      "header_byte": 176,
+      "alternatives_after_RET_included": true,
+      "opaque_static_data_addresses": 17,
+      "unclassified_address": 38152,
+      "static_payload_contents_provided": false
+    },
+    "callback_16f00": {
+      "range": [
+        93952,
+        94134
+      ],
+      "bytes": 182,
+      "instructions": 65,
+      "flag_priority": [
+        2,
+        4,
+        1
+      ],
+      "counter_GP_offsets": [
+        361,
+        362
+      ],
+      "counter_rule": "Increment modulo256; reset and call16E88 when incremented byte >2. Initial counter values unproved.",
+      "event1": "Probe16E88 with1 then2; both zero calls9AF0 then12B24(0); any nonzero calls ROM40058 with saved A0,A1=1,A2=48.",
+      "delay_units_proved": false,
+      "IRQ_16fb6_excluded": true
+    }
+  },
+  "inference": {
+    "receiver_119c8": "Message-like receiver, payload dispatch and release suggested by numeric ROM slots and object accesses; vendor API names unproved."
+  },
+  "unconfirmed": [
+    "Physical MCU identity and installed ROM ABI",
+    "Meaning of flags, seat/DND mapping and scheduler time units",
+    "9508 target kind and seventeen static pool contents",
+    "Complete firmware, boot/IRQ compatibility and physical OTA execution"
+  ],
+  "firmware_ready": false
+}
