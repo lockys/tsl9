@@ -1,0 +1,217 @@
+{
+  "schema": "TSL9-SDK-attWriteReq-candidate-layout-v1",
+  "source": "experiments/tsl9-state-controls/src/sdk_write_layout.v1.c",
+  "source_sha256": "e73b66d4c35e82ba675d447dafa6070238ffc299c029ae4061631102cb7a62f0",
+  "native_spec": "experiments/tsl9-state-controls/spec-v1.json",
+  "native_spec_sha256": "1585558686231dddca2fb523b67763141c61e08927227169d96fba05725ed7f2",
+  "evidence": "analysis/state-controls-2026-10-25/evidence.json",
+  "evidence_sha256": "836821b08e0937b5ba0b2e5fab02226cd3338593eef9bef9ae126e7505fdcc75",
+  "saved_profile": "analysis/resident-providers-2026-10-24/rom-rf-profile-correspondence.json",
+  "saved_profile_sha256": "bee23c6828c86771e4b0295afb1fc7d30223605616b4810bdf7d5715ebbf29cb",
+  "header_sha256": "fab43e7b8e351596a14d2a434eea4fa79587a8b9bba12738897d35ee2c3dbf2e",
+  "header_encoding": "gb18030",
+  "header_identity": "saved wchble_rom.h; exact hash required; caller supplies local path",
+  "type_lines": [
+    {
+      "line": 1471,
+      "text": "typedef struct"
+    },
+    {
+      "line": 1472,
+      "text": "{"
+    },
+    {
+      "line": 1473,
+      "text": "    uint16_t handle;  //!< Handle of the attribute to be written (must be first field)"
+    },
+    {
+      "line": 1474,
+      "text": "    uint16_t len;     //!< Length of value"
+    },
+    {
+      "line": 1475,
+      "text": "    uint8_t *pValue;  //!< Value of the attribute to be written (0 to ATT_MTU_SIZE-3)"
+    },
+    {
+      "line": 1476,
+      "text": "    uint8_t sig;      //!< Authentication Signature status (not included (0), valid (1), invalid (2))"
+    },
+    {
+      "line": 1477,
+      "text": "    uint8_t cmd;      //!< Command Flag"
+    },
+    {
+      "line": 1478,
+      "text": "} attWriteReq_t;"
+    }
+  ],
+  "global_pack_pragmas": [],
+  "macro_profile": [
+    {
+      "line": 2773,
+      "text": "#define    tmos_memcmp  ((  BOOL (*)  ( const void *src1, const void *src2, uint32_t len ))  BLE_LIB_JT(2))  // TRUE - same, FALSE - different",
+      "name": "tmos_memcmp",
+      "table_index": 2,
+      "default_slot_address": 262204,
+      "installed_implementation_proved": false
+    },
+    {
+      "line": 2774,
+      "text": "#define    tmos_isbufset (( BOOL (*)  ( uint8_t *buf, uint8_t val, uint32_t len ))  BLE_LIB_JT(3)) // TRUE if all \"val\",FALSE otherwise",
+      "name": "tmos_isbufset",
+      "table_index": 3,
+      "default_slot_address": 262208,
+      "installed_implementation_proved": false
+    },
+    {
+      "line": 2776,
+      "text": "#define    tmos_memset  ((  void (*)  ( void * pDst, uint8_t Value, uint32_t len ))  BLE_LIB_JT(5))",
+      "name": "tmos_memset",
+      "table_index": 5,
+      "default_slot_address": 262216,
+      "installed_implementation_proved": false
+    },
+    {
+      "line": 2777,
+      "text": "#define    tmos_memcpy  ((  void (*)  ( void *dst, const void *src, uint32_t len ))  BLE_LIB_JT(6))",
+      "name": "tmos_memcpy",
+      "table_index": 6,
+      "default_slot_address": 262220,
+      "installed_implementation_proved": false
+    },
+    {
+      "line": 2808,
+      "text": "#define    tmos_start_task  ((  BOOL  (*)  ( tmosTaskID taskID, tmosEvents event, tmosTimer time  ))  BLE_LIB_JT(9))",
+      "name": "tmos_start_task",
+      "table_index": 9,
+      "default_slot_address": 262232,
+      "installed_implementation_proved": false
+    },
+    {
+      "line": 2833,
+      "text": "#define    tmos_stop_task  ((  bStatus_t  (*)  ( tmosTaskID taskID, tmosEvents event ))  BLE_LIB_JT(10))",
+      "name": "tmos_stop_task",
+      "table_index": 10,
+      "default_slot_address": 262236,
+      "installed_implementation_proved": false
+    },
+    {
+      "line": 2862,
+      "text": "#define    tmos_msg_deallocate  ((  bStatus_t  (*)  ( uint8_t *msg_ptr ))  BLE_LIB_JT(13))",
+      "name": "tmos_msg_deallocate",
+      "table_index": 13,
+      "default_slot_address": 262248,
+      "installed_implementation_proved": false
+    },
+    {
+      "line": 3728,
+      "text": "#define    GATT_WriteCharValue  ((  bStatus_t  (*)  ( uint16_t connHandle, attWriteReq_t *pReq, uint8_t taskId ))  BLE_LIB_JT(54) )",
+      "name": "GATT_WriteCharValue",
+      "table_index": 54,
+      "default_slot_address": 262412,
+      "installed_implementation_proved": false
+    },
+    {
+      "line": 3963,
+      "text": "#define    GATT_bm_alloc  ((  void*  (*)  ( uint16_t connHandle, uint8_t opcode, uint16_t size, uint16_t *pSizeAlloc, uint8_t flag ))  BLE_LIB_JT(61) )",
+      "name": "GATT_bm_alloc",
+      "table_index": 61,
+      "default_slot_address": 262440,
+      "installed_implementation_proved": false
+    },
+    {
+      "line": 3973,
+      "text": "#define    GATT_bm_free  ((  void  (*)  ( gattMsg_t *pMsg, uint8_t opcode ))  BLE_LIB_JT(62) )",
+      "name": "GATT_bm_free",
+      "table_index": 62,
+      "default_slot_address": 262444,
+      "installed_implementation_proved": false
+    },
+    {
+      "line": 4324,
+      "text": "#define    GAPRole_TerminateLink  ((  bStatus_t  (*)  ( uint16_t connHandle ))  BLE_LIB_JT(82) )",
+      "name": "GAPRole_TerminateLink",
+      "table_index": 82,
+      "default_slot_address": 262524,
+      "installed_implementation_proved": false
+    }
+  ],
+  "opcode": [
+    {
+      "line": 545,
+      "text": "#define ATT_WRITE_REQ                   0x12 //!< ATT Write Request"
+    }
+  ],
+  "default_function_table_base": 262196,
+  "default_profile_only": true,
+  "installed_implementation_proved": false,
+  "symbol": "tsl9_sdk_att_write_layout",
+  "section": ".rodata.tsl9_sdk_att_write_layout",
+  "expected_words": [
+    12,
+    4,
+    0,
+    2,
+    4,
+    8,
+    9,
+    2,
+    2,
+    4,
+    1,
+    1
+  ],
+  "word_labels": [
+    "sizeof(attWriteReq_t)",
+    "alignof(attWriteReq_t)",
+    "handle_offset",
+    "len_offset",
+    "pValue_offset",
+    "sig_offset",
+    "cmd_offset",
+    "handle_bytes",
+    "len_bytes",
+    "pValue_bytes",
+    "sig_bytes",
+    "cmd_bytes"
+  ],
+  "descriptor_frame_offset": 4,
+  "original_writes": [
+    {
+      "PC": 68760,
+      "opcode": "sh a1, 4(sp)",
+      "field": "handle",
+      "field_offset": 0,
+      "frame_offset": 4,
+      "width": 2
+    },
+    {
+      "PC": 68750,
+      "opcode": "sh a5, 6(sp)",
+      "field": "len",
+      "field_offset": 2,
+      "frame_offset": 6,
+      "width": 2
+    },
+    {
+      "PC": 68778,
+      "opcode": "sw a0, 8(sp)",
+      "field": "pValue",
+      "field_offset": 4,
+      "frame_offset": 8,
+      "width": 4
+    },
+    {
+      "PC": 68740,
+      "opcode": "sh zero, 12(sp)",
+      "field": "sig/cmd",
+      "field_offset": 8,
+      "frame_offset": 12,
+      "width": 2
+    }
+  ],
+  "SDK_functions_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "linked_into_firmware": false
+}

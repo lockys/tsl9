@@ -2,9 +2,9 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-[最新原始位址驗證](../analysis/control-gates-2026-10-25/README.md)：35,440B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 168 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
+[最新原始位址驗證](../analysis/state-controls-2026-10-25/README.md)：36,706B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 161 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 125 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 126 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC資料組裝、記錄處理與立即／延後通知 | 1308B／461指令原位址碼吻合；真實7346B＋60B圖；接通2個入口、新增27個getter依賴，共93個UND；硬體／OTA未證 |
 | [state access](native/receive/state_access.c) | 82A8 記錄搬移、10032 清除與四組狀態更新／讀取 | 336B／108指令，C/C++原位址碼吻合；實際6038B＋60B圖有68個UND；ROM、13C4E用途、索引界限與硬體／OTA未證 |
@@ -12,6 +12,7 @@
 
 | 目錄 | 內容 | 目前限制 |
 | --- | --- | --- |
+| [狀態控制與記錄傳輸](native/receive/state_controls.c) | 十個完整函式1266B／452i | 條件控制、記錄傳輸及清理順序；接上七入口，無新依賴。主元件34956B code＋1750B data／2316RELA／161UND；36706B原址吻合。[證據](../analysis/state-controls-2026-10-25/README.md) |
 | [控制門控與回呼](native/receive/control_gates.c) | 十二個完整函式892B／308i | 位元圖分派、記錄模式、切換及成對回呼；接上五入口，無新依賴。主元件33690B code＋1750B data／2257RELA／168UND；35440B原址吻合。[證據](../analysis/control-gates-2026-10-25/README.md) |
 | [輸出依賴與延後旗標](native/receive/output_dependencies.c) | 十個完整函式374B／130i | 延後旗標、狀態分派、記錄提交及ROM/RAM包裝；接上六入口，無新依賴。主元件32798B code＋1750B data／2142RELA／173UND；34548B原址吻合。[證據](../analysis/output-dependencies-2026-10-25/README.md) |
 | [輸出組裝與比較](native/receive/output_builder.c) | 六個完整函式956B／298i | 記錄0x04F3、八組比較、倒數及完整寬度控制；接上四入口、新增兩依賴。主元件32424B code＋1750B data／2117RELA／179UND；34174B原址吻合。[證據](../analysis/output-builder-2026-10-25/README.md) |
