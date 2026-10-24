@@ -187,6 +187,8 @@ The bottom capsule occupies its own centered layout row below the scrolling cont
 
 ### Compact centered pill navigation — pinned reference
 
+**Lifecycle invariant:** the compact geometry and short labels must survive tab changes, background/foreground transitions, document-picker return, Activity recreation, orientation changes and language changes. Verify the actual drawn bounds after each transition, including the return to portrait; a launch screenshot alone does not establish this contract. Large-font expansion remains allowed when required to fit accessible labels.
+
 The user's dialer screenshot `11138.jpg` is the proportion authority for this component. Visual estimates: image width 858px, capsule about 450px wide and 110px high, giving approximately 52% viewport width and 4.1:1 width/height. These are reference proportions, not physical-device dp measurements. Preserve the App's light/forest-teal palette; the reference pins geometry and hierarchy.
 
 - **Outer silhouette:** a compact capsule centered above the system gesture area, with visibly generous empty space on both sides. Do not stretch it across almost the full screen merely because its corners are round.
