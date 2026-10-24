@@ -2,14 +2,15 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/record-continuations-2026-10-25/readme.en.md): all 43,641B of measured code/data match the official BIN after native address placement; 134 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/callback-completion-2026-10-25/readme.en.md): all 44,085B of measured code/data match the official BIN after native address placement; 132 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:132 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:133 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
+| [Callback gaps and input packing](native/receive/callback_completion.c) | Five complete functions444B/162i | Two-position packing,mode/threshold gates,wrapping retry and signed16 magnitude;two imports resolved,no new dependencies. Main42314B code+1771B data/2708RELA/132UND;all44085B original-address equal. [Evidence](../analysis/callback-completion-2026-10-25/readme.en.md) |
 | [Timed record continuations](native/receive/record_continuations.c) | Eight complete functions418B/138i | Flag pointers,record-bit toggle,sequence and wrapping repetition callbacks;seven imports resolved,no new dependencies. Main41870B code+1771B data/2675RELA/134UND;all43641B original-address equal. [Evidence](../analysis/record-continuations-2026-10-25/readme.en.md) |
 | [Record profiles](native/receive/record_profiles.c) | Four complete functions978B/310i | Range checks,record fields,clamping and mode3/4 gating;two imports resolved,no new dependencies. Main41452B code+1771B data/2647RELA/141UND;all43223B original-address equal. [Evidence](../analysis/record-profiles-2026-10-25/readme.en.md) |
 | [Peripheral primitives and calibration](native/startup/peripheral_primitives.c) | Twenty-four whole functions2020B/677i | ADC masks,clock/counter paths,calibration and delay;22 entries resolved,no new dependencies. Main40474B code+1771B data/2598RELA/143UND;all42245B original-address equal. [Evidence](../analysis/peripheral-primitives-2026-10-25/readme.en.md) |
