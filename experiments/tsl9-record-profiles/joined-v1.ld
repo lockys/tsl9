@@ -1,0 +1,77 @@
+OUTPUT_ARCH(riscv)
+SECTIONS
+{
+ .boot_code 0 : SUBALIGN(2) { *(.boot_code)
+  *(.text.tsl9_record_dispatch_provider_18232)
+  *(.text.tsl9_record_profiles_block_18238)
+  *(.text.tsl9_record_profiles_block_1825a)
+  *(.text.tsl9_record_profiles_block_18264)
+  *(.text.tsl9_record_profiles_block_18274)
+  *(.text.tsl9_record_profiles_block_1827e)
+  *(.text.tsl9_record_profiles_block_1831e)
+  *(.text.tsl9_record_profiles_block_18324)
+  *(.text.tsl9_record_profiles_block_18344)
+  *(.text.tsl9_record_profiles_block_1834a)
+  *(.text.tsl9_record_profiles_block_18354)
+  *(.text.tsl9_record_profiles_block_18364)
+  *(.text.tsl9_record_profiles_block_1836e)
+  *(.text.tsl9_record_profiles_block_1840e)
+  *(.text.tsl9_record_profiles_block_1841a)
+  *(.text.tsl9_record_profiles_block_18426)
+  *(.text.tsl9_record_profiles_block_1842c)
+  *(.text.tsl9_record_profiles_block_1842e)
+  *(.text.tsl9_record_profiles_provider_18430)
+  *(.text.tsl9_record_profiles_block_1843a)
+  *(.text.tsl9_record_profiles_block_18440)
+  *(.text.tsl9_record_profiles_block_1845a)
+  *(.text.tsl9_record_profiles_block_18466)
+  *(.text.tsl9_record_profiles_block_1846a)
+  *(.text.tsl9_record_profiles_block_1847e)
+  *(.text.tsl9_record_profiles_block_18482)
+  *(.text.tsl9_record_profiles_block_18488)
+  *(.text.tsl9_record_profiles_block_18492)
+  *(.text.tsl9_record_profiles_block_18496)
+  *(.text.tsl9_record_profiles_block_184a8)
+  *(.text.tsl9_record_profiles_provider_184aa)
+  *(.text.tsl9_record_profiles_block_184b8)
+  *(.text.tsl9_record_profiles_block_184ca)
+  *(.text.tsl9_record_profiles_block_18514)
+  *(.text.tsl9_record_profiles_block_1851a)
+  *(.text.tsl9_record_profiles_block_18520)
+  *(.text.tsl9_record_profiles_block_18526)
+  *(.text.tsl9_record_profiles_block_1852c)
+  *(.text.tsl9_record_profiles_block_18532)
+  *(.text.tsl9_record_profiles_block_18538)
+  *(.text.tsl9_record_profiles_block_1853a)
+  *(.text.tsl9_record_profiles_block_18540)
+  *(.text.tsl9_record_profiles_block_18548)
+  *(.text.tsl9_record_profiles_block_1854e)
+  *(.text.tsl9_record_profiles_block_18556)
+  *(.text.tsl9_record_profiles_block_1855c)
+  *(.text.tsl9_record_profiles_block_18564)
+  *(.text.tsl9_record_profiles_block_1856a)
+  *(.text.tsl9_record_profiles_block_18572)
+  *(.text.tsl9_record_profiles_block_18584)
+  *(.text.tsl9_record_profiles_block_1859c)
+  *(.text.tsl9_record_profiles_block_185a0)
+  *(.text.tsl9_record_profiles_block_185b4)
+  *(.text.tsl9_record_profiles_block_185b6)
+  *(.text.tsl9_record_profiles_block_185c0)
+  *(.text.tsl9_record_profiles_block_185d4)
+  *(.text.tsl9_feature_external_185d8)
+  *(.text.tsl9_record_profiles_block_185ea)
+  *(.text.tsl9_record_profiles_block_185f2)
+  *(.text.tsl9_record_profiles_block_185fe)
+  *(.text.tsl9_record_profiles_block_18602)
+ }
+ .initializer 0 : SUBALIGN(4) { *(.initializer) }
+ .vectors 0 : SUBALIGN(4) { *(.vectors) }
+ .feature_tables 0 : SUBALIGN(4) { *(.feature_tables) }
+ .callback_constants 0 : SUBALIGN(4) { *(.callback_constants) }
+ .callback_flow_constants 0 : SUBALIGN(4) { *(.callback_flow_constants) }
+ .incoming_constants 0 : SUBALIGN(4) { *(.incoming_constants) }
+ .action_table 0 : SUBALIGN(4) { *(.action_table) }
+ .phase_table 0 : SUBALIGN(4) { *(.phase_table) }
+ .resident_version 0 : SUBALIGN(4) { *(.resident_version) }
+ /DISCARD/ : { *(.comment) *(.riscv.attributes) *(.llvm_addrsig) }
+}

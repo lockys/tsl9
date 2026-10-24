@@ -2,9 +2,9 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-[最新原始位址驗證](../analysis/peripheral-primitives-2026-10-25/README.md)：42,245B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 143 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
+[最新原始位址驗證](../analysis/record-profiles-2026-10-25/README.md)：43,223B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 141 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 130 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 131 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC資料組裝、記錄處理與立即／延後通知 | 1308B／461指令原位址碼吻合；真實7346B＋60B圖；接通2個入口、新增27個getter依賴，共93個UND；硬體／OTA未證 |
 | [state access](native/receive/state_access.c) | 82A8 記錄搬移、10032 清除與四組狀態更新／讀取 | 336B／108指令，C/C++原位址碼吻合；實際6038B＋60B圖有68個UND；ROM、13C4E用途、索引界限與硬體／OTA未證 |
@@ -12,6 +12,7 @@
 
 | 目錄 | 內容 | 目前限制 |
 | --- | --- | --- |
+| [記錄參數與模式](native/receive/record_profiles.c) | 四個完整函式978B／310i | 索引、欄位、範圍限制與模式3／4門控；接上兩入口，無新依賴。主元件41452B code＋1771B data／2647RELA／141UND；43223B原址吻合。[證據](../analysis/record-profiles-2026-10-25/README.md) |
 | [周邊原語與校正](native/startup/peripheral_primitives.c) | 二十四個完整函式2020B／677i | ADC遮罩、時鐘／計數器路徑、校正與延遲；接上22入口，無新依賴。主元件40474B code＋1771B data／2598RELA／143UND；42245B原址吻合。[證據](../analysis/peripheral-primitives-2026-10-25/README.md) |
 | [常駐程式啟動與 ROM 設定](native/startup/resident_startup.c) | 八個完整函式1082B／385i＋21B版本資料 | 預期 CH32V20x ROM 版本、設定／工作註冊與回呼；接上兩入口，新增22依賴。主元件38454B code＋1771B data／2534RELA／165UND；40225B原址吻合。[證據](../analysis/resident-startup-2026-10-25/README.md) |
 | [記錄 helper 與週期回呼](native/receive/record_helpers.c) | 十二個完整函式910B／306i | 共用 wrapper、週期回呼、表格選擇與排程；接上十二入口，新增十依賴。主元件37372B code＋1750B data／2468RELA／145UND；39122B原址吻合。[證據](../analysis/record-helpers-2026-10-25/README.md) |
