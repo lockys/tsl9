@@ -1,0 +1,180 @@
+{
+  "schema": "TSL9-action-dispatch-contracts-v1",
+  "evidence": "evidence.json",
+  "raw_opcode_checks": {
+    "0x10dcc": "auipc a5, 0x1fffb",
+    "0x10dd0": "sb zero, 533(a5)",
+    "0x10ddc": "bnez a5, 0x10e6c",
+    "0x10dde": "addi a5, gp, 88",
+    "0x10de4": "addi a3, a5, 252",
+    "0x10df6": "addi a5, a5, 6",
+    "0x10df8": "bne a5, a3, 0x10de8",
+    "0x10e08": "jal ra, 0x10d9a",
+    "0x10e0e": "bltu a5, a0, 0x10e3c",
+    "0x10e14": "addi s2, gp, 92",
+    "0x10e1c": "li s1, 129",
+    "0x10e24": "lw a5, 64(s3)",
+    "0x10e28": "li a2, 6",
+    "0x10e34": "addi s0, s0, 43",
+    "0x10e6a": "jr t1",
+    "0x13eb4": "beqz a0, 0x13f34",
+    "0x13ecc": "auipc s4, 0x1fff9",
+    "0x13ed0": "addi s4, s4, -1848",
+    "0x13ee6": "beq s2, a4, 0x13f10",
+    "0x13ef2": "bnez a4, 0x13f10",
+    "0x13efc": "beqz a4, 0x13f10",
+    "0x13f02": "lbu a3, 0(s0)",
+    "0x13f08": "li a1, 186",
+    "0x13f0c": "jal ra, 0x13e98",
+    "0x13f10": "bne s1, s3, 0x13f30",
+    "0x13f28": "lw t1, 104(a5)",
+    "0x13f2e": "jr t1",
+    "0x13f30": "li s1, 1",
+    "0x13f34": "ret",
+    "0x155e4": "andi a5, a5, 8",
+    "0x155e8": "addi a5, a0, 6",
+    "0x155f0": "li a4, 2",
+    "0x155f2": "bltu a4, a5, 0x1578c",
+    "0x155f6": "lbu a5, 358(gp)",
+    "0x15604": "sb zero, 358(gp)",
+    "0x1560a": "j 0x18110",
+    "0x1560e": "addi s2, a0, -1",
+    "0x15612": "andi a4, s2, 255",
+    "0x15616": "li a5, 7",
+    "0x1562c": "jal ra, 0x9124",
+    "0x15630": "andi s2, s2, 255",
+    "0x15634": "li a5, 252",
+    "0x15638": "bltu a5, s2, 0x1578c",
+    "0x1563c": "auipc a4, 0x5",
+    "0x15640": "addi a4, a4, 184",
+    "0x15644": "slli s2, s2, 0x2",
+    "0x15646": "add s2, s2, a4",
+    "0x15648": "lw a5, 0(s2)",
+    "0x1564c": "add a5, a5, a4",
+    "0x1564e": "jr a5",
+    "0x163a8": "j 0x9124",
+    "0x16b50": "lui a5, 0x2",
+    "0x16b54": "addi a5, a5, 1056",
+    "0x16b58": "sh a5, 8(sp)",
+    "0x16b5c": "lui a5, 0xe",
+    "0x16b5e": "addi a5, a5, 255",
+    "0x16b62": "sw a5, 12(sp)",
+    "0x16b6a": "lbu a1, -8(a1)",
+    "0x16b70": "li a3, 4",
+    "0x16b72": "jal ra, 0x168de",
+    "0x16b7a": "ret"
+  },
+  "confirmed_static": {
+    "empty_record_10dcc": {
+      "range": [
+        69068,
+        69250
+      ],
+      "bytes": 182,
+      "instructions": 65,
+      "record_pointer_GP": 88,
+      "record_stride": 6,
+      "record_count": 42,
+      "key": "LHU(record+4)<<16 | LHU(record+2)",
+      "secondary_pointer_GP": 92,
+      "secondary_stride": 43,
+      "secondary_count": 3,
+      "secondary_ROM_slot": 262208,
+      "secondary_arguments": "A0=slot+3,A1=0,A2=6; actual ROM semantic name unproved.",
+      "schedule_ROM_slot": 262232,
+      "schedule_numeric_arguments": {
+        "A1": 2,
+        "A2": 16
+      },
+      "units_proved": false
+    },
+    "payload_callback_13eb4": {
+      "range": [
+        81588,
+        81718
+      ],
+      "bytes": 130,
+      "instructions": 48,
+      "null_input_returns": true,
+      "nominal_descriptor_RAM": 536922004,
+      "slots": 2,
+      "descriptor_stride": 4,
+      "send_conditions": "LHU(slot+2)!=65534 and byte(slot+5)==0 and byte(slot+4)!=0",
+      "send_provider": 81560,
+      "send_arguments": "A0=handle,A1=186,A2=buffer+1,A3=byte(buffer)",
+      "cleanup_ROM_slot": 262248,
+      "non_null_cleanup_after_two_slots": true,
+      "relation_to_13cdc": "Length prefix and buffer+1 agree with prior wrapper; queue ownership/installed ABI still unproved."
+    },
+    "action_155d0": {
+      "range": [
+        87504,
+        91052
+      ],
+      "bytes": 3548,
+      "instructions": 1441,
+      "state_pointer_GP": 84,
+      "state_byte4_mask": 8,
+      "initial_gate": "If state flag8 set,continue only when((A0+6)&255)<=2.",
+      "pending_GP_byte": 358,
+      "pending_path": "If nonzero,clear byte358 and tail-call18110 before the table.",
+      "index_source": "S2=A0-1 before optional opaque call; later ANDI255. Preservation across that call needs original private ABI.",
+      "guard_PC": 87608,
+      "table_index_guard": 252,
+      "table_base": 108276,
+      "table_bytes": 1012,
+      "table_entries": 253,
+      "unique_table_targets": 174,
+      "default_restore_return_target": 87948,
+      "default_restore_return_slots": 39,
+      "jump_PC": 87630,
+      "all_table_targets_are_original_instruction_boundaries": true,
+      "selector_0_254_255_note": "Excluded by the normalized table-index guard; earlier state-dependent paths may still execute.",
+      "product_feature_names_proved": false
+    },
+    "channel_tuple_16b50": {
+      "range": [
+        93008,
+        93052
+      ],
+      "bytes": 44,
+      "instructions": 17,
+      "stack_selector_halfword": 9248,
+      "caller_proven_indices": [
+        0,
+        1
+      ],
+      "selected_bytes_for_these_indices": [
+        32,
+        36
+      ],
+      "payload_word": 57599,
+      "payload_bytes": [
+        255,
+        224,
+        0,
+        0
+      ],
+      "payload_length": 4,
+      "transfer_provider": 92382,
+      "argument_flow": "Original A0 forwarded; A1=selected byte,A2=SP+12,A3=4.",
+      "other_indices_domain_proved": false,
+      "physical_controller_identity_proved": false
+    }
+  },
+  "new_evidence": {
+    "address_9508": "Existing address reference now also has an actual direct control reference; body remains undefined.",
+    "relative_table": "All253 original signed words point to174 measured instructions in155D0; runtime index/target not observed."
+  },
+  "inferences": [
+    "13EB4 is consistent with the deferred payload callback passed by13CDC.",
+    "16B50 constructs a two-choice channel tuple; chip/register meanings require vendor evidence."
+  ],
+  "unconfirmed": [
+    "185 external providers",
+    "Installed ROM/private callback ABI and asynchronous interference",
+    "MCU/external controller identity,clock and hardware effects",
+    "Complete startup/RAM/IRQ and physical OTA execution"
+  ],
+  "firmware_ready": false
+}

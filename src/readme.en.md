@@ -2,14 +2,15 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/callback-dependencies-2026-10-24/readme.en.md): all 27,594B of measured code/data match the official BIN after native address placement; 115 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/action-dispatch-2026-10-24/readme.en.md): all 32,510B of measured code/data match the official BIN after native address placement; 185 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:120 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:121 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
+| [Action dispatcher](native/receive/action_dispatch.c) | Four complete functions3904B/1571i +1012B table | All253 relative words/174 targets verified;four entries bound,74 dependencies exposed;main30784B code+1726B data/2007RELA/185UND;all32510B original-address equal. [Evidence](../analysis/action-dispatch-2026-10-24/readme.en.md) |
 | [Callback dependencies](native/receive/callback_dependencies.c) | Three complete functions464B/170i | Record scan,payload queue wrapper and status-gated channel setup;main26880B code+714B data/1755RELA/115UND;all27594B original-address equal. [Evidence](../analysis/callback-dependencies-2026-10-24/readme.en.md) |
 | [Registered callbacks](native/receive/registered_callbacks.c) | Three complete original functions3220B/1032i | Three entries bound and28 dependencies exposed;main26416B code+714B data/1726RELA/115UND;all27130B original-address equal. Static data and physical/OTA compatibility remain unproved. [Evidence](../analysis/registered-callbacks-2026-10-24/readme.en.md) |
 | [Platform primitives](native/startup/platform_primitives.c) | Six complete original functions356B/134i | CRC16/route/mask/descriptor/enable bodies bind six entries with no new dependencies;main23196B code+714B data/1426RELA/90UND;all23910B original-address equal. [Evidence](../analysis/platform-primitives-2026-10-24/readme.en.md) |
@@ -118,7 +119,7 @@ python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 
 The script selects 89 native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun. One native_data_units pointer-data unit is independently verified by experiments/tsl9-original-vectors/build-v1.py; no fake function is added to the frozen checker.
 
-The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed186 comparisons (372 objects). Its receipt is `build/curated-source/callback-dependencies-20261024-v1/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed. Pointer data independently passes2 source comparisons/4 objects; the two scopes total188 comparisons/376 objects.
+The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed188 comparisons (376 objects). Its receipt is `build/curated-source/action-dispatch-20261024-v1/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed. Pointer data independently passes2 source comparisons/4 objects; the two scopes total190 comparisons/380 objects.
 
 Replay an existing result without compiling:
 
