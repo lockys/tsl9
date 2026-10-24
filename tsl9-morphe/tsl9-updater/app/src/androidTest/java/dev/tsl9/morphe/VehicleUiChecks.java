@@ -15,11 +15,11 @@ final class VehicleUiChecks {
     private boolean containsProfile(View v){if(v instanceof CheckBox&&((CheckBox)v).getText().toString().equals(a.getString(R.string.car_profile)))return true;if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++)if(containsProfile(((ViewGroup)v).getChildAt(i)))return true;return false;}
     @SuppressWarnings({"unchecked","rawtypes"}) private void phase(VehicleControls v,String name)throws Exception{Field f=VehicleControls.class.getDeclaredField("phase");f.setAccessible(true);f.set(v,Enum.valueOf((Class)f.getType(),name));set(v,"deadline",SystemClock.elapsedRealtime()+8000);}
     private final class Wire implements VehicleControls.Listener {
-        final ArrayList<Integer> codes=new ArrayList<>();Runnable written;
+        final ArrayList<Integer> codes=new ArrayList<>();final ArrayList<String> logs=new ArrayList<>();Runnable written;
         public void send(int command,byte[] payload,Runnable done){codes.add(command==0xa7?payload[0]&255:command);written=done;}
         public void sendGuarded(int command,byte[] payload,Runnable done,VehicleControls.WriteGuard guard){send(command,payload,done);}
         public void changed(UiMessage value){try{call("carChanged",new Class<?>[]{UiMessage.class},value);}catch(Exception e){throw new RuntimeException(e);}}
-        public void log(String value){}
+        public void log(String value){logs.add(value);}
         void drain(){Runnable r=written;written=null;if(r!=null)r.run();}
     }
     @SuppressWarnings("unchecked") int run()throws Exception{
@@ -34,6 +34,9 @@ final class VehicleUiChecks {
             HardwareCapture capture=(HardwareCapture)get(a,"hardware");capture.start(HardwareCapture.Mode.BLE,false);set(a,"hardwareSession",true);a.packet(new Protocol.Packet(0xb0,new byte[4]));a.packet(new Protocol.Packet(0xa3,info));check(capture.records()==2&&capture.snapshot().contains("redacted"),"monitoring and A3 still pass capture bridge");call("stopHardware",new Class<?>[]{String.class,boolean.class},"synthetic_vehicle",false);
             Wire wire=new Wire();VehicleControls fake=new VehicleControls(wire,SystemClock::elapsedRealtime);set(a,"car",fake);set(a,"info",info.clone());fake.onInfo(info);fake.setAvailable(true);call("refreshCarUi",new Class<?>[0]);
             check(buttons.get(0).isEnabled()&&buttons.get(2).isEnabled(),"synthetic connected capability enables lock and seats without checkbox or telemetry");buttons.get(0).performClick();check(wire.codes.equals(Arrays.asList(22)),"native lock click immediately sends A7 22 without confirmation dialog");wire.drain();fake.setAvailable(true);call("refreshCarUi",new Class<?>[0]);buttons.get(1).performClick();check(wire.codes.equals(Arrays.asList(22,23)),"native unlock click directly sends 23");wire.drain();
+            check(((TextView)get(a,"carStatus")).getText().toString().equals(a.getString(R.string.car_unlock_sent)),"unlock result explains that unlocking does not open a door");
+            layout.setChecked(true);fake.setAvailable(true);check(!fake.telemetryFresh()&&fake.lightingAvailable(),"native car model accepts OEM feature setting without B0");call("refreshCarUi",new Class<?>[0]);check(!((TextView)get(a,"lightStatus")).getText().toString().isEmpty(),"lighting area explains its actual state");
+            int beforeReply=wire.codes.size();a.packet(new Protocol.Packet(0xa7,new byte[]{23,0}));check(wire.codes.size()==beforeReply&&wire.logs.toString().contains("CAR OEM A7 reply"),"A7 reply is recorded without retry or fake success");
             fake.setAvailable(true);call("refreshCarUi",new Class<?>[0]);Button seat=buttons.get(2);wire.codes.clear();MotionEvent down=MotionEvent.obtain(0,0,MotionEvent.ACTION_DOWN,1,1,0),up=MotionEvent.obtain(0,10,MotionEvent.ACTION_UP,1,1,0);try{seat.dispatchTouchEvent(down);seat.dispatchTouchEvent(up);}finally{down.recycle();up.recycle();}check(wire.codes.equals(Arrays.asList(26,16)),"native direct seat press/release sends start then one stop");wire.drain();
             phase(fake,"MOVING");wire.codes.clear();((Button)get(a,"passengerSelector")).performClick();check(wire.codes.equals(Arrays.asList(16)),"changing seat selection immediately requests stop");
             check(((View)get(a,"driverPad")).getVisibility()==View.GONE&&((View)get(a,"passengerPad")).getVisibility()==View.VISIBLE,"only the selected seat directional pad is displayed");wire.drain();((Button)get(a,"driverSelector")).performClick();

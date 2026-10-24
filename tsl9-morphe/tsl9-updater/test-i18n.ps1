@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory)][string]$Serial,
     [string]$AdbPath,
-    [string]$Version='0.7.1-test',
+    [string]$Version='0.7.3-nav-debug',
     [string[]]$Locales=@('en','zh-Hans','zh-Hant','system'),
     [switch]$SkipInstall,
     [switch]$NoScreenshots

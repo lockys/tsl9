@@ -6,6 +6,7 @@ final class UiStrings {
         Object[] args=m.args.clone();
         for(int i=0;i<args.length;i++)if(args[i] instanceof UiMessage)args[i]=render(c,(UiMessage)args[i]);
         switch(m.key){
+            case "car_unlock_sent": require(args,0); return c.getString(R.string.car_unlock_sent);
             case "tab_tools": require(args,0); return c.getString(R.string.tab_tools);
             case "tab_car": require(args,0); return c.getString(R.string.tab_car);
             case "car_title": require(args,0); return c.getString(R.string.car_title);

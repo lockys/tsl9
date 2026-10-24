@@ -2,7 +2,8 @@ param(
     [Parameter(Mandatory)][string]$Serial,
     [string]$AdbPath,
     [string]$OutputDirectory = (Join-Path $PSScriptRoot '../artifacts/ui-screenshots'),
-    [switch]$AdditionalStatesOnly
+    [switch]$AdditionalStatesOnly,
+    [switch]$LightingOnly
 )
 $ErrorActionPreference = 'Stop'
 if ($Serial -notmatch '^emulator-[0-9]+$') { throw 'Screenshots use a local synthetic emulator only.' }
@@ -38,6 +39,13 @@ function Save-Screenshot([string]$Name) {
     Invoke-CaptureAdb @('pull','/sdcard/tsl9-screenshot.png',(Join-Path $OutputDirectory "$Name.png")) | Out-Null
     Write-Output "Captured $Name.png"
 }
+function Scroll-Page {
+    $tree=Read-Layout; $bounds=$tree.SelectSingleNode('//node').bounds
+    if ($bounds -notmatch '\[(\d+),(\d+)\]\[(\d+),(\d+)\]') { throw 'Missing screen bounds.' }
+    $x=[int](([int]$Matches[1]+[int]$Matches[3])/2); $top=[int]$Matches[2]; $height=[int]$Matches[4]-$top
+    Invoke-CaptureAdb @('shell','input','swipe',"$x","$([int]($top+$height*0.72))","$x","$([int]($top+$height*0.28))",'400') | Out-Null
+    Read-Layout | Out-Null
+}
 Invoke-CaptureAdb @('wait-for-device') 30 | Out-Null
 $oldFont=$null; $oldRotation=$null; $oldAutoRotation=$null
 if ($AdditionalStatesOnly) {
@@ -55,7 +63,15 @@ try {
         $ready = @($tree.SelectNodes('//node') | Where-Object { $_.'content-desc' -eq 'TSL9 硬體工具' }).Count -gt 0
     } while (-not $ready -and [DateTime]::UtcNow -lt $deadline)
     if (-not $ready) { throw 'Actual App UI did not become visible before screenshot.' }
-    if (-not $AdditionalStatesOnly) {
+    if ($LightingOnly) {
+        Select-Tab '汽車控制'; Scroll-Page
+        $tree=Read-Layout
+        $node=@($tree.SelectNodes('//node') | Where-Object { $_.text -eq '原廠燈光快捷設定' -and $_.clickable -eq 'true' }) | Select-Object -First 1
+        if (-not $node -or $node.bounds -notmatch '\[(\d+),(\d+)\]\[(\d+),(\d+)\]') { throw 'Missing lighting disclosure.' }
+        $x=[int](([int]$Matches[1]+[int]$Matches[3])/2);$y=[int](([int]$Matches[2]+[int]$Matches[4])/2)
+        Invoke-CaptureAdb @('shell','input','tap',"$x","$y") | Out-Null
+        Scroll-Page; Save-Screenshot 'lighting-portrait'
+    } elseif (-not $AdditionalStatesOnly) {
         Select-Tab '藍芽／更新'; Save-Screenshot 'tools-portrait'
         Select-Tab '汽車控制'; Save-Screenshot 'car-portrait'
         Select-Tab '即時資料'; Save-Screenshot 'live-portrait'

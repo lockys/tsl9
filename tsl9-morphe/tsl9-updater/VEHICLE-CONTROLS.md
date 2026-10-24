@@ -1,5 +1,7 @@
 # 汽車分頁與版本查詢：0.5.0-test
 
+0.7.2現行燈光條件已按原廠移除額外B0／P檔／零車速限制，並補上停用原因及解鎖診斷；以下保留早期原廠位移與操作政策。現行版本見 [OEM-BODY-ALIGNMENT.md](OEM-BODY-ALIGNMENT.md)。
+
 目前0.6.1門鎖／座椅已依使用者要求改為直接A7操作，移除車型checkbox、P／零車速與門鎖確認對話框，並增加排隊指令取消檢查。下方保留0.5原始協定證據與當時操作政策；現行路徑為`MainActivity.sendCar → VehicleControls.perform → BleClient.sendGuarded`，政策以 [DIRECT-CONTROLS.md](DIRECT-CONTROLS.md) 為準。燈光設定維持獨立確認與P／零車速條件。
 
 目標為使用者的 2021 年底 Model 3／TSL9。新增原生 `MainActivity.buildVehicleUi()` 分頁，沿用同一個 BLE 連線；沒有原廠登入、後端請求、任意 CAN 傳送或新增 JNI。實車控制尚未驗證，模組仍可能拒絕指令。
