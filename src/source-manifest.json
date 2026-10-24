@@ -879,6 +879,13 @@
       "replacements": [],
       "origin_sha256": "63bbab1ffde81dfc9870f645a7d69b3830a2dc33434b5504daee8eccbfe601e1",
       "sha256": "63bbab1ffde81dfc9870f645a7d69b3830a2dc33434b5504daee8eccbfe601e1"
+    },
+    {
+      "origin": "experiments/tsl9-platform-primitives/src/platform_primitives.v1.c",
+      "destination": "src/native/startup/platform_primitives.c",
+      "replacements": [],
+      "origin_sha256": "ba392f9a9a17f00a67dda8ff27e67b34fdaf3e9595298df0c3c95c2f172fea8e",
+      "sha256": "ba392f9a9a17f00a67dda8ff27e67b34fdaf3e9595298df0c3c95c2f172fea8e"
     }
   ],
   "native_units": [
@@ -1916,6 +1923,18 @@
       ],
       "scope": "Five whole functions974B/328i,72 genuine private code regions,45 original direct controls and three callback-address pairs. Preserves checksum call order,ROM slot calls,RAM address operands,initializer chain,integer timer arithmetic and original GPIO/SPI-shaped accesses. No opaque default contents,live device data,target/HOST/ISA execution or hardware operations. Physical chip/ROM/RAM/IRQ/OTA remain unproved.",
       "origin_unit_sha256": "63bbab1ffde81dfc9870f645a7d69b3830a2dc33434b5504daee8eccbfe601e1"
+    },
+    {
+      "name": "platform-primitives",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-platform-primitives/src/platform_primitives.v1.c",
+      "curated_unit": "src/native/startup/platform_primitives.c",
+      "evidence": "analysis/platform-primitives-2026-10-24/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-platform-primitives/build/native-v1/measurement.json"
+      ],
+      "scope": "Six whole original functions356B/134i,19 genuine private code regions and7 original direct controls. Preserves CRC16 polynomial0x1021,all post-RET alternatives,ROM zero-fill operands,interrupt routing/mask/trigger accesses and fullword enable conditions,SPI-style halfword descriptor/control writes. No new data,callbacks,external providers,substitutes or target/HOST/ISA execution;physical MCU/ROM/RAM/IRQ/OTA unproved.",
+      "origin_unit_sha256": "ba392f9a9a17f00a67dda8ff27e67b34fdaf3e9595298df0c3c95c2f172fea8e"
     }
   ],
   "native_data_units": [

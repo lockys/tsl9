@@ -1,0 +1,293 @@
+{
+  "schema": "TSL9-platform-primitives-contracts-v1",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "evidence": "analysis/platform-primitives-2026-10-24/evidence.json",
+  "confirmed_static": {
+    "crc_step_9290": {
+      "start": 37520,
+      "end": 37562,
+      "input_state_register": "A0",
+      "input_byte_expression": "A1<<8",
+      "polynomial": 4129,
+      "polynomial_instruction_PCs": [
+        37522,
+        37528
+      ],
+      "initial_counter": 9,
+      "predecrement_PC": 37532,
+      "predecrement_mask": 255,
+      "loop_test_PC": 37538,
+      "rounds_before_return": 8,
+      "sign_test_bit": 15,
+      "sign_extract_PCs": [
+        37542,
+        37546
+      ],
+      "shift_PC": 37548,
+      "conditional_polynomial_xor_PC": 37554,
+      "truncate_low16_PCs": [
+        37556,
+        37558
+      ],
+      "tail_PC": 37560,
+      "caller_9334_seed": 23205,
+      "caller_three_step_order": [
+        "input byte",
+        "sum modulo256",
+        "low8 of preceding return"
+      ],
+      "caller_ordinary_single_pass_CRC_over12_bytes": false,
+      "live_identifier_processed": false
+    },
+    "zero_fill_18604": {
+      "start": 99844,
+      "end": 99888,
+      "frame_bytes": 16,
+      "ROM_slot_load_PC": 99850,
+      "ROM_slot_address": 262216,
+      "AUIPC_PC": 99854,
+      "ADDI_PC": 99858,
+      "nominal_RAM_address": 536922400,
+      "bytes": 56,
+      "indirect_call_PC": 99872,
+      "post_fill_byte_PC": 99876,
+      "post_fill_offset": 4,
+      "post_fill_value": 3,
+      "next_address": 99888,
+      "next_self_loop_handlers_included": false
+    },
+    "edge_mask_18e1c": {
+      "start": 101916,
+      "end": 102022,
+      "descriptor_argument": "A0",
+      "descriptor_words": [
+        {
+          "offset": 0,
+          "role": "initial bitmask into A6; mask is freshly reloaded at18E4C"
+        },
+        {
+          "offset": 4,
+          "role": "target register offset from0x40010400"
+        },
+        {
+          "offset": 8,
+          "role": "trigger offset;16 selects both8 and12"
+        },
+        {
+          "offset": 12,
+          "role": "enable iff full32-bit value is nonzero"
+        }
+      ],
+      "block_base": 1073808384,
+      "enable_test_PC": 101938,
+      "enabled_initial_clear_offsets": [
+        0,
+        4
+      ],
+      "enabled_selected_offset": "descriptor+4",
+      "mask_reload_PC": 101964,
+      "edge_clear_offsets": [
+        8,
+        12
+      ],
+      "trigger_select_PC": 101986,
+      "both_edge_value": 16,
+      "both_edge_offsets": [
+        8,
+        12
+      ],
+      "other_trigger_selected_offset": "descriptor+8",
+      "disabled_path_start": 102014,
+      "disabled_path_action": "Read selected mode register and clear initial mask only;trigger registers are not updated",
+      "terminal_return_PCs": [
+        102002,
+        102012,
+        102020
+      ],
+      "next_function_18e86_excluded": true
+    },
+    "routing_1904a": {
+      "start": 102474,
+      "end": 102518,
+      "parameter_roles": {
+        "A0": "full unmasked route value",
+        "A1": "line value"
+      },
+      "base": 1073807360,
+      "address_expression": "0x40010000+(A1&252)+8",
+      "shift_expression": "4*(A1&3)",
+      "clear_mask_expression": "~(15<<shift)",
+      "clear_store_PC": 102504,
+      "fresh_read_after_clear_PC": 102506,
+      "unmasked_value_shift_PC": 102508,
+      "final_store_PC": 102514,
+      "range_or_route_value_guard_present": false
+    },
+    "halfword_descriptor_196c4": {
+      "start": 104132,
+      "end": 104222,
+      "arguments": {
+        "A0": "peripheral block base",
+        "A1": "readable descriptor address"
+      },
+      "control_read_PC": 104132,
+      "preserve_control_mask": 12352,
+      "descriptor_halfword_offsets": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14
+      ],
+      "descriptor_all_fields_ORed_without_validation": true,
+      "control_write_PC": 104192,
+      "control_write_offset": 0,
+      "secondary_read_PC": 104196,
+      "secondary_clear_bit": 11,
+      "secondary_write_PC": 104208,
+      "secondary_offset": 28,
+      "final_descriptor_read_PC": 104212,
+      "final_descriptor_offset": 16,
+      "final_write_PC": 104216,
+      "final_write_offset": 16,
+      "status_poll_or_error_return_present": false
+    },
+    "enable_1971e": {
+      "start": 104222,
+      "end": 104252,
+      "argument_base": "A0",
+      "enable_argument": "A1",
+      "enable_condition": "Full32-bit A1 !=0",
+      "read_PC": 104222,
+      "register_offset": 0,
+      "bit": 6,
+      "enable_PC": 104228,
+      "disable_alternative_PC": 104238,
+      "disable_mask_PC": 104242,
+      "shared_write_PC": 104232,
+      "terminal_ret_PC": 104236,
+      "backward_jump_PC": 104250,
+      "after_RET_alternative_retained": true
+    },
+    "prior_caller_17040_composition": {
+      "caller_evidence": "analysis/main-services-2026-10-24/initialization-contracts.json",
+      "routing_calls": [
+        {
+          "PC": 94468,
+          "provider": 102474,
+          "A0": 2,
+          "A1": 6,
+          "result_address": 1073807372,
+          "result_shift": 8
+        },
+        {
+          "PC": 94482,
+          "provider": 102474,
+          "A0": 2,
+          "A1": 7,
+          "result_address": 1073807372,
+          "result_shift": 12
+        }
+      ],
+      "edge_call": {
+        "PC": 94506,
+        "provider": 101916,
+        "descriptor_words": [
+          192,
+          0,
+          12,
+          1
+        ],
+        "selected_mask_bits": [
+          6,
+          7
+        ],
+        "mode_offsets_cleared": [
+          0,
+          4
+        ],
+        "mode_offset_set": 0,
+        "edge_offsets_cleared": [
+          8,
+          12
+        ],
+        "edge_offset_set": 12
+      },
+      "descriptor_call": {
+        "PC": 94614,
+        "provider": 104132,
+        "A0": 1073819648,
+        "descriptor_halfwords": [
+          0,
+          260,
+          0,
+          0,
+          0,
+          512,
+          16,
+          0,
+          7
+        ],
+        "first_eight_OR": 788,
+        "control_write_expression": "u16((freshC0&0x3040)|0x0314)",
+        "secondary_write_expression": "u16(freshC28&0xF7FF)",
+        "last_write_value": 7,
+        "last_write_address": 1073819664
+      },
+      "enable_call": {
+        "PC": 94624,
+        "provider": 104222,
+        "A0": 1073819648,
+        "A1": 1,
+        "OR_mask": 64
+      },
+      "period_setup": {
+        "evidence_PC": 94396,
+        "clock_source": "u32 at originalGP+108",
+        "divisor": 8000000,
+        "period_store": 1073743916,
+        "compare_store": 1073743932
+      }
+    }
+  },
+  "inferences": [
+    {
+      "candidate": "SPI-style control/enable block",
+      "basis": "18B halfword descriptor,control-bit6 enable,secondary bit11 cleared,and polynomial-like halfword written at+16",
+      "physical_part_or_vendor_identified": false
+    },
+    {
+      "candidate": "EXTI-style mask/edge controller and AFIO-style nibble routing",
+      "basis": "Descriptor-controlled0/4 mask banks,8/12 edge banks,and routing nibbles for lines6/7",
+      "rising_falling_port_and_package_pin_names_vendor_verified": false
+    },
+    {
+      "candidate": "CRC16 MSB-first0x1021 update",
+      "basis": "Eight left-shift rounds,bit15 test,conditional0x1021 XOR and16-bit truncation",
+      "standard_named_end_to_end_CRC_profile_assumed": false
+    }
+  ],
+  "feature_opportunity": {
+    "idea": "Read-only startup configuration audit reporting interrupt-route fields,edge masks,SPI-style control values and clock-derived period",
+    "implemented": false,
+    "original_hardware_behavior_modified": false,
+    "limits": "First prove the physical peripheral map,ROM contract and an appropriate safe diagnostic interface;do not introduce interrupt filtering or speculative timing changes."
+  },
+  "unknowns": [
+    "actual MCU/silicon revision and physical peripheral identities",
+    "route value2's actual port/pad mapping",
+    "real register/ROM/RAM/clock state",
+    "external controller model and wiring",
+    "simultaneous/interrupt ABI and complete execution paths",
+    "original memory/boot/OTA compatibility"
+  ],
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
