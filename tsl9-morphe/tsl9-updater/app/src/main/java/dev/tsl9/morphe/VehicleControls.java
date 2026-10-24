@@ -16,6 +16,7 @@ public final class VehicleControls {
     }
     private enum Phase {IDLE,ONESHOT,MOVING,STOPPING,CONFIG_WRITE,CONFIG_CONFIRM}
     public enum Gate {READY,UNAVAILABLE,INFO,BOOT,ACTIVE}
+    public enum LightGate {READY,CONTROL,CONFIG_LENGTH,IDENTITY,HARDWARE,STALE}
     private final Listener listener;private final OtaSession.Clock clock;
     private Phase phase=Phase.IDLE;private boolean available,hasTelemetry,lightVerified;private int identityEpoch;
     private long telemetryAt,infoAt,deadline;private int speed,gear,sequence,telemetryBytes=-1;private byte[] info,expectedConfig;
@@ -53,14 +54,24 @@ public final class VehicleControls {
         tick();
         if(phase==Phase.CONFIG_CONFIRM&&configMatches(data)){lightVerified=true;finish(m("car_light_verified"));}
     }
-    public boolean lightingAvailable(){long age=clock.now()-infoAt;if(!canOperate()||!telemetryFresh()||gear!=1||speed!=0||info.length!=76||age<0||age>10000)return false;boolean uid=false;for(int i=4;i<18;i++)uid|=info[i]!=0;if(!uid)return false;int hw=info[0]&255;return hw==0||hw==3||hw==5||hw==6||hw==7||hw==8||hw==19;}
+    public LightGate lightingGate(){
+        if(!canOperate())return LightGate.CONTROL;if(info.length!=76)return LightGate.CONFIG_LENGTH;
+        boolean uid=false;for(int i=4;i<18;i++)uid|=info[i]!=0;if(!uid)return LightGate.IDENTITY;
+        int hw=info[0]&255;if(hw!=0&&hw!=3&&hw!=5&&hw!=6&&hw!=8&&hw!=19)return LightGate.HARDWARE;
+        long age=clock.now()-infoAt;return age<0||age>10000?LightGate.STALE:LightGate.READY;
+    }
+    public boolean lightingAvailable(){return lightingGate()==LightGate.READY;}
     public boolean blinkHighBeam(){return info!=null&&info.length==76&&(info[30]&0x40)!=0;}
     public boolean perform(Action action){
         if(action==null||action.seat||!canOperate())return false;
         phase=Phase.ONESHOT;deadline=clock.now()+8000;int token=++sequence;
         listener.changed(m("car_sending"));listener.log("CAR DIRECT action="+action+" code="+action.code+" telemetryRequired=false checkboxRequired=false retry=none");
         if(token!=sequence||phase!=Phase.ONESHOT)return false;
-        listener.sendGuarded(0xa7,new byte[]{(byte)action.code},()->{if(token==sequence&&phase==Phase.ONESHOT)finish(m("car_sent_unconfirmed"));},()->token==sequence&&phase==Phase.ONESHOT&&eligible()&&clock.now()<deadline);return true;
+        listener.sendGuarded(0xa7,new byte[]{(byte)action.code},()->{if(token==sequence&&phase==Phase.ONESHOT){listener.log("CAR DIRECT frame_drained action="+action+" code="+action.code+" vehicleExecution=unconfirmed");finish(m(action==Action.UNLOCK?"car_unlock_sent":"car_sent_unconfirmed"));}},()->token==sequence&&phase==Phase.ONESHOT&&eligible()&&clock.now()<deadline);return true;
+    }
+    public void onControlReply(byte[] payload){
+        StringBuilder raw=new StringBuilder();if(payload!=null)for(int i=0;i<Math.min(2,payload.length);i++){if(i>0)raw.append(' ');raw.append(String.format(Locale.ROOT,"%02X",payload[i]&255));}
+        listener.log("CAR OEM A7 reply len="+(payload==null?0:payload.length)+" firstBytes="+raw+" interpretation=raw-only vehicleExecution=unconfirmed");
     }
     public boolean beginSeat(Action action){
         if(action==null||!action.seat||!canOperate())return false;

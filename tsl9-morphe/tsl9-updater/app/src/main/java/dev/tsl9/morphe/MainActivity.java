@@ -22,8 +22,8 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     private final Handler handler=new Handler(Looper.getMainLooper());
     private BleClient ble;private OtaSession ota;private BluetoothDevice selected;private int reconnects;
     private VehicleControls car;private TabHost tabs;private CheckBox lightLayout;private LiveVehicleData liveData;private LivePanel livePanel;
-    private TextView versionView,carVersionView,carReadiness,carStatus;private DeviceInfoSnapshot versionInfo;
-    private Button pressedSeat,versionButton,carVersionButton,carRefreshButton,seatStop,lightOn,lightOff;private long lastCarPoll,lastCarInfoPoll;private boolean closeVehicleAfterStop;private String lastCarGate="";
+    private TextView versionView,carVersionView,carReadiness,carStatus,lightStatus;private DeviceInfoSnapshot versionInfo;
+    private Button pressedSeat,versionButton,carVersionButton,carRefreshButton,seatStop,lightOn,lightOff;private long lastCarPoll,lastCarInfoPoll;private boolean closeVehicleAfterStop;private String lastCarGate="",lastLightGate="";
     private final ArrayList<Button> carButtons=new ArrayList<>();
     private LinearLayout captureDetails,languagePanel,driverPad,passengerPad;private TextView headerConnection;private Button languageButton,driverSelector,passengerSelector;private int selectedSeat;
     private HardwareCapture hardware;private boolean captureStopping,disconnectAfterCaptureStop,canStreaming,hardwareSession,hardwareDirty,hardwareScheduled;
@@ -157,6 +157,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         passengerPad=seatRow(new VehicleControls.Action[]{VehicleControls.Action.PASSENGER_LEFT,VehicleControls.Action.PASSENGER_RIGHT,VehicleControls.Action.PASSENGER_UP,VehicleControls.Action.PASSENGER_DOWN});body.addView(driverPad);body.addView(passengerPad);selectSeat(0);
         body.addView(text(s(R.string.ui_seat_hint),13,MUTED));seatStop=button(s(R.string.car_stop_seat),()->car.stopSeat());body.addView(seatStop);carStatus=text(s(R.string.car_idle),13,GREEN);body.addView(carStatus);
         LinearLayout lighting=AppUi.column(this);lightLayout=new CheckBox(this);lightLayout.setText(s(R.string.car_light_layout));lightLayout.setOnCheckedChangeListener((v,on)->refresh());lighting.addView(lightLayout);lighting.addView(text(s(R.string.car_light_help),13,MUTED));
+        lightStatus=text("",13,AppUi.TEAL);lighting.addView(lightStatus);
         lightOn=button(s(R.string.car_light_on),()->confirmLight(true));lightOff=button(s(R.string.car_light_off),()->confirmLight(false));lighting.addView(lightOn);lighting.addView(lightOff);AppUi.disclosure(this,body,s(R.string.car_lights),lighting);
         body.addView(text(s(R.string.car_help),13,MUTED));
         LinearLayout details=AppUi.column(this);details.addView(text(s(R.string.car_seat_help),13,MUTED));details.addView(button(s(R.string.car_connect_tab),()->tabs.setCurrentTabByTag("tools")));carVersionButton=button(s(R.string.version_read),this::requestInfo);details.addView(carVersionButton);carVersionView=text(s(R.string.version_not_read),13,MUTED);carVersionView.setTextIsSelectable(true);details.addView(carVersionView);carRefreshButton=button(s(R.string.car_read_status),this::requestCarStatus);details.addView(carRefreshButton);AppUi.disclosure(this,body,s(R.string.ui_module_details),details);return scroll;
@@ -206,10 +207,25 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         carRefreshButton.setEnabled(canReadVehicle());
         lightOn.setEnabled(ready&&ble.idle()&&lightLayout.isChecked()&&car.lightingAvailable()&&!car.blinkHighBeam());
         lightOff.setEnabled(ready&&ble.idle()&&lightLayout.isChecked()&&car.lightingAvailable()&&car.blinkHighBeam());
+        putText(lightStatus,lightingStatus(ready));
+        String lightGate=car.lightingGate().name()+"/layout="+lightLayout.isChecked()+"/idle="+ble.idle();
+        if(carTabVisible()&&!lightGate.equals(lastLightGate)){lastLightGate=lightGate;log("CAR LIGHT gate="+lightGate+" infoBytes="+(info==null?0:info.length)+" hwByte="+(info==null?-1:info[0]&255)+" telemetryRequired=false settingOnly=true");}
         String line=!ble.ready()?s(R.string.disconnected):!car.telemetryFresh()?s(R.string.car_telemetry_unknown):s(R.string.car_telemetry,car.gear()==1?"P":car.gear()==2?"R":car.gear()==3?"N":car.gear()==4?"D":"?",car.speed());
         String code=carGateCode();String gateText=carGateText(code);if(!line.equals(gateText))line+="\n"+gateText;
         if(carTabVisible()&&!code.equals(lastCarGate)){lastCarGate=code;log("CAR GATE "+code+" statusBytes="+car.telemetryBytes()+" fresh="+car.telemetryFresh()+" gear="+car.gear()+" speed="+car.speed()+" directBodyControl=true");}
         putText(carReadiness,line);
+    }
+    private String lightingStatus(boolean ready){
+        if(!ready)return carGateText(carGateCode());
+        if(!lightLayout.isChecked())return s(R.string.car_light_need_layout);
+        switch(car.lightingGate()){
+            case CONFIG_LENGTH:return s(R.string.car_light_need_config,info==null?0:info.length);
+            case IDENTITY:return s(R.string.car_light_need_identity);
+            case HARDWARE:return s(R.string.car_light_bad_hw,info==null?-1:info[0]&255);
+            case STALE:return s(R.string.car_light_stale);
+            case CONTROL:return s(R.string.car_action_busy);
+            default:return !ble.idle()?s(R.string.car_light_wait_transport):s(car.blinkHighBeam()?R.string.car_light_enabled:R.string.car_light_disabled);
+        }
     }
     private String carGateCode(){
         if(!ble.ready())return "BLE";if(leaving)return "BACKGROUND";if(ota.active())return "OTA";if(hardware.active()||captureStopping)return "CAPTURE";if(passwordRequired&&!passwordAccepted)return "AUTH";
@@ -253,6 +269,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         boolean wasCapturing=hardware.active();int before=hardware.records();hardware.packet(packet.command,packet.payload);if(wasCapturing&&(before!=hardware.records()||!hardware.active()))hardwareChanged();
         if(wasCapturing&&!hardware.active())stopHardware(hardware.reason(),false);
         if(packet.command==0xb0){liveData.onStatus(packet.payload);car.onTelemetry(packet.payload);log("CAR STATUS B0 len="+packet.payload.length+" fieldsValid="+(packet.payload.length>=4)+" gear="+car.gear()+" speed="+car.speed()+" payload=redacted");car.tick();refresh();return;}
+        if(packet.command==0xa7){car.onControlReply(packet.payload);return;}
         if(packet.command==0xa3){log("CAR A3 echo received; A0 required for readback confirmation");return;}
         if(packet.command==0xa8&&packet.payload.length>0){int result=packet.payload[0]&255;
             if(result==1){passwordAccepted=true;log("AUTH accepted");if(!ota.active()||ota.waitingBoot())requestInfo();}

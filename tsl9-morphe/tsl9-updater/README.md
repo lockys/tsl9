@@ -1,8 +1,12 @@
-# TSL9 硬體工具 0.7.1-test
+# TSL9 硬體工具 0.7.2-test
 
 本機測試用 Android APK：手動連線 TSL9、擷取硬體 BLE／CAN 記錄、選擇原廠或自行修改的 APP bin，依原廠 U/S/W/R/E 協定寫入運行韌體。選檔與匯出均透過 Android 系統選檔器，沒有 INTERNET 權限，不打包韌體。
 
-APK：[`TSL9-Updater-0.7.1-test.apk`](../artifacts/tsl9-updater/TSL9-Updater-0.7.1-test.apk)。獨立套件 `dev.tsl9.morphe.test`；debug 簽章供本機測試。原始 APK 分析見 [REA 報告](../artifacts/firmware-trace/REPORT.zh-TW.md)。0.3 的原廠流程對照與保留差異見 [OEM-ALIGNMENT.md](OEM-ALIGNMENT.md)。
+APK：[`TSL9-Updater-0.7.2-test.apk`](../artifacts/tsl9-updater/TSL9-Updater-0.7.2-test.apk)。獨立套件 `dev.tsl9.morphe.test`；debug 簽章供本機測試。原始 APK 分析見 [REA 報告](../artifacts/firmware-trace/REPORT.zh-TW.md)。0.3 的原廠流程對照與保留差異見 [OEM-ALIGNMENT.md](OEM-ALIGNMENT.md)。
+
+0.7.2依原廠實際設定流程移除燈光快捷額外的檔位／車速回報條件，並顯示完整設定、layout及新鮮度等停用原因。解鎖完整封包與原廠相同，保留A7/23並新增傳送完成與原始回覆診斷；解鎖不等於彈開車門，實車無效原因尚待新版log確認。座椅指令與停止機制保留。見 [原廠車控對照](OEM-BODY-ALIGNMENT.md)。
+
+0.7.2驗證：171項合成JVM模型與101項原廠JS對照（共272項）、1138項三語資源、548項Android介面／生命週期檢查通過；真實系統選檔／匯出另通過142項Android及4項匯出內容檢查。原廠對照在離線VM中執行固定來源的方法，不是完整原廠App或實車測試。見 [精確收據](verification/ui-0.7.2.json) 與 [畫面截圖](verification/screens/0.7.2/)。
 
 0.7.1移除使用者專屬路徑並改用中性套件名稱。這會另行安裝，不能覆蓋舊套件；舊 App 的本機設定與記錄不會自動搬移。工具偵測與截圖重現方式見 [PORTABILITY.md](PORTABILITY.md)。0.7.0 的驗證收據保留當時真實套件與雜湊。
 
@@ -96,8 +100,9 @@ App 內可選跟隨系統、简体中文、繁體中文、English。Android 13 �
 原生 Java、minSdk 23／targetSdk 36；無第三方 App runtime、JNI 或 native library。`Protocol`、`FirmwareImage`、`OtaSession`、`HardwareCapture` 可獨立 JVM 測試，`BleClient` 序列化主執行緒 GATT 操作，`MainActivity` 處理 UI 與私有檔案。
 
 ```powershell
-pwsh -File ./test.ps1
-pwsh -File ./test.ps1 -FactoryPaged './inputs/fw-app.bin' -FactoryRaw './inputs/fw-app-stripped.bin'
+pwsh -File ./test.ps1 -SkipOemReference
+pwsh -File ./test.ps1 -OriginalJs './inputs/app-service.js'
+pwsh -File ./test.ps1 -SkipOemReference -FactoryPaged './inputs/fw-app.bin' -FactoryRaw './inputs/fw-app-stripped.bin'
 pwsh -File ../scripts/test-android-tools.ps1
 pwsh -File ./build.ps1
 pwsh -File ./test-documents.ps1 -Serial '<your-emulator-serial>'

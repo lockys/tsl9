@@ -1,6 +1,6 @@
 # TSL 1.2.7 minimal Morphe smoke patch
 
-此目錄同時收錄獨立的 [TSL9 Android 硬體工具](tsl9-updater/README.md)，目前來源版本為 `0.7.1-test`。App 原始碼、三語資源、JVM 與 Android 測試位於 `tsl9-updater/`；下方內容記錄較早的 Morphe 文字 patch 實驗。
+此目錄同時收錄獨立的 [TSL9 Android 硬體工具](tsl9-updater/README.md)，目前來源版本為 `0.7.2-test`。App 原始碼、三語資源、JVM 與 Android 測試位於 `tsl9-updater/`；下方內容記錄較早的 Morphe 文字 patch 實驗。
 
 此來源快照不包含原廠 APK／BIN、附件、實車日誌、反編譯輸出、工具、簽章金鑰或建置快取。部分證據連結與 OEM 差異測試依賴本機 `artifacts/firmware-trace/`，需在本機另備相符輸入，不能將缺少素材視為該測試通過。Android 建置需依文件配置本機 SDK／Gradle；`local.properties` 不納入版本控制。
 
