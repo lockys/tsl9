@@ -2,14 +2,15 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/record-actions-2026-10-25/readme.en.md): all 38,212B of measured code/data match the official BIN after native address placement; 147 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/record-helpers-2026-10-25/readme.en.md): all 39,122B of measured code/data match the official BIN after native address placement; 145 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:127 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:128 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
+| [Record helpers and periodic callbacks](native/receive/record_helpers.c) | Twelve whole functions910B/306i | Shared wrapper,periodic callbacks,table selection and scheduling;twelve entries resolved,ten dependencies exposed. Main37372B code+1750B data/2468RELA/145UND;all39122B original-address equal. [Evidence](../analysis/record-helpers-2026-10-25/readme.en.md) |
 | [Record actions and shared mutator](native/receive/record_actions.c) | Nineteen whole functions1506B/479i | Record builders,shared mutation and conditional notifications;nineteen entries resolved,five dependencies exposed. Main36462B code+1750B data/2395RELA/147UND;all38212B original-address equal. [Evidence](../analysis/record-actions-2026-10-25/readme.en.md) |
 | [State controls and record transfer](native/receive/state_controls.c) | Ten whole functions1266B/452i | Conditional control,record transfer and ordered cleanup;seven entries resolved,no new dependencies. Main34956B code+1750B data/2316RELA/161UND;all36706B original-address equal. [Evidence](../analysis/state-controls-2026-10-25/readme.en.md) |
 | [Control gates and callbacks](native/receive/control_gates.c) | Twelve whole functions892B/308i | Bitmap dispatch,word modes,toggle and paired callbacks;five entries resolved,no new dependencies. Main33690B code+1750B data/2257RELA/168UND;all35440B original-address equal. [Evidence](../analysis/control-gates-2026-10-25/readme.en.md) |
