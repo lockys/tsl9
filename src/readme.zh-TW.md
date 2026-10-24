@@ -2,9 +2,9 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-[最新原始位址驗證](../analysis/callback-completion-2026-10-25/README.md)：44,085B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 132 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
+[最新原始位址驗證](../analysis/feature-state-records-2026-10-25/README.md)：45,345B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 126 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 133 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 134 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC資料組裝、記錄處理與立即／延後通知 | 1308B／461指令原位址碼吻合；真實7346B＋60B圖；接通2個入口、新增27個getter依賴，共93個UND；硬體／OTA未證 |
 | [state access](native/receive/state_access.c) | 82A8 記錄搬移、10032 清除與四組狀態更新／讀取 | 336B／108指令，C/C++原位址碼吻合；實際6038B＋60B圖有68個UND；ROM、13C4E用途、索引界限與硬體／OTA未證 |
@@ -12,6 +12,7 @@
 
 | 目錄 | 內容 | 目前限制 |
 | --- | --- | --- |
+| [功能狀態與記錄](native/receive/feature_state_records.c) | 十九個選定本體1260B／424i | 判定、計數、selector、記錄改寫與私有分派；接上11入口，新增1函式＋4資料缺口。主元件43574B code＋1771B data／2823RELA／126UND；45345B原址吻合。[證據](../analysis/feature-state-records-2026-10-25/README.md) |
 | [回呼缺口與輸入組裝](native/receive/callback_completion.c) | 五個完整函式444B／162i | 二位置組裝、模式／門檻、回繞重試與有號16位幅值；接上兩入口，無新依賴。主元件42314B code＋1771B data／2708RELA／132UND；44085B原址吻合。[證據](../analysis/callback-completion-2026-10-25/README.md) |
 | [定時記錄與旗標](native/receive/record_continuations.c) | 八個完整函式418B／138i | 旗標指標、記錄位元、序列與回繞重複回呼；接上七入口，無新依賴。主元件41870B code＋1771B data／2675RELA／134UND；43641B原址吻合。[證據](../analysis/record-continuations-2026-10-25/README.md) |
 | [記錄參數與模式](native/receive/record_profiles.c) | 四個完整函式978B／310i | 索引、欄位、範圍限制與模式3／4門控；接上兩入口，無新依賴。主元件41452B code＋1771B data／2647RELA／141UND；43223B原址吻合。[證據](../analysis/record-profiles-2026-10-25/README.md) |
