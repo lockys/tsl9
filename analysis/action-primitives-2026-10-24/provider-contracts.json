@@ -1,0 +1,233 @@
+{
+  "schema": "TSL9-action-primitives-contracts-v1",
+  "evidence": "evidence.json",
+  "raw_opcode_checks": {
+    "0x10d9a": "lui a5, 0x10",
+    "0x10da4": "addi a5, a5, -2",
+    "0x10da6": "li a0, 0",
+    "0x10db4": "li a0, 1",
+    "0x10dc2": "li a0, 3",
+    "0x10dc8": "li a0, 2",
+    "0x1552a": "li a5, 1",
+    "0x1552c": "sb a5, 358(gp)",
+    "0x15530": "ret",
+    "0x15538": "andi a5, a0, 1",
+    "0x1553c": "slli a4, a5, 0x3",
+    "0x15548": "andi a5, a5, -9",
+    "0x15550": "sb a5, 4(a3)",
+    "0x15556": "jal ra, 0x13138",
+    "0x1555c": "jal ra, 0x820c",
+    "0x15562": "jal ra, 0x13d48",
+    "0x15566": "xori s1, s0, 1",
+    "0x1556a": "bnez s0, 0x1557e",
+    "0x1556c": "jal ra, 0x9af0",
+    "0x1557a": "j 0x9792",
+    "0x1557e": "jal ra, 0x9ae4",
+    "0x17f84": "lbu a5, -1614(a5)",
+    "0x17f88": "bnez a5, 0x17f94",
+    "0x17f92": "beqz a5, 0x17fa8",
+    "0x17fa4": "j 0x9124",
+    "0x17fb4": "lw a5, 12(s0)",
+    "0x17fbc": "sw a5, -1688(a4)",
+    "0x17fc0": "jal ra, 0x17c4e",
+    "0x17fc4": "lw a3, 12(s0)",
+    "0x17fda": "bltu a4, a5, 0x17ffe",
+    "0x17ff4": "bleu a5, a4, 0x1800e",
+    "0x18008": "jal ra, 0x9124",
+    "0x18016": "sb a5, -1770(a4)",
+    "0x1801e": "sb zero, -1779(a5)",
+    "0x18026": "sw zero, -1782(a5)",
+    "0x1802a": "jal 0x17f80",
+    "0x18032": "sb a1, -1798(a5)",
+    "0x1803a": "sb zero, -1807(a5)",
+    "0x1803e": "bnez a2, 0x1804c",
+    "0x1804a": "or a0, a0, a5",
+    "0x18050": "sw a0, -1824(a5)",
+    "0x18054": "li a0, 0",
+    "0x18056": "j 0x17f80",
+    "0x18066": "li a2, 5",
+    "0x18072": "bltu a2, a4, 0x1809e",
+    "0x1807e": "slli a4, a4, 0x2",
+    "0x18082": "lw a4, 0(a4)",
+    "0x1808e": "jr a4",
+    "0x180a4": "jal ra, 0x1802e",
+    "0x180ac": "lbu a5, -1922(a5)",
+    "0x180b2": "addi a5, a5, 1",
+    "0x180b4": "rem a5, a5, a4",
+    "0x180be": "sb a5, -1940(a4)",
+    "0x180fa": "jal ra, 0x1552a",
+    "0x18104": "li a2, 1",
+    "0x18106": "li a1, 200",
+    "0x1810c": "j 0x1802e",
+    "0x18110": "li a2, 1",
+    "0x18112": "li a1, 3",
+    "0x18114": "li a0, 0",
+    "0x18116": "j 0x1802e",
+    "0x18122": "not a5, a1",
+    "0x18126": "and a5, a5, a4",
+    "0x1812a": "or a5, a5, a0",
+    "0x18132": "sb a5, 2039(a4)",
+    "0x18140": "mv s0, a2",
+    "0x18142": "beqz a1, 0x1817e",
+    "0x18146": "jal ra, 0x9454",
+    "0x1814e": "lbu a5, 2011(a5)",
+    "0x18152": "beqz a5, 0x18186",
+    "0x18156": "jal ra, 0x1805a",
+    "0x1815e": "addi a2, a2, -192",
+    "0x1816c": "jal ra, 0x9124",
+    "0x18170": "beqz s0, 0x18198",
+    "0x1817a": "j 0x13d48",
+    "0x18180": "li a0, 300",
+    "0x1818e": "jal ra, 0x90b0",
+    "0x18192": "jal ra, 0x18110",
+    "0x1819e": "ret"
+  },
+  "confirmed_static": {
+    "sentinel_index_10d9a": {
+      "range": [
+        69018,
+        69068
+      ],
+      "sentinel": 65534,
+      "result": "0 if first halfword matches;otherwise1 if second;otherwise2 if third;otherwise3.",
+      "physical_record_type_proved": false
+    },
+    "pending_1552a": {
+      "range": [
+        87338,
+        87346
+      ],
+      "GP_offset": 358,
+      "value": 1,
+      "consumer": "155D0 checks and clears byte358 before18110."
+    },
+    "mode_bit_15532": {
+      "range": [
+        87346,
+        87428
+      ],
+      "config_pointer_GP": 84,
+      "config_byte_offset": 4,
+      "mask": 8,
+      "stored_bit": "(original A0&1)<<3; other config bits retained",
+      "branch_on": "Full32-bit original A0,not a normalized boolean",
+      "tail_argument": "Full32-bit original A0 XOR1",
+      "calls": [
+        78136,
+        33292,
+        81224,
+        39664,
+        39652,
+        38802
+      ],
+      "product_DND_name_proved": false,
+      "physical_persistence_proved": false
+    },
+    "output_17f80": {
+      "range": [
+        98176,
+        98350
+      ],
+      "nominal_base": 536922400,
+      "early_gate_bytes": [
+        536922418,
+        536922436
+      ],
+      "early_nonzero_path": "Requeue original17F80 through9124 with numeric delay100,A1=0,A3=0.",
+      "mask_field_offset": 12,
+      "mirror_field_offset": 0,
+      "opaque_output_provider": 97358,
+      "fresh_after_output_call": [
+        "Word12",
+        "Byte7",
+        "Byte8"
+      ],
+      "numeric_requeue_values": [
+        20,
+        100
+      ],
+      "clear_path": "Set byte8=3,byte7=0,word12=0,call17F80 then continue common fresh increment.",
+      "time_units_proved": false,
+      "hardware_effects_proved": false
+    },
+    "mask_apply_1802e": {
+      "range": [
+        98350,
+        98394
+      ],
+      "nominal_base": 536922400,
+      "byte8": "Low8 bits of original A1",
+      "byte7": 0,
+      "word12": "Original A2==0 ? original A0 OR fresh old word12 : original A0",
+      "mode_test": "Full32-bit original A2",
+      "tail_call": 98176,
+      "tail_A0": 0
+    },
+    "cycle_1805a": {
+      "range": [
+        98394,
+        98544
+      ],
+      "phase_byte": 536922406,
+      "flag_byte": 536922405,
+      "table": 109316,
+      "entries": 6,
+      "unique_targets": 4,
+      "jump_PC": 98446,
+      "guard_PC": 98418,
+      "phase_above5_mask": 0,
+      "apply_arguments": {
+        "A1": 200,
+        "A2": 1
+      },
+      "counter_update": "Reload phase byte after1802E,increment by1 then original signed REM6; fresh byte range makes result0..5 on normal return.",
+      "phase_snapshot_reused": false,
+      "runtime_cycle_observed": false
+    },
+    "manual_180f0": {
+      "range": [
+        98544,
+        98576
+      ],
+      "sets_pending_via": 87338,
+      "forwards_original_A0": true,
+      "apply_arguments": {
+        "A1": 200,
+        "A2": 1
+      }
+    },
+    "clear_18110": {
+      "range": [
+        98576,
+        98586
+      ],
+      "apply_arguments": {
+        "A0": 0,
+        "A1": 3,
+        "A2": 1
+      }
+    },
+    "control_1811a": {
+      "range": [
+        98586,
+        98720
+      ],
+      "flag_byte": 536922405,
+      "flag_update": "Low8 bits of ((old_byte & ~original A1) | original A0)",
+      "delay_provider": 37972,
+      "delay_rule": "Original A1!=0 passes2;otherwise original A0!=0 passes300;otherwise no delay call.",
+      "after_delay": "Fresh flag-byte read",
+      "nonzero_flags": "Call1805A then9124(callback1805A,A1=1,A2=8000,A3=0).",
+      "zero_flags": "Call90B0(callback1805A),then18110.",
+      "post_refresh": "Full32-bit original A2!=0 tails13D48(0).",
+      "time_units_or_scheduler_mode_proved": false
+    }
+  },
+  "unconfirmed": [
+    "181 genuine providers including17C4E and9AE4",
+    "Product names,GPIO/CAN meanings and scheduler units",
+    "Installed ROM/private ABI,asynchronous state ownership",
+    "Physical MCU,startup/RAM/IRQ and OTA compatibility"
+  ],
+  "firmware_ready": false
+}
