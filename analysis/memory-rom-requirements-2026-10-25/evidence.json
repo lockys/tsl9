@@ -1,0 +1,164 @@
+{
+  "schema": "TSL9-memory-ROM-requirements-v1",
+  "passed": true,
+  "inputs": {
+    "current": {
+      "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "legacy": {
+      "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2581-V4.1.00-decoded.bin",
+      "sha256": "32639d7d6df2abac1b966a72de663dc1c215165edf4f4ee0b58acc78e0f60bcc"
+    },
+    "source_map": {
+      "path": "experiments/tsl9-original-startup/source-map-v1.json",
+      "sha256": "31c5965cce82f511cf3687091a419b715a095945c7b1af24d41434e0fb33ddc0"
+    },
+    "reader": {
+      "path": "experiments/tsl9-feature-dispatch-tree/elf_reader-v4.py",
+      "sha256": "2f7a5dc2d4eeb823e0e4c63f81b3c4fdcffe7cbb39262dc7f6731be675016b15"
+    }
+  },
+  "sdk_header": {
+    "reference": "${ANALYSIS_WORKSPACE}/apk-analysis/tsl9-function-hardware/hardware/wchble_rom.h",
+    "sha256": "fab43e7b8e351596a14d2a434eea4fa79587a8b9bba12738897d35ee2c3dbf2e",
+    "source_url": "https://raw.githubusercontent.com/openwch/ch32v20x/baef0054588f4826548429ff4e7a9257d752ef2f/EVT/EXAM/BLE/LIB/wchble_rom.h",
+    "checked_lines": [
+      2714,
+      2721,
+      2725,
+      2776,
+      2777
+    ],
+    "default_table_base": 262196,
+    "slot_stride": 4,
+    "memset_pointer_slot": 262216,
+    "memcpy_pointer_slot": 262220,
+    "installed_library_identity_proved": false
+  },
+  "current": {
+    "reset_pc": 100010,
+    "initial_gp": 536887296,
+    "initial_sp": 536936448,
+    "initializer_source": 109408,
+    "initialized_bytes": 128,
+    "copy_end": 536887424,
+    "zero_end": 536922456,
+    "initialization_span_bytes": 35160,
+    "zero_bytes": 35032,
+    "numeric_gap_to_initial_sp": 13992
+  },
+  "legacy": {
+    "reset_pc": 99326,
+    "initial_gp": 536887296,
+    "initial_sp": 536936448,
+    "initializer_source": 108512,
+    "initialized_bytes": 136,
+    "copy_end": 536887432,
+    "zero_end": 536922448,
+    "initialization_span_bytes": 35152,
+    "zero_bytes": 35016,
+    "numeric_gap_to_initial_sp": 14000
+  },
+  "zero_end_difference_bytes": 8,
+  "initialized_length_difference_bytes": -8,
+  "zero_length_difference_bytes": 16,
+  "startup_source_map_byte_witnesses": 38,
+  "independent_decoding": {
+    "auipc_addi_pairs": 10,
+    "jal_targets": 3,
+    "loop_branch_targets": 8,
+    "load_store_words": 6,
+    "csr_return_words": 5,
+    "compressed_word_step_sites": 6
+  },
+  "transfers": {
+    "vector_base": 32824,
+    "mtvec_value": 32827,
+    "initial_mepc": 36872,
+    "external_resident_entry": 262144
+  },
+  "compiler": {
+    "reference": "${LLVM_BIN}/clang.exe",
+    "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+    "stdint_sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+  },
+  "authored_inputs": {
+    "experiments/tsl9-memory-rom-contract/requirements-v1.h": "40d81182dcbf92e44ec3f9dae4ff7fa050b4c2c7244adb5a667149b259dbb628",
+    "experiments/tsl9-memory-rom-contract/layout-contract-v1.c": "441be0ea089f80ec616744e3b3f4218bba512303c67b3b399678ede07631b500",
+    "experiments/tsl9-memory-rom-contract/verify-v1.py": "61fb490975fe4c1e0324c100829127a9a378f0268646c8f72ba6f6af8432bc3b"
+  },
+  "modes": {
+    "c": {
+      "language": "c",
+      "standard": "c11",
+      "flags": [
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-ffreestanding",
+        "-fno-ident",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c",
+        "-std=c11"
+      ],
+      "object": "c-requirements.o",
+      "sha256": "c2e8c45e8d43a4ba0b522025485d2e83d189b98ad6da0cd78ce84bf40da19acf",
+      "elf_type": "ET_REL",
+      "entry": 0,
+      "program_headers": 0,
+      "nonempty_allocated_sections": 0,
+      "allocated_code_data_bytes": 0,
+      "relocations": 0,
+      "undefined_symbols": 0
+    },
+    "cpp": {
+      "language": "c++",
+      "standard": "c++17",
+      "flags": [
+        "--target=riscv32-unknown-elf",
+        "-march=rv32imac_zicsr",
+        "-mabi=ilp32",
+        "-ffreestanding",
+        "-fno-ident",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-x",
+        "c++",
+        "-std=c++17"
+      ],
+      "object": "cpp-requirements.o",
+      "sha256": "c2e8c45e8d43a4ba0b522025485d2e83d189b98ad6da0cd78ce84bf40da19acf",
+      "elf_type": "ET_REL",
+      "entry": 0,
+      "program_headers": 0,
+      "nonempty_allocated_sections": 0,
+      "allocated_code_data_bytes": 0,
+      "relocations": 0,
+      "undefined_symbols": 0
+    }
+  },
+  "limits": {
+    "scope": "Exact-image startup numeric requirements and saved SDK default profile only.",
+    "candidate_RAM_bytes": 65536,
+    "candidate_chip_identified": false,
+    "RAM_ownership_proved": false,
+    "gap_is_validated_stack_budget": false,
+    "installed_ROM_body_or_ABI_proved": false,
+    "interrupt_runtime_proved": false,
+    "OTA_compatibility_proved": false,
+    "target_or_host_model_or_ISA_executed": false,
+    "hardware_accessed": false,
+    "network_accessed": false,
+    "BIN_created": false,
+    "new_reconstructed_firmware_bytes": 0
+  }
+}
