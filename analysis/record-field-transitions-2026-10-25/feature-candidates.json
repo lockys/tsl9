@@ -1,0 +1,33 @@
+{
+  "schema": "TSL9-feature-candidates-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Offline packet field difference viewer",
+      "evidence_PCs": [
+        53578,
+        53598,
+        53626,
+        53642
+      ],
+      "value": "Compare owner-provided captures across firmware versions and highlight only changed fields with their evidence locations",
+      "confidence": "inference",
+      "physical_semantics_proved": false,
+      "requires": "User-supplied offline captures and explicit field semantics;never send vehicle commands"
+    },
+    {
+      "name": "Offline byte-lookup explanation",
+      "evidence_PCs": [
+        51582,
+        51656,
+        51692,
+        52256,
+        52276
+      ],
+      "value": "Explain bounded nibble indexing and lookup differences without running the firmware",
+      "confidence": "bounded static interpretation",
+      "requires": "Retain exact image identity and distinguish selected access windows from original declared table extents"
+    }
+  ],
+  "new_hardware_features_enabled": false
+}
