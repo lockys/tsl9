@@ -1,5 +1,7 @@
 # 次要訊息 DATA 與部分連結
 
+本頁記錄 DATA／部分連結階段。後續原位址與靜態流程驗證見[新階段報告](../../analysis/secondary-message-layout-2026-10-26/README.md)。
+
 [English](readme.en.md) · [DATA C/C++](src/secondary_message_data.v1.c) · [驗證摘要](summary.json) · [九段 CODE 候選](../tsl9-secondary-message-dispatch/README.md)
 
 新增兩個實際唯讀 DATA 物件，共 **40 bytes**。C11、C++17 產生相同物件，全部內容與官方 ID2966 V4.1.60 原始窗口吻合。

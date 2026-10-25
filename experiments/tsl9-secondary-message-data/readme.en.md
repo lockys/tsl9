@@ -1,5 +1,7 @@
 # Secondary message DATA and partial component
 
+This page records the DATA/partial-link stage. See the [next-stage report](../../analysis/secondary-message-layout-2026-10-26/readme.en.md) for original-coordinate and static-flow evidence.
+
 [繁體中文](README.md) · [DATA C/C++](src/secondary_message_data.v1.c) · [Verification summary](summary.json) · [Nine CODE candidates](../tsl9-secondary-message-dispatch/README.md)
 
 Two genuine readonly DATA objects add **40 bytes**. C11 and C++17 produce identical objects, with every byte equal to the selected original ID2966 V4.1.60 windows.
