@@ -1,5 +1,7 @@
 # Secondary message and dispatch candidate
 
+This page records the standalone CODE-object stage. See the [next-stage report](../tsl9-secondary-message-data/readme.en.md) for the two DATA providers and partial link.
+
 [繁體中文](README.md) · [C/C++ source](secondary_message_dispatch.c) · [Verification summary](summary.json)
 
 Nine original-context bodies from ID2966 V4.1.60 account for **2,048 bytes / 690 instructions**. C11 and C++17 produce identical RV32 objects. Re-encoding 229 direct transfers and seven HI/LO address pairs at their original addresses reproduces every selected CODE byte. Two independent ELF readers agree; conservative static CFGs reach every retained instruction.

@@ -1,0 +1,750 @@
+{
+  "schema": "TSL9-secondary-message-DATA-component-milestone-v1",
+  "date": "2026-10-26",
+  "status": "40-byte-DATA-and-experimental-partial-link-verified",
+  "native_DATA": {
+    "inputs": {
+      "build": "13e76c41ec7fab0b0befbdefe6d03a2121f092f83111e89d3fc92c9e4b8ccaa6",
+      "spec": "b9b0f3bacd36d3da62c316d57c56c9bf91c2af77011c48cd929e99ea7d667c46",
+      "source": "33b17fc5505fcf897578a7006b2350e70f00885f9ca485e4e288c8e49f14123e",
+      "firmware": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+      "reader": "a56503572e8b65308ae1c8978ba5a6d44d0a20cd969315dc1b12103b59a9b43a",
+      "tools": {
+        "clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+        "ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+        "llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+        "llvm-objcopy.exe": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+      },
+      "stdint": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+      "support": {
+        "experiments/tsl9-secondary-message-dispatch/spec-v1.json": "5975119ee5745e89e384e1d566a6b23b80d10df95bb85bb8d81ee754cdcfb0ce",
+        "experiments/tsl9-secondary-message-dispatch/evidence-v1.json": "0a6be723f03c0fb261bd9244ac34d55195b1e4df5adfc3bdbbfd60cd7ede23d1",
+        "experiments/tsl9-secondary-message-dispatch/audit-v1.py": "eca934ea41d00d2d56ff83f7e1fc33ef997843bc560847055db69a42b5a3cd42",
+        "experiments/tsl9-original-layout/build/central-callbacks-v2/c/layout-map.json": "35767c7ad5835db3961acacd2159a10667143c5d8fad26468271a45541bd56d4",
+        "experiments/tsl9-original-startup/build-v1.py": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5",
+        "experiments/tsl9-remaining-record-dispatch/compare-readers-v1.py": "ed30870a8862a230a0399fcf7ba273078cba2840d005d61799d17cee8f46b223",
+        "analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+        "src/native/receive/memory_transfer.c": "73504a70f93fb2625c2be7aef15e5496d8e3c50addcec9f86c4a8523d8ab71a1",
+        "experiments/tsl9-memory-transfer/spec-v1.json": "c97673bb58cb1576c2abe82d2279d336b8fe32d4504d0c0fad1fdd3de42dd391",
+        "analysis/memory-transfer-2026-10-24/evidence.json": "90f0bc35a1bbbb474e0720394085f79cd0bf6e530b6cc87b85cd4b1ea58cb713"
+      },
+      "peer_firmware": [
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2349-V1.0.00-decoded.bin",
+          "sha256": "8aa3d7eeeeea1a05bd41917ef5c1e6404af670e296e04b72aa322e5634c91f4e",
+          "bytes": 12288,
+          "occurrences": 0
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2389-V4.0.49-decoded.bin",
+          "sha256": "bf45097893ba846e68b6099df2374cbb423591ceb0b4bae37b8988dcc28759c3",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2410-V4.0.50-decoded.bin",
+          "sha256": "8efe823dd03fad5ae70f0df5a0a2c28233cd9045d25aace4425f08be92f49d37",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2492-V1.0.00-decoded.bin",
+          "sha256": "2889084225f808f799e10aa65c6fe31e01a832eed0a1ae149c681088c8e38423",
+          "bytes": 12288,
+          "occurrences": 0
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2527-V4.1.00-decoded.bin",
+          "sha256": "6d3dc488cc545399424b01f9122b484ae255aec79ec96e60770cf0bb47959658",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2580-V1.0.00-decoded.bin",
+          "sha256": "650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb",
+          "bytes": 12288,
+          "occurrences": 0
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2581-V4.1.00-decoded.bin",
+          "sha256": "32639d7d6df2abac1b966a72de663dc1c215165edf4f4ee0b58acc78e0f60bcc",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2590-V4.1.00-decoded.bin",
+          "sha256": "3a75070a782bb2e9de830347f41d52dcdf1b6705ecce4e4a411c698cf134a96f",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2601-V4.1.00-decoded.bin",
+          "sha256": "e3def25fc381d30844de6ee2b1497b8ec9a325c1ae92d7819fa9d6ee8b939fe2",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2603-V4.1.01-decoded.bin",
+          "sha256": "e1e90ebba10db12c765ed0a17911c2fe17c86c98a436ea61ce7d03cf549f2271",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2613-V4.1.01-decoded.bin",
+          "sha256": "cf6018e7d786867dc4c1486debf63be70aeae9b2d9a058af9e9cba43e186c4b9",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2815-V1.0.00-decoded.bin",
+          "sha256": "7d42d74eadcb675e2ae74836f4847f6f3ff334c9cfb269c72812578c7d40deaa",
+          "bytes": 12288,
+          "occurrences": 0
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2816-V4.1.01-decoded.bin",
+          "sha256": "9fec9ef63f785480fdaf9447bcc1e284fb7995bdbc54e2b4f3d4443d0b63511f",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2833-V4.1.01-decoded.bin",
+          "sha256": "babe32e676aa5dae890699c636850e9cce83ef0d02e546ba94882de1584f0005",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2841-V4.1.10-decoded.bin",
+          "sha256": "ae5a952960fe0e651ea9e5c05ae40377776c185f2910a0bd7adb79b8ff839cc4",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2869-V4.1.20-decoded.bin",
+          "sha256": "05cf15431ea3f6fc78ee9e51e68333f2baf8a3770c59c1598845d3263a7a5a7e",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2873-V4.1.20-decoded.bin",
+          "sha256": "e6aca84b3cbadb1dee072ca079eb172fa1f6f359b3cf131a20a0b789147ea2c6",
+          "bytes": 77824,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2914-V4.1.20-decoded.bin",
+          "sha256": "bd4f3b605871e63514ff752beadbfea1c4ba4dec68b7ef4da059ee0d616021df",
+          "bytes": 77824,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2946-V4.1.30-decoded.bin",
+          "sha256": "a00919a0995a79bb3e83eaa8bf29ebb985bf0011e895e3ca16d6b5970ed58569",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2958-V4.1.40-decoded.bin",
+          "sha256": "b253a9ce466051f24b762015ffcbe3b2a62f14e1495f306096068b8f2922d608",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2963-V4.1.50-decoded.bin",
+          "sha256": "8571763eb876d0314e50e2d547c99f7cdc9eac933f1e6ac5891f9f0c204a0547",
+          "bytes": 76800,
+          "occurrences": 1
+        },
+        {
+          "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+          "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+          "bytes": 76800,
+          "occurrences": 1
+        }
+      ]
+    },
+    "static_audit": {
+      "passed": true,
+      "DATA_bytes": 40,
+      "positive_OBJECTs": 2,
+      "event_cells": 7,
+      "event_unique_targets": 6,
+      "copy_source_bytes": 12,
+      "copy_call_PC": 87482,
+      "copy_entry": 105456,
+      "copy_frame_bytes": 32,
+      "copy_destination_offset": 4,
+      "saved_RA_offset": 28,
+      "peer_firmware_files": 22,
+      "matching_peer_files": 18,
+      "no_neighboring_padding_selected": true,
+      "original_declaration_extents_proved": false,
+      "global_copy_or_stack_bounds_proved": false,
+      "installed_ROM_read_contract_proved": false
+    },
+    "modes": {
+      "c": {
+        "passed": true,
+        "DATA_bytes": 40,
+        "positive_OBJECTs": 2,
+        "FUNC": 0,
+        "RELA": 0,
+        "UND": [],
+        "undefined_symbol_types": {},
+        "all_original_table_cells_equal_after_PC_resolution": true,
+        "independent_readers": {
+          "passed": true,
+          "sections": 10,
+          "symbols": 8,
+          "relocations": 0,
+          "object_sha256": "6f9140df39f66f693d5faa3b7b008f1f455356ab3b93375d9735e607509cfa56",
+          "only_section_ceiling_and_doc_changed": true,
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "target_executed": false,
+          "hardware_accessed": false,
+          "network": false
+        },
+        "object_sha256": "6f9140df39f66f693d5faa3b7b008f1f455356ab3b93375d9735e607509cfa56",
+        "original_coordinate_link_performed": false,
+        "curated_integration": false,
+        "target_executed": false,
+        "new_BIN": false,
+        "firmware_ready": false
+      },
+      "cpp": {
+        "passed": true,
+        "DATA_bytes": 40,
+        "positive_OBJECTs": 2,
+        "FUNC": 0,
+        "RELA": 0,
+        "UND": [],
+        "undefined_symbol_types": {},
+        "all_original_table_cells_equal_after_PC_resolution": true,
+        "independent_readers": {
+          "passed": true,
+          "sections": 10,
+          "symbols": 8,
+          "relocations": 0,
+          "object_sha256": "6f9140df39f66f693d5faa3b7b008f1f455356ab3b93375d9735e607509cfa56",
+          "only_section_ceiling_and_doc_changed": true,
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "target_executed": false,
+          "hardware_accessed": false,
+          "network": false
+        },
+        "object_sha256": "6f9140df39f66f693d5faa3b7b008f1f455356ab3b93375d9735e607509cfa56",
+        "original_coordinate_link_performed": false,
+        "curated_integration": false,
+        "target_executed": false,
+        "new_BIN": false,
+        "firmware_ready": false
+      }
+    }
+  },
+  "partial_component": {
+    "inputs": {
+      "checker": "bef2571c32e2950e0e23577f421c6c8f976f2ae2f0a377e23eb7677f00660df2",
+      "spec": "b9ae22d1b64edff9557190dc85d3261c8f8e0c2fb277a2589647750ace087bd4",
+      "pins": {
+        "experiments/tsl9-central-callback-tables/integrate-v2.py": "167e313ed185294da4a9cd7c7e72c0e4a17e604b4e464b79c73abda83d9d81d0",
+        "experiments/tsl9-central-callback-tables/integration-v2.json": "135c8d7c197003b87a809bf4cc568b38a0d56f24aeb38f9dab0697f998ea6e22",
+        "experiments/tsl9-central-callback-tables/build/source-proof-v2.json": "37ee062fbfd6d606f1ad06f1370658d49e62e354acb122d1068e6260592b8b65",
+        "experiments/tsl9-secondary-message-dispatch/build-v1.py": "e143215311a8e906a45f78c1dcaf216ca41525f4126d6ab175171ff79806646f",
+        "experiments/tsl9-secondary-message-dispatch/spec-v1.json": "5975119ee5745e89e384e1d566a6b23b80d10df95bb85bb8d81ee754cdcfb0ce",
+        "experiments/tsl9-secondary-message-dispatch/evidence-v1.json": "0a6be723f03c0fb261bd9244ac34d55195b1e4df5adfc3bdbbfd60cd7ede23d1",
+        "experiments/tsl9-secondary-message-dispatch/derive-v1.py": "f503b96a6fd9abe4487b3914672e896d45af673d16d9c7b863507888cfffed49",
+        "experiments/tsl9-secondary-message-dispatch/audit-v1.py": "eca934ea41d00d2d56ff83f7e1fc33ef997843bc560847055db69a42b5a3cd42",
+        "experiments/tsl9-secondary-message-data/build-v1.py": "13e76c41ec7fab0b0befbdefe6d03a2121f092f83111e89d3fc92c9e4b8ccaa6",
+        "experiments/tsl9-secondary-message-data/spec-v1.json": "b9b0f3bacd36d3da62c316d57c56c9bf91c2af77011c48cd929e99ea7d667c46",
+        "experiments/tsl9-secondary-message-data/src/secondary_message_data.v1.c": "33b17fc5505fcf897578a7006b2350e70f00885f9ca485e4e288c8e49f14123e"
+      },
+      "native_objects": {
+        "experiments/tsl9-central-callback-tables/build/component-v2/c/UNRESOLVED-STARTUP-CENTRAL-CALLBACKS.o": "9428b0a7efd8ff342ebfa8e3f14cd20a45f9a0ed7cb7f9c3986462fe070cb0a6",
+        "experiments/tsl9-secondary-message-dispatch/build/candidate-v1/c/unit.o": "0fa874d9d4a85c17fea4651074f35d477ea97d0451c864f92275ac9be506adbf",
+        "experiments/tsl9-secondary-message-data/build/native-v1/c/unit.o": "6f9140df39f66f693d5faa3b7b008f1f455356ab3b93375d9735e607509cfa56",
+        "experiments/tsl9-central-callback-tables/build/component-v2/cpp/UNRESOLVED-STARTUP-CENTRAL-CALLBACKS.o": "9428b0a7efd8ff342ebfa8e3f14cd20a45f9a0ed7cb7f9c3986462fe070cb0a6",
+        "experiments/tsl9-secondary-message-dispatch/build/candidate-v1/cpp/unit.o": "0fa874d9d4a85c17fea4651074f35d477ea97d0451c864f92275ac9be506adbf",
+        "experiments/tsl9-secondary-message-data/build/native-v1/cpp/unit.o": "6f9140df39f66f693d5faa3b7b008f1f455356ab3b93375d9735e607509cfa56"
+      },
+      "CODE_inputs": {
+        "${LLVM_BIN}\\clang.exe": {
+          "bytes": 126673512,
+          "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+        },
+        "${LLVM_BIN}\\ld.lld.exe": {
+          "bytes": 73834600,
+          "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+        },
+        "${LLVM_BIN}\\llvm-objcopy.exe": {
+          "bytes": 5830248,
+          "sha256": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+        },
+        "${LLVM_BIN}\\llvm-objdump.exe": {
+          "bytes": 18311272,
+          "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+        },
+        "${CLANG_RESOURCE}\\include\\stdint.h": {
+          "bytes": 30946,
+          "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+        },
+        "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v5.py": {
+          "bytes": 4371,
+          "sha256": "a56503572e8b65308ae1c8978ba5a6d44d0a20cd969315dc1b12103b59a9b43a"
+        },
+        "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build-v1.py": {
+          "bytes": 12139,
+          "sha256": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5"
+        },
+        "${PROJECT_ROOT}\\experiments\\tsl9-secondary-message-dispatch\\build-v1.py": {
+          "bytes": 11566,
+          "sha256": "e143215311a8e906a45f78c1dcaf216ca41525f4126d6ab175171ff79806646f"
+        },
+        "${PROJECT_ROOT}\\experiments\\tsl9-secondary-message-dispatch\\derive-v1.py": {
+          "bytes": 11165,
+          "sha256": "f503b96a6fd9abe4487b3914672e896d45af673d16d9c7b863507888cfffed49"
+        },
+        "${PROJECT_ROOT}\\experiments\\tsl9-secondary-message-dispatch\\evidence-v1.json": {
+          "bytes": 65047,
+          "sha256": "0a6be723f03c0fb261bd9244ac34d55195b1e4df5adfc3bdbbfd60cd7ede23d1"
+        },
+        "${PROJECT_ROOT}\\experiments\\tsl9-secondary-message-dispatch\\secondary_message_dispatch.c": {
+          "bytes": 114530,
+          "sha256": "f6317572076540ffa3804c0d6e38c7ca39b09de5fdb962be0454fa9e3824c02a"
+        },
+        "${PROJECT_ROOT}\\experiments\\tsl9-secondary-message-dispatch\\spec-v1.json": {
+          "bytes": 123224,
+          "sha256": "5975119ee5745e89e384e1d566a6b23b80d10df95bb85bb8d81ee754cdcfb0ce"
+        },
+        "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+          "bytes": 76800,
+          "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+        },
+        "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+          "bytes": 63664,
+          "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+        }
+      },
+      "DATA_inputs": {
+        "build": "13e76c41ec7fab0b0befbdefe6d03a2121f092f83111e89d3fc92c9e4b8ccaa6",
+        "spec": "b9b0f3bacd36d3da62c316d57c56c9bf91c2af77011c48cd929e99ea7d667c46",
+        "source": "33b17fc5505fcf897578a7006b2350e70f00885f9ca485e4e288c8e49f14123e",
+        "firmware": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+        "reader": "a56503572e8b65308ae1c8978ba5a6d44d0a20cd969315dc1b12103b59a9b43a",
+        "tools": {
+          "clang.exe": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+          "ld.lld.exe": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f",
+          "llvm-objdump.exe": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa",
+          "llvm-objcopy.exe": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+        },
+        "stdint": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "support": {
+          "experiments/tsl9-secondary-message-dispatch/spec-v1.json": "5975119ee5745e89e384e1d566a6b23b80d10df95bb85bb8d81ee754cdcfb0ce",
+          "experiments/tsl9-secondary-message-dispatch/evidence-v1.json": "0a6be723f03c0fb261bd9244ac34d55195b1e4df5adfc3bdbbfd60cd7ede23d1",
+          "experiments/tsl9-secondary-message-dispatch/audit-v1.py": "eca934ea41d00d2d56ff83f7e1fc33ef997843bc560847055db69a42b5a3cd42",
+          "experiments/tsl9-original-layout/build/central-callbacks-v2/c/layout-map.json": "35767c7ad5835db3961acacd2159a10667143c5d8fad26468271a45541bd56d4",
+          "experiments/tsl9-original-startup/build-v1.py": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5",
+          "experiments/tsl9-remaining-record-dispatch/compare-readers-v1.py": "ed30870a8862a230a0399fcf7ba273078cba2840d005d61799d17cee8f46b223",
+          "analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+          "src/native/receive/memory_transfer.c": "73504a70f93fb2625c2be7aef15e5496d8e3c50addcec9f86c4a8523d8ab71a1",
+          "experiments/tsl9-memory-transfer/spec-v1.json": "c97673bb58cb1576c2abe82d2279d336b8fe32d4504d0c0fad1fdd3de42dd391",
+          "analysis/memory-transfer-2026-10-24/evidence.json": "90f0bc35a1bbbb474e0720394085f79cd0bf6e530b6cc87b85cd4b1ea58cb713"
+        },
+        "peer_firmware": [
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2349-V1.0.00-decoded.bin",
+            "sha256": "8aa3d7eeeeea1a05bd41917ef5c1e6404af670e296e04b72aa322e5634c91f4e",
+            "bytes": 12288,
+            "occurrences": 0
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2389-V4.0.49-decoded.bin",
+            "sha256": "bf45097893ba846e68b6099df2374cbb423591ceb0b4bae37b8988dcc28759c3",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2410-V4.0.50-decoded.bin",
+            "sha256": "8efe823dd03fad5ae70f0df5a0a2c28233cd9045d25aace4425f08be92f49d37",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2492-V1.0.00-decoded.bin",
+            "sha256": "2889084225f808f799e10aa65c6fe31e01a832eed0a1ae149c681088c8e38423",
+            "bytes": 12288,
+            "occurrences": 0
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2527-V4.1.00-decoded.bin",
+            "sha256": "6d3dc488cc545399424b01f9122b484ae255aec79ec96e60770cf0bb47959658",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2580-V1.0.00-decoded.bin",
+            "sha256": "650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb",
+            "bytes": 12288,
+            "occurrences": 0
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2581-V4.1.00-decoded.bin",
+            "sha256": "32639d7d6df2abac1b966a72de663dc1c215165edf4f4ee0b58acc78e0f60bcc",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2590-V4.1.00-decoded.bin",
+            "sha256": "3a75070a782bb2e9de830347f41d52dcdf1b6705ecce4e4a411c698cf134a96f",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2601-V4.1.00-decoded.bin",
+            "sha256": "e3def25fc381d30844de6ee2b1497b8ec9a325c1ae92d7819fa9d6ee8b939fe2",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2603-V4.1.01-decoded.bin",
+            "sha256": "e1e90ebba10db12c765ed0a17911c2fe17c86c98a436ea61ce7d03cf549f2271",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2613-V4.1.01-decoded.bin",
+            "sha256": "cf6018e7d786867dc4c1486debf63be70aeae9b2d9a058af9e9cba43e186c4b9",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2815-V1.0.00-decoded.bin",
+            "sha256": "7d42d74eadcb675e2ae74836f4847f6f3ff334c9cfb269c72812578c7d40deaa",
+            "bytes": 12288,
+            "occurrences": 0
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2816-V4.1.01-decoded.bin",
+            "sha256": "9fec9ef63f785480fdaf9447bcc1e284fb7995bdbc54e2b4f3d4443d0b63511f",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2833-V4.1.01-decoded.bin",
+            "sha256": "babe32e676aa5dae890699c636850e9cce83ef0d02e546ba94882de1584f0005",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2841-V4.1.10-decoded.bin",
+            "sha256": "ae5a952960fe0e651ea9e5c05ae40377776c185f2910a0bd7adb79b8ff839cc4",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2869-V4.1.20-decoded.bin",
+            "sha256": "05cf15431ea3f6fc78ee9e51e68333f2baf8a3770c59c1598845d3263a7a5a7e",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2873-V4.1.20-decoded.bin",
+            "sha256": "e6aca84b3cbadb1dee072ca079eb172fa1f6f359b3cf131a20a0b789147ea2c6",
+            "bytes": 77824,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2914-V4.1.20-decoded.bin",
+            "sha256": "bd4f3b605871e63514ff752beadbfea1c4ba4dec68b7ef4da059ee0d616021df",
+            "bytes": 77824,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2946-V4.1.30-decoded.bin",
+            "sha256": "a00919a0995a79bb3e83eaa8bf29ebb985bf0011e895e3ca16d6b5970ed58569",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2958-V4.1.40-decoded.bin",
+            "sha256": "b253a9ce466051f24b762015ffcbe3b2a62f14e1495f306096068b8f2922d608",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2963-V4.1.50-decoded.bin",
+            "sha256": "8571763eb876d0314e50e2d547c99f7cdc9eac933f1e6ac5891f9f0c204a0547",
+            "bytes": 76800,
+            "occurrences": 1
+          },
+          {
+            "path": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+            "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+            "bytes": 76800,
+            "occurrences": 1
+          }
+        ]
+      }
+    },
+    "source_proof": {
+      "passed": true,
+      "parent_from_frozen_accepted_component": true,
+      "parent_sha256": "9428b0a7efd8ff342ebfa8e3f14cd20a45f9a0ed7cb7f9c3986462fe070cb0a6",
+      "new_CODE_bytes": 2048,
+      "new_instructions": 690,
+      "new_DATA_bytes": 40,
+      "new_positive_OBJECTs": 2,
+      "curated_integration": false
+    },
+    "modes": {
+      "c": {
+        "passed": true,
+        "CODE_bytes": 68648,
+        "DATA_bytes": 3962,
+        "new_CODE_bytes": 2048,
+        "new_DATA_bytes": 40,
+        "new_instructions": 690,
+        "positive_FUNC": 6118,
+        "positive_DATA_OBJECTs": 56,
+        "true_CODE_aliases": 71,
+        "real_DATA_labels": 6,
+        "RELA": 5215,
+        "UND": [
+          "tsl9_boot_resident_40000",
+          "tsl9_incoming_external_14056",
+          "tsl9_input_state_decoders_static_data_1ab48",
+          "tsl9_record_field_transitions_static_data_1a078",
+          "tsl9_registered_callbacks_static_data_1a638",
+          "tsl9_settings_default_data_1a69c"
+        ],
+        "resolved_existing_CODE_providers": 52,
+        "resolved_new_DATA_providers": [
+          "tsl9_secondary_message_dispatch_static_data_19dd4",
+          "tsl9_secondary_message_dispatch_static_data_1a58c"
+        ],
+        "event_CODE_bindings": [
+          {
+            "index": 0,
+            "original_target": 75496,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_126e8",
+            "positive_CODE_bytes": 4
+          },
+          {
+            "index": 1,
+            "original_target": 75538,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_12712",
+            "positive_CODE_bytes": 4
+          },
+          {
+            "index": 2,
+            "original_target": 75978,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_128ca",
+            "positive_CODE_bytes": 18
+          },
+          {
+            "index": 3,
+            "original_target": 75562,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_1272a",
+            "positive_CODE_bytes": 20
+          },
+          {
+            "index": 4,
+            "original_target": 75582,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_1273e",
+            "positive_CODE_bytes": 4
+          },
+          {
+            "index": 5,
+            "original_target": 75978,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_128ca",
+            "positive_CODE_bytes": 18
+          },
+          {
+            "index": 6,
+            "original_target": 75758,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_127ee",
+            "positive_CODE_bytes": 4
+          }
+        ],
+        "all_parent_allocations_and_relocation_roles_preserved": true,
+        "independent_readers": {
+          "passed": true,
+          "sections": 828,
+          "symbols": 13353,
+          "relocations": 5215,
+          "object_sha256": "e8676b000bb35ee6870d0196e0770ac81907c1d96c7846da2fed9e73f0938888",
+          "only_section_ceiling_and_doc_changed": true,
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "target_executed": false,
+          "hardware_accessed": false,
+          "network": false
+        },
+        "object_sha256": "e8676b000bb35ee6870d0196e0770ac81907c1d96c7846da2fed9e73f0938888",
+        "hidden_existing_DATA_dependency": 109288,
+        "hidden_index_globally_bounded": false,
+        "compiler_UND_is_not_complete_runtime_gap_inventory": true,
+        "original_coordinate_link_performed": false,
+        "curated_integration": false,
+        "formal_coverage_percent": 91.83,
+        "installed_ROM_ABI_verified": false,
+        "target_executed": false,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "hardware_accessed": false,
+        "network": false,
+        "new_BIN": false,
+        "firmware_ready": false
+      },
+      "cpp": {
+        "passed": true,
+        "CODE_bytes": 68648,
+        "DATA_bytes": 3962,
+        "new_CODE_bytes": 2048,
+        "new_DATA_bytes": 40,
+        "new_instructions": 690,
+        "positive_FUNC": 6118,
+        "positive_DATA_OBJECTs": 56,
+        "true_CODE_aliases": 71,
+        "real_DATA_labels": 6,
+        "RELA": 5215,
+        "UND": [
+          "tsl9_boot_resident_40000",
+          "tsl9_incoming_external_14056",
+          "tsl9_input_state_decoders_static_data_1ab48",
+          "tsl9_record_field_transitions_static_data_1a078",
+          "tsl9_registered_callbacks_static_data_1a638",
+          "tsl9_settings_default_data_1a69c"
+        ],
+        "resolved_existing_CODE_providers": 52,
+        "resolved_new_DATA_providers": [
+          "tsl9_secondary_message_dispatch_static_data_19dd4",
+          "tsl9_secondary_message_dispatch_static_data_1a58c"
+        ],
+        "event_CODE_bindings": [
+          {
+            "index": 0,
+            "original_target": 75496,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_126e8",
+            "positive_CODE_bytes": 4
+          },
+          {
+            "index": 1,
+            "original_target": 75538,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_12712",
+            "positive_CODE_bytes": 4
+          },
+          {
+            "index": 2,
+            "original_target": 75978,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_128ca",
+            "positive_CODE_bytes": 18
+          },
+          {
+            "index": 3,
+            "original_target": 75562,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_1272a",
+            "positive_CODE_bytes": 20
+          },
+          {
+            "index": 4,
+            "original_target": 75582,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_1273e",
+            "positive_CODE_bytes": 4
+          },
+          {
+            "index": 5,
+            "original_target": 75978,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_128ca",
+            "positive_CODE_bytes": 18
+          },
+          {
+            "index": 6,
+            "original_target": 75758,
+            "CODE_provider": "tsl9_secondary_message_dispatch_block_127ee",
+            "positive_CODE_bytes": 4
+          }
+        ],
+        "all_parent_allocations_and_relocation_roles_preserved": true,
+        "independent_readers": {
+          "passed": true,
+          "sections": 828,
+          "symbols": 13353,
+          "relocations": 5215,
+          "object_sha256": "e8676b000bb35ee6870d0196e0770ac81907c1d96c7846da2fed9e73f0938888",
+          "only_section_ceiling_and_doc_changed": true,
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "target_executed": false,
+          "hardware_accessed": false,
+          "network": false
+        },
+        "object_sha256": "e8676b000bb35ee6870d0196e0770ac81907c1d96c7846da2fed9e73f0938888",
+        "hidden_existing_DATA_dependency": 109288,
+        "hidden_index_globally_bounded": false,
+        "compiler_UND_is_not_complete_runtime_gap_inventory": true,
+        "original_coordinate_link_performed": false,
+        "curated_integration": false,
+        "formal_coverage_percent": 91.83,
+        "installed_ROM_ABI_verified": false,
+        "target_executed": false,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "hardware_accessed": false,
+        "network": false,
+        "new_BIN": false,
+        "firmware_ready": false
+      }
+    }
+  },
+  "checkers": {
+    "src/secondary_message_data.v1.c": "33b17fc5505fcf897578a7006b2350e70f00885f9ca485e4e288c8e49f14123e",
+    "spec-v1.json": "b9b0f3bacd36d3da62c316d57c56c9bf91c2af77011c48cd929e99ea7d667c46",
+    "build-v1.py": "13e76c41ec7fab0b0befbdefe6d03a2121f092f83111e89d3fc92c9e4b8ccaa6",
+    "integration-v1.json": "b9ae22d1b64edff9557190dc85d3261c8f8e0c2fb277a2589647750ace087bd4",
+    "integrate-v1.py": "bef2571c32e2950e0e23577f421c6c8f976f2ae2f0a377e23eb7677f00660df2"
+  },
+  "formal_parent_commit": "57213cfeda8fadfa9689490ebbe66c4a24997a91",
+  "previous_candidate_commit": "f09e9e83b28b4e1a24c2eb8b0e342437901dfacc",
+  "original_context_CODE_bytes": 2048,
+  "original_context_instructions": 690,
+  "new_DATA_bytes": 40,
+  "new_positive_DATA_OBJECTs": 2,
+  "resolved_existing_CODE_providers": 52,
+  "resolved_new_DATA_providers": 2,
+  "partial_component_allocated_bytes": 72610,
+  "partial_component_relocation_roles": 5215,
+  "compiler_UND": [
+    "tsl9_boot_resident_40000",
+    "tsl9_incoming_external_14056",
+    "tsl9_input_state_decoders_static_data_1ab48",
+    "tsl9_record_field_transitions_static_data_1a078",
+    "tsl9_registered_callbacks_static_data_1a638",
+    "tsl9_settings_default_data_1a69c"
+  ],
+  "compiler_UND_inventory_exhaustive": false,
+  "hidden_existing_DATA_dependency": 109288,
+  "hidden_index_globally_bounded": false,
+  "formal_coverage_percent": 91.83,
+  "formal_original_coordinate_bytes": 70522,
+  "new_candidate_bytes_included_in_formal_coverage": false,
+  "curated_integration": false,
+  "original_coordinate_placement_proved": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "next_step": "Prove original-coordinate placement and control/data bindings for the experimental component, then curate the source units without changing the frozen checker or prior evidence. Continue offline RAM/ROM/IRQ/OTA and hidden DATA-bound analysis.",
+  "potential_new_features": [
+    {
+      "idea": "Offline event/dependency inspector",
+      "basis": {
+        "event_index_range": [
+          0,
+          6
+        ],
+        "event_cells": 7,
+        "unique_case_entries": 6
+      },
+      "implemented": false,
+      "hardware_behavior_added": false
+    }
+  ],
+  "potential_features_implemented": false
+}

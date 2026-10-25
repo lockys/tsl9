@@ -1,5 +1,7 @@
 # 次要訊息與分派候選重建
 
+本頁為單獨 CODE 物件階段紀錄；後續兩個 DATA 提供與部分連結見[新階段報告](../tsl9-secondary-message-data/README.md)。
+
 [English](readme.en.md) · [C/C++ 原始碼](secondary_message_dispatch.c) · [驗證摘要](summary.json)
 
 已從 ID2966 V4.1.60 重建九段原始上下文程式，共 **2,048 bytes／690 條指令**。C11、C++17 產生相同 RV32 物件；按原位址套回 229 個直接控制轉移及七組 HI/LO 位址參考後，全部程式 bytes 與官方 BIN 相同。兩個 ELF 讀取器核對通過；保守靜態 CFG 涵蓋全部指令。
