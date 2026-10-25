@@ -2,14 +2,15 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/runtime-service-links-2026-10-25/readme.en.md): all 55,592B of measured code/data match the official BIN after native address placement; 85 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/runtime-memory-services-2026-10-25/readme.en.md): all 55,872B of measured code/data match the official BIN after native address placement; 71 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:144 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:145 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
+| [ROM memory-service wrappers](native/receive/runtime_memory_services.c) |14 functions280B/91i | Original slot40048 parameters;installed referent unproved. [Evidence](../analysis/runtime-memory-services-2026-10-25/readme.en.md) |
 | [Runtime service links](native/receive/runtime_service_links.c) |18 functions706B/236i+8B | Cleanup callbacks,counters,scheduled services and bounded lookup. [Evidence](../analysis/runtime-service-links-2026-10-25/readme.en.md) |
 | [Settings/state inputs](native/receive/settings_state_inputs.c) |14 functions1112B/353i | Field edits,checksum calls,callbacks and ROM pointer tail. [Evidence](../analysis/settings-state-inputs-2026-10-25/readme.en.md) |
 | [Selector transitions](native/receive/selector_transitions.c) |3 functions246B/94i | State gates,one-shot markers and action/timer ordering. [Evidence](../analysis/selector-transitions-2026-10-25/readme.en.md) |

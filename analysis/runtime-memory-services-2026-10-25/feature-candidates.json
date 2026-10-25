@@ -1,0 +1,28 @@
+{
+  "schema": "TSL9-runtime-memory-services-feature-candidates-v1",
+  "implemented_firmware_features": [],
+  "implemented_analysis_tools": [
+    {
+      "path": "experiments/tsl9-runtime-memory-services/inspect-rom-memory-calls.py",
+      "scope": "Selected exact-image local ROM-call arguments and conditional numeric RAM spans",
+      "dependencies": "Python3.10+ standard library only",
+      "tested_host": "Windows",
+      "other_OS_runtime_tested": false,
+      "network": false,
+      "hardware": false
+    }
+  ],
+  "candidates": [
+    {
+      "name": "Readonly reset-span/state-field overlay",
+      "purpose": "Explain which known state bytes lie inside requested clearing intervals.",
+      "unproved": [
+        "actual installed ROM behavior",
+        "live GP preservation",
+        "RAM ownership",
+        "vehicle feature names"
+      ],
+      "no_vehicle_commands": true
+    }
+  ]
+}

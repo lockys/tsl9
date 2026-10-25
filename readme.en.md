@@ -10,7 +10,7 @@ Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility 
 
 **Disclaimer: This project uses Codex vibe coding with REA for experimental reconstruction. Reverse engineering has not yet produced verified, working TSL9 firmware. Rebuilt BINs have not passed full validation on the original hardware; successful OTA readback does not prove working features.**
 
-**Verified reconstruction byte coverage: 72.39%** (55,592/76,800 bytes; code 52,996B + data 2,596B). Counts only C/C++ reconstruction that passes byte-for-byte comparison at original addresses; this is not feature completion or flash readiness. [Evidence](analysis/runtime-service-links-2026-10-25/summary.json)
+**Verified reconstruction byte coverage: 72.75%** (55,872/76,800 bytes; code 53,276B + data 2,596B). Counts only C/C++ reconstruction that passes byte-for-byte comparison at original addresses; this is not feature completion or flash readiness. [Evidence](analysis/runtime-memory-services-2026-10-25/summary.json)
 
 ## Getting started
 
