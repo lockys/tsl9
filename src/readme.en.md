@@ -2,14 +2,15 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/notification-support-2026-10-25/readme.en.md): all 49,074B of measured code/data match the official BIN after native address placement; 131 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/record-state-controls-2026-10-25/readme.en.md): all 50,396B of measured code/data match the official BIN after native address placement; 126 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:137 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:138 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
+| [Record/state controls](native/receive/record_state_controls.c) |17 functions1322B/441i | Four10-bit fields,selector priority,conditional notifications and callbacks;126 providers remain. [Evidence](../analysis/record-state-controls-2026-10-25/readme.en.md) |
 | [Notification helpers](native/receive/notification_support.c) | Six functions216B/71i | Predicates,record stores,guarded flag toggle and result adapter;131 providers remain. [Evidence](../analysis/notification-support-2026-10-25/readme.en.md) |
 | [Notification dispatcher](native/receive/selector_notifications.c) | E220..EBAC2444B/789i +five tables756B | All189 guarded targets map to real instructions;137 providers remain. [Evidence](../analysis/selector-notifications-2026-10-25/readme.en.md) |
 | [Selector state and lookup data](native/receive/selector_storage.c) | One complete state machine252B/81i +four readonly tables61B | Resolve1 code+4 data imports,exposeE220;preserve phases,wrapping count,unsigned time delta and real indexed bytes. Main43826B code+1832B data/2849RELA/122UND;all45658B original-address equal. [Evidence](../analysis/selector-storage-2026-10-25/readme.en.md) |
