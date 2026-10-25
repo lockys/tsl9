@@ -2,14 +2,15 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/record-field-transitions-2026-10-25/readme.en.md): all 59,605B of measured code/data match the official BIN after native address placement; 66 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/record-field-helpers-2026-10-25/readme.en.md): all 61,169B of measured code/data match the official BIN after native address placement; 58 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:146 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:147 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
+| [Record helpers](native/receive/record_field_helpers.c) |12 entries1564B/539i | Real callbacks and state writers;two data addresses remain unprovided. [Evidence](../analysis/record-field-helpers-2026-10-25/readme.en.md) |
 | [Record-field transitions](native/receive/record_field_transitions.c) |19 entries3682B/1149i+51B | Original field comparisons,lookup windows and callbacks;physical semantics unproved. [Evidence](../analysis/record-field-transitions-2026-10-25/README.md) |
 | [ROM memory-service wrappers](native/receive/runtime_memory_services.c) |14 functions280B/91i | Original slot40048 parameters;installed referent unproved. [Evidence](../analysis/runtime-memory-services-2026-10-25/readme.en.md) |
 | [Runtime service links](native/receive/runtime_service_links.c) |18 functions706B/236i+8B | Cleanup callbacks,counters,scheduled services and bounded lookup. [Evidence](../analysis/runtime-service-links-2026-10-25/readme.en.md) |
