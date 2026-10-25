@@ -4,7 +4,7 @@
 
 Reconstruct15 complete functions:562B/199 instructions,covering scheduling/cancellation,state access,conditional action and pending-flag cleanup. Five callback addresses bind to four real bodies,including retained A3CC and self-rescheduling1016E.
 
-1016E queries B6A8 first:a nonzero result reschedules itself with A2=100;otherwise it clears GP+304/305/306/307 in order before calling BD6E/CC8C/F688/F6BA. Other scheduler arguments include5000 and1000;time units remain unknown. FDA6 retains original GP+289 states0/1/2,guards and unresolved query/consumer ports.
+1016E queries B6A8 first:a nonzero result reschedules itself with A2=100;otherwise it clears GP+304/305/306/307 in order before calling BD6E/CC8C/F688/F6BA. Other scheduler arguments include5000 and1000;time units remain unknown. FDA6 retains original GP+289 states0/1/2 and guards. The82A8 access wrapper was already reconstructed at that milestone;FBA2 was the missing consumer. Internal ROM semantics remain unproved.
 
 226 comparisons/452 objects pass;50,958 original-coordinate bytes match,66.35% byte coverage. Eleven imports resolve without new dependencies;115 remain. All seven existing guarded tables are rechecked.
 
