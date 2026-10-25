@@ -2,9 +2,9 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-[最新原始位址驗證](../analysis/record-state-controls-2026-10-25/README.md)：50,396B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 126 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
+[最新原始位址驗證](../analysis/state-action-support-2026-10-25/README.md)：50,958B 已重建 code／data 經原生連結器配置後逐 byte 與官方 BIN 相同；仍缺 115 個提供者。產物是無 PT_LOAD 的診斷 ELF，未通過實機／OTA。
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 138 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 139 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC資料組裝、記錄處理與立即／延後通知 | 1308B／461指令原位址碼吻合；真實7346B＋60B圖；接通2個入口、新增27個getter依賴，共93個UND；硬體／OTA未證 |
 | [state access](native/receive/state_access.c) | 82A8 記錄搬移、10032 清除與四組狀態更新／讀取 | 336B／108指令，C/C++原位址碼吻合；實際6038B＋60B圖有68個UND；ROM、13C4E用途、索引界限與硬體／OTA未證 |
@@ -12,6 +12,7 @@
 
 | 目錄 | 內容 | 目前限制 |
 | --- | --- | --- |
+| [狀態與排程支援](native/receive/state_action_support.c) |15函式562B／199i | 旗標清理、排程／取消與條件動作；仍缺115個提供者。[證據](../analysis/state-action-support-2026-10-25/README.md) |
 | [紀錄解碼與狀態控制](native/receive/record_state_controls.c) |17函式1322B／441i | 四個10位元欄位、selector優先順序、條件通知與回呼；仍缺126個提供者。[證據](../analysis/record-state-controls-2026-10-25/README.md) |
 | [通知支援函式](native/receive/notification_support.c) | 六函式216B／71i | 狀態判斷、紀錄寫入、條件旗標切換與回呼結果轉接；仍缺131個提供者。[證據](../analysis/notification-support-2026-10-25/README.md) |
 | [通知分派](native/receive/selector_notifications.c) | E220..EBAC2444B／789i＋五張表756B | 189個受限索引表項均落於實際指令；仍缺137個提供者。[證據](../analysis/selector-notifications-2026-10-25/README.md) |

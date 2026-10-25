@@ -1,0 +1,98 @@
+OUTPUT_ARCH(riscv)
+SECTIONS
+{
+ .boot_code 0 : SUBALIGN(2) { *(.boot_code)
+  *(.text.tsl9_state_action_support_entry_9fb2)
+  *(.text.tsl9_state_action_support_block_9fb8)
+  *(.text.tsl9_state_action_support_block_9fc0)
+  *(.text.tsl9_record_state_controls_provider_a024)
+  *(.text.tsl9_state_action_support_entry_a02e)
+  *(.text.tsl9_state_action_support_entry_a04a)
+  *(.text.tsl9_state_action_support_block_a050)
+  *(.text.tsl9_state_action_support_block_a052)
+  *(.text.tsl9_record_state_controls_provider_a664)
+  *(.text.tsl9_state_action_support_block_a674)
+  *(.text.tsl9_state_action_support_block_a684)
+  *(.text.tsl9_state_action_support_block_a69e)
+  *(.text.tsl9_state_action_support_block_a6a8)
+  *(.text.tsl9_state_action_support_entry_aa2e)
+  *(.text.tsl9_state_action_support_block_aa3c)
+  *(.text.tsl9_state_action_support_block_aa44)
+  *(.text.tsl9_state_action_support_block_aa46)
+  *(.text.tsl9_state_action_support_block_aa4a)
+  *(.text.tsl9_state_action_support_block_aa4c)
+  *(.text.tsl9_state_action_support_block_aa58)
+  *(.text.tsl9_state_action_support_block_aa5e)
+  *(.text.tsl9_record_state_controls_provider_aa60)
+  *(.text.tsl9_state_action_support_block_aa6e)
+  *(.text.tsl9_state_action_support_block_aa76)
+  *(.text.tsl9_state_action_support_block_aa78)
+  *(.text.tsl9_state_action_support_block_aa8c)
+  *(.text.tsl9_state_action_support_block_aa98)
+  *(.text.tsl9_state_action_support_block_aa9e)
+  *(.text.tsl9_selector_notifications_provider_aaa0)
+  *(.text.tsl9_state_action_support_block_aaae)
+  *(.text.tsl9_state_action_support_block_aab6)
+  *(.text.tsl9_state_action_support_block_aab8)
+  *(.text.tsl9_state_action_support_block_aac4)
+  *(.text.tsl9_state_action_support_block_aad0)
+  *(.text.tsl9_state_action_support_block_aad6)
+  *(.text.tsl9_selector_notifications_provider_adb8)
+  *(.text.tsl9_state_action_support_block_adc8)
+  *(.text.tsl9_state_action_support_block_add2)
+  *(.text.tsl9_state_action_support_block_add4)
+  *(.text.tsl9_record_state_controls_provider_bcec)
+  *(.text.tsl9_record_dispatch_provider_bcf6)
+  *(.text.tsl9_selector_notifications_provider_bd00)
+  *(.text.tsl9_record_state_controls_provider_fda0)
+  *(.text.tsl9_record_state_controls_provider_fda6)
+  *(.text.tsl9_state_action_support_block_fdac)
+  *(.text.tsl9_state_action_support_block_fdb0)
+  *(.text.tsl9_state_action_support_block_fdb6)
+  *(.text.tsl9_state_action_support_block_fdba)
+  *(.text.tsl9_state_action_support_block_fdc0)
+  *(.text.tsl9_state_action_support_block_fdc2)
+  *(.text.tsl9_state_action_support_block_fdd0)
+  *(.text.tsl9_state_action_support_block_fdd6)
+  *(.text.tsl9_state_action_support_block_fddc)
+  *(.text.tsl9_state_action_support_block_fdde)
+  *(.text.tsl9_state_action_support_block_fde8)
+  *(.text.tsl9_state_action_support_block_fdec)
+  *(.text.tsl9_state_action_support_block_fdf0)
+  *(.text.tsl9_record_state_controls_provider_1016e)
+  *(.text.tsl9_state_action_support_block_10176)
+  *(.text.tsl9_state_action_support_block_10178)
+  *(.text.tsl9_state_action_support_block_10190)
+  *(.text.tsl9_state_action_support_block_10196)
+  *(.text.tsl9_state_action_support_block_1019e)
+  *(.text.tsl9_state_action_support_block_101a4)
+  *(.text.tsl9_state_action_support_block_101b0)
+  *(.text.tsl9_state_action_support_block_101b6)
+  *(.text.tsl9_state_action_support_block_101c2)
+  *(.text.tsl9_state_action_support_block_101c8)
+  *(.text.tsl9_state_action_support_block_101d8)
+ }
+ .initializer 0 : SUBALIGN(4) { *(.initializer) }
+ .vectors 0 : SUBALIGN(4) { *(.vectors) }
+ .feature_tables 0 : SUBALIGN(4) { *(.feature_tables) }
+ .callback_constants 0 : SUBALIGN(4) { *(.callback_constants) }
+ .callback_flow_constants 0 : SUBALIGN(4) { *(.callback_flow_constants) }
+ .incoming_constants 0 : SUBALIGN(4) { *(.incoming_constants) }
+ .action_table 0 : SUBALIGN(4) { *(.action_table) }
+ .phase_table 0 : SUBALIGN(4) { *(.phase_table) }
+ .resident_version 0 : SUBALIGN(4) { *(.resident_version) }
+ .selector_tables 0 : SUBALIGN(1) {
+  *(.rodata.tsl9_feature_state_records_static_data_1a4e4)
+  *(.rodata.tsl9_feature_state_records_static_data_1a518)
+  *(.rodata.tsl9_feature_state_records_static_data_1a528)
+  *(.rodata.tsl9_feature_state_records_static_data_1a538)
+ }
+ .notification_tables 0 : SUBALIGN(4) {
+  *(.rodata.tsl9_selector_notifications_table_1a13c)
+  *(.rodata.tsl9_selector_notifications_table_1a150)
+  *(.rodata.tsl9_selector_notifications_table_1a1c8)
+  *(.rodata.tsl9_selector_notifications_table_1a314)
+  *(.rodata.tsl9_selector_notifications_table_1a33c)
+ }
+ /DISCARD/ : { *(.comment) *(.riscv.attributes) *(.llvm_addrsig) }
+}
