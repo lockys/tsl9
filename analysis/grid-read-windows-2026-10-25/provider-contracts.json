@@ -1,0 +1,89 @@
+{
+  "backing": {
+    "bytes": 432,
+    "end": 106632,
+    "neighboring_address_spacing_used_as_extent": false,
+    "original_declared_extent_proved": false,
+    "positive_OBJECT_owners": 1,
+    "real_interior_DATA_labels": [
+      {
+        "address": 106200,
+        "offset": 0,
+        "size": 0
+      },
+      {
+        "address": 106520,
+        "offset": 320,
+        "size": 0
+      }
+    ],
+    "start": 106200
+  },
+  "direct_transfer_scope": {
+    "all_indirect_entries_or_async_paths_proved": false,
+    "guard_bypasses_found": 0,
+    "selected_CODE_bytes": 64544,
+    "selected_instructions": 21938
+  },
+  "firmware_ready": false,
+  "first_lookup": {
+    "base": 106200,
+    "column_max": 15,
+    "column_min": 0,
+    "end": 106616,
+    "fresh_low_nibble_max": 15,
+    "fresh_low_nibble_min": 0,
+    "maximum_offset": 415,
+    "minimum_offset": 0,
+    "read_bytes": 1,
+    "row_bias_choices": [
+      0,
+      10
+    ],
+    "row_stride": 16
+  },
+  "global_runtime_state_bounds_proved": false,
+  "interpretation": [
+    "The first read permits independent nibble values0..15 and row bias0 or10;it does not assume a0..9 nibble bound.",
+    "The second read preserves high-two-bit values1..3 and adds row bias0 or3;the maximum offset is111.",
+    "The first416-byte window and second112-byte conservative base window overlap96 bytes;their union is432 bytes.",
+    "AtCF7C AND7 writesA3;the subsequently shifted table row is stillA4. REM atCF6C also writesA3. Neither establishes a0..7 or0..2 bound for the loaded BF39 row.",
+    "The third byte-only syntactic envelope ends1B078 beyond image1AC00;this does not prove an actual runtime out-of-bounds read. No third provider is supplied."
+  ],
+  "physical_feature_names_proved": false,
+  "schema": "TSL9-grid-read-windows-provider-contracts-v1",
+  "second_lookup": {
+    "base": 106520,
+    "column_max": 15,
+    "column_min": 0,
+    "end": 106632,
+    "maximum_offset": 111,
+    "minimum_offset": 16,
+    "nonzero_top_two_bit_max": 3,
+    "nonzero_top_two_bit_min": 1,
+    "read_bytes": 1,
+    "row_bias_choices": [
+      0,
+      3
+    ],
+    "row_stride": 16
+  },
+  "third_lookup": {
+    "actual_scaled_index_register": "a4",
+    "base": 106616,
+    "byte_only_index_maximum": 255,
+    "column_maximum": 15,
+    "global_index_bound_proved": false,
+    "image_end": 109568,
+    "index_address": 536919865,
+    "index_bits": 8,
+    "index_load_PC": 53002,
+    "mask_PC": 53116,
+    "mask_clamps_actual_index": false,
+    "mask_destination": "a3",
+    "rem_destination": "a3",
+    "row_stride": 16,
+    "source_DATA_provided": false,
+    "syntactic_envelope_end": 110712
+  }
+}
