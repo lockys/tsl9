@@ -1047,6 +1047,13 @@
       "replacements": [],
       "origin_sha256": "6371472d2f45e2a9635b3f216321b87424b2aaba3ab12e161de550789f43699d",
       "sha256": "6371472d2f45e2a9635b3f216321b87424b2aaba3ab12e161de550789f43699d"
+    },
+    {
+      "origin": "experiments/tsl9-selector-transitions/src/selector_transitions.v1.c",
+      "destination": "src/native/receive/selector_transitions.c",
+      "replacements": [],
+      "origin_sha256": "f61f808f04c48fa97421dd4eee4d66c41b9c759706a39ea7f8f1a00f4b287041",
+      "sha256": "f61f808f04c48fa97421dd4eee4d66c41b9c759706a39ea7f8f1a00f4b287041"
     }
   ],
   "native_units": [
@@ -2373,6 +2380,18 @@
       ],
       "scope": "Sixteen complete input/state functions:1822B/594i,162 private regions,131 direct controls,eight typed address pairs. Preserve seven callback references,one opaque1AB48 data address without payload,long original frames,indirect/ROM tails,input selector gates,four-state predicate and mode20..23 stores. Supply eight pending entries plus eight connected bodies. Units,bounds,opaque data contents,private ABI,physical ROM/RAM/IRQ and OTA unproved;no target/HOST/ISA execution,hardware or network.",
       "origin_unit_sha256": "6371472d2f45e2a9635b3f216321b87424b2aaba3ab12e161de550789f43699d"
+    },
+    {
+      "name": "selector-transitions",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-selector-transitions/src/selector_transitions.v1.c",
+      "curated_unit": "src/native/receive/selector_transitions.c",
+      "evidence": "analysis/selector-transitions-2026-10-25/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-selector-transitions/build/native-v1/measurement.json"
+      ],
+      "scope": "Three complete selector transitions:246B/94i,31 private regions,23 original direct controls,no new literal data or address pairs. Preserve state equality and direction gates,one-shot marker,guarded state stores,action and timer calls,private stack/RA/S-register behavior. Supply three existing imports;all five outgoing providers already exist. Feature names,physical ROM/RAM/IRQ,private ABI and OTA remain unproved;no target/HOST/ISA execution,hardware or network.",
+      "origin_unit_sha256": "f61f808f04c48fa97421dd4eee4d66c41b9c759706a39ea7f8f1a00f4b287041"
     }
   ],
   "native_data_units": [

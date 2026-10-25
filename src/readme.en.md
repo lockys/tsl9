@@ -2,14 +2,15 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/input-state-decoders-2026-10-25/readme.en.md): all 53,520B of measured code/data match the official BIN after native address placement; 105 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/selector-transitions-2026-10-25/readme.en.md): all 53,766B of measured code/data match the official BIN after native address placement; 102 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:141 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:142 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
+| [Selector transitions](native/receive/selector_transitions.c) |3 functions246B/94i | State gates,one-shot markers and action/timer ordering. [Evidence](../analysis/selector-transitions-2026-10-25/readme.en.md) |
 | [Input/state decoders](native/receive/input_state_decoders.c) |16 functions1822B/594i | Input formats,selector groups,state predicate and callbacks;opaque1AB48 remains unprovided. [Evidence](../analysis/input-state-decoders-2026-10-25/readme.en.md) |
 | [State request records](native/receive/state_request_records.c) |11 functions740B/256i | Stateful record edits,counter/check-byte order and paired callbacks;109 providers remain. [Evidence](../analysis/state-request-records-2026-10-25/readme.en.md) |
 | [State/action support](native/receive/state_action_support.c) |15 functions562B/199i | Pending-flag cleanup,scheduling/cancellation and conditional actions;115 providers remain. [Evidence](../analysis/state-action-support-2026-10-25/readme.en.md) |

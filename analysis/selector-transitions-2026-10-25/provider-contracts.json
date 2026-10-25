@@ -1,0 +1,311 @@
+{
+  "schema": "TSL9-selector-transition-contracts-v1",
+  "scope": "Original instructions only;not live vehicle behavior",
+  "functions": [
+    {
+      "start": 43784,
+      "end": 43870,
+      "register_roles": {
+        "a0": "one-shot marker pointer",
+        "a1": "state byte pointer",
+        "a2": "new state before byte truncation",
+        "a3": "nonzero-path action selector",
+        "a4": "timer selector"
+      },
+      "confirmed": [
+        "Equal state returns immediately without calls or writes.",
+        "Nonzero new state sets marker to1 and calls167A6 only if marker was zero;then always calls90B0.",
+        "Zero new state calls9124 with selector,0,1000,0 without clearing the marker here.",
+        "Changed state is stored after the selected call path."
+      ],
+      "unknown": [
+        "units of1000",
+        "full private ABI",
+        "physical feature attribution"
+      ]
+    },
+    {
+      "start": 43900,
+      "end": 43972,
+      "static_state_address": 536919784,
+      "confirmed": [
+        "Same full input and old byte returns0 without guard or write.",
+        "Changed input calls8202;when guard is nonzero,unsigned decrease selects150 and increase selects151 for167A6.",
+        "Changed input is stored as a byte even when the guard is zero;returns1."
+      ],
+      "unknown": [
+        "input range",
+        "feature attribution",
+        "concurrent access semantics"
+      ]
+    },
+    {
+      "start": 60584,
+      "end": 60672,
+      "register_roles": {
+        "a0": "state byte pointer",
+        "a1": "requested value",
+        "a2": "action for a4 match",
+        "a3": "action for other allowed match",
+        "a4": "first allowed value",
+        "a5": "second allowed value"
+      },
+      "confirmed": [
+        "Values matching neither a4 nor a5 return0 without calls or writes.",
+        "Allowed values call828C;zero guard stores state and returns0 without action.",
+        "Nonzero guard with equal old state returns0 without writing or action.",
+        "Nonzero guard with changed state stores the byte before calling167A6;returns the saved guard value,not a normalized bool."
+      ],
+      "unknown": [
+        "caller range guarantees",
+        "guard hardware meaning",
+        "feature attribution"
+      ]
+    }
+  ],
+  "opcode_witnesses": [
+    {
+      "PC": 43784,
+      "opcode": "mv a5, a0",
+      "bytes": "aa87"
+    },
+    {
+      "PC": 43786,
+      "opcode": "lbu a0, 0(a1)",
+      "bytes": "03c50500"
+    },
+    {
+      "PC": 43790,
+      "opcode": "beq a0, a2, 0xab5c",
+      "bytes": "6307c504"
+    },
+    {
+      "PC": 43812,
+      "opcode": "beqz a2, 0xab4c",
+      "bytes": "05c6"
+    },
+    {
+      "PC": 43814,
+      "opcode": "lbu a4, 0(a5)",
+      "bytes": "03c70700"
+    },
+    {
+      "PC": 43818,
+      "opcode": "bnez a4, 0xab36",
+      "bytes": "11e7"
+    },
+    {
+      "PC": 43820,
+      "opcode": "li a4, 1",
+      "bytes": "0547"
+    },
+    {
+      "PC": 43822,
+      "opcode": "sb a4, 0(a5)",
+      "bytes": "2380e700"
+    },
+    {
+      "PC": 43826,
+      "opcode": "jal ra, 0x167a6",
+      "bytes": "efb05047"
+    },
+    {
+      "PC": 43832,
+      "opcode": "jal ra, 0x90b0",
+      "bytes": "efe08fd7"
+    },
+    {
+      "PC": 43836,
+      "opcode": "sb s0, 0(s1)",
+      "bytes": "23808400"
+    },
+    {
+      "PC": 43852,
+      "opcode": "li a3, 0",
+      "bytes": "8146"
+    },
+    {
+      "PC": 43854,
+      "opcode": "li a2, 1000",
+      "bytes": "1306803e"
+    },
+    {
+      "PC": 43858,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 43860,
+      "opcode": "mv a0, a4",
+      "bytes": "3a85"
+    },
+    {
+      "PC": 43862,
+      "opcode": "jal ra, 0x9124",
+      "bytes": "efe0efdc"
+    },
+    {
+      "PC": 43866,
+      "opcode": "j 0xab3c",
+      "bytes": "cdb7"
+    },
+    {
+      "PC": 43916,
+      "opcode": "beq s1, a0, 0xabc0",
+      "bytes": "638aa402"
+    },
+    {
+      "PC": 43922,
+      "opcode": "jal ra, 0x8202",
+      "bytes": "efd00fe7"
+    },
+    {
+      "PC": 43926,
+      "opcode": "beqz a0, 0xabac",
+      "bytes": "19c9"
+    },
+    {
+      "PC": 43928,
+      "opcode": "li a0, 150",
+      "bytes": "13056009"
+    },
+    {
+      "PC": 43932,
+      "opcode": "bltu s0, s1, 0xaba8",
+      "bytes": "63669400"
+    },
+    {
+      "PC": 43936,
+      "opcode": "bleu s0, s1, 0xabac",
+      "bytes": "63f68400"
+    },
+    {
+      "PC": 43940,
+      "opcode": "li a0, 151",
+      "bytes": "13057009"
+    },
+    {
+      "PC": 43944,
+      "opcode": "jal ra, 0x167a6",
+      "bytes": "efb0f03f"
+    },
+    {
+      "PC": 43952,
+      "opcode": "sb s0, 828(a5)",
+      "bytes": "238e8732"
+    },
+    {
+      "PC": 43956,
+      "opcode": "li a0, 1",
+      "bytes": "0545"
+    },
+    {
+      "PC": 43968,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 60594,
+      "opcode": "beq a1, a4, 0xecc8",
+      "bytes": "638be500"
+    },
+    {
+      "PC": 60598,
+      "opcode": "beq a1, a5, 0xecc8",
+      "bytes": "6389f500"
+    },
+    {
+      "PC": 60602,
+      "opcode": "li s0, 0",
+      "bytes": "0144"
+    },
+    {
+      "PC": 60604,
+      "opcode": "mv a0, s0",
+      "bytes": "2285"
+    },
+    {
+      "PC": 60624,
+      "opcode": "jal ra, 0x828c",
+      "bytes": "ef90cfdb"
+    },
+    {
+      "PC": 60628,
+      "opcode": "mv s0, a0",
+      "bytes": "2a84"
+    },
+    {
+      "PC": 60632,
+      "opcode": "beqz a0, 0xecfa",
+      "bytes": "0dc1"
+    },
+    {
+      "PC": 60634,
+      "opcode": "lbu a5, 0(s1)",
+      "bytes": "83c70400"
+    },
+    {
+      "PC": 60638,
+      "opcode": "beq a5, a1, 0xecba",
+      "bytes": "e38eb7fc"
+    },
+    {
+      "PC": 60644,
+      "opcode": "sb a1, 0(s1)",
+      "bytes": "2380b400"
+    },
+    {
+      "PC": 60650,
+      "opcode": "beq a1, a4, 0xecf2",
+      "bytes": "6384e500"
+    },
+    {
+      "PC": 60654,
+      "opcode": "lw a3, 8(sp)",
+      "bytes": "a246"
+    },
+    {
+      "PC": 60656,
+      "opcode": "mv a2, a3",
+      "bytes": "3686"
+    },
+    {
+      "PC": 60658,
+      "opcode": "mv a0, a2",
+      "bytes": "3285"
+    },
+    {
+      "PC": 60660,
+      "opcode": "jal ra, 0x167a6",
+      "bytes": "ef70302b"
+    },
+    {
+      "PC": 60666,
+      "opcode": "sb a1, 0(s1)",
+      "bytes": "2380b400"
+    },
+    {
+      "PC": 60670,
+      "opcode": "j 0xecbc",
+      "bytes": "7dbf"
+    }
+  ],
+  "static_address_checks": [
+    {
+      "PC": 43908,
+      "consumer_PC": 43912,
+      "address": 536919784,
+      "access": "read_byte"
+    },
+    {
+      "PC": 43948,
+      "consumer_PC": 43952,
+      "address": 536919784,
+      "access": "write_byte"
+    }
+  ],
+  "widths": "Original unsigned32 comparisons and byte truncation retained.",
+  "bounds_or_units_proved": false,
+  "physical_ROM_RAM_IRQ_OTA_proved": false,
+  "private_ABI_proved": false
+}
