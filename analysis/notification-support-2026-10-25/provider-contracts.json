@@ -1,0 +1,248 @@
+{
+  "schema": "TSL9-notification-support-contracts-v1",
+  "opcode_checks": [
+    {
+      "PC": 46700,
+      "opcode": "andi a0, a0, 96"
+    },
+    {
+      "PC": 46704,
+      "opcode": "addi a0, a0, -64"
+    },
+    {
+      "PC": 46708,
+      "opcode": "seqz a0, a0"
+    },
+    {
+      "PC": 46768,
+      "opcode": "andi a0, a0, 48"
+    },
+    {
+      "PC": 46772,
+      "opcode": "addi a0, a0, -32"
+    },
+    {
+      "PC": 46774,
+      "opcode": "seqz a0, a0"
+    },
+    {
+      "PC": 52328,
+      "opcode": "li a4, 1"
+    },
+    {
+      "PC": 52330,
+      "opcode": "sb a4, 2(a5)"
+    },
+    {
+      "PC": 52334,
+      "opcode": "li a4, 768"
+    },
+    {
+      "PC": 52338,
+      "opcode": "sh a4, 4(a5)"
+    },
+    {
+      "PC": 52426,
+      "opcode": "beqz a5, 0xcce2"
+    },
+    {
+      "PC": 52436,
+      "opcode": "jal 0xcc8c"
+    },
+    {
+      "PC": 52446,
+      "opcode": "j 0xf688"
+    },
+    {
+      "PC": 52458,
+      "opcode": "beqz a5, 0xccf4"
+    },
+    {
+      "PC": 52464,
+      "opcode": "sb zero, 569(a5)"
+    },
+    {
+      "PC": 52474,
+      "opcode": "jal ra, 0x8202"
+    },
+    {
+      "PC": 52478,
+      "opcode": "beqz a0, 0xcd3e"
+    },
+    {
+      "PC": 52480,
+      "opcode": "addi a5, gp, 84"
+    },
+    {
+      "PC": 52488,
+      "opcode": "lbu a5, 7(a5)"
+    },
+    {
+      "PC": 52492,
+      "opcode": "andi a5, a5, 48"
+    },
+    {
+      "PC": 52496,
+      "opcode": "bne a5, a4, 0xcd38"
+    },
+    {
+      "PC": 52500,
+      "opcode": "lbu a5, 357(gp)"
+    },
+    {
+      "PC": 52504,
+      "opcode": "addi a5, a5, -1"
+    },
+    {
+      "PC": 52506,
+      "opcode": "andi a5, a5, 255"
+    },
+    {
+      "PC": 52510,
+      "opcode": "li a4, 3"
+    },
+    {
+      "PC": 52512,
+      "opcode": "bltu a4, a5, 0xcd38"
+    },
+    {
+      "PC": 52524,
+      "opcode": "xori a5, a5, 1"
+    },
+    {
+      "PC": 52532,
+      "opcode": "sb a5, 501(a4)"
+    },
+    {
+      "PC": 52546,
+      "opcode": "j 0xccc2"
+    },
+    {
+      "PC": 65036,
+      "opcode": "jal ra, 0xa9de"
+    },
+    {
+      "PC": 65042,
+      "opcode": "seqz a0, a0"
+    },
+    {
+      "PC": 65048,
+      "opcode": "j 0xfdf6"
+    }
+  ],
+  "static_address_checks": [
+    {
+      "AUIPC_PC": 46692,
+      "address": 536920627,
+      "opcode": "lbu a0, -1073(a0)",
+      "runtime_mapping_proved": false
+    },
+    {
+      "AUIPC_PC": 46760,
+      "address": 536920628,
+      "opcode": "lbu a0, -1140(a0)",
+      "runtime_mapping_proved": false
+    },
+    {
+      "AUIPC_PC": 52320,
+      "address": 536919844,
+      "opcode": "addi a5, a5, 708",
+      "runtime_mapping_proved": false
+    },
+    {
+      "AUIPC_PC": 52418,
+      "address": 536919846,
+      "opcode": "lbu a5, 612(a5)",
+      "runtime_mapping_proved": false
+    },
+    {
+      "AUIPC_PC": 52450,
+      "address": 536919845,
+      "opcode": "lbu a5, 579(a5)",
+      "runtime_mapping_proved": false
+    },
+    {
+      "AUIPC_PC": 52460,
+      "address": 536919845,
+      "opcode": "sb zero, 569(a5)",
+      "runtime_mapping_proved": false
+    },
+    {
+      "AUIPC_PC": 52516,
+      "address": 536919845,
+      "opcode": "lbu a5, 513(a5)",
+      "runtime_mapping_proved": false
+    },
+    {
+      "AUIPC_PC": 52528,
+      "address": 536919845,
+      "opcode": "sb a5, 501(a4)",
+      "runtime_mapping_proved": false
+    }
+  ],
+  "predicates": [
+    {
+      "entry": 46692,
+      "static_byte_address": 536920627,
+      "mask": 96,
+      "equals": 64
+    },
+    {
+      "entry": 46760,
+      "static_byte_address": 536920628,
+      "mask": 48,
+      "equals": 32
+    }
+  ],
+  "record_write": {
+    "entry": 52320,
+    "base_address": 536919844,
+    "writes": [
+      {
+        "offset": 2,
+        "bits": 8,
+        "value": 1
+      },
+      {
+        "offset": 4,
+        "bits": 16,
+        "value": 768
+      }
+    ]
+  },
+  "cleanup": {
+    "entry": 52418,
+    "flag_address": 536919846,
+    "nonzero_calls": [
+      52364,
+      63112
+    ],
+    "zero_branch_clear_byte_address": 536919845
+  },
+  "conditional_toggle": {
+    "entry": 52470,
+    "initial_query": 33282,
+    "nonzero_conditions": [
+      "(*(uint8_t*)(*(uint32_t*)(GP+84)+7)&0x30)==0x10",
+      "((*(uint8_t*)(GP+357)-1)&255)<=3"
+    ],
+    "flag_address": 536919845,
+    "operation": "load unsigned byte; XOR1;store byte",
+    "zero_query_tail_target": 52418
+  },
+  "result_adapter": {
+    "entry": 65032,
+    "query": 43486,
+    "operation": "A0=(query_result==0)",
+    "tail_target": 65014
+  },
+  "no_new_literal_data": true,
+  "physical_address_mapping_proved": false,
+  "vehicle_feature_attribution_proved": false,
+  "private_ABI_proved": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
