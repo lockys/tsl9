@@ -2,14 +2,15 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/feature-state-records-2026-10-25/readme.en.md): all 45,345B of measured code/data match the official BIN after native address placement; 126 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/selector-storage-2026-10-25/readme.en.md): all 45,658B of measured code/data match the official BIN after native address placement; 122 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:134 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:135 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
+| [Selector state and lookup data](native/receive/selector_storage.c) | One complete state machine252B/81i +four readonly tables61B | Resolve1 code+4 data imports,exposeE220;preserve phases,wrapping count,unsigned time delta and real indexed bytes. Main43826B code+1832B data/2849RELA/122UND;all45658B original-address equal. [Evidence](../analysis/selector-storage-2026-10-25/readme.en.md) |
 | [Feature state and records](native/receive/feature_state_records.c) | Nineteen selected bodies1260B/424i | Predicates,counters,selectors,record transforms and private dispatch;11 imports resolved,1 code+4 data gaps exposed. Main43574B code+1771B data/2823RELA/126UND;all45345B original-address equal. [Evidence](../analysis/feature-state-records-2026-10-25/readme.en.md) |
 | [Callback gaps and input packing](native/receive/callback_completion.c) | Five complete functions444B/162i | Two-position packing,mode/threshold gates,wrapping retry and signed16 magnitude;two imports resolved,no new dependencies. Main42314B code+1771B data/2708RELA/132UND;all44085B original-address equal. [Evidence](../analysis/callback-completion-2026-10-25/readme.en.md) |
 | [Timed record continuations](native/receive/record_continuations.c) | Eight complete functions418B/138i | Flag pointers,record-bit toggle,sequence and wrapping repetition callbacks;seven imports resolved,no new dependencies. Main41870B code+1771B data/2675RELA/134UND;all43641B original-address equal. [Evidence](../analysis/record-continuations-2026-10-25/readme.en.md) |
