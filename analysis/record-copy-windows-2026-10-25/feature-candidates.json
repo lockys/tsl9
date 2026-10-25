@@ -1,0 +1,22 @@
+{
+  "candidate": {
+    "implemented": false,
+    "name": "OTA artifact source-coverage preflight",
+    "purpose": "Reject an update artifact if a required copy-source provider is missing, oversized or overlaps another owner",
+    "required_evidence": "Full source integration plus boot/ROM/RAM/IRQ/OTA compatibility; this experiment proves only two source windows"
+  },
+  "hardware_behavior_changed": false,
+  "implemented": [
+    {
+      "command": "python3 experiments/tsl9-record-copy-windows/verify-v1.py --static-only",
+      "name": "Offline source-window verifier",
+      "runtime_platforms_tested": [
+        "Windows"
+      ],
+      "scope": "Recompute original copy-call source boundaries, inspect every copy instruction, and reject overlap with known CODE/DATA owners",
+      "target_or_hardware_execution": false
+    }
+  ],
+  "physical_hardware_features_identified": false,
+  "schema": "TSL9-record-copy-window-feature-candidates-v1"
+}

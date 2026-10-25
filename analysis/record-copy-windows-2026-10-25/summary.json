@@ -1,0 +1,140 @@
+{
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "current_curated_source_files_preserved": 149,
+  "current_manifest_unchanged": true,
+  "evidence": "analysis/record-copy-windows-2026-10-25/evidence.json",
+  "evidence_sha256": "f83b91820cc2fe8f1c934da87aed80f8a67b87c810d01fe3041dcaacb311687d",
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "hardware_accessed": false,
+  "integrated_component_unchanged": true,
+  "integrated_verified_byte_coverage": {
+    "added_by_this_experiment": 0,
+    "bytes": 67455,
+    "percent": 87.83,
+    "total": 76800
+  },
+  "native": {
+    "c": {
+      "FUNC": 0,
+      "OBJECT": 2,
+      "RELA": 0,
+      "UND": 0,
+      "allocated_bytes": 200,
+      "firmware_ready": false,
+      "independent_readers": {
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "hardware_accessed": false,
+        "network": false,
+        "object_sha256": "e37ba28f79cd303ba7cc49aa5da6c6f2b19d7edecd80a2bf57758337732b808a",
+        "only_section_ceiling_and_doc_changed": true,
+        "passed": true,
+        "relocations": 0,
+        "sections": 10,
+        "symbols": 8,
+        "target_executed": false
+      },
+      "integrated": false,
+      "object_sha256": "e37ba28f79cd303ba7cc49aa5da6c6f2b19d7edecd80a2bf57758337732b808a",
+      "passed": true
+    },
+    "cpp": {
+      "FUNC": 0,
+      "OBJECT": 2,
+      "RELA": 0,
+      "UND": 0,
+      "allocated_bytes": 200,
+      "firmware_ready": false,
+      "independent_readers": {
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "hardware_accessed": false,
+        "network": false,
+        "object_sha256": "e37ba28f79cd303ba7cc49aa5da6c6f2b19d7edecd80a2bf57758337732b808a",
+        "only_section_ceiling_and_doc_changed": true,
+        "passed": true,
+        "relocations": 0,
+        "sections": 10,
+        "symbols": 8,
+        "target_executed": false
+      },
+      "integrated": false,
+      "object_sha256": "e37ba28f79cd303ba7cc49aa5da6c6f2b19d7edecd80a2bf57758337732b808a",
+      "passed": true
+    }
+  },
+  "network": false,
+  "next_steps": [
+    "Append a separately audited native_data_units source-manifest entry and preserve all prior source proofs",
+    "Bind the two existing unresolved DATA imports to actual compiled OBJECT owners",
+    "Extend original-coordinate and instruction-flow proof without counting the two-byte gap or protected data"
+  ],
+  "preconditions": [
+    "Original copied source windows remain readable and immutable",
+    "Destination stack buffer is valid and accessible",
+    "Pointer arithmetic does not wrap",
+    "No asynchronous corruption of pointers, stack or code"
+  ],
+  "schema": "TSL9-record-copy-windows-summary-v1",
+  "source": "experiments/tsl9-record-copy-windows/src/record_copy_windows.v1.c",
+  "source_sha256": "d7b2a76ac65b12216da7f6d9b8dbd4cdb3d8b2e02266c2c75d6d33084c3a54de",
+  "static": {
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "bit_decoded_copy_controls": 10,
+    "bound_argument": "With valid accessible nonwrapping pointers, byte paths advance both pointers by1. For matched alignment, peeling reaches a word boundary; the 36-byte group runs only for d < floor4(end)-32, hence aligned d <= floor4(end)-36. Its last source load is s+32 (postincrement -4), covering exactly36 bytes. The word loop requires d < floor4(end), hence d+4 <= floor4(end). The byte tail requires d < end. Equal pointer progress bounds every read to the n-byte source window. Length94 or106 is greater than the maximum alignment peel.",
+    "calls": [
+      {
+        "aligned_destination_group_bytes": 72,
+        "aligned_destination_tail_bytes": 2,
+        "aligned_destination_word_bytes": 20,
+        "bytes": 94,
+        "copy_call_PC": 76540,
+        "destination_stack_offset": 4,
+        "forward_length": 94,
+        "saved_RA_stack_offset": 124,
+        "source_end": 105830,
+        "source_start": 105736,
+        "stack_end_exclusive": 98
+      },
+      {
+        "aligned_destination_group_bytes": 72,
+        "aligned_destination_tail_bytes": 2,
+        "aligned_destination_word_bytes": 32,
+        "bytes": 106,
+        "copy_call_PC": 76570,
+        "destination_stack_offset": 4,
+        "forward_length": 106,
+        "saved_RA_stack_offset": 124,
+        "source_end": 105938,
+        "source_start": 105832,
+        "stack_end_exclusive": 110
+      }
+    ],
+    "classified_copy_instructions": 54,
+    "complete_copy_instructions": 54,
+    "excluded_gap_bytes": 2,
+    "existing_parent_selected_bytes": 67455,
+    "feature_meaning_proved": false,
+    "firmware_ready": false,
+    "hardware_accessed": false,
+    "independently_decoded_memory_operations": 24,
+    "network": false,
+    "original_declared_object_extents_proved": false,
+    "original_instructions": 82,
+    "passed": true,
+    "preconditions": [
+      "Original copied source windows remain readable and immutable",
+      "Destination stack buffer is valid and accessible",
+      "Pointer arithmetic does not wrap",
+      "No asynchronous corruption of pointers, stack or code"
+    ],
+    "source_bytes": 200,
+    "source_unit_curated_or_integrated": false,
+    "source_windows": 2,
+    "target_executed": false
+  },
+  "target_executed": false,
+  "verifier": "experiments/tsl9-record-copy-windows/verify-v1.py",
+  "verifier_sha256": "0198fe4c058f34f7fca41007f593e413fd12dbf8a6d70d6e8bd8bb8f3490e894"
+}
