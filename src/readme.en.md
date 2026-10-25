@@ -2,15 +2,18 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/callback-prefix-integration-2026-10-26/readme.en.md): all 68,374B of measured code/data match the official BIN after native address placement; 8 compiler-undefined providers remain; four candidate indirect CODE gaps are outside this count. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/central-callback-integration-2026-10-26/readme.en.md): all 70,522B match the official BIN after native placement; six compiler-undefined providers remain. The four candidate callbacks now have real CODE and table bindings. Counts do not enumerate all runtime gaps. Diagnostic ELF only; physical/OTA compatibility unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:153 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:156 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
 | [Guarded dispatch DATA](native/receive/record_dispatch_tables.c) |5 objects264B,no code |64 real relative slots and an eight-entry lookup. [Evidence](../analysis/record-dispatch-tables-2026-10-25/readme.en.md) |
+| [Central callbacks](native/receive/central_callback_leaves.c) | Three bodies118B/41i | Genuine original bodies,including original RET. [Evidence](../analysis/central-callback-integration-2026-10-26/readme.en.md) |
+| [Central event/helpers](native/receive/central_event_callbacks.c) | Six bodies1938B/645i | Guarded event dispatch and shared-tail dependency retained. [Evidence](../analysis/central-callback-integration-2026-10-26/readme.en.md) |
+| [Central tables](native/receive/central_callback_tables.c) | Three OBJECTs92B/five relocations | All22 non-null table/CODE bindings verified; ROM ABI unproved. [Evidence](../analysis/central-callback-integration-2026-10-26/readme.en.md) |
 | [Callback fixed-length DATA](native/receive/callback_prefix_data.c) | 14 objects, 109B | Every source/length/original-coordinate role verified; installed ROM contract remains open. [Evidence](../analysis/callback-prefix-integration-2026-10-26/readme.en.md) |
 | [Grid read-window DATA](native/receive/grid_read_windows.c) | One 432B owner, two interior labels | Original coordinates and offsets 0/320 verified; third grid remains unresolved. [Evidence](../analysis/grid-integration-2026-10-25/readme.en.md) |
 | [Sequence DATA pool](native/receive/record_sequence_pool.c) |One178B owner,three interior labels |All178 bytes and label offsets0/36/72 survive original-coordinate linking. [Evidence](../analysis/record-sequence-integration-2026-10-25/readme.en.md) |
@@ -149,9 +152,9 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The frozen checker compiles 121 code units as C11/C++17: 242 comparisons and 484 objects. Six independent native_data_units add 12 comparisons/24 objects, totaling 254 comparisons/508 objects. Included C cores belong to their entry units; do not link every .c independently. V4.1.00 references and legacy HOST tests remain outside this native proof.
+The frozen checker compiles 123 CODE units as C11/C++17: 246 comparisons and 492 objects. Seven independent native_data_units add 14 comparisons/28 objects, totaling 260 comparisons/520 objects. Included C cores belong to their entry units; do not link every .c independently. V4.1.00 references and legacy HOST tests remain outside this native proof.
 
-The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed190 comparisons (380 objects). Its receipt is `build/curated-source/action-primitives-20261024-v1/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed. Pointer data independently passes2 source comparisons/4 objects; the two scopes total192 comparisons/384 objects.
+The Windows/Android NDK27.1.12297006/LLVM18 proof passes the stated 260 comparisons/520 objects. CODE receipt: `build/curated-source/central-callbacks-20261026-v1/verification.json`; full source receipt: `experiments/tsl9-central-callback-tables/build/source-proof-v2.json`. Earlier receipts are historical. Other operating systems and physical hardware remain unverified. Toolchain changes require equivalent evidence; no downloads or flag search.
 
 Replay an existing result without compiling:
 

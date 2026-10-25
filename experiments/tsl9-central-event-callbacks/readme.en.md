@@ -1,3 +1,5 @@
+> Historical experiment snapshot. Current curated source/original-coordinate proof: [analysis/central-callback-integration-2026-10-26](../../analysis/central-callback-integration-2026-10-26/readme.en.md).
+
 # Central-role event and helper bodies: C/C++ experiment
 
 Reconstruct **1,938 bytes / 645 original instructions** across five helpers and one event callback. C and C++ produce identical RV32 objects. All 147 actual FUNC regions, 97 direct control relocations, and two address-reference pairs match the original BIN. Register-bound C retains explicit assembly ports and requires original coordinates and private calling conventions.

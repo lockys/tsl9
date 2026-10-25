@@ -1131,6 +1131,27 @@
       "replacements": [],
       "origin_sha256": "a1939ae6503201068bf595992a1b2f0ddc3c6b956fa528d3390dd26c5cfed638",
       "sha256": "a1939ae6503201068bf595992a1b2f0ddc3c6b956fa528d3390dd26c5cfed638"
+    },
+    {
+      "origin": "experiments/tsl9-central-callback-leaves/src/central_callback_leaves.v1.c",
+      "destination": "src/native/receive/central_callback_leaves.c",
+      "replacements": [],
+      "origin_sha256": "c931319e92b548ed6e6f0ce69df7105034e05246bab8823a7e7b99c038ceda69",
+      "sha256": "c931319e92b548ed6e6f0ce69df7105034e05246bab8823a7e7b99c038ceda69"
+    },
+    {
+      "origin": "experiments/tsl9-central-event-callbacks/src/central_event_callbacks.v1.c",
+      "destination": "src/native/receive/central_event_callbacks.c",
+      "replacements": [],
+      "origin_sha256": "00956449294d1884be3a562bad57c88cda7fc9bf92f8d7ba55803079ef9f3ce2",
+      "sha256": "00956449294d1884be3a562bad57c88cda7fc9bf92f8d7ba55803079ef9f3ce2"
+    },
+    {
+      "origin": "experiments/tsl9-central-callback-tables/src/central_callback_tables.v1.c",
+      "destination": "src/native/receive/central_callback_tables.c",
+      "replacements": [],
+      "origin_sha256": "d82908921993d8fd779655b864f126338aefac1589b4fd9222f769da603c3f49",
+      "sha256": "d82908921993d8fd779655b864f126338aefac1589b4fd9222f769da603c3f49"
     }
   ],
   "native_units": [
@@ -2541,6 +2562,30 @@
       ],
       "scope": "Thirty-eight complete remaining safe direct-entry intervals:6022B/1926i,568 private regions,462 direct controls,nineteen typed address pairs. Fourteen callback references have genuine bodies;five static data addresses remain unprovided. Supply29 prior entry imports. Independent parsers agree on all1043 sections,symbols and500 relocations. Preserve original RAM address instruction widths. No new DATA payload. Private authentication body14056 and resident target40000 excluded. Physical MCU/ROM/RAM/IRQ/OTA unproved;no target/HOST/ISA/hardware execution or network",
       "origin_unit_sha256": "1e5295e0aeefc3da266d48aed042822a9b8a9f76ab52c7cdbdcd72fa308c7b20"
+    },
+    {
+      "name": "central-callback-leaves",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-central-callback-leaves/src/central_callback_leaves.v1.c",
+      "curated_unit": "src/native/receive/central_callback_leaves.c",
+      "evidence": "analysis/central-callback-integration-2026-10-26/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-central-callback-leaves/build/v1/verification.json"
+      ],
+      "scope": "Three complete original callback bodies:118B/41i,eleven positive FUNC regions and five typed controls. Original-only RET is retained; installed callback ABI remains unproved.",
+      "origin_unit_sha256": "c931319e92b548ed6e6f0ce69df7105034e05246bab8823a7e7b99c038ceda69"
+    },
+    {
+      "name": "central-event-callbacks",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-central-event-callbacks/src/central_event_callbacks.v1.c",
+      "curated_unit": "src/native/receive/central_event_callbacks.c",
+      "evidence": "analysis/central-callback-integration-2026-10-26/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-central-event-callbacks/build/native-v1/measurement.json"
+      ],
+      "scope": "Five complete helpers and one guarded event body:1938B/645i,147 positive FUNC regions,97 direct controls,two typed address pairs. Retain shared tail11252 and exclude curated neighbor11356..11442. ROM/global-state/physical ABI unproved.",
+      "origin_unit_sha256": "00956449294d1884be3a562bad57c88cda7fc9bf92f8d7ba55803079ef9f3ce2"
     }
   ],
   "native_data_units": [
@@ -2627,6 +2672,20 @@
         "experiments/tsl9-callback-prefix-data/build/data-v2/measurement.json"
       ],
       "scope": "Independent C11/C++17 origin/curated readonly compilation:14 actual OBJECT owners,109 bytes,matching original A0/A2 pointer/length arguments. No implicit NUL,padding or declaration-size guess. Installed ROM read contract/BOOL semantics remain unproved. Candidate callback tables and four uncovered CODE targets are not supplied."
+    },
+    {
+      "name": "central-callback-tables",
+      "profile": "typed-relative-event-and-callback-pointer-tables",
+      "origin_unit": "experiments/tsl9-central-callback-tables/src/central_callback_tables.v1.c",
+      "curated_unit": "src/native/receive/central_callback_tables.c",
+      "origin_unit_sha256": "d82908921993d8fd779655b864f126338aefac1589b4fd9222f769da603c3f49",
+      "verifier": "experiments/tsl9-central-callback-tables/build-v2.py",
+      "spec": "experiments/tsl9-central-callback-tables/spec-v2.json",
+      "evidence": "analysis/central-callback-integration-2026-10-26/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-central-callback-tables/build/data-v2/measurement.json"
+      ],
+      "scope": "Three actual readonly OBJECTs totaling92 bytes:17 signed event cells,five genuine callback function relocations and one original null. Original coordinates and all22 non-null CODE bindings measured. Original declaration extents and installed ROM read ABI remain unproved."
     }
   ],
   "legacy_groups": [

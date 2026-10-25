@@ -1,3 +1,5 @@
+> Historical experiment snapshot. Current curated source/original-coordinate proof: [analysis/central-callback-integration-2026-10-26](../../analysis/central-callback-integration-2026-10-26/readme.en.md).
+
 # Central-role tables and original-coordinate diagnostics
 
 Reconstruct three observed readonly windows in C/C++, totaling **92 bytes**: the 17-cell relative event table at `0x1A548` and callback tables at `0x1A668` and `0x1A674`. Five non-null callbacks use genuine `R_RISCV_32` function references; one original null cell remains. These are selected windows. Original declaration extents and installed ROM read contracts remain unproved.

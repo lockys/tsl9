@@ -1,3 +1,5 @@
+> Historical experiment snapshot. Current curated source/original-coordinate proof: [analysis/central-callback-integration-2026-10-26](../../analysis/central-callback-integration-2026-10-26/readme.en.md).
+
 # Three candidate central-role callbacks: C/C++ experiment
 
 Reconstruct three complete original bodies from the official ID2966 V4.1.60 BIN: `0x10C36..0x10C7A`, `0x10D2E..0x10D30`, and `0x10D30..0x10D60`: **118 bytes / 41 instructions**. C and C++ each produce 11 actual FUNC regions and five typed branch relocations. Resolving those branches at original coordinates reproduces every original instruction. Both languages produce identical objects, checked with two ELF readers.
