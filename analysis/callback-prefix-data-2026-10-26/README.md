@@ -2,6 +2,8 @@
 
 [English](readme.en.md)
 
+本頁保留獨立實驗與當時 88.89% 基準；後續已完成[正式來源與原位址整合](../callback-prefix-integration-2026-10-26/README.md)，目前位元組覆蓋率為 89.03%。四個候選回呼 CODE 缺口與原機 ROM 限制仍未解。
+
 新增 [C/C++ 唯讀資料](../../experiments/tsl9-callback-prefix-data/src/callback_prefix_data.v1.c)：**14 個實際配置，共 109 bytes**。範圍來自原始 A0 指標及 A2 長度參數，沒有補 NUL 或依相鄰位址猜陣列大小。
 
 - 104 條新擷取指令／16 個視窗均與原廠 BIN 相同；全部已選取 CODE 為 64,544 bytes／21,938 指令。

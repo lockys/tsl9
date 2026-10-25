@@ -2,6 +2,8 @@
 
 [繁體中文](README.md)
 
+This page preserves the standalone experiment and its 88.89% baseline. Subsequent [curation and original-coordinate integration](../callback-prefix-integration-2026-10-26/readme.en.md) passed; current byte coverage is 89.03%. The four candidate callback CODE gaps and installed-ROM limits remain open.
+
 Add [readonly C/C++ DATA](../../experiments/tsl9-callback-prefix-data/src/callback_prefix_data.v1.c): **14 actual allocations, 109 bytes**. Windows follow original A0 pointers and A2 length arguments. No implicit NUL or neighboring-address declaration guess.
 
 - All 104 fresh instructions in 16 windows match the original BIN; the whole selected CODE scope is 64,544 bytes / 21,938 instructions.

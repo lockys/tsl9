@@ -2,6 +2,8 @@
 
 [繁體中文](README.md) · [Evidence](../../analysis/callback-prefix-data-2026-10-26/readme.en.md)
 
+This page preserves the standalone experiment and its 88.89% baseline. Subsequent [curation and original-coordinate integration](../../analysis/callback-prefix-integration-2026-10-26/readme.en.md) passed; current byte coverage is 89.03%. The four candidate callback CODE gaps and installed-ROM limits remain open.
+
 Fourteen fixed-length providers / 109 bytes. The experimental link has eight compiler-undefined providers; the accepted component still has 22. Four newly identified indirect CODE gaps are recorded separately. No flashable BIN.
 
 Set `LLVM_BIN` to the established LLVM tool directory:

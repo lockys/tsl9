@@ -2,6 +2,8 @@
 
 [English](readme.en.md) · [分析證據](../../analysis/callback-prefix-data-2026-10-26/README.md)
 
+本頁保留獨立實驗與當時 88.89% 基準；後續已完成[正式來源與原位址整合](../../analysis/callback-prefix-integration-2026-10-26/README.md)，目前位元組覆蓋率為 89.03%。四個候選回呼 CODE 缺口與原機 ROM 限制仍未解。
+
 14 個固定長度資料提供者／109 bytes。實驗性連結有 8 個編譯器未解參照；正式元件仍為 22。四個新辨識的間接 CODE 缺口另列於證據，未被此計數涵蓋。沒有可燒錄 BIN。
 
 `LLVM_BIN` 指向既定 LLVM 工具目錄：
