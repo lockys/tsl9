@@ -1,0 +1,1438 @@
+{
+  "schema": "TSL9-settings-state-input-contracts-v1",
+  "functions": [
+    {
+      "start": 40972,
+      "end": 40996,
+      "confirmed": [
+        "Compare unsigned input with24 and read GP+173.",
+        "Input above24 with a zero counter tail-calls9FC8;input at most24 decrements a nonzero counter."
+      ]
+    },
+    {
+      "start": 46368,
+      "end": 46450,
+      "confirmed": [
+        "Require record byte96 high bits,GP+357 in1..4,and zero results from F65C/D3E8.",
+        "Schedule the real B29A callback through9124 with arguments0,3000,0;time unit unknown."
+      ]
+    },
+    {
+      "start": 46534,
+      "end": 46560,
+      "confirmed": [
+        "At one static byte base,copy byte2 to3,then byte0 to1 using separate volatile loads/stores."
+      ]
+    },
+    {
+      "start": 48352,
+      "end": 48364,
+      "confirmed": [
+        "Store1 to one static byte;no outgoing call."
+      ]
+    },
+    {
+      "start": 52308,
+      "end": 52320,
+      "confirmed": [
+        "Store1 to one static byte;no outgoing call."
+      ]
+    },
+    {
+      "start": 52354,
+      "end": 52364,
+      "confirmed": [
+        "Load a static unsigned byte into A0 and return."
+      ]
+    },
+    {
+      "start": 57530,
+      "end": 57766,
+      "confirmed": [
+        "Preserve36 direct calls and their original order.",
+        "Perform initial state-copy/clear helpers,then conditionally call setters after their byte/predicate getters.",
+        "Finish with a tail-call to13D48 with0."
+      ],
+      "inference": "State cleanup callback;not evidence of a physical factory reset."
+    },
+    {
+      "start": 57766,
+      "end": 57868,
+      "confirmed": [
+        "Gate on GP+357 in1..4,D052==4 and nonzero8202.",
+        "Compute unsigned32 elapsed=81B0_result-GP[272..275];when elapsed exceeds1999 call D05C(3,15,1) then9FC8.",
+        "Store the saved current tick;failed inner gates tail-call9508(0)."
+      ],
+      "unknown": [
+        "tick unit",
+        "physical effect of called helpers"
+      ]
+    },
+    {
+      "start": 57868,
+      "end": 57888,
+      "confirmed": [
+        "Schedule the provided E0BA callback through9124 with arguments0,1000,0;time unit unknown."
+      ]
+    },
+    {
+      "start": 63078,
+      "end": 63090,
+      "confirmed": [
+        "Store1 to one static byte;no outgoing call."
+      ]
+    },
+    {
+      "start": 63102,
+      "end": 63112,
+      "confirmed": [
+        "Load a static unsigned byte into A0 and return."
+      ]
+    },
+    {
+      "start": 63372,
+      "end": 63382,
+      "confirmed": [
+        "Load a static unsigned byte into A0 and return."
+      ]
+    },
+    {
+      "start": 63442,
+      "end": 63452,
+      "confirmed": [
+        "Load a static unsigned byte into A0 and return."
+      ]
+    },
+    {
+      "start": 63980,
+      "end": 64036,
+      "confirmed": [
+        "Index=record[0]&7;zero returns before lookup or state write.",
+        "For index1..7,read a threshold from the selected1AB58..1AB60 window and compare the full unsigned32 input against it.",
+        "Changed comparison result is written to GP+277 then tail-calls13D48(0)."
+      ],
+      "unknown": [
+        "physical quantity",
+        "input unit",
+        "original declared table extent",
+        "uniform return-value API"
+      ]
+    },
+    {
+      "start": 64060,
+      "end": 64074,
+      "confirmed": [
+        "Copy GP+276 unsigned byte to GP+277."
+      ]
+    },
+    {
+      "start": 64074,
+      "end": 64080,
+      "confirmed": [
+        "Store a zero halfword at GP+278."
+      ]
+    },
+    {
+      "start": 64254,
+      "end": 64268,
+      "confirmed": [
+        "Copy GP+285 unsigned byte to GP+286."
+      ]
+    },
+    {
+      "start": 97220,
+      "end": 97270,
+      "confirmed": [
+        "Nonzero input cancels/registers the178F8 callback through90B0,then tail-calls1798A(1,0).",
+        "Zero input schedules the same real callback through9124 with arguments0,1500,0.",
+        "No direct MMIO operation appears in this wrapper."
+      ],
+      "unknown": [
+        "90B0 installed scheduling behavior",
+        "time unit",
+        "physical effect of1798A"
+      ]
+    }
+  ],
+  "opcode_witnesses": [
+    {
+      "PC": 40972,
+      "opcode": "li a4, 24",
+      "bytes": "6147"
+    },
+    {
+      "PC": 40974,
+      "opcode": "lbu a5, 173(gp)",
+      "bytes": "83c7d10a"
+    },
+    {
+      "PC": 40978,
+      "opcode": "bleu a0, a4, 0xa01a",
+      "bytes": "6374a700"
+    },
+    {
+      "PC": 40982,
+      "opcode": "bnez a5, 0xa022",
+      "bytes": "91e7"
+    },
+    {
+      "PC": 40984,
+      "opcode": "j 0x9fc8",
+      "bytes": "45bf"
+    },
+    {
+      "PC": 40986,
+      "opcode": "beqz a5, 0xa022",
+      "bytes": "81c7"
+    },
+    {
+      "PC": 40988,
+      "opcode": "addi a5, a5, -1",
+      "bytes": "fd17"
+    },
+    {
+      "PC": 40990,
+      "opcode": "sb a5, 173(gp)",
+      "bytes": "a386f10a"
+    },
+    {
+      "PC": 40994,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 46368,
+      "opcode": "addi a5, gp, 84",
+      "bytes": "93874105"
+    },
+    {
+      "PC": 46372,
+      "opcode": "lw a5, 0(a5)",
+      "bytes": "9c43"
+    },
+    {
+      "PC": 46374,
+      "opcode": "lbu a5, 96(a5)",
+      "bytes": "83c70706"
+    },
+    {
+      "PC": 46378,
+      "opcode": "andi a5, a5, 192",
+      "bytes": "93f7070c"
+    },
+    {
+      "PC": 46382,
+      "opcode": "beqz a5, 0xb570",
+      "bytes": "a9c3"
+    },
+    {
+      "PC": 46384,
+      "opcode": "lbu a5, 357(gp)",
+      "bytes": "83c75116"
+    },
+    {
+      "PC": 46388,
+      "opcode": "addi a5, a5, -1",
+      "bytes": "fd17"
+    },
+    {
+      "PC": 46390,
+      "opcode": "andi a5, a5, 255",
+      "bytes": "93f7f70f"
+    },
+    {
+      "PC": 46394,
+      "opcode": "li a4, 3",
+      "bytes": "0d47"
+    },
+    {
+      "PC": 46396,
+      "opcode": "bltu a4, a5, 0xb570",
+      "bytes": "636af702"
+    },
+    {
+      "PC": 46400,
+      "opcode": "addi sp, sp, -16",
+      "bytes": "4111"
+    },
+    {
+      "PC": 46402,
+      "opcode": "sw ra, 12(sp)",
+      "bytes": "06c6"
+    },
+    {
+      "PC": 46404,
+      "opcode": "jal ra, 0xf65c",
+      "bytes": "ef408011"
+    },
+    {
+      "PC": 46408,
+      "opcode": "bnez a0, 0xb56a",
+      "bytes": "0de1"
+    },
+    {
+      "PC": 46410,
+      "opcode": "jal ra, 0xd3e8",
+      "bytes": "ef10f069"
+    },
+    {
+      "PC": 46414,
+      "opcode": "bnez a0, 0xb56a",
+      "bytes": "11ed"
+    },
+    {
+      "PC": 46416,
+      "opcode": "lw ra, 12(sp)",
+      "bytes": "b240"
+    },
+    {
+      "PC": 46418,
+      "opcode": "lui a2, 0x1",
+      "bytes": "0566"
+    },
+    {
+      "PC": 46420,
+      "opcode": "li a3, 0",
+      "bytes": "8146"
+    },
+    {
+      "PC": 46422,
+      "opcode": "addi a2, a2, -1096",
+      "bytes": "130686bb"
+    },
+    {
+      "PC": 46426,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 46428,
+      "opcode": "auipc a0, 0x0",
+      "bytes": "17050000"
+    },
+    {
+      "PC": 46432,
+      "opcode": "addi a0, a0, -706",
+      "bytes": "1305e5d3"
+    },
+    {
+      "PC": 46436,
+      "opcode": "addi sp, sp, 16",
+      "bytes": "4101"
+    },
+    {
+      "PC": 46438,
+      "opcode": "j 0x9124",
+      "bytes": "6fd0ffbb"
+    },
+    {
+      "PC": 46442,
+      "opcode": "lw ra, 12(sp)",
+      "bytes": "b240"
+    },
+    {
+      "PC": 46444,
+      "opcode": "addi sp, sp, 16",
+      "bytes": "4101"
+    },
+    {
+      "PC": 46446,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 46448,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 46534,
+      "opcode": "auipc a5, 0x20001",
+      "bytes": "97170020"
+    },
+    {
+      "PC": 46538,
+      "opcode": "addi a5, a5, -1754",
+      "bytes": "93876792"
+    },
+    {
+      "PC": 46542,
+      "opcode": "lbu a4, 2(a5)",
+      "bytes": "03c72700"
+    },
+    {
+      "PC": 46546,
+      "opcode": "sb a4, 3(a5)",
+      "bytes": "a381e700"
+    },
+    {
+      "PC": 46550,
+      "opcode": "lbu a4, 0(a5)",
+      "bytes": "03c70700"
+    },
+    {
+      "PC": 46554,
+      "opcode": "sb a4, 1(a5)",
+      "bytes": "a380e700"
+    },
+    {
+      "PC": 46558,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 48352,
+      "opcode": "li a5, 1",
+      "bytes": "8547"
+    },
+    {
+      "PC": 48354,
+      "opcode": "auipc a4, 0x20000",
+      "bytes": "17070020"
+    },
+    {
+      "PC": 48358,
+      "opcode": "sb a5, 562(a4)",
+      "bytes": "2309f722"
+    },
+    {
+      "PC": 48362,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 52308,
+      "opcode": "li a5, 1",
+      "bytes": "8547"
+    },
+    {
+      "PC": 52310,
+      "opcode": "auipc a4, 0x1ffff",
+      "bytes": "17f7ff1f"
+    },
+    {
+      "PC": 52314,
+      "opcode": "sb a5, 718(a4)",
+      "bytes": "2307f72c"
+    },
+    {
+      "PC": 52318,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 52354,
+      "opcode": "auipc a0, 0x1ffff",
+      "bytes": "17f5ff1f"
+    },
+    {
+      "PC": 52358,
+      "opcode": "lbu a0, 675(a0)",
+      "bytes": "0345352a"
+    },
+    {
+      "PC": 52362,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 57530,
+      "opcode": "addi sp, sp, -16",
+      "bytes": "4111"
+    },
+    {
+      "PC": 57532,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57534,
+      "opcode": "sw ra, 12(sp)",
+      "bytes": "06c6"
+    },
+    {
+      "PC": 57536,
+      "opcode": "jal ra, 0xbd00",
+      "bytes": "efd01fc4"
+    },
+    {
+      "PC": 57540,
+      "opcode": "jal ra, 0xfa3c",
+      "bytes": "ef109017"
+    },
+    {
+      "PC": 57544,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57546,
+      "opcode": "jal ra, 0xfd6a",
+      "bytes": "ef10104a"
+    },
+    {
+      "PC": 57550,
+      "opcode": "jal ra, 0xfa4a",
+      "bytes": "ef10d017"
+    },
+    {
+      "PC": 57554,
+      "opcode": "jal ra, 0xfafe",
+      "bytes": "ef10d022"
+    },
+    {
+      "PC": 57558,
+      "opcode": "jal ra, 0xf838",
+      "bytes": "ef102076"
+    },
+    {
+      "PC": 57562,
+      "opcode": "jal ra, 0xb5c6",
+      "bytes": "efd0cfce"
+    },
+    {
+      "PC": 57566,
+      "opcode": "jal ra, 0xb242",
+      "bytes": "efd04f96"
+    },
+    {
+      "PC": 57570,
+      "opcode": "jal ra, 0x8440",
+      "bytes": "efa0efb5"
+    },
+    {
+      "PC": 57574,
+      "opcode": "beqz a0, 0xe0f0",
+      "bytes": "09c5"
+    },
+    {
+      "PC": 57576,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 57578,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57580,
+      "opcode": "jal ra, 0x17344",
+      "bytes": "ef908025"
+    },
+    {
+      "PC": 57584,
+      "opcode": "jal ra, 0xa968",
+      "bytes": "efc09f87"
+    },
+    {
+      "PC": 57588,
+      "opcode": "beqz a0, 0xe0fa",
+      "bytes": "19c1"
+    },
+    {
+      "PC": 57590,
+      "opcode": "jal ra, 0xa6aa",
+      "bytes": "efc04fdb"
+    },
+    {
+      "PC": 57594,
+      "opcode": "jal ra, 0xd314",
+      "bytes": "eff0afa1"
+    },
+    {
+      "PC": 57598,
+      "opcode": "beqz a0, 0xe106",
+      "bytes": "01c5"
+    },
+    {
+      "PC": 57600,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57602,
+      "opcode": "jal ra, 0xd2ee",
+      "bytes": "eff0cf9e"
+    },
+    {
+      "PC": 57606,
+      "opcode": "jal ra, 0x181c4",
+      "bytes": "efa0e00b"
+    },
+    {
+      "PC": 57610,
+      "opcode": "beqz a0, 0xe116",
+      "bytes": "11c5"
+    },
+    {
+      "PC": 57612,
+      "opcode": "li a2, 1",
+      "bytes": "0546"
+    },
+    {
+      "PC": 57614,
+      "opcode": "li a1, 3",
+      "bytes": "8d45"
+    },
+    {
+      "PC": 57616,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57618,
+      "opcode": "jal ra, 0x1811a",
+      "bytes": "efa08000"
+    },
+    {
+      "PC": 57622,
+      "opcode": "jal ra, 0xc35a",
+      "bytes": "efe04fa4"
+    },
+    {
+      "PC": 57626,
+      "opcode": "beqz a0, 0xe122",
+      "bytes": "01c5"
+    },
+    {
+      "PC": 57628,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57630,
+      "opcode": "jal ra, 0xbd6e",
+      "bytes": "efd01fc5"
+    },
+    {
+      "PC": 57634,
+      "opcode": "jal ra, 0xcd44",
+      "bytes": "efe03fc2"
+    },
+    {
+      "PC": 57638,
+      "opcode": "beqz a0, 0xe130",
+      "bytes": "09c5"
+    },
+    {
+      "PC": 57640,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 57642,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57644,
+      "opcode": "jal ra, 0xcc8c",
+      "bytes": "efe01fb6"
+    },
+    {
+      "PC": 57648,
+      "opcode": "jal ra, 0xf7d2",
+      "bytes": "ef10206a"
+    },
+    {
+      "PC": 57652,
+      "opcode": "beqz a0, 0xe13e",
+      "bytes": "09c5"
+    },
+    {
+      "PC": 57654,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 57656,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57658,
+      "opcode": "jal ra, 0xf796",
+      "bytes": "ef10c065"
+    },
+    {
+      "PC": 57662,
+      "opcode": "jal ra, 0xf6b0",
+      "bytes": "ef102057"
+    },
+    {
+      "PC": 57666,
+      "opcode": "beqz a0, 0xe14c",
+      "bytes": "09c5"
+    },
+    {
+      "PC": 57668,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 57670,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57672,
+      "opcode": "jal ra, 0xf688",
+      "bytes": "ef100054"
+    },
+    {
+      "PC": 57676,
+      "opcode": "jal ra, 0xf714",
+      "bytes": "ef10805c"
+    },
+    {
+      "PC": 57680,
+      "opcode": "beqz a0, 0xe15a",
+      "bytes": "09c5"
+    },
+    {
+      "PC": 57682,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 57684,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57686,
+      "opcode": "jal ra, 0xf6ec",
+      "bytes": "ef106059"
+    },
+    {
+      "PC": 57690,
+      "opcode": "jal ra, 0xf78c",
+      "bytes": "ef102063"
+    },
+    {
+      "PC": 57694,
+      "opcode": "beqz a0, 0xe168",
+      "bytes": "09c5"
+    },
+    {
+      "PC": 57696,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 57698,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57700,
+      "opcode": "jal ra, 0xf750",
+      "bytes": "ef10c05e"
+    },
+    {
+      "PC": 57704,
+      "opcode": "jal ra, 0xf6e2",
+      "bytes": "ef10a057"
+    },
+    {
+      "PC": 57708,
+      "opcode": "beqz a0, 0xe176",
+      "bytes": "09c5"
+    },
+    {
+      "PC": 57710,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 57712,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57714,
+      "opcode": "jal ra, 0xf6ba",
+      "bytes": "ef108054"
+    },
+    {
+      "PC": 57718,
+      "opcode": "jal ra, 0xf746",
+      "bytes": "ef10005d"
+    },
+    {
+      "PC": 57722,
+      "opcode": "beqz a0, 0xe184",
+      "bytes": "09c5"
+    },
+    {
+      "PC": 57724,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 57726,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57728,
+      "opcode": "jal ra, 0xf71e",
+      "bytes": "ef10e059"
+    },
+    {
+      "PC": 57732,
+      "opcode": "jal ra, 0xcc82",
+      "bytes": "efe0ffaf"
+    },
+    {
+      "PC": 57736,
+      "opcode": "beqz a0, 0xe190",
+      "bytes": "01c5"
+    },
+    {
+      "PC": 57738,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57740,
+      "opcode": "jal ra, 0xcc78",
+      "bytes": "efe0dfae"
+    },
+    {
+      "PC": 57744,
+      "opcode": "jal ra, 0xf67e",
+      "bytes": "ef10e04e"
+    },
+    {
+      "PC": 57748,
+      "opcode": "beqz a0, 0xe19c",
+      "bytes": "01c5"
+    },
+    {
+      "PC": 57750,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57752,
+      "opcode": "jal ra, 0xf672",
+      "bytes": "ef10a04d"
+    },
+    {
+      "PC": 57756,
+      "opcode": "lw ra, 12(sp)",
+      "bytes": "b240"
+    },
+    {
+      "PC": 57758,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57760,
+      "opcode": "addi sp, sp, 16",
+      "bytes": "4101"
+    },
+    {
+      "PC": 57762,
+      "opcode": "j 0x13d48",
+      "bytes": "6f50703a"
+    },
+    {
+      "PC": 57766,
+      "opcode": "lbu a5, 357(gp)",
+      "bytes": "83c75116"
+    },
+    {
+      "PC": 57770,
+      "opcode": "addi a5, a5, -1",
+      "bytes": "fd17"
+    },
+    {
+      "PC": 57772,
+      "opcode": "andi a5, a5, 255",
+      "bytes": "93f7f70f"
+    },
+    {
+      "PC": 57776,
+      "opcode": "li a4, 3",
+      "bytes": "0d47"
+    },
+    {
+      "PC": 57778,
+      "opcode": "bltu a4, a5, 0xe20a",
+      "bytes": "636cf704"
+    },
+    {
+      "PC": 57782,
+      "opcode": "addi sp, sp, -16",
+      "bytes": "4111"
+    },
+    {
+      "PC": 57784,
+      "opcode": "sw ra, 12(sp)",
+      "bytes": "06c6"
+    },
+    {
+      "PC": 57786,
+      "opcode": "sw s0, 8(sp)",
+      "bytes": "22c4"
+    },
+    {
+      "PC": 57788,
+      "opcode": "jal ra, 0xd052",
+      "bytes": "efe07fe9"
+    },
+    {
+      "PC": 57792,
+      "opcode": "li a5, 4",
+      "bytes": "9147"
+    },
+    {
+      "PC": 57794,
+      "opcode": "bne a0, a5, 0xe1fe",
+      "bytes": "631ef502"
+    },
+    {
+      "PC": 57798,
+      "opcode": "jal ra, 0x8202",
+      "bytes": "efa0cf83"
+    },
+    {
+      "PC": 57802,
+      "opcode": "beqz a0, 0xe1fe",
+      "bytes": "15c9"
+    },
+    {
+      "PC": 57804,
+      "opcode": "jal ra, 0x81b0",
+      "bytes": "ef905ffe"
+    },
+    {
+      "PC": 57808,
+      "opcode": "addi a5, gp, 272",
+      "bytes": "93870111"
+    },
+    {
+      "PC": 57812,
+      "opcode": "lw a5, 0(a5)",
+      "bytes": "9c43"
+    },
+    {
+      "PC": 57814,
+      "opcode": "li a4, 1999",
+      "bytes": "1307f07c"
+    },
+    {
+      "PC": 57818,
+      "opcode": "mv s0, a0",
+      "bytes": "2a84"
+    },
+    {
+      "PC": 57820,
+      "opcode": "sub a5, a0, a5",
+      "bytes": "b307f540"
+    },
+    {
+      "PC": 57824,
+      "opcode": "bleu a5, a4, 0xe1f2",
+      "bytes": "6379f700"
+    },
+    {
+      "PC": 57828,
+      "opcode": "li a2, 1",
+      "bytes": "0546"
+    },
+    {
+      "PC": 57830,
+      "opcode": "li a1, 15",
+      "bytes": "bd45"
+    },
+    {
+      "PC": 57832,
+      "opcode": "li a0, 3",
+      "bytes": "0d45"
+    },
+    {
+      "PC": 57834,
+      "opcode": "jal ra, 0xd05c",
+      "bytes": "efe03fe7"
+    },
+    {
+      "PC": 57838,
+      "opcode": "jal ra, 0x9fc8",
+      "bytes": "efb0bfdd"
+    },
+    {
+      "PC": 57842,
+      "opcode": "sw s0, 272(gp)",
+      "bytes": "23a88110"
+    },
+    {
+      "PC": 57846,
+      "opcode": "lw ra, 12(sp)",
+      "bytes": "b240"
+    },
+    {
+      "PC": 57848,
+      "opcode": "lw s0, 8(sp)",
+      "bytes": "2244"
+    },
+    {
+      "PC": 57850,
+      "opcode": "addi sp, sp, 16",
+      "bytes": "4101"
+    },
+    {
+      "PC": 57852,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 57854,
+      "opcode": "lw s0, 8(sp)",
+      "bytes": "2244"
+    },
+    {
+      "PC": 57856,
+      "opcode": "lw ra, 12(sp)",
+      "bytes": "b240"
+    },
+    {
+      "PC": 57858,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 57860,
+      "opcode": "addi sp, sp, 16",
+      "bytes": "4101"
+    },
+    {
+      "PC": 57862,
+      "opcode": "j 0x9508",
+      "bytes": "6fb02fb0"
+    },
+    {
+      "PC": 57866,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 57868,
+      "opcode": "li a3, 0",
+      "bytes": "8146"
+    },
+    {
+      "PC": 57870,
+      "opcode": "li a2, 1000",
+      "bytes": "1306803e"
+    },
+    {
+      "PC": 57874,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 57876,
+      "opcode": "auipc a0, 0x0",
+      "bytes": "17050000"
+    },
+    {
+      "PC": 57880,
+      "opcode": "addi a0, a0, -346",
+      "bytes": "130565ea"
+    },
+    {
+      "PC": 57884,
+      "opcode": "j 0x9124",
+      "bytes": "6fa09ff0"
+    },
+    {
+      "PC": 63078,
+      "opcode": "li a5, 1",
+      "bytes": "8547"
+    },
+    {
+      "PC": 63080,
+      "opcode": "auipc a4, 0x1fffd",
+      "bytes": "17d7ff1f"
+    },
+    {
+      "PC": 63084,
+      "opcode": "sb a5, -1743(a4)",
+      "bytes": "a308f792"
+    },
+    {
+      "PC": 63088,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 63102,
+      "opcode": "auipc a0, 0x1fffd",
+      "bytes": "17d5ff1f"
+    },
+    {
+      "PC": 63106,
+      "opcode": "lbu a0, -1766(a0)",
+      "bytes": "0345a591"
+    },
+    {
+      "PC": 63110,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 63372,
+      "opcode": "auipc a0, 0x1fffd",
+      "bytes": "17d5ff1f"
+    },
+    {
+      "PC": 63376,
+      "opcode": "lbu a0, -2032(a0)",
+      "bytes": "03450581"
+    },
+    {
+      "PC": 63380,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 63442,
+      "opcode": "auipc a0, 0x1fffc",
+      "bytes": "17c5ff1f"
+    },
+    {
+      "PC": 63446,
+      "opcode": "lbu a0, 1993(a0)",
+      "bytes": "0345957c"
+    },
+    {
+      "PC": 63450,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 63980,
+      "opcode": "addi a5, gp, 84",
+      "bytes": "93874105"
+    },
+    {
+      "PC": 63984,
+      "opcode": "lw a5, 0(a5)",
+      "bytes": "9c43"
+    },
+    {
+      "PC": 63986,
+      "opcode": "lbu a4, 0(a5)",
+      "bytes": "03c70700"
+    },
+    {
+      "PC": 63990,
+      "opcode": "andi a4, a4, 7",
+      "bytes": "1d8b"
+    },
+    {
+      "PC": 63992,
+      "opcode": "beqz a4, 0xfa22",
+      "bytes": "0dc7"
+    },
+    {
+      "PC": 63994,
+      "opcode": "auipc a3, 0xb",
+      "bytes": "97b60000"
+    },
+    {
+      "PC": 63998,
+      "opcode": "addi a3, a3, 350",
+      "bytes": "9386e615"
+    },
+    {
+      "PC": 64002,
+      "opcode": "add a4, a4, a3",
+      "bytes": "3697"
+    },
+    {
+      "PC": 64004,
+      "opcode": "lbu a5, 0(a4)",
+      "bytes": "83470700"
+    },
+    {
+      "PC": 64008,
+      "opcode": "sltu a0, a0, a5",
+      "bytes": "3335f500"
+    },
+    {
+      "PC": 64012,
+      "opcode": "xori a0, a0, 1",
+      "bytes": "13451500"
+    },
+    {
+      "PC": 64016,
+      "opcode": "lbu a5, 277(gp)",
+      "bytes": "83c75111"
+    },
+    {
+      "PC": 64020,
+      "opcode": "beq a5, a0, 0xfa22",
+      "bytes": "6387a700"
+    },
+    {
+      "PC": 64024,
+      "opcode": "sb a0, 277(gp)",
+      "bytes": "a38aa110"
+    },
+    {
+      "PC": 64028,
+      "opcode": "li a0, 0",
+      "bytes": "0145"
+    },
+    {
+      "PC": 64030,
+      "opcode": "j 0x13d48",
+      "bytes": "6f40a032"
+    },
+    {
+      "PC": 64034,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 64060,
+      "opcode": "addi a5, gp, 276",
+      "bytes": "93874111"
+    },
+    {
+      "PC": 64064,
+      "opcode": "lbu a4, 0(a5)",
+      "bytes": "03c70700"
+    },
+    {
+      "PC": 64068,
+      "opcode": "sb a4, 1(a5)",
+      "bytes": "a380e700"
+    },
+    {
+      "PC": 64072,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 64074,
+      "opcode": "sh zero, 278(gp)",
+      "bytes": "239b0110"
+    },
+    {
+      "PC": 64078,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 64254,
+      "opcode": "addi a5, gp, 284",
+      "bytes": "9387c111"
+    },
+    {
+      "PC": 64258,
+      "opcode": "lbu a4, 1(a5)",
+      "bytes": "03c71700"
+    },
+    {
+      "PC": 64262,
+      "opcode": "sb a4, 2(a5)",
+      "bytes": "2381e700"
+    },
+    {
+      "PC": 64266,
+      "opcode": "ret",
+      "bytes": "8280"
+    },
+    {
+      "PC": 97220,
+      "opcode": "beqz a0, 0x17be2",
+      "bytes": "19cd"
+    },
+    {
+      "PC": 97222,
+      "opcode": "addi sp, sp, -16",
+      "bytes": "4111"
+    },
+    {
+      "PC": 97224,
+      "opcode": "auipc a0, 0x0",
+      "bytes": "17050000"
+    },
+    {
+      "PC": 97228,
+      "opcode": "addi a0, a0, -720",
+      "bytes": "130505d3"
+    },
+    {
+      "PC": 97232,
+      "opcode": "sw ra, 12(sp)",
+      "bytes": "06c6"
+    },
+    {
+      "PC": 97234,
+      "opcode": "jal ra, 0x90b0",
+      "bytes": "ef10efcd"
+    },
+    {
+      "PC": 97238,
+      "opcode": "lw ra, 12(sp)",
+      "bytes": "b240"
+    },
+    {
+      "PC": 97240,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 97242,
+      "opcode": "li a0, 1",
+      "bytes": "0545"
+    },
+    {
+      "PC": 97244,
+      "opcode": "addi sp, sp, 16",
+      "bytes": "4101"
+    },
+    {
+      "PC": 97246,
+      "opcode": "j 0x1798a",
+      "bytes": "6ff0dfda"
+    },
+    {
+      "PC": 97250,
+      "opcode": "li a3, 0",
+      "bytes": "8146"
+    },
+    {
+      "PC": 97252,
+      "opcode": "li a2, 1500",
+      "bytes": "1306c05d"
+    },
+    {
+      "PC": 97256,
+      "opcode": "li a1, 0",
+      "bytes": "8145"
+    },
+    {
+      "PC": 97258,
+      "opcode": "auipc a0, 0x0",
+      "bytes": "17050000"
+    },
+    {
+      "PC": 97262,
+      "opcode": "addi a0, a0, -754",
+      "bytes": "1305e5d0"
+    },
+    {
+      "PC": 97266,
+      "opcode": "j 0x9124",
+      "bytes": "6f102fd3"
+    }
+  ],
+  "static_address_checks": [
+    {
+      "PC": 46534,
+      "consumer_PC": 46538,
+      "address": 536919788,
+      "access": "address-only"
+    },
+    {
+      "PC": 48354,
+      "consumer_PC": 48358,
+      "address": 536919828,
+      "access": "store"
+    },
+    {
+      "PC": 52310,
+      "consumer_PC": 52314,
+      "address": 536919844,
+      "access": "store"
+    },
+    {
+      "PC": 52354,
+      "consumer_PC": 52358,
+      "address": 536919845,
+      "access": "load"
+    },
+    {
+      "PC": 63080,
+      "consumer_PC": 63084,
+      "address": 536919961,
+      "access": "store"
+    },
+    {
+      "PC": 63102,
+      "consumer_PC": 63106,
+      "address": 536919960,
+      "access": "load"
+    },
+    {
+      "PC": 63372,
+      "consumer_PC": 63376,
+      "address": 536919964,
+      "access": "load"
+    },
+    {
+      "PC": 63442,
+      "consumer_PC": 63446,
+      "address": 536919963,
+      "access": "load"
+    }
+  ],
+  "callback_references": [
+    {
+      "PC": 46428,
+      "target_PC": 45722,
+      "body_provided": true
+    },
+    {
+      "PC": 57876,
+      "target_PC": 57530,
+      "body_provided": true
+    },
+    {
+      "PC": 97224,
+      "target_PC": 96504,
+      "body_provided": true
+    },
+    {
+      "PC": 97258,
+      "target_PC": 96504,
+      "body_provided": true
+    }
+  ],
+  "data_references": [
+    {
+      "PC": 63994,
+      "target_PC": 109400,
+      "referent_provided": true
+    }
+  ],
+  "lookup_window": {
+    "bytes": 8,
+    "end": 109408,
+    "kind": "bounded-byte-window",
+    "name": "tsl9_runtime_service_threshold_bytes_1ab58",
+    "observed_index_mask": 7,
+    "original_declared_table_extent_proved": false,
+    "original_sha256": "5d157d3fe1f8ab89a6c21a2eea8dd6689ca199e727422ae140d676fd2d1a6551",
+    "raw_hex": "ff334c667f99b2cc",
+    "start": 109400,
+    "zero_index_returns_before_lookup": true,
+    "index_mask_PC": 63990,
+    "zero_guard_PC": 63992,
+    "load_PC": 64004,
+    "comparison_PC": 64008,
+    "comparison": "unsigned32_input_ge_uint8_threshold"
+  },
+  "bounds_or_units_proved": false,
+  "physical_ROM_RAM_IRQ_OTA_proved": false,
+  "private_ABI_proved": false
+}
