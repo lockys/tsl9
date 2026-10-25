@@ -1103,6 +1103,13 @@
       "replacements": [],
       "origin_sha256": "d059365ee0f705885b74d8ff3c5cc6a658211b372a83fb282d68cc71cd017ea1",
       "sha256": "d059365ee0f705885b74d8ff3c5cc6a658211b372a83fb282d68cc71cd017ea1"
+    },
+    {
+      "origin": "experiments/tsl9-record-copy-windows/src/record_copy_windows.v1.c",
+      "destination": "src/native/receive/record_copy_windows.c",
+      "replacements": [],
+      "origin_sha256": "d7b2a76ac65b12216da7f6d9b8dbd4cdb3d8b2e02266c2c75d6d33084c3a54de",
+      "sha256": "d7b2a76ac65b12216da7f6d9b8dbd4cdb3d8b2e02266c2c75d6d33084c3a54de"
     }
   ],
   "native_units": [
@@ -2543,6 +2550,20 @@
         "experiments/tsl9-record-dispatch-tables/build/data-v1/measurement.json"
       ],
       "scope": "Independent C11/C++17 readonly data compilation:four bounded relative jump tables,64 original code-label entries,128 ADD32/SUB32 references and one eight-byte lookup.264B in five real DATA objects,no executable code or stubs. Existing code-unit inventory remains121. Original declared extents,asynchronous/private ABI behavior,physical hardware/ROM/RAM/IRQ/OTA and runtime index observations remain unproved. No target/HOST/ISA/hardware execution or network"
+    },
+    {
+      "name": "record-copy-windows",
+      "profile": "bounded-readonly-copy-source-data",
+      "origin_unit": "experiments/tsl9-record-copy-windows/src/record_copy_windows.v1.c",
+      "curated_unit": "src/native/receive/record_copy_windows.c",
+      "origin_unit_sha256": "d7b2a76ac65b12216da7f6d9b8dbd4cdb3d8b2e02266c2c75d6d33084c3a54de",
+      "verifier": "experiments/tsl9-record-copy-windows/build-v3.py",
+      "spec": "experiments/tsl9-record-copy-windows/spec-v3.json",
+      "evidence": "analysis/record-copy-integration-2026-10-25/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-record-copy-windows/build/data-v3/measurement.json"
+      ],
+      "scope": "Independent C11/C++17 readonly DATA compilation for two original software-copy source windows,94 and106 bytes. Bounds follow82 original instructions including the complete54-instruction copy body. No new executable code,stubs,relocations or imports. Original declarations,physical feature meanings,full stack/IRQ/ROM/MCU/OTA compatibility remain unproved;no target/model/ISA/hardware execution."
     }
   ],
   "legacy_groups": [

@@ -19,4 +19,4 @@ python3 experiments/tsl9-record-copy-windows/verify-v1.py --tool-dir "$LLVM_BIN"
 
 PowerShell 的變數寫法為 `$env:LLVM_BIN`。`--trial` 只建立新資料夾；`--replay` 不重編譯。沒有下載、硬體操作或韌體／模型執行。其他主機的工具鏈尚未驗證。
 
-本實驗尚未加入整合元件與 `src/source-manifest.json`，不增加目前已整合的覆蓋率，也不是可刷入 BIN。
+後續已納入來源清單與診斷元件，見[整合證據](../../analysis/record-copy-integration-2026-10-25/README.md)。本頁的v1編譯紀錄保留獨立實驗範圍；仍未證明可刷入原硬體。

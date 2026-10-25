@@ -2,17 +2,18 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/record-dispatch-tables-2026-10-25/readme.en.md): all 67,455B of measured code/data match the official BIN after native address placement; 29 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/record-copy-integration-2026-10-25/readme.en.md): all 67,655B of measured code/data match the official BIN after native address placement; 27 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:149 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:150 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
 | [Guarded dispatch DATA](native/receive/record_dispatch_tables.c) |5 objects264B,no code |64 real relative slots and an eight-entry lookup. [Evidence](../analysis/record-dispatch-tables-2026-10-25/readme.en.md) |
-| [Remaining dispatch](native/receive/remaining_record_dispatch.c) |38 entries6022B/1926i | Large dispatch/support closure;five new data addresses unprovided. [Evidence](../analysis/remaining-record-dispatch-2026-10-25/readme.en.md) |
-| [Record helpers](native/receive/record_field_helpers.c) |12 entries1564B/539i | Real callbacks and state writers;two data addresses remain unprovided. [Evidence](../analysis/record-field-helpers-2026-10-25/readme.en.md) |
+| [Copy-source DATA](native/receive/record_copy_windows.c) |2 objects200B,no code |94/106-byte original copy bounds,real providers and original coordinates. [Evidence](../analysis/record-copy-integration-2026-10-25/readme.en.md) |
+| [Remaining dispatch](native/receive/remaining_record_dispatch.c) |38 entries6022B/1926i | Original dispatch closure; relative dispatch DATA are supplied by the separate table unit. [Evidence](../analysis/record-dispatch-tables-2026-10-25/readme.en.md) |
+| [Record helpers](native/receive/record_field_helpers.c) |12 entries1564B/539i | Original callbacks and state writers retained; both copy-source DATA providers are now supplied. [Evidence](../analysis/record-copy-integration-2026-10-25/readme.en.md) |
 | [Record-field transitions](native/receive/record_field_transitions.c) |19 entries3682B/1149i+51B | Original field comparisons,lookup windows and callbacks;physical semantics unproved. [Evidence](../analysis/record-field-transitions-2026-10-25/README.md) |
 | [ROM memory-service wrappers](native/receive/runtime_memory_services.c) |14 functions280B/91i | Original slot40048 parameters;installed referent unproved. [Evidence](../analysis/runtime-memory-services-2026-10-25/readme.en.md) |
 | [Runtime service links](native/receive/runtime_service_links.c) |18 functions706B/236i+8B | Cleanup callbacks,counters,scheduled services and bounded lookup. [Evidence](../analysis/runtime-service-links-2026-10-25/readme.en.md) |
@@ -145,7 +146,7 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The script selects 89 native translation units, compiles the original and curated versions as C11/C++17, and compares every function, allocated section and relocation in the resulting objects. Included C cores are emitted through their owning entry unit; compiling every `.c` as an independent link unit would duplicate definitions. V4.1.00 references are outside this native-object compilation, and no legacy HOST matrix was rerun. One native_data_units pointer-data unit is independently verified by experiments/tsl9-original-vectors/build-v1.py; no fake function is added to the frozen checker.
+The frozen checker compiles121 code units as C11/C++17 and compares original/curated outputs:242 comparisons and484 objects. Three native_data_units are audited independently:6 comparisons and12 objects. Total248 comparisons/496 objects. Included C cores belong to their owning entry units;do not compile every .c as an independent link unit. V4.1.00 references and legacy HOST tests are outside this native proof.
 
 The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed190 comparisons (380 objects). Its receipt is `build/curated-source/action-primitives-20261024-v1/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed. Pointer data independently passes2 source comparisons/4 objects; the two scopes total192 comparisons/384 objects.
 

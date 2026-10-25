@@ -19,4 +19,4 @@ python3 experiments/tsl9-record-copy-windows/verify-v1.py --tool-dir "$LLVM_BIN"
 
 PowerShell uses `$env:LLVM_BIN`. `--trial` creates a new directory; `--replay` does not recompile. No downloads, hardware operations or firmware/model execution. Toolchains on other hosts remain unvalidated.
 
-This experiment is pending integration and `src/source-manifest.json` curation. It does not increase integrated coverage or produce a flashable BIN.
+Subsequent curation and diagnostic integration are documented in the [integration evidence](../../analysis/record-copy-integration-2026-10-25/readme.en.md). The v1 records here retain their standalone scope;flash readiness remains unproved.

@@ -23,6 +23,6 @@ Lengths come from original instructions, not neighboring addresses. The two-byte
 
 ## Scope and next step
 
-These 200 bytes are a separate native experiment, pending `src/` manifest curation, component integration and original-coordinate linking. The integrated README coverage remains **87.83%**. Next, bind the two missing providers to actual DATA OBJECTs and replay source, link and instruction-flow proofs.
+This record preserves the standalone experiment and its87.83% baseline. Source curation,component integration and original-coordinate proof have since passed;current coverage is88.09%. See the [integration evidence](../record-copy-integration-2026-10-25/readme.en.md).
 
 Physical feature meanings, original declaration extents and complete MCU/ROM/RAM/IRQ/BLE OTA compatibility remain unproved. No new BIN, hardware access or backend requests. The [feature candidate](feature-candidates.json) is update-artifact completeness preflight; it has not been added to the OTA workflow.
