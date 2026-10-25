@@ -2,6 +2,8 @@
 
 [繁體中文](README.md) · [Evidence](../../analysis/grid-read-windows-2026-10-25/readme.en.md)
 
+This page preserves the standalone experiment and its 88.32% baseline. Subsequent [curation and original-coordinate integration](../../analysis/grid-integration-2026-10-25/readme.en.md) passed; current byte coverage is 88.89%. Physical/OTA compatibility remains unproved.
+
 One432-byte readonly pool/two genuine DATA labels. Experimental partial link only;accepted sources and coverage stay unchanged. No flashable BIN. The third table remains unresolved.
 
 Set `LLVM_BIN` to the established LLVM tool directory:

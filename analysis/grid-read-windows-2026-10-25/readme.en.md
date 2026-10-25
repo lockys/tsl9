@@ -2,6 +2,8 @@
 
 [繁體中文](README.md)
 
+This page preserves the standalone experiment and its 88.32% baseline. Subsequent [curation and original-coordinate integration](../grid-integration-2026-10-25/readme.en.md) passed; current byte coverage is 88.89%. Physical/OTA compatibility remains unproved.
+
 Capture86 original instructions and audit21,938 selected instructions/64,544 CODE bytes. The first two selected read paths have a conservative **432-byte union**, backed by one actual readonly owner and two zero-allocation DATA labels at offsets0/320.
 
 C11 and C++17 objects match,and two independent ELF readers agree. The experimental ET_REL link preserves all prior CODE/DATA,the four existing DATA labels and4,861 typed relocations;experimental undefined references fall from24 to22.
