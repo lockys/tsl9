@@ -2,15 +2,16 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/record-copy-integration-2026-10-25/readme.en.md): all 67,655B of measured code/data match the official BIN after native address placement; 27 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
+[Latest original-address proof](../analysis/record-sequence-integration-2026-10-25/readme.en.md): all 67,833B of measured code/data match the official BIN after native address placement; 24 providers remain unimplemented. The diagnostic ELF has no PT_LOAD segments; physical/OTA compatibility is unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:150 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:151 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
 | [Guarded dispatch DATA](native/receive/record_dispatch_tables.c) |5 objects264B,no code |64 real relative slots and an eight-entry lookup. [Evidence](../analysis/record-dispatch-tables-2026-10-25/readme.en.md) |
+| [Sequence DATA pool](native/receive/record_sequence_pool.c) |One178B owner,three interior labels |All178 bytes and label offsets0/36/72 survive original-coordinate linking. [Evidence](../analysis/record-sequence-integration-2026-10-25/readme.en.md) |
 | [Copy-source DATA](native/receive/record_copy_windows.c) |2 objects200B,no code |94/106-byte original copy bounds,real providers and original coordinates. [Evidence](../analysis/record-copy-integration-2026-10-25/readme.en.md) |
 | [Remaining dispatch](native/receive/remaining_record_dispatch.c) |38 entries6022B/1926i | Original dispatch closure; relative dispatch DATA are supplied by the separate table unit. [Evidence](../analysis/record-dispatch-tables-2026-10-25/readme.en.md) |
 | [Record helpers](native/receive/record_field_helpers.c) |12 entries1564B/539i | Original callbacks and state writers retained; both copy-source DATA providers are now supplied. [Evidence](../analysis/record-copy-integration-2026-10-25/readme.en.md) |
@@ -146,7 +147,7 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The frozen checker compiles121 code units as C11/C++17 and compares original/curated outputs:242 comparisons and484 objects. Three native_data_units are audited independently:6 comparisons and12 objects. Total248 comparisons/496 objects. Included C cores belong to their owning entry units;do not compile every .c as an independent link unit. V4.1.00 references and legacy HOST tests are outside this native proof.
+The frozen checker compiles121 code units as C11/C++17 and compares original/curated outputs:242 comparisons and484 objects. Four independent native_data_units add8 comparisons/16 objects,total250 comparisons/500 objects. Included C cores belong to their owning entry units;do not compile every .c as an independent link unit. V4.1.00 references and legacy HOST tests remain outside this native proof.
 
 The fresh Windows build with Android NDK27.1.12297006/LLVM18 passed190 comparisons (380 objects). Its receipt is `build/curated-source/action-primitives-20261024-v1/verification.json`; the earlier curation receipts remain historical. The Python entry uses only the standard library; other operating systems were not tested. A different toolchain must pass the same checks. No tools are downloaded and no compiler-flag search is performed. Pointer data independently passes2 source comparisons/4 objects; the two scopes total192 comparisons/384 objects.
 

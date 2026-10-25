@@ -1110,6 +1110,13 @@
       "replacements": [],
       "origin_sha256": "d7b2a76ac65b12216da7f6d9b8dbd4cdb3d8b2e02266c2c75d6d33084c3a54de",
       "sha256": "d7b2a76ac65b12216da7f6d9b8dbd4cdb3d8b2e02266c2c75d6d33084c3a54de"
+    },
+    {
+      "origin": "experiments/tsl9-record-sequence-pool/src/record_sequence_pool.v1.c",
+      "destination": "src/native/receive/record_sequence_pool.c",
+      "replacements": [],
+      "origin_sha256": "74e98c17da531b0568aaf2a521393f92ab665be2b826267a0143af6400b3cfcf",
+      "sha256": "74e98c17da531b0568aaf2a521393f92ab665be2b826267a0143af6400b3cfcf"
     }
   ],
   "native_units": [
@@ -2564,6 +2571,20 @@
         "experiments/tsl9-record-copy-windows/build/data-v3/measurement.json"
       ],
       "scope": "Independent C11/C++17 readonly DATA compilation for two original software-copy source windows,94 and106 bytes. Bounds follow82 original instructions including the complete54-instruction copy body. No new executable code,stubs,relocations or imports. Original declarations,physical feature meanings,full stack/IRQ/ROM/MCU/OTA compatibility remain unproved;no target/model/ISA/hardware execution."
+    },
+    {
+      "name": "record-sequence-pool",
+      "profile": "typed-u16-pool-with-genuine-interior-DATA-labels",
+      "origin_unit": "experiments/tsl9-record-sequence-pool/src/record_sequence_pool.v1.c",
+      "curated_unit": "src/native/receive/record_sequence_pool.c",
+      "origin_unit_sha256": "74e98c17da531b0568aaf2a521393f92ab665be2b826267a0143af6400b3cfcf",
+      "verifier": "experiments/tsl9-record-sequence-pool/build-v2.py",
+      "spec": "experiments/tsl9-record-sequence-pool/spec-v2.json",
+      "evidence": "analysis/record-sequence-integration-2026-10-25/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-record-sequence-pool/build/data-v2/measurement.json"
+      ],
+      "scope": "Independent C11/C++17 original/curated readonly DATA compilation:one178-byte uint16_t pool with real zero-allocation OBJECT labels at offsets0/36/72. Six conditional literal-address/limit combinations define the selected envelope;not an original declaration or global runtime bound. No executable code,ABS providers or stubs. Source/ROM/IRQ/OTA compatibility needs separate proof."
     }
   ],
   "legacy_groups": [

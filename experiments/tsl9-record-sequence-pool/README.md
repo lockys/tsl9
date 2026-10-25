@@ -13,4 +13,4 @@ python3 experiments/tsl9-record-sequence-pool/build-v1.py --tool-dir "$LLVM_BIN"
 
 Windows可用 `py -3` 取代 `python3`，PowerShell使用 `$env:LLVM_BIN`。`--trial` 只建立新資料夾；`--replay` 只重新讀取與驗證。需要既有量測父元件與本機來源證據。C/C++物件與實驗連結不會被執行，也不會建立BIN或接觸硬體／網路。其他平台工具鏈尚未驗證。
 
-本實驗未更動正式來源清單或元件；原始宣告範圍、全域指標／上限界限與安裝中的ROM／IRQ／OTA相容性均未證明。
+本頁v1實驗本身未更動正式來源清單；後續已完成[來源與原位址整合](../../analysis/record-sequence-integration-2026-10-25/README.md)。原始宣告範圍、全域指標／上限界限與ROM／IRQ／OTA相容性仍未證明。

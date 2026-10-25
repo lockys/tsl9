@@ -13,4 +13,4 @@ python3 experiments/tsl9-record-sequence-pool/build-v1.py --tool-dir "$LLVM_BIN"
 
 Windows can use `py -3`; PowerShell uses `$env:LLVM_BIN`. `--trial` creates a new directory; `--replay` only reads and revalidates. Existing measured parent components and local evidence sources are required. Objects and partial links are never executed. No BIN,hardware or network operations. Toolchains on other hosts remain unvalidated.
 
-Accepted source manifest/component state is unchanged. Original declaration extents,global pointer/limit bounds and installed ROM/IRQ/OTA compatibility remain unproved.
+The v1 experiment itself does not modify accepted source/component state. Subsequent [curation and original-coordinate integration](../../analysis/record-sequence-integration-2026-10-25/readme.en.md) passed. Declaration extents,global bounds and installed ROM/IRQ/OTA compatibility remain unproved.

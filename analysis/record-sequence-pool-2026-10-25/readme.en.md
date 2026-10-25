@@ -29,4 +29,4 @@ All three labels have real readonly section backing. No ABS address substitutes 
 
 [Summary](summary.json) · [Original evidence](evidence.json) · [Native receipt](native-proof.json) · [Provider contracts](provider-contracts.json) · [Next steps](next-providers.json)
 
-Accepted source/component state remains unchanged: integrated coverage **88.09%**,accepted undefined providers 27. Source curation,interior-label original-coordinate support and transfer proof must pass before those numbers change. No new BIN,hardware operation,firmware/model execution or backend request. Physical/OTA compatibility remains unproved.
+This page retains the standalone experiment and its88.09% baseline. Subsequent source/original-coordinate integration passed;current coverage is88.32%. See the [integration evidence](../record-sequence-integration-2026-10-25/readme.en.md). Physical/OTA compatibility remains unproved.
