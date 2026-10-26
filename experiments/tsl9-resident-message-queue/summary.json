@@ -1,0 +1,210 @@
+{
+  "schema": "TSL9-public-SDK-message-queue-event-summary-v1",
+  "SDK_candidate_only": true,
+  "CODE_bytes": 436,
+  "instructions": 151,
+  "complete_bodies": 6,
+  "positive_FUNC_regions": 40,
+  "relocations": 29,
+  "direct_controls": 21,
+  "far_call_pairs": 4,
+  "conditional_Xwchc_ports": 6,
+  "official_vectors_checked": 28,
+  "source": "experiments/tsl9-resident-message-queue/resident_message_queue.c",
+  "source_sha256": "7073d5e1e5d3f7442e80b028e13a1b04ded30cb4564071761c2ef36f2fff5957",
+  "source_context": "Original-context RV32 register-bound C/assembly;not ordinary host-callable C APIs",
+  "native_object_sha256": "ddff40bebd1647502b2a3b8449a32904d90ce87ce2b24527cf3bf0045f02a71e",
+  "native_CODE_objects": 2,
+  "ABI_assertion_objects": 2,
+  "composition": {
+    "passed": true,
+    "object_sha256": "889d800da7e29916ddb8fa462f447eeee67334416db0c583518cb6153041c0e0",
+    "CODE_bytes": 2264,
+    "instructions": 805,
+    "positive_FUNC_regions": 204,
+    "relocations": 149,
+    "named_UND": [],
+    "real_new_imports_resolved": [
+      "tsl9_candidate_message_receive_2000028c"
+    ],
+    "every_input_byte_symbol_relocation_retained": true,
+    "stored_numeric_CODE_targets_have_real_bodies": true,
+    "raw_RAM_and_indirect_record_callback_dependencies_provided": false,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "queue_contract": {
+    "passed": true,
+    "official_bindings": [
+      {
+        "name": "tmos_msg_receive",
+        "index": 14,
+        "target": 536871564
+      },
+      {
+        "name": "tmos_set_event",
+        "index": 7,
+        "target": 275786
+      },
+      {
+        "name": "tmos_clear_event",
+        "index": 8,
+        "target": 275850
+      },
+      {
+        "name": "tmos_stop_task",
+        "index": 10,
+        "target": 276904
+      },
+      {
+        "name": "tmos_msg_deallocate",
+        "index": 13,
+        "target": 274874
+      },
+      {
+        "name": "tmos_memcpy",
+        "index": 6,
+        "target": 536871730
+      }
+    ],
+    "raw_dependencies": [
+      {
+        "address": 536883608,
+        "role": "message queue head word"
+      },
+      {
+        "address": 536883612,
+        "role": "byte compared to taskID"
+      },
+      {
+        "address": 536883613,
+        "role": "task-count byte"
+      },
+      {
+        "address": 536883676,
+        "role": "halfword ORed for matching taskID"
+      },
+      {
+        "address": 536883684,
+        "role": "event halfword-array pointer"
+      },
+      {
+        "address": 536883688,
+        "role": "timer record-list pointer"
+      },
+      {
+        "address": 1073889804,
+        "role": "saved/zeroed/restored MMIO;physical semantics unproved"
+      }
+    ],
+    "all_five_named_calls_have_real_bodies": true,
+    "opaque_calls_within_new_bodies": 0,
+    "receive": {
+      "entry": 536871564,
+      "queue_head_storage": 536883608,
+      "task_tag_offset": -2,
+      "next_pointer_offset": -8,
+      "returns": "first queued payload whose byte task tag equals entry_A0,or null",
+      "first_matching_node_unlinked": true,
+      "later_matching_node_controls_message_event": true,
+      "event_bit": 32768,
+      "no_later_match_calls": 276904,
+      "later_match_calls": 275786,
+      "helper_return_values_ignored": true
+    },
+    "unlink": {
+      "entry": 274844,
+      "A0": "address of head word",
+      "A1": "selected payload",
+      "A2": "predecessor payload when selected node is not head",
+      "head_or_predecessor_link_replaced_with_next": true,
+      "clears_selected_next_pointer": true,
+      "sets_selected_task_tag": 255,
+      "does_not_free_or_allocate": true,
+      "requires_valid_writable_header_and_list_ownership": true
+    },
+    "event_array": {
+      "pointer_storage": 536883684,
+      "task_count_byte": 536883613,
+      "offset_expression": "2*taskID",
+      "set_operation": "old_halfword OR event",
+      "clear_operation": "old_halfword AND NOT event",
+      "valid_task_numeric_return": 0,
+      "out_of_range_numeric_return": 3,
+      "halfword_operations_require_conditional_Xwchc_profile": true
+    },
+    "stop_task": {
+      "entry": 276904,
+      "lookup": 536871700,
+      "lookup_list_storage": 536883688,
+      "lookup_task_byte_offset": 0,
+      "lookup_event_halfword_offset": 2,
+      "lookup_next_word_offset": 12,
+      "found_entry_event_halfword_set_zero": true,
+      "always_calls_clear_event": true,
+      "clear_event_return_ignored": true,
+      "found_lookup_numeric_return": 0,
+      "missing_lookup_numeric_return": 6,
+      "matching_global_byte": 536883612,
+      "matching_task_OR_halfword": 536883676
+    },
+    "deallocator_relation": "The unlink helper stores255 into payload[-2],matching the existing deallocator tag guard;valid ownership and absence of intervening mutation remain assumptions",
+    "MMIO": 1073889804,
+    "encoded_save_zero_restore_retained": true,
+    "physical_MMIO_semantics_or_atomicity_proved": false,
+    "normal_callee_return_is_an_assumption": true,
+    "acyclic_stable_lists_and_valid_task_record_lifetime_required": true,
+    "termination_proved": false,
+    "IRQ_alias_or_heap_ownership_proved": false,
+    "runtime_closed": false
+  },
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-message-queue/derive-v1.py": "2e7b9527d2a564b259fff08b404c54237e6e9717fcbb5b86a6eb45a9f2a290d3",
+    "experiments/tsl9-resident-message-queue/evidence-v1.json": "f85ba1433634dd82134bfc90129b44c1761f94411df14782003796fee9aabe5b",
+    "experiments/tsl9-resident-message-queue/resident_message_queue.c": "7073d5e1e5d3f7442e80b028e13a1b04ded30cb4564071761c2ef36f2fff5957",
+    "experiments/tsl9-resident-message-queue/spec-v1.json": "9a5d36ca149ff84a2b90440732056c1f3b00effc2506cd49736eaf3412e8c843",
+    "experiments/tsl9-resident-message-queue/build-v1.py": "050903b3f53498ea217572695c3691ae5357b4b69dbef2f67b8885d13dfc5abe",
+    "experiments/tsl9-resident-message-queue/config_abi.c": "24dd49b5477b57c89de5ae407320fcf4b0cd796bba66a5aa8750d0696ad8cd97",
+    "experiments/tsl9-resident-message-queue/audit-v1.py": "e70db19e0cd125daae55927e5753438c3a81fa850a3fa1d598e189446c36e07a",
+    "experiments/tsl9-resident-message-queue/audit-result-v1.json": "df1dcb56ea04aca6c13edb1a8c4a28a7f56b57d1dafae2af189a58837fa79367",
+    "experiments/tsl9-resident-message-queue/build/native-v1/measurement.json": "7bb97077cf81ccd6cda1be94170263765262bbe75bdbcd071b827e39117c8b49",
+    "experiments/tsl9-resident-message-queue/build/composition-v1/c/candidate.o": "889d800da7e29916ddb8fa462f447eeee67334416db0c583518cb6153041c0e0",
+    "experiments/tsl9-resident-message-queue/build/composition-v1/cpp/candidate.o": "889d800da7e29916ddb8fa462f447eeee67334416db0c583518cb6153041c0e0"
+  },
+  "prior_SDK_composition_bytes": 1828,
+  "prior_Flash_argument_contract_retained": true,
+  "prior_Flash_argument_evidence": "experiments/tsl9-resident-task-callbacks/audit-result-v1.json",
+  "prior_Flash_argument_evidence_sha256": "e2e89ddb107ecf2cd9a7acc3f5d7fca82ef49049c1b6e331ec7a2e17af15eac4",
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_APP_CODE_bytes": 0,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "vendor_network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "feature_candidates": [
+    {
+      "name": "Per-task message backlog and queue/event consistency diagnostics",
+      "implemented": false,
+      "basis": "The first matching message is removed and the message-event bit depends on whether a later matching message exists",
+      "requires": [
+        "verified RAM ownership and callback lifecycle",
+        "stable acyclic lists or a separately validated bounded diagnostic",
+        "physical critical-section and IRQ/stack contracts"
+      ]
+    }
+  ]
+}
