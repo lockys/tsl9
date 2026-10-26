@@ -1152,6 +1152,20 @@
       "replacements": [],
       "origin_sha256": "d82908921993d8fd779655b864f126338aefac1589b4fd9222f769da603c3f49",
       "sha256": "d82908921993d8fd779655b864f126338aefac1589b4fd9222f769da603c3f49"
+    },
+    {
+      "origin": "experiments/tsl9-secondary-message-dispatch/secondary_message_dispatch.c",
+      "destination": "src/native/receive/secondary_message_dispatch.c",
+      "replacements": [],
+      "origin_sha256": "f6317572076540ffa3804c0d6e38c7ca39b09de5fdb962be0454fa9e3824c02a",
+      "sha256": "f6317572076540ffa3804c0d6e38c7ca39b09de5fdb962be0454fa9e3824c02a"
+    },
+    {
+      "origin": "experiments/tsl9-secondary-message-data/src/secondary_message_data.v1.c",
+      "destination": "src/native/receive/secondary_message_data.c",
+      "replacements": [],
+      "origin_sha256": "33b17fc5505fcf897578a7006b2350e70f00885f9ca485e4e288c8e49f14123e",
+      "sha256": "33b17fc5505fcf897578a7006b2350e70f00885f9ca485e4e288c8e49f14123e"
     }
   ],
   "native_units": [
@@ -2586,6 +2600,18 @@
       ],
       "scope": "Five complete helpers and one guarded event body:1938B/645i,147 positive FUNC regions,97 direct controls,two typed address pairs. Retain shared tail11252 and exclude curated neighbor11356..11442. ROM/global-state/physical ABI unproved.",
       "origin_unit_sha256": "00956449294d1884be3a562bad57c88cda7fc9bf92f8d7ba55803079ef9f3ce2"
+    },
+    {
+      "name": "secondary-message-dispatch",
+      "profile": "queue-consumer-a0-a5",
+      "origin_unit": "experiments/tsl9-secondary-message-dispatch/secondary_message_dispatch.c",
+      "curated_unit": "src/native/receive/secondary_message_dispatch.c",
+      "evidence": "analysis/secondary-message-layout-2026-10-26/README.md",
+      "formal_receipts": [
+        "build/curated-source/secondary-message-20261026-v1/verification.json"
+      ],
+      "scope": "Nine complete original-context bodies:2048B/690i,272 positive FUNC regions,229 direct controls and seven typed address pairs. Original coordinates measured; register/stack/ROM ports retained. Physical/global ABI and OTA remain unproved.",
+      "origin_unit_sha256": "f6317572076540ffa3804c0d6e38c7ca39b09de5fdb962be0454fa9e3824c02a"
     }
   ],
   "native_data_units": [
@@ -2686,6 +2712,20 @@
         "experiments/tsl9-central-callback-tables/build/data-v2/measurement.json"
       ],
       "scope": "Three actual readonly OBJECTs totaling92 bytes:17 signed event cells,five genuine callback function relocations and one original null. Original coordinates and all22 non-null CODE bindings measured. Original declaration extents and installed ROM read ABI remain unproved."
+    },
+    {
+      "name": "secondary-message-data",
+      "profile": "guarded-relative-event-and-observed-copy-window",
+      "origin_unit": "experiments/tsl9-secondary-message-data/src/secondary_message_data.v1.c",
+      "curated_unit": "src/native/receive/secondary_message_data.c",
+      "origin_unit_sha256": "33b17fc5505fcf897578a7006b2350e70f00885f9ca485e4e288c8e49f14123e",
+      "verifier": "experiments/tsl9-secondary-message-data/build-v2.py",
+      "spec": "experiments/tsl9-secondary-message-data/spec-v2.json",
+      "evidence": "analysis/secondary-message-layout-2026-10-26/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-secondary-message-data/build/data-v2/measurement.json"
+      ],
+      "scope": "Two actual readonly OBJECTs totaling40 bytes:seven guarded signed-relative event cells and the observed12-byte copy source. All candidate coordinates measured. No neighboring padding,original declaration-extent or global RAM/IRQ/ROM/OTA claim."
     }
   ],
   "legacy_groups": [

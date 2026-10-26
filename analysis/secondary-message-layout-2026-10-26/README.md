@@ -1,5 +1,7 @@
 # 次要訊息候選：原位址與靜態流程
 
+本頁為候選階段快照；兩個單元已正式收錄 SRC，完整來源與新原位址證據見[整合報告](../secondary-message-integration-2026-10-26/README.md)。
+
 [English](readme.en.md) · [驗證摘要](summary.json) · [CODE C/C++](../../experiments/tsl9-secondary-message-dispatch/secondary_message_dispatch.c) · [DATA C/C++](../../experiments/tsl9-secondary-message-data/src/secondary_message_data.v1.c)
 
 已將合併候選放回原始位址，**72,610／76,800 bytes＝94.54%** 與官方 ID2966 V4.1.60 對應位置完全相同。這是尚未收錄 `src/` 的候選位址 bytes 覆蓋率；正式數字維持 **70,522 bytes／91.83%**，不是功能完成率或硬體相容性證明。

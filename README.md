@@ -10,7 +10,7 @@
 
 **免責聲明：本專案使用 Codex vibe coding 搭配 REA 進行實驗性重建，目前尚未成功逆向重建出已驗證可用的 TSL9 韌體。重建 BIN 未通過原硬體完整驗證；OTA 讀回成功不代表功能正常。**
 
-**已驗證重建覆蓋率：91.83%**（70,522／76,800 bytes；程式 66,600B＋資料 3,922B）。僅計入 C/C++ 重建後逐 byte 通過原位址比對的部分；不是功能完成率或可刷入比例。[驗證依據](analysis/central-callback-integration-2026-10-26/summary.json)
+**已驗證重建覆蓋率：94.54%**（72,610／76,800 bytes；程式 68,648B＋資料 3,962B）。僅計入 C/C++ 重建後逐 byte 通過原位址比對的部分；不是功能完成率或可刷入比例。[驗證依據](analysis/secondary-message-integration-2026-10-26/summary.json)
 
 ## 開始使用
 

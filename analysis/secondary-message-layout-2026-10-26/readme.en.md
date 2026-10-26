@@ -1,5 +1,7 @@
 # Secondary message candidate: original coordinates and static flow
 
+This page is a candidate-stage snapshot. Both units are now curated into SRC;see the [integration report](../secondary-message-integration-2026-10-26/readme.en.md) for complete source and new coordinate evidence.
+
 [繁體中文](README.md) · [Verification summary](summary.json) · [CODE C/C++](../../experiments/tsl9-secondary-message-dispatch/secondary_message_dispatch.c) · [DATA C/C++](../../experiments/tsl9-secondary-message-data/src/secondary_message_data.v1.c)
 
 The combined candidate is now placed at original addresses: **72,610 / 76,800 bytes = 94.54%** equal the corresponding official ID2966 V4.1.60 bytes. This candidate address-byte coverage is not yet curated into `src/`. Formal coverage remains **70,522 bytes / 91.83%**; neither measure proves feature completion or hardware compatibility.
