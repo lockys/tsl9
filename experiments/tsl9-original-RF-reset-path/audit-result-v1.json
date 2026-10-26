@@ -1,0 +1,597 @@
+{
+  "schema": "TSL9-required-RF-reset-dependencies-audit-v1",
+  "passed": true,
+  "checker_sha256": "ab0214bab21501b0277cf388283b839666908013126d811614eea03088f540b8",
+  "prior_audit_sha256": "aef5e90342d56c071dbc5aca939fb757685b93bc0424cb83ea0b00205ea69269",
+  "native_results": {
+    "c": {
+      "CODE": {
+        "passed": true,
+        "SDK_candidate_only": true,
+        "CODE_bytes": 4090,
+        "instructions": 1298,
+        "positive_FUNC_regions": 25,
+        "relocations": 16,
+        "direct_controls": 10,
+        "far_call_pairs": 3,
+        "UND": [],
+        "raw_RAM_dependencies_not_provided": true,
+        "opaque_callbacks_not_provided": 0,
+        "runtime_closed": false,
+        "independent_readers": {
+          "passed": true,
+          "sections": 46,
+          "symbols": 65,
+          "relocations": 16,
+          "object_sha256": "3173fe31fac139659b8c249bfef119803f891419e23313c74d3a2c142d4cd3ff",
+          "only_section_ceiling_and_doc_changed": true,
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "target_executed": false,
+          "hardware_accessed": false,
+          "network": false
+        },
+        "object_sha256": "3173fe31fac139659b8c249bfef119803f891419e23313c74d3a2c142d4cd3ff",
+        "all_original_SDK_VA_encoded_bytes_equal": true,
+        "explicit_conditional_Xwchc_byte_halfword_ports": 4,
+        "compiler_arch_attribute_is_not_physical_ISA_proof": true,
+        "installed_ROM_identity_proved": false,
+        "actual_original_address_link_performed": false,
+        "APP_byte_coverage_unchanged": 95.54,
+        "target_executed": false,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "hardware_accessed": false,
+        "network": false,
+        "new_BIN": false,
+        "firmware_ready": false
+      },
+      "ABI": {
+        "passed": true,
+        "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+        "RV32_pointer_bytes": 4,
+        "RF_configuration_bytes": 32,
+        "RF_configuration_alignment": 4,
+        "rfStatusCB_offset": 16,
+        "rfStatusCB_pointer_bytes": 4,
+        "SDK_parameter_base": 536884544,
+        "derived_RF_callback_storage": 536884560,
+        "allocated_bytes": 0,
+        "target_executed": false,
+        "installed_layout_proved": false,
+        "independent_readers": {
+          "passed": true,
+          "sections": 8,
+          "symbols": 4,
+          "relocations": 0,
+          "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+          "only_section_ceiling_and_doc_changed": true,
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "target_executed": false,
+          "hardware_accessed": false,
+          "network": false
+        }
+      }
+    },
+    "cpp": {
+      "CODE": {
+        "passed": true,
+        "SDK_candidate_only": true,
+        "CODE_bytes": 4090,
+        "instructions": 1298,
+        "positive_FUNC_regions": 25,
+        "relocations": 16,
+        "direct_controls": 10,
+        "far_call_pairs": 3,
+        "UND": [],
+        "raw_RAM_dependencies_not_provided": true,
+        "opaque_callbacks_not_provided": 0,
+        "runtime_closed": false,
+        "independent_readers": {
+          "passed": true,
+          "sections": 46,
+          "symbols": 65,
+          "relocations": 16,
+          "object_sha256": "3173fe31fac139659b8c249bfef119803f891419e23313c74d3a2c142d4cd3ff",
+          "only_section_ceiling_and_doc_changed": true,
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "target_executed": false,
+          "hardware_accessed": false,
+          "network": false
+        },
+        "object_sha256": "3173fe31fac139659b8c249bfef119803f891419e23313c74d3a2c142d4cd3ff",
+        "all_original_SDK_VA_encoded_bytes_equal": true,
+        "explicit_conditional_Xwchc_byte_halfword_ports": 4,
+        "compiler_arch_attribute_is_not_physical_ISA_proof": true,
+        "installed_ROM_identity_proved": false,
+        "actual_original_address_link_performed": false,
+        "APP_byte_coverage_unchanged": 95.54,
+        "target_executed": false,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "hardware_accessed": false,
+        "network": false,
+        "new_BIN": false,
+        "firmware_ready": false
+      },
+      "ABI": {
+        "passed": true,
+        "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+        "RV32_pointer_bytes": 4,
+        "RF_configuration_bytes": 32,
+        "RF_configuration_alignment": 4,
+        "rfStatusCB_offset": 16,
+        "rfStatusCB_pointer_bytes": 4,
+        "SDK_parameter_base": 536884544,
+        "derived_RF_callback_storage": 536884560,
+        "allocated_bytes": 0,
+        "target_executed": false,
+        "installed_layout_proved": false,
+        "independent_readers": {
+          "passed": true,
+          "sections": 8,
+          "symbols": 4,
+          "relocations": 0,
+          "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+          "only_section_ceiling_and_doc_changed": true,
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "target_executed": false,
+          "hardware_accessed": false,
+          "network": false
+        }
+      }
+    }
+  },
+  "contract": {
+    "passed": true,
+    "functions": [
+      {
+        "start": 417998,
+        "end": 418370,
+        "bytes": 372,
+        "instructions": 140,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 418368,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 418002,
+            "target": 417944
+          }
+        ]
+      },
+      {
+        "start": 418522,
+        "end": 418670,
+        "bytes": 148,
+        "instructions": 60,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 418668,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      },
+      {
+        "start": 418670,
+        "end": 418726,
+        "bytes": 56,
+        "instructions": 24,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 418724,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      },
+      {
+        "start": 418908,
+        "end": 422296,
+        "bytes": 3388,
+        "instructions": 1032,
+        "own_frame_bytes": 80,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 422286,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 419068,
+            "target": 536882674
+          },
+          {
+            "PC": 419134,
+            "target": 536882674
+          },
+          {
+            "PC": 419210,
+            "target": 536882674
+          }
+        ]
+      },
+      {
+        "start": 422296,
+        "end": 422314,
+        "bytes": 18,
+        "instructions": 6,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 422312,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      },
+      {
+        "start": 417944,
+        "end": 417998,
+        "bytes": 54,
+        "instructions": 20,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 417996,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      },
+      {
+        "start": 536882674,
+        "end": 536882728,
+        "bytes": 54,
+        "instructions": 16,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 536882726,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      }
+    ],
+    "caller_contract": {
+      "passed": true,
+      "direct_calls": [
+        {
+          "owner": 410032,
+          "PC": 410182,
+          "target": 418908,
+          "dominates_all_local_normal_exits": false
+        },
+        {
+          "owner": 410032,
+          "PC": 410186,
+          "target": 422296,
+          "dominates_all_local_normal_exits": false
+        },
+        {
+          "owner": 410032,
+          "PC": 410190,
+          "target": 418522,
+          "dominates_all_local_normal_exits": false
+        },
+        {
+          "owner": 410032,
+          "PC": 410194,
+          "target": 418670,
+          "dominates_all_local_normal_exits": false
+        },
+        {
+          "owner": 410264,
+          "PC": 410366,
+          "target": 417998,
+          "dominates_all_local_normal_exits": true
+        }
+      ],
+      "initializer_call_660CE_dominates_local_tail": true,
+      "four_reset_calls_are_conditional": true,
+      "two_fresh_mode_byte_reads": {
+        "storage": 536884507,
+        "comparison": 4,
+        "PCs": [
+          410044,
+          410064
+        ]
+      },
+      "pointer_guard": {
+        "storage": 536884484,
+        "compared_value": 1073890048,
+        "branch_PC": 410086
+      },
+      "guard_stability_across_async_effects_proved": false,
+      "normal_callee_returns_and_register_preservation_assumed": true,
+      "physical_pointer_or_register_identity_proved": false
+    },
+    "selected_CALL_targets_all_have_real_bodies": true,
+    "opaque_CODE_transfers": 0,
+    "raw_dependency_list_is_not_exhaustive": true,
+    "raw_dependencies": [
+      {
+        "address": 536884624,
+        "role": "Reloaded candidate MMIO block pointer"
+      },
+      {
+        "address": 536884540,
+        "role": "Reloaded candidate timeout block pointer"
+      },
+      {
+        "address": 536884616,
+        "role": "Magic comparison word used in large setup/calibration-like path"
+      },
+      {
+        "address": 536883110,
+        "role": "Raw byte storage used by large setup path;capacity and ownership unproved"
+      },
+      {
+        "address": 536883111,
+        "role": "Adjacent raw byte storage;capacity and ownership unproved"
+      }
+    ],
+    "primary_vectors_checked": 52,
+    "actual_custom_ports": 4,
+    "register_sequence_helper": {
+      "entry": 417944,
+      "pointer_word": 536884624,
+      "pointed_offset": 12,
+      "raw_writes": [
+        4353,
+        0,
+        4353
+      ],
+      "software_loop_initial_counts": [
+        20,
+        20
+      ],
+      "physical_reset_or_duration_proved": false
+    },
+    "polling_helpers": [
+      {
+        "entry": 418522,
+        "timeout_pointer_word": 536884540,
+        "timeout_offset": 100,
+        "raw_threshold": 80,
+        "status_pointer_word": 536884624,
+        "status_offset": 156,
+        "status_bit": 8,
+        "termination_or_timeout_units_proved": false
+      },
+      {
+        "entry": 536882674,
+        "timeout_pointer_word": 536884540,
+        "timeout_offset": 100,
+        "raw_threshold": 6000,
+        "status_pointer_word": 536884624,
+        "status_offset": 144,
+        "first_read_bit": 26,
+        "second_distinct_read_bit": 25,
+        "fresh_volatile_reads_must_not_be_merged": true,
+        "termination_or_timeout_units_proved": false
+      }
+    ],
+    "magic_branch": {
+      "word_storage": 536884616,
+      "compared_word": 305419896,
+      "compare_PC": 419024,
+      "late_arm_PC": 422288,
+      "word_cleared_before_join": true,
+      "join_PC": 419248,
+      "three_polling_calls_skipped_on_that_CFG_path": true,
+      "calibration_or_cache_semantic_name_is_inferred": true,
+      "physical_effects_or_validity_proved": false,
+      "runtime_control_added": false
+    },
+    "all_callee_side_effects_MMIO_capacity_aliasing_and_async_effects_bounded": false,
+    "installed_ROM_identity_proved": false,
+    "physical_register_identity_proved": false,
+    "runtime_closed": false
+  },
+  "composition": {
+    "c": {
+      "passed": true,
+      "object_sha256": "3193cb381839fd03cbad3a12d7d10abf2e8ea5e22e8ab3b157f2d7054da59dea",
+      "CODE_bytes": 18526,
+      "distinct_original_CODE_bytes": 18526,
+      "duplicate_original_CODE_bytes": 0,
+      "overlap_intervals": [],
+      "positive_FUNC_regions": 1194,
+      "relocations": 894,
+      "distinct_PC_typed_relocations": 894,
+      "native_byte_map_sha256": "59322c17aad3feddef7535b6524e44e3c487bc8ec9f06c558a0d3b06b8291721",
+      "original_PC_typed_relocations_sha256": "243f53dd11d7720d6ad5ca677e71efd4786d3a5d20a87904a3a146109be871e3",
+      "non_CODE_allocations": {
+        ".rodata.tsl9_candidate_bitlength_table_6e95c": {
+          "type": 1,
+          "flags": 2,
+          "size": 256,
+          "alignment": 1,
+          "sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac"
+        }
+      },
+      "named_UND": [
+        "tsl9_candidate_external_flash_43e6a",
+        "tsl9_candidate_external_flash_43edc",
+        "tsl9_candidate_external_flash_5362e",
+        "tsl9_candidate_external_flash_58498",
+        "tsl9_candidate_external_flash_58788",
+        "tsl9_candidate_external_flash_588b4",
+        "tsl9_candidate_external_flash_58988",
+        "tsl9_candidate_external_flash_5f0d2",
+        "tsl9_candidate_external_flash_5f234",
+        "tsl9_candidate_external_flash_5f98e",
+        "tsl9_candidate_external_flash_5fcdc",
+        "tsl9_candidate_external_flash_6014e",
+        "tsl9_candidate_external_flash_6575a",
+        "tsl9_candidate_external_flash_657d8"
+      ],
+      "original_PC_tags_are_source_contract_not_physical_placement": true,
+      "target_executed": false,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "hardware_accessed": false,
+      "network": false,
+      "DATA_bytes": 256,
+      "allocated_bytes": 18782,
+      "instructions": 6330,
+      "independent_readers": {
+        "passed": true,
+        "sections": 2040,
+        "symbols": 4141,
+        "relocations": 894,
+        "object_sha256": "3193cb381839fd03cbad3a12d7d10abf2e8ea5e22e8ab3b157f2d7054da59dea",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "every_selected_input_byte_symbol_relocation_retained": true,
+      "five_genuine_prior_named_dependencies_have_real_bodies": true,
+      "new_genuine_named_dependencies": 0,
+      "unique_original_CODE_ownership": true,
+      "zero_named_UND_is_not_runtime_closure": true,
+      "raw_RAM_MMIO_and_poll_termination_proved": false,
+      "actual_original_address_link_performed": false,
+      "linked_into_APP": false,
+      "runtime_closed": false,
+      "new_BIN": false,
+      "firmware_ready": false
+    },
+    "cpp": {
+      "passed": true,
+      "object_sha256": "3193cb381839fd03cbad3a12d7d10abf2e8ea5e22e8ab3b157f2d7054da59dea",
+      "CODE_bytes": 18526,
+      "distinct_original_CODE_bytes": 18526,
+      "duplicate_original_CODE_bytes": 0,
+      "overlap_intervals": [],
+      "positive_FUNC_regions": 1194,
+      "relocations": 894,
+      "distinct_PC_typed_relocations": 894,
+      "native_byte_map_sha256": "59322c17aad3feddef7535b6524e44e3c487bc8ec9f06c558a0d3b06b8291721",
+      "original_PC_typed_relocations_sha256": "243f53dd11d7720d6ad5ca677e71efd4786d3a5d20a87904a3a146109be871e3",
+      "non_CODE_allocations": {
+        ".rodata.tsl9_candidate_bitlength_table_6e95c": {
+          "type": 1,
+          "flags": 2,
+          "size": 256,
+          "alignment": 1,
+          "sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac"
+        }
+      },
+      "named_UND": [
+        "tsl9_candidate_external_flash_43e6a",
+        "tsl9_candidate_external_flash_43edc",
+        "tsl9_candidate_external_flash_5362e",
+        "tsl9_candidate_external_flash_58498",
+        "tsl9_candidate_external_flash_58788",
+        "tsl9_candidate_external_flash_588b4",
+        "tsl9_candidate_external_flash_58988",
+        "tsl9_candidate_external_flash_5f0d2",
+        "tsl9_candidate_external_flash_5f234",
+        "tsl9_candidate_external_flash_5f98e",
+        "tsl9_candidate_external_flash_5fcdc",
+        "tsl9_candidate_external_flash_6014e",
+        "tsl9_candidate_external_flash_6575a",
+        "tsl9_candidate_external_flash_657d8"
+      ],
+      "original_PC_tags_are_source_contract_not_physical_placement": true,
+      "target_executed": false,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "hardware_accessed": false,
+      "network": false,
+      "DATA_bytes": 256,
+      "allocated_bytes": 18782,
+      "instructions": 6330,
+      "independent_readers": {
+        "passed": true,
+        "sections": 2040,
+        "symbols": 4141,
+        "relocations": 894,
+        "object_sha256": "3193cb381839fd03cbad3a12d7d10abf2e8ea5e22e8ab3b157f2d7054da59dea",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "every_selected_input_byte_symbol_relocation_retained": true,
+      "five_genuine_prior_named_dependencies_have_real_bodies": true,
+      "new_genuine_named_dependencies": 0,
+      "unique_original_CODE_ownership": true,
+      "zero_named_UND_is_not_runtime_closure": true,
+      "raw_RAM_MMIO_and_poll_termination_proved": false,
+      "actual_original_address_link_performed": false,
+      "linked_into_APP": false,
+      "runtime_closed": false,
+      "new_BIN": false,
+      "firmware_ready": false
+    }
+  },
+  "composition_input_hashes": {
+    "c": {
+      "experiments/tsl9-original-RF-tx-path/build/composition-v1/c/candidate.o": "5bfd1a5a83abdff174844a0228d687f7dff7c8a6c6961d5c3ab312553145083c",
+      "experiments/tsl9-original-RF-reset-path/build/native-v1/c/unit.o": "3173fe31fac139659b8c249bfef119803f891419e23313c74d3a2c142d4cd3ff"
+    },
+    "cpp": {
+      "experiments/tsl9-original-RF-tx-path/build/composition-v1/cpp/candidate.o": "5bfd1a5a83abdff174844a0228d687f7dff7c8a6c6961d5c3ab312553145083c",
+      "experiments/tsl9-original-RF-reset-path/build/native-v1/cpp/unit.o": "3173fe31fac139659b8c249bfef119803f891419e23313c74d3a2c142d4cd3ff"
+    }
+  },
+  "new_CODE_bytes": 4090,
+  "new_instructions": 1298,
+  "new_complete_bodies": 7,
+  "supplied_genuine_prior_dependencies": 5,
+  "new_genuine_named_dependencies": 0,
+  "new_APP_CODE_bytes": 0,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "inherited_startup_source_gap_bytes": 4,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "physical_trap_route_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
