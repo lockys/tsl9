@@ -14,7 +14,7 @@ Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility 
 
 Latest integration: [ten bodies,764B now have curated SRC and original-address backing](analysis/safe-gap-integration-2026-10-26/readme.en.md);physical invocation and compatibility remain unproved.
 
-ROM candidates: [C/C++](experiments/tsl9-resident-snv-initialization/readme.en.md) · [callback store contract](experiments/tsl9-tscb-store-contract/readme.en.md);installed compatibility remains unproved.
+ROM candidates: [C/C++](experiments/tsl9-resident-task-callbacks/readme.en.md) · [callback store contract](experiments/tsl9-tscb-store-contract/readme.en.md);installed compatibility remains unproved.
 
 ## Getting started
 
