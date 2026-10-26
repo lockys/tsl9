@@ -1,0 +1,206 @@
+{
+  "schema": "TSL9-public-V131-arithmetic-helper-summary-v1",
+  "SDK_candidate_only": true,
+  "CODE_bytes": 914,
+  "DATA_bytes": 256,
+  "instructions": 296,
+  "complete_bodies": 1,
+  "positive_FUNC_regions": 81,
+  "positive_OBJECT_regions": 1,
+  "relocations": 65,
+  "direct_controls": 59,
+  "DATA_address_pairs": 3,
+  "conditional_Xwchc_ports": 3,
+  "official_vectors_checked": 28,
+  "source": "experiments/tsl9-resident-arithmetic-helper/resident_arithmetic_helper.c",
+  "source_sha256": "b3d19ac7f5f0ee154440f3501d2907712bd158ef7f542118e1cd491ef279c38b",
+  "source_context": "Original-context RV32 register-bound C/assembly plus actual readonly C byte table;not an ordinary host-callable C API",
+  "native_object_sha256": "0d4985f6cd5bbc104818cb0b34b319c9f7b5b3544c2f2e5a227365640cd393aa",
+  "native_CODE_DATA_objects": 2,
+  "ABI_assertion_objects": 2,
+  "ABI": {
+    "passed": true,
+    "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+    "RV32_pointer_bytes": 4,
+    "uint32_bytes": 4,
+    "uint64_bytes": 8,
+    "allocated_bytes": 0,
+    "helper_register_ABI_proved": false,
+    "target_executed": false,
+    "independent_readers": {
+      "passed": true,
+      "sections": 8,
+      "symbols": 4,
+      "relocations": 0,
+      "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    }
+  },
+  "composition": {
+    "passed": true,
+    "object_sha256": "ca7fc6455fa5afec3ed8ab9c18410e82cd1d64c5ac9fa5b721689d654e481806",
+    "CODE_bytes": 4426,
+    "DATA_bytes": 256,
+    "allocated_bytes": 4682,
+    "instructions": 1538,
+    "positive_FUNC_regions": 393,
+    "positive_OBJECT_regions": 1,
+    "relocations": 289,
+    "named_UND": [
+      "tsl9_candidate_external_flash_63dd0",
+      "tsl9_candidate_external_ram_2000061a",
+      "tsl9_candidate_external_ram_20002610"
+    ],
+    "every_input_byte_symbol_relocation_retained": true,
+    "arithmetic_import_has_real_body": true,
+    "readonly_table_has_real_OBJECT": true,
+    "all_three_table_pairs_have_real_relocations": true,
+    "zero_named_UND_is_not_runtime_closure": true,
+    "raw_RAM_and_callback_dependencies_provided": false,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "helper_contract": {
+    "passed": true,
+    "static_only": true,
+    "entry": 450330,
+    "end": 451244,
+    "CODE_bytes": 914,
+    "instructions": 296,
+    "return_PCs": [
+      450516,
+      450678,
+      450744,
+      450750,
+      451148,
+      451178,
+      451208
+    ],
+    "CFG_acyclic": true,
+    "every_instruction_reachable_in_static_CFG": true,
+    "maximum_CFG_instructions_to_return": 98,
+    "own_frame_bytes": 0,
+    "memory_store_instructions": 0,
+    "external_or_opaque_calls": 0,
+    "readonly_table": {
+      "entry": 452956,
+      "end": 453212,
+      "bytes": 256,
+      "original_sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac",
+      "all_entries_equal_unsigned_index_bit_length": true,
+      "loads": [
+        450376,
+        450556,
+        450714
+      ],
+      "index_bounds": [
+        0,
+        255
+      ],
+      "unsigned_bucket_ranges": [
+        {
+          "lower": 0,
+          "upper": 255,
+          "shift": 0
+        },
+        {
+          "lower": 256,
+          "upper": 65535,
+          "shift": 8
+        },
+        {
+          "lower": 65536,
+          "upper": 16777215,
+          "shift": 16
+        },
+        {
+          "lower": 16777216,
+          "upper": 4294967295,
+          "shift": 24
+        }
+      ]
+    },
+    "input_limb_observations": {
+      "entry_A0_copied_to": "T1",
+      "entry_A1_copied_to": "A6",
+      "entry_A2_copied_to": "A7",
+      "entry_A3_copied_to": "A5",
+      "entry_A3_zero_selects_low_denominator_path": true
+    },
+    "existing_clock_call_sites": [
+      278476,
+      277908,
+      277958
+    ],
+    "existing_clock_calls_set_entry_A3_zero": true,
+    "WaitWindow_constant_denominator": 1000000,
+    "delta_denominator": "live ClockFrequency;nonzero/stability still requires clock-state contract",
+    "algorithm_inference": "Unsigned64-bit division candidate using normalized base65536 quotient digits,32-bit DIVU/REMU and corrections",
+    "algorithm_inference_is_not_semantic_proof": true,
+    "full_input_domain_division_proved": false,
+    "zero_divisor_path_present_in_original": true,
+    "zero_divisor_target_or_model_tested": false,
+    "table_data_has_real_native_OBJECT": true,
+    "table_address_pairs_are_real_relocations": true,
+    "original_address_execution_link_performed": false,
+    "physical_ISA_or_ROM_identity_proved": false,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false
+  },
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-arithmetic-helper/derive-v1.py": "2a11b9516dd88060368f6692d7662e1850d62c405d0d6c362666baa0829238eb",
+    "experiments/tsl9-resident-arithmetic-helper/evidence-v1.json": "0f059bfb2c55192793de682b5ebc0f3003bfe1e9baab9788e60783e74f7f7095",
+    "experiments/tsl9-resident-arithmetic-helper/resident_arithmetic_helper.c": "b3d19ac7f5f0ee154440f3501d2907712bd158ef7f542118e1cd491ef279c38b",
+    "experiments/tsl9-resident-arithmetic-helper/spec-v1.json": "56111f85338aeee68b4d9dfebe1265e70a59fda26424e0c398ee81eecbe574f3",
+    "experiments/tsl9-resident-arithmetic-helper/build-v1.py": "a08c83978587ced29ac3d924d76f8eeaa6ceda60d8888ec1005d5d5d440c3e33",
+    "experiments/tsl9-resident-arithmetic-helper/config_abi.c": "55cc882fb011eba9b7edcde760167655d847ac512501a3080f9f7f3140ef5dcb",
+    "experiments/tsl9-resident-arithmetic-helper/audit-v1.py": "195791e1e28f4a25edfcebe825aeeda4cd5eec520c2972c3046ea79d229c4aa6",
+    "experiments/tsl9-resident-arithmetic-helper/audit-result-v2.json": "7ea025496ecb37d9542f6930925914ad81e802bab96861719a495f4b3c03b510",
+    "experiments/tsl9-resident-arithmetic-helper/build/native-v1/measurement.json": "ecc50324cbe222beacce6ed9e6ad1713cb5a59994e4832699bc2e319cba6bb9a",
+    "experiments/tsl9-resident-arithmetic-helper/build/composition-v1/c/candidate.o": "ca7fc6455fa5afec3ed8ab9c18410e82cd1d64c5ac9fa5b721689d654e481806",
+    "experiments/tsl9-resident-arithmetic-helper/build/composition-v1/cpp/candidate.o": "ca7fc6455fa5afec3ed8ab9c18410e82cd1d64c5ac9fa5b721689d654e481806"
+  },
+  "prior_SDK_composition_bytes": 3512,
+  "prior_clock_timer_scheduler_binding_layout_and_Flash_contracts_retained": true,
+  "inherited_startup_source_gap_bytes": 4,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_APP_CODE_bytes": 0,
+  "startup_completed_proved": false,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "physical_atomicity_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "vendor_network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "feature_candidates": [
+    {
+      "name": "Clock normalization and baseline diagnostics",
+      "implemented": false,
+      "basis": "Complete helper/table and three actual caller argument setups are available;full arithmetic semantics and physical clock remain unproved",
+      "requires": [
+        "unsigned division semantic proof",
+        "clock-state stability and baseline lifecycle contract",
+        "installed ROM/ISA,original address layout and safe IRQ/stack observation"
+      ]
+    }
+  ]
+}
