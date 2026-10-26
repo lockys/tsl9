@@ -1,5 +1,7 @@
 # Remaining CODE candidates
 
+> Historical candidate snapshot. Curated source and original-address integration are now documented [here](../../analysis/safe-gap-integration-2026-10-26/readme.en.md). The old audit fixes the original158-file context;use the current integration/flow replay for the159-file source tree. Historical receipts remain unchanged.
+
 [繁體中文](README.md)
 
 Ten candidate bodies were reconstructed from eight windows in the official ID2966 / V4.1.60 image: **764 bytes and 288 original instructions**. The [C/C++ source](safe_gap_functions.c) preserves register data flow and explicit assembly ports. It requires the original execution context and does not expose a normal callable C ABI.

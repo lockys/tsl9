@@ -2,9 +2,9 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-[最新原始位址驗證](../analysis/secondary-message-integration-2026-10-26/README.md)：72,610B 的 SRC 整理版經原生原位址配置後與官方 BIN 相同；六個編譯器 UND 維持明示，另有不在此數量內的執行期缺口。仍為診斷 ELF，實機／OTA 未證。
+[最新原始位址驗證](../analysis/safe-gap-integration-2026-10-26/README.md)：73,374B 的 SRC 整理版經原生原位址配置後與官方 BIN 相同；六個編譯器 UND 維持明示，另有不在此數量內的執行期缺口。仍為診斷 ELF，實機／OTA 未證。
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 158 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 159 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC資料組裝、記錄處理與立即／延後通知 | 1308B／461指令原位址碼吻合；真實7346B＋60B圖；接通2個入口、新增27個getter依賴，共93個UND；硬體／OTA未證 |
 | [state access](native/receive/state_access.c) | 82A8 記錄搬移、10032 清除與四組狀態更新／讀取 | 336B／108指令，C/C++原位址碼吻合；實際6038B＋60B圖有68個UND；ROM、13C4E用途、索引界限與硬體／OTA未證 |
@@ -12,12 +12,13 @@
 
 | 目錄 | 內容 | 目前限制 |
 | --- | --- | --- |
+| [剩餘包裝函式](native/runtime/safe_gap_functions.c) | 十本體764B／288i，64個實際區段 |55個參考角色均有原位址對照；呼叫／ROM／實機ABI未證。[證據](../analysis/safe-gap-integration-2026-10-26/README.md) |
 | [有界分派資料](native/receive/record_dispatch_tables.c) |5物件264B，沒有新程式 |64個相對項目與八項查找表。[證據](../analysis/record-dispatch-tables-2026-10-25/README.md) |
 | [中央角色回呼](native/receive/central_callback_leaves.c) | 三本體118B／41i | 原始真實本體，含原本的 RET。[證據](../analysis/central-callback-integration-2026-10-26/README.md) |
 | [中央事件與輔助](native/receive/central_event_callbacks.c) | 六本體1938B／645i | 保留事件守衛、分派與共用尾呼叫。[證據](../analysis/central-callback-integration-2026-10-26/README.md) |
 | [中央角色表格](native/receive/central_callback_tables.c) | 三OBJECT92B／五重定位 | 22個非空表格／CODE綁定通過；ROM ABI未證。[證據](../analysis/central-callback-integration-2026-10-26/README.md) |
-| [次要訊息與分派](native/receive/secondary_message_dispatch.c) | 九本體2048B／690i | 272正長度區域、229直接控制與七組位址；保留原始上下文 ports。[證據](../analysis/secondary-message-integration-2026-10-26/README.md) |
-| [次要事件／複製 DATA](native/receive/secondary_message_data.c) | 二OBJECT40B | 七格受限事件表與明確12-byte來源；實際CODE／DATA綁定通過。[證據](../analysis/secondary-message-integration-2026-10-26/README.md) |
+| [次要訊息與分派](native/receive/secondary_message_dispatch.c) | 九本體2048B／690i | 272正長度區域、229直接控制與七組位址；保留原始上下文 ports。[證據](../analysis/safe-gap-integration-2026-10-26/README.md) |
+| [次要事件／複製 DATA](native/receive/secondary_message_data.c) | 二OBJECT40B | 七格受限事件表與明確12-byte來源；實際CODE／DATA綁定通過。[證據](../analysis/safe-gap-integration-2026-10-26/README.md) |
 | [回呼固定長度資料](native/receive/callback_prefix_data.c) | 14 個物件、109B | 來源／長度／原位址均通過核對，原機 ROM 契約仍未證。[證據](../analysis/callback-prefix-integration-2026-10-26/README.md) |
 | [查找表資料池](native/receive/grid_read_windows.c) | 1 個 432B 配置、2 個內部標籤 | 原位址與偏移 0／320 通過驗證；第三表仍未解。[證據](../analysis/grid-integration-2026-10-25/README.md) |
 | [序列資料池](native/receive/record_sequence_pool.c) |1個178B owner、3個內部標籤 |178 bytes與0／36／72偏移均通過原位址驗證。[證據](../analysis/record-sequence-integration-2026-10-25/README.md) |
@@ -156,9 +157,9 @@ python3 scripts/verify-curated-source.py
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-既有凍結檢查器編譯 124 個 CODE 單元，比對 C11／C++17 原始與整理版：248 組、496 個物件。八個獨立 native_data_units 另有 16 組／32 個物件，合計 264 組／528 個物件。包含式 C core 由對應入口編入，不能把所有 .c 當成獨立連結單元。V4.1.00 reference 與舊 HOST 測試不在本次原機物件證明範圍。
+既有凍結檢查器編譯 125 個 CODE 單元，比對 C11／C++17 原始與整理版：250 組、500 個物件。八個獨立 native_data_units 另有 16 組／32 個物件，合計 266 組／532 個物件。包含式 C core 由對應入口編入，不能把所有 .c 當成獨立連結單元。V4.1.00 reference 與舊 HOST 測試不在本次原機物件證明範圍。
 
-本次在 Windows／Android NDK 27.1.12297006／LLVM 18 通過上述 264 組／528 物件。CODE 收據為 `build/curated-source/secondary-message-20261026-v1/verification.json`，完整來源證明為 `experiments/tsl9-secondary-message-data/build/source-proof-v2.json`；舊收據保留為歷史快照。其他作業系統與實機尚未驗證，更換工具鏈需取得同等證據；不下載工具或搜尋旗標。
+本次在 Windows／Android NDK 27.1.12297006／LLVM 18 通過上述 266 組／532 物件。CODE 收據為 `build/curated-source/safe-gap-20261026-v1/verification.json`，完整來源證明為 `experiments/tsl9-safe-gap-functions/build/source-proof-v1.json`；舊收據保留為歷史快照。其他作業系統與實機尚未驗證，更換工具鏈需取得同等證據；不下載工具或搜尋旗標。
 
 既有結果可唯讀重播：
 

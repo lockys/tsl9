@@ -1,0 +1,36 @@
+{
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Offline status-word inspector",
+      "evidence": {
+        "file": "src/native/runtime/safe_gap_functions.c",
+        "function": "tsl9_safe_gap_entry_14cc8",
+        "original_PC": "0x14CC8"
+      },
+      "benefit": "Show the raw packed status and its inputs while preserving unconfirmed bit meanings.",
+      "constraints": [
+        "Use captured/manual data only.",
+        "Do not normalize raw source bytes or callee values to Boolean fields.",
+        "Do not infer seat or driving behavior without separate evidence."
+      ]
+    },
+    {
+      "name": "Offline callback-record viewer",
+      "evidence": {
+        "original_entries": [
+          "0x13660",
+          "0x136D0",
+          "0x13740",
+          "0x13F36"
+        ]
+      },
+      "benefit": "Trace tag AB/BA/B9 and the shared callback through actual CODE providers.",
+      "constraints": [
+        "Do not assume bytes3/10/11 of the length12 record were initialized.",
+        "ROM buffer lifetime and scheduling units remain unproved.",
+        "No radio or vehicle-control output."
+      ]
+    }
+  ]
+}

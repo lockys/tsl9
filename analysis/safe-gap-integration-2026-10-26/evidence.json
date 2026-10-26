@@ -1,0 +1,792 @@
+{
+  "sources": {
+    "src/source-manifest.json": "9a236345dc8618eac74f3d0ed884294d71e1b37b6dead078dafe1bc447d30689",
+    "src/native/runtime/safe_gap_functions.c": "e41032ff1b47953fd457567037bd4ef1ff267b3270d62aae0b90c4e8a35478ca",
+    "experiments/tsl9-safe-gap-functions/safe_gap_functions.c": "e41032ff1b47953fd457567037bd4ef1ff267b3270d62aae0b90c4e8a35478ca"
+  },
+  "checkers": {
+    "scripts/verify-curated-source.py": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832",
+    "experiments/tsl9-safe-gap-functions/source-extension-v1.json": "c4220d7d38e879c434e5a6287ec2b39417384ab447d02a6e0b566c93eafacca4",
+    "experiments/tsl9-safe-gap-functions/parent-manifest-v1.py": "f878016b4f78290ae1e0d25c251c1ee639b314c99d2a5ee6a5cb4fadfacf8ee6",
+    "experiments/tsl9-safe-gap-functions/source-proof-v1.json": "f281c459e189fa69cab5737f16df26974f68bcce65f241fd418797b2fd0eb789",
+    "experiments/tsl9-safe-gap-functions/verify-source-v1.py": "f11636af30b43ce48e6d10693aa8a5369f5cfb1bc643bea082158f5ff7585adb",
+    "experiments/tsl9-safe-gap-functions/integration-v1.json": "4ab9235844bff25ec9fc5b810918da3e80de081e6e4e961787cdb062a2437521",
+    "experiments/tsl9-safe-gap-functions/integrate-v1.py": "738166a22f55b37db7c849f9394a3921f0cc5b95fe7418795a3195cb0e040609",
+    "experiments/tsl9-safe-gap-functions/build-v1.py": "83c0fc467523af5700f473379595f310967fb09c42ecb02d989a12c424fdd39f",
+    "experiments/tsl9-safe-gap-functions/spec-v1.json": "082d41dcc722ad0da38efe89cbb3a64a5a6960017e352b10b967adf1bd02f43f",
+    "experiments/tsl9-original-layout/build-v65.py": "bd47fdb116ded3a397463f68215217dde50f5874da8209b10221221dcafd5e10",
+    "experiments/tsl9-original-layout/spec-v62.json": "0211177e55baf84be80d42ed4c93158037423235baaa5cf4a1a19624acaaa63f",
+    "experiments/tsl9-original-layout/verify-flow-v65.py": "e3d264fffb6abd72bbffa055c02a463fd081730980464c01ceb5de6321ce5e17",
+    "experiments/tsl9-original-layout/compare-diagnostic-v1.py": "0d21f34dfa482b1bb9dde0b074bf0456e8bbbd1d509bda2795c287eb7e746965"
+  },
+  "receipts": {
+    "build/curated-source/safe-gap-20261026-v1/verification.json": "bcce26a727f65bf38f7620fb358bf86b702f7188f5bb1fc80d9fb9a94684b736",
+    "experiments/tsl9-safe-gap-functions/build/source-proof-v1.json": "d2aca455a902b5a9975c266146752b636074dd4e21e3e94e757ba95666758b7e",
+    "experiments/tsl9-safe-gap-functions/build/component-v1/measurement.json": "46c69e6b45ec2a079e8190c823fb65d4d16e69270e1bc7a42080af0ed635e37b",
+    "experiments/tsl9-original-layout/build/safe-gap-v2/measurement.json": "0be698f62bc2475d6d666fc575ad1b831686864f0a8d886de4160b2993904482",
+    "experiments/tsl9-original-layout/build/safe-gap-flow-v1/c-flow.json": "188544040140b4e925ece64f0e2b2cd6b45d55dd2df3e529d305f2c2033442dc",
+    "experiments/tsl9-original-layout/build/safe-gap-flow-v1/cpp-flow.json": "1b53f96d7933dbf5d30616e124b0b794decf32c6c2027dc0e4a910a7ec9d9e6d",
+    "experiments/tsl9-original-layout/build/safe-gap-flow-v1/inputs.json": "7c68ec2d27771f61cc212e03abdb1ed84486d49975e22ad76b7d98d8555a2130",
+    "experiments/tsl9-original-vectors/build/data-v1/measurement.json": "0bf1faf626cb26da03cc29a32dfda8af96aa559adde9b998dc7ad35ecd61af64",
+    "experiments/tsl9-record-dispatch-tables/build/data-v1/measurement.json": "555dd7d005869db58d5758ab533e01645fc734c55ee988a92a6e28065e6d6ab4",
+    "experiments/tsl9-record-copy-windows/build/data-v3/measurement.json": "191a4635bc444ee457b158e15a7be026ff5d336814dd93f0f728c704dae215a6",
+    "experiments/tsl9-record-sequence-pool/build/data-v2/measurement.json": "8647b1c32512a6f0c0423e59030a8813bd12ec4183eeadc8de3c4ee2e4a19896",
+    "experiments/tsl9-grid-read-windows/build/data-v2/measurement.json": "7cd64f1be63f249987171e49a63913590c9fa7702ba00fe135457ab9d002f52f",
+    "experiments/tsl9-callback-prefix-data/build/data-v2/measurement.json": "3b2a204feba20069bfe90dbbc48994fc8ac7d7606d86f619ec664769130d2ffe",
+    "experiments/tsl9-central-callback-tables/build/data-v2/measurement.json": "6236e261199021eaf8c9d817ff38efd435784a4ec43ee1e35268a3e84f3155c5",
+    "experiments/tsl9-secondary-message-data/build/data-v2/measurement.json": "08589a5bca884ac415a6a7d1f1422e30fed6bfd5f65d23c06e989b5e20e58dc0"
+  },
+  "native_component_results": {
+    "c": {
+      "CODE_bytes": 69412,
+      "CODE_units": 125,
+      "DATA_bytes": 3962,
+      "DATA_units": 8,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "RELA": 5270,
+      "UND": [
+        "tsl9_boot_resident_40000",
+        "tsl9_incoming_external_14056",
+        "tsl9_input_state_decoders_static_data_1ab48",
+        "tsl9_record_field_transitions_static_data_1a078",
+        "tsl9_registered_callbacks_static_data_1a638",
+        "tsl9_settings_default_data_1a69c"
+      ],
+      "accepted_original_coordinate_coverage_updated": false,
+      "all_parent_allocations_and_relocation_roles_preserved": true,
+      "candidate_runtime_invocations_proved": false,
+      "compiler_UND_is_not_complete_runtime_gap_inventory": true,
+      "curated_integration": true,
+      "firmware_ready": false,
+      "hardware_accessed": false,
+      "hidden_existing_DATA_dependency": 109288,
+      "hidden_index_globally_bounded": false,
+      "independent_readers": {
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "hardware_accessed": false,
+        "network": false,
+        "object_sha256": "9d35f9f7ecf11bb465a617942da06ccd36e925c5a38bb9c7352f71dbcba88cbb",
+        "only_section_ceiling_and_doc_changed": true,
+        "passed": true,
+        "relocations": 5270,
+        "sections": 935,
+        "symbols": 13554,
+        "target_executed": false
+      },
+      "installed_ROM_ABI_verified": false,
+      "network": false,
+      "new_BIN": false,
+      "new_CODE_bytes": 764,
+      "new_DATA_bytes": 0,
+      "new_original_instructions": 288,
+      "object_sha256": "9d35f9f7ecf11bb465a617942da06ccd36e925c5a38bb9c7352f71dbcba88cbb",
+      "original_coordinate_link_performed": false,
+      "passed": true,
+      "positive_DATA_OBJECTs": 56,
+      "positive_FUNC": 6182,
+      "previous_accepted_coordinate_coverage_percent": 94.54,
+      "real_DATA_labels": 6,
+      "resolved_existing_CODE_providers": 17,
+      "source_C_H_files": 159,
+      "source_comparisons": 266,
+      "source_curated": true,
+      "source_objects": 532,
+      "target_executed": false,
+      "true_CODE_aliases": 71
+    },
+    "cpp": {
+      "CODE_bytes": 69412,
+      "CODE_units": 125,
+      "DATA_bytes": 3962,
+      "DATA_units": 8,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "RELA": 5270,
+      "UND": [
+        "tsl9_boot_resident_40000",
+        "tsl9_incoming_external_14056",
+        "tsl9_input_state_decoders_static_data_1ab48",
+        "tsl9_record_field_transitions_static_data_1a078",
+        "tsl9_registered_callbacks_static_data_1a638",
+        "tsl9_settings_default_data_1a69c"
+      ],
+      "accepted_original_coordinate_coverage_updated": false,
+      "all_parent_allocations_and_relocation_roles_preserved": true,
+      "candidate_runtime_invocations_proved": false,
+      "compiler_UND_is_not_complete_runtime_gap_inventory": true,
+      "curated_integration": true,
+      "firmware_ready": false,
+      "hardware_accessed": false,
+      "hidden_existing_DATA_dependency": 109288,
+      "hidden_index_globally_bounded": false,
+      "independent_readers": {
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "hardware_accessed": false,
+        "network": false,
+        "object_sha256": "9d35f9f7ecf11bb465a617942da06ccd36e925c5a38bb9c7352f71dbcba88cbb",
+        "only_section_ceiling_and_doc_changed": true,
+        "passed": true,
+        "relocations": 5270,
+        "sections": 935,
+        "symbols": 13554,
+        "target_executed": false
+      },
+      "installed_ROM_ABI_verified": false,
+      "network": false,
+      "new_BIN": false,
+      "new_CODE_bytes": 764,
+      "new_DATA_bytes": 0,
+      "new_original_instructions": 288,
+      "object_sha256": "9d35f9f7ecf11bb465a617942da06ccd36e925c5a38bb9c7352f71dbcba88cbb",
+      "original_coordinate_link_performed": false,
+      "passed": true,
+      "positive_DATA_OBJECTs": 56,
+      "positive_FUNC": 6182,
+      "previous_accepted_coordinate_coverage_percent": 94.54,
+      "real_DATA_labels": 6,
+      "resolved_existing_CODE_providers": 17,
+      "source_C_H_files": 159,
+      "source_comparisons": 266,
+      "source_curated": true,
+      "source_objects": 532,
+      "target_executed": false,
+      "true_CODE_aliases": 71
+    }
+  },
+  "native_layout_results": {
+    "c": {
+      "ABS_FUNC_providers": 0,
+      "ELF_sha256": "8c990d5554c56a1a841525c2f0fab87fac95ea224584ac494744980934efa012",
+      "ELF_type": 2,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "PT_LOAD_count": 0,
+      "accepted_coordinate_coverage_percent": 95.54,
+      "adjacent_only_spans": 40,
+      "applied_relocations_retained": 5270,
+      "code_bytes": 69412,
+      "code_regions": 6182,
+      "curated_integration": true,
+      "data_bytes": 3962,
+      "entry": 0,
+      "firmware_BIN_generated": false,
+      "firmware_ready": false,
+      "full_image_rebuilt": false,
+      "hardware_accessed": false,
+      "native_linker_addresses_and_bytes_equal_original": true,
+      "network": false,
+      "new_real_DATA_labels": 0,
+      "original_coordinate_bytes_equal": 73374,
+      "passed": true,
+      "physical_MCU_ROM_RAM_IRQ_OTA_proved": false,
+      "private_ABI_proved": false,
+      "readonly_objects": 56,
+      "real_zero_size_DATA_labels": 6,
+      "reference_only_ABS_constants": 6,
+      "source_C_H_files": 159,
+      "source_byte_carriers_preserved_before_actual_link": true,
+      "source_comparisons": 266,
+      "source_objects": 532,
+      "source_unreconstructed_providers": 6,
+      "target_executed": false,
+      "whole_firmware_original_layout_proved": false
+    },
+    "cpp": {
+      "ABS_FUNC_providers": 0,
+      "ELF_sha256": "8c990d5554c56a1a841525c2f0fab87fac95ea224584ac494744980934efa012",
+      "ELF_type": 2,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "PT_LOAD_count": 0,
+      "accepted_coordinate_coverage_percent": 95.54,
+      "adjacent_only_spans": 40,
+      "applied_relocations_retained": 5270,
+      "code_bytes": 69412,
+      "code_regions": 6182,
+      "curated_integration": true,
+      "data_bytes": 3962,
+      "entry": 0,
+      "firmware_BIN_generated": false,
+      "firmware_ready": false,
+      "full_image_rebuilt": false,
+      "hardware_accessed": false,
+      "native_linker_addresses_and_bytes_equal_original": true,
+      "network": false,
+      "new_real_DATA_labels": 0,
+      "original_coordinate_bytes_equal": 73374,
+      "passed": true,
+      "physical_MCU_ROM_RAM_IRQ_OTA_proved": false,
+      "private_ABI_proved": false,
+      "readonly_objects": 56,
+      "real_zero_size_DATA_labels": 6,
+      "reference_only_ABS_constants": 6,
+      "source_C_H_files": 159,
+      "source_byte_carriers_preserved_before_actual_link": true,
+      "source_comparisons": 266,
+      "source_objects": 532,
+      "source_unreconstructed_providers": 6,
+      "target_executed": false,
+      "whole_firmware_original_layout_proved": false
+    }
+  },
+  "new_original_coordinate_CODE_bindings": {
+    "CODE_bytes": 764,
+    "actual_CODE_address_pairs": [
+      {
+        "HI_PC": 39688,
+        "LO_PC": 39692,
+        "actual_symbol_info": 18,
+        "original_operand_bytes_proved": true,
+        "positive_provider_bytes": 18,
+        "target": "tsl9_callback_gate_entry_9ad2",
+        "target_original_PC": 39634
+      },
+      {
+        "HI_PC": 79524,
+        "LO_PC": 79528,
+        "actual_symbol_info": 18,
+        "original_operand_bytes_proved": true,
+        "positive_provider_bytes": 2,
+        "target": "tsl9_safe_gap_entry_13f36",
+        "target_original_PC": 81718
+      },
+      {
+        "HI_PC": 79636,
+        "LO_PC": 79640,
+        "actual_symbol_info": 18,
+        "original_operand_bytes_proved": true,
+        "positive_provider_bytes": 2,
+        "target": "tsl9_safe_gap_entry_13f36",
+        "target_original_PC": 81718
+      },
+      {
+        "HI_PC": 79764,
+        "LO_PC": 79768,
+        "actual_symbol_info": 18,
+        "original_operand_bytes_proved": true,
+        "positive_provider_bytes": 2,
+        "target": "tsl9_safe_gap_entry_13f36",
+        "target_original_PC": 81718
+      },
+      {
+        "HI_PC": 81366,
+        "LO_PC": 81370,
+        "actual_symbol_info": 18,
+        "original_operand_bytes_proved": true,
+        "positive_provider_bytes": 16,
+        "target": "tsl9_safe_gap_entry_13dd4",
+        "target_original_PC": 81364
+      },
+      {
+        "HI_PC": 81402,
+        "LO_PC": 81406,
+        "actual_symbol_info": 18,
+        "original_operand_bytes_proved": true,
+        "positive_provider_bytes": 30,
+        "target": "tsl9_secondary_message_dispatch_entry_13f88",
+        "target_original_PC": 81800
+      }
+    ],
+    "actual_existing_providers": [
+      {
+        "name": "tsl9_callback_external_9124",
+        "original_PC": 37156,
+        "positive_CODE_bytes": 22
+      },
+      {
+        "name": "tsl9_callback_flow_entry_1070a",
+        "original_PC": 67338,
+        "positive_CODE_bytes": 8
+      },
+      {
+        "name": "tsl9_callback_flow_entry_135e6",
+        "original_PC": 79334,
+        "positive_CODE_bytes": 24
+      },
+      {
+        "name": "tsl9_callback_flow_external_9af0",
+        "original_PC": 39664,
+        "positive_CODE_bytes": 6
+      },
+      {
+        "name": "tsl9_callback_gate_entry_9ad2",
+        "original_PC": 39634,
+        "positive_CODE_bytes": 18
+      },
+      {
+        "name": "tsl9_callback_provider_entry_13d48",
+        "original_PC": 81224,
+        "positive_CODE_bytes": 8
+      },
+      {
+        "name": "tsl9_callback_table_entry_90b0",
+        "original_PC": 37040,
+        "positive_CODE_bytes": 22
+      },
+      {
+        "name": "tsl9_channel_external_16858",
+        "original_PC": 92248,
+        "positive_CODE_bytes": 2
+      },
+      {
+        "name": "tsl9_channel_external_169dc",
+        "original_PC": 92636,
+        "positive_CODE_bytes": 6
+      },
+      {
+        "name": "tsl9_channel_external_81b0",
+        "original_PC": 33200,
+        "positive_CODE_bytes": 6
+      },
+      {
+        "name": "tsl9_dispatch_external_821e",
+        "original_PC": 33310,
+        "positive_CODE_bytes": 42
+      },
+      {
+        "name": "tsl9_feature_mode_getter_829e",
+        "original_PC": 33438,
+        "positive_CODE_bytes": 10
+      },
+      {
+        "name": "tsl9_filter_program_18ba2",
+        "original_PC": 101282,
+        "positive_CODE_bytes": 50
+      },
+      {
+        "name": "tsl9_ota_external_13e98",
+        "original_PC": 81560,
+        "positive_CODE_bytes": 10
+      },
+      {
+        "name": "tsl9_queue_status_81aa",
+        "original_PC": 33194,
+        "positive_CODE_bytes": 6
+      },
+      {
+        "name": "tsl9_register_write_entry_16a30",
+        "original_PC": 92720,
+        "positive_CODE_bytes": 4
+      },
+      {
+        "name": "tsl9_secondary_message_dispatch_entry_13f88",
+        "original_PC": 81800,
+        "positive_CODE_bytes": 30
+      }
+    ],
+    "all_actual_original_instruction_bytes_proved": true,
+    "incoming_runtime_invocations_proved": false,
+    "installed_ROM_identity_and_ABI_proved": false,
+    "instructions": 288,
+    "low_byte_gate": {
+      "PC": 93298,
+      "condition": "((A0-1)&255)<=1; full original A0 is still forwarded",
+      "guard_PC": 93308,
+      "runtime_input_range_proved": false
+    },
+    "new_DATA_provided": false,
+    "opaque_indirect_transfers": [
+      {
+        "PC": 79474,
+        "encoding": "C.JALR",
+        "immediate": 0,
+        "owner": "tsl9_safe_gap_entry_13660",
+        "rd": 1,
+        "rs1": 15,
+        "runtime_target_proved": false
+      },
+      {
+        "PC": 79556,
+        "encoding": "C.JR",
+        "immediate": 0,
+        "owner": "tsl9_safe_gap_functions_block_136b2",
+        "rd": 0,
+        "rs1": 6,
+        "runtime_target_proved": false
+      },
+      {
+        "PC": 79586,
+        "encoding": "C.JALR",
+        "immediate": 0,
+        "owner": "tsl9_safe_gap_entry_136d0",
+        "rd": 1,
+        "rs1": 15,
+        "runtime_target_proved": false
+      },
+      {
+        "PC": 79668,
+        "encoding": "C.JR",
+        "immediate": 0,
+        "owner": "tsl9_safe_gap_functions_block_13722",
+        "rd": 0,
+        "rs1": 6,
+        "runtime_target_proved": false
+      },
+      {
+        "PC": 79702,
+        "encoding": "C.JALR",
+        "immediate": 0,
+        "owner": "tsl9_safe_gap_entry_13740",
+        "rd": 1,
+        "rs1": 15,
+        "runtime_target_proved": false
+      },
+      {
+        "PC": 79796,
+        "encoding": "C.JR",
+        "immediate": 0,
+        "owner": "tsl9_safe_gap_functions_block_137a2",
+        "rd": 0,
+        "rs1": 6,
+        "runtime_target_proved": false
+      },
+      {
+        "PC": 81762,
+        "encoding": "C.JR",
+        "immediate": 0,
+        "owner": "tsl9_safe_gap_functions_block_13f52",
+        "rd": 0,
+        "rs1": 6,
+        "runtime_target_proved": false
+      }
+    ],
+    "original_bodies": 10,
+    "positive_CODE_regions": [
+      {
+        "bytes": 6,
+        "name": "tsl9_safe_gap_entry_81ca",
+        "original_PC": 33226
+      },
+      {
+        "bytes": 14,
+        "name": "tsl9_safe_gap_functions_block_81d0",
+        "original_PC": 33232
+      },
+      {
+        "bytes": 20,
+        "name": "tsl9_safe_gap_entry_9b02",
+        "original_PC": 39682
+      },
+      {
+        "bytes": 6,
+        "name": "tsl9_safe_gap_functions_block_9b16",
+        "original_PC": 39702
+      },
+      {
+        "bytes": 18,
+        "name": "tsl9_safe_gap_functions_block_9b1c",
+        "original_PC": 39708
+      },
+      {
+        "bytes": 8,
+        "name": "tsl9_safe_gap_functions_block_9b2e",
+        "original_PC": 39726
+      },
+      {
+        "bytes": 10,
+        "name": "tsl9_safe_gap_entry_12a6e",
+        "original_PC": 76398
+      },
+      {
+        "bytes": 4,
+        "name": "tsl9_safe_gap_functions_block_12a78",
+        "original_PC": 76408
+      },
+      {
+        "bytes": 24,
+        "name": "tsl9_safe_gap_functions_block_12a7c",
+        "original_PC": 76412
+      },
+      {
+        "bytes": 6,
+        "name": "tsl9_safe_gap_functions_block_12a94",
+        "original_PC": 76436
+      },
+      {
+        "bytes": 4,
+        "name": "tsl9_safe_gap_functions_block_12a9a",
+        "original_PC": 76442
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_12a9e",
+        "original_PC": 76446
+      },
+      {
+        "bytes": 20,
+        "name": "tsl9_safe_gap_entry_13660",
+        "original_PC": 79456
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_13674",
+        "original_PC": 79476
+      },
+      {
+        "bytes": 34,
+        "name": "tsl9_safe_gap_functions_block_13676",
+        "original_PC": 79478
+      },
+      {
+        "bytes": 6,
+        "name": "tsl9_safe_gap_functions_block_13698",
+        "original_PC": 79512
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_1369e",
+        "original_PC": 79518
+      },
+      {
+        "bytes": 16,
+        "name": "tsl9_safe_gap_functions_block_136a0",
+        "original_PC": 79520
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_136b0",
+        "original_PC": 79536
+      },
+      {
+        "bytes": 20,
+        "name": "tsl9_safe_gap_functions_block_136b2",
+        "original_PC": 79538
+      },
+      {
+        "bytes": 10,
+        "name": "tsl9_safe_gap_functions_block_136c6",
+        "original_PC": 79558
+      },
+      {
+        "bytes": 20,
+        "name": "tsl9_safe_gap_entry_136d0",
+        "original_PC": 79568
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_136e4",
+        "original_PC": 79588
+      },
+      {
+        "bytes": 34,
+        "name": "tsl9_safe_gap_functions_block_136e6",
+        "original_PC": 79590
+      },
+      {
+        "bytes": 6,
+        "name": "tsl9_safe_gap_functions_block_13708",
+        "original_PC": 79624
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_1370e",
+        "original_PC": 79630
+      },
+      {
+        "bytes": 16,
+        "name": "tsl9_safe_gap_functions_block_13710",
+        "original_PC": 79632
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_13720",
+        "original_PC": 79648
+      },
+      {
+        "bytes": 20,
+        "name": "tsl9_safe_gap_functions_block_13722",
+        "original_PC": 79650
+      },
+      {
+        "bytes": 10,
+        "name": "tsl9_safe_gap_functions_block_13736",
+        "original_PC": 79670
+      },
+      {
+        "bytes": 24,
+        "name": "tsl9_safe_gap_entry_13740",
+        "original_PC": 79680
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_13758",
+        "original_PC": 79704
+      },
+      {
+        "bytes": 24,
+        "name": "tsl9_safe_gap_functions_block_1375a",
+        "original_PC": 79706
+      },
+      {
+        "bytes": 4,
+        "name": "tsl9_safe_gap_functions_block_13772",
+        "original_PC": 79730
+      },
+      {
+        "bytes": 14,
+        "name": "tsl9_safe_gap_functions_block_13776",
+        "original_PC": 79734
+      },
+      {
+        "bytes": 4,
+        "name": "tsl9_safe_gap_functions_block_13784",
+        "original_PC": 79748
+      },
+      {
+        "bytes": 4,
+        "name": "tsl9_safe_gap_functions_block_13788",
+        "original_PC": 79752
+      },
+      {
+        "bytes": 4,
+        "name": "tsl9_safe_gap_functions_block_1378c",
+        "original_PC": 79756
+      },
+      {
+        "bytes": 16,
+        "name": "tsl9_safe_gap_functions_block_13790",
+        "original_PC": 79760
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_137a0",
+        "original_PC": 79776
+      },
+      {
+        "bytes": 20,
+        "name": "tsl9_safe_gap_functions_block_137a2",
+        "original_PC": 79778
+      },
+      {
+        "bytes": 10,
+        "name": "tsl9_safe_gap_functions_block_137b6",
+        "original_PC": 79798
+      },
+      {
+        "bytes": 16,
+        "name": "tsl9_safe_gap_entry_13dd4",
+        "original_PC": 81364
+      },
+      {
+        "bytes": 6,
+        "name": "tsl9_safe_gap_functions_block_13de4",
+        "original_PC": 81380
+      },
+      {
+        "bytes": 4,
+        "name": "tsl9_safe_gap_functions_block_13dea",
+        "original_PC": 81386
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_13dee",
+        "original_PC": 81390
+      },
+      {
+        "bytes": 24,
+        "name": "tsl9_safe_gap_functions_block_13df0",
+        "original_PC": 81392
+      },
+      {
+        "bytes": 6,
+        "name": "tsl9_safe_gap_functions_block_13e08",
+        "original_PC": 81416
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_entry_13f36",
+        "original_PC": 81718
+      },
+      {
+        "bytes": 26,
+        "name": "tsl9_safe_gap_functions_block_13f38",
+        "original_PC": 81720
+      },
+      {
+        "bytes": 18,
+        "name": "tsl9_safe_gap_functions_block_13f52",
+        "original_PC": 81746
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_13f64",
+        "original_PC": 81764
+      },
+      {
+        "bytes": 14,
+        "name": "tsl9_safe_gap_entry_14cc8",
+        "original_PC": 85192
+      },
+      {
+        "bytes": 8,
+        "name": "tsl9_safe_gap_functions_block_14cd6",
+        "original_PC": 85206
+      },
+      {
+        "bytes": 12,
+        "name": "tsl9_safe_gap_functions_block_14cde",
+        "original_PC": 85214
+      },
+      {
+        "bytes": 6,
+        "name": "tsl9_safe_gap_functions_block_14cea",
+        "original_PC": 85226
+      },
+      {
+        "bytes": 62,
+        "name": "tsl9_safe_gap_functions_block_14cf0",
+        "original_PC": 85232
+      },
+      {
+        "bytes": 14,
+        "name": "tsl9_safe_gap_entry_16c72",
+        "original_PC": 93298
+      },
+      {
+        "bytes": 14,
+        "name": "tsl9_safe_gap_functions_block_16c80",
+        "original_PC": 93312
+      },
+      {
+        "bytes": 10,
+        "name": "tsl9_safe_gap_functions_block_16c8e",
+        "original_PC": 93326
+      },
+      {
+        "bytes": 14,
+        "name": "tsl9_safe_gap_functions_block_16c98",
+        "original_PC": 93336
+      },
+      {
+        "bytes": 14,
+        "name": "tsl9_safe_gap_functions_block_16ca6",
+        "original_PC": 93350
+      },
+      {
+        "bytes": 14,
+        "name": "tsl9_safe_gap_functions_block_16cb4",
+        "original_PC": 93364
+      },
+      {
+        "bytes": 2,
+        "name": "tsl9_safe_gap_functions_block_16cc2",
+        "original_PC": 93378
+      }
+    ]
+  },
+  "independent_diagnostic_reader": {
+    "ELF_sha256": "8c990d5554c56a1a841525c2f0fab87fac95ea224584ac494744980934efa012",
+    "ELF_type": 2,
+    "PT_LOAD_count": 0,
+    "entry": 0,
+    "every_header_section_byte_symbol_and_relocation_agrees": true,
+    "passed": true,
+    "relocations": 5270,
+    "sections": 54,
+    "symbols": 13043,
+    "target_executed": false
+  },
+  "receipt_paths_are_local_native_outputs": true,
+  "new_binary_files_published": false
+}

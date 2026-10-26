@@ -1,5 +1,7 @@
 # 剩餘 CODE 候選函式
 
+> 本文為初始候選階段的歷史快照。現行 SRC 與原位址整合見[最新證據](../../analysis/safe-gap-integration-2026-10-26/README.md)。舊 audit 固定原158檔情境；現行159檔來源請用最新整合／流程重播，舊收據保持不變。
+
 [English](readme.en.md)
 
 從官方 ID2966 / V4.1.60 映像的八段窗口，重建十個候選函式：**764 bytes、288 條原始指令**。[C/C++ 來源](safe_gap_functions.c) 保留原始暫存器資料流及明確的組語介面；不是可獨立呼叫的標準 C ABI。

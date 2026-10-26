@@ -10,9 +10,9 @@
 
 **免責聲明：本專案使用 Codex vibe coding 搭配 REA 進行實驗性重建，目前尚未成功逆向重建出已驗證可用的 TSL9 韌體。重建 BIN 未通過原硬體完整驗證；OTA 讀回成功不代表功能正常。**
 
-**已驗證重建覆蓋率：94.54%**（72,610／76,800 bytes；程式 68,648B＋資料 3,962B）。僅計入 C/C++ 重建後逐 byte 通過原位址比對的部分；不是功能完成率或可刷入比例。[驗證依據](analysis/secondary-message-integration-2026-10-26/summary.json)
+**已驗證重建覆蓋率：95.54%**（73,374／76,800 bytes；程式 69,412B＋資料 3,962B）。僅計入 C/C++ 重建後逐 byte 通過原位址比對的部分；不是功能完成率或可刷入比例。[驗證依據](analysis/safe-gap-integration-2026-10-26/summary.json)
 
-最新離線實驗：[十個候選函式、764B 通過 C/C++ 物件對照](experiments/tsl9-safe-gap-functions/README.md)，尚未納入上方正式覆蓋率。
+最新整合：[十個本體、764B 已納入 SRC 與原位址對照](analysis/safe-gap-integration-2026-10-26/README.md)，實機呼叫與硬體相容性仍未證。
 
 ## 開始使用
 
