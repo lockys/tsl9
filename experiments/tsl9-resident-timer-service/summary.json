@@ -1,0 +1,191 @@
+{
+  "schema": "TSL9-public-V131-timer-service-summary-v1",
+  "SDK_candidate_only": true,
+  "CODE_bytes": 288,
+  "instructions": 103,
+  "complete_bodies": 1,
+  "positive_FUNC_regions": 32,
+  "relocations": 24,
+  "direct_controls": 22,
+  "far_call_pairs": 1,
+  "conditional_Xwchc_ports": 3,
+  "official_vectors_checked": 28,
+  "source": "experiments/tsl9-resident-timer-service/resident_timer_service.c",
+  "source_sha256": "9f54689b60f16fc523175d4e7a0d54660106466efcf3f34fc474b8e31c0a385d",
+  "source_context": "Original-context RV32 register-bound C/assembly;not an ordinary host-callable C API",
+  "native_object_sha256": "50e2074c19162f926e308a463bbafd8b685902e98da06f9caf6f470b3f275f98",
+  "native_CODE_objects": 2,
+  "ABI_assertion_objects": 2,
+  "composition": {
+    "passed": true,
+    "object_sha256": "f78eddd6f30ff961c5a08e51e5796a1c0b1405d54bed8039ddedd3ccd4c00274",
+    "CODE_bytes": 3038,
+    "instructions": 1074,
+    "positive_FUNC_regions": 279,
+    "relocations": 205,
+    "named_UND": [
+      "tsl9_candidate_external_flash_63dd0",
+      "tsl9_candidate_external_ram_2000061a",
+      "tsl9_candidate_external_ram_20002610"
+    ],
+    "every_input_byte_symbol_relocation_retained": true,
+    "real_scheduler_timer_import_resolved": true,
+    "zero_named_UND_is_not_runtime_closure": true,
+    "raw_RAM_and_callback_dependencies_provided": false,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "timer_contract": {
+    "passed": true,
+    "static_only": true,
+    "concrete_machine_or_memory_simulated": false,
+    "complete_range": [
+      536872186,
+      536872474
+    ],
+    "instructions": 103,
+    "return_PCs": [
+      536872410
+    ],
+    "calls": [
+      {
+        "PC": 536872272,
+        "target": 536871184
+      },
+      {
+        "PC": 536872288,
+        "target": null
+      },
+      {
+        "PC": 536872328,
+        "target": 275786
+      }
+    ],
+    "timer_head": 536883688,
+    "node_accesses": {
+      "task_byte": 0,
+      "event_halfword": 2,
+      "interval_word": 4,
+      "deadline_word": 8,
+      "next_word": 12
+    },
+    "minimum_valid_node_bytes": 16,
+    "clock_callback_storage": 536883680,
+    "clock_callback_null_guard_within_body": false,
+    "known_main_caller_checks_pointer_before_call": true,
+    "caller_pointer_stability_still_required": true,
+    "wrap_word": 536883768,
+    "clock_units_or_range_proved": false,
+    "elapsed_expression": "now>=deadline ? now-deadline : M-deadline+now (u32)",
+    "due_if_unsigned_elapsed_le": 29999999,
+    "due_event_call": {
+      "target": 275786,
+      "A0": "fresh node task byte",
+      "A1": "fresh node event halfword",
+      "return_value_used": false
+    },
+    "repeat_expression": "s=(fresh_deadline+interval) mod2^32;store s-M mod2^32 if s<fresh_deadline or s>=M,otherwise s",
+    "repeat_updates_per_traversed_node": 1,
+    "general_modulo_or_multi_period_catchup_proved": false,
+    "unlink_and_free": "zero event or zero interval after a due event unlinks head/predecessor,reads next into S8,then frees the node through real20000110",
+    "stop_task_zero_event_is_collected_only_when_this_service_runs": true,
+    "cached_delay_word": 536883628,
+    "future_delay_update_requires_nonnull_idleCB_at": 536883732,
+    "future_delay_expression": "deadline>=now ? deadline-now : deadline+M-now (u32)",
+    "cached_delay_replaced_only_when_candidate_is_smaller": true,
+    "post_nonempty_traversal": "cache<=1 ?0:cache-1",
+    "initially_empty_list_returns_without_postpass": true,
+    "own_frame_bytes": 48,
+    "own_frame_balanced_at_return": true,
+    "known_main_plus_timer_own_frame_bytes": 80,
+    "callee_and_global_IRQ_stack_budget_proved": false,
+    "opaque_transfers": [
+      {
+        "PC": 536872288,
+        "pointer_storage": 536883680,
+        "role": "clock callback result is used as unsigned current time",
+        "null_guard_within_this_function": false,
+        "callee_body_in_this_module": false,
+        "write_effects_bounded": false
+      }
+    ],
+    "raw_dependencies": [
+      {
+        "address": 536883688,
+        "role": "timer-list head word"
+      },
+      {
+        "address": 536883680,
+        "role": "clock callback pointer"
+      },
+      {
+        "address": 536883768,
+        "role": "clock-wrap arithmetic word"
+      },
+      {
+        "address": 536883628,
+        "role": "cached future-delay word"
+      },
+      {
+        "address": 536883732,
+        "role": "configuration idleCB pointer tested"
+      }
+    ],
+    "requires_valid_stable_acyclic_list_node_lifetime_and_normal_callee_returns": true,
+    "clock_callback_effects_on_nodes_or_globals_bounded": false,
+    "termination_proved": false,
+    "physical_atomicity_proved": false,
+    "installed_ROM_identity_proved": false,
+    "runtime_closed": false
+  },
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-timer-service/derive-v1.py": "cf068c988237bb32784042cfcf120385b2646feb9a50422a55b7d183494e1d9f",
+    "experiments/tsl9-resident-timer-service/evidence-v1.json": "f4f1f3faf84ea155e9f6cdb720e17a735cea5a626330d64950d748dacbd4cd5e",
+    "experiments/tsl9-resident-timer-service/resident_timer_service.c": "9f54689b60f16fc523175d4e7a0d54660106466efcf3f34fc474b8e31c0a385d",
+    "experiments/tsl9-resident-timer-service/spec-v1.json": "f957e12400cedde4ad3d5f034b70eeeb1914c16f847ef870338ef359ffe4b585",
+    "experiments/tsl9-resident-timer-service/build-v1.py": "6a47c46f53dfa25ad71cd6c6c64772f67e9c46357f7a9c4a1c7a75292a1ef528",
+    "experiments/tsl9-resident-timer-service/config_abi.c": "24dd49b5477b57c89de5ae407320fcf4b0cd796bba66a5aa8750d0696ad8cd97",
+    "experiments/tsl9-resident-timer-service/audit-v1.py": "c1912375fe67a6dacba0a4df19fe4d3b260b98ef3ab02d526b497258f66222e0",
+    "experiments/tsl9-resident-timer-service/audit-result-v1.json": "a258474aa380c4419b20d5c73b9e1286e7bb8eb0a44aed5b05bc5d6440a9a98c",
+    "experiments/tsl9-resident-timer-service/build/native-v1/measurement.json": "2897076d1c1a0449c83054c0a469013b6452ceb227995b23d76f6c0ba278c03d",
+    "experiments/tsl9-resident-timer-service/build/composition-v1/c/candidate.o": "f78eddd6f30ff961c5a08e51e5796a1c0b1405d54bed8039ddedd3ccd4c00274",
+    "experiments/tsl9-resident-timer-service/build/composition-v1/cpp/candidate.o": "f78eddd6f30ff961c5a08e51e5796a1c0b1405d54bed8039ddedd3ccd4c00274"
+  },
+  "prior_SDK_composition_bytes": 2750,
+  "prior_scheduler_binding_layout_and_Flash_contracts_retained": true,
+  "inherited_startup_source_gap_bytes": 4,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_APP_CODE_bytes": 0,
+  "startup_completed_proved": false,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "physical_atomicity_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "vendor_network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "feature_candidates": [
+    {
+      "name": "Timer lateness,clock-range and deferred-cancellation diagnostics",
+      "implemented": false,
+      "basis": "The service rearms once,ignores event-set status and collects zero-event nodes only when traversed",
+      "requires": [
+        "actual clock callback and wrap-word initialization contract",
+        "valid timer lifetime and RAM ownership",
+        "safe IRQ/stack observation points and installed ROM/ISA identity"
+      ]
+    }
+  ]
+}
