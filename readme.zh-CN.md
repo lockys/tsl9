@@ -14,7 +14,7 @@
 
 最新整合：[十个本体、764B 已纳入 SRC 与原地址比对](analysis/safe-gap-integration-2026-10-26/README.md)，实机调用与硬件兼容性仍未证明。
 
-ROM分析：[讯息API](experiments/tsl9-resident-message-api/README.md)、[heap](experiments/tsl9-resident-heap-core/README.md)、[初始化C/C++](experiments/tsl9-resident-heap-initialization/README.md)，实机身份未确认。
+ROM候选：[BLE启动／heap C/C++](experiments/tsl9-resident-ble-initialization/README.md)，实机兼容性未确认。
 
 ## 开始使用
 
