@@ -277,9 +277,11 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     @Override public void ready(){log("SESSION ready; request A0 device info");requestInfo();refresh();}
     private void requestInfo(){if(!ble.ready()||car.active()||(ota.active()&&!ota.waitingBoot()))return;lastCarInfoPoll=SystemClock.elapsedRealtime();ble.send(0xa0,new byte[0],()->log("A0 request sent"));}
     private void passwordDialog(){
-        if(!ble.ready()||car.active()||(ota.active()&&!ota.waitingBoot()))return;EditText input=new EditText(this);input.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);input.setHint(s(R.string.password_hint));input.setSaveEnabled(false);if(Build.VERSION.SDK_INT>=26)input.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
-        AlertDialog dialog=new AlertDialog.Builder(this).setTitle(s(R.string.password_title)).setView(input).setNegativeButton(s(R.string.cancel),null).setPositiveButton(s(R.string.verify),null).create();
-        dialog.setOnShowListener(x->dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{String value=input.getText().toString();if(!value.matches("[\\x20-\\x7e]{4}")){input.setError(s(R.string.password_ascii));return;}byte[] b=value.getBytes(StandardCharsets.US_ASCII);input.setText("");passwordAccepted=false;log("AUTH manual attempt payload=redacted");ble.send(0xa8,b,()->Arrays.fill(b,(byte)0));dialog.dismiss();}));dialog.show();
+        if(!ble.ready()||car.active()||(ota.active()&&!ota.waitingBoot()))return;
+        BluetoothPasswordDialog.create(this,new BluetoothPasswordStore(this),new BluetoothPasswordDialog.Events(){
+            public void submit(byte[] password){passwordAccepted=false;log("AUTH manual attempt payload=redacted");ble.send(0xa8,password,()->Arrays.fill(password,(byte)0));}
+            public void rememberFailed(){log("AUTH remember unavailable; manual verification continues");}
+        }).show();
     }
     @Override public void packet(Protocol.Packet packet){
         if(destroyed)return;
