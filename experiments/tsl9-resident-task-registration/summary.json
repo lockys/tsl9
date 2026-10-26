@@ -1,0 +1,216 @@
+{
+  "schema": "TSL9-public-SDK-task-registration-summary-v1",
+  "SDK_candidate_only": true,
+  "CODE_bytes": 48,
+  "instructions": 16,
+  "complete_bodies": 1,
+  "positive_FUNC_regions": 4,
+  "relocations": 2,
+  "direct_controls": 2,
+  "far_call_pairs": 0,
+  "conditional_Xwchc_ports": 3,
+  "official_vectors_checked": 28,
+  "source": "experiments/tsl9-resident-task-registration/resident_task_registration.c",
+  "source_sha256": "10a17bc3ae7e27f7c55418bf30dfca24bc507d85fd766bdf0d65bc0876a7e32e",
+  "source_context": "Original-context RV32 register-bound C/assembly;not an ordinary host-callable C API",
+  "native_object_sha256": "fe2d9a54ef0e9db9580d4087e2695d81e0344e3fb801ff734d4e375b90d5ef20",
+  "native_CODE_objects": 2,
+  "ABI_assertion_objects": 2,
+  "composition": {
+    "passed": true,
+    "object_sha256": "38bb24d93b9c19efc03a6211358f6380cb2c6b2f5b4a9b53f60fdd71195ffc51",
+    "CODE_bytes": 2312,
+    "instructions": 821,
+    "positive_FUNC_regions": 208,
+    "relocations": 151,
+    "named_UND": [],
+    "every_input_byte_symbol_relocation_retained": true,
+    "official_slot19_has_real_body": true,
+    "zero_named_UND_is_not_runtime_closure": true,
+    "raw_RAM_and_callback_dependencies_provided": false,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "registration_contract": {
+    "passed": true,
+    "static_only": true,
+    "concrete_machine_or_memory_simulated": false,
+    "complete_range": [
+      277582,
+      277630
+    ],
+    "instructions": 16,
+    "direct_edges": [
+      [
+        277582,
+        277586
+      ],
+      [
+        277586,
+        277590
+      ],
+      [
+        277590,
+        277592
+      ],
+      [
+        277592,
+        277594
+      ],
+      [
+        277594,
+        277624
+      ],
+      [
+        277594,
+        277598
+      ],
+      [
+        277598,
+        277602
+      ],
+      [
+        277602,
+        277606
+      ],
+      [
+        277606,
+        277610
+      ],
+      [
+        277610,
+        277612
+      ],
+      [
+        277612,
+        277616
+      ],
+      [
+        277616,
+        277618
+      ],
+      [
+        277618,
+        277620
+      ],
+      [
+        277620,
+        277622
+      ],
+      [
+        277624,
+        277628
+      ],
+      [
+        277628,
+        277620
+      ]
+    ],
+    "return_PCs": [
+      277622
+    ],
+    "official_bindings": [
+      {
+        "name": "TMOS_ProcessEventRegister",
+        "index": 19,
+        "target": 277582
+      },
+      {
+        "name": "BLE_LibInit",
+        "index": 28,
+        "target": 277630
+      }
+    ],
+    "count_byte": 536883613,
+    "capacity_byte": 536883614,
+    "handler_pointer_storage": 536883652,
+    "success_guard": "old_count < capacity",
+    "success_count": "old_count+1",
+    "success_handler_store": "handler_array + 4*old_count receives unvalidated entry_A0 word",
+    "success_return": "old_count",
+    "failure_guard": "old_count >= capacity",
+    "failure_return": 255,
+    "failure_has_no_store": true,
+    "sequential_invariant": "If0<=old_count<=capacity<=255 and the count/capacity/pointer are stable,success gives old_count+1<=capacity and failure preserves count;no byte wrap occurs",
+    "handler_bound": "With an aligned writable4*capacity-byte array,success store ends at4*(old_count+1)<=4*capacity",
+    "instruction_store_order": [
+      {
+        "PC": 277610,
+        "role": "count byte"
+      },
+      {
+        "PC": 277618,
+        "role": "handler word"
+      }
+    ],
+    "entry_callback_null_check_present": false,
+    "entry_callback_callable_validity_proved": false,
+    "encoded_gate_save_restore_or_FENCE_sequence_present": false,
+    "physical_atomicity_proved": false,
+    "concurrent_observer_order_or_IRQ_state_proved": false,
+    "conditional_original_capacity": 29,
+    "conditional_initial_registered_count": 3,
+    "conditional_remaining_successful_registrations": 26,
+    "assumptions": [
+      "capacity,count and handler pointer are not changed concurrently",
+      "handler_array is an aligned writable4*capacity-byte region with exclusive ownership",
+      "the precondition old_count<=capacity holds initially",
+      "the26-slot example additionally assumes the earlier SNV path leaves count/pointers unchanged and the three built-in registrations complete",
+      "caller supplies a valid callable handler if later dispatch requires it"
+    ],
+    "task_count_zero_after_SNV_proved": false,
+    "physical_RAM_capacity_proved": false,
+    "heap_or_APP_global_ownership_proved": false,
+    "installed_ROM_identity_proved": false,
+    "runtime_closed": false,
+    "new_BIN": false
+  },
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-task-registration/derive-v1.py": "0b39569513095964128d55f7db749384e270b9a6be0f2a5f7a1f720faecb3ecf",
+    "experiments/tsl9-resident-task-registration/evidence-v1.json": "bf782803e1633b0c830e87bea9ff4191ff3046b17138916b9bda8a79aac87dd7",
+    "experiments/tsl9-resident-task-registration/resident_task_registration.c": "10a17bc3ae7e27f7c55418bf30dfca24bc507d85fd766bdf0d65bc0876a7e32e",
+    "experiments/tsl9-resident-task-registration/spec-v1.json": "b409f5da508bd0facfcc75a5a6bb5ff33d45ea945d969af68bb8febaa5f3ff97",
+    "experiments/tsl9-resident-task-registration/build-v1.py": "fcb2d820d026838996d7e442498bddbd6cc92dab7bc2c12cde80d311db5250a6",
+    "experiments/tsl9-resident-task-registration/config_abi.c": "24dd49b5477b57c89de5ae407320fcf4b0cd796bba66a5aa8750d0696ad8cd97",
+    "experiments/tsl9-resident-task-registration/audit-v1.py": "4912276924d200f1d72a9cac765dffd26ca60428959dd259dc3afd652c82a015",
+    "experiments/tsl9-resident-task-registration/audit-result-v1.json": "2e48d8ba8fc7bae31f05599d635d63d4d6c8109ecbccb12ddbb7a140bc33536a",
+    "experiments/tsl9-resident-task-registration/build/native-v1/measurement.json": "6af85ed31d6ade6fd0a2318ca81c54f431227ef0a5feef8dee2703d5d242a3f2",
+    "experiments/tsl9-resident-task-registration/build/composition-v1/c/candidate.o": "38bb24d93b9c19efc03a6211358f6380cb2c6b2f5b4a9b53f60fdd71195ffc51",
+    "experiments/tsl9-resident-task-registration/build/composition-v1/cpp/candidate.o": "38bb24d93b9c19efc03a6211358f6380cb2c6b2f5b4a9b53f60fdd71195ffc51"
+  },
+  "prior_SDK_composition_bytes": 2264,
+  "prior_layout_and_Flash_contracts_retained": true,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_APP_CODE_bytes": 0,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "physical_atomicity_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "vendor_network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "feature_candidates": [
+    {
+      "name": "Serialized task registration and callable-handler diagnostics",
+      "implemented": false,
+      "basis": "The count store precedes the handler store;the complete function has no null check or encoded critical-section sequence",
+      "requires": [
+        "verified caller serialization and IRQ/stack budget",
+        "valid handler-table ownership and callback lifetime",
+        "actual installed ROM/ISA identity"
+      ]
+    }
+  ]
+}

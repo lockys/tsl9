@@ -1,0 +1,367 @@
+{
+  "firmware": "analysis/wch-resident-candidate-2026-10-21/carrier-dec2023/REFERENCE-CANDIDATE-ONLY-00040000-0006EA66.bin",
+  "firmware_sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22",
+  "header": "analysis/wch-resident-candidate-2026-10-21/original-dec2023/wchble_rom.h",
+  "header_sha256": "647a185941fedeb6ba16d544d9bca91a6f53219bb649a5513b59abeb21a9a94c",
+  "instruction_reference": "analysis/wch-resident-candidate-2026-10-21/instruction-reference/RISCVInstrInfoXwch.td",
+  "instruction_reference_sha256": "d18a5c4d0722e20d3d0398f180931118a5125c9ada56a64d32c602ad5bd71490",
+  "mapping_proof": "analysis/resident-copy-reference-2026-10-21/source/contract.json",
+  "mapping_proof_sha256": "fa9d58135f1b6c599d6f2e16f65f6a0000589a10e921ab649dc4e046287efc36",
+  "schema": "TSL9-public-SDK-task-registration-candidate-v1",
+  "selected_functions": [
+    {
+      "name": "tsl9_candidate_process_event_register_43c4e",
+      "start": 277582,
+      "end": 277630,
+      "source_start": 277582,
+      "source_end": 277630,
+      "file_map_base": 262144,
+      "operations": [
+        {
+          "addr": 277582,
+          "size": 4,
+          "bytes": "37370020",
+          "opcode": "lui a4, 0x20003",
+          "type": "mov",
+          "source_flash_PC": 277582
+        },
+        {
+          "addr": 277586,
+          "size": 4,
+          "bytes": "1307c719",
+          "opcode": "addi a4, a4, 412",
+          "type": "add",
+          "source_flash_PC": 277586
+        },
+        {
+          "addr": 277590,
+          "size": 2,
+          "bytes": "1c33",
+          "opcode": "qk.c.lbu a5, 1(a4)",
+          "type": "load",
+          "source_flash_PC": 277590,
+          "standard_decoder_opcode": "fld fa5, 32(a4)",
+          "conditional_Xwchc": true
+        },
+        {
+          "addr": 277592,
+          "size": 2,
+          "bytes": "3423",
+          "opcode": "qk.c.lbu a3, 2(a4)",
+          "type": "load",
+          "source_flash_PC": 277592,
+          "standard_decoder_opcode": "fld fa3, 64(a4)",
+          "conditional_Xwchc": true
+        },
+        {
+          "addr": 277594,
+          "size": 4,
+          "bytes": "63ffd700",
+          "opcode": "bleu a3, a5, 0x43c78",
+          "type": "cjmp",
+          "source_flash_PC": 277594
+        },
+        {
+          "addr": 277598,
+          "size": 4,
+          "bytes": "b7360020",
+          "opcode": "lui a3, 0x20003",
+          "type": "mov",
+          "source_flash_PC": 277598
+        },
+        {
+          "addr": 277602,
+          "size": 4,
+          "bytes": "83a6461c",
+          "opcode": "lw a3, 452(a3)",
+          "type": "load",
+          "source_flash_PC": 277602
+        },
+        {
+          "addr": 277606,
+          "size": 4,
+          "bytes": "13861700",
+          "opcode": "addi a2, a5, 1",
+          "type": "add",
+          "source_flash_PC": 277606
+        },
+        {
+          "addr": 277610,
+          "size": 2,
+          "bytes": "10b3",
+          "opcode": "qk.c.sb a2, 1(a4)",
+          "type": "store",
+          "source_flash_PC": 277610,
+          "standard_decoder_opcode": "fsd fa2, 32(a4)",
+          "conditional_Xwchc": true
+        },
+        {
+          "addr": 277612,
+          "size": 4,
+          "bytes": "13972700",
+          "opcode": "slli a4, a5, 0x2",
+          "type": "shl",
+          "source_flash_PC": 277612
+        },
+        {
+          "addr": 277616,
+          "size": 2,
+          "bytes": "3697",
+          "opcode": "add a4, a4, a3",
+          "type": "add",
+          "source_flash_PC": 277616
+        },
+        {
+          "addr": 277618,
+          "size": 2,
+          "bytes": "08c3",
+          "opcode": "sw a0, 0(a4)",
+          "type": "store",
+          "source_flash_PC": 277618
+        },
+        {
+          "addr": 277620,
+          "size": 2,
+          "bytes": "3e85",
+          "opcode": "mv a0, a5",
+          "type": "mov",
+          "source_flash_PC": 277620
+        },
+        {
+          "addr": 277622,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret",
+          "source_flash_PC": 277622
+        },
+        {
+          "addr": 277624,
+          "size": 4,
+          "bytes": "9307f00f",
+          "opcode": "li a5, 255",
+          "type": "mov",
+          "source_flash_PC": 277624
+        },
+        {
+          "addr": 277628,
+          "size": 2,
+          "bytes": "e5bf",
+          "opcode": "j 0x43c74",
+          "type": "jmp",
+          "source_flash_PC": 277628
+        }
+      ],
+      "original_sha256": "be96828519d6ea00886e75e0bc515e41b4c44f1731cb5b7dcf1db6a0fdcf12e1"
+    }
+  ],
+  "code_bytes": 48,
+  "instructions": 16,
+  "target_names": {},
+  "reference_roles": {},
+  "official_vectors": {
+    "path": "analysis/wch-resident-candidate-2026-10-21/instruction-reference/xwchc-valid.s",
+    "sha256": "d4b64865497e1ecb8a8e3089c5bdc961b54cdedcdb8c3116bf679c70df683b32",
+    "checked": [
+      {
+        "line": 9,
+        "word": 8192,
+        "instruction": "qk.c.lbu s0, 0(s0)"
+      },
+      {
+        "line": 12,
+        "word": 8192,
+        "instruction": "qk.c.lbu s0, 0(s0)"
+      },
+      {
+        "line": 15,
+        "word": 12288,
+        "instruction": "qk.c.lbu s0, 1(s0)"
+      },
+      {
+        "line": 18,
+        "word": 8224,
+        "instruction": "qk.c.lbu s0, 2(s0)"
+      },
+      {
+        "line": 21,
+        "word": 8256,
+        "instruction": "qk.c.lbu s0, 4(s0)"
+      },
+      {
+        "line": 24,
+        "word": 9216,
+        "instruction": "qk.c.lbu s0, 8(s0)"
+      },
+      {
+        "line": 27,
+        "word": 10240,
+        "instruction": "qk.c.lbu s0, 16(s0)"
+      },
+      {
+        "line": 31,
+        "word": 40960,
+        "instruction": "qk.c.sb s0, 0(s0)"
+      },
+      {
+        "line": 34,
+        "word": 40960,
+        "instruction": "qk.c.sb s0, 0(s0)"
+      },
+      {
+        "line": 37,
+        "word": 45056,
+        "instruction": "qk.c.sb s0, 1(s0)"
+      },
+      {
+        "line": 40,
+        "word": 40992,
+        "instruction": "qk.c.sb s0, 2(s0)"
+      },
+      {
+        "line": 43,
+        "word": 41024,
+        "instruction": "qk.c.sb s0, 4(s0)"
+      },
+      {
+        "line": 46,
+        "word": 41984,
+        "instruction": "qk.c.sb s0, 8(s0)"
+      },
+      {
+        "line": 49,
+        "word": 43008,
+        "instruction": "qk.c.sb s0, 16(s0)"
+      },
+      {
+        "line": 53,
+        "word": 8194,
+        "instruction": "qk.c.lhu s0, 0(s0)"
+      },
+      {
+        "line": 56,
+        "word": 8194,
+        "instruction": "qk.c.lhu s0, 0(s0)"
+      },
+      {
+        "line": 59,
+        "word": 8226,
+        "instruction": "qk.c.lhu s0, 2(s0)"
+      },
+      {
+        "line": 62,
+        "word": 8258,
+        "instruction": "qk.c.lhu s0, 4(s0)"
+      },
+      {
+        "line": 65,
+        "word": 9218,
+        "instruction": "qk.c.lhu s0, 8(s0)"
+      },
+      {
+        "line": 68,
+        "word": 10242,
+        "instruction": "qk.c.lhu s0, 16(s0)"
+      },
+      {
+        "line": 71,
+        "word": 12290,
+        "instruction": "qk.c.lhu s0, 32(s0)"
+      },
+      {
+        "line": 75,
+        "word": 40962,
+        "instruction": "qk.c.sh s0, 0(s0)"
+      },
+      {
+        "line": 78,
+        "word": 40962,
+        "instruction": "qk.c.sh s0, 0(s0)"
+      },
+      {
+        "line": 81,
+        "word": 40994,
+        "instruction": "qk.c.sh s0, 2(s0)"
+      },
+      {
+        "line": 84,
+        "word": 41026,
+        "instruction": "qk.c.sh s0, 4(s0)"
+      },
+      {
+        "line": 87,
+        "word": 41986,
+        "instruction": "qk.c.sh s0, 8(s0)"
+      },
+      {
+        "line": 90,
+        "word": 43010,
+        "instruction": "qk.c.sh s0, 16(s0)"
+      },
+      {
+        "line": 93,
+        "word": 45058,
+        "instruction": "qk.c.sh s0, 32(s0)"
+      }
+    ]
+  },
+  "conditional_custom_operations": [
+    {
+      "PC": 277590,
+      "word": 13084,
+      "instruction": "qk.c.lbu a5, 1(a4)"
+    },
+    {
+      "PC": 277592,
+      "word": 9012,
+      "instruction": "qk.c.lbu a3, 2(a4)"
+    },
+    {
+      "PC": 277610,
+      "word": 45840,
+      "instruction": "qk.c.sb a2, 1(a4)"
+    }
+  ],
+  "official_bindings": [
+    {
+      "name": "TMOS_ProcessEventRegister",
+      "index": 19,
+      "target": 277582
+    },
+    {
+      "name": "BLE_LibInit",
+      "index": 28,
+      "target": 277630
+    }
+  ],
+  "boundary_evidence": [
+    "official slot19 entry43C4E",
+    "all local edges/returns contained before independent official slot28 BLE_LibInit43C7E"
+  ],
+  "raw_dependencies": [
+    {
+      "address": 536883613,
+      "role": "registered task-count byte"
+    },
+    {
+      "address": 536883614,
+      "role": "task-capacity byte"
+    },
+    {
+      "address": 536883652,
+      "role": "handler-array pointer"
+    }
+  ],
+  "opaque_transfers": [],
+  "raw_callback_address_dependencies": [],
+  "SDK_candidate_only": true,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "APP_byte_coverage_unchanged": 95.54,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "new_BIN": false
+}
