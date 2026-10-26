@@ -14,7 +14,7 @@ Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility 
 
 Latest integration: [ten bodies,764B now have curated SRC and original-address backing](analysis/safe-gap-integration-2026-10-26/readme.en.md);physical invocation and compatibility remain unproved.
 
-ROM study: [candidate message allocation/release C/C++](experiments/tsl9-resident-message-api/readme.en.md);installed identity remains unproved.
+ROM study: [message API](experiments/tsl9-resident-message-api/readme.en.md) + [heap C/C++ candidates](experiments/tsl9-resident-heap-core/readme.en.md);installed identity remains unproved.
 
 ## Getting started
 
