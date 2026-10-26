@@ -14,6 +14,8 @@
 
 最新整合：[十个本体、764B 已纳入 SRC 与原地址比对](analysis/safe-gap-integration-2026-10-26/README.md)，实机调用与硬件兼容性仍未证明。
 
+ROM分析：[讯息配置／释放 SDK 候选 C/C++](experiments/tsl9-resident-message-api/README.md)，尚未证明实机 ROM 身份。
+
 ## 开始使用
 
 需要 Python 3.10+ 与 C11／C++17 编译器。在项目根目录运行离线模型测试：

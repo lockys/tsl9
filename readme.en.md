@@ -14,6 +14,8 @@ Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility 
 
 Latest integration: [ten bodies,764B now have curated SRC and original-address backing](analysis/safe-gap-integration-2026-10-26/readme.en.md);physical invocation and compatibility remain unproved.
 
+ROM study: [candidate message allocation/release C/C++](experiments/tsl9-resident-message-api/readme.en.md);installed identity remains unproved.
+
 ## Getting started
 
 Requires Python 3.10+ and C11/C++17 compilers. Run the offline model tests from the repository root:

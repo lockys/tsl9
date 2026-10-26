@@ -1,0 +1,232 @@
+{
+  "schema": "TSL9-public-SDK-message-API-audit-v1",
+  "passed": true,
+  "SDK_candidate_only": true,
+  "native_results": {
+    "c": {
+      "passed": true,
+      "SDK_candidate_only": true,
+      "CODE_bytes": 164,
+      "instructions": 62,
+      "positive_FUNC_regions": 14,
+      "relocations": 11,
+      "direct_controls": 9,
+      "far_call_pairs": 1,
+      "UND": [
+        "tsl9_candidate_heap_allocate_20000040",
+        "tsl9_candidate_heap_release_20000110"
+      ],
+      "independent_readers": {
+        "passed": true,
+        "sections": 32,
+        "symbols": 37,
+        "relocations": 11,
+        "object_sha256": "db0a3fbe85ae9834153a0cc28eb6a464fac2eb53f5433e6e15d270a75e9988e2",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "object_sha256": "db0a3fbe85ae9834153a0cc28eb6a464fac2eb53f5433e6e15d270a75e9988e2",
+      "all_original_SDK_VA_encoded_bytes_equal": true,
+      "explicit_conditional_Xwchc_store_ports": 2,
+      "compiler_arch_attribute_is_not_physical_ISA_proof": true,
+      "installed_ROM_identity_proved": false,
+      "actual_original_address_link_performed": false,
+      "APP_byte_coverage_unchanged": 95.54,
+      "target_executed": false,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "hardware_accessed": false,
+      "network": false,
+      "new_BIN": false,
+      "firmware_ready": false
+    },
+    "cpp": {
+      "passed": true,
+      "SDK_candidate_only": true,
+      "CODE_bytes": 164,
+      "instructions": 62,
+      "positive_FUNC_regions": 14,
+      "relocations": 11,
+      "direct_controls": 9,
+      "far_call_pairs": 1,
+      "UND": [
+        "tsl9_candidate_heap_allocate_20000040",
+        "tsl9_candidate_heap_release_20000110"
+      ],
+      "independent_readers": {
+        "passed": true,
+        "sections": 32,
+        "symbols": 37,
+        "relocations": 11,
+        "object_sha256": "db0a3fbe85ae9834153a0cc28eb6a464fac2eb53f5433e6e15d270a75e9988e2",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "object_sha256": "db0a3fbe85ae9834153a0cc28eb6a464fac2eb53f5433e6e15d270a75e9988e2",
+      "all_original_SDK_VA_encoded_bytes_equal": true,
+      "explicit_conditional_Xwchc_store_ports": 2,
+      "compiler_arch_attribute_is_not_physical_ISA_proof": true,
+      "installed_ROM_identity_proved": false,
+      "actual_original_address_link_performed": false,
+      "APP_byte_coverage_unchanged": 95.54,
+      "target_executed": false,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "hardware_accessed": false,
+      "network": false,
+      "new_BIN": false,
+      "firmware_ready": false
+    }
+  },
+  "local_CFG": [
+    {
+      "start": 536871478,
+      "end": 536871564,
+      "instructions": 35,
+      "return_paths": [
+        {
+          "PC": 536871520,
+          "local_restore_store_seen": true
+        }
+      ],
+      "local_CFG_positions_closed_assuming_calls_return": true,
+      "physical_restoration_guaranteed": false
+    },
+    {
+      "start": 274874,
+      "end": 274952,
+      "instructions": 27,
+      "return_paths": [
+        {
+          "PC": 274914,
+          "local_restore_store_seen": true
+        }
+      ],
+      "local_CFG_positions_closed_assuming_calls_return": true,
+      "physical_restoration_guaranteed": false
+    }
+  ],
+  "heap_calls": [
+    {
+      "PC": 536871534,
+      "target_PC": 536870976,
+      "kind": "direct",
+      "callee_body_provided": false
+    },
+    {
+      "PC": 274940,
+      "target_PC": 536871184,
+      "kind": "AUIPC-JALR",
+      "callee_body_provided": false
+    }
+  ],
+  "caller_contract": {
+    "APP_allocation_sites": [
+      {
+        "A0_request": 12,
+        "call_PC": 79474,
+        "conditional_SDK_A1": 61452,
+        "conditional_SDK_heap_request": 20,
+        "load_PC": 79460,
+        "pointer_slot": 262256
+      },
+      {
+        "A0_request": 12,
+        "call_PC": 79586,
+        "conditional_SDK_A1": 61452,
+        "conditional_SDK_heap_request": 20,
+        "load_PC": 79572,
+        "pointer_slot": 262256
+      },
+      {
+        "A0_request": 12,
+        "call_PC": 79702,
+        "conditional_SDK_A1": 61452,
+        "conditional_SDK_heap_request": 20,
+        "load_PC": 79684,
+        "pointer_slot": 262256
+      }
+    ],
+    "APP_release_sites": [
+      {
+        "load_PC": 79550,
+        "pointer_slot": 262248,
+        "tail_PC": 79556
+      },
+      {
+        "load_PC": 79662,
+        "pointer_slot": 262248,
+        "tail_PC": 79668
+      },
+      {
+        "load_PC": 79790,
+        "pointer_slot": 262248,
+        "tail_PC": 79796
+      },
+      {
+        "load_PC": 81756,
+        "pointer_slot": 262248,
+        "tail_PC": 81762
+      }
+    ],
+    "MMIO_address": 1073889804,
+    "MMIO_meaning_proved": false,
+    "SDK_deallocate_expected_tag": 255,
+    "SDK_deallocate_numeric_returns": [
+      0,
+      4,
+      5
+    ],
+    "SDK_deallocate_tag_relative_offset": -2,
+    "SDK_length_halfword_offset": 4,
+    "SDK_return_payload_offset": 8,
+    "SDK_tag_byte_offset": 6,
+    "SDK_zero_word_offset": 0,
+    "conditional_heap_request_bytes": 20,
+    "conditional_semantics_only": true,
+    "hardware_accessed": false,
+    "header_bytes": 8,
+    "heap_helpers_provided": false,
+    "installed_ROM_identity_proved": false,
+    "payload_request_bytes": 12
+  },
+  "SDK_version_comparison": {
+    "V131_carrier": "analysis/wch-resident-candidate-2026-10-21/carrier-dec2023/REFERENCE-CANDIDATE-ONLY-00040000-0006EA66.bin",
+    "V131_carrier_sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22",
+    "V140_carrier": "analysis/wch-resident-candidate-2026-10-21/carrier/REFERENCE-CANDIDATE-ONLY-00040000-0006EC56.bin",
+    "V140_carrier_sha256": "b02cf8ec6829425a558887bd6bc10d28ae1f0e2e9e1850333f0bab6088e9e941",
+    "slot_40070_target_both": 536871478,
+    "V131_allocation_source": 263334,
+    "V140_allocation_source": 263398,
+    "allocation86_bytes_equal": true,
+    "slot_40068_V131_target": 274874,
+    "slot_40068_V140_target": 275014,
+    "deallocation78_bytes_equal_modulo_one_far_call": true,
+    "deallocation_raw_bytes_equal": false,
+    "helper_implementations_compared": false,
+    "installed_resident_identity_proved": false
+  },
+  "limits": {
+    "physical_Xwchc_profile_proved": false,
+    "installed_ROM_identity_proved": false,
+    "heap_helpers_provided": false,
+    "global_heap_or_IRQ_ownership_proved": false,
+    "actual_original_address_link_performed": false,
+    "APP_byte_coverage_unchanged": 95.54,
+    "APP_source_C_H_files_unchanged": 159,
+    "linked_into_APP": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
