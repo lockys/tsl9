@@ -1,0 +1,480 @@
+{
+  "schema": "TSL9-public-V131-clock-services-summary-v1",
+  "SDK_candidate_only": true,
+  "CODE_bytes": 474,
+  "instructions": 168,
+  "complete_bodies": 5,
+  "positive_FUNC_regions": 33,
+  "relocations": 19,
+  "direct_controls": 17,
+  "far_call_pairs": 1,
+  "conditional_Xwchc_ports": 7,
+  "official_vectors_checked": 28,
+  "source": "experiments/tsl9-resident-clock-services/resident_clock_services.c",
+  "source_sha256": "de4426c83084590f0d20564449654da2273fec833047500b5f0cb67559bddd04",
+  "source_context": "Original-context RV32 register-bound C/assembly;not an ordinary host-callable C API",
+  "native_object_sha256": "4b21610fccc6e6f09d10ab159ebcf51589cc18e8e7e4647320c64c82cc8c590b",
+  "native_CODE_objects": 2,
+  "ABI_assertion_objects": 2,
+  "ABI": {
+    "passed": true,
+    "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+    "RV32_pointer_bytes": 4,
+    "configuration_bytes": 64,
+    "configuration_alignment": 4,
+    "MEMAddr_offset": 0,
+    "MEMLen_offset": 4,
+    "staCB_offset": 52,
+    "staCB_pointer_bytes": 4,
+    "SDK_configuration_base": 536883692,
+    "derived_staCB_storage": 536883744,
+    "SNVAddr_offset": 8,
+    "SNVBlock_offset": 12,
+    "SNVNum_offset": 14,
+    "readFlashCB_offset": 56,
+    "writeFlashCB_offset": 60,
+    "clock_configuration_bytes": 16,
+    "clock_configuration_alignment": 4,
+    "clock_field_offsets": {
+      "getClockValue": 0,
+      "ClockMaxCount": 4,
+      "ClockFrequency": 8,
+      "ClockAccuracy": 10,
+      "irqEnable": 12
+    },
+    "allocated_bytes": 0,
+    "target_executed": false,
+    "installed_layout_proved": false,
+    "independent_readers": {
+      "passed": true,
+      "sections": 8,
+      "symbols": 4,
+      "relocations": 0,
+      "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    }
+  },
+  "composition": {
+    "passed": true,
+    "object_sha256": "714d9fe525f9e809b646cefb9b006c26ddd8af961c00a038f010c1594303078d",
+    "CODE_bytes": 3512,
+    "instructions": 1242,
+    "positive_FUNC_regions": 312,
+    "relocations": 224,
+    "named_UND": [
+      "tsl9_candidate_external_flash_63dd0",
+      "tsl9_candidate_external_flash_6df1a",
+      "tsl9_candidate_external_ram_2000061a",
+      "tsl9_candidate_external_ram_20002610"
+    ],
+    "every_input_byte_symbol_relocation_retained": true,
+    "clock_numeric_CODE_targets_have_real_bodies": true,
+    "zero_named_UND_is_not_runtime_closure": true,
+    "raw_RAM_and_callback_dependencies_provided": false,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "clock_contract": {
+    "passed": true,
+    "static_only": true,
+    "functions": [
+      {
+        "entry": 278342,
+        "end": 278562,
+        "bytes": 220,
+        "instructions": 76,
+        "return_PCs": [
+          278500
+        ],
+        "calls": [
+          {
+            "PC": 278368,
+            "target": null
+          },
+          {
+            "PC": 278426,
+            "target": 536871730
+          },
+          {
+            "PC": 278476,
+            "target": 450330
+          },
+          {
+            "PC": 278490,
+            "target": 277258
+          }
+        ],
+        "own_frame_bytes": 32,
+        "own_frame_balanced": true
+      },
+      {
+        "entry": 277258,
+        "end": 277288,
+        "bytes": 30,
+        "instructions": 11,
+        "return_PCs": [
+          277286
+        ],
+        "calls": [
+          {
+            "PC": 277270,
+            "target": null
+          }
+        ],
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true
+      },
+      {
+        "entry": 277858,
+        "end": 277988,
+        "bytes": 130,
+        "instructions": 46,
+        "return_PCs": [
+          277986
+        ],
+        "calls": [
+          {
+            "PC": 277882,
+            "target": null
+          },
+          {
+            "PC": 277908,
+            "target": 450330
+          },
+          {
+            "PC": 277958,
+            "target": 450330
+          }
+        ],
+        "own_frame_bytes": 32,
+        "own_frame_balanced": true
+      },
+      {
+        "entry": 536873350,
+        "end": 536873402,
+        "bytes": 52,
+        "instructions": 18,
+        "return_PCs": [
+          536873400
+        ],
+        "calls": [],
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true
+      },
+      {
+        "entry": 275744,
+        "end": 275786,
+        "bytes": 42,
+        "instructions": 17,
+        "return_PCs": [
+          275784
+        ],
+        "calls": [
+          {
+            "PC": 275768,
+            "target": null
+          }
+        ],
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true
+      }
+    ],
+    "official_bindings": [
+      {
+        "name": "TMOS_TimerInit",
+        "index": 16,
+        "target": 278342
+      },
+      {
+        "name": "TMOS_GetSystemClock",
+        "index": 18,
+        "target": 275744
+      }
+    ],
+    "clock_configuration_bytes": 16,
+    "clock_field_offsets": {
+      "getClockValue": 0,
+      "ClockMaxCount": 4,
+      "ClockFrequency": 8,
+      "ClockAccuracy": 10,
+      "irqEnable": 12
+    },
+    "TimerInit": {
+      "entry": 278342,
+      "optional_rcCB_storage": 536883740,
+      "nonnull_config_requires_nonzero_fields": [
+        "getClockValue",
+        "ClockMaxCount",
+        "ClockFrequency",
+        "ClockAccuracy"
+      ],
+      "nonzero_irqEnable_additionally_requires_BLE_connection_sum_le": 2,
+      "accepted_config_copied_bytes": 16,
+      "raw_clock_callback_storage": 536883680,
+      "clock_config_storage": 536883764,
+      "normal_completion_return": 0,
+      "local_invalid_config_return": 1,
+      "normal_return_is_not_hardware_success": true
+    },
+    "default_config": {
+      "callback": 536873350,
+      "ClockMaxCount": 4294967295,
+      "nominal_ClockFrequency": 31250,
+      "nominal_ClockAccuracy": 50,
+      "irqEnable": 0
+    },
+    "WaitWindow": {
+      "storage": 536883715,
+      "update_only_when_zero": true,
+      "helper_PC": 278476,
+      "helper": 450330,
+      "helper_arguments": [
+        "ClockFrequency*1400",
+        "0",
+        "1000000",
+        "0"
+      ],
+      "stored_result": "low8(returned_A0)",
+      "external_helper_division_contract_proved": false
+    },
+    "provider_registration": {
+      "entry": 277258,
+      "storage": 536883760,
+      "immediately_calls_entry_A0": true,
+      "known_TimerInit_target": 277858,
+      "stores_callback_return_to": 536883636,
+      "callback_may_itself_update_that_same_word": true,
+      "repeat_initialization_baseline_contract_proved": false
+    },
+    "delta_provider": {
+      "entry": 277858,
+      "raw_clock_pointer_storage": 536883764,
+      "scale_constant": 1600,
+      "helper": 450330,
+      "first_helper_inputs": "64-bit raw_counter*1600 divided-operand setup with ClockFrequency in A2 and0 in A3",
+      "baseline_storage": 536883636,
+      "return_if_same": 0,
+      "return_if_new_gt_old": "new_helper_result_low32-old_baseline",
+      "otherwise": "second_helper_result_low32-old_baseline+new_helper_result_low32 (u32)",
+      "baseline_updated_to_new_when_changed": true,
+      "arithmetic_helper_contract_proved": false
+    },
+    "public_getter": {
+      "entry": 275744,
+      "provider_pointer_storage": 536883760,
+      "accumulator": 536883632,
+      "nonnull_provider_return_added_mod2_32": true,
+      "documented_unit": "0.625ms",
+      "actual_time_accuracy_proved": false
+    },
+    "default_getter": {
+      "entry": 536873350,
+      "saved_modified_restored_MMIO": 1073889804,
+      "counter_MMIO": 1073889896,
+      "software_rollover_word": 536883640,
+      "return_expression": "(software_word<<26) | ((~counter_word)>>6) in u32",
+      "physical_MMIO_semantics_proved": false
+    },
+    "raw_CODE_pointer_values_have_real_bodies": true,
+    "numeric_CODE_addresses_are_not_linker_relocations": true,
+    "opaque_transfers": [
+      {
+        "PC": 278368,
+        "role": "optional BLE rcCB",
+        "callback_body_on_known_init_path": false,
+        "effects_bounded": false
+      },
+      {
+        "PC": 277270,
+        "role": "entry A0 provider,known init passes43D62",
+        "callback_body_on_known_init_path": true,
+        "effects_bounded": false
+      },
+      {
+        "PC": 277882,
+        "role": "raw clock config callback",
+        "callback_body_on_known_init_path": false,
+        "effects_bounded": false
+      },
+      {
+        "PC": 275768,
+        "role": "derived provider pointer after null guard,known init stores43D62",
+        "callback_body_on_known_init_path": true,
+        "effects_bounded": false
+      }
+    ],
+    "raw_dependencies": [
+      {
+        "address": 536883764,
+        "role": "16-byte clock config"
+      },
+      {
+        "address": 536883680,
+        "role": "raw clock callback pointer"
+      },
+      {
+        "address": 536883760,
+        "role": "derived clock provider pointer"
+      },
+      {
+        "address": 536883636,
+        "role": "previous derived-clock word and provider-return store"
+      },
+      {
+        "address": 536883632,
+        "role": "public accumulated system-clock word"
+      },
+      {
+        "address": 536883640,
+        "role": "default-clock rollover word"
+      },
+      {
+        "address": 536883740,
+        "role": "optional BLE rcCB pointer"
+      },
+      {
+        "address": 536883713,
+        "role": "BLE connection-count byte tested"
+      },
+      {
+        "address": 536883715,
+        "role": "BLE WaitWindow byte tested/updated"
+      },
+      {
+        "address": 1073889804,
+        "role": "default-clock save/modify/restore MMIO word"
+      },
+      {
+        "address": 1073889896,
+        "role": "default-clock counter word"
+      }
+    ],
+    "callees_preserving_SP_is_assumed": true,
+    "whole_program_stack_IRQ_or_callback_effects_proved": false,
+    "physical_frequency_or_range_proved": false,
+    "runtime_closed": false
+  },
+  "app_clock_contract": {
+    "passed": true,
+    "static_only": true,
+    "input_paths": {
+      "startup": "analysis/resident-startup-2026-10-25/evidence.json",
+      "primitives": "analysis/peripheral-primitives-2026-10-25/evidence.json"
+    },
+    "input_sha256": {
+      "startup": "9c9e418f16ec9b7231df2dc623ee90c39a0b1bba53f0a116271800d7ad8770f5",
+      "primitives": "47ae1080ee3138610d45da71b456b83c61ccb89e1343e62515fa9f2f2390c6e6"
+    },
+    "complete_APP_bodies": [
+      {
+        "entry": 105238,
+        "end": 105302,
+        "bytes": 64,
+        "instructions": 22
+      },
+      {
+        "entry": 105302,
+        "end": 105428,
+        "bytes": 126,
+        "instructions": 43
+      },
+      {
+        "entry": 102854,
+        "end": 102944,
+        "bytes": 90,
+        "instructions": 28
+      }
+    ],
+    "new_APP_CODE_bytes": 0,
+    "configuration_call_PC": 105420,
+    "configuration_pointer": "caller SP",
+    "configuration_bytes": 16,
+    "initial_zero_store_PCs": [
+      105312,
+      105314,
+      105316,
+      105318
+    ],
+    "conditional_configuration": {
+      "getClockValue": 102854,
+      "ClockMaxCount": 4294967295,
+      "ClockFrequency": 16000,
+      "ClockAccuracy": 1000,
+      "irqEnable": 0
+    },
+    "nominal_frequency_unit": "Hz as declared by original header",
+    "nominal_accuracy_unit": "ppm as declared by original header",
+    "known_caller_uses_TimerInit_status": false,
+    "status_overwritten_PC": 105274,
+    "custom_counter": {
+      "entry": 102854,
+      "bytes": 90,
+      "high_halfword_address": 1073752088,
+      "low_halfword_address": 1073752092,
+      "repeated_equal_read_checks": true,
+      "high_recheck_and_conditional_low_reread": true,
+      "return_expression": "high_last<<16 | low_last",
+      "retry_termination_proved": false,
+      "hardware_coherent_snapshot_proved": false
+    },
+    "requires_helpers_IRQ_and_aliases_not_to_overwrite_caller_configuration": true,
+    "actual_hardware_frequency_proved": false,
+    "configuration_acceptance_or_full_initialization_proved": false,
+    "installed_ROM_identity_proved": false,
+    "hardware_accessed": false
+  },
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-clock-services/derive-v1.py": "c9af76645a8e277f4d89c0f8140fdbcb9a824bdd7cecb5e630bc3b2e15eeb4fd",
+    "experiments/tsl9-resident-clock-services/evidence-v1.json": "9402a30fc9ba89c766a55ff6f2d74e2fd400b3d3ba126a9c1a2810833dc91a0a",
+    "experiments/tsl9-resident-clock-services/resident_clock_services.c": "de4426c83084590f0d20564449654da2273fec833047500b5f0cb67559bddd04",
+    "experiments/tsl9-resident-clock-services/spec-v1.json": "db0f2b2d833bc72eefe052a43ef0fd8743f9cf9ebd52615b53aef80f5abd46d4",
+    "experiments/tsl9-resident-clock-services/build-v1.py": "9c63922a4b8719ea0983f2c728dd1a6f1f83478a60a1444ad00bfac50486635b",
+    "experiments/tsl9-resident-clock-services/config_abi.c": "36e96cbef009bd9b9c34154f9fb444c708b42fc506e09e62e9da648e351dc0cb",
+    "experiments/tsl9-resident-clock-services/audit-v1.py": "f09052a1866b330a04213186427ace56ef20049dbe859773d06c7a347368c69b",
+    "experiments/tsl9-resident-clock-services/audit-result-v1.json": "103f1441868f84cf67af1930debe58b5235ea64224709af16b6e5825d8c33311",
+    "experiments/tsl9-resident-clock-services/build/native-v1/measurement.json": "e781279f894e9a60e8ba32476eda67e89b73b63d11bb06c88fa3ff82d0f7ff0f",
+    "experiments/tsl9-resident-clock-services/build/composition-v1/c/candidate.o": "714d9fe525f9e809b646cefb9b006c26ddd8af961c00a038f010c1594303078d",
+    "experiments/tsl9-resident-clock-services/build/composition-v1/cpp/candidate.o": "714d9fe525f9e809b646cefb9b006c26ddd8af961c00a038f010c1594303078d"
+  },
+  "prior_SDK_composition_bytes": 3038,
+  "prior_timer_scheduler_binding_layout_and_Flash_contracts_retained": true,
+  "inherited_startup_source_gap_bytes": 4,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_APP_CODE_bytes": 0,
+  "startup_completed_proved": false,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "physical_atomicity_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "vendor_network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "feature_candidates": [
+    {
+      "name": "Clock range,baseline and reinitialization diagnostics",
+      "implemented": false,
+      "basis": "Raw and derived clock providers use different state;registration immediately invokes the provider and stores its return into the baseline word",
+      "requires": [
+        "complete arithmetic-helper contract",
+        "initialization ordering and callback side effects",
+        "installed ROM/ISA,physical counter frequency and safe IRQ/stack observation points"
+      ]
+    }
+  ]
+}
