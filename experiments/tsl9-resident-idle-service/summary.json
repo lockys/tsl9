@@ -1,0 +1,378 @@
+{
+  "schema": "TSL9-public-V131-idle-service-summary-v1",
+  "SDK_candidate_only": true,
+  "CODE_bytes": 518,
+  "DATA_bytes": 0,
+  "instructions": 178,
+  "complete_bodies": 3,
+  "positive_FUNC_regions": 41,
+  "relocations": 28,
+  "direct_controls": 24,
+  "far_call_pairs": 2,
+  "conditional_Xwchc_ports": 1,
+  "official_vectors_checked": 28,
+  "source": "experiments/tsl9-resident-idle-service/resident_idle_service.c",
+  "source_sha256": "8aa2a838b68aa84df96018ade52b4684cfe026cf47c3df6ae08be2fe6d584a77",
+  "source_context": "Original-context RV32 register-bound C/assembly;not an ordinary host-callable C API",
+  "native_object_sha256": "6ce54cc9c1d3a11ba2d5e7f999857271165d8956b374a6a25b8fe244f3065cda",
+  "native_CODE_objects": 2,
+  "ABI_assertion_objects": 2,
+  "ABI": {
+    "passed": true,
+    "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+    "RV32_pointer_bytes": 4,
+    "configuration_bytes": 64,
+    "configuration_alignment": 4,
+    "MEMAddr_offset": 0,
+    "MEMLen_offset": 4,
+    "staCB_offset": 52,
+    "staCB_pointer_bytes": 4,
+    "SDK_configuration_base": 536883692,
+    "derived_staCB_storage": 536883744,
+    "SNVAddr_offset": 8,
+    "SNVBlock_offset": 12,
+    "SNVNum_offset": 14,
+    "readFlashCB_offset": 56,
+    "writeFlashCB_offset": 60,
+    "clock_configuration_bytes": 16,
+    "clock_configuration_alignment": 4,
+    "clock_field_offsets": {
+      "getClockValue": 0,
+      "ClockMaxCount": 4,
+      "ClockFrequency": 8,
+      "ClockAccuracy": 10,
+      "irqEnable": 12
+    },
+    "idleCB_offset": 40,
+    "idleCB_pointer_bytes": 4,
+    "derived_idleCB_storage": 536883732,
+    "allocated_bytes": 0,
+    "target_executed": false,
+    "installed_layout_proved": false,
+    "independent_readers": {
+      "passed": true,
+      "sections": 8,
+      "symbols": 4,
+      "relocations": 0,
+      "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    }
+  },
+  "composition": {
+    "passed": true,
+    "object_sha256": "9582e75be5aa79fdef4d5792f8d5721dc8784f98586b8f9d71528486c61d3feb",
+    "CODE_bytes": 4944,
+    "DATA_bytes": 256,
+    "allocated_bytes": 5200,
+    "instructions": 1716,
+    "positive_FUNC_regions": 434,
+    "positive_OBJECT_regions": 1,
+    "relocations": 317,
+    "named_UND": [
+      "tsl9_candidate_external_flash_63dd0",
+      "tsl9_candidate_external_ram_20002610"
+    ],
+    "every_input_byte_symbol_relocation_retained": true,
+    "idle_and_timer_cross_imports_have_real_bodies": true,
+    "both_far_register_helpers_have_real_bodies": true,
+    "prior_readonly_table_retained": true,
+    "zero_named_UND_is_not_runtime_closure": true,
+    "raw_RAM_and_callback_dependencies_provided": false,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "idle_contract": {
+    "passed": true,
+    "static_only": true,
+    "functions": [
+      {
+        "entry": 536872474,
+        "end": 536872842,
+        "bytes": 368,
+        "instructions": 124,
+        "own_frame_bytes": 32,
+        "own_frame_balanced": true,
+        "return_PCs": [
+          536872804
+        ],
+        "calls": [
+          {
+            "PC": 536872570,
+            "target": null
+          },
+          {
+            "PC": 536872582,
+            "target": null
+          },
+          {
+            "PC": 536872650,
+            "target": null
+          },
+          {
+            "PC": 536872734,
+            "target": null
+          },
+          {
+            "PC": 536872750,
+            "target": 410382
+          },
+          {
+            "PC": 536872758,
+            "target": 407786
+          },
+          {
+            "PC": 536872766,
+            "target": 536872186
+          },
+          {
+            "PC": 536872816,
+            "target": null
+          }
+        ]
+      },
+      {
+        "entry": 410382,
+        "end": 410442,
+        "bytes": 60,
+        "instructions": 23,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "return_PCs": [
+          410440
+        ],
+        "calls": []
+      },
+      {
+        "entry": 407786,
+        "end": 407876,
+        "bytes": 90,
+        "instructions": 31,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "return_PCs": [
+          407874
+        ],
+        "calls": []
+      }
+    ],
+    "caller_tail_PC": 536873150,
+    "caller_restores_own_frame_before_tail": true,
+    "raw_clock_and_idleCB_nonnull_guard_edges_dominate_tail": true,
+    "callback_pointer_stability_still_required": true,
+    "known_main_and_idle_own_frames_not_simultaneously_allocated": true,
+    "idleCB": {
+      "storage": 536883732,
+      "official_config_offset": 40,
+      "header_signature": "uint32_t (*)(uint32_t)",
+      "callee_null_guard": false,
+      "call_PC": 536872734,
+      "argument_zero_replaced_by_live_MaxCount": true,
+      "argument_physical_time_units_proved": false,
+      "nonzero_return_skips_local_timer_call": true,
+      "zero_return_reaches_real_timer_service": true
+    },
+    "saved_word_window": {
+      "address": 1073889804,
+      "save_PC": 536872492,
+      "clear_PC": 536872496,
+      "FENCE_I_PC": 536872500,
+      "restore_PC": 536872618,
+      "restore_dominates_idleCB": true,
+      "physical_IRQ_mask_semantics_proved": false
+    },
+    "deadline": {
+      "clock_config": 536883764,
+      "irqEnable_offset": 12,
+      "MaxCount_offset": 4,
+      "halfword_gate": 536884332,
+      "word": 536884328,
+      "cached_delay": 536883628,
+      "raw_clock_pointer": 536883680,
+      "fresh_raw_clock_call_sites": [
+        536872570,
+        536872582,
+        536872650,
+        536872816
+      ],
+      "fallback_signed_constant": -30000000,
+      "fallback_expression": "base=u32(MaxCount-30000000);sum=u32(base+fresh_raw_clock);subtract live MaxCount once if sum<base or sum>=MaxCount",
+      "fresh_callback_reads_not_collapsed": true,
+      "general_modulo_or_physical_clock_range_proved": false
+    },
+    "register_phase": {
+      "gate_word": 536884536,
+      "block_pointer_storage": 536884624,
+      "offset": 8,
+      "clear_mask": 4291624959,
+      "set_mask": 3342336,
+      "fresh_gate_and_pointer_reads_before_and_after_idle": true,
+      "paired_hardware_restore_proved": false
+    },
+    "flag": {
+      "address": 536884512,
+      "set_to_one_before_idle": true,
+      "clear_only_after_both_helpers_on_zero_return_and_fresh_gate_and_flag_nonzero": true,
+      "unconditional_flag_clear": false
+    },
+    "register_helpers": [
+      {
+        "entry": 410382,
+        "bytes": 60,
+        "target_pointer_storage": 536884540,
+        "shadow_word": 536884536,
+        "minimum_target_span": 120,
+        "physical_register_identity_proved": false
+      },
+      {
+        "entry": 407786,
+        "bytes": 90,
+        "target_pointer_storage": 536884488,
+        "parameter_byte": 536883712,
+        "minimum_target_span": 56,
+        "physical_register_identity_proved": false
+      }
+    ],
+    "raw_dependencies": [
+      {
+        "address": 1073889804,
+        "role": "word saved,cleared and restored before later idle callback"
+      },
+      {
+        "address": 536883764,
+        "role": "clock config base,MaxCount+4,irqEnable+12"
+      },
+      {
+        "address": 536884332,
+        "role": "halfword scheduling gate"
+      },
+      {
+        "address": 536884328,
+        "role": "deadline-like word compared with MaxCount"
+      },
+      {
+        "address": 536883628,
+        "role": "cached delay word from timer service"
+      },
+      {
+        "address": 536883680,
+        "role": "raw clock callback pointer"
+      },
+      {
+        "address": 536884536,
+        "role": "word gates optional register paths;also copied by6430E"
+      },
+      {
+        "address": 536884624,
+        "role": "pointer used for read-modify-write at+8"
+      },
+      {
+        "address": 536884512,
+        "role": "flag set before idleCB and conditionally cleared"
+      },
+      {
+        "address": 536883732,
+        "role": "official bleConfig_t idleCB pointer"
+      },
+      {
+        "address": 536884540,
+        "role": "6430E target-block pointer"
+      },
+      {
+        "address": 536884488,
+        "role": "638EA target-block pointer"
+      },
+      {
+        "address": 536883712,
+        "role": "638EA parameter byte"
+      }
+    ],
+    "opaque_transfers": [
+      {
+        "PC": 536872570,
+        "role": "raw clock callback",
+        "effects_bounded": false
+      },
+      {
+        "PC": 536872582,
+        "role": "fresh raw clock callback",
+        "effects_bounded": false
+      },
+      {
+        "PC": 536872650,
+        "role": "raw clock callback",
+        "effects_bounded": false
+      },
+      {
+        "PC": 536872816,
+        "role": "raw clock callback",
+        "effects_bounded": false
+      },
+      {
+        "PC": 536872734,
+        "role": "official idleCB,unguarded in callee",
+        "effects_bounded": false
+      }
+    ],
+    "callees_preserving_SP_and_normal_returns_assumed": true,
+    "global_RAM_IRQ_alias_or_stack_bound_proved": false,
+    "installed_ROM_identity_proved": false,
+    "hardware_accessed": false,
+    "runtime_closed": false
+  },
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-idle-service/derive-v1.py": "330184a48b17482b5774b64cdfd41ef41d937c75c0702822c5d7bb5656c12ff3",
+    "experiments/tsl9-resident-idle-service/evidence-v1.json": "0e740923e7723cf8066fd5c6287e1d299124b473a1ca90e4fa3bbf616a3a946b",
+    "experiments/tsl9-resident-idle-service/resident_idle_service.c": "8aa2a838b68aa84df96018ade52b4684cfe026cf47c3df6ae08be2fe6d584a77",
+    "experiments/tsl9-resident-idle-service/spec-v1.json": "787ca246868a267e9872f316548f7061c10d0fe82d0d3681943b7104f08791fc",
+    "experiments/tsl9-resident-idle-service/build-v1.py": "559c2ff8b697c996e9520e2bce965896b6f86872967fe356d88d1090a9d8953d",
+    "experiments/tsl9-resident-idle-service/config_abi.c": "895c09d47e589e326cfb2e352dc06bae5b9e23578eee207f685b7340eeebf6e4",
+    "experiments/tsl9-resident-idle-service/audit-v1.py": "f5ee6cc2942e8055411038b1b9129a980e7dfd5b9f98128d75b03b8a5966313d",
+    "experiments/tsl9-resident-idle-service/audit-result-v1.json": "bfc33c96f9977cffb808a0b5c81b211251e9bbe612e7fd72d047b08eeb2959ef",
+    "experiments/tsl9-resident-idle-service/build/native-v1/measurement.json": "b8781d421c491ab98141f78171170e97f7d8c2c57b0d5f7706a20f4cfd2d20a9",
+    "experiments/tsl9-resident-idle-service/build/composition-v1/c/candidate.o": "9582e75be5aa79fdef4d5792f8d5721dc8784f98586b8f9d71528486c61d3feb",
+    "experiments/tsl9-resident-idle-service/build/composition-v1/cpp/candidate.o": "9582e75be5aa79fdef4d5792f8d5721dc8784f98586b8f9d71528486c61d3feb"
+  },
+  "prior_SDK_composition_CODE_bytes": 4426,
+  "prior_SDK_composition_DATA_bytes": 256,
+  "prior_arithmetic_clock_timer_scheduler_binding_layout_and_Flash_contracts_retained": true,
+  "prior_arithmetic_full_input_domain_semantics_proved": false,
+  "inherited_startup_source_gap_bytes": 4,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_APP_CODE_bytes": 0,
+  "startup_completed_proved": false,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "physical_atomicity_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "vendor_network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "feature_candidates": [
+    {
+      "name": "Idle phase,callback return and deadline diagnostics",
+      "implemented": false,
+      "basis": "The service reloads gate/pointer state,conditionally clears a flag and uses fresh raw-clock calls",
+      "requires": [
+        "original APP idleCB provenance and lifetime",
+        "safe observation points and RAM ownership",
+        "installed ROM/ISA,IRQ and whole-program stack proof"
+      ]
+    }
+  ]
+}
