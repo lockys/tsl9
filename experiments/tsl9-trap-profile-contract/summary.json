@@ -1,0 +1,118 @@
+{
+  "schema": "TSL9-trap-profile-summary-v1",
+  "passed": true,
+  "source": "experiments/tsl9-trap-profile-contract/trap_context_contract.c",
+  "source_sha256": "61578a96e6aa4a90ac44c5abe47a13b4bdbf44af73d143173e7510a37657f435",
+  "source_context": "Compile-time numeric constraints only;no executable firmware implementation",
+  "new_APP_CODE_bytes": 0,
+  "new_SDK_CODE_bytes": 0,
+  "new_DATA_bytes": 0,
+  "native_allocated_bytes": 0,
+  "native_object_sha256": "76284d4569e59a13b23b0d136c6ca64a4cc2354f2767693aa269297db7b1431f",
+  "actual_C_Cpp_objects_identical": true,
+  "primary_reference_count": 2,
+  "original_reset_reference_bytes": 122,
+  "original_reset_instructions": 33,
+  "static_primary_vector_slots": [
+    {
+      "name": "Ecall_M_Mode_IRQn",
+      "index": 5,
+      "storage": 32844,
+      "value": 33864,
+      "primary_enum_line": 59
+    },
+    {
+      "name": "Ecall_U_Mode_IRQn",
+      "index": 8,
+      "storage": 32856,
+      "value": 33864,
+      "primary_enum_line": 60
+    },
+    {
+      "name": "BB_IRQn",
+      "index": 63,
+      "storage": 33076,
+      "value": 100158,
+      "primary_enum_line": 128
+    },
+    {
+      "name": "LLE_IRQn",
+      "index": 64,
+      "storage": 33080,
+      "value": 33944,
+      "primary_enum_line": 129
+    }
+  ],
+  "initial_GP": 536887296,
+  "initial_SP": 536936448,
+  "LLE_initial_GP_plus384_word": 536887680,
+  "LLE_word_in_original_zero_interval": true,
+  "actual_binding_before_dispatch_proved": false,
+  "original_reset_CSR804_value": 3,
+  "documented_candidate_nesting_bit_initially_set": true,
+  "restore_CSR804_OR_mask": 32,
+  "restore_does_not_disable_nesting_bit": true,
+  "mode3_or_bit5_meaning_proved": false,
+  "prior_real_CODE_composition": {
+    "object_sha256": "da0013b58ec42b86b4458a5b9f78eb57747b92825a57cad145214883b622bd57",
+    "CODE_bytes": 9608,
+    "DATA_bytes": 256,
+    "instructions": 3367,
+    "positive_FUNC_regions": 800,
+    "positive_OBJECT_regions": 1,
+    "relocations": 582,
+    "named_UND": [
+      "tsl9_candidate_external_flash_57dae",
+      "tsl9_candidate_external_flash_6020a"
+    ]
+  },
+  "all_prior_real_CODE_and_contracts_retained": true,
+  "sources_and_receipts": {
+    "experiments/tsl9-trap-profile-contract/derive-v1.py": "c90033de539544988c396618475e268c8183ecbabcc48cdf2b7759d27bed77f6",
+    "experiments/tsl9-trap-profile-contract/source-provenance.json": "def1bc077cc2d6e73ec681f874078ffd44896059f1e4040ff6ca63c8a318dffa",
+    "experiments/tsl9-trap-profile-contract/evidence-v1.json": "0f07429701a161041fc3f278b3bb8114ef68b8a557fd3a85cef665503f46313a",
+    "experiments/tsl9-trap-profile-contract/spec-v1.json": "edfde86e5ba1960fb332179b03267d5bd47adcb383860e8327371ac4ebb565b4",
+    "experiments/tsl9-trap-profile-contract/trap_context_contract.c": "61578a96e6aa4a90ac44c5abe47a13b4bdbf44af73d143173e7510a37657f435",
+    "experiments/tsl9-trap-profile-contract/build-v1.py": "3f211e579c1f0859dcff13c992f8cf0537cda3c1de2c24c6aa84997608e0ec45",
+    "experiments/tsl9-trap-profile-contract/audit-v1.py": "356ac368c1b14de353101cf704fe572d5f7de9ebbd0b956e280c624d7f4107e7",
+    "experiments/tsl9-trap-profile-contract/audit-result-v1.json": "35bd75939fa8335997d3aac3c5de7fd638b67ca3a69bacaa5ea3bea78d4c1380",
+    "experiments/tsl9-trap-profile-contract/build/native-v1/measurement.json": "6940346473b38e6d8b78e4ad645bec79b67adaeb0f829ac28ee317f82e6da6dc",
+    "experiments/tsl9-trap-profile-contract/build/native-v1/c/unit.o": "76284d4569e59a13b23b0d136c6ca64a4cc2354f2767693aa269297db7b1431f",
+    "experiments/tsl9-trap-profile-contract/build/native-v1/cpp/unit.o": "76284d4569e59a13b23b0d136c6ca64a4cc2354f2767693aa269297db7b1431f"
+  },
+  "inherited_startup_source_gap_bytes": 4,
+  "startup_completed_proved": false,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "physical_trap_route_proved": false,
+  "physical_atomicity_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "required_next_proofs": [
+    "Exact installed chip/core/ROM and mtvec mode3 dispatch",
+    "Vendor CSR804 bit5 and physical ECALL frame behavior",
+    "LLE binding precedes every possible dispatch and GP remains stable",
+    "No frame/MMIO aliasing or invalid asynchronous nesting",
+    "Original startup4-byte source gap and completion",
+    "Real remaining SDK handlers57DAE/6020A"
+  ],
+  "feature_candidates": [
+    {
+      "name": "OTA compatibility evidence panel",
+      "implemented": false,
+      "basis": "Display firmware hashes,raw trap operands and unmet physical gates;never label static correspondence as flash readiness"
+    }
+  ]
+}

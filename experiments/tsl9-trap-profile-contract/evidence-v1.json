@@ -1,0 +1,257 @@
+{
+  "schema": "TSL9-conditional-trap-profile-evidence-v1",
+  "passed": true,
+  "scope": "Static original bytes and saved official definitions;no execution or physical observation",
+  "primary_references": [
+    {
+      "path": "${REFERENCE_ROOT}/hardware/wch-ch32v20x.h",
+      "sha256": "f7afdff0cca29cea10ea104915a5a21675e49c980f07af789daf37ea80fd142b",
+      "source_url": "https://raw.githubusercontent.com/openwch/ch32v20x/baef0054588f4826548429ff4e7a9257d752ef2f/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h",
+      "repository_commit": "baef0054588f4826548429ff4e7a9257d752ef2f"
+    },
+    {
+      "path": "${REFERENCE_ROOT}/third-round/platform/wch-core_riscv.h",
+      "sha256": "45c8d9ad9a1574199a3d145f6396434619ecff7282f61872625cc5504d76c35b",
+      "source_url": "https://raw.githubusercontent.com/openwch/ch32v20x/baef0054588f4826548429ff4e7a9257d752ef2f/EVT/EXAM/SRC/Core/core_riscv.h",
+      "repository_commit": "baef0054588f4826548429ff4e7a9257d752ef2f"
+    }
+  ],
+  "official_CSR804_nesting_line": 268,
+  "reset_prefix": {
+    "start": 100010,
+    "end": 100132,
+    "bytes": 122,
+    "instructions": 33,
+    "sha256": "9ad7d4af12a50e1b8f73eb3b01352ff77653684b3b73d018544d538e08976414",
+    "operations": [
+      {
+        "PC": 100010,
+        "bytes": "97c1fe1f",
+        "op": "auipc gp, 0x1ffec"
+      },
+      {
+        "PC": 100014,
+        "bytes": "93816195",
+        "op": "addi gp, gp, -1706"
+      },
+      {
+        "PC": 100018,
+        "bytes": "1781ff1f",
+        "op": "auipc sp, 0x1fff8"
+      },
+      {
+        "PC": 100022,
+        "bytes": "1301e194",
+        "op": "addi sp, sp, -1714"
+      },
+      {
+        "PC": 100026,
+        "bytes": "17250000",
+        "op": "auipc a0, 0x2"
+      },
+      {
+        "PC": 100030,
+        "bytes": "1305654a",
+        "op": "addi a0, a0, 1190"
+      },
+      {
+        "PC": 100034,
+        "bytes": "93850100",
+        "op": "mv a1, gp"
+      },
+      {
+        "PC": 100038,
+        "bytes": "13860108",
+        "op": "addi a2, gp, 128"
+      },
+      {
+        "PC": 100042,
+        "bytes": "63fac500",
+        "op": "bleu a2, a1, 0x186de"
+      },
+      {
+        "PC": 100046,
+        "bytes": "83220500",
+        "op": "lw t0, 0(a0)"
+      },
+      {
+        "PC": 100050,
+        "bytes": "23a05500",
+        "op": "sw t0, 0(a1)"
+      },
+      {
+        "PC": 100054,
+        "bytes": "1105",
+        "op": "addi a0, a0, 4"
+      },
+      {
+        "PC": 100056,
+        "bytes": "9105",
+        "op": "addi a1, a1, 4"
+      },
+      {
+        "PC": 100058,
+        "bytes": "e3eac5fe",
+        "op": "bltu a1, a2, 0x186ce"
+      },
+      {
+        "PC": 100062,
+        "bytes": "13850108",
+        "op": "addi a0, gp, 128"
+      },
+      {
+        "PC": 100066,
+        "bytes": "9745ff1f",
+        "op": "auipc a1, 0x1fff4"
+      },
+      {
+        "PC": 100070,
+        "bytes": "93856527",
+        "op": "addi a1, a1, 630"
+      },
+      {
+        "PC": 100074,
+        "bytes": "6377b500",
+        "op": "bleu a1, a0, 0x186f8"
+      },
+      {
+        "PC": 100078,
+        "bytes": "23200500",
+        "op": "sw zero, 0(a0)"
+      },
+      {
+        "PC": 100082,
+        "bytes": "1105",
+        "op": "addi a0, a0, 4"
+      },
+      {
+        "PC": 100084,
+        "bytes": "e36db5fe",
+        "op": "bltu a0, a1, 0x186ee"
+      },
+      {
+        "PC": 100088,
+        "bytes": "fd42",
+        "op": "li t0, 31"
+      },
+      {
+        "PC": 100090,
+        "bytes": "739002bc",
+        "op": "csrw 0xbc0, t0"
+      },
+      {
+        "PC": 100094,
+        "bytes": "8d42",
+        "op": "li t0, 3"
+      },
+      {
+        "PC": 100096,
+        "bytes": "73904280",
+        "op": "csrw 0x804, t0"
+      },
+      {
+        "PC": 100100,
+        "bytes": "b7220000",
+        "op": "lui t0, 0x2"
+      },
+      {
+        "PC": 100104,
+        "bytes": "93828288",
+        "op": "addi t0, t0, -1912"
+      },
+      {
+        "PC": 100108,
+        "bytes": "73a00230",
+        "op": "csrs mstatus, t0"
+      },
+      {
+        "PC": 100112,
+        "bytes": "9702ffff",
+        "op": "auipc t0, 0xffff0"
+      },
+      {
+        "PC": 100116,
+        "bytes": "93828292",
+        "op": "addi t0, t0, -1752"
+      },
+      {
+        "PC": 100120,
+        "bytes": "93e23200",
+        "op": "ori t0, t0, 3"
+      },
+      {
+        "PC": 100124,
+        "bytes": "73905230",
+        "op": "csrw mtvec, t0"
+      },
+      {
+        "PC": 100128,
+        "bytes": "ef00a002",
+        "op": "jal ra, 0x1874a"
+      }
+    ]
+  },
+  "initial_GP": 536887296,
+  "initial_SP": 536936448,
+  "copy_end": 536887424,
+  "zero_start": 536887424,
+  "zero_end": 536922456,
+  "LLE_GP_plus384_pointer": 536887680,
+  "LLE_pointer_is_zeroed_if_original_reset_completes": true,
+  "LLE_pointer_nonzero_before_dispatch_not_proved": true,
+  "reset_CSR804_write": 3,
+  "reset_CSR804_documented_nesting_bit_set": true,
+  "restore_CSR804_set_mask": 32,
+  "restore_CSR804_preserves_bit1": true,
+  "restore_bit5_physical_meaning_proved": false,
+  "cache_CSRBC0_write": 31,
+  "mstatus_set_mask": 6280,
+  "vector_base": 32824,
+  "mtvec_write": 32827,
+  "mtvec_low_bits": 3,
+  "vector_enum_correspondence": [
+    {
+      "name": "Ecall_M_Mode_IRQn",
+      "index": 5,
+      "storage": 32844,
+      "value": 33864,
+      "primary_enum_line": 59
+    },
+    {
+      "name": "Ecall_U_Mode_IRQn",
+      "index": 8,
+      "storage": 32856,
+      "value": 33864,
+      "primary_enum_line": 60
+    },
+    {
+      "name": "BB_IRQn",
+      "index": 63,
+      "storage": 33076,
+      "value": 100158,
+      "primary_enum_line": 128
+    },
+    {
+      "name": "LLE_IRQn",
+      "index": 64,
+      "storage": 33080,
+      "value": 33944,
+      "primary_enum_line": 129
+    }
+  ],
+  "mtvec_mode3_dispatch_semantics_proved": false,
+  "required_no_early_unbound_LLE_dispatch": true,
+  "GP_stability_after_resident_calls_proved": false,
+  "SDK_installed_identity_proved": false,
+  "physical_IRQ_or_ECALL_frame_proved": false,
+  "global_stack_or_IRQ_budget_proved": false,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_APP_CODE_bytes": 0,
+  "new_SDK_CODE_bytes": 0,
+  "new_BIN": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
