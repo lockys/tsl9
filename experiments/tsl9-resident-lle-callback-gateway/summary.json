@@ -1,0 +1,505 @@
+{
+  "schema": "TSL9-public-V131-LLE-callback-gateway-summary-v1",
+  "SDK_candidate_only": true,
+  "CODE_bytes": 936,
+  "DATA_bytes": 0,
+  "instructions": 338,
+  "complete_bodies": 5,
+  "positive_FUNC_regions": 97,
+  "relocations": 66,
+  "direct_controls": 66,
+  "far_call_pairs": 0,
+  "conditional_Xwchc_ports": 24,
+  "official_vectors_checked": 52,
+  "source": "experiments/tsl9-resident-lle-callback-gateway/resident_lle_callback_gateway.c",
+  "source_sha256": "85933d82155e56fb6acaa2af9e99d5852b947488f96e7841a5ab7e0826d044ec",
+  "source_context": "Original-context RV32 register-bound C/assembly;not an ordinary host-callable C API",
+  "native_object_sha256": "efaa7c20923caadfe369cef213976891301cef6b6368f1decad5610df421dffb",
+  "native_CODE_objects": 2,
+  "ABI_assertion_objects": 2,
+  "ABI": {
+    "passed": true,
+    "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+    "RV32_pointer_bytes": 4,
+    "configuration_bytes": 64,
+    "configuration_alignment": 4,
+    "MEMAddr_offset": 0,
+    "MEMLen_offset": 4,
+    "staCB_offset": 52,
+    "staCB_pointer_bytes": 4,
+    "SDK_configuration_base": 536883692,
+    "derived_staCB_storage": 536883744,
+    "SNVAddr_offset": 8,
+    "SNVBlock_offset": 12,
+    "SNVNum_offset": 14,
+    "readFlashCB_offset": 56,
+    "writeFlashCB_offset": 60,
+    "clock_configuration_bytes": 16,
+    "clock_configuration_alignment": 4,
+    "clock_field_offsets": {
+      "getClockValue": 0,
+      "ClockMaxCount": 4,
+      "ClockFrequency": 8,
+      "ClockAccuracy": 10,
+      "irqEnable": 12
+    },
+    "allocated_bytes": 0,
+    "target_executed": false,
+    "installed_layout_proved": false,
+    "independent_readers": {
+      "passed": true,
+      "sections": 8,
+      "symbols": 4,
+      "relocations": 0,
+      "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    }
+  },
+  "composition": {
+    "passed": true,
+    "object_sha256": "da0013b58ec42b86b4458a5b9f78eb57747b92825a57cad145214883b622bd57",
+    "CODE_bytes": 9608,
+    "DATA_bytes": 256,
+    "allocated_bytes": 9864,
+    "instructions": 3367,
+    "positive_FUNC_regions": 800,
+    "positive_OBJECT_regions": 1,
+    "relocations": 582,
+    "named_UND": [
+      "tsl9_candidate_external_flash_57dae",
+      "tsl9_candidate_external_flash_6020a"
+    ],
+    "every_input_byte_symbol_relocation_retained": true,
+    "callback_and_existing_cross_imports_have_real_bodies": true,
+    "all_five_new_real_bodies_retained": true,
+    "previous_numeric_callbacks_have_real_bodies": true,
+    "new_numeric_callback_65620_provided": true,
+    "prior_readonly_table_retained": true,
+    "zero_named_UND_is_not_runtime_closure": true,
+    "raw_RAM_and_callback_dependencies_provided": false,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "callback_contract": {
+    "passed": true,
+    "static_only": true,
+    "functions": [
+      {
+        "entry": 415264,
+        "end": 415430,
+        "bytes": 166,
+        "instructions": 62,
+        "own_frame_bytes": 16,
+        "own_SP_balanced_at_scope_exits": true,
+        "scope_exits": [
+          {
+            "PC": 415326,
+            "type": "rjmp",
+            "instruction": "jr t1"
+          },
+          {
+            "PC": 415410,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 415288,
+            "target": 410634
+          },
+          {
+            "PC": 415390,
+            "target": 413444
+          }
+        ]
+      },
+      {
+        "entry": 536882740,
+        "end": 536882796,
+        "bytes": 56,
+        "instructions": 16,
+        "own_frame_bytes": 0,
+        "own_SP_balanced_at_scope_exits": true,
+        "scope_exits": [
+          {
+            "PC": 536882782,
+            "type": "privileged-return",
+            "instruction": "mret"
+          },
+          {
+            "PC": 536882794,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 536882778,
+            "target": 536881996
+          },
+          {
+            "PC": 536882788,
+            "target": 536881550
+          }
+        ]
+      },
+      {
+        "entry": 536882728,
+        "end": 536882736,
+        "bytes": 8,
+        "instructions": 2,
+        "own_frame_bytes": 0,
+        "own_SP_balanced_at_scope_exits": true,
+        "scope_exits": [
+          {
+            "PC": 536882732,
+            "type": "exception-transfer",
+            "instruction": "ecall"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 536882728,
+            "target": 536872864
+          }
+        ]
+      },
+      {
+        "entry": 536881550,
+        "end": 536881996,
+        "bytes": 446,
+        "instructions": 158,
+        "own_frame_bytes": 0,
+        "own_SP_balanced_at_scope_exits": true,
+        "scope_exits": [
+          {
+            "PC": 536881882,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      },
+      {
+        "entry": 536881996,
+        "end": 536882256,
+        "bytes": 260,
+        "instructions": 100,
+        "own_frame_bytes": 0,
+        "own_SP_balanced_at_scope_exits": true,
+        "scope_exits": [
+          {
+            "PC": 536882192,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      }
+    ],
+    "previous_numeric_callback_65620_has_real_body": true,
+    "actual_LLE_MEPC_target_is_selected_gateway": true,
+    "raw_PC_relative_forms": [
+      {
+        "PC": 536882740,
+        "next_PC": 536882744,
+        "target": 536882940,
+        "role": "raw callback flag byte address",
+        "linker_relocation": false
+      },
+      {
+        "PC": 536882766,
+        "next_PC": 536882770,
+        "target": 536882728,
+        "role": "actual selected gateway CODE address",
+        "linker_relocation": false
+      }
+    ],
+    "no_fabricated_PC_relative_relocations": true,
+    "original_APP_reference_bytes": 226,
+    "new_APP_CODE_bytes": 0,
+    "APP_frame": {
+      "bytes": 128,
+      "saved_register_slots": [
+        [
+          "ra",
+          4
+        ],
+        [
+          "tp",
+          8
+        ],
+        [
+          "t0",
+          12
+        ],
+        [
+          "t1",
+          16
+        ],
+        [
+          "t2",
+          20
+        ],
+        [
+          "s0",
+          24
+        ],
+        [
+          "s1",
+          28
+        ],
+        [
+          "a0",
+          32
+        ],
+        [
+          "a1",
+          36
+        ],
+        [
+          "a2",
+          40
+        ],
+        [
+          "a3",
+          44
+        ],
+        [
+          "a4",
+          48
+        ],
+        [
+          "a5",
+          52
+        ],
+        [
+          "a6",
+          56
+        ],
+        [
+          "a7",
+          60
+        ],
+        [
+          "s2",
+          64
+        ],
+        [
+          "s3",
+          68
+        ],
+        [
+          "s4",
+          72
+        ],
+        [
+          "s5",
+          76
+        ],
+        [
+          "s6",
+          80
+        ],
+        [
+          "s7",
+          84
+        ],
+        [
+          "s8",
+          88
+        ],
+        [
+          "s9",
+          92
+        ],
+        [
+          "s10",
+          96
+        ],
+        [
+          "s11",
+          100
+        ],
+        [
+          "t3",
+          104
+        ],
+        [
+          "t4",
+          108
+        ],
+        [
+          "t5",
+          112
+        ],
+        [
+          "t6",
+          116
+        ]
+      ],
+      "GP_saved": false,
+      "reserved_SDK_word_offsets": [
+        0,
+        120
+      ],
+      "minimum_inherited_frame_bytes": 124,
+      "structural_fit": true,
+      "actual_GP_plus384_call": true,
+      "RAM_slot2_to_GP_plus384_initializer": true,
+      "candidate_slot2_value": 536882740,
+      "ECALL_restore_entry": 33864,
+      "vector_words": [
+        {
+          "storage": 32844,
+          "value": 33864
+        },
+        {
+          "storage": 32856,
+          "value": 33864
+        }
+      ],
+      "vector_cause_mode_proved": false,
+      "CSR804_mask": 32,
+      "CSR804_physical_semantics_proved": false
+    },
+    "gateway": {
+      "entry": 536882728,
+      "real_prior_runner": 536872864,
+      "exception_transfer": 536882732,
+      "ECALL_is_not_an_ordinary_return": true,
+      "physical_trap_route_proved": false
+    },
+    "raw_dependencies": [
+      {
+        "address": 536882940,
+        "role": "handoff flag byte"
+      },
+      {
+        "address": 536884500,
+        "role": "shared state bytes"
+      },
+      {
+        "address": 536884540,
+        "role": "indirect register block pointer"
+      },
+      {
+        "address": 536884544,
+        "role": "parameter byte/base"
+      },
+      {
+        "address": 536884560,
+        "role": "opaque tail callback pointer"
+      },
+      {
+        "address": 536884576,
+        "role": "parameter block and buffer pointer"
+      },
+      {
+        "address": 536884488,
+        "role": "indirect register block pointer"
+      },
+      {
+        "address": 536884624,
+        "role": "indirect register block pointer"
+      },
+      {
+        "address": 536884300,
+        "role": "descriptor pointer tested by IRQ helper"
+      },
+      {
+        "address": 536883640,
+        "role": "software clock-related word in IRQ helper"
+      }
+    ],
+    "opaque_transfers": [
+      {
+        "PC": 415326,
+        "role": "tail through shared callback3550 after releasing own16-byte frame",
+        "effects_bounded": false
+      }
+    ],
+    "primary_Xwchc": {
+      "official_vectors": 52,
+      "families": 8,
+      "actual_ports": 24,
+      "physical_profile_proved": false
+    },
+    "required_execution_assumptions": [
+      "installed ROM/table matches candidate",
+      "SDK initialization completes in required order",
+      "live GP remains stable and GP+384 is not aliased or overwritten",
+      "inherited128-byte frame remains valid and callees preserveSP",
+      "no asynchronous or MMIO aliasing clobbers frame or MEPC",
+      "physical ECALL dispatch preserves expected current frame or is otherwise accounted",
+      "vendor vector cause/mode and CSR804 semantics verified"
+    ],
+    "inherited_four_byte_copy_gap_retained": true,
+    "physical_trap_route_proved": false,
+    "global_stack_budget_proved": false,
+    "installed_ROM_identity_proved": false,
+    "runtime_closed": false,
+    "hardware_accessed": false
+  },
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-lle-callback-gateway/derive-v1.py": "15023afbfa4033ab62dab7ed42cbc4c6536461e1d9b319bdc7e56071cffff588",
+    "experiments/tsl9-resident-lle-callback-gateway/evidence-v1.json": "48de4a7f7387faf9a885e5944ab0f0e2638a9bf123ba9dc6710ca5019ae1f62b",
+    "experiments/tsl9-resident-lle-callback-gateway/resident_lle_callback_gateway.c": "85933d82155e56fb6acaa2af9e99d5852b947488f96e7841a5ab7e0826d044ec",
+    "experiments/tsl9-resident-lle-callback-gateway/spec-v1.json": "43407d433a8764d731bbea68414c9d69e3788ba09116da31f750a5c2c3374150",
+    "experiments/tsl9-resident-lle-callback-gateway/build-v1.py": "3f98fc0d22f2eec96b2f231facc3eff214baaec3ce1543878c96213b9e661a08",
+    "experiments/tsl9-resident-lle-callback-gateway/config_abi.c": "36e96cbef009bd9b9c34154f9fb444c708b42fc506e09e62e9da648e351dc0cb",
+    "experiments/tsl9-resident-lle-callback-gateway/audit-v1.py": "06a0b1a4532afa80f4ff7376126d1c27386321dda1a8ba8d9aa7133c6d170ec5",
+    "experiments/tsl9-resident-lle-callback-gateway/audit-result-v1.json": "a0753e260ae0397165327cef972510d9d9830264789c4491f0476fc0d2cab9ed",
+    "experiments/tsl9-resident-lle-callback-gateway/build/native-v1/measurement.json": "e32be5204a8bc736573169a50a097b53b6b95cc1875533ae93c023a85258f85d",
+    "experiments/tsl9-resident-lle-callback-gateway/build/composition-v1/c/candidate.o": "da0013b58ec42b86b4458a5b9f78eb57747b92825a57cad145214883b622bd57",
+    "experiments/tsl9-resident-lle-callback-gateway/build/composition-v1/cpp/candidate.o": "da0013b58ec42b86b4458a5b9f78eb57747b92825a57cad145214883b622bd57"
+  },
+  "prior_SDK_composition_CODE_bytes": 8672,
+  "prior_SDK_composition_DATA_bytes": 256,
+  "prior_contracts_retained": true,
+  "inherited_startup_source_gap_bytes": 4,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_APP_CODE_bytes": 0,
+  "startup_completed_proved": false,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "physical_atomicity_proved": false,
+  "Flash_callback_effects_closed": false,
+  "physical_trap_route_proved": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "vendor_network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "feature_candidates": [
+    {
+      "name": "IRQ/callback-frame diagnostics",
+      "implemented": false,
+      "basis": "Static LLE MEPC assignment and original APP frame fit",
+      "requires": [
+        "installed ROM/table matches candidate",
+        "SDK initialization completes in required order",
+        "live GP remains stable and GP+384 is not aliased or overwritten",
+        "inherited128-byte frame remains valid and callees preserveSP",
+        "no asynchronous or MMIO aliasing clobbers frame or MEPC",
+        "physical ECALL dispatch preserves expected current frame or is otherwise accounted",
+        "vendor vector cause/mode and CSR804 semantics verified"
+      ]
+    }
+  ]
+}
