@@ -1,0 +1,150 @@
+{
+  "schema": "TSL9-conditional-task-layout-summary-v1",
+  "SDK_candidate_only": true,
+  "new_reconstructed_CODE_bytes": 0,
+  "new_allocated_runtime_bytes": 0,
+  "ABI_assertion_compilation": true,
+  "ABI_assertion_objects": 2,
+  "ABI_source": "experiments/tsl9-resident-task-layout-contract/layout_assertions.c",
+  "ABI_source_sha256": "1a73dbb2bb0250d5d2b91c5ea7c391a722883851bbe533fe3a402aa45287cb7c",
+  "ABI_object_sha256": "a08e05144ac5d2548649a795ec1d082b211a7329b7f43fbd7fc7f3d312e2d382",
+  "numerical_contract": {
+    "passed": true,
+    "static_integer_bounds_only": true,
+    "concrete_machine_or_memory_simulated": false,
+    "original_APP_store": {
+      "PC": 105072,
+      "word": 3647,
+      "SP_offset": 36,
+      "configuration_SP_offset": 16,
+      "ConnectNumber_offset": 21,
+      "supplied_ConnectNumber": 14,
+      "ConnectNumber_at_later_task_call_proved": false
+    },
+    "formulas": {
+      "capacity": "3*((ConnectNumber >> 2)+(ConnectNumber & 3))+14",
+      "requested": "576+6*capacity",
+      "rounded": "(requested+3)&~3",
+      "records": "[payload,payload+576)",
+      "handlers": "[payload+576,payload+576+4*capacity)",
+      "events": "[payload+576+4*capacity,payload+576+6*capacity)"
+    },
+    "byte_domain_bounds": {
+      "capacity_min": 14,
+      "capacity_max": 212,
+      "request_min": 660,
+      "request_max": 1848,
+      "no_capacity_byte_or16bit_request_wrap": true,
+      "large_pool_threshold": 52,
+      "all_requests_choose_large_pool": true
+    },
+    "conditional_original_values": {
+      "ConnectNumber": 14,
+      "capacity": 29,
+      "requested_bytes": 750,
+      "rounded_payload_bytes": 752,
+      "rounding_padding_bytes": 2,
+      "record_bytes": 576,
+      "record_count": 48,
+      "record_stride": 12,
+      "handler_bytes": 116,
+      "event_bytes": 58
+    },
+    "declared_arena": {
+      "start": 536887692,
+      "end": 536916364,
+      "bytes": 28672,
+      "first_small_node": 536888236,
+      "small_span_bytes": 512,
+      "large_node": 536888748,
+      "large_free_payload_bytes": 27600,
+      "sentinel": 536916356
+    },
+    "conditional_pristine_first_fit": {
+      "payload": 536888756,
+      "records": [
+        536888756,
+        536889332
+      ],
+      "handlers": [
+        536889332,
+        536889448
+      ],
+      "events": [
+        536889448,
+        536889506
+      ],
+      "rounded_payload_end": 536889508,
+      "split_free_node": 536889508,
+      "split_free_payload": 536889516,
+      "split_free_payload_bytes": 26840
+    },
+    "bounds": {
+      "record_task_ID_min": 0,
+      "record_task_ID_max": 2,
+      "event_bit_index_min": 0,
+      "event_bit_index_max": 15,
+      "all_selected_record_fields_within_576_bytes": true,
+      "three_registration_words_fit": true,
+      "valid_event_halfwords_fit_if_registered_count_le_capacity": true
+    },
+    "assumptions": [
+      "SDK ConnectNumber at43B90 still equals the APP-supplied14 for the concrete address example",
+      "declared MEMAddr/MEMLen correspond to valid writable RAM",
+      "initialized heap metadata is pristine at the first task allocation",
+      "all calls return normally and relevant MMIO/IRQ/DMA aliases do not change metadata",
+      "task-count byte2000319D is zero at43C06 for the three0..2 registrations after the intervening SNV path",
+      "allocation pointers and capacities remain stable and the task buffer remains allocated",
+      "later registered task count does not exceed capacity for event-array bounds"
+    ],
+    "task_count_zero_after_SNV_proved": false,
+    "physical_RAM_capacity_proved": false,
+    "heap_or_APP_global_ownership_proved": false,
+    "whole_program_stack_or_IRQ_bound_proved": false,
+    "installed_ROM_identity_proved": false,
+    "runtime_closed": false,
+    "new_BIN": false
+  },
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-task-layout-contract/layout_assertions.c": "1a73dbb2bb0250d5d2b91c5ea7c391a722883851bbe533fe3a402aa45287cb7c",
+    "experiments/tsl9-resident-task-layout-contract/spec-v1.json": "aa1dce966eb89d25c433c71e2f1e1bcaa204ce619ba3e14d2037a2ec2f601d35",
+    "experiments/tsl9-resident-task-layout-contract/verify-v1.py": "35f196898d079cb91d531efe56b41639027f21549037f520d84b0445ba47117b",
+    "experiments/tsl9-resident-task-layout-contract/verification-v1.json": "782079a553d1230edc978d94359f243890c22f109026c312774a4232863f22ca",
+    "experiments/tsl9-resident-task-layout-contract/build/abi-v2/measurement.json": "4cba8eccb8071093a2bf1d9bebb6a0b73201dc6ba91f4746c32c2b9bd49e197a",
+    "experiments/tsl9-resident-task-layout-contract/build/abi-v2/c/unit.o": "a08e05144ac5d2548649a795ec1d082b211a7329b7f43fbd7fc7f3d312e2d382",
+    "experiments/tsl9-resident-task-layout-contract/build/abi-v2/cpp/unit.o": "a08e05144ac5d2548649a795ec1d082b211a7329b7f43fbd7fc7f3d312e2d382"
+  },
+  "prior_SDK_composition_bytes": 2264,
+  "prior_SDK_composition_sha256": "889d800da7e29916ddb8fa462f447eeee67334416db0c583518cb6153041c0e0",
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "prior_Flash_argument_contract_retained": true,
+  "installed_ROM_identity_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "heap_or_APP_global_ownership_proved": false,
+  "whole_program_stack_or_IRQ_bound_proved": false,
+  "task_count_zero_after_SNV_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "vendor_network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "feature_candidates": [
+    {
+      "name": "Task-capacity and registered-count consistency diagnostics",
+      "implemented": false,
+      "basis": "Capacity bounds are known but intervening callback/IRQ mutation of count and pointers is not closed",
+      "requires": [
+        "verified physical RAM ownership",
+        "a safe observation point and full IRQ/stack budget",
+        "validated callback and registration lifecycle"
+      ]
+    }
+  ]
+}

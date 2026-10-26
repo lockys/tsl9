@@ -1,0 +1,291 @@
+{
+  "schema": "TSL9-conditional-task-RAM-layout-verification-v1",
+  "passed": true,
+  "checker_sha256": "35f196898d079cb91d531efe56b41639027f21549037f520d84b0445ba47117b",
+  "spec_sha256": "aa1dce966eb89d25c433c71e2f1e1bcaa204ce619ba3e14d2037a2ec2f601d35",
+  "ABI_source_sha256": "1a73dbb2bb0250d5d2b91c5ea7c391a722883851bbe533fe3a402aa45287cb7c",
+  "numerical_contract": {
+    "passed": true,
+    "static_integer_bounds_only": true,
+    "concrete_machine_or_memory_simulated": false,
+    "original_APP_store": {
+      "PC": 105072,
+      "word": 3647,
+      "SP_offset": 36,
+      "configuration_SP_offset": 16,
+      "ConnectNumber_offset": 21,
+      "supplied_ConnectNumber": 14,
+      "ConnectNumber_at_later_task_call_proved": false
+    },
+    "formulas": {
+      "capacity": "3*((ConnectNumber >> 2)+(ConnectNumber & 3))+14",
+      "requested": "576+6*capacity",
+      "rounded": "(requested+3)&~3",
+      "records": "[payload,payload+576)",
+      "handlers": "[payload+576,payload+576+4*capacity)",
+      "events": "[payload+576+4*capacity,payload+576+6*capacity)"
+    },
+    "byte_domain_bounds": {
+      "capacity_min": 14,
+      "capacity_max": 212,
+      "request_min": 660,
+      "request_max": 1848,
+      "no_capacity_byte_or16bit_request_wrap": true,
+      "large_pool_threshold": 52,
+      "all_requests_choose_large_pool": true
+    },
+    "conditional_original_values": {
+      "ConnectNumber": 14,
+      "capacity": 29,
+      "requested_bytes": 750,
+      "rounded_payload_bytes": 752,
+      "rounding_padding_bytes": 2,
+      "record_bytes": 576,
+      "record_count": 48,
+      "record_stride": 12,
+      "handler_bytes": 116,
+      "event_bytes": 58
+    },
+    "declared_arena": {
+      "start": 536887692,
+      "end": 536916364,
+      "bytes": 28672,
+      "first_small_node": 536888236,
+      "small_span_bytes": 512,
+      "large_node": 536888748,
+      "large_free_payload_bytes": 27600,
+      "sentinel": 536916356
+    },
+    "conditional_pristine_first_fit": {
+      "payload": 536888756,
+      "records": [
+        536888756,
+        536889332
+      ],
+      "handlers": [
+        536889332,
+        536889448
+      ],
+      "events": [
+        536889448,
+        536889506
+      ],
+      "rounded_payload_end": 536889508,
+      "split_free_node": 536889508,
+      "split_free_payload": 536889516,
+      "split_free_payload_bytes": 26840
+    },
+    "bounds": {
+      "record_task_ID_min": 0,
+      "record_task_ID_max": 2,
+      "event_bit_index_min": 0,
+      "event_bit_index_max": 15,
+      "all_selected_record_fields_within_576_bytes": true,
+      "three_registration_words_fit": true,
+      "valid_event_halfwords_fit_if_registered_count_le_capacity": true
+    },
+    "assumptions": [
+      "SDK ConnectNumber at43B90 still equals the APP-supplied14 for the concrete address example",
+      "declared MEMAddr/MEMLen correspond to valid writable RAM",
+      "initialized heap metadata is pristine at the first task allocation",
+      "all calls return normally and relevant MMIO/IRQ/DMA aliases do not change metadata",
+      "task-count byte2000319D is zero at43C06 for the three0..2 registrations after the intervening SNV path",
+      "allocation pointers and capacities remain stable and the task buffer remains allocated",
+      "later registered task count does not exceed capacity for event-array bounds"
+    ],
+    "task_count_zero_after_SNV_proved": false,
+    "physical_RAM_capacity_proved": false,
+    "heap_or_APP_global_ownership_proved": false,
+    "whole_program_stack_or_IRQ_bound_proved": false,
+    "installed_ROM_identity_proved": false,
+    "runtime_closed": false,
+    "new_BIN": false
+  },
+  "ABI_assertions": {
+    "inputs": {
+      "${PROJECT_ROOT}\\experiments\\tsl9-resident-task-layout-contract\\verify-v1.py": "35f196898d079cb91d531efe56b41639027f21549037f520d84b0445ba47117b",
+      "${PROJECT_ROOT}\\experiments\\tsl9-resident-task-layout-contract\\spec-v1.json": "aa1dce966eb89d25c433c71e2f1e1bcaa204ce619ba3e14d2037a2ec2f601d35",
+      "${PROJECT_ROOT}\\experiments\\tsl9-resident-task-layout-contract\\layout_assertions.c": "1a73dbb2bb0250d5d2b91c5ea7c391a722883851bbe533fe3a402aa45287cb7c",
+      "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-core\\evidence-v1.json": "489de7424e4e91bce566da040e8b9bfa101cb14d8806c4de0a72c79956d95f4d",
+      "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\evidence-v1.json": "6b5a4b92e0675bb208ad3b06be19879a27670fa94045df4f80357f2ea7020aa5",
+      "${PROJECT_ROOT}\\experiments\\tsl9-resident-ble-initialization\\evidence-v1.json": "d32203b264e1f0c63b7a263997965fbbab7ed7397750e19a67dfdb2a33bf9208",
+      "${PROJECT_ROOT}\\experiments\\tsl9-resident-task-callbacks\\evidence-v1.json": "a7dc49c4617680d1e9c24bb40454498ab4e1472cdeba0adc33066e2c659a82c6",
+      "${PROJECT_ROOT}\\experiments\\tsl9-resident-message-queue\\evidence-v1.json": "f85ba1433634dd82134bfc90129b44c1761f94411df14782003796fee9aabe5b",
+      "${PROJECT_ROOT}\\analysis\\resident-startup-2026-10-25\\evidence.json": "9c9e418f16ec9b7231df2dc623ee90c39a0b1bba53f0a116271800d7ad8770f5"
+    },
+    "results": {
+      "c": {
+        "base_ABI": {
+          "passed": true,
+          "object_sha256": "a08e05144ac5d2548649a795ec1d082b211a7329b7f43fbd7fc7f3d312e2d382",
+          "RV32_pointer_bytes": 4,
+          "configuration_bytes": 64,
+          "configuration_alignment": 4,
+          "MEMAddr_offset": 0,
+          "MEMLen_offset": 4,
+          "staCB_offset": 52,
+          "staCB_pointer_bytes": 4,
+          "SDK_configuration_base": 536883692,
+          "derived_staCB_storage": 536883744,
+          "SNVAddr_offset": 8,
+          "SNVBlock_offset": 12,
+          "SNVNum_offset": 14,
+          "readFlashCB_offset": 56,
+          "writeFlashCB_offset": 60,
+          "allocated_bytes": 0,
+          "target_executed": false,
+          "installed_layout_proved": false,
+          "independent_readers": {
+            "passed": true,
+            "sections": 8,
+            "symbols": 4,
+            "relocations": 0,
+            "object_sha256": "a08e05144ac5d2548649a795ec1d082b211a7329b7f43fbd7fc7f3d312e2d382",
+            "only_section_ceiling_and_doc_changed": true,
+            "all_actual_section_bytes_symbols_and_relocations_equal": true,
+            "target_executed": false,
+            "hardware_accessed": false,
+            "network": false
+          }
+        },
+        "ConnectNumber_offset": 21,
+        "ConnectNumber_bytes": 1,
+        "record_stride": 12,
+        "record_alignment": 4,
+        "record_offsets": [
+          0,
+          4,
+          8
+        ],
+        "allocated_runtime_bytes": 0
+      },
+      "cpp": {
+        "base_ABI": {
+          "passed": true,
+          "object_sha256": "a08e05144ac5d2548649a795ec1d082b211a7329b7f43fbd7fc7f3d312e2d382",
+          "RV32_pointer_bytes": 4,
+          "configuration_bytes": 64,
+          "configuration_alignment": 4,
+          "MEMAddr_offset": 0,
+          "MEMLen_offset": 4,
+          "staCB_offset": 52,
+          "staCB_pointer_bytes": 4,
+          "SDK_configuration_base": 536883692,
+          "derived_staCB_storage": 536883744,
+          "SNVAddr_offset": 8,
+          "SNVBlock_offset": 12,
+          "SNVNum_offset": 14,
+          "readFlashCB_offset": 56,
+          "writeFlashCB_offset": 60,
+          "allocated_bytes": 0,
+          "target_executed": false,
+          "installed_layout_proved": false,
+          "independent_readers": {
+            "passed": true,
+            "sections": 8,
+            "symbols": 4,
+            "relocations": 0,
+            "object_sha256": "a08e05144ac5d2548649a795ec1d082b211a7329b7f43fbd7fc7f3d312e2d382",
+            "only_section_ceiling_and_doc_changed": true,
+            "all_actual_section_bytes_symbols_and_relocations_equal": true,
+            "target_executed": false,
+            "hardware_accessed": false,
+            "network": false
+          }
+        },
+        "ConnectNumber_offset": 21,
+        "ConnectNumber_bytes": 1,
+        "record_stride": 12,
+        "record_alignment": 4,
+        "record_offsets": [
+          0,
+          4,
+          8
+        ],
+        "allocated_runtime_bytes": 0
+      }
+    },
+    "artifacts": {
+      "c": {
+        "files": {
+          "compile.log": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "unit.d": {
+            "bytes": 1443,
+            "sha256": "7df93110d885b17afedd1716dd0aa4b35c6eff3a1df30f66404c09d1f1a8fff5"
+          },
+          "unit.o": {
+            "bytes": 772,
+            "sha256": "a08e05144ac5d2548649a795ec1d082b211a7329b7f43fbd7fc7f3d312e2d382"
+          }
+        },
+        "dependencies": {
+          "${CLANG_RESOURCE}\\include\\__stddef_max_align_t.h": "3c1e4de47f4f06b35e2c5890d670052e84f716760505ff51b022fc8b21a9400f",
+          "${CLANG_RESOURCE}\\include\\__stddef_null.h": "033fa6c5d016c99455de6f8d1d193d88948bcfc51c2094cb1b66db7985b1df45",
+          "${CLANG_RESOURCE}\\include\\__stddef_offsetof.h": "0646eef92cb53ec8a75b8f972b7cc44baf35df535439f5249a0c9039de6cb8d9",
+          "${CLANG_RESOURCE}\\include\\__stddef_ptrdiff_t.h": "f8ed1e1bc21e4b2c847efed8801ea0811a51d9d07e0abbdc11abd94296050ad7",
+          "${CLANG_RESOURCE}\\include\\__stddef_size_t.h": "038312bb5b077de77fd44c733fce9d19f125382d8138305a53d622134e2cc52f",
+          "${CLANG_RESOURCE}\\include\\__stddef_wchar_t.h": "fa7a422398852ff3190a79e98d0dc2377f43784530fd8c31da942a2f50c4bf13",
+          "${CLANG_RESOURCE}\\include\\stddef.h": "23b9e2c5d397e05164b24bb46466bf14d951b8caec2d8e1a67a95b14f9a38625",
+          "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+          "${PROJECT_ROOT}\\analysis\\wch-resident-candidate-2026-10-21\\original-dec2023\\wchble_rom.h": "647a185941fedeb6ba16d544d9bca91a6f53219bb649a5513b59abeb21a9a94c",
+          "${PROJECT_ROOT}\\experiments\\tsl9-resident-task-layout-contract\\layout_assertions.c": "1a73dbb2bb0250d5d2b91c5ea7c391a722883851bbe533fe3a402aa45287cb7c"
+        }
+      },
+      "cpp": {
+        "files": {
+          "compile.log": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "unit.d": {
+            "bytes": 1589,
+            "sha256": "dc4e709b3f2690b31e4bc432fcd8c9dd80c58b7c1a9446870f728529bcdf3a93"
+          },
+          "unit.o": {
+            "bytes": 772,
+            "sha256": "a08e05144ac5d2548649a795ec1d082b211a7329b7f43fbd7fc7f3d312e2d382"
+          }
+        },
+        "dependencies": {
+          "${CLANG_RESOURCE}\\include\\__stddef_max_align_t.h": "3c1e4de47f4f06b35e2c5890d670052e84f716760505ff51b022fc8b21a9400f",
+          "${CLANG_RESOURCE}\\include\\__stddef_null.h": "033fa6c5d016c99455de6f8d1d193d88948bcfc51c2094cb1b66db7985b1df45",
+          "${CLANG_RESOURCE}\\include\\__stddef_nullptr_t.h": "762155fcaa481602a8e00fb189493131189a6c3d5a785f7bf05848b79f71de13",
+          "${CLANG_RESOURCE}\\include\\__stddef_offsetof.h": "0646eef92cb53ec8a75b8f972b7cc44baf35df535439f5249a0c9039de6cb8d9",
+          "${CLANG_RESOURCE}\\include\\__stddef_ptrdiff_t.h": "f8ed1e1bc21e4b2c847efed8801ea0811a51d9d07e0abbdc11abd94296050ad7",
+          "${CLANG_RESOURCE}\\include\\__stddef_size_t.h": "038312bb5b077de77fd44c733fce9d19f125382d8138305a53d622134e2cc52f",
+          "${CLANG_RESOURCE}\\include\\__stddef_wchar_t.h": "fa7a422398852ff3190a79e98d0dc2377f43784530fd8c31da942a2f50c4bf13",
+          "${CLANG_RESOURCE}\\include\\stddef.h": "23b9e2c5d397e05164b24bb46466bf14d951b8caec2d8e1a67a95b14f9a38625",
+          "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+          "${PROJECT_ROOT}\\analysis\\wch-resident-candidate-2026-10-21\\original-dec2023\\wchble_rom.h": "647a185941fedeb6ba16d544d9bca91a6f53219bb649a5513b59abeb21a9a94c",
+          "${PROJECT_ROOT}\\experiments\\tsl9-resident-task-layout-contract\\layout_assertions.c": "1a73dbb2bb0250d5d2b91c5ea7c391a722883851bbe533fe3a402aa45287cb7c"
+        }
+      }
+    }
+  },
+  "prior_queue_audit_sha256": "df1dcb56ea04aca6c13edb1a8c4a28a7f56b57d1dafae2af189a58837fa79367",
+  "prior_SDK_composition_bytes": 2264,
+  "prior_SDK_composition_sha256": "889d800da7e29916ddb8fa462f447eeee67334416db0c583518cb6153041c0e0",
+  "prior_Flash_argument_contract_retained": true,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_reconstructed_CODE_bytes": 0,
+  "ABI_assertion_compilation": true,
+  "new_allocated_runtime_bytes": 0,
+  "physical_RAM_capacity_proved": false,
+  "heap_or_APP_global_ownership_proved": false,
+  "whole_program_stack_or_IRQ_bound_proved": false,
+  "installed_ROM_identity_proved": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
