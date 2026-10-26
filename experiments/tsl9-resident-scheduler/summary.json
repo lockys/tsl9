@@ -1,0 +1,315 @@
+{
+  "schema": "TSL9-public-V131-RAM-JT0-scheduler-summary-v1",
+  "SDK_candidate_only": true,
+  "CODE_bytes": 438,
+  "instructions": 150,
+  "complete_bodies": 1,
+  "positive_FUNC_regions": 39,
+  "relocations": 30,
+  "direct_controls": 28,
+  "far_call_pairs": 1,
+  "conditional_Xwchc_ports": 14,
+  "official_vectors_checked": 28,
+  "source": "experiments/tsl9-resident-scheduler/resident_scheduler.c",
+  "source_sha256": "ab762eacae80b38c313454144106c2d390058b157174f03613d7b60732893709",
+  "source_context": "Original-context RV32 register-bound C/assembly;not an ordinary host-callable C API",
+  "native_object_sha256": "187ca42e0b8c3141d78263f76ffe9ba100183a7fd2d782bde7b74a173d34d277",
+  "native_CODE_objects": 2,
+  "ABI_assertion_objects": 2,
+  "composition": {
+    "passed": true,
+    "object_sha256": "346224e87f08d2f43ade01d1b79580d1d84331412a9b302ea2c1df82d4ce2404",
+    "CODE_bytes": 2750,
+    "instructions": 971,
+    "positive_FUNC_regions": 247,
+    "relocations": 181,
+    "named_UND": [
+      "tsl9_candidate_external_flash_63dd0",
+      "tsl9_candidate_external_ram_200004fa",
+      "tsl9_candidate_external_ram_2000061a",
+      "tsl9_candidate_external_ram_20002610"
+    ],
+    "every_input_byte_symbol_relocation_retained": true,
+    "official_RAM_JT0_has_real_body": true,
+    "zero_named_UND_is_not_runtime_closure": true,
+    "raw_RAM_and_callback_dependencies_provided": false,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "startup_binding": {
+    "passed": true,
+    "SDK_V131_candidate_only": true,
+    "entry_jump": 450174,
+    "observed_initial_GP": 536887296,
+    "observed_initial_SP": 536936448,
+    "seed_source": 262784,
+    "seed_destination": 536870928,
+    "seed_bytes": 48,
+    "table_storage": 536870912,
+    "table_values": [
+      536872912,
+      536880412,
+      536882740
+    ],
+    "table_store_PCs": [
+      450076,
+      450086,
+      450108
+    ],
+    "TMOS_SystemProcess_RAM_index": 0,
+    "actual_candidate_scheduler": 536872912,
+    "candidate200004FA_is_not_RAM_JT0": true,
+    "first_copy_source": 262832,
+    "first_copy_destination": 536870976,
+    "first_copy_last_word_inclusive": 536882800,
+    "first_copy_bytes": 11828,
+    "scheduler_source_span": [
+      264768,
+      265206
+    ],
+    "later_second_copy_destination": [
+      536882800,
+      536882940
+    ],
+    "later_zero_destination": [
+      536882936,
+      536884760
+    ],
+    "later_numeric_writes_do_not_overlap_selected_scheduler_or_table": true,
+    "inherited_second_copy_source_gap": {
+      "second_copy_source": 453284,
+      "requested_bytes": 140,
+      "captured_intersection_bytes": 136,
+      "missing_source": [
+        {
+          "start": 453420,
+          "end_exclusive": 453424,
+          "bytes": 4
+        }
+      ],
+      "RAM_destination": 536882800,
+      "last_word_inclusive": 536882936,
+      "later_zero_does_not_prove_missing_source_read_can_complete": true,
+      "ledger_sha256": "9dc8ec6d725cfd0d93896bdf132863a0cfad7ee9aad255ac2a494ee17dc8c832",
+      "copy_RAM_mapping_is_not_startup_completion": true
+    },
+    "holes_filled": false,
+    "startup_completed_proved": false,
+    "installed_RAM_table_value_proved": false,
+    "installed_ROM_identity_proved": false,
+    "physical_RAM_MMIO_or_ISA_proved": false,
+    "assumptions": [
+      "relevant seed and first-copy instructions execute normally with valid stable source/RAM",
+      "conditional Xwchc profile applies to the selected scheduler",
+      "no IRQ,DMA,alias or later unreviewed store changes the table or code",
+      "the sparse second-copy gap remains unresolved;later zeroing cannot prove that read completes"
+    ]
+  },
+  "scheduler_contract": {
+    "passed": true,
+    "complete_range": [
+      536872912,
+      536873350
+    ],
+    "return_PCs": [
+      536873310
+    ],
+    "external_tails": [
+      {
+        "PC": 536873150,
+        "target": 536872474
+      }
+    ],
+    "calls": [
+      {
+        "PC": 536872978,
+        "target": 536880656
+      },
+      {
+        "PC": 536872984,
+        "target": null
+      },
+      {
+        "PC": 536872990,
+        "target": null
+      },
+      {
+        "PC": 536873074,
+        "target": 536872186
+      },
+      {
+        "PC": 536873164,
+        "target": 536880656
+      },
+      {
+        "PC": 536873226,
+        "target": null
+      },
+      {
+        "PC": 536873276,
+        "target": null
+      },
+      {
+        "PC": 536873330,
+        "target": 409040
+      }
+    ],
+    "all_selected_instructions_in_conditional_CFG": true,
+    "task_index_byte": 536883612,
+    "registered_count_byte": 536883613,
+    "event_array_pointer": 536883684,
+    "handler_array_pointer": 536883652,
+    "event_clear_mask_halfword": 536883676,
+    "event_take": "load event halfword into A1 and clear its slot before calling",
+    "handler_A0": "current task-index byte",
+    "handler_A1": "taken event halfword",
+    "handler_pointer": "handler_array[current_task]",
+    "handler_null_check_present": false,
+    "clear_mask_zeroed_before_handler": true,
+    "current_task_index_reloaded_after_handler": true,
+    "event_merge_low16": "(returned_A0 & ~live_clear_mask) | live_pending_event_halfword at the reloaded current task index",
+    "local_handler_call_sites": 1,
+    "registered_handler_calls_at_most_one_in_local_CFG": true,
+    "opaque_callback_reentry_excluded_from_local_bound": true,
+    "own_frame_bytes": 32,
+    "own_frame_balanced_at_normal_return_and_external_tail": true,
+    "callee_and_global_IRQ_stack_budget_proved": false,
+    "opaque_transfers": [
+      {
+        "PC": 536872984,
+        "role": "queue-structure word12 or16 depending on state",
+        "null_guard": false,
+        "callee_body_in_this_module": false,
+        "write_effects_bounded": false
+      },
+      {
+        "PC": 536872990,
+        "role": "queue-structure word8",
+        "null_guard": true,
+        "callee_body_in_this_module": false,
+        "write_effects_bounded": false
+      },
+      {
+        "PC": 536873226,
+        "role": "handler_array[current_task]",
+        "null_guard": false,
+        "callee_body_in_this_module": false,
+        "write_effects_bounded": false
+      },
+      {
+        "PC": 536873276,
+        "role": "queue-structure word0 then cleared",
+        "null_guard": true,
+        "callee_body_in_this_module": false,
+        "write_effects_bounded": false
+      }
+    ],
+    "raw_dependencies": [
+      {
+        "address": 536870912,
+        "role": "RAM jump-table entry0"
+      },
+      {
+        "address": 536883612,
+        "role": "current task-index byte"
+      },
+      {
+        "address": 536883613,
+        "role": "registered task-count byte"
+      },
+      {
+        "address": 536883652,
+        "role": "handler-array pointer"
+      },
+      {
+        "address": 536883676,
+        "role": "event-clear mask halfword"
+      },
+      {
+        "address": 536883684,
+        "role": "event-array pointer"
+      },
+      {
+        "address": 536883656,
+        "role": "optional callback word cleared after call"
+      },
+      {
+        "address": 536883664,
+        "role": "optional callback word"
+      },
+      {
+        "address": 536883668,
+        "role": "state6 callback word"
+      },
+      {
+        "address": 536883672,
+        "role": "state7 callback word"
+      },
+      {
+        "address": 536883732,
+        "role": "configuration idleCB pointer tested"
+      },
+      {
+        "address": 536883764,
+        "role": "runtime scheduling structure"
+      },
+      {
+        "address": 536884500,
+        "role": "runtime state structure"
+      }
+    ],
+    "all_callee_effects_bounded": false,
+    "physical_atomicity_or_event_race_equivalence_proved": false,
+    "callback_lifetime_or_callability_proved": false,
+    "runtime_closed": false
+  },
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-scheduler/derive-v1.py": "add4f31eaad43f1fde16b72dc3e19fb52b19bd49178cdc051b0f7e2b7aaba14f",
+    "experiments/tsl9-resident-scheduler/evidence-v1.json": "5947ac1c887e1ef8e9c7114c75a63f46814f36ebc0db5939b55fa723ad2b5c10",
+    "experiments/tsl9-resident-scheduler/resident_scheduler.c": "ab762eacae80b38c313454144106c2d390058b157174f03613d7b60732893709",
+    "experiments/tsl9-resident-scheduler/spec-v1.json": "b3e6ee6cfdca84ac288371a2d687841d6b9107d9afef4d474454a2bcb1918114",
+    "experiments/tsl9-resident-scheduler/build-v1.py": "5aba7a3c4b2633fd9b1903a09651b5e1cf7d733dbd9a56cc47d16a7b74f8ea7d",
+    "experiments/tsl9-resident-scheduler/config_abi.c": "24dd49b5477b57c89de5ae407320fcf4b0cd796bba66a5aa8750d0696ad8cd97",
+    "experiments/tsl9-resident-scheduler/audit-v1.py": "69a6b768f4ef7e60fdbacf90d7ee5bebe306a730056787905ed0b5f20f52f3f1",
+    "experiments/tsl9-resident-scheduler/audit-result-v1.json": "01d45a06c92e0d78f2b1c67a317d858dd1efe4c74c109bbdfaf050deea959991",
+    "experiments/tsl9-resident-scheduler/build/native-v1/measurement.json": "897a530133e1e3c8dfb67931f8f3454c0dd941f7e7a446c15e42bd90f68d33cb",
+    "experiments/tsl9-resident-scheduler/build/composition-v1/c/candidate.o": "346224e87f08d2f43ade01d1b79580d1d84331412a9b302ea2c1df82d4ce2404",
+    "experiments/tsl9-resident-scheduler/build/composition-v1/cpp/candidate.o": "346224e87f08d2f43ade01d1b79580d1d84331412a9b302ea2c1df82d4ce2404"
+  },
+  "prior_SDK_composition_bytes": 2312,
+  "prior_registration_layout_and_Flash_contracts_retained": true,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_APP_CODE_bytes": 0,
+  "startup_completed_proved": false,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "physical_atomicity_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "vendor_network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "feature_candidates": [
+    {
+      "name": "Scheduler event-merge and callback-reentry diagnostics",
+      "implemented": false,
+      "basis": "The task index is reloaded after a handler;one local handler site does not bound nested reentry",
+      "requires": [
+        "verified handler lifecycle and RAM ownership",
+        "safe observation points without changing event ordering",
+        "whole-program IRQ/stack budget and actual installed ROM/ISA"
+      ]
+    }
+  ]
+}
