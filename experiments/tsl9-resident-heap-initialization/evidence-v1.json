@@ -1,0 +1,578 @@
+{
+  "firmware": "analysis/wch-resident-candidate-2026-10-21/carrier-dec2023/REFERENCE-CANDIDATE-ONLY-00040000-0006EA66.bin",
+  "firmware_sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22",
+  "header": "analysis/wch-resident-candidate-2026-10-21/original-dec2023/wchble_rom.h",
+  "header_sha256": "647a185941fedeb6ba16d544d9bca91a6f53219bb649a5513b59abeb21a9a94c",
+  "instruction_reference": "analysis/wch-resident-candidate-2026-10-21/instruction-reference/RISCVInstrInfoXwch.td",
+  "instruction_reference_sha256": "d18a5c4d0722e20d3d0398f180931118a5125c9ada56a64d32c602ad5bd71490",
+  "mapping_proof": "analysis/resident-copy-reference-2026-10-21/source/contract.json",
+  "mapping_proof_sha256": "fa9d58135f1b6c599d6f2e16f65f6a0000589a10e921ab649dc4e046287efc36",
+  "official_vectors": {
+    "path": "analysis/wch-resident-candidate-2026-10-21/instruction-reference/xwchc-valid.s",
+    "sha256": "d4b64865497e1ecb8a8e3089c5bdc961b54cdedcdb8c3116bf679c70df683b32",
+    "checked": [
+      {
+        "line": 53,
+        "word": 8194,
+        "instruction": "qk.c.lhu s0, 0(s0)"
+      },
+      {
+        "line": 56,
+        "word": 8194,
+        "instruction": "qk.c.lhu s0, 0(s0)"
+      },
+      {
+        "line": 59,
+        "word": 8226,
+        "instruction": "qk.c.lhu s0, 2(s0)"
+      },
+      {
+        "line": 62,
+        "word": 8258,
+        "instruction": "qk.c.lhu s0, 4(s0)"
+      },
+      {
+        "line": 65,
+        "word": 9218,
+        "instruction": "qk.c.lhu s0, 8(s0)"
+      },
+      {
+        "line": 68,
+        "word": 10242,
+        "instruction": "qk.c.lhu s0, 16(s0)"
+      },
+      {
+        "line": 71,
+        "word": 12290,
+        "instruction": "qk.c.lhu s0, 32(s0)"
+      },
+      {
+        "line": 75,
+        "word": 40962,
+        "instruction": "qk.c.sh s0, 0(s0)"
+      },
+      {
+        "line": 78,
+        "word": 40962,
+        "instruction": "qk.c.sh s0, 0(s0)"
+      },
+      {
+        "line": 81,
+        "word": 40994,
+        "instruction": "qk.c.sh s0, 2(s0)"
+      },
+      {
+        "line": 84,
+        "word": 41026,
+        "instruction": "qk.c.sh s0, 4(s0)"
+      },
+      {
+        "line": 87,
+        "word": 41986,
+        "instruction": "qk.c.sh s0, 8(s0)"
+      },
+      {
+        "line": 90,
+        "word": 43010,
+        "instruction": "qk.c.sh s0, 16(s0)"
+      },
+      {
+        "line": 93,
+        "word": 45058,
+        "instruction": "qk.c.sh s0, 32(s0)"
+      }
+    ]
+  },
+  "schema": "TSL9-public-SDK-heap-initialization-candidates-v1",
+  "selected_functions": [
+    {
+      "name": "tsl9_candidate_heap_free_sum_430e0",
+      "start": 274656,
+      "end": 274692,
+      "source_start": 274656,
+      "source_end": 274692,
+      "file_map_base": 262144,
+      "operations": [
+        {
+          "addr": 274656,
+          "size": 4,
+          "bytes": "b7370020",
+          "opcode": "lui a5, 0x20003",
+          "type": "mov",
+          "source_flash_PC": 274656
+        },
+        {
+          "addr": 274660,
+          "size": 4,
+          "bytes": "37370020",
+          "opcode": "lui a4, 0x20003",
+          "type": "mov",
+          "source_flash_PC": 274660
+        },
+        {
+          "addr": 274664,
+          "size": 4,
+          "bytes": "83a74719",
+          "opcode": "lw a5, 404(a5)",
+          "type": "load",
+          "source_flash_PC": 274664
+        },
+        {
+          "addr": 274668,
+          "size": 4,
+          "bytes": "0327c718",
+          "opcode": "lw a4, 396(a4)",
+          "type": "load",
+          "source_flash_PC": 274668
+        },
+        {
+          "addr": 274672,
+          "size": 2,
+          "bytes": "0145",
+          "opcode": "li a0, 0",
+          "type": "mov",
+          "source_flash_PC": 274672
+        },
+        {
+          "addr": 274674,
+          "size": 4,
+          "bytes": "6313f700",
+          "opcode": "bne a4, a5, 0x430f8",
+          "type": "cjmp",
+          "source_flash_PC": 274674
+        },
+        {
+          "addr": 274678,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret",
+          "source_flash_PC": 274678
+        },
+        {
+          "addr": 274680,
+          "size": 2,
+          "bytes": "f623",
+          "opcode": "qk.c.lhu a3, 6(a5)",
+          "type": "load",
+          "source_flash_PC": 274680,
+          "standard_decoder_opcode": "fld ft7, 344(sp)",
+          "conditional_Xwchc": true
+        },
+        {
+          "addr": 274682,
+          "size": 2,
+          "bytes": "99e2",
+          "opcode": "bnez a3, 0x43100",
+          "type": "cjmp",
+          "source_flash_PC": 274682
+        },
+        {
+          "addr": 274684,
+          "size": 2,
+          "bytes": "d623",
+          "opcode": "qk.c.lhu a3, 4(a5)",
+          "type": "load",
+          "source_flash_PC": 274684,
+          "standard_decoder_opcode": "fld ft7, 336(sp)",
+          "conditional_Xwchc": true
+        },
+        {
+          "addr": 274686,
+          "size": 2,
+          "bytes": "3695",
+          "opcode": "add a0, a0, a3",
+          "type": "add",
+          "source_flash_PC": 274686
+        },
+        {
+          "addr": 274688,
+          "size": 2,
+          "bytes": "9c43",
+          "opcode": "lw a5, 0(a5)",
+          "type": "load",
+          "source_flash_PC": 274688
+        },
+        {
+          "addr": 274690,
+          "size": 2,
+          "bytes": "c5bf",
+          "opcode": "j 0x430f2",
+          "type": "jmp",
+          "source_flash_PC": 274690
+        }
+      ],
+      "original_sha256": "8f1f4e0425a68707da3ab94395611ae4190c0c42917bd52688d01d893d8bb035"
+    },
+    {
+      "name": "tsl9_candidate_heap_initialize_43104",
+      "start": 274692,
+      "end": 274804,
+      "source_start": 274692,
+      "source_end": 274804,
+      "file_map_base": 262144,
+      "operations": [
+        {
+          "addr": 274692,
+          "size": 4,
+          "bytes": "b7370020",
+          "opcode": "lui a5, 0x20003",
+          "type": "mov",
+          "source_flash_PC": 274692
+        },
+        {
+          "addr": 274696,
+          "size": 4,
+          "bytes": "83a5c71e",
+          "opcode": "lw a1, 492(a5)",
+          "type": "load",
+          "source_flash_PC": 274696
+        },
+        {
+          "addr": 274700,
+          "size": 4,
+          "bytes": "37370020",
+          "opcode": "lui a4, 0x20003",
+          "type": "mov",
+          "source_flash_PC": 274700
+        },
+        {
+          "addr": 274704,
+          "size": 4,
+          "bytes": "9387c71e",
+          "opcode": "addi a5, a5, 492",
+          "type": "add",
+          "source_flash_PC": 274704
+        },
+        {
+          "addr": 274708,
+          "size": 4,
+          "bytes": "13860522",
+          "opcode": "addi a2, a1, 544",
+          "type": "add",
+          "source_flash_PC": 274708
+        },
+        {
+          "addr": 274712,
+          "size": 4,
+          "bytes": "232ac718",
+          "opcode": "sw a2, 404(a4)",
+          "type": "store",
+          "source_flash_PC": 274712
+        },
+        {
+          "addr": 274716,
+          "size": 2,
+          "bytes": "da23",
+          "opcode": "qk.c.lhu a4, 4(a5)",
+          "type": "load",
+          "source_flash_PC": 274716,
+          "standard_decoder_opcode": "fld ft7, 400(sp)",
+          "conditional_Xwchc": true
+        },
+        {
+          "addr": 274718,
+          "size": 4,
+          "bytes": "938785ff",
+          "opcode": "addi a5, a1, -8",
+          "type": "add",
+          "source_flash_PC": 274718
+        },
+        {
+          "addr": 274722,
+          "size": 4,
+          "bytes": "b7360020",
+          "opcode": "lui a3, 0x20003",
+          "type": "mov",
+          "source_flash_PC": 274722
+        },
+        {
+          "addr": 274726,
+          "size": 2,
+          "bytes": "4111",
+          "opcode": "addi sp, sp, -16",
+          "type": "add",
+          "source_flash_PC": 274726
+        },
+        {
+          "addr": 274728,
+          "size": 2,
+          "bytes": "ba97",
+          "opcode": "add a5, a5, a4",
+          "type": "add",
+          "source_flash_PC": 274728
+        },
+        {
+          "addr": 274730,
+          "size": 2,
+          "bytes": "0565",
+          "opcode": "lui a0, 0x1",
+          "type": "mov",
+          "source_flash_PC": 274730
+        },
+        {
+          "addr": 274732,
+          "size": 4,
+          "bytes": "23a6f618",
+          "opcode": "sw a5, 396(a3)",
+          "type": "store",
+          "source_flash_PC": 274732
+        },
+        {
+          "addr": 274736,
+          "size": 2,
+          "bytes": "06c6",
+          "opcode": "sw ra, 12(sp)",
+          "type": "store",
+          "source_flash_PC": 274736
+        },
+        {
+          "addr": 274738,
+          "size": 2,
+          "bytes": "1d05",
+          "opcode": "addi a0, a0, 7",
+          "type": "add",
+          "source_flash_PC": 274738
+        },
+        {
+          "addr": 274740,
+          "size": 4,
+          "bytes": "93563700",
+          "opcode": "srli a3, a4, 0x3",
+          "type": "shr",
+          "source_flash_PC": 274740
+        },
+        {
+          "addr": 274744,
+          "size": 4,
+          "bytes": "6374e500",
+          "opcode": "bleu a4, a0, 0x43140",
+          "type": "cjmp",
+          "source_flash_PC": 274744
+        },
+        {
+          "addr": 274748,
+          "size": 4,
+          "bytes": "93060020",
+          "opcode": "li a3, 512",
+          "type": "mov",
+          "source_flash_PC": 274748
+        },
+        {
+          "addr": 274752,
+          "size": 4,
+          "bytes": "3307d600",
+          "opcode": "add a4, a2, a3",
+          "type": "add",
+          "source_flash_PC": 274752
+        },
+        {
+          "addr": 274756,
+          "size": 4,
+          "bytes": "37350020",
+          "opcode": "lui a0, 0x20003",
+          "type": "mov",
+          "source_flash_PC": 274756
+        },
+        {
+          "addr": 274760,
+          "size": 4,
+          "bytes": "2328e518",
+          "opcode": "sw a4, 400(a0)",
+          "type": "store",
+          "source_flash_PC": 274760
+        },
+        {
+          "addr": 274764,
+          "size": 4,
+          "bytes": "23a0e522",
+          "opcode": "sw a4, 544(a1)",
+          "type": "store",
+          "source_flash_PC": 274764
+        },
+        {
+          "addr": 274768,
+          "size": 2,
+          "bytes": "e116",
+          "opcode": "addi a3, a3, -8",
+          "type": "add",
+          "source_flash_PC": 274768
+        },
+        {
+          "addr": 274770,
+          "size": 2,
+          "bytes": "56a2",
+          "opcode": "qk.c.sh a3, 4(a2)",
+          "type": "store",
+          "source_flash_PC": 274770,
+          "standard_decoder_opcode": "fsd fs5, 256(sp)",
+          "conditional_Xwchc": true
+        },
+        {
+          "addr": 274772,
+          "size": 4,
+          "bytes": "23130600",
+          "opcode": "sh zero, 6(a2)",
+          "type": "store",
+          "source_flash_PC": 274772
+        },
+        {
+          "addr": 274776,
+          "size": 2,
+          "bytes": "1cc3",
+          "opcode": "sw a5, 0(a4)",
+          "type": "store",
+          "source_flash_PC": 274776
+        },
+        {
+          "addr": 274778,
+          "size": 2,
+          "bytes": "998f",
+          "opcode": "sub a5, a5, a4",
+          "type": "sub",
+          "source_flash_PC": 274778
+        },
+        {
+          "addr": 274780,
+          "size": 2,
+          "bytes": "e117",
+          "opcode": "addi a5, a5, -8",
+          "type": "add",
+          "source_flash_PC": 274780
+        },
+        {
+          "addr": 274782,
+          "size": 2,
+          "bytes": "5ea3",
+          "opcode": "qk.c.sh a5, 4(a4)",
+          "type": "store",
+          "source_flash_PC": 274782,
+          "standard_decoder_opcode": "fsd fs7, 384(sp)",
+          "conditional_Xwchc": true
+        },
+        {
+          "addr": 274784,
+          "size": 4,
+          "bytes": "23130700",
+          "opcode": "sh zero, 6(a4)",
+          "type": "store",
+          "source_flash_PC": 274784
+        },
+        {
+          "addr": 274788,
+          "size": 2,
+          "bytes": "b53f",
+          "opcode": "jal 0x430e0",
+          "type": "call",
+          "source_flash_PC": 274788
+        },
+        {
+          "addr": 274790,
+          "size": 2,
+          "bytes": "b240",
+          "opcode": "lw ra, 12(sp)",
+          "type": "load",
+          "source_flash_PC": 274790
+        },
+        {
+          "addr": 274792,
+          "size": 4,
+          "bytes": "b7370020",
+          "opcode": "lui a5, 0x20003",
+          "type": "mov",
+          "source_flash_PC": 274792
+        },
+        {
+          "addr": 274796,
+          "size": 4,
+          "bytes": "2391a71a",
+          "opcode": "sh a0, 418(a5)",
+          "type": "store",
+          "source_flash_PC": 274796
+        },
+        {
+          "addr": 274800,
+          "size": 2,
+          "bytes": "4101",
+          "opcode": "addi sp, sp, 16",
+          "type": "add",
+          "source_flash_PC": 274800
+        },
+        {
+          "addr": 274802,
+          "size": 2,
+          "bytes": "8280",
+          "opcode": "ret",
+          "type": "ret",
+          "source_flash_PC": 274802
+        }
+      ],
+      "original_sha256": "08fabd9e35085e531dc922755f25e9bbc0b59436321f0e379a98382cafc8bc9f"
+    }
+  ],
+  "code_bytes": 148,
+  "instructions": 49,
+  "target_names": {},
+  "reference_roles": {},
+  "conditional_custom_operations": [
+    {
+      "PC": 274680,
+      "word": 9206,
+      "instruction": "qk.c.lhu a3, 6(a5)"
+    },
+    {
+      "PC": 274684,
+      "word": 9174,
+      "instruction": "qk.c.lhu a3, 4(a5)"
+    },
+    {
+      "PC": 274716,
+      "word": 9178,
+      "instruction": "qk.c.lhu a4, 4(a5)"
+    },
+    {
+      "PC": 274770,
+      "word": 41558,
+      "instruction": "qk.c.sh a3, 4(a2)"
+    },
+    {
+      "PC": 274782,
+      "word": 41822,
+      "instruction": "qk.c.sh a5, 4(a4)"
+    }
+  ],
+  "SDK_candidate_only": true,
+  "candidate_only": true,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "APP_byte_coverage_unchanged": 95.54,
+  "raw_dependencies": [
+    {
+      "address": 536883692,
+      "role": "candidate bleConfig_t base; word MEMAddr at+0 and halfword MEMLen at+4"
+    },
+    {
+      "address": 536883604,
+      "role": "small/head pointer word written by initializer"
+    },
+    {
+      "address": 536883600,
+      "role": "large region pointer word written by initializer"
+    },
+    {
+      "address": 536883596,
+      "role": "sentinel pointer word written by initializer"
+    },
+    {
+      "address": 536883618,
+      "role": "available-byte accounting halfword written by initializer"
+    }
+  ],
+  "opaque_transfers": [],
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "new_BIN": false
+}

@@ -1,0 +1,656 @@
+{
+  "candidate_contract": {
+    "conditional_SDK_only": true,
+    "configuration_MEMAddr_offset": 0,
+    "configuration_MEMLen_offset": 4,
+    "configuration_base": 536883692,
+    "first_node": "MEMAddr+544",
+    "hardware_accessed": false,
+    "heap_block_header_bytes": 8,
+    "heap_node_prefix_bytes": 544,
+    "initializer_calls_free_sum_at": 274788,
+    "input_bounds_validated_by_this_helper": false,
+    "installed_ROM_identity_proved": false,
+    "large_node": "first_node+small_region_span",
+    "normal_initializer_tail_calls_free_sum": false,
+    "opaque_transfers": [],
+    "physical_RAM_capacity_proved": false,
+    "raw_configuration_provided": false,
+    "raw_dependencies": [
+      {
+        "address": 536883692,
+        "role": "candidate bleConfig_t base; word MEMAddr at+0 and halfword MEMLen at+4"
+      },
+      {
+        "address": 536883604,
+        "role": "small/head pointer word written by initializer"
+      },
+      {
+        "address": 536883600,
+        "role": "large region pointer word written by initializer"
+      },
+      {
+        "address": 536883596,
+        "role": "sentinel pointer word written by initializer"
+      },
+      {
+        "address": 536883618,
+        "role": "available-byte accounting halfword written by initializer"
+      }
+    ],
+    "runtime_closed": false,
+    "sentinel": "MEMAddr+MEMLen-8",
+    "sizes_truncated_to_halfwords": true,
+    "small_region_span": "min(MEMLen >>3,512)"
+  },
+  "inputs": {
+    "${CLANG_RESOURCE}\\include\\stdint.h": {
+      "bytes": 30946,
+      "sha256": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34"
+    },
+    "${LLVM_BIN}\\clang.exe": {
+      "bytes": 126673512,
+      "sha256": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6"
+    },
+    "${LLVM_BIN}\\ld.lld.exe": {
+      "bytes": 73834600,
+      "sha256": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "${LLVM_BIN}\\llvm-objcopy.exe": {
+      "bytes": 5830248,
+      "sha256": "e5590a8f45e93f322f0829b91dbddb74e8c1eb91436d13161abc773aebf64469"
+    },
+    "${LLVM_BIN}\\llvm-objdump.exe": {
+      "bytes": 18311272,
+      "sha256": "de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa"
+    },
+    "${PROJECT_ROOT}\\analysis\\resident-copy-reference-2026-10-21\\source\\contract.json": {
+      "bytes": 6977,
+      "sha256": "fa9d58135f1b6c599d6f2e16f65f6a0000589a10e921ab649dc4e046287efc36"
+    },
+    "${PROJECT_ROOT}\\analysis\\safe-gap-integration-2026-10-26\\summary.json": {
+      "bytes": 1995,
+      "sha256": "1dcf75e593881b0a19c7f9d12cc30ab2d3439743452a5972852379802cbb02c5"
+    },
+    "${PROJECT_ROOT}\\analysis\\v4160-irq-native-2026-10-21\\compiler-review\\elf32.py": {
+      "bytes": 3960,
+      "sha256": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141"
+    },
+    "${PROJECT_ROOT}\\analysis\\wch-resident-candidate-2026-10-21\\carrier-dec2023\\REFERENCE-CANDIDATE-ONLY-00040000-0006EA66.bin": {
+      "bytes": 191078,
+      "sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22"
+    },
+    "${PROJECT_ROOT}\\analysis\\wch-resident-candidate-2026-10-21\\instruction-reference\\RISCVInstrInfoXwch.td": {
+      "bytes": 6117,
+      "sha256": "d18a5c4d0722e20d3d0398f180931118a5125c9ada56a64d32c602ad5bd71490"
+    },
+    "${PROJECT_ROOT}\\analysis\\wch-resident-candidate-2026-10-21\\instruction-reference\\xwchc-valid.s": {
+      "bytes": 5306,
+      "sha256": "d4b64865497e1ecb8a8e3089c5bdc961b54cdedcdb8c3116bf679c70df683b32"
+    },
+    "${PROJECT_ROOT}\\analysis\\wch-resident-candidate-2026-10-21\\original-dec2023\\wchble_rom.h": {
+      "bytes": 243435,
+      "sha256": "647a185941fedeb6ba16d544d9bca91a6f53219bb649a5513b59abeb21a9a94c"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-feature-dispatch-tree\\elf_reader-v5.py": {
+      "bytes": 4371,
+      "sha256": "a56503572e8b65308ae1c8978ba5a6d44d0a20cd969315dc1b12103b59a9b43a"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-original-startup\\build-v1.py": {
+      "bytes": 12139,
+      "sha256": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-remaining-record-dispatch\\compare-readers-v1.py": {
+      "bytes": 2942,
+      "sha256": "ed30870a8862a230a0399fcf7ba273078cba2840d005d61799d17cee8f46b223"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build-v1.py": {
+      "bytes": 14349,
+      "sha256": "128a41eb8f7b6ec6abdacaa6bfeb7cc9c35297436902110b055db57d7def0d54"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\config_abi.c": {
+      "bytes": 929,
+      "sha256": "3f7b70508e9379dca2e1b5fbbedf8d81b598eec9b3d024042188e956d9dad985"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\derive-v1.py": {
+      "bytes": 11835,
+      "sha256": "aa7a68a3a2b69f892f85775925af330916003067189ba1d893706bbe7ba48f66"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\evidence-v1.json": {
+      "bytes": 14863,
+      "sha256": "6b5a4b92e0675bb208ad3b06be19879a27670fa94045df4f80357f2ea7020aa5"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\resident_heap_initialization.c": {
+      "bytes": 6370,
+      "sha256": "7bac6ea385b1469ffd7ce4ae647a8cf84919ecc3758b03969e1dc3319735c0bd"
+    },
+    "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\spec-v1.json": {
+      "bytes": 7768,
+      "sha256": "900c2f953b21cde58f531729da0f73908ebc6cf4a0e7f6705a6267c2c28ca8ed"
+    },
+    "${PROJECT_ROOT}\\firmware-downloads\\legacy-options-2026-10-20\\BINs\\ID-2966-V4.1.60-decoded.bin": {
+      "bytes": 76800,
+      "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667"
+    },
+    "${PROJECT_ROOT}\\scripts\\verify-curated-source.py": {
+      "bytes": 63664,
+      "sha256": "1b07fcc89584794389b87c1721e9669285cd5948f9cfbe8be979cf071e7b3832"
+    },
+    "${PROJECT_ROOT}\\src\\source-manifest.json": {
+      "bytes": 181941,
+      "sha256": "9a236345dc8618eac74f3d0ed884294d71e1b37b6dead078dafe1bc447d30689"
+    }
+  },
+  "modes": {
+    "c": {
+      "ABI_result": {
+        "MEMAddr_offset": 0,
+        "MEMLen_offset": 4,
+        "RV32_pointer_bytes": 4,
+        "SDK_configuration_base": 536883692,
+        "allocated_bytes": 0,
+        "configuration_alignment": 4,
+        "configuration_bytes": 64,
+        "derived_staCB_storage": 536883744,
+        "independent_readers": {
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "hardware_accessed": false,
+          "network": false,
+          "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+          "only_section_ceiling_and_doc_changed": true,
+          "passed": true,
+          "relocations": 0,
+          "sections": 8,
+          "symbols": 4,
+          "target_executed": false
+        },
+        "installed_layout_proved": false,
+        "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+        "passed": true,
+        "staCB_offset": 52,
+        "staCB_pointer_bytes": 4,
+        "target_executed": false
+      },
+      "artifacts": {
+        "compile-ABI.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "config_abi.d": {
+          "bytes": 1440,
+          "sha256": "cd8ddb279316505f3745d043559ca34f1dbe2cd03057f6d3dfcf13b5c7d79b9b"
+        },
+        "config_abi.o": {
+          "bytes": 764,
+          "sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17"
+        },
+        "read-ABI.log": {
+          "bytes": 680,
+          "sha256": "da533ae23024e1d63f5485131683a0779c4c1e4f4f1bc9588125aac892edefa2"
+        },
+        "read.log": {
+          "bytes": 5987,
+          "sha256": "2a108bff76479c45ee6cdb91428bec4f15fd01733bd65b29bd9e549cce33e42a"
+        },
+        "unit.d": {
+          "bytes": 273,
+          "sha256": "5b9e0535b1f1ea061e361367447b005d81dc57d0c2863ef186200efde69c969f"
+        },
+        "unit.o": {
+          "bytes": 2672,
+          "sha256": "db64a44c4f27540cc0dad35dcf613cb8f6c95231ffe0b29e98f2c3a5cf980b1d"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr_zifencei",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\c\\unit.d",
+            "-MT",
+            "unit.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\resident_heap_initialization.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\c\\unit.o"
+          ],
+          "exit": 0,
+          "label": "compile"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-h",
+            "-t",
+            "-r",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\c\\unit.o"
+          ],
+          "exit": 0,
+          "label": "read"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr_zifencei",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c",
+            "-std=c11",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\c\\config_abi.d",
+            "-MT",
+            "config_abi.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\config_abi.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\c\\config_abi.o"
+          ],
+          "exit": 0,
+          "label": "compile-ABI"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-h",
+            "-t",
+            "-r",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\c\\config_abi.o"
+          ],
+          "exit": 0,
+          "label": "read-ABI"
+        }
+      ],
+      "dependencies": {
+        "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\resident_heap_initialization.c": "7bac6ea385b1469ffd7ce4ae647a8cf84919ecc3758b03969e1dc3319735c0bd"
+      },
+      "result": {
+        "APP_byte_coverage_unchanged": 95.54,
+        "CODE_bytes": 148,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "SDK_candidate_only": true,
+        "UND": [],
+        "actual_original_address_link_performed": false,
+        "all_original_SDK_VA_encoded_bytes_equal": true,
+        "compiler_arch_attribute_is_not_physical_ISA_proof": true,
+        "direct_controls": 5,
+        "explicit_conditional_Xwchc_LHU_SH_ports": 5,
+        "far_call_pairs": 0,
+        "firmware_ready": false,
+        "hardware_accessed": false,
+        "independent_readers": {
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "hardware_accessed": false,
+          "network": false,
+          "object_sha256": "db64a44c4f27540cc0dad35dcf613cb8f6c95231ffe0b29e98f2c3a5cf980b1d",
+          "only_section_ceiling_and_doc_changed": true,
+          "passed": true,
+          "relocations": 5,
+          "sections": 23,
+          "symbols": 32,
+          "target_executed": false
+        },
+        "installed_ROM_identity_proved": false,
+        "instructions": 49,
+        "network": false,
+        "new_BIN": false,
+        "object_sha256": "db64a44c4f27540cc0dad35dcf613cb8f6c95231ffe0b29e98f2c3a5cf980b1d",
+        "opaque_callbacks_not_provided": 0,
+        "passed": true,
+        "positive_FUNC_regions": 10,
+        "raw_RAM_dependencies_not_provided": true,
+        "relocations": 5,
+        "runtime_closed": false,
+        "target_executed": false
+      }
+    },
+    "cpp": {
+      "ABI_result": {
+        "MEMAddr_offset": 0,
+        "MEMLen_offset": 4,
+        "RV32_pointer_bytes": 4,
+        "SDK_configuration_base": 536883692,
+        "allocated_bytes": 0,
+        "configuration_alignment": 4,
+        "configuration_bytes": 64,
+        "derived_staCB_storage": 536883744,
+        "independent_readers": {
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "hardware_accessed": false,
+          "network": false,
+          "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+          "only_section_ceiling_and_doc_changed": true,
+          "passed": true,
+          "relocations": 0,
+          "sections": 8,
+          "symbols": 4,
+          "target_executed": false
+        },
+        "installed_layout_proved": false,
+        "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+        "passed": true,
+        "staCB_offset": 52,
+        "staCB_pointer_bytes": 4,
+        "target_executed": false
+      },
+      "artifacts": {
+        "compile-ABI.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "compile.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "config_abi.d": {
+          "bytes": 1586,
+          "sha256": "cfb536d633547e73ae56d5462f8073b54c4218273cf0ec20b9abb28c9a3362b7"
+        },
+        "config_abi.o": {
+          "bytes": 764,
+          "sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17"
+        },
+        "read-ABI.log": {
+          "bytes": 682,
+          "sha256": "3f00c20a91d8031bc71361bd09451a99c1fca6cf6227a44155ba4ab0a3b171fd"
+        },
+        "read.log": {
+          "bytes": 5989,
+          "sha256": "737a007e959046786d6855056a7a5197a833d6136973943c0c6b0b5ab5111af6"
+        },
+        "unit.d": {
+          "bytes": 273,
+          "sha256": "5b9e0535b1f1ea061e361367447b005d81dc57d0c2863ef186200efde69c969f"
+        },
+        "unit.o": {
+          "bytes": 2672,
+          "sha256": "db64a44c4f27540cc0dad35dcf613cb8f6c95231ffe0b29e98f2c3a5cf980b1d"
+        }
+      },
+      "commands": [
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr_zifencei",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\cpp\\unit.d",
+            "-MT",
+            "unit.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\resident_heap_initialization.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\cpp\\unit.o"
+          ],
+          "exit": 0,
+          "label": "compile"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-h",
+            "-t",
+            "-r",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\cpp\\unit.o"
+          ],
+          "exit": 0,
+          "label": "read"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\clang.exe",
+            "--target=riscv32-unknown-elf",
+            "-march=rv32imac_zicsr_zifencei",
+            "-mabi=ilp32",
+            "-Oz",
+            "-mllvm",
+            "-enable-machine-outliner=never",
+            "-ffreestanding",
+            "-fno-builtin",
+            "-fno-stack-protector",
+            "-fno-unwind-tables",
+            "-fno-asynchronous-unwind-tables",
+            "-mno-relax",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-x",
+            "c++",
+            "-std=c++17",
+            "-fno-exceptions",
+            "-ffixed-x1",
+            "-ffixed-x2",
+            "-ffixed-x3",
+            "-ffixed-x4",
+            "-ffixed-x5",
+            "-ffixed-x6",
+            "-ffixed-x7",
+            "-ffixed-x8",
+            "-ffixed-x9",
+            "-ffixed-x16",
+            "-ffixed-x17",
+            "-ffixed-x18",
+            "-ffixed-x19",
+            "-ffixed-x20",
+            "-ffixed-x21",
+            "-ffixed-x22",
+            "-ffixed-x23",
+            "-ffixed-x24",
+            "-ffixed-x25",
+            "-ffixed-x26",
+            "-ffixed-x27",
+            "-ffixed-x28",
+            "-ffixed-x29",
+            "-ffixed-x30",
+            "-ffixed-x31",
+            "-MD",
+            "-MF",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\cpp\\config_abi.d",
+            "-MT",
+            "config_abi.o",
+            "-c",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\config_abi.c",
+            "-o",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\cpp\\config_abi.o"
+          ],
+          "exit": 0,
+          "label": "compile-ABI"
+        },
+        {
+          "argv": [
+            "${LLVM_BIN}\\llvm-objdump.exe",
+            "-h",
+            "-t",
+            "-r",
+            "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\build\\native-v1\\cpp\\config_abi.o"
+          ],
+          "exit": 0,
+          "label": "read-ABI"
+        }
+      ],
+      "dependencies": {
+        "${CLANG_RESOURCE}\\include\\stdint.h": "7ce5540d5fb6e8da9760928e76cbdd5ebef329d701ad598d30d8e6f9d5d78b34",
+        "${PROJECT_ROOT}\\experiments\\tsl9-resident-heap-initialization\\resident_heap_initialization.c": "7bac6ea385b1469ffd7ce4ae647a8cf84919ecc3758b03969e1dc3319735c0bd"
+      },
+      "result": {
+        "APP_byte_coverage_unchanged": 95.54,
+        "CODE_bytes": 148,
+        "HOST_model_executed": false,
+        "ISA_emulated": false,
+        "SDK_candidate_only": true,
+        "UND": [],
+        "actual_original_address_link_performed": false,
+        "all_original_SDK_VA_encoded_bytes_equal": true,
+        "compiler_arch_attribute_is_not_physical_ISA_proof": true,
+        "direct_controls": 5,
+        "explicit_conditional_Xwchc_LHU_SH_ports": 5,
+        "far_call_pairs": 0,
+        "firmware_ready": false,
+        "hardware_accessed": false,
+        "independent_readers": {
+          "all_actual_section_bytes_symbols_and_relocations_equal": true,
+          "hardware_accessed": false,
+          "network": false,
+          "object_sha256": "db64a44c4f27540cc0dad35dcf613cb8f6c95231ffe0b29e98f2c3a5cf980b1d",
+          "only_section_ceiling_and_doc_changed": true,
+          "passed": true,
+          "relocations": 5,
+          "sections": 23,
+          "symbols": 32,
+          "target_executed": false
+        },
+        "installed_ROM_identity_proved": false,
+        "instructions": 49,
+        "network": false,
+        "new_BIN": false,
+        "object_sha256": "db64a44c4f27540cc0dad35dcf613cb8f6c95231ffe0b29e98f2c3a5cf980b1d",
+        "opaque_callbacks_not_provided": 0,
+        "passed": true,
+        "positive_FUNC_regions": 10,
+        "raw_RAM_dependencies_not_provided": true,
+        "relocations": 5,
+        "runtime_closed": false,
+        "target_executed": false
+      }
+    }
+  }
+}
