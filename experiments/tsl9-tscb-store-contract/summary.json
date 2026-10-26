@@ -1,0 +1,87 @@
+{
+  "schema": "TSL9-tsCB-CPU-store-summary-v1",
+  "static_only": true,
+  "passed": true,
+  "checker": "experiments/tsl9-tscb-store-contract/verify-v1.py",
+  "checker_sha256": "04b4d94b2f3ff47b33b2ad625515be2ee54d373f558ab4b15fec171b084dd9ef",
+  "sources_and_receipts": {
+    "experiments/tsl9-tscb-store-contract/instructions-v1.json": "a427b5f2d2d9b95bda48c925c2e676253d20c264abb914fc1fa819baa1967128",
+    "experiments/tsl9-tscb-store-contract/spec-v1.json": "6bc23ee9127de9b344f9b6190a686716fcfaf89df30bd6c34291454d7868fb86",
+    "experiments/tsl9-tscb-store-contract/verify-v1.py": "04b4d94b2f3ff47b33b2ad625515be2ee54d373f558ab4b15fec171b084dd9ef",
+    "experiments/tsl9-tscb-store-contract/verification-v1.json": "e4723e5274633427ef044692956991958c6ea02984c93542ce6148e0fe24de0a"
+  },
+  "callback_range": [
+    104432,
+    104796
+  ],
+  "input_functions": 14,
+  "input_bytes": 1072,
+  "input_instructions": 390,
+  "store_sites": 79,
+  "store_classification": {
+    "local-stack": 27,
+    "numeric-MMIO": 33,
+    "specialized-fill-word": 4,
+    "inactive-fill-tail": 15
+  },
+  "numeric_MMIO_word_addresses": [
+    1073816580,
+    1073816584,
+    1073816588,
+    1073816592,
+    1073816596,
+    1073816600,
+    1073816604,
+    1073816608,
+    1073816612,
+    1073816616,
+    1073816620,
+    1073816624,
+    1073816628,
+    1073816632,
+    1073876996,
+    1073877004,
+    1073877016
+  ],
+  "callback_own_frame_bytes": 128,
+  "local_allocated_stack_depth_bytes": 144,
+  "whole_program_stack_bound_proved": false,
+  "retained_native_objects_verified": 8,
+  "new_target_compilation": false,
+  "new_reconstructed_CODE_bytes": 0,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "prior_SDK_composition_bytes_unchanged": 1336,
+  "conditional_conclusion": "Encoded CPU stores are confined to the local stack/fill intervals and17 numeric peripheral word addresses; excluding CFG/heap requires the explicit stack and hardware nonalias assumptions.",
+  "unproved": [
+    "actual incoming stack address,capacity and nonoverlap with ROM configuration and APP heap",
+    "physical memory mapping and MMIO aliases",
+    "IRQ,DMA and asynchronous peripheral effects",
+    "polling termination and actual completion",
+    "installed ROM/ISA and original-hardware startup/OTA"
+  ],
+  "staCB_value_at_heap_call_proved": false,
+  "total_callback_hardware_side_effects_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "installed_ROM_identity_proved": false,
+  "linked_into_APP": false,
+  "firmware_ready": false,
+  "new_BIN": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "feature_candidates": [
+    {
+      "name": "Callback-stage and wait-state diagnostics",
+      "implemented": false,
+      "requires": [
+        "safe MMIO read semantics",
+        "IRQ and stack budget",
+        "preserved startup behavior"
+      ]
+    }
+  ]
+}

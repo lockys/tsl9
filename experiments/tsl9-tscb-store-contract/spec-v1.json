@@ -1,0 +1,85 @@
+{
+  "schema": "TSL9-tsCB-static-store-spec-v1",
+  "instructions": "experiments/tsl9-tscb-store-contract/instructions-v1.json",
+  "instructions_sha256": "a427b5f2d2d9b95bda48c925c2e676253d20c264abb914fc1fa819baa1967128",
+  "firmware": "firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin",
+  "firmware_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "native_units": [
+    {
+      "unit": "resident-startup",
+      "source": "src/native/startup/resident_startup.c",
+      "source_sha256": "b7994cdf067b05a04910a87f7264f17c750189d75e8db120b4bc1036a2384980",
+      "objects": {
+        "c": {
+          "path": "build/curated-source/safe-gap-20261026-v1/resident-startup/c/curated/unit.o",
+          "sha256": "ae515e889c38cb59f73d9f155185b3faa900166a935a8c5d40717ac0218564e1"
+        },
+        "cpp": {
+          "path": "build/curated-source/safe-gap-20261026-v1/resident-startup/cpp/curated/unit.o",
+          "sha256": "ae515e889c38cb59f73d9f155185b3faa900166a935a8c5d40717ac0218564e1"
+        }
+      }
+    },
+    {
+      "unit": "peripheral-primitives",
+      "source": "src/native/startup/peripheral_primitives.c",
+      "source_sha256": "343d1ef340dc44b5396ae9f7462022e8253c137aadfd8fecd28189abf43f7822",
+      "objects": {
+        "c": {
+          "path": "build/curated-source/safe-gap-20261026-v1/peripheral-primitives/c/curated/unit.o",
+          "sha256": "eb1276c2ad9678d7bb7fb9b8694872f1d1ef59a261cc97246ae8b14bfc8bca56"
+        },
+        "cpp": {
+          "path": "build/curated-source/safe-gap-20261026-v1/peripheral-primitives/cpp/curated/unit.o",
+          "sha256": "eb1276c2ad9678d7bb7fb9b8694872f1d1ef59a261cc97246ae8b14bfc8bca56"
+        }
+      }
+    },
+    {
+      "unit": "irq-initializer",
+      "source": "src/native/irq/irq_initializer.c",
+      "source_sha256": "ee43f500395bb6bda6d76e11e0e384870dd890b7848ae2b3cc22ecb463729ccb",
+      "objects": {
+        "c": {
+          "path": "build/curated-source/safe-gap-20261026-v1/irq-initializer/c/curated/unit.o",
+          "sha256": "43c3150785f2ae620237ab96069ad15367d225e1491a67d87faa63ad661eacc3"
+        },
+        "cpp": {
+          "path": "build/curated-source/safe-gap-20261026-v1/irq-initializer/cpp/curated/unit.o",
+          "sha256": "43c3150785f2ae620237ab96069ad15367d225e1491a67d87faa63ad661eacc3"
+        }
+      }
+    },
+    {
+      "unit": "fill-provider",
+      "source": "src/native/receive/fill_provider.c",
+      "source_sha256": "f0581a4eb5590f7fd393cb2020d595de0f563aa16922720ac52517895381fab0",
+      "objects": {
+        "c": {
+          "path": "build/curated-source/safe-gap-20261026-v1/fill-provider/c/curated/unit.o",
+          "sha256": "0a264405bae55f8374aaad7de93fdf3c65fe78778a4c2e41b84e766748a84f13"
+        },
+        "cpp": {
+          "path": "build/curated-source/safe-gap-20261026-v1/fill-provider/cpp/curated/unit.o",
+          "sha256": "0a264405bae55f8374aaad7de93fdf3c65fe78778a4c2e41b84e766748a84f13"
+        }
+      }
+    }
+  ],
+  "ledger": "build/curated-source/safe-gap-20261026-v1/verification.json",
+  "ledger_sha256": "bcce26a727f65bf38f7620fb358bf86b702f7188f5bb1fc80d9fb9a94684b736",
+  "manifest": "src/source-manifest.json",
+  "manifest_sha256": "9a236345dc8618eac74f3d0ed884294d71e1b37b6dead078dafe1bc447d30689",
+  "control_decoder": "experiments/tsl9-original-startup/build-v1.py",
+  "control_decoder_sha256": "1f6e3673c24a5d85c62d55ec8d8390b80225577010d81c8aba5c4b6750e208b5",
+  "reader": "experiments/tsl9-feature-dispatch-tree/elf_reader-v5.py",
+  "reader_sha256": "a56503572e8b65308ae1c8978ba5a6d44d0a20cd969315dc1b12103b59a9b43a",
+  "independent_reader": "analysis/v4160-irq-native-2026-10-21/compiler-review/elf32.py",
+  "independent_reader_sha256": "00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141",
+  "comparator": "experiments/tsl9-remaining-record-dispatch/compare-readers-v1.py",
+  "comparator_sha256": "ed30870a8862a230a0399fcf7ba273078cba2840d005d61799d17cee8f46b223",
+  "expected_functions": 14,
+  "expected_bytes": 1072,
+  "expected_instructions": 390,
+  "expected_store_sites": 79
+}
