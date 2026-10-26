@@ -1,0 +1,713 @@
+{
+  "schema": "TSL9-safe-gap-native-static-audit-v1",
+  "passed": true,
+  "source": "experiments/tsl9-safe-gap-functions/safe_gap_functions.c",
+  "source_sha256": "e41032ff1b47953fd457567037bd4ef1ff267b3270d62aae0b90c4e8a35478ca",
+  "checkers": {
+    "experiments/tsl9-safe-gap-functions/audit-v1.py": "6ce84595b1a7c7c235a7ebf3abe6d7b0f54165b9e94dfc9ebbca00b759ba1431",
+    "experiments/tsl9-safe-gap-functions/build-v1.py": "83c0fc467523af5700f473379595f310967fb09c42ecb02d989a12c424fdd39f",
+    "experiments/tsl9-safe-gap-functions/derive-v1.py": "31eeacefcbdffb3472037a2021dbad5bd0bfa8a5e8a8aa39ea1f8432fd4be254"
+  },
+  "native_results": {
+    "c": {
+      "independent_reader": {
+        "passed": true,
+        "sections": 115,
+        "symbols": 155,
+        "relocations": 55,
+        "object_sha256": "689adfeead590df7f550b94473531dbb4f96afadf10f11d60247f54e683981d7",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "passed": true,
+      "code_bytes": 764,
+      "original_instructions": 288,
+      "FUNC": 64,
+      "original_functions": 10,
+      "data_bytes": 0,
+      "RELA": 55,
+      "direct_control_relocations": 43,
+      "UND": [
+        "tsl9_callback_external_9124",
+        "tsl9_callback_flow_entry_1070a",
+        "tsl9_callback_flow_entry_135e6",
+        "tsl9_callback_flow_external_9af0",
+        "tsl9_callback_gate_entry_9ad2",
+        "tsl9_callback_provider_entry_13d48",
+        "tsl9_callback_table_entry_90b0",
+        "tsl9_channel_external_16858",
+        "tsl9_channel_external_169dc",
+        "tsl9_channel_external_81b0",
+        "tsl9_dispatch_external_821e",
+        "tsl9_feature_mode_getter_829e",
+        "tsl9_filter_program_18ba2",
+        "tsl9_ota_external_13e98",
+        "tsl9_queue_status_81aa",
+        "tsl9_register_write_entry_16a30",
+        "tsl9_secondary_message_dispatch_entry_13f88"
+      ],
+      "noncontrol_bytes_equal": 580,
+      "all_original_code_VA_encoded_bytes_equal": true,
+      "original_C_dataflow_and_private_ROM_ports_retained": true,
+      "native_object_sha256": "689adfeead590df7f550b94473531dbb4f96afadf10f11d60247f54e683981d7",
+      "original_address_placement_proved": false,
+      "concurrent_state_semantics_proved": false,
+      "private_caller_ABI_proved": false,
+      "physical_MCU_ROM_RAM_IRQ_OTA_proved": false,
+      "target_executed": false,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "hardware_accessed": false,
+      "network": false,
+      "negative_cases_executed": 0,
+      "firmware_BIN_generated": false,
+      "firmware_ready": false
+    },
+    "cpp": {
+      "independent_reader": {
+        "passed": true,
+        "sections": 115,
+        "symbols": 155,
+        "relocations": 55,
+        "object_sha256": "689adfeead590df7f550b94473531dbb4f96afadf10f11d60247f54e683981d7",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "passed": true,
+      "code_bytes": 764,
+      "original_instructions": 288,
+      "FUNC": 64,
+      "original_functions": 10,
+      "data_bytes": 0,
+      "RELA": 55,
+      "direct_control_relocations": 43,
+      "UND": [
+        "tsl9_callback_external_9124",
+        "tsl9_callback_flow_entry_1070a",
+        "tsl9_callback_flow_entry_135e6",
+        "tsl9_callback_flow_external_9af0",
+        "tsl9_callback_gate_entry_9ad2",
+        "tsl9_callback_provider_entry_13d48",
+        "tsl9_callback_table_entry_90b0",
+        "tsl9_channel_external_16858",
+        "tsl9_channel_external_169dc",
+        "tsl9_channel_external_81b0",
+        "tsl9_dispatch_external_821e",
+        "tsl9_feature_mode_getter_829e",
+        "tsl9_filter_program_18ba2",
+        "tsl9_ota_external_13e98",
+        "tsl9_queue_status_81aa",
+        "tsl9_register_write_entry_16a30",
+        "tsl9_secondary_message_dispatch_entry_13f88"
+      ],
+      "noncontrol_bytes_equal": 580,
+      "all_original_code_VA_encoded_bytes_equal": true,
+      "original_C_dataflow_and_private_ROM_ports_retained": true,
+      "native_object_sha256": "689adfeead590df7f550b94473531dbb4f96afadf10f11d60247f54e683981d7",
+      "original_address_placement_proved": false,
+      "concurrent_state_semantics_proved": false,
+      "private_caller_ABI_proved": false,
+      "physical_MCU_ROM_RAM_IRQ_OTA_proved": false,
+      "target_executed": false,
+      "HOST_model_executed": false,
+      "ISA_emulated": false,
+      "hardware_accessed": false,
+      "network": false,
+      "negative_cases_executed": 0,
+      "firmware_BIN_generated": false,
+      "firmware_ready": false
+    }
+  },
+  "candidate_bodies": 10,
+  "code_bytes": 764,
+  "original_instructions": 288,
+  "positive_native_FUNC_regions": 64,
+  "direct_controls": [
+    {
+      "PC": 33230,
+      "target_PC": 33200,
+      "kind": 45,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 39698,
+      "target_PC": 37040,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 39706,
+      "target_PC": 39726,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 39732,
+      "target_PC": 39664,
+      "kind": 45,
+      "call": false,
+      "conditional": false
+    },
+    {
+      "PC": 76404,
+      "target_PC": 67338,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 76410,
+      "target_PC": 76442,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 76432,
+      "target_PC": 101282,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 76442,
+      "target_PC": 93298,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 76446,
+      "target_PC": 76436,
+      "kind": 45,
+      "call": false,
+      "conditional": false
+    },
+    {
+      "PC": 79476,
+      "target_PC": 79558,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 79508,
+      "target_PC": 79334,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 79516,
+      "target_PC": 79520,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 79532,
+      "target_PC": 37156,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 79536,
+      "target_PC": 79558,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 79588,
+      "target_PC": 79670,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 79620,
+      "target_PC": 79334,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 79628,
+      "target_PC": 79632,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 79644,
+      "target_PC": 37156,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 79648,
+      "target_PC": 79670,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 79704,
+      "target_PC": 79798,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 79728,
+      "target_PC": 79734,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 79746,
+      "target_PC": 79756,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 79748,
+      "target_PC": 79334,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 79754,
+      "target_PC": 79760,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 79772,
+      "target_PC": 37156,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 79776,
+      "target_PC": 79798,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 81376,
+      "target_PC": 37040,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 81382,
+      "target_PC": 81224,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 81386,
+      "target_PC": 33194,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 81390,
+      "target_PC": 81416,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 81412,
+      "target_PC": 37156,
+      "kind": 17,
+      "call": false,
+      "conditional": false
+    },
+    {
+      "PC": 81718,
+      "target_PC": 81764,
+      "kind": 44,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 81742,
+      "target_PC": 81560,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 85202,
+      "target_PC": 33310,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 85210,
+      "target_PC": 33310,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 85222,
+      "target_PC": 33310,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 85228,
+      "target_PC": 33438,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 93308,
+      "target_PC": 93378,
+      "kind": 16,
+      "call": false,
+      "conditional": true
+    },
+    {
+      "PC": 93322,
+      "target_PC": 92248,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 93332,
+      "target_PC": 92636,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 93346,
+      "target_PC": 92720,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 93360,
+      "target_PC": 92720,
+      "kind": 17,
+      "call": true,
+      "conditional": false
+    },
+    {
+      "PC": 93374,
+      "target_PC": 92636,
+      "kind": 17,
+      "call": false,
+      "conditional": false
+    }
+  ],
+  "non_return_indirect_transfers": [
+    {
+      "PC": 79474,
+      "kind": "opaque-indirect-call",
+      "normal_return_position": 79476,
+      "runtime_target_proved": false
+    },
+    {
+      "PC": 79556,
+      "kind": "opaque-indirect-tail",
+      "runtime_target_proved": false
+    },
+    {
+      "PC": 79586,
+      "kind": "opaque-indirect-call",
+      "normal_return_position": 79588,
+      "runtime_target_proved": false
+    },
+    {
+      "PC": 79668,
+      "kind": "opaque-indirect-tail",
+      "runtime_target_proved": false
+    },
+    {
+      "PC": 79702,
+      "kind": "opaque-indirect-call",
+      "normal_return_position": 79704,
+      "runtime_target_proved": false
+    },
+    {
+      "PC": 79796,
+      "kind": "opaque-indirect-tail",
+      "runtime_target_proved": false
+    },
+    {
+      "PC": 81762,
+      "kind": "opaque-indirect-tail",
+      "runtime_target_proved": false
+    }
+  ],
+  "body_graph": [
+    {
+      "entry": 33226,
+      "end": 33246,
+      "original_instructions": 8,
+      "static_positions": 8,
+      "terminals": [
+        {
+          "PC": 33244,
+          "kind": "return"
+        }
+      ],
+      "invocation_proved": false
+    },
+    {
+      "entry": 39682,
+      "end": 39734,
+      "original_instructions": 20,
+      "static_positions": 20,
+      "terminals": [
+        {
+          "PC": 39724,
+          "kind": "return"
+        },
+        {
+          "PC": 39732,
+          "kind": "direct-tail",
+          "target_PC": 39664
+        }
+      ],
+      "invocation_proved": false
+    },
+    {
+      "entry": 76398,
+      "end": 76448,
+      "original_instructions": 21,
+      "static_positions": 21,
+      "terminals": [
+        {
+          "PC": 76440,
+          "kind": "return"
+        }
+      ],
+      "invocation_proved": false
+    },
+    {
+      "entry": 79456,
+      "end": 79568,
+      "original_instructions": 42,
+      "static_positions": 42,
+      "terminals": [
+        {
+          "PC": 79556,
+          "kind": "opaque-indirect-tail"
+        },
+        {
+          "PC": 79566,
+          "kind": "return"
+        }
+      ],
+      "invocation_proved": false
+    },
+    {
+      "entry": 79568,
+      "end": 79680,
+      "original_instructions": 42,
+      "static_positions": 42,
+      "terminals": [
+        {
+          "PC": 79668,
+          "kind": "opaque-indirect-tail"
+        },
+        {
+          "PC": 79678,
+          "kind": "return"
+        }
+      ],
+      "invocation_proved": false
+    },
+    {
+      "entry": 79680,
+      "end": 79808,
+      "original_instructions": 49,
+      "static_positions": 49,
+      "terminals": [
+        {
+          "PC": 79796,
+          "kind": "opaque-indirect-tail"
+        },
+        {
+          "PC": 79806,
+          "kind": "return"
+        }
+      ],
+      "invocation_proved": false
+    },
+    {
+      "entry": 81364,
+      "end": 81422,
+      "original_instructions": 20,
+      "static_positions": 20,
+      "terminals": [
+        {
+          "PC": 81412,
+          "kind": "direct-tail",
+          "target_PC": 37156
+        },
+        {
+          "PC": 81420,
+          "kind": "return"
+        }
+      ],
+      "invocation_proved": false
+    },
+    {
+      "entry": 81718,
+      "end": 81766,
+      "original_instructions": 18,
+      "static_positions": 18,
+      "terminals": [
+        {
+          "PC": 81762,
+          "kind": "opaque-indirect-tail"
+        },
+        {
+          "PC": 81764,
+          "kind": "return"
+        }
+      ],
+      "invocation_proved": false
+    },
+    {
+      "entry": 85192,
+      "end": 85294,
+      "original_instructions": 40,
+      "static_positions": 40,
+      "terminals": [
+        {
+          "PC": 85292,
+          "kind": "return"
+        }
+      ],
+      "invocation_proved": false
+    },
+    {
+      "entry": 93298,
+      "end": 93380,
+      "original_instructions": 28,
+      "static_positions": 28,
+      "terminals": [
+        {
+          "PC": 93374,
+          "kind": "direct-tail",
+          "target_PC": 92636
+        },
+        {
+          "PC": 93378,
+          "kind": "return"
+        }
+      ],
+      "invocation_proved": false
+    }
+  ],
+  "typed_CODE_address_pairs": [
+    {
+      "PC": 39688,
+      "target_PC": 39634,
+      "target": "tsl9_callback_gate_entry_9ad2",
+      "owner": "tsl9_safe_gap_entry_9b02",
+      "offset": 6,
+      "reference_kind": "CODE_callback_address",
+      "data_contents_provided": false
+    },
+    {
+      "PC": 79524,
+      "target_PC": 81718,
+      "target": "tsl9_safe_gap_entry_13f36",
+      "owner": "tsl9_safe_gap_functions_block_136a0",
+      "offset": 4,
+      "reference_kind": "CODE_callback_address",
+      "data_contents_provided": false
+    },
+    {
+      "PC": 79636,
+      "target_PC": 81718,
+      "target": "tsl9_safe_gap_entry_13f36",
+      "owner": "tsl9_safe_gap_functions_block_13710",
+      "offset": 4,
+      "reference_kind": "CODE_callback_address",
+      "data_contents_provided": false
+    },
+    {
+      "PC": 79764,
+      "target_PC": 81718,
+      "target": "tsl9_safe_gap_entry_13f36",
+      "owner": "tsl9_safe_gap_functions_block_13790",
+      "offset": 4,
+      "reference_kind": "CODE_callback_address",
+      "data_contents_provided": false
+    },
+    {
+      "PC": 81366,
+      "target_PC": 81364,
+      "target": "tsl9_safe_gap_entry_13dd4",
+      "owner": "tsl9_safe_gap_entry_13dd4",
+      "offset": 2,
+      "reference_kind": "CODE_callback_address",
+      "data_contents_provided": false
+    },
+    {
+      "PC": 81402,
+      "target_PC": 81800,
+      "target": "tsl9_secondary_message_dispatch_entry_13f88",
+      "owner": "tsl9_safe_gap_functions_block_13df0",
+      "offset": 10,
+      "reference_kind": "CODE_callback_address",
+      "data_contents_provided": false
+    }
+  ],
+  "all_764_original_VA_encoded_bytes_equal": true,
+  "actual_original_address_link_placement_proved": false,
+  "external_positive_FUNC_providers": 17,
+  "new_DATA_provided": false,
+  "formal_source_C_H_files": 158,
+  "formal_source_manifest_sha256": "e6f3c9bd5c584d3b81983a757bf346cbb25434383a6eb98e3e4cbdf037ca9e0d",
+  "formal_curated_byte_coverage_percent": 94.54,
+  "experimental_bytes_added_to_formal_coverage": false,
+  "all_candidate_runtime_invocations_proved": false,
+  "physical_ROM_identity_and_ABI_proved": false,
+  "hardware_startup_RAM_IRQ_OTA_compatibility_proved": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "negative_cases_executed": 0,
+  "firmware_BIN_generated": false,
+  "firmware_ready": false,
+  "goal_complete": false
+}

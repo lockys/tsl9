@@ -12,6 +12,8 @@
 
 **已验证重建覆盖率：94.54%**（72,610／76,800 bytes；代码 68,648B＋数据 3,962B）。仅计入 C/C++ 重建后逐 byte 通过原地址比对的部分；不是功能完成率或可刷入比例。[验证依据](analysis/secondary-message-integration-2026-10-26/summary.json)
 
+最新离线实验：[十个候选函数、764B 通过 C/C++ 对象比对](experiments/tsl9-safe-gap-functions/README.md)，尚未计入上述正式覆盖率。
+
 ## 开始使用
 
 需要 Python 3.10+ 与 C11／C++17 编译器。在项目根目录运行离线模型测试：

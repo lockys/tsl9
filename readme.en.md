@@ -12,6 +12,8 @@ Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility 
 
 **Verified reconstruction byte coverage: 94.54%** (72,610/76,800 bytes; code 68,648B + data 3,962B). Counts only C/C++ reconstruction that passes byte-for-byte comparison at original addresses; this is not feature completion or flash readiness. [Evidence](analysis/secondary-message-integration-2026-10-26/summary.json)
 
+Latest offline experiment: [ten candidate routines, 764B passing C/C++ object comparison](experiments/tsl9-safe-gap-functions/readme.en.md), excluded from formal coverage above.
+
 ## Getting started
 
 Requires Python 3.10+ and C11/C++17 compilers. Run the offline model tests from the repository root:
