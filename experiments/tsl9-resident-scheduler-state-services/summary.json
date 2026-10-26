@@ -1,0 +1,291 @@
+{
+  "schema": "TSL9-public-V131-scheduler-state-services-summary-v1",
+  "SDK_candidate_only": true,
+  "CODE_bytes": 178,
+  "DATA_bytes": 0,
+  "instructions": 66,
+  "complete_bodies": 2,
+  "positive_FUNC_regions": 21,
+  "relocations": 15,
+  "direct_controls": 15,
+  "far_call_pairs": 0,
+  "conditional_Xwchc_ports": 11,
+  "official_vectors_checked": 28,
+  "source": "experiments/tsl9-resident-scheduler-state-services/resident_scheduler_state_services.c",
+  "source_sha256": "ff4ca9ce375773aa3fbd6064775f189d3c5c313e34e29ac26ecd7db657cafb21",
+  "source_context": "Original-context RV32 register-bound C/assembly;not an ordinary host-callable C API",
+  "native_object_sha256": "bdd44c23647347c2cecc125c1980056634da2dc1b6e846080b996fe6aca43753",
+  "native_CODE_objects": 2,
+  "ABI_assertion_objects": 2,
+  "ABI": {
+    "passed": true,
+    "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+    "RV32_pointer_bytes": 4,
+    "configuration_bytes": 64,
+    "configuration_alignment": 4,
+    "MEMAddr_offset": 0,
+    "MEMLen_offset": 4,
+    "staCB_offset": 52,
+    "staCB_pointer_bytes": 4,
+    "SDK_configuration_base": 536883692,
+    "derived_staCB_storage": 536883744,
+    "SNVAddr_offset": 8,
+    "SNVBlock_offset": 12,
+    "SNVNum_offset": 14,
+    "readFlashCB_offset": 56,
+    "writeFlashCB_offset": 60,
+    "clock_configuration_bytes": 16,
+    "clock_configuration_alignment": 4,
+    "clock_field_offsets": {
+      "getClockValue": 0,
+      "ClockMaxCount": 4,
+      "ClockFrequency": 8,
+      "ClockAccuracy": 10,
+      "irqEnable": 12
+    },
+    "allocated_bytes": 0,
+    "target_executed": false,
+    "installed_layout_proved": false,
+    "independent_readers": {
+      "passed": true,
+      "sections": 8,
+      "symbols": 4,
+      "relocations": 0,
+      "object_sha256": "7cd4cfca8a66519c8849ea8a081437ed67e801587268f3fac55c141eb94c0f17",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    }
+  },
+  "composition": {
+    "passed": true,
+    "object_sha256": "e05048bf46e838249397c6aba7ea5d2add52ea77dddd60ddb991904eb0550b3a",
+    "CODE_bytes": 5122,
+    "DATA_bytes": 256,
+    "allocated_bytes": 5378,
+    "instructions": 1782,
+    "positive_FUNC_regions": 455,
+    "positive_OBJECT_regions": 1,
+    "relocations": 332,
+    "named_UND": [
+      "tsl9_candidate_external_flash_57dae",
+      "tsl9_candidate_external_flash_6020a",
+      "tsl9_candidate_external_flash_64f04"
+    ],
+    "every_input_byte_symbol_relocation_retained": true,
+    "scheduler_poll_and_state_cross_imports_have_real_bodies": true,
+    "prior_idle_register_helpers_retained": true,
+    "prior_readonly_table_retained": true,
+    "zero_named_UND_is_not_runtime_closure": true,
+    "raw_RAM_and_callback_dependencies_provided": false,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "state_contract": {
+    "passed": true,
+    "static_only": true,
+    "functions": [
+      {
+        "entry": 536880656,
+        "end": 536880698,
+        "bytes": 42,
+        "instructions": 15,
+        "own_frame_bytes": 0,
+        "own_frame_balanced_at_return_and_tail": true,
+        "return_PCs": [
+          536880696
+        ],
+        "tail_transfers": [],
+        "calls": []
+      },
+      {
+        "entry": 409040,
+        "end": 409176,
+        "bytes": 136,
+        "instructions": 51,
+        "own_frame_bytes": 16,
+        "own_frame_balanced_at_return_and_tail": true,
+        "return_PCs": [
+          409174
+        ],
+        "tail_transfers": [
+          {
+            "PC": 409158,
+            "target": 359854
+          }
+        ],
+        "calls": [
+          {
+            "PC": 409098,
+            "target": 413444
+          },
+          {
+            "PC": 409128,
+            "target": 393738
+          }
+        ]
+      }
+    ],
+    "actual_polling_callers": [
+      536872978,
+      536873164
+    ],
+    "actual_state_service_far_caller": 536873326,
+    "poll": {
+      "entry": 536880656,
+      "bytes": 42,
+      "state_base": 536884500,
+      "first_flag_offset": 0,
+      "second_flag_offset": 1,
+      "flag_mask": 1,
+      "register_pointer_storage": 536884540,
+      "register_offset": 100,
+      "actual_back_edge": [
+        536880688,
+        536880672
+      ],
+      "termination_proved": false,
+      "fresh_flag_and_register_reads": true,
+      "final_byte5_read_retained_even_though_value_is_not_used": true,
+      "byte5_clear_dominates_every_local_return": true,
+      "A0_not_assigned_status": true,
+      "own_frame_bytes": 0
+    },
+    "state": {
+      "entry": 409040,
+      "bytes": 136,
+      "state_base": 536884500,
+      "state_byte_offset": 8,
+      "states_checked": [
+        8,
+        6,
+        7
+      ],
+      "state_reloaded_at": [
+        409054,
+        409108,
+        409132
+      ],
+      "fresh_state_reads_not_replaced_by_one_cached_switch": true,
+      "flag_byte_offset": 9,
+      "flag_set_when_64F04_return_nonzero": true,
+      "parameter_base": 536884576,
+      "A2_byte_offset": 3,
+      "A3_byte_offset": 2,
+      "buffer_pointer_offset": 4,
+      "buffer_present_and_parameter_bit0_path": "A0=buffer+2;A1=buffer_byte1",
+      "fallback": "A0=0;A1=0;A2/A3 retain actual parameter bytes",
+      "state6_descriptor_pointer": 536884280,
+      "state6_guard_byte_offset": 11,
+      "state7_descriptor_pointer": 536884300,
+      "state7_guard_byte_offset": 7,
+      "descriptor_pointers_have_no_local_null_guard": true,
+      "external_handlers": [
+        413444,
+        393738,
+        359854
+      ],
+      "own_frame_bytes": 16,
+      "frame_released_before_57DAE_tail": true,
+      "protocol_role_or_handler_success_proved": false
+    },
+    "positive_next_callee": {
+      "entry": 413444,
+      "end": 414052,
+      "bytes": 608,
+      "original_sha256": "8d4e178d421e39650407b948a1bac45cb32cf2020a555dddfefe478eee7b7e6b",
+      "CODE_reconstructed_in_this_unit": false,
+      "numeric_CODE_literal_dependencies": [
+        414052,
+        414624
+      ],
+      "further_callees_and_callback_contracts_open": true
+    },
+    "raw_dependencies": [
+      {
+        "address": 536884500,
+        "role": "shared byte-state base"
+      },
+      {
+        "address": 536884540,
+        "role": "polling register-block pointer,+100 read"
+      },
+      {
+        "address": 536884544,
+        "role": "state-service parameter byte/base"
+      },
+      {
+        "address": 536884576,
+        "role": "parameter block and buffer pointer at+4"
+      },
+      {
+        "address": 536884280,
+        "role": "state6 descriptor pointer"
+      },
+      {
+        "address": 536884300,
+        "role": "state7 descriptor pointer"
+      }
+    ],
+    "callees_preserving_SP_and_normal_returns_assumed": true,
+    "physical_register_identity_proved": false,
+    "global_RAM_IRQ_alias_or_stack_bound_proved": false,
+    "installed_ROM_identity_proved": false,
+    "hardware_accessed": false,
+    "runtime_closed": false
+  },
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-scheduler-state-services/derive-v1.py": "0cb6ddb6606c0ed73c610c2c60f088b24b3aa4179c45fa62d25027faf792eca4",
+    "experiments/tsl9-resident-scheduler-state-services/evidence-v1.json": "9ab319d95b684f950f0d226e8940df1750d814c086893408578614ad809d107f",
+    "experiments/tsl9-resident-scheduler-state-services/resident_scheduler_state_services.c": "ff4ca9ce375773aa3fbd6064775f189d3c5c313e34e29ac26ecd7db657cafb21",
+    "experiments/tsl9-resident-scheduler-state-services/spec-v1.json": "a9a90e2a193377c13aca4fa873e19efc6339b6e51a0e97197bdf4c4e722d90bd",
+    "experiments/tsl9-resident-scheduler-state-services/build-v1.py": "69c770fac7d5b4fe501f84eeb621328b9abe3a194c46d9ae1c92123ad65f1768",
+    "experiments/tsl9-resident-scheduler-state-services/config_abi.c": "36e96cbef009bd9b9c34154f9fb444c708b42fc506e09e62e9da648e351dc0cb",
+    "experiments/tsl9-resident-scheduler-state-services/audit-v1.py": "e5816fe5f91da00e1a7d8fdf8125f8a48bc17be47760cf8bdbb54d5741384227",
+    "experiments/tsl9-resident-scheduler-state-services/audit-result-v1.json": "ef17950d3c9f98b8c1f19ab77b23e6b77af9070e78074f02dc8f81bbb97df87c",
+    "experiments/tsl9-resident-scheduler-state-services/build/native-v1/measurement.json": "4ce22ad4b7457d72bcf423f1a1c66e0d67f0e65e8bc964cabf16086a4551352a",
+    "experiments/tsl9-resident-scheduler-state-services/build/composition-v1/c/candidate.o": "e05048bf46e838249397c6aba7ea5d2add52ea77dddd60ddb991904eb0550b3a",
+    "experiments/tsl9-resident-scheduler-state-services/build/composition-v1/cpp/candidate.o": "e05048bf46e838249397c6aba7ea5d2add52ea77dddd60ddb991904eb0550b3a"
+  },
+  "prior_SDK_composition_CODE_bytes": 4944,
+  "prior_SDK_composition_DATA_bytes": 256,
+  "prior_idle_arithmetic_clock_timer_scheduler_binding_layout_and_Flash_contracts_retained": true,
+  "prior_arithmetic_full_input_domain_semantics_proved": false,
+  "inherited_startup_source_gap_bytes": 4,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_APP_CODE_bytes": 0,
+  "startup_completed_proved": false,
+  "installed_ROM_identity_proved": false,
+  "physical_Xwchc_profile_proved": false,
+  "physical_RAM_capacity_proved": false,
+  "physical_atomicity_proved": false,
+  "Flash_callback_effects_closed": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "vendor_network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "feature_candidates": [
+    {
+      "name": "Polling and phase-transition diagnostics",
+      "implemented": false,
+      "basis": "A genuine polling back edge and three separate state reads are retained",
+      "requires": [
+        "safe IRQ/stack observation",
+        "physical register and descriptor ownership",
+        "handler side-effect and callback contracts"
+      ]
+    }
+  ]
+}
