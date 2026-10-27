@@ -1,0 +1,519 @@
+{
+  "schema": "TSL9-original-SNV-Flash-binding-verification-v1",
+  "passed": true,
+  "checker_sha256": "eb4108c556ad3b1626100955c1fcbfa8ec4c44ae86495de20e09da568da98f27",
+  "evidence_sha256": "1ee53a6db86dfb0439a06976f17b8d1e626790e4b8ac6fd0eb48c440fe395266",
+  "contract": {
+    "passed": true,
+    "conditional_new_bindings": [
+      {
+        "PC": 278614,
+        "outcome": "conditional-target",
+        "target_original_PC": 104346,
+        "pointer_slot": 536883748
+      },
+      {
+        "PC": 278718,
+        "outcome": "conditional-target",
+        "target_original_PC": 104382,
+        "pointer_slot": 536883752
+      }
+    ],
+    "conditions": [
+      "matching installed ROM profile remains required and unproved",
+      "known original 64-byte configuration copy and SDK defaults",
+      "valid disjoint memory and stacks, stable config/heap pointers and callback fields",
+      "original private ABI, normal callee returns, no IRQ/reentrant overwrite",
+      "valid logical NVM window and MMIO mapping; polling termination not proved",
+      "page arguments apply only if first marker differs, a valid 256-byte allocation is returned and the initialization loop completes"
+    ],
+    "original_config": {
+      "SNVAddr": 134708224,
+      "SNVBlock_before_defaults": 0,
+      "SNVNum": 3,
+      "BufNumber": 8,
+      "readFlashCB": 104346,
+      "writeFlashCB": 104382,
+      "source_SP_offset": 16
+    },
+    "effective_SNVBlock": 256,
+    "logical_page_arguments": [
+      134708224,
+      134708480,
+      134708736
+    ],
+    "logical_window": [
+      134708224,
+      134708992
+    ],
+    "physical_NVM_geometry_or_alias_proved": false,
+    "read": {
+      "SDK_site": 278614,
+      "words": 1,
+      "copy_bytes": 4,
+      "SDK_destination": "entry SDK SP+12",
+      "APP_frame_bytes": 16,
+      "candidate_copy_entry": 536871730,
+      "copy_touches_MMIO_4002420C": true,
+      "normal_return_A0": 0,
+      "return_code_validates_copy": false
+    },
+    "write": {
+      "SDK_site": 278718,
+      "SDK_num_words": 64,
+      "APP_ignores_entry_A1": true,
+      "fixed_program_bytes": 256,
+      "word_reads_and_stores": 64,
+      "source_span": [
+        0,
+        256
+      ],
+      "SDK_heap_request_bytes": 256,
+      "SDK_fill_byte": 255,
+      "buffer_word0": "current logical page address",
+      "APP_frame_bytes": 32,
+      "source_saved_at_own_SP12_and_reloaded_after_erase": true,
+      "direct_callees": [
+        102040,
+        102084,
+        102130,
+        102070,
+        104292
+      ],
+      "normal_return_A0": 0,
+      "helper_results_checked": false,
+      "allocation_capacity_proved": false,
+      "delay_requires_live_GP_byte382_and_MMIO": true
+    },
+    "marker_equal_path_skips_writes": true,
+    "buffer_allocation_failure_returns_1": true,
+    "only_first_page_marker_is_compared": true,
+    "all_three_page_contents_validated": false,
+    "BLEInit_overwrites_nested_SNV_status": true,
+    "BLE_success_does_not_prove_SNV_persistence": true,
+    "loop_extent_is_conditional_not_execution_or_hardware_success": true
+  },
+  "APP_functions": [
+    {
+      "start": 104346,
+      "end": 104376,
+      "bytes": 30,
+      "instructions": 13,
+      "own_frame_bytes": 16,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 104374,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 104366,
+          "target": null
+        }
+      ]
+    },
+    {
+      "start": 104382,
+      "end": 104432,
+      "bytes": 50,
+      "instructions": 20,
+      "own_frame_bytes": 32,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 104430,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 104392,
+          "target": 102040
+        },
+        {
+          "PC": 104398,
+          "target": 102084
+        },
+        {
+          "PC": 104408,
+          "target": 102130
+        },
+        {
+          "PC": 104412,
+          "target": 102070
+        },
+        {
+          "PC": 104418,
+          "target": 104292
+        }
+      ]
+    },
+    {
+      "start": 104930,
+      "end": 105238,
+      "bytes": 308,
+      "instructions": 106,
+      "own_frame_bytes": 96,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 105236,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 104964,
+          "target": null
+        },
+        {
+          "PC": 105016,
+          "target": null
+        },
+        {
+          "PC": 105140,
+          "target": 102230
+        },
+        {
+          "PC": 105196,
+          "target": null
+        },
+        {
+          "PC": 105208,
+          "target": 102662
+        }
+      ]
+    },
+    {
+      "start": 102040,
+      "end": 102070,
+      "bytes": 30,
+      "instructions": 10,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 102068,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": []
+    },
+    {
+      "start": 102070,
+      "end": 102084,
+      "bytes": 14,
+      "instructions": 6,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 102082,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": []
+    },
+    {
+      "start": 102084,
+      "end": 102130,
+      "bytes": 46,
+      "instructions": 19,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 102128,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": []
+    },
+    {
+      "start": 102130,
+      "end": 102230,
+      "bytes": 100,
+      "instructions": 38,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 102228,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": []
+    },
+    {
+      "start": 104292,
+      "end": 104346,
+      "bytes": 54,
+      "instructions": 22,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 104344,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": []
+    }
+  ],
+  "SDK_functions": [
+    {
+      "start": 277310,
+      "end": 277582,
+      "bytes": 272,
+      "instructions": 87,
+      "own_frame_bytes": 16,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 277580,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 277362,
+          "target": null
+        },
+        {
+          "PC": 277380,
+          "target": null
+        },
+        {
+          "PC": 277384,
+          "target": 274692
+        },
+        {
+          "PC": 277442,
+          "target": null
+        },
+        {
+          "PC": 277470,
+          "target": null
+        },
+        {
+          "PC": 277504,
+          "target": 275098
+        },
+        {
+          "PC": 277508,
+          "target": 278562
+        }
+      ]
+    },
+    {
+      "start": 277630,
+      "end": 277858,
+      "bytes": 228,
+      "instructions": 92,
+      "own_frame_bytes": 16,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 277850,
+          "type": "ret",
+          "instruction": "ret"
+        },
+        {
+          "PC": 277856,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 277674,
+          "target": null
+        },
+        {
+          "PC": 277718,
+          "target": null
+        },
+        {
+          "PC": 277736,
+          "target": null
+        },
+        {
+          "PC": 277816,
+          "target": null
+        },
+        {
+          "PC": 277836,
+          "target": 277310
+        }
+      ]
+    },
+    {
+      "start": 278562,
+      "end": 278722,
+      "bytes": 160,
+      "instructions": 61,
+      "own_frame_bytes": 32,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 278596,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 278614,
+          "target": null
+        },
+        {
+          "PC": 278638,
+          "target": null
+        },
+        {
+          "PC": 278666,
+          "target": null
+        },
+        {
+          "PC": 278684,
+          "target": null
+        },
+        {
+          "PC": 278718,
+          "target": null
+        }
+      ]
+    },
+    {
+      "start": 536871730,
+      "end": 536871788,
+      "bytes": 58,
+      "instructions": 18,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 536871762,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": []
+    }
+  ],
+  "APP_native_witnesses": {
+    "c": {
+      "sha256": "8c990d5554c56a1a841525c2f0fab87fac95ea224584ac494744980934efa012",
+      "bytes": 632,
+      "functions": 8
+    },
+    "cpp": {
+      "sha256": "8c990d5554c56a1a841525c2f0fab87fac95ea224584ac494744980934efa012",
+      "bytes": 632,
+      "functions": 8
+    }
+  },
+  "APP_reference_CODE_bytes": 632,
+  "SDK_reference_CODE_bytes": 718,
+  "reference_instructions": 492,
+  "inherited_conditional_bindings_retained": 19,
+  "cumulative_conditional_bindings": 21,
+  "cumulative_conditional_targets": 16,
+  "cumulative_conditional_skips": 5,
+  "not_joined_in_cumulative_ledger": 30,
+  "missing_function_count_not_inferred": true,
+  "prior_composition": {
+    "passed": true,
+    "object_sha256": "3e3fa41cd906e84c95abc7964b4c3e119217366f0ca16b44d44cc6c043e45273",
+    "CODE_bytes": 35324,
+    "distinct_original_CODE_bytes": 35324,
+    "duplicate_original_CODE_bytes": 0,
+    "overlap_intervals": [],
+    "positive_FUNC_regions": 2401,
+    "relocations": 1914,
+    "distinct_PC_typed_relocations": 1914,
+    "native_byte_map_sha256": "54db1468def044de07abe38329595b1666ab0e046d7cc672ed7eb8924736406a",
+    "original_PC_typed_relocations_sha256": "cf545c60b61838b8785060a02835f824e4c6580fdd7546222be85fdbaaca5e25",
+    "non_CODE_allocations": {
+      ".rodata.tsl9_candidate_bitlength_table_6e95c": {
+        "type": 1,
+        "flags": 2,
+        "size": 256,
+        "alignment": 1,
+        "sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac"
+      }
+    },
+    "named_UND": [],
+    "original_PC_tags_are_source_contract_not_physical_placement": true,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false,
+    "network": false,
+    "DATA_bytes": 256,
+    "allocated_bytes": 35580,
+    "instructions": 12195,
+    "independent_readers": {
+      "passed": true,
+      "sections": 4173,
+      "symbols": 8436,
+      "relocations": 1914,
+      "object_sha256": "3e3fa41cd906e84c95abc7964b4c3e119217366f0ca16b44d44cc6c043e45273",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    },
+    "every_input_byte_symbol_relocation_retained": true,
+    "all_new_named_imports_have_real_prior_bodies": true,
+    "new_genuine_named_dependencies": 0,
+    "unique_original_CODE_ownership": true,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_target_CODE_bytes": 0,
+  "new_target_DATA_bytes": 0,
+  "new_target_compilation": false,
+  "inherited_startup_source_gap_bytes": 4,
+  "physical_compatibility_proved": false,
+  "Flash_callback_effects_closed": false,
+  "actual_global_binding_before_any_dispatch_proved": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
