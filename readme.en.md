@@ -14,7 +14,7 @@ Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility 
 
 Latest integration: [ten bodies,764B now have curated SRC and original-address backing](analysis/safe-gap-integration-2026-10-26/readme.en.md);physical invocation and compatibility remain unproved.
 
-ROM candidates: [C/C++](experiments/tsl9-resident-record-root-chain/readme.en.md) · [Trap contract](experiments/tsl9-trap-profile-contract/readme.en.md) · [RAM layout contract](experiments/tsl9-resident-task-layout-contract/readme.en.md);installed compatibility remains unproved.
+ROM candidates: [C/C++](experiments/tsl9-resident-root-chain-callees/readme.en.md) · [Trap contract](experiments/tsl9-trap-profile-contract/readme.en.md) · [RAM layout contract](experiments/tsl9-resident-task-layout-contract/readme.en.md);installed compatibility remains unproved.
 
 ## Getting started
 

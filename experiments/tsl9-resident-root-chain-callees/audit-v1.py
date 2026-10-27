@@ -1,0 +1,85 @@
+"""Verify ten complete callees,zero named UND,raw-pointer holds and measured reader extension;no execution."""
+import argparse,hashlib,json,runpy,subprocess,sys
+from pathlib import Path
+sys.dont_write_bytecode=True
+HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1];PARENT=ROOT/'experiments/tsl9-resident-record-root-chain';READERS=HERE
+def need(ok,label):
+    if not ok:raise ValueError(label)
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def lib(p):return runpy.run_path(str(p),run_name='root_chain_callees_static_library')
+def canonical(v):return json.loads(json.dumps(v))
+LINEAGE=[{'old': 'experiments/tsl9-original-RF-task-path/elf_reader-v6.py', 'old_sha256': 'cf9500ec7898149f979042671fba4653ab24bc474c23c384d3e82cacd67ccda2', 'new': 'experiments/tsl9-resident-root-chain-callees/elf_reader-v7.py', 'new_sha256': '309ee86cd2d967e40fa29cd34a9ff420f9b5803c4c3931dfd93eec75a7e2a06c', 'exact_text_transforms': [['Only section-count ceiling changes from retained v5: <2048 to <4096 for the measured2218-section RF task composition.', 'Only section-count ceiling changes from retained v6: <4096 to <8192 for the measured4147-section root-callee composition.'], ['0 < h[12] < 4096', '0 < h[12] < 8192']]}, {'old': 'experiments/tsl9-original-RF-task-path/verify-ownership-v2.py', 'old_sha256': '90596e33fb6f4326e08a33f1bf2b0f6b404d4676e096d894b81ddc682d663561', 'new': 'experiments/tsl9-resident-root-chain-callees/verify-ownership-v3.py', 'new_sha256': 'f689729b48be31d2145b4e90a5bf2039c0d698b01ed59f45cb447da3de5a960f', 'exact_text_transforms': [['experiments/tsl9-original-RF-task-path/elf_reader-v6.py', 'experiments/tsl9-resident-root-chain-callees/elf_reader-v7.py'], ['cf9500ec7898149f979042671fba4653ab24bc474c23c384d3e82cacd67ccda2', '309ee86cd2d967e40fa29cd34a9ff420f9b5803c4c3931dfd93eec75a7e2a06c']]}, {'old': 'experiments/tsl9-original-RF-task-path/compare-readers-v2.py', 'old_sha256': 'aa7ae631f6531e6b56af8636c72314e0d7e3a97cf79269f96ae3838ec56d0ce7', 'new': 'experiments/tsl9-resident-root-chain-callees/compare-readers-v3.py', 'new_sha256': '957c23d56051dcdc59fffdb8d3dcc847a6b5b7cc53220a8832e811083f2c8162', 'exact_text_transforms': [["OLD=ROOT/'experiments/tsl9-feature-dispatch-tree/elf_reader-v5.py'", "OLD=ROOT/'experiments/tsl9-original-RF-task-path/elf_reader-v6.py'"], ["NEW=ROOT/'experiments/tsl9-original-RF-task-path/elf_reader-v6.py'", "NEW=ROOT/'experiments/tsl9-resident-root-chain-callees/elf_reader-v7.py'"], ['a56503572e8b65308ae1c8978ba5a6d44d0a20cd969315dc1b12103b59a9b43a', 'cf9500ec7898149f979042671fba4653ab24bc474c23c384d3e82cacd67ccda2'], ['Frozen v5 reader unchanged', 'Frozen v6 reader unchanged'], ["    expected=OLD.read_text(encoding='utf8').replace('Only section-count ceiling changes from retained v4: <1024 to <2048 for the measured remaining-dispatch objects.','Only section-count ceiling changes from retained v5: <2048 to <4096 for the measured2218-section RF task composition.').replace('0 < h[12] < 2048','0 < h[12] < 4096')", "    expected=OLD.read_text(encoding='utf8').replace('Only section-count ceiling changes from retained v5: <2048 to <4096 for the measured2218-section RF task composition.','Only section-count ceiling changes from retained v6: <4096 to <8192 for the measured4147-section root-callee composition.').replace('0 < h[12] < 4096','0 < h[12] < 8192')"]]}]
+LINK_MEASUREMENT_SHA256='72144e0cb0149725026e1b3b05b4eaf4972812170e035abb2cbe8bd31f443065'
+def reader_lineage():
+    for item in LINEAGE:
+        need(sha(ROOT/item['old'])==item['old_sha256']and sha(ROOT/item['new'])==item['new_sha256'],'Exact old frozen and new reader/checker sources')
+        expected=(ROOT/item['old']).read_text('utf-8')
+        for a,b in item['exact_text_transforms']:need(expected.count(a)==1,'One exact documented reader/checker transform');expected=expected.replace(a,b)
+        need(expected==(ROOT/item['new']).read_text('utf-8'),'Only documented ceiling/doc/reader-selection/hash transforms,no parser logic change')
+    p=HERE/'build/composition-v1/measurement.json';need(sha(p)==LINK_MEASUREMENT_SHA256,'Exact actual partial-link measurement');m=json.loads(p.read_bytes());need(m['passed']and m['modes']['c']==m['modes']['cpp']and m['modes']['c']['sections']==4147 and m['modes']['c']['program_headers']==0,'Measured4147 sections in identical real C/C++ ET_REL objects')
+    for mode in ['c','cpp']:
+        row=m['modes'][mode];need(sha(HERE/'build/composition-v1'/mode/'candidate.o')==row['object_sha256']and sha(PARENT/'build/composition-v1'/mode/'candidate.o')==row['parent_sha256']and sha(HERE/'build/native-v1'/mode/'unit.o')==row['unit_sha256'],'Exact measured link inputs/outputs')
+    return dict(passed=True,actual_sections=4147,old_section_ceiling=4096,new_section_ceiling=8192,old_frozen_sources_retained=True,only_reader_ceiling_doc_and_consumer_reader_selection_changed=True,parser_validation_logic_unchanged=True,source_lineage=LINEAGE,link_measurement_sha256=LINK_MEASUREMENT_SHA256,target_executed=False)
+
+def native(llvm):
+    N=lib(HERE/'build-v1.py');N['pins'](llvm);saved=json.loads((HERE/'build/native-v1/measurement.json').read_bytes());need(saved['inputs']==N['portable'](N['inputs'](llvm),llvm)and saved['candidate_contract']==N['candidate_contract'](),'All actual compile inputs retained');result={}
+    for mode in ['c','cpp']:
+        f=HERE/'build/native-v1'/mode;v=saved['modes'][mode];need(v['artifacts']==N['inventory'](f)and v['dependencies']==N['portable'](N['dependencies'](f,llvm),llvm),'All actual native artifacts/include dependencies retained');result[mode]=dict(CODE=N['audit_object'](f/'unit.o'),ABI=N['audit_abi'](f/'config_abi.o'));need(result[mode]['CODE']==v['result']and result[mode]['ABI']==v['ABI_result'],'Fresh native readers agree with compile receipt')
+    need(result['c']==result['cpp'],'Actual C11/C++17 CODE and primary ABI objects equal');return N,result
+
+def contract(N,O):
+    E=N['EV'];B=N['B'];V=lib(ROOT/'experiments/tsl9-original-RF-tx-path/audit-v1.py');rows=[];graphs={};op={};frames={0x55d00:32,0x55d3c:0,0x5605c:0,0x560aa:0,0x56326:48,0x56716:16,0x57b28:32,0x63966:0,0x6dec2:0,0x43ed2:0}
+    for f in E['selected_functions']:
+        ext={c[1]for o in f['operations']if(c:=B['decode_control'](bytes.fromhex(o['bytes']),o['addr']))};oo,g,q=V['whole_cfg'](f,B,ext,frames[f['start']]);rows.append(q);graphs[f['start']]=g;op.update(oo)
+    need(sum(f['bytes']for f in rows)==1064 and sum(f['instructions']for f in rows)==352 and len(rows)==10,'Ten complete reachable CFGs and all original frame paths balanced')
+    required={0x55d2c:'lw ra, 28(sp)',0x55d2e:'lui a0, 0x57',0x55d32:'addi a0, a0, -804',0x55d36:'addi sp, sp, 32',0x55d38:'j 0x43874',0x56078:'div a5, a5, a3',0x560aa:'qk.c.lbu a5, 12(a0)',0x560ac:'andi a5, a5, -13',0x560ae:'qk.c.sb a5, 12(a0)',0x560b0:'ret',0x567b4:'j 0x43414',0x6dec2:'beqz a2, 0x6dede',0x6dec4:'li a5, 32',0x6dec8:'sub a5, a5, a2',0x6deca:'blez a5, 0x6dee0',0x6dece:'srl a0, a0, a2',0x6ded2:'sll a5, a1, a5',0x6ded6:'srl a2, a1, a2',0x6deda:'or a0, a0, a5',0x6dedc:'mv a1, a2',0x6dede:'ret',0x6dee0:'addi a0, a2, -32',0x6dee4:'li a2, 0',0x6dee6:'srl a0, a1, a0',0x6deea:'mv a1, a2',0x6deec:'j 0x6dede',0x43ed2:'lui a5, 0x20003',0x43ed6:'sw a0, 580(a5)',0x43eda:'ret'}
+    need(all(op[p]['opcode']==s for p,s in required.items()),'Exact original tail,literal,DIV,byte mask,variable shifts and word-store operands')
+    source=(ROOT/N['S']['source']).read_text('utf-8');need(any('PORT('in line and 'div a5, a5, a3'in line for line in source.splitlines())and all(any('PORT('in line and op[pc]['opcode']in line for line in source.splitlines())for pc in [0x6dece,0x6ded2,0x6ded6,0x6dee6]),'Original DIV and variable-shift instruction ports retained,without C undefined-behavior assumptions')
+    tails=[]
+    for root,pc,target in [(0x55d00,0x55d38,0x43874),(0x56716,0x567b4,0x43414)]:
+        word=int.from_bytes(bytes.fromhex(op[pc]['bytes']),'little');need(word&127==0x6f and(word>>7)&31==0 and B['decode_control'](bytes.fromhex(op[pc]['bytes']),pc)[1]==target,'Actual original JALzero tail');tails.append(dict(PC=pc,target=target,no_own_frame_outstanding_on_exit=True))
+    need(all(0x55d38 not in V['reachable'](graphs[0x55d00],0x55d00,skip=p)for p in [0x55d2c,0x55d2e,0x55d32,0x55d36]),'First tail has restored RA,reconstructed literal A0 and released32-byte frame');need((0x57<<12)-804==0x56cdc and 0x20003000+580==0x20003244,'Original raw-pointer literal and RAM word-store address')
+    parent=O['inspect'](PARENT/'build/composition-v1/c/candidate.o');newbytes={pc for f in rows for pc in range(f['start'],f['end'])};need(parent['passed']and not newbytes&set(parent['_byte_map'])and set(E['resolved_prior_dependencies'])==set(parent['named_UND'])and len(E['resolved_prior_dependencies'])==8,'All eight real prior named gaps supplied,without duplicate CODE');need(len(E['real_prior_providers'])==4 and all(pc in parent['_byte_map']for pc in E['real_prior_providers'])and not E['new_genuine_code_dependencies'],'Four real prior imports,no new named gap')
+    need(0x56cdc not in parent['_byte_map']and 0x56cdc not in newbytes,'Literal56CDC has no supplied body;zero named UND does not resolve it')
+    calls=[]
+    for row in rows:
+        for call in row['calls']:need(call['target']is not None and call['target']in newbytes|set(E['real_prior_providers']),'Every actual static call has a selected or real prior entry');calls.append(call)
+    caller=json.loads((ROOT/E['caller_evidence']).read_bytes());need(sha(ROOT/E['caller_evidence'])==E['caller_evidence_sha256'],'Actual prior caller evidence retained');raw=(ROOT/E['firmware']).read_bytes();sites=[];needed={int(name.rsplit('_',1)[1],16)for name in E['resolved_prior_dependencies']}
+    for f in caller['selected_functions']:
+        for o in f['operations']:
+            need(bytes.fromhex(o['bytes'])==raw[o['addr']-0x40000:o['addr']-0x40000+o['size']],'Original caller bytes');d=B['decode_control'](bytes.fromhex(o['bytes']),o['addr'])
+            if d and d[1]in needed:sites.append(dict(PC=o['addr'],target=d[1]))
+    need({s['target']for s in sites}==needed,'Actual original calls/tail account for all eight prior gaps')
+    return dict(passed=True,functions=rows,CODE_bytes=1064,instructions=352,complete_functions=10,own_frames=[frames[f['start']]for f in E['selected_functions']],conditional_Xwchc_ports=12,actual_static_calls=calls,actual_opaque_callbacks=0,original_incoming_static_sites=sites,resolved_prior_dependencies=E['resolved_prior_dependencies'],real_prior_providers=E['real_prior_providers'],new_genuine_named_dependencies=0,direct_no_link_tails=tails,raw_pointer_literal=dict(PC=0x55d2e,value=0x56cdc,body_provided=False,physical_CODE_pointer_role_proved=False),signed_DIV=dict(PC=0x56078,original_instruction_port_retained=True,runtime_nonzero_divisor_or_units_proved=False),variable_shift_helper=dict(entry=0x6dec2,end=0x6deee,own_frame_bytes=0,original_shift_instructions_retained=True,runtime_shift_count_range_proved=False),word_store_leaf=dict(entry=0x43ed2,address=0x20003244,width=4,value='original_A0',physical_meaning_or_live_value_proved=False),inherited_previous_unit_opaque_callback_sites_retained=2,all_post_RET_reachable_arms_preserved=True,no_live_record_or_MAC_contents_observed=True,all_numeric_CODE_pointers_or_callbacks_closed=False,physical_ROM_RAM_ISA_IRQ_profile_proved=False,runtime_closed=False)
+
+def composition(path,inputs,N,O):
+    P=lib(ROOT/'experiments/tsl9-sdk-unique-code-ownership/audit-v1.py');ELF=lib(READERS/'elf_reader-v7.py')['ELF'];a={};d={};u=set();r=[];maps={};typed=set()
+    for p in inputs:
+        aa,dd,uu,rr=P['facts'](p,ELF);need(not set(a)&set(aa)and not set(d)&set(dd),'Unique section/symbol owners');a.update(aa);d.update(dd);u.update(uu);r+=rr;q=O['inspect'](p);need(q['passed']and not set(maps)&set(q['_byte_map']),'No duplicate original-PC CODE');maps.update(q['_byte_map']);typed.update(q['_typed_relations'])
+    need(P['facts'](path,ELF)==(a,d,u-set(d),sorted(r)),'Every selected byte/type/flags/alignment,symbol and relocation retained');out=O['inspect'](path);need(out['passed']and out['_byte_map']==maps and set(out['_typed_relations'])==typed,'Complete unique original-PC byte and typed-relation union')
+    before=O['inspect'](inputs[0]);resolved=set(N['EV']['resolved_prior_dependencies']);added=set(N['EV']['new_genuine_code_dependencies']);expected_UND=sorted((set(before['named_UND'])-resolved)|added);need(out['named_UND']==expected_UND and len(out['named_UND'])==0 and out['non_CODE_allocations']==before['non_CODE_allocations'],'Eight genuine prior CODE gaps supplied,no new named gaps,DATA256 unchanged')
+    need((out['CODE_bytes'],out['positive_FUNC_regions'],out['relocations'])==(35150,2385,1904),'Exact actual composition counts');ind=lib(READERS/'compare-readers-v3.py')['audit'](path);need(ind['passed'],'Independent whole ELF reader agreement')
+    return dict(**O['public'](out),DATA_bytes=256,allocated_bytes=35406,instructions=12133,independent_readers=ind,every_input_byte_symbol_relocation_retained=True,eight_genuine_prior_named_dependencies_have_real_bodies=True,new_genuine_named_dependencies=0,unique_original_CODE_ownership=True,actual_original_address_link_performed=False,linked_into_APP=False,runtime_closed=False,new_BIN=False,firmware_ready=False)
+
+def audit(llvm,refs,trial=None):
+    lineage=reader_lineage();E=json.loads((HERE/'evidence-v1.json').read_bytes());prior=lib(ROOT/E['prior_study']/E['prior_verifier'])[E['prior_entry']](llvm,refs);need(canonical(prior)==json.loads((ROOT/E['prior_study']/E['prior_receipt']).read_bytes())and sha(ROOT/E['prior_study']/E['prior_receipt'])==E['prior_receipt_sha256'],'Fresh entire callback-provenance and preceding APP/SDK/native/IRQ/CFG proof');N,result=native(llvm);O=lib(READERS/'verify-ownership-v3.py');sc=contract(N,O);out=HERE/'build'/('composition-v1'if trial is None else trial)
+    if trial:need(Path(trial).name==trial and not out.exists(),'Fresh create-only composition')
+    composed={};hashes={}
+    for mode in ['c','cpp']:
+        inputs=[PARENT/'build/composition-v1'/mode/'candidate.o',HERE/'build/native-v1'/mode/'unit.o'];need([sha(p)for p in inputs]==[E['SDK_parent_sha256'],result[mode]['CODE']['object_sha256']],'Actual current SDK parent and new unit');hashes[mode]={p.relative_to(ROOT).as_posix():sha(p)for p in inputs};f=out/mode
+        if trial:
+            f.mkdir(parents=True);p=subprocess.run([str(llvm/'ld.lld.exe'),'-r','--no-relax',*[str(q)for q in inputs],'-o',str(f/'candidate.o')],capture_output=True,timeout=120);(f/'link.log').write_text(N['portable']((p.stdout+p.stderr).decode('utf-8','replace'),llvm),encoding='utf-8');need(p.returncode==0,'Actual partial link failed;trial retained')
+        composed[mode]=composition(f/'candidate.o',inputs,N,O)
+    need(composed['c']==composed['cpp'],'Both actual complete C/C++ compositions equal');return dict(schema='TSL9-root-chain-callees-audit-v1',passed=True,checker_sha256=sha(__file__),reader_lineage=lineage,prior_record_root_chain_receipt_sha256=E['prior_receipt_sha256'],native_results=result,contract=sc,composition=composed,composition_input_hashes=hashes,new_CODE_bytes=1064,new_instructions=352,new_complete_functions=10,new_genuine_named_dependencies=0,APP_source_C_H_files_unchanged=159,APP_byte_coverage_unchanged=95.54,inherited_startup_source_gap_bytes=4,installed_ROM_identity_proved=False,physical_RAM_capacity_proved=False,physical_Xwchc_profile_proved=False,physical_trap_route_proved=False,Flash_callback_effects_closed=False,actual_global_binding_before_any_dispatch_proved=False,all_remaining_callee_effects_proved=False,linked_into_APP=False,runtime_closed=False,new_BIN=False,firmware_ready=False,goal_complete=False,target_executed=False,HOST_model_executed=False,ISA_emulated=False,hardware_accessed=False,network=False)
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--tool-dir',type=Path,required=True);p.add_argument('--reference-root',type=Path,required=True);p.add_argument('--link-trial');p.add_argument('--output',type=Path);a=p.parse_args()
+    try:
+        v=audit(a.tool_dir.resolve(),a.reference_root.resolve(),a.link_trial)
+        if a.output:
+            dest=HERE/a.output;need(dest.parent==HERE and not dest.exists(),'Create-only random/range audit');dest.write_text(json.dumps(v,indent=2)+'\n',encoding='utf-8')
+        c=v['composition']['c'];print(json.dumps(dict(passed=True,new_CODE_bytes=1064,new_instructions=352,complete_functions=10,composition_CODE_bytes=c['CODE_bytes'],composition_DATA_bytes=c['DATA_bytes'],named_UND=len(c['named_UND']),real_prior_dependencies_resolved=len(v['contract']['resolved_prior_dependencies']),opaque_callbacks=0,new_BIN=False)))
+    except Exception as error:
+        message=str(error)
+        for path,token in [(ROOT,'${PROJECT_ROOT}'),(Path.home(),'${USERPROFILE}')]:message=message.replace(str(path),token).replace(path.as_posix(),token)
+        print(json.dumps(dict(passed=False,error_type=type(error).__name__,reason=message)));raise SystemExit(1)
