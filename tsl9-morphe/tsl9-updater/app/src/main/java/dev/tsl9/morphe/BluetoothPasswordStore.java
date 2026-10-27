@@ -46,6 +46,10 @@ final class BluetoothPasswordStore {
         }catch(IOException|GeneralSecurityException|RuntimeException unavailable){if(output!=null)target.failWrite(output);return false;}
         finally{Arrays.fill(plain,(byte)0);}
     }
+    boolean clear(){
+        try{new AtomicFile(file).delete();return !file.exists()&&!new File(file.getPath()+".bak").exists()&&!new File(file.getPath()+".new").exists();}
+        catch(RuntimeException unavailable){return false;}
+    }
     private SecretKey key(boolean create)throws GeneralSecurityException,IOException{
         KeyStore keys=KeyStore.getInstance("AndroidKeyStore");keys.load(null);
         Key existing=keys.getKey(alias,null);

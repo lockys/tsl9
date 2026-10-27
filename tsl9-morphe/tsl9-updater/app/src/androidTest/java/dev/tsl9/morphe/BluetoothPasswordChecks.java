@@ -69,6 +69,7 @@ final class BluetoothPasswordChecks {
             check(store.remember(replacement)&&replacement.equals(store(name).load()),"manual replacement persists across new store instances");
             byte[] damaged=read(file(name));damaged[damaged.length-1]^=1;write(file(name),damaged);check(store.load().isEmpty(),"tampered ciphertext falls back to empty manual entry");check(store.remember(sample)&&sample.equals(store.load()),"manual submission replaces damaged ciphertext");
             cleanup(name);check(store.load().isEmpty(),"missing key or data never blocks manual entry");check(store.remember(sample),"store recovers after key and file reset");
+            File backup=new File(file(name).getPath()+".bak");write(backup,read(file(name)));check(store.clear()&&store.load().isEmpty()&&!backup.exists(),"forget removes ciphertext and atomic backup");check(store.remember(sample),"password can be remembered again after forget");
             File blocked=file("blocked-checks");write(blocked,new byte[]{1});
             try{BluetoothPasswordStore unavailable=new BluetoothPasswordStore(new File(blocked,"child.enc"),alias("blocked-checks"));open(unavailable,wire);type(replacement);int before=wire.sends;verify();check(wire.sends==before+1&&wire.failures==1,"storage failure still permits explicit manual authentication");}finally{cleanup("blocked-checks");}
         }finally{dismiss();cleanup(name);if(wire.last!=null)Arrays.fill(wire.last,(byte)0);}

@@ -24,8 +24,9 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     private VehicleControls car;private TabHost tabs;private CheckBox lightLayout;private LiveVehicleData liveData;private LivePanel livePanel;
     private TextView versionView,carVersionView,carReadiness,carStatus,lightStatus;private DeviceInfoSnapshot versionInfo;
     private Button pressedSeat,versionButton,carVersionButton,carRefreshButton,seatStop,lightOn,lightOff;private long lastCarPoll,lastCarInfoPoll;private boolean closeVehicleAfterStop;private String lastCarGate="",lastLightGate="";
+    private ScrollView settingsPage;private BluetoothPasswordStore passwords;private TextView savedPasswordStatus,settingsStatus;private Button forgetPasswordButton;
     private final ArrayList<Button> carButtons=new ArrayList<>();
-    private LinearLayout captureDetails,languagePanel,driverPad,passengerPad;private TextView headerConnection;private Button languageButton,driverSelector,passengerSelector;private int selectedSeat;
+    private LinearLayout captureDetails,driverPad,passengerPad;private TextView headerConnection;private Button driverSelector,passengerSelector;private int selectedSeat;
     private HardwareCapture hardware;private boolean captureStopping,disconnectAfterCaptureStop,canStreaming,hardwareSession,hardwareDirty,hardwareScheduled;
     private File hardwareFile;private String previousHardware="";private TextView hardwareStatus,hardwareView;
     private String displayedLocale;private boolean pendingLanguageRefresh;private Spinner language;private Spinner captureMode;private EditText canIds;private CheckBox canData;
@@ -52,7 +53,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         hardwareFile=new File(getFilesDir(),"latest-hardware.jsonl");if(hardwareFile.length()<2*1024*1024){try{previousHardware=new String(readLimited(new android.util.AtomicFile(hardwareFile).openRead(),2*1024*1024),StandardCharsets.UTF_8);}catch(IOException ignored){}}
         logFile=new File(getFilesDir(),"latest-debug.log");
         if(logFile.exists()&&logFile.length()<256*1024){try{logs.append(new String(readLimited(new FileInputStream(logFile),256*1024),StandardCharsets.UTF_8));}catch(IOException ignored){}}
-        displayedLocale=localeSignature(getResources().getConfiguration());buildUi();log("APP "+appBuild()+" package="+getPackageName()+" Android="+Build.VERSION.SDK_INT+" target=TSL9 OEM APP OTA + direct body-controls + live receive-only dashboard");
+        passwords=new BluetoothPasswordStore(this);displayedLocale=localeSignature(getResources().getConfiguration());buildUi();log("APP "+appBuild()+" package="+getPackageName()+" Android="+Build.VERSION.SDK_INT+" target=TSL9 OEM APP OTA + direct body-controls + live receive-only dashboard");
         if(b!=null){selectSeat(b.getInt("seat",0));if(b.getString("tab")!=null)tabs.setCurrentTabByTag(b.getString("tab"));}handler.post(ticker);refresh();
     }
     private int dp(float n){return Math.round(n*getResources().getDisplayMetrics().density);}
@@ -65,6 +66,13 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     private void title(LinearLayout body,int title,int subtitle){TextView h=text(s(title),27,DARK);h.setTypeface(android.graphics.Typeface.create("sans-serif-medium",android.graphics.Typeface.NORMAL));body.addView(h);body.addView(text(s(subtitle),14,MUTED));}
     private void section(LinearLayout body,int label){body.addView(AppUi.heading(this,s(label)));}
     private void buildUi(){
+        settingsPage=new ScrollView(this);settingsPage.setFillViewport(true);LinearLayout settings=AppUi.page(this);settingsPage.addView(settings);
+        title(settings,R.string.settings_title,R.string.settings_intro);
+        section(settings,R.string.language);
+        language=new Spinner(this);language.setContentDescription(s(R.string.language));language.setMinimumHeight(dp(48));language.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,new String[]{s(R.string.system_language),"简体中文","繁體中文","English"}));language.setSelection(LanguageSettings.index(this));
+        language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> p){}public void onItemSelected(AdapterView<?> p,View v,int position,long id){if(position==LanguageSettings.index(MainActivity.this))return;if(!canChangeLanguage()){language.setSelection(LanguageSettings.index(MainActivity.this));return;}LanguageSettings.select(MainActivity.this,position);}});
+        settings.addView(language);settings.addView(text(s(R.string.settings_language_help),13,MUTED));
+        section(settings,R.string.ui_module_details);settingsStatus=text(s(R.string.disconnected),14,GREEN);settings.addView(settingsStatus);
         ScrollView scroll=new ScrollView(this);scroll.setFillViewport(true);LinearLayout body=AppUi.page(this);scroll.addView(body);
         title(body,R.string.ui_tools_title,R.string.ui_tools_subtitle);
         if(imageName.isEmpty())imageName=s(R.string.no_bin);
@@ -77,7 +85,9 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         versionButton=button(s(R.string.version_read),this::requestInfo);AppUi.icon(versionButton,"refresh");device.addView(versionButton);
         LinearLayout moduleDetails=AppUi.column(this);deviceInfo=text(s(R.string.info_hint),13,MUTED);moduleDetails.addView(deviceInfo);
         readButton=button(s(R.string.read_info),this::requestInfo);passwordButton=button(s(R.string.password),this::passwordDialog);moduleDetails.addView(readButton);moduleDetails.addView(passwordButton);
-        AppUi.disclosure(this,device,s(R.string.ui_module_details),moduleDetails);
+        settings.addView(moduleDetails);
+        savedPasswordStatus=text(s(R.string.settings_no_saved_password),13,MUTED);settings.addView(savedPasswordStatus);
+        forgetPasswordButton=button(s(R.string.settings_forget_password),this::forgetSavedPassword);forgetPasswordButton.setEnabled(false);settings.addView(forgetPasswordButton);settings.addView(text(s(R.string.settings_forget_help),13,MUTED));
         section(body,R.string.firmware_title);
         fileButton=button(s(R.string.pick_bin),()->{Intent i=new Intent(Intent.ACTION_OPEN_DOCUMENT);i.addCategory(Intent.CATEGORY_OPENABLE);i.setType("application/octet-stream");i.putExtra(Intent.EXTRA_MIME_TYPES,new String[]{"application/octet-stream","application/x-binary","*/*"});startActivityForResult(i,100);});AppUi.icon(fileButton,"file");body.addView(fileButton);
         fileInfo=text(imageName,13,MUTED);fileInfo.setTextIsSelectable(true);body.addView(fileInfo);
@@ -85,7 +95,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> p){}public void onItemSelected(AdapterView<?> p,View v,int pos,long id){if(selectedBytes!=null)parseSelected();}});body.addView(format);
         body.addView(text(s(R.string.ui_app_only),13,MUTED));
         LinearLayout advanced=AppUi.column(this);advanced.addView(text(s(R.string.firmware_help),14,MUTED));advanced.addView(text(s(R.string.ota_help),13,MUTED));
-        hw20=new CheckBox(this);hw20.setText(s(R.string.hw20));hw20.setOnCheckedChangeListener((b,on)->{if(match!=null)match.setChecked(false);refresh();});advanced.addView(hw20);advanced.addView(text(s(R.string.hw20_help),13,MUTED));AppUi.disclosure(this,body,s(R.string.ui_advanced),advanced);
+        hw20=new CheckBox(this);hw20.setText(s(R.string.hw20));hw20.setOnCheckedChangeListener((b,on)->{if(match!=null)match.setChecked(false);refresh();});advanced.addView(hw20);advanced.addView(text(s(R.string.hw20_help),13,MUTED));AppUi.disclosure(this,settings,s(R.string.ui_advanced),advanced);
         match=new CheckBox(this);match.setText(s(R.string.compatibility));match.setTextSize(14);body.addView(match);match.setOnCheckedChangeListener((b,on)->refresh());
         flashButton=button(s(R.string.flash),this::confirmFlash);AppUi.style(flashButton,true);body.addView(flashButton);
         stage=text(s(R.string.waiting),14,GREEN);body.addView(stage);progress=new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);progress.setMax(100);body.addView(progress);
@@ -98,25 +108,22 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         hardwareStatus=text(previousHardware.isEmpty()?s(R.string.no_capture):s(R.string.previous_capture),14,GREEN);captureDetails.addView(hardwareStatus);
         hardwareExport=button(s(R.string.hardware_export),()->{flushHardware();Intent i=new Intent(Intent.ACTION_CREATE_DOCUMENT);i.addCategory(Intent.CATEGORY_OPENABLE);i.setType("application/x-ndjson");i.putExtra(Intent.EXTRA_TITLE,"tsl9-hardware-"+new SimpleDateFormat("yyyyMMdd-HHmmss",Locale.ROOT).format(new Date())+".jsonl");startActivityForResult(i,102);});captureDetails.addView(hardwareExport);
         hardwareView=text("",12,MUTED);hardwareView.setTypeface(android.graphics.Typeface.MONOSPACE);hardwareView.setTextIsSelectable(true);captureDetails.addView(hardwareView);
-        section(body,R.string.ui_diagnostics);AppUi.disclosure(this,body,s(R.string.capture_title),captureDetails);
-        LinearLayout debugDetails=AppUi.column(this);debugDetails.addView(text(s(R.string.debug_help),13,MUTED));logView=text("",12,MUTED);logView.setTypeface(android.graphics.Typeface.MONOSPACE);logView.setTextIsSelectable(true);debugDetails.addView(logView);AppUi.disclosure(this,body,s(R.string.debug_title),debugDetails);
-        exportButton=button(s(R.string.debug_export),()->{flushLog();Intent i=new Intent(Intent.ACTION_CREATE_DOCUMENT);i.addCategory(Intent.CATEGORY_OPENABLE);i.setType("text/plain");i.putExtra(Intent.EXTRA_TITLE,"tsl9-debug-"+new SimpleDateFormat("yyyyMMdd-HHmmss",Locale.ROOT).format(new Date())+".txt");startActivityForResult(i,101);});AppUi.icon(exportButton,"export");body.addView(exportButton);
+        section(settings,R.string.ui_diagnostics);AppUi.disclosure(this,settings,s(R.string.capture_title),captureDetails);
+        LinearLayout debugDetails=AppUi.column(this);debugDetails.addView(text(s(R.string.debug_help),13,MUTED));logView=text("",12,MUTED);logView.setTypeface(android.graphics.Typeface.MONOSPACE);logView.setTextIsSelectable(true);debugDetails.addView(logView);AppUi.disclosure(this,settings,s(R.string.debug_title),debugDetails);
+        exportButton=button(s(R.string.debug_export),()->{flushLog();Intent i=new Intent(Intent.ACTION_CREATE_DOCUMENT);i.addCategory(Intent.CATEGORY_OPENABLE);i.setType("text/plain");i.putExtra(Intent.EXTRA_TITLE,"tsl9-debug-"+new SimpleDateFormat("yyyyMMdd-HHmmss",Locale.ROOT).format(new Date())+".txt");startActivityForResult(i,101);});AppUi.icon(exportButton,"export");settings.addView(exportButton);settings.addView(text(s(R.string.settings_version,appBuild()),12,MUTED));
         tabs=new TabHost(this);tabs.setId(android.R.id.tabhost);tabs.setBackgroundColor(AppUi.BG);
         LinearLayout tabBody=AppUi.column(this);
         LinearLayout header=new LinearLayout(this);header.setGravity(Gravity.CENTER_VERTICAL);header.setPadding(dp(20),dp(6),dp(20),dp(2));TextView brand=text("TSL9",22,DARK);brand.setContentDescription(s(R.string.app_name));brand.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);header.addView(brand,new LinearLayout.LayoutParams(0,-2,1));
         headerConnection=text(s(R.string.disconnected),12,MUTED);header.addView(headerConnection);
-        languageButton=button("",()->languagePanel.setVisibility(languagePanel.getVisibility()==View.VISIBLE?View.GONE:View.VISIBLE));languageButton.setContentDescription(s(R.string.language));AppUi.icon(languageButton,"globe");languageButton.setPadding(dp(12),dp(10),dp(12),dp(10));header.addView(languageButton,new LinearLayout.LayoutParams(dp(48),dp(48)));tabBody.addView(header);
-        languagePanel=AppUi.column(this);languagePanel.setPadding(dp(20),0,dp(20),dp(8));languagePanel.addView(text(s(R.string.language),14,MUTED));
-        language=new Spinner(this);language.setContentDescription(s(R.string.language));language.setMinimumHeight(dp(48));language.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,new String[]{s(R.string.system_language),"简体中文","繁體中文","English"}));language.setSelection(LanguageSettings.index(this));
-        language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> p){}public void onItemSelected(AdapterView<?> p,View v,int position,long id){if(position==LanguageSettings.index(MainActivity.this))return;if(!canChangeLanguage()){language.setSelection(LanguageSettings.index(MainActivity.this));return;}LanguageSettings.select(MainActivity.this,position);}});
-        languagePanel.addView(language);languagePanel.setVisibility(View.GONE);tabBody.addView(languagePanel);
+        tabBody.addView(header);
         FrameLayout content=new FrameLayout(this);content.setId(android.R.id.tabcontent);tabBody.addView(content,new LinearLayout.LayoutParams(-1,0,1));
         TabWidget tabBar=new AppUi.PillNavigation(this);
         LinearLayout.LayoutParams barParams=new LinearLayout.LayoutParams(-2,-2);barParams.gravity=Gravity.CENTER_HORIZONTAL;barParams.setMargins(dp(16),dp(6),dp(16),dp(12));tabBody.addView(tabBar,barParams);tabs.addView(tabBody);tabs.setup();
         ScrollView vehicleScroll=buildVehicleUi();
         livePanel=new LivePanel(this,new LivePanel.Host(){public void query(){requestCarStatus();}public void startCan(String filter){startLiveCan(filter);}public void stopCan(){if(hardware.active()&&hardware.mode()==HardwareCapture.Mode.CAN)stopHardware("manual",false);}public void export(){if(hardwareExport.isEnabled())hardwareExport.performClick();}});
         tabs.addTab(tabs.newTabSpec("tools").setIndicator(tabIndicator(R.string.tab_tools,R.string.nav_tools,"bluetooth")).setContent(tag->scroll));tabs.addTab(tabs.newTabSpec("car").setIndicator(tabIndicator(R.string.tab_car,R.string.nav_car,"car")).setContent(tag->vehicleScroll));tabs.addTab(tabs.newTabSpec("live").setIndicator(tabIndicator(R.string.live_tab,R.string.nav_live,"chart")).setContent(tag->livePanel.view));
-        tabs.setOnTabChangedListener(tag->{if(!tag.equals("car"))car.stopSeat();if(tag.equals("car")||tag.equals("live")){lastCarPoll=0;lastCarInfoPoll=0;}refresh();});setContentView(tabs);
+        tabs.addTab(tabs.newTabSpec("settings").setIndicator(tabIndicator(R.string.settings_title,R.string.nav_settings,"settings")).setContent(tag->settingsPage));
+        tabs.setOnTabChangedListener(tag->{if(!tag.equals("car"))car.stopSeat();if(tag.equals("car")||tag.equals("live")){lastCarPoll=0;lastCarInfoPoll=0;}if(tag.equals("settings"))refreshSavedPassword();refresh();});setContentView(tabs);
         tabBody.setOnApplyWindowInsetsListener((v,insets)->{tabBody.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),insets.getSystemWindowInsetBottom());return insets.consumeSystemWindowInsets();});
         // Record only geometry changes. No vehicle/device identifiers or file contents.
         final String[] lastNavigationGeometry={""};
@@ -135,6 +142,14 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         });
     }
 
+    private void refreshSavedPassword(){
+        if(savedPasswordStatus==null||passwords==null)return;
+        boolean remembered=!passwords.load().isEmpty();savedPasswordStatus.setText(s(remembered?R.string.settings_saved_password:R.string.settings_no_saved_password));forgetPasswordButton.setEnabled(remembered);
+    }
+    private void forgetSavedPassword(){
+        if(passwords.clear()){refreshSavedPassword();log("AUTH remembered password cleared locally");}
+        else{savedPasswordStatus.setText(s(R.string.settings_forget_failed));log("AUTH remembered password clear unavailable");}
+    }
     private boolean carTabVisible(){return tabs!=null&&"car".equals(tabs.getCurrentTabTag());}
     private boolean telemetryTabVisible(){return tabs!=null&&(carTabVisible()||"live".equals(tabs.getCurrentTabTag()));}
     private boolean canReadVehicle(){return !leaving&&ble.idle()&&!car.active()&&!ota.active()&&!captureStopping&&info!=null&&(info[3]&1)!=0&&(!passwordRequired||passwordAccepted)&&(!hardware.active()||hardware.mode()!=HardwareCapture.Mode.TEXT);}
@@ -278,8 +293,8 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     private void requestInfo(){if(!ble.ready()||car.active()||(ota.active()&&!ota.waitingBoot()))return;lastCarInfoPoll=SystemClock.elapsedRealtime();ble.send(0xa0,new byte[0],()->log("A0 request sent"));}
     private void passwordDialog(){
         if(!ble.ready()||car.active()||(ota.active()&&!ota.waitingBoot()))return;
-        BluetoothPasswordDialog.create(this,new BluetoothPasswordStore(this),new BluetoothPasswordDialog.Events(){
-            public void submit(byte[] password){passwordAccepted=false;log("AUTH manual attempt payload=redacted");ble.send(0xa8,password,()->Arrays.fill(password,(byte)0));}
+        BluetoothPasswordDialog.create(this,passwords,new BluetoothPasswordDialog.Events(){
+            public void submit(byte[] password){passwordAccepted=false;refreshSavedPassword();log("AUTH manual attempt payload=redacted");ble.send(0xa8,password,()->Arrays.fill(password,(byte)0));}
             public void rememberFailed(){log("AUTH remember unavailable; manual verification continues");}
         }).show();
     }
@@ -348,7 +363,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         if(flashButton==null||destroyed)return;boolean active=ota.active(),ready=ble.ready();
         boolean recording=hardware.active()||captureStopping,carActive=car.active();
         car.setAvailable(ready&&!leaving&&!active&&!recording&&info!=null&&(info[3]&1)!=0&&(!passwordRequired||passwordAccepted));
-        language.setEnabled(canChangeLanguage());languageButton.setEnabled(canChangeLanguage());putText(headerConnection,s(ready?R.string.ui_connected:R.string.disconnected));headerConnection.setTextColor(ready?GREEN:MUTED);if(recording)captureDetails.setVisibility(View.VISIBLE);
+        language.setEnabled(canChangeLanguage());putText(settingsStatus,status.getText().toString());putText(headerConnection,s(ready?R.string.ui_connected:R.string.disconnected));headerConnection.setTextColor(ready?GREEN:MUTED);if(recording)captureDetails.setVisibility(View.VISIBLE);
         scanButton.setEnabled(!active&&!carActive&&!ready&&!recording);disconnectButton.setEnabled(ready||active||recording);readButton.setEnabled(ready&&!active&&!recording&&!carActive);passwordButton.setEnabled(ready&&!recording&&!carActive&&(!active||ota.waitingBoot()));versionButton.setEnabled(ready&&!active&&!recording&&!carActive);
         fileButton.setEnabled(!active&&!recording&&!carActive);format.setEnabled(!active&&!recording&&!carActive);match.setEnabled(!active&&!recording&&!carActive);hw20.setEnabled(!active&&!recording&&!carActive);exportButton.setEnabled(!active&&!recording&&!carActive);flashButton.setEnabled(canFlash());cancelButton.setEnabled(active);
         captureStart.setEnabled(ready&&!active&&!carActive&&!recording&&(!passwordRequired||passwordAccepted));captureStop.setEnabled(hardware.active());captureMode.setEnabled(!active&&!recording&&!carActive);canIds.setEnabled(!active&&!recording&&!carActive);canData.setEnabled(!active&&!recording&&!carActive);hardwareExport.setEnabled(!active&&!recording&&!carActive&&(hardwareSession||!previousHardware.isEmpty()));

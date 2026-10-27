@@ -83,6 +83,7 @@ final class AppUi {
                 case "left":line(canvas,15,5,8,12,15,19);break;
                 case "right":case "chevron":line(canvas,9,5,16,12,9,19);break;
                 case "refresh":canvas.drawArc(4,4,20,20,30,290,false,p);line(canvas,20,4,20,10,14,10);break;
+                case "settings":{Path gear=new Path();for(int i=0;i<32;i++){double angle=i*Math.PI/16;float radius=i%4==0||i%4==3?7.8f:10;float x=12+(float)Math.cos(angle)*radius,y=12+(float)Math.sin(angle)*radius;if(i==0)gear.moveTo(x,y);else gear.lineTo(x,y);}gear.close();canvas.drawPath(gear,p);canvas.drawCircle(12,12,3,p);break;}
                 case "globe":canvas.drawCircle(12,12,9,p);canvas.drawOval(8,3,16,21,p);line(canvas,3,12,21,12);break;
                 case "export":line(canvas,13,4,21,4,21,12);line(canvas,21,4,11,14);line(canvas,9,6,4,6,4,21,19,21,19,16);break;
                 default:canvas.drawCircle(12,12,9,p);line(canvas,12,11,12,17);canvas.drawPoint(12,7,p);
