@@ -1,0 +1,326 @@
+{
+  "schema": "TSL9-scheduler-allocation-contract-summary-v1",
+  "SDK_candidate_only": true,
+  "verification": "verification-v1.json",
+  "verification_sha256": "8ec6b172c4c6eef51a7964b30dcef1ea37cc77896225e5adf09ceba9f80042ad",
+  "contract": {
+    "passed": true,
+    "existing_functions": [
+      {
+        "start": 277310,
+        "end": 277582,
+        "bytes": 272,
+        "instructions": 87,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 277580,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 277362,
+            "target": null
+          },
+          {
+            "PC": 277380,
+            "target": null
+          },
+          {
+            "PC": 277384,
+            "target": 274692
+          },
+          {
+            "PC": 277442,
+            "target": null
+          },
+          {
+            "PC": 277470,
+            "target": null
+          },
+          {
+            "PC": 277504,
+            "target": 275098
+          },
+          {
+            "PC": 277508,
+            "target": 278562
+          }
+        ]
+      },
+      {
+        "start": 536871836,
+        "end": 536871882,
+        "bytes": 46,
+        "instructions": 14,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 536871868,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      },
+      {
+        "start": 275476,
+        "end": 275744,
+        "bytes": 268,
+        "instructions": 97,
+        "own_frame_bytes": 48,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 275544,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 275564,
+            "target": null
+          },
+          {
+            "PC": 275606,
+            "target": null
+          },
+          {
+            "PC": 275626,
+            "target": null
+          }
+        ]
+      },
+      {
+        "start": 277012,
+        "end": 277132,
+        "bytes": 120,
+        "instructions": 43,
+        "own_frame_bytes": 32,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 277118,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 277084,
+            "target": 276904
+          }
+        ]
+      },
+      {
+        "start": 276596,
+        "end": 276786,
+        "bytes": 190,
+        "instructions": 73,
+        "own_frame_bytes": 48,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 276766,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 276698,
+            "target": 276264
+          }
+        ]
+      },
+      {
+        "start": 536870976,
+        "end": 536871184,
+        "bytes": 208,
+        "instructions": 72,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 536871178,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 536871072,
+            "target": null
+          }
+        ]
+      }
+    ],
+    "reference_CODE_bytes": 1104,
+    "reference_instructions": 386,
+    "encoded_input_byte_address": 536883713,
+    "count_byte_address": 536883614,
+    "count_expression": "3*((x >> 2)+(x & 3))+14",
+    "algebraic_count_bounds": [
+      14,
+      212
+    ],
+    "count_expression_fits_unsigned_byte": true,
+    "allocator_pair_PC": 277438,
+    "allocator_entry": 536870976,
+    "allocator_A1": 1,
+    "request_expression": "576+6*n_alloc",
+    "algebraic_request_bounds": [
+      660,
+      1848
+    ],
+    "allocator_rounding": "low16(low16(request+3)&~3)",
+    "no_16bit_request_wrap_for_encoded_bound": true,
+    "allocator_result_store_PC": 277446,
+    "table_pointer_slot": 536883756,
+    "null_return_skips_following_initialization": true,
+    "clear_pair_PC": 277466,
+    "clear_entry": 536871836,
+    "clear_size_expression": "576+6*n_clear",
+    "partition_pointer_fresh_load_PC": 277474,
+    "partition_count_fresh_load_PC": 277478,
+    "first_suffix_pointer_slot": 536883652,
+    "first_suffix_expression": "p_after_clear+576",
+    "second_suffix_pointer_slot": 536883684,
+    "second_suffix_expression": "p_after_clear+576+4*n_partition",
+    "scheduler_record_bytes": 12,
+    "scheduler_record_count": 48,
+    "scheduler_prefix_bytes": 576,
+    "conditional_suffix_widths": [
+      4,
+      2
+    ],
+    "conditional_numeric_total": "576+4*n+2*n",
+    "requires_n_alloc_equals_n_clear_equals_n_partition": true,
+    "requires_returned_pointer_equals_later_fresh_pointer": true,
+    "requires_valid_nonoverlapping_memory_and_compatible_callee_IRQ_contracts": true,
+    "allocation_capacity_ownership_lifetime_or_initialization_success_proved": false,
+    "all_subsequent_callback_array_writes_in_bounds_proved": false,
+    "physical_RAM_ROM_ISA_or_irq_atomicity_proved": false,
+    "native_existing_witness": {
+      "c": {
+        "object_sha256": "39189346d439dbe680d722a5813e43579ba8db0bb4943e67b216d0999ca9388d",
+        "CODE_bytes": 29848,
+        "non_CODE_allocations": {
+          ".rodata.tsl9_candidate_bitlength_table_6e95c": {
+            "type": 1,
+            "flags": 2,
+            "size": 256,
+            "alignment": 1,
+            "sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac"
+          }
+        },
+        "named_UND": [
+          "tsl9_candidate_external_flash_58498",
+          "tsl9_candidate_external_flash_58788",
+          "tsl9_candidate_external_flash_588b4",
+          "tsl9_candidate_external_flash_58988"
+        ]
+      },
+      "cpp": {
+        "object_sha256": "39189346d439dbe680d722a5813e43579ba8db0bb4943e67b216d0999ca9388d",
+        "CODE_bytes": 29848,
+        "non_CODE_allocations": {
+          ".rodata.tsl9_candidate_bitlength_table_6e95c": {
+            "type": 1,
+            "flags": 2,
+            "size": 256,
+            "alignment": 1,
+            "sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac"
+          }
+        },
+        "named_UND": [
+          "tsl9_candidate_external_flash_58498",
+          "tsl9_candidate_external_flash_58788",
+          "tsl9_candidate_external_flash_588b4",
+          "tsl9_candidate_external_flash_58988"
+        ]
+      }
+    }
+  },
+  "numeric_assertion_native_results": {
+    "c": {
+      "passed": true,
+      "object_sha256": "79c98b276976d798e6a431f3b2080ad39a0296bf31c2789aa2ac91df1178c8bc",
+      "allocated_bytes": 0,
+      "providers": 0,
+      "imports": 0,
+      "relocations": 0,
+      "independent_readers": {
+        "passed": true,
+        "sections": 8,
+        "symbols": 4,
+        "relocations": 0,
+        "object_sha256": "79c98b276976d798e6a431f3b2080ad39a0296bf31c2789aa2ac91df1178c8bc",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      }
+    },
+    "cpp": {
+      "passed": true,
+      "object_sha256": "79c98b276976d798e6a431f3b2080ad39a0296bf31c2789aa2ac91df1178c8bc",
+      "allocated_bytes": 0,
+      "providers": 0,
+      "imports": 0,
+      "relocations": 0,
+      "independent_readers": {
+        "passed": true,
+        "sections": 8,
+        "symbols": 4,
+        "relocations": 0,
+        "object_sha256": "79c98b276976d798e6a431f3b2080ad39a0296bf31c2789aa2ac91df1178c8bc",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      }
+    }
+  },
+  "source": "scheduler_layout.h",
+  "source_sha256": "80a6852ecb9275864bc78d485ab813782088fe9a7b380369aab3f6138fc5cc1d",
+  "assertions": "scheduler_layout_abi.c",
+  "assertions_sha256": "9783b0f1ebe9fbacf145e48806a0c4faa34360058ad1a560865ac841a39ec841",
+  "reference_CODE_bytes": 1104,
+  "reference_instructions": 386,
+  "new_target_CODE_bytes": 0,
+  "new_target_DATA_bytes": 0,
+  "SDK_CODE_bytes_unchanged": 29848,
+  "SDK_DATA_bytes_unchanged": 256,
+  "SDK_named_UND_unchanged": 4,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "inherited_startup_source_gap_bytes": 4,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "installed_ROM_identity_proved": false,
+  "physical_RAM_capacity_or_IRQ_atomicity_proved": false,
+  "allocation_capacity_ownership_lifetime_proved": false,
+  "all_subsequent_callback_array_writes_in_bounds_proved": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false
+}

@@ -1,6 +1,6 @@
 # Remaining task0x60516 handlers and scheduler index banks
 
-[繁體中文](README.md) · [Prior callees/RAM mapping](../tsl9-resident-parser-callees/readme.en.md) · [Original task](../tsl9-resident-callback-registration/readme.en.md)
+[繁體中文](README.md) · [Prior callees/RAM mapping](../tsl9-resident-parser-callees/readme.en.md) · [Original task](../tsl9-resident-callback-registration/readme.en.md) · [Follow-up scheduler allocation relation](../tsl9-scheduler-allocation-contract/readme.en.md)
 
 [C/C++](resident_task_final_handlers.c) adds **five complete bodies/2,254 CODE bytes/801 instructions**. Actual C11/C++17 objects match:187 positive FUNC regions,163 relocations(143 direct controls+ten HI/LO pairs),every original-VA-normalized byte equal.53 Xwchc ports use primary definitions/52 official positive vectors. Original-context reconstruction,not recovered vendor C sources.
 

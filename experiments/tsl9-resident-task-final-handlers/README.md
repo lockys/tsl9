@@ -1,6 +1,6 @@
 # Task 0x60516 剩餘 handlers 與排程索引分區
 
-[English](readme.en.md) · [前輪 callees／RAM mapping](../tsl9-resident-parser-callees/README.md) · [原 task](../tsl9-resident-callback-registration/README.md)
+[English](readme.en.md) · [前輪 callees／RAM mapping](../tsl9-resident-parser-callees/README.md) · [原 task](../tsl9-resident-callback-registration/README.md) · [後續排程表配置關係](../tsl9-scheduler-allocation-contract/README.md)
 
 [C/C++](resident_task_final_handlers.c) 新增 **5 個完整本體／2,254 CODE bytes／801 指令**。實際 C11／C++17 物件相同：187個正尺寸FUNC、163 relocations（143 direct controls＋10組HI／LO），原位址正規化後每個byte相同。53個Xwchc ports依primary definitions／52個官方正例核對。保留原context，並非恢復出的原廠C原始碼。
 
