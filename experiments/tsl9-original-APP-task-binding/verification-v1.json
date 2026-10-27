@@ -1,0 +1,2291 @@
+{
+  "schema": "TSL9-original-APP-task-binding-verification-v1",
+  "passed": true,
+  "checker_sha256": "9de91dae7d2a111124c552e367a6c6880669344723744b243de3a06489113821",
+  "builder_sha256": "ea64f9a2b3e9de4144709ef7f8c97d6979b6d5c06bc46396016248afad4a3b25",
+  "evidence_sha256": "9243a2df3db426d1ee43056750e958bf398a0d43d01104ab1e09b78f93c3553f",
+  "ABI": {
+    "c": {
+      "passed": true,
+      "object_sha256": "545583536a45394db58eeed6479ae37f979c51b00c17888064ed5072cf1c8a51",
+      "allocated_bytes": 0,
+      "functions": 0,
+      "relocations": 0,
+      "primary_handler_type": "uint16_t (*)(uint8_t, uint16_t)",
+      "RV32_pointer_bytes": 4,
+      "task_ID_bytes": 1,
+      "event_and_result_bytes": 2,
+      "source_and_header_compiler_checked": true,
+      "independent_readers": {
+        "passed": true,
+        "sections": 8,
+        "symbols": 4,
+        "relocations": 0,
+        "object_sha256": "545583536a45394db58eeed6479ae37f979c51b00c17888064ed5072cf1c8a51",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "installed_private_ABI_or_hardware_proved": false,
+      "target_executed": false,
+      "network": false
+    },
+    "cpp": {
+      "passed": true,
+      "object_sha256": "545583536a45394db58eeed6479ae37f979c51b00c17888064ed5072cf1c8a51",
+      "allocated_bytes": 0,
+      "functions": 0,
+      "relocations": 0,
+      "primary_handler_type": "uint16_t (*)(uint8_t, uint16_t)",
+      "RV32_pointer_bytes": 4,
+      "task_ID_bytes": 1,
+      "event_and_result_bytes": 2,
+      "source_and_header_compiler_checked": true,
+      "independent_readers": {
+        "passed": true,
+        "sections": 8,
+        "symbols": 4,
+        "relocations": 0,
+        "object_sha256": "545583536a45394db58eeed6479ae37f979c51b00c17888064ed5072cf1c8a51",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "installed_private_ABI_or_hardware_proved": false,
+      "target_executed": false,
+      "network": false
+    }
+  },
+  "contract": {
+    "passed": true,
+    "conditions": [
+      "matching installed ROM profile is required and unproved",
+      "valid disjoint allocation satisfying576+6*n with stable n/p across allocation,clear,partition and dispatch",
+      "internal initializer count at43C06 is0; no intervening registration or overwrite before original APP registration",
+      "original register/task/heap ABI and valid original APP GP+388 context",
+      "normal callee returns with no IRQ/reentrant table or index replacement",
+      "known initializer and APP call sequence is conditional; global-before-every-dispatch is unproved"
+    ],
+    "registration": {
+      "APP_callback": 104796,
+      "APP_site": 105262,
+      "candidate_API": 277582,
+      "conditional_task_ID": 3,
+      "capacity_bounds": [
+        14,
+        212
+      ],
+      "rejection_value": 255,
+      "rejection_not_checked_by_APP_before_scheduling": true,
+      "handler_array_slot": 536883652,
+      "handler_index_stride": 4,
+      "APP_task_ID_storage": "original GP+388"
+    },
+    "suffix_bounds": {
+      "handlers_first4_bytes": 16,
+      "handler_array_min_bytes": 56,
+      "events_first4_bytes": 8,
+      "event_array_min_bytes": 28,
+      "conditional_numeric_bounds_proved": true,
+      "actual_allocation_capacity_or_ownership_proved": false
+    },
+    "event_priority": [
+      {
+        "mask": 32768,
+        "effect": "receive; deallocate only if nonnull",
+        "return_value": "events XOR0x8000"
+      },
+      {
+        "mask": 1,
+        "effect": "acknowledge",
+        "return_value": "events XOR1"
+      },
+      {
+        "mask": 8192,
+        "effect": "candidate641B0; calibration197B8; reschedule same bit",
+        "raw_delay": 192000,
+        "return_value": "events XOR0x2000"
+      },
+      {
+        "mask": 16384,
+        "effect": "reschedule same bit",
+        "raw_delay": 1600,
+        "return_value": "events XOR0x4000"
+      }
+    ],
+    "unmatched_bits_normal_return": 0,
+    "entry_events_domain": "zero-extended16-bit from original scheduler",
+    "one_priority_arm_per_invocation": true,
+    "initial_schedule": {
+      "site": 105300,
+      "tail": true,
+      "mask": 8192,
+      "raw_delay": 192000,
+      "physical_time_units_proved": false
+    },
+    "callback_reschedule_or_calibration_success_proved": false,
+    "all_remaining_callee_effects_proved": false,
+    "scheduler_return_store": "low16((returned_A0 & ~fresh_clear_mask) | fresh_pending_events) at freshly reread task index",
+    "return_applied_to_original_task_when_index_changes_proved": false,
+    "public_ABI_shape_only": true
+  },
+  "ledger": {
+    "schema": "TSL9-original-APP-task-cumulative-ledger-v1",
+    "passed": true,
+    "rows": [
+      {
+        "PC": 275344,
+        "function": 275238,
+        "family": "scheduled-record",
+        "outcome": "conditional-target",
+        "target_original_PC": 355548,
+        "pointer_slot": 536883756,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "only original producer record and selected table entry under prior provenance conditions",
+          "i=16*t+k, t in {1,2}, k in [0,14], single event A1=1<<k",
+          "bit15 message path and IDs31/47 excluded from route proof, not declared unusable",
+          "initialization-before-dispatch and actual timer delivery unproved"
+        ],
+        "witnesses": {
+          "provenance": "experiments/tsl9-resident-scheduled-record-callback/provenance-v1.json"
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 275410,
+        "function": 275368,
+        "family": "configured-seed",
+        "outcome": "conditional-target",
+        "target_original_PC": 275744,
+        "pointer_slot": 536883728,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "post-known BLE copy: original srandCB is nonzero43520 from candidate4007C",
+          "this target does not require prior successful clock configuration; provider slot3230 has its own guard",
+          "zero-primary fallback is a different configuration domain"
+        ],
+        "witnesses": {
+          "APP_slot_load": {
+            "definition_PC": 104944,
+            "use_PC": 105076,
+            "register": "s0",
+            "path_PCs": [
+              104944,
+              104948,
+              104950,
+              104952,
+              104954,
+              104956,
+              104960,
+              104964,
+              104966,
+              104970,
+              104974,
+              104976,
+              104980,
+              104982,
+              104984,
+              104986,
+              104988,
+              104992,
+              104996,
+              104998,
+              105000,
+              105002,
+              105006,
+              105008,
+              105010,
+              105012,
+              105014,
+              105016,
+              105018,
+              105022,
+              105026,
+              105028,
+              105030,
+              105034,
+              105038,
+              105042,
+              105044,
+              105046,
+              105050,
+              105054,
+              105058,
+              105062,
+              105066,
+              105068,
+              105072
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": [
+              104964,
+              105016
+            ]
+          },
+          "APP_field_store": {
+            "definition_PC": 105076,
+            "use_PC": 105104,
+            "register": "a5",
+            "path_PCs": [
+              105076,
+              105078,
+              105082,
+              105086,
+              105088,
+              105092,
+              105096,
+              105098,
+              105100
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          },
+          "known_nonzero_domain_pointer": {
+            "definition_PC": 275396,
+            "use_PC": 275410,
+            "register": "a5",
+            "path_PCs": [
+              275396,
+              275400,
+              275404,
+              275408
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 275564,
+        "function": 275476,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "accepted original nonnull 16-byte clock configuration copied; both clock slots stable",
+          "MMIO termination/coherence/frequency and physical meaning remain unproved"
+        ],
+        "witnesses": {
+          "load_PC": 275550,
+          "setup_PCs": [
+            275546
+          ],
+          "register": "a5",
+          "path_PCs": [
+            275550,
+            275554,
+            275556,
+            275558,
+            275560,
+            275562
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 275626,
+        "function": 275476,
+        "family": "status-zero",
+        "outcome": "conditional-skipped",
+        "target_original_PC": null,
+        "pointer_slot": 536883744,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "post-known-BLE-copy zero staCB field remains zero at first guard",
+          "earlier pre-copy heap-call value is not proved",
+          "0x59E20 is skipped by the FIRST 0x59E0C guard; no added second null guard"
+        ],
+        "witnesses": {
+          "guard_PC": 275620,
+          "zero_branch": 275628,
+          "zero_branch_cannot_reach_call": true
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 275768,
+        "function": 275744,
+        "family": "provider",
+        "outcome": "conditional-target",
+        "target_original_PC": 277858,
+        "pointer_slot": 536883760,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "after the above provider registration and no later slot overwrite",
+          "provider subsequently loads raw-clock separately at 0x43D7A"
+        ],
+        "witnesses": {
+          "load_PC": 275748,
+          "setup_PCs": [
+            275744
+          ],
+          "register": "a5",
+          "path_PCs": [
+            275748,
+            275752,
+            275754,
+            275756,
+            275758,
+            275762,
+            275766
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 276426,
+        "function": 276264,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "original_instruction": "jalr s7",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "accepted original nonnull 16-byte clock configuration copied; both clock slots stable",
+          "MMIO termination/coherence/frequency and physical meaning remain unproved"
+        ],
+        "witnesses": {
+          "load_PC": 276316,
+          "setup_PCs": [
+            276312
+          ],
+          "register": "s7",
+          "path_PCs": [
+            276316,
+            276320,
+            276334,
+            276338,
+            276342,
+            276344,
+            276348,
+            276352,
+            276356,
+            276360,
+            276362,
+            276366,
+            276368,
+            276370,
+            276372,
+            276376,
+            276380,
+            276384,
+            276388,
+            276390,
+            276394
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": true
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 276546,
+        "function": 276264,
+        "family": "status-zero",
+        "outcome": "conditional-skipped",
+        "target_original_PC": null,
+        "pointer_slot": 536883744,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "post-known-BLE-copy zero staCB field remains zero at first guard",
+          "earlier pre-copy heap-call value is not proved",
+          "0x59E20 is skipped by the FIRST 0x59E0C guard; no added second null guard"
+        ],
+        "witnesses": {
+          "guard_PC": 276540,
+          "zero_branch": 276324,
+          "zero_branch_cannot_reach_call": true
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 277270,
+        "function": 277258,
+        "family": "provider",
+        "outcome": "conditional-target",
+        "target_original_PC": 277858,
+        "pointer_slot": 536883760,
+        "original_instruction": "jalr a0",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "only the TimerInit caller context 0x43FDA passing A0=0x43D62",
+          "registration helper other caller contexts are not resolved"
+        ],
+        "witnesses": {
+          "caller": 278490,
+          "literal_PCs": [
+            278482,
+            278486
+          ],
+          "store_PC": 277266
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 277816,
+        "function": 277630,
+        "family": "sample",
+        "outcome": "conditional-target",
+        "target_original_PC": 104432,
+        "pointer_slot": 536883736,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "original 64-byte BLE configuration copy to 0x200031EC with original tsCB/rcCB fields; stable until invocation",
+          "callback return/physical ADC or calibration effects are not fully closed"
+        ],
+        "witnesses": {
+          "load_PC": 277812,
+          "setup_PCs": [
+            277700,
+            277740
+          ],
+          "register": "a5",
+          "path_PCs": [
+            277812,
+            277814
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 277882,
+        "function": 277858,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883764,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "accepted original nonnull 16-byte clock configuration copied; both clock slots stable",
+          "MMIO termination/coherence/frequency and physical meaning remain unproved"
+        ],
+        "witnesses": {
+          "load_PC": 277866,
+          "setup_PCs": [
+            277862
+          ],
+          "register": "a5",
+          "path_PCs": [
+            277866,
+            277870,
+            277872,
+            277874,
+            277876,
+            277878,
+            277880
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 278262,
+        "function": 278236,
+        "family": "sample",
+        "outcome": "conditional-target",
+        "target_original_PC": 104432,
+        "pointer_slot": 536883736,
+        "original_instruction": "jalr a4",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "original 64-byte BLE configuration copy to 0x200031EC with original tsCB/rcCB fields; stable until invocation",
+          "callback return/physical ADC or calibration effects are not fully closed"
+        ],
+        "witnesses": {
+          "load_PC": 278244,
+          "setup_PCs": [
+            278236,
+            278240
+          ],
+          "register": "a4",
+          "path_PCs": [
+            278244,
+            278246,
+            278248,
+            278250,
+            278252,
+            278254,
+            278256,
+            278258
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 278320,
+        "function": 278236,
+        "family": "calibration",
+        "outcome": "conditional-target",
+        "target_original_PC": 104376,
+        "pointer_slot": 536883740,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "original 64-byte BLE configuration copy to 0x200031EC with original tsCB/rcCB fields; stable until invocation",
+          "callback return/physical ADC or calibration effects are not fully closed"
+        ],
+        "witnesses": {
+          "load_PC": 278314,
+          "setup_PCs": [
+            278258
+          ],
+          "register": "a5",
+          "path_PCs": [
+            278314,
+            278318
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 278368,
+        "function": 278342,
+        "family": "calibration",
+        "outcome": "conditional-target",
+        "target_original_PC": 104376,
+        "pointer_slot": 536883740,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "original 64-byte BLE configuration copy to 0x200031EC with original tsCB/rcCB fields; stable until invocation",
+          "callback return/physical ADC or calibration effects are not fully closed",
+          "does not require accepted clock configuration: calibration call is earlier than clock validation"
+        ],
+        "witnesses": {
+          "load_PC": 278354,
+          "setup_PCs": [
+            278346,
+            278350
+          ],
+          "register": "a5",
+          "path_PCs": [
+            278354,
+            278356,
+            278358,
+            278360,
+            278364,
+            278366
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 278614,
+        "outcome": "conditional-target",
+        "target_original_PC": 104346,
+        "pointer_slot": 536883748,
+        "conditions": [
+          "matching installed ROM profile remains required and unproved",
+          "known original 64-byte configuration copy and SDK defaults",
+          "valid disjoint memory and stacks, stable config/heap pointers and callback fields",
+          "original private ABI, normal callee returns, no IRQ/reentrant overwrite",
+          "valid logical NVM window and MMIO mapping; polling termination not proved",
+          "page arguments apply only if first marker differs, a valid 256-byte allocation is returned and the initialization loop completes"
+        ],
+        "source": "experiments/tsl9-original-SNV-Flash-binding/verification-v1.json"
+      },
+      {
+        "PC": 278718,
+        "outcome": "conditional-target",
+        "target_original_PC": 104382,
+        "pointer_slot": 536883752,
+        "conditions": [
+          "matching installed ROM profile remains required and unproved",
+          "known original 64-byte configuration copy and SDK defaults",
+          "valid disjoint memory and stacks, stable config/heap pointers and callback fields",
+          "original private ABI, normal callee returns, no IRQ/reentrant overwrite",
+          "valid logical NVM window and MMIO mapping; polling termination not proved",
+          "page arguments apply only if first marker differs, a valid 256-byte allocation is returned and the initialization loop completes"
+        ],
+        "source": "experiments/tsl9-original-SNV-Flash-binding/verification-v1.json"
+      },
+      {
+        "PC": 363762,
+        "function": 363602,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883764,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "after accepted original nonnull clock configuration; does not prove order before every call"
+        ],
+        "witnesses": {
+          "base": {
+            "definition_PC": 363714,
+            "use_PC": 363754,
+            "register": "s3",
+            "path_PCs": [
+              363714,
+              363718,
+              363722,
+              363726,
+              363730,
+              363734,
+              363738,
+              363742,
+              363744,
+              363748,
+              363750
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": [
+              363750
+            ]
+          },
+          "pointer": {
+            "definition_PC": 363754,
+            "use_PC": 363762,
+            "register": "a5",
+            "path_PCs": [
+              363754,
+              363758,
+              363760
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 364042,
+        "function": 363602,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883764,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "after accepted original nonnull clock configuration; does not prove order before every call"
+        ],
+        "witnesses": {
+          "base": {
+            "definition_PC": 363622,
+            "use_PC": 364030,
+            "register": "s5",
+            "path_PCs": [
+              363622,
+              363626,
+              363628,
+              363630,
+              363632,
+              363634,
+              363636,
+              363638,
+              363640,
+              363642,
+              363644,
+              363648,
+              363652,
+              363656,
+              363660,
+              363664,
+              363668,
+              363670,
+              363674,
+              363678,
+              363680,
+              363682,
+              363684,
+              363688,
+              363692,
+              363696,
+              363840,
+              363980,
+              363984,
+              363988,
+              363990,
+              363992,
+              363994,
+              363998,
+              364002,
+              364004,
+              364008,
+              364012,
+              364016,
+              364018,
+              364020,
+              364024,
+              364028
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": [
+              363688,
+              363998
+            ]
+          },
+          "pointer": {
+            "definition_PC": 364030,
+            "use_PC": 364042,
+            "register": "a5",
+            "path_PCs": [
+              364030,
+              364034,
+              364038
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 364106,
+        "function": 363602,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883764,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "after accepted original nonnull clock configuration; does not prove order before every call"
+        ],
+        "witnesses": {
+          "base": {
+            "definition_PC": 363622,
+            "use_PC": 364030,
+            "register": "s5",
+            "path_PCs": [
+              363622,
+              363626,
+              363628,
+              363630,
+              363632,
+              363634,
+              363636,
+              363638,
+              363640,
+              363642,
+              363644,
+              363648,
+              363652,
+              363656,
+              363660,
+              363664,
+              363668,
+              363670,
+              363674,
+              363678,
+              363680,
+              363682,
+              363684,
+              363688,
+              363692,
+              363696,
+              363840,
+              363980,
+              363984,
+              363988,
+              363990,
+              363992,
+              363994,
+              363998,
+              364002,
+              364004,
+              364008,
+              364012,
+              364016,
+              364018,
+              364020,
+              364024,
+              364028
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": [
+              363688,
+              363998
+            ]
+          },
+          "pointer": {
+            "definition_PC": 364030,
+            "use_PC": 364106,
+            "register": "a5",
+            "path_PCs": [
+              364030,
+              364034,
+              364038
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 368148,
+        "function": 367934,
+        "family": "status-zero",
+        "outcome": "conditional-skipped",
+        "target_original_PC": null,
+        "pointer_slot": 536883744,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "post-known-BLE-copy zero staCB field remains zero at first guard",
+          "earlier pre-copy heap-call value is not proved",
+          "0x59E20 is skipped by the FIRST 0x59E0C guard; no added second null guard"
+        ],
+        "witnesses": {
+          "guard_PC": 368140,
+          "zero_branch": 368162,
+          "zero_branch_cannot_reach_call": true
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 368160,
+        "function": 367934,
+        "family": "status-zero",
+        "outcome": "conditional-skipped",
+        "target_original_PC": null,
+        "pointer_slot": 536883744,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "post-known-BLE-copy zero staCB field remains zero at first guard",
+          "earlier pre-copy heap-call value is not proved",
+          "0x59E20 is skipped by the FIRST 0x59E0C guard; no added second null guard"
+        ],
+        "witnesses": {
+          "guard_PC": 368140,
+          "zero_branch": 368162,
+          "zero_branch_cannot_reach_call": true
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 390870,
+        "function": 389684,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883764,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "accepted original nonnull 16-byte clock configuration copied; both clock slots stable",
+          "MMIO termination/coherence/frequency and physical meaning remain unproved"
+        ],
+        "witnesses": {
+          "load_PC": 390862,
+          "setup_PCs": [
+            390824
+          ],
+          "register": "a5",
+          "path_PCs": [
+            390862,
+            390866,
+            390868
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 390920,
+        "function": 389684,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "accepted original nonnull 16-byte clock configuration copied; both clock slots stable",
+          "MMIO termination/coherence/frequency and physical meaning remain unproved"
+        ],
+        "witnesses": {
+          "load_PC": 390908,
+          "setup_PCs": [
+            390904
+          ],
+          "register": "a5",
+          "path_PCs": [
+            390908,
+            390912,
+            390916
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 411838,
+        "function": 411540,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "accepted original nonnull 16-byte clock configuration copied; both clock slots stable",
+          "MMIO termination/coherence/frequency and physical meaning remain unproved"
+        ],
+        "witnesses": {
+          "load_PC": 411832,
+          "setup_PCs": [
+            411828
+          ],
+          "register": "a5",
+          "path_PCs": [
+            411832,
+            411836
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 413264,
+        "function": 412908,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "after accepted original nonnull clock configuration; does not prove order before every call"
+        ],
+        "witnesses": {
+          "base": {
+            "definition_PC": 413256,
+            "use_PC": 413260,
+            "register": "a5",
+            "path_PCs": [
+              413256
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          },
+          "pointer": {
+            "definition_PC": 413260,
+            "use_PC": 413264,
+            "register": "a5",
+            "path_PCs": [
+              413260
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 414588,
+        "function": 414052,
+        "family": "status-zero",
+        "outcome": "conditional-skipped",
+        "target_original_PC": null,
+        "pointer_slot": 536883744,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "post-known BLE copy: staCB remains zero at guard; earlier heap-call value remains unproved"
+        ],
+        "witnesses": {
+          "guard_PC": 414580,
+          "zero_branch": 414590,
+          "base": {
+            "definition_PC": 414572,
+            "use_PC": 414576,
+            "register": "a5",
+            "path_PCs": [
+              414572
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          },
+          "pointer": {
+            "definition_PC": 414576,
+            "use_PC": 414588,
+            "register": "a5",
+            "path_PCs": [
+              414576,
+              414580,
+              414582,
+              414584
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 415222,
+        "function": 414624,
+        "family": "status-zero",
+        "outcome": "conditional-skipped",
+        "target_original_PC": null,
+        "pointer_slot": 536883744,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "post-known BLE copy: staCB remains zero at guard; earlier heap-call value remains unproved"
+        ],
+        "witnesses": {
+          "guard_PC": 415214,
+          "zero_branch": 415224,
+          "base": {
+            "definition_PC": 415206,
+            "use_PC": 415210,
+            "register": "a5",
+            "path_PCs": [
+              415206
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          },
+          "pointer": {
+            "definition_PC": 415210,
+            "use_PC": 415222,
+            "register": "a5",
+            "path_PCs": [
+              415210,
+              415214,
+              415216,
+              415218
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 417474,
+        "function": 417254,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "original_instruction": "jalr a5",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "accepted original nonnull 16-byte clock configuration copied; both clock slots stable",
+          "MMIO termination/coherence/frequency and physical meaning remain unproved"
+        ],
+        "witnesses": {
+          "load_PC": 417466,
+          "setup_PCs": [
+            417462
+          ],
+          "register": "a5",
+          "path_PCs": [
+            417466,
+            417470
+          ],
+          "local_dominance_proved": true,
+          "no_explicit_pointer_register_overwrite": true,
+          "intervening_calls_require_private_saved_register_contract": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 536871072,
+        "function": 536870976,
+        "family": "status-zero",
+        "outcome": "conditional-skipped",
+        "target_original_PC": null,
+        "pointer_slot": 536883744,
+        "original_instruction": "jalr a4",
+        "conditions": [
+          "matching installed ROM is required but not proved",
+          "valid disjoint memory and stack",
+          "original private ABI and normal callee returns",
+          "no asynchronous overwrite or reentrant binding replacement",
+          "post-known-BLE-copy zero staCB field remains zero at first guard",
+          "earlier pre-copy heap-call value is not proved",
+          "0x59E20 is skipped by the FIRST 0x59E0C guard; no added second null guard"
+        ],
+        "witnesses": {
+          "guard_PC": 536871064,
+          "zero_branch": 536871002,
+          "zero_branch_cannot_reach_call": true
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 536872288,
+        "function": 536872186,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "after accepted original nonnull clock configuration; does not prove order before every call"
+        ],
+        "witnesses": {
+          "base": {
+            "definition_PC": 536872232,
+            "use_PC": 536872284,
+            "register": "s5",
+            "path_PCs": [
+              536872232,
+              536872236,
+              536872240,
+              536872244,
+              536872248,
+              536872252,
+              536872254,
+              536872256,
+              536872258,
+              536872262,
+              536872266,
+              536872270,
+              536872272,
+              536872274,
+              536872276,
+              536872278,
+              536872282,
+              536872366
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": [
+              536872272
+            ]
+          },
+          "pointer": {
+            "definition_PC": 536872284,
+            "use_PC": 536872288,
+            "register": "a5",
+            "path_PCs": [
+              536872284
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 536872570,
+        "function": 536872474,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "after accepted original nonnull clock configuration; does not prove order before every call"
+        ],
+        "witnesses": {
+          "base": {
+            "definition_PC": 536872562,
+            "use_PC": 536872566,
+            "register": "s2",
+            "path_PCs": [
+              536872562
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          },
+          "pointer": {
+            "definition_PC": 536872566,
+            "use_PC": 536872570,
+            "register": "a5",
+            "path_PCs": [
+              536872566
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 536872582,
+        "function": 536872474,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "after accepted original nonnull clock configuration; does not prove order before every call"
+        ],
+        "witnesses": {
+          "base": {
+            "definition_PC": 536872562,
+            "use_PC": 536872576,
+            "register": "s2",
+            "path_PCs": [
+              536872562,
+              536872566,
+              536872570,
+              536872572,
+              536872806,
+              536872808,
+              536872810
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": [
+              536872570
+            ]
+          },
+          "pointer": {
+            "definition_PC": 536872576,
+            "use_PC": 536872582,
+            "register": "a5",
+            "path_PCs": [
+              536872576,
+              536872580
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 536872650,
+        "function": 536872474,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "after accepted original nonnull clock configuration; does not prove order before every call"
+        ],
+        "witnesses": {
+          "base": {
+            "definition_PC": 536872638,
+            "use_PC": 536872642,
+            "register": "a5",
+            "path_PCs": [
+              536872638
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          },
+          "pointer": {
+            "definition_PC": 536872642,
+            "use_PC": 536872650,
+            "register": "a5",
+            "path_PCs": [
+              536872642,
+              536872646
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 536872734,
+        "function": 536872474,
+        "family": "idle-caller-gate",
+        "outcome": "conditional-skipped-via-caller",
+        "target_original_PC": null,
+        "pointer_slot": 536883732,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "post-known BLE copy idleCB remains zero at SystemProcess guard2000087C",
+          "scope is ONLY entry through SystemProcess200007D0 and its idle tail200008BE",
+          "idle service itself has no local null guard; other callers or nonzero idleCB are not resolved"
+        ],
+        "witnesses": {
+          "caller": 536872912,
+          "guard_PC": 536873084,
+          "zero_branch": 536873294,
+          "tail_PC": 536873150,
+          "internal_base": {
+            "definition_PC": 536872726,
+            "use_PC": 536872730,
+            "register": "a5",
+            "path_PCs": [
+              536872726
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          },
+          "internal_pointer": {
+            "definition_PC": 536872730,
+            "use_PC": 536872734,
+            "register": "a5",
+            "path_PCs": [
+              536872730
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          },
+          "local_null_guard_present": false
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 536872816,
+        "function": 536872474,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "after accepted original nonnull clock configuration; does not prove order before every call"
+        ],
+        "witnesses": {
+          "base": {
+            "definition_PC": 536872638,
+            "use_PC": 536872642,
+            "register": "a5",
+            "path_PCs": [
+              536872638
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          },
+          "pointer": {
+            "definition_PC": 536872642,
+            "use_PC": 536872816,
+            "register": "a5",
+            "path_PCs": [
+              536872642,
+              536872646
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      },
+      {
+        "PC": 536873226,
+        "family": "initialized-task-handler-table",
+        "outcome": "conditional-target-set",
+        "pointer_table_base_slot": 536883652,
+        "conditional_targets_by_task_ID": {
+          "0": 275108,
+          "1": 275238,
+          "2": 275238,
+          "3": 104796
+        },
+        "table_stride": 4,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "valid disjoint allocation satisfying576+6*n with stable n/p across allocation,clear,partition and dispatch",
+          "internal initializer count at43C06 is0; no intervening registration or overwrite before original APP registration",
+          "original register/task/heap ABI and valid original APP GP+388 context",
+          "normal callee returns with no IRQ/reentrant table or index replacement",
+          "known initializer and APP call sequence is conditional; global-before-every-dispatch is unproved"
+        ],
+        "live_binding_proved": false,
+        "handler_count_before_APP_registration": 3,
+        "handler_count_after_accepted_registration": 4
+      },
+      {
+        "PC": 536882530,
+        "function": 536882508,
+        "family": "raw-clock",
+        "outcome": "conditional-target",
+        "target_original_PC": 102854,
+        "pointer_slot": 536883680,
+        "conditions": [
+          "matching installed ROM profile is required and unproved",
+          "known original configuration copy and stable pointer fields",
+          "valid disjoint memory and stacks",
+          "original private ABI and normal callee returns",
+          "no IRQ/reentrant overwrite",
+          "after accepted original nonnull clock configuration; does not prove order before every call"
+        ],
+        "witnesses": {
+          "base": {
+            "definition_PC": 536882508,
+            "use_PC": 536882512,
+            "register": "a5",
+            "path_PCs": [
+              536882508
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          },
+          "pointer": {
+            "definition_PC": 536882512,
+            "use_PC": 536882530,
+            "register": "a5",
+            "path_PCs": [
+              536882512,
+              536882516,
+              536882518,
+              536882520,
+              536882522,
+              536882524,
+              536882526,
+              536882528
+            ],
+            "local_dominance_and_last_definition_proved": true,
+            "intervening_calls_require_saved_register_contract": []
+          }
+        },
+        "live_binding_proved": false
+      }
+    ],
+    "other_sites": [
+      {
+        "PC": 275178,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 409382,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 410706,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 411016,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 411224,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 411280,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 414540,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 415038,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 415066,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 415326,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 415662,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 536872884,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 536872984,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 536872990,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      },
+      {
+        "PC": 536873276,
+        "outcome": "not-joined-in-this-ledger",
+        "prior_proofs_not_overridden": true
+      }
+    ],
+    "counts": {
+      "actual_register_sites": 51,
+      "conditionally_joined": 36,
+      "conditional_target_or_target_set": 28,
+      "conditional_skipped_or_caller_gated": 8,
+      "not_joined_here": 15
+    },
+    "new_APP_API_bindings_not_in_SDK_51": [
+      {
+        "PC": 105262,
+        "slot": 262272,
+        "target": 277582
+      },
+      {
+        "PC": 105300,
+        "slot": 262232,
+        "target": 276264
+      },
+      {
+        "PC": 104822,
+        "slot": 262252,
+        "target": 536871564
+      },
+      {
+        "PC": 104828,
+        "slot": 262248,
+        "target": 274874
+      },
+      {
+        "PC": 104870,
+        "slot": 262636,
+        "target": 410032
+      },
+      {
+        "PC": 104892,
+        "slot": 262232,
+        "target": 276264
+      },
+      {
+        "PC": 104924,
+        "slot": 262232,
+        "target": 276264
+      }
+    ],
+    "no_universal_or_live_binding_claim": true,
+    "missing_function_count_not_inferred": true
+  },
+  "whole_functions": [
+    {
+      "start": 36488,
+      "end": 36872,
+      "bytes": 384,
+      "instructions": 126,
+      "own_frame_bytes": 32,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 36870,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 36518,
+          "target": null
+        },
+        {
+          "PC": 36520,
+          "target": 104930
+        },
+        {
+          "PC": 36524,
+          "target": 105238
+        },
+        {
+          "PC": 36528,
+          "target": 36986
+        },
+        {
+          "PC": 36534,
+          "target": null
+        },
+        {
+          "PC": 36540,
+          "target": null
+        },
+        {
+          "PC": 36546,
+          "target": null
+        },
+        {
+          "PC": 36560,
+          "target": null
+        },
+        {
+          "PC": 36598,
+          "target": null
+        },
+        {
+          "PC": 36612,
+          "target": null
+        },
+        {
+          "PC": 36628,
+          "target": null
+        },
+        {
+          "PC": 36640,
+          "target": null
+        },
+        {
+          "PC": 36652,
+          "target": null
+        },
+        {
+          "PC": 36656,
+          "target": 35694
+        },
+        {
+          "PC": 36700,
+          "target": null
+        },
+        {
+          "PC": 36724,
+          "target": null
+        },
+        {
+          "PC": 36732,
+          "target": null
+        },
+        {
+          "PC": 36746,
+          "target": null
+        },
+        {
+          "PC": 36768,
+          "target": null
+        },
+        {
+          "PC": 36790,
+          "target": null
+        },
+        {
+          "PC": 36812,
+          "target": null
+        },
+        {
+          "PC": 36822,
+          "target": null
+        },
+        {
+          "PC": 36824,
+          "target": 75014
+        },
+        {
+          "PC": 36828,
+          "target": 95720
+        },
+        {
+          "PC": 36842,
+          "target": null
+        },
+        {
+          "PC": 36856,
+          "target": null
+        }
+      ],
+      "domain": "APP"
+    },
+    {
+      "start": 104376,
+      "end": 104382,
+      "bytes": 6,
+      "instructions": 2,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 104378,
+          "type": "direct-tail",
+          "target": 103066,
+          "instruction": "j 0x1929a"
+        }
+      ],
+      "calls": [],
+      "domain": "APP"
+    },
+    {
+      "start": 104796,
+      "end": 104930,
+      "bytes": 134,
+      "instructions": 49,
+      "own_frame_bytes": 16,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 104842,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 104822,
+          "target": null
+        },
+        {
+          "PC": 104828,
+          "target": null
+        },
+        {
+          "PC": 104870,
+          "target": null
+        },
+        {
+          "PC": 104872,
+          "target": 104376
+        },
+        {
+          "PC": 104892,
+          "target": null
+        },
+        {
+          "PC": 104924,
+          "target": null
+        }
+      ],
+      "domain": "APP"
+    },
+    {
+      "start": 104930,
+      "end": 105238,
+      "bytes": 308,
+      "instructions": 106,
+      "own_frame_bytes": 96,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 105236,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 104964,
+          "target": null
+        },
+        {
+          "PC": 105016,
+          "target": null
+        },
+        {
+          "PC": 105140,
+          "target": 102230
+        },
+        {
+          "PC": 105196,
+          "target": null
+        },
+        {
+          "PC": 105208,
+          "target": 102662
+        }
+      ],
+      "domain": "APP"
+    },
+    {
+      "start": 105238,
+      "end": 105302,
+      "bytes": 64,
+      "instructions": 22,
+      "own_frame_bytes": 16,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 105300,
+          "type": "rjmp",
+          "instruction": "jr t1"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 105262,
+          "target": null
+        },
+        {
+          "PC": 105272,
+          "target": 105302
+        }
+      ],
+      "domain": "APP"
+    },
+    {
+      "start": 277310,
+      "end": 277582,
+      "bytes": 272,
+      "instructions": 87,
+      "own_frame_bytes": 16,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 277580,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 277362,
+          "target": null
+        },
+        {
+          "PC": 277380,
+          "target": null
+        },
+        {
+          "PC": 277384,
+          "target": 274692
+        },
+        {
+          "PC": 277442,
+          "target": null
+        },
+        {
+          "PC": 277470,
+          "target": null
+        },
+        {
+          "PC": 277504,
+          "target": 275098
+        },
+        {
+          "PC": 277508,
+          "target": 278562
+        }
+      ],
+      "domain": "SDK"
+    },
+    {
+      "start": 277582,
+      "end": 277630,
+      "bytes": 48,
+      "instructions": 16,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 277622,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [],
+      "domain": "SDK"
+    },
+    {
+      "start": 536872912,
+      "end": 536873350,
+      "bytes": 438,
+      "instructions": 150,
+      "own_frame_bytes": 32,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 536873150,
+          "type": "direct-tail",
+          "target": 536872474,
+          "instruction": "j 0x2000061a"
+        },
+        {
+          "PC": 536873310,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 536872978,
+          "target": 536880656
+        },
+        {
+          "PC": 536872984,
+          "target": null
+        },
+        {
+          "PC": 536872990,
+          "target": null
+        },
+        {
+          "PC": 536873074,
+          "target": 536872186
+        },
+        {
+          "PC": 536873164,
+          "target": 536880656
+        },
+        {
+          "PC": 536873226,
+          "target": null
+        },
+        {
+          "PC": 536873276,
+          "target": null
+        },
+        {
+          "PC": 536873330,
+          "target": null
+        }
+      ],
+      "domain": "SDK"
+    },
+    {
+      "start": 536871564,
+      "end": 536871700,
+      "bytes": 136,
+      "instructions": 50,
+      "own_frame_bytes": 32,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 536871684,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 536871618,
+          "target": null
+        },
+        {
+          "PC": 536871644,
+          "target": null
+        },
+        {
+          "PC": 536871658,
+          "target": null
+        }
+      ],
+      "domain": "SDK"
+    },
+    {
+      "start": 274874,
+      "end": 274952,
+      "bytes": 78,
+      "instructions": 27,
+      "own_frame_bytes": 16,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 274914,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 274940,
+          "target": null
+        }
+      ],
+      "domain": "SDK"
+    },
+    {
+      "start": 410032,
+      "end": 410264,
+      "bytes": 232,
+      "instructions": 79,
+      "own_frame_bytes": 32,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 410262,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 410104,
+          "target": 409306
+        },
+        {
+          "PC": 410182,
+          "target": 418908
+        },
+        {
+          "PC": 410186,
+          "target": 422296
+        },
+        {
+          "PC": 410190,
+          "target": 418522
+        },
+        {
+          "PC": 410194,
+          "target": 418670
+        }
+      ],
+      "domain": "SDK"
+    },
+    {
+      "start": 276264,
+      "end": 276596,
+      "bytes": 332,
+      "instructions": 113,
+      "own_frame_bytes": 48,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 276424,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 276390,
+          "target": 450330
+        },
+        {
+          "PC": 276426,
+          "target": null
+        },
+        {
+          "PC": 276458,
+          "target": 450330
+        },
+        {
+          "PC": 276492,
+          "target": null
+        },
+        {
+          "PC": 276526,
+          "target": null
+        },
+        {
+          "PC": 276546,
+          "target": null
+        }
+      ],
+      "domain": "SDK"
+    }
+  ],
+  "APP_reference_CODE_bytes": 896,
+  "SDK_reference_CODE_bytes": 1536,
+  "reference_instructions": 827,
+  "composition": {
+    "passed": true,
+    "object_sha256": "e169abd9adb35d787274ce58c172bd6ef3a73639940e70445e2a678c845a6499",
+    "CODE_bytes": 35324,
+    "distinct_original_CODE_bytes": 35324,
+    "duplicate_original_CODE_bytes": 0,
+    "overlap_intervals": [],
+    "positive_FUNC_regions": 2401,
+    "relocations": 1914,
+    "distinct_PC_typed_relocations": 1914,
+    "native_byte_map_sha256": "54db1468def044de07abe38329595b1666ab0e046d7cc672ed7eb8924736406a",
+    "original_PC_typed_relocations_sha256": "cf545c60b61838b8785060a02835f824e4c6580fdd7546222be85fdbaaca5e25",
+    "non_CODE_allocations": {
+      ".rodata.tsl9_candidate_bitlength_table_6e95c": {
+        "type": 1,
+        "flags": 2,
+        "size": 256,
+        "alignment": 1,
+        "sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac"
+      },
+      ".rodata.tsl9_candidate_initial_state_6eaa4": {
+        "type": 1,
+        "flags": 2,
+        "size": 136,
+        "alignment": 4,
+        "sha256": "7416a8d7c1d595a759e14b05918b732a9168c6003af658359d8c3f452840b450"
+      }
+    },
+    "named_UND": [],
+    "original_PC_tags_are_source_contract_not_physical_placement": true,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false,
+    "network": false,
+    "DATA_bytes": 392,
+    "instructions": 12195,
+    "allocated_bytes": 35716,
+    "independent_readers": {
+      "passed": true,
+      "sections": 4174,
+      "symbols": 8442,
+      "relocations": 1914,
+      "object_sha256": "e169abd9adb35d787274ce58c172bd6ef3a73639940e70445e2a678c845a6499",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    },
+    "every_input_byte_symbol_relocation_retained": true,
+    "new_CODE_bytes": 0,
+    "new_DATA_bytes": 136,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "new_target_CODE_bytes": 0,
+  "new_target_DATA_bytes": 0,
+  "numeric_ABI_compilation_only": true,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "inherited_startup_source_gap_bytes": 4,
+  "installed_ROM_identity_proved": false,
+  "physical_RAM_ISA_IRQ_or_Flash_compatibility_proved": false,
+  "actual_global_binding_before_any_dispatch_proved": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

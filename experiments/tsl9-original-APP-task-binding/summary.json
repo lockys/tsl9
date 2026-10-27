@@ -1,0 +1,222 @@
+{
+  "passed": true,
+  "contract": {
+    "passed": true,
+    "conditions": [
+      "matching installed ROM profile is required and unproved",
+      "valid disjoint allocation satisfying576+6*n with stable n/p across allocation,clear,partition and dispatch",
+      "internal initializer count at43C06 is0; no intervening registration or overwrite before original APP registration",
+      "original register/task/heap ABI and valid original APP GP+388 context",
+      "normal callee returns with no IRQ/reentrant table or index replacement",
+      "known initializer and APP call sequence is conditional; global-before-every-dispatch is unproved"
+    ],
+    "registration": {
+      "APP_callback": 104796,
+      "APP_site": 105262,
+      "candidate_API": 277582,
+      "conditional_task_ID": 3,
+      "capacity_bounds": [
+        14,
+        212
+      ],
+      "rejection_value": 255,
+      "rejection_not_checked_by_APP_before_scheduling": true,
+      "handler_array_slot": 536883652,
+      "handler_index_stride": 4,
+      "APP_task_ID_storage": "original GP+388"
+    },
+    "suffix_bounds": {
+      "handlers_first4_bytes": 16,
+      "handler_array_min_bytes": 56,
+      "events_first4_bytes": 8,
+      "event_array_min_bytes": 28,
+      "conditional_numeric_bounds_proved": true,
+      "actual_allocation_capacity_or_ownership_proved": false
+    },
+    "event_priority": [
+      {
+        "mask": 32768,
+        "effect": "receive; deallocate only if nonnull",
+        "return_value": "events XOR0x8000"
+      },
+      {
+        "mask": 1,
+        "effect": "acknowledge",
+        "return_value": "events XOR1"
+      },
+      {
+        "mask": 8192,
+        "effect": "candidate641B0; calibration197B8; reschedule same bit",
+        "raw_delay": 192000,
+        "return_value": "events XOR0x2000"
+      },
+      {
+        "mask": 16384,
+        "effect": "reschedule same bit",
+        "raw_delay": 1600,
+        "return_value": "events XOR0x4000"
+      }
+    ],
+    "unmatched_bits_normal_return": 0,
+    "entry_events_domain": "zero-extended16-bit from original scheduler",
+    "one_priority_arm_per_invocation": true,
+    "initial_schedule": {
+      "site": 105300,
+      "tail": true,
+      "mask": 8192,
+      "raw_delay": 192000,
+      "physical_time_units_proved": false
+    },
+    "callback_reschedule_or_calibration_success_proved": false,
+    "all_remaining_callee_effects_proved": false,
+    "scheduler_return_store": "low16((returned_A0 & ~fresh_clear_mask) | fresh_pending_events) at freshly reread task index",
+    "return_applied_to_original_task_when_index_changes_proved": false,
+    "public_ABI_shape_only": true
+  },
+  "APP_reference_CODE_bytes": 896,
+  "SDK_reference_CODE_bytes": 1536,
+  "reference_instructions": 827,
+  "composition": {
+    "passed": true,
+    "object_sha256": "e169abd9adb35d787274ce58c172bd6ef3a73639940e70445e2a678c845a6499",
+    "CODE_bytes": 35324,
+    "distinct_original_CODE_bytes": 35324,
+    "duplicate_original_CODE_bytes": 0,
+    "overlap_intervals": [],
+    "positive_FUNC_regions": 2401,
+    "relocations": 1914,
+    "distinct_PC_typed_relocations": 1914,
+    "native_byte_map_sha256": "54db1468def044de07abe38329595b1666ab0e046d7cc672ed7eb8924736406a",
+    "original_PC_typed_relocations_sha256": "cf545c60b61838b8785060a02835f824e4c6580fdd7546222be85fdbaaca5e25",
+    "non_CODE_allocations": {
+      ".rodata.tsl9_candidate_bitlength_table_6e95c": {
+        "type": 1,
+        "flags": 2,
+        "size": 256,
+        "alignment": 1,
+        "sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac"
+      },
+      ".rodata.tsl9_candidate_initial_state_6eaa4": {
+        "type": 1,
+        "flags": 2,
+        "size": 136,
+        "alignment": 4,
+        "sha256": "7416a8d7c1d595a759e14b05918b732a9168c6003af658359d8c3f452840b450"
+      }
+    },
+    "named_UND": [],
+    "original_PC_tags_are_source_contract_not_physical_placement": true,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false,
+    "network": false,
+    "DATA_bytes": 392,
+    "instructions": 12195,
+    "allocated_bytes": 35716,
+    "independent_readers": {
+      "passed": true,
+      "sections": 4174,
+      "symbols": 8442,
+      "relocations": 1914,
+      "object_sha256": "e169abd9adb35d787274ce58c172bd6ef3a73639940e70445e2a678c845a6499",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    },
+    "every_input_byte_symbol_relocation_retained": true,
+    "new_CODE_bytes": 0,
+    "new_DATA_bytes": 136,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "new_target_CODE_bytes": 0,
+  "new_target_DATA_bytes": 0,
+  "numeric_ABI_compilation_only": true,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "inherited_startup_source_gap_bytes": 4,
+  "installed_ROM_identity_proved": false,
+  "physical_RAM_ISA_IRQ_or_Flash_compatibility_proved": false,
+  "actual_global_binding_before_any_dispatch_proved": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "schema": "TSL9-original-APP-task-binding-summary-v1",
+  "APP_complete_functions": 5,
+  "SDK_complete_functions": 7,
+  "ABI": {
+    "passed": true,
+    "object_sha256": "545583536a45394db58eeed6479ae37f979c51b00c17888064ed5072cf1c8a51",
+    "allocated_bytes": 0,
+    "functions": 0,
+    "relocations": 0,
+    "primary_handler_type": "uint16_t (*)(uint8_t, uint16_t)",
+    "RV32_pointer_bytes": 4,
+    "task_ID_bytes": 1,
+    "event_and_result_bytes": 2,
+    "source_and_header_compiler_checked": true,
+    "independent_readers": {
+      "passed": true,
+      "sections": 8,
+      "symbols": 4,
+      "relocations": 0,
+      "object_sha256": "545583536a45394db58eeed6479ae37f979c51b00c17888064ed5072cf1c8a51",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    },
+    "installed_private_ABI_or_hardware_proved": false,
+    "target_executed": false,
+    "network": false
+  },
+  "counts": {
+    "actual_register_sites": 51,
+    "conditionally_joined": 36,
+    "conditional_target_or_target_set": 28,
+    "conditional_skipped_or_caller_gated": 8,
+    "not_joined_here": 15
+  },
+  "new_APP_API_sites_outside_SDK_denominator": 7,
+  "new_SDK_site": 536873226,
+  "no_universal_or_live_binding_claim": true,
+  "missing_function_count_not_inferred": true,
+  "feature_candidates": [
+    {
+      "name": "Offline task-registration rejection, event-priority and rescheduling diagnostics",
+      "implemented": false,
+      "requires": [
+        "preserve task3 registration preconditions",
+        "retain original return-mask and tail semantics",
+        "no physical timing or successful-reschedule claim"
+      ]
+    }
+  ],
+  "sources_and_receipts": {
+    "experiments/tsl9-original-APP-task-binding/evidence-v1.json": "9243a2df3db426d1ee43056750e958bf398a0d43d01104ab1e09b78f93c3553f",
+    "experiments/tsl9-original-APP-task-binding/task_handler_abi.c": "d79a617c9e82d2cd07ba8b6c3ebbd23cef856b2c67707edfef6a47dbec2868d2",
+    "experiments/tsl9-original-APP-task-binding/build-v1.py": "ea64f9a2b3e9de4144709ef7f8c97d6979b6d5c06bc46396016248afad4a3b25",
+    "experiments/tsl9-original-APP-task-binding/verify-v1.py": "9de91dae7d2a111124c552e367a6c6880669344723744b243de3a06489113821",
+    "experiments/tsl9-original-APP-task-binding/ledger-v1.json": "11b241ea951a3a16a771d09f1d38b2b16dc947d8ffefb180675815babdbd3600",
+    "experiments/tsl9-original-APP-task-binding/verification-v1.json": "228f310260fec5b153a8bc814323c29e1817dade72006bcdfd0302f3f35d6f76",
+    "experiments/tsl9-original-APP-task-binding/README.md": "37c5ca6686e96979a5f33822724305b62ca342692ace793820f36fb0097a0192",
+    "experiments/tsl9-original-APP-task-binding/readme.en.md": "14d774393d89c53388b4963ddd53c12aaf2b81258e5e2382e01fe02e81549b91",
+    "experiments/tsl9-original-APP-task-binding/build/abi-v1/measurement.json": "0ff694cdec3caf3f62cdfe7a80cda3a009079c701daf0d7ac543b101eec892e9",
+    "experiments/tsl9-original-APP-task-binding/build/abi-v1/c/unit.o": "545583536a45394db58eeed6479ae37f979c51b00c17888064ed5072cf1c8a51",
+    "experiments/tsl9-original-APP-task-binding/build/abi-v1/cpp/unit.o": "545583536a45394db58eeed6479ae37f979c51b00c17888064ed5072cf1c8a51"
+  }
+}
