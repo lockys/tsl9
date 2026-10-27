@@ -1,0 +1,329 @@
+{
+  "passed": true,
+  "contract": {
+    "passed": true,
+    "functions": [
+      {
+        "start": 395092,
+        "end": 395320,
+        "bytes": 228,
+        "instructions": 73,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 395318,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 395170,
+            "target": 409176
+          },
+          {
+            "PC": 395204,
+            "target": null
+          },
+          {
+            "PC": 395224,
+            "target": 276904
+          },
+          {
+            "PC": 395232,
+            "target": 276904
+          },
+          {
+            "PC": 395248,
+            "target": 277012
+          },
+          {
+            "PC": 395270,
+            "target": 277012
+          },
+          {
+            "PC": 395296,
+            "target": null
+          }
+        ]
+      },
+      {
+        "start": 395320,
+        "end": 395350,
+        "bytes": 30,
+        "instructions": 11,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 395346,
+            "type": "direct-tail",
+            "target": 395092,
+            "instruction": "j 0x60754"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 395338,
+            "target": 385960
+          }
+        ]
+      }
+    ],
+    "original_operands": {
+      "0x60838": "addi sp, sp, -16",
+      "0x6083a": "sw ra, 12(sp)",
+      "0x6083c": "li a5, -1",
+      "0x6083e": "sb a5, 49(a0)",
+      "0x60842": "li a2, 17",
+      "0x60844": "li a1, 128",
+      "0x60848": "li a0, 0",
+      "0x6084a": "jal ra, 0x5e3a8",
+      "0x6084e": "lw ra, 12(sp)",
+      "0x60850": "addi sp, sp, 16",
+      "0x60852": "j 0x60754",
+      "0x60758": "lui a5, 0x40024",
+      "0x60762": "lw s2, 524(a5)",
+      "0x60766": "sw zero, 524(a5)",
+      "0x6076a": "fence.i",
+      "0x607a6": "lui a5, 0x20003",
+      "0x607aa": "lw s0, 1080(a5)",
+      "0x607b2": "addi s1, s1, 412",
+      "0x607b6": "lw a0, 68(s0)",
+      "0x607b8": "sh zero, 10(s0)",
+      "0x607bc": "sb zero, 8(s0)",
+      "0x607c8": "qk.c.lbu a0, 3(s1)",
+      "0x607ca": "li a1, 4",
+      "0x607cc": "sh zero, 64(s0)",
+      "0x607d0": "sw zero, 68(s0)",
+      "0x607d4": "sw zero, 72(s0)",
+      "0x607d8": "jal ra, 0x439a8",
+      "0x607dc": "qk.c.lbu a0, 3(s1)",
+      "0x607de": "li a1, 8",
+      "0x607e0": "jal ra, 0x439a8",
+      "0x607e4": "lbu a0, 49(s0)",
+      "0x607e8": "li a5, 255",
+      "0x607ec": "beq a0, a5, 0x607fa",
+      "0x607f0": "jal ra, 0x43a14",
+      "0x607f4": "li a5, -1",
+      "0x607f6": "sb a5, 49(s0)",
+      "0x607fa": "lbu a0, 48(s0)",
+      "0x607fe": "li a5, 255",
+      "0x60802": "beq a0, a5, 0x60810",
+      "0x60806": "jal ra, 0x43a14",
+      "0x6080a": "li a5, -1",
+      "0x6080c": "sb a5, 48(s0)",
+      "0x60810": "lui a5, 0x20003",
+      "0x60814": "lbu a5, 576(a5)",
+      "0x60818": "beqz a5, 0x60824",
+      "0x6081a": "li a0, 0",
+      "0x60828": "lui a5, 0x40024",
+      "0x6082c": "sw s2, 524(a5)",
+      "0x60834": "addi sp, sp, 16",
+      "0x60836": "ret"
+    },
+    "producer_operands": {
+      "0x5e876": "qk.c.lhu a2, 56(s1)",
+      "0x5e878": "beqz a2, 0x5e88e",
+      "0x5e87a": "lui a0, 0x61",
+      "0x5e87e": "addi a3, s1, 49",
+      "0x5e882": "slli a2, a2, 0x4",
+      "0x5e884": "mv a1, s1",
+      "0x5e886": "addi a0, a0, -1992",
+      "0x5e88a": "jal ra, 0x43874"
+    },
+    "supplied_prior_literal": {
+      "value": 395320,
+      "complete_body_bytes": 30,
+      "linked_tail": 395092,
+      "tail_body_bytes": 228
+    },
+    "producer": {
+      "entry": 386924,
+      "call": 387210,
+      "helper": 276596,
+      "callback": 395320,
+      "record_argument": "original_s1",
+      "output_ID_offset": 49,
+      "delay_expression": "uint16_at_record_plus56 << 4",
+      "runtime_units_or_delivery_proved": false
+    },
+    "expiry": {
+      "entry": 395320,
+      "sentinel_write_PC": 395326,
+      "incoming_record_offset": 49,
+      "value": 255,
+      "helper_call": 395338,
+      "helper": 385960,
+      "A0": 0,
+      "A1": 128,
+      "A2": 17,
+      "tail_PC": 395346,
+      "tail": 395092,
+      "no_own_frame_outstanding": true
+    },
+    "cleanup": {
+      "entry": 395092,
+      "record_pointer_RAM": 536884280,
+      "release_pointer_offset": 68,
+      "release_target": 536871184,
+      "cleared_fields": [
+        {
+          "offset": 8,
+          "width": 1
+        },
+        {
+          "offset": 10,
+          "width": 2
+        },
+        {
+          "offset": 64,
+          "width": 2
+        },
+        {
+          "offset": 68,
+          "width": 4
+        },
+        {
+          "offset": 72,
+          "width": 4
+        }
+      ],
+      "task_ID_RAM": 536883615,
+      "stop_event_masks": [
+        4,
+        8
+      ],
+      "stop_helper": 276904,
+      "cancel_ID_offsets": [
+        49,
+        48
+      ],
+      "cancel_skip_value": 255,
+      "cancel_helper": 277012,
+      "post_cancel_sentinel": 255,
+      "optional_callback_clear": {
+        "guard_RAM": 536883776,
+        "requires_nonzero": true,
+        "setter": 536872842,
+        "A0": 0,
+        "pointer_RAM": 536882936,
+        "does_not_clear_flag_RAM": 536882940
+      },
+      "raw_register_save_zero_restore": {
+        "address": 1073889804,
+        "save_PC": 395106,
+        "zero_PC": 395110,
+        "fence_I_PC": 395114,
+        "restore_PC": 395308,
+        "physical_register_meaning_or_irq_safety_proved": false
+      }
+    },
+    "conditions": [
+      "matching ROM/ISA/RAM profile and original private ABI, unproved",
+      "valid incoming record, global record pointer, stack and allocation ownership",
+      "helper/callee normal returns and no concurrent replacement",
+      "incoming callback record equals global record only if separately established",
+      "actual timer delivery, initialization order and physical effects unproved"
+    ],
+    "reused_ABI_assertions_are_numeric_only": true,
+    "own_frames_verified_by_whole_CFG": true,
+    "all_runtime_dependencies_closed": false,
+    "installed_ROM_identity_proved": false
+  },
+  "composition": {
+    "passed": true,
+    "object_sha256": "ab53d95f25bf9304d69d393211b9e967c56a21f54f09a64abba5dd4c9772539c",
+    "CODE_bytes": 36762,
+    "distinct_original_CODE_bytes": 36762,
+    "duplicate_original_CODE_bytes": 0,
+    "overlap_intervals": [],
+    "positive_FUNC_regions": 2511,
+    "relocations": 2001,
+    "distinct_PC_typed_relocations": 2001,
+    "native_byte_map_sha256": "38290ac1f039a304124e74e9df95b271dbbd8c7e4d7586d4273ff418c15735c4",
+    "original_PC_typed_relocations_sha256": "38d698984e1058d395d1a35962803864c5ea600893d14ccc13985bd85b866b51",
+    "non_CODE_allocations": {
+      ".rodata.tsl9_candidate_bitlength_table_6e95c": {
+        "type": 1,
+        "flags": 2,
+        "size": 256,
+        "alignment": 1,
+        "sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac"
+      },
+      ".rodata.tsl9_candidate_initial_state_6eaa4": {
+        "type": 1,
+        "flags": 2,
+        "size": 136,
+        "alignment": 4,
+        "sha256": "7416a8d7c1d595a759e14b05918b732a9168c6003af658359d8c3f452840b450"
+      }
+    },
+    "named_UND": [],
+    "original_PC_tags_are_source_contract_not_physical_placement": true,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false,
+    "network": false,
+    "DATA_bytes": 392,
+    "instructions": 12686,
+    "allocated_bytes": 37154,
+    "independent_readers": {
+      "passed": true,
+      "sections": 4364,
+      "symbols": 8836,
+      "relocations": 2001,
+      "object_sha256": "ab53d95f25bf9304d69d393211b9e967c56a21f54f09a64abba5dd4c9772539c",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    },
+    "every_input_byte_symbol_relocation_retained": true,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "counts": {
+    "actual_register_sites": 51,
+    "conditionally_joined": 40,
+    "conditional_target_or_target_set": 30,
+    "conditional_skipped_or_caller_gated": 10,
+    "not_joined_here": 11
+  },
+  "new_CODE_bytes": 258,
+  "new_instructions": 84,
+  "new_complete_functions": 2,
+  "APP_byte_coverage_unchanged": 95.54,
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-timer-expiry-path/evidence-v1.json": "2fe10179b534edd6d545070fa337698599ad1a832fe26adf3eae62bd3775895b",
+    "experiments/tsl9-resident-timer-expiry-path/derive-v1.py": "9f5ae9bd18d0bc8f93ff644fec16f66e7563fe21d48fe38dc044564f02624636",
+    "experiments/tsl9-resident-timer-expiry-path/resident_timer_expiry_path.c": "677c6594f0a9ac74d4a643c4124000034e76d0310c83177b94727136f3e0289e",
+    "experiments/tsl9-resident-timer-expiry-path/spec-v1.json": "9c393a934fdf2bc607e26f1aa7a99bc655469414dcb6bfa933add4db41bdc16e",
+    "experiments/tsl9-resident-timer-expiry-path/build-v1.py": "b6d2c964e4d06e5163cab334cf873695b31ac16da5ac1d10ce02ae7d94951f23",
+    "experiments/tsl9-resident-timer-expiry-path/audit-v1.py": "41d519eda06b0ecb0e16858f279d0a8c4f15b08e89ee63c64ea7e3a66efc1e55",
+    "experiments/tsl9-resident-timer-expiry-path/indirect-inventory-v1.py": "fd48fd1876bab3ccf56c58fa6865ee5802b8732752b5b8965212903dc87379de",
+    "experiments/tsl9-resident-timer-expiry-path/audit-result-v1.json": "c9abea9b772b9fda60d953d3c27df0edeae3b821bd999d0e80d097e1ed8142d3",
+    "experiments/tsl9-resident-timer-expiry-path/README.md": "f82976226e362d27c1439975b681a391b00b854e85a8e92cfe7a144fc7c5dcae",
+    "experiments/tsl9-resident-timer-expiry-path/readme.en.md": "162118fa7e90257d775f64b894f264cf3e2ae40a324b000224babf8ca1fb3f1a"
+  },
+  "installed_ROM_identity_proved": false,
+  "physical_RAM_ISA_IRQ_or_Flash_compatibility_proved": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
