@@ -1,0 +1,152 @@
+{
+  "passed": true,
+  "contract": {
+    "passed": true,
+    "original_srandCB": {
+      "slot": 262268,
+      "candidate_value": 275744,
+      "APP_load": 105076,
+      "APP_store": 105104,
+      "field_offset": 36,
+      "SDK_slot": 536883728
+    },
+    "original_idleCB": {
+      "field_offset": 40,
+      "own_stack_span": [
+        56,
+        60
+      ],
+      "conditional_post_copy_value": 0,
+      "SDK_slot": 536883732
+    },
+    "random": {
+      "seed_slot": 536882888,
+      "multiplier": 214013,
+      "increment": 2531011,
+      "after_callback": "(fresh_seed_word_after_callback + callback_A0) modulo 2^32",
+      "result": "(updated_seed_word * 214013 + 2531011) modulo 2^32",
+      "configured_callback_target": 275744,
+      "zero_primary_can_fall_back_to_raw_clock": true,
+      "provider_zero_domain_returns_stored_word31B0_without_nested_call": true,
+      "provider_nonzero_registered_domain": "43520 -> 43D62 -> 191C6 under prior registration/clock conditions",
+      "initial_seed_value_or_entropy_or_cryptographic_quality_proved": false,
+      "MMIO4002420C_and_FENCEI_do_not_prove_physical_IRQ_atomicity": true
+    },
+    "idle_local_null_guard_present": false,
+    "idle_protection_only_proved_in_known_caller_domain": true,
+    "original_clock_config_precedes_every_call_proved": false,
+    "earlier_status_or_idle_values_proved": false
+  },
+  "SDK_reference_CODE_bytes": 3840,
+  "APP_reference_CODE_bytes": 308,
+  "reference_instructions": 1433,
+  "APP_source_C_H_files_unchanged": 159,
+  "APP_byte_coverage_unchanged": 95.54,
+  "new_target_CODE_bytes": 0,
+  "new_target_DATA_bytes": 0,
+  "new_target_compilation": false,
+  "inherited_startup_source_gap_bytes": 4,
+  "physical_compatibility_proved": false,
+  "Flash_callback_effects_closed": false,
+  "actual_global_binding_before_any_dispatch_proved": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "schema": "TSL9-clock-random-idle-binding-summary-v1",
+  "complete_SDK_functions": 11,
+  "complete_APP_functions": 1,
+  "counts": {
+    "actual_register_sites": 51,
+    "conditionally_joined": 35,
+    "conditional_target": 27,
+    "conditional_skipped_or_caller_gated": 8,
+    "not_joined_here": 16
+  },
+  "new_families": {
+    "raw_clock": 10,
+    "configured_seed": 1,
+    "status_zero": 2,
+    "idle_caller_gate": 1
+  },
+  "new_conditional_sites": 14,
+  "composition": {
+    "passed": true,
+    "object_sha256": "3e3fa41cd906e84c95abc7964b4c3e119217366f0ca16b44d44cc6c043e45273",
+    "CODE_bytes": 35324,
+    "distinct_original_CODE_bytes": 35324,
+    "duplicate_original_CODE_bytes": 0,
+    "overlap_intervals": [],
+    "positive_FUNC_regions": 2401,
+    "relocations": 1914,
+    "distinct_PC_typed_relocations": 1914,
+    "native_byte_map_sha256": "54db1468def044de07abe38329595b1666ab0e046d7cc672ed7eb8924736406a",
+    "original_PC_typed_relocations_sha256": "cf545c60b61838b8785060a02835f824e4c6580fdd7546222be85fdbaaca5e25",
+    "non_CODE_allocations": {
+      ".rodata.tsl9_candidate_bitlength_table_6e95c": {
+        "type": 1,
+        "flags": 2,
+        "size": 256,
+        "alignment": 1,
+        "sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac"
+      }
+    },
+    "named_UND": [],
+    "original_PC_tags_are_source_contract_not_physical_placement": true,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false,
+    "network": false,
+    "DATA_bytes": 256,
+    "allocated_bytes": 35580,
+    "instructions": 12195,
+    "independent_readers": {
+      "passed": true,
+      "sections": 4173,
+      "symbols": 8436,
+      "relocations": 1914,
+      "object_sha256": "3e3fa41cd906e84c95abc7964b4c3e119217366f0ca16b44d44cc6c043e45273",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    },
+    "every_input_byte_symbol_relocation_retained": true,
+    "all_new_named_imports_have_real_prior_bodies": true,
+    "new_genuine_named_dependencies": 0,
+    "unique_original_CODE_ownership": true,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "no_universal_or_live_binding_claim": true,
+  "missing_function_count_not_inferred": true,
+  "feature_candidates": [
+    {
+      "name": "Offline callback/clock-source and idle caller-gate diagnostics",
+      "implemented": false,
+      "requires": [
+        "retain per-caller and initialization-domain conditions",
+        "do not infer seed quality or physical IRQ atomicity",
+        "no hardware commands"
+      ]
+    }
+  ],
+  "sources_and_receipts": {
+    "experiments/tsl9-original-clock-random-idle-binding/verify-v1.py": "ea416eb15659709abead1a6b9f0027c683a720e97f1e23d6ff79e2325e29f201",
+    "experiments/tsl9-original-clock-random-idle-binding/evidence-v1.json": "570c03c500971d906bbfef4516823c1b2b51c4c282a87bc15928b9705de26583",
+    "experiments/tsl9-original-clock-random-idle-binding/ledger-v1.json": "e0c011b78ceea1152133e1f72136635b1154e7cc049c053217db95efe1f19b6d",
+    "experiments/tsl9-original-clock-random-idle-binding/verification-v1.json": "aca724db1ec74b443628abf68536c02ce40dcfacbaebada590714bc70abfd102",
+    "experiments/tsl9-original-clock-random-idle-binding/README.md": "665a72f3d03a10d91465fb00425a02ce1f57c6880befc3a37d3da4a4e52f4c66",
+    "experiments/tsl9-original-clock-random-idle-binding/readme.en.md": "ea6d875ad2552f021bfd9d3fb08bf1bb63c40e63426037794a193167666f9672"
+  }
+}
