@@ -1,0 +1,337 @@
+{
+  "passed": true,
+  "contract": {
+    "passed": true,
+    "reference_functions": [
+      {
+        "start": 354070,
+        "end": 354238,
+        "bytes": 168,
+        "instructions": 50,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 354150,
+            "type": "ret",
+            "instruction": "ret"
+          },
+          {
+            "PC": 354228,
+            "type": "direct-tail",
+            "target": 275476,
+            "instruction": "j 0x43414"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 354130,
+            "target": 278226
+          }
+        ]
+      },
+      {
+        "start": 275476,
+        "end": 275744,
+        "bytes": 268,
+        "instructions": 97,
+        "own_frame_bytes": 48,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 275544,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 275564,
+            "target": null
+          },
+          {
+            "PC": 275606,
+            "target": null
+          },
+          {
+            "PC": 275626,
+            "target": null
+          }
+        ]
+      },
+      {
+        "start": 275108,
+        "end": 275238,
+        "bytes": 130,
+        "instructions": 53,
+        "own_frame_bytes": 48,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 275222,
+            "type": "ret",
+            "instruction": "ret"
+          },
+          {
+            "PC": 275236,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 275178,
+            "target": null
+          }
+        ]
+      }
+    ],
+    "new_callback_CFG": {
+      "start": 536875918,
+      "end": 536876008,
+      "bytes": 90,
+      "instructions": 35,
+      "own_frame_bytes": 32,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 536875988,
+          "type": "ret",
+          "instruction": "ret"
+        },
+        {
+          "PC": 536876006,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 536875930,
+          "target": 536875298
+        },
+        {
+          "PC": 536875978,
+          "target": null
+        },
+        {
+          "PC": 536876002,
+          "target": 536874320
+        }
+      ]
+    },
+    "reaching_definitions": [
+      {
+        "use": 354220,
+        "register": "a0",
+        "definitions": [
+          354212
+        ]
+      },
+      {
+        "use": 354228,
+        "register": "a0",
+        "definitions": [
+          354220
+        ]
+      },
+      {
+        "use": 275684,
+        "register": "s3",
+        "definitions": [
+          275562
+        ]
+      },
+      {
+        "use": 275688,
+        "register": "s6",
+        "definitions": [
+          275560
+        ]
+      },
+      {
+        "use": 275692,
+        "register": "s5",
+        "definitions": [
+          275554
+        ]
+      },
+      {
+        "use": 275178,
+        "register": "a4",
+        "definitions": [
+          275166
+        ]
+      },
+      {
+        "use": 275166,
+        "register": "s2",
+        "definitions": [
+          275164
+        ]
+      },
+      {
+        "use": 275164,
+        "register": "s2",
+        "definitions": [
+          275148
+        ]
+      }
+    ],
+    "literal_target": 536875918,
+    "registration_tail": 354228,
+    "registration_API": 275476,
+    "record_array_pointer_RAM": 536883756,
+    "record_stride": 12,
+    "registration_indices": [
+      0,
+      15
+    ],
+    "consumer_call": 275178,
+    "consumer_task_ID_domain": 0,
+    "parameter_from_record_second_word": true,
+    "registration_fields": {
+      "callback_offset": 0,
+      "parameter_offset": 4,
+      "cleanup_mode_offset": 8
+    },
+    "conditional_consumer_formula": "index=16*taskID+k; taskID0 => index=k",
+    "post_callback_cleanup": {
+      "fresh_record_array_pointer_load": 275188,
+      "third_word_load": 275194,
+      "nonzero_skips_clear": true,
+      "zero_clears_selected_callback_and_parameter": true,
+      "same_record_only_if_taskID0_and_stable_array_base": true,
+      "no_replacement_safety_proved": true
+    },
+    "callback_source_mapping": {
+      "source": [
+        267774,
+        267864
+      ],
+      "RAM": [
+        536875918,
+        536876008
+      ],
+      "installed_mapping_proved": false
+    },
+    "genuine_missing_callee_entries": [
+      276136,
+      536874320,
+      536875298
+    ],
+    "all_record_writers_or_callback_values_closed": false,
+    "actual_live_binding_or_all_callback_effects_proved": false,
+    "conditions": [
+      "matching installed ROM/ISA/RAM/copy profile, unproved",
+      "original56716 path reaches its tail43414 with literal2000138E",
+      "successful registration stores into actual first16 record slot k in0..15",
+      "record-array pointer and selected callback/parameter remain unchanged to consumer load",
+      "scheduler enters432A4 with original taskID0 and the selected event bit k",
+      "valid disjoint memory, record argument, stack and original private ABI",
+      "all prior callee normal returns; no IRQ/reentrant replacement",
+      "three callback callee bodies remain absent; target effects unproved"
+    ]
+  },
+  "counts": {
+    "actual_register_sites": 51,
+    "conditionally_joined": 51,
+    "conditional_target_or_target_set": 41,
+    "conditional_skipped_or_caller_gated": 10,
+    "not_joined_here": 0
+  },
+  "composition": {
+    "passed": true,
+    "object_sha256": "6b0f87601dc9ac4ef19704e50a319b5c5c0fc6f92c0670f32c9228559d487a48",
+    "CODE_bytes": 36852,
+    "distinct_original_CODE_bytes": 36852,
+    "duplicate_original_CODE_bytes": 0,
+    "overlap_intervals": [],
+    "positive_FUNC_regions": 2524,
+    "relocations": 2012,
+    "distinct_PC_typed_relocations": 2012,
+    "native_byte_map_sha256": "fc0ff19d4d146dcb81841a06bffd4334245ca72ac9113475f3347b67a9d1f738",
+    "original_PC_typed_relocations_sha256": "f9aba3117b526e3d4d8037f9be272ee2de1fe606d345c145d211345b712254e3",
+    "non_CODE_allocations": {
+      ".rodata.tsl9_candidate_bitlength_table_6e95c": {
+        "type": 1,
+        "flags": 2,
+        "size": 256,
+        "alignment": 1,
+        "sha256": "14a5d850c255623f9472e3c650abce0c78d32f0276b315b3a276a0462d97a1ac"
+      },
+      ".rodata.tsl9_candidate_initial_state_6eaa4": {
+        "type": 1,
+        "flags": 2,
+        "size": 136,
+        "alignment": 4,
+        "sha256": "7416a8d7c1d595a759e14b05918b732a9168c6003af658359d8c3f452840b450"
+      }
+    },
+    "named_UND": [
+      "tsl9_candidate_external_flash_436a8",
+      "tsl9_candidate_external_ram_20000d50",
+      "tsl9_candidate_external_ram_20001122"
+    ],
+    "original_PC_tags_are_source_contract_not_physical_placement": true,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false,
+    "network": false,
+    "DATA_bytes": 392,
+    "instructions": 12721,
+    "allocated_bytes": 37244,
+    "independent_readers": {
+      "passed": true,
+      "sections": 4387,
+      "symbols": 8884,
+      "relocations": 2012,
+      "object_sha256": "6b0f87601dc9ac4ef19704e50a319b5c5c0fc6f92c0670f32c9228559d487a48",
+      "only_section_ceiling_and_doc_changed": true,
+      "all_actual_section_bytes_symbols_and_relocations_equal": true,
+      "target_executed": false,
+      "hardware_accessed": false,
+      "network": false
+    },
+    "every_input_byte_symbol_relocation_retained": true,
+    "actual_original_address_link_performed": false,
+    "linked_into_APP": false,
+    "runtime_closed": false,
+    "new_BIN": false,
+    "firmware_ready": false
+  },
+  "new_CODE_bytes": 90,
+  "new_instructions": 35,
+  "new_complete_functions": 1,
+  "APP_byte_coverage_unchanged": 95.54,
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-task0-RAM-callback/evidence-v1.json": "7541a787465344159bbc96c9ca1efc4e7b72fe8477484b84e44c0bf6905a82dd",
+    "experiments/tsl9-resident-task0-RAM-callback/derive-v1.py": "932776f279517191b36ab15634d09689aa74c541d54ddef7dd37cba62b1a7486",
+    "experiments/tsl9-resident-task0-RAM-callback/resident_task0_RAM_callback.c": "659ac0526fd6a27b63cc43c4486abb4a4bd638f50c50665f8c5a601b03605ae3",
+    "experiments/tsl9-resident-task0-RAM-callback/spec-v1.json": "bb5ae917ac702c873b220278f2606e7403d1447c84435fcfe2d5e56fbaf21896",
+    "experiments/tsl9-resident-task0-RAM-callback/build-v1.py": "ea1714b7af64b124dd23cbb72f62e7e767b9f18b158ec0ca87ed6828ddcfde4f",
+    "experiments/tsl9-resident-task0-RAM-callback/provenance-inputs-v1.json": "d488038809a6a83e2fb8da7c0288a7b0453a8331ca46cb4b74b4af4ed84a497b",
+    "experiments/tsl9-resident-task0-RAM-callback/audit-v1.py": "2c97b7bbc9adbe08aa2cfc9773f7a14ef13f09076238aca8ad815fe3651c21b1",
+    "experiments/tsl9-resident-task0-RAM-callback/indirect-inventory-v1.py": "2bad2e78bcdb6b688729c31c9bd21653872e22fa5526aae281f9e722eb6dc369",
+    "experiments/tsl9-resident-task0-RAM-callback/audit-result-v1.json": "c72e7853536dd0231eb93786c1d814783254df6cf9bb5524088e0aec35d19e60",
+    "experiments/tsl9-resident-task0-RAM-callback/README.md": "4447b6bd3dae801ad09f54a95ce392b71f81d0e62b10425f24d4879dfff4fa24",
+    "experiments/tsl9-resident-task0-RAM-callback/readme.en.md": "4341991ee5cce0ad18089939c1a51c820d77abb9537f42c064706cd4b59fd4cf"
+  },
+  "installed_ROM_identity_proved": false,
+  "physical_RAM_ISA_IRQ_or_Flash_compatibility_proved": false,
+  "linked_into_APP": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
