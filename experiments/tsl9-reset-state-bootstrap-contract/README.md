@@ -55,3 +55,5 @@ python3 experiments/tsl9-reset-state-bootstrap-contract/check-v1.py --tool-dir "
 [固定輸入](inputs-v1.json) · [驗證收據](verification-v1.json) · [待實作啟動診斷構想](feature-candidates.json)
 
 正式 APP 仍是 **164 個 C/H／95.75% 靜態位元組覆蓋率、六個未解析 source provider**。來源與 native 產物未變；沒有新 BIN、target／HOST model／ISA 執行、硬體或第三方 API 操作。
+
+後續：[完整 clock 的 CPU 寫入與正常返回契約](../tsl9-clock-reset-noninterference/README.md).

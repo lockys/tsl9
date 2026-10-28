@@ -55,3 +55,5 @@ python3 experiments/tsl9-reset-state-bootstrap-contract/check-v1.py --tool-dir "
 [Pinned inputs](inputs-v1.json) · [Verification receipt](verification-v1.json) · [Unimplemented startup diagnostic idea](feature-candidates.json)
 
 Formal APP evidence remains **164 C/H files / 95.75% static byte coverage and six unresolved source providers**. Sources and native artifacts are unchanged. No new BIN,target/HOST-model/ISA execution,hardware access,or third-party API requests occurred.
+
+Follow-up: [Whole clock CPU-write and normal-return contract](../tsl9-clock-reset-noninterference/readme.en.md).
