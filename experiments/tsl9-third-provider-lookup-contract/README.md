@@ -26,3 +26,5 @@ python3 experiments/tsl9-third-provider-lookup-contract/check-v1.py
 ```
 
 exit0僅表示這份靜態合約與固定實際證據一致。可刷入狀態仍以[readiness checker](../tsl9-app-bin-readiness-audit/README.md)區分；本輪不執行target、HOST model、ISA或硬體，不呼叫廠商API。[唯讀診斷候選](feature-candidates.json)尚未實作。
+
+後續：[Mode 寫入來源與兩列 DATA 缺口](../tsl9-mode-state-writer-contract/README.md).

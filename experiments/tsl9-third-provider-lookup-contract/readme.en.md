@@ -26,3 +26,5 @@ python3 experiments/tsl9-third-provider-lookup-contract/check-v1.py
 ```
 
 Exit0 means only this static contract matches frozen actual evidence. Use the [readiness checker](../tsl9-app-bin-readiness-audit/readme.en.md)for artifact readiness. No target,HOST-model,ISA or hardware execution and no vendor API access. The [read-only diagnostic candidate](feature-candidates.json)is unimplemented.
+
+Follow-up: [Mode writers and two DATA row gaps](../tsl9-mode-state-writer-contract/readme.en.md).
