@@ -13,6 +13,9 @@ final class BleClient {
     static final UUID SERVICE=UUID.fromString("0000fff0-0000-1000-8000-00805f9b34fb");
     static final UUID DATA=UUID.fromString("0000fff1-0000-1000-8000-00805f9b34fb");
     static final UUID CCCD=UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
+    static final UUID DEVICE_INFO=UUID.fromString("0000180a-0000-1000-8000-00805f9b34fb");
+    private final ArrayDeque<BluetoothGattCharacteristic> infoReads=new ArrayDeque<>();
+    private BluetoothGattCharacteristic infoCurrent;
     interface Events {
         void log(String line);void state(String state);void found(BluetoothDevice device,String name,int rssi);
         void ready();void disconnected();void packet(Protocol.Packet packet);void notification(byte[] bytes);
@@ -50,7 +53,7 @@ final class BleClient {
         close();phase="CONNECT";int token=epoch;events.state(s(R.string.ble_connecting));events.log("GATT connect transport=LE attempt");
         try{gatt=device.connectGatt(context,false,callback,BluetoothDevice.TRANSPORT_LE);}
         catch(SecurityException|IllegalArgumentException e){problem(s(R.string.ble_connect_denied));return;}
-        handler.postDelayed(()->{if(token==epoch&&!ready())problem(s(R.string.ble_connect_timeout));},15000);
+        handler.postDelayed(()->{if(token==epoch&&!ready())problem(s(R.string.ble_connect_timeout));},35000);
     }
     private void discover(BluetoothGatt g){phase="SERVICES";events.log("GATT discoverServices");if(!g.discoverServices())problem(s(R.string.ble_discover_rejected));}
     private final BluetoothGattCallback callback=new BluetoothGattCallback(){
@@ -64,6 +67,11 @@ final class BleClient {
         });}
         @Override public void onServicesDiscovered(BluetoothGatt g,int status){handler.post(()->{
             if(g!=gatt||!phase.equals("SERVICES"))return;if(status!=0){problem(s(R.string.ble_service_failed,status));return;}
+            events.log("GATT services count="+g.getServices().size());
+            for(BluetoothGattService service:g.getServices()){
+                String id=standardId(service.getUuid());events.log("GATT service="+id+" characteristics="+service.getCharacteristics().size());
+                for(BluetoothGattCharacteristic item:service.getCharacteristics())events.log("GATT characteristic="+standardId(item.getUuid())+" properties="+item.getProperties());
+            }
             BluetoothGattService s=g.getService(SERVICE);characteristic=s==null?null:s.getCharacteristic(DATA);
             if(characteristic==null){problem(s(R.string.ble_missing));return;}
             int props=characteristic.getProperties();boolean write=(props&BluetoothGattCharacteristic.PROPERTY_WRITE)!=0;
@@ -71,13 +79,19 @@ final class BleClient {
             if((!write&&!noResponse)||(props&BluetoothGattCharacteristic.PROPERTY_NOTIFY)==0){problem(s(R.string.ble_properties));return;}
             writeType=write?BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT:BluetoothGattCharacteristic.WRITE_TYPE_NO_RESPONSE;
             events.log("GATT FFF0/FFF1 properties="+props+" writeType="+writeType);
-            BluetoothGattDescriptor cccd=characteristic.getDescriptor(CCCD);
-            if(cccd==null||!g.setCharacteristicNotification(characteristic,true)){problem(s(R.string.ble_notify_failed));return;}
-            phase="CCCD";boolean accepted;
-            if(Build.VERSION.SDK_INT>=33)accepted=g.writeDescriptor(cccd,BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)==BluetoothStatusCodes.SUCCESS;
-            else{cccd.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);accepted=g.writeDescriptor(cccd);}
-            if(!accepted)problem(s(R.string.ble_cccd_rejected));
+            BluetoothGattService deviceInfo=g.getService(DEVICE_INFO);infoReads.clear();
+            if(deviceInfo!=null)for(int id:new int[]{0x2a29,0x2a24,0x2a27,0x2a26}){
+                BluetoothGattCharacteristic item=deviceInfo.getCharacteristic(UUID.fromString(String.format(Locale.ROOT,"0000%04x-0000-1000-8000-00805f9b34fb",id)));
+                if(item!=null&&(item.getProperties()&BluetoothGattCharacteristic.PROPERTY_READ)!=0)infoReads.add(item);
+            }
+            phase="DEVICE_INFO";readNextInfo(g);
         });}
+        @Override public void onCharacteristicRead(BluetoothGatt g,BluetoothGattCharacteristic c,int status){
+            if(Build.VERSION.SDK_INT<33){byte[] value=c.getValue();byte[] copy=value==null?new byte[0]:value.clone();handler.post(()->infoRead(g,c,copy,status));}
+        }
+        @Override public void onCharacteristicRead(BluetoothGatt g,BluetoothGattCharacteristic c,byte[] value,int status){
+            byte[] copy=value==null?new byte[0]:value.clone();handler.post(()->infoRead(g,c,copy,status));
+        }
         @Override public void onDescriptorWrite(BluetoothGatt g,BluetoothGattDescriptor d,int status){handler.post(()->{
             if(g!=gatt||!phase.equals("CCCD")||!d.getUuid().equals(CCCD))return;
             events.log("GATT CCCD status="+status);if(status!=0){problem(s(R.string.ble_subscribe_failed,status));return;}phase="READY";events.state(s(R.string.ble_ready));events.ready();
@@ -90,6 +104,29 @@ final class BleClient {
             if(status!=0){problem(s(R.string.ble_write_failed,status));return;}writeNext();
         });}
     };
+    private static String standardId(UUID id){String s=id.toString();return s.matches("0000[0-9a-f]{4}-0000-1000-8000-00805f9b34fb")?s.substring(4,8):"custom-redacted";}
+    private void readNextInfo(BluetoothGatt g){
+        if(g!=gatt||!phase.equals("DEVICE_INFO"))return;
+        infoCurrent=infoReads.poll();if(infoCurrent==null){subscribe(g);return;}
+        BluetoothGattCharacteristic request=infoCurrent;boolean accepted;
+        try{accepted=g.readCharacteristic(request);}catch(SecurityException|IllegalArgumentException ex){accepted=false;}
+        if(!accepted){events.log("GATT device-info="+standardId(request.getUuid())+" read=rejected");infoCurrent=null;readNextInfo(g);return;}
+        int token=epoch;handler.postDelayed(()->{if(token==epoch&&g==gatt&&phase.equals("DEVICE_INFO")&&infoCurrent==request){events.log("GATT device-info read timeout; disconnecting");problem(s(R.string.ble_connect_timeout));}},4000);
+    }
+    private void infoRead(BluetoothGatt g,BluetoothGattCharacteristic c,byte[] value,int status){
+        if(g!=gatt||!phase.equals("DEVICE_INFO")||c!=infoCurrent)return;
+        String result="redacted";if(status==0){String text=new String(value,java.nio.charset.StandardCharsets.UTF_8).trim();
+            if(text.length()>0&&text.length()<=48&&text.matches("[A-Za-z0-9 ._+/-]+")&&!text.matches(".*[A-Za-z0-9]{9,}.*")&&!text.matches(".*[0-9]{6,}.*"))result=text;}
+        events.log("GATT device-info="+standardId(c.getUuid())+" status="+status+" value="+result);infoCurrent=null;readNextInfo(g);
+    }
+    private void subscribe(BluetoothGatt g){
+            BluetoothGattDescriptor cccd=characteristic.getDescriptor(CCCD);
+            if(cccd==null||!g.setCharacteristicNotification(characteristic,true)){problem(s(R.string.ble_notify_failed));return;}
+            phase="CCCD";boolean accepted;
+            if(Build.VERSION.SDK_INT>=33)accepted=g.writeDescriptor(cccd,BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)==BluetoothStatusCodes.SUCCESS;
+            else{cccd.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);accepted=g.writeDescriptor(cccd);}
+            if(!accepted)problem(s(R.string.ble_cccd_rejected));
+    }
     private void notifyValue(BluetoothGatt g,BluetoothGattCharacteristic c,byte[] value){
         if(g!=gatt||!c.getUuid().equals(DATA))return;
         events.notification(value.clone());
@@ -122,7 +159,7 @@ final class BleClient {
     }
     private void problem(String detail){events.log("GATT STOP "+detail);close();events.state(detail);events.disconnected();}
     void close(){
-        stopScan();epoch++;phase="CLOSED";busy=false;queue.clear();current=null;characteristic=null;chunkSize=20;decoder.reset();
+        stopScan();epoch++;phase="CLOSED";busy=false;queue.clear();current=null;infoReads.clear();infoCurrent=null;characteristic=null;chunkSize=20;decoder.reset();
         BluetoothGatt old=gatt;gatt=null;if(old!=null){try{old.disconnect();old.close();}catch(SecurityException ignored){}}
     }
 }
