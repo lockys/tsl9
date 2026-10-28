@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-read-only-preparation-state-diagnostics-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Read-only aggregate preparation status and fragment-limit diagnostics",
+      "purpose": "After actual hardware/ABI and memory-budget validation, distinguish helper return status,pre-return length changes and calculated fragment limit without altering original preparation.",
+      "evidence": [
+        "Nine selected builders update record+21 before testing the frame buffer for null",
+        "5A386 and5A48E compute the limit consumed atrecord+78",
+        "Original arithmetic includes signed division,arithmetic shifts,uint16 truncation,unsigned min and a final byte store"
+      ],
+      "constraints": [
+        "Unimplemented;no instrumentation,live telemetry or BLE commands",
+        "Aggregate state only;no payloads,addresses,security material or device identity",
+        "Validate live input ranges,buffer allocation bound,physical event binding and memory budget first",
+        "Do not add clamps,automatic retries or pretend null-return paths are side-effect free",
+        "Do not infer delivery,ACK or physical compatibility from helper return0"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
