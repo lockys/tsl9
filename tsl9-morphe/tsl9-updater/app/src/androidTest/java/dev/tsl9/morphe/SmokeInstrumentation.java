@@ -13,8 +13,8 @@ import java.util.*;
 /** Runs only against the local test APK. Never scans, connects, or sends BLE. */
 public final class SmokeInstrumentation extends Instrumentation {
     private int checks;
-    private boolean documents,switches,navigation;private String locale,passwordChecks;
-    @Override public void onCreate(Bundle b){super.onCreate(b);documents=b!=null&&"true".equals(b.getString("documents"));switches=b!=null&&"true".equals(b.getString("switches"));navigation=b!=null&&"true".equals(b.getString("navigation"));locale=b==null?null:b.getString("locale");passwordChecks=b==null?null:b.getString("passwords");start();}
+    private boolean documents,switches,navigation;private String locale,passwordChecks,settingsChecks;
+    @Override public void onCreate(Bundle b){super.onCreate(b);documents=b!=null&&"true".equals(b.getString("documents"));switches=b!=null&&"true".equals(b.getString("switches"));navigation=b!=null&&"true".equals(b.getString("navigation"));locale=b==null?null:b.getString("locale");passwordChecks=b==null?null:b.getString("passwords");settingsChecks=b==null?null:b.getString("settings");start();}
     private void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
     private Object field(Object o,String name)throws Exception{Field f=o.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(o);}
     private Object call(Object o,String name,Class<?>[] types,Object... args)throws Exception{Method m=o.getClass().getDeclaredMethod(name,types);m.setAccessible(true);return m.invoke(o,args);}
@@ -24,7 +24,7 @@ public final class SmokeInstrumentation extends Instrumentation {
         for(int choice:new int[]{1,2,3,0}){
             ActivityMonitor monitor=addMonitor("dev.tsl9.morphe.MainActivity",null,false);
             final Activity old=current;final int selected=choice;
-            runOnMainSync(()->{try{((Button)field(old,"languageButton")).performClick();}catch(Exception e){throw new RuntimeException(e);}});
+            runOnMainSync(()->{try{((TabHost)field(old,"tabs")).setCurrentTabByTag("settings");}catch(Exception e){throw new RuntimeException(e);}});
             waitForIdleSync();
             runOnMainSync(()->{try{Spinner picker=(Spinner)field(old,"language");check(picker.isShown(),"language selector is visible before choosing "+selected);picker.setSelection(selected);}catch(Exception e){throw new RuntimeException(e);}});
             Locale actual=LanguageSettings.normalized(Build.VERSION.SDK_INT>=24?old.getResources().getConfiguration().getLocales().get(0):old.getResources().getConfiguration().locale);
@@ -50,6 +50,7 @@ public final class SmokeInstrumentation extends Instrumentation {
             }
             Intent intent=new Intent().setClassName(getTargetContext().getPackageName(),"dev.tsl9.morphe.MainActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             activity=startActivitySync(intent);waitForIdleSync();
+            if(settingsChecks!=null){SettingsUiChecks settings=new SettingsUiChecks(this,activity);checks+=settings.run(settingsChecks);activity=settings.activity();result.putString("result","PASS "+checks+" settings checks; no BLE");finish(Activity.RESULT_OK,result);return;}
             if(switches)activity=exerciseSwitches(activity);
             if(passwordChecks!=null){checks+=new BluetoothPasswordChecks(this,activity).run(passwordChecks);result.putString("result","PASS "+checks+" Bluetooth password checks; no BLE");finish(Activity.RESULT_OK,result);return;}
             if(navigation){NavigationLifecycleChecks navigationChecks=new NavigationLifecycleChecks(this,activity);result.putString("result",navigationChecks.run());activity=navigationChecks.activity();finish(Activity.RESULT_OK,result);return;}
@@ -81,6 +82,7 @@ public final class SmokeInstrumentation extends Instrumentation {
                 check(field(a,"image")!=null,"raw file loads");check(!button(a,a.getString(R.string.flash)).isEnabled(),"valid raw cannot bypass connection gate");
                 CheckBox match=(CheckBox)field(a,"match");match.setChecked(true);call(a,"clearIdentity",new Class<?>[0]);check(!match.isChecked(),"new connection resets compatibility check");
                 CheckBox hw20=(CheckBox)field(a,"hw20");check(!hw20.isChecked(),"OEM hw20 profile is opt-in and not inferred from raw hardware byte");match.setChecked(true);hw20.setChecked(true);check(!match.isChecked(),"changing OEM readback policy requires compatibility reconfirmation");call(a,"clearIdentity",new Class<?>[0]);check(!hw20.isChecked(),"new idle connection resets hardware profile");
+                ((TabHost)field(a,"tabs")).setCurrentTabByTag("settings");
                 check(button(a,a.getString(R.string.capture_start))!=null&&!button(a,a.getString(R.string.capture_start)).isEnabled(),"capture needs physical BLE connection");
                 checks+=new MockupUiChecks(a).run();
                 checks+=new BleQueueChecks((MainActivity)a).run();

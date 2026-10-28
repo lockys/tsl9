@@ -193,7 +193,7 @@
         "normalHeightDpApprox": 54,
         "innerPaddingDp": 3,
         "minimumTargetDp": 48,
-        "slots": 3,
+        "slots": 4,
         "equalSlotWidths": true,
         "iconDp": 20,
         "labelSp": 11,
@@ -203,7 +203,7 @@
       },
       "accessibility": "Measure actual scaled localized labels; expand equal slots and height before clipping. Keep full destination accessibility names. Ratio and nominal maximum width yield to readable labels and 48dp targets.",
       "selection": "One filled sage inner capsule, teal selected icon and label; retain white outer capsule, muted inactive content and native ripple/focus.",
-      "behavior": "Native destinations remain unchanged; leaving car controls requests seat stop immediately.",
+      "behavior": "Four native destinations share state; leaving car controls requests seat stop immediately.",
       "source": [
         "AppUi.PillNavigation",
         "AppUi.tab",
@@ -223,7 +223,8 @@
         "font shrinking to preserve ratio",
         "truncated labels",
         "unconfirmed vehicle values in screenshots"
-      ]
+      ],
+      "settingsDestination": "Fourth visible native tab; same Activity and shared BLE connection"
     }
   },
   "components": [
@@ -263,9 +264,9 @@
       "name": "Destination capsule",
       "kind": "nav",
       "refersTo": "navigation",
-      "description": "Pinned centered compact capsule, nominally 52% of viewport width with an approximately 4:1 silhouette. Accessible text can expand it. Actual native screenshots are the product authority.",
-      "html": "<nav class=\"ds-nav\" aria-label=\"Destinations\"><button class=\"ds-tab ds-active\" aria-current=\"page\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7 17 16 12 21V3L17 8 7 17\"/></svg><span>Update</span></button><button class=\"ds-tab\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 10H20V19H4ZM5 10 8 5H16L19 10M5 18V21M19 18V21\"/></svg><span>Controls</span></button><button class=\"ds-tab\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 20V13M12 20V4M19 20V9\"/></svg><span>Live</span></button></nav>",
-      "css": ".ds-nav{display:flex;gap:0;box-sizing:border-box;width:clamp(156px,52vw,360px);margin-inline:auto;padding:3px;background:#fff;border-radius:999px}.ds-tab{display:flex;flex:1;min-width:48px;min-height:48px;align-items:center;justify-content:center;flex-direction:column;gap:2px;padding:3px 4px;background:transparent;color:#59655f;border:0;border-radius:999px;font:11px sans-serif;white-space:nowrap}.ds-tab.ds-active{background:#e1efe9;color:#205c50}.ds-tab:focus-visible{outline:auto}.ds-tab:active{background-image:linear-gradient(#205c5019,#205c5019)}"
+      "description": "Four equal native destinations in the pinned compact capsule; nominally 52% wide, expanding for accessible labels and 48dp targets. Native screenshots are the authority.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Destinations\"><button class=\"ds-tab ds-active\" aria-current=\"page\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7 17 16 12 21V3L17 8 7 17\"/></svg><span>Update</span></button><button class=\"ds-tab\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 10H20V19H4ZM5 10 8 5H16L19 10M5 18V21M19 18V21\"/></svg><span>Controls</span></button><button class=\"ds-tab\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 20V13M12 20V4M19 20V9\"/></svg><span>Live</span></button><button class=\"ds-tab\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polygon points=\"19.80,12.00 21.81,13.95 21.24,15.83 18.49,16.33 17.52,17.52 17.56,20.31 15.83,21.24 13.52,19.65 12.00,19.80 10.05,21.81 8.17,21.24 7.67,18.49 6.48,17.52 3.69,17.56 2.76,15.83 4.35,13.52 4.20,12.00 2.19,10.05 2.76,8.17 5.51,7.67 6.48,6.48 6.44,3.69 8.17,2.76 10.48,4.35 12.00,4.20 13.95,2.19 15.83,2.76 16.33,5.51 17.52,6.48 20.31,6.44 21.24,8.17 19.65,10.48\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg><span>Settings</span></button></nav>",
+      "css": ".ds-nav{display:flex;gap:0;box-sizing:border-box;width:clamp(198px,52vw,360px);margin-inline:auto;padding:3px;background:#fff;border-radius:999px}.ds-tab{display:flex;flex:1;min-width:48px;min-height:48px;align-items:center;justify-content:center;flex-direction:column;gap:2px;padding:3px 4px;background:transparent;color:#59655f;border:0;border-radius:999px;font:11px sans-serif;white-space:nowrap}.ds-tab.ds-active{background:#e1efe9;color:#205c50}.ds-tab:focus-visible{outline:auto}.ds-tab:active{background-image:linear-gradient(#205c5019,#205c5019)}"
     },
     {
       "name": "Detail disclosure",

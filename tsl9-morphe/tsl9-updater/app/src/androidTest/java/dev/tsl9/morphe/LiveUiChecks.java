@@ -11,7 +11,7 @@ final class LiveUiChecks {
     int run()throws Exception{
         TabHost tabs=(TabHost)get(a,"tabs");LivePanel panel=(LivePanel)get(a,"livePanel");LiveVehicleData data=(LiveVehicleData)get(a,"liveData");
         try{
-            tabs.setCurrentTabByTag("live");check(tabs.getTabWidget().getTabCount()==3&&tabs.getCurrentTabTag().equals("live"),"third read-only live tab opens");
+            tabs.setCurrentTabByTag("live");check(tabs.getTabWidget().getTabCount()==4&&tabs.getCurrentTabTag().equals("live"),"read-only live destination remains reachable beside Settings");
             check(!((Button)get(panel,"query")).isEnabled()&&!((Button)get(panel,"start")).isEnabled(),"disconnected live queries and subscription disabled");
             check(((TextView)get(panel,"gearValue")).getText().toString().equals("—"),"disconnected metric never uses mock gear");
             CheckBox bytes=(CheckBox)get(panel,"showBytes");check(!bytes.isChecked(),"raw CAN display defaults redacted");

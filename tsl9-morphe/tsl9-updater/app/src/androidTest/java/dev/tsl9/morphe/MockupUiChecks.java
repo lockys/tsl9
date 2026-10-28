@@ -15,7 +15,7 @@ final class MockupUiChecks {
     int run() throws Exception {
         Field f=a.getClass().getDeclaredField("tabs");f.setAccessible(true);TabHost tabs=(TabHost)f.get(a);
         TabWidget bar=tabs.getTabWidget();float density=a.getResources().getDisplayMetrics().density;
-        check(bar.getTabCount()==3,"three native navigation destinations retained");
+        check(bar.getTabCount()==4,"four native navigation destinations include Settings");
         check(bar.getWidth()<tabs.getWidth()-24*density,"pill navigation has visible horizontal breathing room");
         float fontScale=a.getResources().getConfiguration().fontScale;
         if(fontScale<=1.05f&&tabs.getWidth()/density<600){
@@ -23,18 +23,17 @@ final class MockupUiChecks {
             check(bar.getWidth()/(float)bar.getHeight()>=3.6f&&bar.getWidth()/(float)bar.getHeight()<=4.5f,"compact pill follows reference aspect near four to one");
         }
         check(Math.abs(bar.getLeft()+bar.getWidth()/2f-tabs.getWidth()/2f)<=2*density,"pill remains horizontally centered");
-        for(int i=0;i<3;i++){
+        for(int i=0;i<4;i++){
             View v=bar.getChildTabViewAt(i);check(v.getHeight()>=48*density,"tab has a touch target at least 48dp high");
             check(v.getWidth()>=48*density,"compact tab keeps a touch target at least 48dp wide");
             check(v instanceof TextView&&!((TextView)v).getText().toString().isEmpty(),"tab retains an accessible localized label");
             check(((TextView)v).getCompoundDrawables()[1]!=null,"each navigation destination has an icon");
             check(((TextView)v).getMaxLines()==1,"compact navigation keeps a single short label line");
-            int[] names={R.string.tab_tools,R.string.tab_car,R.string.live_tab};check(a.getString(names[i]).contentEquals(v.getContentDescription()),"short labels preserve full accessible destination names");
+            int[] names={R.string.tab_tools,R.string.tab_car,R.string.live_tab,R.string.settings_title};check(a.getString(names[i]).contentEquals(v.getContentDescription()),"short labels preserve full accessible destination names");
             TextView label=(TextView)v;check(label.getPaint().measureText(label.getText().toString())<=v.getWidth()-v.getPaddingLeft()-v.getPaddingRight()+1,"scaled localized navigation label fits its slot");
             v.performClick();check(tabs.getCurrentTab()==i,"native pill tab opens its destination");
         }
         tabs.setCurrentTabByTag("tools");
-        Field lf=a.getClass().getDeclaredField("languageButton"),pf=a.getClass().getDeclaredField("languagePanel");lf.setAccessible(true);pf.setAccessible(true);
-        View language=(View)lf.get(a),panel=(View)pf.get(a);language.performClick();check(panel.getVisibility()==View.VISIBLE,"language action reveals the native selector");language.performClick();check(panel.getVisibility()==View.GONE,"language action dismisses its selector");return checks;
+        tabs.setCurrentTabByTag("settings");Field lf=a.getClass().getDeclaredField("language");lf.setAccessible(true);View language=(View)lf.get(a);check(language.isShown(),"language selector is reachable inside Settings");tabs.setCurrentTabByTag("tools");check(!language.isShown(),"language selector stays out of update content");return checks;
     }
 }

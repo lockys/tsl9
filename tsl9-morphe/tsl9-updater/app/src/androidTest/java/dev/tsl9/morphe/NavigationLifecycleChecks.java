@@ -51,13 +51,13 @@ final class NavigationLifecycleChecks {
             float density=activity.getResources().getDisplayMetrics().density;
             int nominal=Math.min(Math.round(360*density),Math.round(viewport*0.52f));
             int slot=Math.round(48*density);
-            for(int index=0;index<3;index++){
+            for(int index=0;index<bar.getTabCount();index++){
                 TextView label=(TextView)bar.getChildTabViewAt(index);
                 slot=Math.max(slot,(int)Math.ceil(label.getPaint().measureText(label.getText().toString()))+label.getPaddingLeft()+label.getPaddingRight()+Math.round(2*density));
                 check(label.getWidth()>=48*density-1&&label.getHeight()>=48*density-1,state+": 48dp touch target");
                 check(label.getPaint().measureText(label.getText().toString())<=label.getWidth()-label.getPaddingLeft()-label.getPaddingRight()+1,state+": localized label fits");
             }
-            int expected=Math.min(viewport-Math.round(32*density),Math.max(nominal,slot*3+bar.getPaddingLeft()+bar.getPaddingRight()));
+            int expected=Math.min(viewport-Math.round(32*density),Math.max(nominal,slot*bar.getTabCount()+bar.getPaddingLeft()+bar.getPaddingRight()));
             check(Math.abs(bar.getWidth()-expected)<=2,state+": pill width remains nominal or expands only for measured labels, actual="+bar.getWidth()+" expected="+expected);
             check(Math.abs(bar.getLeft()+bar.getWidth()/2f-(parent.getPaddingLeft()+viewport/2f))<=2*density,state+": centered capsule");
             if(samples.length()>0)samples.append("; ");samples.append(state).append('=').append(bar.getWidth()).append('x').append(bar.getHeight()).append('/').append(viewport);
@@ -65,7 +65,7 @@ final class NavigationLifecycleChecks {
     }
     String run() throws Exception {
         measure("initial");
-        for(int round=0;round<3;round++)for(int destination=0;destination<3;destination++){
+        for(int round=0;round<3;round++)for(int destination=0;destination<4;destination++){
             final int tab=destination;
             instrumentation.runOnMainSync(()->((TabHost)activity.findViewById(android.R.id.tabhost)).setCurrentTab(tab));
             measure("tab"+round+"-"+destination);
