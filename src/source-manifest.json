@@ -1194,6 +1194,13 @@
       "replacements": [],
       "origin_sha256": "f5b87ba014cd8bc8a0163c21bb43ca8e54718da06d2abcc92dea91f03cd94ac1",
       "sha256": "f5b87ba014cd8bc8a0163c21bb43ca8e54718da06d2abcc92dea91f03cd94ac1"
+    },
+    {
+      "origin": "experiments/tsl9-record-mode-row-data/mode_rows.v1.c",
+      "destination": "src/native/receive/record_mode_row_data.c",
+      "replacements": [],
+      "origin_sha256": "56f65a975b2e7f6e30d7404f1e0c392029ac970ccaf00a039ce2559712477c86",
+      "sha256": "56f65a975b2e7f6e30d7404f1e0c392029ac970ccaf00a039ce2559712477c86"
     }
   ],
   "native_units": [
@@ -2808,6 +2815,20 @@
         "experiments/tsl9-sequence-pattern-integration/build/data-v1/measurement.json"
       ],
       "scope": "One48-byte readonly OBJECT;eight six-byte records under channel0..3/state0..1,valid nonnull input,stable GP/saved registers,disjoint MMIO,and candidate slot/Xwchc contracts. Preserve aliases/IRQ/DMA and global writer gaps. No full-table extent,1A638 provider alias,padding,physical button/action or hardware compatibility claim."
+    },
+    {
+      "name": "record-mode-row-data",
+      "profile": "conditional-modes1-and3-sixteen-byte-read-windows",
+      "origin_unit": "experiments/tsl9-record-mode-row-data/mode_rows.v1.c",
+      "curated_unit": "src/native/receive/record_mode_row_data.c",
+      "origin_unit_sha256": "56f65a975b2e7f6e30d7404f1e0c392029ac970ccaf00a039ce2559712477c86",
+      "verifier": "experiments/tsl9-record-mode-row-integration/build-data-v1.py",
+      "spec": "experiments/tsl9-record-mode-row-integration/spec-v1.json",
+      "evidence": "experiments/tsl9-record-mode-row-integration/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-record-mode-row-integration/build/data-v1/measurement.json"
+      ],
+      "scope": "Two16-byte positive DATA OBJECTs for conditional mode1/3 lookups atCF5A. Explicit local writers do not prove global mode domain,all alias/IRQ/DMA writers,physical RAM or complete provider extent. No provider alias,gap filling or hardware compatibility claim."
     }
   ],
   "legacy_groups": [

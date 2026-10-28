@@ -1,0 +1,37 @@
+{
+  "schema": "TSL9-mode-row-source-extension-v1",
+  "previous_manifest_sha256": "2f89a93ffac14a9731092b814344d75ec1059582ac5a04f1d495c1e768553831",
+  "new_manifest_sha256": "b76a2f5d987f51eaecb42a3440618bfce46892fbc3d22b6cce4aca3470c624e0",
+  "new_file_entries": [
+    {
+      "origin": "experiments/tsl9-record-mode-row-data/mode_rows.v1.c",
+      "destination": "src/native/receive/record_mode_row_data.c",
+      "replacements": [],
+      "origin_sha256": "56f65a975b2e7f6e30d7404f1e0c392029ac970ccaf00a039ce2559712477c86",
+      "sha256": "56f65a975b2e7f6e30d7404f1e0c392029ac970ccaf00a039ce2559712477c86"
+    }
+  ],
+  "new_CODE_unit_entries": [],
+  "new_DATA_unit_entries": [
+    {
+      "name": "record-mode-row-data",
+      "profile": "conditional-modes1-and3-sixteen-byte-read-windows",
+      "origin_unit": "experiments/tsl9-record-mode-row-data/mode_rows.v1.c",
+      "curated_unit": "src/native/receive/record_mode_row_data.c",
+      "origin_unit_sha256": "56f65a975b2e7f6e30d7404f1e0c392029ac970ccaf00a039ce2559712477c86",
+      "verifier": "experiments/tsl9-record-mode-row-integration/build-data-v1.py",
+      "spec": "experiments/tsl9-record-mode-row-integration/spec-v1.json",
+      "evidence": "experiments/tsl9-record-mode-row-integration/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-record-mode-row-integration/build/data-v1/measurement.json"
+      ],
+      "scope": "Two16-byte positive DATA OBJECTs for conditional mode1/3 lookups atCF5A. Explicit local writers do not prove global mode domain,all alias/IRQ/DMA writers,physical RAM or complete provider extent. No provider alias,gap filling or hardware compatibility claim."
+    }
+  ],
+  "retained_source_files": 162,
+  "added_source_files": 1,
+  "parent_reconstruction_pins": {
+    "experiments/tsl9-sequence-pattern-integration/parent-manifest-v1.py": "e89a7c63000f58755c583eba95eb82fe85df67170070d7ecff5be9674b8bf847",
+    "experiments/tsl9-sequence-pattern-integration/source-extension-v1.json": "5a1ecfa849c74a73e0c0e77f0220c5f388e32a2e55ded357f5edd2c237049c0d"
+  }
+}

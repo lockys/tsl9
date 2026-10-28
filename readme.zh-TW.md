@@ -10,11 +10,11 @@
 
 **免責聲明：本專案使用 Codex vibe coding 搭配 REA 進行實驗性重建，目前尚未成功逆向重建出已驗證可用的 TSL9 韌體。重建 BIN 未通過原硬體完整驗證；OTA 讀回成功不代表功能正常。**
 
-**已驗證重建覆蓋率：95.67%**（73,478／76,800 bytes；程式 69,412B＋資料 4,066B）。僅計入 C/C++ 重建後逐 byte 通過原位址比對的部分；不是功能完成率或可刷入比例。[驗證依據](experiments/tsl9-sequence-pattern-integration/summary.json)
+**已驗證重建覆蓋率：95.72%**（73,510／76,800 bytes；程式 69,412B＋資料 4,098B）。僅計入 C/C++ 重建後逐 byte 通過原位址比對的部分；不是功能完成率或可刷入比例。[驗證依據](experiments/tsl9-record-mode-row-integration/summary.json)
 
-最新整合：[新增序列比對資料48B已納入 SRC 與原位址對照](experiments/tsl9-sequence-pattern-integration/README.md)，實機執行與硬體相容性仍未證。
+最新整合：[新增 mode 查表資料32B已納入 SRC 與原位址對照](experiments/tsl9-record-mode-row-integration/README.md)，實機執行與硬體相容性仍未證。
 
-產物門檻：[APP／BIN readiness](experiments/tsl9-app-bin-readiness-audit/README.md)：目前未就緒。 · [第三查表合約](experiments/tsl9-third-provider-lookup-contract/README.md)
+產物門檻：[APP／BIN readiness](experiments/tsl9-record-mode-row-integration/README.md)：目前未就緒。 · [第三查表合約](experiments/tsl9-third-provider-lookup-contract/README.md)
 
 ROM候選：[C/C++](experiments/tsl9-resident-controller-callback-targets/README.md) · [序列資料](experiments/tsl9-sequence-pattern-data/README.md) · [中斷合約](experiments/tsl9-trap-profile-contract/README.md) · [RAM配置合約](experiments/tsl9-resident-task-layout-contract/README.md)，實機相容性未確認。
 
