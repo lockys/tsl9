@@ -2,6 +2,8 @@
 
 [繁體中文](README.md) · [Project](../../readme.en.md) · [C/C++ DATA](counter_data.v1.c)
 
+Follow-up:8B now have[curated SRC/original-coordinate integration](../tsl9-input-counter-integration/readme.en.md),bringing coverage to95.61%. The following is the earlier archived stage;its frozen checker may reject a newer manifest,use the current integration entry.
+
 Three whole APP functions (**592B/201 instructions**) and the whole candidate RAM fill function (**46B/14 instructions**) are checked. Eight new readonly C/C++ DATA bytes equal the official BIN and have an actual partial link. They are not yet curated into formal `src/` or placed at original addresses.
 
 |Location|Confirmed behavior|
@@ -21,7 +23,7 @@ Given a completed known masked store or candidate fill,a counter still in0..3 at
 
 [`verification-v2.json`](verification-v2.json) records whole CFG/stack checks,reaching definitions,actual SDK native bytes/typed branch relations and independent ELF-reader agreement. The new DATA object has one8-byte readonly OBJECT. C11/C++17 results are identical. The actual partial component contains69,412 CODE and4,018 DATA bytes,preserving every input allocated byte,global symbol,typed relocation and all six UND.
 
-Formal provenance stays160 sources and **73,422/76,800B (95.60%)**. There is no new BIN or physical hardware/ROM/RAM/IRQ/Flash/OTA completion claim. No target,HOST model,ISA emulator or hardware is executed.
+At this archived stage,formal provenance remained160 sources and **73,422/76,800B (95.60%)**. There is no new BIN or physical hardware/ROM/RAM/IRQ/Flash/OTA completion claim. No target,HOST model,ISA emulator or hardware is executed.
 
 With retained local artifacts and the fixed LLVM toolchain,replay without compiling or target execution:
 

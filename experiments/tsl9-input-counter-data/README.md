@@ -2,6 +2,8 @@
 
 [English](readme.en.md) · [專案](../../README.md) · [C/C++ DATA](counter_data.v1.c)
 
+後續進度：8B已完成[正式SRC／原位址整合](../tsl9-input-counter-integration/README.md)，目前覆蓋率95.61%。以下保留當時未整合的封存證據；凍結驗證器可能拒絕新版manifest，請以最新整合入口核對。
+
 已核對三個完整 APP 函式 **592B／201 指令**，以及候選 ROM 的完整 RAM 清零函式 **46B／14 指令**。新增8-byte唯讀 C/C++ DATA，與官方 BIN 對照相同，並已做真實部分連結；尚未納入正式 `src/` 或原位址配置。
 
 |位置|已確認行為|
@@ -21,7 +23,7 @@
 
 [`verification-v2.json`](verification-v2.json) 保留完整 CFG／stack、reaching definitions、實際 SDK 原生 byte／typed branch 對照與獨立 ELF reader 證據。新 DATA物件只有1個8-byte readonly OBJECT；C11／C++17結果相同。部分元件含69,412B CODE＋4,018B DATA，保留所有輸入 allocated byte、global symbol、typed relocation與6個 UND。
 
-正式來源仍為160份、**73,422／76,800B（95.60%）**。沒有新 BIN、原硬體／ROM／RAM／IRQ／Flash／OTA完成證明或 target／HOST／ISA／硬體執行。
+當時正式來源為160份、**73,422／76,800B（95.60%）**。沒有新 BIN、原硬體／ROM／RAM／IRQ／Flash／OTA完成證明或 target／HOST／ISA／硬體執行。
 
 具備既有本機產物與既定 LLVM 時可重播（不編譯／執行 target）：
 

@@ -10,11 +10,11 @@
 
 **免责声明：本项目使用 Codex vibe coding 搭配 REA 进行实验性重建，目前尚未成功逆向重建出已验证可用的 TSL9 固件。重建 BIN 未通过原硬件完整验证；OTA 读回成功不代表功能正常。**
 
-**已验证重建覆盖率：95.60%**（73,422／76,800 bytes；代码 69,412B＋数据 4,010B）。仅计入 C/C++ 重建后逐 byte 通过原地址比对的部分；不是功能完成率或可刷入比例。[验证依据](experiments/tsl9-lookup-mode-integration/summary.json)
+**已验证重建覆盖率：95.61%**（73,430／76,800 bytes；代码 69,412B＋数据 4,018B）。仅计入 C/C++ 重建后逐 byte 通过原地址比对的部分；不是功能完成率或可刷入比例。[验证依据](experiments/tsl9-input-counter-integration/summary.json)
 
-最新整合：[新增查表数据48B已纳入 SRC 与原地址对照](experiments/tsl9-lookup-mode-integration/README.md)，实机执行与硬件兼容性仍未证明。
+最新整合：[新增计数数据8B已纳入 SRC 与原地址对照](experiments/tsl9-input-counter-integration/README.md)，实机执行与硬件兼容性仍未证明。
 
-ROM候选：[C/C++](experiments/tsl9-resident-task0-deep-component/README.md) · [计数器数据](experiments/tsl9-input-counter-data/README.md) · [中断合约](experiments/tsl9-trap-profile-contract/README.md) · [RAM配置合约](experiments/tsl9-resident-task-layout-contract/README.md)，实机兼容性未确认。
+ROM候选：[C/C++](experiments/tsl9-resident-task0-deep-component/README.md) · [计数器数据](experiments/tsl9-input-counter-integration/README.md) · [中断合约](experiments/tsl9-trap-profile-contract/README.md) · [RAM配置合约](experiments/tsl9-resident-task-layout-contract/README.md)，实机兼容性未确认。
 
 ## 开始使用
 

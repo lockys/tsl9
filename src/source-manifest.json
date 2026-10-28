@@ -1180,6 +1180,13 @@
       "replacements": [],
       "origin_sha256": "6626ee7d60a7d0cbef27020a0d38b44eb9bf003f5e49d65f4d9062854f5df570",
       "sha256": "6626ee7d60a7d0cbef27020a0d38b44eb9bf003f5e49d65f4d9062854f5df570"
+    },
+    {
+      "origin": "experiments/tsl9-input-counter-data/counter_data.v1.c",
+      "destination": "src/native/receive/input_counter_data.c",
+      "replacements": [],
+      "origin_sha256": "80ab4f1308798837bfecd5cd3665b64cca47ba274123a28d9a26700748c7b1cc",
+      "sha256": "80ab4f1308798837bfecd5cd3665b64cca47ba274123a28d9a26700748c7b1cc"
     }
   ],
   "native_units": [
@@ -2766,6 +2773,20 @@
         "experiments/tsl9-lookup-mode-integration/build/data-v1/measurement.json"
       ],
       "scope": "Three16-byte readonly OBJECT rows,selected from the conditional mode2/4/5 read windows. Mode0 already has a real owner. No rows1/3,padding,full-table extent or1A078 provider alias;global writer/alias and physical execution remain unproved."
+    },
+    {
+      "name": "input-counter-data",
+      "profile": "conditional-byte-counter-halfword-window",
+      "origin_unit": "experiments/tsl9-input-counter-data/counter_data.v1.c",
+      "curated_unit": "src/native/receive/input_counter_data.c",
+      "origin_unit_sha256": "80ab4f1308798837bfecd5cd3665b64cca47ba274123a28d9a26700748c7b1cc",
+      "verifier": "experiments/tsl9-input-counter-integration/build-data-v1.py",
+      "spec": "experiments/tsl9-input-counter-integration/spec-v1.json",
+      "evidence": "experiments/tsl9-input-counter-integration/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-input-counter-integration/build/data-v1/measurement.json"
+      ],
+      "scope": "One8-byte readonly OBJECT,four observed halfword read cells under explicit counter0..3 conditions. Preserve both masked stores,the candidate fill RAM/MMIO preconditions,CFG bypass and global writer/alias gaps. No full-table extent,1AB48 provider alias,padding or physical invocation claim."
     }
   ],
   "legacy_groups": [

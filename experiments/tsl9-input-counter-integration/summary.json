@@ -1,0 +1,157 @@
+{
+  "schema": "TSL9-source-curated-original-coordinate-counter-DATA-summary-v1",
+  "passed": true,
+  "source_curated": true,
+  "sources_and_receipts": {
+    "experiments/tsl9-input-counter-integration/build-data-v1.py": "7ebcdad9eaabe29303aa1081f050f884021626a35a09ae65ca950758cb4be17c",
+    "experiments/tsl9-input-counter-integration/spec-v1.json": "781fbf8a2051be3e7c0589ac5552489317be1fdd171b4ee6ec6c62c0a17d2bd6",
+    "experiments/tsl9-input-counter-integration/parent-manifest-v1.py": "57b5f60021d6a94fa8feafe333cb57d19745aad2ce3b87b14d370d94a5cdba2d",
+    "experiments/tsl9-input-counter-integration/source-extension-v1.json": "505fb61f4a99185bc173b4b7af320b2d7d8e66e0dce843ea34fcf21b624525cb",
+    "experiments/tsl9-input-counter-integration/parent-proof-v1.json": "2c0f3d31a5c7e84feed2d91209b46592f3c29cb117e283dc57d581d5fde9fc08",
+    "experiments/tsl9-input-counter-integration/verify-source-v1.py": "512520fc57020d3b15a99b9777877e8acf33de5e1d9381c1f5d06c120e2d53d8",
+    "experiments/tsl9-input-counter-integration/source-proof-v1.json": "777e4cd19066bbd0d09e3bf135449240590f340835c417a7833fc9cc5d0be82c",
+    "experiments/tsl9-input-counter-integration/integrate-v1.py": "93fa507cb1ba2290356fc8590782663bd57aa54a6c48c7b42a74c64d57367cbd",
+    "experiments/tsl9-input-counter-integration/integration-v1.json": "ac6049a9727deef421de5cf0bb7ade91b9f1beea6e433691eb96dca7f9980aee",
+    "experiments/tsl9-input-counter-integration/audit-v1.py": "b5195a3e954625a88cb8842373b45f8ff9cd7ce31934d0368f8e0bc13af50044",
+    "experiments/tsl9-input-counter-integration/audit-inputs-v1.json": "e2d3eda7083963b3816f7eb2ab050964115e3edfd2f870ffdcdb9074662543c9",
+    "experiments/tsl9-input-counter-integration/audit-result-v1.json": "53658d9551fad0ca590d4677311a9211105646f3d7dd0ef1cf3fbf9ea67f15a6"
+  },
+  "source": "src/native/receive/input_counter_data.c",
+  "source_sha256": "80ab4f1308798837bfecd5cd3665b64cca47ba274123a28d9a26700748c7b1cc",
+  "manifest": "src/source-manifest.json",
+  "manifest_sha256": "ca4f7235024cf4711aee588f562af296ac727bac1fb96e4ad5f964584e90a190",
+  "layout_builder": "experiments/tsl9-original-layout/build-v67.py",
+  "layout_builder_sha256": "6f54e272d191b3cffe7c463598836473cf1c85caa2385b157f2a6e571d117f2a",
+  "layout_spec": "experiments/tsl9-original-layout/spec-v64.json",
+  "layout_spec_sha256": "ac3a4c3d6111e733a03564f559ff40bc689ffcef208cd228933d6c78b2d097ba",
+  "audit": "audit-result-v1.json",
+  "source_C_H_files": 161,
+  "source_comparisons": 270,
+  "source_objects": 540,
+  "CODE_units": 125,
+  "DATA_units": 10,
+  "CODE_bytes": 69412,
+  "DATA_bytes": 4018,
+  "original_coordinate_bytes_equal": 73430,
+  "coverage_percent": 95.61,
+  "new_source_DATA_bytes": 8,
+  "new_CODE_bytes": 0,
+  "conditional_read_bytes_backed": 8,
+  "conditional_rows": [
+    {
+      "counter_domain": [
+        0,
+        3
+      ],
+      "start": 109384,
+      "end": 109392,
+      "bytes": 8,
+      "owner": "tsl9_input_counter_read_window_1ab48"
+    }
+  ],
+  "conditions": [
+    "A known masked store completed,or the identified candidate fill completed normally",
+    "Actual counter byte remains0..3 until the read,including callees/interrupts/DMA/aliases",
+    "Normal original entries,stable GP,valid RAM disjoint from caller buffers and MMIO control word,and saved-register contracts"
+  ],
+  "counter_domain": [
+    0,
+    3
+  ],
+  "conservative_read_window": [
+    109384,
+    109896
+  ],
+  "conservative_bytes_outside_APP": 328,
+  "masked_store_dominates_read": false,
+  "candidate_ROM_fill": {
+    "APP_entry": 41852,
+    "tail_PC": 41868,
+    "candidate_table_slot": 262216,
+    "candidate_target": 536871836,
+    "candidate_function_bytes": 46,
+    "candidate_function_instructions": 14,
+    "candidate_CFG": {
+      "start": 536871836,
+      "end": 536871882,
+      "bytes": 46,
+      "instructions": 14,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 536871868,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": []
+    },
+    "destination_GP_offset": 172,
+    "length_argument": 5,
+    "fill_byte": 0,
+    "conditional_GP_write_interval": [
+      172,
+      177
+    ],
+    "counter_offset": 176,
+    "counter_cleared_to": 0,
+    "loop_store_PC": 536871872,
+    "MMIO_address": 1073889804,
+    "MMIO_saved_zeroed_and_restored": true,
+    "MMIO_physical_meaning_or_effects_proved": false,
+    "GP_preserved_by_candidate_body": true,
+    "installed_ROM_identity_proved": false,
+    "requires": "Actual installed slot equals this whole candidate;Valid nonzero nonwrapping RAM destination disjoint from MMIO control word;valid MMIO;normal instructions/no faults or interfering writes."
+  },
+  "compiler_UND": 6,
+  "real_DATA_labels": 6,
+  "new_DATA_labels": 0,
+  "ELF_sha256": "d4764efc233a6d8a6af432ec6b7c7cb4f631fc42f4c56f64a68c8ad4b709fe97",
+  "ELF_type": 2,
+  "entry": 0,
+  "PT_LOAD_count": 0,
+  "source_component_sha256": "3534ca1e1b63f109ae6328198c20a80d777679f00bcaaeecdf05637d3ba87dad",
+  "readonly_OBJECTs": 60,
+  "CODE_owner_regions": 6182,
+  "adjacent_only_spans": 43,
+  "relocations_retained": 5270,
+  "all_prior_CODE_and_DATA_owner_bytes_and_coordinates_retained": true,
+  "CODE_continuation_result_unchanged": true,
+  "conservative_continuation_observations": [
+    {
+      "owner": "tsl9_boot_8004",
+      "last_PC": 32820,
+      "next_PC": 32824,
+      "target": null
+    }
+  ],
+  "uncovered_bytes": 3370,
+  "withheld_missing_bytes": 3128,
+  "other_unselected_bytes": 242,
+  "parent_source_files_retained": 160,
+  "parent_source_comparisons_retained": 268,
+  "parent_objects_retained": 536,
+  "parent_proof_is_composite": true,
+  "parent_proof_replayed_before_extension": true,
+  "parent_source_proof_rerun_after_extension": false,
+  "all_parent_objects_reparsed_now": false,
+  "original532_object_proof_retained": true,
+  "parent_proof_inputs_rehashed": 2125,
+  "new_DATA_objects": 4,
+  "original_coordinate_link_performed": true,
+  "full_provider_binding_justified": false,
+  "global_counter_invariant_proved": false,
+  "withheld_payload_or_individual_hash_output": false,
+  "installed_ROM_RAM_IRQ_Flash_OTA_proved": false,
+  "full_firmware_rebuilt": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

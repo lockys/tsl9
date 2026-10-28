@@ -1,0 +1,37 @@
+{
+  "schema": "TSL9-counter-read-window-source-extension-v1",
+  "previous_manifest_sha256": "23db81919493520ed3483728418cb68c10f1d2e2db733768c3730ddf383ef660",
+  "new_manifest_sha256": "ca4f7235024cf4711aee588f562af296ac727bac1fb96e4ad5f964584e90a190",
+  "new_file_entries": [
+    {
+      "origin": "experiments/tsl9-input-counter-data/counter_data.v1.c",
+      "destination": "src/native/receive/input_counter_data.c",
+      "replacements": [],
+      "origin_sha256": "80ab4f1308798837bfecd5cd3665b64cca47ba274123a28d9a26700748c7b1cc",
+      "sha256": "80ab4f1308798837bfecd5cd3665b64cca47ba274123a28d9a26700748c7b1cc"
+    }
+  ],
+  "new_CODE_unit_entries": [],
+  "new_DATA_unit_entries": [
+    {
+      "name": "input-counter-data",
+      "profile": "conditional-byte-counter-halfword-window",
+      "origin_unit": "experiments/tsl9-input-counter-data/counter_data.v1.c",
+      "curated_unit": "src/native/receive/input_counter_data.c",
+      "origin_unit_sha256": "80ab4f1308798837bfecd5cd3665b64cca47ba274123a28d9a26700748c7b1cc",
+      "verifier": "experiments/tsl9-input-counter-integration/build-data-v1.py",
+      "spec": "experiments/tsl9-input-counter-integration/spec-v1.json",
+      "evidence": "experiments/tsl9-input-counter-integration/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-input-counter-integration/build/data-v1/measurement.json"
+      ],
+      "scope": "One8-byte readonly OBJECT,four observed halfword read cells under explicit counter0..3 conditions. Preserve both masked stores,the candidate fill RAM/MMIO preconditions,CFG bypass and global writer/alias gaps. No full-table extent,1AB48 provider alias,padding or physical invocation claim."
+    }
+  ],
+  "retained_source_files": 160,
+  "added_source_files": 1,
+  "parent_reconstruction_pins": {
+    "experiments/tsl9-lookup-mode-integration/parent-manifest-v1.py": "f4a99f46ac33c57e735521eb577fb3aab382f49fa67067722d60b5df3978f715",
+    "experiments/tsl9-lookup-mode-integration/source-extension-v1.json": "1ffe8eb158fd51eb47af243eb32d750974915712bc902d27d718cb23b546d80b"
+  }
+}
