@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-read-only-bit-gate-diagnostics-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Read-only aggregate bit-gate and queue-eligibility counters",
+      "purpose": "After actual hardware/ABI and memory-budget validation,distinguish numeric gate return1 from a return0 that is only one condition of queue consumption.",
+      "evidence": [
+        "560B2 compares input header bit2 withrecord flags12 bit3;different toggles bit3 and returns0",
+        "Whole completion caller59800 requiresreturn0 before the separate status/head/prepared/marker and release stages",
+        "Header decoder preserves two separate reads ofinput header0"
+      ],
+      "constraints": [
+        "Unimplemented;no instrumentation,live telemetry or BLE commands",
+        "Aggregate counters only;no header payloads,addresses,security material or device identity",
+        "Do not label numeric bit transitions physical ACK/CRC success without hardware evidence",
+        "Preserve original fresh reads,IRQ/DMA/lifetime assumptions and memory budget",
+        "Do not force gate success,reset counters or add retries from static evidence"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
