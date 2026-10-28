@@ -1,8 +1,8 @@
 # Seven-word event record DATA
 
-[繁體中文](README.md) · [C/C++ definitions](event_words.v1.c) · [Current formal integration](../tsl9-record-mode-row-integration/readme.en.md)
+[繁體中文](README.md) · [C/C++ definitions](event_words.v1.c) · [Current formal integration](../tsl9-event-word-table-integration/readme.en.md)
 
-This milestone reconstructs the **28-byte conditional read window** at `0x1AAE8..0x1AB04`. Actual C11/C++17 DATA objects and partial components are identical; every new DATA byte matches the official APP. This remains experimental source, pending curated `src/` and new original-coordinate linkage. Formal coverage stays **95.72% / 163 C/H files**.
+This directory retains the native seven-word / 28B experiment at `0x1AAE8..0x1AB04` before curation,when the parent had163 source files. The DATA have since entered formal `src/` and original-coordinate linkage;see the formal integration above for current counts and coverage. Original C11/C++17 object and original-DATA comparisons remain retained.
 
 ## Confirmed program behavior
 
@@ -27,9 +27,9 @@ The experimental partial component contains 69,412B CODE + 4,126B DATA. Every pa
 With the frozen local parent artifacts and LLVM available, run from the repository root:
 
 ```sh
-python3 experiments/tsl9-event-word-table-data/verify-v1.py --tool-dir "$LLVM_BIN"
+python3 experiments/tsl9-event-word-table-integration/audit-v1.py --tool-dir "$LLVM_BIN"
 ```
 
-This experiment pins the current 163-source manifest; later source extensions must retain its historical proof. All checks are offline. No target, HOST model, ISA, hardware, or third-party API execution occurred.
+The historical experimental verifier pins the pre-extension163-source manifest;use the current formal audit above for replay. Historical evidence and inputs remain retained;new-manifest drift is not a successful historical replay. All checks are offline,no target,HOST model,ISA,hardware or third-party API execution.
 
 [Inputs](inputs-v1.json) · [Complete consumer contract](contract-v1.py) · [Native receipt](verification-v1.json)

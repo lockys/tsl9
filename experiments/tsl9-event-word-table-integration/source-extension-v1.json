@@ -1,0 +1,37 @@
+{
+  "schema": "TSL9-event-word-source-extension-v1",
+  "previous_manifest_sha256": "b76a2f5d987f51eaecb42a3440618bfce46892fbc3d22b6cce4aca3470c624e0",
+  "new_manifest_sha256": "da0977f19350460ff632278ec6791211a10f3acb630f6c0be0658e3d579e1017",
+  "new_file_entries": [
+    {
+      "origin": "experiments/tsl9-event-word-table-data/event_words.v1.c",
+      "destination": "src/native/receive/event_word_table_data.c",
+      "replacements": [],
+      "origin_sha256": "53d9f10739051e8973e3ab67da52722e97c37051381d1e52981d48bdc15b647e",
+      "sha256": "53d9f10739051e8973e3ab67da52722e97c37051381d1e52981d48bdc15b647e"
+    }
+  ],
+  "new_CODE_unit_entries": [],
+  "new_DATA_unit_entries": [
+    {
+      "name": "event-word-table-data",
+      "profile": "conditional-seven-word-index0-through6",
+      "origin_unit": "experiments/tsl9-event-word-table-data/event_words.v1.c",
+      "curated_unit": "src/native/receive/event_word_table_data.c",
+      "origin_unit_sha256": "53d9f10739051e8973e3ab67da52722e97c37051381d1e52981d48bdc15b647e",
+      "verifier": "experiments/tsl9-event-word-table-integration/build-data-v1.py",
+      "spec": "experiments/tsl9-event-word-table-integration/spec-v1.json",
+      "evidence": "experiments/tsl9-event-word-table-integration/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-event-word-table-integration/build/data-v1/measurement.json"
+      ],
+      "scope": "One28-byte positive readonly DATA OBJECT at1AAE8 for index0..6 at read17844. Post-read modulo7 does not bound initial index. All alias/IRQ/DMA writers,physical RAM/timer/channel meanings and full table extent remain unproved. No clamp,provider alias or hardware compatibility claim."
+    }
+  ],
+  "retained_source_files": 163,
+  "added_source_files": 1,
+  "parent_reconstruction_pins": {
+    "experiments/tsl9-record-mode-row-integration/parent-manifest-v1.py": "83eacd7f63e5a851fb934333aec5b1fa67ab0a61d0c7db1aa04c6fc1e218db99",
+    "experiments/tsl9-record-mode-row-integration/source-extension-v1.json": "d51339a1da6bab8c2c3aa358b614ae2a2edcbdd9e84b6ee90ad79fff6c05c50e"
+  }
+}

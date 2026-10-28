@@ -1,8 +1,8 @@
 # 事件記錄的七筆 word 資料
 
-[English](readme.en.md) · [C/C++ 定義](event_words.v1.c) · [目前正式整合](../tsl9-record-mode-row-integration/README.md)
+[English](readme.en.md) · [C/C++ 定義](event_words.v1.c) · [目前正式整合](../tsl9-event-word-table-integration/README.md)
 
-本輪重建 `0x1AAE8..0x1AB04` 的 **28-byte 條件讀取視窗**。C11／C++17 的 DATA 物件及 partial component 完全一致，每個新資料 byte 都與原廠 APP 相同。這仍是實驗來源，未納入正式 `src/` 與新原位址連結；正式覆蓋率維持 **95.72%／163 個 C/H**。
+本目錄保留 `0x1AAE8..0x1AB04` 七筆／28B 資料正式擴充前的原生實驗，當時父來源為 163 檔。後續已納入正式 `src/` 與原位址連結；目前來源數及覆蓋率請見上方正式整合連結。原實驗 C11／C++17 物件與每個原廠資料 byte 的比對證據仍保留。
 
 ## 已確認的程式行為
 
@@ -27,9 +27,9 @@
 有凍結的本機父產物與 LLVM 時，在 repo 根目錄執行：
 
 ```sh
-python3 experiments/tsl9-event-word-table-data/verify-v1.py --tool-dir "$LLVM_BIN"
+python3 experiments/tsl9-event-word-table-integration/audit-v1.py --tool-dir "$LLVM_BIN"
 ```
 
-此實驗固定當前 163-source manifest，後續正式擴充時須保留其歷史證據。所有核對均離線；未執行 target、HOST model、ISA、硬體或第三方 API。
+舊實驗 verifier 固定正式擴充前的 163-source manifest；目前重播請使用上方正式整合 audit。歷史證據與其輸入保留，不能把新 manifest 漂移當成已重跑舊快照。所有核對均離線；未執行 target、HOST model、ISA、硬體或第三方 API。
 
 [輸入](inputs-v1.json) · [完整 consumer 合約](contract-v1.py) · [原生收據](verification-v1.json)

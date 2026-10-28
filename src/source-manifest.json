@@ -1201,6 +1201,13 @@
       "replacements": [],
       "origin_sha256": "56f65a975b2e7f6e30d7404f1e0c392029ac970ccaf00a039ce2559712477c86",
       "sha256": "56f65a975b2e7f6e30d7404f1e0c392029ac970ccaf00a039ce2559712477c86"
+    },
+    {
+      "origin": "experiments/tsl9-event-word-table-data/event_words.v1.c",
+      "destination": "src/native/receive/event_word_table_data.c",
+      "replacements": [],
+      "origin_sha256": "53d9f10739051e8973e3ab67da52722e97c37051381d1e52981d48bdc15b647e",
+      "sha256": "53d9f10739051e8973e3ab67da52722e97c37051381d1e52981d48bdc15b647e"
     }
   ],
   "native_units": [
@@ -2829,6 +2836,20 @@
         "experiments/tsl9-record-mode-row-integration/build/data-v1/measurement.json"
       ],
       "scope": "Two16-byte positive DATA OBJECTs for conditional mode1/3 lookups atCF5A. Explicit local writers do not prove global mode domain,all alias/IRQ/DMA writers,physical RAM or complete provider extent. No provider alias,gap filling or hardware compatibility claim."
+    },
+    {
+      "name": "event-word-table-data",
+      "profile": "conditional-seven-word-index0-through6",
+      "origin_unit": "experiments/tsl9-event-word-table-data/event_words.v1.c",
+      "curated_unit": "src/native/receive/event_word_table_data.c",
+      "origin_unit_sha256": "53d9f10739051e8973e3ab67da52722e97c37051381d1e52981d48bdc15b647e",
+      "verifier": "experiments/tsl9-event-word-table-integration/build-data-v1.py",
+      "spec": "experiments/tsl9-event-word-table-integration/spec-v1.json",
+      "evidence": "experiments/tsl9-event-word-table-integration/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-event-word-table-integration/build/data-v1/measurement.json"
+      ],
+      "scope": "One28-byte positive readonly DATA OBJECT at1AAE8 for index0..6 at read17844. Post-read modulo7 does not bound initial index. All alias/IRQ/DMA writers,physical RAM/timer/channel meanings and full table extent remain unproved. No clamp,provider alias or hardware compatibility claim."
     }
   ],
   "legacy_groups": [

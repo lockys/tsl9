@@ -10,11 +10,11 @@ Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility 
 
 **Disclaimer: This project uses Codex vibe coding with REA for experimental reconstruction. Reverse engineering has not yet produced verified, working TSL9 firmware. Rebuilt BINs have not passed full validation on the original hardware; successful OTA readback does not prove working features.**
 
-**Verified reconstruction byte coverage: 95.72%** (73,510/76,800 bytes; code 69,412B + data 4,098B). Counts only C/C++ reconstruction that passes byte-for-byte comparison at original addresses; this is not feature completion or flash readiness. [Evidence](experiments/tsl9-record-mode-row-integration/summary.json)
+**Verified reconstruction byte coverage: 95.75%** (73,538/76,800 bytes; code 69,412B + data 4,126B). Counts only C/C++ reconstruction that passes byte-for-byte comparison at original addresses; this is not feature completion or flash readiness. [Evidence](experiments/tsl9-event-word-table-integration/summary.json)
 
-Latest integration: [32B mode lookup DATA added to SRC and original-address verification](experiments/tsl9-record-mode-row-integration/readme.en.md);physical execution and compatibility remain unproved.
+Latest integration: [28B event word DATA added to SRC and original-address verification](experiments/tsl9-event-word-table-integration/readme.en.md);physical execution and compatibility remain unproved.
 
-Artifact gate:[APP/BIN readiness](experiments/tsl9-record-mode-row-integration/readme.en.md):currently not ready. · [Third lookup contract](experiments/tsl9-third-provider-lookup-contract/readme.en.md)
+Artifact gate:[APP/BIN readiness](experiments/tsl9-event-word-table-integration/readme.en.md):currently not ready. · [Third lookup contract](experiments/tsl9-third-provider-lookup-contract/readme.en.md)
 
 ROM candidates: [C/C++](experiments/tsl9-resident-controller-callback-targets/readme.en.md) · [Sequence DATA](experiments/tsl9-sequence-pattern-data/readme.en.md) · [Trap contract](experiments/tsl9-trap-profile-contract/readme.en.md) · [RAM layout contract](experiments/tsl9-resident-task-layout-contract/readme.en.md);installed compatibility remains unproved.
 

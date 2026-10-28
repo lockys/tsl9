@@ -2,9 +2,9 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../experiments/tsl9-record-mode-row-integration/readme.en.md): all73,510B from curated SRC match the official BIN; six APP source provider UND remain,with additional runtime gaps outside that count. Diagnostic ELF only;physical/OTA compatibility unproved.
+[Latest original-address proof](../experiments/tsl9-event-word-table-integration/readme.en.md): all73,538B from curated SRC match the official BIN; six APP source provider UND remain,with additional runtime gaps outside that count. Diagnostic ELF only;physical/OTA compatibility unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:163 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:164 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
@@ -12,6 +12,7 @@ This directory holds the currently selected C/C++ reconstruction sources:163 C/H
 | --- | --- | --- |
 | [Sequence patterns](native/receive/sequence_pattern_data.c) | One OBJECT48B | Eight conditional six-byte patterns;original-address equal,no full-provider/global-state/hardware claim.[Evidence](../experiments/tsl9-sequence-pattern-integration/readme.en.md) |
 | [Mode read rows](native/receive/record_mode_row_data.c) | Two OBJECTs32B | Conditional modes1/3,original-address equal;global mode and full provider unproved. [Evidence](../experiments/tsl9-record-mode-row-integration/readme.en.md) |
+| [Event word DATA](native/receive/event_word_table_data.c) | One OBJECT28B | Conditional index0..6;palette-like pattern is inference only,physical feature unproved. [Evidence](../experiments/tsl9-event-word-table-integration/readme.en.md) |
 | [Counter DATA](native/receive/input_counter_data.c) | One OBJECT8B | Four conditional halfword read cells;original-address equal,no full-provider/global-bound claim. [Evidence](../experiments/tsl9-input-counter-integration/readme.en.md) |
 | [Lookup DATA rows](native/receive/lookup_mode_rows.c) | Three OBJECTs48B | Modes2/4/5 curated and original-address equal;no full-table/provider claim. [Evidence](../experiments/tsl9-lookup-mode-integration/readme.en.md) |
 | [Remaining wrappers](native/runtime/safe_gap_functions.c) | Ten bodies764B/288i;64 real regions | All55 typed reference roles bind at original addresses;invocation/ROM/physical ABI unproved. [Evidence](../analysis/safe-gap-integration-2026-10-26/readme.en.md) |
@@ -159,14 +160,14 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-125 CODE units retain250 comparisons/500 objects;twelve DATA units provide24 comparisons/48 objects,totaling274 comparisons/548 objects. The parent544-object composite proof and all2,197 inputs remain intact,with4 new origin/curated C11/C++17 DATA objects. This round does not reparse or compile all548 objects. Included C cores belong to entry units;do not link every.c independently. V4.1.00 and legacy HOST tests are outside this proof.
+125 CODE units retain250 comparisons/500 objects;thirteen DATA units provide26 comparisons/52 objects,totaling276 comparisons/552 objects. The parent548-object composite proof and all2,240 inputs remain intact,with4 new origin/curated C11/C++17 DATA objects. This round does not reparse or compile all552 objects. Included C cores belong to entry units;do not link every.c independently. V4.1.00 and legacy HOST tests are outside this proof.
 
-Source evidence uses Windows/Android NDK27.1.12297006/LLVM18. Current receipt: `experiments/tsl9-record-mode-row-integration/build/source-proof-v1.json`;see the original-address proof above. Existing CODE and parent receipts are retained as frozen baselines. Other toolchains,operating systems and physical hardware remain unverified;no new downloads or flag search.
+Source evidence uses Windows/Android NDK27.1.12297006/LLVM18. Current receipt: `experiments/tsl9-event-word-table-integration/build/source-proof-v1.json`;see the original-address proof above. Existing CODE and parent receipts are retained as frozen baselines. Other toolchains,operating systems and physical hardware remain unverified;no new downloads or flag search.
 
 With retained local artifacts and LLVM_BIN,replay the current full diagnostic without compiling:
 
 ```sh
-python3 experiments/tsl9-record-mode-row-integration/audit-v1.py --tool-dir "$LLVM_BIN"
+python3 experiments/tsl9-event-word-table-integration/audit-v1.py --tool-dir "$LLVM_BIN"
 ```
 
 **This source collection and offline evidence are not a complete firmware build.** Physical chip identity, installed ROM, memory ownership, complete startup/IRQ behavior and BLE OTA compatibility remain unproved. Successful flashing and execution of rebuilt firmware on the original hardware have not yet been verified. The script executes neither RV32 nor MMIO and produces or flashes no firmware BIN.
