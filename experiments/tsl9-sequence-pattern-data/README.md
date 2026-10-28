@@ -2,6 +2,8 @@
 
 [English](readme.en.md) · [專案](../../README.md) · [C/C++ DATA](sequence_data.v1.c)
 
+後續進度：48B已納入[正式SRC／原位址整合](../tsl9-sequence-pattern-integration/README.md)，靜態覆蓋率95.67%。以下保留未整合時的封存證據；凍結驗證器可能拒絕新版manifest，請使用最新整合入口。
+
 已核對完整 APP callback **2,878B／912指令** 與候選 ROM 比較函式 **72B／23指令**。新增的48-byte唯讀資料通過 C11／C++17編譯、原始資料比對及真實部分連結；尚未納入正式 `src/` 或原位址配置。
 
 |位置|已確認的靜態行為|

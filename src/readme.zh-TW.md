@@ -2,9 +2,9 @@
 
 [English](readme.en.md) · [繁體中文](readme.zh-TW.md)
 
-[最新原始位址驗證](../experiments/tsl9-input-counter-integration/README.md)：73,430B 的 SRC 整理版經原生原位址配置後與官方 BIN 相同；六個編譯器 UND 維持明示，另有不在此數量內的執行期缺口。仍為診斷 ELF，實機／OTA 未證。
+[最新原始位址驗證](../experiments/tsl9-sequence-pattern-integration/README.md)：73,478B 的 SRC 整理版經原生原位址配置後與官方 BIN 相同；六個編譯器 UND 維持明示，另有不在此數量內的執行期缺口。仍為診斷 ELF，實機／OTA 未證。
 
-這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 161 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
+這裡集中目前證據較完整的可讀原始碼，作為後續重建的工作入口。共 162 個 C/H 檔；同一份 C 原始碼可依既定配方分別編譯為 C11 與 C++17。原始實驗與封存證據仍保留於 `experiments/`、`analysis/`，以便追溯。
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC資料組裝、記錄處理與立即／延後通知 | 1308B／461指令原位址碼吻合；真實7346B＋60B圖；接通2個入口、新增27個getter依賴，共93個UND；硬體／OTA未證 |
 | [state access](native/receive/state_access.c) | 82A8 記錄搬移、10032 清除與四組狀態更新／讀取 | 336B／108指令，C/C++原位址碼吻合；實際6038B＋60B圖有68個UND；ROM、13C4E用途、索引界限與硬體／OTA未證 |
@@ -12,6 +12,7 @@
 
 | 目錄 | 內容 | 目前限制 |
 | --- | --- | --- |
+| [序列比對資料](native/receive/sequence_pattern_data.c) | 一個OBJECT48B | 八個條件式六-byte樣式，原位址相符；不宣稱完整provider、全域state或硬體相容。[證據](../experiments/tsl9-sequence-pattern-integration/README.md) |
 | [計數資料](native/receive/input_counter_data.c) | 一個OBJECT8B | 四個條件式halfword讀取單元，已通過原位址比對；不宣稱完整provider或全域界限。[證據](../experiments/tsl9-input-counter-integration/README.md) |
 | [查表資料列](native/receive/lookup_mode_rows.c) | 三個OBJECT48B | 模式2／4／5已正式整理並通過原位址比對；不宣稱完整表格或provider。[證據](../experiments/tsl9-lookup-mode-integration/README.md) |
 | [剩餘包裝函式](native/runtime/safe_gap_functions.c) | 十本體764B／288i，64個實際區段 |55個參考角色均有原位址對照；呼叫／ROM／實機ABI未證。[證據](../analysis/safe-gap-integration-2026-10-26/README.md) |
@@ -159,14 +160,14 @@ python3 scripts/verify-curated-source.py
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-125個CODE單位保留250組／500物件；十個DATA單位共20組／40物件，合計270組／540物件。保留父536物件的組合證據及其2,125個輸入，再追加4個origin／curated C11／C++17 DATA物件；不宣稱本輪重新解析或編譯全部540物件。包含式C core屬於對應入口，不可把所有.c分別連結；V4.1.00與舊HOST測試不在此證明範圍。
+125個CODE單位保留250組／500物件；十一個DATA單位共22組／44物件，合計272組／544物件。保留父540物件的組合證據及其2,164個輸入，再追加4個origin／curated C11／C++17 DATA物件；不宣稱本輪重新解析或編譯全部544物件。包含式C core屬於對應入口，不可把所有.c分別連結；V4.1.00與舊HOST測試不在此證明範圍。
 
-來源證據使用 Windows／Android NDK27.1.12297006／LLVM18。最新收據為 `experiments/tsl9-input-counter-integration/build/source-proof-v1.json`，原位址證據見上方連結；既有 CODE與父收據保留為凍結基準。其他工具鏈、作業系統與實機尚未驗證；不下載新工具或搜尋旗標。
+來源證據使用 Windows／Android NDK27.1.12297006／LLVM18。最新收據為 `experiments/tsl9-sequence-pattern-integration/build/source-proof-v1.json`，原位址證據見上方連結；既有 CODE與父收據保留為凍結基準。其他工具鏈、作業系統與實機尚未驗證；不下載新工具或搜尋旗標。
 
 具有既有本機產物與 LLVM_BIN 時，可唯讀核對目前完整診斷：
 
 ```sh
-python3 experiments/tsl9-input-counter-integration/audit-v1.py --tool-dir "$LLVM_BIN"
+python3 experiments/tsl9-sequence-pattern-integration/audit-v1.py --tool-dir "$LLVM_BIN"
 ```
 
 **這是原始碼整理與離線證據，不是完整韌體 build。** 尚未證明原機晶片、installed ROM、記憶體 ownership、完整啟動／中斷或 BLE OTA 相容性；重建韌體尚未完成在原硬體成功刷入及正常執行的驗證。腳本不執行 RV32／MMIO，也不產生或燒錄韌體 BIN。

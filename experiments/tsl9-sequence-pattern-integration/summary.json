@@ -1,0 +1,182 @@
+{
+  "schema": "TSL9-source-curated-original-coordinate-sequence-DATA-summary-v1",
+  "passed": true,
+  "source_curated": true,
+  "sources_and_receipts": {
+    "experiments/tsl9-sequence-pattern-integration/build-data-v1.py": "74f34360d7d98b635651ca98443dbcf9da6e4c257480aaf6bf00955b7ed8777f",
+    "experiments/tsl9-sequence-pattern-integration/spec-v1.json": "83ba2ca4a98d05c2c9ce2d1af392cb918aa227c44152f426dd2c74b375744ca8",
+    "experiments/tsl9-sequence-pattern-integration/parent-manifest-v1.py": "e89a7c63000f58755c583eba95eb82fe85df67170070d7ecff5be9674b8bf847",
+    "experiments/tsl9-sequence-pattern-integration/source-extension-v1.json": "5a1ecfa849c74a73e0c0e77f0220c5f388e32a2e55ded357f5edd2c237049c0d",
+    "experiments/tsl9-sequence-pattern-integration/parent-proof-v1.json": "2805fc226dc67018b8e3f8fbd08ce502a5dc9d093170115531279418a3966ea1",
+    "experiments/tsl9-sequence-pattern-integration/verify-source-v1.py": "47f1ea79b93d38482082363c91683467da4d2005944f29bbe27fff44dda60bb8",
+    "experiments/tsl9-sequence-pattern-integration/source-proof-v1.json": "0ccbf80086b640b1a5fcc0d02736a8b340501b952a14502b65c5a15db0ef430c",
+    "experiments/tsl9-sequence-pattern-integration/integrate-v1.py": "4cd9ea0715369e1c533378b261282db7d9a7a08ce4845f061edecefcc18e1580",
+    "experiments/tsl9-sequence-pattern-integration/integration-v1.json": "21bb6d1044c15c8991181bbafd095d76f76efa2bd5695937829f6bb26e35757e",
+    "experiments/tsl9-sequence-pattern-integration/audit-v1.py": "60b0b00763e6ca946e8704cdf0c71c64219f476e79ed897f1d33d2f0745f7d41",
+    "experiments/tsl9-sequence-pattern-integration/audit-inputs-v1.json": "710f7950cc75f32d74c19132285cc006212a21084990f2e901586c4b629d6857",
+    "experiments/tsl9-sequence-pattern-integration/audit-result-v1.json": "20ab6a4e3ffff9c90e4e895af47bfa035f78af091f5c1420f8bb4937c1a98794"
+  },
+  "source": "src/native/receive/sequence_pattern_data.c",
+  "source_sha256": "f5b87ba014cd8bc8a0163c21bb43ca8e54718da06d2abcc92dea91f03cd94ac1",
+  "manifest": "src/source-manifest.json",
+  "manifest_sha256": "2f89a93ffac14a9731092b814344d75ec1059582ac5a04f1d495c1e768553831",
+  "layout_builder": "experiments/tsl9-original-layout/build-v68.py",
+  "layout_builder_sha256": "31014b9b8fa00ffed7d54163688b2b2654ecaf382ceff7938c20a68e237271e5",
+  "layout_spec": "experiments/tsl9-original-layout/spec-v65.json",
+  "layout_spec_sha256": "05b3bd53d5e5745e728a2fda5bd32ff2d8698c77d01963c6a5a827da3a3a9dad",
+  "audit": "audit-result-v1.json",
+  "source_C_H_files": 162,
+  "source_comparisons": 272,
+  "source_objects": 544,
+  "CODE_units": 125,
+  "DATA_units": 11,
+  "CODE_bytes": 69412,
+  "DATA_bytes": 4066,
+  "original_coordinate_bytes_equal": 73478,
+  "coverage_percent": 95.67,
+  "new_source_DATA_bytes": 48,
+  "new_CODE_bytes": 0,
+  "conditional_read_bytes_backed": 48,
+  "conditional_rows": [
+    {
+      "channel_domain": [
+        0,
+        3
+      ],
+      "conditional_state_domain": [
+        0,
+        1
+      ],
+      "start": 108088,
+      "end": 108136,
+      "bytes": 48,
+      "owner": "tsl9_sequence_compare_read_window_1a638"
+    }
+  ],
+  "conditions": [
+    "Installed slot4003C equals this complete SDK candidate and the reference Xwchc LBU interpretation holds",
+    "Normal original callback entry,stable GP and saved-register contracts;valid nonnull six-byte input and readable selected DATA",
+    "Each state byte is0 or1 at its read,with no interfering alias,IRQ,DMA or nested callback writes",
+    "Input/state RAM and DATA remain disjoint from the saved/zeroed/restored MMIO control word;normal accesses without faults"
+  ],
+  "channel_domain": [
+    0,
+    3
+  ],
+  "conditional_state_domain": [
+    0,
+    1
+  ],
+  "conservative_read_window": [
+    108088,
+    109660
+  ],
+  "conservative_read_bytes": 1572,
+  "conservative_bytes_outside_APP": 92,
+  "comparison": {
+    "candidate_slot": 262204,
+    "candidate_target": 536872002,
+    "bytes": 72,
+    "instructions": 23,
+    "CFG": {
+      "start": 536872002,
+      "end": 536872074,
+      "bytes": 72,
+      "instructions": 23,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 536872036,
+          "type": "ret",
+          "instruction": "ret"
+        },
+        {
+          "PC": 536872072,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": []
+    },
+    "call_PC": 73822,
+    "compare_length": 6,
+    "equal_return": 1,
+    "different_byte_return": 0,
+    "null_pointer_or_zero_length_return": 1,
+    "not_standard_C_memcmp_return_convention": true,
+    "valid_nonnull_buffers_required": true,
+    "MMIO_address": 1073889804,
+    "MMIO_saved_zeroed_and_restored": true,
+    "MMIO_physical_effects_proved": false,
+    "reference_custom_LBU_PC": 536872056,
+    "reference_custom_LBU_word": 8852,
+    "reference_encoding_vectors": 52,
+    "callee_saved_registers_used_by_caller_are_not_written": true,
+    "installed_ROM_identity_proved": false,
+    "physical_Xwchc_profile_proved": false
+  },
+  "sequence_inference": {
+    "conditional": true,
+    "mismatch": "clear current channel state to0,advance channel;later channels remain unvisited after an earlier match",
+    "first_expected_match": "state0 to1,exit without completing a pair",
+    "second_expected_match": "state1 to2 then reset0,before handing channel+128 to the common event path",
+    "event_index_domain": [
+      128,
+      131
+    ],
+    "event_PC": 73858,
+    "second_state_reset_PC": 73872,
+    "physical_button_or_vehicle_action_identified": false
+  },
+  "compiler_UND": 6,
+  "real_DATA_labels": 6,
+  "new_DATA_labels": 0,
+  "ELF_sha256": "de5717f2d28473963c43aae3c6c0248544033823166758bc9973550dc6665d89",
+  "ELF_type": 2,
+  "entry": 0,
+  "PT_LOAD_count": 0,
+  "source_component_sha256": "a0f17a13a2391ff127a2a5dd5722900ee3b19169216452f1ac3fbff76d5cf2dd",
+  "readonly_OBJECTs": 61,
+  "CODE_owner_regions": 6182,
+  "adjacent_only_spans": 43,
+  "relocations_retained": 5270,
+  "all_prior_CODE_and_DATA_owner_bytes_and_coordinates_retained": true,
+  "CODE_continuation_result_unchanged": true,
+  "conservative_continuation_observations": [
+    {
+      "owner": "tsl9_boot_8004",
+      "last_PC": 32820,
+      "next_PC": 32824,
+      "target": null
+    }
+  ],
+  "uncovered_bytes": 3322,
+  "withheld_missing_bytes": 3128,
+  "other_unselected_bytes": 194,
+  "parent_source_files_retained": 161,
+  "parent_source_comparisons_retained": 270,
+  "parent_objects_retained": 540,
+  "parent_proof_is_composite": true,
+  "parent_proof_replayed_before_extension": true,
+  "parent_source_proof_rerun_after_extension": false,
+  "all_parent_objects_reparsed_now": false,
+  "original532_object_proof_retained": true,
+  "parent_proof_inputs_rehashed": 2164,
+  "new_DATA_objects": 4,
+  "original_coordinate_link_performed": true,
+  "full_provider_binding_justified": false,
+  "global_state_invariant_proved": false,
+  "withheld_payload_or_individual_hash_output": false,
+  "installed_ROM_RAM_IRQ_Flash_OTA_proved": false,
+  "full_firmware_rebuilt": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

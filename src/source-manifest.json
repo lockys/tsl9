@@ -1187,6 +1187,13 @@
       "replacements": [],
       "origin_sha256": "80ab4f1308798837bfecd5cd3665b64cca47ba274123a28d9a26700748c7b1cc",
       "sha256": "80ab4f1308798837bfecd5cd3665b64cca47ba274123a28d9a26700748c7b1cc"
+    },
+    {
+      "origin": "experiments/tsl9-sequence-pattern-data/sequence_data.v1.c",
+      "destination": "src/native/receive/sequence_pattern_data.c",
+      "replacements": [],
+      "origin_sha256": "f5b87ba014cd8bc8a0163c21bb43ca8e54718da06d2abcc92dea91f03cd94ac1",
+      "sha256": "f5b87ba014cd8bc8a0163c21bb43ca8e54718da06d2abcc92dea91f03cd94ac1"
     }
   ],
   "native_units": [
@@ -2787,6 +2794,20 @@
         "experiments/tsl9-input-counter-integration/build/data-v1/measurement.json"
       ],
       "scope": "One8-byte readonly OBJECT,four observed halfword read cells under explicit counter0..3 conditions. Preserve both masked stores,the candidate fill RAM/MMIO preconditions,CFG bypass and global writer/alias gaps. No full-table extent,1AB48 provider alias,padding or physical invocation claim."
+    },
+    {
+      "name": "sequence-pattern-data",
+      "profile": "conditional-four-channels-two-state-six-byte-patterns",
+      "origin_unit": "experiments/tsl9-sequence-pattern-data/sequence_data.v1.c",
+      "curated_unit": "src/native/receive/sequence_pattern_data.c",
+      "origin_unit_sha256": "f5b87ba014cd8bc8a0163c21bb43ca8e54718da06d2abcc92dea91f03cd94ac1",
+      "verifier": "experiments/tsl9-sequence-pattern-integration/build-data-v1.py",
+      "spec": "experiments/tsl9-sequence-pattern-integration/spec-v1.json",
+      "evidence": "experiments/tsl9-sequence-pattern-integration/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-sequence-pattern-integration/build/data-v1/measurement.json"
+      ],
+      "scope": "One48-byte readonly OBJECT;eight six-byte records under channel0..3/state0..1,valid nonnull input,stable GP/saved registers,disjoint MMIO,and candidate slot/Xwchc contracts. Preserve aliases/IRQ/DMA and global writer gaps. No full-table extent,1A638 provider alias,padding,physical button/action or hardware compatibility claim."
     }
   ],
   "legacy_groups": [

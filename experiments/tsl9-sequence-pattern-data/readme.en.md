@@ -2,6 +2,8 @@
 
 [繁體中文](README.md) · [Project](../../readme.en.md) · [C/C++ DATA](sequence_data.v1.c)
 
+Follow-up:48B now have[curated SRC/original-coordinate backing](../tsl9-sequence-pattern-integration/readme.en.md),with95.67% static byte coverage. The archived checker below may reject the newer manifest;use the current integration entry.
+
 The whole APP callback (**2,878B/912 instructions**) and whole candidate ROM comparator (**72B/23 instructions**) are checked. Forty-eight new readonly DATA bytes pass C11/C++17 compilation,original-byte comparison and an actual partial link. They are not yet curated into formal `src/` or placed at original addresses.
 
 |Location|Confirmed static behavior|

@@ -1,0 +1,37 @@
+{
+  "schema": "TSL9-sequence-pattern-window-source-extension-v1",
+  "previous_manifest_sha256": "ca4f7235024cf4711aee588f562af296ac727bac1fb96e4ad5f964584e90a190",
+  "new_manifest_sha256": "2f89a93ffac14a9731092b814344d75ec1059582ac5a04f1d495c1e768553831",
+  "new_file_entries": [
+    {
+      "origin": "experiments/tsl9-sequence-pattern-data/sequence_data.v1.c",
+      "destination": "src/native/receive/sequence_pattern_data.c",
+      "replacements": [],
+      "origin_sha256": "f5b87ba014cd8bc8a0163c21bb43ca8e54718da06d2abcc92dea91f03cd94ac1",
+      "sha256": "f5b87ba014cd8bc8a0163c21bb43ca8e54718da06d2abcc92dea91f03cd94ac1"
+    }
+  ],
+  "new_CODE_unit_entries": [],
+  "new_DATA_unit_entries": [
+    {
+      "name": "sequence-pattern-data",
+      "profile": "conditional-four-channels-two-state-six-byte-patterns",
+      "origin_unit": "experiments/tsl9-sequence-pattern-data/sequence_data.v1.c",
+      "curated_unit": "src/native/receive/sequence_pattern_data.c",
+      "origin_unit_sha256": "f5b87ba014cd8bc8a0163c21bb43ca8e54718da06d2abcc92dea91f03cd94ac1",
+      "verifier": "experiments/tsl9-sequence-pattern-integration/build-data-v1.py",
+      "spec": "experiments/tsl9-sequence-pattern-integration/spec-v1.json",
+      "evidence": "experiments/tsl9-sequence-pattern-integration/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-sequence-pattern-integration/build/data-v1/measurement.json"
+      ],
+      "scope": "One48-byte readonly OBJECT;eight six-byte records under channel0..3/state0..1,valid nonnull input,stable GP/saved registers,disjoint MMIO,and candidate slot/Xwchc contracts. Preserve aliases/IRQ/DMA and global writer gaps. No full-table extent,1A638 provider alias,padding,physical button/action or hardware compatibility claim."
+    }
+  ],
+  "retained_source_files": 161,
+  "added_source_files": 1,
+  "parent_reconstruction_pins": {
+    "experiments/tsl9-input-counter-integration/parent-manifest-v1.py": "57b5f60021d6a94fa8feafe333cb57d19745aad2ce3b87b14d370d94a5cdba2d",
+    "experiments/tsl9-input-counter-integration/source-extension-v1.json": "505fb61f4a99185bc173b4b7af320b2d7d8e66e0dce843ea34fcf21b624525cb"
+  }
+}
