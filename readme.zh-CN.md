@@ -14,7 +14,7 @@
 
 最新整合：[新增序列比对数据48B已纳入 SRC 与原地址对照](experiments/tsl9-sequence-pattern-integration/README.md)，实机执行与硬件兼容性仍未证明。
 
-ROM候选：[C/C++](experiments/tsl9-resident-gatt-CCC-write/README.md) · [序列数据](experiments/tsl9-sequence-pattern-data/README.md) · [中断合约](experiments/tsl9-trap-profile-contract/README.md) · [RAM配置合约](experiments/tsl9-resident-task-layout-contract/README.md)，实机兼容性未确认。
+ROM候选：[C/C++](experiments/tsl9-resident-CCC-capacity-initialization/README.md) · [序列数据](experiments/tsl9-sequence-pattern-data/README.md) · [中断合约](experiments/tsl9-trap-profile-contract/README.md) · [RAM配置合约](experiments/tsl9-resident-task-layout-contract/README.md)，实机兼容性未确认。
 
 ## 开始使用
 

@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-offline-CCC-capacity-order-diagnostic-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Offline CCC capacity and initialization-order diagnostic",
+      "purpose": "Explain the conditional c&3 capacity,role-init ordering,allocation requirements and callback-table limit from static evidence.",
+      "evidence": [
+        "APP configuration halfword store19A70 places nominal0E atSP+37",
+        "BLE_LibInit copies64B to200031EC;ConnectNumber is offset21",
+        "4EDEC writes c&3 to200033B5 before allocation;PeripheralInit calls this path before APP8FB6",
+        "CentralInit can skip this path;allocation has no null guard;callback table has12 slots"
+      ],
+      "constraints": [
+        "No live-device value or global RAM invariant is inferred",
+        "No BLE commands,target/HOST model/ISA execution or OTA diagnosis",
+        "Do not equate full-table status19 with a universal cause",
+        "Keep callback4D916 unprovided and report allocation/callee/IRQ conditions"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
