@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-offline-link-event-lifetime-diagnostic-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Offline connection-event and pending-record lifetime diagnostic",
+      "purpose": "Explain removal/stateflag events,loopback exclusion,missing-link results and pending-record release order from already supplied offline evidence.",
+      "evidence": [
+        "Registered callback4D916 is60B and ignores handleFFFE",
+        "Event1 tails to cleanup;event2 queries connected bit1 and cleans only when false",
+        "RAM20000A94 lookup samples total once and finds the first60-byte record with matching handle+2",
+        "Pending16-byte cleanup frees guarded children atnested offsets12/20,then owner,clears16B and sets slot9 toFF"
+      ],
+      "constraints": [
+        "No live event capture,BLE commands or hardware execution",
+        "Do not infer actual CCC clearing,callback dispatch or OTA success",
+        "Keep4EB12 and physical RAM/ROM/callback lifetime gaps explicit",
+        "Use redacted or synthetic descriptions only;never include live address/security record contents"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
