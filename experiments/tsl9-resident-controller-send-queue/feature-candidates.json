@@ -1,0 +1,24 @@
+{
+  "schema": "TSL9-read-only-queue-health-candidate-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Read-only queue and descriptor-pool health diagnostics",
+      "purpose": "After hardware/ABI validation,consider exposing aggregate queue occupancy,pool availability and allocation-failure counters to distinguish resource pressure from scheduling or delivery uncertainty.",
+      "evidence": [
+        "6A626 links descriptors through controller-record+280/+284 and calls the event setter",
+        "57862 scans16-byte nodes for requestedFF54 orFFFF;6A626 narrows the tag with a byte-read/halfword-write",
+        "Pool miss returns7 and may invoke staCB(1,0x5555);zero return ignores the event-setter result",
+        "Pool count depends on copied BufNumber and a separate mode byte;nominal8 gives9 or16 nodes only conditionally"
+      ],
+      "constraints": [
+        "No implementation,BLE commands or live telemetry in this milestone",
+        "Require validated memory/Flash budget,callback lifetime and read-only protocol before any instrumentation",
+        "Aggregate metadata only;never expose packet payloads,addresses,security records or identity values",
+        "Do not diagnose historical OTA letterE from candidate numeric statuses",
+        "Do not change queue sizes,automatically retry sends,or infer physical delivery from enqueue success"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}

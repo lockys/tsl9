@@ -1,0 +1,571 @@
+{
+  "schema": "TSL9-controller-send-queue-summary-v1",
+  "passed": true,
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-controller-send-queue/build-v1.py": "b5f83010a918f51d4d328265ece4bde588276853d82f38c45fb8ade66e442fff",
+    "experiments/tsl9-resident-controller-send-queue/derive-v1.py": "83201e08b2e5b4403870a69fd93a2eabbb9529bfdb34c821a068dc08086c08a5",
+    "experiments/tsl9-resident-controller-send-queue/spec-v1.json": "141d2e40af2597f20a19fc9b32918e49810b8abe48a84b4ab274a03cc65bb07e",
+    "experiments/tsl9-resident-controller-send-queue/evidence-v1.json": "0c1fd54339fd33c5c4a635d578cba23c5c5c49f523c7a426118c490320a02eff",
+    "experiments/tsl9-resident-controller-send-queue/queue_abi.c": "7475a3f13fbc051dae9db13d3d46eaa2a43bc22308bc45de6eced685248134a2",
+    "experiments/tsl9-resident-controller-send-queue/resident_controller_send_queue.c": "f3400ac3be0d82fd8dac0bc59a3b21bfd538519764d83b1a364f6f71fe06724b",
+    "experiments/tsl9-resident-controller-send-queue/verify-v1.py": "c192cde09e2b84e432ea4b5f7a44e6cb215db086f654f1d3df00e437be8a4fee",
+    "experiments/tsl9-resident-controller-send-queue/inputs-v1.json": "773af144fe8dc2120c158ee806cc72b14b17a803cf8e46517bbe07361ed3fb4a",
+    "experiments/tsl9-resident-controller-send-queue/verification-v1.json": "f8a52db8c61d06d95b5d076e257d97ccc76ace5ff5eacae24814ec4ca7230a01"
+  },
+  "new_complete_SDK_bodies": 2,
+  "new_SDK_CODE_bytes": 284,
+  "new_SDK_instructions": 101,
+  "new_SDK_DATA_bytes": 0,
+  "new_native_FUNC_regions": 28,
+  "new_direct_controls": 18,
+  "new_far_call_pairs": 0,
+  "new_far_tail_pairs": 0,
+  "new_relocations": 18,
+  "new_native_imports": 2,
+  "new_normal_imports_resolved": 2,
+  "prior_genuine_import_resolved": 435750,
+  "prior_genuine_import_body_bytes": 218,
+  "resolution_uses_actual_CODE_not_alias": true,
+  "new_genuine_unprovided_normal_callees": 0,
+  "new_opaque_call_sites": [
+    435950
+  ],
+  "all_indirect_runtime_targets_closed": false,
+  "native_unit_sha256": "b1bf358afa41466119bea1bce1a183126cce7d76a36e2a63b39a2fb971e5ee4f",
+  "native_ABI_runtime_bytes": 0,
+  "SDK_composition_root": "experiments/tsl9-resident-controller-send-queue/build/composition-v1",
+  "SDK_object": "candidate.o",
+  "SDK_object_sha256": "48ac601ba2e7a28b1bea2fa55e69cef93cc0a8c4df5571cab1e5c435482cebc1",
+  "SDK_CODE_bytes": 44894,
+  "SDK_DATA_bytes": 412,
+  "SDK_instructions": 15616,
+  "SDK_positive_FUNC_regions": 3203,
+  "SDK_positive_DATA_OBJECTs": 5,
+  "SDK_relocations": 2553,
+  "SDK_named_UND": [],
+  "SDK_duplicate_original_CODE_bytes": 0,
+  "all_parent_allocated_bytes_globals_and_symbolic_relocation_roles_retained": true,
+  "prior_UND_reference_now_resolves_to_genuine_CODE": true,
+  "queue_contract": {
+    "passed": true,
+    "whole_CFGs": [
+      {
+        "start": 358498,
+        "end": 358564,
+        "bytes": 66,
+        "instructions": 22,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 358548,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      },
+      {
+        "start": 435750,
+        "end": 435968,
+        "bytes": 218,
+        "instructions": 79,
+        "own_frame_bytes": 32,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 435808,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 435770,
+            "target": 358474
+          },
+          {
+            "PC": 435848,
+            "target": 358498
+          },
+          {
+            "PC": 435910,
+            "target": 275786
+          },
+          {
+            "PC": 435950,
+            "target": null
+          }
+        ]
+      },
+      {
+        "start": 358564,
+        "end": 358754,
+        "bytes": 190,
+        "instructions": 66,
+        "own_frame_bytes": 32,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 358720,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 358670,
+            "target": null
+          }
+        ]
+      },
+      {
+        "start": 104930,
+        "end": 105238,
+        "bytes": 308,
+        "instructions": 106,
+        "own_frame_bytes": 96,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 105236,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 104964,
+            "target": null
+          },
+          {
+            "PC": 105016,
+            "target": null
+          },
+          {
+            "PC": 105140,
+            "target": 102230
+          },
+          {
+            "PC": 105196,
+            "target": null
+          },
+          {
+            "PC": 105208,
+            "target": 102662
+          }
+        ]
+      },
+      {
+        "start": 277630,
+        "end": 277858,
+        "bytes": 228,
+        "instructions": 92,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 277850,
+            "type": "ret",
+            "instruction": "ret"
+          },
+          {
+            "PC": 277856,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 277674,
+            "target": null
+          },
+          {
+            "PC": 277718,
+            "target": null
+          },
+          {
+            "PC": 277736,
+            "target": null
+          },
+          {
+            "PC": 277816,
+            "target": null
+          },
+          {
+            "PC": 277836,
+            "target": 277310
+          }
+        ]
+      }
+    ],
+    "unique_reaching_definitions": [
+      {
+        "function": 435750,
+        "register": "a0",
+        "PC": 435770,
+        "definitions": [
+          -1
+        ]
+      },
+      {
+        "function": 435750,
+        "register": "s4",
+        "PC": 435784,
+        "definitions": [
+          435766
+        ]
+      },
+      {
+        "function": 435750,
+        "register": "s1",
+        "PC": 435876,
+        "definitions": [
+          435768
+        ]
+      },
+      {
+        "function": 435750,
+        "register": "s2",
+        "PC": 435918,
+        "definitions": [
+          435830
+        ]
+      },
+      {
+        "function": 435750,
+        "register": "s2",
+        "PC": 435956,
+        "definitions": [
+          435830
+        ]
+      },
+      {
+        "function": 435750,
+        "register": "a0",
+        "PC": 435848,
+        "definitions": [
+          435844
+        ]
+      },
+      {
+        "function": 435750,
+        "register": "a5",
+        "PC": 435950,
+        "definitions": [
+          435936
+        ]
+      },
+      {
+        "function": 435750,
+        "register": "a0",
+        "PC": 435950,
+        "definitions": [
+          435948
+        ]
+      },
+      {
+        "function": 435750,
+        "register": "a1",
+        "PC": 435950,
+        "definitions": [
+          435944
+        ]
+      },
+      {
+        "function": 435750,
+        "register": "a1",
+        "PC": 435944,
+        "definitions": [
+          435942
+        ]
+      },
+      {
+        "function": 104930,
+        "register": "a0",
+        "PC": 105016,
+        "definitions": [
+          105014
+        ]
+      },
+      {
+        "function": 104930,
+        "register": "a1",
+        "PC": 105016,
+        "definitions": [
+          105006
+        ]
+      },
+      {
+        "function": 104930,
+        "register": "a2",
+        "PC": 105016,
+        "definitions": [
+          104992
+        ]
+      },
+      {
+        "function": 104930,
+        "register": "a5",
+        "PC": 105016,
+        "definitions": [
+          105012
+        ]
+      },
+      {
+        "function": 104930,
+        "register": "s0",
+        "PC": 105012,
+        "definitions": [
+          104944
+        ]
+      },
+      {
+        "function": 104930,
+        "register": "a4",
+        "PC": 105050,
+        "definitions": [
+          105046
+        ]
+      },
+      {
+        "function": 104930,
+        "register": "a5",
+        "PC": 105046,
+        "definitions": [
+          105044
+        ]
+      }
+    ],
+    "controller_enqueue": [
+      435750,
+      435968
+    ],
+    "controller_enqueue_bytes": 218,
+    "controller_enqueue_instructions": 79,
+    "pool_lookup": [
+      358498,
+      358564
+    ],
+    "pool_lookup_bytes": 66,
+    "pool_lookup_instructions": 22,
+    "prior_import_resolved_to_actual_CODE": 435750,
+    "connection_lookup": 358474,
+    "invalid_connection_status": 2,
+    "zero_length_tests_original_argument": true,
+    "zero_length_sets_shared_flag_and_returns_zero": true,
+    "shared_argument_override_flag": 536883112,
+    "next_valid_nonzero_length_when_flag1_clears_flag_and_uses_argument2": true,
+    "shared_flag_is_not_per_connection": true,
+    "control_word": 1073889804,
+    "control_read_PC": 435830,
+    "control_clear_PC": 435834,
+    "original_fence_i_PC": 435838,
+    "control_restore_PCs": [
+      435918,
+      435956
+    ],
+    "matching_restore_on_all_normal_paths_after_clear": true,
+    "physical_register_role_or_interrupt_semantics_proved": false,
+    "requested_pool_tag": 65364,
+    "pool_record_stride": 16,
+    "pool_record_tag_offset": 10,
+    "pool_acceptable_tags_under_stability": [
+      65364,
+      65535
+    ],
+    "pool_first_acceptable_in_scan_order": true,
+    "pool_no_global_exact_match_preference": true,
+    "pool_lookup_not_heap_allocator": true,
+    "pool_low_byte_read_then_halfword_write_preserved": true,
+    "pool_narrowing_store_offset": 10,
+    "node_queue_next_offset": 0,
+    "node_buffer_pointer_offset": 4,
+    "node_argument_byte_offset": 8,
+    "node_marker_byte_offset": 9,
+    "node_marker_byte": 129,
+    "node_length_halfword_offset": 12,
+    "node_stored_buffer_is_incoming_pointer_minus2": true,
+    "incoming_payload_pointer_null_guard_present": false,
+    "connection_queue_head_offset": 280,
+    "connection_queue_tail_offset": 284,
+    "consistent_head_tail_and_buffer_prefix_required": true,
+    "queue_empty_sets_head_and_tail": true,
+    "queue_nonempty_links_old_tail_then_replaces_tail": true,
+    "event_task_argument": 0,
+    "event_slot_byte_offset": 41,
+    "event_mask_formula": "low16(1u << (slot_byte & 31)) under original RV32 instruction semantics",
+    "original_variable_sll_port_preserved": true,
+    "event_setter": 275786,
+    "event_setter_result_is_ignored": true,
+    "queue_return_zero_is_not_radio_delivery_proof": true,
+    "pool_lookup_failure_status": 7,
+    "pool_failure_callback_address": 536883744,
+    "pool_failure_callback_arguments": [
+      1,
+      21845
+    ],
+    "pool_failure_callback_runs_before_control_restore": true,
+    "live_error_callback_targets_closed": false,
+    "pool_initializer_reference": [
+      358564,
+      358754
+    ],
+    "pool_initializer_reference_bytes": 190,
+    "pool_initializer_reference_instructions": 66,
+    "pool_initializer_new_CODE": false,
+    "pool_initializer_input_count_byte": 536883707,
+    "pool_mode_flag": 536883776,
+    "pool_base_pointer": 536884324,
+    "pool_count_formula": "mode==0 ? c+1 : 2*c",
+    "pool_count_inputs_sampled_once_for_lookup": true,
+    "pool_initializer_skips_existing_nonzero_pointer": true,
+    "pool_initializer_heap_failure_leaves_pointer_unprovided": true,
+    "pool_initializer_does_not_prove_boot_order": true,
+    "pool_initializer_fresh_count_reload_after_heap_preserved": true,
+    "pool_buffer_size_halfword": 536884198,
+    "pool_chunk_formula": "low16(((L+33)>>5)<<5)",
+    "pool_allocation_formula": "low16(chunk*(n-c)+16*n), with original fresh post-call c reload for partitioning",
+    "pool_initializer_tags": [
+      65362,
+      65364
+    ],
+    "pool_configuration_live_value_or_extent_proved": false,
+    "APP_config_reference_bytes": 308,
+    "APP_config_clear_bytes": 64,
+    "APP_BufNumber_store_halfword": 2051,
+    "APP_BufNumber_store_PC": 105050,
+    "APP_nominal_BufNumber": 8,
+    "APP_BufNumber_stack_offset": 31,
+    "APP_staCB_stack_range": [
+      68,
+      72
+    ],
+    "APP_staCB_has_no_later_explicit_overlapping_stack_store": true,
+    "APP_direct_stack_stores": [
+      {
+        "PC": 105026,
+        "offset": 16,
+        "bytes": 4
+      },
+      {
+        "PC": 105030,
+        "offset": 20,
+        "bytes": 2
+      },
+      {
+        "PC": 105042,
+        "offset": 24,
+        "bytes": 4
+      },
+      {
+        "PC": 105050,
+        "offset": 30,
+        "bytes": 2
+      },
+      {
+        "PC": 105058,
+        "offset": 32,
+        "bytes": 2
+      },
+      {
+        "PC": 105068,
+        "offset": 34,
+        "bytes": 1
+      },
+      {
+        "PC": 105072,
+        "offset": 36,
+        "bytes": 2
+      },
+      {
+        "PC": 105086,
+        "offset": 72,
+        "bytes": 4
+      },
+      {
+        "PC": 105096,
+        "offset": 76,
+        "bytes": 4
+      },
+      {
+        "PC": 105104,
+        "offset": 52,
+        "bytes": 4
+      },
+      {
+        "PC": 105114,
+        "offset": 46,
+        "bytes": 2
+      },
+      {
+        "PC": 105118,
+        "offset": 60,
+        "bytes": 4
+      },
+      {
+        "PC": 105134,
+        "offset": 48,
+        "bytes": 2
+      },
+      {
+        "PC": 105138,
+        "offset": 64,
+        "bytes": 4
+      }
+    ],
+    "APP_nominal_staCB": 0,
+    "conditional_nominal_pool_counts": {
+      "mode_zero": 9,
+      "mode_nonzero": 16
+    },
+    "conditional_nominal_staCB_zero_skips_error_callback": true,
+    "conditional_config_preservation_is_not_live_value_proof": true,
+    "remaining_normal_named_UND": 0,
+    "opaque_call_sites": [
+      435950
+    ],
+    "all_indirect_runtime_targets_closed": false,
+    "conditions": [
+      "Installed ROM/Xwchc/header and normal saved-register/argument ABI match the archived candidate",
+      "Live connection records,head/tail links,pool base/count/mode,heap chain and payload prefix are valid;no incompatible alias/IRQ/DMA/reentrant mutation",
+      "Pool initialization and allocation completed before lookup;pointer/count and16-bit allocation-size arithmetic describe valid nonwrapping storage",
+      "Control MMIO reads/writes and FENCE.I execute normally;the optional callback returns and preserves ABI so normal restore can occur",
+      "BufNumber8 and staCB0 require APP64B clear,observed stores and library copy to complete without intervening stack/config overwrite;later global writes remain unclosed",
+      "Queue insertion and ignored event-setter result do not prove task consumption,radio delivery,CCC notification or OTA compatibility",
+      "Literal/original layout,global lifetime,installed hardware and inherited4B startup source remain unproved"
+    ],
+    "inherited_startup_missing_source_bytes": 4,
+    "router_body_selected": false,
+    "withheld_payload_or_individual_hash_output": false,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false,
+    "network": false
+  },
+  "formal_APP_source_files_unchanged": 162,
+  "formal_APP_original_coordinate_bytes_unchanged": 73478,
+  "formal_APP_byte_coverage_unchanged": 95.67,
+  "formal_APP_compiler_UND_unchanged": 6,
+  "new_APP_CODE_or_DATA_bytes": 0,
+  "inherited_startup_missing_source_bytes": 4,
+  "source_curated": false,
+  "SDK_linked_into_APP": false,
+  "original_address_link_performed": false,
+  "installed_ROM_identity_proved": false,
+  "physical_compatibility_proved": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
