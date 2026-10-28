@@ -1,0 +1,1403 @@
+{
+  "schema": "TSL9-input-counter-conditional-DATA-summary-v2",
+  "passed": true,
+  "sources_and_receipts": {
+    "experiments/tsl9-input-counter-data/counter_data.v1.c": "80ab4f1308798837bfecd5cd3665b64cca47ba274123a28d9a26700748c7b1cc",
+    "experiments/tsl9-input-counter-data/verify-v2.py": "fb859a2f5bde01f24302fc3a96d7ad625ca321d2370f94d22e6ffbc832331c69",
+    "experiments/tsl9-input-counter-data/inputs-v1.json": "17a0f64edec32b17814da5acc08651e7d778dac975edf47936b7498c33f59696",
+    "experiments/tsl9-input-counter-data/verification-v2.json": "b55e0d960b5b97be45071c503e722254f546aeca3612d6a8551ef110e7fb2ff1"
+  },
+  "APP_reference_bytes": 592,
+  "APP_reference_instructions": 201,
+  "SDK_reference_bytes": 46,
+  "SDK_reference_instructions": 14,
+  "state_contract": {
+    "passed": true,
+    "APP_functions": [
+      {
+        "start": 41044,
+        "end": 41476,
+        "bytes": 432,
+        "instructions": 141,
+        "own_frame_bytes": 48,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 41460,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 41058,
+            "target": 67230
+          },
+          {
+            "PC": 41066,
+            "target": 33282
+          },
+          {
+            "PC": 41090,
+            "target": 33246
+          },
+          {
+            "PC": 41152,
+            "target": 37156
+          },
+          {
+            "PC": 41156,
+            "target": 33856
+          },
+          {
+            "PC": 41184,
+            "target": null
+          },
+          {
+            "PC": 41186,
+            "target": 33272
+          },
+          {
+            "PC": 41232,
+            "target": 37156
+          },
+          {
+            "PC": 41266,
+            "target": 33262
+          },
+          {
+            "PC": 41384,
+            "target": 60672
+          },
+          {
+            "PC": 41394,
+            "target": 76296
+          },
+          {
+            "PC": 41412,
+            "target": 37040
+          },
+          {
+            "PC": 41424,
+            "target": 37040
+          },
+          {
+            "PC": 41438,
+            "target": 37040
+          }
+        ]
+      },
+      {
+        "start": 41710,
+        "end": 41852,
+        "bytes": 142,
+        "instructions": 54,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 41824,
+            "type": "direct-tail",
+            "target": 37156,
+            "instruction": "j 0x9124"
+          },
+          {
+            "PC": 41838,
+            "type": "direct-tail",
+            "target": 67606,
+            "instruction": "j 0x10816"
+          },
+          {
+            "PC": 41850,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 41720,
+            "target": 33438
+          },
+          {
+            "PC": 41730,
+            "target": 33246
+          },
+          {
+            "PC": 41744,
+            "target": 41476
+          },
+          {
+            "PC": 41752,
+            "target": 33310
+          }
+        ]
+      },
+      {
+        "start": 41852,
+        "end": 41870,
+        "bytes": 18,
+        "instructions": 6,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 41868,
+            "type": "rjmp",
+            "instruction": "jr t1"
+          }
+        ],
+        "calls": []
+      }
+    ],
+    "APP_reference_bytes": 592,
+    "APP_reference_instructions": 201,
+    "SDK_reference_bytes": 46,
+    "SDK_reference_instructions": 14,
+    "GP_counter_offset": 176,
+    "explicit_updates": [
+      {
+        "load_PC": 41202,
+        "increment_PC": 41206,
+        "mask_PC": 41208,
+        "store_PC": 41210,
+        "expression": "(old_byte+1)&3",
+        "stored_domain": [
+          0,
+          3
+        ]
+      },
+      {
+        "load_PC": 41786,
+        "increment_PC": 41790,
+        "mask_PC": 41792,
+        "store_PC": 41796,
+        "expression": "(old_byte+1)&3",
+        "stored_domain": [
+          0,
+          3
+        ]
+      }
+    ],
+    "conditional_candidate_fill": {
+      "APP_entry": 41852,
+      "tail_PC": 41868,
+      "candidate_table_slot": 262216,
+      "candidate_target": 536871836,
+      "candidate_function_bytes": 46,
+      "candidate_function_instructions": 14,
+      "candidate_CFG": {
+        "start": 536871836,
+        "end": 536871882,
+        "bytes": 46,
+        "instructions": 14,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 536871868,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      },
+      "destination_GP_offset": 172,
+      "length_argument": 5,
+      "fill_byte": 0,
+      "conditional_GP_write_interval": [
+        172,
+        177
+      ],
+      "counter_offset": 176,
+      "counter_cleared_to": 0,
+      "loop_store_PC": 536871872,
+      "MMIO_address": 1073889804,
+      "MMIO_saved_zeroed_and_restored": true,
+      "MMIO_physical_meaning_or_effects_proved": false,
+      "GP_preserved_by_candidate_body": true,
+      "installed_ROM_identity_proved": false,
+      "requires": "Actual installed slot equals this whole candidate;Valid nonzero nonwrapping RAM destination disjoint from MMIO control word;valid MMIO;normal instructions/no faults or interfering writes."
+    },
+    "GP_inventory": {
+      "selected_CODE_bytes": 69412,
+      "instructions": 23602,
+      "explicit_accesses": [
+        {
+          "PC": 41202,
+          "GP_offset": 176,
+          "width_bytes": 1,
+          "role": "read",
+          "value_register": 15
+        },
+        {
+          "PC": 41210,
+          "GP_offset": 176,
+          "width_bytes": 1,
+          "role": "write",
+          "value_register": 15
+        },
+        {
+          "PC": 41286,
+          "GP_offset": 176,
+          "width_bytes": 1,
+          "role": "read",
+          "value_register": 15
+        },
+        {
+          "PC": 41786,
+          "GP_offset": 176,
+          "width_bytes": 1,
+          "role": "read",
+          "value_register": 15
+        },
+        {
+          "PC": 41796,
+          "GP_offset": 176,
+          "width_bytes": 1,
+          "role": "write",
+          "value_register": 15
+        }
+      ],
+      "GP_address_takes": [
+        {
+          "PC": 33246,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 33298,
+          "GP_offset": 192,
+          "destination_register": 15
+        },
+        {
+          "PC": 33310,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 33334,
+          "GP_offset": 192,
+          "destination_register": 15
+        },
+        {
+          "PC": 34004,
+          "GP_offset": 384,
+          "destination_register": 11
+        },
+        {
+          "PC": 34288,
+          "GP_offset": 148,
+          "destination_register": 14
+        },
+        {
+          "PC": 34472,
+          "GP_offset": 148,
+          "destination_register": 15
+        },
+        {
+          "PC": 34508,
+          "GP_offset": 128,
+          "destination_register": 11
+        },
+        {
+          "PC": 34752,
+          "GP_offset": 128,
+          "destination_register": 11
+        },
+        {
+          "PC": 34812,
+          "GP_offset": 0,
+          "destination_register": 15
+        },
+        {
+          "PC": 35018,
+          "GP_offset": 0,
+          "destination_register": 14
+        },
+        {
+          "PC": 35080,
+          "GP_offset": 160,
+          "destination_register": 15
+        },
+        {
+          "PC": 35120,
+          "GP_offset": 165,
+          "destination_register": 9
+        },
+        {
+          "PC": 35124,
+          "GP_offset": 142,
+          "destination_register": 27
+        },
+        {
+          "PC": 35466,
+          "GP_offset": 128,
+          "destination_register": 11
+        },
+        {
+          "PC": 35502,
+          "GP_offset": 128,
+          "destination_register": 11
+        },
+        {
+          "PC": 35642,
+          "GP_offset": 148,
+          "destination_register": 15
+        },
+        {
+          "PC": 35816,
+          "GP_offset": 148,
+          "destination_register": 8
+        },
+        {
+          "PC": 35934,
+          "GP_offset": 148,
+          "destination_register": 14
+        },
+        {
+          "PC": 36070,
+          "GP_offset": 144,
+          "destination_register": 15
+        },
+        {
+          "PC": 36458,
+          "GP_offset": 144,
+          "destination_register": 15
+        },
+        {
+          "PC": 36658,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 36784,
+          "GP_offset": 128,
+          "destination_register": 11
+        },
+        {
+          "PC": 36808,
+          "GP_offset": 0,
+          "destination_register": 10
+        },
+        {
+          "PC": 36838,
+          "GP_offset": 144,
+          "destination_register": 10
+        },
+        {
+          "PC": 37802,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 38978,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 39308,
+          "GP_offset": 108,
+          "destination_register": 15
+        },
+        {
+          "PC": 39762,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 40826,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 40908,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 41524,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 41760,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 41864,
+          "GP_offset": 172,
+          "destination_register": 10
+        },
+        {
+          "PC": 42252,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 42330,
+          "GP_offset": 352,
+          "destination_register": 15
+        },
+        {
+          "PC": 42534,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 42596,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 43566,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 43616,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 43680,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 44156,
+          "GP_offset": 84,
+          "destination_register": 9
+        },
+        {
+          "PC": 44324,
+          "GP_offset": 352,
+          "destination_register": 15
+        },
+        {
+          "PC": 44656,
+          "GP_offset": 184,
+          "destination_register": 19
+        },
+        {
+          "PC": 45272,
+          "GP_offset": 192,
+          "destination_register": 15
+        },
+        {
+          "PC": 45276,
+          "GP_offset": 195,
+          "destination_register": 13
+        },
+        {
+          "PC": 45320,
+          "GP_offset": 192,
+          "destination_register": 8
+        },
+        {
+          "PC": 45600,
+          "GP_offset": 196,
+          "destination_register": 14
+        },
+        {
+          "PC": 45646,
+          "GP_offset": 196,
+          "destination_register": 10
+        },
+        {
+          "PC": 45652,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 45748,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 46368,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 46984,
+          "GP_offset": 201,
+          "destination_register": 10
+        },
+        {
+          "PC": 47012,
+          "GP_offset": 202,
+          "destination_register": 10
+        },
+        {
+          "PC": 47038,
+          "GP_offset": 203,
+          "destination_register": 10
+        },
+        {
+          "PC": 47066,
+          "GP_offset": 204,
+          "destination_register": 10
+        },
+        {
+          "PC": 47140,
+          "GP_offset": 205,
+          "destination_register": 10
+        },
+        {
+          "PC": 48582,
+          "GP_offset": 84,
+          "destination_register": 19
+        },
+        {
+          "PC": 49256,
+          "GP_offset": 352,
+          "destination_register": 15
+        },
+        {
+          "PC": 49340,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 50330,
+          "GP_offset": 216,
+          "destination_register": 10
+        },
+        {
+          "PC": 50342,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 50396,
+          "GP_offset": 217,
+          "destination_register": 10
+        },
+        {
+          "PC": 50426,
+          "GP_offset": 218,
+          "destination_register": 10
+        },
+        {
+          "PC": 50690,
+          "GP_offset": 208,
+          "destination_register": 12
+        },
+        {
+          "PC": 50710,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 50848,
+          "GP_offset": 208,
+          "destination_register": 10
+        },
+        {
+          "PC": 50856,
+          "GP_offset": 220,
+          "destination_register": 14
+        },
+        {
+          "PC": 51076,
+          "GP_offset": 220,
+          "destination_register": 10
+        },
+        {
+          "PC": 51108,
+          "GP_offset": 220,
+          "destination_register": 10
+        },
+        {
+          "PC": 51132,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 51186,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 51836,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 52048,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 52168,
+          "GP_offset": 84,
+          "destination_register": 14
+        },
+        {
+          "PC": 52480,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 53648,
+          "GP_offset": 232,
+          "destination_register": 10
+        },
+        {
+          "PC": 53666,
+          "GP_offset": 232,
+          "destination_register": 10
+        },
+        {
+          "PC": 54664,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 54716,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 54796,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 54934,
+          "GP_offset": 240,
+          "destination_register": 10
+        },
+        {
+          "PC": 55048,
+          "GP_offset": 252,
+          "destination_register": 10
+        },
+        {
+          "PC": 55124,
+          "GP_offset": 252,
+          "destination_register": 10
+        },
+        {
+          "PC": 55142,
+          "GP_offset": 252,
+          "destination_register": 10
+        },
+        {
+          "PC": 55700,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 55816,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 55862,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 56086,
+          "GP_offset": 260,
+          "destination_register": 10
+        },
+        {
+          "PC": 56096,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 56148,
+          "GP_offset": 261,
+          "destination_register": 10
+        },
+        {
+          "PC": 57078,
+          "GP_offset": 352,
+          "destination_register": 18
+        },
+        {
+          "PC": 57126,
+          "GP_offset": 84,
+          "destination_register": 9
+        },
+        {
+          "PC": 57322,
+          "GP_offset": 258,
+          "destination_register": 10
+        },
+        {
+          "PC": 57356,
+          "GP_offset": 259,
+          "destination_register": 10
+        },
+        {
+          "PC": 57808,
+          "GP_offset": 272,
+          "destination_register": 15
+        },
+        {
+          "PC": 58694,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 59062,
+          "GP_offset": 352,
+          "destination_register": 15
+        },
+        {
+          "PC": 59086,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 59202,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 59300,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 59344,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 60726,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 60850,
+          "GP_offset": 84,
+          "destination_register": 14
+        },
+        {
+          "PC": 61530,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 62036,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 63662,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 63980,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 64060,
+          "GP_offset": 276,
+          "destination_register": 15
+        },
+        {
+          "PC": 64092,
+          "GP_offset": 276,
+          "destination_register": 10
+        },
+        {
+          "PC": 64254,
+          "GP_offset": 284,
+          "destination_register": 15
+        },
+        {
+          "PC": 64280,
+          "GP_offset": 284,
+          "destination_register": 10
+        },
+        {
+          "PC": 64446,
+          "GP_offset": 84,
+          "destination_register": 14
+        },
+        {
+          "PC": 65130,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 65280,
+          "GP_offset": 296,
+          "destination_register": 15
+        },
+        {
+          "PC": 65360,
+          "GP_offset": 288,
+          "destination_register": 10
+        },
+        {
+          "PC": 65502,
+          "GP_offset": 300,
+          "destination_register": 15
+        },
+        {
+          "PC": 65598,
+          "GP_offset": 300,
+          "destination_register": 10
+        },
+        {
+          "PC": 66044,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 66080,
+          "GP_offset": 84,
+          "destination_register": 14
+        },
+        {
+          "PC": 66106,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 66136,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 66178,
+          "GP_offset": 304,
+          "destination_register": 10
+        },
+        {
+          "PC": 66230,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 66332,
+          "GP_offset": 310,
+          "destination_register": 13
+        },
+        {
+          "PC": 66350,
+          "GP_offset": 312,
+          "destination_register": 13
+        },
+        {
+          "PC": 66368,
+          "GP_offset": 313,
+          "destination_register": 13
+        },
+        {
+          "PC": 66386,
+          "GP_offset": 314,
+          "destination_register": 13
+        },
+        {
+          "PC": 66408,
+          "GP_offset": 315,
+          "destination_register": 13
+        },
+        {
+          "PC": 66430,
+          "GP_offset": 316,
+          "destination_register": 13
+        },
+        {
+          "PC": 66650,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 66664,
+          "GP_offset": 320,
+          "destination_register": 8
+        },
+        {
+          "PC": 66902,
+          "GP_offset": 320,
+          "destination_register": 15
+        },
+        {
+          "PC": 67164,
+          "GP_offset": 328,
+          "destination_register": 13
+        },
+        {
+          "PC": 67264,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 68520,
+          "GP_offset": 325,
+          "destination_register": 10
+        },
+        {
+          "PC": 68538,
+          "GP_offset": 322,
+          "destination_register": 10
+        },
+        {
+          "PC": 68564,
+          "GP_offset": 326,
+          "destination_register": 10
+        },
+        {
+          "PC": 68592,
+          "GP_offset": 327,
+          "destination_register": 10
+        },
+        {
+          "PC": 68612,
+          "GP_offset": 323,
+          "destination_register": 10
+        },
+        {
+          "PC": 68630,
+          "GP_offset": 324,
+          "destination_register": 10
+        },
+        {
+          "PC": 69086,
+          "GP_offset": 88,
+          "destination_register": 15
+        },
+        {
+          "PC": 69140,
+          "GP_offset": 92,
+          "destination_register": 18
+        },
+        {
+          "PC": 69392,
+          "GP_offset": 92,
+          "destination_register": 20
+        },
+        {
+          "PC": 69766,
+          "GP_offset": 92,
+          "destination_register": 20
+        },
+        {
+          "PC": 69942,
+          "GP_offset": 92,
+          "destination_register": 18
+        },
+        {
+          "PC": 70360,
+          "GP_offset": 92,
+          "destination_register": 18
+        },
+        {
+          "PC": 70532,
+          "GP_offset": 88,
+          "destination_register": 20
+        },
+        {
+          "PC": 71564,
+          "GP_offset": 336,
+          "destination_register": 15
+        },
+        {
+          "PC": 72264,
+          "GP_offset": 92,
+          "destination_register": 20
+        },
+        {
+          "PC": 73774,
+          "GP_offset": 332,
+          "destination_register": 21
+        },
+        {
+          "PC": 75606,
+          "GP_offset": 92,
+          "destination_register": 21
+        },
+        {
+          "PC": 75784,
+          "GP_offset": 92,
+          "destination_register": 20
+        },
+        {
+          "PC": 76718,
+          "GP_offset": 112,
+          "destination_register": 15
+        },
+        {
+          "PC": 76738,
+          "GP_offset": 120,
+          "destination_register": 15
+        },
+        {
+          "PC": 76930,
+          "GP_offset": 84,
+          "destination_register": 23
+        },
+        {
+          "PC": 77306,
+          "GP_offset": 108,
+          "destination_register": 15
+        },
+        {
+          "PC": 78240,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 78784,
+          "GP_offset": 84,
+          "destination_register": 20
+        },
+        {
+          "PC": 79486,
+          "GP_offset": 96,
+          "destination_register": 15
+        },
+        {
+          "PC": 79598,
+          "GP_offset": 88,
+          "destination_register": 15
+        },
+        {
+          "PC": 79724,
+          "GP_offset": 104,
+          "destination_register": 15
+        },
+        {
+          "PC": 79730,
+          "GP_offset": 100,
+          "destination_register": 15
+        },
+        {
+          "PC": 81058,
+          "GP_offset": 340,
+          "destination_register": 15
+        },
+        {
+          "PC": 81318,
+          "GP_offset": 344,
+          "destination_register": 15
+        },
+        {
+          "PC": 85232,
+          "GP_offset": 352,
+          "destination_register": 14
+        },
+        {
+          "PC": 87220,
+          "GP_offset": 352,
+          "destination_register": 10
+        },
+        {
+          "PC": 87346,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 87508,
+          "GP_offset": 84,
+          "destination_register": 9
+        },
+        {
+          "PC": 91052,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 92090,
+          "GP_offset": 96,
+          "destination_register": 19
+        },
+        {
+          "PC": 92130,
+          "GP_offset": 100,
+          "destination_register": 19
+        },
+        {
+          "PC": 92134,
+          "GP_offset": 104,
+          "destination_register": 20
+        },
+        {
+          "PC": 93068,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 94292,
+          "GP_offset": 360,
+          "destination_register": 10
+        },
+        {
+          "PC": 94310,
+          "GP_offset": 363,
+          "destination_register": 18
+        },
+        {
+          "PC": 94386,
+          "GP_offset": 108,
+          "destination_register": 14
+        },
+        {
+          "PC": 94700,
+          "GP_offset": 84,
+          "destination_register": 9
+        },
+        {
+          "PC": 94922,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 95154,
+          "GP_offset": 364,
+          "destination_register": 10
+        },
+        {
+          "PC": 95178,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 96138,
+          "GP_offset": 104,
+          "destination_register": 18
+        },
+        {
+          "PC": 96670,
+          "GP_offset": 100,
+          "destination_register": 15
+        },
+        {
+          "PC": 96768,
+          "GP_offset": 100,
+          "destination_register": 18
+        },
+        {
+          "PC": 97286,
+          "GP_offset": 376,
+          "destination_register": 10
+        },
+        {
+          "PC": 98880,
+          "GP_offset": 84,
+          "destination_register": 13
+        },
+        {
+          "PC": 99716,
+          "GP_offset": 84,
+          "destination_register": 15
+        },
+        {
+          "PC": 100014,
+          "GP_offset": -1706,
+          "destination_register": 3
+        },
+        {
+          "PC": 100034,
+          "GP_offset": 0,
+          "destination_register": 11
+        },
+        {
+          "PC": 100038,
+          "GP_offset": 128,
+          "destination_register": 12
+        },
+        {
+          "PC": 100062,
+          "GP_offset": 128,
+          "destination_register": 10
+        },
+        {
+          "PC": 100442,
+          "GP_offset": 64,
+          "destination_register": 14
+        },
+        {
+          "PC": 100456,
+          "GP_offset": 108,
+          "destination_register": 15
+        },
+        {
+          "PC": 103068,
+          "GP_offset": 108,
+          "destination_register": 15
+        },
+        {
+          "PC": 104252,
+          "GP_offset": 108,
+          "destination_register": 15
+        },
+        {
+          "PC": 105264,
+          "GP_offset": 388,
+          "destination_register": 8
+        }
+      ],
+      "all_writers_or_dynamic_aliases_proved": false,
+      "excluded_CODE_scanned": false
+    },
+    "read_PC": 41304,
+    "read_width_bytes": 2,
+    "base": 109384,
+    "expression": "base+2*counter",
+    "conservative_byte_counter_domain": [
+      0,
+      255
+    ],
+    "conservative_window": [
+      109384,
+      109896
+    ],
+    "conservative_bytes": 512,
+    "bytes_outside_provided_APP": 328,
+    "masked_store_dominates_read": false,
+    "ordinary_entry_CFG_bypass_exists": true,
+    "bypass_path_runtime_feasibility_proved": false,
+    "conditional_counter_domain": [
+      0,
+      3
+    ],
+    "conditional_read_window": [
+      109384,
+      109392
+    ],
+    "conditional_read_bytes": 8,
+    "conditional_halfword_cells": 4,
+    "conditions": [
+      "A known masked store completed,or the identified candidate fill completed normally",
+      "Actual counter byte remains0..3 until the read,including callees/interrupts/DMA/aliases",
+      "Normal original entries,stable GP,valid RAM disjoint from caller buffers and MMIO control word,and saved-register contracts"
+    ],
+    "original_full_table_extent_proved": false,
+    "all_writers_or_global_counter_invariant_proved": false,
+    "full_provider_binding_justified": false,
+    "DATA_role_is_indexed_numeric_lookup": true,
+    "physical_feature_or_packet_semantics_identified": false
+  },
+  "native": {
+    "c": {
+      "passed": true,
+      "object_sha256": "733cc1554c1227f57b372d4a5519693a0013ca709b45a3469373eac18a6a2727",
+      "CODE_bytes": 0,
+      "DATA_bytes": 8,
+      "positive_OBJECTs": 1,
+      "relocations": 0,
+      "named_UND": 0,
+      "ABS_providers": 0,
+      "independent_readers": {
+        "passed": true,
+        "sections": 9,
+        "symbols": 6,
+        "relocations": 0,
+        "object_sha256": "733cc1554c1227f57b372d4a5519693a0013ca709b45a3469373eac18a6a2727",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      }
+    },
+    "cpp": {
+      "passed": true,
+      "object_sha256": "733cc1554c1227f57b372d4a5519693a0013ca709b45a3469373eac18a6a2727",
+      "CODE_bytes": 0,
+      "DATA_bytes": 8,
+      "positive_OBJECTs": 1,
+      "relocations": 0,
+      "named_UND": 0,
+      "ABS_providers": 0,
+      "independent_readers": {
+        "passed": true,
+        "sections": 9,
+        "symbols": 6,
+        "relocations": 0,
+        "object_sha256": "733cc1554c1227f57b372d4a5519693a0013ca709b45a3469373eac18a6a2727",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      }
+    }
+  },
+  "composition": {
+    "c": {
+      "passed": true,
+      "object_sha256": "8cfff4aa2ba9b7f422eb2cc877a1c672e2bfa92e058e5f3c49799cfffbac1177",
+      "CODE_bytes": 69412,
+      "DATA_bytes": 4018,
+      "allocated_bytes": 73430,
+      "relocations": 5270,
+      "compiler_UND": 6,
+      "all_input_allocated_bytes_global_symbols_and_typed_relocations_retained": true,
+      "independent_readers": {
+        "passed": true,
+        "sections": 939,
+        "symbols": 13572,
+        "relocations": 5270,
+        "object_sha256": "8cfff4aa2ba9b7f422eb2cc877a1c672e2bfa92e058e5f3c49799cfffbac1177",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "original_address_link_performed": false,
+      "source_curated": false
+    },
+    "cpp": {
+      "passed": true,
+      "object_sha256": "8cfff4aa2ba9b7f422eb2cc877a1c672e2bfa92e058e5f3c49799cfffbac1177",
+      "CODE_bytes": 69412,
+      "DATA_bytes": 4018,
+      "allocated_bytes": 73430,
+      "relocations": 5270,
+      "compiler_UND": 6,
+      "all_input_allocated_bytes_global_symbols_and_typed_relocations_retained": true,
+      "independent_readers": {
+        "passed": true,
+        "sections": 939,
+        "symbols": 13572,
+        "relocations": 5270,
+        "object_sha256": "8cfff4aa2ba9b7f422eb2cc877a1c672e2bfa92e058e5f3c49799cfffbac1177",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "original_address_link_performed": false,
+      "source_curated": false
+    }
+  },
+  "new_experimental_DATA_bytes": 8,
+  "new_CODE_bytes": 0,
+  "formal_source_C_H_files_unchanged": 160,
+  "formal_APP_covered_bytes_unchanged": 73422,
+  "formal_APP_byte_coverage_unchanged": 95.6,
+  "compiler_UND_unchanged": 6,
+  "source_curated": false,
+  "original_address_link_performed": false,
+  "provider_resolved": false,
+  "withheld_payload_or_individual_hash_output": false,
+  "installed_ROM_RAM_IRQ_Flash_OTA_proved": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
