@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-read-only-registration-lifecycle-diagnostic-candidate-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Read-only aggregate registration and callback lifecycle counters",
+      "purpose": "After actual hardware/ABI,memory-budget and lifetime validation,distinguish registration success0,null callback2,slot exhaustion8,and callback completion without recording device data.",
+      "evidence": [
+        "43874 stores callback and record in12-byte entries forslots16..47 only after the original scheduler returns nonzero",
+        "Two original dispatchers load the stored record intoA0 and call the stored pointer",
+        "55C32/56CB2 clear original record slots38/39 under null-record guards"
+      ],
+      "constraints": [
+        "Unimplemented;no instrumentation,callback installation,live telemetry or BLE commands",
+        "Aggregate counters only;no record contents,addresses,security material or device identity",
+        "Prove literal relocation/final placement,table identity,lifetime,IRQ/DMA/reentrancy and RAM/Flash budget before implementation",
+        "Do not infer physical event delivery fromregistration return0 or ordinary UND reduction",
+        "Do not add retries,force slot release or change original dispatch cleanup/null guards"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
