@@ -1,0 +1,24 @@
+{
+  "schema": "TSL9-existing-status-callback-diagnostic-candidate-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Read-only aggregate diagnostics through the existing staCB status callback",
+      "purpose": "After installed hardware/ABI,callback lifetime and memory-budget validation,consider surfacing the existing numeric code9-12 aggregate reports without adding payload capture.",
+      "evidence": [
+        "Pinned official header declaresstaCB atconfig offset52 asvoid(uint8_t,uint32_t)",
+        "Controller56D0E calls the pointer atglobal20003220 withcodes9/10/11/12 under original nonzero record64,mod100,configuration-bit and initial-nonnull gates",
+        "Arguments are packed global halfwords,a global halfword,a signed record halfword and a signed record byte",
+        "Original code reloads the pointer after callbacks and only the first pointer has a null guard"
+      ],
+      "constraints": [
+        "Unimplemented;no instrumentation,callback installation,live telemetry or BLE commands",
+        "Aggregate state only;no header payloads,addresses,security material or device identity",
+        "Prove callback pointer stability/reentrancy,physical record meanings,RAM/Flash budget and actual installed ROM before implementation",
+        "Do not assume modulo100 is a wall-clock interval or code11/12 are proved physical sensors",
+        "Do not alter original callback gates,cache clearing,event dispatch or runtime state from this static finding"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
