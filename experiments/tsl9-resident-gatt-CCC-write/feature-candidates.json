@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-offline-CCC-notification-diagnostic-candidate-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Offline notification-subscription and CCC capacity diagnostic",
+      "purpose": "Explain the original APP notification-only mask,CCC offset/length/bit/resource statuses and candidate per-connection record layout;highlight unknown live capacity/initialization order.",
+      "evidence": [
+        "Original callback table[0,888C,0] has no APP read or authorize callback",
+        "APP888C tail-calls40144 with validCfg1 while preserving incoming A0..A4",
+        "Candidate CCC rejects nonzero offset with11,non-two-byte length with13,unsupported bits with128;no free record returns17",
+        "Capacity byte200033B5 governs four-byte records;zero capacity makes lookup/clear touch no records"
+      ],
+      "constraints": [
+        "Offline report only;no device probing,BLE commands or synthetic runtime claims",
+        "Do not diagnose historical OTA letterE from these candidate statuses",
+        "Do not assume capacity2,fixed RAM ownership,successful subscription or live encryption",
+        "Preserve unsupported-UUID/handle zero return and unchanged-value short-circuit semantics"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
