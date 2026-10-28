@@ -11,3 +11,5 @@ python3 experiments/tsl9-event-consumer/build-v1.py --tool-dir "$LLVM_BIN" --rep
 ```
 
 Set LLVM_BIN to an existing LLVM directory. Only compilation andnormal static-artifact checks are performed;no target/HOST-model/ISA execution,hardware orBIN generation. Table1AAE8/initial index bounds,literal callback placement,installed ROM/ABI andoriginal startup/IRQ/OTA remain unproved.
+
+Follow-up: [Seven-word DATA and index / record-field contract](../tsl9-event-word-table-data/readme.en.md).

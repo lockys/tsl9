@@ -1,0 +1,278 @@
+{
+  "schema": "TSL9-conditional-event-word-table-DATA-native-verification-v1",
+  "passed": true,
+  "checker_sha256": "ebdfca9bb99ed3a18a525cc84b3a846c73403b00f9a92ec80acff01c9e41ef37",
+  "inputs_sha256": "8d40d2e519069254d84d95dc339993b2eeb027098baf77c7abfd7787d8965e28",
+  "state_contract": {
+    "schema": "TSL9-event-word-table-use-contract-v1",
+    "passed": true,
+    "whole_function": {
+      "start": 95992,
+      "end": 96380,
+      "bytes": 388,
+      "instructions": 135,
+      "own_frame_bytes": 48,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 96116,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": [
+        {
+          "PC": 96064,
+          "target": 95546
+        },
+        {
+          "PC": 96160,
+          "target": null
+        },
+        {
+          "PC": 96194,
+          "target": null
+        },
+        {
+          "PC": 96228,
+          "target": 51062
+        },
+        {
+          "PC": 96302,
+          "target": null
+        }
+      ]
+    },
+    "native_CODE_comparisons": [
+      {
+        "mode": "c",
+        "ELF_sha256": "e73df7a558b06c66f7a9073a88a714e33feb8114397e6d737340d084e44ac015",
+        "whole_CODE_bytes_equal": 388
+      },
+      {
+        "mode": "cpp",
+        "ELF_sha256": "e73df7a558b06c66f7a9073a88a714e33feb8114397e6d737340d084e44ac015",
+        "whole_CODE_bytes_equal": 388
+      }
+    ],
+    "table_base": 109288,
+    "lookup_PC": 96324,
+    "lookup_formula": "1AAE8 + 4*uint8(GP+370)",
+    "conditional_index_domain": [
+      0,
+      6
+    ],
+    "conditional_read_window": [
+      109288,
+      109316
+    ],
+    "conditional_read_bytes": 28,
+    "index_GP_offset": 370,
+    "nominal_GP": 536887296,
+    "logical_index_address": 536887666,
+    "physical_RAM_mapping_proved": false,
+    "index_update_PC": 96360,
+    "index_update_expression": "low8(signed_rem(uint8(previous_index)+1,7))",
+    "mathematical_post_update_domain": [
+      0,
+      6
+    ],
+    "post_read_update_does_not_bound_current_read": true,
+    "selected_CODE_direct_GP_references": [
+      {
+        "PC": 96306,
+        "role": "load",
+        "offset": 370,
+        "width": 1
+      },
+      {
+        "PC": 96360,
+        "role": "store",
+        "offset": 370,
+        "width": 1
+      }
+    ],
+    "GP_ADDI_address_takes": 196,
+    "all_aliases_indirect_writers_IRQ_DMA_or_excluded_CODE_covered": false,
+    "global_index_at_read_invariant_proved": false,
+    "conservative_byte_index_domain": [
+      0,
+      255
+    ],
+    "conservative_read_window": [
+      109288,
+      110312
+    ],
+    "conservative_read_bytes": 1024,
+    "conservative_bytes_beyond_APP": 744,
+    "conservative_window_is_not_full_table_size_or_actual_violation_proof": true,
+    "full_table_extent_proved": false,
+    "record_field_writes": {
+      "record_offset2": "table word bits0..7",
+      "record_offset3": "table word bits8..15",
+      "record_offset4": "table word bits16..23",
+      "record_offsets0_1_5_6": "retained from original frame accesses"
+    },
+    "fresh_SP12_word_read_preserved": true,
+    "SP12_word_read_includes_bytes_beyond_seven_byte_copy": true,
+    "factor_expression": "((fresh_word(SP+12)>>18)&31)+1",
+    "factor_uses_SP14_bits2_through6_not_table_bytes": true,
+    "factor_domain": [
+      1,
+      32
+    ],
+    "raw_A2_expression": "800*factor",
+    "raw_A2_domain": [
+      800,
+      25600
+    ],
+    "indirect_transfer_PC": 96302,
+    "indirect_transfer_slot": 262232,
+    "physical_timer_units_or_effects_proved": false,
+    "table_entries": 7,
+    "table_words_are_distinct_low24_bit_values": true,
+    "nonzero_low_three_byte_masks": [
+      1,
+      3,
+      3,
+      2,
+      6,
+      4,
+      5
+    ],
+    "palette_like_sequence_is_inference_only": true,
+    "physical_RGB_channels_or_lighting_feature_confirmed": false,
+    "conditions": [
+      "Index at the actual read is0..6;post-read modulo does not prove its initial value or all writers",
+      "Original nominal GP/register/private-entry context and valid aligned readable table/frame memory",
+      "No alias,IRQ,DMA,reentrant or callee interference invalidates the observed data/register use",
+      "Installed copy/timer slots,physical RAM mapping,time units and device feature identity remain unproved"
+    ],
+    "table_DATA_envelope_read": false,
+    "excluded_CODE_or_default_payload_read": false,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false,
+    "network": false,
+    "new_BIN": false,
+    "firmware_ready": false,
+    "goal_complete": false
+  },
+  "native": {
+    "c": {
+      "passed": true,
+      "object_sha256": "485ff9d4ae2d78db0ca0fee86d5b9ab5f394bfd24169ece7d2979a73cdff57bf",
+      "CODE_bytes": 0,
+      "DATA_bytes": 28,
+      "positive_OBJECTs": 1,
+      "relocations": 0,
+      "named_UND": 0,
+      "ABS_providers": 0,
+      "independent_readers": {
+        "passed": true,
+        "sections": 9,
+        "symbols": 6,
+        "relocations": 0,
+        "object_sha256": "485ff9d4ae2d78db0ca0fee86d5b9ab5f394bfd24169ece7d2979a73cdff57bf",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      }
+    },
+    "cpp": {
+      "passed": true,
+      "object_sha256": "485ff9d4ae2d78db0ca0fee86d5b9ab5f394bfd24169ece7d2979a73cdff57bf",
+      "CODE_bytes": 0,
+      "DATA_bytes": 28,
+      "positive_OBJECTs": 1,
+      "relocations": 0,
+      "named_UND": 0,
+      "ABS_providers": 0,
+      "independent_readers": {
+        "passed": true,
+        "sections": 9,
+        "symbols": 6,
+        "relocations": 0,
+        "object_sha256": "485ff9d4ae2d78db0ca0fee86d5b9ab5f394bfd24169ece7d2979a73cdff57bf",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      }
+    }
+  },
+  "composition": {
+    "c": {
+      "passed": true,
+      "object_sha256": "e8f3928638e14d667456e4532bac3e41617d23caca883d8605256cac3f459ec2",
+      "CODE_bytes": 69412,
+      "DATA_bytes": 4126,
+      "allocated_bytes": 73538,
+      "relocations": 5270,
+      "APP_source_provider_UND": 6,
+      "all_input_allocated_bytes_global_symbols_and_typed_relocations_retained": true,
+      "independent_readers": {
+        "passed": true,
+        "sections": 943,
+        "symbols": 13593,
+        "relocations": 5270,
+        "object_sha256": "e8f3928638e14d667456e4532bac3e41617d23caca883d8605256cac3f459ec2",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "original_address_link_performed": false,
+      "source_curated": false
+    },
+    "cpp": {
+      "passed": true,
+      "object_sha256": "e8f3928638e14d667456e4532bac3e41617d23caca883d8605256cac3f459ec2",
+      "CODE_bytes": 69412,
+      "DATA_bytes": 4126,
+      "allocated_bytes": 73538,
+      "relocations": 5270,
+      "APP_source_provider_UND": 6,
+      "all_input_allocated_bytes_global_symbols_and_typed_relocations_retained": true,
+      "independent_readers": {
+        "passed": true,
+        "sections": 943,
+        "symbols": 13593,
+        "relocations": 5270,
+        "object_sha256": "e8f3928638e14d667456e4532bac3e41617d23caca883d8605256cac3f459ec2",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "original_address_link_performed": false,
+      "source_curated": false
+    }
+  },
+  "new_experimental_DATA_bytes": 28,
+  "new_CODE_bytes": 0,
+  "formal_source_C_H_files_unchanged": 163,
+  "formal_APP_covered_bytes_unchanged": 73510,
+  "formal_APP_byte_coverage_unchanged": 95.72,
+  "APP_source_provider_UND_unchanged": 6,
+  "source_curated": false,
+  "original_address_link_performed": false,
+  "provider_resolved": false,
+  "withheld_payload_or_individual_hash_output": false,
+  "installed_ROM_RAM_IRQ_Flash_OTA_proved": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

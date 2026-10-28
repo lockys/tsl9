@@ -11,3 +11,5 @@ python3 experiments/tsl9-event-consumer/build-v1.py --tool-dir "$LLVM_BIN" --rep
 ```
 
 LLVM_BIN指定現有LLVM目錄。僅編譯與正常靜態核對；不執行目標／HOST model／ISA，不操作硬體或產生BIN。1AAE8表格／初始索引界限、literal callback原位址、installed ROM／ABI及原機啟動／IRQ／OTA均未證明。
+
+後續：[七筆 word DATA 與索引／記錄欄位合約](../tsl9-event-word-table-data/README.md).
