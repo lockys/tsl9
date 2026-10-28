@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-read-only-control-preparation-diagnostics-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Read-only aggregate control-preparation result diagnostics",
+      "purpose": "After installed hardware/ABI and memory-budget validation,distinguish null-frame return from successful preparation and preserve whether the original length field was already changed.",
+      "evidence": [
+        "5A7BA updates length before its null guard,but5A804 updates length after the guard",
+        "Four real calls toRAM20000332 copy original fixed-size record fields into prepared frames",
+        "Ten whole bodies resolve10 parent ordinary imports without new missing providers"
+      ],
+      "constraints": [
+        "Unimplemented;no instrumentation,live telemetry or BLE commands",
+        "Aggregate counters/status only;no copied payloads,addresses,security material or device identity",
+        "Validate protocol meanings,actual memory spans,copy lifetime/overlap and RAM/Flash budget first",
+        "Do not merge distinct opcode paths,add automatic retry or alter null-path side effects",
+        "Preparation success is not physical radio delivery or acknowledgment"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
