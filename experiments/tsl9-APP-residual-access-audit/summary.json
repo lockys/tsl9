@@ -1,0 +1,292 @@
+{
+  "passed": true,
+  "gap_map": {
+    "original_APP_covered_bytes": 73374,
+    "original_APP_missing_bytes": 3426,
+    "withheld_missing_bytes": 3128,
+    "other_uncovered_bytes": 298,
+    "uncovered_intervals": [
+      [
+        33862,
+        33864
+      ],
+      [
+        33942,
+        33944
+      ],
+      [
+        34078,
+        34080
+      ],
+      [
+        82006,
+        85130
+      ],
+      [
+        105638,
+        105640
+      ],
+      [
+        105830,
+        105832
+      ],
+      [
+        105938,
+        105940
+      ],
+      [
+        105977,
+        105980
+      ],
+      [
+        106632,
+        106712
+      ],
+      [
+        106715,
+        106716
+      ],
+      [
+        107746,
+        107748
+      ],
+      [
+        107798,
+        107800
+      ],
+      [
+        107815,
+        107816
+      ],
+      [
+        107831,
+        107832
+      ],
+      [
+        107847,
+        107848
+      ],
+      [
+        107948,
+        107952
+      ],
+      [
+        107959,
+        107960
+      ],
+      [
+        107979,
+        107980
+      ],
+      [
+        107985,
+        107988
+      ],
+      [
+        107999,
+        108000
+      ],
+      [
+        108005,
+        108008
+      ],
+      [
+        108012,
+        108016
+      ],
+      [
+        108029,
+        108032
+      ],
+      [
+        108038,
+        108040
+      ],
+      [
+        108048,
+        108052
+      ],
+      [
+        108058,
+        108060
+      ],
+      [
+        108070,
+        108072
+      ],
+      [
+        108074,
+        108076
+      ],
+      [
+        108085,
+        108136
+      ],
+      [
+        108188,
+        108216
+      ],
+      [
+        109288,
+        109316
+      ],
+      [
+        109361,
+        109364
+      ],
+      [
+        109367,
+        109392
+      ],
+      [
+        109536,
+        109568
+      ]
+    ],
+    "withheld_ranges": [
+      [
+        82006,
+        85130
+      ],
+      [
+        108188,
+        108192
+      ]
+    ],
+    "compiler_imports": [
+      {
+        "name": "tsl9_boot_resident_40000",
+        "address": 262144,
+        "body_implementation_proved": false
+      },
+      {
+        "name": "tsl9_incoming_external_14056",
+        "address": 82006,
+        "body_implementation_proved": false
+      },
+      {
+        "name": "tsl9_input_state_decoders_static_data_1ab48",
+        "address": 109384,
+        "body_implementation_proved": false
+      },
+      {
+        "name": "tsl9_record_field_transitions_static_data_1a078",
+        "address": 106616,
+        "body_implementation_proved": false
+      },
+      {
+        "name": "tsl9_registered_callbacks_static_data_1a638",
+        "address": 108088,
+        "body_implementation_proved": false
+      },
+      {
+        "name": "tsl9_settings_default_data_1a69c",
+        "address": 108188,
+        "body_implementation_proved": false
+      }
+    ]
+  },
+  "access_contract": {
+    "passed": true,
+    "consumer_entry": 52956,
+    "consumer_end": 53142,
+    "consumer_CFG": {
+      "start": 52956,
+      "end": 53142,
+      "bytes": 186,
+      "instructions": 56,
+      "own_frame_bytes": 0,
+      "own_frame_balanced": true,
+      "all_CFG_instructions_reachable": true,
+      "typed_exits": [
+        {
+          "PC": 53090,
+          "type": "direct-tail",
+          "target": 76296,
+          "instruction": "j 0x12a08"
+        },
+        {
+          "PC": 53140,
+          "type": "ret",
+          "instruction": "ret"
+        }
+      ],
+      "calls": []
+    },
+    "address_pair": 53070,
+    "read_PC": 53082,
+    "base": 106616,
+    "expression": "base + 16*mode + nibble",
+    "mode_reaching_definitions": [
+      53002,
+      53114
+    ],
+    "ordinary_entry_mode_conservative_domain": [
+      0,
+      255
+    ],
+    "nibble_domain": [
+      0,
+      15
+    ],
+    "conservative_window": [
+      106616,
+      110712
+    ],
+    "conservative_bytes": 4096,
+    "all_values_reachable_or_original_declaration_extent_proved": false,
+    "existing_owner": "tsl9_grid_read_data_pool_19ed8",
+    "owner_range": [
+      106200,
+      106632
+    ],
+    "base_owner_offset": 416,
+    "base_backed_suffix_bytes": 16,
+    "bytes_outside_provided_APP": 1144,
+    "withheld_intersection": [
+      [
+        108188,
+        108192
+      ]
+    ],
+    "provided_native_bytes_in_envelope": 2665,
+    "missing_in_image_bytes": 287,
+    "global_mode_invariant_or_indirect_entry_bounds_proved": false,
+    "full_provider_binding_justified": false,
+    "address_only_coverage_is_not_sufficient": true,
+    "actual_invalid_read_or_firmware_defect_proved": false
+  },
+  "native_source_proof": {
+    "C_H_files": 159,
+    "source_comparisons": 266,
+    "source_objects": 532,
+    "positive_allocated_bytes": 73374
+  },
+  "original_C_Cpp_ELF_sha256": "8c990d5554c56a1a841525c2f0fab87fac95ea224584ac494744980934efa012",
+  "sources_and_receipts": {
+    "experiments/tsl9-APP-residual-access-audit/verify-v1.py": "9fc27ef6ced211de61c4787eb54736198c903a31286d08548b31ca448e37439b",
+    "experiments/tsl9-APP-residual-access-audit/inputs-v1.json": "7c4ead30960a3e304e6f8f4108392a03cd3e727e00401a4eda76f72b691a7f41",
+    "experiments/tsl9-APP-residual-access-audit/verification-v1.json": "e3ce12f1774ad8f3a44ae88d8ae8b36af53921e377a08591ca50b2b60bec9456",
+    "experiments/tsl9-APP-residual-access-audit/gaps-v1.json": "8d3c4d967d91364f4cd5de63763e8bf8a4b23f4363430ef38bae4f65f55ae91e",
+    "experiments/tsl9-APP-residual-access-audit/README.md": "ee6a103c72a1f5624a8735315b1e259c52c17b6fa327bd6b70e1c30301724e1a",
+    "experiments/tsl9-APP-residual-access-audit/readme.en.md": "8226835b7dd922ddee1bbf84ac433745cb2e7ecfa240e3dc34f4ee886edfec75"
+  },
+  "APP_byte_coverage_unchanged": 95.54,
+  "compiler_UND_unchanged": 6,
+  "new_CODE_bytes": 0,
+  "new_DATA_bytes": 0,
+  "new_target_compilation": false,
+  "provider_resolved": false,
+  "source_or_link_layout_modified": false,
+  "payload_or_individual_withheld_hash_output": false,
+  "installed_ROM_RAM_IRQ_Flash_OTA_proved": false,
+  "runtime_closed": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
