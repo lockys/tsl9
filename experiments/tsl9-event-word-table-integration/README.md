@@ -35,3 +35,5 @@ python3 experiments/tsl9-event-word-table-integration/check-readiness-v1.py --to
 診斷 ELF 為 entry 0、PT_LOAD 0，**不是可刷寫 BIN**。這輪沒有 target、HOST model、ISA、硬體或第三方 API 執行。來源擴充前重播了父來源與實驗證據；擴充後保留其固定輸入與精確重建的歷史 manifest，沒有宣稱重跑不相容的舊快照。
 
 [摘要](summary.json) · [完整收據](audit-result-v1.json) · [readiness 收據](readiness-v1.json) · [來源擴充](source-extension-v1.json) · [離線功能構想](feature-candidates.json)
+
+執行層後續：[APP 清零狀態與候選 bootstrap 寫入範圍](../tsl9-reset-state-bootstrap-contract/README.md).

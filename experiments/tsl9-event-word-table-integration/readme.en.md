@@ -35,3 +35,5 @@ The second command currently returns **exit 2**: evidence verified, but only the
 The diagnostic ELF has entry 0 and PT_LOAD 0: **it is not a flashable BIN**. No target, HOST model, ISA, hardware, or third-party API execution occurred. Parent source and experimental proofs were replayed before the extension; afterward their inputs and a byte-exact historical manifest are retained, without claiming a fresh replay of incompatible historical snapshots.
 
 [Summary](summary.json) · [Full receipt](audit-result-v1.json) · [Readiness receipt](readiness-v1.json) · [Source extension](source-extension-v1.json) · [Offline feature idea](feature-candidates.json)
+
+Execution-layer follow-up: [APP zeroed state and candidate bootstrap write footprint](../tsl9-reset-state-bootstrap-contract/readme.en.md).

@@ -1,0 +1,277 @@
+{
+  "schema": "TSL9-current-APP-reset-state-and-candidate-write-footprint-v1",
+  "passed": true,
+  "checker_sha256": "e5ca5e3fb8a0a9d91aa6942acf7f4d135d029a022cfde8bf58bad00705ebad94",
+  "inputs_sha256": "a946c6bc40099f1a37c9cf32f8f5b40251de7a1fcb024e81e4ca54200fc0ad32",
+  "APP_primary_CODE_bytes": 138,
+  "APP_primary_instructions": 37,
+  "APP_native_CODE_comparisons": [
+    {
+      "mode": "c",
+      "ELF_sha256": "c79cc33284766865c77345a697c2a76b12b1ab79dbe3b996710f0b6e1ca4d8b0",
+      "whole_CODE_bytes_equal": 138
+    },
+    {
+      "mode": "cpp",
+      "ELF_sha256": "c79cc33284766865c77345a697c2a76b12b1ab79dbe3b996710f0b6e1ca4d8b0",
+      "whole_CODE_bytes_equal": 138
+    }
+  ],
+  "APP_primary_CFG_all_instructions_reachable": true,
+  "APP_nominal_GP": 536887296,
+  "APP_nominal_SP": 536936448,
+  "APP_copy_source": [
+    109408,
+    109536
+  ],
+  "APP_copy_destination": [
+    536887296,
+    536887424
+  ],
+  "APP_zero_destination": [
+    536887424,
+    536922456
+  ],
+  "APP_zero_word_stores": 8758,
+  "watched_states_at_zero_loop_exit": [
+    {
+      "name": "input_counter",
+      "start": 536887472,
+      "end": 536887473,
+      "bytes": 1,
+      "value_at_zero_loop_exit": 0,
+      "proof_point": 100088,
+      "physical_live_value_observed": false
+    },
+    {
+      "name": "sequence_states",
+      "start": 536887628,
+      "end": 536887632,
+      "bytes": 4,
+      "value_at_zero_loop_exit": 0,
+      "proof_point": 100088,
+      "physical_live_value_observed": false
+    },
+    {
+      "name": "event_word_index",
+      "start": 536887666,
+      "end": 536887667,
+      "bytes": 1,
+      "value_at_zero_loop_exit": 0,
+      "proof_point": 100088,
+      "physical_live_value_observed": false
+    },
+    {
+      "name": "mode_enable_selector_countdown",
+      "start": 536919864,
+      "end": 536919868,
+      "bytes": 4,
+      "value_at_zero_loop_exit": 0,
+      "proof_point": 100088,
+      "physical_live_value_observed": false
+    }
+  ],
+  "zero_loop_exit_PC": 100088,
+  "clock_call_PC": 100128,
+  "clock_callee_watched_RAM_noninterference_proved": false,
+  "mstatus_OR_mask": 6280,
+  "mstatus_is_not_proved_equal_to_mask": true,
+  "standard_MIE_bit_in_mask": true,
+  "mstatus_set_PC": 100108,
+  "mtvec_write_PC": 100124,
+  "local_order_sets_MIE_before_mtvec": true,
+  "incoming_IRQ_state_or_actual_interrupt_exclusion_proved": false,
+  "MEPC_before_resident_tail": 36872,
+  "resident_tail_PC": 100144,
+  "resident_tail_target": 262144,
+  "resident_tail_writes_RA": false,
+  "SDK_native_bootstrap": [
+    {
+      "mode": "c",
+      "unit_sha256": "05ff832738ce07ecf1977e55bdee561bd57b5fd416cad5d8c49ee3821224d806",
+      "unit_CODE_bytes": 234,
+      "typed_roles": 14,
+      "current_SDK_sha256": "06ec3703bfa145f489afc4e09dd23e24116e94db78f7259f2b19c06e35131c52",
+      "current_SDK_CODE_bytes": 54780,
+      "all_bootstrap_native_bytes_and_roles_retained": true
+    },
+    {
+      "mode": "cpp",
+      "unit_sha256": "05ff832738ce07ecf1977e55bdee561bd57b5fd416cad5d8c49ee3821224d806",
+      "unit_CODE_bytes": 234,
+      "typed_roles": 14,
+      "current_SDK_sha256": "06ec3703bfa145f489afc4e09dd23e24116e94db78f7259f2b19c06e35131c52",
+      "current_SDK_CODE_bytes": 54780,
+      "all_bootstrap_native_bytes_and_roles_retained": true
+    }
+  ],
+  "SDK_stages": [
+    {
+      "start": 262144,
+      "end": 262148,
+      "bytes": 4,
+      "instructions": 1,
+      "own_frame_bytes": 0,
+      "entry_replaces_GP_SP": false,
+      "local_frame_balanced_or_machine_entry": true,
+      "typed_exits": [
+        {
+          "PC": 262144,
+          "kind": "direct-tail",
+          "target": 450174
+        }
+      ],
+      "calls": []
+    },
+    {
+      "start": 450060,
+      "end": 450174,
+      "bytes": 114,
+      "instructions": 32,
+      "own_frame_bytes": 16,
+      "entry_replaces_GP_SP": false,
+      "local_frame_balanced_or_machine_entry": true,
+      "typed_exits": [
+        {
+          "PC": 450170,
+          "kind": "far-tail",
+          "target": 536870946
+        }
+      ],
+      "calls": [
+        {
+          "PC": 450126,
+          "target": 536870928,
+          "kind": "far-call"
+        },
+        {
+          "PC": 450158,
+          "target": 536870928,
+          "kind": "far-call"
+        }
+      ]
+    },
+    {
+      "start": 450174,
+      "end": 450242,
+      "bytes": 68,
+      "instructions": 18,
+      "own_frame_bytes": null,
+      "entry_replaces_GP_SP": true,
+      "local_frame_balanced_or_machine_entry": true,
+      "typed_exits": [
+        {
+          "PC": 450238,
+          "kind": "MRET",
+          "ordinary_C_return": false
+        }
+      ],
+      "calls": [
+        {
+          "PC": 450234,
+          "target": 450060,
+          "kind": "direct-call"
+        }
+      ]
+    },
+    {
+      "start": 536870928,
+      "end": 536870946,
+      "bytes": 18,
+      "instructions": 7,
+      "own_frame_bytes": 0,
+      "entry_replaces_GP_SP": false,
+      "local_frame_balanced_or_machine_entry": true,
+      "typed_exits": [
+        {
+          "PC": 536870932,
+          "kind": "RET"
+        }
+      ],
+      "calls": []
+    },
+    {
+      "start": 536870946,
+      "end": 536870976,
+      "bytes": 30,
+      "instructions": 9,
+      "own_frame_bytes": 0,
+      "entry_replaces_GP_SP": false,
+      "local_frame_balanced_or_machine_entry": true,
+      "typed_exits": [
+        {
+          "PC": 536870966,
+          "kind": "RET"
+        }
+      ],
+      "calls": []
+    }
+  ],
+  "SDK_explicit_write_intervals": [
+    {
+      "role": "three_RAM_slots",
+      "start": 536870912,
+      "end": 536870924
+    },
+    {
+      "role": "seed",
+      "start": 536870928,
+      "end": 536870976
+    },
+    {
+      "role": "first_copy",
+      "start": 536870976,
+      "end": 536882804
+    },
+    {
+      "role": "second_copy",
+      "start": 536882800,
+      "end": 536882940
+    },
+    {
+      "role": "inclusive_zero",
+      "start": 536882936,
+      "end": 536884760
+    },
+    {
+      "role": "loader_own_frame_conservative",
+      "start": 536936432,
+      "end": 536936448
+    }
+  ],
+  "SDK_known_write_intervals_disjoint_from_watched_states": true,
+  "SDK_exit_PC": 450238,
+  "SDK_exit_kind": "MRET",
+  "SDK_first_source_gap": [
+    453420,
+    453424
+  ],
+  "SDK_gap_is_not_missing_APP_bytes": true,
+  "SDK_source_gap_filled": false,
+  "SDK_known_four_source_bytes_read": false,
+  "conditional_zero_preservation_through_bootstrap_requires_clock_and_async_noninterference": true,
+  "watched_values_at_first_application_use_proved": false,
+  "global_counter_or_mode_invariants_proved": false,
+  "installed_ROM_RAM_IRQ_or_startup_completion_proved": false,
+  "source_or_native_artifact_changed": false,
+  "formal_APP_source_files_unchanged": 164,
+  "formal_APP_byte_coverage_unchanged": 95.75,
+  "APP_source_provider_UND_unchanged": 6,
+  "new_APP_CODE_or_DATA_bytes": 0,
+  "new_SDK_CODE_or_DATA_bytes": 0,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "conditions": [
+    "Original nominal placement and register/CSR instruction semantics;all stated memory accesses valid and normal loops complete",
+    "Watched zeros are established at186F8,not observed on physical hardware",
+    "To preserve zeros through handoff,clock1874A and all IRQ/DMA/alias or nested paths must not modify watched state/registers",
+    "Candidate bootstrap must match installed resident code and sources,including readable6EB2C..6EB30;MRET uses then-liveMEPC",
+    "Later writers/callbacks and first-use index or mode domains remain separate obligations"
+  ]
+}
