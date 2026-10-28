@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-preflash-evidence-display-candidate-v1",
+  "implemented": false,
+  "local_readiness_checker_implemented": true,
+  "candidates": [
+    {
+      "name": "Separate transport,artifact,boot and functional status in the updater",
+      "purpose": "After appropriate device evidence and UI/protocol validation,show OTA transfer/readback separately from exact rebuilt-artifact identity,boot and required-feature outcomes.",
+      "evidence": [
+        "Measured current APP ELF is diagnostic:entry0 and zero PT_LOAD",
+        "Six project providers remain undefined despite95.67% selected byte coverage",
+        "The archived SDK startup4B gap is outside the APP coordinate domain"
+      ],
+      "constraints": [
+        "App integration unimplemented;no new BLE commands,instrumentation,flash or device access",
+        "Do not turn transport completion or a zero exit from unrelated verification into a flash-ready claim",
+        "Do not upload UID/VIN/MAC,logs or payloads;display aggregate/evidence states only",
+        "Preserve original update protocol and require actual artifact-matched device observations before boot/function success"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}

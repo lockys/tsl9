@@ -1,0 +1,369 @@
+{
+  "schema": "TSL9-actual-APP-BIN-readiness-v1",
+  "evidence_audit_passed": true,
+  "checker_sha256": "b67782be63edf075f1a4823d5d16d41852332d08c98542f5919606100c5e15d8",
+  "inputs_sha256": "75c4ba545d558645fb000538696c03511eb7d217db8d2900464da983be9504e2",
+  "gates": [
+    {
+      "id": "curated_APP_source_evidence",
+      "status": "proved",
+      "evidence": "experiments/tsl9-sequence-pattern-integration/audit-result-v1.json",
+      "detail": "Fresh actual162-source/original-coordinate evidence retained;this is not full-image or physical proof"
+    },
+    {
+      "id": "APP_source_byte_completeness",
+      "status": "not_ready",
+      "evidence": "experiments/tsl9-sequence-pattern-integration/build/component-v1",
+      "detail": "3322 APP bytes remain unselected:3128 currently excluded and194 other;no padding or copied vendor gap bytes supplied"
+    },
+    {
+      "id": "APP_source_provider_definitions",
+      "status": "not_ready",
+      "evidence": "experiments/tsl9-sequence-pattern-integration/build/component-v1",
+      "detail": "Six project providers remain undefined;existing DATA backing and hidden ABS references do not define their complete use contracts"
+    },
+    {
+      "id": "loadable_rebuilt_APP_artifact",
+      "status": "not_ready",
+      "evidence": "experiments/tsl9-original-layout/build/sequence-pattern-data-v1",
+      "detail": "Measured artifact has entry0 and zero PT_LOAD;it is intentionally diagnostic,not a firmware BIN"
+    },
+    {
+      "id": "installed_resident_ROM_ABI",
+      "status": "not_proven",
+      "evidence": "experiments/tsl9-resident-controller-callback-targets/verification-v1.json",
+      "detail": "Archived candidate CODE at40000 is not installed-ROM identity or ABI proof;resident code need not be copied into APP merely to reduce an import count"
+    },
+    {
+      "id": "startup_and_interrupt_binding",
+      "status": "not_proven",
+      "evidence": "experiments/tsl9-trap-profile-contract/summary.json",
+      "detail": "Original8034->8038 conservative boundary and physical trap/ISA binding remain unresolved"
+    },
+    {
+      "id": "device_RAM_stack_and_global_ownership",
+      "status": "not_proven",
+      "evidence": "experiments/tsl9-resident-task-layout-contract/summary.json",
+      "detail": "Physical RAM capacity,whole-program stack/IRQ bounds and heap/APP-global ownership remain unproved"
+    },
+    {
+      "id": "Flash_OTA_layout_and_rebuilt_device_behavior",
+      "status": "not_proven",
+      "evidence": "experiments/tsl9-sequence-pattern-integration/audit-result-v1.json",
+      "detail": "No loadable rebuilt image or artifact-matched physical boot/function evidence;transport completion alone would not prove these"
+    }
+  ],
+  "firmware_ready": false,
+  "expected_not_ready_exit_code": 2,
+  "APP_source_C_H_files": 162,
+  "APP_CODE_bytes": 69412,
+  "APP_DATA_bytes": 4066,
+  "APP_selected_original_coordinate_bytes": 73478,
+  "APP_domain": [
+    32768,
+    109568
+  ],
+  "APP_domain_bytes": 76800,
+  "APP_static_byte_coverage_percent": 95.67,
+  "coverage_is_not_function_completion": true,
+  "APP_source_undefined_symbols": [
+    {
+      "name": "tsl9_boot_resident_40000",
+      "original_reference": 262144,
+      "classification": "resident_ROM_ABI_dependency",
+      "undefined_in_actual_APP_object": true,
+      "positive_DATA_backing_at_reference": [],
+      "full_provider_definition_proved": false,
+      "must_not_fake_with_alias_or_stub": true
+    },
+    {
+      "name": "tsl9_incoming_external_14056",
+      "original_reference": 82006,
+      "classification": "currently_excluded_APP_CODE",
+      "undefined_in_actual_APP_object": true,
+      "positive_DATA_backing_at_reference": [],
+      "full_provider_definition_proved": false,
+      "must_not_fake_with_alias_or_stub": true
+    },
+    {
+      "name": "tsl9_input_state_decoders_static_data_1ab48",
+      "original_reference": 109384,
+      "classification": "undefined_DATA_provider_use_contract",
+      "undefined_in_actual_APP_object": true,
+      "positive_DATA_backing_at_reference": [
+        {
+          "name": "tsl9_input_counter_read_window_1ab48",
+          "start": 109384,
+          "bytes": 8,
+          "offset": 0
+        }
+      ],
+      "full_provider_definition_proved": false,
+      "must_not_fake_with_alias_or_stub": true
+    },
+    {
+      "name": "tsl9_record_field_transitions_static_data_1a078",
+      "original_reference": 106616,
+      "classification": "undefined_DATA_provider_use_contract",
+      "undefined_in_actual_APP_object": true,
+      "positive_DATA_backing_at_reference": [
+        {
+          "name": "tsl9_grid_read_data_pool_19ed8",
+          "start": 106200,
+          "bytes": 432,
+          "offset": 416
+        }
+      ],
+      "full_provider_definition_proved": false,
+      "must_not_fake_with_alias_or_stub": true
+    },
+    {
+      "name": "tsl9_registered_callbacks_static_data_1a638",
+      "original_reference": 108088,
+      "classification": "undefined_DATA_provider_use_contract",
+      "undefined_in_actual_APP_object": true,
+      "positive_DATA_backing_at_reference": [
+        {
+          "name": "tsl9_sequence_compare_read_window_1a638",
+          "start": 108088,
+          "bytes": 48,
+          "offset": 0
+        }
+      ],
+      "full_provider_definition_proved": false,
+      "must_not_fake_with_alias_or_stub": true
+    },
+    {
+      "name": "tsl9_settings_default_data_1a69c",
+      "original_reference": 108188,
+      "classification": "currently_excluded_APP_default_DATA",
+      "undefined_in_actual_APP_object": true,
+      "positive_DATA_backing_at_reference": [],
+      "full_provider_definition_proved": false,
+      "must_not_fake_with_alias_or_stub": true
+    }
+  ],
+  "standard_compiler_runtime_symbols_in_actual_UND": [],
+  "legacy_compiler_UND_field_is_project_provider_count": true,
+  "APP_missing_bytes": 3322,
+  "APP_excluded_missing_bytes": 3128,
+  "APP_other_unselected_bytes": 194,
+  "APP_other_unselected_ranges": [
+    {
+      "start": 33862,
+      "end": 33864,
+      "bytes": 2
+    },
+    {
+      "start": 33942,
+      "end": 33944,
+      "bytes": 2
+    },
+    {
+      "start": 34078,
+      "end": 34080,
+      "bytes": 2
+    },
+    {
+      "start": 105638,
+      "end": 105640,
+      "bytes": 2
+    },
+    {
+      "start": 105830,
+      "end": 105832,
+      "bytes": 2
+    },
+    {
+      "start": 105938,
+      "end": 105940,
+      "bytes": 2
+    },
+    {
+      "start": 105977,
+      "end": 105980,
+      "bytes": 3
+    },
+    {
+      "start": 106632,
+      "end": 106648,
+      "bytes": 16
+    },
+    {
+      "start": 106664,
+      "end": 106680,
+      "bytes": 16
+    },
+    {
+      "start": 106715,
+      "end": 106716,
+      "bytes": 1
+    },
+    {
+      "start": 107746,
+      "end": 107748,
+      "bytes": 2
+    },
+    {
+      "start": 107798,
+      "end": 107800,
+      "bytes": 2
+    },
+    {
+      "start": 107815,
+      "end": 107816,
+      "bytes": 1
+    },
+    {
+      "start": 107831,
+      "end": 107832,
+      "bytes": 1
+    },
+    {
+      "start": 107847,
+      "end": 107848,
+      "bytes": 1
+    },
+    {
+      "start": 107948,
+      "end": 107952,
+      "bytes": 4
+    },
+    {
+      "start": 107959,
+      "end": 107960,
+      "bytes": 1
+    },
+    {
+      "start": 107979,
+      "end": 107980,
+      "bytes": 1
+    },
+    {
+      "start": 107985,
+      "end": 107988,
+      "bytes": 3
+    },
+    {
+      "start": 107999,
+      "end": 108000,
+      "bytes": 1
+    },
+    {
+      "start": 108005,
+      "end": 108008,
+      "bytes": 3
+    },
+    {
+      "start": 108012,
+      "end": 108016,
+      "bytes": 4
+    },
+    {
+      "start": 108029,
+      "end": 108032,
+      "bytes": 3
+    },
+    {
+      "start": 108038,
+      "end": 108040,
+      "bytes": 2
+    },
+    {
+      "start": 108048,
+      "end": 108052,
+      "bytes": 4
+    },
+    {
+      "start": 108058,
+      "end": 108060,
+      "bytes": 2
+    },
+    {
+      "start": 108070,
+      "end": 108072,
+      "bytes": 2
+    },
+    {
+      "start": 108074,
+      "end": 108076,
+      "bytes": 2
+    },
+    {
+      "start": 108085,
+      "end": 108088,
+      "bytes": 3
+    },
+    {
+      "start": 108192,
+      "end": 108216,
+      "bytes": 24
+    },
+    {
+      "start": 109288,
+      "end": 109316,
+      "bytes": 28
+    },
+    {
+      "start": 109361,
+      "end": 109364,
+      "bytes": 3
+    },
+    {
+      "start": 109367,
+      "end": 109384,
+      "bytes": 17
+    },
+    {
+      "start": 109536,
+      "end": 109568,
+      "bytes": 32
+    }
+  ],
+  "missing_payload_not_selected_or_output": true,
+  "missing_payload_individual_hashes_not_output": true,
+  "APP_diagnostic": {
+    "ELF_type": 2,
+    "machine": 243,
+    "entry": 0,
+    "PT_LOAD_count": 0,
+    "program_header_types": [
+      0
+    ],
+    "hidden_reference_only_ABS_constants": 6,
+    "ABS_FUNC_providers": 0
+  },
+  "resident_reference": {
+    "SDK_CODE_bytes": 54780,
+    "SDK_DATA_bytes": 412,
+    "ordinary_UND": 18,
+    "entry40000_original_coordinate_byte_owned": true,
+    "installed_ROM_identity_proved": false,
+    "linked_into_APP": false,
+    "not_added_to_APP_coverage": true,
+    "archived_startup_missing_source_range": [
+      453420,
+      453424
+    ],
+    "archived_startup_missing_source_bytes": 4,
+    "that_source_gap_is_not_APP_four_missing_bytes": true
+  },
+  "required_next_work": [
+    "Resolve the actual APP provider obligations under the current selection/privacy scope;do not substitute standard compiler libraries",
+    "Classify the194 other unselected bytes only when they close a runtime/layout requirement;do not raise coverage by arbitrary padding",
+    "Establish installed resident-ROM ABI/startup/IRQ/RAM/Flash mapping;do not assume rebuilding the whole archived ROM is required inside APP",
+    "Produce a genuinely loadable artifact only after required bytes/providers/layout and allowed scope are resolved",
+    "Keep OTA transport,artifact identity,boot and functional verification separate;use actual device evidence before any flash-ready claim"
+  ],
+  "source_or_native_artifact_changed": false,
+  "new_APP_CODE_or_DATA_bytes": 0,
+  "new_SDK_CODE_or_DATA_bytes": 0,
+  "new_BIN": false,
+  "full_firmware_rebuilt": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
