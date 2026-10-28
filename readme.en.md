@@ -14,7 +14,7 @@ Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility 
 
 Latest integration: [48B sequence DATA now have curated SRC and original-address backing](experiments/tsl9-sequence-pattern-integration/readme.en.md);physical execution and compatibility remain unproved.
 
-Artifact gate:[APP/BIN readiness](experiments/tsl9-app-bin-readiness-audit/readme.en.md):currently not ready.
+Artifact gate:[APP/BIN readiness](experiments/tsl9-app-bin-readiness-audit/readme.en.md):currently not ready. · [Third lookup contract](experiments/tsl9-third-provider-lookup-contract/readme.en.md)
 
 ROM candidates: [C/C++](experiments/tsl9-resident-controller-callback-targets/readme.en.md) · [Sequence DATA](experiments/tsl9-sequence-pattern-data/readme.en.md) · [Trap contract](experiments/tsl9-trap-profile-contract/readme.en.md) · [RAM layout contract](experiments/tsl9-resident-task-layout-contract/readme.en.md);installed compatibility remains unproved.
 

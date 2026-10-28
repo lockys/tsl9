@@ -1,0 +1,158 @@
+{
+  "schema": "TSL9-third-DATA-provider-lookup-contract-v1",
+  "passed": true,
+  "checker_sha256": "7b3f23b2bb992206c5ca21ef8fdfadc52464bfee3267d0f61eb226dfd5055bb8",
+  "inputs_sha256": "2a621eee9a7da602e416c3ecefadb99c8b878eec4ec1d5d9fde83044c2aa8e26",
+  "whole_function": {
+    "start": 52956,
+    "end": 53142,
+    "bytes": 186,
+    "instructions": 56,
+    "own_frame_bytes": 0,
+    "own_frame_balanced": true,
+    "all_CFG_instructions_reachable": true,
+    "typed_exits": [
+      {
+        "PC": 53090,
+        "type": "direct-tail",
+        "target": 76296,
+        "instruction": "j 0x12a08"
+      },
+      {
+        "PC": 53140,
+        "type": "ret",
+        "instruction": "ret"
+      }
+    ],
+    "calls": []
+  },
+  "native_CODE_comparisons": [
+    {
+      "mode": "c",
+      "ELF_sha256": "de5717f2d28473963c43aae3c6c0248544033823166758bc9973550dc6665d89",
+      "whole_CODE_bytes_equal": 186
+    },
+    {
+      "mode": "cpp",
+      "ELF_sha256": "de5717f2d28473963c43aae3c6c0248544033823166758bc9973550dc6665d89",
+      "whole_CODE_bytes_equal": 186
+    }
+  ],
+  "reaching_definitions": [
+    {
+      "register": "a4",
+      "PC": 53054,
+      "definitions": [
+        53002,
+        53114
+      ]
+    },
+    {
+      "register": "a4",
+      "PC": 53116,
+      "definitions": [
+        53002,
+        53114
+      ]
+    },
+    {
+      "register": "a3",
+      "PC": 53080,
+      "definitions": [
+        53060
+      ]
+    },
+    {
+      "register": "a5",
+      "PC": 53078,
+      "definitions": [
+        53074
+      ]
+    },
+    {
+      "register": "a4",
+      "PC": 53082,
+      "definitions": [
+        53080
+      ]
+    }
+  ],
+  "logical_RAM_bytes": {
+    "enable": 536919864,
+    "selector": 536919866,
+    "countdown": 536919867,
+    "mode": 536919865
+  },
+  "physical_RAM_mapping_proved": false,
+  "lookup_base": 106616,
+  "lookup_PC": 53082,
+  "formula": "base1A078 + 16*original_effective_mode + ((fresh_record4 + 1)&15)",
+  "mode_definitions": [
+    "unmasked byte read2000BF39",
+    "forced zero when old selector is1..254"
+  ],
+  "field_mask_7_writes_A3_not_lookup_mode_A4": true,
+  "record_flag_low3_mask_does_not_bound_lookup_to8_rows": true,
+  "selector_update_uses_old_selector_for_branch": true,
+  "selector_store_is_uint8_of_old_plus1_mod3": true,
+  "countdown_uint8_decrement_preserved": true,
+  "enable_clear_does_not_skip_current_lookup": true,
+  "conservative_mode_domain": [
+    0,
+    255
+  ],
+  "proven_column_domain": [
+    0,
+    15
+  ],
+  "conservative_envelope": [
+    106616,
+    110712
+  ],
+  "conservative_envelope_bytes": 4096,
+  "conservative_envelope_bytes_beyond_provided_APP": 1144,
+  "conservative_envelope_is_not_declared_table_size_or_actual_violation_proof": true,
+  "conditional_existing_DATA_rows": [
+    {
+      "row": 0,
+      "start": 106616,
+      "end": 106632,
+      "bytes": 16,
+      "all_bytes_already_selected_native_DATA": true
+    },
+    {
+      "row": 5,
+      "start": 106696,
+      "end": 106712,
+      "bytes": 16,
+      "all_bytes_already_selected_native_DATA": true
+    }
+  ],
+  "global_mode_domain_or_all_writers_proved": false,
+  "full_provider_definition_justified": false,
+  "provider_resolved": false,
+  "table_DATA_envelope_read": false,
+  "table_DATA_payload_or_individual_hash_output": false,
+  "excluded_default_payload_or_hash_output": false,
+  "source_or_native_artifact_changed": false,
+  "new_APP_CODE_or_DATA_bytes": 0,
+  "new_SDK_CODE_or_DATA_bytes": 0,
+  "formal_APP_source_files_unchanged": 162,
+  "formal_APP_byte_coverage_unchanged": 95.67,
+  "APP_source_provider_UND_unchanged": 6,
+  "firmware_ready": false,
+  "new_BIN": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false,
+  "conditions": [
+    "Original record+3/+4/+5 and four logical RAM bytes remain valid;physical mapping and IRQ/DMA/reentrant coherence are unproved",
+    "Finite register/CFG facts preserve all56 original instructions;conservative state ranges do not prove feasible inputs or real out-of-bounds access",
+    "Mode0 and conditional mode5 rows are backed,but the mode byte is not globally bounded by the record flag mask",
+    "Do not select the conservative4096-byte DATA envelope:it exceeds the supplied APP and overlaps currently excluded default DATA",
+    "A full provider needs an actual mode-at-read/use contract or legitimate independent requirements;do not clamp,alias,stub or fill gaps to force closure"
+  ]
+}

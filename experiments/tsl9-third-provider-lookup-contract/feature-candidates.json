@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-read-only-lookup-state-candidate-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Read-only lookup-state provenance diagnostics",
+      "purpose": "After actual hardware/ABI and memory-budget validation,report aggregate lookup-route/state information so raw mode and masked record flags cannot be confused.",
+      "evidence": [
+        "CEDC..CF96 writes mode&7 to record-flag bits throughA3,but the lookup shifts unmaskedA4",
+        "Clearing enable after countdown reaches0 does not bypass the current lookup",
+        "Original mode0 and conditional mode5 rows already have selected native DATA backing"
+      ],
+      "constraints": [
+        "Unimplemented;no instrumentation,live RAM reads,telemetry or BLE commands",
+        "Aggregate state only;no record contents,addresses,security material or device identity",
+        "Require actual mode-at-read and memory/IRQ/DMA/lifetime evidence before implementation",
+        "Do not invent an eight-row declaration,clamp the mode or change the original current-invocation behavior",
+        "Do not treat the conservative address envelope as actual out-of-bounds behavior or read its excluded DATA"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
