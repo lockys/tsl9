@@ -1,0 +1,24 @@
+{
+  "schema": "TSL9-read-only-fragment-progress-candidate-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Read-only transmit-fragment progress diagnostics",
+      "purpose": "After hardware/ABI and memory-budget validation,consider reporting aggregate remaining length,fragment limit,prepared-state transitions and pool-ready uncertainty to distinguish preparation from delivery.",
+      "evidence": [
+        "RAM20000AC6 prepares fragments from queue head+280 using remaining halfword and record-byte limit78",
+        "Prepared states1/2/3 distinguish first-whole,split and continuation-whole paths;first-whole has no copy call",
+        "The function does not explicitly unlink queue head/tail or release descriptors",
+        "First controller-record publication precedes pool initialization;pool allocation failure is not checked by its constructor"
+      ],
+      "constraints": [
+        "No instrumentation,live telemetry or BLE commands in this milestone",
+        "Expose aggregate state only;never expose payloads,buffer addresses,security records or device identity",
+        "Validate protocol,RAM/Flash budget,caller binding and callback lifetime before implementation",
+        "Do not invent delivery/acknowledgment from preparation status or diagnose historical OTA letterE",
+        "Do not force a fragment limit,change queue ownership or add automatic retries from these static findings"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
