@@ -1,0 +1,24 @@
+{
+  "schema": "TSL9-preparation-recycling-diagnostics-candidate-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Read-only aggregate preparation and recycling counters",
+      "purpose": "After installed hardware/ABI and memory-budget validation, distinguish prepared-state changes, guarded queue-head consumption and drain cleanup using aggregate counters.",
+      "evidence": [
+        "Three real calls from59042 reach RAM20000AC6 with the original incoming record",
+        "State1 hands off the queue buffer;other states use the frame buffer",
+        "5983C queue-head update requires status/helper/head/prepared/marker gates",
+        "5774E drains two separate queues and releases the current node buffer conditionally"
+      ],
+      "constraints": [
+        "Unimplemented;no instrumentation,live telemetry or BLE commands",
+        "Aggregate counts only;no payloads,addresses,security records or device identity",
+        "Validate actual event/IRQ binding,custom allocator lifetime,RAM/Flash budget and callback ABI first",
+        "Do not call numeric completion status a physical ACK/CRC proof or diagnose historical OTA letterE",
+        "Do not change ownership,force queue release or add automatic retries"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}

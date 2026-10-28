@@ -1,0 +1,767 @@
+{
+  "schema": "TSL9-transmit-handlers-summary-v1",
+  "passed": true,
+  "sources_and_receipts": {
+    "experiments/tsl9-resident-transmit-handlers/build-v1.py": "dc234fd19c194378662290596bd8ddd06d9f608d29c28a81c111a4399d5a7e12",
+    "experiments/tsl9-resident-transmit-handlers/derive-v1.py": "f37352682bb74a46bb3d2ebc9a913bc750e3bdf6ca984b1aab4bdb70ca7dce0e",
+    "experiments/tsl9-resident-transmit-handlers/spec-v1.json": "1aa458081d09e1173cbd2825dc8571468dac17313da3d6ef0707f9cbfd2fdcd3",
+    "experiments/tsl9-resident-transmit-handlers/evidence-v1.json": "c2052bc62e6927f16c61370d01b7172de4cadae307821dcc37f96c7fd9d8ae63",
+    "experiments/tsl9-resident-transmit-handlers/handler_abi.c": "765db6f16651aa5731854729f204ac9e3a96c7714d813d027c8f9a75e7c2df77",
+    "experiments/tsl9-resident-transmit-handlers/resident_transmit_handlers.c": "d23adcd0fe36a8264ecdf32501af7dbdfc1df7695a15dacd1569a7e697198e96",
+    "experiments/tsl9-resident-transmit-handlers/verify-v1.py": "45f2954e4caccee9074a62fc4de1c4b6b7152740dc904fe2721f853e4a658465",
+    "experiments/tsl9-resident-transmit-handlers/inputs-v1.json": "4300ecf985ddffadee7ab2eca3e5ac8d37f36709b6d4f633e1aa757f3677d2fb",
+    "experiments/tsl9-resident-transmit-handlers/verification-v1.json": "f21ca407ae931f365087e8c4370269c2f714160c32a199b2facf46828cf9f468"
+  },
+  "new_complete_SDK_bodies": 3,
+  "new_SDK_CODE_bytes": 3576,
+  "new_SDK_instructions": 1173,
+  "new_SDK_DATA_bytes": 0,
+  "new_native_FUNC_regions": 372,
+  "new_direct_controls": 313,
+  "new_far_call_pairs": 17,
+  "new_far_tail_pairs": 0,
+  "new_relocations": 347,
+  "new_native_imports": 54,
+  "new_normal_imports_resolved": 12,
+  "new_genuine_unprovided_normal_callees": 42,
+  "own_indirect_call_sites": 2,
+  "all_inherited_indirect_runtime_targets_closed": false,
+  "native_unit_sha256": "606eba19bd1b8ffd694af124053f842d2196fc88febcb0e4874a7722145c8b21",
+  "native_ABI_runtime_bytes": 0,
+  "SDK_composition_root": "experiments/tsl9-resident-transmit-handlers/build/composition-v1",
+  "SDK_object": "candidate.o",
+  "SDK_object_sha256": "212f83770e2ad2fce91ecd004ba31a571c7e2ea3d06aa7347cfa98659b04e497",
+  "SDK_CODE_bytes": 48720,
+  "SDK_DATA_bytes": 412,
+  "SDK_instructions": 16883,
+  "SDK_positive_FUNC_regions": 3595,
+  "SDK_positive_DATA_OBJECTs": 5,
+  "SDK_relocations": 2913,
+  "SDK_named_UND": [
+    "tsl9_candidate_unprovided_flash_56086",
+    "tsl9_candidate_unprovided_flash_560b2",
+    "tsl9_candidate_unprovided_flash_560d4",
+    "tsl9_candidate_unprovided_flash_560f6",
+    "tsl9_candidate_unprovided_flash_56146",
+    "tsl9_candidate_unprovided_flash_567be",
+    "tsl9_candidate_unprovided_flash_56d0e",
+    "tsl9_candidate_unprovided_flash_58f14",
+    "tsl9_candidate_unprovided_flash_5a120",
+    "tsl9_candidate_unprovided_flash_5a1dc",
+    "tsl9_candidate_unprovided_flash_5a222",
+    "tsl9_candidate_unprovided_flash_5a23e",
+    "tsl9_candidate_unprovided_flash_5a25e",
+    "tsl9_candidate_unprovided_flash_5a286",
+    "tsl9_candidate_unprovided_flash_5a2a2",
+    "tsl9_candidate_unprovided_flash_5a306",
+    "tsl9_candidate_unprovided_flash_5a326",
+    "tsl9_candidate_unprovided_flash_5a348",
+    "tsl9_candidate_unprovided_flash_5a370",
+    "tsl9_candidate_unprovided_flash_5a386",
+    "tsl9_candidate_unprovided_flash_5a48e",
+    "tsl9_candidate_unprovided_flash_5a568",
+    "tsl9_candidate_unprovided_flash_5a588",
+    "tsl9_candidate_unprovided_flash_5a614",
+    "tsl9_candidate_unprovided_flash_5a686",
+    "tsl9_candidate_unprovided_flash_5a6e0",
+    "tsl9_candidate_unprovided_flash_5a70c",
+    "tsl9_candidate_unprovided_flash_5a7ba",
+    "tsl9_candidate_unprovided_flash_5a804",
+    "tsl9_candidate_unprovided_flash_5a898",
+    "tsl9_candidate_unprovided_flash_5a9ac",
+    "tsl9_candidate_unprovided_flash_5ae56",
+    "tsl9_candidate_unprovided_flash_5af74",
+    "tsl9_candidate_unprovided_flash_5bbc2",
+    "tsl9_candidate_unprovided_flash_5bc76",
+    "tsl9_candidate_unprovided_flash_5c818",
+    "tsl9_candidate_unprovided_flash_6a722",
+    "tsl9_candidate_unprovided_ram_20000bc0",
+    "tsl9_candidate_unprovided_ram_20000c86",
+    "tsl9_candidate_unprovided_ram_20000d42",
+    "tsl9_candidate_unprovided_ram_20002426",
+    "tsl9_candidate_unprovided_ram_2000249a"
+  ],
+  "SDK_duplicate_original_CODE_bytes": 0,
+  "all_parent_allocated_bytes_globals_and_symbolic_relocation_roles_retained": true,
+  "handler_contract": {
+    "passed": true,
+    "whole_CFGs": [
+      {
+        "start": 358222,
+        "end": 358474,
+        "bytes": 252,
+        "instructions": 78,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 358408,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 358252,
+            "target": null
+          },
+          {
+            "PC": 358268,
+            "target": 277012
+          },
+          {
+            "PC": 358284,
+            "target": 277012
+          },
+          {
+            "PC": 358300,
+            "target": 277012
+          },
+          {
+            "PC": 358316,
+            "target": 277012
+          },
+          {
+            "PC": 358328,
+            "target": 358986
+          },
+          {
+            "PC": 358390,
+            "target": null
+          },
+          {
+            "PC": 358418,
+            "target": null
+          },
+          {
+            "PC": 358450,
+            "target": null
+          }
+        ]
+      },
+      {
+        "start": 364610,
+        "end": 366008,
+        "bytes": 1398,
+        "instructions": 442,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 364764,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 364680,
+            "target": 378904
+          },
+          {
+            "PC": 364710,
+            "target": 369446
+          },
+          {
+            "PC": 364766,
+            "target": 369414
+          },
+          {
+            "PC": 364784,
+            "target": 369214
+          },
+          {
+            "PC": 364812,
+            "target": 370692
+          },
+          {
+            "PC": 364832,
+            "target": 369520
+          },
+          {
+            "PC": 364852,
+            "target": 375926
+          },
+          {
+            "PC": 364874,
+            "target": 369806
+          },
+          {
+            "PC": 364894,
+            "target": 372596
+          },
+          {
+            "PC": 364922,
+            "target": 370056
+          },
+          {
+            "PC": 364946,
+            "target": 370310
+          },
+          {
+            "PC": 365002,
+            "target": 370618
+          },
+          {
+            "PC": 365022,
+            "target": 369314
+          },
+          {
+            "PC": 365064,
+            "target": 370840
+          },
+          {
+            "PC": 365074,
+            "target": null
+          },
+          {
+            "PC": 365102,
+            "target": 368928
+          },
+          {
+            "PC": 365126,
+            "target": 370444
+          },
+          {
+            "PC": 365146,
+            "target": 369480
+          },
+          {
+            "PC": 365172,
+            "target": 375746
+          },
+          {
+            "PC": 365188,
+            "target": null
+          },
+          {
+            "PC": 365210,
+            "target": 369246
+          },
+          {
+            "PC": 365230,
+            "target": 372310
+          },
+          {
+            "PC": 365284,
+            "target": 369542
+          },
+          {
+            "PC": 365328,
+            "target": 371116
+          },
+          {
+            "PC": 365352,
+            "target": 370024
+          },
+          {
+            "PC": 365378,
+            "target": 370196
+          },
+          {
+            "PC": 365404,
+            "target": 370400
+          },
+          {
+            "PC": 365496,
+            "target": 378904
+          },
+          {
+            "PC": 365568,
+            "target": null
+          },
+          {
+            "PC": 365672,
+            "target": 378904
+          },
+          {
+            "PC": 365708,
+            "target": 378904
+          },
+          {
+            "PC": 365746,
+            "target": 370310
+          },
+          {
+            "PC": 365776,
+            "target": 369446
+          },
+          {
+            "PC": 365786,
+            "target": 369414
+          },
+          {
+            "PC": 365816,
+            "target": 378904
+          },
+          {
+            "PC": 365848,
+            "target": 369414
+          },
+          {
+            "PC": 365886,
+            "target": 368928
+          },
+          {
+            "PC": 365892,
+            "target": 369116
+          },
+          {
+            "PC": 365906,
+            "target": 378904
+          },
+          {
+            "PC": 365928,
+            "target": 369286
+          },
+          {
+            "PC": 365956,
+            "target": 369186
+          },
+          {
+            "PC": 365962,
+            "target": 369520
+          },
+          {
+            "PC": 365972,
+            "target": null
+          },
+          {
+            "PC": 365982,
+            "target": 372596
+          }
+        ]
+      },
+      {
+        "start": 366008,
+        "end": 367934,
+        "bytes": 1926,
+        "instructions": 653,
+        "own_frame_bytes": 48,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 367636,
+            "type": "direct-tail",
+            "target": 354238,
+            "instruction": "j 0x567be"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 366144,
+            "target": null
+          },
+          {
+            "PC": 366252,
+            "target": 364610
+          },
+          {
+            "PC": 366278,
+            "target": null
+          },
+          {
+            "PC": 366284,
+            "target": 409176
+          },
+          {
+            "PC": 366382,
+            "target": null
+          },
+          {
+            "PC": 366542,
+            "target": null
+          },
+          {
+            "PC": 366592,
+            "target": 352434
+          },
+          {
+            "PC": 366632,
+            "target": null
+          },
+          {
+            "PC": 366682,
+            "target": 352502
+          },
+          {
+            "PC": 366720,
+            "target": null
+          },
+          {
+            "PC": 366732,
+            "target": 364610
+          },
+          {
+            "PC": 366760,
+            "target": null
+          },
+          {
+            "PC": 366842,
+            "target": 408334
+          },
+          {
+            "PC": 366900,
+            "target": 436002
+          },
+          {
+            "PC": 366954,
+            "target": 352468
+          },
+          {
+            "PC": 366964,
+            "target": 352390
+          },
+          {
+            "PC": 367036,
+            "target": 352582
+          },
+          {
+            "PC": 367094,
+            "target": null
+          },
+          {
+            "PC": 367168,
+            "target": null
+          },
+          {
+            "PC": 367478,
+            "target": 409176
+          },
+          {
+            "PC": 367514,
+            "target": 436002
+          },
+          {
+            "PC": 367552,
+            "target": 355598
+          },
+          {
+            "PC": 367572,
+            "target": 354550
+          },
+          {
+            "PC": 367596,
+            "target": null
+          },
+          {
+            "PC": 367610,
+            "target": 364308
+          },
+          {
+            "PC": 367650,
+            "target": 409176
+          },
+          {
+            "PC": 367676,
+            "target": 355598
+          },
+          {
+            "PC": 367690,
+            "target": 278236
+          },
+          {
+            "PC": 367722,
+            "target": 409176
+          },
+          {
+            "PC": 367730,
+            "target": 277012
+          },
+          {
+            "PC": 367746,
+            "target": 354550
+          },
+          {
+            "PC": 367774,
+            "target": 408660
+          },
+          {
+            "PC": 367798,
+            "target": null
+          }
+        ]
+      }
+    ],
+    "unique_reaching_definitions": [
+      {
+        "function": 364610,
+        "register": "a0",
+        "PC": 365074,
+        "definitions": [
+          -1
+        ]
+      },
+      {
+        "function": 364610,
+        "register": "s0",
+        "PC": 365074,
+        "definitions": [
+          364624
+        ]
+      },
+      {
+        "function": 364610,
+        "register": "a0",
+        "PC": 365188,
+        "definitions": [
+          -1
+        ]
+      },
+      {
+        "function": 364610,
+        "register": "s0",
+        "PC": 365188,
+        "definitions": [
+          364624
+        ]
+      },
+      {
+        "function": 364610,
+        "register": "a0",
+        "PC": 365972,
+        "definitions": [
+          -1
+        ]
+      },
+      {
+        "function": 364610,
+        "register": "s0",
+        "PC": 365972,
+        "definitions": [
+          364624
+        ]
+      },
+      {
+        "function": 364610,
+        "register": "a4",
+        "PC": 364756,
+        "definitions": [
+          364750,
+          364976
+        ]
+      },
+      {
+        "function": 364610,
+        "register": "a5",
+        "PC": 364756,
+        "definitions": [
+          364746,
+          364972
+        ]
+      },
+      {
+        "function": 366008,
+        "register": "s0",
+        "PC": 366598,
+        "definitions": [
+          366022
+        ]
+      },
+      {
+        "function": 366008,
+        "register": "a0",
+        "PC": 366632,
+        "definitions": [
+          366620
+        ]
+      }
+    ],
+    "whole_code_bytes": 3576,
+    "whole_instructions": 1173,
+    "whole_handler_entries": [
+      358222,
+      364610,
+      366008
+    ],
+    "fragment_calling_handler": [
+      364610,
+      366008
+    ],
+    "completion_handler": [
+      366008,
+      367934
+    ],
+    "drain_handler": [
+      358222,
+      358474
+    ],
+    "admitted_fragment_far_calls": [
+      {
+        "high": 365070,
+        "call": 365074,
+        "target": 536873670
+      },
+      {
+        "high": 365184,
+        "call": 365188,
+        "target": 536873670
+      },
+      {
+        "high": 365968,
+        "call": 365972,
+        "target": 536873670
+      }
+    ],
+    "all_three_fragment_calls_preserve_original_incoming_record_A0": true,
+    "static_original_call_binding_proved": true,
+    "physical_incoming_event_or_IRQ_binding_proved": false,
+    "prepared_state_byte_offset": 27,
+    "state1_selects_queue_head_buffer": true,
+    "other_states_select_record_frame_buffer": true,
+    "queue_head_record_offset": 280,
+    "node_buffer_pointer_offset": 4,
+    "frame_buffer_record_offset": 272,
+    "header_byte0_source_record_offset": 12,
+    "header_byte1_source_record_offset": 21,
+    "handoff_context_pointer_global": 536884540,
+    "handoff_word_offset": 112,
+    "handoff_source_paths": [
+      "state1:queue_head.buffer",
+      "other:record.frame_buffer"
+    ],
+    "first_whole_no_copy_explained_by_caller_direct_buffer_handoff": true,
+    "physical_handoff_register_or_radio_delivery_proved": false,
+    "completion_current_record_pointer_global": 536884316,
+    "completion_status_byte": 536884506,
+    "completion_status_bit0_must_be_clear": true,
+    "completion_helper_560b2_result_must_be_zero": true,
+    "completion_requires_nonnull_head": true,
+    "completion_requires_prepared_state_nonzero": true,
+    "completion_requires_head_marker_low_bit_clear": true,
+    "completion_head_update_PC": 366652,
+    "completion_guard_and_release_dominators": [
+      366566,
+      366596,
+      366606,
+      366610,
+      366616,
+      366626,
+      366632
+    ],
+    "completion_tag_update_PC": 366626,
+    "completion_tag_formula": "uint16(tag | 0xff00)",
+    "completion_preserves_tag_low_byte": true,
+    "completion_release_PC": 366632,
+    "completion_release_target": 536871184,
+    "completion_release_argument_is_current_node_buffer": true,
+    "completion_increments_halfword_counter_offset": 68,
+    "completion_refreshes_queue_head_after_release": true,
+    "completion_head_update_uses_current_head_next": true,
+    "completion_optional_decrement_word_offset": 420,
+    "known_marker0x81_to0x01_split_keeps_low_bit_set": true,
+    "known_whole_fragment_marker_zero_is_eligible_only_under_other_guards": true,
+    "physical_ACK_or_CRC_meaning_proved": false,
+    "drain_TX_head_offset": 280,
+    "drain_other_queue_head_offset": 288,
+    "drain_null_buffer_guard": true,
+    "drain_payload_release_precedes_tag_restore_and_head_advance": true,
+    "drain_restores_tag_high_byte_ff": true,
+    "drain_refreshes_head_after_release": true,
+    "drain_does_not_explicitly_clear_tail_fields": true,
+    "drain_guarded_frame_buffer_release_offset": 272,
+    "drain_optional_slot_release_offsets": [
+      39,
+      38,
+      40,
+      41
+    ],
+    "drain_slot_sentinel": 255,
+    "drain_controller_release_callee": 358986,
+    "custom_release_and_buffer_lifetime_still_require_proof": true,
+    "new_native_imports": 54,
+    "real_prior_imports_resolved": 12,
+    "new_genuine_missing_normal_dependencies": 42,
+    "new_genuine_missing_entries": [
+      352390,
+      352434,
+      352468,
+      352502,
+      352582,
+      354238,
+      355598,
+      364308,
+      368928,
+      369116,
+      369186,
+      369214,
+      369246,
+      369286,
+      369314,
+      369414,
+      369446,
+      369480,
+      369520,
+      369542,
+      369806,
+      370024,
+      370056,
+      370196,
+      370310,
+      370400,
+      370444,
+      370618,
+      370692,
+      370840,
+      371116,
+      372310,
+      372596,
+      375746,
+      375926,
+      378904,
+      436002,
+      536873920,
+      536874118,
+      536874306,
+      536880166,
+      536880282
+    ],
+    "runtime_indirect_sites": [
+      367094,
+      367596
+    ],
+    "readonly_RAM_MMIO_dependencies_closed": false,
+    "literal_address_CODE_DATA_classification_closed": false,
+    "all_inherited_indirect_runtime_targets_closed": false,
+    "conditions": [
+      "Actual installed ROM/Xwchc/header and saved-register/argument ABI must match this archived candidate",
+      "Incoming controller record,queue/node/frame buffers,head/tail links,mutable counters and status snapshots remain valid;no incompatible alias/IRQ/DMA/reentrant mutation",
+      "The three encoded far calls use the original incoming record;copied RAM code and final original-address binding must still be valid on hardware",
+      "Handoff global2000353C/word112 is an original pointer write;its physical MMIO/DMA/radio meaning is not established",
+      "Completion eligibility follows numeric status/helper/state/marker gates;hardware ACK/CRC interpretation and actual event arrival remain unproved",
+      "Payload release uses the current node.buffer value;custom allocator/free behavior and ownership ranges must be valid;do not replace it with an assumed standard free",
+      "All42 new normal callees,readonly/RAM dependencies and two new indirect sites remain explicit gaps;no fake providers or callback bodies are supplied",
+      "Startup4B source,installed ROM identity,physical RAM/IRQ/Flash and OTA compatibility remain incomplete"
+    ],
+    "inherited_startup_missing_source_bytes": 4,
+    "router_body_selected": false,
+    "withheld_payload_or_individual_hash_output": false,
+    "target_executed": false,
+    "HOST_model_executed": false,
+    "ISA_emulated": false,
+    "hardware_accessed": false,
+    "network": false
+  },
+  "formal_APP_source_files_unchanged": 162,
+  "formal_APP_original_coordinate_bytes_unchanged": 73478,
+  "formal_APP_byte_coverage_unchanged": 95.67,
+  "formal_APP_compiler_UND_unchanged": 6,
+  "new_APP_CODE_or_DATA_bytes": 0,
+  "inherited_startup_missing_source_bytes": 4,
+  "source_curated": false,
+  "SDK_linked_into_APP": false,
+  "original_address_link_performed": false,
+  "installed_ROM_identity_proved": false,
+  "physical_compatibility_proved": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}
