@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-read-only-slot-state-diagnostic-candidate-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Read-only aggregate slot and numeric-state diagnostics",
+      "purpose": "After hardware/ABI and memory-budget validation,consider reporting aggregate slot-sentinel and numeric record29 phase counts to distinguish registration gaps from list-state gating.",
+      "evidence": [
+        "55C6E/55CC4 conditionally call43A14 forslot38/39,then pass the original record,incoming A1 and slot address to43874",
+        "Numeric addresses55C32/56CB2 are passed without supplied target bodies or typed CODE binding",
+        "5649C/56574 have original list-record29 gates and write numeric states1/2/3/18/19"
+      ],
+      "constraints": [
+        "Unimplemented;no live telemetry,instrumentation,registration calls or BLE commands",
+        "Aggregate counts only;no record contents,addresses,security material or device identity",
+        "Prove pointer target bodies,registration ABI,lifetime,IRQ/DMA/list coherence and RAM/Flash budget before implementation",
+        "Do not assign product names to numeric phases,force a slot/state transition or add retries",
+        "Ordinary UND reduction does not close numeric function-pointer or physical compatibility gaps"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
