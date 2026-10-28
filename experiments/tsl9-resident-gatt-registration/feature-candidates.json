@@ -1,0 +1,22 @@
+{
+  "schema": "TSL9-offline-GATT-evidence-feature-candidates-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Offline GATT registration consistency and partial-state diagnostic",
+      "purpose": "Correlate candidate attribute UUID/permission/handle/value-pointer layouts with the exact caller,validate key-size range and distinguish core registration from later callback-node allocation.",
+      "basis": [
+        "APP8FCC passes live GP,count4,key-size16 and callback table19DFC",
+        "Candidate4CE22 assigns handles using16-byte stride and handle offset10",
+        "Candidate4CF22 can return19 after the core succeeded,without a wrapper rollback call"
+      ],
+      "constraints": [
+        "Offline evidence inspection only;no live BLE command,probe or device read",
+        "Do not equate key size16 with active encryption or authentication",
+        "Do not infer value lengths from pointer-only rows or treat any error as no state change",
+        "Installed ROM/header/Xwchc identity and callback lifetimes remain unknown"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
