@@ -1,0 +1,23 @@
+{
+  "schema": "TSL9-offline-dispatch-request-diagnostic-candidate-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name": "Offline callback order and request-lifetime explanation",
+      "purpose": "Annotate supplied offline code evidence with callback-table order,request fields,resource conditions and numeric statuses;help separate callback dispatch from record iteration.",
+      "evidence": [
+        "4ED98 fresh-loads all12 slots,skips holes and forwards saved handle/changeType",
+        "4F00C dispatches event1 before guarded release+44 and60B record reset",
+        "4EB12 lookup/allocation/send paths preserve cleanup on error and numeric delay30 on zero return",
+        "4EA8C writes selector,transaction byte and serializer length;channel field is5"
+      ],
+      "constraints": [
+        "No live device capture,BLE command,hardware execution or vendor request",
+        "Delay1600x30 remains numeric;physical time units are unproved",
+        "Do not infer physical callback delivery,CCC clearing,protocol completeness or OTA recovery",
+        "Retain6A626 and all open indirect target/lifetime conditions"
+      ],
+      "physical_hardware_behavior_confirmed": false
+    }
+  ]
+}
