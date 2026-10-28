@@ -1,0 +1,37 @@
+{
+  "schema": "TSL9-lookup-mode-DATA-source-extension-v1",
+  "previous_manifest_sha256": "9a236345dc8618eac74f3d0ed884294d71e1b37b6dead078dafe1bc447d30689",
+  "new_manifest_sha256": "23db81919493520ed3483728418cb68c10f1d2e2db733768c3730ddf383ef660",
+  "new_file_entries": [
+    {
+      "origin": "experiments/tsl9-lookup-mode-rows/lookup_mode_rows.v1.c",
+      "destination": "src/native/receive/lookup_mode_rows.c",
+      "replacements": [],
+      "origin_sha256": "6626ee7d60a7d0cbef27020a0d38b44eb9bf003f5e49d65f4d9062854f5df570",
+      "sha256": "6626ee7d60a7d0cbef27020a0d38b44eb9bf003f5e49d65f4d9062854f5df570"
+    }
+  ],
+  "new_CODE_unit_entries": [],
+  "new_DATA_unit_entries": [
+    {
+      "name": "lookup-mode-rows",
+      "profile": "conditional-lookup-mode-read-rows",
+      "origin_unit": "experiments/tsl9-lookup-mode-rows/lookup_mode_rows.v1.c",
+      "curated_unit": "src/native/receive/lookup_mode_rows.c",
+      "origin_unit_sha256": "6626ee7d60a7d0cbef27020a0d38b44eb9bf003f5e49d65f4d9062854f5df570",
+      "verifier": "experiments/tsl9-lookup-mode-integration/build-data-v1.py",
+      "spec": "experiments/tsl9-lookup-mode-integration/spec-v1.json",
+      "evidence": "experiments/tsl9-lookup-mode-integration/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-lookup-mode-integration/build/data-v1/measurement.json"
+      ],
+      "scope": "Three16-byte readonly OBJECT rows,selected from the conditional mode2/4/5 read windows. Mode0 already has a real owner. No rows1/3,padding,full-table extent or1A078 provider alias;global writer/alias and physical execution remain unproved."
+    }
+  ],
+  "retained_source_files": 159,
+  "added_source_files": 1,
+  "parent_reconstruction_pins": {
+    "experiments/tsl9-safe-gap-functions/parent-manifest-v1.py": "f878016b4f78290ae1e0d25c251c1ee639b314c99d2a5ee6a5cb4fadfacf8ee6",
+    "experiments/tsl9-safe-gap-functions/source-extension-v1.json": "c4220d7d38e879c434e5a6287ec2b39417384ab447d02a6e0b566c93eafacca4"
+  }
+}

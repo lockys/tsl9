@@ -10,11 +10,11 @@ Rebuild Feifan TSL9 firmware in C/C++ and study Bluetooth OTA and compatibility 
 
 **Disclaimer: This project uses Codex vibe coding with REA for experimental reconstruction. Reverse engineering has not yet produced verified, working TSL9 firmware. Rebuilt BINs have not passed full validation on the original hardware; successful OTA readback does not prove working features.**
 
-**Verified reconstruction byte coverage: 95.54%** (73,374/76,800 bytes; code 69,412B + data 3,962B). Counts only C/C++ reconstruction that passes byte-for-byte comparison at original addresses; this is not feature completion or flash readiness. [Evidence](analysis/safe-gap-integration-2026-10-26/summary.json)
+**Verified reconstruction byte coverage: 95.60%** (73,422/76,800 bytes; code 69,412B + data 4,010B). Counts only C/C++ reconstruction that passes byte-for-byte comparison at original addresses; this is not feature completion or flash readiness. [Evidence](experiments/tsl9-lookup-mode-integration/summary.json)
 
-Latest integration: [ten bodies,764B now have curated SRC and original-address backing](analysis/safe-gap-integration-2026-10-26/readme.en.md);physical invocation and compatibility remain unproved.
+Latest integration: [48B lookup DATA now have curated SRC and original-address backing](experiments/tsl9-lookup-mode-integration/readme.en.md);physical execution and compatibility remain unproved.
 
-ROM candidates: [C/C++](experiments/tsl9-resident-task0-deep-component/readme.en.md) · [Lookup DATA rows](experiments/tsl9-lookup-mode-rows/readme.en.md) · [Trap contract](experiments/tsl9-trap-profile-contract/readme.en.md) · [RAM layout contract](experiments/tsl9-resident-task-layout-contract/readme.en.md);installed compatibility remains unproved.
+ROM candidates: [C/C++](experiments/tsl9-resident-task0-deep-component/readme.en.md) · [Lookup DATA rows](experiments/tsl9-lookup-mode-integration/readme.en.md) · [Trap contract](experiments/tsl9-trap-profile-contract/readme.en.md) · [RAM layout contract](experiments/tsl9-resident-task-layout-contract/readme.en.md);installed compatibility remains unproved.
 
 ## Getting started
 

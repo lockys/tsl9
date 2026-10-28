@@ -2,6 +2,8 @@
 
 [English](readme.en.md) · [根目錄](../../README.md)
 
+後續進度：48B已完成[正式 SRC／原位址整合](../tsl9-lookup-mode-integration/README.md)，目前覆蓋率95.60%。以下保留本輪未整合時的封存證據。
+
 原始 `0xD07C..0xD0EE` setter 的 `0xD0C8` 是32位元 store；到達此處時，其三個來源值將狀態寫成 `[1,5,0,1]`、`[1,4,0,1]` 或 `[1,2,0,1]`。模式在 `0x2000BF39`；`rem 3` 更新的是另一個 phase byte `0x2000BF3A`。
 
 在已知 setter 先完成、模式未被其他路徑覆寫、呼叫記憶體有效且 record buffer 不與狀態重疊的條件下，`0xCEDC..0xCF96` consumer 在 `0xCF5A` 讀取 `0x1A078 +16*mode+nibble`，模式可限為 `{0,2,4,5}`，nibble 為 `0..15`。這是條件式範圍，尚未證明全程式只有這些模式。
@@ -21,7 +23,7 @@
 
 [新增功能候選](feature-candidates.json)：離線診斷分開顯示查表模式、phase 與來源條件，避免將 `rem 3` 當成模式界限；目前尚未實作。
 
-此實驗尚未納入正式 `src/` manifest 或 APP 原位址整合；正式覆蓋率仍為 **95.54%（73,374／76,800 bytes）**，6個 compiler UND 保留。未證明 ROM／RAM／IRQ／Flash／OTA 或全域 writer／alias；沒有新 BIN，仍不可宣稱可刷入或功能完成。
+本輪封存實驗當時尚未納入正式 `src/` manifest 或 APP 原位址整合；當時正式覆蓋率為 **95.54%（73,374／76,800 bytes）**，6個 compiler UND 保留。未證明 ROM／RAM／IRQ／Flash／OTA 或全域 writer／alias；沒有新 BIN，仍不可宣稱可刷入或功能完成。
 
 以既有 LLVM 工具鏈重新核對（只編譯／讀取物件）：
 

@@ -2,14 +2,15 @@
 
 [繁體中文](README.md) · [English](readme.en.md)
 
-[Latest original-address proof](../analysis/safe-gap-integration-2026-10-26/readme.en.md): all73,374B from curated SRC match the official BIN; six compiler UND remain,with additional runtime gaps outside that count. Diagnostic ELF only;physical/OTA compatibility unproved.
+[Latest original-address proof](../experiments/tsl9-lookup-mode-integration/readme.en.md): all73,422B from curated SRC match the official BIN; six compiler UND remain,with additional runtime gaps outside that count. Diagnostic ELF only;physical/OTA compatibility unproved.
 
-This directory holds the currently selected C/C++ reconstruction sources:159 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
+This directory holds the currently selected C/C++ reconstruction sources:160 C/H files. The same native C sources compile as C11 and C++17. Experiments and traceable evidence remain under `experiments/` and `analysis/`.
 
 | [state events](native/receive/state_events.c) | 137C0–13CDC packing,record handling and immediate/deferred notification | 1308B/461i original-VA bytes match; genuine7346B+60B graph;2 old entries resolved,27 getter dependencies exposed,93 UND; hardware/OTA unproved |
 | [state access](native/receive/state_access.c) | 82A8 record transfer,10032 clear and four state update/read paths | 336B/108i match original-VA bytes in C/C++; actual6038B+60B graph has68 UND; ROM,13C4E purpose,bounds and hardware/OTA remain unproved |
 | Directory | Contents | Evidence boundary |
 | --- | --- | --- |
+| [Lookup DATA rows](native/receive/lookup_mode_rows.c) | Three OBJECTs48B | Modes2/4/5 curated and original-address equal;no full-table/provider claim. [Evidence](../experiments/tsl9-lookup-mode-integration/readme.en.md) |
 | [Remaining wrappers](native/runtime/safe_gap_functions.c) | Ten bodies764B/288i;64 real regions | All55 typed reference roles bind at original addresses;invocation/ROM/physical ABI unproved. [Evidence](../analysis/safe-gap-integration-2026-10-26/readme.en.md) |
 | [Guarded dispatch DATA](native/receive/record_dispatch_tables.c) |5 objects264B,no code |64 real relative slots and an eight-entry lookup. [Evidence](../analysis/record-dispatch-tables-2026-10-25/readme.en.md) |
 | [Central callbacks](native/receive/central_callback_leaves.c) | Three bodies118B/41i | Genuine original bodies,including original RET. [Evidence](../analysis/central-callback-integration-2026-10-26/readme.en.md) |
@@ -155,14 +156,14 @@ To compile with an existing RISC-V-capable LLVM installation:
 python3 scripts/verify-curated-source.py --tool-dir "/absolute/path/to/llvm/bin"
 ```
 
-The frozen checker compiles125 CODE units as C11/C++17:250 comparisons/500 objects. Eight independent native_data_units add16 comparisons/32 objects,totaling266 comparisons/532 objects. Included C cores belong to their entry units;do not link every .c independently. V4.1.00 references and legacy HOST tests remain outside this native proof.
+125 CODE units retain250 comparisons/500 objects;nine DATA units provide18 comparisons/36 objects,totaling268 comparisons/536 objects. The parent532-object proof was fully verified before extension;all2,086 inputs were retained,then4 origin/curated C11/C++17 DATA objects were added. Included C cores belong to their entry units;do not link every .c independently. V4.1.00 and legacy HOST tests are outside this proof.
 
-The Windows/Android NDK27.1.12297006/LLVM18 proof passes the stated 266 comparisons/532 objects. CODE receipt: `build/curated-source/safe-gap-20261026-v1/verification.json`; full source receipt: `experiments/tsl9-safe-gap-functions/build/source-proof-v1.json`. Earlier receipts are historical. Other operating systems and physical hardware remain unverified. Toolchain changes require equivalent evidence; no downloads or flag search.
+Source evidence uses Windows/Android NDK27.1.12297006/LLVM18. Current receipt: `experiments/tsl9-lookup-mode-integration/build/source-proof-v1.json`;see the original-address proof above. Existing CODE and parent receipts are retained as frozen baselines. Other toolchains,operating systems and physical hardware remain unverified;no new downloads or flag search.
 
-Replay an existing result without compiling:
+With retained local artifacts and LLVM_BIN,replay the current full diagnostic without compiling:
 
 ```sh
-python3 scripts/verify-curated-source.py --replay "/absolute/path/to/verification.json"
+python3 experiments/tsl9-lookup-mode-integration/audit-v1.py --tool-dir "$LLVM_BIN"
 ```
 
 **This source collection and offline evidence are not a complete firmware build.** Physical chip identity, installed ROM, memory ownership, complete startup/IRQ behavior and BLE OTA compatibility remain unproved. Successful flashing and execution of rebuilt firmware on the original hardware have not yet been verified. The script executes neither RV32 nor MMIO and produces or flashes no firmware BIN.

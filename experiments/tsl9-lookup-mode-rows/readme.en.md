@@ -2,6 +2,8 @@
 
 [繁體中文](README.md) · [Project](../../readme.en.md)
 
+Follow-up:48B now have [curated SRC/original-coordinate integration](../tsl9-lookup-mode-integration/readme.en.md),bringing coverage to95.60%. The evidence below retains this earlier unintegrated stage.
+
 The whole original setter `0xD07C..0xD0EE` has a32-bit store at `0xD0C8`. Its three reaching literal definitions write `[1,5,0,1]`, `[1,4,0,1]` or `[1,2,0,1]`. Lookup mode is byte `0x2000BF39`; the separate phase byte at `0x2000BF3A` receives `rem 3`.
 
 Given that this store completed before the normal consumer entry, the mode remains unchanged, caller memory is valid and the record buffer does not alias the fixed state, the `0xCEDC..0xCF96` consumer reads `0x1A078 +16*mode+nibble` at `0xCF5A`, with mode in `{0,2,4,5}` and nibble in `0..15`. This is conditional evidence, not a whole-program mode invariant.
@@ -21,7 +23,7 @@ Given that this store completed before the normal consumer entry, the mode remai
 
 [Feature candidate](feature-candidates.json): show lookup mode, phase and provenance conditions separately in offline diagnostics. This avoids treating `rem 3` as a mode bound; it is not implemented.
 
-This experiment is not curated into the formal `src/` manifest or linked at original APP addresses. Formal coverage stays **95.54% (73,374/76,800 bytes)** and six compiler UND remain. Global writers/aliases and installed ROM/RAM/IRQ/Flash/OTA are unproved. There is no new BIN or flashability/function-completion claim.
+At this archived stage,the experiment was not curated into the formal `src/` manifest or linked at original APP addresses. Formal coverage then remained **95.54% (73,374/76,800 bytes)** and six compiler UND remain. Global writers/aliases and installed ROM/RAM/IRQ/Flash/OTA are unproved. There is no new BIN or flashability/function-completion claim.
 
 Replay retained objects using the existing LLVM toolchain:
 

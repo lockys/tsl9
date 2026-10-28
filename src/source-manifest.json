@@ -1173,6 +1173,13 @@
       "replacements": [],
       "origin_sha256": "e41032ff1b47953fd457567037bd4ef1ff267b3270d62aae0b90c4e8a35478ca",
       "sha256": "e41032ff1b47953fd457567037bd4ef1ff267b3270d62aae0b90c4e8a35478ca"
+    },
+    {
+      "origin": "experiments/tsl9-lookup-mode-rows/lookup_mode_rows.v1.c",
+      "destination": "src/native/receive/lookup_mode_rows.c",
+      "replacements": [],
+      "origin_sha256": "6626ee7d60a7d0cbef27020a0d38b44eb9bf003f5e49d65f4d9062854f5df570",
+      "sha256": "6626ee7d60a7d0cbef27020a0d38b44eb9bf003f5e49d65f4d9062854f5df570"
     }
   ],
   "native_units": [
@@ -2745,6 +2752,20 @@
         "experiments/tsl9-secondary-message-data/build/data-v2/measurement.json"
       ],
       "scope": "Two actual readonly OBJECTs totaling40 bytes:seven guarded signed-relative event cells and the observed12-byte copy source. All candidate coordinates measured. No neighboring padding,original declaration-extent or global RAM/IRQ/ROM/OTA claim."
+    },
+    {
+      "name": "lookup-mode-rows",
+      "profile": "conditional-lookup-mode-read-rows",
+      "origin_unit": "experiments/tsl9-lookup-mode-rows/lookup_mode_rows.v1.c",
+      "curated_unit": "src/native/receive/lookup_mode_rows.c",
+      "origin_unit_sha256": "6626ee7d60a7d0cbef27020a0d38b44eb9bf003f5e49d65f4d9062854f5df570",
+      "verifier": "experiments/tsl9-lookup-mode-integration/build-data-v1.py",
+      "spec": "experiments/tsl9-lookup-mode-integration/spec-v1.json",
+      "evidence": "experiments/tsl9-lookup-mode-integration/README.md",
+      "formal_receipts": [
+        "experiments/tsl9-lookup-mode-integration/build/data-v1/measurement.json"
+      ],
+      "scope": "Three16-byte readonly OBJECT rows,selected from the conditional mode2/4/5 read windows. Mode0 already has a real owner. No rows1/3,padding,full-table extent or1A078 provider alias;global writer/alias and physical execution remain unproved."
     }
   ],
   "legacy_groups": [
