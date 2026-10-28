@@ -1,0 +1,309 @@
+{
+  "schema": "TSL9-conditional-lookup-mode-rows-v1",
+  "passed": true,
+  "checker_sha256": "21588c1dfe8ac09615bf6cc60c8dc36de0d86babc8ba5fbba2a536c0dd22f3ef",
+  "inputs_sha256": "9964b3175ee624456c9288d53a34bde1f71a2857aa4544786a5975243db73648",
+  "source_sha256": "6626ee7d60a7d0cbef27020a0d38b44eb9bf003f5e49d65f4d9062854f5df570",
+  "state_contract": {
+    "passed": true,
+    "functions": [
+      {
+        "start": 53372,
+        "end": 53486,
+        "bytes": 114,
+        "instructions": 39,
+        "own_frame_bytes": 16,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 53458,
+            "type": "ret",
+            "instruction": "ret"
+          },
+          {
+            "PC": 53480,
+            "type": "direct-tail",
+            "target": 65570,
+            "instruction": "j 0x10022"
+          },
+          {
+            "PC": 53484,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": [
+          {
+            "PC": 53392,
+            "target": 66562
+          }
+        ]
+      },
+      {
+        "start": 52956,
+        "end": 53142,
+        "bytes": 186,
+        "instructions": 56,
+        "own_frame_bytes": 0,
+        "own_frame_balanced": true,
+        "all_CFG_instructions_reachable": true,
+        "typed_exits": [
+          {
+            "PC": 53090,
+            "type": "direct-tail",
+            "target": 76296,
+            "instruction": "j 0x12a08"
+          },
+          {
+            "PC": 53140,
+            "type": "ret",
+            "instruction": "ret"
+          }
+        ],
+        "calls": []
+      }
+    ],
+    "reference_CODE_bytes": 300,
+    "reference_instructions": 95,
+    "state_word": 536919864,
+    "lookup_mode_byte": 536919865,
+    "phase_byte": 536919866,
+    "store_PC": 53448,
+    "store_width_bytes": 4,
+    "packed_definitions": [
+      {
+        "upper_PC": 53426,
+        "definition_PC": 53430,
+        "packed_word": 16778497,
+        "state_bytes": [
+          1,
+          5,
+          0,
+          1
+        ],
+        "lookup_mode": 5
+      },
+      {
+        "upper_PC": 53436,
+        "definition_PC": 53440,
+        "packed_word": 16778241,
+        "state_bytes": [
+          1,
+          4,
+          0,
+          1
+        ],
+        "lookup_mode": 4
+      },
+      {
+        "upper_PC": 53460,
+        "definition_PC": 53464,
+        "packed_word": 16777729,
+        "state_bytes": [
+          1,
+          2,
+          0,
+          1
+        ],
+        "lookup_mode": 2
+      }
+    ],
+    "store_reaching_definitions": [
+      53430,
+      53440,
+      53464
+    ],
+    "conditional_lookup_mode_domain": [
+      0,
+      2,
+      4,
+      5
+    ],
+    "nibble_domain": [
+      0,
+      15
+    ],
+    "rows": [
+      {
+        "mode": 0,
+        "start": 106616,
+        "end": 106632,
+        "bytes": 16,
+        "already_owned": true,
+        "new_experimental_DATA": false
+      },
+      {
+        "mode": 2,
+        "start": 106648,
+        "end": 106664,
+        "bytes": 16,
+        "already_owned": false,
+        "new_experimental_DATA": true
+      },
+      {
+        "mode": 4,
+        "start": 106680,
+        "end": 106696,
+        "bytes": 16,
+        "already_owned": false,
+        "new_experimental_DATA": true
+      },
+      {
+        "mode": 5,
+        "start": 106696,
+        "end": 106712,
+        "bytes": 16,
+        "already_owned": false,
+        "new_experimental_DATA": true
+      }
+    ],
+    "new_DATA_bytes": 48,
+    "existing_DATA_bytes": 16,
+    "lookup_data_shape": [
+      {
+        "mode": 2,
+        "bytes": 16,
+        "distinct_values": 16,
+        "printable_bytes": 3,
+        "cross_row_XOR_constant": true
+      },
+      {
+        "mode": 4,
+        "bytes": 16,
+        "distinct_values": 16,
+        "printable_bytes": 3,
+        "cross_row_XOR_constant": true
+      },
+      {
+        "mode": 5,
+        "bytes": 16,
+        "distinct_values": 16,
+        "printable_bytes": 3,
+        "cross_row_XOR_constant": true
+      }
+    ],
+    "conditions": [
+      "Normal original function entries and valid caller memory/registers",
+      "Known D0C8 store completed before the selected consumer",
+      "Mode byte unchanged by other code, SDK, interrupts or DMA",
+      "Record buffer does not alias the fixed four-byte state"
+    ],
+    "all_writers_or_global_mode_invariant_proved": false,
+    "original_full_table_extent_proved": false,
+    "full_provider_binding_justified": false,
+    "prior_access_stage_replayed": true,
+    "full532_object_source_proof_rerun": false
+  },
+  "native": {
+    "c": {
+      "passed": true,
+      "object_sha256": "156d6d69c37f8c4b64872bfb8d9197213af3ae09973f1d23192ee68315443af3",
+      "CODE_bytes": 0,
+      "DATA_bytes": 48,
+      "positive_OBJECT_regions": 3,
+      "positive_FUNC_regions": 0,
+      "relocations": 0,
+      "named_UND": 0,
+      "ABS_providers": 0,
+      "rows": [
+        {
+          "mode": 2,
+          "original_start": 106648,
+          "bytes": 16,
+          "name": "tsl9_lookup_mode_row_2_1a098"
+        },
+        {
+          "mode": 4,
+          "original_start": 106680,
+          "bytes": 16,
+          "name": "tsl9_lookup_mode_row_4_1a0b8"
+        },
+        {
+          "mode": 5,
+          "original_start": 106696,
+          "bytes": 16,
+          "name": "tsl9_lookup_mode_row_5_1a0c8"
+        }
+      ],
+      "independent_reader": {
+        "passed": true,
+        "sections": 11,
+        "symbols": 10,
+        "relocations": 0,
+        "object_sha256": "156d6d69c37f8c4b64872bfb8d9197213af3ae09973f1d23192ee68315443af3",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "original_address_link_performed": false,
+      "linked_into_APP": false
+    },
+    "cpp": {
+      "passed": true,
+      "object_sha256": "156d6d69c37f8c4b64872bfb8d9197213af3ae09973f1d23192ee68315443af3",
+      "CODE_bytes": 0,
+      "DATA_bytes": 48,
+      "positive_OBJECT_regions": 3,
+      "positive_FUNC_regions": 0,
+      "relocations": 0,
+      "named_UND": 0,
+      "ABS_providers": 0,
+      "rows": [
+        {
+          "mode": 2,
+          "original_start": 106648,
+          "bytes": 16,
+          "name": "tsl9_lookup_mode_row_2_1a098"
+        },
+        {
+          "mode": 4,
+          "original_start": 106680,
+          "bytes": 16,
+          "name": "tsl9_lookup_mode_row_4_1a0b8"
+        },
+        {
+          "mode": 5,
+          "original_start": 106696,
+          "bytes": 16,
+          "name": "tsl9_lookup_mode_row_5_1a0c8"
+        }
+      ],
+      "independent_reader": {
+        "passed": true,
+        "sections": 11,
+        "symbols": 10,
+        "relocations": 0,
+        "object_sha256": "156d6d69c37f8c4b64872bfb8d9197213af3ae09973f1d23192ee68315443af3",
+        "only_section_ceiling_and_doc_changed": true,
+        "all_actual_section_bytes_symbols_and_relocations_equal": true,
+        "target_executed": false,
+        "hardware_accessed": false,
+        "network": false
+      },
+      "original_address_link_performed": false,
+      "linked_into_APP": false
+    }
+  },
+  "new_CODE_bytes": 0,
+  "new_experimental_DATA_bytes": 48,
+  "formal_APP_source_C_H_files_unchanged": 159,
+  "formal_APP_covered_bytes_unchanged": 73374,
+  "formal_APP_byte_coverage_unchanged": 95.54,
+  "compiler_UND_unchanged": 6,
+  "source_curated": false,
+  "provider_resolved": false,
+  "original_address_link_performed": false,
+  "linked_into_APP": false,
+  "withheld_payload_or_individual_hash_output": false,
+  "new_BIN": false,
+  "firmware_ready": false,
+  "goal_complete": false,
+  "target_executed": false,
+  "HOST_model_executed": false,
+  "ISA_emulated": false,
+  "hardware_accessed": false,
+  "network": false
+}

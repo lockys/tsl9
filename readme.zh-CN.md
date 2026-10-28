@@ -14,7 +14,7 @@
 
 最新整合：[十个本体、764B 已纳入 SRC 与原地址比对](analysis/safe-gap-integration-2026-10-26/README.md)，实机调用与硬件兼容性仍未证明。
 
-ROM候选：[C/C++](experiments/tsl9-resident-task0-deep-component/README.md) · [APP 数据边界](experiments/tsl9-APP-residual-access-audit/README.md) · [中断合约](experiments/tsl9-trap-profile-contract/README.md) · [RAM配置合约](experiments/tsl9-resident-task-layout-contract/README.md)，实机兼容性未确认。
+ROM候选：[C/C++](experiments/tsl9-resident-task0-deep-component/README.md) · [查表数据列](experiments/tsl9-lookup-mode-rows/README.md) · [中断合约](experiments/tsl9-trap-profile-contract/README.md) · [RAM配置合约](experiments/tsl9-resident-task-layout-contract/README.md)，实机兼容性未确认。
 
 ## 开始使用
 

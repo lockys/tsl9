@@ -1,0 +1,21 @@
+{
+  "schema": "TSL9-evidence-based-feature-candidates-v1",
+  "implemented": false,
+  "candidates": [
+    {
+      "name_en": "Separate lookup-mode and phase diagnostics",
+      "name_zh_TW": "分離查表模式與 phase 的診斷",
+      "evidence": {
+        "setter": 53448,
+        "lookup_mode_load": 53002,
+        "phase_store": 53108,
+        "mode_byte": 536919865,
+        "phase_byte": 536919866
+      },
+      "value": "Avoid treating phase modulo3 as a bound on lookup mode; show known provenance and unknown-writer state in offline reports.",
+      "implementation_scope": "Offline inspector/report only; no firmware behavior or new hardware commands.",
+      "requires": "Maintain explicit normal-entry, completed-setter, stable-mode and nonaliasing conditions; do not infer a global invariant.",
+      "firmware_integration_or_live_observation": false
+    }
+  ]
+}
