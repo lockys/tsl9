@@ -32,10 +32,29 @@ expected_counter = {
 }
 if dict(counter) != expected_counter or sum(map(len, rows.values())) != 149:
     raise SystemExit('Ownership differs from the reviewed enumeration')
+sequence = collections.Counter()
+for channel in range(4):
+    for state in range(256):
+        start = 0x1a638 + 6 * (2 * channel + state)
+        end = start + 6
+        if start < 0x1a6a0 and end > 0x1a69c:
+            category = 'excluded'
+        elif start < 0x8000 or end > 0x1ac00:
+            category = 'outside'
+        else:
+            name = owner(start, end)
+            category = ('dedicated' if name == 'tsl9_sequence_compare_read_window_1a638'
+                        else 'other_owner' if name else 'multiple_or_missing')
+        sequence[category] += 1
+expected_sequence = {'dedicated': 20, 'other_owner': 872, 'excluded': 8,
+                     'outside': 52, 'multiple_or_missing': 72}
+if dict(sequence) != expected_sequence:
+    raise SystemExit('Sequence ownership differs from the reviewed enumeration')
 print(json.dumps({'passed': True, 'input_counter_indices': 256,
     'single_data_owner_indices': 76, 'dedicated_window_indices': 4,
     'other_owner_indices': 72, 'not_single_owner_indices': 180,
     'mode_rows': 256, 'single_data_owner_rows': 149,
-    'not_single_owner_rows': 107, 'semantic_membership_proved': False,
+    'not_single_owner_rows': 107, 'sequence_channel_state_pairs': 1024,
+    'sequence_owner_categories': dict(sequence), 'semantic_membership_proved': False,
     'runtime_reachability_proved': False, 'payload_read': False,
     'target_executed': False}, sort_keys=True))

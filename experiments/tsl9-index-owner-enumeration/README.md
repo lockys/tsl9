@@ -6,4 +6,6 @@
 
 針對 `0x1A078+16*mode+column`，枚舉 256 列、每列 16 bytes：149 列完整落在單一 DATA owner；另外 107 列跨物件、未涵蓋或不在映像中。此前統計的 164 列是所有 bytes 均落於某個 DATA owner，包含跨多個 owner 的列；兩個數字的判準不同，均不代表表格語意有效。
 
+針對序列讀取 `0x1A638+6*(2*channel+state)`，枚舉 channel 0–3 與 byte state 0–255，共 1,024 組：20 組完整位於 48-byte 專用窗口、872 組落在其他單一 DATA owner、72 組跨物件或無完整 owner、8 組碰到既有排除資料、52 組部分或全部位於 APP 外。分類先排除不可讀範圍，再檢查映像及 owner；未讀取資料值。20 組包含不同 channel/state 指向同一位址，並非 20 筆獨立表項，也不證明這些狀態可達或有效。
+
 在專案根目錄執行 `python experiments/tsl9-index-owner-enumeration/verify.py`。檢查器只讀取固定雜湊的既有 layout map，不讀取韌體 payload、不執行目標。此結果不建立全域索引界限，不解除六項未解析依賴，也不證明實機或 OTA 相容性。
