@@ -9,3 +9,9 @@
 [WCH 官方型號表](https://www.wch.cn/products/productsCenter/mcuInterface?categoryId=74)列有 CH32V208GBU6／QFN28。既有[原 APP 分析](../tsl9-original-APP-library-binding/README.md)發現程式比較 `CH32V20x_BLE_LIB_V1.3` 前綴，與此候選一致，但未證明實機 ROM 身分或完整 ABI。
 
 既有 [CH32V208／D8W 實驗候選](../tsl9-ch32v208-candidate/README.md)仍是早期 V4.1.00 逐 byte 重建，不包含目前全部來源的整合成果。此次僅記錄候選，沒有修改程式、接腳設定或 BIN；六個未解析來源、原機 ROM／啟動／記憶體／IRQ 與 OTA 相容性仍待驗證。
+
+## 記憶體配置的靜態比對
+
+[WCH 評估板文件](https://www.wch.cn/uploads/file/20220627/1656323204206699.pdf)中的 CH32V208x 例子列出 Flash/RAM 128/64、144/48、160/32 KiB 三種配置，範例基址為 Flash `0x00000000` 與 RAM `0x20000000`。以該文件的連續映射及原 APP 位址不重映射為條件，已有[reset 查核](../tsl9-reset-state-bootstrap-contract/README.md)記錄的清零範圍 `[0x20004080,0x2000C958)` 超過 48 KiB RAM 頂端 2,392 bytes；已核對的[clock frame](../tsl9-clock-reset-noninterference/README.md)亦使用 `[0x2000FFF0,0x20010000)`。因此這兩項靜態存取均只落在三個例子的 64 KiB RAM 範圍內。這不代表已讀到實機選項或排除其他記憶體映射。
+
+原 APP 假設的 `[0x8000,0x1AC00)`、76,800 bytes 在三個例子的 Flash 數值範圍內；這不證明該位置可寫、BOOT／ROM 佔用情況、OTA 支援或執行成功。官方不同版本資料對總 Flash 與零等待區的表述有差異，不將簡單位址相加視為已確認的實際配置。
