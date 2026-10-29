@@ -15,3 +15,9 @@
 [WCH 評估板文件](https://www.wch.cn/uploads/file/20220627/1656323204206699.pdf)中的 CH32V208x 例子列出 Flash/RAM 128/64、144/48、160/32 KiB 三種配置，範例基址為 Flash `0x00000000` 與 RAM `0x20000000`。以該文件的連續映射及原 APP 位址不重映射為條件，已有[reset 查核](../tsl9-reset-state-bootstrap-contract/README.md)記錄的清零範圍 `[0x20004080,0x2000C958)` 超過 48 KiB RAM 頂端 2,392 bytes；已核對的[clock frame](../tsl9-clock-reset-noninterference/README.md)亦使用 `[0x2000FFF0,0x20010000)`。因此這兩項靜態存取均只落在三個例子的 64 KiB RAM 範圍內。這不代表已讀到實機選項或排除其他記憶體映射。
 
 原 APP 假設的 `[0x8000,0x1AC00)`、76,800 bytes 在三個例子的 Flash 數值範圍內；這不證明該位置可寫、BOOT／ROM 佔用情況、OTA 支援或執行成功。官方不同版本資料對總 Flash 與零等待區的表述有差異，不將簡單位址相加視為已確認的實際配置。
+
+## CAN 腳位的條件式對照
+
+原始 ID2966 V4.1.60 的 `0x12DC0..0x12DE2` 34 bytes 與目前 C 重建診斷 ELF 的同位址 bytes 一致；原始 BIN 整檔 SHA-256 為 `0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667`。在 `0x12DCC` 與 `0x12DDE` 的呼叫分別傳入 `(0x40010800, 0x1000, 0x18)` 與 `(0x40010800, 0x0800, 0x48)`。依 [WCH 周邊定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h)及 [GPIO 模式定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_gpio.h)，這些數值對應 GPIOA、pin 12／複用推挽，及 pin 11／上拉輸入。此解讀仍以 helper `0x9A24` 實際採用對應參數契約為條件。
+
+[WCH CH32V208 資料手冊](https://atta.szlcsc.com/upload/public/pdf/source/20240411/5E05523CBB231C22A5C78C078317BD2C.pdf)的 QFN28 腳位表將 PA12／19 列為 CAN1_TX、PA11／18 列為 CAN1_RX，與使用者提供的自製方案截圖一致。這是晶片定義、呼叫參數與自製接線表的相符性，不證明原廠板上實際接線、重映射狀態、收發器或 CAN 訊框行為；不可據此單獨燒錄。
