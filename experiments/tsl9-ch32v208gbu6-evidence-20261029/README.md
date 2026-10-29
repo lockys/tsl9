@@ -21,3 +21,9 @@
 原始 ID2966 V4.1.60 的 `0x12DC0..0x12DE2` 34 bytes 與目前 C 重建診斷 ELF 的同位址 bytes 一致；原始 BIN 整檔 SHA-256 為 `0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667`。在 `0x12DCC` 與 `0x12DDE` 的呼叫分別傳入 `(0x40010800, 0x1000, 0x18)` 與 `(0x40010800, 0x0800, 0x48)`。依 [WCH 周邊定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h)及 [GPIO 模式定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_gpio.h)，這些數值對應 GPIOA、pin 12／複用推挽，及 pin 11／上拉輸入。此解讀仍以 helper `0x9A24` 實際採用對應參數契約為條件。
 
 [WCH CH32V208 資料手冊](https://atta.szlcsc.com/upload/public/pdf/source/20240411/5E05523CBB231C22A5C78C078317BD2C.pdf)的 QFN28 腳位表將 PA12／19 列為 CAN1_TX、PA11／18 列為 CAN1_RX，與使用者提供的自製方案截圖一致。這是晶片定義、呼叫參數與自製接線表的相符性，不證明原廠板上實際接線、重映射狀態、收發器或 CAN 訊框行為；不可據此單獨燒錄。
+
+### GPIO helper 的指令證據
+
+進一步比對原始 V4.1.60 與目前 C 診斷 ELF：`0x9A24..0x9A42` 的 30 bytes 和 `0x18F88..0x1904A` 的 194 bytes 均逐 byte 相同。`0x9A24` 將 a1 低 16 位存為 pin mask、將數值 3 存於設定結構的 speed 欄位位置，並將 a2 存為 mode 後呼叫 `0x18F88`。後者取 mode 的低四位，對輸出模式合併 speed，並依 mask 對 GPIO 設定欄位進行 read-modify-write；mode `0x48` 的高腳位路徑另寫入 `base+0x10` 以設定該位元。上述資料流與 WCH GPIO 結構及模式定義吻合，縮小上一節的 helper 契約不確定性。
+
+這是原始指令與候選 SDK 的靜態對照，並以有效 stack、正常呼叫及候選記憶體映射為條件；沒有讀取實機暫存器、驗證電路或測試車輛功能。
