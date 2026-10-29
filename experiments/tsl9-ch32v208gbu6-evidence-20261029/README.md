@@ -1,0 +1,11 @@
+# CH32V208GBU6 候選硬體
+
+[English](readme.en.md)
+
+後續離線分析採 **WCH CH32V208GBU6（QFN28）** 作為具體候選，而非已確認的原廠晶片型號。
+
+使用者提供的影片截圖標示「CH32V208GBU6 開發板」，並稱作品為「手搓 TSL9 代模塊」。這支持影片中的替代方案使用該型號，並未展示可辨識的原廠 TSL9 晶片印字，也未證明原廠模組使用同一 PCB、接腳或韌體。影片中的 CAN、SPI 及 MCP2515 接線表僅描述該方案，不能直接套用原廠硬體。
+
+[WCH 官方型號表](https://www.wch.cn/products/productsCenter/mcuInterface?categoryId=74)列有 CH32V208GBU6／QFN28。既有[原 APP 分析](../tsl9-original-APP-library-binding/README.md)發現程式比較 `CH32V20x_BLE_LIB_V1.3` 前綴，與此候選一致，但未證明實機 ROM 身分或完整 ABI。
+
+既有 [CH32V208／D8W 實驗候選](../tsl9-ch32v208-candidate/README.md)仍是早期 V4.1.00 逐 byte 重建，不包含目前全部來源的整合成果。此次僅記錄候選，沒有修改程式、接腳設定或 BIN；六個未解析來源、原機 ROM／啟動／記憶體／IRQ 與 OTA 相容性仍待驗證。
