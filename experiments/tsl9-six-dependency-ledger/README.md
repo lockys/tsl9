@@ -181,6 +181,14 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 `0xAE0E` 保留該 record pointer。對 `0x039B`，它在 `0xAE54` 走往 `0xAF4C` 的分支；對 `0x0399`，若 record offset 11 不等於 1，同樣走往 `0xAF4C`，等於 1 則先走另一段處理，不能直接假定最終會更新來源 byte。上述需 selector、record／動態長度及 stack 有效、checksum helper 與中間呼叫正常返回、保存暫存器與記憶體未被改寫等條件。兩個數值是**record 內的比較值**，不單憑此宣稱它們是真實 CAN ID、來源介面或特定車輛功能；也不排除其他入口。[檢查器](check-counter-record-entry.py)核對有限原始指令及允許的表項，沒有執行目標。
 
+#### 與候選 CAN1 接收的條件式連接
+
+原 `0x12C24..0x12C4A` 以數值 base `0x40006400` 呼叫接收 helper `0x18D78`，再將接收結構 offset 0 的低 halfword、長度及資料傳給 ring 插入函式。按 [WCH CAN 定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_can.h)與已核對的 helper，當接收識別型態 bit 2 為 0 時，offset 0 由接收暫存器右移 21 位形成標準識別欄位；`0x399` 和 `0x39B` 均落在其 11-bit 數值範圍。這支持它們**可能**經 CAN1 標準格式路徑進入前述 record 分派，不證明實機有此訊框或其產品語義。
+
+對一個長度恰為 8 的此類候選接收資料，若 mailbox 各次讀取一致、ring 有空槽且候選 copy 正常、consumer 及其他守衛放行並保持 record 不變，則 record offset 8 對應資料 byte 5，offset 10 對應資料 byte 7，offset 11 的 tag 為 0。此時 checksum gate 的條件是 `data[7] == (ID低byte + ID高byte + data[0] + … + data[6]) & 255`；`0x399` 的 tag 0 也使它避開前述 tag 1 特殊分支。這是完整列明前提的資料流推論，不是觀測到的封包，也不證明 queue 一定成功、實體接線或車輛動作。
+
+擴充識別型態的分支將數值寫入接收結構 offset 4；已核對的 helper 在該分支沒有寫 offset 0，而 IRQ 隨後仍讀 offset 0。因此不能把擴充格式也直接套入上述標準 ID 結論，或假定該欄位已初始化。[檢查器](check-counter-can1-source.py)固定允許的原始指令窗口，不執行目標或讀取排除區。
+
 ### 兩條不讀取 counter 表的分支
 
 `0xA132` 呼叫的 `0x81EE` 直接讀 byte `0x2000BED5`。在 `0xA136..0xA158`，若返回值為 1，程式以固定值 `1960`（`0x7A8`）進入共同封包欄位處理；若為 2，則於 `0xA1FC` 設固定值 `2140`（`0x85C`）後進入共同處理。只有其餘 byte 值才在此入口讀 `GP+176` 並查 `0x1AB48`，所以這兩條分支不依賴該表值或 counter 值。
