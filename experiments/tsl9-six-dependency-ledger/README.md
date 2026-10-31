@@ -77,3 +77,11 @@ WCH 的 [CanTxMsg](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Pe
 | CAN1 候選 IRQ `0x12C24..0x12C4A` | `0x18D9C..0x18DA2` 將來源 word 低四位存至輸出結構 offset 10；IRQ 由自身 `SP+22` 讀該 byte 作為 `a2`。 | 若 provider 正常完成且 stack／暫存器未被改寫，值為 **0–15**；不能僅憑指令斷定硬體實際會給出哪些 DLC。 |
 
 這兩條是已辨識呼叫點，並非所有可能 producer 的完整清單；也不證明 `0x370` 特定 record 一定由其中某一路徑產生。候選 copy、後續 slot／consumer、IRQ 與記憶體一致性仍需成立，才能把來源界線延伸至後續使用。沒有執行韌體或硬體測試。
+
+### CAN1 候選接收結構與 WCH 的對照
+
+原 `0x18D78` 接收函式將識別型態、ID、RTR、低四位長度、八個資料 bytes 與 FIFO metadata 寫入呼叫者提供的結構；寫入位置及 FIFO release 的控制流程與 [WCH CAN_Receive](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_can.c) 和 [CanRxMsg 定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_can.h)相符，支持將其視為 CAN 接收 helper 的推論，並非逐字證明兩者完全等價。
+
+IRQ `0x12C32` 在 32-byte frame 中以 `SP+12` 作結構起點，故 DLC 位於 `SP+22`、八個 Data bytes 位於 `SP+23..SP+30`、FMI 位於 `SP+31`。`0x12C3C..0x12C4A` 傳入 ring 的來源為 `SP+23`，長度為 DLC byte；ring slot 的 8-byte 資料窗口為 offset 3–10，offset 11 在 copy 後寫入 tag 0。
+
+**若** DLC 為 9、兩個 helper 正常完成、`0x4004C` 為候選順向 copy 且記憶體／暫存器無干擾，則來源複製會讀入 `SP+31` 的 FMI，寫到 slot offset 11，之後被 tag 0 覆寫；若 DLC 至少為 10，數值上會讀到 IRQ frame 之外並寫超過該 slot。這是來源與目的範圍的條件推算，不能證明 DLC 9–15 真實可由此硬體產生、該路徑可達、實際越界或漏洞；更不能推論車輛功能或刷寫安全。未接觸硬體。

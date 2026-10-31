@@ -77,3 +77,11 @@ Thus, if the upstream record's first value remains `0x370` at the relevant reads
 | Candidate CAN1 IRQ `0x12C24..0x12C4A` | `0x18D9C..0x18DA2` stores the source word's low four bits at output structure offset 10; the IRQ reads its own `SP+22` as `a2`. | **0–15** if the provider completes normally and stack/registers are unchanged; instructions alone do not establish which DLC values physical hardware actually supplies. |
 
 These are identified callsites, not an exhaustive list of all possible producers; they do not prove which source produced a particular `0x370` record. Candidate copy, later slot/consumer behavior, IRQ and memory consistency must hold before extending a source bound to later uses. No firmware or hardware was executed.
+
+### Candidate CAN1 receive layout versus WCH
+
+Original receive function `0x18D78` writes identifier type, ID, RTR, low-four-bit length, eight data bytes and FIFO metadata into a caller-provided structure. The fields and FIFO-release flow correspond to [WCH CAN_Receive](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_can.c) and the [CanRxMsg definition](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_can.h), supporting a CAN receive helper inference without claiming complete equivalence.
+
+IRQ `0x12C32` passes `SP+12` as the structure base in a 32-byte frame, making DLC `SP+22`, eight Data bytes `SP+23..SP+30`, and FMI `SP+31`. `0x12C3C..0x12C4A` passes `SP+23` and DLC as the ring source and length. The ring slot's 8-byte data window is offsets 3–10; offset 11 is assigned tag 0 after the copy.
+
+**If** DLC is 9, both helpers complete normally, `0x4004C` is the candidate forward copy, and memory/registers are undisturbed, the copy reads FMI at `SP+31` into slot offset 11, which the subsequent tag 0 overwrites. If DLC is at least 10, numerical ranges extend outside the IRQ frame and beyond that slot. This is conditional source/destination range reasoning, not proof DLC 9–15 occurs on the device, that the path is reachable, an actual overrun, or a vulnerability; it cannot establish vehicle behavior or flashing safety. No hardware was accessed.
