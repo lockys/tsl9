@@ -156,6 +156,14 @@ The 48 original bytes at `0x1A638..0x1A668` match the [reconstructed data](../..
 
 Specifically, if all four states begin at 0 and two successive inputs satisfying the entry's length 6 / second-byte-zero guards exactly match one channel's state 0 then state 1 patterns, with comparison and memory undisturbed between calls, the first sets that channel to 1; the second resets it to 0 and enters the marker path at `0x1207A`. This does not cover arbitrary interleaving or unknown initial state and does not establish that the device received these inputs, the meaning of the other marker-word bytes or any physical button function.
 
+### Upstream of the six-byte comparison input
+
+On the branch where bit 15 of incoming `a1`'s low 16 bits is set, original callback `0x119C8` loads and calls an indirect target from `0x4006C`; only a nonzero returned pointer with byte `0xB0` at offset 0 proceeds into the relevant message processing. The pinned [WCH V1.30 header](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.h) defines this slot 14 as candidate `tmos_msg_receive(taskID)`. That supports a queued-message interpretation, but does not prove the installed slot, message origin or complete ABI.
+
+The original path first compares the halfword at message offset 2 against three candidate values. For message offset 4 equal to 27 or 29, it compares six bytes at `*(GP+92)+43*i+3` with a selected state area via `0x4003C`, for at most three entries. After a match and other guards, `0x12392` loads the word at message offset 12 into `s3` as the data pointer, and `0x12396` loads the byte at offset 10 into `s4` as the length. It calls `0x838E` with that pointer and length, requiring zero, and must pass additional indirect comparisons and branches before it can reach `0x12020`, which checks length 6 and data byte 1 equal to zero.
+
+This is a conditional static structure requiring valid pointers, installed indirect-function contracts, preserved registers and no asynchronous overwrite. It does not establish a physical BLE message, data lifetime, product meaning of the numeric message fields or all reachable paths. No user-device data was read and no callback was executed.
+
 ### Completion marker data flow
 
 When the new matched state exceeds 1 at `0x12076`, `0x1207A..0x1209A` reads three bytes from `s2+0..2` and combines them with `0x80+channel` as `word=(byte0<<24)|(byte1<<16)|(byte2<<8)|(0x80+channel)`. Normal loop channel is 0–3, so the low byte is `0x80..0x83`. The corresponding state is cleared before the jump to `0x11C64`.
