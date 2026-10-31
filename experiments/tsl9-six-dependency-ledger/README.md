@@ -21,6 +21,12 @@
 
 在每次呼叫都從 `0xCEDC` 正常進入、enable 一直非零、儲存後的 selector 沒有被 callee／IRQ／DMA／alias 改寫且查表及尾呼叫均正常完成的條件下，從 `s=0` 開始連續三次呼叫的舊 selector 依序循環為 `0→1→2→0`；相應 effective mode 為「當次 mode byte、0、0」。初始 `s=1..254` 的一次更新會使下一 selector 進入 `0..2`，但 `s=255` 是例外。此結論不保證上述條件、三次呼叫可達、mode 穩定或表內容有效；倒數到零可清除 enable，使後續呼叫直接返回，因此不能把三次模式循環宣稱為實機頻率。
 
+### Mode 查表的數值位址範圍
+
+對 `0xCF5A` 的公式 `0x1A078+16*effective_mode+column`，若只使用 byte 寬度 `effective_mode=0..255` 與 `column=0..15`，共有 4,096 個數值組合。以現有 APP 映像半開區間 `[0x8000,0x1AC00)` 計算：mode **98** 的 column **4–7** 指向既定排除區 `[0x1A69C,0x1A6A0)`；mode **184** 的 column **8–15** 與 mode **185–255** 的全部 columns 超過 APP 結尾，共 1,144 個組合。
+
+這是位址公式的保守分類，不代表這些 mode／column 可達、實際記憶體不可讀、發生越界，或完整 provider 有 256 列。已納入來源的 mode 0–5 共 96 bytes，也不能據此推出其他列。只有 setter、selector、記憶體及執行條件經進一步證明，才能縮小實際讀取域。[檢查器](check-mode-address-domains.py)固定允許的指令窗口、查詢 APP 檔案大小並做區間算術；不讀取排除資料或執行目標。
+
 ### 三個具體 setter 分支的單次查表
 
 依[既有 setter 控制流程](../tsl9-mode-state-writer-contract/README.md)，到達 `0xD0C8` 的三條分支會把 `[enable, mode, selector, countdown]` 寫成 `[1, M, 0, 1]`，其中 `M` 分別為 2、4、5。若該寫入後狀態沒有被其他路徑改寫、下一次從 `0xCEDC` 正常進入且指標有效，則 selector 先由 0 更新為 1，countdown 由 1 減為 0，`0xCF8E` 清除 enable；但本次仍繼續以 `M` 和 `0..15` 的欄位查表，然後尾跳 `0x12A08`。若之後 enable 沒有重新設置，下一次進入 `0xCEDC` 即返回，不會自然完成上述三次週期。

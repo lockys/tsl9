@@ -21,6 +21,12 @@ At `0xCEDC..0xCF96`, when the enable byte is nonzero and selector `s` is not `25
 
 Provided every call enters `0xCEDC` normally, enable stays nonzero, the stored selector is not changed by callees, IRQ, DMA or aliases, and the lookup and tail call complete normally, three consecutive calls starting with `s=0` cycle old selector values `0→1→2→0`, with effective modes “current mode byte, 0, 0”. A single update from initial `s=1..254` brings the next selector into `0..2`, but `s=255` is an exception. This does not establish the conditions, three reachable calls, a stable mode or valid table data; the countdown can clear enable and make later calls return directly, so the cycle is not an observed hardware rate.
 
+### Numerical address range of the mode lookup
+
+For the `0xCF5A` formula `0x1A078+16*effective_mode+column`, the byte-width domain `effective_mode=0..255` and `column=0..15` contains 4,096 numerical combinations. Relative to the current APP half-open image `[0x8000,0x1AC00)`, mode **98** at columns **4–7** addresses the excluded range `[0x1A69C,0x1A6A0)`; mode **184** at columns **8–15**, and all columns of modes **185–255**, fall beyond the APP end, totaling 1,144 combinations.
+
+This is a conservative address classification, not proof that those modes or columns are reachable, actual memory is unreadable, an out-of-bounds access occurs, or the provider has 256 rows. The 96 bytes already incorporated for modes 0–5 do not establish other rows. Setter, selector, memory and execution conditions must be further established to narrow the actual read domain. The [checker](check-mode-address-domains.py) pins an allowed instruction window, obtains APP file size and calculates intervals; it does not read excluded data or execute the target.
+
 ### One lookup for three specific setter branches
 
 According to the [existing setter control-flow analysis](../tsl9-mode-state-writer-contract/readme.en.md), three branches reaching `0xD0C8` store `[enable, mode, selector, countdown] = [1, M, 0, 1]` with `M` equal to 2, 4 or 5. If that state is not changed before the next normal `0xCEDC` entry and the pointer is valid, selector first updates from 0 to 1, countdown decrements from 1 to 0, and `0xCF8E` clears enable. This call still proceeds to the lookup using `M` and a column in `0..15`, then tail-jumps to `0x12A08`. Without re-enabling, the next `0xCEDC` entry returns rather than naturally completing the three-call cycle above.
