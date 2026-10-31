@@ -52,6 +52,14 @@ Original `0x1706C/0x170B8` forms `s0=0x40010800`, then `0x17132..0x17168` calls 
 
 The same path then initializes and enables the SPI candidate at numeric base `0x40013000` at `0x1718C..0x171A0`. PA5/PA6/PA7 directions are consistent with candidate SPI1 SCK/MISO/MOSI assignments, and PA0/PA4 are consistent with the selector writes above. This conditional configuration match does not establish alternate-function remapping, PCB nets or actual connections to two MCP2515s. No physical registers were read or modified.
 
+### Conditional interpretation of SPI initialization
+
+Original `0x1716C..0x171A0` builds nine halfwords on the stack: `0000, 0104, 0000, 0000, 0000, 0200, 0010, 0000, 0007`, then calls `0x196C4` with their pointer and `0x40013000`. That helper ORs the first eight halfwords with preserved bits from the original control register and writes the ninth to base+`0x10`. The next call, `0x1971E`, sets bit `0x40` at base+0.
+
+Under the [WCH SPI structure and constants](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_spi.h), the fields respectively specify two-line full duplex, master, 8-bit data, low CPOL, first edge, software NSS, divide-by-8, MSB-first and CRC polynomial 7. Original `0x196C4` preserves `old & 0x3040` at base+0; if the accesses succeed, no intervening write occurs and enable completes, the final halfword is `(old & 0x3000) | 0x0354`. Unspecified preserved bits cannot simply be assumed zero. Writing the polynomial alone does not prove CRC is enabled.
+
+The divider is relative to the candidate SPI peripheral input clock; the actual clock source, frequency, wiring and device initialization remain unverified. [`check-spi-init-structure.py`](check-spi-init-structure.py) checks the original instruction windows and bit merge without reading excluded regions or executing the target.
+
 The SPI WRITE path at `0x168DE` treats incoming `a0` as a bit mask: bit 0 causes a `0x10` write to `0x40010814`, and bit 1 causes a `0x01` write there. It then transmits `0x02`, the address and data; on normal completion it writes `0x11` to `0x40010810`. If those GPIOA addresses implement the WCH bit-clear/bit-set registers and the nets are active-low chip selects, this corresponds to selecting PA4/PA0 and releasing both at the end.
 
 The function checks only the low two bits and does not reject 0 or 3 locally: 0 skips both selection writes but still transmits, while 3 requests both selection writes; higher bits are ignored by these two tests. This is a conditional interpretation of original instructions and the candidate GPIO interface. It does not show callers actually supply those values, what components the nets reach, their electrical polarity or hardware safety. Neither the function nor hardware was executed.
