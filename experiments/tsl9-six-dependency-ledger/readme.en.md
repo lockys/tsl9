@@ -172,6 +172,14 @@ If the installed device uses that structure with RV32 little-endian and ordinary
 
 In particular, `0x12396` uses `LBU` and reads only the byte at offset 10; even if the candidate structure's `len` is 16-bit, that instruction does not examine its high byte. Thus `s4==6` establishes only that the byte read is 6; the guard alone does not prove the full 16-bit length is 6. Actual readable buffer extent, earlier validation and installed ABI require additional evidence.
 
+### Callback registration and message lifetime
+
+At initialization `0x1253C..0x12550`, the original code loads an indirect target from `0x40080`, passes `0x119C8`, and stores the low byte of the result at `0x2000BFD4`. If the installed slot matches the same header's `TMOS_ProcessEventRegister`, this can be interpreted as registering the callback and saving a task ID; `0xFF` is the candidate interface's failure value and the original instructions do not check the result there. Actual registration success, later overwrites and scheduler ABI remain unknown.
+
+At common cleanup `0x1240C`, a `0xB0` message causes the code to pass `message+8` and `message[4]` to slot `0x4012C`, then at `0x1241E` passes the message to `0x40068`. A non-null non-`0xB0` message goes directly to the latter; a null pointer skips both. The candidate WCH header names slots 62 and 13 `GATT_bm_free(gattMsg_t*,opcode)` and `tmos_msg_deallocate(msg_ptr)` respectively, and its candidate `gattMsg_t` union and method offsets match these operands.
+
+If the installed slots match those candidate interfaces, both calls return normally and memory is valid, this supports processing the GATT inner buffer before freeing the outer message. The data referenced by `message+12` cannot be assumed valid after this cleanup without separate ownership evidence. Installed slots, successful release, all other exits and pointer aliases are unproved; no device code was executed.
+
 ### Completion marker data flow
 
 When the new matched state exceeds 1 at `0x12076`, `0x1207A..0x1209A` reads three bytes from `s2+0..2` and combines them with `0x80+channel` as `word=(byte0<<24)|(byte1<<16)|(byte2<<8)|(0x80+channel)`. Normal loop channel is 0–3, so the low byte is `0x80..0x83`. The corresponding state is cleared before the jump to `0x11C64`.

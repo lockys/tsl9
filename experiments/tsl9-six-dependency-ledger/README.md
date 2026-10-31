@@ -172,6 +172,14 @@ IRQ `0x12C32` 在 32-byte frame 中以 `SP+12` 作結構起點，故 DLC 位於 
 
 尤其 `0x12396` 是 `LBU`，只讀 offset 10 的低 byte；即使候選結構有 16-bit `len`，原始長度高 byte 也未在這個讀取點檢查。因此 `s4==6` 只證明所讀 byte 為 6，不能單靠此 guard 宣稱完整 16-bit 長度為 6；實際緩衝區可讀範圍、前置檢查和 installed ABI 仍需證據。
 
+### 回呼註冊與訊息生命週期
+
+初始化路徑 `0x1253C..0x12550` 從 `0x40080` 載入間接目標，傳入 `0x119C8`，將回傳值低 byte 存到 `0x2000BFD4`。若 installed slot 符合相同標頭的 `TMOS_ProcessEventRegister`，這可解讀為註冊前述回呼並保存 task ID；`0xFF` 是候選介面的失敗值，原指令在此處沒有檢查結果。實機是否註冊成功、後續有無覆寫與 scheduler 是否採用此 ABI 仍未知。
+
+`0xB0` 訊息到共同清理處 `0x1240C` 時，程式將 `message+8` 與 `message[4]` 傳給槽 `0x4012C`，再從 `0x1241E` 把 message 傳給 `0x40068`；非 `0xB0` 的非空訊息直接走後者，空指標則跳過這兩處。候選 WCH 標頭分別把 slot 62 和 slot 13 定義為 `GATT_bm_free(gattMsg_t*,opcode)` 與 `tmos_msg_deallocate(msg_ptr)`，且其 `gattMsg_t` 候選 union 與 method offset 符合上述參數。
+
+若 installed slots 與候選介面相符、兩次呼叫均正常且記憶體有效，這支持先處理 GATT 內部 buffer 再釋放外層訊息的推論；`message+12` 所指資料不能未經其他 ownership 證據假定在此清理之後仍有效。未證明實機 slot、釋放成功、其他所有出口或指標別名；沒有執行裝置程式。
+
 ### 完成後的標記資料流
 
 匹配路徑中，當 `0x12076` 的新狀態大於 1，`0x1207A..0x1209A` 從 `s2+0..2` 各讀取一個 byte，並與 `0x80+channel` 合成 32-bit `word=(byte0<<24)|(byte1<<16)|(byte2<<8)|(0x80+channel)`；正常迴圈的 channel 為 0–3，低 byte 因而是 `0x80..0x83`。此處已將對應狀態清零，再跳到 `0x11C64`。
