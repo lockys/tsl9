@@ -245,7 +245,13 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 `0x8904` 把完整 `a3` 保存到 `s2`；`0x8938..0x893E` 每次以 index 的低 16 bits 與完整 `s2` 比較。在上述候選 ABI、迴圈暫存器保存正常且每次處理都能返回的條件下，單次 callback 至多處理 65535 bytes，不會因 index 的低 16-bit 回繞而使這個迴圈持續。這不證明實際 BLE 資料可達此長度、輸入 buffer 有效、callee 一定返回或 `0x14056` 的 payload 長度界限；後者仍受前述正常框架的 1040-byte 檢查及 fresh read 條件約束。若實機 ABI 不同或存在其他入口，不能套用此上界。
 
-[檢查器](check-gatt-callback-bound.py)讀取指定的本機 V1.30 標頭與兩個允許的 BIN 窗口，核對 callback 型別、指標表及迴圈分支；不下載、執行目標或讀取排除區。
+[檢查器](check-gatt-callback-bound.py)讀取指定的本機 V1.30 標頭與允許的 BIN 窗口，核對 callback 型別、指標表及迴圈分支；不下載、執行目標或讀取排除區。
+
+#### 最大框架與候選 ATT write 分段
+
+前述正常框架有 2-byte 前導、1-byte command、2-byte 長度和 1-byte checksum，故最大 1,040-byte payload 的框架共 **1,046 bytes**。候選 WCH 標頭將一般 ATT write value 描述為最多 ATT MTU 減 3。若同一連線有效 MTU 為 247、該長度契約適用，且每次 callback 直接對應一個未被合併的 write，則每次 value 最多 244 bytes：一個完整框架若要放在單次 write，payload 最多 238 bytes；1,040-byte payload 至少需要 **5 次 write**。更小的 MTU 可能需要更多次。
+
+這是框架和候選 ATT 長度的算術下界，並非實際分段紀錄：實機 MTU、library 是否合併、長寫入與其他 callback 入口均未確認；跨次呼叫仍受前述 299 時鐘差檢查、狀態一致性與 checksum 守衛限制，不能推論重組或 `0x14056` 一定成功。檢查器已固定允許的 parser 窗口與標頭並核對算術，未讀取函式排除區。
 
 #### 原 APP 將 callback 表交給候選服務註冊槽
 

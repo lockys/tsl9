@@ -245,7 +245,13 @@ The original three little-endian words at `0x19DFC` are `[0, 0x888C, 0]`. The lo
 
 `0x8904` saves full `a3` in `s2`; `0x8938..0x893E` compares the low 16 bits of the index against full `s2`. Under the candidate ABI, preserved loop registers and successful return from every processing step, one callback processes at most 65535 bytes and this loop does not continue because of a low-16-bit index wrap. This does not establish that actual BLE traffic reaches that length, the input buffer is valid, callees return, or the `0x14056` payload length; the latter remains subject to the normal frame's 1040-byte check and fresh-read conditions above. Other installed ABIs or entry points are not covered.
 
-The [checker](check-gatt-callback-bound.py) reads a specified local V1.30 header and two allowed BIN windows to check the callback type, pointer table and loop branch; it downloads nothing, executes no target and does not read excluded ranges.
+The [checker](check-gatt-callback-bound.py) reads a specified local V1.30 header and allowed BIN windows to check the callback type, pointer table and loop branch; it downloads nothing, executes no target and does not read excluded ranges.
+
+#### Maximum frame and candidate ATT write segmentation
+
+The normal frame described above has a 2-byte prefix, 1-byte command, 2-byte length and 1-byte checksum, so the maximum 1,040-byte payload produces a **1,046-byte** frame. The candidate WCH header describes an ordinary ATT write value as at most ATT MTU minus 3. If the same connection has effective MTU 247, that length contract applies, and each callback directly corresponds to one unaggregated write, each value is at most 244 bytes: a complete frame in one write can have at most 238 payload bytes, while a 1,040-byte payload needs **at least five writes**. A smaller MTU can require more.
+
+This is an arithmetic lower bound under the frame and candidate ATT assumptions, not an observed segmentation: the device MTU, library aggregation, long writes and other callback entries remain unverified. Cross-call processing is still subject to the 299-clock-difference check, state consistency and checksum guard described above, so successful reassembly or `0x14056` execution is not established. The checker pins permitted parser windows and the header and checks the arithmetic without reading the excluded function body.
 
 #### Original APP passes the callback table to a candidate registration slot
 
