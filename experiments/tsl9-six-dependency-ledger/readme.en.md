@@ -27,6 +27,18 @@ According to the [existing setter control-flow analysis](../tsl9-mode-state-writ
 
 Consequently, the lookup on each of these particular setter paths falls in the existing 16-byte mode 2, 4 or 5 window. This conditional coverage does not close the complete `0x1A078` provider or prove a physical write, lookup or transmission. Other setters may supply different countdowns and selectors and an arbitrary low-byte mode; the one-shot conclusion does not apply to all entries.
 
+#### Inputs and guards for the three branches
+
+At `0xD07C..0xD0EC`, the entry compares the full 32-bit `a0` with byte `0x2000BF44` and returns if equal. Otherwise it calls `0x10402`, which reads `uint16(GP+80)`; a result above 8 avoids this four-byte store. When the value is at most 8, the byte at `GP+354` must also be zero before the original input saved in `s0` selects a write:
+
+| Original 32-bit input | Written mode | Four bytes `[enable,mode,selector,countdown]` |
+| --- | --- | --- |
+| 1 | 5 | `[1,5,0,1]` |
+| 2 | 2 | `[1,2,0,1]` |
+| 4 | 4 | `[1,4,0,1]` |
+
+On this `GP+354=0` path, other full 32-bit inputs do not perform this four-byte store. A nonzero `GP+354` instead tail-jumps to `0x10022`; its side effects are not established here. These are local control-flow results requiring valid GP/stack, memory and preservation of `s0`; they do not establish actual calls, exclude other writers or prove a global mode range. The [checker](check-mode-setter-guards.py) verifies the original instruction windows and the three little-endian constants without target execution or reading excluded regions.
+
 ### Observed constant arguments to the general setter
 
 `0xD05C` turns `(a0,a1,a2)` into `[enable,mode,selector,countdown]=[1,low8(a0),low8(-a2),low8(a1)]`. The original instructions at identified direct calls or tail jumps supply the constants below; each site still has earlier guards and is not necessarily executed.
