@@ -2,9 +2,9 @@
 
 [English](readme.en.md)
 
-後續離線分析採 **WCH CH32V208GBU6（QFN28）** 作為具體候選，而非已確認的原廠晶片型號。
+使用者提供的原廠 TSL9 板正面近照中，主晶片印字可辨為 **CH32V208** 與 **GBU6**；這是該照片所示板子的型號標記證據。後續以 **WCH CH32V208GBU6（QFN28）** 為離線分析依據；照片無法驗證晶片內部、其他批次、PCB 接線、ROM 或韌體相容性。
 
-使用者提供的影片截圖標示「CH32V208GBU6 開發板」，並稱作品為「手搓 TSL9 代模塊」。這支持影片中的替代方案使用該型號，並未展示可辨識的原廠 TSL9 晶片印字，也未證明原廠模組使用同一 PCB、接腳或韌體。影片中的 CAN、SPI 及 MCP2515 接線表僅描述該方案，不能直接套用原廠硬體。
+使用者先前提供的影片截圖標示「CH32V208GBU6 開發板」，並稱作品為「手搓 TSL9 代模塊」。原廠板新近照則提供了獨立的晶片印字證據；影片中的 CAN、SPI 及 MCP2515 接線表仍僅描述自製方案，不能直接套用原廠硬體。
 
 [WCH 官方型號表](https://www.wch.cn/products/productsCenter/mcuInterface?categoryId=74)列有 CH32V208GBU6／QFN28。既有[原 APP 分析](../tsl9-original-APP-library-binding/README.md)發現程式比較 `CH32V20x_BLE_LIB_V1.3` 前綴，與此候選一致，但未證明實機 ROM 身分或完整 ABI。
 
@@ -36,8 +36,8 @@
 
 ## 原廠板照片與 SPI 協定對照
 
-使用者提供的原廠板照片顯示 `TSL9`、三組 CAN H/L 標示，至少一顆晶片可讀為 `MCP2515`；另一顆相似但照片不足以確認完整料號。疑似主控晶片印字尚不清楚。照片沒有納入公開儲存庫；上述為目視觀察，未量測電路連線。
+使用者提供的原廠板照片顯示 `TSL9`、三組 CAN H/L 標示，至少一顆晶片可讀為 `MCP2515`；另一顆相似但照片不足以確認完整料號。較新的主控近照可讀為 `CH32V208`、`GBU6`。照片沒有納入公開儲存庫；上述為目視觀察，未量測電路連線。
 
 V4.1.60 `[0x16896,0x16994)` 的 254 bytes 與目前 C 診斷 ELF 對應位址逐 byte 一致。既有 [SPI 重建分析](../tsl9-spi-write-providers/README.md)記錄 `0x168DE` 呼叫底層傳輸時先送 `0x02` 與地址，`0x1693E` 先送 `0x05`，再依序送地址、mask、value。這與 [Microchip MCP2515 手冊](https://ww1.microchip.com/downloads/en/DeviceDoc/MCP2515-Stand-Alone-CAN-Controller-with-SPI-20001801J.pdf)的 WRITE／BIT MODIFY 指令格式一致，支持照片中的元件與分析路徑可能相關；通用協定相符不證明訊號實際到達該晶片或成功傳輸。
 
-已觀察路徑的 selector bits 會分別對 `0x40010814` 寫入 `0x10`／`0x01`；若採 WCH GPIOA 映射，數值對應 PA4／PA0，與自製方案的兩個 CS 候選一致。原廠 PCB 的實際網路、主控料號、兩顆晶片數量與接腳對應仍需進一步確認；不應以此推定可刷入。
+已觀察路徑的 selector bits 會分別對 `0x40010814` 寫入 `0x10`／`0x01`；若採 WCH GPIOA 映射，數值對應 PA4／PA0，與自製方案的兩個 CS 候選一致。原廠 PCB 的實際網路、兩顆晶片料號及接腳對應仍需進一步確認；不應以此推定可刷入。

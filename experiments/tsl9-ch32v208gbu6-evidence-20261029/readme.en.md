@@ -2,9 +2,9 @@
 
 [繁體中文](README.md)
 
-Use the **WCH CH32V208GBU6 (QFN28)** as a specific candidate for subsequent offline analysis, not as a confirmed identification of the original hardware.
+A user-provided close-up of the original TSL9 board shows the main chip marked **CH32V208** and **GBU6**. This is direct marking evidence for the photographed board; use **WCH CH32V208GBU6 (QFN28)** for subsequent offline analysis. The photograph does not establish the chip internals, other revisions, PCB wiring, resident ROM or firmware compatibility.
 
-User-provided video screenshots identify a CH32V208GBU6 development board in a DIY TSL9 replacement module. They support that replacement design's choice of MCU, but do not show an identifiable chip marking on an original TSL9 or prove identical PCB, pinout, or firmware. The shown CAN, SPI, and MCP2515 pin table applies to the video's design only.
+Earlier user-provided video screenshots identify a CH32V208GBU6 development board in a DIY TSL9 replacement module. The newer original-board close-up independently supplies chip-marking evidence. The video's CAN, SPI, and MCP2515 pin table applies to that DIY design only.
 
 The [official WCH selection table](https://www.wch.cn/products/productsCenter/mcuInterface?categoryId=74) lists the CH32V208GBU6 in QFN28. [Prior original APP analysis](../tsl9-original-APP-library-binding/readme.en.md) found a comparison against the `CH32V20x_BLE_LIB_V1.3` prefix, consistent with this candidate but insufficient to identify the installed ROM or its complete ABI.
 
@@ -36,8 +36,8 @@ After the call returns, `0x12E38..0x12E4C` does not check the a0 return value be
 
 ## Original-board photographs and SPI protocol
 
-User-provided photographs of the original board show `TSL9`, three labeled CAN H/L pairs, and at least one chip legibly marked `MCP2515`; a second similar chip's complete marking is not confirmed. The apparent main MCU marking remains illegible. Photographs are not included in the public repository. These observations do not measure electrical connections.
+User-provided photographs of the original board show `TSL9`, three labeled CAN H/L pairs, and at least one chip legibly marked `MCP2515`; a second similar chip's complete marking is not confirmed. A newer close-up shows the main chip marked `CH32V208` and `GBU6`. Photographs are not included in the public repository. These observations do not measure electrical connections.
 
 The 254 bytes of V4.1.60 at `[0x16896,0x16994)` match the current C diagnostic ELF at the same addresses. The existing [SPI reconstruction](../tsl9-spi-write-providers/readme.en.md) records that `0x168DE` passes `0x02` followed by an address to the transfer helper, while `0x1693E` passes `0x05`, address, mask and value. This matches the WRITE and BIT MODIFY command formats in the [Microchip MCP2515 datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/MCP2515-Stand-Alone-CAN-Controller-with-SPI-20001801J.pdf), supporting a possible relationship between the pictured component and the analyzed path. Matching a common protocol does not prove physical routing or successful transmission.
 
-The observed selector bits respectively write `0x10` and `0x01` to `0x40010814`; under the WCH GPIOA mapping these select PA4 and PA0, consistent with the two candidate CS pins in the DIY design. The original PCB routing, MCU identity, exact count of matching chips and pin assignments remain unverified; this evidence does not establish flashability.
+The observed selector bits respectively write `0x10` and `0x01` to `0x40010814`; under the WCH GPIOA mapping these select PA4 and PA0, consistent with the two candidate CS pins in the DIY design. The original PCB routing, identity of the second controller and pin assignments remain unverified; this evidence does not establish flashability.
