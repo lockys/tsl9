@@ -27,6 +27,7 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
     for address in slot_checks:
         selected.update(range(address, address + 4))
     selected.update(range(loader, loader + 0x72))
+    selected.update(range(copy_source, copy_source + 208))
     for ram, size, _ in bodies:
         source = copy_source + ram - 0x20000040
         selected.update(range(source, source + size))
@@ -75,6 +76,9 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
         raise SystemExit('Candidate second-copy source coverage changed')
     def read(address, size):
         return bytes(found[address + i] for i in range(size))
+    heap_digest = 'e74bee633acbf171c951df2720f2aeb66758fc597a8aa8efc0271bc686d2c42b' if copy_source == 0x402b0 else 'd386953a4afde83699523eed2fd8fcb8c4c1ffb405641600c77dffcbe13a0163'
+    if hashlib.sha256(read(copy_source, 208)).hexdigest() != heap_digest:
+        raise SystemExit('Candidate heap allocation body changed')
     if copy_source == 0x402b0:
         if read(0x430e0, 4) == read(0x6eaa4, 4):
             raise SystemExit('V1.31 overlapping copy source words unexpectedly equal')
@@ -108,4 +112,6 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
         source = copy_source + ram - 0x20000040
         if hashlib.sha256(read(source, size)).hexdigest() != expected:
             raise SystemExit('Candidate copied RAM body changed')
+if [((n + 3) & 0xffff) & 0xfffc for n in (65532, 65533, 65534, 65535)] != [65532, 0, 0, 0]:
+    raise SystemExit('Unexpected 16-bit allocation-size alignment boundary')
 print('Two candidate resident versions and registration slots verified; installed device unverified.')
