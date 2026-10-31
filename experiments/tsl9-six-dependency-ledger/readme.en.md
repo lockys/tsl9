@@ -136,6 +136,12 @@ Thus, after zeroing under those conditions, both compared halfwords in each reco
 
 The initial pointer and record range exceed `0x2000C000` and remain below `0x20010000`; only under the WCH contiguous mapping and no-remapping assumptions above does the record range fit the 64 KiB example and exceed the 48 KiB example. Physical RAM options, pointer contents and validity remain unmeasured.
 
+### Loading and fallback for the same record area
+
+At `0x13238..0x13252`, the original APP initializer loads an indirect target from `0x4004C` and calls it with source `0x08077800`, destination `0x2000C30C`, and length 256. If the slot is the candidate copy routine, both regions are valid and the call completes, the whole 42×6-byte scan area is the first 252 bytes loaded. Then `0x13254..0x13264` checks whether destination offset 255 (`0x2000C40B`) is `0x5A` and calls `0x12F18` if not. This marker is not a full integrity check and alone does not establish the first 252 bytes are valid or identify their product function.
+
+Fallback `0x12F18..0x12F44` calls slot `0x40048` with destination `0x2000C30C`, value 0 and length 256, writes `0x5A` at offset 255, then tail-jumps to `0x12EE6`. That writer requests a 256-byte copy to its stack through `0x4004C` and calls `0x9C0A` with `0x08077800` and the stack pointer. If the slots implement candidate fill/copy, memory is valid and there is no interference, fallback clears the scan area. Actual source contents, marker match, physical flash mapping and write success remain unverified. See the [existing NVM layout analysis](../tsl9-NVM-record-layout/README.md).
+
 ## `0x1A078` lookup output and dispatch
 
 On the path reaching `0xCF36`, the code writes record offset 4 and freshly reads that byte `b` at `0xCF3A`. It then replaces the low nibble with `(b+1)&15`, preserves the high nibble, and uses the new low nibble as column. At `0xCF5A` it reads one byte from `0x1A078+16*effective_mode+column`, stores it at record offset 3 at `0xCF5E`, then tail-jumps without a return link to `0x12A08` at `0xCF62`. Thus column is 0–15, but the read byte remains 0–255; its product meaning and whether a value is a particular command remain unproved.

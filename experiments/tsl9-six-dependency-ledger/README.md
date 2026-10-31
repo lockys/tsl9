@@ -136,6 +136,12 @@ IRQ `0x12C32` 在 32-byte frame 中以 `SP+12` 作結構起點，故 DLC 位於 
 
 此初始指標及記錄區高於 `0x2000C000` 而低於 `0x20010000`；僅在前述 WCH 連續映射與無重映射條件下，該記錄區符合 64 KiB 範例而超出 48 KiB 範例。實機 RAM 選項、實際指標內容及有效性仍未量測。
 
+### 同一記錄區的載入與 fallback
+
+原 APP 初始化在 `0x13238..0x13252` 從 `0x4004C` 載入間接目標，以來源 `0x08077800`、目的 `0x2000C30C`、長度 256 呼叫。若該槽是候選 copy、來源與目的有效且呼叫正常完成，則整個 42×6-byte 掃描區是此次載入的前 252 bytes。後續 `0x13254..0x13264` 檢查目的 offset 255（`0x2000C40B`）是否為 `0x5A`，不符時呼叫 `0x12F18`。此 marker 不涵蓋完整性檢查，也不能單憑它證明前 252 bytes 有效或已知產品功能。
+
+fallback `0x12F18..0x12F44` 以目的 `0x2000C30C`、值 0、長度 256 呼叫 `0x40048` 槽，接著將 `0x5A` 寫至 offset 255，再尾跳 `0x12EE6`。該 writer 透過 `0x4004C` 請求複製 256 bytes 至 stack，以 `0x08077800` 和 stack 指標呼叫 `0x9C0A`。若相關槽分別符合候選 fill／copy、記憶體有效且無干擾，fallback 會清零掃描區；實機來源內容、marker 是否相符、實體 Flash 位址映射及寫入成功均未確認。見[既有 NVM 區域分析](../tsl9-NVM-record-layout/README.md)。
+
 ## `0x1A078` 查表輸出與分派
 
 在到達 `0xCF36` 的路徑上，程式寫入 record offset 4，於 `0xCF3A` 重新讀取該 byte `b`；接著把低 nibble 設為 `(b+1)&15`，保留高 nibble，並以這個新低 nibble 作為 column。`0xCF5A` 從 `0x1A078+16*effective_mode+column` 讀取一個 byte，`0xCF5E` 寫至 record offset 3，再於 `0xCF62` 不寫入返回位址地尾跳 `0x12A08`。因此 column 必為 0–15，但讀出的 byte 仍為 0–255；尚未確認其產品語義或其值是否可代表特定命令。
