@@ -68,6 +68,10 @@ This handler also depends on the `0x829E` selection and upstream queue guards. S
 
 For the normal entry, `0x829E` directly reads byte `0x2000BFB5`; `0x14D3C` takes another exit for values above 6 and otherwise indexes the seven-entry 32-bit relative jump table at `0x1A6B8`. In the original table, index 1 points to `0x14D5E`; the other six entries point elsewhere. Thus, if control normally enters `0x14D2E`, the byte and table are stable, and the indirect jump follows the original rule, the `0x229` dispatch-tree path above requires selector byte **1**. This is not proof of a globally unique entry or actual state. The excluded `0x1A69C..0x1A6A0` data were not read.
 
+The direct write path `0x1074C` saves incoming `a0` in `s0` and, after four original calls, writes `s0&255` to `0x2000BFB5` at `0x10766..0x10776`. That store has no 0–6 range check. This depends on prior callees returning normally and preserving `s0`; later calls and branches beginning at `0x1077A` mean the store is not the setter's only possible side effect.
+
+`0x2000BFB5` also lies inside reset's zero range `[0x20004080,0x2000C958)`, so it is zero at `0x186F8` if zeroing completes without interference. From that state, reaching the selector-1 path above requires a later write or alias effect to change the byte to 1. These local facts do not prove `0x1074C` is its sole writer, the actual input domain, or which branch a physical record takes.
+
 ## Following the `0x14056` receive arguments
 
 In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a2,a2,-98` at `0x8A3E` compute `0x2000B9D8`. A separate PC-relative calculation at `0x8A12..0x8A1C` obtains the same base and writes a received byte at base plus counter. This supports identifying `a2` as the receive buffer; it is not a live RAM observation.
