@@ -151,6 +151,12 @@ WCH V1.30 標頭將 slot 63（`0x40034+4*63=0x40130`）定義為 `GATTServApp_Re
 
 只有註冊成功、指標生命週期有效且 installed ABI 相符時，上節 `uint16_t` callback 上界才可套到該候選路徑。未讀取排除區、連線裝置或測試實機服務；[獨立覆核器](check-key-control-flow.py)核對原始槽讀取、PC-relative 指令及呼叫。
 
+#### 兩份候選 resident 映像的槽位差異
+
+本機保存的兩份官方候選 Intel HEX 經記錄 checksum 核對後，`0x40034` 所指的版本字串分別為 `CH32V20x_BLE_LIB_V1.31` 與 `CH32V20x_BLE_LIB_V1.40`；兩者 `0x40130` 槽分別包含 **`0x4CF22`** 與 **`0x4CFBA`**。前述 V1.30 是參考 **標頭**版本；其所搭配保存的 2023 年候選 HEX 版本字串是 V1.31。槽位地址相同而目標不同，不能把 `0x4CF22` 硬編碼成跨版本或原機的實際入口。
+
+這是兩個保存檔的內容比較，不證明任一映像已安裝在裝置，也不證明新舊兩個目標內部行為或 ABI 完全相同。[檢查器](check-gatt-resident-versions.py)接受兩個本機 HEX 路徑，固定檔案雜湊、驗證 Intel HEX 記錄 checksum，並只保留版本指標、版本字串與該槽的選定 bytes；不連線、不產生韌體。
+
 #### Payload 寫入範圍與 reset／RAM 的交叉檢查
 
 每次走到 payload 分支時，`0x89FA` 以 unsigned halfword 讀取 counter；`0x89FE..0x8A02` 對 counter 大於 1039 的情況轉至清除 state 的路徑，不執行這次 payload store。通過後，`0x8A12..0x8A1C` 使用同一暫存器中的舊 counter，向 `0x2000B9D8+counter` 寫入一個 byte。因此在正常指令流程、暫存器未受干擾的條件下，這一個 store 的位置必落在 `[0x2000B9D8,0x2000BDE8)`；這個局部界限獨立於重新讀取並傳給 `0x14056` 的長度值，不保證被呼叫函式本身的讀寫範圍。

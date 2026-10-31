@@ -151,6 +151,12 @@ The WCH V1.30 header defines slot 63 (`0x40034+4*63=0x40130`) as `GATTServApp_Re
 
 The preceding `uint16_t` callback bound applies to this candidate path only if registration succeeds, pointer lifetime is valid and the installed ABI matches. No excluded region was read, no device was connected and no real service was tested; the [independent checker](check-key-control-flow.py) checks the original slot read, PC-relative instructions and call.
 
+#### Slot differences between two candidate resident images
+
+After Intel HEX record-checksum verification, the strings pointed to by `0x40034` in the two locally preserved official candidates are `CH32V20x_BLE_LIB_V1.31` and `CH32V20x_BLE_LIB_V1.40`; their `0x40130` slots contain **`0x4CF22`** and **`0x4CFBA`**, respectively. V1.30 above is the reference **header** version; the preserved 2023 candidate HEX paired with it identifies itself as V1.31. The slot address is the same while its targets differ, so `0x4CF22` must not be hard-coded as a cross-version or installed-device entry point.
+
+This compares two saved files; it does not establish that either is installed on the device or that the two target bodies and ABIs are identical. The [checker](check-gatt-resident-versions.py) accepts two local HEX paths, pins their digests, verifies Intel HEX record checksums and retains only selected bytes for the version pointers, strings and slot; it makes no connections and generates no firmware.
+
 #### Payload write bound and reset/RAM cross-check
 
 On each entry to the payload branch, `0x89FA` reads the counter as an unsigned halfword; `0x89FE..0x8A02` branches to the state-clear path if it exceeds 1039, before this payload store. Otherwise, `0x8A12..0x8A1C` uses the same register holding the old counter to write one byte to `0x2000B9D8+counter`. With normal instruction flow and undisturbed registers, this particular store must therefore fall in `[0x2000B9D8,0x2000BDE8)`. The local bound is independent of the length freshly read and passed to `0x14056`; it does not bound reads or writes inside the excluded callee.
