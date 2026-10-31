@@ -21,3 +21,9 @@
 `0x187EE` 以 `0xFFC0FFFF` 遮罩 `CFGR0`，`0x187F4..0x187FA` OR `0x00290000`；該數值由官方定義的 HSE 作為 PLL 來源 `0x00010000` 與 PLLMULL12 `0x00280000` 組成。此前 `0x18786` 的 `0xFF80FFFF` 遮罩會清除此組 PLL 欄位，兩次操作之間若無其他改寫，設定值與 [WCH 96 MHz 範例](https://github.com/openwch/ch32v20x/blob/main/C%2B%2B/Use%20MRS%20Create%20C%2B%2B%20project-example/CH32V203C8T6%2B%2B/User/system_ch32v20x.c)一致。
 
 官方範例對 D8W／CH32V208 描述 `32 MHz / 4 × 12 = 96 MHz`。同一原始路徑先清除低 16 位設定，再於 `0x187E6` 設 `PPRE1_DIV2`；如果中間沒有其他寫入、HSE 確為 32 MHz 且 PLL ready 與系統時鐘切換成功，則按該官方範例推算 SYSCLK／HCLK 為 96 MHz、PCLK1 為 48 MHz、PCLK2 為 96 MHz。此為**條件式配置推論**，不是實測頻率，且不證明振盪器實際頻率、設定未被改寫或路徑完成。
+
+## SPI1 初始化的條件式比對
+
+原始 `0x1716C..0x1719A` 組合 stack 資料，以 `0x40013000` 與該資料呼叫 `0x196C4`；後者將前八個 halfword OR 入控制暫存器，再將第九個寫至 offset 16。以 [WCH SPI 結構與常數](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_spi.h)解讀，該組值對應 master、雙線全雙工、8-bit、CPOL 低、第一邊緣、軟體 NSS、MSB 優先及 **除以 8**；`0x1719A..0x171A0` 隨後請求設定 enable。這是指令與標頭的靜態對照，依初始化路徑、暫存器映射與內容不被改寫等條件成立。
+
+若上一節 96 MHz PCLK2 條件也成立且 SPI1 實際使用此 APB2 時鐘，除以 8 對應 **12 MHz SCK**。實板有可讀為 MCP2515 的晶片；[Microchip 資料表](https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP2515-Family-Data-Sheet-DS20001801K.pdf)在其表列條件下規定 SPI 時鐘上限 10 MHz。這提示一項需釐清的條件式差異，不代表已量到 12 MHz、已確認 PCB 連接或實際違規／故障；時鐘路徑、後續重新設定及板上訊號均未驗證。不要以此單獨修改韌體或刷寫。
