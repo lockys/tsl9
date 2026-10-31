@@ -108,6 +108,12 @@ On the other branch where `0x2000BFD3` is nonzero, `0x12186..0x12194` compares t
 
 The same WCH V1.30 header defines `tmos_stop_task(taskID,event)` at slot 10, i.e. `0x4005C`. **If** both installed slots implement that candidate interface, the equal-word/zero-flag path can be interpreted as first requesting event 1 to stop, then requesting event 2 to start after 640 ticks. This does not prove an actual operation or time measurement, and assumes valid memory, normal `0x11356` and indirect-callee return, preserved registers and no asynchronous overwrite. The code does not thereby establish a physical button function.
 
+### Candidate task-ID and callback connection
+
+`0x1250A` sets `s0=0x40000`; provided intervening callees preserve it and control reaches the site, `0x1262E..0x1263C` loads an indirect target from `0x40080`, passes `0x11442`, and stores the low 8 bits of the return value at `0x2000BFC8`. Both timer calls above read that same byte. The candidate WCH V1.30 header defines slot 19 (`0x40080`) as `TMOS_ProcessEventRegister`, accepting an event callback and returning a task ID; its documentation identifies `0xFF` as an error. This supports a **conditional inference** linking the calls; it does not prove the resident version, successful registration, a valid return value, or absence of later writes to the byte.
+
+The original `0x11442` tests bit 2 of the `a1` mask before bit 1: bit 2 calls `0x11356(1)`, clears `0x2000BFD3`, and returns the original mask XOR 2; if bit 2 is clear and bit 1 is set, it calls `0x11356(0)` and returns the original mask XOR 1. The candidate events 1 and 2 therefore align with these callback branches, conditional on compatible resident slots, scheduler and callback ABI. The control flow does not prove a particular vehicle feature or actual event execution.
+
 ## `0x1A078` lookup output and dispatch
 
 On the path reaching `0xCF36`, the code writes record offset 4 and freshly reads that byte `b` at `0xCF3A`. It then replaces the low nibble with `(b+1)&15`, preserves the high nibble, and uses the new low nibble as column. At `0xCF5A` it reads one byte from `0x1A078+16*effective_mode+column`, stores it at record offset 3 at `0xCF5E`, then tail-jumps without a return link to `0x12A08` at `0xCF62`. Thus column is 0–15, but the read byte remains 0–255; its product meaning and whether a value is a particular command remain unproved.
