@@ -72,4 +72,42 @@ for ident,version,length,seq,counter,mode in cases:
                     raise SystemExit('V4.1.50 instruction window changed')
     if matches!={'sequence':[seq],'counter':[counter],'mode':[mode]}:
         raise SystemExit('Candidate matches changed: '+ident)
-print('18 local candidate images: three unique permitted-window matches each; V4.1.50 instruction windows match. Excluded regions not read.')
+with reference.open('rb') as f:
+    consumers=(
+        ('sequence',read_window(f,0x1202e,0x32),0xc17,0xc0c13),
+        ('counter',read_window(f,0xa146,0x1e),0x797,0x78793),
+        ('mode',read_window(f,0xcf46,0x1c),0x797,0x78793),
+    )
+totals={name:0 for name,_,_,_ in consumers}
+for ident,version,length,seq,counter,mode in cases:
+    path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
+    targets={'sequence':seq,'counter':counter,'mode':mode}
+    hits={name:[] for name,_,_,_ in consumers}
+    with path.open('rb') as f:
+        for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,base+length)):
+            data=read_window(f,lo,hi-lo)
+            for name,pattern,auipc_low,addi_low in consumers:
+                offset=0
+                while True:
+                    pos=data.find(pattern[:8],offset)
+                    if pos<0:
+                        break
+                    offset=pos+1
+                    if pos+len(pattern)>len(data) or data[pos+16:pos+len(pattern)]!=pattern[16:]:
+                        continue
+                    auipc=int.from_bytes(data[pos+8:pos+12],'little')
+                    addi=int.from_bytes(data[pos+12:pos+16],'little')
+                    if auipc&0xfff!=auipc_low or addi&0xfffff!=addi_low:
+                        continue
+                    imm=addi>>20
+                    imm-=4096 if imm&2048 else 0
+                    target=(lo+pos+8+(auipc&0xfffff000)+imm)&0xffffffff
+                    if target==targets[name]:
+                        hits[name].append(lo+pos)
+    for name in hits:
+        if len(hits[name])>1:
+            raise SystemExit('Multiple consumer candidates: '+ident+' '+name)
+        totals[name]+=len(hits[name])
+if totals!={'sequence':15,'counter':10,'mode':18}:
+    raise SystemExit('Cross-version consumer candidate counts changed')
+print('18 candidate data matches; PC-relative consumer candidates: sequence 15, counter 10, mode 18. Excluded regions not read.')
