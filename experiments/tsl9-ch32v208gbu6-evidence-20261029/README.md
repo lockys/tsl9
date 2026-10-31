@@ -68,6 +68,11 @@ V4.1.60 `[0x16896,0x16994)` 的 254 bytes 與目前 C 診斷 ELF 對應位址逐
 
 ### 以啟動設定推算的條件式時鐘
 
+**USB 分頻欄位的局部限制。** 原 APP `0x1874A..0x1882C` 對候選 `RCC_CFGR0` 的先後 read-modify-write 使用 `0xF8FF0000`、`0xFF80FFFF`、`0xFFC0FFFF` 等遮罩；第二個遮罩清除 bit 22，後續已核對的成功路徑沒有重新設定該 bit。若各次讀寫正確作用於同一暫存器且無非同步改寫，函式正常切換至 PLL 時的 `USBPRE[23:22]` 只能為 **00 或 10**，視 bit 23 初值而定。
+
+[WCH V2.2 手冊 §3.4.2](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)將 00／10 分別列為 PLL 不分頻／除以 3，96 MHz PLL 取得 48 MHz USB 時鐘需 01（除以 2）。因此若 PLL 實際為 96 MHz 且其餘候選映射與時鐘條件成立，此函式返回時的候選 USB 時鐘分別為 96／32 MHz，不能當成已配置 48 MHz。這不證明 USB 已啟用、後續程式沒有改分頻、實際使用 USB 或實機故障；未量測時鐘或執行裝置。檢查器固定指令窗口並枚舉四種欄位初值。
+
+
 原 APP `0x187D2..0x18806` 對候選 `RCC_CFGR0` 做 read-modify-write：以 `0xFFC0FFFF` 清除 bits 16–21，再 OR `0x00290000`。若讀寫之間沒有干擾且暫存器採用 [WCH 手冊 V2.2 §3.4.2](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)的 CH32V20x_D8W 定義，這組欄位是 PLLSRC=1、PLLXTPRE=0、PLLMUL=`1010`，分別對應 HSE、HSE 除以 4、乘以 12。與先前官方 96 MHz 範例不只算術相符，**這三個欄位編碼也相符**。
 
 此結論不代表其他寄存器欄位、實體 HSE、PLL 鎖定、後續改寫或最後 SCK 已驗證；若候選映射或執行條件不成立也不適用。檢查器固定原始指令窗口，並核對清除遮罩與三個欄位的整數運算；不操作硬體。

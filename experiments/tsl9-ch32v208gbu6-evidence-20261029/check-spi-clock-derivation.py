@@ -29,4 +29,13 @@ if 8000000 * 12 // 8 != 12000000:
     raise SystemExit('Unexpected conditional SCK arithmetic')
 if 32000000 // 4 != 8000000 or (32000000 // 4) * 12 != 96000000:
     raise SystemExit('Unexpected documented candidate oscillator arithmetic')
+usb_fields = set()
+for initial in range(4):
+    reg = (initial << 22) & 0xf8ff0000
+    reg &= 0xff80ffff
+    reg = (reg | 0x400) & 0xffc0ffff
+    reg = (reg | pll_config) & 0xfffffffc | 2
+    usb_fields.add((reg >> 22) & 3)
+if usb_fields != {0, 2}:
+    raise SystemExit('Unexpected conditional USB prescaler fields')
 print('Clock instruction windows and conditional arithmetic verified; target not executed.')

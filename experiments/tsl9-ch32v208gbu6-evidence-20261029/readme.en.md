@@ -68,6 +68,11 @@ The divider is relative to the candidate SPI peripheral input clock; the actual 
 
 ### Conditional clock derived from startup
 
+**Local USB prescaler constraint.** In the original APP `0x1874A..0x1882C`, candidate `RCC_CFGR0` read-modify-write operations use masks including `0xF8FF0000`, `0xFF80FFFF`, and `0xFFC0FFFF`. The second clears bit 22 and the examined success path does not set it again. If the accesses target the same register correctly and no asynchronous write intervenes, `USBPRE[23:22]` at normal PLL-switch return can only be **00 or 10**, depending on the initial bit 23.
+
+[WCH manual V2.2 section 3.4.2](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf) lists 00/10 as PLL undivided/divided by 3, and requires 01 (divide by 2) for a 48 MHz USB clock from a 96 MHz PLL. Thus, if the PLL is actually 96 MHz and the other candidate mapping and clock conditions hold, this function's return gives candidate USB clocks of 96/32 MHz, not a proven 48 MHz configuration. This does not establish USB enablement, absence of later prescaler changes, actual USB use or device failure; no clocks were measured or device executed. The checker pins instruction windows and enumerates all four initial field values.
+
+
 At `0x187D2..0x18806`, the original APP performs read-modify-write on candidate `RCC_CFGR0`: mask `0xFFC0FFFF` clears bits 16–21 before ORing `0x00290000`. If there is no intervening interference and the register follows [WCH manual V2.2 section 3.4.2](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf) for CH32V20x_D8W, the resulting fields are PLLSRC=1, PLLXTPRE=0 and PLLMUL=`1010`: HSE, HSE divided by 4, and multiplication by 12, respectively. The **three field encodings**, as well as the arithmetic, match the earlier official 96 MHz example.
 
 This does not verify other register fields, physical HSE, PLL lock, later writes or the final SCK, and depends on the candidate mapping and execution conditions. The checker pins the original instruction window and checks the clear mask and three fields arithmetically; no hardware is operated.
