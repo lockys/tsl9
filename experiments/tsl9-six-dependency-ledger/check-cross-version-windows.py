@@ -446,6 +446,15 @@ with reference.open('rb') as f:
         raise SystemExit('Record and settings interval relationship changed')
     if not (record_base<=0x2000c268 and 0x2000c26a<=settings and settings+12+4<=settings+112):
         raise SystemExit('Mode flag and fallback copy ranges overlap')
+    neighbor=read_window(f,0x1178c,0x70)
+    if hashlib.sha256(neighbor).hexdigest()!='a64e88c88446ced3857e8e64d1187bab6780cd159c3fd49c1c740807bef37d19':
+        raise SystemExit('Sequence neighbor instruction window changed')
+    if pcrel_target(0x117ac,neighbor[0x20:0x28],0x517,0x50513)!=0x2000c028 or pcrel_target(0x117c0,neighbor[0x34:0x3c],0x517,0x50513)!=0x2000c028:
+        raise SystemExit('Neighbor compare/copy destination changed')
+    if neighbor[0x62:0x66]!=bytes.fromhex('23a82115'):
+        raise SystemExit('Neighbor GP+336 word store changed')
+    if not (0x20004000+332+4==0x20004000+336 and 0x20004000+340<=0x2000c028 and 0x2000c028+15<=0x20010000):
+        raise SystemExit('Sequence neighbor ranges changed')
 # Scan one explicit pointer-producing ADDI immediately followed by SB/SH/SW or C.SW.
 for ident,version,length,*_ in cases:
     state=different_offsets.get(ident,332)
