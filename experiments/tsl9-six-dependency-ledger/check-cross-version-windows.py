@@ -172,4 +172,28 @@ for ident,version,length,target,_,_ in cases:
                     hits.append(displacement)
     if hits!=[different_offsets.get(ident,332)]:
         raise SystemExit('Cross-version sequence GP displacement changed: '+ident)
-print('18 candidate data matches and 18 version-relative consumers for each of sequence, counter and mode. Excluded regions not read.')
+entries=(0x1842c,0x1844a,0x1843c,0x183fe,0x1843a,0x1859a,
+         0x18536,0x185e0,0x18634,0x1857c,0x185ca,0x18624,
+         0x186d8,0x18720,0x186ca,0x18672,0x186ac,0x186aa)
+for (ident,version,_,_,_,_),entry in zip(cases,entries):
+    path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
+    with path.open('rb') as f:
+        word=int.from_bytes(read_window(f,base,4),'little')
+        initialization=read_window(f,entry,16)
+    if word&0xfff!=0x6f:
+        raise SystemExit('Unexpected reset JAL: '+ident)
+    imm=((word>>31)<<20)|(((word>>12)&255)<<12)|(((word>>20)&1)<<11)|(((word>>21)&1023)<<1)
+    imm-=1<<21 if imm&(1<<20) else 0
+    if (base+imm)&0xffffffff!=entry:
+        raise SystemExit('Unexpected reset target: '+ident)
+    for offset,auipc_low,addi_low,expected in ((0,0x197,0x18193,0x20004000),(8,0x117,0x10113,0x20010000)):
+        auipc=int.from_bytes(initialization[offset:offset+4],'little')
+        addi=int.from_bytes(initialization[offset+4:offset+8],'little')
+        if auipc&0xfff!=auipc_low or addi&0xfffff!=addi_low:
+            raise SystemExit('Unexpected reset register initialization: '+ident)
+        immediate=addi>>20
+        immediate-=4096 if immediate&2048 else 0
+        value=(entry+offset+(auipc&0xfffff000)+immediate)&0xffffffff
+        if value!=expected:
+            raise SystemExit('Unexpected GP or SP value: '+ident)
+print('18 candidate data/consumer windows and entry GP/SP values verified. Excluded regions not read; target not executed.')
