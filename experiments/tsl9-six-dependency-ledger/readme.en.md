@@ -165,6 +165,12 @@ By contrast, three timer/registration slot targets in candidate V1.31 → V1.40 
 
 The [same checker](check-gatt-resident-versions.py) verifies both loader windows, source immediates, seven slots and the three pairs of body hashes; it does not execute either loader. Identical source bytes do not establish that real RAM was copied or that installed slots or ABIs match, and do not cover other resident versions or peripheral effects.
 
+#### APP resident version-prefix gate
+
+Original APP initialization `0x199F4..0x19A08` loads a comparison target from `0x4003C`, loads the candidate version-string pointer from `0x40034`, and calls it with **21 bytes** at `0x1AB1C` as comparison input. The original bytes are `CH32V20x_BLE_LIB_V1.3`, excluding the following NUL. A nonzero return branches to `0x19A0A`; zero enters the self-loop at `0x19A08`.
+
+The first 21 bytes of the V1.31 candidate string match the APP prefix; V1.40 differs at byte 21. If each candidate loader has correctly copied the same comparison body, slots and pointers are valid, the existing candidate BOOL equality convention applies and no interference occurs, the respective results are nonzero and zero, producing different branches. This is a conditional static comparison, not proof of an installed version, an executed comparison or a device that must hang; interrupts, reset and other external effects are not excluded. The [version checker](check-gatt-resident-versions.py) checks both HEX strings, APP prefix and comparison bodies; the [independent instruction checker](check-key-control-flow.py) checks the original comparison and branch.
+
 #### Payload write bound and reset/RAM cross-check
 
 On each entry to the payload branch, `0x89FA` reads the counter as an unsigned halfword; `0x89FE..0x8A02` branches to the state-clear path if it exceeds 1039, before this payload store. Otherwise, `0x8A12..0x8A1C` uses the same register holding the old counter to write one byte to `0x2000B9D8+counter`. With normal instruction flow and undisturbed registers, this particular store must therefore fall in `[0x2000B9D8,0x2000BDE8)`. The local bound is independent of the length freshly read and passed to `0x14056`; it does not bound reads or writes inside the excluded callee.
@@ -522,6 +528,6 @@ Conversely, original `0x907A..0x90AC` requests that the 180-byte work table be c
 
 ## Independent audit of recent branches
 
-Following the earlier `0xA32E` branch-direction error, the [static checker](check-key-control-flow.py) reads **only twenty-two explicit windows** from the original BIN, validates their hashes, places each in radare2 temporary memory for RISC-V disassembly, and checks 85 selected instructions. It covers counter, selector, sequence state, GATT registration, fixed-filter table copying, and candidate EXTI/SPI receive, main-loop and initialization paths. A negative check changes a branch bit in temporary memory; the original BIN is not modified.
+Following the earlier `0xA32E` branch-direction error, the [static checker](check-key-control-flow.py) reads **only twenty-three explicit windows** from the original BIN, validates their hashes, places each in radare2 temporary memory for RISC-V disassembly, and checks 93 selected instructions. It covers counter, selector, sequence state, GATT registration, the resident version gate, fixed-filter table copying, and candidate EXTI/SPI receive, main-loop and initialization paths. A negative check changes a branch bit in temporary memory; the original BIN is not modified.
 
 Run `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`. On Windows, provide the local path to `r2.exe`; an existing radare2 with RV32C support is required and the checker downloads nothing. This audit confirms the listed instructions and destinations; it does **not** prove the semantics of other instructions, dynamic reachability, callee contracts or hardware effects. It does not read excluded ranges, execute the target or run an emulator.

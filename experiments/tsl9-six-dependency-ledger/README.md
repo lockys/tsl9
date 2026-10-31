@@ -165,6 +165,12 @@ WCH V1.30 標頭將 slot 63（`0x40034+4*63=0x40130`）定義為 `GATTServApp_Re
 
 [同一檢查器](check-gatt-resident-versions.py)核對兩版 loader 窗口、來源立即數、七個槽及三對本體雜湊；它不執行 loader。三段來源位元組一致不證明實機 RAM 已被複製、實際 slot 值或 ABI 相同，也不涵蓋其他 resident 版本和周邊副作用。
 
+#### APP 的 resident 版本前綴守衛
+
+原 APP 初始化 `0x199F4..0x19A08` 從 `0x4003C` 取得比較目標、從 `0x40034` 取得候選版本字串指標，以 `0x1AB1C` 的 **21 bytes** 為比較值後呼叫；原始 bytes 為 `CH32V20x_BLE_LIB_V1.3`，不含後續 NUL。比較返回非零時跳到 `0x19A0A`，返回零則進入 `0x19A08` 自我迴圈。
+
+前述 V1.31 候選字串的前 21 bytes 與 APP 前綴相同；V1.40 在第 21 個 byte 不同。若各候選 loader 已正確載入相同的比較本體、slot／指標有效、以既有候選 BOOL 相等慣例執行且無干擾，兩者將分別取得非零／零結果，因而走不同分支。這是條件式靜態比對，不證明實機安裝版本、比較呼叫曾執行或實機一定卡住；中斷、重置及其他外部效果亦未排除。兩份 HEX 的版本字串、APP 前綴及比較本體可由[版本檢查器](check-gatt-resident-versions.py)核對；[獨立指令覆核](check-key-control-flow.py)檢查原始比較與分支。
+
 #### Payload 寫入範圍與 reset／RAM 的交叉檢查
 
 每次走到 payload 分支時，`0x89FA` 以 unsigned halfword 讀取 counter；`0x89FE..0x8A02` 對 counter 大於 1039 的情況轉至清除 state 的路徑，不執行這次 payload store。通過後，`0x8A12..0x8A1C` 使用同一暫存器中的舊 counter，向 `0x2000B9D8+counter` 寫入一個 byte。因此在正常指令流程、暫存器未受干擾的條件下，這一個 store 的位置必落在 `[0x2000B9D8,0x2000BDE8)`；這個局部界限獨立於重新讀取並傳給 `0x14056` 的長度值，不保證被呼叫函式本身的讀寫範圍。
@@ -522,6 +528,6 @@ APP 的 `0x9124` 對非零延遲先掃描 15 筆、每筆 12-byte 的工作表�
 
 ## 近期分支的獨立覆核
 
-針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀二十二個明確窗口**，核對窗口雜湊後，將窗口放入 radare2 的暫時記憶體反組譯，並比對 85 個指定指令。覆蓋 counter、selector、序列狀態、GATT 註冊、固定濾波表複製及候選 EXTI／SPI 接收、主迴圈與初始化路徑。檢查器對記憶體中的一個分支位元做負例；不修改原 BIN。
+針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀二十三個明確窗口**，核對窗口雜湊後，將窗口放入 radare2 的暫時記憶體反組譯，並比對 93 個指定指令。覆蓋 counter、selector、序列狀態、GATT 註冊、resident 版本守衛、固定濾波表複製及候選 EXTI／SPI 接收、主迴圈與初始化路徑。檢查器對記憶體中的一個分支位元做負例；不修改原 BIN。
 
 執行 `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`。Windows 也可傳入本機 `r2.exe` 的路徑；需自行提供支援 RV32C 的 radare2，不會下載工具。此覆核確認所列指令及目的地，**不證明**其餘指令語意、動態可達性、callee 契約或硬體效果；也未讀取排除區、執行目標或執行模擬器。

@@ -30,6 +30,7 @@ WINDOWS = {
     (0x9008, 0xa): '6a43842f4714c71dbbb2f0cafe1f4a4685cbb81a8987c6f053911a13e3ac1386',
     (0x8e88, 0xa): 'c7303f11d55cf0fa04ad919ece254a5fd120c49041e5696c712ac82604f1e254',
     (0x8fb8, 0x18): '1f667a31ede0bbdaafd4cf4bdf21959115cf586d56a55dd6489c854e9c0066f6',
+    (0x199e2, 0x36): '1aed8b9dbcf82274b0bdc4fad14dfffbb39cfe406e286e240eea85c1dd215598',
 }
 EXPECTED = {
     0xae54: 'bne a4, a5, 0xaf4c', 0xae5e: 'bne a4, a5, 0xaf4c',
@@ -76,6 +77,10 @@ EXPECTED = {
     0x8fbc: 'auipc a3, 0x11', 0x8fc0: 'addi a3, a3, -448',
     0x8fc4: 'li a2, 16', 0x8fc6: 'li a1, 4', 0x8fc8: 'mv a0, gp',
     0x8fcc: 'jalr a5', 0x8fce: 'lw a5, 80(s0)',
+    0x199f4: 'lw a5, 60(s0)', 0x199f6: 'lw a0, 52(s0)',
+    0x199fa: 'li a2, 21', 0x199fc: 'auipc a1, 0x1',
+    0x19a00: 'addi a1, a1, 288', 0x19a04: 'jalr a5',
+    0x19a06: 'bnez a0, 0x19a0a', 0x19a08: 'j 0x19a08',
 }
 
 def disassemble(tool, base, data):
