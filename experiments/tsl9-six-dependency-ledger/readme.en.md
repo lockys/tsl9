@@ -476,6 +476,12 @@ Of 1,024 numerical combinations, 8 requested windows overlap the excluded range 
 
 ### Distinguishing the four pattern pairs
 
+#### Unexpected states aliasing within the known window
+
+For the same address formula, the six-byte window stays inside the known 48 bytes for states 0–7 on channel 0, 0–5 on channel 1, 0–3 on channel 2, and 0–1 on channel 3. Excluding expected states 0/1 leaves **12 numerical combinations** that still select a later channel's expected pattern. This classification does not establish that those states are reachable; an in-window address alone does not establish a valid state.
+
+For example, channel 0/state 2 and channel 1/state 0 both select `0x1A644`. If the first read selects the former, its six-byte comparison succeeds, the post-comparison reread remains 2, and the other memory and flow conditions hold, the local `0x12072..0x12090` path temporarily stores 3 for channel 0, takes the marker path and clears it to 0. The matching pattern therefore does not by itself identify the channel currently processed. This is a conditional static counterexample, not an observed device defect. The [checker](check-sequence-window-domains.py) enumerates byte states with integer arithmetic without reading excluded data or executing the target.
+
 The 48 original bytes at `0x1A638..0x1A668` match the [reconstructed data](../../src/native/receive/sequence_pattern_data.c). For each channel, the state 0/1 six-byte patterns begin `02 00`/`03 00` and share their last four bytes; those four-byte suffixes differ across all four channels. Thus, provided state is 0/1, the candidate `0x4003C` six-byte equality contract holds and input remains stable, all eight patterns are pairwise distinct and the same six-byte input cannot match two groups at once.
 
 Specifically, if all four states begin at 0 and two successive inputs satisfying the length-byte-6 / second-data-byte-zero guards exactly match one channel's state 0 then state 1 patterns, with comparison and memory undisturbed between calls, the first sets that channel to 1; the second resets it to 0 and enters the marker path at `0x1207A`. This does not cover arbitrary interleaving or unknown initial state and does not establish that the device received these inputs, the meaning of the other marker-word bytes or any physical button function.

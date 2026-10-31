@@ -30,4 +30,18 @@ for channel in range(4):
     total_beyond += len(beyond)
 if (total_excluded, total_beyond) != (8, 52):
     raise SystemExit('Classification totals changed')
+aliases = []
+for channel in range(4):
+    in_window = [state for state in range(256)
+                 if 2 * channel + state < 8]
+    if in_window != list(range(8 - 2 * channel)):
+        raise SystemExit('In-window state classification changed')
+    for state in in_window:
+        if state > 1:
+            row = 2 * channel + state
+            aliases.append((channel, state, row // 2, row % 2))
+            if row // 2 <= channel:
+                raise SystemExit('Unexpected pattern alias direction')
+if len(aliases) != 12 or (0, 2, 1, 0) not in aliases:
+    raise SystemExit('Unexpected in-window alias set')
 print('Sequence window domains verified; excluded bytes and target not read or executed.')

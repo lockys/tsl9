@@ -476,6 +476,12 @@ IRQ `0x12C32` 在 32-byte frame 中以 `SP+12` 作結構起點，故 DLC 位於 
 
 ### 四組樣式的區分性
 
+#### 已知窗口內的非預期 state 別名
+
+相同公式中，完整六-byte 請求落在已知 48-byte 視窗的 state：channel 0 為 0–7、channel 1 為 0–5、channel 2 為 0–3、channel 3 為 0–1。扣除預期的 0／1 後，還有 **12 組**數值組合落在窗口內，但會指向後面 channel 的預期樣式。此範圍判斷不證明那些 state 可達，也不能以地址落在窗口內推定狀態有效。
+
+例如 channel 0、state 2 與 channel 1、state 0 都選擇 `0x1A644`。如果首次讀取為前者、該六-byte 比對相等、比較後重讀仍為 2，且其餘記憶體與流程條件正常，原 `0x12072..0x12090` 的局部流程會將 channel 0 的 state 從 2 暫寫為 3，進入標記路徑後清為 0；不能從匹配的樣式推定原迴圈正在處理 channel 1。這是靜態條件式反例，並非已觀察到實機錯誤。[檢查器](check-sequence-window-domains.py)以整數算術枚舉所有 byte state，不讀取排除資料或執行目標。
+
 原始 `0x1A638..0x1A668` 的 48 bytes 與[已重建資料](../../src/native/receive/sequence_pattern_data.c)相符。每個 channel 的 state 0／1 六-byte 樣式依序為 `02 00`／`03 00` 加上同一組後四 bytes；四個 channel 的後四 bytes 互不相同。因此在 state 只為 0／1、候選 `0x4003C` 的六-byte 等值比較契約成立且輸入穩定的條件下，這八個樣式兩兩不同，不會由同一個六-byte 輸入同時命中兩組。
 
 更具體地說，若四個 state 初始均為 0，連續兩次符合讀得的長度 byte 為 6／資料第二 byte 為 0 的輸入，分別完全匹配同一 channel 的 state 0 與 state 1 樣式，且比較／記憶體在呼叫間沒有干擾，則第一次使該 channel 變成 1；第二次使其回到 0 並進入 `0x1207A` 的標記路徑。這不是對任意交錯輸入或未知初始 state 的結論，也不證明裝置實際收到這些值、標記字其他 bytes 的意義或對應按鍵功能。
