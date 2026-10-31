@@ -364,7 +364,9 @@ def transfer_target(data, pc):
     if w & 127 != 111: return None
     imm=((w>>31&1)<<20)|((w>>21&1023)<<1)|((w>>20&1)<<11)|((w>>12&255)<<12)
     return (pc+signed(imm,21)) & 0xffffffff
-for (ident,version,length,*_),setter_pc,expected in zip(cases,setter_pcs,expected_transfers):
+flag_offsets=(0xc264,0xc264,0xc264,0xc264,0xc264,0xc26c,0xc268,0xc26c,0xc264,
+              0xc260,0xc264,0xc264,0xc264,0xc264,0xc264,0xc264,0xc268,0xc268)
+for number,((ident,version,length,*_),setter_pc,expected,flag_offset) in enumerate(zip(cases,setter_pcs,expected_transfers,flag_offsets)):
     path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
     actual=[]
     with path.open('rb') as f:
@@ -388,4 +390,7 @@ for (ident,version,length,*_),setter_pc,expected in zip(cases,setter_pcs,expecte
         suffix=bytes.fromhex('a183858b0d458945'+branch+'0146')
         if read_window(f,expected[1]-12,12)!=suffix:
             raise SystemExit('Second mode transfer prefix changed: '+ident)
+        flag=pcrel_target(expected[1]-20,read_window(f,expected[1]-20,8),0x797,0x7d783)
+        if flag!=0x20000000+flag_offset or not (0x20004000+(136 if number<8 else 128)<=flag and flag+2<=0x20000000+ends[number]):
+            raise SystemExit('Second mode flag target or reset coverage changed: '+ident)
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
