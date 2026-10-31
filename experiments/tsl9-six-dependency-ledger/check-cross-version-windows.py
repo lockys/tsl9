@@ -301,4 +301,42 @@ for number,(ident,version,length,_,_,_) in enumerate(cases):
                     hits.append(lo+pos)
     if len(hits)!=1:
         raise SystemExit('Candidate counter clear call changed: '+ident)
-print('18 candidate data/consumers, reset, counter and direct sequence store scans verified. Excluded regions not read; target not executed.')
+setter_pcs=(0xced8,0xcee2,0xcefc,0xceba,0xceba,0xcfb0,0xcf4c,0xcf8a,0xcfde,
+            0xcf86,0xcfce,0xcfd6,0xd078,0xd078,0xd02a,0xd02a,0xd05c,0xd05c)
+mode_anchors=(0xcdc2,0xcdcc,0xcde6,0xcda4,0xcda4,0xce9a,0xce36,0xce74,0xcec8,
+              0xce70,0xceb8,0xcec0,0xcf62,0xcf62,0xcf14,0xcf14,0xcf46,0xcf46)
+states=(0xbf34,0xbf34,0xbf34,0xbf34,0xbf34,0xbf3c,0xbf38,0xbf3c,0xbf34,
+        0xbf30,0xbf34,0xbf34,0xbf34,0xbf34,0xbf34,0xbf34,0xbf38,0xbf38)
+with reference.open('rb') as f:
+    setter=read_window(f,0xd05c,0x20)
+if hashlib.sha256(setter).hexdigest()!='7aeb37e5fa35b5285db6506c1cb8a34b1774f2ed427169e29dd2405aaafa5259':
+    raise SystemExit('Reference mode setter changed')
+mode_pattern=next(pattern for name,pattern,_,_ in consumers if name=='mode')
+def pcrel_target(pc, data, auipc_low, second_low):
+    a=int.from_bytes(data[:4],'little')
+    b=int.from_bytes(data[4:8],'little')
+    if a&0xfff!=auipc_low or b&0xfffff!=second_low:
+        raise SystemExit('Unexpected PC-relative instruction pair')
+    immediate=b>>20
+    immediate-=4096 if immediate&2048 else 0
+    return (pc+(a&0xfffff000)+immediate)&0xffffffff
+for (ident,version,_,_,_,mode),setter_pc,anchor,state_offset in zip(cases,setter_pcs,mode_anchors,states):
+    path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
+    state=0x20000000+state_offset
+    with path.open('rb') as f:
+        block=read_window(f,setter_pc,0x20)
+        table=read_window(f,anchor,len(mode_pattern))
+        enable=read_window(f,anchor-0x6a,8)
+        selector=read_window(f,anchor-0x60,8)
+        mode_load=read_window(f,anchor-0x40,8)
+    if block[8:]!=setter[8:] or pcrel_target(setter_pc,block,0x797,0x78793)!=state:
+        raise SystemExit('Mode setter changed: '+ident)
+    if (table[:8]!=mode_pattern[:8] or table[16:]!=mode_pattern[16:] or
+        pcrel_target(anchor+8,table[8:16],0x797,0x78793)!=mode):
+        raise SystemExit('Mode table lookup changed: '+ident)
+    for pc,data,first,second,expected in ((anchor-0x6a,enable,0x797,0x7c783,state),
+                                         (anchor-0x60,selector,0x717,0x74703,state+2),
+                                         (anchor-0x40,mode_load,0x717,0x74703,state+1)):
+        if pcrel_target(pc,data,first,second)!=expected:
+            raise SystemExit('Mode state read address changed: '+ident)
+print('18 candidate data/consumers, reset bounds and mode setter-to-lookup addresses verified. Excluded regions not read; target not executed.')
