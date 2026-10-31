@@ -330,6 +330,8 @@ V1.40 候選的兩次 copy 也重疊一個 word，但目的改為 `[0x20002EBC,0
 
 原 `0x131A6..0x131B4` 每次從 `0x4004C` 載入間接目標，傳入目的 `*(GP+0x54)+12`、來源 `0x1A69C` 與長度 4。既有 [SDK 複製函式核對](../tsl9-resident-copy-arch/README.md)指出候選槽值為 `0x20000332`，其 58-byte 本體以來源／目的／長度執行順向 byte 複製，並先存取 `0x4002420C` 與執行 `FENCE.I`。
 
+**指令同步的順序限制。** 已保存的 V1.31 候選 copy 本體在 `0x2000033E` 執行唯一的 `FENCE.I`，之後才於 `0x20000362` 逐 byte 寫入目的；完成迴圈後直接進入還原與返回，該本體沒有第二條 `FENCE.I`。[RISC-V Zifencei 規格](https://docs.riscv.org/reference/isa/unpriv/zifencei.html)描述的是同一 hart 的既有 store 與後續 instruction fetch 之間的同步。因此，此**複製前**指令本身不足以證明之後寫入的內容已對後續指令擷取同步，也不能僅憑它推論 BLE 暫存器寫入效果。這不代表呼叫者沒有另做同步、資料複製一定需要指令同步，或原機採用候選本體；不涉及實際執行。[檢查器](check-default-copy-pointer-guard.py)固定候選原始 58-byte 視窗，檢查指令邊界與 `FENCE.I` 位置。
+
 依[設定初始化分析](../tsl9-original-prebinding-settings/README.md)，若 reset 所設 GP 與初始 pointer 未被改寫，目的為 `0x2000C2A8..0x2000C2AC`；其初始化路徑會檢查四個 byte 是否為 ASCII 32–126，遇到不符合條件者可進入預設值流程。**若**原機槽確為該候選、來源／目的有效且呼叫正常返回，則四個來源 bytes 會被複製到此目的範圍。這不證明預設內容、實際設定語義、每次開機都執行該路徑，或實機 ROM／Flash 寫入結果；排除資料內容未讀取。
 
 ### 預設資料目的指標的局部限制

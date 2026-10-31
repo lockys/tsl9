@@ -16,8 +16,22 @@ for source, address, size, expected in windows:
     path, base = paths[source]
     with path.open('rb') as stream:
         stream.seek(address - base)
-        if hashlib.sha256(stream.read(size)).hexdigest() != expected:
+        data = stream.read(size)
+        if hashlib.sha256(data).hexdigest() != expected:
             raise SystemExit('Original or candidate instruction window changed')
+        if source == 'candidate' and address == 0x405a2:
+            helper = data
+at = 0
+fences = []
+while at < len(helper):
+    n = 4 if helper[at] & 3 == 3 else 2
+    if at + n > len(helper):
+        raise SystemExit('Truncated candidate instruction')
+    if n == 4 and helper[at:at+4] == bytes.fromhex('0f100000'):
+        fences.append(at)
+    at += n
+if fences != [12]:
+    raise SystemExit('Candidate helper fence.i placement changed')
 if ((0 + 12) & 0xffffffff) != 12 or ((0xfffffff4 + 12) & 0xffffffff) != 0:
     raise SystemExit('Unexpected RV32 pointer arithmetic')
 if not (0x40024000 <= 0x4002420c and 0x40024210 <= 0x40026000):
