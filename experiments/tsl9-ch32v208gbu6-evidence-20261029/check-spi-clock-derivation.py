@@ -7,6 +7,9 @@ image = root / 'firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.6
 windows = {
     (0x1874a, 234): 'e0debe8b77025cfb56144045a0aa7524b7a2cd2ad0bd3daa2d880408ad9758f5',
     (0x18834, 174): '1fe76c3ddc25809287b5ebaf84cd508bcffeebc7b442eac36b33a38ab2f81e1e',
+    (0x1908c, 18): '8a1f8aa217067a65d4a6cfa6420d03b423019f47471c699a98afc65062a01b0a',
+    (0x19818, 96): '61848e7fb444d79939f528d95f493396aa250fdbb54a534b56741753c431cedb',
+    (0x198ea, 20): '25455610a509c997fd56813fd8a286d8dc7ef793fbd8bdfb88c25c599e71b3f4',
 }
 with image.open('rb') as stream:
     for (address, size), expected in windows.items():
@@ -38,4 +41,8 @@ for initial in range(4):
     usb_fields.add((reg >> 22) & 3)
 if usb_fields != {0, 2}:
     raise SystemExit('Unexpected conditional USB prescaler fields')
+if ((0xffff3fff & 0x00c00000) != 0x00c00000 or
+        (0x0000c000 & 0x00c00000) != 0 or
+        ((0x0000c000 >> 14) & 3) != 3 or 96000000 // 8 != 12000000):
+    raise SystemExit('Unexpected candidate ADC/USB preservation arithmetic')
 print('Clock instruction windows and conditional arithmetic verified; target not executed.')

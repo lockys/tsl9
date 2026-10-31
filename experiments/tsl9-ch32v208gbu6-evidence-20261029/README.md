@@ -68,6 +68,11 @@ V4.1.60 `[0x16896,0x16994)` 的 254 bytes 與目前 C 診斷 ELF 對應位址逐
 
 ### 以啟動設定推算的條件式時鐘
 
+**後續 callback 的 ADC 分頻與時鐘字還原。** 在候選 callback `0x197F0` 中，`0x19820` 先把 `RCC_CFGR0` 保存到 `s10`；`0x19872..0x19874` 以 `0xC000` 呼叫 `0x1908C`。後者以 `0xFFFF3FFF` 清除 bits 14–15，再 OR 傳入值，因而在此 call 將 `ADCPRE` 設為 `11` 並保留 USBPRE bits；`0x198F2` 稍後又將保存的完整 word 寫回。按 [WCH 手冊 §3.4.2](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)，`ADCPRE=11` 對應 PCLK2／8，ADC clock 上限為 14 MHz；若 PCLK2 確為先前條件推算的 96 MHz，該階段候選 ADC clock 為 12 MHz。
+
+這些結果要求呼叫／callee 正常完成、保存的 `s10` 與映射正確、記憶體有效及無干擾；單一 callback 不證明實際 USB 分頻從未改變。整 word 還原也意味若其他路徑在保存後改寫可寫欄位，該還原可能覆蓋其變更，不能忽略併發或推論實機有競態。相關原始指令窗口與數值運算由檢查器離線核對，沒有執行裝置或量測時鐘。
+
+
 **USB 分頻欄位的局部限制。** 原 APP `0x1874A..0x1882C` 對候選 `RCC_CFGR0` 的先後 read-modify-write 使用 `0xF8FF0000`、`0xFF80FFFF`、`0xFFC0FFFF` 等遮罩；第二個遮罩清除 bit 22，後續已核對的成功路徑沒有重新設定該 bit。若各次讀寫正確作用於同一暫存器且無非同步改寫，函式正常切換至 PLL 時的 `USBPRE[23:22]` 只能為 **00 或 10**，視 bit 23 初值而定。
 
 [WCH V2.2 手冊 §3.4.2](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)將 00／10 分別列為 PLL 不分頻／除以 3，96 MHz PLL 取得 48 MHz USB 時鐘需 01（除以 2）。因此若 PLL 實際為 96 MHz 且其餘候選映射與時鐘條件成立，此函式返回時的候選 USB 時鐘分別為 96／32 MHz，不能當成已配置 48 MHz。這不證明 USB 已啟用、後續程式沒有改分頻、實際使用 USB 或實機故障；未量測時鐘或執行裝置。檢查器固定指令窗口並枚舉四種欄位初值。
