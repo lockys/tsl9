@@ -33,3 +33,11 @@
 原始 V4.1.60 的 `0x18AB0..0x18BA2`（242 bytes）及呼叫後的 `0x12E2A..0x12E4C`（34 bytes）均與目前 C 診斷 ELF 的同址 bytes 一致。`0x12E34` 以 `0x40006400` 為第一參數呼叫初始化函式；此位址符合 WCH 的 CAN1 基址。該函式清除控制位 1、設定控制位 0，輪詢狀態位 0，並傳回狀態；其結構與 [WCH CAN 初始化](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_can.c)中的進入／退出初始化及狀態確認相符。這是候選介面對照，並非宣稱兩份函式完全等價。
 
 呼叫返回後，`0x12E38..0x12E4C` 在沒有檢查 a0 返回值的情況下，對 `0x40006414` 進行讀取、OR 2 與寫回，再返回。可考慮日後新增唯讀診斷以呈現初始化返回狀態，但尚未實作；靜態指令不證明初始化失敗、實際暫存器內容或可安全讀寫實機。
+
+## 原廠板照片與 SPI 協定對照
+
+使用者提供的原廠板照片顯示 `TSL9`、三組 CAN H/L 標示，至少一顆晶片可讀為 `MCP2515`；另一顆相似但照片不足以確認完整料號。疑似主控晶片印字尚不清楚。照片沒有納入公開儲存庫；上述為目視觀察，未量測電路連線。
+
+V4.1.60 `[0x16896,0x16994)` 的 254 bytes 與目前 C 診斷 ELF 對應位址逐 byte 一致。既有 [SPI 重建分析](../tsl9-spi-write-providers/README.md)記錄 `0x168DE` 呼叫底層傳輸時先送 `0x02` 與地址，`0x1693E` 先送 `0x05`，再依序送地址、mask、value。這與 [Microchip MCP2515 手冊](https://ww1.microchip.com/downloads/en/DeviceDoc/MCP2515-Stand-Alone-CAN-Controller-with-SPI-20001801J.pdf)的 WRITE／BIT MODIFY 指令格式一致，支持照片中的元件與分析路徑可能相關；通用協定相符不證明訊號實際到達該晶片或成功傳輸。
+
+已觀察路徑的 selector bits 會分別對 `0x40010814` 寫入 `0x10`／`0x01`；若採 WCH GPIOA 映射，數值對應 PA4／PA0，與自製方案的兩個 CS 候選一致。原廠 PCB 的實際網路、主控料號、兩顆晶片數量與接腳對應仍需進一步確認；不應以此推定可刷入。
