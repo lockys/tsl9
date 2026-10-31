@@ -25,6 +25,13 @@ Six writer destinations form contiguous256-byte aligned numeric pages **[0x08077
 
 ### Two candidate erase granularities
 
+**Candidate write-protection grouping.**
+
+Under numerical sector arithmetic using 4 KiB sectors numbered from `0x08000000`, all six settings pages lie in **sector 119**. WCH's [reference manual V2.2 section 32.6](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf) says option-byte `WRP3` bit 7 controls sectors 31–127. If that description applies to the device, sector 119 shares its write-protection control with other sectors. This protection grouping is not the same as the candidate fast erase's 256-byte page granularity.
+
+Section 32.4.7 of the same manual also gives a general statement that each `FLASH_WPR` bit represents 4 KiB; the apparent difference between the descriptions requires clarification before assigning the physical GBU6 protection mapping. The device option bytes, protection state, mapping and write results were not read or confirmed; no protection settings were changed. The [checker](check-erase-page-reference.py) verifies sector arithmetic only.
+
+
 [WCH reference manual V2.2 section 32.2.1](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf) states that fast-programming-related functions must reside in zero-wait Flash. The notes to [CH32V208 datasheet V2.6 Table 2-1](https://atta.szlcsc.com/upload/public/pdf/source/20230601/07AAED594F3221B9A55F84D1BC470848.pdf) identify the listed Flash size as the zero-wait region and list 128/144/160 KiB configurations paired with RAM sizes. If the device uses the corresponding contiguous low mapping, the original APP's candidate fast-erase/program functions `0x18EC4..0x18F56` fit all three zero-wait ranges. This conditional result concerns **function placement**, not a requirement that the programming destination reside in zero-wait Flash.
 
 Numerical compatibility does not establish actual option settings, instruction mapping or successful Flash operation; one interval does not cover the entire call chain, instruction fetches or interrupt conditions. The manual also requires exiting enhanced read mode before programming or erasing; the device mode and compliance remain unknown. The checker pins reconstructed instruction sources and checks function-address arithmetic without modifying Flash.

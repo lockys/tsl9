@@ -36,4 +36,6 @@ documented_max_end = 0x08000000 + 480 * 1024
 need(documented_max_end == 0x08078000)
 need(all(0x08000000 <= p and p + 256 <= documented_max_end for p in pages))
 need(documented_max_end - (max(pages) + 256) == 1280)
+need({(p - 0x08000000) // 4096 for p in pages} == {119})
+need(31 <= 119 <= 127)
 print('Pinned candidate erase sources and six numerical page relationships verified; device behavior unverified.')

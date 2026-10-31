@@ -27,6 +27,13 @@
 
 ### 兩種候選擦除粒度
 
+**寫入保護的候選分組。**
+
+依每 4 KiB 一個 sector、從 `0x08000000` 起編號的條件式算術，六筆設定頁均落於 **sector 119**。WCH [參考手冊 V2.2 §32.6](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)寫道 option-byte 的 `WRP3` bit 7 控制 sector 31–127；若此描述適用原機，sector 119 將與其他 sectors 共用該寫入保護控制。這個保護分組不能與候選快速擦除的 256-byte 單頁粒度畫上等號。
+
+同一手冊 §32.4.7 對 `FLASH_WPR` 又概括寫每個 bit 對應 4 KiB；兩處描述存在需要釐清的差異，不能只憑本文件判定 GBU6 實際保護映射。原機 option bytes、保護狀態、映射與擦寫結果均未讀取或確認；此處沒有修改保護設定。[檢查器](check-erase-page-reference.py)僅核對 sector 算術。
+
+
 [WCH 參考手冊 V2.2 §32.2.1](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)註明快速編程相關函式只能放在零等待 Flash 區。WCH [CH32V208 資料手冊 V2.6 表 2-1](https://atta.szlcsc.com/upload/public/pdf/source/20230601/07AAED594F3221B9A55F84D1BC470848.pdf)的註解指出表列 Flash 容量是零等待區，並列出 128／144／160 KiB 與 RAM 的三種配置。若實機採用該連續低位映射，原 APP 候選快速擦除／編程函式 `0x18EC4..0x18F56` 在三個零等待範圍中均有容納；這是對**執行函式位置**的條件式判斷，不是判斷寫入目標必須位於零等待區。
 
 這項數值相容不能證明原機選項、實際指令位址映射或 Flash 操作成功；完整呼叫鏈、指令讀取及中斷條件亦未由單一區間涵蓋。手冊亦要求編程或擦除前退出 enhanced read mode，實機該模式及是否遵循仍未知。檢查器固定原指令重建來源並驗算函式位址，不改變 Flash。
