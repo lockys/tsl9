@@ -68,6 +68,9 @@ V4.1.60 `[0x16896,0x16994)` 的 254 bytes 與目前 C 診斷 ELF 對應位址逐
 
 ### 以啟動設定推算的條件式時鐘
 
+[WCH 公開的 system clock 範例](https://github.com/openwch/ch32v20x/blob/main/C%2B%2B/Use%20MRS%20Create%20C%2B%2B%20project-example/CH32V203C8T6%2B%2B/User/system_ch32v20x.c)將 CH32V208／D8W 的範例 HSE 註明為 **32 MHz**，96 MHz 範例則註明 `HSE/4 × 12`。因此下述 APP 軟體計算使用的 8 MHz 數值，與此範例的有效 PLL 輸入 `32 MHz/4` 在數學上相同；**不代表照片中的實體晶振是 8 MHz**。這是範例與原 APP 的條件式對照，尚未證明原機 HSE 頻率、預分頻配置、兩者暫存器狀態完全相同或 SCK 實測值；不能據此撤銷下文的 MCP2515 時脈不確定性。檢查器只驗算此數學關係與既有 APP 指令窗口。
+
+
 原 APP `0x1874A..0x18834` 的 HSE 成功分支清除時鐘設定欄位，設定 `0x00290000`，啟用候選 PLL，並等待狀態欄位 `(value&0x0C)==8`。原 APP 自身的 `0x18834` 時鐘查詢在此狀態下，以 multiplier 欄位 10 推算倍率 12；若該設定在查詢時保持不變，其外部來源路徑選擇軟體常數 8,000,000，因此得到 96,000,000。reset 複製的時鐘 shift 表第 0 項在原始初始化資料中為 0；對應 AHB 分頻欄位為 0 時，這份軟體計算不再右移。
 
 再依 [WCH 暫存器定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h)，SPI1 位於 APB2，而成功分支所設 PPRE2 欄位為不分頻；若後續未改時鐘、前述軟體計算與實際時鐘一致，且 SPI 初始化分頻 8 正常生效，則條件式 SCK 為 `96 MHz / 8 = 12 MHz`。HSE 失敗會走另一出口，PLL／切換等待也不保證結束；外部時鐘實際頻率、硬體選項、後續寫入與這個 12 MHz 均未量測或驗證。這是軟體與 WCH 定義交叉推算，不能作為實機 SCK 的證明。[靜態檢查器](check-spi-clock-derivation.py)固定原始指令窗口及表項，不執行目標。

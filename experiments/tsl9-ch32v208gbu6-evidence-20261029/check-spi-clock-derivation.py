@@ -21,4 +21,6 @@ if ((pll_config >> 18) & 15) + 2 != 12:
     raise SystemExit('Unexpected PLL field')
 if 8000000 * 12 // 8 != 12000000:
     raise SystemExit('Unexpected conditional SCK arithmetic')
+if 32000000 // 4 != 8000000 or (32000000 // 4) * 12 != 96000000:
+    raise SystemExit('Unexpected documented candidate oscillator arithmetic')
 print('Clock instruction windows and conditional arithmetic verified; target not executed.')
