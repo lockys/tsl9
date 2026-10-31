@@ -196,4 +196,32 @@ for (ident,version,_,_,_,_),entry in zip(cases,entries):
         value=(entry+offset+(auipc&0xfffff000)+immediate)&0xffffffff
         if value!=expected:
             raise SystemExit('Unexpected GP or SP value: '+ident)
-print('18 candidate data/consumer windows and entry GP/SP values verified. Excluded regions not read; target not executed.')
+ends=(0xc950,0xc950,0xc950,0xc950,0xc950,0xc958,
+      0xc954,0xc958,0xc950,0xc94c,0xc950,0xc954,
+      0xc954,0xc954,0xc954,0xc954,0xc958,0xc958)
+for number,((ident,version,_,_,_,_),entry,end_offset) in enumerate(zip(cases,entries,ends)):
+    path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
+    with path.open('rb') as f:
+        data=read_window(f,entry+0x34,0x1a)
+    start_inst=int.from_bytes(data[:4],'little')
+    upper=int.from_bytes(data[4:8],'little')
+    lower=int.from_bytes(data[8:12],'little')
+    if start_inst&0xfffff!=0x18513 or upper&0xfff!=0x597 or lower&0xfffff!=0x58593:
+        raise SystemExit('Unexpected zero-range setup: '+ident)
+    displacement=start_inst>>20
+    displacement-=4096 if displacement&2048 else 0
+    immediate=lower>>20
+    immediate-=4096 if immediate&2048 else 0
+    start=0x20004000+displacement
+    end=(entry+0x38+(upper&0xfffff000)+immediate)&0xffffffff
+    if displacement!=(136 if number<8 else 128) or end!=0x20000000+end_offset:
+        raise SystemExit('Unexpected zero-range bounds: '+ident)
+    if data[12:]!=bytes.fromhex('6377b500232005001105e36db5fe'):
+        raise SystemExit('Unexpected zero-loop instruction bytes: '+ident)
+    counter=0x20004000+(184 if number<8 else 176)
+    sequence=0x20004000+different_offsets.get(ident,332)
+    if start%4 or end%4 or not (start<=counter<end and start<=sequence and sequence+4<=end):
+        raise SystemExit('State bytes not contained in reset zero range: '+ident)
+    if end-0x2000c000 not in range(2380,2393):
+        raise SystemExit('Unexpected excess beyond 48 KiB example: '+ident)
+print('18 candidate data/consumers, entry GP/SP, and reset zero-range bounds verified. Excluded regions not read; target not executed.')
