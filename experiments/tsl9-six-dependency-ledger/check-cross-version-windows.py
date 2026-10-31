@@ -401,4 +401,24 @@ if hashlib.sha256(record_helper).hexdigest()!='ccc429b7070700aac8d5f1cbb6a1777b2
 record_base=pcrel_target(0x82b6,record_helper[14:22],0x797,0x78793)
 if record_base!=0x2000c1b8 or record_base+14*12+8!=0x2000c268 or record_base+14*12+9!=0x2000c269:
     raise SystemExit('Record 14 and mode flag relationship changed')
+expected_record_transfers=(0xb600,0xc7d0,0xc838,0xd7e2,0xed7e,0xedfc,0xf4da,0xf584,0xfd48,0xfdcc,
+                           0x14e6c,0x14ff2,0x1506e,0x150a2,0x15166,0x151bc,0x15204,0x15234,
+                           0x152c0,0x17d10,0x17e20,0x1827a,0x1836a,0x184c6)
+record_transfers=[]
+with reference.open('rb') as f:
+    for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,0x1ac00)):
+        data=read_window(f,lo,hi-lo)
+        for offset in range(0,len(data)-1,2):
+            if transfer_target(data[offset:offset+4],lo+offset)==0x82a8:
+                record_transfers.append(lo+offset)
+    if tuple(record_transfers)!=expected_record_transfers:
+        raise SystemExit('Record helper direct-transfer candidates changed')
+    for pc in record_transfers:
+        before=read_window(f,pc-16,16)
+        for offset in range(0,16,2):
+            if before[offset:offset+2]==bytes.fromhex('b945') or before[offset:offset+4]==bytes.fromhex('9305e000'):
+                raise SystemExit('Unexpected immediate index 14 candidate')
+    variable=read_window(f,0x184aa,0x20)
+    if hashlib.sha256(variable).hexdigest()!='5b161d1ecef63029d38139262560b8c6664628b6da15ebed116d119b568dd535':
+        raise SystemExit('Variable record-index instruction window changed')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
