@@ -8,6 +8,7 @@ windows = (
     (0x90b0, 0x74, '6ae3c32faae25ccd27fea46de4a04b6246489daafb5f1fa0d9ede512e65f2b31'),
     (0xfe1c, 0x30, '7a52ce15dfac5073d934be93f0dac2b6e0d8339a110f12701fbce225fb30ea49'),
     (0xfb1e, 0x40, '4d645277b8d5df69f0b35adf2c092dc5d40a41b9d7d5533f19b8ceafdd6c8746'),
+    (0xfb5e, 0x44, '6753a5f9195311cc1b93588fa0a7302ea7eeb519f9db8efdc8a39b3d345afd40'),
     (0xa9de, 0xa, 'e5f1820771529754ba18fce55414e81dece3414ec6a3f6b94f4782dfcdf2bb3c'),
     (0x91d0, 0x28, '1f605d21c05deea7076cabe8b625907c0fc4820e0fcba9689a9d1dca1487a3df'),
 )
