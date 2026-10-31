@@ -25,4 +25,6 @@ if max(ids) > 0x7ff:
 encoded = [(value << 5) & 0xffff for value in ids] + [0] * 8
 if len(encoded) != 14 * 4 or any((value << 5) in encoded for value in (0x399, 0x39b)):
     raise SystemExit('Fixed list comparison changed')
+if [i for i, value in enumerate(ids) if value == 0x3e9] != [16] or encoded[16] != 0x7d20:
+    raise SystemExit('Candidate 0x3e9 filter position or encoding changed')
 print('Fixed filter windows verified; resident contracts and target execution unverified.')
