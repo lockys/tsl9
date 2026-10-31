@@ -127,6 +127,14 @@ When both normally parsed length bytes are zero, `0x89DA..0x89DE` enters the che
 
 The caller at `0x8A4C` clears parser state only after `0x14056` returns normally. These conclusions require state, length and buffer not to be changed by aliases, other callbacks, IRQ or DMA; they do not establish that an empty frame is reachable, that the function reads the buffer or returns successfully, or the meaning of any command. The excluded body remains unread.
 
+#### Clock boundary during fragmented parsing
+
+At the start of each ordinary data call, the parser obtains `now` from `0x81B0` and compares `(now - *(GP+160)) mod 2^32`; if greater than 299, `0x891A` clears parser state before storing `now` and processing that fragment. Parser state can persist across calls if this check and other memory conditions permit. `0x8900` saves this call's entry `a0` in `s3`, so the `a0` passed to `0x14056` on checksum completion is the **context of the call completing that frame**, not necessarily the context that began it.
+
+`0x81B0` uses `f(x)=((x*10)&0xFFFFFFFF)>>4`, matching the previously documented clock truncation below. If the saved value came from `x=429496729` and the next slot value is `429496730`, the two `f` values are `268435455` and `0`; the original unsigned difference is `4026531841 > 299`, so this call clears the prior parser state. If the installed slot matches the candidate WCH 0.625 ms tick, this example spans only one tick. It does not establish a device defect or a particular frame failure: slot identity, consecutive sampling, saved state, reachability and absence of interference remain unconfirmed. Clearing state already equal to zero causes no additional state change.
+
+The [checker](check-ingress-clock-boundary.py) reads only allowed instruction windows, directly decodes the branch at `0x8916`, and verifies nine arithmetic boundaries; it does not execute the target or read the excluded `0x14056` body.
+
 #### Payload write bound and reset/RAM cross-check
 
 On each entry to the payload branch, `0x89FA` reads the counter as an unsigned halfword; `0x89FE..0x8A02` branches to the state-clear path if it exceeds 1039, before this payload store. Otherwise, `0x8A12..0x8A1C` uses the same register holding the old counter to write one byte to `0x2000B9D8+counter`. With normal instruction flow and undisturbed registers, this particular store must therefore fall in `[0x2000B9D8,0x2000BDE8)`. The local bound is independent of the length freshly read and passed to `0x14056`; it does not bound reads or writes inside the excluded callee.
