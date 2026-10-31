@@ -6,6 +6,7 @@ root = Path(__file__).resolve().parents[2]
 image = root / 'firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin'
 windows = {
     (0x88e4, 0x54): '17eb10efadd7beb6cc66cf95ee83136f3c9235f080ff0004cf5aff2ce6800ccd',
+    (0x88e4, 0x7e): 'b541098af332377c84924b48fd98b48bfbde889083b951f281d5e3f470f6901a',
     (0x81b0, 0x1a): 'f03a9478d6361df881745068e9c322098ea7317e3bb4d1be5f62f97ff7e4c239',
     (0x8962, 0xf0): '89feb5dfd5228799d8cb19b2ac3a4dcb71555df6ea87ed1cb3d04e1c252f2c8b',
 }
@@ -23,6 +24,16 @@ if offset & 0x1000:
     offset -= 0x2000
 if (word & 0x7f, (word >> 12) & 7, (word >> 15) & 31, (word >> 20) & 31, 0x8916 + offset) != (0x63, 7, 14, 15, 0x891e):
     raise SystemExit('Expected unsigned threshold branch changed')
+# read windows share the same start key; the longer window is retained in raw.
+word = int.from_bytes(raw[0x88e4][0x893e-0x88e4:0x8942-0x88e4], 'little')
+offset = ((word >> 31) & 1) << 12 | ((word >> 7) & 1) << 11 | ((word >> 25) & 63) << 5 | ((word >> 8) & 15) << 1
+if offset & 0x1000: offset -= 0x2000
+if (word & 0x7f, (word >> 12) & 7, (word >> 15) & 31, (word >> 20) & 31, 0x893e+offset) != (0x63, 6, 15, 18, 0x8962):
+    raise SystemExit('Expected input-length branch changed')
+if raw[0x88e4][0x891a-0x88e4:0x8922-0x88e4] != bytes.fromhex('238e010823a0a10a'):
+    raise SystemExit('Timeout clear and timestamp store changed')
+if not (200<=299 and 400-200<=299 and 400>299):
+    raise SystemExit('Fragment gap arithmetic changed')
 def clock(x):
     return ((x * 10) & 0xffffffff) >> 4
 boundaries = []
