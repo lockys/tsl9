@@ -17,6 +17,12 @@ with image.open('rb') as stream:
     if stream.read(1) != b'\x00':
         raise SystemExit('Clock shift-table entry changed')
 pll_config = 0x00290000
+cleared = 0xffc0ffff
+fields = 0x003f0000
+if cleared & fields or pll_config & fields != pll_config:
+    raise SystemExit('PLL field mask changed')
+if ((pll_config >> 16) & 1, (pll_config >> 17) & 1, (pll_config >> 18) & 15) != (1, 0, 10):
+    raise SystemExit('PLL source, prescaler or multiplier fields changed')
 if ((pll_config >> 18) & 15) + 2 != 12:
     raise SystemExit('Unexpected PLL field')
 if 8000000 * 12 // 8 != 12000000:

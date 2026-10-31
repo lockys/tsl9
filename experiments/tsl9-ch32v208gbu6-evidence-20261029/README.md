@@ -68,6 +68,11 @@ V4.1.60 `[0x16896,0x16994)` 的 254 bytes 與目前 C 診斷 ELF 對應位址逐
 
 ### 以啟動設定推算的條件式時鐘
 
+原 APP `0x187D2..0x18806` 對候選 `RCC_CFGR0` 做 read-modify-write：以 `0xFFC0FFFF` 清除 bits 16–21，再 OR `0x00290000`。若讀寫之間沒有干擾且暫存器採用 [WCH 手冊 V2.2 §3.4.2](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)的 CH32V20x_D8W 定義，這組欄位是 PLLSRC=1、PLLXTPRE=0、PLLMUL=`1010`，分別對應 HSE、HSE 除以 4、乘以 12。與先前官方 96 MHz 範例不只算術相符，**這三個欄位編碼也相符**。
+
+此結論不代表其他寄存器欄位、實體 HSE、PLL 鎖定、後續改寫或最後 SCK 已驗證；若候選映射或執行條件不成立也不適用。檢查器固定原始指令窗口，並核對清除遮罩與三個欄位的整數運算；不操作硬體。
+
+
 [WCH 公開的 system clock 範例](https://github.com/openwch/ch32v20x/blob/main/C%2B%2B/Use%20MRS%20Create%20C%2B%2B%20project-example/CH32V203C8T6%2B%2B/User/system_ch32v20x.c)將 CH32V208／D8W 的範例 HSE 註明為 **32 MHz**，96 MHz 範例則註明 `HSE/4 × 12`。因此下述 APP 軟體計算使用的 8 MHz 數值，與此範例的有效 PLL 輸入 `32 MHz/4` 在數學上相同；**不代表照片中的實體晶振是 8 MHz**。這是範例與原 APP 的條件式對照，尚未證明原機 HSE 頻率、預分頻配置、兩者暫存器狀態完全相同或 SCK 實測值；不能據此撤銷下文的 MCP2515 時脈不確定性。檢查器只驗算此數學關係與既有 APP 指令窗口。
 
 

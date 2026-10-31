@@ -68,6 +68,11 @@ The divider is relative to the candidate SPI peripheral input clock; the actual 
 
 ### Conditional clock derived from startup
 
+At `0x187D2..0x18806`, the original APP performs read-modify-write on candidate `RCC_CFGR0`: mask `0xFFC0FFFF` clears bits 16–21 before ORing `0x00290000`. If there is no intervening interference and the register follows [WCH manual V2.2 section 3.4.2](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf) for CH32V20x_D8W, the resulting fields are PLLSRC=1, PLLXTPRE=0 and PLLMUL=`1010`: HSE, HSE divided by 4, and multiplication by 12, respectively. The **three field encodings**, as well as the arithmetic, match the earlier official 96 MHz example.
+
+This does not verify other register fields, physical HSE, PLL lock, later writes or the final SCK, and depends on the candidate mapping and execution conditions. The checker pins the original instruction window and checks the clear mask and three fields arithmetically; no hardware is operated.
+
+
 The [published WCH system-clock example](https://github.com/openwch/ch32v20x/blob/main/C%2B%2B/Use%20MRS%20Create%20C%2B%2B%20project-example/CH32V203C8T6%2B%2B/User/system_ch32v20x.c) labels the CH32V208/D8W example HSE as **32 MHz**, and its 96 MHz example as `HSE/4 × 12`. Thus the 8 MHz value used in the APP software calculation below numerically matches the example's effective PLL input of `32 MHz/4`; it **does not mean the physical crystal is 8 MHz**. This comparison does not establish the actual HSE frequency, prescaler, exact register-state equivalence or measured SCK, and does not resolve the MCP2515 clock uncertainty discussed below. The checker verifies this arithmetic and the existing APP instruction windows only.
 
 
