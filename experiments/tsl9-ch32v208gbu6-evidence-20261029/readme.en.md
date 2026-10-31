@@ -82,6 +82,8 @@ At `0x187D2..0x18806`, the original APP performs read-modify-write on candidate 
 
 This does not verify other register fields, physical HSE, PLL lock, later writes or the final SCK, and depends on the candidate mapping and execution conditions. The checker pins the original instruction window and checks the clear mask and three fields arithmetically; no hardware is operated.
 
+In the user-provided board close-up, a metal-package component beside the CH32V208 is marked “32.00”. This is consistent with the [official WCH example calling for a 32 MHz external crystal on CH32V208](https://www.wch.cn/uploads/file/20220627/1656323204206699.pdf), supporting a 32 MHz crystal as a candidate. The photograph does not show a unit or the complete circuit connection, so the marking alone does not establish an MCU HSE connection, actual oscillation frequency, PLL lock or SPI clock; the device has not been measured.
+
 
 The [published WCH system-clock example](https://github.com/openwch/ch32v20x/blob/main/C%2B%2B/Use%20MRS%20Create%20C%2B%2B%20project-example/CH32V203C8T6%2B%2B/User/system_ch32v20x.c) labels the CH32V208/D8W example HSE as **32 MHz**, and its 96 MHz example as `HSE/4 × 12`. Thus the 8 MHz value used in the APP software calculation below numerically matches the example's effective PLL input of `32 MHz/4`; it **does not mean the physical crystal is 8 MHz**. This comparison does not establish the actual HSE frequency, prescaler, exact register-state equivalence or measured SCK, and does not resolve the MCP2515 clock uncertainty discussed below. The checker verifies this arithmetic and the existing APP instruction windows only.
 
