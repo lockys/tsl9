@@ -22,4 +22,16 @@ if not (0x20004080 <= start < end <= 0x2000c958 and
         0x20004184 <= start and end + 0x84c == 0x2000b9d8 and
         end > 0x20008000 and end <= 0x2000c000):
     raise SystemExit('Unexpected RAM interval relationship')
+candidate = root / 'experiments/tsl9-resident-heap-initialization/resident_heap_initialization.c'
+raw = candidate.read_bytes()
+if hashlib.sha256(raw).hexdigest() != '7bac6ea385b1469ffd7ce4ae647a8cf84919ecc3758b03969e1dc3319735c0bd':
+    raise SystemExit('Candidate heap initializer source changed')
+first = start + 544
+second = first + min(0x7000 >> 3, 512)
+sentinel = end - 8
+payloads = (second - first - 8, sentinel - second - 8)
+if (first, second, sentinel, payloads) != (0x200043ac, 0x200045ac, 0x2000b184, (504, 27600)):
+    raise SystemExit('Unexpected candidate heap geometry')
+if sum(payloads) != end - start - 544 - 24:
+    raise SystemExit('Candidate heap accounting mismatch')
 print('BLE pool instruction windows and RAM bounds verified; target not executed.')

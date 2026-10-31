@@ -17,6 +17,11 @@
 
 ### 候選 BLE 記憶體池與其他 RAM 區間
 
+以原 APP 傳入的 `MEMAddr=0x2000418C`、`MEMLen=0x7000` 代入[既有 V1.31 heap 初始化公式](../tsl9-resident-heap-initialization/README.md)，第一節點為 `0x200043AC`、第二節點為 `0x200045AC`、sentinel 為 `0x2000B184`。依該候選初始化的 8-byte header 與長度欄位，兩筆初始 payload 數值分別為 **504** 與 **27,600 bytes**，合計 28,104 bytes；池開頭另有 544 bytes，兩筆 header 加 sentinel 共 24 bytes。
+
+這是原 APP 設定和**V1.31 候選**初始化程式的條件式交叉推算：需實機 resident 與候選相符、設定正確複製、位址／記憶體有效、初始化正常完成且無重入或覆寫。它不證明實際可配置容量、池子所有權、V1.40 使用相同全域位址或實機已啟動。[檢查器](check-ble-pool-bounds.py)固定 APP 指令窗口與候選來源，檢查數值範圍；沒有執行目標。
+
+
 `0x19A3A..0x19A46` 將數值 `0x2000418C` 寫至 config offset 0，將 `0x7000`（28,672）寫至 offset 4。依固定版本 [WCH BLE config 定義](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.h)，這兩個欄位分別為 `MEMAddr` 與 `MEMLen`；若原機 ABI 相符且設定未被後續呼叫或 alias 改寫，傳入的候選記憶體池為 `[0x2000418C,0x2000B18C)`。後續 `0x19AD2..0x19ADC` 檢查 pointer 非零與長度至少 `0x1000`，不檢查整段實際 RAM 可用性。
 
 此數值區間完整位於原 APP reset 的 `[0x20004080,0x2000C958)` 清零範圍。它位於 GP+384 的 slot2 指標 `0x20004180..0x20004184` 之後，也在已識別的接收 payload 窗口 `[0x2000B9D8,0x2000BDE8)` 之前，相距 `0x84C` bytes；這只排除**這兩個已識別區間**的數值重疊，不證明整個池子沒有其他 APP、DMA、stack 或 resident 使用者。
