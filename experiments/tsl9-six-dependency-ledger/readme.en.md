@@ -15,6 +15,12 @@ This ledger combines current original-address C/C++, existing original BIN instr
 
 Register values, address formulas and conditional bounds do not establish reachability or the complete original C declarations. Addresses from different versions are not interchangeable. Installed ROM, RAM, IRQ and OTA compatibility are not demonstrated.
 
+## Conditional selector cycle for `0x1A078`
+
+At `0xCEDC..0xCF96`, when the enable byte is nonzero and selector `s` is not `255`, the original code first stores `(s+1)%3`. When the old `s` is nonzero, the effective mode for this lookup is forced to 0; when old `s` is zero, it instead reads the mode byte. Old `s=255` directly reads the mode and skips that selector update. This agrees with the [full lookup contract](../tsl9-third-provider-lookup-contract/readme.en.md) and is not a global mode bound.
+
+Provided every call enters `0xCEDC` normally, enable stays nonzero, the stored selector is not changed by callees, IRQ, DMA or aliases, and the lookup and tail call complete normally, three consecutive calls starting with `s=0` cycle old selector values `0→1→2→0`, with effective modes “current mode byte, 0, 0”. A single update from initial `s=1..254` brings the next selector into `0..2`, but `s=255` is an exception. This does not establish the conditions, three reachable calls, a stable mode or valid table data; the countdown can clear enable and make later calls return directly, so the cycle is not an observed hardware rate.
+
 ## Following the `0x14056` receive arguments
 
 In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a2,a2,-98` at `0x8A3E` compute `0x2000B9D8`. A separate PC-relative calculation at `0x8A12..0x8A1C` obtains the same base and writes a received byte at base plus counter. This supports identifying `a2` as the receive buffer; it is not a live RAM observation.
