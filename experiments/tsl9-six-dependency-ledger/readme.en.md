@@ -48,6 +48,12 @@ In particular, `a2=1` becomes selector 255 through `low8(-a2)`. If the state is 
 
 The pinned [WCH V1.30 header](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.h) names slot 18 (`0x4007C`) `TMOS_GetSystemClock` with 0.625 ms units. If the installed slot matches and multiplication does not truncate at 32 bits, the `0x81B0` result can be interpreted as milliseconds rounded down. Since multiplication truncates before the shift, the difference cannot unconditionally be interpreted as physical milliseconds or timer accuracy. Slot ABI, state and real time remain unmeasured, and no product trigger is established.
 
+#### Arithmetic witness for multiplication truncation
+
+Let `f(x)=((x*10)&0xFFFFFFFF)>>4`. `f(429496729)=268435455`, whereas on the next tick `f(429496730)=0`. If the previously stored value is exactly the former and the slot next returns the latter input, the original 32-bit unsigned subtraction yields `4026531841`, exceeding 1999. The comparison therefore passes even if the candidate clock advanced only one 0.625 ms tick. This discontinuity comes from truncating the multiplication first; it is not the 32-bit source clock itself wrapping.
+
+If the installed clock matches the candidate, these adjacent values are reachable, all other guards pass and stored state is undisturbed, the example supports a possible trigger at an interval different from the intuitive elapsed-time interpretation. It is an arithmetic witness derived from the instructions, not a timing measurement, proof of reachability or occurrence, or a demonstrated device defect.
+
 ## Following the `0x14056` receive arguments
 
 In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a2,a2,-98` at `0x8A3E` compute `0x2000B9D8`. A separate PC-relative calculation at `0x8A12..0x8A1C` obtains the same base and writes a received byte at base plus counter. This supports identifying `a2` as the receive buffer; it is not a live RAM observation.
