@@ -98,6 +98,12 @@ When the new matched state exceeds 1 at `0x12076`, `0x1207A..0x1209A` reads thre
 
 On the branch where byte `0x2000BFD3` is zero, `0x11C7A..0x11C96` stores 1 there, stores the word at `0x2000BFCC`, clears `0x2000BFD0..0x2000BFD2`, then twice freshly loads and calls an indirect target from `0x40058`, with `a1/a2` respectively `1/480` and `2/640`; each `a0` is read from byte `0x2000BFC8`. This is **conditional static data flow**: valid pointers, stack, memory and indirect-callee preservation/return contracts are required. The numbers 480/640 do not establish time units or successful scheduling. A nonzero status byte takes another branch; these observations neither identify a hardware button/product feature nor prove a physical match occurred.
 
+### WCH V1.30 function-table candidate
+
+A locally retained [fixed-version WCH V1.30 header](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.h) uses default table base `0x40034` and reads `base+4*n` for `BLE_LIB_JT(n)`; its `tmos_start_task(taskID,event,time)` uses slot 9, so that candidate table entry is `0x40058`. The same header describes a 625-microsecond event timer unit. Header SHA-256: `647a185941fedeb6ba16d544d9bca91a6f53219bb649a5513b59abeb21a9a94c`.
+
+**If** the installed slot is compatible with that V1.30 interface and timer unit, task ID/event values are valid, and the calls return successfully, the two calls can be interpreted as events `1`/`2` after 480/640 ticks, nominally **300/400 milliseconds**. This is a conditional comparison against a public candidate interface, not a measurement of time, proof of slot contents/function ABI or successful execution, or identification of a button or product feature. The V1.30 header does not identify the installed resident version.
+
 ## `0x1A078` lookup output and dispatch
 
 On the path reaching `0xCF36`, the code writes record offset 4 and freshly reads that byte `b` at `0xCF3A`. It then replaces the low nibble with `(b+1)&15`, preserves the high nibble, and uses the new low nibble as column. At `0xCF5A` it reads one byte from `0x1A078+16*effective_mode+column`, stores it at record offset 3 at `0xCF5E`, then tail-jumps without a return link to `0x12A08` at `0xCF62`. Thus column is 0–15, but the read byte remains 0–255; its product meaning and whether a value is a particular command remain unproved.
