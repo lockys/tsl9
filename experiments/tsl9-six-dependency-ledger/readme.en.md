@@ -135,6 +135,14 @@ At the start of each ordinary data call, the parser obtains `now` from `0x81B0` 
 
 The [checker](check-ingress-clock-boundary.py) reads only allowed instruction windows, directly decodes the branch at `0x8916`, and verifies nine arithmetic boundaries; it does not execute the target or read the excluded `0x14056` body.
 
+#### Length bound under the candidate WCH write-callback ABI
+
+The original three little-endian words at `0x19DFC` are `[0, 0x888C, 0]`. The locally preserved [WCH V1.30 header](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.h) defines the second field of `gattServiceCBs_t` as a write callback and declares its `len` as `uint16_t`. If this table is actually registered under that structure, the installed firmware uses the compatible callback interface, and RV32 argument extension follows that ABI, the `a3` length at `0x888C` is **0–65535**, and the `a0` connection handle is also 0–65535.
+
+`0x8904` saves full `a3` in `s2`; `0x8938..0x893E` compares the low 16 bits of the index against full `s2`. Under the candidate ABI, preserved loop registers and successful return from every processing step, one callback processes at most 65535 bytes and this loop does not continue because of a low-16-bit index wrap. This does not establish that actual BLE traffic reaches that length, the input buffer is valid, callees return, or the `0x14056` payload length; the latter remains subject to the normal frame's 1040-byte check and fresh-read conditions above. Other installed ABIs or entry points are not covered.
+
+The [checker](check-gatt-callback-bound.py) reads a specified local V1.30 header and two allowed BIN windows to check the callback type, pointer table and loop branch; it downloads nothing, executes no target and does not read excluded ranges.
+
 #### Payload write bound and reset/RAM cross-check
 
 On each entry to the payload branch, `0x89FA` reads the counter as an unsigned halfword; `0x89FE..0x8A02` branches to the state-clear path if it exceeds 1039, before this payload store. Otherwise, `0x8A12..0x8A1C` uses the same register holding the old counter to write one byte to `0x2000B9D8+counter`. With normal instruction flow and undisturbed registers, this particular store must therefore fall in `[0x2000B9D8,0x2000BDE8)`. The local bound is independent of the length freshly read and passed to `0x14056`; it does not bound reads or writes inside the excluded callee.

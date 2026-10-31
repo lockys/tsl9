@@ -135,6 +135,14 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 [檢查器](check-ingress-clock-boundary.py)只讀取允許的指令窗口、直接解碼 `0x8916` 分支並檢查九個算術邊界；不執行目標或讀取被排除的 `0x14056` 本體。
 
+#### 候選 WCH 寫入 callback 的長度上界
+
+原始 `0x19DFC` 的三個 little-endian word 是 `[0, 0x888C, 0]`。本機保存的 [WCH V1.30 標頭](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.h)將 `gattServiceCBs_t` 的第二個欄位定義為寫入 callback，並將它的 `len` 宣告為 `uint16_t`。若該表確實按此結構註冊、實機使用相容的 callback 介面及 RV32 參數擴展慣例，則 `0x888C` 的 `a3` 長度為 **0–65535**，`a0` connection handle 也為 0–65535。
+
+`0x8904` 把完整 `a3` 保存到 `s2`；`0x8938..0x893E` 每次以 index 的低 16 bits 與完整 `s2` 比較。在上述候選 ABI、迴圈暫存器保存正常且每次處理都能返回的條件下，單次 callback 至多處理 65535 bytes，不會因 index 的低 16-bit 回繞而使這個迴圈持續。這不證明實際 BLE 資料可達此長度、輸入 buffer 有效、callee 一定返回或 `0x14056` 的 payload 長度界限；後者仍受前述正常框架的 1040-byte 檢查及 fresh read 條件約束。若實機 ABI 不同或存在其他入口，不能套用此上界。
+
+[檢查器](check-gatt-callback-bound.py)讀取指定的本機 V1.30 標頭與兩個允許的 BIN 窗口，核對 callback 型別、指標表及迴圈分支；不下載、執行目標或讀取排除區。
+
 #### Payload 寫入範圍與 reset／RAM 的交叉檢查
 
 每次走到 payload 分支時，`0x89FA` 以 unsigned halfword 讀取 counter；`0x89FE..0x8A02` 對 counter 大於 1039 的情況轉至清除 state 的路徑，不執行這次 payload store。通過後，`0x8A12..0x8A1C` 使用同一暫存器中的舊 counter，向 `0x2000B9D8+counter` 寫入一個 byte。因此在正常指令流程、暫存器未受干擾的條件下，這一個 store 的位置必落在 `[0x2000B9D8,0x2000BDE8)`；這個局部界限獨立於重新讀取並傳給 `0x14056` 的長度值，不保證被呼叫函式本身的讀寫範圍。
