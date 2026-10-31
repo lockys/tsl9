@@ -80,4 +80,22 @@ if stores != [(0x107ea,0,0),(0x107f8,0,0),(0x10810,0,0)]:
     raise SystemExit('Nearby standard byte stores changed')
 if any(offset in range(332, 336) for _, _, offset in near):
     raise SystemExit('Nearby scalar destination overlaps sequence bytes')
+callback_source = root / 'src/native/receive/callback_providers.c'
+if digest(callback_source) != 'daaf2f45bed63cb62eea82a981f03a79f8c5b25ea5e3b79941b223818f3c4e3f':
+    raise SystemExit('Adjacent callback source changed')
+with image.open('rb') as f:
+    f.seek(0x10630 - 0x8000)
+    data = f.read(0x6e)
+if hashlib.sha256(data).hexdigest() != '18a4a2f47fd955f2aaf23d032a9286489b0aac9abde873d9b18892fc5a584dcb':
+    raise SystemExit('Adjacent callback instruction window changed')
+for pc, expected in ((0x1065c, '93868114'), (0x10676, '83c70600'),
+                     (0x1067c, '03471700'), (0x10686, 'bd8b'),
+                     (0x10690, '2380f600'), (0x10694, 'ef204037')):
+    value = bytes.fromhex(expected)
+    if data[pc-0x10630:pc-0x10630+len(value)] != value:
+        raise SystemExit('Adjacent callback instruction changed')
+if not (0x1a4f4 + 17 + 255 + 1 == 0x1a605 < 0x1a638):
+    raise SystemExit('Adjacent callback source-address bound changed')
+if any(((x + 1) & 15) not in range(16) for x in range(256)):
+    raise SystemExit('Adjacent byte update range changed')
 print('Sequence state reset range and selected direct GP-store scan verified; aliases and concurrency remain unresolved.')
