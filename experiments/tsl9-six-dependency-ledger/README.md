@@ -501,6 +501,8 @@ V1.30 標頭註解列出 CODE `0x00040000..0x0006FFFF`，但預設巨集另定�
 
 ### 已重建四筆 counter 資料的結果
 
+若 `0x81F8` 返回的非零 byte 與 `GP+170` 不同，`0xA0FA` 先將 counter 更新為 `(old+1)&3`，隨後以 callback `0xA2EA`、delay 2000 呼叫 `0x9124`。若排程表的 15 個 callback 全非零且均不等於 `0xA2EA`，在資料穩定、記憶體有效且 stack 不與 counter 重疊時，排程器兩次掃描後直接返回 1，該路徑不呼叫 resident 槽。之後若 record 通過 `1961..2139` 的守衛，`0x81EE` 返回值不是 1 或 2，且無 alias、IRQ、DMA 或其他改寫，`0xA158` 此次查表索引必為剛更新的 0–3。這只證明上述條件路徑；表未滿、回呼相符、其他入口或非同步寫入仍未封閉。[檢查器](check-counter-scheduler-capacity.py)固定涉及的原始指令窗口與 byte 運算，不執行目標。
+
 原始 BIN 在 `0x1AB48..0x1AB50` 的四個 little-endian halfword 與[正式資料來源](../../src/native/receive/input_counter_data.c)相符。當本次 counter 在讀取時確實為 0–3，且呼叫及記憶體條件成立時，`0xA158..0xA18E` 的合併欄位 `(x+0x802)&0xFFF` 為：
 
 | counter | 原 halfword `x` | 12-bit 欄位 |

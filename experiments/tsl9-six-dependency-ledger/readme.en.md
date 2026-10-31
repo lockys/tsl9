@@ -501,6 +501,8 @@ Given valid memory, normal return, no interference and completion of the later f
 
 ### Results for the four reconstructed counter entries
 
+If `0x81F8` returns a nonzero byte different from `GP+170`, `0xA0FA` first updates the counter to `(old+1)&3`, then calls `0x9124` with callback `0xA2EA` and delay 2000. If all 15 scheduler callback entries are nonzero and none equals `0xA2EA`, with stable data, valid memory and a stack disjoint from the counter, both scans finish and the scheduler returns 1 without calling a resident slot on this path. If the record then passes the `1961..2139` guard, `0x81EE` returns neither 1 nor 2, and there are no alias, IRQ, DMA or other writes, this particular lookup at `0xA158` uses the freshly updated index 0–3. This proves only that conditional path; a non-full table, a matching callback, other entries and asynchronous writes remain unresolved. The [checker](check-counter-scheduler-capacity.py) pins the relevant original instruction windows and byte arithmetic without target execution.
+
 The original BIN's four little-endian halfwords at `0x1AB48..0x1AB50` match the [curated data source](../../src/native/receive/input_counter_data.c). When the counter at this read is actually 0–3 and the call and memory conditions hold, the combined field `(x+0x802)&0xFFF` produced by `0xA158..0xA18E` is:
 
 | Counter | Original halfword `x` | 12-bit field |
