@@ -27,4 +27,9 @@ if snv['logical_window'] != [0x08077c00, 0x08077f00]:
     raise SystemExit('SNV endpoint changed')
 if 0x08077c00 - 0x08077b00 != 256 or 0x08077f00 - 0x08000000 != 491264:
     raise SystemExit('Gap or conditional end offset changed')
+all_pages = [start for start, _ in pages] + snv['logical_page_arguments']
+if len(set(all_pages)) != 9 or {start & ~0xfff for start in all_pages} != {0x08077000}:
+    raise SystemExit('Distinct 256-byte pages do not share the numerical 4 KB interval')
+if any(start + 256 > 0x08078000 for start in all_pages) or 4096 // 256 - len(all_pages) != 7:
+    raise SystemExit('Page extent or remaining numerical interval count changed')
 print('Settings and conditional SNV numeric windows verified; target not executed.')
