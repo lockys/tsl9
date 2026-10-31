@@ -383,4 +383,9 @@ for (ident,version,length,*_),setter_pc,expected in zip(cases,setter_pcs,expecte
         for index,back,hex_bytes in prefixes:
             if read_window(f,expected[index]-back,back)!=bytes.fromhex(hex_bytes):
                 raise SystemExit('Mode three-argument prefix changed: '+ident)
+        # Two branch encodings have different backward targets but the same fall-through.
+        branch='c5d7' if ident in ('2389','2410','2527','2581','2590','2601','2603','2613','2816','2833','2841') else 'd5d7'
+        suffix=bytes.fromhex('a183858b0d458945'+branch+'0146')
+        if read_window(f,expected[1]-12,12)!=suffix:
+            raise SystemExit('Second mode transfer prefix changed: '+ident)
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
