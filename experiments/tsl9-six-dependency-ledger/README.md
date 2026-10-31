@@ -155,7 +155,15 @@ WCH V1.30 標頭將 slot 63（`0x40034+4*63=0x40130`）定義為 `GATTServApp_Re
 
 本機保存的兩份官方候選 Intel HEX 經記錄 checksum 核對後，`0x40034` 所指的版本字串分別為 `CH32V20x_BLE_LIB_V1.31` 與 `CH32V20x_BLE_LIB_V1.40`；兩者 `0x40130` 槽分別包含 **`0x4CF22`** 與 **`0x4CFBA`**。前述 V1.30 是參考 **標頭**版本；其所搭配保存的 2023 年候選 HEX 版本字串是 V1.31。槽位地址相同而目標不同，不能把 `0x4CF22` 硬編碼成跨版本或原機的實際入口。
 
-這是兩個保存檔的內容比較，不證明任一映像已安裝在裝置，也不證明新舊兩個目標內部行為或 ABI 完全相同。[檢查器](check-gatt-resident-versions.py)接受兩個本機 HEX 路徑，固定檔案雜湊、驗證 Intel HEX 記錄 checksum，並只保留版本指標、版本字串與該槽的選定 bytes；不連線、不產生韌體。
+這是兩個保存檔的內容比較，不證明任一映像已安裝在裝置，也不證明新舊兩個目標內部行為或 ABI 完全相同。[檢查器](check-gatt-resident-versions.py)接受兩個本機 HEX 路徑，固定檔案雜湊、驗證 Intel HEX 記錄 checksum，並只保留選定的版本、槽位、loader 與本體 bytes；不連線、不產生韌體。
+
+#### 與六項依賴相關的候選槽與 RAM 本體
+
+相同兩份候選 HEX 中，WCH 標頭對應的 `tmos_memcmp`／`tmos_memset`／`tmos_memcpy` 槽 `0x4003C`／`0x40048`／`0x4004C` 在兩版分別都存放 RAM 目標 `0x20000442`／`0x2000039C`／`0x20000332`。依各版 loader 的來源與目的運算，V1.31 的第一段 copy 從 `0x402B0` 複製至 `0x20000040`，V1.40 則從 `0x402F0` 複製至相同 RAM 位置；因此這三段 RAM 本體在兩版 HEX 的來源地址相差 `0x40`。對應的 72-byte 比較、46-byte fill、58-byte copy 三段，分別在兩個保存檔之間逐 byte 相同。
+
+相對地，計時／註冊的三個槽在候選 V1.31 → V1.40 的目標分別為：`0x40058`：`0x43728 → 0x437B4`、`0x4007C`：`0x43520 → 0x435AC`、`0x40080`：`0x43C4E → 0x43CDA`。這支持依槽位與已確認版本分析，而非把 flash 實作地址當全域常數。
+
+[同一檢查器](check-gatt-resident-versions.py)核對兩版 loader 窗口、來源立即數、七個槽及三對本體雜湊；它不執行 loader。三段來源位元組一致不證明實機 RAM 已被複製、實際 slot 值或 ABI 相同，也不涵蓋其他 resident 版本和周邊副作用。
 
 #### Payload 寫入範圍與 reset／RAM 的交叉檢查
 

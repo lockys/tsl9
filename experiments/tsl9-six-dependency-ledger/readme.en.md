@@ -155,7 +155,15 @@ The preceding `uint16_t` callback bound applies to this candidate path only if r
 
 After Intel HEX record-checksum verification, the strings pointed to by `0x40034` in the two locally preserved official candidates are `CH32V20x_BLE_LIB_V1.31` and `CH32V20x_BLE_LIB_V1.40`; their `0x40130` slots contain **`0x4CF22`** and **`0x4CFBA`**, respectively. V1.30 above is the reference **header** version; the preserved 2023 candidate HEX paired with it identifies itself as V1.31. The slot address is the same while its targets differ, so `0x4CF22` must not be hard-coded as a cross-version or installed-device entry point.
 
-This compares two saved files; it does not establish that either is installed on the device or that the two target bodies and ABIs are identical. The [checker](check-gatt-resident-versions.py) accepts two local HEX paths, pins their digests, verifies Intel HEX record checksums and retains only selected bytes for the version pointers, strings and slot; it makes no connections and generates no firmware.
+This compares two saved files; it does not establish that either is installed on the device or that the two target bodies and ABIs are identical. The [checker](check-gatt-resident-versions.py) accepts two local HEX paths, pins their digests, verifies Intel HEX record checksums and retains only selected version, slot, loader and body bytes; it makes no connections and generates no firmware.
+
+#### Candidate slots and RAM bodies relevant to the six dependencies
+
+In both saved candidate HEX files, slots `0x4003C`, `0x40048` and `0x4004C`, corresponding to the WCH header's `tmos_memcmp`, `tmos_memset` and `tmos_memcpy`, contain RAM targets `0x20000442`, `0x2000039C` and `0x20000332`, respectively. According to each loader's source/destination arithmetic, V1.31's first copy goes from `0x402B0` to `0x20000040`, while V1.40's goes from `0x402F0` to the same RAM address; the HEX source addresses for these three RAM bodies therefore differ by `0x40`. The corresponding 72-byte comparison, 46-byte fill and 58-byte copy bodies are each byte-for-byte identical across the two saved files.
+
+By contrast, three timer/registration slot targets in candidate V1.31 → V1.40 are `0x40058`: `0x43728 → 0x437B4`, `0x4007C`: `0x43520 → 0x435AC`, and `0x40080`: `0x43C4E → 0x43CDA`. This supports reasoning from a slot and verified version rather than treating a Flash implementation address as a universal constant.
+
+The [same checker](check-gatt-resident-versions.py) verifies both loader windows, source immediates, seven slots and the three pairs of body hashes; it does not execute either loader. Identical source bytes do not establish that real RAM was copied or that installed slots or ABIs match, and do not cover other resident versions or peripheral effects.
 
 #### Payload write bound and reset/RAM cross-check
 
