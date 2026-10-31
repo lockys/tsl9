@@ -430,7 +430,15 @@ The existing [vector comparison](../tsl9-qingke-v4-vectors/readme.en.md) maps sl
 
 If `0x17002` is subsequently entered, flags remain valid and intervening calls preserve required registers, bit 0 calls `0x16B0A(1)` and bit 1 calls `0x16B0A(2)`; the second flag is freshly read, so simultaneous observation cannot be assumed. `0x16B0A` reads candidate SPI device register `0x2C` and, according to bits 0 and 1 of the result, calls `0x16A7C` with addresses `0x61` and `0x71`. The receive function writes `0x10` to `0x40010814` for channel 1 and `0x01` for channel 2; under WCH GPIOA mapping and active-low wiring these are candidate PA4 and PA0 chip selects. Once header and length guards pass it passes the original channel to `0x12BC8`; with a free ring slot, valid copy and preserved registers, the corresponding record tag is 1 or 2.
 
-This supplies a concrete candidate source for `0x399`/`0x39B` only if initialization, IRQ delivery, SPI device and data format are all compatible. It does not establish which GPIO port maps to EXTI lines 6/7, PCB wiring, receipt of a particular ID or a counter change. See the [independent instruction checker](check-key-control-flow.py); no hardware or firmware was executed.
+This supplies a concrete candidate source for `0x399`/`0x39B` only if initialization, IRQ delivery, SPI device and data format are all compatible. It does not establish actual PCB wiring, receipt of a particular ID or a counter change. See the [independent instruction checker](check-key-control-flow.py); no hardware or firmware was executed.
+
+#### EXTI line 6/7 initialization instructions
+
+`0x170A2..0x170F4` calls the existing GPIO helper `0x9A24` with `(0x40011000,0x40,0x48)` and `(0x40011000,0x80,0x48)`. Under the checked WCH definitions and helper contract this requests **PC6/PC7 as pull-up inputs**. Then `0x17104` and `0x17112` call local helper `0x1904A` with `(2,6)` and `(2,7)`. The helper performs read-modify-write on four-bit fields of `0x4001000C`; under the WCH AFIO mapping and unchanged arguments it sets both fields to 2, selecting GPIOC as the source of EXTI 6/7.
+
+The same initialization prepares `[line=0xC0, mode=0, trigger=12, enable=1]` on the stack and calls `0x18E1C`. The complete helper clears `0xC0` bits in `0x40010408`, sets them in `0x4001040C`, and sets them in `0x40010400`. Under WCH EXTI definitions this disables rising edges and enables falling edges and interrupts for lines 6/7. These steps statically correspond to the candidate EXTI handler's bits 6/7 and the two SPI channels.
+
+This depends on a valid stack, normal calls, preserved registers, no remapping or asynchronous overwrite, and the candidate WCH register definitions. It does not measure actual pin levels, establish PCB continuity to the controllers, prove IRQ delivery, or exclude later reconfiguration. The [independent checker](check-key-control-flow.py) pins initialization and both helper instruction windows.
 
 #### Convergence of the `0x399`, tag 1 special branch
 
@@ -464,6 +472,6 @@ Conversely, original `0x907A..0x90AC` requests that the 180-byte work table be c
 
 ## Independent audit of recent branches
 
-Following the earlier `0xA32E` branch-direction error, the [static checker](check-key-control-flow.py) reads **only twelve explicit windows** from the original BIN, validates their hashes, places each in radare2 temporary memory for RISC-V disassembly, and checks 44 selected instructions. It covers counter, selector, sequence state, fixed-filter table copying and candidate EXTI/SPI receive paths. A negative check changes a branch bit in temporary memory; the original BIN is not modified.
+Following the earlier `0xA32E` branch-direction error, the [static checker](check-key-control-flow.py) reads **only fifteen explicit windows** from the original BIN, validates their hashes, places each in radare2 temporary memory for RISC-V disassembly, and checks 60 selected instructions. It covers counter, selector, sequence state, fixed-filter table copying, and candidate EXTI/SPI receive and initialization paths. A negative check changes a branch bit in temporary memory; the original BIN is not modified.
 
 Run `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`. On Windows, provide the local path to `r2.exe`; an existing radare2 with RV32C support is required and the checker downloads nothing. This audit confirms the listed instructions and destinations; it does **not** prove the semantics of other instructions, dynamic reachability, callee contracts or hardware effects. It does not read excluded ranges, execute the target or run an emulator.

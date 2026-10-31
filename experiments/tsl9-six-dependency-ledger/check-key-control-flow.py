@@ -20,6 +20,9 @@ WINDOWS = {
     (0x17002, 0x3e): 'dd6b0fa91982cf653657b71e2d2bfaf2d6349ccc12f2b31561483e40572b0c69',
     (0x16b0a, 0x46): 'b12abed39cf1cc897ab42a51b6cfce8c150031819f747aab095fffd618ae6f80',
     (0x16a7c, 0x8e): 'd823c819bbe92c3b7ee17c92411825549084d08dc32c36378d8e60d4915f40e2',
+    (0x1709e, 0x90): '3c7de6e22b2c0d4d04449b23d4e633db86e7524a84a9286053c5b6cca7eebfac',
+    (0x1904a, 0x2c): '4ce3bc9471c59cb7a2923e309a778c34a5188cbd3d5f998f66a779801a387773',
+    (0x18e1c, 0x6a): '4dd9cb3ccc089fb8cb3a8ef58ba71457f7290d57cf334d773f778c0795305f9a',
 }
 EXPECTED = {
     0xae54: 'bne a4, a5, 0xaf4c', 0xae5e: 'bne a4, a5, 0xaf4c',
@@ -46,6 +49,14 @@ EXPECTED = {
     0x16a92: 'bne a0, a4, 0x16a98', 0x16a96: 'li a4, 16',
     0x16a98: 'sw a4, 20(a5)', 0x16af0: 'mv a3, s1',
     0x16afa: 'jal ra, 0x12bc8',
+    0x170a2: 'li a1, 64', 0x170a6: 'lui a0, 0x40011',
+    0x170e4: 'jal ra, 0x9a24', 0x170ec: 'li a1, 128',
+    0x170f4: 'jal ra, 0x9a24', 0x170f8: 'li a1, 6',
+    0x170fa: 'li a0, 2', 0x17104: 'jal ra, 0x1904a',
+    0x1710c: 'li a1, 7', 0x17112: 'jal ra, 0x1904a',
+    0x1712a: 'jal ra, 0x18e1c', 0x1904a: 'andi a4, a1, 252',
+    0x19068: 'sw a4, 8(a1)', 0x19072: 'sw a0, 8(a1)',
+    0x18e62: 'bne a3, a2, 0x18e74', 0x18e7a: 'sw a4, 0(a5)',
 }
 
 def disassemble(tool, base, data):

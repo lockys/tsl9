@@ -430,7 +430,15 @@ fallback `0x12F18..0x12F44` 以目的 `0x2000C30C`、值 0、長度 256 呼叫 `
 
 若後續進入 `0x17002`、旗標保持有效且中途呼叫保留必要暫存器，bit 0 路徑呼叫 `0x16B0A(1)`，bit 1 路徑呼叫 `0x16B0A(2)`；後者重新讀旗標，因此不能假設兩次觀察同時成立。`0x16B0A` 先讀候選 SPI 裝置 register `0x2C`，依讀回的 bit 0／1 分別以地址 `0x61`／`0x71` 呼叫 `0x16A7C`。接收函式對 channel 1 向 `0x40010814` 寫 `0x10`，對 channel 2 寫 `0x01`；若採 WCH GPIOA 定義及低有效線路，分別是 PA4／PA0 的候選片選。它在滿足 header／長度守衛後把原 channel 傳給 `0x12BC8`；在 ring 空槽、copy 及保存暫存器條件成立時，對應 record tag 1／2。
 
-這條連接提供 `0x399`／`0x39B` 來源的具體候選，但只在相應初始化、IRQ 交付、SPI 裝置與資料格式均相容時成立；它不證明 EXTI line 6／7 使用哪個 GPIO port、PCB 走線、裝置收到特定 ID 或 counter 已改變。詳見[獨立指令覆核器](check-key-control-flow.py)；沒有接觸硬體或執行韌體。
+這條連接提供 `0x399`／`0x39B` 來源的具體候選，但只在相應初始化、IRQ 交付、SPI 裝置與資料格式均相容時成立；它不證明實際 PCB 走線、裝置收到特定 ID 或 counter 已改變。詳見[獨立指令覆核器](check-key-control-flow.py)；沒有接觸硬體或執行韌體。
+
+#### EXTI line 6／7 的初始化指令
+
+`0x170A2..0x170F4` 分別以 `(0x40011000,0x40,0x48)` 與 `(0x40011000,0x80,0x48)` 呼叫既有 GPIO helper `0x9A24`；依已核對的 WCH 定義及 helper 契約，這請求將 **PC6／PC7 設為上拉輸入**。接著 `0x17104`、`0x17112` 對本地 helper `0x1904A` 分別傳入 `(2,6)`、`(2,7)`。該 helper 對 `0x4001000C` 做四-bit 欄位的 read-modify-write；在 WCH AFIO 映射與傳入值不變時，兩個欄位分別被設為 2，對應 EXTI 6／7 的 GPIOC 來源。
+
+同一初始化在 stack 準備 `[line=0xC0, mode=0, trigger=12, enable=1]` 並呼叫 `0x18E1C`。依完整 helper 的讀寫，可見它清除 `0x40010408` 中 `0xC0` 位、在 `0x4001040C` 中設定這些位，並在 `0x40010400` 設定這些位；在 WCH EXTI 定義下，這對應 line 6／7 的上升緣停用、下降緣與中斷啟用。前述步驟與候選 EXTI handler 的 bit 6／7 及兩個 SPI 通道形成靜態對應。
+
+上述結論依有效 stack、正常呼叫、暫存器保存、無重映射／非同步覆寫及候選 WCH 寄存器定義成立；不等於量測到實際 pin 電平、確認 PCB 與控制器的導通，或證明 IRQ 曾發生。這也不排除之後的重新設定。[獨立覆核器](check-key-control-flow.py)固定初始化與兩個 helper 的指令窗口。
 
 #### `0x399`、tag 1 特殊分支的匯合
 
@@ -464,6 +472,6 @@ APP 的 `0x9124` 對非零延遲先掃描 15 筆、每筆 12-byte 的工作表�
 
 ## 近期分支的獨立覆核
 
-針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀十二個明確窗口**，核對窗口雜湊後，將窗口放入 radare2 的暫時記憶體反組譯，並比對 44 個指定指令。覆蓋 counter、selector、序列狀態、固定濾波表複製及候選 EXTI／SPI 接收路徑。檢查器對記憶體中的一個分支位元做負例；不修改原 BIN。
+針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀十五個明確窗口**，核對窗口雜湊後，將窗口放入 radare2 的暫時記憶體反組譯，並比對 60 個指定指令。覆蓋 counter、selector、序列狀態、固定濾波表複製及候選 EXTI／SPI 接收與初始化路徑。檢查器對記憶體中的一個分支位元做負例；不修改原 BIN。
 
 執行 `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`。Windows 也可傳入本機 `r2.exe` 的路徑；需自行提供支援 RV32C 的 radare2，不會下載工具。此覆核確認所列指令及目的地，**不證明**其餘指令語意、動態可達性、callee 契約或硬體效果；也未讀取排除區、執行目標或執行模擬器。
