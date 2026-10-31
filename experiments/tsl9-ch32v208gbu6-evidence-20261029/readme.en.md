@@ -51,3 +51,7 @@ Original `0x1706C/0x170B8` forms `s0=0x40010800`, then `0x17132..0x17168` calls 
 | PA6 | `0x48` | Pull-up input |
 
 The same path then initializes and enables the SPI candidate at numeric base `0x40013000` at `0x1718C..0x171A0`. PA5/PA6/PA7 directions are consistent with candidate SPI1 SCK/MISO/MOSI assignments, and PA0/PA4 are consistent with the selector writes above. This conditional configuration match does not establish alternate-function remapping, PCB nets or actual connections to two MCP2515s. No physical registers were read or modified.
+
+The SPI WRITE path at `0x168DE` treats incoming `a0` as a bit mask: bit 0 causes a `0x10` write to `0x40010814`, and bit 1 causes a `0x01` write there. It then transmits `0x02`, the address and data; on normal completion it writes `0x11` to `0x40010810`. If those GPIOA addresses implement the WCH bit-clear/bit-set registers and the nets are active-low chip selects, this corresponds to selecting PA4/PA0 and releasing both at the end.
+
+The function checks only the low two bits and does not reject 0 or 3 locally: 0 skips both selection writes but still transmits, while 3 requests both selection writes; higher bits are ignored by these two tests. This is a conditional interpretation of original instructions and the candidate GPIO interface. It does not show callers actually supply those values, what components the nets reach, their electrical polarity or hardware safety. Neither the function nor hardware was executed.
