@@ -430,4 +430,12 @@ with reference.open('rb') as f:
         raise SystemExit('Record table fill destination changed')
     if 228!=19*12 or not (record_base<=0x2000c268 and 0x2000c26a<=record_base+228):
         raise SystemExit('Record table fill coverage changed')
+    getter=read_window(f,0xabfc,14)
+    caller=read_window(f,0xe6d4,28)
+    if hashlib.sha256(getter).hexdigest()!='6b1e2f4d6772164fc98830bee5725a7915defe01110069223bde1c5792200b21' or hashlib.sha256(caller).hexdigest()!='95c6e7900fe3fb7d28e662bf6a9f12bff8fa50a380d25dfbab04eb3ee513405c':
+        raise SystemExit('Mode flag getter or caller window changed')
+    if pcrel_target(0xabfc,getter[:8],0x517,0x55503)!=0x2000c268:
+        raise SystemExit('Mode flag getter address changed')
+    if transfer_target(read_window(f,0xe6dc,4),0xe6dc)!=0xabfc or transfer_target(read_window(f,0xe6e8,4),0xe6e8)!=0xd05c:
+        raise SystemExit('Mode flag getter-to-setter calls changed')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')

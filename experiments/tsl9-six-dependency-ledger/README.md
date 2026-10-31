@@ -39,6 +39,8 @@
 
 V4.1.60 的 `0x82A8` 使用 `0x2000C1B8 + 12*index` 計算紀錄位址，並向 `0x4004C` 槽請求複製 12 bytes。數值上 index 14 的 offset 8／9 正是 `0x2000C268／0x2000C269`；依 little-endian halfword，前述 bit 8 即該紀錄 offset 9 的 bit 0。若呼叫 `0x82A8(a0=0,index=14,a2=來源)`、槽確為候選順向 copy 並正常完成，且之後沒有覆寫，來源紀錄 offset 9 的 bit 0 就會成為 mode 分支的測試值。此處只證明指令、位址與有條件資料流；尚未辨識 index 14 的實際寫入呼叫、來源內容或實機行為，也不代表其他版本的 record layout 已核對。[檢查器](check-cross-version-windows.py)固定 helper 指令窗口並計算位址，不讀取實機 RAM。
 
+同一 V4.1.60 旗標還有另一條已辨識的 mode 路徑：`0xABFC` 讀取 `0x2000C268` halfword，回傳其 bit 8 的 0／1；`0xE6DC` 呼叫此 getter，回傳 0 則跳過 `0xE6E8` 的 setter 呼叫，回傳 1 且先前的 `0xE6D4` bit 3 守衛通過時，該呼叫傳入 `(mode,countdown,selector)=(3,1,0)`。因此，若初始化填零後該 halfword 一直未被改寫，且 getter 與流程正常，這條 getter 路徑和前述直接讀取旗標的 mode 3／countdown 2 落入路徑都不會通過各自的旗標守衛。兩者是不同時間的 fresh read，不能假設值自然相同；其他 mode 入口及非同步寫入仍未排除。[檢查器](check-cross-version-windows.py)固定 getter 與呼叫窗口及兩個跳轉目標。
+
 為追查 index 14，在 V4.1.60 允許區域以兩-byte 步長掃描直接跳向 `0x82A8` 的 `JAL／C.J／C.JAL` 編碼，得到 24 個候選；其各自跳轉前 16 bytes 沒有 `li a1,14` 的壓縮或標準立即數編碼。這不排除更早設定、經運算得 14、間接跳轉、其他 writer 或排除區，也不保證所有掃描命中皆為指令邊界。已辨識的變動 index 呼叫 `0x184C6`，在其入口 guard 接受 `a0=0..9` 且流程正常的條件下，計算的是 index 16 或 17，並以 `a0=1` 請求讀出，**不能用它證明 index 14 寫入**。檢查器固定候選位置、前置窗口及 `0x184AA` 指令窗口，不執行目標。
 
 另找到不經 index 14 單筆寫入的初始化路徑：V4.1.60 主初始化的 `0x9274` 呼叫 `0x12D92`；後者在一個先前的間接呼叫正常返回後，從 `0x40048` 重新讀取目標，傳入目的 `0x2000C1B8`、值 0、長度 228。若該槽符合候選 byte-fill 契約且兩次呼叫、暫存器與記憶體均正常，這會清除 `[0x2000C1B8,0x2000C29C)`：恰好 19 筆 12-byte 紀錄，包含 index 14 的 `0x2000C268..C269`。這是繼 reset 清零之外的一個候選清零來源，不證明實機呼叫順序、ROM 槽身分、其他寫入不存在或該位元之後保持 0。[檢查器](check-cross-version-windows.py)固定呼叫／初始化窗口並核對範圍。
