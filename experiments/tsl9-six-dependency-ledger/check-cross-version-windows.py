@@ -224,4 +224,34 @@ for number,((ident,version,_,_,_,_),entry,end_offset) in enumerate(zip(cases,ent
         raise SystemExit('State bytes not contained in reset zero range: '+ident)
     if end-0x2000c000 not in range(2380,2393):
         raise SystemExit('Unexpected excess beyond 48 KiB example: '+ident)
-print('18 candidate data/consumers, entry GP/SP, and reset zero-range bounds verified. Excluded regions not read; target not executed.')
+needle=bytes.fromhex('85078d8b')
+for number,(ident,version,length,_,_,_) in enumerate(cases):
+    path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
+    displacement=184 if number<8 else 176
+    hits=[]
+    with path.open('rb') as f:
+        for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,base+length)):
+            data=read_window(f,lo,hi-lo)
+            offset=0
+            while True:
+                pos=data.find(needle,offset)
+                if pos<0:
+                    break
+                offset=pos+1
+                if pos<4 or pos+10>len(data):
+                    continue
+                load=int.from_bytes(data[pos-4:pos],'little')
+                if load&0xfffff!=0x1c783 or load>>20!=displacement:
+                    continue
+                for skip in (0,2):
+                    if skip and data[pos+4:pos+6]!=bytes.fromhex('2244'):
+                        continue
+                    store=int.from_bytes(data[pos+4+skip:pos+8+skip],'little')
+                    immediate=((store>>25)<<5)|((store>>7)&31)
+                    if (store&127==0x23 and (store>>12)&7==0 and
+                        (store>>15)&31==3 and (store>>20)&31==15 and
+                        immediate==displacement):
+                        hits.append((lo+pos-4,skip))
+    if len(hits)!=2 or sorted(skip for _,skip in hits)!=[0,2]:
+        raise SystemExit('Cross-version masked counter stores changed: '+ident)
+print('18 candidate data/consumer windows, reset bounds, and two masked counter update patterns verified. Excluded regions not read; target not executed.')

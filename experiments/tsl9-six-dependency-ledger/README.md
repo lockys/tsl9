@@ -31,6 +31,8 @@
 
 接續解碼各版 reset 的 word 清零迴圈：前八份的起點為 `0x20004088`，其餘十份為 `0x20004080`；各版半開終點介於 `0x2000C94C` 和 `0x2000C958`。對每份映像，前述 counter byte 與四個 sequence bytes 都位於該版清零範圍內。因此若名目入口正常執行、RAM 可用、清零完整且沒有干擾，這些狀態在 reset 清零剛完成時為 0；不證明它們到第一次查表時仍為 0。按 WCH 48 KiB **連續 RAM 範例**的頂端 `0x2000C000` 比較，各版清零終點超出 2,380–2,392 bytes；該數值不證明實機選項或重映射。[檢查器](check-cross-version-windows.py)解碼各版範圍與固定 loop 指令，沒有存取裝置或排除區。
 
+各版允許搜尋區內都找到兩處 counter 更新骨架：讀取該版對應 GP byte，計算 `(old+1)&3`，再以 byte store 寫回相同位址；其中一處在計算與寫入間夾有一條 stack 載入。若 reset 清零正常、後續直到查表都只有這些已辨識 store 修改 counter，且沒有 alias／中斷／DMA 等干擾，則可由初值 0 歸納該 byte 每次均在 0–3，對應四筆已知 halfword。這是**條件式不變量**，不是完整 writer 清單、全域可達性或 provider 已解除的證據。[檢查器](check-cross-version-windows.py)核對所有 18 份的 GP 位移、兩種指令編碼與相同 store 目的，不執行 target。
+
 ## `0x40000` 候選啟動的 seed 複製
 
 固定 V1.31 候選中，`0x6DEAA..0x6DEB6` 逐 word 把 `[0x40280,0x402B0)` 複製到 `[0x20000010,0x20000040)`；在複製正常完成且來源／目的符合該候選映射時，這包含後續 word-copy helper 的 RAM 指令。控制接著經 `0x6DEBA → 0x6DE0C`，在 `0x6DE4A..0x6DE4E` 呼叫 `0x20000010`。兩段固定原始窗口中沒有 `FENCE.I`，因此在這條已辨識路徑的最後 seed store 與首次執行 RAM helper 之間，沒有看到明確的標準 `FENCE.I`。
