@@ -16,6 +16,12 @@
 
 原 APP 假設的 `[0x8000,0x1AC00)`、76,800 bytes 在三個例子的 Flash 數值範圍內；這不證明該位置可寫、BOOT／ROM 佔用情況、OTA 支援或執行成功。官方不同版本資料對總 Flash 與零等待區的表述有差異，不將簡單位址相加視為已確認的實際配置。
 
+### 官方範例 linker 的預設配置
+
+2026-10-31 查閱 [WCH 官方 `Link.ld`](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Ld/Link.ld) 時，**實際啟用**的是 CH32V203 D6 範例的 Flash 64 KiB／RAM 20 KiB；CH32V208 的 128/64、144/48、160/32 KiB 組合列在註解內。這是當時公開範例的來源內容，可能隨 main 更新，並非原機設定，也不能直接當作 TSL9 linker。
+
+若僅以該啟用範例的連續數值範圍比較，Flash 末端是 `0x10000`，原 APP 假設區間超出 **44,032 bytes**；RAM 末端是 `0x20005000`，原 APP 清零末端、候選 BLE pool 末端與初始 SP 分別高出 31,064、24,972、45,056 bytes。這說明直接照搬此範例無法表示已觀察到的完整數值區間；不代表已實測發生故障。64 KiB 候選中 SP=`0x20010000` 是半開 RAM 區間的**上界**，不是可解參考的 RAM byte；向下的 16-byte frame 才在該範例內。實機選項、alias、記憶體所有權和 stack 深度仍未知。[檢查器](check-wch-example-geometry.py)固定 reset 指令窗口、檔案長度與區間算術；不執行目標或讀取排除區。
+
 ## CAN 腳位的條件式對照
 
 原始 ID2966 V4.1.60 的 `0x12DC0..0x12DE2` 34 bytes 與目前 C 重建診斷 ELF 的同位址 bytes 一致；原始 BIN 整檔 SHA-256 為 `0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667`。在 `0x12DCC` 與 `0x12DDE` 的呼叫分別傳入 `(0x40010800, 0x1000, 0x18)` 與 `(0x40010800, 0x0800, 0x48)`。依 [WCH 周邊定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h)及 [GPIO 模式定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_gpio.h)，這些數值對應 GPIOA、pin 12／複用推挽，及 pin 11／上拉輸入。此解讀仍以 helper `0x9A24` 實際採用對應參數契約為條件。
