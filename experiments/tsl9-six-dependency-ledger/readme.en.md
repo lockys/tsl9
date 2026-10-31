@@ -40,6 +40,14 @@ Consequently, the lookup on each of these particular setter paths falls in the e
 
 In particular, `a2=1` becomes selector 255 through `low8(-a2)`. If the state is never overwritten and every subsequent entry and lookup completes normally, these two selector-255 paths can perform 10 or 15 lookups in mode 5 or 3 respectively; the last clears enable, so an 11th or 16th entry returns unless re-enabled. This is a conditional control-flow inference, not a measured count, rate, transmission or feature, and does not cover indirect calls or other setters.
 
+### Guards at the two repeated-lookup call sites
+
+`0xD50A..0xD528` first reads byte `0x2000BF44` through `0xD052`; only when it equals 1 and the byte at `GP+354` is zero does it tail-jump to the setter with `(5,10,255)`. Other conditions take other paths; these state values do not identify a vehicle feature.
+
+`0xE1A6..0xE1EA` first requires the `GP+357` byte to be 1–4, byte `0x2000BF44` to be 4, and `0x8202` to return nonzero. `0x81B0` then loads and calls an indirect target from `0x4007C`, calculating `((x*10)&0xFFFFFFFF)>>4` from its return `x` using RV32 arithmetic. The setter receives `(3,15,255)` only if the 32-bit unsigned difference between that result and `*(GP+272)` exceeds 1999. This path subsequently writes the latest `0x81B0` result to `GP+272`; the original instructions do not add a rollover correction before comparison.
+
+The pinned [WCH V1.30 header](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.h) names slot 18 (`0x4007C`) `TMOS_GetSystemClock` with 0.625 ms units. If the installed slot matches and multiplication does not truncate at 32 bits, the `0x81B0` result can be interpreted as milliseconds rounded down. Since multiplication truncates before the shift, the difference cannot unconditionally be interpreted as physical milliseconds or timer accuracy. Slot ABI, state and real time remain unmeasured, and no product trigger is established.
+
 ## Following the `0x14056` receive arguments
 
 In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a2,a2,-98` at `0x8A3E` compute `0x2000B9D8`. A separate PC-relative calculation at `0x8A12..0x8A1C` obtains the same base and writes a received byte at base plus counter. This supports identifying `a2` as the receive buffer; it is not a live RAM observation.
