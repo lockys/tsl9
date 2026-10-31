@@ -18,4 +18,7 @@ with image.open('rb') as stream:
             patterns = [data[offset:offset + 6] for offset in range(0, 48, 6)]
             if len(set(patterns)) != 8:
                 raise SystemExit('Conditional sequence patterns are not distinct')
+marker = [v for v in range(256) if ((v + 1) & 255) > 1]
+if marker != list(range(1, 255)) or ((255 + 1) & 255) != 0:
+    raise SystemExit('Fresh state marker-branch arithmetic changed')
 print('Sequence instruction and allowed data windows verified; target not executed.')
