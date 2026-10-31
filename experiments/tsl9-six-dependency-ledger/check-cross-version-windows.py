@@ -378,4 +378,9 @@ for (ident,version,length,*_),setter_pc,expected in zip(cases,setter_pcs,expecte
             # Compressed LI a0, 3 or 5 immediately preceding the transfer sequence.
             if read_window(f,expected[index]-back,2)!=bytes((0x0d if value==3 else 0x15,0x45)):
                 raise SystemExit('Mode constant candidate changed: '+ident)
+        prefixes=((0,8,'014685450d454101'),(2,8,'0546a94515454101'),
+                  (3,6,'0546bd450d45'),(4,6,'014685450d45'))
+        for index,back,hex_bytes in prefixes:
+            if read_window(f,expected[index]-back,back)!=bytes.fromhex(hex_bytes):
+                raise SystemExit('Mode three-argument prefix changed: '+ident)
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
