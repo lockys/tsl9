@@ -76,6 +76,12 @@ At `0xA1A8` the code calls `0xED00` with `a0=SP+4` and `a1=7`. The complete func
 
 This is static data flow for the lookup path, conditional on valid pointers and stack, no alias/asynchronous overwrite and normal callee execution. The index and resulting field have conservative byte and 12-bit widths respectively; neither proves the global index is 0–3 or that four entries constitute the complete table.
 
+### Two branches that do not read the counter table
+
+`0xA132` calls `0x81EE`, which directly reads byte `0x2000BED5`. At `0xA136..0xA158`, return value 1 selects the constant `1960` (`0x7A8`) for the common packet-field path; value 2 selects `2140` (`0x85C`) at `0xA1FC` before joining that path. Only other byte values read `GP+176` and look up `0x1AB48` at this entry, so the two fixed-value branches do not depend on that table or counter.
+
+Given valid memory, normal return, no interference and completion of the later field logic, the low 12 bits of the constants are `0x7A8` and `0x85C`. This does not establish reachability of states 1/2, their product meanings, absence of lookups at other entry points or resolution of downstream dependencies; the complete provider cannot be removed on this basis.
+
 ## Conditional dispatch after the checksum
 
 `0xA1B2` passes that buffer to `0x12A08`. In the [original dispatcher](../tsl9-record-dispatch/readme.en.md), the function calls `0x81AA` first and returns if that result is zero and the first input halfword is not 1; otherwise it calls `0x821E` with 0 and returns if that result is zero. A nonzero byte at input offset 11 routes to `0x16B7C`. If zero, it assembles a stack record, uses the indirect `0x4004C` slot with input+3 as source and the byte at input offset 2 as length, then calls `0x18CA4` with `a0=0x40006400` and `a1=SP+12`.
