@@ -60,3 +60,9 @@ WCH 的 [CanTxMsg](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Pe
 已納入範圍的 dispatcher 從 record `s0+0` 讀取 halfword；在對應分派樹中，`0x14F18..0x14F1C` 比較此值與 **880／`0x370`**，相等時跳至 `0x152D0`，該區塊把 `s0` 放入 `a0`、還原自身 frame 後，於 `0x152D8` 尾跳 `0xA054`。因此 `0x370` 是**這條路徑**所比較的 record 值，不是已證明的全部入口或資料來源。分派樹還受先前 `0x829E` 返回值與其他分支控制；此處沒有發現可直接推定 offset 2 長度的比較。
 
 結合下一階段與 WCH CAN1 介面的對照，`0x370` 可作為待驗證的訊息識別值線索；目前沒有實際 CAN 擷取、完整原機入口或產品功能證據，不能宣稱這是已確認的 CAN ID、裝置行為或長度保障。參見 [feature dispatcher](../tsl9-feature-dispatch/README.md)。
+
+### Queue 的長度 4 檢查屬另一分支
+
+原 queue 消費函式 `0x12C86..0x12CA4` 依 12-byte stride 取 record，並請求經 `0x4004C` 間接槽複製 12 bytes 到自身 `SP+8`。接著 `0x12CB0` 呼叫 `0x82D2`，僅在結果為 0 時繼續；`0x12CB6..0x12CBA` 新讀 stack record 首 halfword，與 `s4` 比較。`s4` 在 queue 入口被設為 1；**若呼叫後仍保留該值**，首值不為 1 時就跳到 `0x12D78`，繞過 `0x12CBE..0x12CC4` 的 offset 2 等於 4 檢查。該分支另經設定 bit 與 `0x81AA` guard，於 `0x12D8C` 把 `SP+8` 傳給 `0x14D2E`。
+
+因此，若上游 record 首值在相關讀取時保持 `0x370`，它會走非 1 分支，而不能以另一分支的「長度等於 4」來界定此 record。這是**條件式分支分析**：間接 copy、`0x82D2`、`s4`／stack 與記憶體在呼叫間是否保持、record 的實際 producer 與其他驗證均未封閉；沒有證明特定長度可達或存在漏洞。見[queue 來源](../../src/native/receive/queue_consumer.c)與[功能分派器](../tsl9-feature-dispatch/README.md)。
