@@ -532,7 +532,7 @@ elf=runpy.run_path(str(reader))['ELF'](layout)
 sections=[s for s in elf.sections if s['flags']&6==6 and s['size']]
 if len(sections)!=6 or sum(s['size'] for s in sections)!=69412:
     raise SystemExit('Selected code scope changed')
-valid=[]; number=0; interiors=set(); branches=0; branch_entries=[]
+valid=[]; number=0; interiors=set(); branches=0; branch_entries=[]; auipc_jalr=0
 with reference.open('rb') as f:
     if branch_target(read_window(f,0x8916,4),0x8916)!=0x891e or branch_target(read_window(f,0x893e,4),0x893e)!=0x8962 or branch_target(read_window(f,0xe6da,2),0xe6da)!=0xe6f4:
         raise SystemExit('Known conditional branch decoder witnesses changed')
@@ -543,6 +543,12 @@ with reference.open('rb') as f:
         while at<size:
             width=4 if data[at]&3==3 else 2
             if at+width>size: raise SystemExit('Truncated selected code instruction')
+            if width==4 and at+8<=size:
+                upper=int.from_bytes(data[at:at+4],'little')
+                lower=int.from_bytes(data[at+4:at+8],'little')
+                register=(upper>>7)&31
+                if upper&127==0x17 and register and lower&127==0x67 and (lower>>12)&7==0 and (lower>>15)&31==register:
+                    auipc_jalr+=1
             target=transfer_target(data[at:at+width],start+at)
             if target is not None and 0x14056<=target<0x14c8a:
                 valid.append((start+at,target))
@@ -560,4 +566,20 @@ if number!=23602 or valid!=[(0x8a48,0x14056)]:
     raise SystemExit('Selected direct transfer into excluded code changed')
 if branches!=2218 or branch_entries:
     raise SystemExit('Selected conditional branches into excluded code changed')
+if auipc_jalr:
+    raise SystemExit('Adjacent AUIPC-JALR candidates changed')
+data_words=0; address_candidates=[]
+with reference.open('rb') as f:
+    for section in elf.sections:
+        if section['flags']&2==0 or section['flags']&4 or not section['size']: continue
+        start,size=section['address'],section['size']
+        data=read_window(f,start,size)
+        for at in range(0,len(data)-3):
+            if (start+at)%4: continue
+            value=int.from_bytes(data[at:at+4],'little')&0xfffffffe
+            data_words+=1
+            if 0x14056<=value<0x14c8a or 0x08014056<=value<0x08014c8a:
+                address_candidates.append((start+at,value))
+if data_words!=991 or address_candidates:
+    raise SystemExit('Selected aligned data-word address candidates changed')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
