@@ -7,10 +7,18 @@ This ledger combines current original-address C/C++, existing original BIN instr
 | Dependency | Observed use | Still unproved |
 | --- | --- | --- |
 | `0x40000` | Reset transfers control from `0x18730` without writing a return address. A candidate SDK startup chain initializes RAM and uses `MRET`. | Whether the installed code and ABI match the candidate and startup completes. See [slot2 startup](../tsl9-resident-slot2-startup/readme.en.md). |
-| `0x14056` | A linked call at `0x8A48` passes `a0=s3`, `a1=uint8(GP+0xA4)`, `a3=uint16(GP+0x8E)` and a PC-relative value in `a2`. See [incoming_protocol.c](../../src/native/receive/incoming_protocol.c). | The body is in the existing excluded range. Parameter meanings, the `a2` object, return value and side effects are unknown. |
+| `0x14056` | A linked call at `0x8A48` passes `a0=s3`, `a1=uint8(GP+0xA4)`, `a2=0x2000B9D8`, and `a3=uint16(GP+0x8E)`. The receive state machine writes data to that buffer at `0x8A1C`; normal length parsing permits 0–1040. See below. | The body remains excluded. The semantic model calls it a router, but actual dispatch, complete parameter ABI, return value and side effects are unproved. |
 | `0x1AB48` | `0xA158` reads a halfword at `base+2*counter`; two direct writes use `(old+1)&3`. | Global counter range 0–3 at each read is unproved; if true, the existing 8-byte window covers that read. See [counter analysis](../tsl9-input-counter-data/readme.en.md). |
 | `0x1A078` | `0xCF5A` reads `base+16*mode+column`, with column masked by 15. Conditional rows for modes 0–5 are in the source. | A setter accepts any low byte; locally observed 0–5 does not establish the global range or a complete provider. See [mode integration](../tsl9-record-mode-row-integration/readme.en.md). |
 | `0x1A638` | `0x12046..0x1205E` prepares a six-byte comparison at `base+6*(2*channel+state)`; loop channel is 0–3. | State 0/1 at every read, the installed comparison slot and physical function remain unproved; if the stated conditions hold, the 48-byte window covers that comparison. See [sequence analysis](../tsl9-sequence-pattern-data/readme.en.md). |
 | `0x1A69C` | At `0x131AA`, this address is passed in `a1` with length 4 in `a2`; `a0=*(GP+0x54)+12` to an indirect target loaded from `0x4004C`. See [settings_defaults.c](../../src/native/startup/settings_defaults.c). | The four data bytes remain excluded and were not read or output. The target identity, valid memory, and whether it copies data remain unproved. |
 
 Register values, address formulas and conditional bounds do not establish reachability or the complete original C declarations. Addresses from different versions are not interchangeable. Installed ROM, RAM, IRQ and OTA compatibility are not demonstrated.
+
+## Following the `0x14056` receive arguments
+
+In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a2,a2,-98` at `0x8A3E` compute `0x2000B9D8`. A separate PC-relative calculation at `0x8A12..0x8A1C` obtains the same base and writes a received byte at base plus counter. This supports identifying `a2` as the receive buffer; it is not a live RAM observation.
+
+`0x89C2` and `0x89D6` construct the 16-bit length at GP+142. On the normal parsing route, `0x89E0..0x89E4` sends nonzero values above 1040 to a state-clearing path, with zero handled separately. After state and checksum comparisons at `0x8A2A..0x8A32`, `0x8A36` reloads that field into `a3`. Thus 0–1040 is conditional on normal length parsing, not a proved global invariant across all entries, alias writes, interrupts or callbacks. `a1` is the byte at GP+164; its specific command semantics are not established by that fact alone.
+
+These observations agree with the existing [GATT receive model](../tsl9-v4160-gatt-ingress-model/README.md), which uses synthetic providers and does not establish `0x14056` internals or hardware behavior. The excluded function body was not read.
