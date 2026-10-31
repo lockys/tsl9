@@ -599,6 +599,12 @@ expected_imports={
     'tsl9_input_state_decoders_static_data_1ab48':(0xa14e,23),
     'tsl9_record_field_transitions_static_data_1a078':(0xcf4e,23),
 }
+expected_pairs={
+    0x131aa:(0x1a69c,0x597,0x58593),
+    0x12036:(0x1a638,0xc17,0xc0c13),
+    0xa14e:(0x1ab48,0x797,0x78793),
+    0xcf4e:(0x1a078,0x797,0x78793),
+}
 for mode in ('c','cpp'):
     path=component/mode/'UNRESOLVED-STARTUP-EVENT-WORD-DATA.o'
     if hashlib.sha256(path.read_bytes()).hexdigest()!='93f2fefc4f0d7754e8d58a72967a9507ab4247915ac4af6989d4afc232a10046':
@@ -615,4 +621,14 @@ for mode in ('c','cpp'):
         owner=matches[0]
         pc=owners[owner['name']]['original_PC']+ref['offset']-owner['value']
         if (pc,ref['type'])!=expected_imports[name]: raise SystemExit('Original relocation coordinate or type changed')
+        if ref['type']==23:
+            lows=[r for r in obj.relocations if r['section']==ref['section'] and r['offset']==ref['offset']+4 and r['type']==24]
+            if len(lows)!=1 or lows[0]['addend']!=0: raise SystemExit('Missing adjacent PC-relative low relocation')
+            anchor=obj.symbols[lows[0]['symbol']]
+            if anchor['section']!=ref['section'] or anchor['value']!=ref['offset']:
+                raise SystemExit('PC-relative low relocation anchor changed')
+            address,upper,lower=expected_pairs[pc]
+            with reference.open('rb') as stream:
+                if pcrel_target(pc,read_window(stream,pc,8),upper,lower)!=address:
+                    raise SystemExit('Original PC-relative data target changed')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
