@@ -44,4 +44,40 @@ if instructions != 23602 or direct or len(aliases) != 196 or [pc for pc, offset 
     raise SystemExit('Selected direct GP accesses changed')
 if not (0x20004080 <= 0x20004000 + 332 and 0x20004000 + 336 <= 0x2000c958):
     raise SystemExit('Reset zero range does not cover all four bytes')
+source = root / 'src/native/receive/feature_state_records.c'
+if digest(source) != '19a1c39ee7831f42960454d02393512520c425ea1ad90f9e08b0f8d4e3b32db3':
+    raise SystemExit('Nearby pointer consumer source changed')
+windows = ((0x107c6, 0x50, 'd307a4c26719324fd50c4917181ffdac93b5fcc9c99b6f75cff7e99a033eb19f'),
+           (0x10b9c, 0x80, 'ace22d8800893dbbe38a89aa882222872b5db2fedb36247d3fb9d95783cc23be'))
+near, stores = [], []
+with image.open('rb') as f:
+    for start, size, expected in windows:
+        if start < 0x14c8a and start + size > 0x14056:
+            raise SystemExit('Refusing excluded code')
+        f.seek(start - 0x8000)
+        data = f.read(size)
+        if hashlib.sha256(data).hexdigest() != expected:
+            raise SystemExit('Nearby pointer consumer window changed')
+        at = 0
+        while at < size:
+            n = 4 if data[at] & 3 == 3 else 2
+            if at + n > size:
+                raise SystemExit('Truncated instruction')
+            pc = start + at
+            word = int.from_bytes(data[at:at+n], 'little')
+            at += n
+            if n != 4:
+                continue
+            op, base, funct = word & 127, (word >> 15) & 31, (word >> 12) & 7
+            if op == 0x13 and base == 3 and funct == 0:
+                near.append((pc, (word >> 7) & 31, word >> 20))
+            if op == 0x23 and base == 8:
+                stores.append((pc, funct, ((word >> 25) << 5) | ((word >> 7) & 31)))
+if near != [(0x10ba8,10,325),(0x10bba,10,322),(0x10bd4,10,326),
+            (0x10bf0,10,327),(0x10c04,10,323),(0x10c16,10,324)]:
+    raise SystemExit('Nearby GP address formation changed')
+if stores != [(0x107ea,0,0),(0x107f8,0,0),(0x10810,0,0)]:
+    raise SystemExit('Nearby standard byte stores changed')
+if any(offset in range(332, 336) for _, _, offset in near):
+    raise SystemExit('Nearby scalar destination overlaps sequence bytes')
 print('Sequence state reset range and selected direct GP-store scan verified; aliases and concurrency remain unresolved.')
