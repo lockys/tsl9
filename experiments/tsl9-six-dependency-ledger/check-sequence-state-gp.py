@@ -80,6 +80,41 @@ if stores != [(0x107ea,0,0),(0x107f8,0,0),(0x10810,0,0)]:
     raise SystemExit('Nearby standard byte stores changed')
 if any(offset in range(332, 336) for _, _, offset in near):
     raise SystemExit('Nearby scalar destination overlaps sequence bytes')
+# The independently formed GP+320 pointer is held in s0 in this window.
+# Check standard and compressed stores; do not infer callee side effects.
+with image.open('rb') as f:
+    f.seek(0x10440 - 0x8000)
+    nearby_320 = f.read(0x10556 - 0x10440)
+if hashlib.sha256(nearby_320).hexdigest() != '11f6e147555c125abe8de3036897101f8169a64b5143e55e0b0b92d3166e56b5':
+    raise SystemExit('GP+320 function window changed')
+if (0x10468, 320) not in aliases or nearby_320[0x10468-0x10440:0x1046c-0x10440] != bytes.fromhex('13840114'):
+    raise SystemExit('GP+320 pointer formation changed')
+at = 0
+s0_stores = []
+gp320_stores = []
+while at < len(nearby_320):
+    word = int.from_bytes(nearby_320[at:at+2], 'little')
+    n = 4 if word & 3 == 3 else 2
+    if at + n > len(nearby_320):
+        raise SystemExit('Truncated GP+320 function')
+    pc = 0x10440 + at
+    if n == 4:
+        word = int.from_bytes(nearby_320[at:at+4], 'little')
+        opcode, base, funct = word & 127, (word >> 15) & 31, (word >> 12) & 7
+        if opcode == 0x23 and base == 8:
+            s0_stores.append(pc)
+        if opcode == 0x23 and base == 3:
+            offset = ((word >> 25) << 5) | ((word >> 7) & 31)
+            offset -= 4096 if offset & 2048 else 0
+            if offset == 320:
+                gp320_stores.append((pc, funct))
+    elif word & 3 == 0 and word >> 13 == 6 and (word >> 7) & 7 == 0:
+        s0_stores.append(pc)  # C.SW with compressed base register s0.
+    at += n
+if s0_stores or gp320_stores != [(0x10456, 1)]:
+    raise SystemExit('GP+320 explicit stores changed')
+if not 320 + 2 <= 332:
+    raise SystemExit('GP+320 halfword overlaps sequence state')
 callback_source = root / 'src/native/receive/callback_providers.c'
 if digest(callback_source) != 'daaf2f45bed63cb62eea82a981f03a79f8c5b25ea5e3b79941b223818f3c4e3f':
     raise SystemExit('Adjacent callback source changed')
