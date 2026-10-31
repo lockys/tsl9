@@ -15,3 +15,9 @@ Section 3.2 of the [official WCH QingKe V4 manual](https://www.wch.cn/uploads/fi
 | LLE | 64 | `0x8138` | `0x8498` |
 
 This narrows the earlier documentation's statement that official mode-3 semantics were unknown: **the official V4 specification provides those semantics**. This remains conditional reasoning from the chip marking, manual and original APP bytes; it does not observe actual `mtvec`, PFIC state, vector remapping, interrupt delivery or execution order. The WCH manual also describes separate mechanisms such as VTF, so the ordinary vector formula does not establish every possible interrupt path. Slot binding, ROM and IRQ compatibility remain unverified. No firmware execution or hardware operation occurred.
+
+## Startup `INTSYSCR` configuration
+
+Original reset loads 3 at `0x186FE` and writes it to CSR `0x804` at `0x18700`. Section 3.2 of the same WCH V4 manual names this CSR `INTSYSCR`: bit 0 `HWSTKEN=1` requests hardware stacking and bit 1 `INESTEN=1` requests interrupt nesting. However bits 3:2 `PMTCFG=0` are defined in the manual's table as no preemption bits / no nesting. Setting bit 1 alone therefore does not establish that nested interrupts occur on the device.
+
+In this written value bit 4 `HWSTKOVEN` and bit 5 `GIHWSTKNEN` are both 0. The manual describes bit 5 as a global-interrupt and hardware-unstack disable control used during interrupt context switching, automatically cleared after interrupt return. This supplies the official bit-5 meaning missing from the earlier [numeric contract](../tsl9-trap-profile-contract/readme.en.md); it does not establish physical execution of later `0x8448` or interrupt return, unchanged control bits afterwards, or stack/IRQ safety.
