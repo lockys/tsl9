@@ -54,6 +54,12 @@ Let `f(x)=((x*10)&0xFFFFFFFF)>>4`. `f(429496729)=268435455`, whereas on the next
 
 If the installed clock matches the candidate, these adjacent values are reachable, all other guards pass and stored state is undisturbed, the example supports a possible trigger at an interval different from the intuitive elapsed-time interpretation. It is an arithmetic witness derived from the instructions, not a timing measurement, proof of reachability or occurrence, or a demonstrated device defect.
 
+### Relationship among reconstructed modes 0–5
+
+For the six reconstructed 16-byte windows at `0x1A078..0x1A0D8` in the original BIN, each column `c=0..15` satisfies `row[m][c] = row[0][c] XOR k[m]`; `k[0..5]` are `00, E0, EF, 0F, F1, E9`. Each row's 16 bytes are distinct, so if the mode is known and one of these six rows is actually read, its output byte uniquely identifies the column within that row.
+
+Across all 96 positions there are only 74 distinct byte values; 20 values repeat and the highest multiplicity is three. Consequently an output byte alone cannot uniquely identify both unknown mode and column. This is a reproducible relationship within one original data window, not proof of product meaning, reachability, XOR constants for other modes or the full original table extent. It must not be used to generate unknown rows or replace the `0x1A078` provider.
+
 ## Following the `0x14056` receive arguments
 
 In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a2,a2,-98` at `0x8A3E` compute `0x2000B9D8`. A separate PC-relative calculation at `0x8A12..0x8A1C` obtains the same base and writes a received byte at base plus counter. This supports identifying `a2` as the receive buffer; it is not a live RAM observation.
