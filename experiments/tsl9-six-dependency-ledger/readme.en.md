@@ -340,6 +340,12 @@ At `0x13238..0x13252`, the original APP initializer loads an indirect target fro
 
 Fallback `0x12F18..0x12F44` calls slot `0x40048` with destination `0x2000C30C`, value 0 and length 256, writes `0x5A` at offset 255, then tail-jumps to `0x12EE6`. That writer requests a 256-byte copy to its stack through `0x4004C` and calls `0x9C0A` with `0x08077800` and the stack pointer. If the slots implement candidate fill/copy, memory is valid and there is no interference, fallback clears the scan area. Actual source contents, marker match, physical flash mapping and write success remain unverified. See the [existing NVM layout analysis](../tsl9-NVM-record-layout/README.md).
 
+#### Cleared records and the sequence-completion marker
+
+If that fallback's candidate fill clears 256 bytes normally and only offset 255 is subsequently written to `0x5A`, the first 252 bytes used by the 42 records remain zero, so each comparison word assembled from record halfwords at offsets 2 and 4 is zero. By contrast, the normal four-channel completion marker at `0x1207A..0x1209A` has low byte `0x80..0x83` and is therefore nonzero.
+
+If the record pointer still targets this region, the completion marker remains at `0x2000BFCC`, `0x2000BFC9=0`, memory accesses and calls complete normally, and no other write or asynchronous interference occurs, this `0x11356` scan cannot match any of the 42 records and cannot call `0x155D0` through its match branch. Other calls to `0x155D0` are not excluded; fallback, sequence completion, timer events and physical actions are not established, and actual settings may contain nonzero records. The [checker](check-sequence-cleared-records.py) pins three original instruction windows without reading device data or executing the target.
+
 ### Dispatch restrictions for action value 255
 
 On each scan-branch match, the candidate callback for event mask `0x2` calls `0x155D0` with `255`. The function first checks bit `0x08` at offset 4 of the record pointed to by `*(GP+84)`; if set, `(255+6)&255=5 > 2` directs control to the restore/return at `0x1578C`, before the pending check or jump table. If that bit is clear, it reads the byte at `GP+358`: when nonzero it clears the byte and tail-jumps to `0x18110`, which tail-jumps to `0x1802E` with `a0=0`, `a1=3`, `a2=1`.
