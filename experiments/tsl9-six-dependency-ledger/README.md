@@ -333,6 +333,10 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 WCH V1.30 標頭將 slot 63（`0x40034+4*63=0x40130`）定義為 `GATTServApp_RegisterService(pAttrs,numAttrs,encKeySize,pServiceCBs)`；候選原機執行層的該槽另指向 `0x4CF22`。若 installed slot、介面與記憶體均相容，這次呼叫可解讀為以四筆 attribute、key-size 參數 16 和該表請求註冊。`0x8FCC` 返回後 `0x8FCE` 直接繼續下一項工作，沒有在此處依返回碼分支；不能把發出呼叫視為註冊成功，也不能由 key-size 數值證明實際連線已加密。候選 wrapper 在部分狀態下還可能先完成核心註冊，再因 callback 節點配置失敗而返回錯誤；詳見既有分析。
 
+以 reset 初始資料及 WCH 候選 attribute 結構解讀，四筆紀錄分別指向 `0x1AB38`、`0x1AB42`、`0x1AB44` 和 RAM `0x20004080`。允許讀取的 `0x1AB38..0x1AB46` 顯示：前者含長度 2 及指向 `0x1AB40` 的指標，其兩-byte 數值為 **`0xFFF0`**；`0x1AB42` 的 byte 為 **`0x1C`**，而 `0x1AB44` 的兩-byte UUID 為 **`0xFFF1`**。若第二筆確是特徵宣告且 `0x1C` 被用作 properties，WCH V1.30 標頭的 0x04／0x08／0x10 定義將其解作無回應寫入、有回應寫入與通知。WCH 的[公開 GATT 範例](https://github.com/openwch/ch592/blob/main/EVT/EXAM/TOUCH/Touch_key_with_ble/Profile/gattprofile.c)也使用 FFF0／FFF1，但這些數值本身不足以辨識廠商來源或產品功能。
+
+以上是固定 APP bytes 與候選 ABI 的條件式交叉證據；仍需 reset 複製、指標、註冊、permission、連線與通知訂閱有效，不能據此聲稱實機可寫或能通知，也不證明 `0x14056` 內部功能。兩-byte UUID 既有候選來源尚未加入正式 `src/`：其歷史整合鏈有固定雜湊，單純複製檔案不等於完成原位址整合。[檢查器](check-cross-version-windows.py)核對允許的初始化資料與 WCH 標頭常數，不讀排除區。
+
 只有註冊成功、指標生命週期有效且 installed ABI 相符時，上節 `uint16_t` callback 上界才可套到該候選路徑。未讀取排除區、連線裝置或測試實機服務；[獨立覆核器](check-key-control-flow.py)核對原始槽讀取、PC-relative 指令及呼叫。
 
 #### 兩份候選 resident 映像的槽位差異

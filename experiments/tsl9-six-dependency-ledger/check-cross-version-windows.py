@@ -463,6 +463,22 @@ with reference.open('rb') as f:
     targets=tuple((0x1a6a0+int.from_bytes(gap[i:i+4],'little',signed=True))&0xffffffff for i in range(4,24,4))
     if targets!=(0x1452a,0x1453a,0x14546,0x1473a,0x14744) or not all(0x14056<=p<0x14c8a for p in targets):
         raise SystemExit('Conditional signed-offset targets changed')
+    gatt_values=read_window(f,0x1ab38,14)
+    init_table=read_window(f,0x1ab60,64)
+    if hashlib.sha256(gatt_values).hexdigest()!='ffef434b340fcc9fb704ebee87b3a7514ed1f364d8450bf14156c857382723f0' or hashlib.sha256(init_table).hexdigest()!='ec219de3a158bb75bff41bb548e9cabd7ad7351a827e98601ce0f028920475e7':
+        raise SystemExit('GATT candidate initializer windows changed')
+    words=tuple(int.from_bytes(init_table[i:i+4],'little') for i in range(0,64,4))
+    if words!=(2,0x4000c,1,0x1ab38,2,0x40012,1,0x1ab42,2,0x1ab44,2,0x20004088,2,0x40018,3,0x20004080):
+        raise SystemExit('GATT candidate attribute table changed')
+    if (int.from_bytes(gatt_values[:4],'little'),int.from_bytes(gatt_values[4:8],'little'),int.from_bytes(gatt_values[8:10],'little'),gatt_values[10],int.from_bytes(gatt_values[12:14],'little'))!=(2,0x1ab40,0xfff0,0x1c,0xfff1):
+        raise SystemExit('GATT candidate service or characteristic data changed')
+    header=root/'analysis/wch-resident-candidate-2026-10-21/original-dec2023/wchble_rom.h'
+    header_bytes=header.read_bytes()
+    if hashlib.sha256(header_bytes).hexdigest()!='647a185941fedeb6ba16d544d9bca91a6f53219bb649a5513b59abeb21a9a94c':
+        raise SystemExit('WCH candidate header changed')
+    for name,value in ((b'GATT_PROP_WRITE_NO_RSP',b'0x04'),(b'GATT_PROP_WRITE',b'0x08'),(b'GATT_PROP_NOTIFY',b'0x10')):
+        lines=[line.split() for line in header_bytes.splitlines() if line.split()[:2]==[b'#define',name]]
+        if len(lines)!=1 or lines[0][2]!=value: raise SystemExit('WCH GATT property constant changed')
 # Scan one explicit pointer-producing ADDI immediately followed by SB/SH/SW or C.SW.
 for ident,version,length,*_ in cases:
     state=different_offsets.get(ident,332)
