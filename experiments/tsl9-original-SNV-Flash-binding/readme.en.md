@@ -30,6 +30,12 @@ The buffer is filled with `0xFF`, then its first word is set to the current page
 - Read and write callbacks set A0=0 on normal return without checking hardware results.
 - SNV may return 1 for either a matching marker or allocation failure. Outer BLE still overwrites the result with 0 at `0x43D4E` / `0x43D56`.
 
+### Conditional chain from allocation failure to the APP gate
+
+If the first-page marker differs and candidate `0x44022` receives a null pointer from its 256-byte heap allocation, `0x4407C` branches to the return-1 path without entering that three-page write loop. If the intervening task initializer then returns normally, the candidate BLE initializer sets 0 at `0x43D4E` and returns it at `0x43D56`. Original APP `0x19AEE` checks only whether that return is zero: zero continues to initialization after `0x19AF2`, while nonzero enters a self-loop.
+
+Therefore, if the installed ROM matches the candidate and the stated control flow, memory and calls behave normally, **SNV allocation failure and the outer zero return can coexist**. This APP gate alone cannot establish that SNV was initialized or persisted. It does not prove an actual allocation failure, exclude other error indications or guarantee later initialization succeeds. The [static checker](check-snv-failure-ble-gate.py) pins relevant APP/candidate windows and the existing receipt without executing the target or reading excluded regions.
+
 Cumulative joins are **21 / 51 sites**: 16 conditional targets and five zero-value skips. The other 30 sites are outside this cumulative ledger, not a missing-function count. All previous 19 joins and their assumptions remain. The result requires matching ROM, valid disjoint memory, stable fields, the original private ABI, normal returns and no IRQ/reentrant overwrite; no live binding was observed.
 
 Existing C/C++ bodies: APP [callbacks](../../src/native/startup/resident_startup.c), [Flash helpers](../../src/native/receive/ota_runtime.c) and [delay](../../src/native/startup/peripheral_primitives.c). Two independent ELF readers recheck the original-address native diagnostic; current SDK byte ownership is also checked. Existing ABI receipts are retained; no new compilation was performed. APP static byte coverage remains **95.54%**. ROM/RAM/ISA/IRQ/Flash/OTA compatibility and the inherited four-byte startup-source gap remain unresolved. **This is not flash-ready firmware.**

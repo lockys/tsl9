@@ -30,6 +30,12 @@
 - 讀寫 callback 正常返回都設 A0=0，未檢查硬體操作結果。
 - SNV 的 marker 相同或配置失敗路徑均可返回 1；外層 BLE 在 `0x43D4E`／`0x43D56` 仍將結果覆蓋為 0。
 
+### 配置失敗與 APP gate 的條件式串接
+
+若第一頁 marker 不相符而候選 `0x44022` 的 256-byte heap 配置回傳空指標，`0x4407C` 轉至返回 1 的路徑；它沒有走該次三頁寫入迴圈。若之後中間 task initializer 正常返回，候選 BLE initializer 在 `0x43D4E` 設 0，並由 `0x43D56` 將該值返回。原 APP `0x19AEE` 對這個返回值只檢查是否為零：零則繼續 `0x19AF2` 之後的初始化，非零才進入自迴圈。
+
+因此，在 installed ROM 符合候選、上述控制流實際走到且記憶體／呼叫正常的條件下，**SNV 配置失敗與該外層零返回可以同時成立**；APP 這個 gate 不能單獨證明 SNV 已初始化或持久化。這不證明實機曾發生配置失敗、排除其他錯誤訊號，或保證後續初始化成功。[靜態檢查器](check-snv-failure-ble-gate.py)固定相關 APP／候選指令及既有收據，未執行目標或讀取排除區。
+
 累計條件式串接為 **21／51 點**（16 個目標、5 個零值略過）；其餘 30 點未納入累計清單，不代表缺失函式。前輪 19 點的假設全部保留。所有結論仍依賴相同 ROM profile、有效不重疊記憶體、穩定設定、原 private ABI、正常返回及無 IRQ／重入覆寫；不是 live 綁定證據。
 
 現有 C/C++ 本體：原 APP [callback](../../src/native/startup/resident_startup.c)、[Flash helpers](../../src/native/receive/ota_runtime.c)、[delay](../../src/native/startup/peripheral_primitives.c)。重新透過兩個 ELF 讀取器核對原位址 native 診斷物件，並驗證現有候選 SDK 所有權。沿用既有 ABI 收據，沒有新增編譯。靜態 APP 覆蓋率維持 **95.54%**；ROM／RAM／ISA／IRQ／Flash／OTA 相容性與既有 4-byte 啟動來源缺口仍未解決，**尚不可宣稱可燒錄**。
