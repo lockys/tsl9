@@ -104,6 +104,10 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 這條 fallback 在四-byte copy 後沒有重新執行 ASCII guard；在不知道來源 bytes 時，不能證明 fallback 結果符合 32–126。其寫入器之後的候選 program leaf 會讀取 256-byte stack 來源，而此 writer 僅明確複製 112 bytes；其餘 144 bytes 的初始化來源仍未知，詳見 [NVM 區域分析](../tsl9-NVM-record-layout/README.md)。槽身分、記憶體有效性與實際持久化成功皆未確認；沒有讀取或輸出排除資料。
 
+同一套本機保存的 WCH 公開候選 `wchble_rom.hex`（SHA-256 `11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5`）經 Intel HEX 記錄 checksum 檢查後，其資料記錄最小位址為 `0x40000`，最大半開端點為 `0x6EB2C`；數值區間 `[0x77500,0x77B00)` 沒有資料記錄。六個設定頁使用的高位數值 `[0x08077500,0x08077B00)` 若減去 `0x08000000` 恰得到該區間，但**這個算術不證明硬體 alias**。
+
+此交叉檢查只描述該參考 HEX 的記錄覆蓋，不表示實機該區空白、已擦除、保留或可寫，也不補足候選啟動所缺的資料或證明 installed ROM／Flash 配置。實機映射與容量仍待獨立證據；沒有讀取裝置 Flash。
+
 ## `0x1AB48` 查表結果的局部用途
 
 在 `0xA146..0xA158`，程式以 `uint8(GP+176)` 作索引，讀取 `0x1AB48+2*index` 的無號 16-bit 值 `x`。該路徑的 `0xA15C..0xA166` 計算 `y=(x+0x802)&0xFFFF`；`0xA16C` 將 `y` 的低 8 bits 寫到 `SP+10`，而 `0xA168..0xA18E` 將 bits 8–11 寫到 `SP+9` 的低 nibble，保留其高 nibble。因此兩欄合起來是 `(x+0x802)&0xFFF`，若以稍後 `a0=SP+4` 為緩衝區起點，它們分別是 offset 6 與 offset 5 的低 nibble。

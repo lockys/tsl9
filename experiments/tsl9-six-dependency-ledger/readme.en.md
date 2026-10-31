@@ -104,6 +104,10 @@ The initial word at `0x1ABB4` is `0x2000C29C`; with reset's GP=`0x20004000`, suc
 
 This fallback does not repeat the ASCII guard after the four-byte copy; without the source bytes, its result cannot be proved to satisfy 32–126. Its writer's candidate program leaf later reads 256 bytes from the stack, while this writer explicitly copies only 112 bytes; the initialization source of the remaining 144 bytes is unknown, as described in the [NVM layout analysis](../tsl9-NVM-record-layout/readme.en.md). Installed slots, valid memory and successful persistence remain unproved; excluded data were neither read nor output.
 
+For the locally retained public WCH candidate `wchble_rom.hex` (SHA-256 `11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5`), Intel HEX record checksum checks give minimum data address `0x40000` and maximum half-open endpoint `0x6EB2C`; there are no data records in numeric interval `[0x77500,0x77B00)`. Subtracting `0x08000000` from the six settings-page operands `[0x08077500,0x08077B00)` happens to produce that interval, but **the arithmetic does not establish a hardware alias**.
+
+This cross-check describes only record coverage in that reference HEX. It does not establish that the physical region is blank, erased, reserved or writable, fill missing candidate startup data, or prove installed ROM/Flash layout. Physical mapping and capacity require independent evidence; no device Flash was read.
+
 ## Local use of the `0x1AB48` lookup result
 
 At `0xA146..0xA158`, the code uses `uint8(GP+176)` as an index and reads unsigned 16-bit value `x` from `0x1AB48+2*index`. On this path, `0xA15C..0xA166` computes `y=(x+0x802)&0xFFFF`; `0xA16C` writes its low 8 bits at `SP+10`, while `0xA168..0xA18E` writes bits 8–11 into the low nibble at `SP+9`, preserving its high nibble. Together these fields encode `(x+0x802)&0xFFF`. Relative to the later buffer start `a0=SP+4`, these are offset 6 and the low nibble of offset 5.
