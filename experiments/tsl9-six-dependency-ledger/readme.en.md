@@ -129,6 +129,8 @@ The pinned [WCH V1.30 header](https://github.com/openwch/ch32v20x/blob/ec059e0b1
 
 Let `f(x)=((x*10)&0xFFFFFFFF)>>4`. `f(429496729)=268435455`, whereas on the next tick `f(429496730)=0`. If the previously stored value is exactly the former and the slot next returns the latter input, the original 32-bit unsigned subtraction yields `4026531841`, exceeding 1999. The comparison therefore passes even if the candidate clock advanced only one 0.625 ms tick. This discontinuity comes from truncating the multiplication first; it is not the 32-bit source clock itself wrapping.
 
+Over one complete 32-bit input cycle, the product remainder crosses a multiple of `2^32` ten times: boundary `k=1..10` is `ceil(k*2^32/10)`, with the last at the input wrap from `0xFFFFFFFF` to zero. Adjacent boundaries are 429,496,729 or 429,496,730 ticks apart, about 3.11 days if the candidate 0.625 ms tick applies. Every adjacent boundary pair yields the same unsigned difference `4026531841`, exceeding both the setter's 1999 threshold and the ingress parser's 299 threshold. Each conclusion requires its own previously stored value to be exactly the value before the boundary, other guards to hold, and undisturbed state; this establishes neither simultaneous triggering nor a device defect. The [checker](check-ingress-clock-boundary.py) pins permitted parser/clock instruction windows and verifies all ten boundaries without reading excluded regions.
+
 If the installed clock matches the candidate, these adjacent values are reachable, all other guards pass and stored state is undisturbed, the example supports a possible trigger at an interval different from the intuitive elapsed-time interpretation. It is an arithmetic witness derived from the instructions, not a timing measurement, proof of reachability or occurrence, or a demonstrated device defect.
 
 #### Repetition and nine truncation boundaries
@@ -285,7 +287,7 @@ At the start of each ordinary data call, the parser obtains `now` from `0x81B0` 
 
 `0x81B0` uses `f(x)=((x*10)&0xFFFFFFFF)>>4`, matching the previously documented clock truncation below. If the saved value came from `x=429496729` and the next slot value is `429496730`, the two `f` values are `268435455` and `0`; the original unsigned difference is `4026531841 > 299`, so this call clears the prior parser state. If the installed slot matches the candidate WCH 0.625 ms tick, this example spans only one tick. It does not establish a device defect or a particular frame failure: slot identity, consecutive sampling, saved state, reachability and absence of interference remain unconfirmed. Clearing state already equal to zero causes no additional state change.
 
-The [checker](check-ingress-clock-boundary.py) reads only allowed instruction windows, directly decodes the branch at `0x8916`, and verifies nine arithmetic boundaries; it does not execute the target or read the excluded `0x14056` body.
+The [checker](check-ingress-clock-boundary.py) reads only allowed instruction windows, directly decodes the branch at `0x8916`, and verifies ten arithmetic boundaries; it does not execute the target or read the excluded `0x14056` body.
 
 #### Length bound under the candidate WCH write-callback ABI
 

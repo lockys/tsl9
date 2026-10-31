@@ -25,10 +25,18 @@ if (word & 0x7f, (word >> 12) & 7, (word >> 15) & 31, (word >> 20) & 31, 0x8916 
     raise SystemExit('Expected unsigned threshold branch changed')
 def clock(x):
     return ((x * 10) & 0xffffffff) >> 4
-for k in range(1, 10):
+boundaries = []
+for k in range(1, 11):
     boundary = (k * (1 << 32) + 9) // 10
-    previous, current = clock(boundary - 1), clock(boundary)
+    previous, current = clock((boundary - 1) & 0xffffffff), clock(boundary & 0xffffffff)
     delta = (current - previous) & 0xffffffff
-    if (previous, current, delta) != (268435455, 0, 4026531841) or delta <= 299:
+    if (previous, current, delta) != (268435455, 0, 4026531841) or delta <= 1999:
         raise SystemExit('Clock boundary arithmetic changed')
-print('Ingress clock windows and nine boundaries verified; target not executed.')
+    boundaries.append(boundary)
+if set(b-a for a,b in zip([0]+boundaries[:-1], boundaries)) != {429496729, 429496730}:
+    raise SystemExit('Unexpected boundary spacing')
+# 10*x crosses each multiple of 2**32 exactly once per interval above;
+# between them, the unshifted product remainder increases monotonically.
+if boundaries[-1] != 1 << 32 or boundaries[4] != 1 << 31:
+    raise SystemExit('Clock period changed')
+print('Ingress clock windows and ten cycle boundaries verified; target not executed.')
