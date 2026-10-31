@@ -84,6 +84,8 @@ V4.1.60 `[0x16896,0x16994)` 的 254 bytes 與目前 C 診斷 ELF 對應位址逐
 
 使用者提供的主板近照中，CH32V208 旁的金屬封裝元件可辨識標記「32.00」；這與 [WCH 官方 CH32V208 範例要求外部 32 MHz 晶振](https://www.wch.cn/uploads/file/20220627/1656323204206699.pdf)相容，支持 32 MHz 晶振的候選判斷。照片本身未標示單位，也未完整顯示電路連線，因此不能單憑標記確認它接至 MCU HSE、實際振盪頻率、PLL 鎖定或 SPI 時鐘；尚未量測裝置。
 
+[WCH-LinkW 官方原理圖](https://www.wch.cn/uploads/file/20230523/1684843869494238.pdf)的 CH32V208G 範例進一步將第 2 腳標為 `OSC_IN`、第 3 腳標為 `OSC_OUT`，並顯示 `Y1 32M` 連接這兩個網路。這提供對照晶片封裝與 PCB 的具體參考；該圖是 WCH-LinkW，而非 TSL9 電路圖，不能證明照片中的元件已接至這兩腳或裝置使用該時鐘。照片、實際連線與工作頻率均未經電氣量測。
+
 
 [WCH 公開的 system clock 範例](https://github.com/openwch/ch32v20x/blob/main/C%2B%2B/Use%20MRS%20Create%20C%2B%2B%20project-example/CH32V203C8T6%2B%2B/User/system_ch32v20x.c)將 CH32V208／D8W 的範例 HSE 註明為 **32 MHz**，96 MHz 範例則註明 `HSE/4 × 12`。因此下述 APP 軟體計算使用的 8 MHz 數值，與此範例的有效 PLL 輸入 `32 MHz/4` 在數學上相同；**不代表照片中的實體晶振是 8 MHz**。這是範例與原 APP 的條件式對照，尚未證明原機 HSE 頻率、預分頻配置、兩者暫存器狀態完全相同或 SCK 實測值；不能據此撤銷下文的 MCP2515 時脈不確定性。檢查器只驗算此數學關係與既有 APP 指令窗口。
 
