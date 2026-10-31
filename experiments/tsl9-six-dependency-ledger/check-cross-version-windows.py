@@ -442,6 +442,16 @@ with reference.open('rb') as f:
         raise SystemExit('Record table fill destination changed')
     if 228!=19*12 or not (record_base<=0x2000c268 and 0x2000c26a<=record_base+228):
         raise SystemExit('Record table fill coverage changed')
+    mode_clear=read_window(f,0xd0ee,0x16)
+    feature_init=read_window(f,0x154a6,0x56)
+    if hashlib.sha256(mode_clear).hexdigest()!='e522af049d49c88e77aaf1c9fbbee04ca8ac358cf6d07e1c2ea9bdd9dda16f88' or hashlib.sha256(feature_init).hexdigest()!='6de23ac51536117397f255ae84eae2dfb98a5755824f10cb6fa223fac2293fd0':
+        raise SystemExit('Counter and mode initialization windows changed')
+    for pc,target in ((0x927c,0x154a6),(0x154c2,0xa37c),(0x154f2,0xd0ee)):
+        if transfer_target(read_window(f,pc,4),pc)!=target: raise SystemExit('Initialization call target changed')
+    if pcrel_target(0xd0fa,read_window(f,0xd0fa,8),0x517,0x50513)!=0x2000bf38:
+        raise SystemExit('Mode clear destination changed')
+    if not (0x2000bf38+4<=0x2000bf38+16<=0x2000c958):
+        raise SystemExit('Mode initialization range changed')
     getter=read_window(f,0xabfc,14)
     caller=read_window(f,0xe6d4,28)
     if hashlib.sha256(getter).hexdigest()!='6b1e2f4d6772164fc98830bee5725a7915defe01110069223bde1c5792200b21' or hashlib.sha256(caller).hexdigest()!='95c6e7900fe3fb7d28e662bf6a9f12bff8fa50a380d25dfbab04eb3ee513405c':
