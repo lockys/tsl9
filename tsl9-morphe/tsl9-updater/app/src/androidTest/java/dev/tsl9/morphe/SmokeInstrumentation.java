@@ -86,6 +86,7 @@ public final class SmokeInstrumentation extends Instrumentation {
                 check(button(a,a.getString(R.string.capture_start))!=null&&!button(a,a.getString(R.string.capture_start)).isEnabled(),"capture needs physical BLE connection");
                 checks+=new MockupUiChecks(a).run();
                 checks+=new BleQueueChecks((MainActivity)a).run();
+                checks+=new AuthenticationChecks((MainActivity)a).run();
                 checks+=new VehicleUiChecks((MainActivity)a).run();
                 checks+=new LiveUiChecks((MainActivity)a).run();
                 HardwareCapture capture=(HardwareCapture)field(a,"hardware");
