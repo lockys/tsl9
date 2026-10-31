@@ -455,6 +455,14 @@ with reference.open('rb') as f:
         raise SystemExit('Neighbor GP+336 word store changed')
     if not (0x20004000+332+4==0x20004000+336 and 0x20004000+340<=0x2000c028 and 0x2000c028+15<=0x20010000):
         raise SystemExit('Sequence neighbor ranges changed')
+    gap=read_window(f,0x1a6a0,24)
+    if hashlib.sha256(gap).hexdigest()!='2a30b58349f008204a3ec37778c1ba7e53b575ab4ef5e5fc93ec6587da8d232d':
+        raise SystemExit('Permitted unselected data window changed')
+    if int.from_bytes(gap[:4],'little')!=0:
+        raise SystemExit('Unselected window first word changed')
+    targets=tuple((0x1a6a0+int.from_bytes(gap[i:i+4],'little',signed=True))&0xffffffff for i in range(4,24,4))
+    if targets!=(0x1452a,0x1453a,0x14546,0x1473a,0x14744) or not all(0x14056<=p<0x14c8a for p in targets):
+        raise SystemExit('Conditional signed-offset targets changed')
 # Scan one explicit pointer-producing ADDI immediately followed by SB/SH/SW or C.SW.
 for ident,version,length,*_ in cases:
     state=different_offsets.get(ident,332)
