@@ -208,6 +208,10 @@ If the installed device uses that structure with RV32 little-endian and ordinary
 
 In particular, `0x12396` uses `LBU` and reads only the byte at offset 10; even if the candidate structure's `len` is 16-bit, that instruction does not examine its high byte. Thus `s4==6` establishes only that the byte read is 6; the guard alone does not prove the full 16-bit length is 6. Actual readable buffer extent, earlier validation and installed ABI require additional evidence.
 
+At `0x123A4`, the code first passes that pointer and the length byte read to `0x838E`; this function is not a pure predicate. It checks two positions at a 4-byte stride from `0x2000C794`: when the corresponding halfword is not `0xFFFE`, a type byte equals 2 and another byte is nonzero, it caps the passed length at 30, requests a copy to stack+2 through slot `0x4004C`, then calls `0x8A56` with the data including a two-byte prefix. The numeric field views overlap; they do not by themselves establish a C structure or ownership.
+
+`0x123A8` continues toward the later pattern comparisons only when `0x838E` returns 0; a nonzero byte from a matching entry is among that function's return values. This is static evidence of conditional prior processing and continuation on zero, not proof that `0x8A56` transmits successfully, actual record contents, null/length safety or installed slot identity. The copy and later effects still require valid buffers, normal callees and no interference. See the [existing function evidence](../../analysis/callback-completion-2026-10-25/readme.en.md).
+
 ### Callback registration and message lifetime
 
 At initialization `0x1253C..0x12550`, the original code loads an indirect target from `0x40080`, passes `0x119C8`, and stores the low byte of the result at `0x2000BFD4`. If the installed slot matches the same header's `TMOS_ProcessEventRegister`, this can be interpreted as registering the callback and saving a task ID; `0xFF` is the candidate interface's failure value and the original instructions do not check the result there. Actual registration success, later overwrites and scheduler ABI remain unknown.
