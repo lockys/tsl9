@@ -483,4 +483,10 @@ for ident,version,length,*_ in cases:
                     raise SystemExit('Adjacent GP-derived store overlaps sequence state: '+ident)
     if candidates!=[2,0]:
         raise SystemExit('Adjacent GP-derived store candidate count changed: '+ident)
+# Arithmetic only: masked stores stay in range even if two reads precede both writes.
+for value in range(256):
+    first=(value+1)&3
+    second=(first+1)&3
+    if first not in range(4) or second not in range(4) or first==second:
+        raise SystemExit('Counter interleaving arithmetic changed')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
