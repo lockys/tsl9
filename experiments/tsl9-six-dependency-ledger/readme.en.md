@@ -243,6 +243,17 @@ The 48 original bytes at `0x1A638..0x1A668` match the [reconstructed data](../..
 
 Specifically, if all four states begin at 0 and two successive inputs satisfying the length-byte-6 / second-data-byte-zero guards exactly match one channel's state 0 then state 1 patterns, with comparison and memory undisturbed between calls, the first sets that channel to 1; the second resets it to 0 and enters the marker path at `0x1207A`. This does not cover arbitrary interleaving or unknown initial state and does not establish that the device received these inputs, the meaning of the other marker-word bytes or any physical button function.
 
+#### Ordering of two interleaved groups
+
+Assume the eight patterns above are distinct, all four states start at 0, the comparison slot matches the candidate contract, all three inputs reach this loop and no interference occurs. Let `A0`/`A1` be channel A's state 0/1 patterns and `B0` another channel B's state 0 pattern. The result of `A0 → B0 → A1` depends on loop order:
+
+| A and B order | Effect on A during `B0` | Conditional result during `A1` |
+| --- | --- | --- |
+| `B < A` | B matches and exits first; A is not checked and retains state 1 | B first mismatches and clears; A matches and enters the marker path |
+| `A < B` | A first mismatches and clears, then B matches | A's state 0 pattern differs from `A1`; all eight patterns are distinct, so no match marker is produced |
+
+This is conditional reasoning from the loop's current-state reset on mismatch, immediate exit on its first match and the existing data. It is not an observed BLE message or vehicle action, and does not cover unknown states or other inputs. The [checker](check-sequence-interleave.py) pins only the original instruction and allowed 48-byte data windows; no target, host model or ISA is executed.
+
 ### Upstream of the six-byte comparison input
 
 On the branch where bit 15 of incoming `a1`'s low 16 bits is set, original callback `0x119C8` loads and calls an indirect target from `0x4006C`; only a nonzero returned pointer with byte `0xB0` at offset 0 proceeds into the relevant message processing. The pinned [WCH V1.30 header](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.h) defines this slot 14 as candidate `tmos_msg_receive(taskID)`. That supports a queued-message interpretation, but does not prove the installed slot, message origin or complete ABI.
