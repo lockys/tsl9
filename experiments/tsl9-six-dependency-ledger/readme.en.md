@@ -114,6 +114,12 @@ The same WCH V1.30 header defines `tmos_stop_task(taskID,event)` at slot 10, i.e
 
 The original `0x11442` tests bit 2 of the `a1` mask before bit 1: bit 2 calls `0x11356(1)`, clears `0x2000BFD3`, and returns the original mask XOR 2; if bit 2 is clear and bit 1 is set, it calls `0x11356(0)` and returns the original mask XOR 1. The candidate events 1 and 2 therefore align with these callback branches, conditional on compatible resident slots, scheduler and callback ABI. The control flow does not prove a particular vehicle feature or actual event execution.
 
+### Record selection by the event branches
+
+`0x11356` first reads `0x2000BFCC` and returns if it is zero. Only if it is nonzero and `0x2000BFC9` is zero does it scan up to 42 records at `*(GP+88)`, with a 6-byte stride. On each iteration it reloads the pointer and `0x2000BFCC` and compares the word assembled from the halfword at record offset 2 as low 16 bits and offset 4 as high 16 bits. The word shares the numeric address written by the sequence-completion path above; its contents are not guaranteed stable between reads.
+
+For each match, input 1 to `0x11356` calls `0x155D0` with `255`; input 0 selects the unsigned byte at record offset 0 or 1 depending on whether `0x2000BFD2` is zero, passes it to `0x155D0`, then invokes indirect slot `0x40058` with `a1=16`, `a2=160`. More than one record may match. This describes only the scanning branch: nonzero `0x2000BFC9` takes a different path. Valid pointers and alignment, normal calls and register preservation, and undisturbed memory remain conditions. Actual record contents, product meaning, successful event processing and physical effects are not established.
+
 ## `0x1A078` lookup output and dispatch
 
 On the path reaching `0xCF36`, the code writes record offset 4 and freshly reads that byte `b` at `0xCF3A`. It then replaces the low nibble with `(b+1)&15`, preserves the high nibble, and uses the new low nibble as column. At `0xCF5A` it reads one byte from `0x1A078+16*effective_mode+column`, stores it at record offset 3 at `0xCF5E`, then tail-jumps without a return link to `0x12A08` at `0xCF62`. Thus column is 0–15, but the read byte remains 0–255; its product meaning and whether a value is a particular command remain unproved.
