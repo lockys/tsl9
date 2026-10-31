@@ -27,4 +27,8 @@ for text in ('0x40022000', '0x00000010', '0x00020000', '0xffffff00', '0x00000014
 pages = list(range(0x08077500, 0x08077b00, 256))
 need(len(pages) == 6 and len({p & ~0xff for p in pages}) == 6)
 need({p & ~0xfff for p in pages} == {0x08077000})
+documented_max_end = 0x08000000 + 480 * 1024
+need(documented_max_end == 0x08078000)
+need(all(0x08000000 <= p and p + 256 <= documented_max_end for p in pages))
+need(documented_max_end - (max(pages) + 256) == 1280)
 print('Pinned candidate erase sources and six numerical page relationships verified; device behavior unverified.')

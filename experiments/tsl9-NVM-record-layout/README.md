@@ -27,6 +27,10 @@
 
 ### 兩種候選擦除粒度
 
+WCH《CH32F/V20x_V30x_V31x Reference Manual》**V2.2** 的[圖 1-12 與 §1.3](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)將 CH32V208 的 code Flash 顯示於 `0x08000000`、標示最大 480 KiB；並說明從 program Flash 啟動時，它會映射到低位址區且可從 `0x08000000` 存取。這為先前的低／高位映射假設提供**條件式文件依據**，不是原機啟動模式或每個 offset 均經實測的證據。WCH 的[官方手冊頁](https://www.wch.cn/downloads/CH32FV2x_V3xRM_PDF.html)另列新版；此處引用的是已核對圖文的 V2.2，不能把兩版內容視為已逐字核對。
+
+若將圖示的 480 KiB 上限解讀為從 `0x08000000` 起連續區間，其半開終點為 `0x08078000`；六筆設定頁均在該**最大數值範圍**內，最後一頁終點距上界 1,280 bytes。這不確立特定 GBU6 的實際容量、Flash/RAM 分配、頁面所有權、可寫性或 alias，亦不能單據此填入缺失 provider 或刷寫；實機與其他版文件仍需核對。[檢查器](check-erase-page-reference.py)核對範圍算術，不讀取裝置。
+
 本機保存的 WCH CH32V20x [Flash 參考驅動](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_flash.c) V1.0.2 將一般 `FLASH_ErasePage` 註解為 4 KB，另將 `FLASH_ErasePage_Fast` 註解為 256 bytes；後者清除地址低 8 bits，以控制位 `0x20000`、啟動位 `0x40` 與 busy 位 `0x01` 進行操作。原 APP 的 `0x18EC4..0x18EF2` 重建程式也包含這組對齊、控制位和輪詢；這是靜態指令與候選驅動的對照，並不證明實機控制器或完整 API 相同。
 
 六筆目的位址各自落在不同的 256-byte 數值區間，但全部同在一個按 4 KB 對齊的數值區間 `[0x08077000,0x08078000)`。因此不能將一般 4 KB 擦除等同於這條候選快速擦除路徑，也不能只憑 256-byte 對齊推斷實際硬體擦除影響範圍。實機位址映射、擦除粒度、內容保存及寫入成功仍未驗證。[靜態交叉檢查](check-erase-page-reference.py)只讀本機既有參考來源與重建程式，不執行目標。
