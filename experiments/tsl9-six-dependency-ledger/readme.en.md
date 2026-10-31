@@ -622,6 +622,8 @@ Of 1,024 numerical combinations, 8 requested windows overlap the excluded range 
 
 ### Distinguishing the four pattern pairs
 
+If each known four-byte suffix is interpreted only as two little-endian 16-bit integers, channels 0–3 yield `(750,350), (250,350), (500,750), (500,250)`. The two states of each channel share the same pair and differ in the first two bytes, `02 00` versus `03 00`. This is a candidate numerical interpretation of fixed data: the original code here performs a six-byte comparison. Field types, units, coordinates, keys and product functions remain unverified. The [checker](check-sequence-interleave.py) verifies both stages and the pairs from the allowed 48 bytes without executing the target.
+
 #### Unexpected states aliasing within the known window
 
 For the same address formula, the six-byte window stays inside the known 48 bytes for states 0–7 on channel 0, 0–5 on channel 1, 0–3 on channel 2, and 0–1 on channel 3. Excluding expected states 0/1 leaves **12 numerical combinations** that still select a later channel's expected pattern. This classification does not establish that those states are reachable; an in-window address alone does not establish a valid state.
