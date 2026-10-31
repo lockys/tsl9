@@ -128,6 +128,14 @@ The explicit CPU stores in the existing [clock analysis](../tsl9-clock-reset-non
 
 These addresses exceed the 32 KiB RAM endpoint `0x20008000` and remain below the 48 KiB endpoint `0x2000C000`. Under the contiguous mapping and no-remapping assumptions in the [CH32V208 candidate memory comparison](../tsl9-ch32v208gbu6-evidence-20261029/README.md), they fit the documented 48 and 64 KiB examples, not the 32 KiB example. These fields alone cannot distinguish 48 from 64 KiB, and are not a reading of physical option bytes, RAM ownership or capacity.
 
+### Initial pointer for the 42 records
+
+The little-endian word at `0x1ABB8` in the original BIN is `0x2000C30C`. `0x186BA..0x186DA` copies `[0x1AB60,0x1ABE0)` to the 128-byte GP region; if GP is reset to `0x20004000`, the copy completes normally, and no overwrite occurs, `*(GP+88)` initially equals `0x2000C30C`. With 42 records at 6 bytes each, their range is `[0x2000C30C,0x2000C408)`, entirely within the reset zeroing range `[0x20004080,0x2000C958)`.
+
+Thus, after zeroing under those conditions, both compared halfwords in each record are zero. From this initial state, a nonzero key can match in the scanning branch only after later writes alter the records or pointer. The explicit writes in the candidate bootstrap and checked clock avoid this pointer and record range, but APP, IRQ, DMA, aliases or other indirect effects may later alter them. This does not establish actual values at the first scan or the product meaning of the records.
+
+The initial pointer and record range exceed `0x2000C000` and remain below `0x20010000`; only under the WCH contiguous mapping and no-remapping assumptions above does the record range fit the 64 KiB example and exceed the 48 KiB example. Physical RAM options, pointer contents and validity remain unmeasured.
+
 ## `0x1A078` lookup output and dispatch
 
 On the path reaching `0xCF36`, the code writes record offset 4 and freshly reads that byte `b` at `0xCF3A`. It then replaces the low nibble with `(b+1)&15`, preserves the high nibble, and uses the new low nibble as column. At `0xCF5A` it reads one byte from `0x1A078+16*effective_mode+column`, stores it at record offset 3 at `0xCF5E`, then tail-jumps without a return link to `0x12A08` at `0xCF62`. Thus column is 0–15, but the read byte remains 0–255; its product meaning and whether a value is a particular command remain unproved.
