@@ -171,6 +171,12 @@ queue 在 `0x12CB0` 呼叫 `0x82D2`，只有返回 0 才可能繼續進 dispatch
 
 這串連了特定輸入事件與兩項共用前置設定的條件式清除，但中間呼叫可能改寫記憶體，兩次讀值不保證相同；輸入格式、slot 契約、實機事件及全域初始化仍未證明。不要因此認定該事件已經發生，或它是唯一清除入口。交叉檢查器已固定入口與呼叫指令。
 
+#### 與 WCH GAP 連線終止事件的候選對照
+
+原 `0x19DE0` 三個 word 為 `[0x8B90,0,0x85C8]`；`0x8872..0x8884` 從 `0x401A4` 取目標，將該表當作第三參數、第二參數設 0 後呼叫。固定版 WCH V1.30 標頭將此槽定義為 `GAPRole_PeripheralStartDevice`，第三參數是 `gapRolesCBs_t`；其第一欄是接收 `(newState,eventPointer)` 的 state-change callback。這與表的第一個 word 和 `0x8B90` 的兩個輸入形狀相符，但仍須實機槽、ABI、註冊及生命週期相容。
+
+同一標頭將 `0x06` 定義為 `GAP_LINK_TERMINATED_EVENT`，其事件結構含兩-byte header、opcode，再接 16-bit connection handle。若採候選結構及 RV32 對齊，opcode 位於 offset 2、handle 位於 offset 4；這與 `0x8C3E`／`0x8C48` 讀取相符。入口狀態 2／3 在該標頭分別名為 advertising／waiting。因此這條清除路徑可**條件式推論**為連線終止後清除對應項目，而非已觀察的斷線事件；兩次 handle 讀取間可能被改寫的限制仍成立。[檢查器](check-gap-disconnect-candidate.py)固定允許的 APP 窗口與本機 WCH 標頭，不執行目標或讀取排除區。
+
 進一步追蹤 `0xFCB8` 之後的控制流：前段高 nibble 加 1 後，`0xFCE6` 還會再加 1；若接著讀得 `GP+289=2`，則 `0xFD1A` 在 `0xFCE6` 前再加一次。因此在 record 穩定且正常到達檢查碼呼叫前，offset 9 高 nibble 共增加 **2 次**，或在該特殊分支增加 **3 次**，各以四位元回繞；上段所述一次僅為 `0xFCB8` 的局部效果。
 
 `0xED00` 正常返回後，程式將結果寫到 record offset `length+2`，其中 length 是呼叫前記住的 offset 2 byte。若 length 為 7，此寫入會覆蓋 offset 9，故不能把上述增加值直接當作最後內容。這些是有界指令與位址運算；長度實際值、buffer 效果、呼叫返回和傳送均未實測。檢查器已加入相關窗口。
