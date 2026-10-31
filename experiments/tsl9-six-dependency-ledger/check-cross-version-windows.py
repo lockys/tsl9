@@ -657,4 +657,29 @@ for mode in ('c','cpp'):
             with reference.open('rb') as stream:
                 if pcrel_target(pc,read_window(stream,pc,8),upper,lower)!=address:
                     raise SystemExit('Original PC-relative data target changed')
-print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
+# Search only the permitted address ranges for the exact update fragment.
+with reference.open('rb') as f:
+    counter_update = read_window(f, 0xa0ee, 0x12)
+    full_counter_path = read_window(f, 0xa0e2, 0x92)
+if hashlib.sha256(counter_update).hexdigest()!='c2d581d3dc845cb55b1997301d5864c73f77384cf25110c34e76c5f431511858' or hashlib.sha256(full_counter_path).hexdigest()!='be489a852e17cd29eb9a836636e231da6eaea76c971d0cfc4f185e73ae1f767b':
+    raise SystemExit('Reference counter path changed')
+expected_updates = {'2816':0xa024,'2833':0xa042,'2841':0xa042,
+                    '2873':0xa0ee,'2914':0xa0ee,'2946':0xa0ee,
+                    '2958':0xa0ee,'2963':0xa0ee,'2966':0xa0ee}
+for ident,version,length,*_ in cases:
+    path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
+    found=[]
+    with path.open('rb') as f:
+        for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,base+length)):
+            data=read_window(f,lo,hi-lo)
+            offset=0
+            while True:
+                position=data.find(counter_update,offset)
+                if position<0: break
+                found.append(lo+position)
+                offset=position+1
+        if ident=='2963' and read_window(f,0xa0e2,0x92)!=full_counter_path:
+            raise SystemExit('V4.1.50 full counter path changed')
+    if found != ([expected_updates[ident]] if ident in expected_updates else []):
+        raise SystemExit('Counter update fragment matches changed: '+ident)
+print('18 candidate data/consumers and counter-update fragments verified. Excluded regions not read; target not executed.')

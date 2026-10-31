@@ -23,6 +23,8 @@ Each of the four DATA references has an adjacent `PCREL_LO12_I` relocation point
 
 ## Cross-version comparison of three data windows
 
+Within the **permitted search ranges** of 18 files, the 18-byte counter-update fragment at V4.1.60 `0xA0EE..0xA100` has one byte-identical match in each of nine files. The other nine have no exact match in those ranges; different encodings or equivalent code in excluded ranges remain possible. V4.1.50 also matches all 146 bytes at `0xA0E2..0xA174`, covering the update, scheduler call and lookup-selection window analyzed above. This does not establish the complete flow in other versions, matching resident code, reachability or physical-device behavior. The [checker](check-cross-version-windows.py) searches permitted ranges only and does not execute the target.
+
 In each of 18 saved candidate runtimes, V4.0.49 through V4.1.60, the permitted search regions contain one byte-for-byte match each for the V4.1.60 48-byte sequence window at `0x1A638`, eight-byte counter window at `0x1AB48`, and 96-byte mode 0–5 window starting at `0x1A078`. Uniqueness is **within the permitted search regions**; excluded regions were not searched, and filenames do not prove hardware applicability.
 
 For example, their V4.0.49 positions are `0x1A2FC / 0x1A7F4 / 0x19D3C` respectively; V4.1.50 and V4.1.60 use the reference addresses. The latter two also match byte-for-byte in the three pinned V4.1.60 sequence, counter and mode instruction windows. This supports local cross-version preservation, **not identical complete programs, call reachability, global index bounds or device compatibility**, and does not resolve the providers. The [checker](check-cross-version-windows.py) confines reads to permitted windows and does not execute the target.
