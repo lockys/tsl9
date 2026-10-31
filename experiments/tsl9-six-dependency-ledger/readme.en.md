@@ -213,6 +213,12 @@ For the locally retained public WCH candidate `wchble_rom.hex` (SHA-256 `11d849a
 
 This cross-check describes only record coverage in that reference HEX. It does not establish that the physical region is blank, erased, reserved or writable, fill missing candidate startup data, or prove installed ROM/Flash layout. Physical mapping and capacity require independent evidence; no device Flash was read.
 
+#### Numerical relationship to both resident references
+
+The V1.30 header comment lists CODE `0x00040000..0x0006FFFF`, while its default macros separately define `LIB_FLASH_BASE_ADDRESSS=0x40000` and `LIB_FLASH_MAX_SIZE=0x40000`; as half-open arithmetic alone, those macros form `[0x40000,0x80000)`. Only with the additional assumption that the APP's high address `0x08000000` is a corresponding alias do the six settings pages `[0x08077500,0x08077B00)` numerically map to `[0x77500,0x77B00)`: inside the macro maximum range, but after the header comment's CODE range. Arithmetic alone cannot reconcile the meanings of these two declarations or establish that the pages are reserved, writable or free of other uses.
+
+After record-by-record verification, neither saved V1.31 nor V1.40 candidate Intel HEX has data records in that low-address settings range; their maximum data-record half-open ends are `0x6EB2C` and `0x6ED20`, respectively. This describes **the two files**, not blank device Flash or safe pages. Macros can be overridden and actual capacity and aliasing are unknown. The [checker](check-nvm-candidate-map.py) pins the V1.30 header and both HEX files and checks macros, record checksums and address coverage; it does not read the device or the excluded APP default data.
+
 ## Local use of the `0x1AB48` lookup result
 
 At `0xA146..0xA158`, the code uses `uint8(GP+176)` as an index and reads unsigned 16-bit value `x` from `0x1AB48+2*index`. On this path, `0xA15C..0xA166` computes `y=(x+0x802)&0xFFFF`; `0xA16C` writes its low 8 bits at `SP+10`, while `0xA168..0xA18E` writes bits 8–11 into the low nibble at `SP+9`, preserving its high nibble. Together these fields encode `(x+0x802)&0xFFF`. Relative to the later buffer start `a0=SP+4`, these are offset 6 and the low nibble of offset 5.
