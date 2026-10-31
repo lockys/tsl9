@@ -33,6 +33,8 @@
 
 同一手冊 §32.4.7 對 `FLASH_WPR` 又概括寫每個 bit 對應 4 KiB；兩處描述存在需要釐清的差異，不能只憑本文件判定 GBU6 實際保護映射。原機 option bytes、保護狀態、映射與擦寫結果均未讀取或確認；此處沒有修改保護設定。[檢查器](check-erase-page-reference.py)僅核對 sector 算術。
 
+2026-10-31 核對 [WCH 官方 CH32V20x Flash 標頭](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_flash.h)：常數 `FLASH_WRProt_Sectors31to127` 的遮罩是 `0x80000000`，同檔對 sector 0–30 則列出各自的位元。這項官方來源支持 §32.6 的群組解讀，但標頭的註解混用 page／sector 用語，且 main 可能更新；它不能單獨消除 §32.4.7 的表述差異、確認實機選項，或證明某次寫入的結果。
+
 
 [WCH 參考手冊 V2.2 §32.2.1](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)註明快速編程相關函式只能放在零等待 Flash 區。WCH [CH32V208 資料手冊 V2.6 表 2-1](https://atta.szlcsc.com/upload/public/pdf/source/20230601/07AAED594F3221B9A55F84D1BC470848.pdf)的註解指出表列 Flash 容量是零等待區，並列出 128／144／160 KiB 與 RAM 的三種配置。若實機採用該連續低位映射，原 APP 候選快速擦除／編程函式 `0x18EC4..0x18F56` 在三個零等待範圍中均有容納；這是對**執行函式位置**的條件式判斷，不是判斷寫入目標必須位於零等待區。
 
