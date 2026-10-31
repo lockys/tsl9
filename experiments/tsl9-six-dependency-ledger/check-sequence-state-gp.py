@@ -98,4 +98,25 @@ if not (0x1a4f4 + 17 + 255 + 1 == 0x1a605 < 0x1a638):
     raise SystemExit('Adjacent callback source-address bound changed')
 if any(((x + 1) & 15) not in range(16) for x in range(256)):
     raise SystemExit('Adjacent byte update range changed')
+dispatcher = root / 'src/native/receive/record_dispatch.c'
+if digest(dispatcher) != '6d90475b039233f5bea21aa3f7a3af3938f06e4c9ac4a293c1c5f43f6bc3cd1b':
+    raise SystemExit('Record dispatcher source changed')
+with image.open('rb') as f:
+    f.seek(0x12a08 - 0x8000)
+    dispatch = f.read(0x66)
+if hashlib.sha256(dispatch).hexdigest() != '334494853a765e550af99f0e8dd95523efaf7cbb86d392e0340a5d5f004940c9':
+    raise SystemExit('Record dispatcher original window changed')
+for pc, expected in ((0x10632,'9307c021'), (0x10636,'2312f100'),
+                     (0x10642,'a147'), (0x10644,'2303f100'), (0x10668,'a3070100')):
+    value = bytes.fromhex(expected)
+    if data[pc-0x10630:pc-0x10630+len(value)] != value:
+        raise SystemExit('Caller record construction changed')
+for pc, expected in ((0x12a16,'03570400'), (0x12a1c,'6311f704'),
+                     (0x12a28,'8347b400'), (0x12a32,'03462400'),
+                     (0x12a46,'93053400'), (0x12a4a,'13057101')):
+    value = bytes.fromhex(expected)
+    if dispatch[pc-0x12a08:pc-0x12a08+len(value)] != value:
+        raise SystemExit('Dispatcher guard or copy arguments changed')
+if 540 == 1 or (23 + 8, 40, 44) != (31, 40, 44):
+    raise SystemExit('Record identifier or frame arithmetic changed')
 print('Sequence state reset range and selected direct GP-store scan verified; aliases and concurrency remain unresolved.')
