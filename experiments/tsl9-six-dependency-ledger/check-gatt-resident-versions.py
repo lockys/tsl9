@@ -31,6 +31,9 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
         source = copy_source + ram - 0x20000040
         selected.update(range(source, source + size))
     second_start, second_size = (0x6eaa4, 140) if copy_source == 0x402b0 else (0x6ec94, 144)
+    if copy_source == 0x402b0:
+        selected.update(range(0x430e0, 0x430e4))
+        selected.update(range(0x6eaa4, 0x6eaa8))
     second_coverage = set()
     found = {}
     upper = 0
@@ -69,6 +72,11 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
         raise SystemExit('Candidate second-copy source coverage changed')
     def read(address, size):
         return bytes(found[address + i] for i in range(size))
+    if copy_source == 0x402b0:
+        if read(0x430e0, 4) == read(0x6eaa4, 4):
+            raise SystemExit('V1.31 overlapping copy source words unexpectedly equal')
+        if not (0x20002e70 + 4 <= 0x20002ef8):
+            raise SystemExit('V1.31 overlapping word enters zero range')
     if int.from_bytes(read(0x40034, 4), 'little') != version_ptr or read(version_ptr, len(version)) != version:
         raise SystemExit('Candidate version pointer or string changed')
     if (version[:21] == app_prefix) != (version_ptr == 0x6e6a0):
