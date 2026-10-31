@@ -229,9 +229,19 @@ for number,(ident,version,length,_,_,_) in enumerate(cases):
     path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
     displacement=184 if number<8 else 176
     hits=[]
+    direct=[]
     with path.open('rb') as f:
         for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,base+length)):
             data=read_window(f,lo,hi-lo)
+            for pc in range(0,len(data)-3,2):
+                word=int.from_bytes(data[pc:pc+4],'little')
+                kind=(word>>12)&7
+                if word&127!=0x23 or (word>>15)&31!=3 or kind>2:
+                    continue
+                imm=((word>>25)<<5)|((word>>7)&31)
+                imm-=4096 if imm&2048 else 0
+                if imm<=displacement<imm+(1<<kind):
+                    direct.append((lo+pc,imm,1<<kind))
             offset=0
             while True:
                 pos=data.find(needle,offset)
@@ -254,4 +264,6 @@ for number,(ident,version,length,_,_,_) in enumerate(cases):
                         hits.append((lo+pos-4,skip))
     if len(hits)!=2 or sorted(skip for _,skip in hits)!=[0,2]:
         raise SystemExit('Cross-version masked counter stores changed: '+ident)
-print('18 candidate data/consumer windows, reset bounds, and two masked counter update patterns verified. Excluded regions not read; target not executed.')
+    if direct!=sorted((pc+8+skip,displacement,1) for pc,skip in hits):
+        raise SystemExit('Additional direct standard GP-relative counter store candidate: '+ident)
+print('18 candidates: reset bounds, two masked updates and direct standard GP store candidates verified. Excluded regions not read; target not executed.')
