@@ -143,6 +143,14 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 [檢查器](check-gatt-callback-bound.py)讀取指定的本機 V1.30 標頭與兩個允許的 BIN 窗口，核對 callback 型別、指標表及迴圈分支；不下載、執行目標或讀取排除區。
 
+#### 原 APP 將 callback 表交給候選服務註冊槽
+
+[既有完整註冊分析](../tsl9-resident-gatt-registration/README.md)將上述表追到原 APP 的 `0x8FB8..0x8FCC`：在進入函式時 `s0=0x40000`、其後所有呼叫均正確保存 `s0` 的條件下，程式從 `0x40130` 讀取間接目標，傳入 `a0=GP`、`a1=4`、`a2=16`，並以 `0x8FBC` 的 PC-relative 運算形成 `a3=0x19DFC`，於 `0x8FCC` 呼叫。這是原始指令的資料流；它強化了該三-word 表用作 callback 表的候選解讀。
+
+WCH V1.30 標頭將 slot 63（`0x40034+4*63=0x40130`）定義為 `GATTServApp_RegisterService(pAttrs,numAttrs,encKeySize,pServiceCBs)`；候選原機執行層的該槽另指向 `0x4CF22`。若 installed slot、介面與記憶體均相容，這次呼叫可解讀為以四筆 attribute、key-size 參數 16 和該表請求註冊。`0x8FCC` 返回後 `0x8FCE` 直接繼續下一項工作，沒有在此處依返回碼分支；不能把發出呼叫視為註冊成功，也不能由 key-size 數值證明實際連線已加密。候選 wrapper 在部分狀態下還可能先完成核心註冊，再因 callback 節點配置失敗而返回錯誤；詳見既有分析。
+
+只有註冊成功、指標生命週期有效且 installed ABI 相符時，上節 `uint16_t` callback 上界才可套到該候選路徑。未讀取排除區、連線裝置或測試實機服務；[獨立覆核器](check-key-control-flow.py)核對原始槽讀取、PC-relative 指令及呼叫。
+
 #### Payload 寫入範圍與 reset／RAM 的交叉檢查
 
 每次走到 payload 分支時，`0x89FA` 以 unsigned halfword 讀取 counter；`0x89FE..0x8A02` 對 counter 大於 1039 的情況轉至清除 state 的路徑，不執行這次 payload store。通過後，`0x8A12..0x8A1C` 使用同一暫存器中的舊 counter，向 `0x2000B9D8+counter` 寫入一個 byte。因此在正常指令流程、暫存器未受干擾的條件下，這一個 store 的位置必落在 `[0x2000B9D8,0x2000BDE8)`；這個局部界限獨立於重新讀取並傳給 `0x14056` 的長度值，不保證被呼叫函式本身的讀寫範圍。
@@ -500,6 +508,6 @@ APP 的 `0x9124` 對非零延遲先掃描 15 筆、每筆 12-byte 的工作表�
 
 ## 近期分支的獨立覆核
 
-針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀二十個明確窗口**，核對窗口雜湊後，將窗口放入 radare2 的暫時記憶體反組譯，並比對 76 個指定指令。覆蓋 counter、selector、序列狀態、固定濾波表複製及候選 EXTI／SPI 接收、主迴圈與初始化路徑。檢查器對記憶體中的一個分支位元做負例；不修改原 BIN。
+針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀二十二個明確窗口**，核對窗口雜湊後，將窗口放入 radare2 的暫時記憶體反組譯，並比對 85 個指定指令。覆蓋 counter、selector、序列狀態、GATT 註冊、固定濾波表複製及候選 EXTI／SPI 接收、主迴圈與初始化路徑。檢查器對記憶體中的一個分支位元做負例；不修改原 BIN。
 
 執行 `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`。Windows 也可傳入本機 `r2.exe` 的路徑；需自行提供支援 RV32C 的 radare2，不會下載工具。此覆核確認所列指令及目的地，**不證明**其餘指令語意、動態可達性、callee 契約或硬體效果；也未讀取排除區、執行目標或執行模擬器。

@@ -143,6 +143,14 @@ The original three little-endian words at `0x19DFC` are `[0, 0x888C, 0]`. The lo
 
 The [checker](check-gatt-callback-bound.py) reads a specified local V1.30 header and two allowed BIN windows to check the callback type, pointer table and loop branch; it downloads nothing, executes no target and does not read excluded ranges.
 
+#### Original APP passes the callback table to a candidate registration slot
+
+The [existing complete registration analysis](../tsl9-resident-gatt-registration/readme.en.md) traces that table to original APP `0x8FB8..0x8FCC`: if `s0=0x40000` at function entry remains preserved across preceding calls, the code loads an indirect target from `0x40130`, passes `a0=GP`, `a1=4`, `a2=16`, computes `a3=0x19DFC` using the PC-relative instructions at `0x8FBC`, and calls at `0x8FCC`. This original instruction data flow strengthens the candidate interpretation of the three-word table as a callback table.
+
+The WCH V1.30 header defines slot 63 (`0x40034+4*63=0x40130`) as `GATTServApp_RegisterService(pAttrs,numAttrs,encKeySize,pServiceCBs)`; in the candidate resident image this slot points to `0x4CF22`. If the installed slot, interface and memory are compatible, the call requests registration with four attributes, key-size parameter 16 and that table. After `0x8FCC` returns, `0x8FCE` proceeds to the next work without branching on its return code; the call alone does not prove registration succeeded, and the key-size number does not prove the connection is encrypted. The candidate wrapper can also complete core registration before returning an error when callback-node allocation fails; see the existing analysis.
+
+The preceding `uint16_t` callback bound applies to this candidate path only if registration succeeds, pointer lifetime is valid and the installed ABI matches. No excluded region was read, no device was connected and no real service was tested; the [independent checker](check-key-control-flow.py) checks the original slot read, PC-relative instructions and call.
+
 #### Payload write bound and reset/RAM cross-check
 
 On each entry to the payload branch, `0x89FA` reads the counter as an unsigned halfword; `0x89FE..0x8A02` branches to the state-clear path if it exceeds 1039, before this payload store. Otherwise, `0x8A12..0x8A1C` uses the same register holding the old counter to write one byte to `0x2000B9D8+counter`. With normal instruction flow and undisturbed registers, this particular store must therefore fall in `[0x2000B9D8,0x2000BDE8)`. The local bound is independent of the length freshly read and passed to `0x14056`; it does not bound reads or writes inside the excluded callee.
@@ -500,6 +508,6 @@ Conversely, original `0x907A..0x90AC` requests that the 180-byte work table be c
 
 ## Independent audit of recent branches
 
-Following the earlier `0xA32E` branch-direction error, the [static checker](check-key-control-flow.py) reads **only twenty explicit windows** from the original BIN, validates their hashes, places each in radare2 temporary memory for RISC-V disassembly, and checks 76 selected instructions. It covers counter, selector, sequence state, fixed-filter table copying, and candidate EXTI/SPI receive, main-loop and initialization paths. A negative check changes a branch bit in temporary memory; the original BIN is not modified.
+Following the earlier `0xA32E` branch-direction error, the [static checker](check-key-control-flow.py) reads **only twenty-two explicit windows** from the original BIN, validates their hashes, places each in radare2 temporary memory for RISC-V disassembly, and checks 85 selected instructions. It covers counter, selector, sequence state, GATT registration, fixed-filter table copying, and candidate EXTI/SPI receive, main-loop and initialization paths. A negative check changes a branch bit in temporary memory; the original BIN is not modified.
 
 Run `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`. On Windows, provide the local path to `r2.exe`; an existing radare2 with RV32C support is required and the checker downloads nothing. This audit confirms the listed instructions and destinations; it does **not** prove the semantics of other instructions, dynamic reachability, callee contracts or hardware effects. It does not read excluded ranges, execute the target or run an emulator.

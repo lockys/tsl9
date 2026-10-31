@@ -28,6 +28,8 @@ WINDOWS = {
     (0x9a42, 0x88): '1d6552fd9ca767f53cdee2218c24e5f90d25300e70c5e094845b54146d93a0d0',
     (0x8180, 0x2a): 'c440bafcc9fdbe370d24fbcd3bd0c67e8162ceaa776a64ea6f34f1d509b6f72f',
     (0x9008, 0xa): '6a43842f4714c71dbbb2f0cafe1f4a4685cbb81a8987c6f053911a13e3ac1386',
+    (0x8e88, 0xa): 'c7303f11d55cf0fa04ad919ece254a5fd120c49041e5696c712ac82604f1e254',
+    (0x8fb8, 0x18): '1f667a31ede0bbdaafd4cf4bdf21959115cf586d56a55dd6489c854e9c0066f6',
 }
 EXPECTED = {
     0xae54: 'bne a4, a5, 0xaf4c', 0xae5e: 'bne a4, a5, 0xaf4c',
@@ -70,6 +72,10 @@ EXPECTED = {
     0x900c: 'jal 0x9250', 0x900e: 'jal ra, 0x8180',
     0x819c: 'jalr a5', 0x819e: 'jal ra, 0x17002',
     0x81a2: 'jal ra, 0x12c58', 0x81a8: 'j 0x8198',
+    0x8e8c: 'lui s0, 0x40', 0x8fb8: 'lw a5, 304(s0)',
+    0x8fbc: 'auipc a3, 0x11', 0x8fc0: 'addi a3, a3, -448',
+    0x8fc4: 'li a2, 16', 0x8fc6: 'li a1, 4', 0x8fc8: 'mv a0, gp',
+    0x8fcc: 'jalr a5', 0x8fce: 'lw a5, 80(s0)',
 }
 
 def disassemble(tool, base, data):
