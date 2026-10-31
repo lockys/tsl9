@@ -131,6 +131,12 @@ Thus the `0xFB5E` passed to `0x90B0` by `0xFE1C` and `0xFB1E` is a different cal
 
 These are instruction effects when each callback is invoked, conditional on valid memory, slot contracts, normal calls and no asynchronous overwrite. They do not establish that callbacks alternate, scheduling or stopping succeeds, or either GP byte changes the `0x1A078` mode. The checker now pins the complete `0xFB5E` window.
 
+#### Record consumption of state 2 / 3
+
+Original `0xFBA2` can read `GP+288`. If the value 2 previously written by `0xFB5E` persists to `0xFC1E`, and the record, settings pointer and prior branches are valid and undisturbed, `0xFC90` sets record offset 3 bits 2–3 to binary `01`, changes `GP+288` to 3, and calls `0x9124` with `(callback=0xFD3E, argument=0, delay=20, a3=0)`. Under the candidate clock and existing conversion, successful scheduling would be 32 ticks / nominally 20 ms.
+
+If `0xFD3E` later executes, it first asks `0x82A8` for a stack record and calls `0xFBA2` only when that record's offset 2 is nonzero. If `GP+288` remains 3 on reaching `0xFC1E`, `0xFCB8` clears that state and record offset 3 bits 2–3, then increments offset 9's high nibble with byte-width wraparound. Whether this is the same record, copying or scheduling succeeds, transmission occurs, or these fields have a particular product meaning is unknown; this neither reconstructs a device feature nor directly limits the `0x1A078` mode. The [checker](check-record-consumer-state.py) pins allowed instruction windows and field arithmetic without executing the target or reading excluded data.
+
 For the normal entry, `0x829E` directly reads byte `0x2000BFB5`; `0x14D3C` takes another exit for values above 6 and otherwise indexes the seven-entry 32-bit relative jump table at `0x1A6B8`. In the original table, index 1 points to `0x14D5E`; the other six entries point elsewhere. Thus, if control normally enters `0x14D2E`, the byte and table are stable, and the indirect jump follows the original rule, the `0x229` dispatch-tree path above requires selector byte **1**. This is not proof of a globally unique entry or actual state. The excluded `0x1A69C..0x1A6A0` data were not read.
 
 The direct write path `0x1074C` saves incoming `a0` in `s0` and, after four original calls, writes `s0&255` to `0x2000BFB5` at `0x10766..0x10776`. That store has no 0–6 range check. This depends on prior callees returning normally and preserving `s0`; later calls and branches beginning at `0x1077A` mean the store is not the setter's only possible side effect.
