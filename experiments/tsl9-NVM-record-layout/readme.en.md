@@ -23,6 +23,12 @@ RAM payload totals **1,269 bytes**,with nonoverlapping numeric buffers spanning[
 
 Six writer destinations form contiguous256-byte aligned numeric pages **[0x08077500,0x08077B00),1,536 bytes**. Under an additional flat contiguous Flash assumption based at0x08000000,the required end offset is0x77B00/490,240 bytes. **That flat map/capacity assumption is unproved.** Literals alone do not identify chip capacity,aliasing,ROM/data-Flash roles or physical writable regions.
 
+### Two candidate erase granularities
+
+The locally retained WCH CH32V20x [Flash reference driver](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_flash.c) V1.0.2 describes ordinary `FLASH_ErasePage` as 4 KB and `FLASH_ErasePage_Fast` as 256 bytes. The fast operation clears the address low eight bits and uses control bit `0x20000`, start bit `0x40`, and busy bit `0x01`. The reconstructed APP instructions at `0x18EC4..0x18EF2` also contain that alignment, set of control bits and polling. This is a static comparison to a candidate driver; it does not establish the device controller or complete API is identical.
+
+The six destinations occupy distinct 256-byte numerical intervals but share the same 4 KB-aligned numerical interval `[0x08077000,0x08078000)`. Ordinary 4 KB erase cannot therefore be equated with this candidate fast-erase path, and 256-byte alignment alone does not establish the actual erase extent. Physical mapping, erase granularity, content preservation and write success remain unverified. The [static cross-check](check-erase-page-reference.py) reads existing local reference source and reconstructed source only; it does not execute the target.
+
 ## Copy112/133 versus CPU program256
 
 All writers allocate272 bytes,saveRA atSP+268,copy their record through table0x4004C to ownSP,and call0x9C0A. The previously verified program leaf reads256 source bytes,conditional on callee contracts,valid memory,no faults and poll completion;physical Flash commit remains unproved.

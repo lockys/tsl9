@@ -25,6 +25,12 @@
 
 六個 writer 的 destination 是相鄰且 256-byte aligned 的數值 pages，總範圍 **`[0x08077500,0x08077B00)`，1,536 bytes**。若另假設這些位址位於以 `0x08000000` 起算的連續平坦 Flash，所需 end offset 為 `0x77B00`（490,240 bytes）；**該 flat-map／容量假設尚未證明**。不能僅憑 literal 決定晶片容量、alias、ROM／data-Flash 角色或真實可寫區。
 
+### 兩種候選擦除粒度
+
+本機保存的 WCH CH32V20x [Flash 參考驅動](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_flash.c) V1.0.2 將一般 `FLASH_ErasePage` 註解為 4 KB，另將 `FLASH_ErasePage_Fast` 註解為 256 bytes；後者清除地址低 8 bits，以控制位 `0x20000`、啟動位 `0x40` 與 busy 位 `0x01` 進行操作。原 APP 的 `0x18EC4..0x18EF2` 重建程式也包含這組對齊、控制位和輪詢；這是靜態指令與候選驅動的對照，並不證明實機控制器或完整 API 相同。
+
+六筆目的位址各自落在不同的 256-byte 數值區間，但全部同在一個按 4 KB 對齊的數值區間 `[0x08077000,0x08078000)`。因此不能將一般 4 KB 擦除等同於這條候選快速擦除路徑，也不能只憑 256-byte 對齊推斷實際硬體擦除影響範圍。實機位址映射、擦除粒度、內容保存及寫入成功仍未驗證。[靜態交叉檢查](check-erase-page-reference.py)只讀本機既有參考來源與重建程式，不執行目標。
+
 ## 112／133-byte copy 與固定 256-byte CPU 搬移
 
 六個 writer 均配置 272-byte frame，saved RA 位於 SP+268，先透過 table `0x4004C` 將自己的 record 複製至 own SP，再呼叫 `0x9C0A`。前輪已核對其 program leaf 固定讀取 source 的 256 bytes；這依賴 callee 契約、有效記憶體、無 fault 及 polling 正常結束等條件，仍不證明物理 Flash commit。
