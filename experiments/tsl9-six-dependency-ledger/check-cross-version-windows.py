@@ -230,6 +230,8 @@ for number,(ident,version,length,_,_,_) in enumerate(cases):
     displacement=184 if number<8 else 176
     hits=[]
     direct=[]
+    sequence_direct=[]
+    sequence_start=different_offsets.get(ident,332)
     with path.open('rb') as f:
         for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,base+length)):
             data=read_window(f,lo,hi-lo)
@@ -242,6 +244,8 @@ for number,(ident,version,length,_,_,_) in enumerate(cases):
                 imm-=4096 if imm&2048 else 0
                 if imm<=displacement<imm+(1<<kind):
                     direct.append((lo+pc,imm,1<<kind))
+                if imm<sequence_start+4 and imm+(1<<kind)>sequence_start:
+                    sequence_direct.append((lo+pc,imm,1<<kind))
             offset=0
             while True:
                 pos=data.find(needle,offset)
@@ -266,6 +270,8 @@ for number,(ident,version,length,_,_,_) in enumerate(cases):
         raise SystemExit('Cross-version masked counter stores changed: '+ident)
     if direct!=sorted((pc+8+skip,displacement,1) for pc,skip in hits):
         raise SystemExit('Additional direct standard GP-relative counter store candidate: '+ident)
+    if sequence_direct:
+        raise SystemExit('Direct standard GP-relative sequence store candidate: '+ident)
 with reference.open('rb') as f:
     clear_pattern=read_window(f,0xa37c,18)
 if clear_pattern!=bytes.fromhex('b707040003a38704154681451385c10a0283'):
@@ -290,4 +296,4 @@ for number,(ident,version,length,_,_,_) in enumerate(cases):
                     hits.append(lo+pos)
     if len(hits)!=1:
         raise SystemExit('Candidate counter clear call changed: '+ident)
-print('18 candidate data/consumers, reset bounds, direct counter updates and indirect five-byte clear calls verified. Excluded regions not read; target not executed.')
+print('18 candidate data/consumers, reset, counter and direct sequence store scans verified. Excluded regions not read; target not executed.')

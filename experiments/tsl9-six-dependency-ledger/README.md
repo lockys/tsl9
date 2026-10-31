@@ -35,6 +35,8 @@
 
 對 18 份檔案的允許搜尋區，進一步在每個 2-byte 邊界檢查所有可能解碼為標準 32-bit `SB／SH／SW`、base 為 GP 且寫入範圍涵蓋該版 counter byte 的位置：每份恰有上述兩個 byte store，沒有其他符合的候選。這種掃描也可能把資料或指令中間位置當成候選；結果不涵蓋排除區、非標準指令、由其他暫存器間接指向 counter 的寫入或 DMA／中斷，因此不能當作完整 writer 封閉性證明。[檢查器](check-cross-version-windows.py)比對候選位址與兩個更新骨架，不執行 target。
 
+同一掃描也以各版的 `GP+332／336／340` 起連續四 bytes 為 sequence 狀態範圍；18 份在允許區域內均沒有找到直接以 GP 為 base、寫入範圍與之相交的標準 32-bit store 候選。此結果**不排除已知 sequence 程式經指標的寫入**，也不涵蓋其他間接指標、非標準指令、排除區或 DMA／中斷；不能因此證明 state 全域維持 0／1。[同一檢查器](check-cross-version-windows.py)只掃描允許區並驗證各版位移，不執行 target。
+
 每份候選的允許區域也各有一處與 V4.1.60 `0xA37C..0xA38E` 相同的間接呼叫骨架：新讀槽 `0x40048`，以目的 `GP+(counter offset)-4`、填充值 0、長度 5 尾跳。若該 slot 確實是已分析的候選 byte-fill 函式，且指標有效、沒有 alias／干擾並正常完成，此呼叫會把包含 counter 在內的五 bytes 清零，因而不破壞上述條件式 0–3 範圍。這不是其他間接 writer 的完整清單，也不證明該槽在實機的身分或此呼叫實際發生。[檢查器](check-cross-version-windows.py)核對各版呼叫編碼和 GP 位移，未執行 target。
 
 ## `0x40000` 候選啟動的 seed 複製
