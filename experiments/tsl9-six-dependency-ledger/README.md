@@ -449,3 +449,9 @@ fallback `0x12F18..0x12F44` 以目的 `0x2000C30C`、值 0、長度 256 呼叫 `
 APP 的 `0x9124` 對非零延遲先掃描 15 筆、每筆 12-byte 的工作表，依 offset 4 的 callback word 找相同回呼；找不到才掃描空項。若 15 筆 callback 均非零且沒有 `0x9F74`，在無非同步改寫且控制流程正常的條件下，兩輪掃描結束後經 `0x924C` 返回 1，沒有進入本次 `0x40058` 的計時呼叫。由於呼叫前 `0xA344` 已更新 counter 並將 `GP+175` 設為 1，該排程失敗路徑本身不回復這兩次寫入；若沒有其他 writer 或非同步干擾，旗標會維持 1，不能把 counter 更新當作計時器已成功建立。
 
 相反地，原 `0x907A..0x90AC` 先要求清零 180-byte 工作表，再經 `0x40080` 傳入 `0x901A` 並將返回低 byte 存入 `GP+166`。`0x901A..0x907A` 依事件 bit 選擇對應槽位；槽位的 byte flag 為 0 時，先清 callback 和 argument word，再以 argument 呼叫保存的 callback。若此初始化、先前的一次性排程、候選 WCH 事件介面與事件交付全部成立，且槽內容未被改寫，保存的 `0x9F74` 可清除 `GP+175`。這不證明 slot 真的被註冊、計時器啟動、事件到達或旗標永遠維持任何值。[檢查器](check-counter-scheduler-capacity.py)固定相關原始指令窗口，不執行目標。
+
+## 近期分支的獨立覆核
+
+針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀六個明確窗口**，逐一核對窗口雜湊後，將每個窗口放入 radare2 的暫時記憶體進行 RISC-V 反組譯，再比對 20 個指定分支／呼叫的助記、運算元及目的位址。覆蓋 `0x1AB48` 的 counter 更新與輸入守衛、第二寫入點及其呼叫、`0x1A078` selector、`0x1A638` 序列狀態，以及 `0x399` tag 1 匯合。檢查器會對記憶體中的一個分支位元做負例，確認改變指令時比對會失敗；不修改原 BIN。
+
+執行 `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`。Windows 也可傳入本機 `r2.exe` 的路徑；需自行提供支援 RV32C 的 radare2，不會下載工具。此覆核確認所列指令及目的地，**不證明**其餘指令語意、動態可達性、callee 契約或硬體效果；也未讀取排除區、執行目標或執行模擬器。
