@@ -180,6 +180,14 @@ At common cleanup `0x1240C`, a `0xB0` message causes the code to pass `message+8
 
 If the installed slots match those candidate interfaces, both calls return normally and memory is valid, this supports processing the GATT inner buffer before freeing the outer message. The data referenced by `message+12` cannot be assumed valid after this cleanup without separate ownership evidence. Installed slots, successful release, all other exits and pointer aliases are unproved; no device code was executed.
 
+### Sources for the three six-byte comparisons
+
+The reset seed's word at original BIN address `0x1ABBC` is `0x2000C40C`. With GP=`0x20004000`, the initial copy completed and no overwrite, `*(GP+92)` points there. The `0x11A58..0x11A76` loop uses offsets 0, 43 and 86, comparing six bytes at pointer plus offset plus 3. Its three half-open windows are `[0x2000C40F,0x2000C415)`, `[0x2000C43A,0x2000C440)` and `[0x2000C465,0x2000C46B)`.
+
+`0x132C8..0x132F8` requests a 133-byte copy from numeric source `0x08077500` to `0x2000C40C` through slot `0x4004C`, then checks for marker `0x5A` at offset 132; all three windows lie inside the loaded region. If the slot is the candidate copy, pointers and memory are valid and remain unchanged, this connects the comparisons to that candidate settings region. The marker is not a full integrity check, and actual source contents, identity meaning and physical Flash mapping are unknown.
+
+On marker mismatch, `0x13108` requests filling 133 bytes with zero via `0x40048`, writes `0x5A` at offset 132, then tail-jumps to writer `0x130D6`. If the fill contract and other conditions hold, the three comparison windows are cleared; actual matching, later reconfiguration and successful writes remain unproved. No device connection identifiers were read or output. See the [NVM layout analysis](../tsl9-NVM-record-layout/readme.en.md) for the numeric source and 133-byte writer boundaries.
+
 ### Completion marker data flow
 
 When the new matched state exceeds 1 at `0x12076`, `0x1207A..0x1209A` reads three bytes from `s2+0..2` and combines them with `0x80+channel` as `word=(byte0<<24)|(byte1<<16)|(byte2<<8)|(0x80+channel)`. Normal loop channel is 0–3, so the low byte is `0x80..0x83`. The corresponding state is cleared before the jump to `0x11C64`.
