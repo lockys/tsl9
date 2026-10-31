@@ -82,6 +82,19 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 在記憶體有效、函式正常返回、無中途干擾且後續欄位處理完成的條件下，兩個固定值的低 12 bits 分別為 `0x7A8` 與 `0x85C`。這不證明狀態 1／2 實際可達、它們的產品意義、所有可能入口都避開查表或其他下游依賴已解決；不能因此刪除完整 provider。
 
+### 已重建四筆 counter 資料的結果
+
+原始 BIN 在 `0x1AB48..0x1AB50` 的四個 little-endian halfword 與[正式資料來源](../../src/native/receive/input_counter_data.c)相符。當本次 counter 在讀取時確實為 0–3，且呼叫及記憶體條件成立時，`0xA158..0xA18E` 的合併欄位 `(x+0x802)&0xFFF` 為：
+
+| counter | 原 halfword `x` | 12-bit 欄位 |
+| --- | --- | --- |
+| 0 | `0x0096` | `0x898` |
+| 1 | `0x00B4` | `0x8B6` |
+| 2 | `0xFF6A` | `0x76C` |
+| 3 | `0xFF4C` | `0x74E` |
+
+最後兩筆以無號 halfword 載入；表格只列原始位元與實際低 12-bit 算術，不將其宣稱為有號實體量、單位或車輛功能。四筆條件窗口無法證明其他索引不可達，也沒有消除未解析 provider。
+
 ## 檢查碼後的條件式分派
 
 `0xA1B2` 將上述 buffer 交給 `0x12A08`。依[原始 dispatcher](../tsl9-record-dispatch/README.md)，此函式先呼叫 `0x81AA`，若返回 0 且輸入首 halfword 不為 1 則返回；否則以 0 呼叫 `0x821E`，返回 0 亦直接返回。之後輸入 offset 11 非零轉到 `0x16B7C`；為零則組合 stack record，使用 `0x4004C` 間接槽、來源 input+3 與 input offset 2 的 byte 長度，再以 `a0=0x40006400`、`a1=SP+12` 呼叫 `0x18CA4`。

@@ -82,6 +82,19 @@ This is static data flow for the lookup path, conditional on valid pointers and 
 
 Given valid memory, normal return, no interference and completion of the later field logic, the low 12 bits of the constants are `0x7A8` and `0x85C`. This does not establish reachability of states 1/2, their product meanings, absence of lookups at other entry points or resolution of downstream dependencies; the complete provider cannot be removed on this basis.
 
+### Results for the four reconstructed counter entries
+
+The original BIN's four little-endian halfwords at `0x1AB48..0x1AB50` match the [curated data source](../../src/native/receive/input_counter_data.c). When the counter at this read is actually 0–3 and the call and memory conditions hold, the combined field `(x+0x802)&0xFFF` produced by `0xA158..0xA18E` is:
+
+| Counter | Original halfword `x` | 12-bit field |
+| --- | --- | --- |
+| 0 | `0x0096` | `0x898` |
+| 1 | `0x00B4` | `0x8B6` |
+| 2 | `0xFF6A` | `0x76C` |
+| 3 | `0xFF4C` | `0x74E` |
+
+The final two entries are loaded as unsigned halfwords; the table reports original bits and actual low-12-bit arithmetic only, not a signed physical quantity, unit or vehicle feature. These four conditional entries do not prove other indices unreachable or resolve the provider.
+
 ## Conditional dispatch after the checksum
 
 `0xA1B2` passes that buffer to `0x12A08`. In the [original dispatcher](../tsl9-record-dispatch/readme.en.md), the function calls `0x81AA` first and returns if that result is zero and the first input halfword is not 1; otherwise it calls `0x821E` with 0 and returns if that result is zero. A nonzero byte at input offset 11 routes to `0x16B7C`. If zero, it assembles a stack record, uses the indirect `0x4004C` slot with input+3 as source and the byte at input offset 2 as length, then calls `0x18CA4` with `a0=0x40006400` and `a1=SP+12`.
