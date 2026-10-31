@@ -110,4 +110,35 @@ for ident,version,length,seq,counter,mode in cases:
         totals[name]+=len(hits[name])
 if totals!={'sequence':15,'counter':10,'mode':18}:
     raise SystemExit('Cross-version consumer candidate counts changed')
-print('18 candidate data matches; PC-relative consumer candidates: sequence 15, counter 10, mode 18. Excluded regions not read.')
+counter_pattern=next(pattern for name,pattern,_,_ in consumers if name=='counter')
+for number,(ident,version,length,_,target,_) in enumerate(cases):
+    path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
+    hits=[]
+    with path.open('rb') as f:
+        for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,base+length)):
+            data=read_window(f,lo,hi-lo)
+            offset=0
+            while True:
+                position=data.find(counter_pattern[4:8],offset)
+                if position<0:
+                    break
+                offset=position+1
+                pos=position-4
+                if pos<0 or pos+len(counter_pattern)>len(data) or data[pos+16:pos+len(counter_pattern)]!=counter_pattern[16:]:
+                    continue
+                load=int.from_bytes(data[pos:pos+4],'little')
+                auipc=int.from_bytes(data[pos+8:pos+12],'little')
+                addi=int.from_bytes(data[pos+12:pos+16],'little')
+                if load&0xfffff!=int.from_bytes(counter_pattern[:4],'little')&0xfffff or auipc&0xfff!=0x797 or addi&0xfffff!=0x78793:
+                    continue
+                imm=addi>>20
+                imm-=4096 if imm&2048 else 0
+                address=(lo+pos+8+(auipc&0xfffff000)+imm)&0xffffffff
+                if address==target:
+                    displacement=load>>20
+                    displacement-=4096 if displacement&2048 else 0
+                    hits.append(displacement)
+    expected=184 if number<8 else 176
+    if hits!=[expected]:
+        raise SystemExit('Cross-version counter GP displacement changed: '+ident)
+print('18 candidate data matches; 18 counter consumers with version-specific GP offsets, 15 sequence and 18 mode candidates. Excluded regions not read.')
