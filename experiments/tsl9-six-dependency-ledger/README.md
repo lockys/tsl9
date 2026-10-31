@@ -283,6 +283,8 @@ WCH V1.30 標頭將 slot 63（`0x40034+4*63=0x40130`）定義為 `GATTServApp_Re
 
 V1.31 的第一次與第二次 copy 在目的 `[0x20002E70,0x20002E74)` 重疊；對應來源分別是 `[0x430E0,0x430E4)` 與 `[0x6EAA4,0x6EAA8)`。固定候選 HEX 逐筆 checksum 核對後，兩個來源 word **不相同**。後續 zero 從 `0x20002EF8` 開始，沒有覆蓋該 word。因此若兩次 copy 依候選 loader 順序正常完成，且沒有 alias、非同步覆寫或 fault，這個目的 word 會保留第二次來源，而非第一次來源；不能隨意交換或合併兩次 copy。這只證明該保存候選的靜態資料及條件式順序，並未確認實機 resident、啟動完成或該 word 的用途。更新後的[檢查器](check-gatt-resident-versions.py)只額外保留這兩個候選來源 word，不輸出其內容。
 
+V1.40 候選的兩次 copy 也重疊一個 word，但目的改為 `[0x20002EBC,0x20002EC0)`，對應來源為 `[0x4316C,0x43170)` 與 `[0x6EC94,0x6EC98)`；兩來源內容同樣不同。該版 zero 從 `0x20002F48` 起，不覆蓋此 word；在相同的正常完成及無干擾條件下，第二次來源決定該 word。檢查器固定該版 loader 的相關立即數、兩個來源以及 HEX checksum。這兩版的目的地址不同，不能把一版數值套用到另一版；實機版本、對應 word 用途與內容仍未確認。
+
 依兩版 loader 指令與既有 inclusive-word copy helper 契約，V1.31 第二次 copy 要求來源 `[0x6EAA4,0x6EB30)` 共 140 bytes，但保存的 HEX 缺少最後 `[0x6EB2C,0x6EB30)`；V1.40 要求來源 `[0x6EC94,0x6ED24)` 共 144 bytes，其保存 HEX 也缺少最後 `[0x6ED20,0x6ED24)`。其餘各自請求的 136／140 bytes 在各自 HEX 中有記錄。這裡比較的是**檔案記錄覆蓋**，沒有填入缺口或讀取其不存在的值。
 
 兩個版本隨後的 zero 都覆蓋該次 copy 的最後一個目的 word：V1.31 為 `[0x20002EF8,0x20002EFC)`，V1.40 為 `[0x20002F48,0x20002F4C)`。然而 copy 在 zero 之前仍需嘗試讀取來源；最終目的會被覆寫，不能證明先前讀取有效或啟動必定成功。[檢查器](check-gatt-resident-versions.py)逐筆驗證 HEX checksum，檢查兩個來源範圍的記錄覆蓋與缺口；實機 Flash 是否包含這些 bytes、記憶體映射與 loader 能否完成仍未知。

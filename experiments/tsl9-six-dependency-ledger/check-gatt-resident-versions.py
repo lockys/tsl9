@@ -34,6 +34,9 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
     if copy_source == 0x402b0:
         selected.update(range(0x430e0, 0x430e4))
         selected.update(range(0x6eaa4, 0x6eaa8))
+    else:
+        selected.update(range(0x4316c, 0x43170))
+        selected.update(range(0x6ec94, 0x6ec98))
     second_coverage = set()
     found = {}
     upper = 0
@@ -77,6 +80,14 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
             raise SystemExit('V1.31 overlapping copy source words unexpectedly equal')
         if not (0x20002e70 + 4 <= 0x20002ef8):
             raise SystemExit('V1.31 overlapping word enters zero range')
+    else:
+        if read(0x4316c, 4) == read(0x6ec94, 4):
+            raise SystemExit('V1.40 overlapping copy source words unexpectedly equal')
+        if not (0x20002ebc + 4 <= 0x20002f48):
+            raise SystemExit('V1.40 overlapping word enters zero range')
+        for offset, expected in ((0x32, '1306c6eb'), (0x52, '130686f4'), (0x56, '9385c5eb'), (0x5a, '130545c9')):
+            if read(loader + offset, 4).hex() != expected:
+                raise SystemExit('V1.40 loader copy geometry changed')
     if int.from_bytes(read(0x40034, 4), 'little') != version_ptr or read(version_ptr, len(version)) != version:
         raise SystemExit('Candidate version pointer or string changed')
     if (version[:21] == app_prefix) != (version_ptr == 0x6e6a0):
