@@ -72,6 +72,8 @@ The direct write path `0x1074C` saves incoming `a0` in `s0` and, after four orig
 
 `0x2000BFB5` also lies inside reset's zero range `[0x20004080,0x2000C958)`, so it is zero at `0x186F8` if zeroing completes without interference. From that state, reaching the selector-1 path above requires a later write or alias effect to change the byte to 1. These local facts do not prove `0x1074C` is its sole writer, the actual input domain, or which branch a physical record takes.
 
+For normal dispatcher entry, when `0x829E` reads a selector greater than 6, `0x14D3C` transfers to `0x1549A`; that path restores the dispatcher frame, sets `a0=0` and tail-jumps to `0x1074C`. If those instructions and the setter's earlier calls complete normally, `s0` is preserved and there is no interference, this path writes selector 0; it also executes the setter's other calls, so it is not merely a pure byte clamp. This is one recovery path **after** an out-of-range read, not proof that all reads are 0–6, every invalid entry takes this path, or a physical device ever performed the recovery.
+
 ## Following the `0x14056` receive arguments
 
 In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a2,a2,-98` at `0x8A3E` compute `0x2000B9D8`. A separate PC-relative calculation at `0x8A12..0x8A1C` obtains the same base and writes a received byte at base plus counter. This supports identifying `a2` as the receive buffer; it is not a live RAM observation.
