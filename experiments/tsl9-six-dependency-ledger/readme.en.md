@@ -37,7 +37,22 @@ At `0xD07C..0xD0EC`, the entry compares the full 32-bit `a0` with byte `0x2000BF
 | 2 | 2 | `[1,2,0,1]` |
 | 4 | 4 | `[1,4,0,1]` |
 
-On this `GP+354=0` path, other full 32-bit inputs do not perform this four-byte store. A nonzero `GP+354` instead tail-jumps to `0x10022`; its side effects are not established here. These are local control-flow results requiring valid GP/stack, memory and preservation of `s0`; they do not establish actual calls, exclude other writers or prove a global mode range. The [checker](check-mode-setter-guards.py) verifies the original instruction windows and the three little-endian constants without target execution or reading excluded regions.
+On this `GP+354=0` path, other full 32-bit inputs do not perform this four-byte store. A nonzero `GP+354` instead tail-jumps to `0x10022`, described below. These are local control-flow results requiring valid GP/stack, memory and preservation of `s0`; they do not establish actual calls, exclude other writers or prove a global mode range. The [checker](check-mode-setter-guards.py) verifies the original instruction windows and the three little-endian constants without target execution or reading excluded regions.
+
+#### Alternate record path when `GP+354` is nonzero
+
+`0xD0DE..0xD0E8` passes the original input and `a1=0`, tail-jumping to complete function `0x10022..0x10032`. It stores the input's low byte at `GP+300` and `1` at `GP+301`; its explicit stores do not target the four-byte mode state. If both state areas have their expected non-aliasing addresses, the function itself does not change `0x2000BF38..0x2000BF3C`.
+
+Later `0xFFA4` proceeds with a record only if both `GP+301` and `GP+354` are nonzero. It computes `(old+1)&15` from record offset 4, then ORs in the following flag selected by byte `GP+300`; other values add no flag. It stores the result at offset 4, calls `0xED00` with the record and `a1=0`, stores its returned byte at offset 3, decrements the freshly read `GP+301`, and tail-jumps to `0x12A08`.
+
+| `GP+300` | Additional OR flag |
+| --- | --- |
+| 1 | `0x10` |
+| 2 | `0x20` |
+| 3 | `0x80` |
+| 4 | `0x40` |
+
+If no other write intervenes after setup, `0xFFA4` is reached normally and the callee returns normally, this use sees the input's low byte and decrements the single pending count from 1 to 0. This does not guarantee that a next record arrives, transmission succeeds, or a flag identifies a particular vehicle feature. Other callers of `0x10022` can supply nonzero `a1`, setting 10; the count 1 is specific to this branch.
 
 ### Observed constant arguments to the general setter
 
