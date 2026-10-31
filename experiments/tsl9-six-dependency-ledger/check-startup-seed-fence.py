@@ -28,4 +28,62 @@ with image.open('rb') as f:
             pos+=n
 if 0x20000040-0x20000010 != 48 or 0x402b0-0x40280 != 48:
     raise SystemExit('Seed copy range changed')
+v140 = root / 'analysis/wch-resident-candidate-2026-10-21/original/wchble_rom.hex'
+raw = v140.read_bytes()
+if hashlib.sha256(raw).hexdigest() != '5a4331c80f71dda3fc28e13481e185bda6877d8be7977cbfa0238c2f0baadf23':
+    raise SystemExit('V1.40 HEX changed')
+selected = ((0x40000,4,'4dd31e5bdf6aebe918c1bd4fc24413aab164164e22edabf933190a1d9e6e8804'),
+            (0x6e06e,0x44,'be10a8a9345b43c9581cade65059b0aa39b9e6cf46953b5179b7cd909aaa926c'),
+            (0x6dffc,0x46,'e9cc946e02171437be8bb15015329891a33036905bff49afb457f9ec1634b9b8'),
+            (0x402c0,0x30,'d72cd5c9c489436d5ee4d42aa49a24683766d546beb7cd3d3be6adfb07592950'))
+wanted = {x for address,size,_ in selected for x in range(address,address+size)}
+found = {}
+upper = 0
+eof = False
+for line in raw.splitlines():
+    if eof or not line.startswith(b':'):
+        raise SystemExit('Invalid HEX record order')
+    rec=bytes.fromhex(line[1:].decode('ascii'))
+    if len(rec)<5 or len(rec)!=rec[0]+5 or sum(rec)&255:
+        raise SystemExit('Invalid HEX record')
+    size,address,kind=rec[0],int.from_bytes(rec[1:3],'big'),rec[3]
+    payload=rec[4:4+size]
+    if kind in (2,4):
+        if size!=2:
+            raise SystemExit('Invalid HEX address')
+        upper=int.from_bytes(payload,'big')<<(4 if kind==2 else 16)
+    elif kind==0:
+        for i,value in enumerate(payload):
+            absolute=upper+address+i
+            if absolute in wanted:
+                if absolute in found:
+                    raise SystemExit('Overlapping HEX record')
+                found[absolute]=value
+    elif kind==1:
+        if size:
+            raise SystemExit('Invalid HEX EOF')
+        eof=True
+    elif kind not in (3,5):
+        raise SystemExit('Unsupported HEX record')
+if not eof or set(found)!=wanted:
+    raise SystemExit('Incomplete V1.40 candidate windows')
+for address,size,expected in selected:
+    data=bytes(found[x] for x in range(address,address+size))
+    if hashlib.sha256(data).hexdigest()!=expected:
+        raise SystemExit('V1.40 candidate window changed')
+    if address not in (0x6e06e,0x6dffc):
+        continue
+    pos=0
+    while pos<len(data):
+        n=4 if data[pos]&3==3 else 2
+        if pos+n>len(data):
+            raise SystemExit('Truncated V1.40 instruction')
+        if n==4 and data[pos:pos+4]==bytes.fromhex('0f100000'):
+            raise SystemExit('Unexpected V1.40 FENCE.I in startup window')
+        pos+=n
+with image.open('rb') as f:
+    f.seek(0x40280-0x40000)
+    v131_helper=f.read(18)
+if v131_helper!=bytes(found[x] for x in range(0x402c0,0x402d2)):
+    raise SystemExit('Candidate word-copy helper instructions differ')
 print('Candidate seed and first RAM-helper windows verified; target not executed.')

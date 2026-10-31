@@ -21,6 +21,8 @@
 
 [RISC-V Zifencei 規格](https://docs.riscv.org/reference/isa/unpriv/zifencei.html)說明同 hart 的 store／instruction fetch 同步；上述觀察**不證明會發生失敗**，因處理器記憶體一致性、其他執行機制及實機 resident 均未確認，也不涵蓋其他啟動路徑。此 seed 使用 word-copy 啟動程式，不能與 `0x4004C` 的 byte-copy helper 混為同一函式。[檢查器](check-startup-seed-fence.py)固定三段候選原始窗口與既有標註來源，不執行 target。
 
+V1.40 候選有對應但位置不同的路徑：`0x40000 → 0x6E06E`，從 `[0x402C0,0x402F0)` 複製 48 bytes 至同一 RAM seed 區，再經 `0x6E0AA → 0x6DFFC` 首次呼叫 `0x20000010`。其兩段對應窗口也沒有明確 `FENCE.I`；兩版 seed 的首 18 bytes（word-copy helper）相同。這是兩份參考 HEX 的局部靜態比對，不證明實機同步、執行或錯誤；APP 的既有 21-byte 版本前綴對 V1.40 候選不相符，不能把它當成已驗證相容版本。[檢查器](check-startup-seed-fence.py)對 V1.40 核對 HEX 雜湊、記錄 checksum 及相關窗口。
+
 ## `0x1A078` 的 selector 週期條件
 
 原 `0xCEDC..0xCF96` 在 enable byte 非零且 selector `s` 非 `255` 時，先儲存 `(s+1)%3`；若舊 `s` 非零，這次查表的 effective mode 強制為 0，若舊 `s` 為零，則改讀 mode byte。若舊 `s=255`，走直接讀 mode 的分支，不執行此 selector 更新。這與[完整查表合約](../tsl9-third-provider-lookup-contract/README.md)一致，不是對全域 mode 的限制。
