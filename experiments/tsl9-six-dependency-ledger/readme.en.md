@@ -424,6 +424,14 @@ If the two resident slots actually zero 12 bytes and copy 8 bytes, required regi
 
 This is a static link between initialization and receive data flow, not proof of actual controller identity, masks or effective filtering, received packets, checksum success or downstream state changes. Channel numbers are labels, not established physical wiring. The [checker](check-counter-spi-filter-path.py) pins original instruction windows and verifies constant encoding without executing the target.
 
+#### Candidate EXTI, SPI selection and record tag
+
+The existing [vector comparison](../tsl9-qingke-v4-vectors/readme.en.md) maps slot 39 to `0x16FB6`; under the candidate WCH CH32V208 definition it is EXTI9_5. That routine reads bits 6 and 7 of `0x40010414`, writes `0x40` and `0x80` respectively to the same address, and sets bits 0 and 1 of `GP+360` respectively. The locally preserved [WCH header](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h) identifies that address as the EXTI interrupt-pending register and those bits as lines 6 and 7; actual mapping and clear effects remain unverified.
+
+If `0x17002` is subsequently entered, flags remain valid and intervening calls preserve required registers, bit 0 calls `0x16B0A(1)` and bit 1 calls `0x16B0A(2)`; the second flag is freshly read, so simultaneous observation cannot be assumed. `0x16B0A` reads candidate SPI device register `0x2C` and, according to bits 0 and 1 of the result, calls `0x16A7C` with addresses `0x61` and `0x71`. The receive function writes `0x10` to `0x40010814` for channel 1 and `0x01` for channel 2; under WCH GPIOA mapping and active-low wiring these are candidate PA4 and PA0 chip selects. Once header and length guards pass it passes the original channel to `0x12BC8`; with a free ring slot, valid copy and preserved registers, the corresponding record tag is 1 or 2.
+
+This supplies a concrete candidate source for `0x399`/`0x39B` only if initialization, IRQ delivery, SPI device and data format are all compatible. It does not establish which GPIO port maps to EXTI lines 6/7, PCB wiring, receipt of a particular ID or a counter change. See the [independent instruction checker](check-key-control-flow.py); no hardware or firmware was executed.
+
 #### Convergence of the `0x399`, tag 1 special branch
 
 If the upstream checksum and other guards pass and control reaches `0xAE62`, this branch asks the slot at `0x4004C` to copy the original 12-byte record to `SP+4`. If the slot is a forward copy and both ranges are valid, `SP+12` initially corresponds to original record offset 8. This branch may modify **the stack copy** at `SP+12`, recalculate the copy's checksum and call `0x12A08`; none of that proves successful transmission.
@@ -456,6 +464,6 @@ Conversely, original `0x907A..0x90AC` requests that the 180-byte work table be c
 
 ## Independent audit of recent branches
 
-Following the earlier `0xA32E` branch-direction error, the [static checker](check-key-control-flow.py) reads **only eight explicit windows** from the original BIN, validates their hashes, places each in radare2 temporary memory for RISC-V disassembly, and checks 27 selected instructions. It covers counter updates and input guards, the second writer and caller, selector, sequence state, `0x399` tag 1 convergence, and the fixed-filter table's local copy. A negative check changes a branch bit in temporary memory; the original BIN is not modified.
+Following the earlier `0xA32E` branch-direction error, the [static checker](check-key-control-flow.py) reads **only twelve explicit windows** from the original BIN, validates their hashes, places each in radare2 temporary memory for RISC-V disassembly, and checks 44 selected instructions. It covers counter, selector, sequence state, fixed-filter table copying and candidate EXTI/SPI receive paths. A negative check changes a branch bit in temporary memory; the original BIN is not modified.
 
 Run `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`. On Windows, provide the local path to `r2.exe`; an existing radare2 with RV32C support is required and the checker downloads nothing. This audit confirms the listed instructions and destinations; it does **not** prove the semantics of other instructions, dynamic reachability, callee contracts or hardware effects. It does not read excluded ranges, execute the target or run an emulator.

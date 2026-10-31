@@ -16,6 +16,10 @@ WINDOWS = {
     (0x172b6, 0x4a): '9567e295d85dee36d242e89c952adf091b12ab5e67486dea7d8c0b0597473ea7',
     (0x19bf0, 0xb6): '7ad28bf9e3e203cdaf62539ed4dad2cb81ffe938f457ae43203a5868877836bb',
     (0x1299e, 0x26): '722428b52f60e85f2d3b40ab39a2be581def68ef8a795977b64b5f9edc3d18fe',
+    (0x16fb6, 0x4c): '034c35bc979f6b1385f135ad466d7303c31429d9323484a6290314885ad26f85',
+    (0x17002, 0x3e): 'dd6b0fa91982cf653657b71e2d2bfaf2d6349ccc12f2b31561483e40572b0c69',
+    (0x16b0a, 0x46): 'b12abed39cf1cc897ab42a51b6cfce8c150031819f747aab095fffd618ae6f80',
+    (0x16a7c, 0x8e): 'd823c819bbe92c3b7ee17c92411825549084d08dc32c36378d8e60d4915f40e2',
 }
 EXPECTED = {
     0xae54: 'bne a4, a5, 0xaf4c', 0xae5e: 'bne a4, a5, 0xaf4c',
@@ -33,6 +37,15 @@ EXPECTED = {
     0x19c3c: 'bleu a2, a5, 0x19c9c', 0x19c60: 'addi a1, a1, 36',
     0x19c88: 'addi a5, a5, 36', 0x19c9c: 'bltu a5, a3, 0x19c92',
     0x19ca0: 'bltu a5, a4, 0x19c08',
+    0x16fc2: 'andi a4, a4, 64', 0x16fd2: 'ori a5, a5, 1',
+    0x16fe6: 'andi a4, a4, 128', 0x16ff6: 'ori a5, a5, 2',
+    0x17012: 'li a0, 1', 0x17018: 'jal ra, 0x16b0a',
+    0x1702c: 'li a0, 2', 0x17032: 'jal ra, 0x16b0a',
+    0x16b22: 'beqz a5, 0x16b2e', 0x16b2a: 'jal ra, 0x16a7c',
+    0x16b30: 'beqz s0, 0x16b3c', 0x16b38: 'jal ra, 0x16a7c',
+    0x16a92: 'bne a0, a4, 0x16a98', 0x16a96: 'li a4, 16',
+    0x16a98: 'sw a4, 20(a5)', 0x16af0: 'mv a3, s1',
+    0x16afa: 'jal ra, 0x12bc8',
 }
 
 def disassemble(tool, base, data):

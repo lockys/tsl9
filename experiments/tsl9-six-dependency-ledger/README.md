@@ -424,6 +424,14 @@ fallback `0x12F18..0x12F44` 以目的 `0x2000C30C`、值 0、長度 256 呼叫 `
 
 這是初始化設定與接收資料流的靜態連接，不證明實際控制器識別、mask／濾波生效、接收到封包、checksum 通過或觸發後續狀態。呼叫值只是通道標籤，不等同已確認的實體接線。[檢查器](check-counter-spi-filter-path.py)核對原始指令窗口與常數編碼，不執行目標。
 
+#### 候選 EXTI、SPI 選擇與 record tag
+
+既有[向量表對照](../tsl9-qingke-v4-vectors/README.md)將 slot 39 對應至 `0x16FB6`；若採用 WCH CH32V208 候選定義，它是 EXTI9_5。該函式分別讀 `0x40010414` 的 bit 6／7，對相同位址寫 `0x40`／`0x80`，並分別把 `GP+360` 的 bit 0／1 設為 1。本機保存的 [WCH 標頭](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h)將該位址對應 EXTI interrupt-pending register、這兩個 bits 對應 line 6／7；實機映射及清除效果仍須確認。
+
+若後續進入 `0x17002`、旗標保持有效且中途呼叫保留必要暫存器，bit 0 路徑呼叫 `0x16B0A(1)`，bit 1 路徑呼叫 `0x16B0A(2)`；後者重新讀旗標，因此不能假設兩次觀察同時成立。`0x16B0A` 先讀候選 SPI 裝置 register `0x2C`，依讀回的 bit 0／1 分別以地址 `0x61`／`0x71` 呼叫 `0x16A7C`。接收函式對 channel 1 向 `0x40010814` 寫 `0x10`，對 channel 2 寫 `0x01`；若採 WCH GPIOA 定義及低有效線路，分別是 PA4／PA0 的候選片選。它在滿足 header／長度守衛後把原 channel 傳給 `0x12BC8`；在 ring 空槽、copy 及保存暫存器條件成立時，對應 record tag 1／2。
+
+這條連接提供 `0x399`／`0x39B` 來源的具體候選，但只在相應初始化、IRQ 交付、SPI 裝置與資料格式均相容時成立；它不證明 EXTI line 6／7 使用哪個 GPIO port、PCB 走線、裝置收到特定 ID 或 counter 已改變。詳見[獨立指令覆核器](check-key-control-flow.py)；沒有接觸硬體或執行韌體。
+
 #### `0x399`、tag 1 特殊分支的匯合
 
 在 checksum 等上游守衛通過並到達 `0xAE62` 的條件下，此分支要求 `0x4004C` 槽將原始 12-byte record 複製到 `SP+4`。因此，若槽確為順向 copy 且來源與目的有效，`SP+12` 最初對應原 record offset 8。此分支可能修改的是 **stack 副本**的 `SP+12`，也可能重算副本 checksum 並呼叫 `0x12A08`；它不因此證明傳送成功。
@@ -456,6 +464,6 @@ APP 的 `0x9124` 對非零延遲先掃描 15 筆、每筆 12-byte 的工作表�
 
 ## 近期分支的獨立覆核
 
-針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀八個明確窗口**，核對窗口雜湊後，將窗口放入 radare2 的暫時記憶體反組譯，並比對 27 個指定指令。覆蓋 counter 更新與輸入守衛、第二寫入點及其呼叫、selector、序列狀態、`0x399` tag 1 匯合，以及固定濾波表的本地複製。檢查器對記憶體中的一個分支位元做負例；不修改原 BIN。
+針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀十二個明確窗口**，核對窗口雜湊後，將窗口放入 radare2 的暫時記憶體反組譯，並比對 44 個指定指令。覆蓋 counter、selector、序列狀態、固定濾波表複製及候選 EXTI／SPI 接收路徑。檢查器對記憶體中的一個分支位元做負例；不修改原 BIN。
 
 執行 `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`。Windows 也可傳入本機 `r2.exe` 的路徑；需自行提供支援 RV32C 的 radare2，不會下載工具。此覆核確認所列指令及目的地，**不證明**其餘指令語意、動態可達性、callee 契約或硬體效果；也未讀取排除區、執行目標或執行模擬器。
