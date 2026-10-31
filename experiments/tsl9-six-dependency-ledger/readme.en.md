@@ -169,6 +169,12 @@ This is static data flow for the lookup path, conditional on valid pointers and 
 
 `0x2000BEEA`, `GP+170` and `GP+176` are all in the checked reset zero range. If reset completed, GP is `0x20004000`, no other path has changed the saved value or counter before this comparison, and no interference occurs during it, those two values start at zero. The source byte may change after reset: an observed zero does not increment here; an observed nonzero value causes this update to set the counter to 1. This constrains only this local update, not whether a later lookup occurs, whether the counter stays unchanged afterward or whether its global index is always 0–3. The [checker](check-counter-source-byte.py) pins original instruction windows and address arithmetic without target execution or excluded-region reads.
 
+#### Two identified writes to the source
+
+On reaching `0xAF4C`, the original code reads byte `b` at input record offset 8 and computes `n=(b>>2)&15`. Its test `((n+13)&15)<=4` is exactly equivalent to `n` being 3, 4, 5, 6 or 7. On the passing branch, after two calls it freshly reads `0x2000BEEA`: if zero, `0xAF76` sets it to 1; if nonzero, this site leaves it unchanged. On the failing branch `0xB016` freshly reads the same byte and `0xB026` clears it if nonzero; an existing zero is left unchanged.
+
+If the source is initially 0/1, input and memory are valid, the two calls return normally and no other write intervenes, these branches locally leave 1/0 respectively. If the passing branch sees an initial value of 2–255, it retains that nonzero value; this slice is not a Boolean normalizer for arbitrary bytes. These are narrow direct-address findings, not proof that indirect pointers, other encodings or asynchronous writers are absent. The field's product meaning and global index range remain unproved. The checker pins both instruction windows and enumerates the arithmetic condition for all 256 input bytes without target execution.
+
 ### Two branches that do not read the counter table
 
 `0xA132` calls `0x81EE`, which directly reads byte `0x2000BED5`. At `0xA136..0xA158`, return value 1 selects the constant `1960` (`0x7A8`) for the common packet-field path; value 2 selects `2140` (`0x85C`) at `0xA1FC` before joining that path. Only other byte values read `GP+176` and look up `0x1AB48` at this entry, so the two fixed-value branches do not depend on that table or counter.
