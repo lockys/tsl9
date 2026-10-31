@@ -46,4 +46,20 @@ with carrier.open('rb') as f:
     if int.from_bytes(f.read(4), 'little') != 0x43c7e: raise SystemExit('Candidate slot target changed')
     f.seek(0x43cc4 - 0x40000)
     if f.read(70) != body: raise SystemExit('Candidate resident original bytes changed')
+    constructor_evidence = root / 'experiments/tsl9-resident-record-root-chain/evidence-v1.json'
+    record = constructor_evidence.read_bytes()
+    if hashlib.sha256(record).hexdigest() != 'f3435a10163db8c8ebe44204a024279264006816d76a65ffae8418d6980a921e':
+        raise SystemExit('Candidate constructor evidence changed')
+    constructor = next(fn for fn in json.loads(record)['selected_functions'] if fn['start'] == 0x59e64)
+    part = [o for o in constructor['operations'] if 0x59e94 <= o['addr'] < 0x59ed8]
+    body = b''.join(bytes.fromhex(o['bytes']) for o in part)
+    if len(body) != 68 or hashlib.sha256(body).hexdigest() != 'e14105598172ed86f84a1bc68540eb3146156c8d74a5c6bdbb898eb6a669add5':
+        raise SystemExit('Candidate constructor window changed')
+    f.seek(0x59e94 - 0x40000)
+    if f.read(68) != body: raise SystemExit('Candidate constructor original bytes changed')
+    expected = {0x59e94:'addi a5, s2, 492', 0x59e98:'qk.c.lhu a5, 16(a5)', 0x59e9a:'li a4, 260', 0x59ea2:'addi a5, a5, 5', 0x59ea6:'slli a5, a5, 0x10', 0x59ea8:'srli a5, a5, 0x10', 0x59eaa:'bleu a5, a4, 0x59eb2', 0x59eae:'li a0, 260', 0x59eb8:'li a5, 64', 0x59ebc:'bleu a5, a4, 0x59ec4', 0x59ec0:'li a0, 64', 0x59ed4:'sw a0, 272(s0)'}
+    ops = {o['addr']: o['opcode'] for o in part}
+    if any(ops.get(pc) != op for pc, op in expected.items()): raise SystemExit('Candidate constructor control flow changed')
+if max(64, min(260, (251 + 5) & 0xffff)) != 256:
+    raise SystemExit('Candidate allocation size arithmetic changed')
 print('GATT length candidates and bounded instruction windows verified; installed ABI and negotiated MTU unverified.')
