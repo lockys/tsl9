@@ -66,3 +66,14 @@ Together with the subsequent WCH CAN1 interface comparison, `0x370` is a message
 The original queue consumer `0x12C86..0x12CA4` selects a record with a 12-byte stride and requests a 12-byte copy to its own `SP+8` through the indirect `0x4004C` slot. It then calls `0x82D2` at `0x12CB0` and continues only on zero; `0x12CB6..0x12CBA` freshly reads the stack record's first halfword and compares it with `s4`. Queue entry sets `s4=1`; **if that value is preserved across calls**, a non-1 first value branches to `0x12D78`, bypassing the offset-2 equals 4 check at `0x12CBE..0x12CC4`. That branch has its own settings-bit and `0x81AA` guards and passes `SP+8` to `0x14D2E` at `0x12D8C`.
 
 Thus, if the upstream record's first value remains `0x370` at the relevant reads, it takes the non-1 branch and the other branch's length-4 check cannot be used to bound it. This is **conditional branch analysis**: indirect copy, `0x82D2`, preservation of `s4`, stack and memory across calls, the record's actual producer and other validation remain unresolved. It does not establish a reachable length or vulnerability. See the [queue source](../../src/native/receive/queue_consumer.c) and [feature dispatcher](../tsl9-feature-dispatch/readme.en.md).
+
+### Two identified queue insertion paths
+
+`0x12BC8` selects among up to 32 slots of 12 bytes, stores the low halfword of `a0` at offset 0 and low byte of `a2` at offset 2, then requests a copy to offset 3 through `0x4004C` using full `a2`; its body has no length upper-bound check. PC-relative calculations for the [original-layout reconstruction](../tsl9-ring-insert/readme.en.md) and the queue consumer both point to `0x2000C038`. The shared numerical address alone does not prove physical memory ownership or unchanged data across calls.
+
+| Identified source | Original handling before the `0x12BC8` call | Static boundary |
+| --- | --- | --- |
+| SPI receive `0x16ACC..0x16AFA` | Masks the byte at `SP+20` to four bits and accepts only `(length-1)&255 <= 7`, passing that length in `a2`. | **1–8** at this callsite, conditional on normal execution and undisturbed registers/stack. |
+| Candidate CAN1 IRQ `0x12C24..0x12C4A` | `0x18D9C..0x18DA2` stores the source word's low four bits at output structure offset 10; the IRQ reads its own `SP+22` as `a2`. | **0–15** if the provider completes normally and stack/registers are unchanged; instructions alone do not establish which DLC values physical hardware actually supplies. |
+
+These are identified callsites, not an exhaustive list of all possible producers; they do not prove which source produced a particular `0x370` record. Candidate copy, later slot/consumer behavior, IRQ and memory consistency must hold before extending a source bound to later uses. No firmware or hardware was executed.
