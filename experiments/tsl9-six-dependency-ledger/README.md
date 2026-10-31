@@ -181,6 +181,12 @@ queue 在 `0x12CB0` 呼叫 `0x82D2`，只有返回 0 才可能繼續進 dispatch
 
 另一分支要求入口 state 為 4、事件 offset 2 為 5，從 offset 10 讀 halfword，寫入第一個可用的 `GP+150/154` 項目；隨後以該值和 stack 中的 `247` halfword 呼叫 `0x400D8`。WCH 將 state 4／opcode 5 分別列為 connected／link established，並將該槽定義為 `GATT_ExchangeMTU`；按候選結構及 RV32 對齊，offset 10 是 connection handle。這支持「連線建立後提出 MTU 247 交換請求」的條件式解讀，不證明 slot、連線、請求成功或協商結果。沒有讀取裝置資料或執行藍牙操作；既有檢查器已納入相關窗口及標頭宣告。
 
+#### 候選連線槽的 APP 初始化
+
+原 reset 的清零範圍包含 `GP+150`、`GP+154`（以 GP=`0x20004000` 計）；這只給出清零完成時的條件式值。之後正常主初始化在 `0x9268` 呼叫 `0x8E88`；其 `0x8F7A` 設 `s1=-2`，`0x8F90` 和 `0x8FA6` 分別將 `s1` 低 halfword 存到這兩個位置。若所經間接呼叫均正常返回並保存 `s1`／GP、沒有中斷或 alias 改寫，兩槽在第二次 store 後為 `0xFFFE`，與連線建立分支選空槽的 sentinel 相符。
+
+這補上 reset 零值到候選空槽標記的靜態銜接，不能證明初始化已完成、兩次註冊成功或 callback 不會在兩次寫入之間觸發；`0x2000C796/0x2000C79A` 的另一組共用前置設定也不能因此假定已初始化成 sentinel。既有檢查器已固定主初始化和兩次 store 指令。
+
 進一步追蹤 `0xFCB8` 之後的控制流：前段高 nibble 加 1 後，`0xFCE6` 還會再加 1；若接著讀得 `GP+289=2`，則 `0xFD1A` 在 `0xFCE6` 前再加一次。因此在 record 穩定且正常到達檢查碼呼叫前，offset 9 高 nibble 共增加 **2 次**，或在該特殊分支增加 **3 次**，各以四位元回繞；上段所述一次僅為 `0xFCB8` 的局部效果。
 
 `0xED00` 正常返回後，程式將結果寫到 record offset `length+2`，其中 length 是呼叫前記住的 offset 2 byte。若 length 為 7，此寫入會覆蓋 offset 9，故不能把上述增加值直接當作最後內容。這些是有界指令與位址運算；長度實際值、buffer 效果、呼叫返回和傳送均未實測。檢查器已加入相關窗口。
