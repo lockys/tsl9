@@ -708,4 +708,29 @@ for ident,version,length,*_ in cases:
         raise SystemExit('Counter update branch-variation matches changed: '+ident)
 if (branch_targets['2869'],branch_targets['2966']) != (0xa134,0xa1d6):
     raise SystemExit('Counter branch destinations changed')
+# Compare the two destination windows while decoding their relocated calls.
+branch_windows=[]
+callee_windows=[]
+callback_windows=[]
+for ident,version,address,callback in (('2869','4.1.20',0xa134,0xa248),('2966','4.1.60',0xa1d6,0xa2ea)):
+    with (folder / ('ID-'+ident+'-V'+version+'-decoded.bin')).open('rb') as f:
+        window=read_window(f,address,24)
+        callee_windows.append(read_window(f,0x90b0,0x74))
+        callback_windows.append(read_window(f,callback,4))
+    branch_windows.append(window)
+    word=int.from_bytes(window[8:12],'little')
+    imm=((word>>31&1)<<20)|((word>>21&0x3ff)<<1)|((word>>20&1)<<11)|((word>>12&0xff)<<12)
+    if imm & (1<<20): imm-=1<<21
+    if word & 0xfff != 0xef or address+8+imm != 0x90b0:
+        raise SystemExit('Counter branch callee changed')
+    if int.from_bytes(window[0:4],'little')!=0x517 or int.from_bytes(window[4:8],'little')!=0x11450513 or address+0x114!=callback:
+        raise SystemExit('Counter branch callback address changed')
+if branch_windows[0][:8]!=branch_windows[1][:8] or branch_windows[0][12:]!=branch_windows[1][12:]:
+    raise SystemExit('Counter branch surrounding instructions changed')
+if hashlib.sha256(branch_windows[1]).hexdigest()!='02555181f26684a3613bff02b7ec591fc58f8d8027db70612bc7983e4e3a7a38':
+    raise SystemExit('Reference branch destination changed')
+if callee_windows[0]!=callee_windows[1] or hashlib.sha256(callee_windows[1]).hexdigest()!='6ae3c32faae25ccd27fea46de4a04b6246489daafb5f1fa0d9ede512e65f2b31':
+    raise SystemExit('Counter cancellation callee changed')
+if callback_windows!=[bytes.fromhex('054521bf')]*2:
+    raise SystemExit('Counter callback entry changed')
 print('18 candidate data/consumers and counter-update branch variations verified. Excluded regions not read; target not executed.')
