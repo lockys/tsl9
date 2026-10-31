@@ -440,6 +440,12 @@ The same initialization prepares `[line=0xC0, mode=0, trigger=12, enable=1]` on 
 
 This depends on a valid stack, normal calls, preserved registers, no remapping or asynchronous overwrite, and the candidate WCH register definitions. It does not measure actual pin levels, establish PCB continuity to the controllers, prove IRQ delivery, or exclude later reconfiguration. The [independent checker](check-key-control-flow.py) pins initialization and both helper instruction windows.
 
+#### Conditional interaction of startup order and flag clearing
+
+Original APP main calls IRQ initializer `0x9A42` at `0x9258`; that routine writes the EXTI9_5 mask to the candidate PFIC enable address at `0x9ABE` and sets the global-interrupt-related CSR mask at `0x9AC2`. Only after other initialization calls does main invoke PC6/PC7 initializer `0x17040` at `0x9280`. On entry, `0x17048..0x17058` requests a zero fill of the three bytes `GP+360..362` through slot `0x40048`; the GPIO and EXTI configuration described above comes later.
+
+If the slot satisfies the candidate fill contract, memory is valid, and after the early enable request but before this fill completes the candidate EXTI handler runs due to pre-existing pending/enable conditions and sets bit 0 or 1 of `GP+360`, the fill can clear that already-set flag. This is a specific **possible ordering**, not a measured race: early peripheral enable/pending, actual IRQ delivery, installed slot contents, and whether a cleared event was observable are not established; other initializers may also affect state. Normal return from intervening calls including `0x14C8A` is a condition. The excluded region was not read.
+
 #### Convergence of the `0x399`, tag 1 special branch
 
 If the upstream checksum and other guards pass and control reaches `0xAE62`, this branch asks the slot at `0x4004C` to copy the original 12-byte record to `SP+4`. If the slot is a forward copy and both ranges are valid, `SP+12` initially corresponds to original record offset 8. This branch may modify **the stack copy** at `SP+12`, recalculate the copy's checksum and call `0x12A08`; none of that proves successful transmission.
@@ -472,6 +478,6 @@ Conversely, original `0x907A..0x90AC` requests that the 180-byte work table be c
 
 ## Independent audit of recent branches
 
-Following the earlier `0xA32E` branch-direction error, the [static checker](check-key-control-flow.py) reads **only fifteen explicit windows** from the original BIN, validates their hashes, places each in radare2 temporary memory for RISC-V disassembly, and checks 60 selected instructions. It covers counter, selector, sequence state, fixed-filter table copying, and candidate EXTI/SPI receive and initialization paths. A negative check changes a branch bit in temporary memory; the original BIN is not modified.
+Following the earlier `0xA32E` branch-direction error, the [static checker](check-key-control-flow.py) reads **only eighteen explicit windows** from the original BIN, validates their hashes, places each in radare2 temporary memory for RISC-V disassembly, and checks 70 selected instructions. It covers counter, selector, sequence state, fixed-filter table copying, and candidate EXTI/SPI receive, startup and initialization paths. A negative check changes a branch bit in temporary memory; the original BIN is not modified.
 
 Run `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`. On Windows, provide the local path to `r2.exe`; an existing radare2 with RV32C support is required and the checker downloads nothing. This audit confirms the listed instructions and destinations; it does **not** prove the semantics of other instructions, dynamic reachability, callee contracts or hardware effects. It does not read excluded ranges, execute the target or run an emulator.

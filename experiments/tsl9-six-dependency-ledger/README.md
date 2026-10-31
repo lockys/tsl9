@@ -440,6 +440,12 @@ fallback `0x12F18..0x12F44` 以目的 `0x2000C30C`、值 0、長度 256 呼叫 `
 
 上述結論依有效 stack、正常呼叫、暫存器保存、無重映射／非同步覆寫及候選 WCH 寄存器定義成立；不等於量測到實際 pin 電平、確認 PCB 與控制器的導通，或證明 IRQ 曾發生。這也不排除之後的重新設定。[獨立覆核器](check-key-control-flow.py)固定初始化與兩個 helper 的指令窗口。
 
+#### 啟動時序與旗標清除的條件式交互
+
+原 APP main `0x9258` 先呼叫 IRQ 初始化 `0x9A42`；該函式在 `0x9ABE` 向候選 PFIC enable 位址寫入對應 EXTI9_5 的 mask，`0x9AC2` 設定全域中斷相關 CSR mask。main 經其他初始化呼叫後，才於 `0x9280` 呼叫上述 PC6／PC7 初始化 `0x17040`。該函式進入時，`0x17048..0x17058` 請求由 `0x40048` 槽以值 0 填寫 `GP+360..362` 三個 bytes；之後才進行前述 GPIO 與 EXTI 設定。
+
+若該槽符合候選 fill 契約、記憶體有效，且在早期 enable 請求之後、這次 fill 完成之前，候選 EXTI handler 因既有 pending／enable 等條件而執行並把 `GP+360` 的 bit 0 或 1 設為 1，那次 fill 可將該已設旗標清掉。這是具體的**可能時序**，不是實測競態：沒有確認早期 peripheral enable／pending、IRQ 是否真的送達、實機槽內容或被清除的事件是否可觀測；其他初始化也可能影響狀態。`0x14C8A` 等中間呼叫是否正常返回亦是條件，未讀取既定排除區。
+
 #### `0x399`、tag 1 特殊分支的匯合
 
 在 checksum 等上游守衛通過並到達 `0xAE62` 的條件下，此分支要求 `0x4004C` 槽將原始 12-byte record 複製到 `SP+4`。因此，若槽確為順向 copy 且來源與目的有效，`SP+12` 最初對應原 record offset 8。此分支可能修改的是 **stack 副本**的 `SP+12`，也可能重算副本 checksum 並呼叫 `0x12A08`；它不因此證明傳送成功。
@@ -472,6 +478,6 @@ APP 的 `0x9124` 對非零延遲先掃描 15 筆、每筆 12-byte 的工作表�
 
 ## 近期分支的獨立覆核
 
-針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀十五個明確窗口**，核對窗口雜湊後，將窗口放入 radare2 的暫時記憶體反組譯，並比對 60 個指定指令。覆蓋 counter、selector、序列狀態、固定濾波表複製及候選 EXTI／SPI 接收與初始化路徑。檢查器對記憶體中的一個分支位元做負例；不修改原 BIN。
+針對先前 `0xA32E` 分支方向誤判，新增 [靜態覆核器](check-key-control-flow.py)：從原 BIN **只讀十八個明確窗口**，核對窗口雜湊後，將窗口放入 radare2 的暫時記憶體反組譯，並比對 70 個指定指令。覆蓋 counter、selector、序列狀態、固定濾波表複製及候選 EXTI／SPI 接收、啟動與初始化路徑。檢查器對記憶體中的一個分支位元做負例；不修改原 BIN。
 
 執行 `python experiments/tsl9-six-dependency-ledger/check-key-control-flow.py --r2 /path/to/r2`。Windows 也可傳入本機 `r2.exe` 的路徑；需自行提供支援 RV32C 的 radare2，不會下載工具。此覆核確認所列指令及目的地，**不證明**其餘指令語意、動態可達性、callee 契約或硬體效果；也未讀取排除區、執行目標或執行模擬器。
