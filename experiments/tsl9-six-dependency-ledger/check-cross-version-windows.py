@@ -446,4 +446,32 @@ with reference.open('rb') as f:
         raise SystemExit('Record and settings interval relationship changed')
     if not (record_base<=0x2000c268 and 0x2000c26a<=settings and settings+12+4<=settings+112):
         raise SystemExit('Mode flag and fallback copy ranges overlap')
+# Scan one explicit pointer-producing ADDI immediately followed by SB/SH/SW or C.SW.
+for ident,version,length,*_ in cases:
+    state=different_offsets.get(ident,332)
+    candidates=[0,0]
+    with (folder/('ID-'+ident+'-V'+version+'-decoded.bin')).open('rb') as f:
+        for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,base+length)):
+            data=read_window(f,lo,hi-lo)
+            for at in range(0,len(data)-5,2):
+                a=int.from_bytes(data[at:at+4],'little')
+                rd=(a>>7)&31
+                if a&127!=0x13 or (a>>12)&7 or (a>>15)&31!=3 or rd==0: continue
+                first=signed(a>>20,12)
+                h=int.from_bytes(data[at+4:at+6],'little')
+                if h&3==0 and h>>13==6 and 8+((h>>7)&7)==rd:
+                    displacement=((h>>10&7)<<3)|((h>>6&1)<<2)|((h>>5&1)<<6)
+                    size=4; candidates[1]+=1
+                elif at+8<=len(data):
+                    b=int.from_bytes(data[at+4:at+8],'little')
+                    funct=(b>>12)&7
+                    if b&127!=0x23 or (b>>15)&31!=rd or funct not in (0,1,2): continue
+                    displacement=signed(((b>>25)<<5)|((b>>7)&31),12)
+                    size=1<<funct; candidates[0]+=1
+                else: continue
+                address=first+displacement
+                if address<state+4 and address+size>state:
+                    raise SystemExit('Adjacent GP-derived store overlaps sequence state: '+ident)
+    if candidates!=[2,0]:
+        raise SystemExit('Adjacent GP-derived store candidate count changed: '+ident)
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
