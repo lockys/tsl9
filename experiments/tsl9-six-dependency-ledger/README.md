@@ -68,6 +68,10 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 依[設定初始化分析](../tsl9-original-prebinding-settings/README.md)，若 reset 所設 GP 與初始 pointer 未被改寫，目的為 `0x2000C2A8..0x2000C2AC`；其初始化路徑會檢查四個 byte 是否為 ASCII 32–126，遇到不符合條件者可進入預設值流程。**若**原機槽確為該候選、來源／目的有效且呼叫正常返回，則四個來源 bytes 會被複製到此目的範圍。這不證明預設內容、實際設定語義、每次開機都執行該路徑，或實機 ROM／Flash 寫入結果；排除資料內容未讀取。
 
+`0x1ABB4` 的初始 word 為 `0x2000C29C`；在 reset 以 GP=`0x20004000` 正常複製初始資料且 pointer 未被覆寫時，`*(GP+84)+12` 即 `0x2000C2A8`。當任一受檢 byte 不在 32–126 時，`0x13204` 呼叫 fallback `0x1316A`：先以槽 `0x40048` 要求清零 `0x2000C29C` 起 112 bytes，寫入若干固定欄位，再透過 `0x4004C` 要求從 `0x1A69C` 複製 4 bytes；最後尾跳 `0x13138`，要求把設定區 112 bytes 複製至 stack，並呼叫 `0x9C0A`，數值目的為 `0x08077A00`。
+
+這條 fallback 在四-byte copy 後沒有重新執行 ASCII guard；在不知道來源 bytes 時，不能證明 fallback 結果符合 32–126。其寫入器之後的候選 program leaf 會讀取 256-byte stack 來源，而此 writer 僅明確複製 112 bytes；其餘 144 bytes 的初始化來源仍未知，詳見 [NVM 區域分析](../tsl9-NVM-record-layout/README.md)。槽身分、記憶體有效性與實際持久化成功皆未確認；沒有讀取或輸出排除資料。
+
 ## `0x1AB48` 查表結果的局部用途
 
 在 `0xA146..0xA158`，程式以 `uint8(GP+176)` 作索引，讀取 `0x1AB48+2*index` 的無號 16-bit 值 `x`。該路徑的 `0xA15C..0xA166` 計算 `y=(x+0x802)&0xFFFF`；`0xA16C` 將 `y` 的低 8 bits 寫到 `SP+10`，而 `0xA168..0xA18E` 將 bits 8–11 寫到 `SP+9` 的低 nibble，保留其高 nibble。因此兩欄合起來是 `(x+0x802)&0xFFF`，若以稍後 `a0=SP+4` 為緩衝區起點，它們分別是 offset 6 與 offset 5 的低 nibble。
