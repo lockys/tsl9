@@ -1,6 +1,7 @@
 """Check candidate GATT length bounds and bounded APP instruction windows."""
 import argparse
 import hashlib
+import json
 from pathlib import Path
 parser = argparse.ArgumentParser()
 parser.add_argument('--wch-header', type=Path, required=True)
@@ -26,4 +27,23 @@ for size, alignment in ((4, 4), (2, 2), (4, 4), (2, 2), (1, 1), (1, 1)):
     offset = (offset + alignment - 1) // alignment * alignment + size
 if offset != 16 or 16 + offset != 0x20 or 251 - 4 != 247:
     raise SystemExit('Candidate config layout or MTU arithmetic changed')
+evidence = root / 'experiments/tsl9-resident-ble-initialization/evidence-v1.json'
+raw = evidence.read_bytes()
+if hashlib.sha256(raw).hexdigest() != 'd32203b264e1f0c63b7a263997965fbbab7ed7397750e19a67dfdb2a33bf9208':
+    raise SystemExit('Candidate resident instruction evidence changed')
+function = next(f for f in json.loads(raw)['selected_functions'] if f['start'] == 0x43c7e)
+part = [o for o in function['operations'] if 0x43cc4 <= o['addr'] < 0x43d0a]
+body = b''.join(bytes.fromhex(o['bytes']) for o in part)
+if len(body) != 70 or hashlib.sha256(body).hexdigest() != '8f0754d9eb779ff6110a2a16c95b39bcf7069e3b7bcb3e22303708223cb49d48':
+    raise SystemExit('Candidate config copy/default body changed')
+expected = {0x43cc8:'li a2, 64', 0x43cda:'li a2, 64', 0x43cde:'mv a1, s1', 0x43ce0:'addi a0, s0, 492', 0x43cec:'addi a5, s0, 492', 0x43d02:'qk.c.lhu a4, 16(a5)', 0x43d04:'bnez a4, 0x43d0a', 0x43d06:'li a4, 27', 0x43d08:'qk.c.sh a4, 16(a5)'}
+ops = {o['addr']: o['opcode'] for o in part}
+if any(ops.get(pc) != code for pc, code in expected.items()):
+    raise SystemExit('Candidate config default control flow changed')
+carrier = root / 'analysis/wch-resident-candidate-2026-10-21/carrier-dec2023/REFERENCE-CANDIDATE-ONLY-00040000-0006EA66.bin'
+with carrier.open('rb') as f:
+    f.seek(0xa4)
+    if int.from_bytes(f.read(4), 'little') != 0x43c7e: raise SystemExit('Candidate slot target changed')
+    f.seek(0x43cc4 - 0x40000)
+    if f.read(70) != body: raise SystemExit('Candidate resident original bytes changed')
 print('GATT length candidates and bounded instruction windows verified; installed ABI and negotiated MTU unverified.')
