@@ -119,4 +119,20 @@ for pc, expected in ((0x12a16,'03570400'), (0x12a1c,'6311f704'),
         raise SystemExit('Dispatcher guard or copy arguments changed')
 if 540 == 1 or (23 + 8, 40, 44) != (31, 40, 44):
     raise SystemExit('Record identifier or frame arithmetic changed')
+guard_sources = {
+    'src/native/receive/queue_small_providers.c': '40fe794b59002d80057b0e4f70d3b0e51f528378bd5de6ca5cf81600411b7a13',
+    'src/native/receive/record_predicate.c': 'ed2eb7f9337e5bc6394ea3838631eb768f2fdfc82e1fd9fbc17c9181f4a59669',
+}
+for path, expected in guard_sources.items():
+    if digest(root / path) != expected:
+        raise SystemExit('Dispatcher guard source changed')
+guard_windows = ((0x81aa,6,'887c2bfb847a7e013acebac38c8be3f2bed06fd44305080ad6fc7ca3593e8fc3'),
+                 (0x821e,0x2a,'4af30f18b196e304a5b6d30bb167ee2a02c567c4ffcf4e36bb4f72e6204bcdcd'))
+with image.open('rb') as f:
+    for start, size, expected in guard_windows:
+        f.seek(start - 0x8000)
+        if hashlib.sha256(f.read(size)).hexdigest() != expected:
+            raise SystemExit('Dispatcher guard original window changed')
+if not all(0x20004080 <= 0x20004000 + x < 0x2000c958 for x in (167,193)):
+    raise SystemExit('Dispatcher status bytes outside reset zero range')
 print('Sequence state reset range and selected direct GP-store scan verified; aliases and concurrency remain unresolved.')
