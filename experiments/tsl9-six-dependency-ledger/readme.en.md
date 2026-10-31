@@ -103,3 +103,9 @@ On the path reaching `0xCF36`, the code writes record offset 4 and freshly reads
 Original `0xCEDC..0xCEF6` first reads enable and returns without this lookup if it is zero. If enabled, it reads selector: `0xFF` goes to `0xCEFA` to read mode and countdown; selector 0 first takes `0xCF66..0xCF78` to update the selector, then follows the same mode/countdown path. Selector 1–254 updates the selector and forces this call's effective mode to 0 without taking that countdown decrement.
 
 On the mode/countdown path, `0xCF0E..0xCF18` calculates and stores `(old_count-1)&255`. When the result is zero, `0xCF8A` clears enable but jumps back to `0xCF1E` to finish this lookup and tail transfer. Thus old_count=1 disables **subsequent** calls but does not cancel this one; old_count=0 wraps to 255 and does not trigger that clear. This local conclusion assumes valid memory, no asynchronous overwrite and normal control flow; it does not establish product countdown units, scheduling frequency, global state bounds or reachability.
+
+### Conditional selector cycle
+
+If enable stays nonzero, every call completes normally and no other writes intervene, an initial selector `0..254` is updated as `(old+1)%3`; after the first update it is 0, 1 or 2 and subsequently cycles `0→1→2→0`. In that stable cycle, a call with old selector 0 reads stored mode and decrements countdown; calls with old selector 1 or 2 use effective mode 0 and do not decrement countdown. Thus one decrement occurs per three **actually entered and completed calls**, provided enable is not cleared during that period.
+
+`0xFF` follows a separate path: this function does not update selector and each entry follows stored mode/countdown. This does not establish real time, event frequency or a global selector domain; another writer, reentrancy, error, or disabling when countdown reaches zero invalidates the continuing-cycle assumptions.

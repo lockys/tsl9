@@ -103,3 +103,9 @@ IRQ `0x12C32` 在 32-byte frame 中以 `SP+12` 作結構起點，故 DLC 位於 
 原 `0xCEDC..0xCEF6` 先讀 enable，為 0 時直接返回，不執行本次查表。enable 非 0 時讀 selector：值為 `0xFF` 時走 `0xCEFA` 讀 mode 與倒數；值為 0 時，先依 `0xCF66..0xCF78` 更新 selector，再走相同 mode／倒數路徑；值為 1–254 時更新 selector，並強制本次 effective mode 為 0，不走該次倒數遞減。
 
 在 mode／倒數路徑，`0xCF0E..0xCF18` 以 byte 算術計算並寫回 `(old_count-1)&255`。若結果為 0，`0xCF8A` 清除 enable，然後仍跳回 `0xCF1E` 完成本次查表與尾跳；所以 old_count=1 會停用**後續**呼叫但不取消目前這次，old_count=0 則回繞為 255，不觸發該次清除。上述是以有效記憶體、非同步狀態不被改寫、正常控制流為條件的局部結論；不是產品上倒數的單位、排程頻率、全域狀態值域或可達性的證明。
+
+### Selector 週期的條件式推算
+
+在 enable 持續非零、每次呼叫正常完成且沒有其他寫入的條件下，selector 初值 `0..254` 每次依 `(old+1)%3` 更新；第一次更新後即為 0、1 或 2，後續循環 `0→1→2→0`。在穩定循環中，舊值為 0 的呼叫讀取 stored mode 並遞減 countdown；舊值為 1 或 2 的呼叫使用 effective mode 0、不遞減 countdown。因此每三次**實際進入且完成的呼叫**中有一次遞減，前提是 enable 在此期間沒有被清除。
+
+`0xFF` 是獨立路徑：此函式不更新 selector，每次進入均走 stored mode／倒數路徑。不能因此推算真實時間、事件頻率或全域 selector 域；任何其他 writer、重入、錯誤或倒數歸零後停用都會破壞上述持續週期假設。
