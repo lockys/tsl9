@@ -10,7 +10,7 @@ try {
     $builtApk = Join-Path $PSScriptRoot 'app\build\outputs\apk\debug\app-debug.apk'
     $releaseDir = Join-Path $PSScriptRoot '..\artifacts\tsl9-updater'
     New-Item -ItemType Directory -Force -Path $releaseDir | Out-Null
-    $deliveryApk = Join-Path $releaseDir 'TSL9-Updater-0.7.5-test.apk'
+    $deliveryApk = Join-Path $releaseDir 'TSL9-Updater-0.7.7-test.apk'
     Copy-Item -LiteralPath $builtApk -Destination $deliveryApk -Force
     Get-FileHash -LiteralPath $deliveryApk -Algorithm SHA256
 } finally { Pop-Location }

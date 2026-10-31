@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory)][string]$Serial,
     [string]$AdbPath,
-    [string]$Version = '0.7.5-test'
+    [string]$Version = '0.7.7-test'
 )
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot '../scripts/android-tools.ps1')

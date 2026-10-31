@@ -32,7 +32,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     private String displayedLocale;private boolean pendingLanguageRefresh;private Spinner language;private Spinner captureMode;private EditText canIds;private CheckBox canData;
     private Button captureStart,captureStop,hardwareExport;
     private byte[] info;private FirmwareImage image;private byte[] selectedBytes;private String imageName="";
-    private boolean passwordAccepted,passwordRequired,destroyed,leaving;private TextView status,deviceInfo,fileInfo,logView,stage;
+    private boolean passwordAccepted,passwordRequired,destroyed,leaving,authPending,authSent;private int authGeneration;private TextView status,deviceInfo,fileInfo,logView,stage;
     private Button scanButton,disconnectButton,readButton,passwordButton,fileButton,flashButton,cancelButton,exportButton;
     private long lastBootPoll;
     private LinearLayout deviceList;private Spinner format;private ProgressBar progress;private CheckBox match,hw20;
@@ -288,13 +288,22 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         Button b=button(name+" · "+rssi+" dBm",()->{if(ota.active()||hardware.active()||captureStopping||car.active())return;selected=d;reconnects=0;clearIdentity();ble.connect(d);refresh();});deviceList.addView(b);
     }
     @Override public void state(String text){if(destroyed)return;status.setText(text);refresh();}
-    private void clearIdentity(){closeVehicleAfterStop=false;car.transportLost();liveData.clear();versionInfo=null;if(lightLayout!=null)lightLayout.setChecked(false);displayVersions();info=null;passwordAccepted=false;passwordRequired=false;if(match!=null)match.setChecked(false);if(hw20!=null&&!ota.active())hw20.setChecked(false);deviceInfo.setText(s(R.string.info_not_ready));refresh();}
+    private void clearIdentity(){authGeneration++;authPending=false;authSent=false;closeVehicleAfterStop=false;car.transportLost();liveData.clear();versionInfo=null;if(lightLayout!=null)lightLayout.setChecked(false);displayVersions();info=null;passwordAccepted=false;passwordRequired=false;if(match!=null)match.setChecked(false);if(hw20!=null&&!ota.active())hw20.setChecked(false);deviceInfo.setText(s(R.string.info_not_ready));refresh();}
     @Override public void ready(){log("SESSION ready; request A0 device info");requestInfo();refresh();}
-    private void requestInfo(){if(!ble.ready()||car.active()||(ota.active()&&!ota.waitingBoot()))return;lastCarInfoPoll=SystemClock.elapsedRealtime();ble.send(0xa0,new byte[0],()->log("A0 request sent"));}
+    private void requestInfo(){if(authPending||!ble.ready()||car.active()||(ota.active()&&!ota.waitingBoot()))return;lastCarInfoPoll=SystemClock.elapsedRealtime();ble.send(0xa0,new byte[0],()->log("A0 request sent"));}
     private void passwordDialog(){
-        if(!ble.ready()||car.active()||(ota.active()&&!ota.waitingBoot()))return;
+        if(authPending||!ble.ready()||car.active()||(ota.active()&&!ota.waitingBoot()))return;
         BluetoothPasswordDialog.create(this,passwords,new BluetoothPasswordDialog.Events(){
-            public void submit(byte[] password){passwordAccepted=false;refreshSavedPassword();log("AUTH manual attempt payload=redacted");ble.send(0xa8,password,()->Arrays.fill(password,(byte)0));}
+            public void submit(byte[] password){
+                passwordAccepted=false;passwordRequired=true;authPending=true;authSent=false;int token=++authGeneration;refreshSavedPassword();refresh();
+                // Let any earlier information request and its delayed report settle first.
+                long delay=Math.max(0,1000-(SystemClock.elapsedRealtime()-lastCarInfoPoll));
+                handler.postDelayed(()->{
+                    if(token!=authGeneration||destroyed||leaving||!ble.idle()){Arrays.fill(password,(byte)0);if(token==authGeneration){authPending=false;authGeneration++;state(s(R.string.auth_required));refresh();}return;}
+                    authSent=true;log("AUTH manual attempt payload=redacted");ble.send(0xa8,password,()->Arrays.fill(password,(byte)0));
+                    handler.postDelayed(()->{if(token==authGeneration&&authPending){authPending=false;authGeneration++;log("AUTH timeout; verification remains required");state(s(R.string.auth_required));refresh();}},5000);
+                },delay);
+            }
             public void rememberFailed(){log("AUTH remember unavailable; manual verification continues");}
         }).show();
     }
@@ -307,11 +316,12 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         if(packet.command==0xa7){car.onControlReply(packet.payload);return;}
         if(packet.command==0xa3){log("CAR A3 echo received; A0 required for readback confirmation");return;}
         if(packet.command==0xa8&&packet.payload.length>0){int result=packet.payload[0]&255;
-            if(result==1){passwordAccepted=true;log("AUTH accepted");if(!ota.active()||ota.waitingBoot())requestInfo();}
-            else{passwordAccepted=false;passwordRequired=true;car.setAvailable(false);car.cancel();if(hardware.active())stopHardware("auth_required",false);log(result==255?"AUTH password required":"AUTH rejected; no automatic retries");if(ota.active()&&!ota.waitingBoot())ota.fail(s(R.string.auth_changed));state(result==255?s(R.string.auth_required):s(R.string.auth_rejected));}refresh();return;
+            if(result==1){authPending=false;authGeneration++;passwordAccepted=true;log("AUTH accepted");if(!ota.active()||ota.waitingBoot())requestInfo();}
+            else{authPending=false;authGeneration++;passwordAccepted=false;passwordRequired=true;car.setAvailable(false);car.cancel();if(hardware.active())stopHardware("auth_required",false);log(result==255?"AUTH password required":"AUTH rejected; no automatic retries");if(ota.active()&&!ota.waitingBoot())ota.fail(s(R.string.auth_changed));state(result==255?s(R.string.auth_required):s(R.string.auth_rejected));}refresh();return;
         }
         if(packet.command==0xa0){
             if(packet.payload.length<18){info=null;versionInfo=null;car.onInfo(packet.payload);match.setChecked(false);if(lightLayout!=null)lightLayout.setChecked(false);displayVersions();deviceInfo.setText(s(R.string.info_not_ready));state(s(R.string.info_short));log("A0 invalid len="+packet.payload.length+"; control authorization revoked");refresh();return;}
+            if(authPending&&authSent){authPending=false;authSent=false;authGeneration++;passwordAccepted=true;log("AUTH accepted via A0 following password attempt");}
             int oldIdentityEpoch=car.identityEpoch();info=packet.payload.clone();versionInfo=DeviceInfoSnapshot.parse(info,SystemClock.elapsedRealtime());car.onInfo(info);if(oldIdentityEpoch!=car.identityEpoch()&&lightLayout!=null)lightLayout.setChecked(false);displayVersions();deviceInfo.setText(s(R.string.device_info,info[0]&255,info[2]&255,(info[3]&1)==0?s(R.string.boot_mode):s(R.string.run_mode)));
             log("A0 validated len="+info.length+" hwByte="+(info[0]&255)+" btVersionByte="+(info[1]&255)+" appVersionByte="+(info[2]&255)+" normalMode="+((info[3]&1)!=0));if(!passwordRequired||passwordAccepted)ota.onDeviceInfo(info);refresh();return;
         }ota.onPacket(packet.command,packet.payload);
