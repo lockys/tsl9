@@ -6,6 +6,10 @@ For `0x1AB48+2*index`, enumerate all byte indices 0–255 and check whether each
 
 For `0x1A078+16*mode+column`, enumerate 256 rows of 16 bytes: 149 rows fit entirely within one DATA owner; the other 107 cross owners, lack coverage or lie outside the image. The previously reported 164 rows had all bytes covered by some DATA owner, including rows spanning multiple owners. Neither metric establishes semantic table membership.
 
+For byte modes 0–255 and columns 0–15, modes 0–183 are entirely inside the numerical APP interval, but mode 98 columns 4–7 fall within the excluded `[0x1A69C,0x1A6A0)`. Mode 184 columns 0–7 are inside the APP and columns 8–15 are outside; modes 185–255 are wholly outside. This totals 1,144 addresses outside the APP. Classification reads no payload and proves no particular mode or column reachable.
+
+In the current layout, modes 92–94 coincide with the 48-byte sequence object at `0x1A638`, while mode 173 columns 0–7 coincide with the 8-byte counter object at `0x1AB48`. Address overlap establishes ownership geometry only, not valid lookup entries. A complete `0x1A078` provider still requires independent evidence of the actual mode range and data semantics; adjacent objects cannot automatically be treated as its table contents.
+
 For `0x1A638+6*(2*channel+state)`, enumerate channel 0–3 and byte state 0–255: of 1,024 pairs, 20 fit the dedicated 48-byte window, 872 fall in another single DATA owner, 72 span owners or lack one complete owner, 8 touch excluded data, and 52 are partly or entirely outside the APP. Classification checks excluded ranges before image and owner bounds; it reads no data values. Multiple channel/state pairs among the 20 address the same location, so these are not 20 independent table entries or proven reachable states.
 
 The exact address bounds follow from the formula, with six-byte reads and inclusive state ranges. Excluded-data overlap is calculated by address only; its contents are not read.

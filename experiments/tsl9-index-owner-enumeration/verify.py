@@ -32,6 +32,26 @@ expected_counter = {
 }
 if dict(counter) != expected_counter or sum(map(len, rows.values())) != 149:
     raise SystemExit('Ownership differs from the reviewed enumeration')
+# Check the lookup geometry without dereferencing firmware data.
+excluded_pairs = []
+outside_pairs = []
+for mode in range(256):
+    for column in range(16):
+        address = 0x1a078 + 16 * mode + column
+        if 0x1a69c <= address < 0x1a6a0:
+            excluded_pairs.append((mode, column))
+        if address >= 0x1ac00:
+            outside_pairs.append((mode, column))
+if excluded_pairs != [(98, column) for column in range(4, 8)]:
+    raise SystemExit('Mode lookup excluded-range geometry changed')
+if outside_pairs != ([(184, column) for column in range(8, 16)] +
+                     [(mode, column) for mode in range(185, 256) for column in range(16)]):
+    raise SystemExit('Mode lookup image boundary geometry changed')
+if any(owner(0x1a078 + 16 * mode, 0x1a078 + 16 * (mode + 1)) !=
+       'tsl9_sequence_compare_read_window_1a638' for mode in (92, 93, 94)):
+    raise SystemExit('Mode 92-94 sequence owner changed')
+if owner(0x1a078 + 16 * 173, 0x1a078 + 16 * 173 + 8) != 'tsl9_input_counter_read_window_1ab48':
+    raise SystemExit('Mode 173 counter owner changed')
 sequence = collections.Counter()
 for channel in range(4):
     for state in range(256):
