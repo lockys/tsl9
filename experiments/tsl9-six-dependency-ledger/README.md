@@ -15,6 +15,12 @@
 
 上述 register、位址公式與條件範圍不等於可達性或完整原始 C 宣告。不同版本的地址不能直接互換；目前沒有實機 ROM、RAM、IRQ 或 OTA 相容證據。
 
+## `0x40000` 候選啟動的 seed 複製
+
+固定 V1.31 候選中，`0x6DEAA..0x6DEB6` 逐 word 把 `[0x40280,0x402B0)` 複製到 `[0x20000010,0x20000040)`；在複製正常完成且來源／目的符合該候選映射時，這包含後續 word-copy helper 的 RAM 指令。控制接著經 `0x6DEBA → 0x6DE0C`，在 `0x6DE4A..0x6DE4E` 呼叫 `0x20000010`。兩段固定原始窗口中沒有 `FENCE.I`，因此在這條已辨識路徑的最後 seed store 與首次執行 RAM helper 之間，沒有看到明確的標準 `FENCE.I`。
+
+[RISC-V Zifencei 規格](https://docs.riscv.org/reference/isa/unpriv/zifencei.html)說明同 hart 的 store／instruction fetch 同步；上述觀察**不證明會發生失敗**，因處理器記憶體一致性、其他執行機制及實機 resident 均未確認，也不涵蓋其他啟動路徑。此 seed 使用 word-copy 啟動程式，不能與 `0x4004C` 的 byte-copy helper 混為同一函式。[檢查器](check-startup-seed-fence.py)固定三段候選原始窗口與既有標註來源，不執行 target。
+
 ## `0x1A078` 的 selector 週期條件
 
 原 `0xCEDC..0xCF96` 在 enable byte 非零且 selector `s` 非 `255` 時，先儲存 `(s+1)%3`；若舊 `s` 非零，這次查表的 effective mode 強制為 0，若舊 `s` 為零，則改讀 mode byte。若舊 `s=255`，走直接讀 mode 的分支，不執行此 selector 更新。這與[完整查表合約](../tsl9-third-provider-lookup-contract/README.md)一致，不是對全域 mode 的限制。

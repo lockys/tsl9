@@ -15,6 +15,12 @@ This ledger combines current original-address C/C++, existing original BIN instr
 
 Register values, address formulas and conditional bounds do not establish reachability or the complete original C declarations. Addresses from different versions are not interchangeable. Installed ROM, RAM, IRQ and OTA compatibility are not demonstrated.
 
+## Candidate `0x40000` startup seed copy
+
+In the pinned V1.31 candidate, `0x6DEAA..0x6DEB6` copies words from `[0x40280,0x402B0)` into `[0x20000010,0x20000040)`; if the copy completes and the candidate mapping holds, this includes the RAM instructions for the subsequent word-copy helper. Control then follows `0x6DEBA → 0x6DE0C` and calls `0x20000010` at `0x6DE4A..0x6DE4E`. There is no `FENCE.I` in the two pinned original windows, so no explicit standard `FENCE.I` is observed between the final seed store and the first call to that RAM helper along this identified path.
+
+The [RISC-V Zifencei specification](https://docs.riscv.org/reference/isa/unpriv/zifencei.html) describes store/instruction-fetch synchronization on the same hart. This observation **does not prove failure**: implementation coherence, other execution mechanisms and the installed resident remain unknown, and other startup paths are not covered. This seed uses a startup word-copy routine, not the `0x4004C` byte-copy helper. The [checker](check-startup-seed-fence.py) pins three original candidate windows and existing annotated source without executing the target.
+
 ## Conditional selector cycle for `0x1A078`
 
 At `0xCEDC..0xCF96`, when the enable byte is nonzero and selector `s` is not `255`, the original code first stores `(s+1)%3`. When the old `s` is nonzero, the effective mode for this lookup is forced to 0; when old `s` is zero, it instead reads the mode byte. Old `s=255` directly reads the mode and skips that selector update. This agrees with the [full lookup contract](../tsl9-third-provider-lookup-contract/readme.en.md) and is not a global mode bound.
