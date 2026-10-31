@@ -92,6 +92,12 @@ IRQ `0x12C32` passes `SP+12` as the structure base in a 32-byte frame, making DL
 
 Exhaustively enumerating `v=0..255`, the equal branch leaves only 0 or 1 after normal completion: `v=0` yields 1, `v=255` wraps to 0, and all others become 0 after the second store. The unequal branch stores 0. This is a **single completed local transition**, conditional on valid memory, correct `s5`/`s6`/channel relationship, normal indirect call and path completion, and no alias/IRQ/DMA/reentrant overwrite. When `t>1`, that value exists transiently between `0x12072` and `0x12090`. The first lookup precedes normalization, and the two state reads can differ. This does not establish that each lookup index is 0/1, absence of intermediate states or a global state bound. See the [existing sequence analysis](../tsl9-sequence-pattern-data/readme.en.md).
 
+### Completion marker data flow
+
+When the new matched state exceeds 1 at `0x12076`, `0x1207A..0x1209A` reads three bytes from `s2+0..2` and combines them with `0x80+channel` as `word=(byte0<<24)|(byte1<<16)|(byte2<<8)|(0x80+channel)`. Normal loop channel is 0–3, so the low byte is `0x80..0x83`. The corresponding state is cleared before the jump to `0x11C64`.
+
+On the branch where byte `0x2000BFD3` is zero, `0x11C7A..0x11C96` stores 1 there, stores the word at `0x2000BFCC`, clears `0x2000BFD0..0x2000BFD2`, then twice freshly loads and calls an indirect target from `0x40058`, with `a1/a2` respectively `1/480` and `2/640`; each `a0` is read from byte `0x2000BFC8`. This is **conditional static data flow**: valid pointers, stack, memory and indirect-callee preservation/return contracts are required. The numbers 480/640 do not establish time units or successful scheduling. A nonzero status byte takes another branch; these observations neither identify a hardware button/product feature nor prove a physical match occurred.
+
 ## `0x1A078` lookup output and dispatch
 
 On the path reaching `0xCF36`, the code writes record offset 4 and freshly reads that byte `b` at `0xCF3A`. It then replaces the low nibble with `(b+1)&15`, preserves the high nibble, and uses the new low nibble as column. At `0xCF5A` it reads one byte from `0x1A078+16*effective_mode+column`, stores it at record offset 3 at `0xCF5E`, then tail-jumps without a return link to `0x12A08` at `0xCF62`. Thus column is 0–15, but the read byte remains 0–255; its product meaning and whether a value is a particular command remain unproved.
