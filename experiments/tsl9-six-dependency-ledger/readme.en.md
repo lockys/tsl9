@@ -176,6 +176,12 @@ The original BIN's four little-endian halfwords at `0x1AB48..0x1AB50` match the 
 
 The final two entries are loaded as unsigned halfwords; the table reports original bits and actual low-12-bit arithmetic only, not a signed physical quantity, unit or vehicle feature. These four conditional entries do not prove other indices unreachable or resolve the provider.
 
+### The 12-bit input guard before lookup
+
+Original `0xA114..0xA12E` constructs 12-bit `v` from the current stack record as `((low nibble of SP+9)<<8) | *(SP+10)`. It calculates `(v-1961)&0xFFFF` and branches to `0xA1E8` if that unsigned result exceeds 178, bypassing this `0xA132` state selection and the `0x1AB48` lookup. Because `v` itself is 12-bit, the exact values passing this guard are **1961–2139 inclusive**. Other upstream conditions still apply; not every record in that range is established to reach the lookup.
+
+The four conditional outputs above are 2200, 2230, 1900 and 1870; the two fixed outputs from the non-lookup branches are 1960 and 2140. All six lie outside this input guard. If a later input record happens to re-enter this guard with the same two fields unchanged, it bypasses this lookup path. This conditional field relationship does not prove a record is fed back, a physical feedback loop exists, or any particular product feature. The [checker](check-counter-input-guard.py) verifies the relevant instruction window, the four allowed data entries and arithmetic for all 4,096 possible inputs offline, without target execution or excluded-region reads.
+
 ## Conditional dispatch after the checksum
 
 `0xA1B2` passes that buffer to `0x12A08`. In the [original dispatcher](../tsl9-record-dispatch/readme.en.md), the function calls `0x81AA` first and returns if that result is zero and the first input halfword is not 1; otherwise it calls `0x821E` with 0 and returns if that result is zero. A nonzero byte at input offset 11 routes to `0x16B7C`. If zero, it assembles a stack record, uses the indirect `0x4004C` slot with input+3 as source and the byte at input offset 2 as length, then calls `0x18CA4` with `a0=0x40006400` and `a1=SP+12`.
