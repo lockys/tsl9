@@ -423,6 +423,10 @@ WCH 的 [CanTxMsg](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Pe
 
 這兩條是已辨識呼叫點，並非所有可能 producer 的完整清單；也不證明 `0x370` 特定 record 一定由其中某一路徑產生。候選 copy、後續 slot／consumer、IRQ 與記憶體一致性仍需成立，才能把來源界線延伸至後續使用。沒有執行韌體或硬體測試。
 
+**`0x370` 的候選來源交叉對照：** 下文已核對的 SPI 通道 2 初始化常數 `0x039B0370` 包含 halfword `0x370`，而同一初始化路徑的 CAN1 固定表 48 個 halfwords 沒有 `0x370`。若 SPI 濾波設定成功、該通道接收的資料被解析為 ID `0x370`、長度通過 1–8 guard、queue 有空間、copy／consumer／分派守衛與記憶體均正常且值未被改寫，則可經 tag 2 的 queue record 到達 `0x152D0 → 0xA054`，進而有機會查 `0x1AB48`；還需通過該函式自身的上游 guard，並非收到 `0x370` 就一定查表。
+
+相對地，在已列固定 CAN1 清單正確設定、硬體按候選 11-bit list 比對且後續未改寫的條件下，該清單不接受 `0x370`。這支持 SPI 通道 2 作為一個**候選**來源，但不排除其他來源、CAN 濾波設定或實際硬體差異；沒有證明訊框實際接收或產品功能。[檢查器](check-counter-spi370-source.py)固定兩端指令與允許的固定清單資料，未讀排除區。
+
 ### CAN1 候選接收結構與 WCH 的對照
 
 原 `0x18D78` 接收函式將識別型態、ID、RTR、低四位長度、八個資料 bytes 與 FIFO metadata 寫入呼叫者提供的結構；寫入位置及 FIFO release 的控制流程與 [WCH CAN_Receive](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_can.c) 和 [CanRxMsg 定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_can.h)相符，支持將其視為 CAN 接收 helper 的推論，並非逐字證明兩者完全等價。

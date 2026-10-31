@@ -423,6 +423,10 @@ Thus, if the upstream record's first value remains `0x370` at the relevant reads
 
 These are identified callsites, not an exhaustive list of all possible producers; they do not prove which source produced a particular `0x370` record. Candidate copy, later slot/consumer behavior, IRQ and memory consistency must hold before extending a source bound to later uses. No firmware or hardware was executed.
 
+**Candidate source for `0x370`:** The SPI channel 2 initialization constant `0x039B0370` checked below contains halfword `0x370`, whereas none of the 48 halfwords in the same initialization path's fixed CAN1 list is `0x370`. If SPI filter configuration succeeds, the channel receives and parses ID `0x370`, length passes the 1–8 guard, the queue has space, copy/consumer/dispatch guards and memory behave normally, and the value stays unchanged, a tag-2 queue record can reach `0x152D0 → 0xA054` and potentially access `0x1AB48`. The function's own guards must also pass; receipt of `0x370` alone does not guarantee the lookup.
+
+Conversely, if the listed fixed CAN1 filters are configured correctly, hardware applies the candidate 11-bit list semantics, and no later reconfiguration occurs, that list rejects `0x370`. This supports SPI channel 2 as a **candidate** source without ruling out other producers, filter configurations, or hardware differences. It does not establish actual frame reception or product functionality. The [checker](check-counter-spi370-source.py) pins the relevant instruction windows and permitted fixed-list data without reading the excluded region.
+
 ### Candidate CAN1 receive layout versus WCH
 
 Original receive function `0x18D78` writes identifier type, ID, RTR, low-four-bit length, eight data bytes and FIFO metadata into a caller-provided structure. The fields and FIFO-release flow correspond to [WCH CAN_Receive](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_can.c) and the [CanRxMsg definition](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_can.h), supporting a CAN receive helper inference without claiming complete equivalence.
