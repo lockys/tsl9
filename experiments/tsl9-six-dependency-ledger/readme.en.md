@@ -62,6 +62,12 @@ In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a
 
 These observations agree with the existing [GATT receive model](../tsl9-v4160-gatt-ingress-model/README.md), which uses synthetic providers and does not establish `0x14056` internals or hardware behavior. The excluded function body was not read.
 
+### Frame structure before the call
+
+Along the normal state machine at `0x8962..0x8A48`, the frame starts with checks for `0x55` then `0x7F`, followed by one command byte, two length bytes assembled high-byte first, the indicated payload bytes, and finally a received checksum byte compared with the accumulator. The two prefix bytes are excluded from the sum. Starting with the command, the original code adds the command, both length bytes and the payload modulo 256. Length 0 proceeds directly to checksum; lengths 1–1040 enter the payload path, while a normally parsed length above 1040 clears the parser state.
+
+Only after the state and checksum comparisons pass does `0x8A36..0x8A48` pass the current context, command, fixed buffer and freshly read length to `0x14056` on this path. With valid GP and buffer, no alias, inter-callback overwrite or other asynchronous interference, this supports a command/length/payload byte-sum frame interpretation. It is not cryptographic integrity, a complete command list, an authorized API or observed BLE execution, and it does not establish dispatch or side effects inside the excluded body.
+
 ## `0x1A69C` and settings defaults
 
 Original `0x131A6..0x131B4` loads the indirect target freshly from `0x4004C`, passing destination `*(GP+0x54)+12`, source `0x1A69C`, and length 4. The existing [SDK copy audit](../tsl9-resident-copy-arch/readme.en.md) identifies candidate slot value `0x20000332`; its 58-byte body copies bytes forward using source, destination and length, preceded by access to `0x4002420C` and `FENCE.I`.

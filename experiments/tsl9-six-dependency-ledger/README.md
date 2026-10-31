@@ -62,6 +62,12 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 這些結果與既有 [GATT 接收模型](../tsl9-v4160-gatt-ingress-model/README.md)一致；該模型採合成 provider，不能證明 `0x14056` 內部或硬體行為。本輪未讀取排除的函式本體。
 
+### 到達呼叫點的框架結構
+
+依 `0x8962..0x8A48` 的正常狀態機，框架起始依序檢查 `0x55`、`0x7F`，接著讀取一個 command byte、兩個以高 byte 在前組成的長度 bytes、指定數量的 payload bytes，最後將收到的 checksum byte 與累加值比較；兩個前導 bytes 不納入累加。從讀取 command 開始，原程式對 command、兩個長度 bytes 及 payload 做低 8-bit 加總。若長度為 0，直接等待 checksum；長度 1–1040 走 payload 路徑，大於 1040 的正常解析長度會清除解析狀態。
+
+只有狀態及 checksum 比較通過，`0x8A36..0x8A48` 才在此路徑將當時 context、command、固定 buffer 和重新讀取的長度交給 `0x14056`。在 GP／buffer 有效且沒有 alias、回呼間覆寫或其他非同步干擾等條件下，這支持「命令＋長度＋payload 的 byte-sum 封包」解讀；它不是加密完整性、完整指令表、已授權 API 或真實 BLE 執行證據，也不能推定排除本體的分派與副作用。
+
 ## `0x1A69C` 與設定預設值
 
 原 `0x131A6..0x131B4` 每次從 `0x4004C` 載入間接目標，傳入目的 `*(GP+0x54)+12`、來源 `0x1A69C` 與長度 4。既有 [SDK 複製函式核對](../tsl9-resident-copy-arch/README.md)指出候選槽值為 `0x20000332`，其 58-byte 本體以來源／目的／長度執行順向 byte 複製，並先存取 `0x4002420C` 與執行 `FENCE.I`。
