@@ -83,3 +83,11 @@ A further check of four identified direct calls finds `0x16F38` and `0x16F86` ca
 Before those configuration writes, `0x16E0C` performs candidate GPIO selection according to selector bits, transmits `0xC0` through `0x16896`, then requests release of both candidate lines. It repeatedly calls `0x16994` at address `0x0E`, returning 0 only when `(value&0xE0)==0x80`; it returns 1 if the unsigned `0x81B0` time difference exceeds 2. `0x16E88` proceeds to its later configuration, including the `0x20/0x24` writes above, only after receiving 0.
 
 This is consistent with the prior MCP2515 candidate reset/status context. `0xC0`, `0x0E` and the mask are original operands, not independent proof of the physical chip, time units, effective chip select or successful initialization. The timeout exit depends on changing clock results and normal calls; no hardware test was performed.
+
+### SPI transfer timeouts and status reads
+
+Original `0x16896..0x168DE` first polls bit `0x02` at `base+8` at most 255 times and returns 0 if it never becomes ready. Once ready, it writes data and polls bit `0x01` of the same register, again at most 255 times; a timeout also returns 0. On success it reads `base+12` and returns the low byte. The [WCH SPI definitions](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_spi.h) identify these bits as TXE and RXNE respectively. Since a successfully received `0x00` also returns 0, this interface alone cannot distinguish zero data from timeout. The 255 figure counts polls, not measured time.
+
+`0x16994` calls that routine with `0x03`, the address, then `0x00`, exposing only the third return value to its caller and not checking the first two returns. `0x16E0C` masks the third result with `0xE0` and compares it with `0x80`: a third-transfer timeout returning 0 cannot pass that comparison, but the comparison does not verify whether either earlier transfer timed out. Further retries or exit depend on the clock difference, peripheral and device; no failure was observed. The [checker](check-spi-transfer-timeout.py) verifies three original instruction windows only.
+
+No local authoritative MCP2515 clock-limit reference is currently available, so the prior conditional 12 MHz estimate cannot establish specification compliance.
