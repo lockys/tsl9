@@ -105,6 +105,10 @@ On one dispatch-tree path from `0x14D2E`, `0x14D5E` reads record offset 0 as an 
 
 This handler also depends on the `0x829E` selection and upstream queue guards. SPI and candidate CAN1 inputs have been identified for the numerically same ring, but no particular producer or actual frame for `0x229` is established. Here `0x229` is an original dispatch comparison, insufficient by itself to identify a physical CAN ID, vehicle feature or successful transmission. The conditional CAN1 path and guards after tail-jump to `0x12A08` are described in the checksum-dispatch section of this ledger.
 
+**Candidate CAN1 source:** The fixed CAN1 list checked below has `0x229` at its third position (zero-based index 2); the 16-bit value shifted left by five is `0x4520`. If that list and WCH candidate standard data-frame filter semantics are correctly active on the device, the receive helper queues standard ID `0x229` and its length and data normally, subsequent queue/selector/dispatcher guards pass, and the data remain stable, a tag-0 record has a candidate path to `0x150BE → 0xCEDC`. Later conditions including `enable` must still hold before `0x1A078` is read; a matching list value does not establish frame arrival or lookup execution.
+
+For such a candidate frame with length 2–8, valid copy/memory contracts and unchanged data, record offset 4 consumed by `0xCEC0` corresponds to received data byte 1; see below for its bits 4–6. Other lengths, extended format, physical wiring, later filter reconfiguration and product semantics remain unverified. The [checker](check-mode-can229-source.py) pins permitted filter/receive/dispatch windows without target execution or excluded-region reads.
+
 #### Preceding record field and adjacent state machine
 
 `0xCEC0..0xCEDC` reads byte `b` at record offset 4 and passes `57+((b>>4)&7)`, `57` and `0x2000BF3C` to `0xEBAC`. The first argument uses only bits 4–6 and ranges from 57 to 64; bit 7 does not affect it. The pointer lies immediately after mode state `[0x2000BF38,0x2000BF3C)`; it is not the mode selector itself.
