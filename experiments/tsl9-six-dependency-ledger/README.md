@@ -209,6 +209,12 @@ WCH V1.30 標頭將 slot 63（`0x40034+4*63=0x40130`）定義為 `GATTServApp_Re
 
 這條 fallback 在四-byte copy 後沒有重新執行 ASCII guard；在不知道來源 bytes 時，不能證明 fallback 結果符合 32–126。其寫入器之後的候選 program leaf 會讀取 256-byte stack 來源，而此 writer 僅明確複製 112 bytes；其餘 144 bytes 的初始化來源仍未知，詳見 [NVM 區域分析](../tsl9-NVM-record-layout/README.md)。槽身分、記憶體有效性與實際持久化成功皆未確認；沒有讀取或輸出排除資料。
 
+#### 下次載入的條件式取值限制
+
+假設候選 copy 槽確實逐 byte 複製、此次設定的四個預設 byte 成功且原樣持久化，下一次載入也原樣複製到相同位置，且指標、記憶體與控制流程均正常並無干擾，則四個來源 byte **全部在 32–126** 是下一次通過這項 ASCII guard 的必要且充分條件。只要任一 byte 不在該範圍，該次 guard 便走 fallback；這不證明來源確實有不合規值、實際會再次開機或發生重複寫入。
+
+單一 byte 有 95 個可通過值；四 byte 組合為 `95^4 = 81,450,625` 種，僅是 guard 接受集合的大小，不是已知預設值或產品語義。真實來源仍是未解析且受排除的四 bytes，不能由此選出值或建立 provider。[檢查器](check-default-persistence-guard.py)固定允許的指令窗口並枚舉全部 byte 值，不讀取排除區或執行目標。
+
 同一套本機保存的 WCH 公開候選 `wchble_rom.hex`（SHA-256 `11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5`）經 Intel HEX 記錄 checksum 檢查後，其資料記錄最小位址為 `0x40000`，最大半開端點為 `0x6EB2C`；數值區間 `[0x77500,0x77B00)` 沒有資料記錄。六個設定頁使用的高位數值 `[0x08077500,0x08077B00)` 若減去 `0x08000000` 恰得到該區間，但**這個算術不證明硬體 alias**。
 
 此交叉檢查只描述該參考 HEX 的記錄覆蓋，不表示實機該區空白、已擦除、保留或可寫，也不補足候選啟動所缺的資料或證明 installed ROM／Flash 配置。實機映射與容量仍待獨立證據；沒有讀取裝置 Flash。

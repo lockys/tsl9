@@ -209,6 +209,12 @@ The initial word at `0x1ABB4` is `0x2000C29C`; with reset's GP=`0x20004000`, suc
 
 This fallback does not repeat the ASCII guard after the four-byte copy; without the source bytes, its result cannot be proved to satisfy 32–126. Its writer's candidate program leaf later reads 256 bytes from the stack, while this writer explicitly copies only 112 bytes; the initialization source of the remaining 144 bytes is unknown, as described in the [NVM layout analysis](../tsl9-NVM-record-layout/readme.en.md). Installed slots, valid memory and successful persistence remain unproved; excluded data were neither read nor output.
 
+#### Conditional value restriction on the next load
+
+Assume the candidate copy slot copies each byte, these four default bytes are successfully persisted unchanged, and the next load copies them unchanged to the same location, with valid pointers, normal control flow and no interference. Then **all four source bytes being in 32–126** is necessary and sufficient to pass this ASCII guard at that next load. Any byte outside the range sends that guard to fallback; this does not prove the real source is invalid, that a restart occurs or that repeated writes happen.
+
+The guard accepts 95 possible values per byte, or `95^4 = 81,450,625` four-byte combinations. This is the size of the accepted set, not a known default value or product meaning. The actual source remains the four excluded and unresolved bytes; this cannot select a value or establish a provider. The [checker](check-default-persistence-guard.py) pins permitted instruction windows and enumerates all byte values; it does not read excluded data or execute the target.
+
 For the locally retained public WCH candidate `wchble_rom.hex` (SHA-256 `11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5`), Intel HEX record checksum checks give minimum data address `0x40000` and maximum half-open endpoint `0x6EB2C`; there are no data records in numeric interval `[0x77500,0x77B00)`. Subtracting `0x08000000` from the six settings-page operands `[0x08077500,0x08077B00)` happens to produce that interval, but **the arithmetic does not establish a hardware alias**.
 
 This cross-check describes only record coverage in that reference HEX. It does not establish that the physical region is blank, erased, reserved or writable, fill missing candidate startup data, or prove installed ROM/Flash layout. Physical mapping and capacity require independent evidence; no device Flash was read.
