@@ -393,4 +393,12 @@ for number,((ident,version,length,*_),setter_pc,expected,flag_offset) in enumera
         flag=pcrel_target(expected[1]-20,read_window(f,expected[1]-20,8),0x797,0x7d783)
         if flag!=0x20000000+flag_offset or not (0x20004000+(136 if number<8 else 128)<=flag and flag+2<=0x20000000+ends[number]):
             raise SystemExit('Second mode flag target or reset coverage changed: '+ident)
+# V4.1.60 record helper: preserve the original window and independently decode its base.
+with reference.open('rb') as f:
+    record_helper=read_window(f,0x82a8,0x2c)
+if hashlib.sha256(record_helper).hexdigest()!='ccc429b7070700aac8d5f1cbb6a1777b201f4284ce1aba424673bd30c5d728d0':
+    raise SystemExit('Record helper window changed')
+record_base=pcrel_target(0x82b6,record_helper[14:22],0x797,0x78793)
+if record_base!=0x2000c1b8 or record_base+14*12+8!=0x2000c268 or record_base+14*12+9!=0x2000c269:
+    raise SystemExit('Record 14 and mode flag relationship changed')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
