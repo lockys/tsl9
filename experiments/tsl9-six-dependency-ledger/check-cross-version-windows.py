@@ -365,6 +365,16 @@ def transfer_target(data, pc):
     if w & 127 != 111: return None
     imm=((w>>31&1)<<20)|((w>>21&1023)<<1)|((w>>20&1)<<11)|((w>>12&255)<<12)
     return (pc+signed(imm,21)) & 0xffffffff
+def branch_target(data, pc):
+    h=int.from_bytes(data[:2], 'little')
+    if h&3==1 and h>>13 in (6,7):
+        imm=((h>>12&1)<<8)|((h>>10&3)<<3)|((h>>5&3)<<6)|((h>>3&3)<<1)|((h>>2&1)<<5)
+        return (pc+signed(imm,9)) & 0xffffffff
+    if h&3!=3 or len(data)<4: return None
+    w=int.from_bytes(data[:4], 'little')
+    if w&127!=0x63 or (w>>12)&7 not in (0,1,4,5,6,7): return None
+    imm=((w>>31&1)<<12)|((w>>7&1)<<11)|((w>>25&63)<<5)|((w>>8&15)<<1)
+    return (pc+signed(imm,13)) & 0xffffffff
 flag_offsets=(0xc264,0xc264,0xc264,0xc264,0xc264,0xc26c,0xc268,0xc26c,0xc264,
               0xc260,0xc264,0xc264,0xc264,0xc264,0xc264,0xc264,0xc268,0xc268)
 for number,((ident,version,length,*_),setter_pc,expected,flag_offset) in enumerate(zip(cases,setter_pcs,expected_transfers,flag_offsets)):
@@ -522,8 +532,10 @@ elf=runpy.run_path(str(reader))['ELF'](layout)
 sections=[s for s in elf.sections if s['flags']&6==6 and s['size']]
 if len(sections)!=6 or sum(s['size'] for s in sections)!=69412:
     raise SystemExit('Selected code scope changed')
-valid=[]; number=0; interiors=set()
+valid=[]; number=0; interiors=set(); branches=0; branch_entries=[]
 with reference.open('rb') as f:
+    if branch_target(read_window(f,0x8916,4),0x8916)!=0x891e or branch_target(read_window(f,0x893e,4),0x893e)!=0x8962 or branch_target(read_window(f,0xe6da,2),0xe6da)!=0xe6f4:
+        raise SystemExit('Known conditional branch decoder witnesses changed')
     for section in sections:
         start,size=section['address'],section['size']
         data=read_window(f,start,size)
@@ -534,6 +546,10 @@ with reference.open('rb') as f:
             target=transfer_target(data[at:at+width],start+at)
             if target is not None and 0x14056<=target<0x14c8a:
                 valid.append((start+at,target))
+            target=branch_target(data[at:at+width],start+at)
+            if target is not None:
+                branches+=1
+                if 0x14056<=target<0x14c8a: branch_entries.append((start+at,target))
             if width==4: interiors.add(start+at+2)
             at+=width; number+=1
     for pc in (0x13cd2,0x15248,0x16098):
@@ -542,4 +558,6 @@ with reference.open('rb') as f:
             raise SystemExit('Blind scan interior false positive changed')
 if number!=23602 or valid!=[(0x8a48,0x14056)]:
     raise SystemExit('Selected direct transfer into excluded code changed')
+if branches!=2218 or branch_entries:
+    raise SystemExit('Selected conditional branches into excluded code changed')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
