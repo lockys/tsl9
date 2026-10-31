@@ -141,6 +141,12 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 依[設定初始化分析](../tsl9-original-prebinding-settings/README.md)，若 reset 所設 GP 與初始 pointer 未被改寫，目的為 `0x2000C2A8..0x2000C2AC`；其初始化路徑會檢查四個 byte 是否為 ASCII 32–126，遇到不符合條件者可進入預設值流程。**若**原機槽確為該候選、來源／目的有效且呼叫正常返回，則四個來源 bytes 會被複製到此目的範圍。這不證明預設內容、實際設定語義、每次開機都執行該路徑，或實機 ROM／Flash 寫入結果；排除資料內容未讀取。
 
+### 預設資料目的指標的局部限制
+
+`0x131A0..0x131B4` 直接從 `GP+84` 載入 word `p`，以 RV32 加法傳入目的 `(p+12) mod 2^32`；此片段沒有先檢查 `p` 是否為 0。候選 copy 在處理參數之前仍先存取 `0x4002420C` 並執行 `FENCE.I`，之後才判斷**加法後的目的**是否為 0。
+
+因此，若 `p=0`，傳入的目的數值為 `0x0000000C`，不會被候選 copy 的零目的檢查擋下；若 `p=0xFFFFFFF4`，加法回繞後目的才是 0，候選 copy 會跳過資料複製。前者只有在候選 slot、來源與 MMIO 等條件相符且控制流程繼續時才會嘗試存取該數值目的；不能據此宣稱實際 RAM／Flash 映射、故障或此指標值可達。重建不得把「原始 pointer 為 0」等同於此候選 helper 的 null guard。這些邊界不揭露或推導排除的四 bytes；[檢查器](check-default-copy-pointer-guard.py)只核對原始呼叫與候選 copy 的有限指令窗口。
+
 `0x1ABB4` 的初始 word 為 `0x2000C29C`；在 reset 以 GP=`0x20004000` 正常複製初始資料且 pointer 未被覆寫時，`*(GP+84)+12` 即 `0x2000C2A8`。當任一受檢 byte 不在 32–126 時，`0x13204` 呼叫 fallback `0x1316A`：先以槽 `0x40048` 要求清零 `0x2000C29C` 起 112 bytes，寫入若干固定欄位，再透過 `0x4004C` 要求從 `0x1A69C` 複製 4 bytes；最後尾跳 `0x13138`，要求把設定區 112 bytes 複製至 stack，並呼叫 `0x9C0A`，數值目的為 `0x08077A00`。
 
 這條 fallback 在四-byte copy 後沒有重新執行 ASCII guard；在不知道來源 bytes 時，不能證明 fallback 結果符合 32–126。其寫入器之後的候選 program leaf 會讀取 256-byte stack 來源，而此 writer 僅明確複製 112 bytes；其餘 144 bytes 的初始化來源仍未知，詳見 [NVM 區域分析](../tsl9-NVM-record-layout/README.md)。槽身分、記憶體有效性與實際持久化成功皆未確認；沒有讀取或輸出排除資料。
