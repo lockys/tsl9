@@ -54,6 +54,12 @@ Let `f(x)=((x*10)&0xFFFFFFFF)>>4`. `f(429496729)=268435455`, whereas on the next
 
 If the installed clock matches the candidate, these adjacent values are reachable, all other guards pass and stored state is undisturbed, the example supports a possible trigger at an interval different from the intuitive elapsed-time interpretation. It is an arithmetic witness derived from the instructions, not a timing measurement, proof of reachability or occurrence, or a demonstrated device defect.
 
+#### Repetition and nine truncation boundaries
+
+For any 32-bit `x`, the same function satisfies `f((x+2^31) mod 2^32)=f(x)`: after multiplication by 10 the difference is a multiple of `2^32`, so the low 32 bits agree. When two raw counts differ by `2^31`, their converted values are equal and their unsigned difference is zero; the result alone is not a full elapsed-time measurement. If the candidate WCH slot and its 0.625 ms tick apply, `2^31` ticks equal approximately 15.53 days. This is a conditional conversion, not a measured period.
+
+Over raw counts `0..2^32-1` without source-counter wrap, the product crosses nine boundaries at `ceil(k×2^32/10)` for `k=1..9`; each maps adjacent converted values from `268435455` to `0`. If the saved prior value is the former, the next result is the latter and all other guards pass, the unsigned difference is `4026531841`, greater than 1999. These are arithmetic and static-instruction results; the installed slot, actual sampling, saved value, reachability and trigger remain unverified, and no device defect is established. [`check-clock-arithmetic.py`](check-clock-arithmetic.py) checks the nine boundaries and pinned instruction windows without reading excluded regions or executing the target.
+
 ### Relationship among reconstructed modes 0–5
 
 For the six reconstructed 16-byte windows at `0x1A078..0x1A0D8` in the original BIN, each column `c=0..15` satisfies `row[m][c] = row[0][c] XOR k[m]`; `k[0..5]` are `00, E0, EF, 0F, F1, E9`. Each row's 16 bytes are distinct, so if the mode is known and one of these six rows is actually read, its output byte uniquely identifies the column within that row.
