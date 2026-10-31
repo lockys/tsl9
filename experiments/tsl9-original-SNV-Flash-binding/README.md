@@ -14,6 +14,12 @@
 
 若第一頁 marker 不符、取得有效 256-byte buffer，且原迴圈正常完成，三個寫入參數位址為 `0x08077C00`、`0x08077D00`、`0x08077E00`。邏輯窗口為 `[0x08077C00, 0x08077F00)`；**不是已確認的實體 Flash 容量、分區或 MCU 型號**。
 
+### 與 APP 設定頁的數值區間對照
+
+既有 [APP 六筆設定記錄](../tsl9-NVM-record-layout/README.md)的 writer 以 256-byte 數值粒度使用 `[0x08077500,0x08077B00)`；上述條件式 SNV 三頁位於 `[0x08077C00,0x08077F00)`。兩個窗口不重疊，中間是 `[0x08077B00,0x08077C00)` 的 256-byte 數值間隔。此間隔**用途未知**，不能據此視為空白或可用。
+
+如果兩組高位數值都映射為以 `0x08000000` 起算的同一連續區域，涵蓋至 SNV 窗口結尾需要偏移 `0x77F00`（491,264 bytes）；這是該假設下的算術需求，不是已確認的晶片容量、物理位址或可寫分區。兩組路徑的 slot、記憶體、初始化及執行條件仍各自適用，SNV 頁也可能因 marker 相符而不寫入。未讀取裝置或推定任何頁面內容。[離線檢查器](check-snv-settings-ranges.py)固定兩份既有收據並交叉驗算區間。
+
 讀取 callback 把 num=1 轉為 copy 長度 4 bytes，透過候選槽 `0x4004C` 呼叫 `0x20000332`，輸出至 SDK 自身 SP+12。此 copy 還會存取 `0x4002420C` 並執行 FENCE.I；不是只靠一般 RAM memcpy 就能保證相同硬體效果。callback 正常返回 A0=0，不會驗證 copy 是否成功。
 
 寫入前 buffer 填 `0xFF`，每輪將第一個 word 改成該頁邏輯位址。SDK 傳 num=64 words；原 `0x197BE` 忽略此參數，保存來源指標後依序呼叫 unlock、erase、program、lock、delay。原 program 固定讀寫 64 words＝256 bytes，erase／program 都將目的位址向下對齊 256。沒有證明實際配置容量、Flash 成功或 polling 必定結束；delay 還依賴 live GP+382 與 MMIO。
