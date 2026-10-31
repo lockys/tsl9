@@ -1,5 +1,6 @@
 """Compare three permitted data windows across saved local candidate runtimes."""
 import hashlib
+import runpy
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[2]
@@ -513,4 +514,32 @@ for value in range(256):
     second=(first+1)&3
     if first not in range(4) or second not in range(4) or first==second:
         raise SystemExit('Counter interleaving arithmetic changed')
+reader=root/'experiments/tsl9-feature-dispatch-tree/elf_reader-v5.py'
+layout=root/'experiments/tsl9-original-layout/build/lookup-data-v1/c/NONLOADABLE-ORIGINAL-LAYOUT.elf'
+if hashlib.sha256(reader.read_bytes()).hexdigest()!='a56503572e8b65308ae1c8978ba5a6d44d0a20cd969315dc1b12103b59a9b43a' or hashlib.sha256(layout.read_bytes()).hexdigest()!='28360fab7c267bb635f1dfce1d3330903b2ebc113dd02872c9336d2d1264d0a7':
+    raise SystemExit('Selected code layout or reader changed')
+elf=runpy.run_path(str(reader))['ELF'](layout)
+sections=[s for s in elf.sections if s['flags']&6==6 and s['size']]
+if len(sections)!=6 or sum(s['size'] for s in sections)!=69412:
+    raise SystemExit('Selected code scope changed')
+valid=[]; number=0; interiors=set()
+with reference.open('rb') as f:
+    for section in sections:
+        start,size=section['address'],section['size']
+        data=read_window(f,start,size)
+        at=0
+        while at<size:
+            width=4 if data[at]&3==3 else 2
+            if at+width>size: raise SystemExit('Truncated selected code instruction')
+            target=transfer_target(data[at:at+width],start+at)
+            if target is not None and 0x14056<=target<0x14c8a:
+                valid.append((start+at,target))
+            if width==4: interiors.add(start+at+2)
+            at+=width; number+=1
+    for pc in (0x13cd2,0x15248,0x16098):
+        candidate=transfer_target(read_window(f,pc,4),pc)
+        if pc not in interiors or candidate is None or not 0x14056<=candidate<0x14c8a:
+            raise SystemExit('Blind scan interior false positive changed')
+if number!=23602 or valid!=[(0x8a48,0x14056)]:
+    raise SystemExit('Selected direct transfer into excluded code changed')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
