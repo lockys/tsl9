@@ -321,6 +321,8 @@ V1.40 候選的兩次 copy 也重疊一個 word，但目的改為 `[0x20002EBC,0
 
 **WCH 位址範圍對照。** [WCH CH32V208 資料手冊 V2.6 的圖 2-2](https://makerselectronics.com/wp-content/uploads/2023/07/CH32V208DS0.pdf)將 `[0x40024000,0x40026000)` 標為 BLE 5.3；數值 `0x4002420C` 的 4-byte 範圍位於其中。這提供該候選位址所屬周邊區域的文件依據，**沒有識別具體暫存器、可寫位元或寫零的效果**，也不證明實機 resident 或映射與候選一致。WCH [官方型號與手冊目錄](https://www.wch-ic.com/downloads/CH32V208DS0_PDF.html)列出 CH32V208GBU6，且已有較新手冊版本；這裡引用的是已查閱的 V2.6 圖。數值範圍由[檢查器](check-default-copy-pointer-guard.py)核對，未讀取硬體暫存器。
 
+**獨立實作提出的暫存器候選。** 2026-10-31 查閱的 [ch32fun iSLER 原始碼](https://github.com/cnlohr/ch32fun/blob/master/extralibs/iSLER.h)對 CH32V208 將 `LL_BASE` 設為 `0x40024200`，並把連續四個 32-bit 欄位的第 4 個 `LL3` 註為 `INT_EN`，另將 `LLINT_EN` 定義為 `LL3`。按其宣告，`LL3` 的數值位址即 `0x4002420C`。因此 BLE link-layer interrupt enable 是值得追查的**第三方候選名稱**，不是 WCH 已確認的命名或硬體實測；不能由此證明寫零必然停用哪些中斷、保存／還原是否無副作用，或實機採用該定義。此結果不涉及 PFIC 暫存器或 target 執行；[檢查器](check-default-copy-pointer-guard.py)只驗算位址。
+
 更正前輪「函式用途未確認」：專案既有[完整 208-byte 候選分析](../tsl9-resident-heap-core/README.md)已將 `0x20000040..0x20000110` 辨識為 heap 配置 helper；其 V1.31 本體與重建程式逐 byte 核對。兩版的完整 208-byte 本體不同；既有跨版收據記錄 V1.40 有 5 條 RAM 立即數各增加 `0x50`，其餘 bytes 相同，不可只因前綴一致而混用 RAM 配置。本輪檢查器另固定兩版完整本體雜湊。
 
 既有指令對大小作 16-bit 截斷及 4-byte 對齊：若輸入大小為 65,533–65,535 且其他前置條件允許進入計算，對齊結果會回繞為 0；65,532 的結果仍是 65,532。這是候選指令的算術限制，不證明這些輸入實際可達或配置成功。實機 resident、`0x4002420C` 的名稱與物理副作用仍未確認；不能把該位址稱為中斷控制器。檢查未讀取排除的 APP 區域或執行目標。

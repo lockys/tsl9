@@ -22,4 +22,6 @@ if ((0 + 12) & 0xffffffff) != 12 or ((0xfffffff4 + 12) & 0xffffffff) != 0:
     raise SystemExit('Unexpected RV32 pointer arithmetic')
 if not (0x40024000 <= 0x4002420c and 0x40024210 <= 0x40026000):
     raise SystemExit('Candidate word no longer fits documented BLE region')
+if 0x40024200 + 3 * 4 != 0x4002420c:
+    raise SystemExit('Independent link-layer register coordinate changed')
 print('Default copy pointer and candidate windows verified; target not executed.')
