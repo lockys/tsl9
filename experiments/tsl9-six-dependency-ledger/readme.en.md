@@ -60,6 +60,12 @@ For the six reconstructed 16-byte windows at `0x1A078..0x1A0D8` in the original 
 
 Across all 96 positions there are only 74 distinct byte values; 20 values repeat and the highest multiplicity is three. Consequently an output byte alone cannot uniquely identify both unknown mode and column. This is a reproducible relationship within one original data window, not proof of product meaning, reachability, XOR constants for other modes or the full original table extent. It must not be used to generate unknown rows or replace the `0x1A078` provider.
 
+### An identifiable record-dispatch entry
+
+On one dispatch-tree path from `0x14D2E`, `0x14D5E` reads record offset 0 as an unsigned halfword; if it is 553 / `0x229`, `0x14DD2` transfers to `0x150BE`. That handler calls `0xCEC0` with the record, then passes the same pointer to `0xCEDC`. The `0x1A078` lookup and record offset 3/4 changes are possible only if `0xCEC0` returns normally, saved registers and memory are preserved, enable is nonzero and the other conditions hold.
+
+This handler also depends on the `0x829E` selection and upstream queue guards. SPI and candidate CAN1 inputs have been identified for the numerically same ring, but no particular producer or actual frame for `0x229` is established. Here `0x229` is an original dispatch comparison, insufficient by itself to identify a physical CAN ID, vehicle feature or successful transmission. The conditional CAN1 path and guards after tail-jump to `0x12A08` are described in the checksum-dispatch section of this ledger.
+
 ## Following the `0x14056` receive arguments
 
 In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a2,a2,-98` at `0x8A3E` compute `0x2000B9D8`. A separate PC-relative calculation at `0x8A12..0x8A1C` obtains the same base and writes a received byte at base plus counter. This supports identifying `a2` as the receive buffer; it is not a live RAM observation.

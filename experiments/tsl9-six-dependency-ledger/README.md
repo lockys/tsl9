@@ -60,6 +60,12 @@
 
 跨六列的 96 個位置只有 74 個不同 byte 值；20 個值出現多次，其中最高出現三次。因此若 mode 不明，不能單憑輸出值唯一決定 mode 與欄位。這只是一份原始資料窗口的可重現關係，不證明產品語義、實際可達性、其他 mode 的 XOR 參數或原始完整表長；不可用它生成未知列或代替 `0x1A078` provider。
 
+### 可識別的 record 分派入口
+
+在 `0x14D2E` 的一條分派樹路徑中，`0x14D5E` 將 record offset 0 作無號 halfword 讀取；若該值為 553／`0x229`，`0x14DD2` 轉至 `0x150BE`。後者先以 record 呼叫 `0xCEC0`，再把相同 pointer 傳給 `0xCEDC`；由 `0xCEC0` 正常返回、saved register／記憶體不被改寫且 enable 非零等條件成立時，才可能讀取 `0x1A078` 並修改 record offset 3／4。
+
+這條 handler 還受 `0x829E` 的選擇結果與上游 queue 的 guard 限制；相同數值位址的 ring 已識別 SPI 與候選 CAN1 輸入，但尚未證明 `0x229` record 的特定來源或實際訊框。此處的 `0x229` 是原分派比較值，不足以單獨確定實體 CAN ID、車輛功能或傳送成功。尾跳 `0x12A08` 的候選 CAN1 路徑及其守衛見本文件的「檢查碼後的條件式分派」。
+
 ## 追查 `0x14056` 的接收參數
 
 V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a2,a2,-98`，得到 `0x2000B9D8`。在 `0x8A12..0x8A1C`，另一組 PC-relative 計算得到同一 base，將接收 byte 寫入 base 加計數器。這支持 `a2` 是接收 buffer 的推論，並非實機 RAM 快照。
