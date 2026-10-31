@@ -96,4 +96,4 @@ V4.1.60 `[0x16896,0x16994)` 的 254 bytes 與目前 C 診斷 ELF 對應位址逐
 
 `0x16994` 依序呼叫該函式傳送 `0x03`、地址、`0x00`，只將第三次返回值交給 caller，沒有檢查前兩次的返回值。`0x16E0C` 再將第三次結果以 `0xE0` 遮罩並比較 `0x80`：若第三次逾時回傳 0，這次比較不會通過；但前兩次傳輸是否逾時並未由此檢查，因此比較通過本身也不能證明完整交易成功。後續可能重試或由 clock 差值退出，實際結果取決於時鐘、周邊與裝置；這不是已觀察到的故障。[檢查器](check-spi-transfer-timeout.py)只核對三段原始指令窗口。
 
-目前本機沒有可核對的 MCP2515 官方時脈上限資料；先前條件式 12 MHz 推算尚不能用來判定其規格相容性。
+[Microchip MCP2515 官方資料手冊 DS20001801K，第 13-6 表](https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP2515-Family-Data-Sheet-DS20001801K.pdf)列出 SPI clock frequency 上限 **10 MHz**，表格條件為 VDD 2.7–5.5 V 與其指定的工業／延伸溫度範圍。若先前推算的 SPI1 12 MHz 實際成立，且該線確實連到照片中的 MCP2515，則此數值高於表列上限 2 MHz（20%）。這是條件式規格比較：未量測 SCK 或供電、未確認 PCB 路徑與時鐘後續設定，不能宣稱實機超規、故障或通信一定失敗；也不應僅據此修改或刷寫韌體。
