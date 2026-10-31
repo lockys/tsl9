@@ -106,6 +106,8 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 此 1,040-byte 窗口完整位於 APP reset 的清零範圍 `[0x20004080,0x2000C958)` 內；parser counter、length、state 及 checksum 的 GP-relative 欄位也位於該清零範圍。若 reset 清零正常完成且沒有干擾，這些欄位和窗口在 `0x186F8` 時為零；後續接收與其他路徑仍可改寫，不能推論某次呼叫時 buffer 為零。依既有 WCH 三種候選連續 RAM 配置，此窗口落在 48／64 KiB 數值範圍內，不在 32 KiB 範圍；但完整 reset 清零本身超過 48 KiB，因此不能單憑此窗口選定整體 RAM 配置。實際 RAM 映射、正常開機與呼叫仍未證明。[靜態檢查器](check-ingress-buffer-bound.py)核對相關原始指令與範圍，不執行目標或讀取排除區。
 
+進一步與既有完整 clock CPU-store 收據及候選 bootstrap 寫入範圍交叉檢查：那些**已辨識的明確寫入位址**均不與上述窗口或四個 parser 欄位重疊。若記憶體映射與候選 resident 內容相符、兩份既有分析的指令及 helper 契約成立、clock 正常返回且所有載入有效，並且沒有 MMIO 引起的間接寫入、IRQ／DMA／alias／重入等干擾，則 reset 的零值可條件式延續至已分析 bootstrap 的 MRET。候選第二次 copy 仍缺來源四 bytes，不能因目的範圍不重疊就假定讀取成功；此結果也不涵蓋 MRET 之後的 APP 執行或第一次接收時的狀態。檢查器固定兩份既有收據雜湊，只核對明確寫入範圍，沒有重跑目標。
+
 ## `0x1A69C` 與設定預設值
 
 原 `0x131A6..0x131B4` 每次從 `0x4004C` 載入間接目標，傳入目的 `*(GP+0x54)+12`、來源 `0x1A69C` 與長度 4。既有 [SDK 複製函式核對](../tsl9-resident-copy-arch/README.md)指出候選槽值為 `0x20000332`，其 58-byte 本體以來源／目的／長度執行順向 byte 複製，並先存取 `0x4002420C` 與執行 `FENCE.I`。
