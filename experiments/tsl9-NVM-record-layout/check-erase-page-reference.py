@@ -24,6 +24,11 @@ for text in ('Page_Address &= 0xFFFFFF00', 'FLASH->CTLR |= CR_PAGE_ER', 'FLASH->
 leaf = app.split('/* Original0x18EC4..0x18EE0. */', 1)[1].split('/* Original0x18EF2', 1)[0]
 for text in ('0x40022000', '0x00000010', '0x00020000', '0xffffff00', '0x00000014', '0x00000040', '0x0000000c', '0x00000001', '0xfffe0000'):
     need(text in leaf)
+program = app.split('/* Original0x18EF2..0x18F02. */', 1)[1]
+need('/* Original0x18F4A..0x18F56. */' in program)
+for text in ('0x00010000', '0x00200000', '0x00000100', '0xffff0000'):
+    need(text in program)
+need(all(0x8000 <= 0x18ec4 < 0x18f56 <= zero_wait_kib * 1024 for zero_wait_kib in (128, 144, 160)))
 pages = list(range(0x08077500, 0x08077b00, 256))
 need(len(pages) == 6 and len({p & ~0xff for p in pages}) == 6)
 need({p & ~0xfff for p in pages} == {0x08077000})
