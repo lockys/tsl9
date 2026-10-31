@@ -154,7 +154,7 @@ IRQ `0x12C32` 在 32-byte frame 中以 `SP+12` 作結構起點，故 DLC 位於 
 
 原始 `0x1A638..0x1A668` 的 48 bytes 與[已重建資料](../../src/native/receive/sequence_pattern_data.c)相符。每個 channel 的 state 0／1 六-byte 樣式依序為 `02 00`／`03 00` 加上同一組後四 bytes；四個 channel 的後四 bytes 互不相同。因此在 state 只為 0／1、候選 `0x4003C` 的六-byte 等值比較契約成立且輸入穩定的條件下，這八個樣式兩兩不同，不會由同一個六-byte 輸入同時命中兩組。
 
-更具體地說，若四個 state 初始均為 0，連續兩次符合入口長度 6／第二 byte 為 0 的輸入，分別完全匹配同一 channel 的 state 0 與 state 1 樣式，且比較／記憶體在呼叫間沒有干擾，則第一次使該 channel 變成 1；第二次使其回到 0 並進入 `0x1207A` 的標記路徑。這不是對任意交錯輸入或未知初始 state 的結論，也不證明裝置實際收到這些值、標記字其他 bytes 的意義或對應按鍵功能。
+更具體地說，若四個 state 初始均為 0，連續兩次符合讀得的長度 byte 為 6／資料第二 byte 為 0 的輸入，分別完全匹配同一 channel 的 state 0 與 state 1 樣式，且比較／記憶體在呼叫間沒有干擾，則第一次使該 channel 變成 1；第二次使其回到 0 並進入 `0x1207A` 的標記路徑。這不是對任意交錯輸入或未知初始 state 的結論，也不證明裝置實際收到這些值、標記字其他 bytes 的意義或對應按鍵功能。
 
 ### 六-byte 比對輸入的上游
 
@@ -163,6 +163,14 @@ IRQ `0x12C32` 在 32-byte frame 中以 `SP+12` 作結構起點，故 DLC 位於 
 原始路徑先以訊息 offset 2 的 halfword 比較三個候選值，並在訊息 offset 4 為 27 或 29 的分支，以 `*(GP+92)+43*i+3` 與選中狀態區的六 bytes 經 `0x4003C` 比較，最多檢查三筆。經匹配及其他 guard 後，`0x12392` 將訊息 offset 12 的 word 載入 `s3` 作資料指標，`0x12396` 將 offset 10 的 byte 載入 `s4` 作長度；以該指標與長度呼叫 `0x838E` 且結果為零後，仍需通過多個間接比較及分支，才可能進入 `0x12020` 的長度 6 與資料第二 byte 為 0 檢查。
 
 此鏈是條件式靜態結構，依賴指標有效、原機間接函式契約、暫存器保持與無非同步覆寫；尚未確認這是實機 BLE 訊息、資料生命週期、訊息數值的產品語義或全部可達路徑。沒有讀取使用者裝置資料或執行回呼。
+
+### 與 WCH GATT 事件的候選結構對照
+
+同一固定版本 WCH 標頭將 `0xB0` 定義為 `GATT_MSG_EVENT`，將 27／`0x1B` 定義為 `ATT_HANDLE_VALUE_NOTI`、29／`0x1D` 定義為 `ATT_HANDLE_VALUE_IND`；其 `gattMsgEvent_t` 包含事件 header、`connHandle`、`method` 和訊息 union。候選 notification／indication 結構含 `uint16_t handle`、`uint16_t len` 與 `uint8_t *pValue`。
+
+若原機使用該標頭所述結構、RV32 little-endian 與一般 4-byte 指標／union 對齊，則 header、連線 handle、method、訊息 union 分別位於 offset 0、2、4、8；在 notification／indication 的 union 成員中，handle、16-bit length、pointer 會位於訊息 offset 8、10、12。這與原程式的數值讀取及方法分支一致，支持輸入為 GATT notification／indication 資料的**條件式推論**，並非 ABI 或真實 BLE 封包的實測證明。
+
+尤其 `0x12396` 是 `LBU`，只讀 offset 10 的低 byte；即使候選結構有 16-bit `len`，原始長度高 byte 也未在這個讀取點檢查。因此 `s4==6` 只證明所讀 byte 為 6，不能單靠此 guard 宣稱完整 16-bit 長度為 6；實際緩衝區可讀範圍、前置檢查和 installed ABI 仍需證據。
 
 ### 完成後的標記資料流
 

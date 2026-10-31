@@ -154,7 +154,7 @@ Exhaustively enumerating `v=0..255`, the equal branch leaves only 0 or 1 after n
 
 The 48 original bytes at `0x1A638..0x1A668` match the [reconstructed data](../../src/native/receive/sequence_pattern_data.c). For each channel, the state 0/1 six-byte patterns begin `02 00`/`03 00` and share their last four bytes; those four-byte suffixes differ across all four channels. Thus, provided state is 0/1, the candidate `0x4003C` six-byte equality contract holds and input remains stable, all eight patterns are pairwise distinct and the same six-byte input cannot match two groups at once.
 
-Specifically, if all four states begin at 0 and two successive inputs satisfying the entry's length 6 / second-byte-zero guards exactly match one channel's state 0 then state 1 patterns, with comparison and memory undisturbed between calls, the first sets that channel to 1; the second resets it to 0 and enters the marker path at `0x1207A`. This does not cover arbitrary interleaving or unknown initial state and does not establish that the device received these inputs, the meaning of the other marker-word bytes or any physical button function.
+Specifically, if all four states begin at 0 and two successive inputs satisfying the length-byte-6 / second-data-byte-zero guards exactly match one channel's state 0 then state 1 patterns, with comparison and memory undisturbed between calls, the first sets that channel to 1; the second resets it to 0 and enters the marker path at `0x1207A`. This does not cover arbitrary interleaving or unknown initial state and does not establish that the device received these inputs, the meaning of the other marker-word bytes or any physical button function.
 
 ### Upstream of the six-byte comparison input
 
@@ -163,6 +163,14 @@ On the branch where bit 15 of incoming `a1`'s low 16 bits is set, original callb
 The original path first compares the halfword at message offset 2 against three candidate values. For message offset 4 equal to 27 or 29, it compares six bytes at `*(GP+92)+43*i+3` with a selected state area via `0x4003C`, for at most three entries. After a match and other guards, `0x12392` loads the word at message offset 12 into `s3` as the data pointer, and `0x12396` loads the byte at offset 10 into `s4` as the length. It calls `0x838E` with that pointer and length, requiring zero, and must pass additional indirect comparisons and branches before it can reach `0x12020`, which checks length 6 and data byte 1 equal to zero.
 
 This is a conditional static structure requiring valid pointers, installed indirect-function contracts, preserved registers and no asynchronous overwrite. It does not establish a physical BLE message, data lifetime, product meaning of the numeric message fields or all reachable paths. No user-device data was read and no callback was executed.
+
+### Candidate WCH GATT event layout
+
+The same pinned WCH header defines `0xB0` as `GATT_MSG_EVENT`, 27 / `0x1B` as `ATT_HANDLE_VALUE_NOTI` and 29 / `0x1D` as `ATT_HANDLE_VALUE_IND`. Its `gattMsgEvent_t` contains an event header, `connHandle`, `method` and a message union. The candidate notification/indication structure has `uint16_t handle`, `uint16_t len` and `uint8_t *pValue`.
+
+If the installed device uses that structure with RV32 little-endian and ordinary 4-byte pointer/union alignment, the header, connection handle, method and union lie at offsets 0, 2, 4 and 8. For the notification/indication union members, handle, 16-bit length and pointer lie at message offsets 8, 10 and 12. This agrees with the original numeric accesses and method branches, supporting a **conditional inference** that the input is GATT notification/indication data, not proof of the installed ABI or an observed BLE packet.
+
+In particular, `0x12396` uses `LBU` and reads only the byte at offset 10; even if the candidate structure's `len` is 16-bit, that instruction does not examine its high byte. Thus `s4==6` establishes only that the byte read is 6; the guard alone does not prove the full 16-bit length is 6. Actual readable buffer extent, earlier validation and installed ABI require additional evidence.
 
 ### Completion marker data flow
 
