@@ -317,6 +317,19 @@ IRQ `0x12C32` passes `SP+12` as the structure base in a 32-byte frame, making DL
 
 Exhaustively enumerating `v=0..255`, the equal branch leaves only 0 or 1 after normal completion: `v=0` yields 1, `v=255` wraps to 0, and all others become 0 after the second store. The unequal branch stores 0. This is a **single completed local transition**, conditional on valid memory, correct `s5`/`s6`/channel relationship, normal indirect call and path completion, and no alias/IRQ/DMA/reentrant overwrite. When `t>1`, that value exists transiently between `0x12072` and `0x12090`. The first lookup precedes normalization, and the two state reads can differ. This does not establish that each lookup index is 0/1, absence of intermediate states or a global state bound. See the [existing sequence analysis](../tsl9-sequence-pattern-data/readme.en.md).
 
+### Exact numerical boundaries for `0x1A638` indexing
+
+Using the existing analysis coordinates, original APP half-open range `[0x8000,0x1AC00)`, normal channels 0–3 and byte-width states 0–255, let `k=2*channel+state`. The requested six-byte comparison window is `[0x1A638+6*k, 0x1A638+6*k+6)`. Address arithmetic gives:
+
+| Channel | States whose window overlaps the excluded range `[0x1A69C,0x1A6A0)` | States whose window is partially or wholly beyond the APP end |
+| --- | --- | --- |
+| 0 | 16, 17 | 246–255 |
+| 1 | 14, 15 | 244–255 |
+| 2 | 12, 13 | 242–255 |
+| 3 | 10, 11 | 240–255 |
+
+Of 1,024 numerical combinations, 8 requested windows overlap the excluded range and 52 extend past the APP end. This is an address classification, **not proof that these states are reachable, the comparison function reads all six bytes, or an actual out-of-bounds access occurs**. Valid sources, candidate comparison-slot null-pointer behavior and ownership remain unconfirmed. The classification must not be used to infer or read excluded content. The [checker](check-sequence-window-domains.py) pins relevant original instructions, obtains file size and calculates intervals without reading the excluded range or executing the target.
+
 ### Distinguishing the four pattern pairs
 
 The 48 original bytes at `0x1A638..0x1A668` match the [reconstructed data](../../src/native/receive/sequence_pattern_data.c). For each channel, the state 0/1 six-byte patterns begin `02 00`/`03 00` and share their last four bytes; those four-byte suffixes differ across all four channels. Thus, provided state is 0/1, the candidate `0x4003C` six-byte equality contract holds and input remains stable, all eight patterns are pairwise distinct and the same six-byte input cannot match two groups at once.
