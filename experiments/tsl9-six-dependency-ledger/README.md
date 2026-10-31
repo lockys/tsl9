@@ -356,6 +356,11 @@ V1.30 標頭註解列出 CODE `0x00040000..0x0006FFFF`，但預設巨集另定�
 
 ## `0x1AB48` 查表結果的局部用途
 
+**與其他已辨識資料的數值交集。** 若索引超過 3，索引 4–7 的 halfword 位址落在 `0x1AB50..0x1AB58`，此區另被[record dispatch 資料](../../src/native/receive/record_dispatch_tables.c)使用；索引 8–11 落在 `0x1AB58..0x1AB60`，此區另被[service threshold 資料](../../src/native/receive/runtime_service_links.c)使用。索引 12–75 則落在 reset 用的 128-byte 初始資料來源 `[0x1AB60,0x1ABE0)`；例如索引 54／55 正好分別指向原始初始化 word `0x1ABB4` 的前／後半部。
+
+這些是原始數值位址及已重建用途的交叉證據，不證明索引 4–75 可達、資料的 C 宣告邊界或可將這些區域當作 counter 表的有效項目。不能擴大 provider、修改共享 bytes 或推定產品語義。[檢查器](check-counter-input-guard.py)固定相關來源並驗算位址，不讀取其他 APP 內容或執行目標。
+
+
 以 byte 索引與已提供 APP 半開區間 `[0x8000,0x1AC00)` 計算，索引 **0–3** 對應已重建的 8 bytes；**4–91** 的 halfword 數值位置仍在映像內，但不是已確認的該表內容；**92–255** 的 halfword 數值位置位於映像之外。這不證明任何索引實際可達、映像外記憶體不可讀，或原始資料表有 92 項；未讀取或生成其他項目。[檢查器](check-counter-input-guard.py)只依檔案長度及公式計算這些邊界。
 
 在 `0xA146..0xA158`，程式以 `uint8(GP+176)` 作索引，讀取 `0x1AB48+2*index` 的無號 16-bit 值 `x`。該路徑的 `0xA15C..0xA166` 計算 `y=(x+0x802)&0xFFFF`；`0xA16C` 將 `y` 的低 8 bits 寫到 `SP+10`，而 `0xA168..0xA18E` 將 bits 8–11 寫到 `SP+9` 的低 nibble，保留其高 nibble。因此兩欄合起來是 `(x+0x802)&0xFFF`，若以稍後 `a0=SP+4` 為緩衝區起點，它們分別是 offset 6 與 offset 5 的低 nibble。

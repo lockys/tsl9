@@ -39,4 +39,14 @@ if inverse != list(range(90)) + list(range(4007, 4096)):
     raise SystemExit('Unexpected low-12-bit inverse guard')
 if sum(1 for x in range(65536) if ((x + center) & 0xfff) in accepted) != 2864:
     raise SystemExit('Unexpected halfword inverse guard count')
+sources = {
+    'src/native/receive/record_dispatch_tables.c': 'd059365ee0f705885b74d8ff3c5cc6a658211b372a83fb282d68cc71cd017ea1',
+    'src/native/receive/runtime_service_links.c': '74f97408b18c5d0f3b46dd3ea31ea352debd3c03de66ec291d79f25541c798c8',
+    'src/native/startup/reset_memory.c': 'cd2d0975bdab14759f41f096ce89532535544f10373532b0adb5e2e5455ebaf1',
+}
+for path, expected in sources.items():
+    if hashlib.sha256((root / path).read_bytes()).hexdigest() != expected:
+        raise SystemExit('Pinned data-use source changed')
+if [(0x1ab48 + 2 * i) for i in (4, 8, 12, 54, 55, 75)] != [0x1ab50, 0x1ab58, 0x1ab60, 0x1abb4, 0x1abb6, 0x1abde]:
+    raise SystemExit('Unexpected counter-to-data overlap')
 print('Counter input guard and conditional values verified; target not executed.')

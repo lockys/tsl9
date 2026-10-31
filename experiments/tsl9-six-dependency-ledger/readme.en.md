@@ -356,6 +356,11 @@ After record-by-record verification, neither saved V1.31 nor V1.40 candidate Int
 
 ## Local use of the `0x1AB48` lookup result
 
+**Numerical overlap with other identified data.** If the index exceeds 3, halfword addresses for indices 4–7 lie in `0x1AB50..0x1AB58`, also used by [record dispatch data](../../src/native/receive/record_dispatch_tables.c); indices 8–11 lie in `0x1AB58..0x1AB60`, also used by [service threshold data](../../src/native/receive/runtime_service_links.c). Indices 12–75 fall in the reset initializer's 128-byte source `[0x1AB60,0x1ABE0)`; for example indices 54/55 address the first/second halves of the original initializer word at `0x1ABB4`.
+
+These are cross-checks of original numerical addresses and reconstructed uses, not proof indices 4–75 are reachable, of original C declaration boundaries, or that the regions are valid counter-table entries. They do not justify expanding a provider, modifying shared bytes or inferring product semantics. The [checker](check-counter-input-guard.py) pins relevant sources and checks address arithmetic without reading additional APP content or executing the target.
+
+
 For byte-width indices and the supplied APP half-open interval `[0x8000,0x1AC00)`, indices **0–3** address the reconstructed eight bytes; **4–91** address halfwords numerically inside the image but not established as entries of this table; **92–255** address halfwords numerically beyond the image. This does not prove any index reachable, memory outside the image unreadable, or an original table of 92 entries; no additional entries are read or generated. The [checker](check-counter-input-guard.py) uses file size and the address formula for these boundaries.
 
 At `0xA146..0xA158`, the code uses `uint8(GP+176)` as an index and reads unsigned 16-bit value `x` from `0x1AB48+2*index`. On this path, `0xA15C..0xA166` computes `y=(x+0x802)&0xFFFF`; `0xA16C` writes its low 8 bits at `SP+10`, while `0xA168..0xA18E` writes bits 8–11 into the low nibble at `SP+9`, preserving its high nibble. Together these fields encode `(x+0x802)&0xFFF`. Relative to the later buffer start `a0=SP+4`, these are offset 6 and the low nibble of offset 5.
