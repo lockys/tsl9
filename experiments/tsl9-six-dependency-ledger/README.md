@@ -575,6 +575,8 @@ reset 的初始資料在原 BIN `0x1ABBC` 包含 word `0x2000C40C`；在 GP=`0x2
 
 這些數值位址均高於 RAM base 32 KiB 的 `0x20008000`，低於 48 KiB 的 `0x2000C000`；以 [CH32V208 候選記憶體配置](../tsl9-ch32v208gbu6-evidence-20261029/README.md)的連續映射且無重映射為條件，它們位於該文件所列 48 KiB 與 64 KiB 範例而不在 32 KiB 範例內。這些欄位本身不能區分 48 與 64 KiB，也不是實機選項位元、RAM ownership 或容量的讀取結果。
 
+已辨識的候選 BLE pool `[0x2000418C,0x2000B18C)` 與 counter、四個 sequence state、event 索引、mode 四-byte 狀態及 ingress payload 視窗均不重疊。另對 layout 已選的 69,412 bytes 原始 APP CODE 做有界掃描：以 GP=`0x20004000` 計，沒有找到直接使用 GP 加立即數且與 pool 相交的一般 RISC-V byte／halfword／word load 或 store，也沒有直接 `ADDI GP+offset` 落入 pool；該 pool 起點是 `GP+396`。這僅排除所掃描的**直接編碼形式**：由其他基址、位址運算、指標、callee、resident、壓縮或其他編碼、排除區、IRQ／DMA 等產生的存取仍未封閉，不能據此證明 pool 所有權或硬體 RAM 容量。[檢查器](check-ble-pool-direct-gp.py)只讀允許的原始 CODE 區，搭配既有 [pool 界限](../tsl9-original-APP-library-binding/README.md)；不執行目標。
+
 ### 42 筆記錄的初始指標
 
 原始 BIN 在 `0x1ABB8` 的 little-endian word 是 `0x2000C30C`。`0x186BA..0x186DA` 將 `[0x1AB60,0x1ABE0)` 複製到 GP 所指的 128-byte 區；若 GP 為 reset 所設 `0x20004000`、複製正常且沒有覆寫，則 `*(GP+88)` 初始為 `0x2000C30C`。以 42 筆、每筆 6 bytes 計算，記錄範圍為 `[0x2000C30C,0x2000C408)`，整段落在 reset 清零範圍 `[0x20004080,0x2000C958)` 內。
