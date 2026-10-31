@@ -97,3 +97,9 @@ IRQ `0x12C32` 在 32-byte frame 中以 `SP+12` 作結構起點，故 DLC 位於 
 在到達 `0xCF36` 的路徑上，程式寫入 record offset 4，於 `0xCF3A` 重新讀取該 byte `b`；接著把低 nibble 設為 `(b+1)&15`，保留高 nibble，並以這個新低 nibble 作為 column。`0xCF5A` 從 `0x1A078+16*effective_mode+column` 讀取一個 byte，`0xCF5E` 寫至 record offset 3，再於 `0xCF62` 不寫入返回位址地尾跳 `0x12A08`。因此 column 必為 0–15，但讀出的 byte 仍為 0–255；尚未確認其產品語義或其值是否可代表特定命令。
 
 這段 `0xCF36..0xCF62` 沒有呼叫 `0xED00` 檢查碼函式；這不是全程未重新計算檢查碼的證明，因為上游及尾跳後的呼叫可能改寫或處理 record。若 record 記憶體有效、讀寫之間無 alias／非同步覆寫且原控制流正常執行，則上述資料流成立。`effective_mode` 未被 `&7` 限制，既有 [mode 寫入來源分析](../tsl9-mode-state-writer-contract/README.md)中的局部 1–5 值也不是全域界限。
+
+### Enable、selector 與倒數的局部分支
+
+原 `0xCEDC..0xCEF6` 先讀 enable，為 0 時直接返回，不執行本次查表。enable 非 0 時讀 selector：值為 `0xFF` 時走 `0xCEFA` 讀 mode 與倒數；值為 0 時，先依 `0xCF66..0xCF78` 更新 selector，再走相同 mode／倒數路徑；值為 1–254 時更新 selector，並強制本次 effective mode 為 0，不走該次倒數遞減。
+
+在 mode／倒數路徑，`0xCF0E..0xCF18` 以 byte 算術計算並寫回 `(old_count-1)&255`。若結果為 0，`0xCF8A` 清除 enable，然後仍跳回 `0xCF1E` 完成本次查表與尾跳；所以 old_count=1 會停用**後續**呼叫但不取消目前這次，old_count=0 則回繞為 255，不觸發該次清除。上述是以有效記憶體、非同步狀態不被改寫、正常控制流為條件的局部結論；不是產品上倒數的單位、排程頻率、全域狀態值域或可達性的證明。
