@@ -25,4 +25,11 @@ if beyond != [(184, c) for c in range(8, 16)] + [(m, c) for m in range(185, 256)
     raise SystemExit('APP-end classification changed')
 if len(beyond) != 1144:
     raise SystemExit('APP-end total changed')
+for index in range(256):
+    for byte in range(2):
+        mode, column = 173 + index // 8, 2 * (index % 8) + byte
+        if 0x1a078 + 16 * mode + column != 0x1ab48 + 2 * index + byte:
+            raise SystemExit('Cross-lookup numerical alias changed')
+if 173 + 255 // 8 != 204 or 2 * (255 % 8) + 1 != 15:
+    raise SystemExit('Cross-lookup endpoint changed')
 print('Mode address domains verified; excluded bytes and target not read or executed.')

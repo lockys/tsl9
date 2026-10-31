@@ -23,6 +23,10 @@
 
 ### Mode 查表的數值位址範圍
 
+`0x1A078` 的公式與 `0x1AB48` 的 byte 索引公式存在精確的數值重疊：counter 索引 `i=0..255` 的第 `b=0/1` 個 byte，等於 mode `173+floor(i/8)`、column `2*(i mod 8)+b` 的位址。因而 counter 的完整 512-byte 保守包絡相當於 mode **173–204** 的 32 個數值 rows；其中只包含 counter 0–3 的 8 bytes 已重建，對應 mode 173 的 column 0–7。
+
+這是兩個原始位址公式的交集，不證明那些 mode 或 counter 值可達、兩處屬於同一原始宣告，或超出 APP 映像的位址有效；更不能以已知 8 bytes 生成未知 rows、建立完整 provider 或解除任一依賴。檢查器以整數算術核對全部 512 個位址等式，不讀取額外資料或執行目標。
+
 對 `0xCF5A` 的公式 `0x1A078+16*effective_mode+column`，若只使用 byte 寬度 `effective_mode=0..255` 與 `column=0..15`，共有 4,096 個數值組合。以現有 APP 映像半開區間 `[0x8000,0x1AC00)` 計算：mode **98** 的 column **4–7** 指向既定排除區 `[0x1A69C,0x1A6A0)`；mode **184** 的 column **8–15** 與 mode **185–255** 的全部 columns 超過 APP 結尾，共 1,144 個組合。
 
 這是位址公式的保守分類，不代表這些 mode／column 可達、實際記憶體不可讀、發生越界，或完整 provider 有 256 列。已納入來源的 mode 0–5 共 96 bytes，也不能據此推出其他列。只有 setter、selector、記憶體及執行條件經進一步證明，才能縮小實際讀取域。[檢查器](check-mode-address-domains.py)固定允許的指令窗口、查詢 APP 檔案大小並做區間算術；不讀取排除資料或執行目標。

@@ -23,6 +23,10 @@ Provided every call enters `0xCEDC` normally, enable stays nonzero, the stored s
 
 ### Numerical address range of the mode lookup
 
+The `0x1A078` mode formula and the byte-indexed `0x1AB48` counter formula have an exact numerical overlap: byte `b=0/1` of counter index `i=0..255` equals the address of mode `173+floor(i/8)`, column `2*(i mod 8)+b`. Thus the full conservative 512-byte counter envelope corresponds to numerical mode rows **173–204**; only the eight bytes for counter indices 0–3 have been reconstructed, corresponding to mode 173 columns 0–7.
+
+This intersection of original address formulas does not prove the modes or counter values reachable, a shared original declaration, or validity beyond the APP image. The eight known bytes cannot generate unknown rows, supply a complete provider, or resolve either dependency. The checker verifies all 512 address equalities by integer arithmetic without reading additional data or executing the target.
+
 For the `0xCF5A` formula `0x1A078+16*effective_mode+column`, the byte-width domain `effective_mode=0..255` and `column=0..15` contains 4,096 numerical combinations. Relative to the current APP half-open image `[0x8000,0x1AC00)`, mode **98** at columns **4–7** addresses the excluded range `[0x1A69C,0x1A6A0)`; mode **184** at columns **8–15**, and all columns of modes **185–255**, fall beyond the APP end, totaling 1,144 combinations.
 
 This is a conservative address classification, not proof that those modes or columns are reachable, actual memory is unreadable, an out-of-bounds access occurs, or the provider has 256 rows. The 96 bytes already incorporated for modes 0–5 do not establish other rows. Setter, selector, memory and execution conditions must be further established to narrow the actual read domain. The [checker](check-mode-address-domains.py) pins an allowed instruction window, obtains APP file size and calculates intervals; it does not read excluded data or execute the target.
