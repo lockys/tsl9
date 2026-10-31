@@ -139,6 +139,10 @@
 
 `0xFD3E` 傳入 `0x82A8` 的 index 是 13，後者要求槽 `0x4004C` 從數值 RAM `[0x2000C254,0x2000C260)` 複製 12 bytes 到 stack record。若此槽符合候選 copy 且兩端有效、無覆寫，這是當時該 RAM 區的快照；不能單憑同一來源地址認定它與前次 record 內容相同。
 
+一個已辨識的寫入入口是 selector 1 的 record 分派樹：`0x14D5E` 讀 record offset 0 的 halfword，數值為 `1001 / 0x3E9` 時，經 `0x14ED8 → 0x14FA0 → 0x1522E`。後者以 `(a0=0,index=13,a2=record)` 呼叫 `0x82A8`，要求把 record 的 12 bytes 複製到同一 RAM 區；`0xFD3E` 的 `a0=1` 則要求反方向複製。這兩個方向與候選槽的對照依指標有效、正常呼叫、copy 契約及無非同步干擾成立；不證明 record 實際到達、兩次內容一致、該值是實體 CAN ID，或此為唯一 writer。
+
+該寫入 helper 和 `0x1522E` 這段本身沒有檢查 record offset 2 的長度。後次讀取前若 source 沒有改變，offset 2 的數值才會延續原輸入；上游可能另有限制，不能據此聲稱所有 byte 值可達。數值上，檢查碼寫入 offset `length+2` 僅在 length **0–9** 時落在這 12-byte record 內；`0xFD3E` 的非零 guard 進一步只留 **1–9**。length 10–255 將指向該 record 之後，但沒有證明這些值可達、實際發生越界或缺陷。檢查器已納入寫入指令窗口及這項範圍運算。
+
 進一步追蹤 `0xFCB8` 之後的控制流：前段高 nibble 加 1 後，`0xFCE6` 還會再加 1；若接著讀得 `GP+289=2`，則 `0xFD1A` 在 `0xFCE6` 前再加一次。因此在 record 穩定且正常到達檢查碼呼叫前，offset 9 高 nibble 共增加 **2 次**，或在該特殊分支增加 **3 次**，各以四位元回繞；上段所述一次僅為 `0xFCB8` 的局部效果。
 
 `0xED00` 正常返回後，程式將結果寫到 record offset `length+2`，其中 length 是呼叫前記住的 offset 2 byte。若 length 為 7，此寫入會覆蓋 offset 9，故不能把上述增加值直接當作最後內容。這些是有界指令與位址運算；長度實際值、buffer 效果、呼叫返回和傳送均未實測。檢查器已加入相關窗口。
