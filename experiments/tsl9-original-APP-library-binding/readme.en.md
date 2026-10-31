@@ -29,6 +29,14 @@ The call/save/load/move dominate normal return;that own-frame word has one expli
 
 The APP compares only the21-byte prefix `CH32V20x_BLE_LIB_V1.3`. The candidate version pointer is0x6E6A0 and comparator RAM0x20000442 has a retained real body. Prefixes match,but this does not distinguish complete library versions or chip variants,or identify the installed ROM. Valid pointers/comparator contracts remain required.
 
+### Version gate and the candidate comparator contract
+
+`0x199F4..0x19A08` loads a comparison target from `0x4003C` and a version pointer from `0x40034`, passing the APP string and length 21. A nonzero return continues to `0x19A0A`; zero enters the self-loop at `0x19A08`. Candidate `0x20000442` returns 1 for equal valid non-null data and 0 for unequal data, the reverse of standard C `memcmp`'s zero-for-equal convention. Substituting standard `memcmp` would change this branch behavior.
+
+The candidate comparator also returns 1 when either input pointer or length is zero; it still first reads, saves and clears `0x4002420C`, performs `FENCE.I`, and restores that word before returning. Thus if `0x4003C` matches this candidate but `0x40034` is zero, and the MMIO operations complete, the APP gate continues without establishing a valid version string. This is a conditional counterexample, not an observed device state; the original candidate table's version pointer is nonzero. Later `0x19AD2..0x19AE0` separately requires a nonzero configuration pointer and size at least `0x1000`, and `0x19AEE..0x19AF0` self-loops on a nonzero library-initializer return. Passing the version gate does not establish initialization completion.
+
+These conclusions require candidate ROM/slot identity, valid memory, original instruction behavior and no interference; actual reachability, installed version and failures remain unproved. The [checker](check-version-gate.py) pins bounded APP and public-candidate instruction/table windows without reading excluded regions or executing the target.
+
 At0x199EC,the APP copies word0x20000008 into incomingGP+384. With resetGP0x20004000 preserved,this is the LLE-wrapper word0x20004180. The assignment dominates every external call in this function and both direct enable-store sites:
 
 - 0x19B08 writes0x80000000 to0xE000E104,numerically corresponding to candidateIRQ63.
