@@ -6,6 +6,7 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[2]
 image = root / 'firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin'
 windows = {
+    0x89a8: '03c70400ba97' + 'a382f10af1b7',
     0x89fa: '03d6a1081307f0406365c70413071600420741832395e10897360020938666fcb2962380f600',
     0x186de: '138501089745ff1f938565276377b500232005001105e36db5fe',
 }
@@ -51,4 +52,10 @@ watched = [(start, end)] + [(0x20004000 + offset, 0x20004000 + offset + width)
                              for offset, width in [(138, 2), (142, 2), (156, 1), (165, 1)]]
 if any(a < d and c < b for a, b in writes for c, d in watched):
     raise SystemExit('An explicit write overlaps watched ingress state')
+counts = [0] * 256
+for first in range(256):
+    for second in range(256):
+        counts[(first + second) & 255] += 1
+if counts != [256] * 256:
+    raise SystemExit('Unexpected modulo-256 two-byte checksum multiplicity')
 print('Ingress store and reset/RAM/bootstrap bounds verified; target not executed.')

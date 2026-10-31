@@ -233,6 +233,10 @@ Along the normal state machine at `0x8962..0x8A48`, the frame starts with checks
 
 Only after the state and checksum comparisons pass does `0x8A36..0x8A48` pass the current context, command, fixed buffer and freshly read length to `0x14056` on this path. With valid GP and buffer, no alias, inter-callback overwrite or other asynchronous interference, this supports a command/length/payload byte-sum frame interpretation. It is not cryptographic integrity, a complete command list, an authorized API or observed BLE execution, and it does not establish dispatch or side effects inside the excluded body.
 
+#### Checksum discrimination before the call
+
+At `0x89A8..0x89B4`, the current byte is added to the saved value and a byte store keeps the low eight bits. For a synthetic two-byte payload with fixed command and length, the 65,536 byte pairs distribute evenly over 256 sums, with **256 pairs** per sum; this checksum alone cannot distinguish payloads sharing a sum. This is a static instruction and arithmetic result, not proof that arbitrary content passes other guards, checks inside `0x14056`, or real BLE protections. The excluded function body was not read; the [checker](check-ingress-buffer-bound.py) pins the addition instructions and enumerates synthetic values without executing the target.
+
 #### Zero-length frame and buffer
 
 When both normally parsed length bytes are zero, `0x89DA..0x89DE` enters the checksum state directly without the payload write at `0x8A12..0x8A1C`. The sum was cleared after the second prefix byte, so without interference the correct checksum for a zero-length frame equals its command byte. If the checksum passes, the call still receives fixed buffer `0x2000B9D8` and a freshly read length of zero; this zero-length path does not itself clear the payload buffer or establish its old contents.

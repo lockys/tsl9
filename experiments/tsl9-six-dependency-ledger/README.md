@@ -233,6 +233,10 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 只有狀態及 checksum 比較通過，`0x8A36..0x8A48` 才在此路徑將當時 context、command、固定 buffer 和重新讀取的長度交給 `0x14056`。在 GP／buffer 有效且沒有 alias、回呼間覆寫或其他非同步干擾等條件下，這支持「命令＋長度＋payload 的 byte-sum 封包」解讀；它不是加密完整性、完整指令表、已授權 API 或真實 BLE 執行證據，也不能推定排除本體的分派與副作用。
 
+#### 呼叫前 checksum 的區別能力
+
+`0x89A8..0x89B4` 將當前 byte 加上保存值，再以 byte store 保留低 8 bits。對固定 command 與長度為 2 的合成 payload，65,536 種兩-byte 組合均勻分到 256 個加總值，每個加總值各有 **256 種**組合；只檢查此 checksum 無法區分相同加總的 payload。這是靜態指令與數學枚舉，不表示任意內容都會通過其他守衛、`0x14056` 的內部檢查或實機 BLE 保護。排除的函式本體沒有讀取；[檢查器](check-ingress-buffer-bound.py)固定加總指令並枚舉合成數值，不執行目標。
+
 #### 零長度框架與 buffer
 
 若正常解析的兩個長度 bytes 都為零，`0x89DA..0x89DE` 直接進入 checksum 狀態，沒有經過 `0x8A12..0x8A1C` 的 payload 寫入。此前加總在第二個前導 byte 後歸零，故在沒有干擾的條件下，零長度框架的正確 checksum 等於 command byte。驗證通過時，呼叫點仍傳入固定 buffer `0x2000B9D8` 和重新讀取的長度 0；這條零長度流程本身不清空 payload buffer，也不證明它的舊內容。
