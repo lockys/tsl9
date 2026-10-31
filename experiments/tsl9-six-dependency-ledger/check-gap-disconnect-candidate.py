@@ -14,11 +14,16 @@ if hashlib.sha256(header).hexdigest() != '647a185941fedeb6ba16d544d9bca91a6f5321
 for pattern in (rb'#define\s+GAP_LINK_TERMINATED_EVENT\s+0x06', rb'#define\s+GAPROLE_ADVERTISING\s+2\b', rb'#define\s+GAPROLE_WAITING\s+3\b', rb'GAPRole_PeripheralStartDevice[^\n]+BLE_LIB_JT\(92\)', rb'gapRolesStateNotify_t\s+pfnStateChange', rb'tmos_event_hdr_t\s+hdr;[^\n]*\n\s*uint8_t\s+opcode;[^\n]*\n\s*uint16_t\s+connectionHandle;'):
     if not re.search(pattern, header):
         raise SystemExit('Expected candidate header declaration missing')
+for pattern in (rb'#define\s+GAP_LINK_ESTABLISHED_EVENT\s+0x05', rb'#define\s+GAPROLE_CONNECTED\s+4\b', rb'#define\s+GAPROLE_ADVERT_ENABLED\s+0x305', rb'GAPRole_SetParameter[^\n]+BLE_LIB_JT\(80\)', rb'GATT_ExchangeMTU[^\n]+BLE_LIB_JT\(41\)'):
+    if not re.search(pattern, header):
+        raise SystemExit('Expected candidate GAP or GATT declaration missing')
 root = Path(__file__).resolve().parents[2]
 image = root / 'firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin'
 windows = (
     (0x886e, 0x1c, '7c163da0713d3c343537f0192653df521a5198cbb952855a5afd33609c2da176'),
     (0x8b90, 0x16, '6e4414fe0d602ab0827750b095ee16f6f42525b0e169de2f7ae1fcf7142502ee'),
+    (0x8b6e, 0x22, '529cb7ed4851439431f1c5427dd7699ed3570a13fd4eb23fa979c0f73726eac3'),
+    (0x8c00, 0x18, 'e75d97abf5f328b743771db155caec55e0f9eacbad614711747d535af99e47a5'),
     (0x8c3e, 0x42, '2c57606edcc159ae8808054e89473d6ee27c28e7d64964f3d626efccac7495a9'),
     (0x19de0, 12, '3c02897e159ad4ff0d978aad736caad9131d0ead11407774026a983b13f1ad7b'),
 )
@@ -34,4 +39,6 @@ with image.open('rb') as f:
             raise SystemExit('Callback table changed')
 if 0x40034 + 4 * 92 != 0x401a4 or 0x887a + 0x11000 + 1382 != 0x19de0:
     raise SystemExit('Registration address arithmetic changed')
+if (0x40034 + 4 * 80, 0x40034 + 4 * 41) != (0x40174, 0x400d8):
+    raise SystemExit('Candidate GAP and GATT slot arithmetic changed')
 print('Candidate GAP registration and event declarations verified; device behavior unverified.')

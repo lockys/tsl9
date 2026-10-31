@@ -177,6 +177,10 @@ queue 在 `0x12CB0` 呼叫 `0x82D2`，只有返回 0 才可能繼續進 dispatch
 
 同一標頭將 `0x06` 定義為 `GAP_LINK_TERMINATED_EVENT`，其事件結構含兩-byte header、opcode，再接 16-bit connection handle。若採候選結構及 RV32 對齊，opcode 位於 offset 2、handle 位於 offset 4；這與 `0x8C3E`／`0x8C48` 讀取相符。入口狀態 2／3 在該標頭分別名為 advertising／waiting。因此這條清除路徑可**條件式推論**為連線終止後清除對應項目，而非已觀察的斷線事件；兩次 handle 讀取間可能被改寫的限制仍成立。[檢查器](check-gap-disconnect-candidate.py)固定允許的 APP 窗口與本機 WCH 標頭，不執行目標或讀取排除區。
 
+同一候選對照也解釋了相鄰操作：`0x8B6E(1)` 透過 `0x40174` 傳入 `(0x305,1,&byte_1)`；WCH 將該槽定義為 `GAPRole_SetParameter`、`0x305` 定義為廣播 enable。若 slot 與介面相容，這是**要求啟用廣播**；原 caller 沒有依其返回碼決定是否繼續清除項目，不能證明廣播實際啟用。
+
+另一分支要求入口 state 為 4、事件 offset 2 為 5，從 offset 10 讀 halfword，寫入第一個可用的 `GP+150/154` 項目；隨後以該值和 stack 中的 `247` halfword 呼叫 `0x400D8`。WCH 將 state 4／opcode 5 分別列為 connected／link established，並將該槽定義為 `GATT_ExchangeMTU`；按候選結構及 RV32 對齊，offset 10 是 connection handle。這支持「連線建立後提出 MTU 247 交換請求」的條件式解讀，不證明 slot、連線、請求成功或協商結果。沒有讀取裝置資料或執行藍牙操作；既有檢查器已納入相關窗口及標頭宣告。
+
 進一步追蹤 `0xFCB8` 之後的控制流：前段高 nibble 加 1 後，`0xFCE6` 還會再加 1；若接著讀得 `GP+289=2`，則 `0xFD1A` 在 `0xFCE6` 前再加一次。因此在 record 穩定且正常到達檢查碼呼叫前，offset 9 高 nibble 共增加 **2 次**，或在該特殊分支增加 **3 次**，各以四位元回繞；上段所述一次僅為 `0xFCB8` 的局部效果。
 
 `0xED00` 正常返回後，程式將結果寫到 record offset `length+2`，其中 length 是呼叫前記住的 offset 2 byte。若 length 為 7，此寫入會覆蓋 offset 9，故不能把上述增加值直接當作最後內容。這些是有界指令與位址運算；長度實際值、buffer 效果、呼叫返回和傳送均未實測。檢查器已加入相關窗口。
