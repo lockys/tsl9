@@ -171,6 +171,12 @@ By contrast, three timer/registration slot targets in candidate V1.31 → V1.40 
 
 The [same checker](check-gatt-resident-versions.py) verifies both loader windows, source immediates, seven slots and the three pairs of body hashes; it does not execute either loader. Identical source bytes do not establish that real RAM was copied or that installed slots or ABIs match, and do not cover other resident versions or peripheral effects.
 
+#### Missing source words in both startup candidates
+
+Under each loader's instructions and the existing inclusive-word copy-helper contract, V1.31's second copy requests source `[0x6EAA4,0x6EB30)`, 140 bytes, but its saved HEX omits the final `[0x6EB2C,0x6EB30)`; V1.40 requests `[0x6EC94,0x6ED24)`, 144 bytes, and its saved HEX likewise omits `[0x6ED20,0x6ED24)`. The other 136 and 140 requested bytes respectively are present as HEX records. This compares **file record coverage**; it does not fill the gaps or read their nonexistent values.
+
+Each version's subsequent zero operation overwrites the last destination word of that copy: `[0x20002EF8,0x20002EFC)` for V1.31 and `[0x20002F48,0x20002F4C)` for V1.40. However, the copy still attempts the source read before zeroing; the later overwrite does not prove that read valid or startup successful. The [checker](check-gatt-resident-versions.py) validates HEX record checksums and coverage of both requested source ranges. Whether real Flash contains these bytes, the mapping, and loader completion remain unknown.
+
 #### APP resident version-prefix gate
 
 Original APP initialization `0x199F4..0x19A08` loads a comparison target from `0x4003C`, loads the candidate version-string pointer from `0x40034`, and calls it with **21 bytes** at `0x1AB1C` as comparison input. The original bytes are `CH32V20x_BLE_LIB_V1.3`, excluding the following NUL. A nonzero return branches to `0x19A0A`; zero enters the self-loop at `0x19A08`.

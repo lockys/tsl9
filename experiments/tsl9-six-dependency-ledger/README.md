@@ -171,6 +171,12 @@ WCH V1.30 標頭將 slot 63（`0x40034+4*63=0x40130`）定義為 `GATTServApp_Re
 
 [同一檢查器](check-gatt-resident-versions.py)核對兩版 loader 窗口、來源立即數、七個槽及三對本體雜湊；它不執行 loader。三段來源位元組一致不證明實機 RAM 已被複製、實際 slot 值或 ABI 相同，也不涵蓋其他 resident 版本和周邊副作用。
 
+#### 兩版啟動第二次 copy 的來源缺口
+
+依兩版 loader 指令與既有 inclusive-word copy helper 契約，V1.31 第二次 copy 要求來源 `[0x6EAA4,0x6EB30)` 共 140 bytes，但保存的 HEX 缺少最後 `[0x6EB2C,0x6EB30)`；V1.40 要求來源 `[0x6EC94,0x6ED24)` 共 144 bytes，其保存 HEX 也缺少最後 `[0x6ED20,0x6ED24)`。其餘各自請求的 136／140 bytes 在各自 HEX 中有記錄。這裡比較的是**檔案記錄覆蓋**，沒有填入缺口或讀取其不存在的值。
+
+兩個版本隨後的 zero 都覆蓋該次 copy 的最後一個目的 word：V1.31 為 `[0x20002EF8,0x20002EFC)`，V1.40 為 `[0x20002F48,0x20002F4C)`。然而 copy 在 zero 之前仍需嘗試讀取來源；最終目的會被覆寫，不能證明先前讀取有效或啟動必定成功。[檢查器](check-gatt-resident-versions.py)逐筆驗證 HEX checksum，檢查兩個來源範圍的記錄覆蓋與缺口；實機 Flash 是否包含這些 bytes、記憶體映射與 loader 能否完成仍未知。
+
 #### APP 的 resident 版本前綴守衛
 
 原 APP 初始化 `0x199F4..0x19A08` 從 `0x4003C` 取得比較目標、從 `0x40034` 取得候選版本字串指標，以 `0x1AB1C` 的 **21 bytes** 為比較值後呼叫；原始 bytes 為 `CH32V20x_BLE_LIB_V1.3`，不含後續 NUL。比較返回非零時跳到 `0x19A0A`，返回零則進入 `0x19A08` 自我迴圈。

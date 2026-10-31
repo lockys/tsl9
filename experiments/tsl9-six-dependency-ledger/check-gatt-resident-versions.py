@@ -30,6 +30,8 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
     for ram, size, _ in bodies:
         source = copy_source + ram - 0x20000040
         selected.update(range(source, source + size))
+    second_start, second_size = (0x6eaa4, 140) if copy_source == 0x402b0 else (0x6ec94, 144)
+    second_coverage = set()
     found = {}
     upper = 0
     eof = False
@@ -44,6 +46,8 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
         if kind == 0:
             for i, value in enumerate(data):
                 location = upper + address + i
+                if second_start <= location < second_start + second_size:
+                    second_coverage.add(location)
                 if location in selected:
                     if location in found:
                         raise SystemExit('Overlapping selected HEX data')
@@ -60,6 +64,9 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
             raise SystemExit('Unsupported HEX record type')
     if not eof or set(found) != selected:
         raise SystemExit('Incomplete selected HEX data')
+    expected_coverage = set(range(second_start, second_start + second_size - 4))
+    if second_coverage != expected_coverage:
+        raise SystemExit('Candidate second-copy source coverage changed')
     def read(address, size):
         return bytes(found[address + i] for i in range(size))
     if int.from_bytes(read(0x40034, 4), 'little') != version_ptr or read(version_ptr, len(version)) != version:
