@@ -100,6 +100,12 @@ When both normally parsed length bytes are zero, `0x89DA..0x89DE` enters the che
 
 The caller at `0x8A4C` clears parser state only after `0x14056` returns normally. These conclusions require state, length and buffer not to be changed by aliases, other callbacks, IRQ or DMA; they do not establish that an empty frame is reachable, that the function reads the buffer or returns successfully, or the meaning of any command. The excluded body remains unread.
 
+#### Payload write bound and reset/RAM cross-check
+
+On each entry to the payload branch, `0x89FA` reads the counter as an unsigned halfword; `0x89FE..0x8A02` branches to the state-clear path if it exceeds 1039, before this payload store. Otherwise, `0x8A12..0x8A1C` uses the same register holding the old counter to write one byte to `0x2000B9D8+counter`. With normal instruction flow and undisturbed registers, this particular store must therefore fall in `[0x2000B9D8,0x2000BDE8)`. The local bound is independent of the length freshly read and passed to `0x14056`; it does not bound reads or writes inside the excluded callee.
+
+This 1,040-byte window is entirely within the APP reset zero range `[0x20004080,0x2000C958)`, as are the GP-relative parser counter, length, state and checksum fields. If reset zeroing completes normally without interference, those fields and the window are zero at `0x186F8`; later reception or other paths can change them, so this does not prove the buffer is zero at a later call. Under the existing WCH candidate contiguous RAM layouts, the window falls within the 48/64 KiB numerical ranges but outside the 32 KiB range. The complete reset range itself exceeds 48 KiB, so the window alone cannot establish the overall RAM configuration. Actual mapping, boot and calls remain unverified. The [static checker](check-ingress-buffer-bound.py) checks relevant original instructions and ranges without executing the target or reading excluded regions.
+
 ## `0x1A69C` and settings defaults
 
 Original `0x131A6..0x131B4` loads the indirect target freshly from `0x4004C`, passing destination `*(GP+0x54)+12`, source `0x1A69C`, and length 4. The existing [SDK copy audit](../tsl9-resident-copy-arch/readme.en.md) identifies candidate slot value `0x20000332`; its 58-byte body copies bytes forward using source, destination and length, preceded by access to `0x4002420C` and `FENCE.I`.

@@ -100,6 +100,12 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 `0x14056` 正常返回後，呼叫端 `0x8A4C` 才將 parser state 清為 0。前述結論依賴呼叫期間 state／長度／buffer 未被 alias、其他回呼、IRQ 或 DMA 改寫，亦不證明空框架一定可達、函式會讀取 buffer、返回成功或任何命令的實際語義；排除本體仍未讀取。
 
+#### Payload 寫入範圍與 reset／RAM 的交叉檢查
+
+每次走到 payload 分支時，`0x89FA` 以 unsigned halfword 讀取 counter；`0x89FE..0x8A02` 對 counter 大於 1039 的情況轉至清除 state 的路徑，不執行這次 payload store。通過後，`0x8A12..0x8A1C` 使用同一暫存器中的舊 counter，向 `0x2000B9D8+counter` 寫入一個 byte。因此在正常指令流程、暫存器未受干擾的條件下，這一個 store 的位置必落在 `[0x2000B9D8,0x2000BDE8)`；這個局部界限獨立於重新讀取並傳給 `0x14056` 的長度值，不保證被呼叫函式本身的讀寫範圍。
+
+此 1,040-byte 窗口完整位於 APP reset 的清零範圍 `[0x20004080,0x2000C958)` 內；parser counter、length、state 及 checksum 的 GP-relative 欄位也位於該清零範圍。若 reset 清零正常完成且沒有干擾，這些欄位和窗口在 `0x186F8` 時為零；後續接收與其他路徑仍可改寫，不能推論某次呼叫時 buffer 為零。依既有 WCH 三種候選連續 RAM 配置，此窗口落在 48／64 KiB 數值範圍內，不在 32 KiB 範圍；但完整 reset 清零本身超過 48 KiB，因此不能單憑此窗口選定整體 RAM 配置。實際 RAM 映射、正常開機與呼叫仍未證明。[靜態檢查器](check-ingress-buffer-bound.py)核對相關原始指令與範圍，不執行目標或讀取排除區。
+
 ## `0x1A69C` 與設定預設值
 
 原 `0x131A6..0x131B4` 每次從 `0x4004C` 載入間接目標，傳入目的 `*(GP+0x54)+12`、來源 `0x1A69C` 與長度 4。既有 [SDK 複製函式核對](../tsl9-resident-copy-arch/README.md)指出候選槽值為 `0x20000332`，其 58-byte 本體以來源／目的／長度執行順向 byte 複製，並先存取 `0x4002420C` 與執行 `FENCE.I`。
