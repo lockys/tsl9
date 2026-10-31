@@ -26,6 +26,8 @@ WINDOWS = {
     (0x9250, 0x38): '27668ce12f97d6edbec7d7bb3f494bddecba24f99b5788867e67faa587b1e12d',
     (0x17040, 0x34): 'b6862277d2bbdbdde7c2333bcd2f15ad40eb19250c551a4b26922629ee272bce',
     (0x9a42, 0x88): '1d6552fd9ca767f53cdee2218c24e5f90d25300e70c5e094845b54146d93a0d0',
+    (0x8180, 0x2a): 'c440bafcc9fdbe370d24fbcd3bd0c67e8162ceaa776a64ea6f34f1d509b6f72f',
+    (0x9008, 0xa): '6a43842f4714c71dbbb2f0cafe1f4a4685cbb81a8987c6f053911a13e3ac1386',
 }
 EXPECTED = {
     0xae54: 'bne a4, a5, 0xaf4c', 0xae5e: 'bne a4, a5, 0xaf4c',
@@ -65,6 +67,9 @@ EXPECTED = {
     0x9abe: 'sw a4, 260(a5)', 0x9ac2: 'csrs 0x800, s2',
     0x17048: 'lw a5, 72(s1)', 0x17050: 'li a2, 3',
     0x17054: 'addi a0, gp, 360', 0x17058: 'jalr a5',
+    0x900c: 'jal 0x9250', 0x900e: 'jal ra, 0x8180',
+    0x819c: 'jalr a5', 0x819e: 'jal ra, 0x17002',
+    0x81a2: 'jal ra, 0x12c58', 0x81a8: 'j 0x8198',
 }
 
 def disassemble(tool, base, data):
