@@ -27,6 +27,19 @@ According to the [existing setter control-flow analysis](../tsl9-mode-state-writ
 
 Consequently, the lookup on each of these particular setter paths falls in the existing 16-byte mode 2, 4 or 5 window. This conditional coverage does not close the complete `0x1A078` provider or prove a physical write, lookup or transmission. Other setters may supply different countdowns and selectors and an arbitrary low-byte mode; the one-shot conclusion does not apply to all entries.
 
+### Observed constant arguments to the general setter
+
+`0xD05C` turns `(a0,a1,a2)` into `[enable,mode,selector,countdown]=[1,low8(a0),low8(-a2),low8(a1)]`. The original instructions at identified direct calls or tail jumps supply the constants below; each site still has earlier guards and is not necessarily executed.
+
+| Call site | `(mode, countdown, selector)` |
+| --- | --- |
+| `0xA224`, `0xE6E8` | `(3, 1, 0)` |
+| `0xAC6C` | `(1, 1, 0)`, `(3, 1, 0)` or `(3, 2, 0)` |
+| `0xD528` | `(5, 10, 255)` |
+| `0xE1EA` | `(3, 15, 255)` |
+
+In particular, `a2=1` becomes selector 255 through `low8(-a2)`. If the state is never overwritten and every subsequent entry and lookup completes normally, these two selector-255 paths can perform 10 or 15 lookups in mode 5 or 3 respectively; the last clears enable, so an 11th or 16th entry returns unless re-enabled. This is a conditional control-flow inference, not a measured count, rate, transmission or feature, and does not cover indirect calls or other setters.
+
 ## Following the `0x14056` receive arguments
 
 In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a2,a2,-98` at `0x8A3E` compute `0x2000B9D8`. A separate PC-relative calculation at `0x8A12..0x8A1C` obtains the same base and writes a received byte at base plus counter. This supports identifying `a2` as the receive buffer; it is not a live RAM observation.
