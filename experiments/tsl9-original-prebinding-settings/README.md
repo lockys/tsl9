@@ -30,6 +30,12 @@ Flash program leaf `0x18EF2` 將 A2 改為 **256**，destination 低 8 bits 清�
 
 這補上另一條 **library binding 前可能發生的 Flash／global-enable 路徑**，但不證明 polling 終止、實體 Flash 成功提交、NVM 位址映射／容量、初始 BB/LLE enable／pending、實際 IRQ delivery 或非同步 alias 效應。
 
+## 寫入狀態與返回值的限制
+
+原 `0x9C0A..0x9C4A` 依序呼叫 unlock、向 `0x4002200C` 寫 `0x31`、erase、program 與 lock，沒有依這些呼叫的返回值作條件分支。`0x18EC4` 與 `0x18EF2` 的輪詢只檢查 `0x4002200C` 的 bit `0x01` 或 `0x02`；在已核對的這兩個完整 leaf 中，沒有讀取後測試其他狀態位。依 [WCH 暫存器定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h)，候選 FLASH_STATR 的 `0x04`／`0x10` 分別標為 programming error／write protection error，`0x20` 標為 end of operation。狀態位定義和指令的對照不代表實際發生錯誤，也不能只憑 polling 返回宣稱寫入成功。
+
+在原始控制流程及所有 callee 正常返回、暫存器未被非同步修改等條件下，兩個 leaf 將傳入目的地址的低八位清零，後續 lock 與 wrapper 沒有覆寫 `a0`；因此由 `0x13138` 此路徑正常返回時，`a0` 仍是數值 `0x08077A00`，不是經此路徑確認的成功／錯誤碼。這不代表其他 caller 或外部 ABI 必然採用此語義。[離線檢查器](check-flash-return-status.py)固定三段原始指令窗口；沒有操作硬體、執行目標或讀取排除區。
+
 ## 使用與狀態
 
 [設定 C/C++](../../src/native/startup/main_initializers.c) · [預設值／writer C/C++](../../src/native/startup/settings_defaults.c) · [Flash transaction C/C++](../../src/native/receive/ota_runtime.c) · [證據](evidence-v1.json) · [收據](verification-v2.json) · [摘要](summary.json)

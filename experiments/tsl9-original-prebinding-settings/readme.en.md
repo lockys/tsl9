@@ -30,6 +30,12 @@ Function0x9C0A uses its own32-byte frame. It clearsCSR0x800 mask0x88 at0x9C1A,ca
 
 This establishes another **conditional Flash/global-enable path before library binding**,not poll termination,physical Flash commit,NVM map/capacity,initial BB/LLE enable/pending,actual IRQ delivery or asynchronous alias closure.
 
+## Limits of write status and return value
+
+Original `0x9C0A..0x9C4A` calls unlock, writes `0x31` to `0x4002200C`, then calls erase, program and lock without conditional branches on their return values. Polls in complete leaves `0x18EC4` and `0x18EF2` test only bits `0x01` or `0x02` at `0x4002200C`; their checked bodies do not test other bits after reading status. The [WCH register definitions](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h) label candidate FLASH_STATR `0x04` as programming error, `0x10` as write protection error and `0x20` as end of operation. This static comparison neither establishes an actual error nor makes a completed poll proof of a successful write.
+
+If original control flow and all callees return normally and registers are not changed asynchronously, the two leaves clear the destination's low eight bits and neither the later lock nor wrapper overwrites `a0`. Thus on normal return through this `0x13138` path, `a0` remains numeric `0x08077A00`, not a success/error result established by the path. Other callers or external ABIs are not covered. The [offline checker](check-flash-return-status.py) pins three original instruction windows; it does not touch hardware, execute the target or read excluded regions.
+
 ## Use and status
 
 [Settings C/C++](../../src/native/startup/main_initializers.c) · [Defaults/writer C/C++](../../src/native/startup/settings_defaults.c) · [Flash transaction C/C++](../../src/native/receive/ota_runtime.c) · [Evidence](evidence-v1.json) · [Receipt](verification-v2.json) · [Summary](summary.json)
