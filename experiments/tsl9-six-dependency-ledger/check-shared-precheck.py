@@ -8,6 +8,7 @@ windows = (
     (0x82d2, 0xbc, '7a49eb89a2c698b0a9d4a97083329c2a12e200c1f27fbdadec16784a6edb0e30'),
     (0x838e, 0xb2, '1f0ea770b8556ae5d311cf5b4973faed6a2f4374bd3343f4ba1af06c66e35651'),
     (0x13ba6, 0x2c, '3a615f24a57973d9922fa9bb2d87eb80ef33d51d46121c9a9cb0f3a77a521e62'),
+    (0x13e0e, 0x8a, '5bdb6138205ebc523ef2a3d68d7524f10a6e5723910fc06462c2f6023a50455a'),
 )
 with image.open('rb') as f:
     for address, size, expected in windows:
@@ -22,6 +23,8 @@ if a != b or a != 0x2000c794:
     raise SystemExit('Precheck base addresses changed')
 if 0x13ba6 + 0x1fff9000 - 1040 != a + 2 or 0x13bae + 0x1fff9000 - 1050 != a:
     raise SystemExit('Type writer address relationship changed')
+if 0x13e10 + 0x1fff9000 - 1660 != a:
+    raise SystemExit('Flag writer base address changed')
 addresses = {a + 4*i + offset for i in range(2) for offset in (2, 3, 4, 5)}
 if not all(0x20004080 <= x < 0x2000c958 for x in addresses):
     raise SystemExit('Precheck fields leave reset-zero numerical range')

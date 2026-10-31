@@ -163,6 +163,10 @@ queue 在 `0x12CB0` 呼叫 `0x82D2`，只有返回 0 才可能繼續進 dispatch
 
 此函式自身沒有直接寫入兩項的 flag bytes `0x2000C798`／`0x2000C79C`；因此單次把 type 寫為 2 不足以證明該項符合全部條件。若設定確實仍是 reset 的全零狀態，輸入 `a0=0` 會命中第一項，但兩個 flag 仍為零；其他 writer、alias、重入及呼叫副作用依然未知。交叉檢查器已固定此函式的完整指令窗口。
 
+另一個已辨識入口 `0x13E0E..0x13E98` 使用相同的兩個 halfword／flag／type 數值位置。當完整 `a1=1` 且完整 `a0` 符合其中一個 unsigned halfword，它選擇第一個相符項，將該 flag 寫為 1、type 寫為 0。接著若以相同 `a0`、`a1=2` 呼叫前述 `0x13BA6`，且該 halfword 不是 sentinel `0xFFFE`、兩次間狀態不變及呼叫正常完成，該項便同時滿足兩個前置函式的三項啟用條件。順序重要：反向執行會由 `0x13E0E` 將 type 再清為 0。
+
+此入口在 `a1=2` 時會選第一個 sentinel 空項，寫入 `a0` 低 halfword，並清除該項 flag／type；其他 `a1` 路徑可對匹配項寫入 sentinel 並清除 flag／type。這些是局部靜態寫入，不證明呼叫順序實際可達、兩項全域初始化方式、任一 slot 或實機設定。[交叉檢查器](check-shared-precheck.py)已納入完整指令窗口。
+
 進一步追蹤 `0xFCB8` 之後的控制流：前段高 nibble 加 1 後，`0xFCE6` 還會再加 1；若接著讀得 `GP+289=2`，則 `0xFD1A` 在 `0xFCE6` 前再加一次。因此在 record 穩定且正常到達檢查碼呼叫前，offset 9 高 nibble 共增加 **2 次**，或在該特殊分支增加 **3 次**，各以四位元回繞；上段所述一次僅為 `0xFCB8` 的局部效果。
 
 `0xED00` 正常返回後，程式將結果寫到 record offset `length+2`，其中 length 是呼叫前記住的 offset 2 byte。若 length 為 7，此寫入會覆蓋 offset 9，故不能把上述增加值直接當作最後內容。這些是有界指令與位址運算；長度實際值、buffer 效果、呼叫返回和傳送均未實測。檢查器已加入相關窗口。
