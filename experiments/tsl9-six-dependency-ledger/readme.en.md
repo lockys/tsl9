@@ -175,6 +175,12 @@ On reaching `0xAF4C`, the original code reads byte `b` at input record offset 8 
 
 If the source is initially 0/1, input and memory are valid, the two calls return normally and no other write intervenes, these branches locally leave 1/0 respectively. If the passing branch sees an initial value of 2–255, it retains that nonzero value; this slice is not a Boolean normalizer for arbitrary bytes. These are narrow direct-address findings, not proof that indirect pointers, other encodings or asynchronous writers are absent. The field's product meaning and global index range remain unproved. The checker pins both instruction windows and enumerates the arithmetic condition for all 256 input bytes without target execution.
 
+#### Two identified record-dispatch entries
+
+At the normal `0x14D2E` entry, selector byte 1 directs the original relative jump table to `0x14D5E`, which reads an unsigned 16-bit value from record offset 0. In that dispatch tree, `0x0399` (921) leads to `0x152DC → 0xB036`, while `0x039B` (923) leads to `0x152E8 → 0xB05C`. Both wrappers first call `0x1069E`, which calls `0xED00` with the record and index 7 and compares the result with the byte at record offset 10. Only an equal result makes the wrapper continue and tail-jump to `0xAE0E`.
+
+`0xAE0E` retains the record pointer. For `0x039B`, it branches at `0xAE54` toward `0xAF4C`; for `0x0399`, offset 11 unequal to 1 also goes there, whereas offset 11 equal to 1 first enters different processing and cannot be assumed to update the source byte. These observations require a valid selector, record, dynamic length and stack; normal checksum/helper returns; preserved registers; and undisturbed memory. The two numbers are **comparisons inside the record**, not by themselves proof of physical CAN IDs, a source interface or particular vehicle functions. Other entries are not excluded. The [checker](check-counter-record-entry.py) pins bounded original instructions and the allowed table entry without executing the target.
+
 ### Two branches that do not read the counter table
 
 `0xA132` calls `0x81EE`, which directly reads byte `0x2000BED5`. At `0xA136..0xA158`, return value 1 selects the constant `1960` (`0x7A8`) for the common packet-field path; value 2 selects `2140` (`0x85C`) at `0xA1FC` before joining that path. Only other byte values read `GP+176` and look up `0x1AB48` at this entry, so the two fixed-value branches do not depend on that table or counter.
