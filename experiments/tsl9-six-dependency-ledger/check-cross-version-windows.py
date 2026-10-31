@@ -438,4 +438,12 @@ with reference.open('rb') as f:
         raise SystemExit('Mode flag getter address changed')
     if transfer_target(read_window(f,0xe6dc,4),0xe6dc)!=0xabfc or transfer_target(read_window(f,0xe6e8,4),0xe6e8)!=0xd05c:
         raise SystemExit('Mode flag getter-to-setter calls changed')
+    fallback=read_window(f,0x1316a,0x50)
+    if hashlib.sha256(fallback).hexdigest()!='2255cf4c1431ac6010a151365d28b685d289915a309178b2f95c0fe6047fda49':
+        raise SystemExit('Settings fallback instruction window changed')
+    settings=pcrel_target(0x13176,fallback[12:20],0x417,0x40413)
+    if settings!=record_base+228 or settings!=0x2000c29c or settings+112!=0x2000c30c:
+        raise SystemExit('Record and settings interval relationship changed')
+    if not (record_base<=0x2000c268 and 0x2000c26a<=settings and settings+12+4<=settings+112):
+        raise SystemExit('Mode flag and fallback copy ranges overlap')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
