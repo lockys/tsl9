@@ -421,4 +421,13 @@ with reference.open('rb') as f:
     variable=read_window(f,0x184aa,0x20)
     if hashlib.sha256(variable).hexdigest()!='5b161d1ecef63029d38139262560b8c6664628b6da15ebed116d119b568dd535':
         raise SystemExit('Variable record-index instruction window changed')
+    init=read_window(f,0x12d90,0x30)
+    if hashlib.sha256(init).hexdigest()!='b39e935a81cb5830ffdc7d9a2dca34b3fd8f96f756fab85c18a62016b0ea4776':
+        raise SystemExit('Record table initialization window changed')
+    if transfer_target(read_window(f,0x9274,4),0x9274)!=0x12d92:
+        raise SystemExit('Main initialization transfer changed')
+    if pcrel_target(0x12db6,init[0x26:0x2e],0x517,0x50513)!=record_base:
+        raise SystemExit('Record table fill destination changed')
+    if 228!=19*12 or not (record_base<=0x2000c268 and 0x2000c26a<=record_base+228):
+        raise SystemExit('Record table fill coverage changed')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
