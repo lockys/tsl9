@@ -605,6 +605,22 @@ expected_pairs={
     0xa14e:(0x1ab48,0x797,0x78793),
     0xcf4e:(0x1a078,0x797,0x78793),
 }
+# Conditional read windows must be backed by real positive DATA owners, not ABS aliases.
+data_owners=[o for o in plan['owners'] if o['info']==17 and o['bytes']>0]
+def require_owner(start,size,name):
+    found=[o for o in data_owners if o['original_PC']<=start and start+size<=o['original_PC']+o['bytes']]
+    if len(found)!=1 or found[0]['name']!=name:
+        raise SystemExit('Conditional read is not backed by expected DATA owner')
+for index in range(4):
+    require_owner(0x1ab48+2*index,2,'tsl9_input_counter_read_window_1ab48')
+for channel in range(4):
+    for state in range(2):
+        require_owner(0x1a638+6*(2*channel+state),6,'tsl9_sequence_compare_read_window_1a638')
+mode_owners=('tsl9_grid_read_data_pool_19ed8','tsl9_record_mode_read_window_1a088',
+             'tsl9_lookup_mode_row_2_1a098','tsl9_record_mode_read_window_1a0a8',
+             'tsl9_lookup_mode_row_4_1a0b8','tsl9_lookup_mode_row_5_1a0c8')
+for mode,name in enumerate(mode_owners):
+    require_owner(0x1a078+16*mode,16,name)
 for mode in ('c','cpp'):
     path=component/mode/'UNRESOLVED-STARTUP-EVENT-WORD-DATA.o'
     if hashlib.sha256(path.read_bytes()).hexdigest()!='93f2fefc4f0d7754e8d58a72967a9507ab4247915ac4af6989d4afc232a10046':

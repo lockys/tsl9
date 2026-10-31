@@ -19,6 +19,8 @@
 
 四個 DATA 引用的下一條指令均有 `PCREL_LO12_I` relocation，且各自指向同一 section 中高位指令的本地 anchor；兩種語言相同。以原 APP 各自允許的 `AUIPC + ADDI` 指令解碼，四組結果也分別是 `0x1A69C／0x1A638／0x1AB48／0x1A078`。這固定了連結時高低位配對與數值目標，但不提供那些資料的完整內容、所有讀取界限或實機記憶體有效性；其中 `0x1A69C` 只作目標數值，未讀取其四 bytes。
 
+**已存在的條件式 DATA 所有者。** 原位址 owner map 顯示，當 counter 為 0–3 時，四次各 2-byte 讀取皆完整落在 8-byte `tsl9_input_counter_read_window_1ab48`；當 channel 為 0–3 且 state 為 0／1 時，八次各 6-byte 比對窗口皆完整落在 48-byte `tsl9_sequence_compare_read_window_1a638`。mode 0–5 的六個 16-byte rows 也分別各由一個正長度 DATA owner 完整覆蓋：mode 0 位於 `tsl9_grid_read_data_pool_19ed8`，其餘為五個對應 row owner。這些是真實資料物件而非 ABS 數值，但不證明各索引全域必然落在上述範圍，也不把未解析 symbol 改綁成完整 provider；其他索引、間接存取與硬體相容仍未閉合。[檢查器](check-cross-version-windows.py)核對 owner 唯一性及 18 個完整窗口。
+
 ## 三個資料窗口的跨版本比對
 
 對已保存的 18 個候選 runtime（V4.0.49 至 V4.1.60）逐一搜尋允許讀取的範圍，V4.1.60 的 `0x1A638` 48-byte 序列窗口、`0x1AB48` 8-byte counter 窗口與 `0x1A078` 起 96-byte mode 0–5 窗口，在每個檔案各找到一處逐 byte 相符位置。這是**允許搜尋範圍內**的唯一性；排除區未搜尋，也未將檔案名稱視為硬體適用性證明。
