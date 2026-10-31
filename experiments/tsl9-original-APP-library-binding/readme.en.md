@@ -15,6 +15,14 @@ Initializer0x199E2 allocates96 bytes and builds64 configuration bytes atSP+16,di
 
 Both stores dominate the library call0x19AEC in its complete normal-return CFG. The original APP explicitly prepares nonnull callbacks. The six-byte MAC helper/copy avoids both fields;no physical MAC/UID values were read.
 
+### Candidate BLE memory pool and other RAM regions
+
+`0x19A3A..0x19A46` writes numeric `0x2000418C` at config offset 0 and `0x7000` (28,672) at offset 4. In the pinned [WCH BLE config definition](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.h), those fields are `MEMAddr` and `MEMLen`. If the installed ABI matches and later calls or aliases do not change the configuration, the passed candidate pool is `[0x2000418C,0x2000B18C)`. The later `0x19AD2..0x19ADC` checks a nonzero pointer and a size of at least `0x1000`; it does not check availability of the full physical RAM range.
+
+This numerical interval lies entirely in the original APP reset zero range `[0x20004080,0x2000C958)`. It follows the GP+384 slot2 pointer `0x20004180..0x20004184` and precedes the identified receive payload window `[0x2000B9D8,0x2000BDE8)` by `0x84C` bytes. This excludes numerical overlap with **those two identified ranges only**; it does not establish that other APP, DMA, stack or resident users avoid the pool.
+
+Under the existing WCH contiguous RAM examples, the pool extends beyond the 32 KiB range but fits the 48/64 KiB numerical ranges; the full reset and other known accesses impose higher requirements. This does not establish physical RAM configuration, pool initialization or complete ownership. The [static checker](check-ble-pool-bounds.py) verifies bounded original instructions and interval arithmetic without target execution or excluded-region reads.
+
 Candidate slot0x400A4 points to BLE_LibInit0x43C7E. After zero/copy64 into0x200031EC,call0x43D38 reads tsCB at+44 and stores its result halfword at baseline0x200031A4. The monitor0x43EDC reads the same tsCB/rcCB words. **Matching installed ROM,completed copy64,valid nonoverlapping memory and callee/IRQ/alias contracts** conditionally connect these calls to existing APP C/C++. Live pointers remain unobserved;opaque-call effects are not fully closed.
 
 rcCB0x197B8 tails withA0=3 and no own frame to existing calibration worker0x1929A..0x196C4. Its own frame is80 bytes. Signed DIV,polling and RMW remain original;calibration convergence and whole-program stack budget are unproved.

@@ -15,6 +15,14 @@
 
 兩個 store 在完整正常返回 CFG 中支配 `0x19AEC` 的 library call。原始設定明確使用非零 callback；MAC helper 的 6-byte 寫入與複製避開這兩個欄位，沒有讀取實機 MAC／UID 值。
 
+### 候選 BLE 記憶體池與其他 RAM 區間
+
+`0x19A3A..0x19A46` 將數值 `0x2000418C` 寫至 config offset 0，將 `0x7000`（28,672）寫至 offset 4。依固定版本 [WCH BLE config 定義](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.h)，這兩個欄位分別為 `MEMAddr` 與 `MEMLen`；若原機 ABI 相符且設定未被後續呼叫或 alias 改寫，傳入的候選記憶體池為 `[0x2000418C,0x2000B18C)`。後續 `0x19AD2..0x19ADC` 檢查 pointer 非零與長度至少 `0x1000`，不檢查整段實際 RAM 可用性。
+
+此數值區間完整位於原 APP reset 的 `[0x20004080,0x2000C958)` 清零範圍。它位於 GP+384 的 slot2 指標 `0x20004180..0x20004184` 之後，也在已識別的接收 payload 窗口 `[0x2000B9D8,0x2000BDE8)` 之前，相距 `0x84C` bytes；這只排除**這兩個已識別區間**的數值重疊，不證明整個池子沒有其他 APP、DMA、stack 或 resident 使用者。
+
+依既有 WCH 連續 RAM 範例，池子超出 32 KiB 範圍，但位於 48／64 KiB 的數值範圍；完整 reset 與其他已知存取仍有更高要求。這不是實機記憶體配置、pool 初始化成功或完整所有權的證明。[靜態檢查器](check-ble-pool-bounds.py)核對固定原始指令及區間算術，不執行目標或讀取排除區。
+
 候選 slot `0x400A4` 指向 BLE_LibInit `0x43C7E`。其 zero／copy64 至 `0x200031EC` 後，`0x43D38` 讀 config+44 呼叫 tsCB，並將低 halfword 寫入 baseline `0x200031A4`。前輪 monitor `0x43EDC` 讀相同 tsCB／rcCB words。因此，在**實機 ROM 相符、copy64 完成、有效不重疊記憶體、callee／IRQ／alias 條件成立**時，可把這些間接呼叫對應到既有 APP C/C++。尚未觀測實機 RAM 中的指標，原 opaque calls 的作用並未全部封閉。
 
 rcCB `0x197B8` 以 A0=3、無自身 frame 尾跳既有 `0x1929A..0x196C4` 校準 worker；worker 自身 frame 為 80 bytes，保留原始 signed DIV／輪詢／RMW，沒有宣稱校準收斂或全程 stack 上限。
