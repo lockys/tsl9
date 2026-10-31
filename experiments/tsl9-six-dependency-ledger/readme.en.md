@@ -163,6 +163,12 @@ At `0xA1A8` the code calls `0xED00` with `a0=SP+4` and `a1=7`. The complete func
 
 This is static data flow for the lookup path, conditional on valid pointers and stack, no alias/asynchronous overwrite and normal callee execution. The index and resulting field have conservative byte and 12-bit widths respectively; neither proves the global index is 0–3 or that four entries constitute the complete table.
 
+### Source byte triggering a counter update
+
+`0x81F8` reads an unsigned byte at PC-relative address `0x2000BEEA`. At `0xA0E2..0xA0FA`, if it differs from the saved byte at `GP+170`, the code first stores the new value there and then sets `GP+176` to `(old+1)&3`. When equal it branches elsewhere and does not perform this update. The source has only the conservative byte-width range; its address or value does not establish product meaning, and other writers are not excluded.
+
+`0x2000BEEA`, `GP+170` and `GP+176` are all in the checked reset zero range. If reset completed, GP is `0x20004000`, no other path has changed the saved value or counter before this comparison, and no interference occurs during it, those two values start at zero. The source byte may change after reset: an observed zero does not increment here; an observed nonzero value causes this update to set the counter to 1. This constrains only this local update, not whether a later lookup occurs, whether the counter stays unchanged afterward or whether its global index is always 0–3. The [checker](check-counter-source-byte.py) pins original instruction windows and address arithmetic without target execution or excluded-region reads.
+
 ### Two branches that do not read the counter table
 
 `0xA132` calls `0x81EE`, which directly reads byte `0x2000BED5`. At `0xA136..0xA158`, return value 1 selects the constant `1960` (`0x7A8`) for the common packet-field path; value 2 selects `2140` (`0x85C`) at `0xA1FC` before joining that path. Only other byte values read `GP+176` and look up `0x1AB48` at this entry, so the two fixed-value branches do not depend on that table or counter.
