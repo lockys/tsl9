@@ -31,6 +31,7 @@ WINDOWS = {
     (0x8e88, 0xa): 'c7303f11d55cf0fa04ad919ece254a5fd120c49041e5696c712ac82604f1e254',
     (0x8fb8, 0x18): '1f667a31ede0bbdaafd4cf4bdf21959115cf586d56a55dd6489c854e9c0066f6',
     (0x199e2, 0x36): '1aed8b9dbcf82274b0bdc4fad14dfffbb39cfe406e286e240eea85c1dd215598',
+    (0x8ea8, 0x10): 'b89ac1c8a48676a461b32c20f6905ee5e3de5331c9c71b8b015fed7e541b3bd5',
 }
 EXPECTED = {
     0xae54: 'bne a4, a5, 0xaf4c', 0xae5e: 'bne a4, a5, 0xaf4c',
@@ -81,6 +82,7 @@ EXPECTED = {
     0x199fa: 'li a2, 21', 0x199fc: 'auipc a1, 0x1',
     0x19a00: 'addi a1, a1, 288', 0x19a04: 'jalr a5',
     0x19a06: 'bnez a0, 0x19a0a', 0x19a08: 'j 0x19a08',
+    0x8ea8: 'jal ra, 0x199e2', 0x8eac: 'jal ra, 0x19b16',
 }
 
 def disassemble(tool, base, data):
