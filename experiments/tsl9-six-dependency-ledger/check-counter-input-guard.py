@@ -29,4 +29,14 @@ if (accepted[0] - center, accepted[-1] - center) != (-89, 89):
     raise SystemExit('Unexpected input window symmetry')
 if [value - center for value in outputs] != [150, 180, -150, -180, -90, 90]:
     raise SystemExit('Unexpected output symmetry')
+if image.stat().st_size + 0x8000 != 0x1ac00:
+    raise SystemExit('Unexpected APP image end')
+inside = [i for i in range(256) if 0x1ab48 + 2 * i + 2 <= 0x1ac00]
+if inside != list(range(92)) or 0x1ab48 + 2 * 4 != 0x1ab50:
+    raise SystemExit('Unexpected counter-index image boundaries')
+inverse = [x for x in range(4096) if ((x + center) & 0xfff) in accepted]
+if inverse != list(range(90)) + list(range(4007, 4096)):
+    raise SystemExit('Unexpected low-12-bit inverse guard')
+if sum(1 for x in range(65536) if ((x + center) & 0xfff) in accepted) != 2864:
+    raise SystemExit('Unexpected halfword inverse guard count')
 print('Counter input guard and conditional values verified; target not executed.')

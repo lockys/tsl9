@@ -339,6 +339,8 @@ After record-by-record verification, neither saved V1.31 nor V1.40 candidate Int
 
 ## Local use of the `0x1AB48` lookup result
 
+For byte-width indices and the supplied APP half-open interval `[0x8000,0x1AC00)`, indices **0–3** address the reconstructed eight bytes; **4–91** address halfwords numerically inside the image but not established as entries of this table; **92–255** address halfwords numerically beyond the image. This does not prove any index reachable, memory outside the image unreadable, or an original table of 92 entries; no additional entries are read or generated. The [checker](check-counter-input-guard.py) uses file size and the address formula for these boundaries.
+
 At `0xA146..0xA158`, the code uses `uint8(GP+176)` as an index and reads unsigned 16-bit value `x` from `0x1AB48+2*index`. On this path, `0xA15C..0xA166` computes `y=(x+0x802)&0xFFFF`; `0xA16C` writes its low 8 bits at `SP+10`, while `0xA168..0xA18E` writes bits 8–11 into the low nibble at `SP+9`, preserving its high nibble. Together these fields encode `(x+0x802)&0xFFF`. Relative to the later buffer start `a0=SP+4`, these are offset 6 and the low nibble of offset 5.
 
 At `0xA1A8` the code calls `0xED00` with `a0=SP+4` and `a1=7`. The complete function initializes its sum from the first two buffer bytes, adds data starting at offset 3 for the byte length at offset 2, skips data index 7 and retains the low 8 bits. At `0xA1AC` the returned byte is stored to `SP+14`, which is buffer offset 10 / data index 7, then `0xA1B2` calls `0x12A08`. With a valid buffer, no interference and normal completion, this supports interpreting the result as an additive checksum; it does not establish protocol, units, actual transmission or product feature. See the [existing checksum comparison](../tsl9-feature-callback/readme.en.md).
@@ -393,6 +395,8 @@ The original BIN's four little-endian halfwords at `0x1AB48..0x1AB50` match the 
 The final two entries are loaded as unsigned halfwords; the table reports original bits and actual low-12-bit arithmetic only, not a signed physical quantity, unit or vehicle feature. These four conditional entries do not prove other indices unreachable or resolve the provider.
 
 ### The 12-bit input guard before lookup
+
+Without an additional constraint on an unknown halfword `x`, `(x+0x802)&0xFFF` can take every 12-bit value. Its output is in the same numerical guard range 1961–2139 exactly when the low 12 bits of `x` are **0–89 or 4007–4095**; there are 2,864 such 16-bit values. This arithmetic preimage does not show unknown data has those values or that any record loops back through the guard. The four known entries lie outside this preimage under the stated conditions; their results cannot be generalized to unknown indices.
 
 Original `0xA114..0xA12E` constructs 12-bit `v` from the current stack record as `((low nibble of SP+9)<<8) | *(SP+10)`. It calculates `(v-1961)&0xFFFF` and branches to `0xA1E8` if that unsigned result exceeds 178, bypassing this `0xA132` state selection and the `0x1AB48` lookup. Because `v` itself is 12-bit, the exact values passing this guard are **1961–2139 inclusive**. Other upstream conditions still apply; not every record in that range is established to reach the lookup.
 
