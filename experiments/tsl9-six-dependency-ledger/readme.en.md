@@ -54,3 +54,9 @@ WCH's [CanTxMsg](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peri
 `0xA062` calls `0x1069E`, which at `0x106A8` calls `0xED00` with excluded index 7 and then only compares the result with input offset 10, returning 1 on equality. `0xA066` exits on zero. The function itself does not compare the length; `0xED00` treats the byte at offset 2 as a 0–255 loop length and does not add that length byte itself.
 
 For every byte length 0–255, in a **sufficiently long readable synthetic buffer**, set offset 2 to that length and all other bytes to zero: the sum and offset 10 are both zero, satisfying the checksum relation mathematically. This disproves the idea that checksum equality alone implies length at most 8; it is not execution of the original program and does not prove those records pass other guards or reach the later copy. Memory consistency between the calls remains unknown.
+
+### One upstream record dispatch entry
+
+The in-scope dispatcher reads a halfword from record `s0+0`. In the corresponding dispatch tree, `0x14F18..0x14F1C` compares it with **880 / `0x370`** and branches on equality to `0x152D0`; that block moves `s0` to `a0`, restores its own frame, and tail-jumps to `0xA054` at `0x152D8`. Thus `0x370` is the compared record value for **this path**, not proof of all entries or the data source. The tree also depends on the earlier `0x829E` result and other branches; no comparison there directly establishes the offset-2 length.
+
+Together with the subsequent WCH CAN1 interface comparison, `0x370` is a message identifier lead to validate. Without an actual CAN capture, complete original-device ingress or feature evidence, it is not an established CAN ID, device behavior or length guarantee. See the [feature dispatcher](../tsl9-feature-dispatch/readme.en.md).
