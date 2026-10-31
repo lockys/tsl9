@@ -169,9 +169,14 @@ for ident,version,length,target,_,_ in cases:
                 if address==target:
                     displacement=pointer>>20
                     displacement-=4096 if displacement&2048 else 0
-                    hits.append(displacement)
-    if hits!=[different_offsets.get(ident,332)]:
+                    hits.append((lo+pos,displacement))
+    if len(hits)!=1 or hits[0][1]!=different_offsets.get(ident,332):
         raise SystemExit('Cross-version sequence GP displacement changed: '+ident)
+    with path.open('rb') as f:
+        if read_window(f,hits[0][0]+0x32,0x3a)!=patterns['sequence_code'][0x40:0x7a]:
+            raise SystemExit('Cross-version sequence match normalization changed: '+ident)
+        if read_window(f,hits[0][0]+0x6e,8)!=patterns['sequence_code'][0x7c:0x84]:
+            raise SystemExit('Cross-version sequence mismatch reset changed: '+ident)
 entries=(0x1842c,0x1844a,0x1843c,0x183fe,0x1843a,0x1859a,
          0x18536,0x185e0,0x18634,0x1857c,0x185ca,0x18624,
          0x186d8,0x18720,0x186ca,0x18672,0x186ac,0x186aa)
