@@ -15,6 +15,8 @@ This ledger combines current original-address C/C++, existing original BIN instr
 
 Register values, address formulas and conditional bounds do not establish reachability or the complete original C declarations. Addresses from different versions are not interchangeable. Installed ROM, RAM, IRQ and OTA compatibility are not demonstrated.
 
+**Six actual references in source objects.** In both retained C and C++ relocatable components and the original-coordinate owner map, each of the six undefined symbols has one direct relocation: `0x40000` and `0x14056` use RISC-V `JAL` relocations at original coordinates `0x18730` and `0x8A48`; DATA symbols `0x1A69C/0x1A638/0x1AB48/0x1A078` use `PCREL_HI20` at `0x131AA/0x12036/0xA14E/0xCF4E`, respectively. These are direct symbol references in the source object; paired low relocations can target local labels, so one reference does not imply a one-instruction data access. Numeric or pointer-based uses elsewhere are not excluded, and completeness, installed ABI and reachability remain unproved. The [checker](check-cross-version-windows.py) verifies both language ELFs, unique owners and relocation types without reading excluded APP bytes.
+
 ## Cross-version comparison of three data windows
 
 In each of 18 saved candidate runtimes, V4.0.49 through V4.1.60, the permitted search regions contain one byte-for-byte match each for the V4.1.60 48-byte sequence window at `0x1A638`, eight-byte counter window at `0x1AB48`, and 96-byte mode 0–5 window starting at `0x1A078`. Uniqueness is **within the permitted search regions**; excluded regions were not searched, and filenames do not prove hardware applicability.

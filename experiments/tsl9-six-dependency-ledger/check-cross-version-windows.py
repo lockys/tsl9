@@ -1,5 +1,6 @@
 """Compare three permitted data windows across saved local candidate runtimes."""
 import hashlib
+import json
 import runpy
 from pathlib import Path
 
@@ -582,4 +583,36 @@ with reference.open('rb') as f:
                 address_candidates.append((start+at,value))
 if data_words!=991 or address_candidates:
     raise SystemExit('Selected aligned data-word address candidates changed')
+# Bind every genuine undefined symbol to its source-object relocation and original owner.
+source_reader=root/'experiments/tsl9-resident-root-chain-callees/elf_reader-v7.py'
+layout_map=root/'experiments/tsl9-original-layout/build/event-word-table-data-v1/c/layout-map.json'
+component=root/'experiments/tsl9-event-word-table-integration/build/component-v1'
+for path,digest in ((source_reader,'309ee86cd2d967e40fa29cd34a9ff420f9b5803c4c3931dfd93eec75a7e2a06c'),(layout_map,'1905c36e2d059e14674dd054430c8049da77c53a4eabbf56d3ef9aa981a2ac71')):
+    if hashlib.sha256(path.read_bytes()).hexdigest()!=digest: raise SystemExit('Source relocation input changed')
+Reader=runpy.run_path(str(source_reader))['ELF']
+plan=json.loads(layout_map.read_bytes()); owners={o['name']:o for o in plan['owners']}
+expected_imports={
+    'tsl9_boot_resident_40000':(0x18730,17),
+    'tsl9_incoming_external_14056':(0x8a48,17),
+    'tsl9_settings_default_data_1a69c':(0x131aa,23),
+    'tsl9_registered_callbacks_static_data_1a638':(0x12036,23),
+    'tsl9_input_state_decoders_static_data_1ab48':(0xa14e,23),
+    'tsl9_record_field_transitions_static_data_1a078':(0xcf4e,23),
+}
+for mode in ('c','cpp'):
+    path=component/mode/'UNRESOLVED-STARTUP-EVENT-WORD-DATA.o'
+    if hashlib.sha256(path.read_bytes()).hexdigest()!='93f2fefc4f0d7754e8d58a72967a9507ab4247915ac4af6989d4afc232a10046':
+        raise SystemExit('Source component changed')
+    obj=Reader(path)
+    imports={s['index']:s['name'] for s in obj.symbols if s['section']==0 and s['name']}
+    if set(imports.values())!=set(expected_imports): raise SystemExit('Six source imports changed')
+    for index,name in imports.items():
+        refs=[r for r in obj.relocations if r['symbol']==index]
+        if len(refs)!=1 or refs[0]['addend']!=0: raise SystemExit('Direct symbol relocation count changed')
+        ref=refs[0]
+        matches=[s for s in obj.symbols if s['section']==ref['section'] and s['size']>0 and s['value']<=ref['offset']<s['value']+s['size']]
+        if len(matches)!=1 or matches[0]['name'] not in owners: raise SystemExit('Relocation owner not unique')
+        owner=matches[0]
+        pc=owners[owner['name']]['original_PC']+ref['offset']-owner['value']
+        if (pc,ref['type'])!=expected_imports[name]: raise SystemExit('Original relocation coordinate or type changed')
 print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')

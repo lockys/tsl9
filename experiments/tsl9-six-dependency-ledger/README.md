@@ -15,6 +15,8 @@
 
 上述 register、位址公式與條件範圍不等於可達性或完整原始 C 宣告。不同版本的地址不能直接互換；目前沒有實機 ROM、RAM、IRQ 或 OTA 相容證據。
 
+**來源物件的六個實際引用。** 對既有 C 與 C++ 可重定位元件及原位址 owner map 核對，六個未解析 symbol 各有一筆直接 relocation：`0x40000` 與 `0x14056` 分別在原座標 `0x18730`、`0x8A48` 使用 RISC-V `JAL` relocation；四個 DATA symbol `0x1A69C／0x1A638／0x1AB48／0x1A078` 分別在 `0x131AA／0x12036／0xA14E／0xCF4E` 使用 `PCREL_HI20`。這些是來源物件中的直接 symbol 引用；配對的低位 relocation 可指向本地標籤，不應誤以為資料引用只有一條指令。此結果不排除透過數值、指標或其他程式間接使用，也不證明資料完整、實機 ABI 或可達性。[檢查器](check-cross-version-windows.py)核對兩種語言的實際 ELF、唯一 owner 與 relocation，不讀排除的 APP bytes。
+
 ## 三個資料窗口的跨版本比對
 
 對已保存的 18 個候選 runtime（V4.0.49 至 V4.1.60）逐一搜尋允許讀取的範圍，V4.1.60 的 `0x1A638` 48-byte 序列窗口、`0x1AB48` 8-byte counter 窗口與 `0x1A078` 起 96-byte mode 0–5 窗口，在每個檔案各找到一處逐 byte 相符位置。這是**允許搜尋範圍內**的唯一性；排除區未搜尋，也未將檔案名稱視為硬體適用性證明。
