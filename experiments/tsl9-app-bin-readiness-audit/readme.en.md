@@ -2,6 +2,8 @@
 
 [繁體中文](README.md) · [Project](../../readme.en.md) · [Checker](check-v1.py) · [Actual report](report-v1.json)
 
+**Historical snapshot:** This page and its frozen report describe the 162-source revision, not the latest counts. The newer [164-source integration and readiness receipt](../tsl9-event-word-table-integration/README.md) records 73,538 of 76,800 bytes, 3,262 bytes uncovered, and six unresolved APP providers. Both figures describe static original-address coverage, not functional completion; neither establishes flashable reconstructed firmware.
+
 **Not ready:the retained diagnostic ELF is not a flashable BIN.** This audit replays the formal162-source original-coordinate evidence and inspects actual C/C++ objects,ELFs and frozen receipts. It adds no firmware bytes and executes no target.
 
 |Gate|Current actual evidence|

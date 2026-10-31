@@ -2,6 +2,8 @@
 
 [English](readme.en.md) · [專案](../../README.md) · [檢查器](check-v1.py) · [實際報告](report-v1.json)
 
+**歷史快照提示：**本頁及其凍結報告記錄 162 份來源時的結果，不是最新統計。較新的[164 份來源整合與 readiness 收據](../tsl9-event-word-table-integration/README.md)記錄 73,538／76,800 bytes、尚缺 3,262 bytes，且六個 APP provider 仍未解析。兩者都是原位址靜態覆蓋，並非功能完成率；沒有證明重建韌體可刷寫。
+
 **目前未就緒，不能把既有診斷ELF當成可刷入BIN。** 本輪重播正式162份來源的原位址證據，讀取實際C/C++物件、ELF與固定收據；沒有新增韌體bytes或執行目標。
 
 |門檻|目前實際證據|
