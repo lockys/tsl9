@@ -35,6 +35,8 @@
 
 對 18 份檔案的允許搜尋區，進一步在每個 2-byte 邊界檢查所有可能解碼為標準 32-bit `SB／SH／SW`、base 為 GP 且寫入範圍涵蓋該版 counter byte 的位置：每份恰有上述兩個 byte store，沒有其他符合的候選。這種掃描也可能把資料或指令中間位置當成候選；結果不涵蓋排除區、非標準指令、由其他暫存器間接指向 counter 的寫入或 DMA／中斷，因此不能當作完整 writer 封閉性證明。[檢查器](check-cross-version-windows.py)比對候選位址與兩個更新骨架，不執行 target。
 
+每份候選的允許區域也各有一處與 V4.1.60 `0xA37C..0xA38E` 相同的間接呼叫骨架：新讀槽 `0x40048`，以目的 `GP+(counter offset)-4`、填充值 0、長度 5 尾跳。若該 slot 確實是已分析的候選 byte-fill 函式，且指標有效、沒有 alias／干擾並正常完成，此呼叫會把包含 counter 在內的五 bytes 清零，因而不破壞上述條件式 0–3 範圍。這不是其他間接 writer 的完整清單，也不證明該槽在實機的身分或此呼叫實際發生。[檢查器](check-cross-version-windows.py)核對各版呼叫編碼和 GP 位移，未執行 target。
+
 ## `0x40000` 候選啟動的 seed 複製
 
 固定 V1.31 候選中，`0x6DEAA..0x6DEB6` 逐 word 把 `[0x40280,0x402B0)` 複製到 `[0x20000010,0x20000040)`；在複製正常完成且來源／目的符合該候選映射時，這包含後續 word-copy helper 的 RAM 指令。控制接著經 `0x6DEBA → 0x6DE0C`，在 `0x6DE4A..0x6DE4E` 呼叫 `0x20000010`。兩段固定原始窗口中沒有 `FENCE.I`，因此在這條已辨識路徑的最後 seed store 與首次執行 RAM helper 之間，沒有看到明確的標準 `FENCE.I`。

@@ -266,4 +266,28 @@ for number,(ident,version,length,_,_,_) in enumerate(cases):
         raise SystemExit('Cross-version masked counter stores changed: '+ident)
     if direct!=sorted((pc+8+skip,displacement,1) for pc,skip in hits):
         raise SystemExit('Additional direct standard GP-relative counter store candidate: '+ident)
-print('18 candidates: reset bounds, two masked updates and direct standard GP store candidates verified. Excluded regions not read; target not executed.')
+with reference.open('rb') as f:
+    clear_pattern=read_window(f,0xa37c,18)
+if clear_pattern!=bytes.fromhex('b707040003a38704154681451385c10a0283'):
+    raise SystemExit('Reference counter-clear call changed')
+for number,(ident,version,length,_,_,_) in enumerate(cases):
+    path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
+    expected=(184 if number<8 else 176)-4
+    hits=[]
+    with path.open('rb') as f:
+        for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,base+length)):
+            data=read_window(f,lo,hi-lo)
+            offset=0
+            while True:
+                pos=data.find(clear_pattern[:12],offset)
+                if pos<0:
+                    break
+                offset=pos+1
+                if pos+18>len(data) or data[pos+16:pos+18]!=clear_pattern[16:18]:
+                    continue
+                addi=int.from_bytes(data[pos+12:pos+16],'little')
+                if addi&0xfffff==0x18513 and addi>>20==expected:
+                    hits.append(lo+pos)
+    if len(hits)!=1:
+        raise SystemExit('Candidate counter clear call changed: '+ident)
+print('18 candidate data/consumers, reset bounds, direct counter updates and indirect five-byte clear calls verified. Excluded regions not read; target not executed.')
