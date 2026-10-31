@@ -17,6 +17,11 @@
 
 ### 候選 BLE 記憶體池與其他 RAM 區間
 
+在上一項初始幾何、兩個 free 節點和 sentinel 均正確且沒有其他配置的前提下，`0x20000040` 候選配置器檢查的是**單一節點**是否足夠，不是將兩個 payload 大小相加。對原始請求 `1..65532` 且第二參數非零，最大初始連續 payload 為 **27,600 bytes**；27,601 經 4-byte 對齊變成 27,604，超過兩個初始節點各自的大小。若走到串列末端、候選失敗 callback 未設定或正常返回，該 helper 走返回 0 的路徑，沒有在 callback 後重新搜尋。
+
+這只是以[候選配置器](../tsl9-resident-heap-core/README.md)和前述 V1.31 初始化推算的條件式邊界；實機 resident、記憶體、串列、callback、並行修改與實際最大配置量均未驗證。大於 65,532 的輸入另涉及 16-bit 回繞，不能套用此上限。檢查器固定兩份候選來源並驗算對齊與幾何，沒有執行 allocator 或設備。
+
+
 以原 APP 傳入的 `MEMAddr=0x2000418C`、`MEMLen=0x7000` 代入[既有 V1.31 heap 初始化公式](../tsl9-resident-heap-initialization/README.md)，第一節點為 `0x200043AC`、第二節點為 `0x200045AC`、sentinel 為 `0x2000B184`。依該候選初始化的 8-byte header 與長度欄位，兩筆初始 payload 數值分別為 **504** 與 **27,600 bytes**，合計 28,104 bytes；池開頭另有 544 bytes，兩筆 header 加 sentinel 共 24 bytes。
 
 這是原 APP 設定和**V1.31 候選**初始化程式的條件式交叉推算：需實機 resident 與候選相符、設定正確複製、位址／記憶體有效、初始化正常完成且無重入或覆寫。它不證明實際可配置容量、池子所有權、V1.40 使用相同全域位址或實機已啟動。[檢查器](check-ble-pool-bounds.py)固定 APP 指令窗口與候選來源，檢查數值範圍；沒有執行目標。

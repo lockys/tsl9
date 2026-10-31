@@ -17,6 +17,11 @@ Both stores dominate the library call0x19AEC in its complete normal-return CFG. 
 
 ### Candidate BLE memory pool and other RAM regions
 
+Given the initial geometry, two correctly initialized free nodes and sentinel, and no intervening allocation, candidate allocator `0x20000040` tests whether an **individual node** is large enough; it does not add the two payload sizes for one request. For original requests `1..65532` with a nonzero second argument, the largest initial contiguous payload is **27,600 bytes**; 27,601 aligns to 27,604, exceeding either initial node. If traversal reaches the sentinel and the candidate failure callback is absent or returns normally, the helper follows the zero-return path without retrying after the callback.
+
+This is a conditional boundary inferred from the [candidate allocator](../tsl9-resident-heap-core/readme.en.md) and V1.31 initialization above. The installed resident, memory, list, callback, concurrent changes and actual maximum allocation remain unverified. Inputs above 65,532 can wrap during 16-bit alignment and do not obey this simple bound. The checker pins both candidate sources and verifies alignment and geometry; it executes neither the allocator nor a device.
+
+
 Substituting the APP's `MEMAddr=0x2000418C` and `MEMLen=0x7000` into the [existing V1.31 heap-initialization formula](../tsl9-resident-heap-initialization/readme.en.md) gives first node `0x200043AC`, second node `0x200045AC`, and sentinel `0x2000B184`. Using the candidate's eight-byte headers and length fields, the two initial payload sizes are **504** and **27,600 bytes**, totaling 28,104 bytes; 544 bytes precede the first node and the two headers plus sentinel occupy 24 bytes.
 
 This cross-check combines APP configuration with the **V1.31 candidate** initializer and requires a matching installed resident, correctly copied configuration, valid addresses/memory, normal initialization and no reentry or overwrite. It does not establish actual allocatable capacity, pool ownership, identical V1.40 global addresses or device startup. The [checker](check-ble-pool-bounds.py) pins APP instruction windows and candidate source, and verifies numerical ranges without executing the target.

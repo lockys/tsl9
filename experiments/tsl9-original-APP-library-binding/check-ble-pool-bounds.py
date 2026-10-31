@@ -34,4 +34,10 @@ if (first, second, sentinel, payloads) != (0x200043ac, 0x200045ac, 0x2000b184, (
     raise SystemExit('Unexpected candidate heap geometry')
 if sum(payloads) != end - start - 544 - 24:
     raise SystemExit('Candidate heap accounting mismatch')
+allocator = root / 'experiments/tsl9-resident-heap-core/resident_heap_core.c'
+if hashlib.sha256(allocator.read_bytes()).hexdigest() != '467f9ba18a98df8ab6bfb6964ec16c0a09deaed0cdfa8c6518f987e67ceb73bc':
+    raise SystemExit('Candidate heap allocator source changed')
+aligned = lambda n: ((n + 3) & 0xffff) & 0xfffc
+if (max(payloads), aligned(27600), aligned(27601)) != (27600, 27600, 27604):
+    raise SystemExit('Unexpected candidate contiguous-block boundary')
 print('BLE pool instruction windows and RAM bounds verified; target not executed.')
