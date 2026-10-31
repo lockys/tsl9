@@ -682,4 +682,30 @@ for ident,version,length,*_ in cases:
             raise SystemExit('V4.1.50 full counter path changed')
     if found != ([expected_updates[ident]] if ident in expected_updates else []):
         raise SystemExit('Counter update fragment matches changed: '+ident)
-print('18 candidate data/consumers and counter-update fragments verified. Excluded regions not read; target not executed.')
+# Preserve the compressed branch opcode/register while allowing its displacement.
+relaxed_updates = dict(expected_updates, **{'2869':0xa04a})
+branch_targets = {}
+for ident,version,length,*_ in cases:
+    path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
+    found=[]
+    with path.open('rb') as f:
+        for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,base+length)):
+            data=read_window(f,lo,hi-lo)
+            offset=0
+            while True:
+                position=data.find(counter_update[:16],offset)
+                if position<0: break
+                offset=position+1
+                if position+18>len(data): continue
+                branch=int.from_bytes(data[position+16:position+18],'little')
+                if branch & 0xe383 != int.from_bytes(counter_update[16:18],'little') & 0xe383: continue
+                pc=lo+position+16
+                imm=((branch>>12&1)<<8)|((branch>>10&3)<<3)|((branch>>5&3)<<6)|((branch>>3&3)<<1)|((branch>>2&1)<<5)
+                if imm & 256: imm-=512
+                found.append(lo+position)
+                branch_targets[ident]=pc+imm
+    if found != ([relaxed_updates[ident]] if ident in relaxed_updates else []):
+        raise SystemExit('Counter update branch-variation matches changed: '+ident)
+if (branch_targets['2869'],branch_targets['2966']) != (0xa134,0xa1d6):
+    raise SystemExit('Counter branch destinations changed')
+print('18 candidate data/consumers and counter-update branch variations verified. Excluded regions not read; target not executed.')
