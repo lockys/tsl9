@@ -15,6 +15,12 @@ This ledger combines current original-address C/C++, existing original BIN instr
 
 Register values, address formulas and conditional bounds do not establish reachability or the complete original C declarations. Addresses from different versions are not interchangeable. Installed ROM, RAM, IRQ and OTA compatibility are not demonstrated.
 
+## Cross-version comparison of three data windows
+
+In each of 18 saved candidate runtimes, V4.0.49 through V4.1.60, the permitted search regions contain one byte-for-byte match each for the V4.1.60 48-byte sequence window at `0x1A638`, eight-byte counter window at `0x1AB48`, and 96-byte mode 0–5 window starting at `0x1A078`. Uniqueness is **within the permitted search regions**; excluded regions were not searched, and filenames do not prove hardware applicability.
+
+For example, their V4.0.49 positions are `0x1A2FC / 0x1A7F4 / 0x19D3C` respectively; V4.1.50 and V4.1.60 use the reference addresses. The latter two also match byte-for-byte in the three pinned V4.1.60 sequence, counter and mode instruction windows. This supports local cross-version preservation, **not identical complete programs, call reachability, global index bounds or device compatibility**, and does not resolve the providers. The [checker](check-cross-version-windows.py) confines reads to permitted windows and does not execute the target.
+
 ## Candidate `0x40000` startup seed copy
 
 In the pinned V1.31 candidate, `0x6DEAA..0x6DEB6` copies words from `[0x40280,0x402B0)` into `[0x20000010,0x20000040)`; if the copy completes and the candidate mapping holds, this includes the RAM instructions for the subsequent word-copy helper. Control then follows `0x6DEBA → 0x6DE0C` and calls `0x20000010` at `0x6DE4A..0x6DE4E`. There is no `FENCE.I` in the two pinned original windows, so no explicit standard `FENCE.I` is observed between the final seed store and the first call to that RAM helper along this identified path.
