@@ -48,3 +48,9 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 `0xA0D4..0xA0E0` 將來源 `s3`、目的 `SP+4`、長度 12 傳給 `0x4004C` 間接槽；在槽為候選 copy 且呼叫正常返回等條件下，後續處理的最初 12-byte record 來自該輸入。`0x12A32` 重新讀取 record offset 2 作為 byte 長度，`0x12A46..0x12A4E` 將 `record+3`、該長度與 dispatcher 自身 `SP+23` 傳給另一個 fresh `0x4004C` 間接呼叫。本分支中沒有在這兩處之間看到本地長度上限檢查。
 
 WCH 的 [CanTxMsg](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_can.h) 定義 8-byte Data；`0x18CA4` 在選中 mailbox 的路徑固定讀取該欄位的 8 bytes。若兩次 indirect call 均為候選順向 copy、讀寫有效且沒有其他寫入：長度小於 8 時，dispatcher 複製不到 8 個資料 bytes；大於 8 時會超過該資料欄位。其 48-byte frame 的 saved S0 與 RA 分別在 `SP+40`、`SP+44`，從 `SP+23` 起算，長度至少 18／22 才分別觸及這些位置。這是**條件式位址分析**，不是實際越界、未初始化內容、可達輸入或安全漏洞的證明；原機槽身分、前置驗證、alias 與非同步行為仍未封閉，也不能藉此改寫或刷入韌體。
+
+### 呼叫前的 checksum 檢查不能單獨限制長度
+
+`0xA062` 呼叫 `0x1069E`；此函式在 `0x106A8` 以排除索引 7 呼叫 `0xED00`，然後僅比較回傳值與輸入 offset 10，結果相等才返回 1。`0xA066` 在返回 0 時離開。這個函式本體沒有長度比較；`0xED00` 將 offset 2 當作 0–255 的迴圈長度，並不把長度 byte 自身加入加總。
+
+對每個 byte 長度 0–255，在**足夠長且可讀的合成 buffer**中，令 offset 2 為該長度、其餘 bytes 全為零，則加總與 offset 10 均為零，數學上可滿足此 checksum 條件。這否定「checksum 相等本身可證明長度不超過 8」，但不是在原程式中執行測試、也不證明這些記錄可通過其他 guard 或可到達後續 copy；兩次呼叫之間記憶體一致性仍未知。
