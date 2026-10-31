@@ -150,6 +150,12 @@ IRQ `0x12C32` passes `SP+12` as the structure base in a 32-byte frame, making DL
 
 Exhaustively enumerating `v=0..255`, the equal branch leaves only 0 or 1 after normal completion: `v=0` yields 1, `v=255` wraps to 0, and all others become 0 after the second store. The unequal branch stores 0. This is a **single completed local transition**, conditional on valid memory, correct `s5`/`s6`/channel relationship, normal indirect call and path completion, and no alias/IRQ/DMA/reentrant overwrite. When `t>1`, that value exists transiently between `0x12072` and `0x12090`. The first lookup precedes normalization, and the two state reads can differ. This does not establish that each lookup index is 0/1, absence of intermediate states or a global state bound. See the [existing sequence analysis](../tsl9-sequence-pattern-data/readme.en.md).
 
+### Distinguishing the four pattern pairs
+
+The 48 original bytes at `0x1A638..0x1A668` match the [reconstructed data](../../src/native/receive/sequence_pattern_data.c). For each channel, the state 0/1 six-byte patterns begin `02 00`/`03 00` and share their last four bytes; those four-byte suffixes differ across all four channels. Thus, provided state is 0/1, the candidate `0x4003C` six-byte equality contract holds and input remains stable, all eight patterns are pairwise distinct and the same six-byte input cannot match two groups at once.
+
+Specifically, if all four states begin at 0 and two successive inputs satisfying the entry's length 6 / second-byte-zero guards exactly match one channel's state 0 then state 1 patterns, with comparison and memory undisturbed between calls, the first sets that channel to 1; the second resets it to 0 and enters the marker path at `0x1207A`. This does not cover arbitrary interleaving or unknown initial state and does not establish that the device received these inputs, the meaning of the other marker-word bytes or any physical button function.
+
 ### Completion marker data flow
 
 When the new matched state exceeds 1 at `0x12076`, `0x1207A..0x1209A` reads three bytes from `s2+0..2` and combines them with `0x80+channel` as `word=(byte0<<24)|(byte1<<16)|(byte2<<8)|(0x80+channel)`. Normal loop channel is 0–3, so the low byte is `0x80..0x83`. The corresponding state is cleared before the jump to `0x11C64`.
