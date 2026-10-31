@@ -350,6 +350,8 @@ V1.40 候選的兩次 copy 也重疊一個 word，但目的改為 `[0x20002EBC,0
 
 #### 與兩版 resident 參考資料的數值關係
 
+**WCH 啟動映射的條件。** WCH 的 [CH32FV2x_V3xRM 官方目錄](https://www.wch.cn/downloads/CH32FV2x_V3xRM_PDF.html)將 CH32V208GBU6 列為適用型號；已查閱的 [WCH V2.2 英文手冊第 1.3 節](https://datasheet.lcsc.com/lcsc/2205101630_WCH-Jiangsu-Qin-Heng-CH32V307RCT6_C2988083.pdf)說明，從程式 Flash 啟動時該 Flash 映射至 `0x00000000` 區，同時可從 `0x08000000` 區存取；從 system memory 啟動時，低位區則映射 system memory。這支持前述 alias **作為程式 Flash 啟動且目標 offset 實際存在時的條件模型**，不證明 TSL9 當次啟動模式、對應 offset 的可用範圍或頁面可寫。若額外假設完整連續 480 KiB 的 Flash 模型，六個高位設定頁的結尾比 `0x08078000` 低 1,280 bytes；480 KiB 是手冊的最大值，不能當成已確認的可用空間或權限。手冊另有較新版本，這裡的內容只對已查閱的 V2.2 作引用。[數值檢查](check-nvm-candidate-map.py)不讀取裝置。
+
 V1.30 標頭註解列出 CODE `0x00040000..0x0006FFFF`，但預設巨集另定義 `LIB_FLASH_BASE_ADDRESSS=0x40000`、`LIB_FLASH_MAX_SIZE=0x40000`；若僅作半開區間算術，後兩個值形成 `[0x40000,0x80000)`。只有再假設 APP 的高位 `0x08000000` 為對應 alias 時，六個設定頁 `[0x08077500,0x08077B00)` 才會數值對應 `[0x77500,0x77B00)`：它在前述巨集最大範圍內，卻位於標頭註解 CODE 範圍之後。這兩種標示的意義不能由算術自行統一，也不能因此判定該頁已保留、可寫或不與其他用途重疊。
 
 對兩份已保存的 V1.31／V1.40 候選 Intel HEX 逐筆核對後，上述低位設定頁範圍均沒有資料記錄；兩份檔案資料記錄的最大半開端點分別是 `0x6EB2C`／`0x6ED20`。這只說明**兩份檔案**的覆蓋，不代表原機 Flash 該處空白或頁面安全；宏可被建置設定覆寫，實體容量與 alias 仍未知。[檢查器](check-nvm-candidate-map.py)固定 V1.30 標頭與兩份 HEX，檢查巨集、記錄 checksum 及地址覆蓋，不讀取裝置或排除的 APP 預設資料。

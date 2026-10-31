@@ -19,6 +19,8 @@ if not re.search(rb'CODE:\s+00040000H\s+-\s+0006FFFFH\s+192K', header):
     raise SystemExit('Candidate header CODE comment changed')
 if (0x08077500 - 0x08000000, 0x08077b00 - 0x08000000) != (0x77500, 0x77b00):
     raise SystemExit('Conditional address arithmetic changed')
+if 0x08000000 + 480 * 1024 - 0x08077b00 != 1280:
+    raise SystemExit('Conditional maximum Flash distance changed')
 if not (0x40000 <= 0x77500 < 0x77b00 <= 0x40000 + 0x40000):
     raise SystemExit('Macro range arithmetic changed')
 cases = ((args.v131, '11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5', 0x6eb2c),
