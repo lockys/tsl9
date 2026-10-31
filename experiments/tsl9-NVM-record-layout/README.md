@@ -33,6 +33,12 @@
 
 ## 112／133-byte copy 與固定 256-byte CPU 搬移
 
+### 設定寫入鏈中的狀態處理
+
+原位址重建 `src/native/startup/settings_defaults.c` 的 `0x13154..0x1316A` 顯示：第一筆設定 writer 呼叫 `0x9C0A` 後直接還原堆疊並返回，沒有在此處依回傳暫存器分支。`src/native/receive/ota_runtime.c` 的 `0x9C0A..0x9C4A` 依序呼叫解鎖、向 `0x4002200C` 寫入 `0x31`、擦除、寫入與上鎖，這些呼叫之間沒有錯誤狀態分支；此結論僅涵蓋該路徑，不代表其他呼叫者不驗證。
+
+候選擦除及寫入 leaf `0x18EC4..0x18F56` 的輪詢以狀態位元 `0x01` 或 `0x02` 控制迴圈；靜態重建中看不到逾時計數或對寫入保護錯誤的個別分支。WCH 的 [CH32V20x Flash 驅動](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_flash.c) 中，`FLASH_GetStatus` 另外檢查寫入保護錯誤，`FLASH_WaitForLastOperation` 有 timeout。這是不同函式的比較，不能假設原程式使用該 WCH API，也不能推定實際錯誤行為。狀態位元清除、匯流排映射與硬體實作仍須驗證；正常返回本身不證明資料成功寫入。
+
 六個 writer 均配置 272-byte frame，saved RA 位於 SP+268，先透過 table `0x4004C` 將自己的 record 複製至 own SP，再呼叫 `0x9C0A`。前輪已核對其 program leaf 固定讀取 source 的 256 bytes；這依賴 callee 契約、有效記憶體、無 fault 及 polling 正常結束等條件，仍不證明物理 Flash commit。
 
 四個 256-byte records 的 copy 數值範圍覆蓋 CPU 搬移來源，但不代表來源內容已驗證。112-byte writer 留下額外 **144 bytes**、133-byte writer 留下額外 **123 bytes**：在 writer 內沒有相應的直接 fill／copy，初始化來源仍未知。這些範圍在自身 frame 內且避開 saved RA；沒有觀測到 stack 內容或資料洩漏。**不得自行補零、假設舊值、縮短 Flash 搬移或宣稱整頁已初始化。**

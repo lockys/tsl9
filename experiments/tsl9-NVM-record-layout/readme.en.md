@@ -31,6 +31,12 @@ The six destinations occupy distinct 256-byte numerical intervals but share the 
 
 ## Copy112/133 versus CPU program256
 
+### Status handling in the settings write chain
+
+The original-address reconstruction in `src/native/startup/settings_defaults.c` at `0x13154..0x1316A` calls `0x9C0A` and then restores the stack and returns without branching on its return register. In `src/native/receive/ota_runtime.c`, `0x9C0A..0x9C4A` calls unlock, writes `0x31` to `0x4002200C`, then calls erase, program and lock without an intervening error-status branch. This observation is limited to this chain; other callers may verify independently.
+
+The reconstructed candidate erase and program leaves `0x18EC4..0x18F56` poll bits `0x01` or `0x02`; no timeout counter or separate write-protection-error branch appears in those leaves. In WCH's [CH32V20x Flash driver](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_flash.c), `FLASH_GetStatus` separately checks the write-protection error and `FLASH_WaitForLastOperation` has a timeout. These are different functions: this comparison does not establish that the APP uses that WCH API or predict physical error behavior. Status clearing, bus mapping and the physical implementation remain unverified; a normal return alone does not prove successful persistence.
+
 All writers allocate272 bytes,saveRA atSP+268,copy their record through table0x4004C to ownSP,and call0x9C0A. The previously verified program leaf reads256 source bytes,conditional on callee contracts,valid memory,no faults and poll completion;physical Flash commit remains unproved.
 
 Four256-byte copies numerically cover the CPU source extent,not verified source contents. The112-byte writer leaves **144 additional bytes**,and the133-byte writer leaves **123 additional bytes** without explicit local fill/copy. Their initialization remains unknown. Both extents stay inside the frame and avoid savedRA. No stack contents or disclosure were observed. **Do not invent padding/old values,shorten programming or claim fully initialized pages.**
