@@ -385,6 +385,8 @@ V1.40 候選的兩次 copy 也重疊一個 word，但目的改為 `[0x20002EBC,0
 
 #### Payload 寫入範圍與 reset／RAM 的交叉檢查
 
+`0x899E..0x89A8` 將接收的 command byte 寫入 `GP+164`；GP 為 `0x20004000` 時，此位置 `0x200040A4` 位於 reset 清零區，且不與已收錄的 clock 和候選 bootstrap 明確寫入範圍重疊。[檢查器](check-ingress-buffer-bound.py)固定原始指令並檢查範圍。若記憶體有效、實機 resident 與候選相符、reset／clock／候選啟動正常且不存在 alias、IRQ、DMA 或其他干擾，此 byte 的零值可保留至候選 MRET；之後的解析會寫入它，不能推論呼叫 `0x14056` 時的值或實機行為。
+
 每次走到 payload 分支時，`0x89FA` 以 unsigned halfword 讀取 counter；`0x89FE..0x8A02` 對 counter 大於 1039 的情況轉至清除 state 的路徑，不執行這次 payload store。通過後，`0x8A12..0x8A1C` 使用同一暫存器中的舊 counter，向 `0x2000B9D8+counter` 寫入一個 byte。因此在正常指令流程、暫存器未受干擾的條件下，這一個 store 的位置必落在 `[0x2000B9D8,0x2000BDE8)`；這個局部界限獨立於重新讀取並傳給 `0x14056` 的長度值，不保證被呼叫函式本身的讀寫範圍。
 
 此 1,040-byte 窗口完整位於 APP reset 的清零範圍 `[0x20004080,0x2000C958)` 內；parser counter、length、state 及 checksum 的 GP-relative 欄位也位於該清零範圍。若 reset 清零正常完成且沒有干擾，這些欄位和窗口在 `0x186F8` 時為零；後續接收與其他路徑仍可改寫，不能推論某次呼叫時 buffer 為零。依既有 WCH 三種候選連續 RAM 配置，此窗口落在 48／64 KiB 數值範圍內，不在 32 KiB 範圍；但完整 reset 清零本身超過 48 KiB，因此不能單憑此窗口選定整體 RAM 配置。實際 RAM 映射、正常開機與呼叫仍未證明。[靜態檢查器](check-ingress-buffer-bound.py)核對相關原始指令與範圍，不執行目標或讀取排除區。

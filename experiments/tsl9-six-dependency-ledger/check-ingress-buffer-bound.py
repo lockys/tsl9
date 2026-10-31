@@ -6,6 +6,7 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[2]
 image = root / 'firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin'
 windows = {
+    0x899e: '0d47238ee1082382f10a',
     0x89a8: '03c70400ba97' + 'a382f10af1b7',
     0x89fa: '03d6a1081307f0406365c70413071600420741832395e10897360020938666fcb2962380f600',
     0x186de: '138501089745ff1f938565276377b500232005001105e36db5fe',
@@ -21,7 +22,7 @@ start, end = 0x2000b9d8, 0x2000b9d8 + 1040
 zero_start, zero_end = 0x20004080, 0x2000c958
 if not (zero_start <= start < end <= zero_end and end == 0x2000bde8):
     raise SystemExit('Unexpected buffer/reset intersection')
-for offset, width in [(138, 2), (142, 2), (156, 1), (165, 1)]:
+for offset, width in [(138, 2), (142, 2), (156, 1), (164, 1), (165, 1)]:
     field = 0x20004000 + offset
     if not zero_start <= field < field + width <= zero_end:
         raise SystemExit('Parser field outside reset range')
@@ -49,7 +50,7 @@ for key in ('first_copy', 'second_copy'):
 writes.append((bootstrap['zero']['start'], bootstrap['zero']['last_word_inclusive'] + 4))
 writes.append((0x2000fff0, 0x20010000))  # Candidate loader's conservative frame.
 watched = [(start, end)] + [(0x20004000 + offset, 0x20004000 + offset + width)
-                             for offset, width in [(138, 2), (142, 2), (156, 1), (165, 1)]]
+                             for offset, width in [(138, 2), (142, 2), (156, 1), (164, 1), (165, 1)]]
 if any(a < d and c < b for a, b in writes for c, d in watched):
     raise SystemExit('An explicit write overlaps watched ingress state')
 counts = [0] * 256
