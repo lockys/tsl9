@@ -50,6 +50,24 @@ expected_sequence = {'dedicated': 20, 'other_owner': 872, 'excluded': 8,
                      'outside': 52, 'multiple_or_missing': 72}
 if dict(sequence) != expected_sequence:
     raise SystemExit('Sequence ownership differs from the reviewed enumeration')
+# Arithmetic bounds only: do not dereference these calculated addresses.
+for channel in range(4):
+    dedicated = []
+    excluded = []
+    outside = []
+    for state in range(256):
+        start = 0x1a638 + 6 * (2 * channel + state)
+        end = start + 6
+        if 0x1a638 <= start and end <= 0x1a668:
+            dedicated.append(state)
+        if start < 0x1a6a0 and end > 0x1a69c:
+            excluded.append(state)
+        if end > 0x1ac00:
+            outside.append(state)
+    if (dedicated != list(range(8 - 2 * channel)) or
+            excluded != [16 - 2 * channel, 17 - 2 * channel] or
+            outside != list(range(246 - 2 * channel, 256))):
+        raise SystemExit('Sequence address bounds differ')
 print(json.dumps({'passed': True, 'input_counter_indices': 256,
     'single_data_owner_indices': 76, 'dedicated_window_indices': 4,
     'other_owner_indices': 72, 'not_single_owner_indices': 180,
