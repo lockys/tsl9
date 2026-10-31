@@ -41,3 +41,13 @@
 V4.1.60 `[0x16896,0x16994)` 的 254 bytes 與目前 C 診斷 ELF 對應位址逐 byte 一致。既有 [SPI 重建分析](../tsl9-spi-write-providers/README.md)記錄 `0x168DE` 呼叫底層傳輸時先送 `0x02` 與地址，`0x1693E` 先送 `0x05`，再依序送地址、mask、value。這與 [Microchip MCP2515 手冊](https://ww1.microchip.com/downloads/en/DeviceDoc/MCP2515-Stand-Alone-CAN-Controller-with-SPI-20001801J.pdf)的 WRITE／BIT MODIFY 指令格式一致，支持照片中的元件與分析路徑可能相關；通用協定相符不證明訊號實際到達該晶片或成功傳輸。
 
 已觀察路徑的 selector bits 會分別對 `0x40010814` 寫入 `0x10`／`0x01`；若採 WCH GPIOA 映射，數值對應 PA4／PA0，與自製方案的兩個 CS 候選一致。原廠 PCB 的實際網路、兩顆晶片料號及接腳對應仍需進一步確認；不應以此推定可刷入。
+
+原始 `0x1706C/0x170B8` 將 `s0` 構成 `0x40010800`，之後 `0x17132..0x17168` 以此 base 呼叫 `0x9A24` 五次。依既有 helper 契約與 [WCH GPIO 模式定義](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_gpio.h)，在 register／stack 保存、記憶體映射與初始化正常完成等條件下，這些參數分別請求：
+
+| GPIOA pin | 模式參數 | 候選 WCH 解讀 |
+| --- | --- | --- |
+| PA4、PA0 | `0x10` | 一般推挽輸出 |
+| PA5、PA7 | `0x18` | 複用推挽輸出 |
+| PA6 | `0x48` | 上拉輸入 |
+
+接著同一路徑在 `0x1718C..0x171A0` 初始化並啟用數值 base `0x40013000` 的 SPI 候選。PA5／PA6／PA7 的方向與候選 SPI1 SCK／MISO／MOSI 分配一致，PA0／PA4 也與前述 selector 寫入相容；這是條件式配置相符性，不證明複用重映射設定、PCB 走線或兩顆 MCP2515 實際連接。未讀取或改寫實體暫存器。

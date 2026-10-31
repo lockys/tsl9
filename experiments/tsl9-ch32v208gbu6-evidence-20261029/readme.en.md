@@ -41,3 +41,13 @@ User-provided photographs of the original board show `TSL9`, three labeled CAN H
 The 254 bytes of V4.1.60 at `[0x16896,0x16994)` match the current C diagnostic ELF at the same addresses. The existing [SPI reconstruction](../tsl9-spi-write-providers/readme.en.md) records that `0x168DE` passes `0x02` followed by an address to the transfer helper, while `0x1693E` passes `0x05`, address, mask and value. This matches the WRITE and BIT MODIFY command formats in the [Microchip MCP2515 datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/MCP2515-Stand-Alone-CAN-Controller-with-SPI-20001801J.pdf), supporting a possible relationship between the pictured component and the analyzed path. Matching a common protocol does not prove physical routing or successful transmission.
 
 The observed selector bits respectively write `0x10` and `0x01` to `0x40010814`; under the WCH GPIOA mapping these select PA4 and PA0, consistent with the two candidate CS pins in the DIY design. The original PCB routing, identity of the second controller and pin assignments remain unverified; this evidence does not establish flashability.
+
+Original `0x1706C/0x170B8` forms `s0=0x40010800`, then `0x17132..0x17168` calls `0x9A24` five times using that base. Under the existing helper contract, [WCH GPIO mode definitions](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x_gpio.h), preserved registers/stack, valid mapping and normal initialization, these operands request:
+
+| GPIOA pin | Mode operand | Candidate WCH interpretation |
+| --- | --- | --- |
+| PA4, PA0 | `0x10` | General push-pull output |
+| PA5, PA7 | `0x18` | Alternate-function push-pull output |
+| PA6 | `0x48` | Pull-up input |
+
+The same path then initializes and enables the SPI candidate at numeric base `0x40013000` at `0x1718C..0x171A0`. PA5/PA6/PA7 directions are consistent with candidate SPI1 SCK/MISO/MOSI assignments, and PA0/PA4 are consistent with the selector writes above. This conditional configuration match does not establish alternate-function remapping, PCB nets or actual connections to two MCP2515s. No physical registers were read or modified.
