@@ -14,6 +14,8 @@ WINDOWS = {
     (0xa0d4, 0x132): '1f19de347e3d329ee56aea9f42477d344355554b493d4c435a6aec8058a535c0',
     (0xa2ee, 0x8e): '1e3ba5cad99891ddf478123a9015736168e7bdad51c01abbed0cda7e4d043480',
     (0x172b6, 0x4a): '9567e295d85dee36d242e89c952adf091b12ab5e67486dea7d8c0b0597473ea7',
+    (0x19bf0, 0xb6): '7ad28bf9e3e203cdaf62539ed4dad2cb81ffe938f457ae43203a5868877836bb',
+    (0x1299e, 0x26): '722428b52f60e85f2d3b40ab39a2be581def68ef8a795977b64b5f9edc3d18fe',
 }
 EXPECTED = {
     0xae54: 'bne a4, a5, 0xaf4c', 0xae5e: 'bne a4, a5, 0xaf4c',
@@ -27,6 +29,10 @@ EXPECTED = {
     0xa2fe: 'bne a0, a5, 0xa364', 0xa314: 'beqz s1, 0xa372',
     0xa32e: 'beq a5, a4, 0xa372', 0x172de: 'bne a5, a4, 0x172fa',
     0x172fc: 'jal ra, 0xa2ee',
+    0x129b0: 'jal ra, 0x19bf0', 0x129ba: 'jal ra, 0x128fe',
+    0x19c3c: 'bleu a2, a5, 0x19c9c', 0x19c60: 'addi a1, a1, 36',
+    0x19c88: 'addi a5, a5, 36', 0x19c9c: 'bltu a5, a3, 0x19c92',
+    0x19ca0: 'bltu a5, a4, 0x19c08',
 }
 
 def disassemble(tool, base, data):
