@@ -142,6 +142,12 @@ At `0x13238..0x13252`, the original APP initializer loads an indirect target fro
 
 Fallback `0x12F18..0x12F44` calls slot `0x40048` with destination `0x2000C30C`, value 0 and length 256, writes `0x5A` at offset 255, then tail-jumps to `0x12EE6`. That writer requests a 256-byte copy to its stack through `0x4004C` and calls `0x9C0A` with `0x08077800` and the stack pointer. If the slots implement candidate fill/copy, memory is valid and there is no interference, fallback clears the scan area. Actual source contents, marker match, physical flash mapping and write success remain unverified. See the [existing NVM layout analysis](../tsl9-NVM-record-layout/README.md).
 
+### Dispatch restrictions for action value 255
+
+On each scan-branch match, the candidate callback for event mask `0x2` calls `0x155D0` with `255`. The function first checks bit `0x08` at offset 4 of the record pointed to by `*(GP+84)`; if set, `(255+6)&255=5 > 2` directs control to the restore/return at `0x1578C`, before the pending check or jump table. If that bit is clear, it reads the byte at `GP+358`: when nonzero it clears the byte and tail-jumps to `0x18110`, which tail-jumps to `0x1802E` with `a0=0`, `a1=3`, `a2=1`.
+
+When both the bit and pending byte are zero, `(255-1)&255=254` exceeds the jump table's maximum index 252 and also returns via `0x1578C`; it does not take the 1–8 preliminary scheduling branch or enter the 253-entry relative jump table. These are original control flow and byte arithmetic, not proof that `255` always does nothing. Valid indirect data, no asynchronous overwrite, and normal execution remain conditions; the product meaning and physical effect of `0x1802E` are not established. See the [existing action dispatcher evidence](../../analysis/action-dispatch-2026-10-24/readme.en.md).
+
 ## `0x1A078` lookup output and dispatch
 
 On the path reaching `0xCF36`, the code writes record offset 4 and freshly reads that byte `b` at `0xCF3A`. It then replaces the low nibble with `(b+1)&15`, preserves the high nibble, and uses the new low nibble as column. At `0xCF5A` it reads one byte from `0x1A078+16*effective_mode+column`, stores it at record offset 3 at `0xCF5E`, then tail-jumps without a return link to `0x12A08` at `0xCF62`. Thus column is 0–15, but the read byte remains 0–255; its product meaning and whether a value is a particular command remain unproved.
