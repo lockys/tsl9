@@ -15,3 +15,9 @@ The target is original ID2966 V4.1.60 `0x1874A..0x18834`. The [existing full clo
 The normal HSE-ready path enters PLL configuration and polling. Status is read again after the first loop, so reaching the counter limit does not by itself prove failure. PLL-ready or switch-status loops may continue indefinitely depending on hardware; static instructions do not prove startup success, actual clock frequency, GPIO wiring or IRQ behavior. The official D8W default HSE constant is 32 MHz, an SDK setting rather than a measured frequency.
 
 The photographed marking supports CH32V208GBU6; memory mapping, option bytes, installed ROM, clock and physical connections remain to be verified. No target execution or hardware connection occurred.
+
+## Conditional frequency comparison
+
+At `0x187EE`, the code masks `CFGR0` with `0xFFC0FFFF`, then ORs `0x00290000` at `0x187F4..0x187FA`. The latter combines the official HSE PLL source `0x00010000` and PLLMULL12 `0x00280000`. The earlier `0xFF80FFFF` mask at `0x18786` clears these PLL fields; without intervening modification, the setting matches the [WCH 96 MHz example](https://github.com/openwch/ch32v20x/blob/main/C%2B%2B/Use%20MRS%20Create%20C%2B%2B%20project-example/CH32V203C8T6%2B%2B/User/system_ch32v20x.c).
+
+For D8W / CH32V208 the official example describes `32 MHz / 4 × 12 = 96 MHz`. The original path first clears the low 16 configuration bits and sets `PPRE1_DIV2` at `0x187E6`. If no intervening writes occur, HSE is actually 32 MHz, and PLL ready and clock switching succeed, the example implies SYSCLK/HCLK 96 MHz, PCLK1 48 MHz and PCLK2 96 MHz. This is a **conditional configuration inference**, not a measurement, proof of oscillator frequency, unchanged settings, or path completion.
