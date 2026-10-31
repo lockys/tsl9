@@ -339,4 +339,43 @@ for (ident,version,_,_,_,mode),setter_pc,anchor,state_offset in zip(cases,setter
                                          (anchor-0x40,mode_load,0x717,0x74703,state+1)):
         if pcrel_target(pc,data,first,second)!=expected:
             raise SystemExit('Mode state read address changed: '+ident)
-print('18 candidate data/consumers, reset bounds and mode setter-to-lookup addresses verified. Excluded regions not read; target not executed.')
+# These are encoded-transfer candidates, not an instruction-boundary or reachability proof.
+expected_transfers = (
+ (0xa144,0xabb6,0xd3ee,0xe092,0xe590), (0xa144,0xabb6,0xd3f8,0xe09c,0xe59a),
+ (0xa188,0xabd0,0xd412,0xe0b6,0xe5b4), (0xa148,0xab90,0xd3d0,0xe074,0xe572),
+ (0xa148,0xab90,0xd3d0,0xe074,0xe572), (0xa142,0xab8c,0xd4ca,0xe16e,0xe66c),
+ (0xa142,0xab8c,0xd466,0xe10a,0xe608), (0xa142,0xab8c,0xd4a4,0xe148,0xe646),
+ (0xa15a,0xaba4,0xd4f8,0xe19c,0xe69a), (0xa178,0xabc2,0xd4a0,0xe144,0xe642),
+ (0xa178,0xabc2,0xd4e8,0xe18c,0xe68a), (0xa182,0xabc4,0xd4f0,0xe194,0xe692),
+ (0xa224,0xac66,0xd592,0xe236,0xe734), (0xa224,0xac66,0xd592,0xe254,0xe752),
+ (0xa224,0xac66,0xd544,0xe206,0xe704), (0xa224,0xac66,0xd4f6,0xe1b8,0xe6b6),
+ (0xa224,0xac6c,0xd528,0xe1ea,0xe6e8), (0xa224,0xac6c,0xd528,0xe1ea,0xe6e8),
+)
+def signed(value, bits):
+    return value-(1<<bits) if value & (1<<(bits-1)) else value
+def transfer_target(data, pc):
+    h=int.from_bytes(data[:2], 'little')
+    if h & 3 != 3:
+        if h & 3 != 1 or (h >> 13) & 7 not in (1,5): return None
+        imm=((h>>12&1)<<11)|((h>>11&1)<<4)|((h>>9&3)<<8)|((h>>8&1)<<10)|((h>>7&1)<<6)|((h>>6&1)<<7)|((h>>3&7)<<1)|((h>>2&1)<<5)
+        return (pc+signed(imm,12)) & 0xffffffff
+    if len(data)<4: return None
+    w=int.from_bytes(data[:4], 'little')
+    if w & 127 != 111: return None
+    imm=((w>>31&1)<<20)|((w>>21&1023)<<1)|((w>>20&1)<<11)|((w>>12&255)<<12)
+    return (pc+signed(imm,21)) & 0xffffffff
+for (ident,version,length,*_),setter_pc,expected in zip(cases,setter_pcs,expected_transfers):
+    path=folder / ('ID-'+ident+'-V'+version+'-decoded.bin')
+    actual=[]
+    with path.open('rb') as f:
+        for lo,hi in ((base,0x14056),(0x14c8a,0x1a69c),(0x1a6a0,base+length)):
+            data=read_window(f,lo,hi-lo)
+            for offset in range(0,len(data)-1,2):
+                if transfer_target(data[offset:offset+4],lo+offset)==setter_pc:
+                    actual.append(lo+offset)
+        if tuple(actual)!=expected: raise SystemExit('Mode transfer candidates changed: '+ident)
+        for index,back,value in ((0,4,3),(2,4,5),(3,2,3),(4,2,3)):
+            # Compressed LI a0, 3 or 5 immediately preceding the transfer sequence.
+            if read_window(f,expected[index]-back,2)!=bytes((0x0d if value==3 else 0x15,0x45)):
+                raise SystemExit('Mode constant candidate changed: '+ident)
+print('18 candidate data/consumers, reset bounds, mode setter and direct-transfer encodings verified. Excluded regions not read; target not executed.')
