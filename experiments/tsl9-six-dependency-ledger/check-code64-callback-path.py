@@ -5,6 +5,7 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[2]
 image = root / 'firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin'
 windows = (
+    (0x90b0, 0x74, '6ae3c32faae25ccd27fea46de4a04b6246489daafb5f1fa0d9ede512e65f2b31'),
     (0xfe1c, 0x30, '7a52ce15dfac5073d934be93f0dac2b6e0d8339a110f12701fbce225fb30ea49'),
     (0xfb1e, 0x40, '4d645277b8d5df69f0b35adf2c092dc5d40a41b9d7d5533f19b8ceafdd6c8746'),
     (0xa9de, 0xa, 'e5f1820771529754ba18fce55414e81dece3414ec6a3f6b94f4782dfcdf2bb3c'),
@@ -19,6 +20,8 @@ with image.open('rb') as f:
             raise SystemExit('Instruction window changed')
 if 0xa9de + 0x20001000 + 1278 != 0x2000bedc:
     raise SystemExit('Status byte address changed')
+if 0x90b2 + 0x20003000 - 682 != 0x2000be08 or 0xfb1e == 0xfb5e:
+    raise SystemExit('Callback table address or target distinction changed')
 if [(n * 1000) // 625 for n in (500, 1500)] != [800, 2400]:
     raise SystemExit('Candidate tick arithmetic changed')
 print('Conditional callback windows and tick arithmetic verified; target not executed.')
