@@ -36,3 +36,9 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 `0xA1A8` 再以 `a0=SP+4`、`a1=7` 呼叫 `0xED00`。該完整函式讀取 buffer 前兩個 bytes 相加作初始值，依 offset 2 的 byte 長度逐一加上 offset 3 起的資料，略過索引 7，運算保留低 8 bits；`0xA1AC` 將返回 byte 寫到 `SP+14`，即 buffer offset 10／資料索引 7，接著 `0xA1B2` 呼叫 `0x12A08`。在有效 buffer、無干擾且該路徑正常完成時，這支持把 `0xED00` 的結果視為加總檢查碼；不能由此確定協定、單位、實際傳送結果或產品功能。參見[既有 checksum 對照](../tsl9-feature-callback/README.md)。
 
 上述是經此查表路徑的靜態資料流；指標有效、stack 未被 alias／非同步覆寫、callee 正常執行仍是條件。查表索引與後續欄位只分別具 byte、12-bit 的保守範圍，不能由此證明索引全域為 0–3 或宣稱四筆資料即完整表格。
+
+## 檢查碼後的條件式分派
+
+`0xA1B2` 將上述 buffer 交給 `0x12A08`。依[原始 dispatcher](../tsl9-record-dispatch/README.md)，此函式先呼叫 `0x81AA`，若返回 0 且輸入首 halfword 不為 1 則返回；否則以 0 呼叫 `0x821E`，返回 0 亦直接返回。之後輸入 offset 11 非零轉到 `0x16B7C`；為零則組合 stack record，使用 `0x4004C` 間接槽、來源 input+3 與 input offset 2 的 byte 長度，再以 `a0=0x40006400`、`a1=SP+12` 呼叫 `0x18CA4`。
+
+數值 `0x40006400` 對應 WCH 的 CAN1 基址；`0x18CA4` 的 mailbox 選擇與欄位操作和 [WCH CAN_Transmit](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/src/ch32v20x_can.c)相符。這支持在**通過上述 guard、offset 11 為零、複製與呼叫契約成立**時，把該分支理解為向內建 CAN1 提交訊息的推論；沒有證明實際硬體、線路、資料長度合法、mailbox 可用、訊框送達或另一分支的用途。caller 沒有檢查 `0x12A08` 的返回值。間接槽、callee 副作用與執行期間可能改寫仍屬限制。
