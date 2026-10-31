@@ -120,6 +120,14 @@ The original `0x11442` tests bit 2 of the `a1` mask before bit 1: bit 2 calls `0
 
 For each match, input 1 to `0x11356` calls `0x155D0` with `255`; input 0 selects the unsigned byte at record offset 0 or 1 depending on whether `0x2000BFD2` is zero, passes it to `0x155D0`, then invokes indirect slot `0x40058` with `a1=16`, `a2=160`. More than one record may match. This describes only the scanning branch: nonzero `0x2000BFC9` takes a different path. Valid pointers and alignment, normal calls and register preservation, and undisturbed memory remain conditions. Actual record contents, product meaning, successful event processing and physical effects are not established.
 
+### Cross-check against APP reset and RAM layout
+
+The existing [APP reset analysis](../tsl9-reset-state-bootstrap-contract/README.md) checks that the word-zeroing range at `0x186EE` is `[0x20004080,0x2000C958)`. It contains `0x2000BFC8` (task-ID byte), `0x2000BFC9`, `0x2000BFCC..0x2000BFD0` (word), `0x2000BFD2` and `0x2000BFD3`. With original entry registers, valid memory, normal completion and no interference, these locations are zero at `0x186F8`. This is a local point-in-time conclusion, not proof that they remain zero at a later comparison, registration or callback.
+
+The explicit CPU stores in the existing [clock analysis](../tsl9-clock-reset-noninterference/README.md) and the [candidate bootstrap write ranges](../tsl9-reset-state-bootstrap-contract/README.md) avoid those locations. Under non-aliasing, no IRQ/DMA/reentry or indirect side effects, normal calls, and a matching installed resident, this narrows known direct overwrites between reset and the candidate MRET. It does not prove startup, absence of later APP writes, successful registration or state at first use.
+
+These addresses exceed the 32 KiB RAM endpoint `0x20008000` and remain below the 48 KiB endpoint `0x2000C000`. Under the contiguous mapping and no-remapping assumptions in the [CH32V208 candidate memory comparison](../tsl9-ch32v208gbu6-evidence-20261029/README.md), they fit the documented 48 and 64 KiB examples, not the 32 KiB example. These fields alone cannot distinguish 48 from 64 KiB, and are not a reading of physical option bytes, RAM ownership or capacity.
+
 ## `0x1A078` lookup output and dispatch
 
 On the path reaching `0xCF36`, the code writes record offset 4 and freshly reads that byte `b` at `0xCF3A`. It then replaces the low nibble with `(b+1)&15`, preserves the high nibble, and uses the new low nibble as column. At `0xCF5A` it reads one byte from `0x1A078+16*effective_mode+column`, stores it at record offset 3 at `0xCF5E`, then tail-jumps without a return link to `0x12A08` at `0xCF62`. Thus column is 0–15, but the read byte remains 0–255; its product meaning and whether a value is a particular command remain unproved.

@@ -120,6 +120,14 @@ IRQ `0x12C32` 在 32-byte frame 中以 `SP+12` 作結構起點，故 DLC 位於 
 
 每次相符時，若 `0x11356` 的輸入為 1，則以 `255` 呼叫 `0x155D0`；輸入為 0 時，依 `0x2000BFD2` 是否為零選擇該記錄 offset 0 或 1 的 unsigned byte 傳入 `0x155D0`，隨後以 `a1=16`、`a2=160` 呼叫 `0x40058` 間接槽。多筆相符均可能處理。上述只描述掃描分支：`0x2000BFC9` 非零另有不同路徑；指標有效、讀取對齊、call 正常返回與保存暫存器、記憶體未受干擾均是條件。它不證明記錄實際內容、動作值的產品意義、事件成功或硬體效果。
 
+### 與 APP reset 及 RAM 配置的交叉對照
+
+既有 [APP reset 分析](../tsl9-reset-state-bootstrap-contract/README.md)核對 `0x186EE` 的 word 清零範圍為 `[0x20004080,0x2000C958)`；`0x2000BFC8`（任務 ID byte）、`0x2000BFC9`、`0x2000BFCC..0x2000BFD0`（word）、`0x2000BFD2` 與 `0x2000BFD3` 均落在其中。因此，在原始進入暫存器、有效記憶體、清零迴圈正常完成且無干擾的條件下，這些位置在 `0x186F8` 為零。這是該時刻的局部結果；不能推論後來第一次比較、註冊或回呼時仍為零。
+
+既有 [clock 存取核對](../tsl9-clock-reset-noninterference/README.md)列出的明確 CPU store 及 [候選 bootstrap 寫入範圍](../tsl9-reset-state-bootstrap-contract/README.md)均避開上述位置。在非 alias、無 IRQ／DMA／重入或間接副作用、所有呼叫正常返回且實機 resident 相符等前提下，這收窄了 reset 後至候選 MRET 的已知直接覆寫來源；不證明啟動成功、後續 APP 初始化沒有改寫、註冊成功或首次使用的狀態。
+
+這些數值位址均高於 RAM base 32 KiB 的 `0x20008000`，低於 48 KiB 的 `0x2000C000`；以 [CH32V208 候選記憶體配置](../tsl9-ch32v208gbu6-evidence-20261029/README.md)的連續映射且無重映射為條件，它們位於該文件所列 48 KiB 與 64 KiB 範例而不在 32 KiB 範例內。這些欄位本身不能區分 48 與 64 KiB，也不是實機選項位元、RAM ownership 或容量的讀取結果。
+
 ## `0x1A078` 查表輸出與分派
 
 在到達 `0xCF36` 的路徑上，程式寫入 record offset 4，於 `0xCF3A` 重新讀取該 byte `b`；接著把低 nibble 設為 `(b+1)&15`，保留高 nibble，並以這個新低 nibble 作為 column。`0xCF5A` 從 `0x1A078+16*effective_mode+column` 讀取一個 byte，`0xCF5E` 寫至 record offset 3，再於 `0xCF62` 不寫入返回位址地尾跳 `0x12A08`。因此 column 必為 0–15，但讀出的 byte 仍為 0–255；尚未確認其產品語義或其值是否可代表特定命令。
