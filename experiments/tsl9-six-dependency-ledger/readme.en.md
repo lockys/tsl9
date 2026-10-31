@@ -315,6 +315,13 @@ Cross-checking the existing complete clock CPU-store receipt and candidate boots
 
 ## `0x1A69C` and settings defaults
 
+#### Another candidate resident control-address prefix
+
+In the two pinned WCH candidate HEX files, the first 38 bytes at the first copied RAM destination `0x20000040` come from `0x402B0`/`0x402F0` respectively and are identical. The prefix saves the word at `0x4002420C`, writes zero and executes `FENCE.I` before checking two input registers; one early branch writes the saved value back to that address before jumping elsewhere. Thus accesses to the same numerical address appear beyond the candidate copy/fill/compare bodies discussed below.
+
+This is static evidence from a candidate prefix only. The function's purpose, complete control flow, installed resident, register name and physical side effects remain unconfirmed; the address cannot be identified as an interrupt controller from this evidence. The [checker](check-gatt-resident-versions.py) pins both prefixes and their source mapping without reading excluded APP regions or executing the target.
+
+
 Original `0x131A6..0x131B4` loads the indirect target freshly from `0x4004C`, passing destination `*(GP+0x54)+12`, source `0x1A69C`, and length 4. The existing [SDK copy audit](../tsl9-resident-copy-arch/readme.en.md) identifies candidate slot value `0x20000332`; its 58-byte body copies bytes forward using source, destination and length, preceded by access to `0x4002420C` and `FENCE.I`.
 
 According to the [settings initialization analysis](../tsl9-original-prebinding-settings/readme.en.md), if reset GP and the initial pointer are not overwritten, the destination is `0x2000C2A8..0x2000C2AC`. Its initialization path checks four bytes for ASCII 32–126 and may enter the default path when a byte fails. **If** the installed slot matches the candidate, source and destination are valid, and the call returns normally, the four source bytes are copied to that destination range. This does not establish the default content, actual setting semantics, execution on every boot, or physical ROM/Flash results; excluded data was not read.

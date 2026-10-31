@@ -23,7 +23,7 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
         raise SystemExit('Candidate HEX digest changed')
     selected = set(range(0x40034, 0x40038)) | set(range(0x40130, 0x40134)) | set(range(version_ptr, version_ptr + len(version)))
     slot_checks = dict(zip((0x4003c, 0x40048, 0x4004c, 0x40058, 0x4007c, 0x40080), (0x20000442, 0x2000039c, 0x20000332, *flash_slots)))
-    bodies = ((0x20000442, 72, 'a9dbd2b47ccefe55ab45f0b4e5a073d7aeb00f42dbe503191a75b6b66efff3aa'), (0x2000039c, 46, 'd67147a681aca68d4d082eebf74ab6214f61f43253be91e932eebd5c3e3d05a3'), (0x20000332, 58, '558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36'))
+    bodies = ((0x20000040, 38, 'd97248aeb37504e1b1878588e47ed8bdfa613e66361ef3dc84e310cd77c48cbe'), (0x20000442, 72, 'a9dbd2b47ccefe55ab45f0b4e5a073d7aeb00f42dbe503191a75b6b66efff3aa'), (0x2000039c, 46, 'd67147a681aca68d4d082eebf74ab6214f61f43253be91e932eebd5c3e3d05a3'), (0x20000332, 58, '558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36'))
     for address in slot_checks:
         selected.update(range(address, address + 4))
     selected.update(range(loader, loader + 0x72))
