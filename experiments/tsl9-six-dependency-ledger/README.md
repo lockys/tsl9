@@ -68,6 +68,12 @@ V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a
 
 只有狀態及 checksum 比較通過，`0x8A36..0x8A48` 才在此路徑將當時 context、command、固定 buffer 和重新讀取的長度交給 `0x14056`。在 GP／buffer 有效且沒有 alias、回呼間覆寫或其他非同步干擾等條件下，這支持「命令＋長度＋payload 的 byte-sum 封包」解讀；它不是加密完整性、完整指令表、已授權 API 或真實 BLE 執行證據，也不能推定排除本體的分派與副作用。
 
+#### 零長度框架與 buffer
+
+若正常解析的兩個長度 bytes 都為零，`0x89DA..0x89DE` 直接進入 checksum 狀態，沒有經過 `0x8A12..0x8A1C` 的 payload 寫入。此前加總在第二個前導 byte 後歸零，故在沒有干擾的條件下，零長度框架的正確 checksum 等於 command byte。驗證通過時，呼叫點仍傳入固定 buffer `0x2000B9D8` 和重新讀取的長度 0；這條零長度流程本身不清空 payload buffer，也不證明它的舊內容。
+
+`0x14056` 正常返回後，呼叫端 `0x8A4C` 才將 parser state 清為 0。前述結論依賴呼叫期間 state／長度／buffer 未被 alias、其他回呼、IRQ 或 DMA 改寫，亦不證明空框架一定可達、函式會讀取 buffer、返回成功或任何命令的實際語義；排除本體仍未讀取。
+
 ## `0x1A69C` 與設定預設值
 
 原 `0x131A6..0x131B4` 每次從 `0x4004C` 載入間接目標，傳入目的 `*(GP+0x54)+12`、來源 `0x1A69C` 與長度 4。既有 [SDK 複製函式核對](../tsl9-resident-copy-arch/README.md)指出候選槽值為 `0x20000332`，其 58-byte 本體以來源／目的／長度執行順向 byte 複製，並先存取 `0x4002420C` 與執行 `FENCE.I`。

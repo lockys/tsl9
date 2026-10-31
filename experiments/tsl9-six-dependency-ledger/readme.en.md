@@ -68,6 +68,12 @@ Along the normal state machine at `0x8962..0x8A48`, the frame starts with checks
 
 Only after the state and checksum comparisons pass does `0x8A36..0x8A48` pass the current context, command, fixed buffer and freshly read length to `0x14056` on this path. With valid GP and buffer, no alias, inter-callback overwrite or other asynchronous interference, this supports a command/length/payload byte-sum frame interpretation. It is not cryptographic integrity, a complete command list, an authorized API or observed BLE execution, and it does not establish dispatch or side effects inside the excluded body.
 
+#### Zero-length frame and buffer
+
+When both normally parsed length bytes are zero, `0x89DA..0x89DE` enters the checksum state directly without the payload write at `0x8A12..0x8A1C`. The sum was cleared after the second prefix byte, so without interference the correct checksum for a zero-length frame equals its command byte. If the checksum passes, the call still receives fixed buffer `0x2000B9D8` and a freshly read length of zero; this zero-length path does not itself clear the payload buffer or establish its old contents.
+
+The caller at `0x8A4C` clears parser state only after `0x14056` returns normally. These conclusions require state, length and buffer not to be changed by aliases, other callbacks, IRQ or DMA; they do not establish that an empty frame is reachable, that the function reads the buffer or returns successfully, or the meaning of any command. The excluded body remains unread.
+
 ## `0x1A69C` and settings defaults
 
 Original `0x131A6..0x131B4` loads the indirect target freshly from `0x4004C`, passing destination `*(GP+0x54)+12`, source `0x1A69C`, and length 4. The existing [SDK copy audit](../tsl9-resident-copy-arch/readme.en.md) identifies candidate slot value `0x20000332`; its 58-byte body copies bytes forward using source, destination and length, preceded by access to `0x4002420C` and `FENCE.I`.
