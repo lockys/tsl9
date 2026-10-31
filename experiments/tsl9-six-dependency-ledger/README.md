@@ -21,6 +21,12 @@
 
 在每次呼叫都從 `0xCEDC` 正常進入、enable 一直非零、儲存後的 selector 沒有被 callee／IRQ／DMA／alias 改寫且查表及尾呼叫均正常完成的條件下，從 `s=0` 開始連續三次呼叫的舊 selector 依序循環為 `0→1→2→0`；相應 effective mode 為「當次 mode byte、0、0」。初始 `s=1..254` 的一次更新會使下一 selector 進入 `0..2`，但 `s=255` 是例外。此結論不保證上述條件、三次呼叫可達、mode 穩定或表內容有效；倒數到零可清除 enable，使後續呼叫直接返回，因此不能把三次模式循環宣稱為實機頻率。
 
+### 三個具體 setter 分支的單次查表
+
+依[既有 setter 控制流程](../tsl9-mode-state-writer-contract/README.md)，到達 `0xD0C8` 的三條分支會把 `[enable, mode, selector, countdown]` 寫成 `[1, M, 0, 1]`，其中 `M` 分別為 2、4、5。若該寫入後狀態沒有被其他路徑改寫、下一次從 `0xCEDC` 正常進入且指標有效，則 selector 先由 0 更新為 1，countdown 由 1 減為 0，`0xCF8E` 清除 enable；但本次仍繼續以 `M` 和 `0..15` 的欄位查表，然後尾跳 `0x12A08`。若之後 enable 沒有重新設置，下一次進入 `0xCEDC` 即返回，不會自然完成上述三次週期。
+
+因此，這三條特定 setter 路徑的這次讀取分別落在既有 mode 2／4／5 的 16-byte 窗口；條件式覆蓋不代表完整 `0x1A078` provider 已閉合，亦不證明寫入、查表或傳送在實機曾發生。其他 setter 可以設定不同 countdown、selector 與任意低 byte mode，不能將此一次性結論套用到全部入口。
+
 ## 追查 `0x14056` 的接收參數
 
 V4.1.60 原始指令 `0x8A3A` 的 `AUIPC a2,0x20003` 加上 `0x8A3E` 的 `ADDI a2,a2,-98`，得到 `0x2000B9D8`。在 `0x8A12..0x8A1C`，另一組 PC-relative 計算得到同一 base，將接收 byte 寫入 base 加計數器。這支持 `a2` 是接收 buffer 的推論，並非實機 RAM 快照。

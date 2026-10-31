@@ -21,6 +21,12 @@ At `0xCEDC..0xCF96`, when the enable byte is nonzero and selector `s` is not `25
 
 Provided every call enters `0xCEDC` normally, enable stays nonzero, the stored selector is not changed by callees, IRQ, DMA or aliases, and the lookup and tail call complete normally, three consecutive calls starting with `s=0` cycle old selector values `0→1→2→0`, with effective modes “current mode byte, 0, 0”. A single update from initial `s=1..254` brings the next selector into `0..2`, but `s=255` is an exception. This does not establish the conditions, three reachable calls, a stable mode or valid table data; the countdown can clear enable and make later calls return directly, so the cycle is not an observed hardware rate.
 
+### One lookup for three specific setter branches
+
+According to the [existing setter control-flow analysis](../tsl9-mode-state-writer-contract/readme.en.md), three branches reaching `0xD0C8` store `[enable, mode, selector, countdown] = [1, M, 0, 1]` with `M` equal to 2, 4 or 5. If that state is not changed before the next normal `0xCEDC` entry and the pointer is valid, selector first updates from 0 to 1, countdown decrements from 1 to 0, and `0xCF8E` clears enable. This call still proceeds to the lookup using `M` and a column in `0..15`, then tail-jumps to `0x12A08`. Without re-enabling, the next `0xCEDC` entry returns rather than naturally completing the three-call cycle above.
+
+Consequently, the lookup on each of these particular setter paths falls in the existing 16-byte mode 2, 4 or 5 window. This conditional coverage does not close the complete `0x1A078` provider or prove a physical write, lookup or transmission. Other setters may supply different countdowns and selectors and an arbitrary low-byte mode; the one-shot conclusion does not apply to all entries.
+
 ## Following the `0x14056` receive arguments
 
 In the original V4.1.60 instructions, `AUIPC a2,0x20003` at `0x8A3A` and `ADDI a2,a2,-98` at `0x8A3E` compute `0x2000B9D8`. A separate PC-relative calculation at `0x8A12..0x8A1C` obtains the same base and writes a received byte at base plus counter. This supports identifying `a2` as the receive buffer; it is not a live RAM observation.
