@@ -356,6 +356,10 @@ V1.30 標頭註解列出 CODE `0x00040000..0x0006FFFF`，但預設巨集另定�
 
 ## `0x1AB48` 查表結果的局部用途
 
+**相鄰資料表的另一個用途。** `0xF8AE..0xF8E2` 從 `p=*(GP+84)` 的第 0 byte 檢查高三位，非零時再次讀取該 byte，依其高三位索引 `0x1AB50` 的八個 byte，將選中值 OR 到 `s0+5` 的低五位；原資料的八個值均不超過 31。兩次讀取之間若值改變，即使檢查非零，第二次索引仍可能為 0。`0xF9EC..0xFA22` 讀取同一指標的第 0 byte，以低三位索引 `0x1AB58`；索引 0 直接返回，1–7 則用 unsigned `a0` 與所選 byte 比較，結果改變時更新 `GP+0x115` 並尾跳 `0x13D48`。兩個函式各自讀取，沒有證據保證同時看到相同值或一定被呼叫。
+
+在指標與 byte 穩定、兩條路徑都到達的條件下，高三位與低三位可獨立選擇；256 個 byte 值中有 196 個令兩者皆非零。若 fallback 的 `0x40048` 槽確實清零 112 bytes、`p` 指向該區且後續四 byte copy 正常且不干擾第 0 byte，則 fallback 後第 0 byte 為 0，兩處各自的非零分支會被略過，直到該 byte 被改寫。這是條件推論，並未確認 slot、呼叫時序、產品功能或實機狀態。相鄰資料被 byte 讀取，不能因此將其當成 counter halfword 的有效項目；[檢查器](check-settings-selectors.py)固定允許的原始窗口與重建來源，並核對算術，不讀取排除資料或執行目標。
+
 **與其他已辨識資料的數值交集。** 若索引超過 3，索引 4–7 的 halfword 位址落在 `0x1AB50..0x1AB58`，此區另被[record dispatch 資料](../../src/native/receive/record_dispatch_tables.c)使用；索引 8–11 落在 `0x1AB58..0x1AB60`，此區另被[service threshold 資料](../../src/native/receive/runtime_service_links.c)使用。索引 12–75 則落在 reset 用的 128-byte 初始資料來源 `[0x1AB60,0x1ABE0)`；例如索引 54／55 正好分別指向原始初始化 word `0x1ABB4` 的前／後半部。
 
 這些是原始數值位址及已重建用途的交叉證據，不證明索引 4–75 可達、資料的 C 宣告邊界或可將這些區域當作 counter 表的有效項目。不能擴大 provider、修改共享 bytes 或推定產品語義。[檢查器](check-counter-input-guard.py)固定相關來源並驗算位址，不讀取其他 APP 內容或執行目標。
