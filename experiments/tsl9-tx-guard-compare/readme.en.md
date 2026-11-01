@@ -11,3 +11,9 @@ If control falls through that preceding branch and no asynchronous action change
 At `0x8B10`, the original branches on unsigned `a0<s0` to copy at `0x8B52`, otherwise falling through to completion at `0x8B14`. The candidate branches on the complementary `a0>=s0` to completion at `0x8B2E`, otherwise falling through to the copy at `0x8B14`. Both extract the low 16-bit index identically; loop-body instruction order matches, with the sole non-branch difference reversing the operands of address addition. Both jump back to `0x8B0A`. The [checker](check-loop.py) pins bounded windows, decodes branch destinations and compares body encodings; it does not execute the target.
 
 Given matching valid input registers and memory, normal execution, no entry into the middle and no asynchronous interference, this supports equivalent local comparisons, byte reads/writes and checksum accumulation order. It does not establish source/destination validity, all callers, the later completion path, device startup or flash readiness.
+
+## Completion path and indirect slot
+
+The original `[0x8B14,0x8B52)` and candidate `[0x8B2E,0x8B6C)` completion paths are each 62 bytes. Corresponding bytes match except for two encoding groups: the multiply reverses its source operands, and the `a2` address is calculated by adding GP before or after forming `GP+148`. Both calculate `(4*initial_a2 + GP + 148) mod 2^32`; identical following instructions read a byte there and obtain the tail-call target from `0x40050`.
+
+With matching valid registers and memory, normal completion and no mid-path entry, exception or asynchronous interference, this supports the same corresponding record read and indirect slot call. The [checker](check-tail.py) pins two bounded byte windows without executing the target. Intermediate `a5` values may differ, which matters under exceptions or interrupts; actual slot identity, valid memory, complete ABI and device startup remain unverified.
