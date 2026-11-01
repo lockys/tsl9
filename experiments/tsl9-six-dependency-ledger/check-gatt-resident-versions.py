@@ -11,8 +11,16 @@ image = Path(__file__).resolve().parents[2] / 'firmware-downloads/legacy-options
 with image.open('rb') as stream:
     stream.seek(0x1ab1c - 0x8000)
     app_prefix = stream.read(21)
+    stream.seek(0x8f7e - 0x8000)
+    tx_registration = stream.read(44)
 if hashlib.sha256(app_prefix).hexdigest() != 'd7983408b1cfeabbf840e9d03286b5bc9b3a5e948ac60211bc91ada510b48b68':
     raise SystemExit('Original APP version prefix changed')
+if hashlib.sha256(tx_registration).hexdigest() != 'b38af6c3355cad2eb095463cae088b499c30c751d578789466b15700fa4e4c64':
+    raise SystemExit('Original APP TX registration window changed')
+if tx_registration != bytes.fromhex('8327040817f5ffff130525698297238aa108239b91088327040817f5ffff1305c5678297238ca108239d9108'):
+    raise SystemExit('Original APP TX registration instructions changed')
+if 0x8f82 - 4096 + 1682 != 0x8614 or 0x8f98 - 4096 + 1660 != 0x8614:
+    raise SystemExit('TX registration callback arithmetic changed')
 CASES = (
     (args.v131, '11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5', 0x6e6a0, b'CH32V20x_BLE_LIB_V1.31\0', 0x4cf22, 0x402b0, 0x6de0c, '7a0cf58801fabb3dcb9d26fcece3d01b2f41276dacce4130daff0e663559927f', (0x43728, 0x43520, 0x43c4e)),
     (args.v140, '5a4331c80f71dda3fc28e13481e185bda6877d8be7977cbfa0238c2f0baadf23', 0x6e890, b'CH32V20x_BLE_LIB_V1.40\0', 0x4cfba, 0x402f0, 0x6dffc, 'e5a738246f7b39ca8dc057596acaf0040bb6673935fac8015ef1dba8af84c74e', (0x437b4, 0x435ac, 0x43cda)),
@@ -143,4 +151,12 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
             raise SystemExit('Candidate copied RAM body changed')
 if [((n + 3) & 0xffff) & 0xfffc for n in (65532, 65533, 65534, 65535)] != [65532, 0, 0, 0]:
     raise SystemExit('Unexpected 16-bit allocation-size alignment boundary')
+for count in range(256):
+    for maximum in range(256):
+        first = count if count < maximum else 255
+        after_first = count + (count < maximum)
+        second = after_first if after_first < maximum else 255
+        after_second = after_first + (after_first < maximum)
+        if (first != 255) != (first < after_second) or (second != 255) != (second < after_second):
+            raise SystemExit('Unexpected candidate registration guard relationship')
 print('Two candidate resident versions and registration slots verified; installed device unverified.')
