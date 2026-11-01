@@ -14,6 +14,7 @@ anchors = {
     0x222a: 'b7070200', 0x222e: '93870702', 0x2238: 'e167',
     0x223c: '938707f0', 0x2240: 'e3e1e7fa', 0x25f4: '83c70700',
     0x25f8: '1307f006', 0x25fc: '6307f700',
+    0x20e2: '21630283',
 }
 if boot.stat().st_size < max(pc - 0x1000 + len(bytes.fromhex(hexbytes)) for pc,hexbytes in anchors.items()):
     raise ValueError('BOOT shorter than checked windows')
@@ -23,6 +24,10 @@ with boot.open('rb') as stream:
         stream.seek(pc - 0x1000)
         if stream.read(len(expected)) != expected:
             raise ValueError('Selected BOOT anchor differs at '+hex(pc))
+    stream.seek(0x231e - 0x1000)
+    end_handler = stream.read(62)
+    if hashlib.sha256(end_handler).hexdigest() != '5aada9fcd13f973eb94a50f2abd909af7e4bdf233d9b34115023b7ce83fa0dbb':
+        raise ValueError('Candidate BOOT end-handler window changed')
 pages = []
 reset_windows = []
 for image in (official, candidate):
@@ -48,6 +53,6 @@ if jal_target(pages[0][:4], 0x8000) != 0x186aa or jal_target(reset_windows[0][-4
 page_count = 76800 // 1024
 assert 76800 % 1024 == 0 and page_count == 75
 assert all(0 <= index <= 95 and len(index.to_bytes(2, 'big')) + 1024 == 1026 for index in range(page_count))
-print(json.dumps({'boot_anchors':len(anchors),'initial_page_matches':True,'reset_window_matches':True,'entry':'0x186aa','resident_handoff':'0x40000','pages':page_count,
+print(json.dumps({'boot_anchors':len(anchors),'boot_end_window_matches':True,'candidate_boot_app_jump':'0x8000','initial_page_matches':True,'reset_window_matches':True,'entry':'0x186aa','resident_handoff':'0x40000','pages':page_count,
                   'page_range':[0,74],'candidate_boot_bound':[0,95],
                   'excluded_app_read':False,'installed_boot_identified':False,'hardware_tested':False}))
