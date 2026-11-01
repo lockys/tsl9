@@ -4,6 +4,8 @@
 
 Run `python scripts/verify-source-aggregate.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>`. For each of C and C++, the tool freshly compiles 125 existing code units, 13 data units and the 13-byte data window, checks include provenance, and partially links 139 objects. The separate TX candidate package is not included.
 
+With `--tx-candidate <CANDIDATE_BIN>`, it freshly compiles candidate TX, verifies its 280-byte window and replaces the old transport unit with a composite of its three ordered sections. The eight visible references from other objects all target the old entry, which receives a candidate alias to the new entry. This is an unplaced partial link; indirect interior entries and runtime ABI remain unproved. The mode retains the additional TX RAM import, for eight unresolved names.
+
 The ADC and resident units each export three identically named I/O helpers. The tool verifies that no input imports or relocations reference those names, then localizes the definitions in each object. It retains the input objects and does not edit source.
 
 The unplaced aggregate contains 79 undefined names. Using a hash-pinned historical source object, the tool pairs 71 candidate CODE targets by original address suffix and prelink bytes, plus a 128-byte initializer by contents. It conditionally links 72 aliases and retains seven undefined names. Each alias points to an actual compiled section, rather than a numeric address witness; relocation semantics, original-coordinate layout, overlapping ownership and runtime contracts remain unproved. Including resident and stack-related units does not establish hardware ROM or RAM.
