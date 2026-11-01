@@ -19,3 +19,9 @@ The candidate rejects connection `0xFFFE` before reading CSRs: prior original-co
 `NOT-FLASHABLE-transport-component.bin` contains this 118-byte function; offline C and C++ builds match, SHA-256 `9687a6159704a4dee8e2b89d34ae5704f1564d53fb04e5d1e95a5a1862469d1e`. Disassembly checks the sentinel guard, two CSR reads and four call arguments. The original device, BLE notifications, app reception and OTA are not tested. **Do not flash.**
 
 At `0x1870C` the original reset ORs `0x1888` into `mstatus`, setting MPP bits 12:11 to 3. The [WCH QingKe V4 manual](https://www.wch.cn/uploads/file/20220411/1649641123177990.pdf) states that MPP=3 retains machine mode on MRET. If the installed resident matches the candidate, startup and MRET complete and MPP remains unchanged, this supports the required CSR privilege at APP entry; it does not prove the privilege at a later call site or the values on the device.
+
+## Candidate for memory configuration
+
+The [WCH V2.2 reference manual section 32.4.6](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf) describes `FLASH_OBR` at offset `0x1C` as a read-only option status register and lists CODE/RAM configurations of 128/64, 144/48 and 160/32 KiB for CH32V20x_D8W. Together with the peripheral base in the [WCH header](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h), this gives candidate address `0x4002201C`.
+
+The manual labels the field `[9:8]` but describes its configurations using three-bit patterns `00x`, `01x` and `1xx`; that inconsistency remains unresolved. `FLASH_OBR` also contains other status, so its entire word must not be treated as a memory configuration or shared as device protection information. The current program **does not read this register** and makes no claim about the device's RAM/Flash selection. Confirm the applicable version, field semantics and device access conditions before considering a narrowly masked field.

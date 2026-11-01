@@ -19,3 +19,9 @@
 `NOT-FLASHABLE-transport-component.bin` 是此介面的 118-byte 裸函式，C／C++ 離線編譯一致，SHA-256 `9687a6159704a4dee8e2b89d34ae5704f1564d53fb04e5d1e95a5a1862469d1e`。反組譯核對了 sentinel 守衛、兩個 CSR 讀取及四個呼叫參數；沒有測試原機、實際 BLE 通知、App 接收或 OTA。**不可刷寫。**
 
 原 reset 的 `0x1870C` 以 `0x1888` OR `mstatus`，會把 MPP bits 12:11 設成 3；[WCH 青稞 V4 手冊](https://www.wch.cn/uploads/file/20220411/1649641123177990.pdf)說明 MRET 時 MPP=3 保留 machine mode。若候選 resident 相符、啟動與 MRET 正常且期間 MPP 未被改寫，這支持 APP 入口處具備該 CSR 權限；不能保證之後的呼叫點仍處於 machine mode，也不能確認實機值。
+
+## 記憶體配置的後續候選
+
+[WCH V2.2 參考手冊 §32.4.6](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)將 `FLASH_OBR` 描述為 offset `0x1C` 的唯讀選項狀態暫存器，並在 CH32V20x_D8W 的配置欄列出 128/64、144/48、160/32 KiB 的 CODE／RAM 組合。配合 [WCH 標頭](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h)的周邊基址，候選位址為 `0x4002201C`。
+
+手冊表格把欄位標成 `[9:8]`，卻使用 `00x`、`01x`、`1xx` 三位形式描述配置；這個標示差異尚未釐清。`FLASH_OBR` 也包含其他狀態，不能將整個字當成記憶體配置或公開裝置保護資訊。目前程式**不讀取此暫存器**，也沒有聲稱實機 RAM／Flash 組合；需先確認適用版本、欄位語義及裝置讀取條件，再考慮只擷取必要欄位。
