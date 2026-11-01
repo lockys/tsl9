@@ -2,7 +2,7 @@
 
 [English](readme.en.md)
 
-執行 `python scripts/verify-source-aggregate.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>`。工具在 C 與 C++ 模式各自重編譯 125 個既有程式單元、13 個既有資料單元及 13-byte 資料窗口，檢查包含檔來源，並局部連結各 139 個物件。獨立 TX 候選套件未納入此合併。
+執行 `python scripts/verify-source-aggregate.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>`。工具在 C 與 C++ 模式各自重編譯 125 個既有程式單元、13 個既有資料單元、13-byte 資料窗口及 121-byte 未知資料，檢查包含檔來源，並局部連結各 140 個物件。獨立 TX 候選套件未納入預設合併。
 
 加上 `--tx-candidate <CANDIDATE_BIN>` 後，工具重新編譯候選 TX，驗證 280-byte 窗口，將舊傳輸單元換成三段連續的 TX 物件；已檢查其他物件的 8 筆可見引用都指向舊入口，再將該入口的候選別名連到新入口。這是未配置的局部物件合併，並未證明間接中途入口或執行時 ABI。此模式額外保留 TX 的 RAM 匯入，共 8 個未解析名稱。
 
@@ -21,6 +21,8 @@ ADC 與 resident 單元各自提供三個同名 I/O 輔助函式。工具先檢�
 ## 精簡版面模式
 
 `python scripts/build-compact-source-layout.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>` 使用 [src/compact-layout.json](../../src/compact-layout.json) 和 [src/source-build-manifest.json](../../src/source-build-manifest.json) 重編來源、配置區段並檢查重定位後摘要。已在只含必要 `src/` 與建置腳本的隔離副本成功重跑，沒有 `experiments/`、`analysis/` 或候選 BIN；C／C++ 診斷 ELF 均與原專案產物逐 byte 一致。此模式以既有摘要核對，不是當次重新讀取候選檔。
+
+目前精簡版面涵蓋 6,266 個區段、73,672 bytes；其中新增 [121 bytes](../tsl9-opaque-allowed-gaps/README.md) 為未知語意的原始資料。另有 3,128 bytes 位於既定排除區，未讀取、未納入。
 
 這份資料是由前述歷史比對結果整理的 9 筆區段例外、22 個排除項目、72 個候選別名與已選區段摘要；它不是獨立取得的新硬體證據。來源建置清單可用 `python scripts/generate-source-build-manifest.py --out <NEW_FILE>` 從原追溯資料重新產生，並比對 `src/` 內的固定清單。建置仍有 7 項數值見證與不可燒錄限制。可選擇加上 `--candidate <CANDIDATE_BIN>`，額外逐 byte 比對候選檔的 280-byte TX 窗口；不讀取排除區。
 

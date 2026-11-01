@@ -33,7 +33,7 @@ compact = None
 olddefs = {}
 if a.compact_map:
     map_path = ROOT / 'src/compact-layout.json'
-    if hashlib.sha256(map_path.read_bytes()).hexdigest() != '74d1641e9397a4e623d1a396dda7ceb070ea9b5d11675cdff00600fa5acc32b8':
+    if hashlib.sha256(map_path.read_bytes()).hexdigest() != 'af2aec2d6b88b40c72c4f7ddc1c696630ac65f25462d3173c18d53d140896b4b':
         raise ValueError('Pinned compact mapping changed')
     compact = json.loads(map_path.read_text(encoding='utf-8'))
     if compact['schema'] != 'tsl9-selected-source-layout-compact-v1':
@@ -50,8 +50,10 @@ for u in data:
         raise ValueError('Data source provenance changed')
 window = manifest['window'] if a.compact_map else {'name': 'conditional-window-1ab37', 'curated_unit': 'src/native/receive/conditional_window_1ab37.c',
                                                      'spec': 'experiments/tsl9-input-counter-integration/spec-v1.json'}
+opaque = manifest['opaque'] if a.compact_map else {'name': 'opaque-allowed-gaps', 'curated_unit': 'src/native/receive/opaque_allowed_gaps.c',
+                                                     'spec': 'experiments/tsl9-input-counter-integration/spec-v1.json'}
 jobs = [(u, mode, 'code') for u in manifest['native_units'] for mode in ('c', 'cpp')]
-jobs += [(u, mode, 'data') for u in data + [window] for mode in ('c', 'cpp')]
+jobs += [(u, mode, 'data') for u in data + [window, opaque] for mode in ('c', 'cpp')]
 out.mkdir(parents=True)
 for unit, mode, kind in jobs:
     (out / mode / unit['name']).mkdir(parents=True, exist_ok=True)
@@ -123,7 +125,7 @@ for mode in ('c', 'cpp'):
         if tx_obj.byname['.text.tsl9_tx_composite']['size'] != 280:
             raise ValueError('Unexpected TX composite size')
         objects.append(composite)
-    if len(objects) != 139:
+    if len(objects) != 140:
         raise ValueError('Unexpected source unit count')
     aggregate = out / ('NOT-FLASHABLE-unplaced-' + mode + '.o')
     tx_alias = ['--defsym=tsl9_filter_external_8a56=__tsl9v4160_call_8a56'] if use_tx else []

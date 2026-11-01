@@ -20,7 +20,7 @@ out = a.out.resolve()
 if out.exists() or out == ROOT or ROOT in out.parents:
     raise SystemExit('Output must be a new directory outside the project')
 path = ROOT / 'src/compact-layout.json'
-if hashlib.sha256(path.read_bytes()).hexdigest() != '74d1641e9397a4e623d1a396dda7ceb070ea9b5d11675cdff00600fa5acc32b8':
+if hashlib.sha256(path.read_bytes()).hexdigest() != 'af2aec2d6b88b40c72c4f7ddc1c696630ac65f25462d3173c18d53d140896b4b':
     raise ValueError('Pinned compact mapping changed')
 mapping = json.loads(path.read_text(encoding='utf-8'))
 if mapping['schema'] != 'tsl9-selected-source-layout-compact-v1':

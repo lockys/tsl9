@@ -12,14 +12,14 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 def metadata():
     global _manifest
-    if sha(MANIFEST) != 'f47b61a3b38cd46ed2137d5b00d02e61f3f8a1211482e31bff301c5474e1e574':
+    if sha(MANIFEST) != '466883524eca536c88653bce14057ec68c8c94d2c56368e185f1c2116abaf739':
         raise ValueError('Pinned source build manifest changed')
     data = json.loads(MANIFEST.read_text(encoding='utf-8'))
     if data['schema'] != 'tsl9-source-build-v1' or sha(PARSER) != '00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141':
         raise ValueError('Source build schema or parser changed')
     files = data['files']
     actual = {p.relative_to(ROOT).as_posix() for p in (ROOT / 'src').rglob('*') if p.is_file() and p.suffix in {'.c', '.h', '.cc', '.cpp', '.hpp'}}
-    if len(files) != 172 or len({x['destination'] for x in files}) != len(files) or {x['destination'] for x in files} != actual:
+    if len(files) != 173 or len({x['destination'] for x in files}) != len(files) or {x['destination'] for x in files} != actual:
         raise ValueError('Source inventory changed')
     for item in files:
         path = (ROOT / item['destination']).resolve()

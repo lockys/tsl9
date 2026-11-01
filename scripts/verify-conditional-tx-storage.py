@@ -77,12 +77,12 @@ for mode in ('c', 'cpp'):
     original = reader(base / ('NOT-FLASHABLE-compact-source-layout-' + mode + '.elf'))
     prior = {s['name']: s for s in original.sections if s['flags'] & 2 and s['size'] and s['type'] != 8}
     flash = [s for s in result.sections if s['flags'] & 2 and s['size'] and s['type'] != 8]
-    if len(flash) != 6235 or sum(s['size'] for s in flash) != 73551 or not all(s['name'] in prior and s['address'] == prior[s['name']]['address'] and result.data(s) == original.data(prior[s['name']]) for s in flash):
+    if len(flash) != 6266 or sum(s['size'] for s in flash) != 73672 or not all(s['name'] in prior and s['address'] == prior[s['name']]['address'] and result.data(s) == original.data(prior[s['name']]) for s in flash):
         raise ValueError('Selected flash sections changed')
     phoff = struct.unpack_from('<I', result.raw, 28)[0]
     phsize, phcount = struct.unpack_from('<HH', result.raw, 42)
     if any(struct.unpack_from('<I', result.raw, phoff + i * phsize)[0] == 1 for i in range(phcount)):
         raise ValueError('Unexpected PT_LOAD')
-    results.append({'mode': mode, 'conditional_ram_bytes': ram['size'], 'strict_undefined': len(missing), 'flash_bytes_unchanged': 73551})
+    results.append({'mode': mode, 'conditional_ram_bytes': ram['size'], 'strict_undefined': len(missing), 'flash_bytes_unchanged': 73672})
 print(json.dumps({'passed': True, 'results': results, 'ram_ownership_proved': False, 'candidate_bytes_read': 0,
                   'diagnostic_pt_load': 0, 'excluded_read': False, 'flashable': False}))
