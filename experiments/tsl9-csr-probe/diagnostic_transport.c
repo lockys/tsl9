@@ -14,7 +14,7 @@ extern "C"
 __attribute__((used, noinline))
 void tsl9_probe_send(tsl9_probe_tx tx, uint32_t connection, uint32_t command)
 {
-    if (!tx || connection > 0xffffu || command > 0xffu) return;
+    if (!tx || connection > 0xffffu || connection == 0xfffeu || command > 0xffu) return;
     uint32_t architecture, implementation;
     __asm__ volatile ("csrr %0, 0xf12" : "=r" (architecture));
     __asm__ volatile ("csrr %0, 0xf13" : "=r" (implementation));

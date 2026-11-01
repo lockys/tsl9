@@ -12,6 +12,8 @@
 
 `diagnostic_transport.c` 是獨立的候選介面：由呼叫端提供傳送函式、連線值與命令值，按原 `0x8A56` 所觀察的四個參數順序送出同一筆資料。此介面沒有指定命令，也沒有插入原韌體；只有當實機介面、記憶體與保存暫存器契約符合且傳送函式返回前完成複製，stack 上的資料才可安全使用。原始檢查有連線與其他守衛，呼叫不保證實際通知。這是離線組件，不是可刷寫 firmware。
 
-`NOT-FLASHABLE-transport-component.bin` 是此介面的 110-byte 裸函式，C／C++ 離線編譯一致，SHA-256 `7d7eeaf1e1c7dd3d6d3d2a4e234529bd198e9017bf61ec5b1cbfa216c09a2eec`。反組譯核對了兩個 CSR 讀取及四個呼叫參數；沒有測試原機、實際 BLE 通知、App 接收或 OTA。**不可刷寫。**
+候選介面在讀取 CSR 前拒絕 `0xFFFE` 連線值：既有原始碼分析顯示 `0x8A56` 會將這個值視為空槽，無法通過兩個連線槽位的守衛。其餘值仍需符合實際連線及通知設定；此檢查不證明實機連接或成功傳送。詳見[原傳送守衛](../tsl9-six-dependency-ledger/README.md)。
+
+`NOT-FLASHABLE-transport-component.bin` 是此介面的 118-byte 裸函式，C／C++ 離線編譯一致，SHA-256 `9687a6159704a4dee8e2b89d34ae5704f1564d53fb04e5d1e95a5a1862469d1e`。反組譯核對了 sentinel 守衛、兩個 CSR 讀取及四個呼叫參數；沒有測試原機、實際 BLE 通知、App 接收或 OTA。**不可刷寫。**
 
 原 reset 的 `0x1870C` 以 `0x1888` OR `mstatus`，會把 MPP bits 12:11 設成 3；[WCH 青稞 V4 手冊](https://www.wch.cn/uploads/file/20220411/1649641123177990.pdf)說明 MRET 時 MPP=3 保留 machine mode。若候選 resident 相符、啟動與 MRET 正常且期間 MPP 未被改寫，這支持 APP 入口處具備該 CSR 權限；不能保證之後的呼叫點仍處於 machine mode，也不能確認實機值。
