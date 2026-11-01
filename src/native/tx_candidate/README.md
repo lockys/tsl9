@@ -6,4 +6,6 @@
 
 使用當初的 LLVM NDK 18，將工具目錄與全新輸出路徑傳入 `python src/native/tx_candidate/verify.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>`。檢查器分別以 C11／C++17 fresh compile 三段，核對 **pre-pass** section bytes 與 relocation 欄位，並輸出 `NOT-FLASHABLE-unlinked-TX-*.bin`。這些 280-byte 檔案只是未連結片段，沒有套用 relocation、frame postpass、APP 其餘程式、BOOT 或 resident；**不得燒錄，也不是 4.1.60 候選 BIN**。不讀取原廠或候選韌體。
 
+進一步執行 `python src/native/tx_candidate/verify-linked.py --tool-dir <LLVM_BIN> --candidate <CANDIDATE_BIN> --out <NEW_OUTPUT_DIR>`，會呼叫既有、雜湊固定的 `experiments/tsl9-v4160-tx-register-abi/postpass`，重新排序 frame 並在名目位址 `0x8A56` 連結。兩種語言的 280 bytes 皆與候選 BIN 的 TX 視窗逐 byte 一致；驗證僅讀候選位址 `[0x8A56,0x8B6E)`。嚴格缺 RAM provider 的連結應失敗，診斷連結的 `0x2000B18C` 只是數值地址見證，並沒有提供實體 RAM。輸出 `NOT-FLASHABLE-TX-ONLY-*.bin` 僅是已連結 TX 片段，**不能燒錄**；此流程仍依賴上述 `experiments/` postpass 與解碼器，並非完全由 `src/` 獨立建置。
+
 要從 `src/` 重建完整候選，仍須把此元件以正確符號及 postpass 整合到原位址圖，處理六個 provider、未選與既定排除區、RAM／resident／IRQ 及最終 OTA 條件；目前這些尚未完成，現有實機 OTA 的成功紀錄也不能套用至此未連結片段。
