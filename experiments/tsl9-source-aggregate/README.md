@@ -17,3 +17,9 @@ ADC 與 resident 單元各自提供三個同名 I/O 輔助函式。工具先檢�
 `python scripts/verify-source-layout.py --tool-dir <LLVM_BIN> --candidate <CANDIDATE_BIN> --out <NEW_OUTPUT_DIR>` 重新建立 TX 來源合併物件及比較版面，依歷史來源物件的符號與編譯前 bytes 為來源區段配置原位址。C／C++ 各有 6,235 個區段、73,551 bytes 經重定位後與既有候選診斷版面一致；無重疊且跳過既定排除區。
 
 嚴格連結必須報出 7 個未解析符號：原有 6 個 APP 依賴與 TX RAM 依賴。僅為核對已選區段，診斷連結以數值見證填入這 7 個名稱；它們不是程式或資料的實際 provider。結果為零 `PT_LOAD` 的不可燒錄 ELF，不包含全部 76,800 bytes，不證明缺失資料、啟動、ROM／RAM 或硬體功能。此流程仍依賴歷史來源物件及 TX postpass，不是純 `src/` 獨立建置。
+
+## 精簡版面模式
+
+`python scripts/build-compact-source-layout.py --tool-dir <LLVM_BIN> --candidate <CANDIDATE_BIN> --out <NEW_OUTPUT_DIR>` 使用固定的 [compact-layout.json](compact-layout.json) 重編來源、配置區段並檢查重定位後摘要，建置過程不開啟歷史建置物件。C／C++ 產生的診斷 ELF 與前述歷史物件比對流程的對應產物各自完整相同。
+
+這份資料是由前述歷史比對結果整理的 9 筆區段例外、22 個排除項目、72 個候選別名與已選區段摘要；它不是獨立取得的新硬體證據。此模式仍需要 LLVM、來源追溯檔、TX postpass 與候選檔的 280-byte TX 窗口，仍有 7 項數值見證與不可燒錄限制。

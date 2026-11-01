@@ -17,3 +17,9 @@ Outputs are `NOT-FLASHABLE-*.o`, not a BIN. The historical object is used as com
 `python scripts/verify-source-layout.py --tool-dir <LLVM_BIN> --candidate <CANDIDATE_BIN> --out <NEW_OUTPUT_DIR>` rebuilds the TX source aggregate and comparison layout, then places source sections using symbols and prelink bytes from the historical source object. For each of C and C++, 6,235 nonoverlapping sections totaling 73,551 bytes match the existing candidate diagnostic layout after relocation; the excluded ranges are skipped.
 
 The strict link must report seven unresolved names: the six APP dependencies and the TX RAM dependency. For selected-section comparison only, the diagnostic link uses numerical witnesses for those names; these are not actual code or data providers. Its ELF has zero `PT_LOAD`, is not flashable, and does not contain all 76,800 bytes or establish missing data, startup, ROM/RAM or hardware behavior. The workflow still depends on a historical source object and the TX postpass, so it is not a standalone `src/` build.
+
+## Compact layout mode
+
+`python scripts/build-compact-source-layout.py --tool-dir <LLVM_BIN> --candidate <CANDIDATE_BIN> --out <NEW_OUTPUT_DIR>` rebuilds sources, places sections and verifies the relocated digest using pinned [compact-layout.json](compact-layout.json), without opening a historical build object during this build. Each resulting C/C++ diagnostic ELF is byte-identical to its counterpart from the historical-object comparison workflow above.
+
+The metadata records nine section exceptions, 22 excluded alternatives, 72 candidate aliases and selected-section digests derived from that historical comparison; it is not independent hardware evidence. This mode still requires LLVM, source provenance files, the TX postpass and the candidate's 280-byte TX window; the seven numerical witnesses and nonflashable limitation remain.
