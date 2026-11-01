@@ -1208,6 +1208,72 @@
       "replacements": [],
       "origin_sha256": "53d9f10739051e8973e3ab67da52722e97c37051381d1e52981d48bdc15b647e",
       "sha256": "53d9f10739051e8973e3ab67da52722e97c37051381d1e52981d48bdc15b647e"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-tx-image-integration/adapter/entry.S",
+      "destination": "src/native/tx_candidate/entry.c",
+      "replacements": [
+        [
+          "/* Source-owned narrow runtime entry: canonical resident symbol, real FUNC8. */\n.section .text.tsl9_tx_entry,\"ax\",@progbits\n.p2align 1\n.globl __tsl9v4160_call_8a56\n.type __tsl9v4160_call_8a56,@function\n__tsl9v4160_call_8a56:\n    li a5,1039\n.Ltx_guard_branch:\n    bltu a5,a3,0\n    .reloc .Ltx_guard_branch,R_RISCV_BRANCH,tsl9_tx_oversized_return\n.size __tsl9v4160_call_8a56,.-__tsl9v4160_call_8a56\n",
+          "/* Source-owned TX entry, encoded by the assembler; not a complete firmware. */\n__asm__(\n    \".section .text.tsl9_tx_entry,\\\"ax\\\",@progbits\\n\"\n    \".p2align 1\\n\"\n    \".globl __tsl9v4160_call_8a56\\n\"\n    \".type __tsl9v4160_call_8a56,@function\\n\"\n    \"__tsl9v4160_call_8a56:\\n\"\n    \"li a5,1039\\n\"\n    \".Ltx_guard_branch:\\n\"\n    \"bltu a5,a3,0\\n\"\n    \".reloc .Ltx_guard_branch,R_RISCV_BRANCH,tsl9_tx_oversized_return\\n\"\n    \".size __tsl9v4160_call_8a56,.-__tsl9v4160_call_8a56\\n\"\n);\n"
+        ]
+      ],
+      "origin_sha256": "7d04c9d71d3c4a2b8360025bf182e22cabc3f547aa43bb8c8c22ae71b5ab97d0",
+      "sha256": "94bd5d040c148ae9f4b6a2553eda1fb95bc919741fc8f71c22bb6393bd6a7068"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-ota-tx/src/host_io.h",
+      "destination": "src/native/tx_candidate/host_io.h",
+      "replacements": [],
+      "origin_sha256": "1755ca187eb54fb95bb5b1523c8955c8f99883048115e5c8481972d706c8c4c6",
+      "sha256": "1755ca187eb54fb95bb5b1523c8955c8f99883048115e5c8481972d706c8c4c6"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-tx-register-abi/adapter/return_leaf.c",
+      "destination": "src/native/tx_candidate/return_leaf.c",
+      "replacements": [],
+      "origin_sha256": "aac07d0d13ecf39b0c9773670e0bd6323e3624bff3e38ecac53685dccccb6732",
+      "sha256": "aac07d0d13ecf39b0c9773670e0bd6323e3624bff3e38ecac53685dccccb6732"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-tx-register-abi/src/tx_io.h",
+      "destination": "src/native/tx_candidate/tx_io.h",
+      "replacements": [
+        [
+          "\"../../tsl9-v4160-ota-tx/src/host_io.h\"",
+          "\"host_io.h\""
+        ]
+      ],
+      "origin_sha256": "f3ba14c8adfe24d07f83338cbe82699c8668087fd3792cd5c6a2f6988671c7e7",
+      "sha256": "bd824cd042e690458ae80f7bd147c724c82bee3e4f23ea5cdc2d540dedc4aee7"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-tx-register-abi/src/tx_native.h",
+      "destination": "src/native/tx_candidate/tx_native.h",
+      "replacements": [
+        [
+          "\"../../tsl9-v4160-ota-tx/src/host_io.h\"",
+          "\"host_io.h\""
+        ]
+      ],
+      "origin_sha256": "5360c8c710bd57311fb92bc10f9880caf2881ad83604e9a567bdfb19f40d4db6",
+      "sha256": "c4bce9d222ededc14da5360fb9bd834a14d89c49cfc136ea3658461d9c44f0f4"
+    },
+    {
+      "origin": "experiments/tsl9-v4160-tx-register-abi/adapter/valid_body.c",
+      "destination": "src/native/tx_candidate/valid_body.c",
+      "replacements": [
+        [
+          "\"../src/tx_native.h\"",
+          "\"tx_native.h\""
+        ],
+        [
+          "\"../src/tx_io.h\"",
+          "\"tx_io.h\""
+        ]
+      ],
+      "origin_sha256": "dd98bd9e6298f8c7d76e86744eea8b10ddceb81dce71d8b5bbb456f7fe7b6be0",
+      "sha256": "481ff4db485adb5a8a9088c50296c75e0a47cc61935ea9a90d05200e025800f4"
     }
   ],
   "native_units": [

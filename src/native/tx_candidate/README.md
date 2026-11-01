@@ -2,7 +2,7 @@
 
 [English](readme.en.md)
 
-這是已測試 TX 候選的入口、C 主體及返回葉節點的獨立 `src/` 副本；目前的 `../receive/transport_frame.c` 是原始 TX 路徑，**不可同時當成同一個位置的兩個 provider 連結**。來源以原實驗為根據，包含由組合語言入口改寫的等價 file-scope inline assembly；只改動 include 路徑。它是獨立來源包，不修改既有封存的 `src/source-manifest.json` 和舊收據。
+這是已測試 TX 候選的入口、C 主體及返回葉節點的獨立 `src/` 副本；目前的 `../receive/transport_frame.c` 是原始 TX 路徑，**不可同時當成同一個位置的兩個 provider 連結**。來源以原實驗為根據，包含由組合語言入口改寫的等價 file-scope inline assembly；只改動 include 路徑。六個 C/H 檔已加入目前 `src/source-manifest.json` 的來源追溯清單；候選元件仍由本目錄的獨立檢查器建置，沒有加入舊 125 個 native units。原有 164 檔歷史收據維持原樣，由於當前 manifest 已擴充，固定舊 manifest 雜湊的歷史重播不能直接視為通過。
 
 使用當初的 LLVM NDK 18，將工具目錄與全新輸出路徑傳入 `python src/native/tx_candidate/verify.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>`。檢查器分別以 C11／C++17 fresh compile 三段，核對 **pre-pass** section bytes 與 relocation 欄位，並輸出 `NOT-FLASHABLE-unlinked-TX-*.bin`。這些 280-byte 檔案只是未連結片段，沒有套用 relocation、frame postpass、APP 其餘程式、BOOT 或 resident；**不得燒錄，也不是 4.1.60 候選 BIN**。不讀取原廠或候選韌體。
 
