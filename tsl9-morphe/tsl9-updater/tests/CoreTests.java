@@ -9,10 +9,10 @@ public class CoreTests {
     static void rejects(Runnable r) { checks++; try { r.run(); } catch(IllegalArgumentException e) { return; } throw new AssertionError("expected rejection"); }
     static byte[] uid() { byte[] b=new byte[14]; Arrays.fill(b,(byte)7); return b; }
     static class Rig implements OtaSession.Listener {
-        long now; OtaSession s=new OtaSession(this,()->now); int cmd; byte[] data; Runnable sent; int sends;
+        long now; OtaSession s=new OtaSession(this,()->now); int cmd; byte[] data; Runnable sent; int sends; List<String> logs=new ArrayList<>();
         public void send(int c,byte[] b,Runnable done) {cmd=c;data=b;sent=done;sends++;}
         public void changed(UiMessage detail) {}
-        public void log(String text) {}
+        public void log(String text) {logs.add(text);}
         void done(){Runnable r=sent;sent=null;r.run();}
         void reply(int c,byte[] b){s.onPacket(c,b);}
         void prepare(FirmwareImage i){s.start(i,uid());check(cmd==0x55,"prepare U");done();reply(0x55,new byte[]{0});check(cmd==0x53,"start S");done();}
@@ -49,15 +49,17 @@ public class CoreTests {
         byte[] patched=raw.clone();patched[200]^=0x7f;FirmwareImage own=FirmwareImage.parse(patched,FirmwareImage.Format.RAW);
         check(own.page(0)[202]==patched[200]&&!own.sha256.equals(image.sha256),"modified user bin not rejected by factory whitelist");
         Rig r=new Rig();rejects(()->r.s.start(image,new byte[14]));rejects(()->r.s.start(image,new byte[13]));
-        r.prepare(image);r.reply(0x53,new byte[]{1,1});check(r.cmd==0x57,"first page W");
+        r.prepare(image);check(r.logs.stream().anyMatch(s->s.startsWith("OTA IMAGE ")&&s.contains(image.sha256)&&s.contains(image.transferSha256)),"OTA start records selected image identity");r.reply(0x53,new byte[]{1,1});check(r.cmd==0x57,"first page W");
         r.done();r.reply(0x45,new byte[0]);check(r.s.page()==0,"out of order ignored");
         r.reply(0x57,new byte[]{0});check(r.s.page()==1,"ACK advances one page");r.done();r.reply(0x57,image.page(1));
         check(r.cmd==0x52,"readback after writes");r.done();r.reply(0x52,image.page(0));r.done();r.reply(0x52,image.page(1));
         check(r.cmd==0x52&&r.data[1]==2,"OEM terminal read uses pageCount index");r.done();r.reply(0x52,new byte[0]);
         check(r.cmd==0x45&&!r.s.success(),"end sent not success");r.done();r.reply(0x45,new byte[0]);
         check(r.s.success()&&r.s.readbackVerified(),"device end ACK + readback success");
+        check(r.logs.contains("OTA RESULT eReplyReceived=true readbackVerified=true restartVerified=false"),"verified readback result records restart unverified");
         Rig noRead=new Rig();noRead.prepare(image);noRead.reply(0x53,new byte[]{1});noRead.done();noRead.reply(0x57,new byte[]{0});noRead.done();noRead.reply(0x57,new byte[]{0});noRead.done();noRead.reply(0x45,new byte[0]);
         check(noRead.s.success()&&!noRead.s.readbackVerified(),"no false verify claim");
+        check(noRead.logs.contains("OTA RESULT eReplyReceived=true readbackVerified=false restartVerified=false"),"skipped readback is explicit");
         Rig bad=new Rig();bad.prepare(image);bad.reply(0x53,new byte[]{0});check(bad.s.failed(),"wrong APP mode rejected");
         Rig retry=new Rig();retry.prepare(image);retry.reply(0x53,new byte[]{1});retry.done();int sends=retry.sends;retry.now=1200;retry.s.tick();
         check(!retry.s.failed()&&retry.sends==sends+1&&retry.s.page()==0,"OEM timeout retries current page");

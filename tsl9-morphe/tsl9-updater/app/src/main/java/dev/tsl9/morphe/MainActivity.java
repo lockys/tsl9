@@ -37,7 +37,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     private long lastBootPoll;
     private LinearLayout deviceList;private Spinner format;private ProgressBar progress;private CheckBox match,hw20;
     private final LinkedHashMap<String,BluetoothDevice> devices=new LinkedHashMap<>();
-    private final StringBuilder logs=new StringBuilder();private File logFile;private boolean logDirty,logScheduled;
+    private final StringBuilder logs=new StringBuilder();private File logFile;private OtaEvidence otaEvidence;private boolean otaEvidenceError,logDirty,logScheduled;
     private static final int GREEN=AppUi.TEAL,DARK=AppUi.INK,MUTED=AppUi.MUTED;
     @Override protected void attachBaseContext(Context base){super.attachBaseContext(LanguageSettings.wrap(base));}
     private String s(int id,Object... args){return getString(id,args);}
@@ -51,7 +51,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
             public void log(String value){MainActivity.this.log(value);}
         },SystemClock::elapsedRealtime);
         hardwareFile=new File(getFilesDir(),"latest-hardware.jsonl");if(hardwareFile.length()<2*1024*1024){try{previousHardware=new String(readLimited(new android.util.AtomicFile(hardwareFile).openRead(),2*1024*1024),StandardCharsets.UTF_8);}catch(IOException ignored){}}
-        logFile=new File(getFilesDir(),"latest-debug.log");
+        logFile=new File(getFilesDir(),"latest-debug.log");otaEvidence=new OtaEvidence(new File(getFilesDir(),"latest-ota-evidence.log"));
         if(logFile.exists()&&logFile.length()<256*1024){try{logs.append(new String(readLimited(new FileInputStream(logFile),256*1024),StandardCharsets.UTF_8));}catch(IOException ignored){}}
         passwords=new BluetoothPasswordStore(this);displayedLocale=localeSignature(getResources().getConfiguration());buildUi();log("APP "+appBuild()+" package="+getPackageName()+" Android="+Build.VERSION.SDK_INT+" target=TSL9 OEM APP OTA + direct body-controls + live receive-only dashboard");
         if(b!=null){selectSeat(b.getInt("seat",0));if(b.getString("tab")!=null)tabs.setCurrentTabByTag(b.getString("tab"));}handler.post(ticker);refresh();
@@ -386,6 +386,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
         }
     }
     @Override public void log(String line){
+        if(otaEvidence!=null)try{otaEvidence.accept(line);}catch(IOException e){otaEvidenceError=true;}
         if(destroyed)return;String stamp=new SimpleDateFormat("HH:mm:ss.SSS",Locale.ROOT).format(new Date());String safe=line.replace('\n',' ').replace('\r',' ');logs.append(stamp).append(' ').append(safe).append('\n');
         if(logs.length()>200000)logs.delete(0,logs.length()-160000);logDirty=true;android.util.Log.d("Tsl9Updater",safe);
         if(!logScheduled){logScheduled=true;handler.postDelayed(()->{logScheduled=false;if(destroyed)return;String all=logs.toString();if(logView!=null)logView.setText(all.substring(Math.max(0,all.length()-12000)));flushLog();},300);}
@@ -396,7 +397,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     @Override protected void onActivityResult(int request,int result,Intent data){
         super.onActivityResult(request,result,data);if(result!=RESULT_OK||data==null||data.getData()==null)return;
         if(request==100){try{selectedBytes=readLimited(getContentResolver().openInputStream(data.getData()),FirmwareImage.MAX_PAGES*FirmwareImage.PAGE);imageName="selected.bin";try(Cursor c=getContentResolver().query(data.getData(),new String[]{OpenableColumns.DISPLAY_NAME},null,null,null)){if(c!=null&&c.moveToFirst())imageName=c.getString(0);}parseSelected();}catch(IOException|SecurityException e){selectedBytes=null;image=null;fileInfo.setText(s(R.string.file_read_error,e.getClass().getSimpleName()));log("BIN read failed "+e.getClass().getSimpleName());refresh();}}
-        if(request==101){try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){if(out==null)throw new IOException();out.write(logs.toString().getBytes(StandardCharsets.UTF_8));state(s(R.string.debug_exported));}catch(IOException|SecurityException e){state(s(R.string.debug_export_failed));}}
+        if(request==101){try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){if(out==null)throw new IOException();out.write(logs.toString().getBytes(StandardCharsets.UTF_8));String evidence=otaEvidence.snapshot();if(!evidence.isEmpty())out.write(("\n=== LATEST OTA EVIDENCE (identity and payload excluded) ===\n"+evidence).getBytes(StandardCharsets.UTF_8));if(otaEvidenceError)out.write("\nOTA evidence write failed; evidence may be incomplete.\n".getBytes(StandardCharsets.UTF_8));state(s(R.string.debug_exported));}catch(IOException|SecurityException e){state(s(R.string.debug_export_failed));}}
         if(request==102){try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){if(out==null)throw new IOException();out.write(hardwareSnapshot().getBytes(StandardCharsets.UTF_8));state(s(R.string.hardware_exported));}catch(IOException|SecurityException e){state(s(R.string.hardware_export_failed));}}
     }
     @Override protected void onResume(){super.onResume();leaving=false;refresh();}

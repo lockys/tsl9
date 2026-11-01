@@ -27,6 +27,7 @@ public final class OtaSession {
         boolean any=false;for(byte b:deviceUid)any|=b!=0;
         if(!any)throw new UiException(m("ota_empty_uid"));
         image=img;uid=deviceUid.clone();page=0;verified=false;readback=false;oemHw20=confirmedOemHw20;
+        listener.log("OTA IMAGE format="+img.format+" bytes="+img.fileBytes+" pages="+img.pageCount()+" padding="+img.paddingBytes+" sha256="+img.sha256+" transferSha256="+img.transferSha256);
         listener.log("OTA profile=OEM_APP hw20="+oemHw20+" W/S/E=1200ms maxTx=9 R=1000ms maxTx=5");
         emit(State.PREPARE,0x55,modeUid(),m("ota_prepare"));
     }
@@ -63,15 +64,18 @@ public final class OtaSession {
                 listener.log("OTA S readback="+readback+" policy="+(oemHw20?"confirmed_oem_hw20":"device_reply"));page=0;writePage();break;
             case WRITE:
                 if(!((data.length==1&&data[0]==0)||Arrays.equals(data,image.page(page)))){retry(m("ota_w_invalid"));return;}
+                listener.log("OTA WRITE accepted page="+page+" total="+total());
                 if(++page<total())writePage();else if(readback){page=0;readPage();}else end();break;
             case VERIFY:
                 // OEM Read() requests index == pageCount once before UpgradeEnd().
                 if(page==total()){end();break;}
                 if(!Arrays.equals(data,image.page(page))){retry(m("ota_read_mismatch",page));return;}
+                listener.log("OTA VERIFY matched page="+page+" total="+total());
                 if(++page==total())verified=true;readPage();break;
             case END:
                 // Original client accepts the E notification; payload semantics are not documented.
                 state=State.DONE;sequence++;deadline=0;transmitting=false;request=null;
+                listener.log("OTA RESULT eReplyReceived=true readbackVerified="+verified+" restartVerified=false");
                 listener.changed(verified?m("ota_done_verified"):oemHw20?m("ota_done_hw20"):m("ota_done_no_read"));break;
             default:break;
         }

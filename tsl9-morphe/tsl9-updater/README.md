@@ -1,4 +1,6 @@
-# TSL9 硬體工具 0.7.2-test
+# TSL9 硬體工具 0.7.10-test
+
+0.7.10-test 在既有「匯出 debug log」附加獨立保存的最近一次 OTA 紀錄。內容、限制與使用方式見 [繁體中文](OTA-EVIDENCE.md)／[English](OTA-EVIDENCE.en.md)。
 
 本機測試用 Android APK：手動連線 TSL9、擷取硬體 BLE／CAN 記錄、選擇原廠或自行修改的 APP bin，依原廠 U/S/W/R/E 協定寫入運行韌體。選檔與匯出均透過 Android 系統選檔器，沒有 INTERNET 權限，不打包韌體。
 
