@@ -14,8 +14,10 @@ p = argparse.ArgumentParser()
 p.add_argument('--tool-dir', type=Path, required=True)
 p.add_argument('--out', type=Path, required=True)
 p.add_argument('--tx-candidate', type=Path, help='Compare and integrate the bounded 280-byte TX candidate')
+p.add_argument('--source-tx', action='store_true', help='Integrate TX using its pinned digest without reading a candidate')
 p.add_argument('--compact-map', action='store_true', help='Use pinned previously verified mappings without opening the historical build object')
 a = p.parse_args()
+use_tx = bool(a.tx_candidate or a.source_tx)
 out = a.out.resolve()
 if out.exists() or out == ROOT or ROOT in out.parents:
     raise SystemExit('Output must be a new directory outside the project')
@@ -73,15 +75,17 @@ def compile_one(job):
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
     built = dict(pool.map(compile_one, jobs))
 tx = out / 'tx'
-if a.tx_candidate:
-    tx_result = json.loads(run([sys.executable, '-B', ROOT / 'src/native/tx_candidate/verify-linked.py',
-                                '--tool-dir', a.tool_dir, '--candidate', a.tx_candidate, '--out', tx]).stdout)
-    if not tx_result['passed'] or tx_result['candidate_bytes_read'] != 280 or tx_result['flashable']:
+if use_tx:
+    tx_args = [sys.executable, '-B', ROOT / 'src/native/tx_candidate/verify-linked.py', '--tool-dir', a.tool_dir, '--out', tx]
+    if a.tx_candidate:
+        tx_args += ['--candidate', a.tx_candidate]
+    tx_result = json.loads(run(tx_args).stdout)
+    if not tx_result['passed'] or not tx_result['tx_digest_matches'] or tx_result['candidate_bytes_read'] != (280 if a.tx_candidate else 0) or tx_result['flashable']:
         raise ValueError('TX compilation failed')
 expected = {'tsl9_boot_resident_40000', 'tsl9_incoming_external_14056', 'tsl9_input_state_decoders_static_data_1ab48',
             'tsl9_record_field_transitions_static_data_1a078', 'tsl9_registered_callbacks_static_data_1a638',
             'tsl9_runtime_reset_stack_top', 'tsl9_settings_default_data_1a69c'}
-if a.tx_candidate:
+if use_tx:
     expected.add('__tsl9v4160_data_2000b18c')
 helpers = {'ml_port_read8', 'ml_port_read32', 'ml_port_write32'}
 results = []
@@ -95,9 +99,9 @@ for mode in ('c', 'cpp'):
             continue
         path = built[unit['name'], mode]
         elf = reader(path)
-        if a.tx_candidate and unit['name'] != 'transport-frame':
+        if use_tx and unit['name'] != 'transport-frame':
             external.extend(r['symbol']['name'] for r in elf.relocations if r['symbol']['name'] in transport_names)
-        if a.tx_candidate and unit['name'] == 'transport-frame':
+        if use_tx and unit['name'] == 'transport-frame':
             continue
         definitions = {s['name'] for s in elf.symbols if s['name'] in helpers and s['index'] not in (0, 0xfff1) and s['info'] >> 4 in (1, 2)}
         imports = {s['name'] for s in elf.symbols if s['name'] in helpers and s['index'] == 0}
@@ -109,7 +113,7 @@ for mode in ('c', 'cpp'):
             run([tools['llvm-objcopy'], *['--localize-symbol=' + name for name in sorted(helpers)], path, localized])
             path = localized
         objects.append(path)
-    if a.tx_candidate:
+    if use_tx:
         if len(transport_names) != 13 or external != ['tsl9_filter_external_8a56'] * 8:
             raise ValueError('Unexpected external references to the old TX unit')
         composite = out / ('NOT-FLASHABLE-tx-composite-' + mode + '.o')
@@ -122,10 +126,10 @@ for mode in ('c', 'cpp'):
     if len(objects) != 139:
         raise ValueError('Unexpected source unit count')
     aggregate = out / ('NOT-FLASHABLE-unplaced-' + mode + '.o')
-    tx_alias = ['--defsym=tsl9_filter_external_8a56=__tsl9v4160_call_8a56'] if a.tx_candidate else []
+    tx_alias = ['--defsym=tsl9_filter_external_8a56=__tsl9v4160_call_8a56'] if use_tx else []
     run([tools['ld.lld'], '-m', 'elf32lriscv', '-r', '--no-relax', *tx_alias, *objects, '-o', aggregate])
     elf = reader(aggregate)
-    if a.tx_candidate:
+    if use_tx:
         symbols = {s['name']: s for s in elf.symbols if s['name']}
         old_entry, new_entry = symbols['tsl9_filter_external_8a56'], symbols['__tsl9v4160_call_8a56']
         if old_entry['index'] != new_entry['index'] or old_entry['value'] != new_entry['value'] or elf.sections[new_entry['index']]['name'] != '.text.tsl9_tx_composite':
@@ -159,4 +163,5 @@ for mode in ('c', 'cpp'):
     results.append({'mode': mode, 'fresh_objects': len(objects), 'candidate_aliases': len(aliases), 'remaining_undefined': len(remaining)})
 print(json.dumps({'passed': True, 'results': results, 'uses_historical_object_for_comparison': not a.compact_map,
                   'original_coordinate_layout_proved': False, 'relocation_semantics_proved': False,
-                  'tx_candidate_integrated': bool(a.tx_candidate), 'excluded_read': False, 'flashable': False}))
+                  'tx_candidate_integrated': use_tx, 'candidate_bytes_read': 280 if a.tx_candidate else 0,
+                  'excluded_read': False, 'flashable': False}))

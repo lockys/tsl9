@@ -13,7 +13,7 @@ import sys
 ROOT = Path(__file__).resolve().parent.parent
 p = argparse.ArgumentParser()
 p.add_argument('--tool-dir', type=Path, required=True)
-p.add_argument('--candidate', type=Path, required=True)
+p.add_argument('--candidate', type=Path, help='Optionally compare the bounded candidate TX window')
 p.add_argument('--out', type=Path, required=True)
 a = p.parse_args()
 out = a.out.resolve()
@@ -32,9 +32,10 @@ module = runpy.run_path(str(ROOT / 'scripts/verify-curated-source.py'))
 reader = runpy.run_path(str(module['PARSER']))['ELF']
 out.mkdir(parents=True)
 source_dir = out / 'source'
-p = subprocess.run([sys.executable, '-B', str(ROOT / 'scripts/verify-source-aggregate.py'), '--compact-map',
-                    '--tool-dir', str(a.tool_dir), '--tx-candidate', str(a.candidate), '--out', str(source_dir)],
-                   capture_output=True, text=True)
+aggregate_args = [sys.executable, '-B', str(ROOT / 'scripts/verify-source-aggregate.py'), '--compact-map',
+                  '--tool-dir', str(a.tool_dir), '--out', str(source_dir)]
+aggregate_args += ['--tx-candidate', str(a.candidate)] if a.candidate else ['--source-tx']
+p = subprocess.run(aggregate_args, capture_output=True, text=True)
 if p.returncode:
     raise ValueError('Source aggregate failed: ' + p.stderr[:1000])
 agg = json.loads(p.stdout)
@@ -108,5 +109,6 @@ for mode in ('c', 'cpp'):
         raise ValueError('Unexpected PT_LOAD')
     results.append({'mode': mode, 'source_sections': len(selected), 'matched_bytes': mapping['expected_bytes'], 'strict_undefined': len(missing)})
 print(json.dumps({'passed': True, 'results': results, 'historical_build_object_read': False,
+                  'candidate_bytes_read': agg['candidate_bytes_read'],
                   'numeric_witnesses_only': True, 'diagnostic_pt_load': 0, 'excluded_read': False,
                   'complete_firmware': False, 'flashable': False}))

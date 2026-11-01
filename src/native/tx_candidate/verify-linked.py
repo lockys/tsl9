@@ -11,7 +11,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 p = argparse.ArgumentParser()
 p.add_argument('--tool-dir', type=Path, required=True)
-p.add_argument('--candidate', type=Path, required=True)
+p.add_argument('--candidate', type=Path, help='Optionally compare the bounded candidate window')
 p.add_argument('--out', type=Path, required=True)
 p.add_argument('--project-root', type=Path, default=HERE.parents[2])
 a = p.parse_args()
@@ -19,12 +19,15 @@ ROOT = a.project_root.resolve()
 out = a.out.resolve()
 if out.exists() or out == HERE or HERE in out.parents:
     raise SystemExit('Output must be new and outside source tree')
-if a.candidate.stat().st_size != 76800: raise SystemExit('Unexpected candidate size')
-with a.candidate.open('rb') as f:
-    f.seek(0x8a56 - 0x8000)
-    candidate_tx = f.read(280)
-if len(candidate_tx) != 280 or hashlib.sha256(candidate_tx).hexdigest() != '8b129d84cbd65062315ec8197f7cbabb0eae7a4dfec4dca5bf39861851a525b9':
-    raise SystemExit('Candidate TX window does not match pinned reference')
+tx_sha = '8b129d84cbd65062315ec8197f7cbabb0eae7a4dfec4dca5bf39861851a525b9'
+candidate_tx = None
+if a.candidate:
+    if a.candidate.stat().st_size != 76800: raise SystemExit('Unexpected candidate size')
+    with a.candidate.open('rb') as f:
+        f.seek(0x8a56 - 0x8000)
+        candidate_tx = f.read(280)
+    if len(candidate_tx) != 280 or hashlib.sha256(candidate_tx).hexdigest() != tx_sha:
+        raise SystemExit('Candidate TX window does not match pinned reference')
 post = ROOT/'experiments/tsl9-v4160-tx-register-abi/postpass/schedule.py'
 policy = post.with_name('policy.json')
 for path, digest in ((post, '7a516d1098ed0b45cf6c3ff92515f14cf831a3472a32621352a10f1914526d7a'), (policy, '370ea3f33c0164b83a04ee7623bc8507dc8da1e628af7de011ccb951f4dba9a2')):
@@ -49,5 +52,12 @@ for mode in ('c', 'cpp'):
     subprocess.run([*base, '--defsym=__tsl9v4160_data_2000b18c=0x2000B18C', '-o', str(elf)], check=True)
     binary = out/('NOT-FLASHABLE-TX-ONLY-'+mode+'.bin')
     subprocess.run([str(objcopy), '-O', 'binary', '--only-section=.text.tsl9_tx_composite', str(elf), str(binary)], check=True)
-    if binary.read_bytes() != candidate_tx: raise SystemExit('Linked TX differs from bounded candidate window: '+mode)
-print(json.dumps({'passed': True, 'languages': ['c', 'cpp'], 'tx_bytes': 280, 'candidate_tx_matches': True, 'candidate_bytes_read': 280, 'ram_provider': 'address witness only', 'complete_firmware': False, 'flashable': False, 'target_executed': False}))
+    linked_tx = binary.read_bytes()
+    if len(linked_tx) != 280 or hashlib.sha256(linked_tx).hexdigest() != tx_sha:
+        raise SystemExit('Linked TX differs from pinned digest: ' + mode)
+    if candidate_tx is not None and linked_tx != candidate_tx:
+        raise SystemExit('Linked TX differs from bounded candidate window: '+mode)
+print(json.dumps({'passed': True, 'languages': ['c', 'cpp'], 'tx_bytes': 280, 'tx_digest_matches': True,
+                  'candidate_tx_matches': True if candidate_tx is not None else None,
+                  'candidate_bytes_read': 280 if candidate_tx is not None else 0, 'ram_provider': 'address witness only',
+                  'complete_firmware': False, 'flashable': False, 'target_executed': False}))
