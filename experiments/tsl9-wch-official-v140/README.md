@@ -9,3 +9,5 @@ WCH 官方 CH32V20x 專案在 commit `b375bbbc7dfe8642d6fb7c17e6d3207ee1c3c9c1` 
 進一步由 WCH 官方 GitHub 的[舊版固定 commit](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.hex)取得公開 HEX，SHA-256 為 `11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5`，與既有本機 V1.31 候選逐檔雜湊相同。使用這兩份官方 HEX 重跑版本及槽位檢查通過。V1.31 的前綴相符是候選啟動條件的必要線索，並非實機版本、完整 ABI 或可燒錄性證明；不可把它視為實機備份。
 
 驗證只讀取允許的 APP 版本字串與公開 HEX，沒有讀取 APP 排除區、連接硬體或執行 target。
+
+兩版官方候選 HEX 的 TX 相關跳表指標也已核對：`0x40050` 在 V1.31 指向 `0x4354A`、V1.40 指向 `0x435D6`；`0x4013C` 分別指向 `0x4B456`、`0x4B4EE`。V1.40 官方標頭將這兩槽分別宣告為 `tmos_set_event` 與 `GATTServApp_ReadCharCfg`，與既有 V1.30 標頭的槽號及函式簽章一致。不同實作位址顯示不能把一版的內部位址硬編碼到另一版；兩個槽值與宣告一致本身仍未證明函式行為相同、實機載入哪個版本或候選程式可啟動。[檢查器](../tsl9-six-dependency-ledger/check-gatt-resident-versions.py)已固定兩版的槽值。

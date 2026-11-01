@@ -9,3 +9,7 @@ The local [version checker](../tsl9-six-dependency-ledger/check-gatt-resident-ve
 The public HEX from WCH's [older pinned GitHub commit](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.hex) has SHA-256 `11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5`, identical to the locally retained V1.31 candidate. The version and slot checks pass when rerun with both official HEX files. The V1.31 prefix match is a necessary candidate startup clue, not proof of the installed device version, complete ABI or flash readiness; it is not a backup of the device.
 
 Verification read only the permitted APP version string and public HEX files; it did not read excluded APP ranges, connect to hardware or execute the target.
+# TX jump-table pointers
+
+The official V1.31 and V1.40 candidate HEX files contain different TX-related pointers: slot `0x40050` contains `0x4354A` and `0x435D6`, and slot `0x4013C` contains `0x4B456` and `0x4B4EE`, respectively. The V1.40 official header declares these slots as `tmos_set_event` and `GATTServApp_ReadCharCfg`, matching the slots and signatures in the previously reviewed V1.30 header. Do not hard-code either version's internal addresses for the other. The [checker](../tsl9-six-dependency-ledger/check-gatt-resident-versions.py) pins both versions' values; this does not establish equivalent behavior, the installed resident, or successful startup.
+
