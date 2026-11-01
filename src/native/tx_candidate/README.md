@@ -6,7 +6,7 @@
 
 使用當初的 LLVM NDK 18，將工具目錄與全新輸出路徑傳入 `python src/native/tx_candidate/verify.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>`。檢查器分別以 C11／C++17 fresh compile 三段，核對 **pre-pass** section bytes 與 relocation 欄位，並輸出 `NOT-FLASHABLE-unlinked-TX-*.bin`。這些 280-byte 檔案只是未連結片段，沒有套用 relocation、frame postpass、APP 其餘程式、BOOT 或 resident；**不得燒錄，也不是 4.1.60 候選 BIN**。不讀取原廠或候選韌體。
 
-進一步執行 `python src/native/tx_candidate/verify-linked.py --tool-dir <LLVM_BIN> --candidate <CANDIDATE_BIN> --out <NEW_OUTPUT_DIR>`，會呼叫既有、雜湊固定的 `experiments/tsl9-v4160-tx-register-abi/postpass`，重新排序 frame 並在名目位址 `0x8A56` 連結。兩種語言的 280 bytes 皆與候選 BIN 的 TX 視窗逐 byte 一致；驗證僅讀候選位址 `[0x8A56,0x8B6E)`。嚴格缺 RAM provider 的連結應失敗，診斷連結的 `0x2000B18C` 只是數值地址見證，並沒有提供實體 RAM。輸出 `NOT-FLASHABLE-TX-ONLY-*.bin` 僅是已連結 TX 片段，**不能燒錄**；此流程仍依賴上述 `experiments/` postpass 與解碼器，並非完全由 `src/` 獨立建置。
+進一步執行 `python src/native/tx_candidate/verify-linked.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>`，使用本目錄 [postpass](postpass/) 重新排序 frame，於名目位址 `0x8A56` 連結並核對既有 280-byte 摘要。可另加 `--candidate <CANDIDATE_BIN>`，逐 byte 比對候選檔的 `[0x8A56,0x8B6E)`；不指定時不讀候選檔。postpass 源自 `experiments/tsl9-v4160-tx-register-abi/postpass`，解碼器只保留其所需指令解碼；C／C++ 重排物件與原工具逐 byte 一致。嚴格缺 RAM provider 的連結應失敗，診斷連結的 `0x2000B18C` 只是數值地址見證，並沒有提供實體 RAM。輸出 `NOT-FLASHABLE-TX-ONLY-*.bin` 僅是已連結 TX 片段，**不能燒錄**。
 
 `python src/native/tx_candidate/integrate-diagnostic.py --tool-dir <LLVM_BIN> --candidate <CANDIDATE_BIN> --out <NEW_OUTPUT_DIR>` 再將新編譯 TX bytes 插入既有、雜湊固定的 `src/` 來源編譯物件，停用舊 TX 區內 9 筆重定位並遮除 24 個過期內部符號；檢查 8 筆區外進入的 relocation 均指向 TX 入口。這是**物件層診斷整合**，不是完整重新編譯全部 `src/`；它依賴本機保留的歷史 `experiments/.../build` 物件與 layout。嚴格連結仍因六個 provider 失敗，另以數值地址見證連成零 `PT_LOAD` 的不可燒錄診斷 ELF。其 73,538 個已配置 bytes 與候選檔相同；比對跳過既定排除區，不證明完整檔案或硬體相容。舊中途入口的間接跳轉與 runtime ABI 也未封閉。
 

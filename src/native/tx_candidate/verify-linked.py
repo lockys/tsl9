@@ -28,9 +28,9 @@ if a.candidate:
         candidate_tx = f.read(280)
     if len(candidate_tx) != 280 or hashlib.sha256(candidate_tx).hexdigest() != tx_sha:
         raise SystemExit('Candidate TX window does not match pinned reference')
-post = ROOT/'experiments/tsl9-v4160-tx-register-abi/postpass/schedule.py'
+post = HERE/'postpass/schedule.py'
 policy = post.with_name('policy.json')
-for path, digest in ((post, '7a516d1098ed0b45cf6c3ff92515f14cf831a3472a32621352a10f1914526d7a'), (policy, '370ea3f33c0164b83a04ee7623bc8507dc8da1e628af7de011ccb951f4dba9a2')):
+for path, digest in ((post, 'a85c69682952a963ff233e76b2f0247b42084b8eab05248f53690f3fb5ef337a'), (policy, '370ea3f33c0164b83a04ee7623bc8507dc8da1e628af7de011ccb951f4dba9a2')):
     if hashlib.sha256(path.read_bytes()).hexdigest() != digest: raise SystemExit('Postpass source or policy changed')
 out.mkdir(parents=True)
 subprocess.run([sys.executable, '-B', str(HERE/'verify.py'), '--tool-dir', str(a.tool_dir), '--out', str(out/'pre')], check=True, capture_output=True, text=True)
