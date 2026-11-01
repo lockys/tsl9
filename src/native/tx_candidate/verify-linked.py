@@ -5,6 +5,7 @@ import hashlib
 import json
 import runpy
 import subprocess
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -29,7 +30,7 @@ policy = post.with_name('policy.json')
 for path, digest in ((post, '7a516d1098ed0b45cf6c3ff92515f14cf831a3472a32621352a10f1914526d7a'), (policy, '370ea3f33c0164b83a04ee7623bc8507dc8da1e628af7de011ccb951f4dba9a2')):
     if hashlib.sha256(path.read_bytes()).hexdigest() != digest: raise SystemExit('Postpass source or policy changed')
 out.mkdir(parents=True)
-subprocess.run(['python', '-B', str(HERE/'verify.py'), '--tool-dir', str(a.tool_dir), '--out', str(out/'pre')], check=True, capture_output=True, text=True)
+subprocess.run([sys.executable, '-B', str(HERE/'verify.py'), '--tool-dir', str(a.tool_dir), '--out', str(out/'pre')], check=True, capture_output=True, text=True)
 scheduler = runpy.run_path(str(post)); ctx = scheduler['context'](ROOT); scheduler['policy_gate'](policy)
 linker = a.tool_dir / ('ld.lld.exe' if (a.tool_dir/'ld.lld.exe').is_file() else 'ld.lld')
 objcopy = a.tool_dir / ('llvm-objcopy.exe' if (a.tool_dir/'llvm-objcopy.exe').is_file() else 'llvm-objcopy')
