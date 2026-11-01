@@ -6,4 +6,6 @@ At WCH CH32V20x commit `b375bbbc7dfe8642d6fb7c17e6d3207ee1c3c9c1`, the official 
 
 The local [version checker](../tsl9-six-dependency-ledger/check-gatt-resident-versions.py) passed against this official HEX and the retained V1.31 file: the V1.40 version string differs from the TSL9 APP's 21-byte V1.3 prefix, while the V1.31 prefix matches. The version-gate interpretation remains conditional on the installed comparison implementation, calling convention and execution matching the candidates. This establishes reference-file provenance, not the installed resident, startup success or compatibility; do not flash the candidate HEX.
 
+The public HEX from WCH's [older pinned GitHub commit](https://github.com/openwch/ch32v20x/blob/ec059e0b18046b111ee850e44f105fcd095e775c/EVT/EXAM/BLE/LIB/wchble_rom.hex) has SHA-256 `11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5`, identical to the locally retained V1.31 candidate. The version and slot checks pass when rerun with both official HEX files. The V1.31 prefix match is a necessary candidate startup clue, not proof of the installed device version, complete ABI or flash readiness; it is not a backup of the device.
+
 Verification read only the permitted APP version string and public HEX files; it did not read excluded APP ranges, connect to hardware or execute the target.
