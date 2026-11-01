@@ -32,4 +32,6 @@
 
 同一手冊 [§32.6 表 32-4（印刷頁 609–610）](https://ch32-riscv-ug.github.io/CH32V20x/datasheet_en/CH32FV2x_V3xRM.PDF#page=614)另將選項位元組 `USER[7:5]` 明確列為三位，並對 CH32V20x_D8W 列出 `00x` = 128/64、`01x` = 144/48、`1xx` = 160/32 KiB（CODE/RAM）。[純函式](decode_user_memory_mode.py)只解碼呼叫端提供的三位整數；測試涵蓋八個合成值，沒有讀取裝置或選項位元組。這張表不證明 `FLASH_OBR[9:8]` 與 `USER[7:5]` 的精確對應，也不證明實機配置；勿用它判定可燒錄性。
 
+與[18 版啟動清零分析](../tsl9-six-dependency-ledger/README.md)比較：若 RAM 是從 `0x20000000` 開始的單一連續區間，清零半開終點 `0x2000C94C..0x2000C958` 超出 32 KiB 區間 18,764–18,776 bytes、超出 48 KiB 區間 2,380–2,392 bytes，落在 64 KiB 區間內。初始 SP `0x20010000` 恰為 64 KiB 區間的半開終點，不是可直接讀取的 byte。這是條件式容量比較：不排除重新映射、別名或其他實機記憶體安排，不證明裝置模式或啟動成功。純函式的 `reset_extent_comparison` 僅計算這些假設，不存取硬體或韌體。
+
 [WCH 官方下載頁](https://www.wch.cn/downloads/CH32FV2x_V3xRM_PDF.html)列出適用 CH32V208GBU6 的 V2.5；其[英文手冊鏡本 §32.4.6（印刷頁 603）](https://ch32-riscv-ug.github.io/CH32V20x/datasheet_en/CH32FV2x_V3xRM.PDF#page=608)的表格仍標 `[9:8]`，配置仍使用三位模式，因此升版後不足以消除這項歧義。此比對是文件分析，沒有讀取裝置暫存器，也不證明實際記憶體配置。

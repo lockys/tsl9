@@ -7,3 +7,11 @@ def decode(mode):
     if mode < 4:
         return {"code_kib": 144, "ram_kib": 48}
     return {"code_kib": 160, "ram_kib": 32}
+
+def reset_extent_comparison(mode):
+    """Compare observed reset endpoints with a hypothetical contiguous RAM window."""
+    top = 0x20000000 + decode(mode)["ram_kib"] * 1024
+    ends = (0x2000C94C, 0x2000C958)
+    return {"ram_end_exclusive": top,
+            "reset_end_range": ends,
+            "overflow_bytes_range": tuple(max(0, end - top) for end in ends)}
