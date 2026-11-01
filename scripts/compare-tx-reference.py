@@ -71,8 +71,26 @@ for mode in ('c', 'cpp'):
     if (reference.get(0x8b10) != 'bltu a0, s0, 0x8b52' or current.get(0x8b10) != 'bgeu a0, s0, 0x8b2e' or
         reference.get(0x8b6a) != 'j 0x8b0a' or current.get(0x8b2c) != 'j 0x8b0a'):
         raise ValueError('Unexpected loop branch or backedge')
+    prefix = {0x8a6a: 'lhu a4, 0x96(gp)', 0x8a6e: 'mv s2, a0',
+              0x8a70: 'mv s0, a3', 0x8a72: 'mv s1, a2', 0x8a74: 'mv s3, a1',
+              0x8a76: 'bne a4, a0, 0x8a96', 0x8a7a: 'lui a5, 0x10',
+              0x8a7c: 'addi a5, a5, -0x2'}
+    for code in (reference, current):
+        if any(code.get(pc) != insn for pc, insn in prefix.items()):
+            raise ValueError('Unexpected first-gate prefix')
+        if [pc for pc in sorted(code) if 0x8a6a <= pc < 0x8a7e] != sorted(prefix):
+            raise ValueError('Unexpected first-gate instruction boundary')
+    if reference.get(0x8a7e) != 'beq a4, a5, 0x8a96' or current.get(0x8a7e) != 'beq a5, a0, 0x8a96':
+        raise ValueError('Unexpected first-gate branch')
+    # Normal bne fallthrough establishes a4 == a0; only a5 changes before beq.
+    # This counterexample shows why direct interior entry cannot use that proof.
+    sentinel, a4, a0 = 0xfffe, 0xfffe, 0
+    if (a4 == sentinel) == (sentinel == a0):
+        raise ValueError('First-gate counterexample failed')
     results.append({'mode': mode, 'different_bytes': len(changes), 'original_instructions': len(reference),
                     'candidate_instructions': len(current), 'shared_boundaries': len(shared),
-                    'different_shared_instructions': len(differences), 'loop_conditions_complementary': True})
+                    'different_shared_instructions': len(differences), 'loop_conditions_complementary': True,
+                    'first_gate_normal_fallthrough_equivalent': True,
+                    'direct_interior_entry_equivalence_proved': False})
 print(json.dumps({'passed': True, 'results': results, 'reference_bytes_read': 280, 'excluded_read': False,
                   'full_behavior_equivalence_proved': False, 'target_execution': False, 'flashable': False}))
