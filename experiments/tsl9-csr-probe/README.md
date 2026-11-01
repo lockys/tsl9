@@ -27,3 +27,7 @@
 手冊表格把欄位標成 `[9:8]`，卻使用 `00x`、`01x`、`1xx` 三位形式描述配置；這個標示差異尚未釐清。`FLASH_OBR` 也包含其他狀態，不能將整個字當成記憶體配置或公開裝置保護資訊。目前程式**不讀取此暫存器**，也沒有聲稱實機 RAM／Flash 組合；需先確認適用版本、欄位語義及裝置讀取條件，再考慮只擷取必要欄位。
 
 已直接檢視 WCH V2.2 手冊的[原始 PDF 第 598 頁（印刷頁碼 594）](https://static.chipdip.ru/lib/820/DOC059820997.pdf#page=598)：圖表確實同時標出 `[9:8]`、`[2:0]` 與三位模式，因此歧義不是搜尋結果的文字擷取所造成。檢視的 PDF SHA-256 為 `29575ed31788d4a3576a039a9c8cc3410280a36d73bcbf6509805203449d232d`；這仍不能選定正確實機解碼。
+
+[WCH 官方下載頁](https://www.wch.cn/downloads/CH32FV2x_V3xRM_PDF.html)列出適用 CH32V208GBU6 的 V2.5；其[英文手冊鏡本 §32.4.6（印刷頁 603）](https://ch32-riscv-ug.github.io/CH32V20x/datasheet_en/CH32FV2x_V3xRM.PDF#page=608)的表格仍標 `[9:8]`，配置仍使用三位模式，因此升版後不足以消除這項歧義。此比對是文件分析，沒有讀取裝置暫存器，也不證明實際記憶體配置。
+
+[WCH 官方下載頁](https://www.wch.cn/downloads/CH32FV2x_V3xRM_PDF.html)列出適用 CH32V208GBU6 的 V2.5；其[英文手冊鏡本 §32.4.6（印刷頁 603）](https://ch32-riscv-ug.github.io/CH32V20x/datasheet_en/CH32FV2x_V3xRM.PDF#page=608)的表格仍標 `[9:8]`，配置仍使用三位模式，因此升版後不足以消除這項歧義。此比對是文件分析，沒有讀取裝置暫存器，也不證明實際記憶體配置。
