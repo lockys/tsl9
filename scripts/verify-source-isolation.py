@@ -22,7 +22,7 @@ paths = [x['destination'] for x in manifest['files']]
 paths += ['src/source-build-manifest.json', 'src/compact-layout.json', 'src/native/tx_candidate/verify-linked.py', 'src/native/tx_candidate/verify.py']
 paths += ['src/native/tx_candidate/postpass/' + x for x in ('elf32.py', 'decode.py', 'schedule.py', 'policy.json')]
 paths += ['scripts/build-compact-source-layout.py', 'scripts/verify-source-aggregate.py', 'scripts/source-build-support.py']
-if len(paths) != 182 or len(paths) != len(set(paths)):
+if len(paths) != 183 or len(paths) != len(set(paths)):
     raise ValueError('Unexpected isolation inventory')
 tree = out / 'source-only'
 for name in paths:
