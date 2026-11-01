@@ -80,9 +80,12 @@ final class BleClient {
             writeType=write?BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT:BluetoothGattCharacteristic.WRITE_TYPE_NO_RESPONSE;
             events.log("GATT FFF0/FFF1 properties="+props+" writeType="+writeType);
             BluetoothGattService deviceInfo=g.getService(DEVICE_INFO);infoReads.clear();
-            if(deviceInfo!=null)for(int id:new int[]{0x2a29,0x2a24,0x2a27,0x2a26}){
+            events.log("GATT device-info service="+(deviceInfo==null?"absent":"present"));
+            if(deviceInfo!=null)for(int id:new int[]{0x2a29,0x2a24,0x2a27,0x2a26,0x2a28}){
                 BluetoothGattCharacteristic item=deviceInfo.getCharacteristic(UUID.fromString(String.format(Locale.ROOT,"0000%04x-0000-1000-8000-00805f9b34fb",id)));
-                if(item!=null&&(item.getProperties()&BluetoothGattCharacteristic.PROPERTY_READ)!=0)infoReads.add(item);
+                if(item==null)events.log(String.format(Locale.ROOT,"GATT device-info=%04x read=absent",id));
+                else if((item.getProperties()&BluetoothGattCharacteristic.PROPERTY_READ)==0)events.log(String.format(Locale.ROOT,"GATT device-info=%04x read=not-readable",id));
+                else infoReads.add(item);
             }
             phase="DEVICE_INFO";readNextInfo(g);
         });}
@@ -115,8 +118,7 @@ final class BleClient {
     }
     private void infoRead(BluetoothGatt g,BluetoothGattCharacteristic c,byte[] value,int status){
         if(g!=gatt||!phase.equals("DEVICE_INFO")||c!=infoCurrent)return;
-        String result="redacted";if(status==0){String text=new String(value,java.nio.charset.StandardCharsets.UTF_8).trim();
-            if(text.length()>0&&text.length()<=48&&text.matches("[A-Za-z0-9 ._+/-]+")&&!text.matches(".*[A-Za-z0-9]{9,}.*")&&!text.matches(".*[0-9]{6,}.*"))result=text;}
+        String result=StandardDeviceInfo.safeValue(status,value);
         events.log("GATT device-info="+standardId(c.getUuid())+" status="+status+" value="+result);infoCurrent=null;readNextInfo(g);
     }
     private void subscribe(BluetoothGatt g){

@@ -2,6 +2,8 @@
 
 本機測試用 Android APK：手動連線 TSL9、擷取硬體 BLE／CAN 記錄、選擇原廠或自行修改的 APP bin，依原廠 U/S/W/R/E 協定寫入運行韌體。選檔與匯出均透過 Android 系統選檔器，沒有 INTERNET 權限，不打包韌體。
 
+0.7.8 在 debug log 記錄標準 Device Information Service 是否存在，逐項標明廠商、型號、硬體、韌體及軟體版本特徵不存在、不可讀或讀取結果。僅嘗試讀取存在且標示可讀的標準欄位；對疑似識別資訊遮蔽，不讀取序號。它不能保證裝置提供這些欄位，也不能確認 WCH resident 函式庫版本。
+
 APK：[`TSL9-Updater-0.7.2-test.apk`](../artifacts/tsl9-updater/TSL9-Updater-0.7.2-test.apk)。獨立套件 `dev.tsl9.morphe.test`；debug 簽章供本機測試。原始 APK 分析見 [REA 報告](../artifacts/firmware-trace/REPORT.zh-TW.md)。0.3 的原廠流程對照與保留差異見 [OEM-ALIGNMENT.md](OEM-ALIGNMENT.md)。
 
 0.7.2依原廠實際設定流程移除燈光快捷額外的檔位／車速回報條件，並顯示完整設定、layout及新鮮度等停用原因。解鎖完整封包與原廠相同，保留A7/23並新增傳送完成與原始回覆診斷；解鎖不等於彈開車門，實車無效原因尚待新版log確認。座椅指令與停止機制保留。見 [原廠車控對照](OEM-BODY-ALIGNMENT.md)。
