@@ -17,3 +17,9 @@ Given matching valid input registers and memory, normal execution, no entry into
 The original `[0x8B14,0x8B52)` and candidate `[0x8B2E,0x8B6C)` completion paths are each 62 bytes. Corresponding bytes match except for two encoding groups: the multiply reverses its source operands, and the `a2` address is calculated by adding GP before or after forming `GP+148`. Both calculate `(4*initial_a2 + GP + 148) mod 2^32`; identical following instructions read a byte there and obtain the tail-call target from `0x40050`.
 
 With matching valid registers and memory, normal completion and no mid-path entry, exception or asynchronous interference, this supports the same corresponding record read and indirect slot call. The [checker](check-tail.py) pins two bounded byte windows without executing the target. Intermediate `a5` values may differ, which matters under exceptions or interrupts; actual slot identity, valid memory, complete ABI and device startup remain unverified.
+
+## Entire TX prefix before the loop
+
+The [prefix checker](check-prefix.py) compares the same-address 180-byte range `[0x8A56,0x8B0A)` in both images. All bytes match except the sentinel comparison above and the multiply at `0x8AD2`, which reverses source operands. Both multiply instructions write the low 32 bits of `a2*a5` to `a5`; the checker decodes MUL fields and reruns the sentinel branch check. The two instruction groups differ in four bytes total.
+
+Together with the local loop and completion comparisons on this page, this supports a conditional comparison of the main TX path given normal entry, matching valid state, normal memory and no asynchronous interference. Unknown mid-function entries, exceptions/interrupts, side effects, unverified resident ABI and other hardware differences remain open; this is not evidence of a successful flash or restart. Only the specified APP windows are read, not excluded ranges; the target is not executed.
