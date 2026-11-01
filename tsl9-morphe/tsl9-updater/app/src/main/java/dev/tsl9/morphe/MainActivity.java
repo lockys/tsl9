@@ -310,7 +310,7 @@ public final class MainActivity extends Activity implements BleClient.Events,Ota
     @Override public void packet(Protocol.Packet packet){
         if(destroyed)return;
         if(packet.command==0xc0)liveData.onCan(packet.payload);
-        boolean wasCapturing=hardware.active();int before=hardware.records();hardware.packet(packet.command,packet.payload);if(wasCapturing&&(before!=hardware.records()||!hardware.active()))hardwareChanged();
+        boolean wasCapturing=hardware.active();boolean hadDiagnostic=hardware.diagnosticSeen();int before=hardware.records();hardware.packet(packet.command,packet.payload);if(!hadDiagnostic&&hardware.diagnosticSeen())log("CANDIDATE T9D "+hardware.diagnosticSummary());if(wasCapturing&&(before!=hardware.records()||!hardware.active()))hardwareChanged();
         if(wasCapturing&&!hardware.active())stopHardware(hardware.reason(),false);
         if(packet.command==0xb0){liveData.onStatus(packet.payload);car.onTelemetry(packet.payload);log("CAR STATUS B0 len="+packet.payload.length+" fieldsValid="+(packet.payload.length>=4)+" gear="+car.gear()+" speed="+car.speed()+" payload=redacted");car.tick();refresh();return;}
         if(packet.command==0xa7){car.onControlReply(packet.payload);return;}

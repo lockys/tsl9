@@ -14,7 +14,7 @@ public final class HardwareCapture {
     private final int maxRecords,maxChars;private final long maxDuration;
     private final StringBuilder rows=new StringBuilder();private final ByteArrayOutputStream textLine=new ByteArrayOutputStream();
     private Mode mode=Mode.BLE;private boolean active,includeCanData;private long started;private int records;private String reason="not_started";
-    private boolean textOverflow;
+    private boolean textOverflow,diagnosticSeen;private String diagnosticSummary="";
     private static final Pattern SECRET=Pattern.compile("(?i)(?<![a-z0-9])(password|passwd|pwd|token|secret|authorization|api[_ -]?key|uid|uuid|vin|mac|ble[_ -]?key|ssid)(?![a-z0-9])|密碼|金鑰|憑證|車架");
     private static final char[] HEX="0123456789ABCDEF".toCharArray();
     public HardwareCapture(OtaSession.Clock clock){this(clock,10000,512*1024,300000);}
@@ -22,7 +22,7 @@ public final class HardwareCapture {
     public boolean active(){return active;}public Mode mode(){return mode;}public int records(){return records;}public String reason(){return reason;}
     public void start(Mode next,boolean includeBytes){
         if(active)throw new UiException(m("capture_active"));if(next==null)throw new UiException(m("capture_missing"));
-        mode=next;includeCanData=includeBytes;started=clock.now();rows.setLength(0);textLine.reset();textOverflow=false;records=0;reason="recording";active=true;
+        mode=next;includeCanData=includeBytes;started=clock.now();rows.setLength(0);textLine.reset();textOverflow=false;diagnosticSeen=false;diagnosticSummary="";records=0;reason="recording";active=true;
     }
     public static byte[] canFilter(String text){
         if(text==null||text.trim().isEmpty())return new byte[]{1};
@@ -46,7 +46,23 @@ public final class HardwareCapture {
                 data=(id>=0x7e0&&id<=0x7ef)||id==0x7df?"diagnostic_identity_redacted":hex(payload,2);
             }
             append("can_rx",prefix+",\"id\":"+quote(hex(payload,0).substring(0,5).replace(" ",""))+",\"dataLength\":"+(payload.length-2)+",\"data\":"+quote(data));
+        }else if(mode==Mode.BLE&&!reservedCommand(cmd)&&isDiagnostic(payload)){
+            int previous=records;
+            append("candidate_core_diagnostic",prefix+",\"formatVersion\":1,\"marchid\":"+quote(wordHex(payload,4))+",\"mimpid\":"+quote(wordHex(payload,8))+",\"origin\":\"unverified\"");
+            if(records>previous){diagnosticSeen=true;diagnosticSummary="marchid="+wordHex(payload,4)+" mimpid="+wordHex(payload,8)+" origin=unverified";}
         }else append(cmd==0xa8?"auth_status":"ble_reply",prefix+",\"payload\":\"redacted\"");
+    }
+    private static boolean reservedCommand(int cmd){
+        return cmd==0xa0||cmd==0xa8||cmd==0xc0||cmd==0x55||cmd==0x53||cmd==0x57||cmd==0x52||cmd==0x45;
+    }
+    public boolean diagnosticSeen(){return diagnosticSeen;}
+    public String diagnosticSummary(){return diagnosticSummary;}
+    private static boolean isDiagnostic(byte[] p){
+        return p.length==12&&p[0]=='T'&&p[1]=='9'&&p[2]=='D'&&p[3]==1;
+    }
+    private static String wordHex(byte[] p,int offset){
+        long value=0;for(int i=0;i<4;i++)value|=(long)(p[offset+i]&255)<<(8*i);
+        return String.format(Locale.ROOT,"0x%08X",value);
     }
     public void notification(byte[] chunk){
         tick();if(!active||mode!=Mode.TEXT)return;
@@ -74,7 +90,7 @@ public final class HardwareCapture {
     }
     public void tick(){if(active&&clock.now()-started>=maxDuration)stop("duration_limit");}
     public void stop(String why){if(!active)return;if(mode==Mode.TEXT)flushText();active=false;if(reason.equals("recording"))reason=why;}
-    public String snapshot(){return "{\"schema\":\"tsl9-hardware-log-v1\",\"mode\":"+quote(mode.name())+",\"reason\":"+quote(reason)+",\"records\":"+records+",\"startedElapsedMs\":"+started+",\"includeCanData\":"+includeCanData+"}\n"+rows;}
+    public String snapshot(){return "{\"schema\":\"tsl9-hardware-log-v1\",\"mode\":"+quote(mode.name())+",\"reason\":"+quote(reason)+",\"records\":"+records+",\"startedElapsedMs\":"+started+",\"includeCanData\":"+includeCanData+",\"candidateDiagnostic\":"+quote(diagnosticSeen?"received_unverified":"not_received")+"}\n"+rows;}
     public String preview(){String s=rows.toString();return s.substring(Math.max(0,s.length()-6000));}
     private static String hex(byte[] bytes,int from){StringBuilder b=new StringBuilder();for(int j=from;j<bytes.length;j++){if(j>from)b.append(' ');int v=bytes[j]&255;b.append(HEX[v>>>4]).append(HEX[v&15]);}return b.toString();}
     private static String quote(String text){StringBuilder b=new StringBuilder("\"");for(int j=0;j<text.length();j++){char c=text.charAt(j);switch(c){case '"':b.append("\\\"");break;case '\\':b.append("\\\\");break;case '\n':b.append("\\n");break;case '\r':b.append("\\r");break;case '\t':b.append("\\t");break;default:if(c<32)b.append(String.format(Locale.ROOT,"\\u%04x",(int)c));else b.append(c);}}return b.append('"').toString();}
