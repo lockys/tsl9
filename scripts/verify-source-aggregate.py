@@ -25,14 +25,14 @@ tools = {n: a.tool_dir / (n + '.exe' if (a.tool_dir / (n + '.exe')).is_file() el
          for n in ('clang', 'ld.lld', 'llvm-objcopy')}
 if not all(v.is_file() for v in tools.values()):
     raise SystemExit('LLVM compiler, linker or objcopy missing')
-module = runpy.run_path(str(ROOT / 'scripts/verify-curated-source.py'))
+module = runpy.run_path(str(ROOT / ('scripts/source-build-support.py' if a.compact_map else 'scripts/verify-curated-source.py')))
 manifest = module['metadata']()
 reader = runpy.run_path(str(module['PARSER']))['ELF']
 resource = Path(subprocess.check_output([str(tools['clang']), '-print-resource-dir'], text=True).strip()).resolve()
 compact = None
 olddefs = {}
 if a.compact_map:
-    map_path = ROOT / 'experiments/tsl9-source-aggregate/compact-layout.json'
+    map_path = ROOT / 'src/compact-layout.json'
     if hashlib.sha256(map_path.read_bytes()).hexdigest() != '74d1641e9397a4e623d1a396dda7ceb070ea9b5d11675cdff00600fa5acc32b8':
         raise ValueError('Pinned compact mapping changed')
     compact = json.loads(map_path.read_text(encoding='utf-8'))
@@ -46,10 +46,10 @@ else:
     olddefs = {s['name']: s for s in old.symbols if s['name'] and s['index'] not in (0, 0xfff1) and s['info'] >> 4 in (1, 2)}
 data = manifest['native_data_units']
 for u in data:
-    if hashlib.sha256((ROOT / u['origin_unit']).read_bytes()).hexdigest() != u['origin_unit_sha256']:
+    if not a.compact_map and hashlib.sha256((ROOT / u['origin_unit']).read_bytes()).hexdigest() != u['origin_unit_sha256']:
         raise ValueError('Data source provenance changed')
-window = {'name': 'conditional-window-1ab37', 'curated_unit': 'src/native/receive/conditional_window_1ab37.c',
-          'spec': 'experiments/tsl9-input-counter-integration/spec-v1.json'}
+window = manifest['window'] if a.compact_map else {'name': 'conditional-window-1ab37', 'curated_unit': 'src/native/receive/conditional_window_1ab37.c',
+                                                     'spec': 'experiments/tsl9-input-counter-integration/spec-v1.json'}
 jobs = [(u, mode, 'code') for u in manifest['native_units'] for mode in ('c', 'cpp')]
 jobs += [(u, mode, 'data') for u in data + [window] for mode in ('c', 'cpp')]
 out.mkdir(parents=True)
@@ -66,8 +66,8 @@ def compile_one(job):
     if kind == 'code':
         cmd = module['command']({'clang': tools['clang']}, unit, mode, 'curated', folder)
     else:
-        spec = json.loads((ROOT / unit['spec']).read_text(encoding='utf-8'))
-        cmd = [tools['clang'], *spec['flags'][mode], '-c', '-MD', '-MF', folder / 'unit.d', '-MT', 'unit.o',
+        flags = module['data_flags'](unit, mode) if a.compact_map else json.loads((ROOT / unit['spec']).read_text(encoding='utf-8'))['flags'][mode]
+        cmd = [tools['clang'], *flags, '-c', '-MD', '-MF', folder / 'unit.d', '-MT', 'unit.o',
                ROOT / unit['curated_unit'], '-o', folder / 'unit.o']
     run(cmd)
     module['dependencies'](folder, 'curated', resource)

@@ -20,6 +20,8 @@ ADC 與 resident 單元各自提供三個同名 I/O 輔助函式。工具先檢�
 
 ## 精簡版面模式
 
-`python scripts/build-compact-source-layout.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>` 使用固定的 [compact-layout.json](compact-layout.json) 重編來源、配置區段並檢查重定位後摘要，建置過程不開啟歷史建置物件或候選 BIN。C／C++ 產生的診斷 ELF 與前述歷史物件比對流程的對應產物各自完整相同；此模式以既有摘要核對，不是當次重新讀取候選檔。
+`python scripts/build-compact-source-layout.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>` 使用 [src/compact-layout.json](../../src/compact-layout.json) 和 [src/source-build-manifest.json](../../src/source-build-manifest.json) 重編來源、配置區段並檢查重定位後摘要。已在只含必要 `src/` 與建置腳本的隔離副本成功重跑，沒有 `experiments/`、`analysis/` 或候選 BIN；C／C++ 診斷 ELF 均與原專案產物逐 byte 一致。此模式以既有摘要核對，不是當次重新讀取候選檔。
 
-這份資料是由前述歷史比對結果整理的 9 筆區段例外、22 個排除項目、72 個候選別名與已選區段摘要；它不是獨立取得的新硬體證據。此模式仍需要 LLVM、來源追溯檔與 `src/native/tx_candidate/postpass`，仍有 7 項數值見證與不可燒錄限制。可選擇加上 `--candidate <CANDIDATE_BIN>`，額外逐 byte 比對候選檔的 280-byte TX 窗口；不讀取排除區。
+這份資料是由前述歷史比對結果整理的 9 筆區段例外、22 個排除項目、72 個候選別名與已選區段摘要；它不是獨立取得的新硬體證據。來源建置清單可用 `python scripts/generate-source-build-manifest.py --out <NEW_FILE>` 從原追溯資料重新產生，並比對 `src/` 內的固定清單。建置仍有 7 項數值見證與不可燒錄限制。可選擇加上 `--candidate <CANDIDATE_BIN>`，額外逐 byte 比對候選檔的 280-byte TX 窗口；不讀取排除區。
+
+執行 `python scripts/verify-source-isolation.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>` 可重新執行來源隔離建置檢查。

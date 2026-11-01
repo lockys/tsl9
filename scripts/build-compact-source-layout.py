@@ -19,7 +19,7 @@ a = p.parse_args()
 out = a.out.resolve()
 if out.exists() or out == ROOT or ROOT in out.parents:
     raise SystemExit('Output must be a new directory outside the project')
-path = ROOT / 'experiments/tsl9-source-aggregate/compact-layout.json'
+path = ROOT / 'src/compact-layout.json'
 if hashlib.sha256(path.read_bytes()).hexdigest() != '74d1641e9397a4e623d1a396dda7ceb070ea9b5d11675cdff00600fa5acc32b8':
     raise ValueError('Pinned compact mapping changed')
 mapping = json.loads(path.read_text(encoding='utf-8'))
@@ -28,7 +28,8 @@ if mapping['schema'] != 'tsl9-selected-source-layout-compact-v1':
 ld = a.tool_dir / ('ld.lld.exe' if (a.tool_dir / 'ld.lld.exe').is_file() else 'ld.lld')
 if not ld.is_file():
     raise SystemExit('LLVM linker missing')
-module = runpy.run_path(str(ROOT / 'scripts/verify-curated-source.py'))
+module = runpy.run_path(str(ROOT / 'scripts/source-build-support.py'))
+module['metadata']()
 reader = runpy.run_path(str(module['PARSER']))['ELF']
 out.mkdir(parents=True)
 source_dir = out / 'source'
