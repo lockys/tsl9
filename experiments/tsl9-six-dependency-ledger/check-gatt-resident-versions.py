@@ -29,6 +29,9 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
     event_entry = slot_checks[0x40050]
     event_hash = '4ef50e4708a6b1c5ac912c80d17a95724f66d5a0cf7644327399725e928c16bd' if copy_source == 0x402b0 else 'ae751e4200fdbceed6610772cc6775a0863ee0a1d92169ff554ad6cda2802f3a'
     selected.update(range(event_entry, event_entry + 64))
+    register_entry = slot_checks[0x40080]
+    register_hash = 'be96828519d6ea00886e75e0bc515e41b4c44f1731cb5b7dcf1db6a0fdcf12e1' if copy_source == 0x402b0 else 'f3ba68eb31ec8f03ec9ac9125f190aa0e903953b96b8dda2673b457e0a98d2bd'
+    selected.update(range(register_entry, register_entry + 48))
     bodies = ((0x20000040, 38, 'd97248aeb37504e1b1878588e47ed8bdfa613e66361ef3dc84e310cd77c48cbe'), (0x20000442, 72, 'a9dbd2b47ccefe55ab45f0b4e5a073d7aeb00f42dbe503191a75b6b66efff3aa'), (0x2000039c, 46, 'd67147a681aca68d4d082eebf74ab6214f61f43253be91e932eebd5c3e3d05a3'), (0x20000332, 58, '558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36'))
     for address in slot_checks:
         selected.update(range(address, address + 4))
@@ -117,6 +120,16 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
     load = int.from_bytes(event_code[20:24], 'little')
     if (load & 0xfffff) != 0x74703 or (load >> 20) != (0x19d if copy_source == 0x402b0 else 0x1ed):
         raise SystemExit('Candidate task-ID threshold load changed')
+    register = read(register_entry, 48)
+    if hashlib.sha256(register).hexdigest() != register_hash:
+        raise SystemExit('Candidate task registration routine changed')
+    if register[8:16] != bytes.fromhex('1c33342363ffd700') or register[24:30] != bytes.fromhex('1386170010b3') or register[38:48] != bytes.fromhex('3e8582809307f00fe5bf'):
+        raise SystemExit('Candidate registration branch, update or return changed')
+    # WCH XWCHC compressed byte operations (not standard RVC floating loads).
+    def compressed_byte(word):
+        return ((word >> 13), 8 + ((word >> 7) & 7), 8 + ((word >> 2) & 7), ((word >> 12) & 1) | (((word >> 10) & 3) << 3) | (((word >> 5) & 3) << 1))
+    if [compressed_byte(int.from_bytes(register[o:o+2], 'little')) for o in (8, 10, 28)] != [(1, 14, 15, 1), (1, 14, 13, 2), (5, 14, 12, 1)]:
+        raise SystemExit('Candidate compressed byte operations changed')
     if hashlib.sha256(read(loader, 0x72)).hexdigest() != loader_hash:
         raise SystemExit('Candidate loader window changed')
     if read(loader + 0x2c, 4) != bytes.fromhex('37050400') or read(loader + 0x36, 4) != bytes.fromhex('93850504'):
