@@ -23,3 +23,9 @@ With matching valid registers and memory, normal completion and no mid-path entr
 The [prefix checker](check-prefix.py) compares the same-address 180-byte range `[0x8A56,0x8B0A)` in both images. All bytes match except the sentinel comparison above and the multiply at `0x8AD2`, which reverses source operands. Both multiply instructions write the low 32 bits of `a2*a5` to `a5`; the checker decodes MUL fields and reruns the sentinel branch check. The two instruction groups differ in four bytes total.
 
 Together with the local loop and completion comparisons on this page, this supports a conditional comparison of the main TX path given normal entry, matching valid state, normal memory and no asynchronous interference. Unknown mid-function entries, exceptions/interrupts, side effects, unverified resident ABI and other hardware differences remain open; this is not evidence of a successful flash or restart. Only the specified APP windows are read, not excluded ranges; the target is not executed.
+
+### Prefix branch targets after relocation
+
+The [edge checker](check-prefix-edges.py) scans all 62 instruction boundaries in each prefix: all seven direct branch targets are instruction boundaries inside the same prefix or the shared return at `0x8B6C`, whose two bytes match between images. Two indirect calls occur at `0x8A8E` and `0x8AB4`, and a return occurs at `0x8ACA`; this check does not resolve the indirect-call targets or side effects. It also reruns the bounded loop and completion checks.
+
+This rules out these seven identified direct branches landing in different instructions due to the loop relocation. It does not cover calculated mid-function entries from elsewhere, indirect-call effects, exceptions/interrupts or device execution, and does not prove complete equivalence or flash readiness.
