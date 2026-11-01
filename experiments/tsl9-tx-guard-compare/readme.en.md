@@ -29,3 +29,9 @@ Together with the local loop and completion comparisons on this page, this suppo
 The [edge checker](check-prefix-edges.py) scans all 62 instruction boundaries in each prefix: all seven direct branch targets are instruction boundaries inside the same prefix or the shared return at `0x8B6C`, whose two bytes match between images. Two indirect calls occur at `0x8A8E` and `0x8AB4`, and a return occurs at `0x8ACA`; this check does not resolve the indirect-call targets or side effects. It also reruns the bounded loop and completion checks.
 
 This rules out these seven identified direct branches landing in different instructions due to the loop relocation. It does not cover calculated mid-function entries from elsewhere, indirect-call effects, exceptions/interrupts or device execution, and does not prove complete equivalence or flash readiness.
+
+### External direct-transfer candidates in allowed ranges
+
+The [direct-transfer scanner](check-direct-entries.py) examines both original and candidate APP allowed ranges at every two-byte candidate boundary, decoding RV32 `JAL`/branch and RVC jump/branch; TX itself and excluded ranges are omitted. Each image yields the same eight numeric candidates targeting TX, all at public entry `0x8A56`, with no hit into `(0x8A56,0x8B6E)`. Radare2 independently decoded the eight allowed source windows with matching computed destinations.
+
+This is a **bounded direct-encoding scan**: data or instruction interiors can be false positives. It excludes prohibited ranges, `JALR`/computed pointers, other mappings, runtime modifications and actual reachability. It narrows direct mid-entry concerns within the scanned ranges but cannot prove there are no other entries, or establish flash readiness or startup.
