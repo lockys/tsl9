@@ -17,6 +17,8 @@
 
 這是靜態保守包絡，**不是原始宣告大小、實際可達值或越界缺陷證明**。原mode0與條件式mode5的兩個16B窗口已有positive DATA backing；不新增資料、不把backing當完整provider alias。要閉合1A078 provider，仍需mode每次讀取的實際值域／使用合約或獨立合法需求，不能假設global invariant。
 
+以 `0x1AC00` 為既有 APP 半開終點，逐一計算 256×16 個數值組合：[算術檢查器](check-address-partitions.py)得到 mode 184 的 column 0–7 在檔內、8–15 在檔外；mode 185–255 的各欄均在檔外。另外 mode 98 的 column 4–7 對應既定排除區 `[0x1A69C,0x1A6A0)`。其餘模式／欄位中的檔內非排除位置共 2,948 個；這不代表有正確 DATA owner、有效記憶體或可達性。檢查器只做數值運算，不開啟任何映像，不能據此補表或斷言發生越界。
+
 本輪未讀取查表包絡DATA、未輸出其payload或個別雜湊；未讀取／輸出排除的default內容。正式src與native產物保持不變：**162份來源、95.67%靜態byte覆蓋、6個APP source UND**。BIN readiness仍未就緒，沒有新BIN或硬體相容性證明。
 
 唯讀重播（從專案根目錄）：

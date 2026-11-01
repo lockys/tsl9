@@ -17,6 +17,8 @@ With byte-width bounds only,A4 before the shift comes from an unmasked mode load
 
 This static envelope **does not prove original declaration size,feasible values or an actual out-of-bounds defect**. Original mode0 and conditional mode5 each have16B of existing positive DATA backing. No new DATA or full-provider alias is added. Closing provider1A078 still needs an actual mode-at-read/use contract or independent legitimate requirements;no global invariant is assumed.
 
+Using `0x1AC00` as the existing APP exclusive end, the [arithmetic checker](check-address-partitions.py) partitions all 256×16 numeric pairs: mode 184 columns 0–7 lie inside the file and 8–15 outside; all columns of modes 185–255 lie outside. Mode 98 columns 4–7 fall in the excluded interval `[0x1A69C,0x1A6A0)`. There are 2,948 in-file, nonexcluded pairs; this establishes no valid DATA owner, mapped memory or reachability. The checker opens no images; it cannot justify filling a table or assert an actual out-of-bounds access.
+
 No lookup-envelope DATA,payload/individual hashes or excluded-default content was read/output. Formal src/native artifacts remain unchanged:**162 sources,95.67% static byte coverage,six APP source UND**. BIN readiness remains incomplete;no new BIN or physical compatibility proof.
 
 Read-only replay from the project root:
