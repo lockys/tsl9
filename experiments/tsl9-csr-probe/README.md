@@ -30,4 +30,6 @@
 
 [WCH 官方下載頁](https://www.wch.cn/downloads/CH32FV2x_V3xRM_PDF.html)列出適用 CH32V208GBU6 的 V2.5；其[英文手冊鏡本 §32.4.6（印刷頁 603）](https://ch32-riscv-ug.github.io/CH32V20x/datasheet_en/CH32FV2x_V3xRM.PDF#page=608)的表格仍標 `[9:8]`，配置仍使用三位模式，因此升版後不足以消除這項歧義。此比對是文件分析，沒有讀取裝置暫存器，也不證明實際記憶體配置。
 
+同一手冊 [§32.6 表 32-4（印刷頁 609–610）](https://ch32-riscv-ug.github.io/CH32V20x/datasheet_en/CH32FV2x_V3xRM.PDF#page=614)另將選項位元組 `USER[7:5]` 明確列為三位，並對 CH32V20x_D8W 列出 `00x` = 128/64、`01x` = 144/48、`1xx` = 160/32 KiB（CODE/RAM）。[純函式](decode_user_memory_mode.py)只解碼呼叫端提供的三位整數；測試涵蓋八個合成值，沒有讀取裝置或選項位元組。這張表不證明 `FLASH_OBR[9:8]` 與 `USER[7:5]` 的精確對應，也不證明實機配置；勿用它判定可燒錄性。
+
 [WCH 官方下載頁](https://www.wch.cn/downloads/CH32FV2x_V3xRM_PDF.html)列出適用 CH32V208GBU6 的 V2.5；其[英文手冊鏡本 §32.4.6（印刷頁 603）](https://ch32-riscv-ug.github.io/CH32V20x/datasheet_en/CH32FV2x_V3xRM.PDF#page=608)的表格仍標 `[9:8]`，配置仍使用三位模式，因此升版後不足以消除這項歧義。此比對是文件分析，沒有讀取裝置暫存器，也不證明實際記憶體配置。
