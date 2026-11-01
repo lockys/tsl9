@@ -25,3 +25,5 @@
 [WCH V2.2 參考手冊 §32.4.6](https://cdn.icstop.com/upload/pdfs/9e/c8/9ec8bf12faf8342b9fb46b48d65fa73a.pdf)將 `FLASH_OBR` 描述為 offset `0x1C` 的唯讀選項狀態暫存器，並在 CH32V20x_D8W 的配置欄列出 128/64、144/48、160/32 KiB 的 CODE／RAM 組合。配合 [WCH 標頭](https://github.com/openwch/ch32v20x/blob/main/EVT/EXAM/SRC/Peripheral/inc/ch32v20x.h)的周邊基址，候選位址為 `0x4002201C`。
 
 手冊表格把欄位標成 `[9:8]`，卻使用 `00x`、`01x`、`1xx` 三位形式描述配置；這個標示差異尚未釐清。`FLASH_OBR` 也包含其他狀態，不能將整個字當成記憶體配置或公開裝置保護資訊。目前程式**不讀取此暫存器**，也沒有聲稱實機 RAM／Flash 組合；需先確認適用版本、欄位語義及裝置讀取條件，再考慮只擷取必要欄位。
+
+已直接檢視 WCH V2.2 手冊的[原始 PDF 第 598 頁（印刷頁碼 594）](https://static.chipdip.ru/lib/820/DOC059820997.pdf#page=598)：圖表確實同時標出 `[9:8]`、`[2:0]` 與三位模式，因此歧義不是搜尋結果的文字擷取所造成。檢視的 PDF SHA-256 為 `29575ed31788d4a3576a039a9c8cc3410280a36d73bcbf6509805203449d232d`；這仍不能選定正確實機解碼。
