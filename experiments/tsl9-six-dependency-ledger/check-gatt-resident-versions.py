@@ -13,6 +13,14 @@ with image.open('rb') as stream:
     app_prefix = stream.read(21)
     stream.seek(0x8f7e - 0x8000)
     tx_registration = stream.read(44)
+    stream.seek(0x8686 - 0x8000)
+    callback_select = stream.read(50)
+    stream.seek(0x8634 - 0x8000)
+    callback_sign_guard = stream.read(4)
+    stream.seek(0x8744 - 0x8000)
+    callback_first = stream.read(4)
+    stream.seek(0x866c - 0x8000)
+    callback_return = stream.read(26)
 if hashlib.sha256(app_prefix).hexdigest() != 'd7983408b1cfeabbf840e9d03286b5bc9b3a5e948ac60211bc91ada510b48b68':
     raise SystemExit('Original APP version prefix changed')
 if hashlib.sha256(tx_registration).hexdigest() != 'b38af6c3355cad2eb095463cae088b499c30c751d578789466b15700fa4e4c64':
@@ -21,6 +29,8 @@ if tx_registration != bytes.fromhex('8327040817f5ffff130525698297238aa108239b910
     raise SystemExit('Original APP TX registration instructions changed')
 if 0x8f82 - 4096 + 1682 != 0x8614 or 0x8f98 - 4096 + 1660 != 0x8614:
     raise SystemExit('TX registration callback arithmetic changed')
+if hashlib.sha256(callback_select).hexdigest() != '07cd5b1eb621b0cc591becb1c8cc36b6d57f2f27f2b13d0fb09db068ec622832' or callback_sign_guard.hex() != '63d90704' or callback_first.hex() != '0149b9bf' or hashlib.sha256(callback_return).hexdigest() != 'b2075aeb9a9b3416845849c1dfe8be0931218d2dafdd9d609aceeb05c9b81b5f':
+    raise SystemExit('Original callback selection or return changed')
 CASES = (
     (args.v131, '11d849ac3333535b31dae1941afd8d59fa99ad7760de5c1e64bdfcc8c0024bb5', 0x6e6a0, b'CH32V20x_BLE_LIB_V1.31\0', 0x4cf22, 0x402b0, 0x6de0c, '7a0cf58801fabb3dcb9d26fcece3d01b2f41276dacce4130daff0e663559927f', (0x43728, 0x43520, 0x43c4e)),
     (args.v140, '5a4331c80f71dda3fc28e13481e185bda6877d8be7977cbfa0238c2f0baadf23', 0x6e890, b'CH32V20x_BLE_LIB_V1.40\0', 0x4cfba, 0x402f0, 0x6dffc, 'e5a738246f7b39ca8dc057596acaf0040bb6673935fac8015ef1dba8af84c74e', (0x437b4, 0x435ac, 0x43cda)),
