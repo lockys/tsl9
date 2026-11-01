@@ -13,3 +13,5 @@
 要從 `src/` 重建完整候選，仍須把此元件以正確符號及 postpass 整合到原位址圖，處理六個 provider、未選與既定排除區、RAM／resident／IRQ 及最終 OTA 條件；目前這些尚未完成，現有實機 OTA 的成功紀錄也不能套用至此未連結片段。
 
 可另執行 `python scripts/verify-curated-data-objects.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>`，以 C 與 C++ 重新編譯 13 個既有資料單元及其來源，檢查已配置區段、符號、重定位與包含檔來源。輸出為物件檔，不是韌體；通過不代表資料索引範圍、完整 provider 或硬體相容性已確認。
+
+`python scripts/verify-conditional-data-link.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>` 在兩種語言模式下，將新編譯消費者分別與 8-byte 計數器、48-byte 序列資料物件做局部連結：先確認未綁定的符號，再將條件性別名綁到實際物件。這只證明物件連結關係；全域索引界限未確認，不代表完整 provider 已解決。輸出物件不可燒錄。

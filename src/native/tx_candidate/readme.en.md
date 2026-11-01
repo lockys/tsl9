@@ -13,3 +13,5 @@ Then run `python src/native/tx_candidate/verify-linked.py --tool-dir <LLVM_BIN> 
 Rebuilding the full candidate from `src/` still requires the correct symbol mapping and postpass, six providers, unselected and excluded ranges, RAM/resident/IRQ contracts and final OTA evidence. Existing hardware OTA evidence cannot be applied to this unlinked fragment.
 
 Run `python scripts/verify-curated-data-objects.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>` to freshly compile the 13 data units and their origins in C and C++, comparing allocated sections, symbols, relocations and include provenance. Outputs are objects, not firmware; passing does not establish data index bounds, complete providers or hardware compatibility.
+
+`python scripts/verify-conditional-data-link.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>` partially links freshly compiled consumers with the 8-byte counter and 48-byte sequence objects in both language modes. It checks the unbound symbols first, then binds conditional aliases to actual objects. This proves object linking only; global index bounds and complete providers remain unproved. Outputs cannot be flashed.
