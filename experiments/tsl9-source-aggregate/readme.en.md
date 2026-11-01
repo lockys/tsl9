@@ -24,6 +24,8 @@ The strict link must report seven unresolved names: the six APP dependencies and
 
 The current compact layout covers 6,266 sections and 73,672 bytes, including [121 bytes](../tsl9-opaque-allowed-gaps/readme.en.md) preserved without a semantic claim. Another 3,128 bytes lie in the designated excluded ranges and are neither read nor included.
 
+The selected sections can also be emitted as [nonflashable concatenated data with an address index](../tsl9-source-spans/readme.en.md).
+
 The metadata records nine section exceptions, 22 excluded alternatives, 72 candidate aliases and selected-section digests derived from that historical comparison; it is not independent hardware evidence. `python scripts/generate-source-build-manifest.py --out <NEW_FILE>` rederives the source build manifest from the original provenance for comparison with the pinned `src/` copy. Seven numerical witnesses and the nonflashable limitation remain. Optionally add `--candidate <CANDIDATE_BIN>` to compare its 280-byte TX window byte for byte; excluded ranges are not read.
 
 Run `python scripts/verify-source-isolation.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>` to repeat the isolated source-build check.

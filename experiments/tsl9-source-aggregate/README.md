@@ -24,6 +24,8 @@ ADC 與 resident 單元各自提供三個同名 I/O 輔助函式。工具先檢�
 
 目前精簡版面涵蓋 6,266 個區段、73,672 bytes；其中新增 [121 bytes](../tsl9-opaque-allowed-gaps/README.md) 為未知語意的原始資料。另有 3,128 bytes 位於既定排除區，未讀取、未納入。
 
+可將已選區段輸出成[不可燒錄的串接資料與位址索引](../tsl9-source-spans/README.md)。
+
 這份資料是由前述歷史比對結果整理的 9 筆區段例外、22 個排除項目、72 個候選別名與已選區段摘要；它不是獨立取得的新硬體證據。來源建置清單可用 `python scripts/generate-source-build-manifest.py --out <NEW_FILE>` 從原追溯資料重新產生，並比對 `src/` 內的固定清單。建置仍有 7 項數值見證與不可燒錄限制。可選擇加上 `--candidate <CANDIDATE_BIN>`，額外逐 byte 比對候選檔的 280-byte TX 窗口；不讀取排除區。
 
 執行 `python scripts/verify-source-isolation.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>` 可重新執行來源隔離建置檢查。
