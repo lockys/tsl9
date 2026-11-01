@@ -6,6 +6,8 @@ This experimental function reads `marchid` and `mimpid`, then sends a 12-byte re
 
 The [WCH QingKe V4 manual](https://www.wch.cn/uploads/file/20220411/1649641123177990.pdf) lists both CSRs as machine-mode read-only. That does not establish the installed core, calling privilege, observed values, or the full MCU part number.
 
+From the manual's `marchid` bit encoding and `mimpid` definition, **if the core follows its WCH-V4C format**, the candidate values are `0xDC68D883` and `0xDC688001`. The offline decoder reports `matches_wch_v4c_manual_pattern: true` when both match. This is a core-encoding comparison, not proof of CH32V208GBU6, resident ROM version or any physical measurement. A mismatch alone does not exclude other manual versions or implementations.
+
 **The compiled output contains function code only: no boot entry, BLE transport or OTA firmware structure. It cannot be flashed or run independently.** The integration site, memory, callback and notification contracts remain unverified. It is not connected to the app and has not observed a device. Matching C and C++ builds are offline evidence, not device validation.
 
 The local experimental `NOT-FLASHABLE-diagnostic-component.bin` is 90 bytes, SHA-256 `52a636714bf33832c99b2883e76e16d3380cef5ad66580fa700ef98e356c8cd2`. If a single 12-byte binary record is obtained later through a validated integration, `python experiments/tsl9-csr-probe/decode_probe.py record.bin` decodes it offline; it does not capture hardware logs.

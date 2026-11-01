@@ -6,8 +6,10 @@ from pathlib import Path
 def decode(data):
     if len(data) != 12 or data[:4] != b'T9D\x01':
         raise ValueError('expected exactly one 12-byte T9D version 1 record')
-    return {'schema': 'T9D-v1', 'marchid': f'0x{int.from_bytes(data[4:8], "little"):08x}',
-            'mimpid': f'0x{int.from_bytes(data[8:12], "little"):08x}'}
+    arch = int.from_bytes(data[4:8], 'little')
+    impl = int.from_bytes(data[8:12], 'little')
+    return {'schema': 'T9D-v1', 'marchid': f'0x{arch:08x}', 'mimpid': f'0x{impl:08x}',
+            'matches_wch_v4c_manual_pattern': arch == 0xdc68d883 and impl == 0xdc688001}
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
