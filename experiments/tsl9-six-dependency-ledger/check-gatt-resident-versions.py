@@ -26,6 +26,9 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
     # Event and GATT configuration functions used by the TX path. These are
     # candidate ROM entries, not addresses confirmed on the physical device.
     slot_checks.update(dict(zip((0x40050, 0x4013c), (0x4354a, 0x4b456) if copy_source == 0x402b0 else (0x435d6, 0x4b4ee))))
+    event_entry = slot_checks[0x40050]
+    event_hash = '4ef50e4708a6b1c5ac912c80d17a95724f66d5a0cf7644327399725e928c16bd' if copy_source == 0x402b0 else 'ae751e4200fdbceed6610772cc6775a0863ee0a1d92169ff554ad6cda2802f3a'
+    selected.update(range(event_entry, event_entry + 64))
     bodies = ((0x20000040, 38, 'd97248aeb37504e1b1878588e47ed8bdfa613e66361ef3dc84e310cd77c48cbe'), (0x20000442, 72, 'a9dbd2b47ccefe55ab45f0b4e5a073d7aeb00f42dbe503191a75b6b66efff3aa'), (0x2000039c, 46, 'd67147a681aca68d4d082eebf74ab6214f61f43253be91e932eebd5c3e3d05a3'), (0x20000332, 58, '558a82658cb54901945d4c2884f2e87e763f64d57c0cafa831307beb44ae0c36'))
     for address in slot_checks:
         selected.update(range(address, address + 4))
@@ -104,6 +107,16 @@ for path, expected_sha, version_ptr, version, slot, copy_source, loader, loader_
     for address, expected in slot_checks.items():
         if int.from_bytes(read(address, 4), 'little') != expected:
             raise SystemExit('Candidate service slot changed')
+    event_code = read(event_entry, 64)
+    if hashlib.sha256(event_code).hexdigest() != event_hash:
+        raise SystemExit('Candidate event routine changed')
+    # LUI/LBU: threshold byte from version-specific RAM; BGEU a0,a4,+32
+    # reaches the path which returns 3 after restoring the saved word.
+    if event_code[16:20] != bytes.fromhex('37370020') or event_code[24:28] != bytes.fromhex('6370e502') or event_code[56:64] != bytes.fromhex('23a6d7200d458280'):
+        raise SystemExit('Candidate task-ID guard changed')
+    load = int.from_bytes(event_code[20:24], 'little')
+    if (load & 0xfffff) != 0x74703 or (load >> 20) != (0x19d if copy_source == 0x402b0 else 0x1ed):
+        raise SystemExit('Candidate task-ID threshold load changed')
     if hashlib.sha256(read(loader, 0x72)).hexdigest() != loader_hash:
         raise SystemExit('Candidate loader window changed')
     if read(loader + 0x2c, 4) != bytes.fromhex('37050400') or read(loader + 0x36, 4) != bytes.fromhex('93850504'):

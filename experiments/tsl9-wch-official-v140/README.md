@@ -11,3 +11,5 @@ WCH 官方 CH32V20x 專案在 commit `b375bbbc7dfe8642d6fb7c17e6d3207ee1c3c9c1` 
 驗證只讀取允許的 APP 版本字串與公開 HEX，沒有讀取 APP 排除區、連接硬體或執行 target。
 
 兩版官方候選 HEX 的 TX 相關跳表指標也已核對：`0x40050` 在 V1.31 指向 `0x4354A`、V1.40 指向 `0x435D6`；`0x4013C` 分別指向 `0x4B456`、`0x4B4EE`。V1.40 官方標頭將這兩槽分別宣告為 `tmos_set_event` 與 `GATTServApp_ReadCharCfg`，與既有 V1.30 標頭的槽號及函式簽章一致。不同實作位址顯示不能把一版的內部位址硬編碼到另一版；兩個槽值與宣告一致本身仍未證明函式行為相同、實機載入哪個版本或候選程式可啟動。[檢查器](../tsl9-six-dependency-ledger/check-gatt-resident-versions.py)已固定兩版的槽值。
+
+進一步核對兩版 `0x40050` 所指的 64-byte 候選本體：先分別讀取 `0x2000319D`／`0x200031ED` 的 byte，再以無號比較檢查輸入 `a0`；當 `a0` 大於或等於該 byte 時，分支恢復先前讀取的控制字並回傳 **3**，不進入較小值的後續路徑。若 TX 尾跳的 task byte、呼叫 ABI 與實機 resident 都符合候選且執行正常，task ID 必須小於當時的界限，才不會走這條錯誤分支。界限的實際值、初始化、後續處理與硬體效果仍未知；較小不代表排程成功。兩版先前的前置記憶體存取也可能影響結果，這不是實機測量。[檢查器](../tsl9-six-dependency-ledger/check-gatt-resident-versions.py)固定候選本體與 guard 編碼，不讀 APP 排除區。
