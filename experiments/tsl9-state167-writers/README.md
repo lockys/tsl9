@@ -4,4 +4,6 @@
 
 如果 reset 確實將該 byte 清為 0，其後所有寫入只來自這條指令，且 GP、記憶體、控制流與非同步行為均符合假設，則讀取時狀態為 0 或 1。這是條件式歸納：reset 以其他 base 寫入，間接指標、其他編碼、未選區、resident、IRQ／DMA 與異常均未封閉；不證明產品語義、指令實際執行或全域值域。
 
-`python experiments/tsl9-state167-writers/verify.py --firmware <CANDIDATE_BIN> --layout <ORIGINAL_LAYOUT_ELF> --reader <ELF_READER> --r2 <R2_EXECUTABLE>` 固定輸入雜湊、核對掃描結果與寫入前指令，並檢查四個合成邊界；不執行目標。
+`python experiments/tsl9-state167-writers/verify.py --firmware <CANDIDATE_BIN> --layout <ORIGINAL_LAYOUT_ELF> --reader <ELF_READER> --r2 <R2_EXECUTABLE>` 固定輸入雜湊、核對掃描結果與寫入前指令，並檢查八個合成邊界；不執行目標。
+
+同一檢查現在也涵蓋 `GP+[332,336)` 的四個序列狀態 byte；在上述全部 24,610 條指令中沒有找到直接以 GP 為基底且與其重疊的標準 store。此結果擴展了原本不含新增窗口的掃描，但不排除經其他暫存器或指標的寫入，也不證明狀態全域為 0／1。

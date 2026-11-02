@@ -4,4 +4,6 @@ A scan of 69,412 bytes of selected code plus the 3,124-byte linearly decoded `[0
 
 If reset clears the byte, all subsequent writes come only from this instruction, and GP, memory, control flow and asynchronous behavior satisfy their assumptions, each later read is 0 or 1. This is conditional induction: reset writes through another base, while indirect pointers, other encodings, unselected regions, resident, IRQ/DMA and exceptions remain open. It does not establish product meaning, execution on the device or the global value range.
 
-Run `python experiments/tsl9-state167-writers/verify.py --firmware <CANDIDATE_BIN> --layout <ORIGINAL_LAYOUT_ELF> --reader <ELF_READER> --r2 <R2_EXECUTABLE>` to check pinned input hashes, the scan, writer instructions and four synthetic boundary cases. The target is not executed.
+Run `python experiments/tsl9-state167-writers/verify.py --firmware <CANDIDATE_BIN> --layout <ORIGINAL_LAYOUT_ELF> --reader <ELF_READER> --r2 <R2_EXECUTABLE>` to check pinned input hashes, the scan, writer instructions and eight synthetic boundary cases. The target is not executed.
+
+The same check now covers the four sequence-state bytes `GP+[332,336)`. Among all 24,610 instructions in the selected windows, no standard GP-based store directly overlaps them. This extends the prior scan to the additional window but does not exclude stores through other registers or pointers or prove a global 0/1 state bound.
