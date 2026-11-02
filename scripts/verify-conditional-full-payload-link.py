@@ -54,9 +54,9 @@ for mode in ('c','cpp'):
     folder=base/mode
     epilogue=compile_epilogue(a.tool_dir,out,mode,reader)
     entry=compile_entry(a.tool_dir,out,mode,reader)
-    if entry!=raw[0][:0x38]:raise ValueError('Compiled entry differs from original bytes')
+    if entry!=raw[0][:0x42]:raise ValueError('Compiled entry differs from original bytes')
     if epilogue!=raw[0][0x42:0x50]:raise ValueError('Compiled epilogue differs from original bytes')
-    code=entry+raw[0][0x38:0x42]+epilogue+raw[0][0x50:]
+    code=entry+epilogue+raw[0][0x50:]
     parts=[('.tsl9_full_code','ax','tsl9_incoming_external_14056',code),
            ('.tsl9_full_defaults','a','tsl9_settings_default_data_1a69c',raw[1])]
     asm=[]
@@ -104,6 +104,10 @@ for mode in ('c','cpp'):
     dest=out/('NOT-FLASHABLE-conditional-full-'+mode+'.elf')
     run([*cmd,'--defsym=tsl9_boot_resident_40000=0x40000','-o',str(dest)])
     elf=reader(dest); symbols={x['name']:x for x in elf.symbols if x['name']}
+    target=symbols['tsl9_ota_entry_9c4a']
+    if (target['value']!=0x9c4a or target['index'] in (0,0xfff1) or target['size']==0 or
+        elf.sections[target['index']]['flags']&6!=6):
+        raise ValueError('OTA forwarding target lacks executable section backing')
     for section,_,name,data in parts:
         owner=elf.byname['.payload_code' if section=='.tsl9_full_code' else '.payload_defaults']
         sym=symbols[name]
@@ -130,7 +134,7 @@ for mode in ('c','cpp'):
                     'conditional_data_aliases':3,'image_bytes':len(image)})
 print(json.dumps({'passed':True,'results':results,'opaque_original_bytes':3128,
                   'compiled_epilogue_bytes_replacing_carrier':14,
-                  'compiled_entry_bytes_replacing_carrier':56,
+                  'compiled_entry_bytes_replacing_carrier':66,
                   'original_semantics_recovered':False,'global_index_bounds_proved':False,
                   'ram_ownership_proved':False,'installed_rom_proved':False,'diagnostic_pt_load':0,
                   'target_executed':False,'hardware_validated':False,'flashable':False}))

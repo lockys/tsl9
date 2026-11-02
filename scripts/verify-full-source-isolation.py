@@ -28,9 +28,9 @@ proc=subprocess.run([sys.executable,'-B',str(tree/'scripts/build-v4160-source-ca
                      '--tool-dir',str(a.tool_dir),'--out',str(out/'build')],capture_output=True,text=True)
 if proc.returncode:raise ValueError('Isolated candidate build failed: '+proc.stderr[:1000])
 f=json.loads(proc.stdout)
-if (not f['passed'] or f['compiled_epilogue_bytes_replacing_carrier']!=14 or f['compiled_entry_bytes_replacing_carrier']!=56 or f['historical_candidate_read_during_build']
+if (not f['passed'] or f['compiled_epilogue_bytes_replacing_carrier']!=14 or f['compiled_entry_bytes_replacing_carrier']!=66 or f['historical_candidate_read_during_build']
     or f['hardware_validated'] or f['flashable_proved'] or len(f['outputs'])!=2):
     raise ValueError('Unexpected isolated build result')
 print(json.dumps({'passed':True,'copied_files':len(paths),'source_contains_opaque_original_bytes':True,
-                  'historical_bin_present':False,'compiled_epilogue_bytes':14,'compiled_entry_bytes':56,'outputs':f['outputs'],
+                  'historical_bin_present':False,'compiled_epilogue_bytes':14,'compiled_entry_bytes':66,'outputs':f['outputs'],
                   'hardware_validated':False,'flashable_proved':False}))

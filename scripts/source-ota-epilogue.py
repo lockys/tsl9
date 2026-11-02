@@ -35,15 +35,16 @@ def compile_entry(tool_dir, out, mode, reader):
     symbols=[s for s in elf.symbols if s['name']=='tsl9_ota_entry_14056']
     relocs=[(r['offset'],r['type'],r['symbol']['name'],r['addend']) for r in elf.relocations]
     expected=[(0x16,16,'.Lentry',0x38),(0x1a,16,'.Lentry',0x50),
-              (0x22,16,'.Lentry',0x38),(0x26,16,'.Lentry',0x64),(0x34,16,'.Lentry',0x64)]
-    if (section['size']!=56 or section['type']!=1 or section['flags']&6!=6 or
-        len(symbols)!=1 or symbols[0]['index']!=section['index'] or symbols[0]['size']!=56 or relocs!=expected):
+              (0x22,16,'.Lentry',0x38),(0x26,16,'.Lentry',0x64),(0x34,16,'.Lentry',0x64),
+              (0x3e,17,'tsl9_ota_entry_9c4a',0)]
+    if (section['size']!=66 or section['type']!=1 or section['flags']&6!=6 or
+        len(symbols)!=1 or symbols[0]['index']!=section['index'] or symbols[0]['size']!=66 or relocs!=expected):
         raise ValueError('Unexpected entry object or branch relocations')
     linked=Path(out)/('NOT-FLASHABLE-entry-'+mode+'.elf')
     p=subprocess.run([str(ld),'--no-relax','-Ttext=0x14056','-e','tsl9_ota_entry_14056',
-                      str(obj),'-o',str(linked)],capture_output=True,text=True)
+                      '--defsym=tsl9_ota_entry_9c4a=0x9c4a',str(obj),'-o',str(linked)],capture_output=True,text=True)
     if p.returncode:raise ValueError('Entry link failed: '+p.stderr[:1000])
     result=reader(linked);placed=result.byname['.tsl9_ota_entry']
-    if placed['address']!=0x14056 or placed['size']!=56:
+    if placed['address']!=0x14056 or placed['size']!=66:
         raise ValueError('Unexpected linked entry placement')
     return result.data(placed)

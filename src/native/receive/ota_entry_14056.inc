@@ -28,6 +28,11 @@ void tsl9_ota_entry_14056(void)
         "andi a5, a5, 0xff\n"
         "li a4, 1\n"
         "bltu a4, a5, .Lentry+0x64\n"
+        "mv a3, s2\n"
+        "mv a2, s0\n"
+        "mv a0, s1\n"
+        ".option norvc\n"
+        "jal ra, tsl9_ota_entry_9c4a\n"
         ".option pop\n");
 }
 #ifdef __cplusplus
