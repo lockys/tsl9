@@ -42,15 +42,20 @@ if not facts['passed'] or facts['complete_firmware'] or facts['flashable']:
     raise ValueError('Unexpected selected source result')
 manifest = json.loads((spans_dir / 'NOT-FLASHABLE-spans.json').read_text(encoding='utf-8'))
 reader = runpy.run_path(str(ROOT / 'src/native/tx_candidate/postpass/elf32.py'))['ELF']
-source = '#ifdef __cplusplus\nextern "C" {\n#endif\n'
-for i, data in enumerate(raw):
-    source += '__attribute__((used,section(".tsl9_payload_' + str(i) + '"))) extern const unsigned char payload_' + str(i) + '[] = {'
-    source += ','.join(str(x) for x in data) + '};\n'
-source += '#ifdef __cplusplus\n}\n#endif\n'
-src = out / 'opaque-payload.c'
-src.write_text(source, encoding='ascii')
+compile_epilogue = runpy.run_path(str(ROOT / 'scripts/source-ota-epilogue.py'))['compile_fragment']
 results = []
 for mode in ('c', 'cpp'):
+    epilogue = compile_epilogue(args.tool_dir, out, mode, reader)
+    if epilogue != raw[0][0x42:0x50]:
+        raise ValueError('Compiled epilogue differs from original bytes')
+    selected = [raw[0][:0x42] + epilogue + raw[0][0x50:], raw[1]]
+    source = '#ifdef __cplusplus\nextern "C" {\n#endif\n'
+    for i, data in enumerate(selected):
+        source += '__attribute__((used,section(".tsl9_payload_' + str(i) + '"))) extern const unsigned char payload_' + str(i) + '[] = {'
+        source += ','.join(str(x) for x in data) + '};\n'
+    source += '#ifdef __cplusplus\n}\n#endif\n'
+    src = out / ('opaque-payload-' + mode + '.c')
+    src.write_text(source, encoding='ascii')
     obj = out / ('opaque-' + mode + '.o')
     command = [str(clang), '--target=riscv32-unknown-elf', '-march=rv32imac', '-mabi=ilp32',
                '-ffreestanding', '-fno-common', '-x', 'c' if mode == 'c' else 'c++',
@@ -85,5 +90,6 @@ for mode in ('c', 'cpp'):
         raise ValueError('Output readback mismatch')
     results.append({'mode': mode, 'bytes': len(image), 'sha256': digest, 'file': dest.name})
 print(json.dumps({'passed': True, 'outputs': results, 'opaque_original_bytes': 3128,
+                  'compiled_epilogue_bytes_replacing_carrier': 14,
                   'historical_candidate_read_during_build': False,
                   'semantics_recovered': False, 'hardware_validated': False, 'flashable_proved': False}))

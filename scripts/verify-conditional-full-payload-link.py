@@ -44,19 +44,25 @@ if not facts['passed'] or facts['ram_ownership_proved'] or facts['flashable']:
     raise ValueError('Unexpected conditional RAM baseline')
 parts = [('.tsl9_full_code','ax','tsl9_incoming_external_14056',raw[0]),
          ('.tsl9_full_defaults','a','tsl9_settings_default_data_1a69c',raw[1])]
-asm = []
-for section,flags,name,data in parts:
-    asm += ['.section '+section+',"' +flags+ '",@progbits', '.globl '+name, name+':']
-    asm += ['.byte '+','.join(str(x) for x in data[i:i+32]) for i in range(0,len(data),32)]
-    asm += ['.size '+name+', .-'+name]
-source = out/'opaque-provider.s'
-source.write_text('\n'.join(asm)+'\n',encoding='ascii')
+compile_epilogue=runpy.run_path(str(ROOT/'scripts/source-ota-epilogue.py'))['compile_fragment']
 aliases={'tsl9_input_state_decoders_static_data_1ab48':('tsl9_input_counter_read_window_1ab48',0,0x1ab48),
          'tsl9_record_field_transitions_static_data_1a078':('tsl9_grid_read_data_pool_19ed8',416,0x1a078),
          'tsl9_registered_callbacks_static_data_1a638':('tsl9_sequence_compare_read_window_1a638',0,0x1a638)}
 results=[]
 for mode in ('c','cpp'):
     folder=base/mode
+    epilogue=compile_epilogue(a.tool_dir,out,mode,reader)
+    if epilogue!=raw[0][0x42:0x50]:raise ValueError('Compiled epilogue differs from original bytes')
+    code=raw[0][:0x42]+epilogue+raw[0][0x50:]
+    parts=[('.tsl9_full_code','ax','tsl9_incoming_external_14056',code),
+           ('.tsl9_full_defaults','a','tsl9_settings_default_data_1a69c',raw[1])]
+    asm=[]
+    for section,section_flags,name,data in parts:
+        asm += ['.section '+section+',"'+section_flags+ '",@progbits', '.globl '+name, name+':']
+        asm += ['.byte '+','.join(str(x) for x in data[i:i+32]) for i in range(0,len(data),32)]
+        asm += ['.size '+name+', .-'+name]
+    source=out/('opaque-provider-'+mode+'.s')
+    source.write_text('\n'.join(asm)+'\n',encoding='ascii')
     obj=out/('opaque-provider-'+mode+'.o')
     run([tool('clang'),'--target=riscv32-unknown-elf','-march=rv32imac','-mabi=ilp32','-c',str(source),'-o',str(obj)])
     local=reader(obj)
@@ -120,6 +126,7 @@ for mode in ('c','cpp'):
                     'section_backed_new_symbols':2,'negative_section_controls':2,
                     'conditional_data_aliases':3,'image_bytes':len(image)})
 print(json.dumps({'passed':True,'results':results,'opaque_original_bytes':3128,
+                  'compiled_epilogue_bytes_replacing_carrier':14,
                   'original_semantics_recovered':False,'global_index_bounds_proved':False,
                   'ram_ownership_proved':False,'installed_rom_proved':False,'diagnostic_pt_load':0,
                   'target_executed':False,'hardware_validated':False,'flashable':False}))
