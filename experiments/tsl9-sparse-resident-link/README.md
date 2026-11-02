@@ -13,3 +13,5 @@ python scripts/verify-sparse-resident-link.py --project-root . --conditional-dir
 需既有固定來源參考及其 `source-map.json`，不下載或讀取硬體；輸出僅供離線診斷，沒有實機驗證。
 
 [後續符號檢查](../tsl9-diagnostic-discarded-symbols/README.md)將 44 項分為 43 個定義於丟棄區段的備選符號與一個原本未定義符號；相關 24 筆 relocation 的來源區段均被丟棄。
+
+**連結器負例：**不提供 resident 時，C／C++ 的嚴格連結都因 `tsl9_boot_resident_40000` 未解析而失敗；只提供原參考入口的 4 bytes 時，兩者卻都成功連結。兩個四-byte 對照 ELF 沒有 `PT_LOAD`，也沒有其餘參考區段。此負例證明連結器成功本身無法確認 resident 完整或能啟動。

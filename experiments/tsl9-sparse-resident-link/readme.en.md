@@ -13,3 +13,5 @@ python scripts/verify-sparse-resident-link.py --project-root . --conditional-dir
 The existing pinned reference and `source-map.json` are required. No download or hardware access occurs; outputs are offline diagnostics and are not device-validated.
 
 A [follow-up symbol audit](../tsl9-diagnostic-discarded-symbols/readme.en.md) classifies the 44 entries as 43 alternative definitions in discarded sections and one originally undefined symbol; the 24 input relocations to them all originate in discarded sections.
+
+**Linker controls:** Without a resident provider, both C and C++ strict links fail on `tsl9_boot_resident_40000`; with only the reference entry's first 4 bytes, both links still succeed. Those four-byte control ELFs have no `PT_LOAD` or other reference sections. This demonstrates that successful linking alone cannot establish resident completeness or boot behavior.
