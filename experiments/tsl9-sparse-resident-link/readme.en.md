@@ -11,3 +11,5 @@ python scripts/verify-sparse-resident-link.py --project-root . --conditional-dir
 ```
 
 The existing pinned reference and `source-map.json` are required. No download or hardware access occurs; outputs are offline diagnostics and are not device-validated.
+
+A [follow-up symbol audit](../tsl9-diagnostic-discarded-symbols/readme.en.md) classifies the 44 entries as 43 alternative definitions in discarded sections and one originally undefined symbol; the 24 input relocations to them all originate in discarded sections.
