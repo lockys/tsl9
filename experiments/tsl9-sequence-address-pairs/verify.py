@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Find adjacent LUI/AUIPC plus standard memory/address operations near state."""
+"""Find adjacent LUI/AUIPC plus supported memory/address operations near state."""
 import argparse,hashlib,json,runpy
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--firmware',type=Path,required=True);p.add_argument('--layout',type=Path,required=True);p.add_argument('--reader',type=Path,required=True);a=p.parse_args()
@@ -10,7 +10,7 @@ assert hashlib.sha256(reader.read_bytes()).hexdigest()=='a56503572e8b65308ae1c89
 E=runpy.run_path(str(reader))['ELF'];secs=[x for x in E(layout).sections if x['flags']&6==6 and x['size']]
 assert len(secs)==6 and sum(x['size'] for x in secs)==69412
 spans=[(x['address'],x['size']) for x in secs]+[(0x14056,0xc34)]
-target=(0x2000414c,0x20004150);hits=[];pairs=0
+target=(0x2000414c,0x20004150);hits=[];pairs=0;compressed_pairs=0
 def decode_pair(x,y,pc):
     op=x&127;reg=(x>>7)&31
     if op not in (0x17,0x37) or not reg or y&3!=3 or (y>>15)&31!=reg:return None
@@ -21,22 +21,36 @@ def decode_pair(x,y,pc):
     if not kind:return None
     imm-=4096 if imm&2048 else 0
     return ((pc if op==0x17 else 0)+(x&0xfffff000)+imm)&0xffffffff,width,kind
+def decode_compressed(x,h,pc):
+    op=x&127;reg=(x>>7)&31;funct=(h>>13)&7
+    if op not in (0x17,0x37) or not reg or h&3!=0 or funct not in (2,6) or ((h>>7)&7)+8!=reg:return None
+    imm=(((h>>10)&7)<<3)|(((h>>6)&1)<<2)|(((h>>5)&1)<<6)
+    return ((pc if op==0x17 else 0)+(x&0xfffff000)+imm)&0xffffffff,4,('load' if funct==2 else 'store')
 assert decode_pair(0x200047b7,0x14c78793,0)==(0x2000414c,1,'address')
 assert decode_pair(0x200047b7,0x14c7a783,0)==(0x2000414c,4,'load')
 assert decode_pair(0x200047b7,0x15078793,0)==(0x20004150,1,'address')
 assert decode_pair(0x200047b7,0x14c70793,0) is None
 synthetic_sw=((332>>5)<<25)|(10<<20)|(15<<15)|(2<<12)|((332&31)<<7)|0x23
 assert decode_pair(0x20003797,synthetic_sw,0x1000)==(0x2000414c,4,'store')
+synthetic_clw=(2<<13)|(1<<10)|(7<<7)|(1<<6)|(2<<2)
+synthetic_csw=(6<<13)|(1<<10)|(7<<7)|(1<<6)|(2<<2)
+assert decode_compressed(0x20003797,synthetic_clw,0x1140)==(0x2000414c,4,'load')
+assert decode_compressed(0x20003797,synthetic_csw,0x1140)==(0x2000414c,4,'store')
+assert decode_compressed(0x20003797,synthetic_csw^(1<<7),0x1140) is None
 for start,size in spans:
     d=image[start-0x8000:start-0x8000+size];i=0
     while i<size:
         n=4 if d[i]&3==3 else 2
         if i+n>size:raise ValueError('Truncated instruction')
-        if n==4 and i+8<=size:
-            x=int.from_bytes(d[i:i+4],'little');y=int.from_bytes(d[i+4:i+8],'little')
-            pair=decode_pair(x,y,start+i)
+        if n==4 and i+6<=size:
+            x=int.from_bytes(d[i:i+4],'little');h=int.from_bytes(d[i+4:i+6],'little')
+            if h&3!=3:
+                pair=decode_compressed(x,h,start+i)
+                if pair:compressed_pairs+=1
+            elif i+8<=size:pair=decode_pair(x,int.from_bytes(d[i+4:i+8],'little'),start+i)
+            else:pair=None
             if pair:
                 pairs+=1;val,width,kind=pair
                 if val<target[1] and target[0]<val+width:hits.append({'pc':hex(start+i),'target':hex(val),'width':width,'kind':kind})
         i+=n
-print(json.dumps({'passed':True,'adjacent_pairs':pairs,'hits':hits,'synthetic_controls':5,'nonadjacent_excluded':True,'target_executed':False}))
+print(json.dumps({'passed':True,'adjacent_pairs':pairs,'compressed_pairs':compressed_pairs,'hits':hits,'synthetic_controls':8,'nonadjacent_excluded':True,'target_executed':False}))
