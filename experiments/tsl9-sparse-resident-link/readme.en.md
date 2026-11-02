@@ -1,0 +1,13 @@
+# Sparse resident reference link
+
+This check places a hash-pinned WCH V1.31 reference into **17 separate sections**, preserving original addresses and gaps. The `0x40000` entry is section-backed. Under the existing data-alias and RAM assumptions, the C and C++ `--no-undefined` links complete and APP sections match the candidate image; the diagnostic ELF has no `PT_LOAD`.
+
+This only establishes how the linker handles the symbols currently referenced: each ELF still has 44 undefined symbol-table entries, so it does not close all dependencies. The candidate startup's second copy reads `[0x6EAA4,0x6EB30)`, but the reference ends at `0x6EB2C`, **missing the final 4 bytes**; no gaps are filled. The WCH reference does not establish that the device has the same resident, correct RAM/ABI or flashability.
+
+First run `scripts/build-v4160-source-candidate.py` with a new output directory outside the project, then run:
+
+```sh
+python scripts/verify-sparse-resident-link.py --project-root . --conditional-dir <BUILD_DIR>/conditional-link --reference-dir <WCH_REFERENCE_DIR> --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>
+```
+
+The existing pinned reference and `source-map.json` are required. No download or hardware access occurs; outputs are offline diagnostics and are not device-validated.
