@@ -114,3 +114,38 @@ def compile_ae(tool_dir, out, mode, reader):
     if placed['address']!=0x140dc or placed['size']!=70:
         raise ValueError('Unexpected command path placement')
     return result.data(placed)
+
+def compile_ad(tool_dir, out, mode, reader):
+    directory=Path(tool_dir)
+    clang=directory/('clang.exe' if (directory/'clang.exe').is_file() else 'clang')
+    ld=directory/('ld.lld.exe' if (directory/'ld.lld.exe').is_file() else 'ld.lld')
+    if not clang.is_file() or not ld.is_file() or mode not in ('c','cpp'):
+        raise ValueError('Invalid compiler, linker or mode')
+    obj=Path(out)/('ota-ad-'+mode+'.o')
+    cmd=[str(clang),'--target=riscv32-unknown-elf','-march=rv32imac','-mabi=ilp32',
+         '-ffreestanding','-Os','-x','c' if mode=='c' else 'c++','-c',
+         str(ROOT/'src/native/receive/ota_ad_1417a.inc'),'-o',str(obj)]
+    p=subprocess.run(cmd,capture_output=True,text=True)
+    if p.returncode:raise ValueError('Command path compile failed: '+p.stderr[:1000])
+    elf=reader(obj);section=elf.byname['.tsl9_ota_ad']
+    symbols=[s for s in elf.symbols if s['name']=='tsl9_ota_ad_1417a']
+    relocs=[(r['offset'],r['type'],r['symbol']['name'],r['addend']) for r in elf.relocations]
+    targets={'tsl9_ota_entry_92f2':0x92f2,'tsl9_callback_table_entry_90b0':0x90b0,
+             'tsl9_queue_status_81aa':0x81aa,'tsl9_selector_notifications_provider_9ef0':0x9ef0,
+             'tsl9_secondary_message_dispatch_entry_1400c':0x1400c}
+    expected=[(0x06,17,'tsl9_ota_entry_92f2',0),(0x0a,16,'.Lad',-0xe2),
+              (0x16,17,'tsl9_callback_table_entry_90b0',0),(0x1a,17,'tsl9_queue_status_81aa',0),
+              (0x1e,44,'.Lad',0x26),(0x22,17,'tsl9_selector_notifications_provider_9ef0',0),
+              (0x2c,17,'tsl9_secondary_message_dispatch_entry_1400c',0),(0x30,45,'.Lad',-0xe2)]
+    if (section['size']!=50 or section['type']!=1 or section['flags']&6!=6 or
+        len(symbols)!=1 or symbols[0]['index']!=section['index'] or symbols[0]['size']!=50 or relocs!=expected):
+        raise ValueError('Unexpected command path or relocations')
+    linked=Path(out)/('NOT-FLASHABLE-ad-'+mode+'.elf')
+    cmd=[str(ld),'--no-relax','-Ttext=0x1417a','-e','tsl9_ota_ad_1417a']
+    cmd += ['--defsym='+name+'='+hex(address) for name,address in targets.items()]
+    p=subprocess.run([*cmd,str(obj),'-o',str(linked)],capture_output=True,text=True)
+    if p.returncode:raise ValueError('Command path link failed: '+p.stderr[:1000])
+    result=reader(linked);placed=result.byname['.tsl9_ota_ad']
+    if placed['address']!=0x1417a or placed['size']!=50:
+        raise ValueError('Unexpected command path placement')
+    return result.data(placed)

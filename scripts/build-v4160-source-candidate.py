@@ -43,13 +43,16 @@ if not facts['passed'] or facts['complete_firmware'] or facts['flashable']:
 manifest = json.loads((spans_dir / 'NOT-FLASHABLE-spans.json').read_text(encoding='utf-8'))
 reader = runpy.run_path(str(ROOT / 'src/native/tx_candidate/postpass/elf32.py'))['ELF']
 fragment_tools = runpy.run_path(str(ROOT / 'scripts/source-ota-epilogue.py'))
-compile_epilogue, compile_entry, compile_more, compile_ae = (fragment_tools['compile_fragment'], fragment_tools['compile_entry'], fragment_tools['compile_more'], fragment_tools['compile_ae'])
+compile_epilogue, compile_entry, compile_more, compile_ae, compile_ad = (fragment_tools['compile_fragment'], fragment_tools['compile_entry'], fragment_tools['compile_more'], fragment_tools['compile_ae'], fragment_tools['compile_ad'])
 results = []
 for mode in ('c', 'cpp'):
     epilogue = compile_epilogue(args.tool_dir, out, mode, reader)
     entry = compile_entry(args.tool_dir, out, mode, reader)
     more = compile_more(args.tool_dir, out, mode, reader)
     ae = compile_ae(args.tool_dir, out, mode, reader)
+    ad = compile_ad(args.tool_dir, out, mode, reader)
+    if ad != raw[0][0x124:0x156]:
+        raise ValueError('Compiled command path differs from original bytes')
     if ae != raw[0][0x86:0xcc]:
         raise ValueError('Compiled command path differs from original bytes')
     if more != raw[0][0x50:0x86]:
@@ -58,7 +61,7 @@ for mode in ('c', 'cpp'):
         raise ValueError('Compiled entry differs from original bytes')
     if epilogue != raw[0][0x42:0x50]:
         raise ValueError('Compiled epilogue differs from original bytes')
-    selected = [entry + epilogue + more + ae + raw[0][0xcc:], raw[1]]
+    selected = [entry + epilogue + more + ae + raw[0][0xcc:0x124] + ad + raw[0][0x156:], raw[1]]
     source = '#ifdef __cplusplus\nextern "C" {\n#endif\n'
     for i, data in enumerate(selected):
         source += '__attribute__((used,section(".tsl9_payload_' + str(i) + '"))) extern const unsigned char payload_' + str(i) + '[] = {'
@@ -104,5 +107,6 @@ print(json.dumps({'passed': True, 'outputs': results, 'opaque_original_bytes': 3
                   'compiled_entry_bytes_replacing_carrier': 66,
                   'compiled_more_bytes_replacing_carrier': 54,
                   'compiled_ae_bytes_replacing_carrier': 70,
+                  'compiled_ad_bytes_replacing_carrier': 50,
                   'historical_candidate_read_during_build': False,
                   'semantics_recovered': False, 'hardware_validated': False, 'flashable_proved': False}))

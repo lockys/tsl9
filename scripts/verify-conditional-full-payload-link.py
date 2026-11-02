@@ -45,7 +45,7 @@ if not facts['passed'] or facts['ram_ownership_proved'] or facts['flashable']:
 parts = [('.tsl9_full_code','ax','tsl9_incoming_external_14056',raw[0]),
          ('.tsl9_full_defaults','a','tsl9_settings_default_data_1a69c',raw[1])]
 fragment_tools=runpy.run_path(str(ROOT/'scripts/source-ota-epilogue.py'))
-compile_epilogue,compile_entry,compile_more,compile_ae=fragment_tools['compile_fragment'],fragment_tools['compile_entry'],fragment_tools['compile_more'],fragment_tools['compile_ae']
+compile_epilogue,compile_entry,compile_more,compile_ae,compile_ad=fragment_tools['compile_fragment'],fragment_tools['compile_entry'],fragment_tools['compile_more'],fragment_tools['compile_ae'],fragment_tools['compile_ad']
 aliases={'tsl9_input_state_decoders_static_data_1ab48':('tsl9_input_counter_read_window_1ab48',0,0x1ab48),
          'tsl9_record_field_transitions_static_data_1a078':('tsl9_grid_read_data_pool_19ed8',416,0x1a078),
          'tsl9_registered_callbacks_static_data_1a638':('tsl9_sequence_compare_read_window_1a638',0,0x1a638)}
@@ -56,11 +56,13 @@ for mode in ('c','cpp'):
     entry=compile_entry(a.tool_dir,out,mode,reader)
     more=compile_more(a.tool_dir,out,mode,reader)
     ae=compile_ae(a.tool_dir,out,mode,reader)
+    ad=compile_ad(a.tool_dir,out,mode,reader)
+    if ad!=raw[0][0x124:0x156]:raise ValueError('Compiled command path differs from original bytes')
     if ae!=raw[0][0x86:0xcc]:raise ValueError('Compiled command path differs from original bytes')
     if more!=raw[0][0x50:0x86]:raise ValueError('Compiled dispatch continuation differs from original bytes')
     if entry!=raw[0][:0x42]:raise ValueError('Compiled entry differs from original bytes')
     if epilogue!=raw[0][0x42:0x50]:raise ValueError('Compiled epilogue differs from original bytes')
-    code=entry+epilogue+more+ae+raw[0][0xcc:]
+    code=entry+epilogue+more+ae+raw[0][0xcc:0x124]+ad+raw[0][0x156:]
     parts=[('.tsl9_full_code','ax','tsl9_incoming_external_14056',code),
            ('.tsl9_full_defaults','a','tsl9_settings_default_data_1a69c',raw[1])]
     asm=[]
@@ -120,6 +122,10 @@ for mode in ('c','cpp'):
         if (target['value']!=address or target['index'] in (0,0xfff1) or target['size']==0 or
             elf.sections[target['index']]['flags']&6!=6):
             raise ValueError('Command path target lacks executable section backing: '+name)
+    target=symbols['tsl9_secondary_message_dispatch_entry_1400c']
+    if (target['value']!=0x1400c or target['index'] in (0,0xfff1) or target['size']==0 or
+        elf.sections[target['index']]['flags']&6!=6):
+        raise ValueError('Command path target lacks executable section backing')
     for section,_,name,data in parts:
         owner=elf.byname['.payload_code' if section=='.tsl9_full_code' else '.payload_defaults']
         sym=symbols[name]
@@ -149,6 +155,7 @@ print(json.dumps({'passed':True,'results':results,'opaque_original_bytes':3128,
                   'compiled_entry_bytes_replacing_carrier':66,
                   'compiled_more_bytes_replacing_carrier':54,
                   'compiled_ae_bytes_replacing_carrier':70,
+                  'compiled_ad_bytes_replacing_carrier':50,
                   'original_semantics_recovered':False,'global_index_bounds_proved':False,
                   'ram_ownership_proved':False,'installed_rom_proved':False,'diagnostic_pt_load':0,
                   'target_executed':False,'hardware_validated':False,'flashable':False}))
