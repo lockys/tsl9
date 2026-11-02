@@ -40,6 +40,20 @@ if p.returncode:
 facts = json.loads(p.stdout)
 if not facts['passed'] or facts['complete_firmware'] or facts['flashable']:
     raise ValueError('Unexpected selected source result')
+conditional_dir = out / 'conditional-link'
+p = subprocess.run([sys.executable, '-B', str(ROOT / 'scripts/verify-conditional-full-payload-link.py'),
+                    '--tool-dir', str(args.tool_dir), '--out', str(conditional_dir)],
+                   capture_output=True, text=True)
+if p.returncode:
+    raise ValueError('Conditional full link failed: ' + p.stderr[:1000])
+conditional = json.loads(p.stdout)
+if (not conditional['passed'] or conditional['global_index_bounds_proved'] or conditional['ram_ownership_proved']
+    or conditional['installed_rom_proved'] or conditional['hardware_validated'] or conditional['flashable']
+    or len(conditional['results']) != 2
+    or any(x['strict_undefined'] != ['tsl9_boot_resident_40000'] or x['section_backed_new_symbols'] != 2
+           or x['conditional_data_aliases'] != 3 or x['negative_section_controls'] != 2
+           for x in conditional['results'])):
+    raise ValueError('Unexpected conditional link evidence')
 manifest = json.loads((spans_dir / 'NOT-FLASHABLE-spans.json').read_text(encoding='utf-8'))
 reader = runpy.run_path(str(ROOT / 'src/native/tx_candidate/postpass/elf32.py'))['ELF']
 fragment_tools = runpy.run_path(str(ROOT / 'scripts/source-ota-epilogue.py'))
@@ -96,6 +110,9 @@ for mode in ('c', 'cpp'):
     digest = hashlib.sha256(image).hexdigest()
     if len(image) != 76800 or digest != EXPECTED:
         raise ValueError('Reconstructed candidate digest mismatch')
+    linked = conditional_dir / ('NOT-FLASH-VALIDATED-conditional-link-' + mode + '.bin')
+    if linked.read_bytes() != image:
+        raise ValueError('Conditional link and assembled candidate differ')
     dest = out / ('NOT-FLASH-VALIDATED-v4160-source-' + mode + '.bin')
     with dest.open('xb') as stream:
         stream.write(image)
@@ -108,5 +125,8 @@ print(json.dumps({'passed': True, 'outputs': results, 'opaque_original_bytes': 3
                   'compiled_more_bytes_replacing_carrier': 54,
                   'compiled_ae_bytes_replacing_carrier': 70,
                   'compiled_ad_bytes_replacing_carrier': 50,
+                  'conditional_link_verified': True, 'conditional_data_aliases': 3,
+                  'resident_rom_still_undefined_in_strict_link': True,
+                  'global_index_bounds_proved': False, 'ram_ownership_proved': False,
                   'historical_candidate_read_during_build': False,
                   'semantics_recovered': False, 'hardware_validated': False, 'flashable_proved': False}))
