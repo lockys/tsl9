@@ -7,3 +7,5 @@ The model assumes the original dispatcher stack and registers are valid and stat
 On Windows MSVC, C11 and C++17 each passed 131,082 cases covering all 256 byte commands, all 256 synthetic state-byte values and several wider values. `python experiments/tsl9-dispatch2-model/verify_instructions.py --firmware <CANDIDATE_BIN> --r2 <R2_EXECUTABLE>` checks 36 original instructions. On a system with a C compiler, build and run the test with `cc -std=c11 -Iexperiments/tsl9-dispatch2-model experiments/tsl9-dispatch2-model/dispatch2.c experiments/tsl9-dispatch2-model/test_dispatch2.c -o test-dispatch2`; this POSIX command has not been tested.
 
 `0x81AA` only reads an unsigned byte at `GP+167`; its product meaning is not established. If reset clearing completes, GP is `0x20004000`, and no later write changes this byte before the read, that read returns 0. This does not prove the actual device state or scheduler success.
+
+A [follow-up direct-write scan](../tsl9-state167-writers/readme.en.md) finds `0x93A2` stores a `seqz` result of 0 or 1 into this byte; global bounds still depend on other writers and asynchronous conditions.
