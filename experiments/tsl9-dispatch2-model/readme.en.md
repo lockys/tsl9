@@ -1,0 +1,7 @@
+# C behavior model for the dispatcher continuation
+
+The [model](dispatch2.c) describes local branches, queue-state requests, scheduler requests and exit addresses at entries `0x14230` and `0x1425E`. The former matches the command's low byte against `170/171`; the latter uses full unsigned 32-bit comparisons. When a path requests scheduling and the queue returns zero, the model records callback `0x13F88` and delay 300; it does not claim scheduling succeeds or the callback runs.
+
+The model assumes the original dispatcher stack and registers are valid and queue and scheduler calls return normally. It does not reproduce other registers, external effects, device timing or physical functions and is not used to replace candidate BIN machine code. See the [source continuation](../tsl9-ota-dispatch2-source/readme.en.md) for original-instruction linking and byte comparisons.
+
+On Windows MSVC, C11 and C++17 each passed 1,034 cases covering all 256 byte commands, two synthetic queue responses and several wider values. `python experiments/tsl9-dispatch2-model/verify_instructions.py --firmware <CANDIDATE_BIN> --r2 <R2_EXECUTABLE>` checks 27 original instructions. On a system with a C compiler, build and run the test with `cc -std=c11 -Iexperiments/tsl9-dispatch2-model experiments/tsl9-dispatch2-model/dispatch2.c experiments/tsl9-dispatch2-model/test_dispatch2.c -o test-dispatch2`; this POSIX command has not been tested.
