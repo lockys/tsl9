@@ -57,7 +57,7 @@ if (not conditional['passed'] or conditional['global_index_bounds_proved'] or co
 manifest = json.loads((spans_dir / 'NOT-FLASHABLE-spans.json').read_text(encoding='utf-8'))
 reader = runpy.run_path(str(ROOT / 'src/native/tx_candidate/postpass/elf32.py'))['ELF']
 fragment_tools = runpy.run_path(str(ROOT / 'scripts/source-ota-epilogue.py'))
-compile_epilogue, compile_entry, compile_more, compile_ae, compile_ad, compile_dispatch = (fragment_tools['compile_fragment'], fragment_tools['compile_entry'], fragment_tools['compile_more'], fragment_tools['compile_ae'], fragment_tools['compile_ad'], fragment_tools['compile_dispatch'])
+compile_epilogue, compile_entry, compile_more, compile_ae, compile_ad, compile_dispatch, compile_dispatch2 = (fragment_tools['compile_fragment'], fragment_tools['compile_entry'], fragment_tools['compile_more'], fragment_tools['compile_ae'], fragment_tools['compile_ad'], fragment_tools['compile_dispatch'], fragment_tools['compile_dispatch2'])
 results = []
 for mode in ('c', 'cpp'):
     epilogue = compile_epilogue(args.tool_dir, out, mode, reader)
@@ -66,6 +66,9 @@ for mode in ('c', 'cpp'):
     ae = compile_ae(args.tool_dir, out, mode, reader)
     ad = compile_ad(args.tool_dir, out, mode, reader)
     dispatch = compile_dispatch(args.tool_dir, out, mode, reader)
+    dispatch2 = compile_dispatch2(args.tool_dir, out, mode, reader)
+    if dispatch2 != raw[0][0x1da:0x232]:
+        raise ValueError('Compiled dispatcher continuation differs from original bytes')
     if dispatch != raw[0][0x180:0x1da]:
         raise ValueError('Compiled dispatcher differs from original bytes')
     if ad != raw[0][0x124:0x156]:
@@ -78,7 +81,7 @@ for mode in ('c', 'cpp'):
         raise ValueError('Compiled entry differs from original bytes')
     if epilogue != raw[0][0x42:0x50]:
         raise ValueError('Compiled epilogue differs from original bytes')
-    selected = [entry + epilogue + more + ae + raw[0][0xcc:0x124] + ad + raw[0][0x156:0x180] + dispatch + raw[0][0x1da:], raw[1]]
+    selected = [entry + epilogue + more + ae + raw[0][0xcc:0x124] + ad + raw[0][0x156:0x180] + dispatch + dispatch2 + raw[0][0x232:], raw[1]]
     source = '#ifdef __cplusplus\nextern "C" {\n#endif\n'
     for i, data in enumerate(selected):
         source += '__attribute__((used,section(".tsl9_payload_' + str(i) + '"))) extern const unsigned char payload_' + str(i) + '[] = {'
@@ -129,6 +132,7 @@ print(json.dumps({'passed': True, 'outputs': results, 'opaque_original_bytes': 3
                   'compiled_ae_bytes_replacing_carrier': 70,
                   'compiled_ad_bytes_replacing_carrier': 50,
                   'compiled_dispatch_bytes_replacing_carrier': 90,
+                  'compiled_dispatch2_bytes_replacing_carrier': 88,
                   'conditional_link_verified': True, 'conditional_data_aliases': 3,
                   'resident_rom_still_undefined_in_strict_link': True,
                   'global_index_bounds_proved': False, 'ram_ownership_proved': False,

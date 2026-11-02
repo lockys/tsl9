@@ -6,4 +6,4 @@
 
 完整候選建置與條件式連結會分別用 C、C++ 編譯這 14 bytes，核對實際 ELF section、符號大小及與原始載體逐 byte 相同，然後以編譯結果放入映像。原始 JSON 中的對照 bytes 仍保留；其餘區段的最新進度見下方入口來源整合。完整 BIN 雜湊與先前候選相同，不等於實機啟動或相容性已驗證。
 
-另可執行 `python scripts/verify-full-source-isolation.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>`，在只含 196 個來源及建置檔案的副本中重建兩種 BIN；該副本沒有既有候選 BIN，但包含上述原始資料載體。後續[入口來源整合](../tsl9-ota-entry-source/README.md)另以來源產生 66 bytes。
+另可執行 `python scripts/verify-full-source-isolation.py --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>`，在只含 197 個來源及建置檔案的副本中重建兩種 BIN；該副本沒有既有候選 BIN，但包含上述原始資料載體。後續[入口來源整合](../tsl9-ota-entry-source/README.md)另以來源產生 66 bytes。
