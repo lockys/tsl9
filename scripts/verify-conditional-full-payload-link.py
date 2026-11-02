@@ -44,7 +44,8 @@ if not facts['passed'] or facts['ram_ownership_proved'] or facts['flashable']:
     raise ValueError('Unexpected conditional RAM baseline')
 parts = [('.tsl9_full_code','ax','tsl9_incoming_external_14056',raw[0]),
          ('.tsl9_full_defaults','a','tsl9_settings_default_data_1a69c',raw[1])]
-compile_epilogue=runpy.run_path(str(ROOT/'scripts/source-ota-epilogue.py'))['compile_fragment']
+fragment_tools=runpy.run_path(str(ROOT/'scripts/source-ota-epilogue.py'))
+compile_epilogue,compile_entry=fragment_tools['compile_fragment'],fragment_tools['compile_entry']
 aliases={'tsl9_input_state_decoders_static_data_1ab48':('tsl9_input_counter_read_window_1ab48',0,0x1ab48),
          'tsl9_record_field_transitions_static_data_1a078':('tsl9_grid_read_data_pool_19ed8',416,0x1a078),
          'tsl9_registered_callbacks_static_data_1a638':('tsl9_sequence_compare_read_window_1a638',0,0x1a638)}
@@ -52,8 +53,10 @@ results=[]
 for mode in ('c','cpp'):
     folder=base/mode
     epilogue=compile_epilogue(a.tool_dir,out,mode,reader)
+    entry=compile_entry(a.tool_dir,out,mode,reader)
+    if entry!=raw[0][:0x38]:raise ValueError('Compiled entry differs from original bytes')
     if epilogue!=raw[0][0x42:0x50]:raise ValueError('Compiled epilogue differs from original bytes')
-    code=raw[0][:0x42]+epilogue+raw[0][0x50:]
+    code=entry+raw[0][0x38:0x42]+epilogue+raw[0][0x50:]
     parts=[('.tsl9_full_code','ax','tsl9_incoming_external_14056',code),
            ('.tsl9_full_defaults','a','tsl9_settings_default_data_1a69c',raw[1])]
     asm=[]
@@ -127,6 +130,7 @@ for mode in ('c','cpp'):
                     'conditional_data_aliases':3,'image_bytes':len(image)})
 print(json.dumps({'passed':True,'results':results,'opaque_original_bytes':3128,
                   'compiled_epilogue_bytes_replacing_carrier':14,
+                  'compiled_entry_bytes_replacing_carrier':56,
                   'original_semantics_recovered':False,'global_index_bounds_proved':False,
                   'ram_ownership_proved':False,'installed_rom_proved':False,'diagnostic_pt_load':0,
                   'target_executed':False,'hardware_validated':False,'flashable':False}))
