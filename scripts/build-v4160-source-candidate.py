@@ -43,16 +43,19 @@ if not facts['passed'] or facts['complete_firmware'] or facts['flashable']:
 manifest = json.loads((spans_dir / 'NOT-FLASHABLE-spans.json').read_text(encoding='utf-8'))
 reader = runpy.run_path(str(ROOT / 'src/native/tx_candidate/postpass/elf32.py'))['ELF']
 fragment_tools = runpy.run_path(str(ROOT / 'scripts/source-ota-epilogue.py'))
-compile_epilogue, compile_entry = fragment_tools['compile_fragment'], fragment_tools['compile_entry']
+compile_epilogue, compile_entry, compile_more = (fragment_tools['compile_fragment'], fragment_tools['compile_entry'], fragment_tools['compile_more'])
 results = []
 for mode in ('c', 'cpp'):
     epilogue = compile_epilogue(args.tool_dir, out, mode, reader)
     entry = compile_entry(args.tool_dir, out, mode, reader)
+    more = compile_more(args.tool_dir, out, mode, reader)
+    if more != raw[0][0x50:0x86]:
+        raise ValueError('Compiled dispatch continuation differs from original bytes')
     if entry != raw[0][:0x42]:
         raise ValueError('Compiled entry differs from original bytes')
     if epilogue != raw[0][0x42:0x50]:
         raise ValueError('Compiled epilogue differs from original bytes')
-    selected = [entry + epilogue + raw[0][0x50:], raw[1]]
+    selected = [entry + epilogue + more + raw[0][0x86:], raw[1]]
     source = '#ifdef __cplusplus\nextern "C" {\n#endif\n'
     for i, data in enumerate(selected):
         source += '__attribute__((used,section(".tsl9_payload_' + str(i) + '"))) extern const unsigned char payload_' + str(i) + '[] = {'
@@ -96,5 +99,6 @@ for mode in ('c', 'cpp'):
 print(json.dumps({'passed': True, 'outputs': results, 'opaque_original_bytes': 3128,
                   'compiled_epilogue_bytes_replacing_carrier': 14,
                   'compiled_entry_bytes_replacing_carrier': 66,
+                  'compiled_more_bytes_replacing_carrier': 54,
                   'historical_candidate_read_during_build': False,
                   'semantics_recovered': False, 'hardware_validated': False, 'flashable_proved': False}))
