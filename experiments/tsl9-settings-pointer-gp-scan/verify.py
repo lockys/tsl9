@@ -32,7 +32,7 @@ def store(offset,funct):
     return ((value>>5)<<25)|(3<<15)|(funct<<12)|((value&31)<<7)|0x23
 assert classify(store(81,2))=='store' and classify(store(80,2)) is None
 assert classify(store(87,0))=='store' and classify(store(88,0)) is None
-hits=[];counts=[];next_zero_loads=0;other_followups=[]
+hits=[];counts=[];next_zero_loads=0;other_followups=[];retained=[]
 for start,size in spans:
     if not (0x8000<=start and start+size<=0x1ac00):raise ValueError('Unexpected extent')
     data=image[start-0x8000:start-0x8000+size];at=0;count=0
@@ -49,7 +49,10 @@ for start,size in spans:
                 if len(follow)<2:raise ValueError('Address formation ends at section boundary')
                 standard=len(follow)>=4 and h&3==3 and (int.from_bytes(follow,'little')&0x707f)==0x2003 and (int.from_bytes(follow,'little')>>15)&31==rd and int.from_bytes(follow,'little')>>20==0
                 compressed=h&3==0 and (h>>13)&7==2 and ((h>>7)&7)+8==rd and (h&0x1c60)==0
-                if imm==84 and (standard or compressed):next_zero_loads+=1
+                if imm==84 and (standard or compressed):
+                    next_zero_loads+=1
+                    load_rd=((int.from_bytes(follow,'little')>>7)&31) if standard else (((h>>2)&7)+8)
+                    if load_rd!=rd:retained.append({'pc':hex(start+at),'base_register':rd,'destination_register':load_rd})
                 else:other_followups.append({'pc':hex(start+at),'gp_offset':imm})
         at+=n;count+=1
     counts.append(count)
@@ -58,5 +61,5 @@ print(json.dumps({'passed':True,'selected_code_bytes':69412,'additional_window_b
  'selected_instructions':sum(counts[:6]),'additional_instructions':counts[-1],
  'direct_stores':[h for h in hits if h['kind']=='store'],
  'address_formations':[h for h in hits if h['kind']=='address'],
- 'following_zero_offset_word_loads':next_zero_loads,'other_followups':other_followups,
+ 'following_zero_offset_word_loads':next_zero_loads,'address_retained_after_load':retained,'other_followups':other_followups,
  'indirect_writers_excluded':True,'reachable_paths_proved':False,'target_executed':False}))
