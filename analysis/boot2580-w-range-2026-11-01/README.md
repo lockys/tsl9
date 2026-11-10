@@ -2,7 +2,7 @@
 
 ## 證據與條件
 
-`check.py` 重讀 `firmware-downloads/legacy-options-2026-10-20/BINs/ID-2580-V1.0.00-decoded.bin`：12,288 bytes，SHA-256 `650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb`。分析座標 base `0x1000` 是檔案／既有分析座標，**不是實測載入位置**。固定四段原始 bytes 的 SHA-256，涵蓋 W、wrapper、erase、program；具體指令與呼叫圖另見 [`../boot2580-command-adapter-2026-10-21/source/README.md`](../boot2580-command-adapter-2026-10-21/source/README.md)、[`../v4160-ota-handoff-2026-10-21/boot-acceptance/README.md`](../v4160-ota-handoff-2026-10-21/boot-acceptance/README.md)，以及既有 [`../../experiments/tsl9-contract-model/src/flash_page.c`](../../experiments/tsl9-contract-model/src/flash_page.c) 的條件式 Flash 模型。此檢查本身是從固定指令解讀導出的算術模型，不是解碼器或指令執行器；窗口 hash 證明輸入未改，不獨立證明其語意。
+`check.py` 重讀 `firmware-downloads/legacy-options-2026-10-20/BINs/ID-2580-V1.0.00-decoded.bin`：12,288 bytes，SHA-256 `650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb`。分析座標 base `0x1000` 是檔案／既有分析座標，**不是實測載入位置**。固定四段原始 bytes 的 SHA-256，涵蓋 W、wrapper、erase、program；具體指令與呼叫圖另見 [`../boot2580-command-adapter-2026-10-21/source/README.md`](../boot2580-command-adapter-2026-10-21/source/README.md)，以及既有 [`../../experiments/tsl9-contract-model/src/flash_page.c`](../../experiments/tsl9-contract-model/src/flash_page.c) 的條件式 Flash 模型。此檢查本身是從固定指令解讀導出的算術模型，不是解碼器或指令執行器；窗口 hash 證明輸入未改，不獨立證明其語意。先前的 BOOT acceptance 報告及其歷史重播依賴不包含在此 checkpoint；其跨版本、APK 和相容性結論不能由本檢查重播或獨立證實。
 
 以下以 W active 非零、長度恰為 1026、記憶體讀取有效、所有必要的呼叫正常返回為前提；這些前提不是實機觀察。`0x2210` 先讀 payload+1 的低 byte，`0x2214` 再讀 payload 的高 byte，指令重排後 page = `(high << 8) | low`。同一次取樣的兩個 byte 可組成 `0..65535`，不假設 payload 不會被其他執行者改寫。
 
