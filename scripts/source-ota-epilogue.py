@@ -329,3 +329,23 @@ def compile_dispatch9(tool_dir, out, mode, reader):
     result=reader(linked);placed=result.byname['.tsl9_ota_dispatch9']
     if placed['address']!=0x143ea or placed['size']!=92:raise ValueError('Unexpected dispatcher command-175 placement')
     return result.data(placed)
+
+def compile_dispatch10(tool_dir, out, mode, reader):
+    directory=Path(tool_dir)
+    clang=directory/('clang.exe' if (directory/'clang.exe').is_file() else 'clang')
+    ld=directory/('ld.lld.exe' if (directory/'ld.lld.exe').is_file() else 'ld.lld')
+    if not clang.is_file() or not ld.is_file() or mode not in ('c','cpp'):raise ValueError('Invalid tool or mode')
+    obj=Path(out)/('ota-dispatch10-'+mode+'.o')
+    p=subprocess.run([str(clang),'--target=riscv32-unknown-elf','-march=rv32imac','-mabi=ilp32','-ffreestanding','-Os','-x','c' if mode=='c' else 'c++','-c',str(ROOT/'src/native/receive/ota_dispatch_14446.inc'),'-o',str(obj)],capture_output=True,text=True)
+    if p.returncode:raise ValueError('Dispatcher command-186 compilation failed: '+p.stderr[:1000])
+    elf=reader(obj);section=elf.byname['.tsl9_ota_dispatch10']
+    symbols=[s for s in elf.symbols if s['name']=='tsl9_ota_dispatch_14446']
+    relocs=[(r['offset'],r['type'],r['symbol']['name'],r['addend']) for r in elf.relocations]
+    expected=[(4,16,'.Ldispatch10',0x746),(0xc,16,'.Ldispatch10',-0x3ae),(0x12,16,'.Ldispatch10',0x70a),(0x1a,16,'.Ldispatch10',0x6f4),(0x20,16,'.Ldispatch10',-0x3ae),(0x28,17,'tsl9_dispatch10_message_1264e',0),(0x2e,17,'tsl9_dispatch10_gap_136d0',0),(0x32,45,'.Ldispatch10',-0x3ae)]
+    if section['size']!=52 or section['type']!=1 or section['flags']&6!=6 or len(symbols)!=1 or symbols[0]['index']!=section['index'] or symbols[0]['size']!=52 or relocs!=expected:raise ValueError('Unexpected dispatcher command-186 layout or relocations')
+    linked=Path(out)/('NOT-FLASHABLE-dispatch10-'+mode+'.elf')
+    p=subprocess.run([str(ld),'--no-relax','-Ttext=0x14446','-e','tsl9_ota_dispatch_14446','--defsym=tsl9_dispatch10_message_1264e=0x1264e','--defsym=tsl9_dispatch10_gap_136d0=0x136d0',str(obj),'-o',str(linked)],capture_output=True,text=True)
+    if p.returncode:raise ValueError('Dispatcher command-186 link failed: '+p.stderr[:1000])
+    result=reader(linked);placed=result.byname['.tsl9_ota_dispatch10']
+    if placed['address']!=0x14446 or placed['size']!=52:raise ValueError('Unexpected dispatcher command-186 placement')
+    return result.data(placed)
