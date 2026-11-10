@@ -1,0 +1,16 @@
+# ID2580 BOOT event continuation — static evidence
+
+Earlier statement that a RISC-V disassembler was unavailable was wrong for this host. Existing project scripts identify the Android NDK 27.1.12297006 Windows x86-64 `llvm-objdump.exe`; actual LLVM 18.0.2 binary SHA-256 `de40d1188fe63ff373e1a5dd83a12e2cb4545ca3b314da16a476ecf072e5a0fa`. Offline clang assembled an `.incbin` into an RV32 object; objdump `-d --mattr=+m,+a,+c --adjust-vma=4096` decoded it. Linear disassembly can decode data and is not a reachability proof. Base 0x1000 is a model, not an installed mapping. Input is ID2580 V1.0.00, 12288 bytes, SHA-256 `650cbb626d45c94ea7617c4647c6fc184bc6dcf0d21615f62c5d4b119e8162bb`.
+
+## New instruction observations
+
+* `2bd8..2be0` constructs gp=`0x20014000` under the model, if this reset sequence executes unchanged. GP may later change.
+* `19fe` loads `[0x40080]`; `1a02..1a06` constructs `a0=0x144a`; `1a0a` calls it. `1a0c` constructs `gp+0x7c`, and `1a12` stores the returned low byte through that alias. This explains why the previous scan for stores directly based on gp found none. Treating `[0x40080]` as task registration is conditional on resident slot/ABI identity; the indirect target itself is unknown.
+* At `144a`, the candidate callback saves the incoming event in s0. After other paths, `14be..14c4` compares incoming a0 against `lbu gp+0x7c`; event bit 1 at `14c8` leads to `14e0..14ec`, which load halfwords at `0x200090a6` and `0x200090a8`. Following the indirect call `[0x4013c]`, return exactly 1 and a positive signed 16-bit difference are required for the continuation; `[0x400b8]` is also called. At `1520..1538` a chosen length is stored at gp+0x76 and `[0x40050]` is called with a1=2. These are conditional paths, not evidence the event ran.
+* Bit 2 path `1558..15a0` constructs s4=`0x200090a4`, obtains a halfword from `0x200090a8`, adds 6 to it and adds s4, forming source `0x200090aa + offset`; length comes from gp+0x76. The returned nonzero pointer from indirect `[0x40128]` remains a0 at `15a0`, where `[0x4004c]` is called with that pointer, source, and length. Thus the candidate buffer consumption reaches an indirect copy-like call, not a directly observed send. Subsequent `[0x4013c]`, `[0x400d4]`, `[0x4012c]` and `[0x40050]` paths are conditional; their actual implementations and effects remain unknown. Concurrent modification, bounds and lifetime are not established.
+
+The W wrapper previously recorded six bytes at `0x200090aa`, length at `0x200090a6` and offset at `0x200090a8`. Their numeric overlap with the callback paths is static evidence; it does not establish that this callback was registered or dispatched on an installed device. `[0x40080]`, `[0x40050]`, `[0x4004c]` and other live provider contents, ABI, real mapping, transmission, ACK and persistence remain unproved. No hardware, target execution or emulator was used.
+
+## Reproducible byte gates
+
+`python -B analysis/boot2580-w-event-continuation/check.py` checks full input identity and four exact raw instruction-window hashes; negative controls mutate each window's first and last byte, truncate each, and mutate the full input. These test integrity only, not the disassembly semantics, reachability or provider behavior. Prior direct-gp scan was bounded correctly but its lack-of-tool statement is superseded here.
