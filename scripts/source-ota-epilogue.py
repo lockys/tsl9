@@ -369,3 +369,23 @@ def compile_dispatch11(tool_dir, out, mode, reader):
     result=reader(linked);placed=result.byname['.tsl9_ota_dispatch11']
     if placed['address']!=0x1447a or placed['size']!=72:raise ValueError('Unexpected dispatcher command-192 placement')
     return result.data(placed)
+
+def compile_dispatch12(tool_dir, out, mode, reader):
+    directory=Path(tool_dir)
+    clang=directory/('clang.exe' if (directory/'clang.exe').is_file() else 'clang')
+    ld=directory/('ld.lld.exe' if (directory/'ld.lld.exe').is_file() else 'ld.lld')
+    if not clang.is_file() or not ld.is_file() or mode not in ('c','cpp'):raise ValueError('Invalid tool or mode')
+    obj=Path(out)/('ota-dispatch12-'+mode+'.o')
+    p=subprocess.run([str(clang),'--target=riscv32-unknown-elf','-march=rv32imac','-mabi=ilp32','-ffreestanding','-Os','-x','c' if mode=='c' else 'c++','-c',str(ROOT/'src/native/receive/ota_dispatch_144c2.inc'),'-o',str(obj)],capture_output=True,text=True)
+    if p.returncode:raise ValueError('Dispatcher command-240 compilation failed: '+p.stderr[:1000])
+    elf=reader(obj);section=elf.byname['.tsl9_ota_dispatch12']
+    symbols=[s for s in elf.symbols if s['name']=='tsl9_ota_dispatch_144c2']
+    relocs=[(r['offset'],r['type'],r['symbol']['name'],r['addend']) for r in elf.relocations]
+    expected=[(4,16,'.Ldispatch12',0x50),(0xc,16,'.Ldispatch12',-0x42a),(0x12,16,'.Ldispatch12',-0x42a),(0x1a,17,'tsl9_dispatch12_checker_92f2',0),(0x1e,16,'.Ldispatch12',-0x42a),(0x30,17,'tsl9_dispatch12_message_126a0',0),(0x34,45,'.Ldispatch12',-0x42a)]
+    if section['size']!=54 or section['type']!=1 or section['flags']&6!=6 or len(symbols)!=1 or symbols[0]['index']!=section['index'] or symbols[0]['size']!=54 or relocs!=expected:raise ValueError('Unexpected dispatcher command-240 layout or relocations')
+    linked=Path(out)/('NOT-FLASHABLE-dispatch12-'+mode+'.elf')
+    p=subprocess.run([str(ld),'--no-relax','-Ttext=0x144c2','-e','tsl9_ota_dispatch_144c2','--defsym=tsl9_dispatch12_checker_92f2=0x92f2','--defsym=tsl9_dispatch12_message_126a0=0x126a0',str(obj),'-o',str(linked)],capture_output=True,text=True)
+    if p.returncode:raise ValueError('Dispatcher command-240 link failed: '+p.stderr[:1000])
+    result=reader(linked);placed=result.byname['.tsl9_ota_dispatch12']
+    if placed['address']!=0x144c2 or placed['size']!=54:raise ValueError('Unexpected dispatcher command-240 placement')
+    return result.data(placed)

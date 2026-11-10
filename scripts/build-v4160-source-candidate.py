@@ -71,6 +71,9 @@ for mode in ('c', 'cpp'):
     dispatch4 = compile_dispatch4(args.tool_dir, out, mode, reader)
     dispatch5 = compile_dispatch5(args.tool_dir, out, mode, reader)
     dispatch6 = compile_dispatch6(args.tool_dir, out, mode, reader)
+    dispatch12 = fragment_tools['compile_dispatch12'](args.tool_dir, out, mode, reader)
+    if dispatch12 != raw[0][0x46c:0x4a2]:
+        raise ValueError('Compiled dispatcher command-240 differs from original bytes')
     dispatch11 = fragment_tools['compile_dispatch11'](args.tool_dir, out, mode, reader)
     if dispatch11 != raw[0][0x424:0x46c]:
         raise ValueError('Compiled dispatcher command-192 differs from original bytes')
@@ -108,7 +111,7 @@ for mode in ('c', 'cpp'):
         raise ValueError('Compiled entry differs from original bytes')
     if epilogue != raw[0][0x42:0x50]:
         raise ValueError('Compiled epilogue differs from original bytes')
-    selected = [entry + epilogue + more + ae + raw[0][0xcc:0x124] + ad + raw[0][0x156:0x180] + dispatch + dispatch2 + dispatch3 + dispatch4 + dispatch5 + dispatch6 + dispatch7 + dispatch8 + dispatch9 + dispatch10 + dispatch11 + raw[0][0x46c:], raw[1]]
+    selected = [entry + epilogue + more + ae + raw[0][0xcc:0x124] + ad + raw[0][0x156:0x180] + dispatch + dispatch2 + dispatch3 + dispatch4 + dispatch5 + dispatch6 + dispatch7 + dispatch8 + dispatch9 + dispatch10 + dispatch11 + dispatch12 + raw[0][0x4a2:], raw[1]]
     source = '#ifdef __cplusplus\nextern "C" {\n#endif\n'
     for i, data in enumerate(selected):
         source += '__attribute__((used,section(".tsl9_payload_' + str(i) + '"))) extern const unsigned char payload_' + str(i) + '[] = {'
@@ -169,6 +172,7 @@ print(json.dumps({'passed': True, 'outputs': results, 'opaque_original_bytes': 3
                   'compiled_dispatch9_bytes_replacing_carrier': 92,
                   'compiled_dispatch10_bytes_replacing_carrier': 52,
                   'compiled_dispatch11_bytes_replacing_carrier':72,
+                  'compiled_dispatch12_bytes_replacing_carrier':54,
                   'conditional_link_verified': True, 'conditional_data_aliases': 3,
                   'resident_rom_still_undefined_in_strict_link': True,
                   'global_index_bounds_proved': False, 'ram_ownership_proved': False,
