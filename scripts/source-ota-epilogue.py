@@ -229,3 +229,23 @@ def compile_dispatch4(tool_dir, out, mode, reader):
     result=reader(linked);placed=result.byname['.tsl9_ota_dispatch4']
     if placed['address']!=0x142c0 or placed['size']!=60:raise ValueError('Unexpected dispatcher check placement')
     return result.data(placed)
+
+def compile_dispatch5(tool_dir, out, mode, reader):
+    directory=Path(tool_dir)
+    clang=directory/('clang.exe' if (directory/'clang.exe').is_file() else 'clang')
+    ld=directory/('ld.lld.exe' if (directory/'ld.lld.exe').is_file() else 'ld.lld')
+    if not clang.is_file() or not ld.is_file() or mode not in ('c','cpp'):raise ValueError('Invalid tool or mode')
+    obj=Path(out)/('ota-dispatch5-'+mode+'.o')
+    p=subprocess.run([str(clang),'--target=riscv32-unknown-elf','-march=rv32imac','-mabi=ilp32','-ffreestanding','-Os','-x','c' if mode=='c' else 'c++','-c',str(ROOT/'src/native/receive/ota_dispatch_142fc.inc'),'-o',str(obj)],capture_output=True,text=True)
+    if p.returncode:raise ValueError('Dispatcher table-check compilation failed: '+p.stderr[:1000])
+    elf=reader(obj);section=elf.byname['.tsl9_ota_dispatch5']
+    symbols=[s for s in elf.symbols if s['name']=='tsl9_ota_dispatch_142fc']
+    relocs=[(r['offset'],r['type'],r['symbol']['name'],r['addend']) for r in elf.relocations]
+    expected=[(0x12,44,'.Ldispatch5',0x1e),(0x1a,17,'tsl9_dispatch5_ingress_9b02',0),(0x2c,44,'.Ldispatch5',0x32),(0x2e,17,'tsl9_dispatch5_callback_fa3c',0)]
+    if section['size']!=50 or section['type']!=1 or section['flags']&6!=6 or len(symbols)!=1 or symbols[0]['index']!=section['index'] or symbols[0]['size']!=50 or relocs!=expected:raise ValueError('Unexpected dispatcher table-check layout or relocations')
+    linked=Path(out)/('NOT-FLASHABLE-dispatch5-'+mode+'.elf')
+    p=subprocess.run([str(ld),'--no-relax','-Ttext=0x142fc','-e','tsl9_ota_dispatch_142fc','--defsym=tsl9_dispatch5_ingress_9b02=0x9b02','--defsym=tsl9_dispatch5_callback_fa3c=0xfa3c',str(obj),'-o',str(linked)],capture_output=True,text=True)
+    if p.returncode:raise ValueError('Dispatcher table-check link failed: '+p.stderr[:1000])
+    result=reader(linked);placed=result.byname['.tsl9_ota_dispatch5']
+    if placed['address']!=0x142fc or placed['size']!=50:raise ValueError('Unexpected dispatcher table-check placement')
+    return result.data(placed)
