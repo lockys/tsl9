@@ -309,3 +309,23 @@ def compile_dispatch8(tool_dir, out, mode, reader):
     result=reader(linked);placed=result.byname['.tsl9_ota_dispatch8']
     if placed['address']!=0x143a4 or placed['size']!=70:raise ValueError('Unexpected dispatcher ordinal placement')
     return result.data(placed)
+
+def compile_dispatch9(tool_dir, out, mode, reader):
+    directory=Path(tool_dir)
+    clang=directory/('clang.exe' if (directory/'clang.exe').is_file() else 'clang')
+    ld=directory/('ld.lld.exe' if (directory/'ld.lld.exe').is_file() else 'ld.lld')
+    if not clang.is_file() or not ld.is_file() or mode not in ('c','cpp'):raise ValueError('Invalid tool or mode')
+    obj=Path(out)/('ota-dispatch9-'+mode+'.o')
+    p=subprocess.run([str(clang),'--target=riscv32-unknown-elf','-march=rv32imac','-mabi=ilp32','-ffreestanding','-Os','-x','c' if mode=='c' else 'c++','-c',str(ROOT/'src/native/receive/ota_dispatch_143ea.inc'),'-o',str(obj)],capture_output=True,text=True)
+    if p.returncode:raise ValueError('Dispatcher command-175 compilation failed: '+p.stderr[:1000])
+    elf=reader(obj);section=elf.byname['.tsl9_ota_dispatch9']
+    symbols=[s for s in elf.symbols if s['name']=='tsl9_ota_dispatch_143ea']
+    relocs=[(r['offset'],r['type'],r['symbol']['name'],r['addend']) for r in elf.relocations]
+    expected=[(2,16,'.Ldispatch9',-0x352),(0xe,17,'tsl9_dispatch9_table_90b0',0),(0x1e,17,'tsl9_dispatch9_helper_9334',0),(0x2a,16,'.Ldispatch9',0x54),(0x2e,17,'tsl9_dispatch9_notify_9ef0',0),(0x3e,44,'.Ldispatch9',0x4e),(0x4a,17,'tsl9_dispatch9_writer_13138',0),(0x50,17,'tsl9_dispatch9_status_820c',0),(0x5a,45,'.Ldispatch9',-0x2d0)]
+    if section['size']!=92 or section['type']!=1 or section['flags']&6!=6 or len(symbols)!=1 or symbols[0]['index']!=section['index'] or symbols[0]['size']!=92 or relocs!=expected:raise ValueError('Unexpected dispatcher command-175 layout or relocations')
+    linked=Path(out)/('NOT-FLASHABLE-dispatch9-'+mode+'.elf')
+    p=subprocess.run([str(ld),'--no-relax','-Ttext=0x143ea','-e','tsl9_ota_dispatch_143ea','--defsym=tsl9_dispatch9_table_90b0=0x90b0','--defsym=tsl9_dispatch9_helper_9334=0x9334','--defsym=tsl9_dispatch9_notify_9ef0=0x9ef0','--defsym=tsl9_dispatch9_writer_13138=0x13138','--defsym=tsl9_dispatch9_status_820c=0x820c',str(obj),'-o',str(linked)],capture_output=True,text=True)
+    if p.returncode:raise ValueError('Dispatcher command-175 link failed: '+p.stderr[:1000])
+    result=reader(linked);placed=result.byname['.tsl9_ota_dispatch9']
+    if placed['address']!=0x143ea or placed['size']!=92:raise ValueError('Unexpected dispatcher command-175 placement')
+    return result.data(placed)

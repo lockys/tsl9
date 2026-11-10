@@ -71,6 +71,9 @@ for mode in ('c', 'cpp'):
     dispatch4 = compile_dispatch4(args.tool_dir, out, mode, reader)
     dispatch5 = compile_dispatch5(args.tool_dir, out, mode, reader)
     dispatch6 = compile_dispatch6(args.tool_dir, out, mode, reader)
+    dispatch9 = fragment_tools['compile_dispatch9'](args.tool_dir, out, mode, reader)
+    if dispatch9 != raw[0][0x394:0x3f0]:
+        raise ValueError('Compiled dispatcher command-175 differs from original bytes')
     dispatch8 = fragment_tools['compile_dispatch8'](args.tool_dir, out, mode, reader)
     if dispatch8 != raw[0][0x34e:0x394]:
         raise ValueError('Compiled dispatcher ordinal differs from original bytes')
@@ -99,7 +102,7 @@ for mode in ('c', 'cpp'):
         raise ValueError('Compiled entry differs from original bytes')
     if epilogue != raw[0][0x42:0x50]:
         raise ValueError('Compiled epilogue differs from original bytes')
-    selected = [entry + epilogue + more + ae + raw[0][0xcc:0x124] + ad + raw[0][0x156:0x180] + dispatch + dispatch2 + dispatch3 + dispatch4 + dispatch5 + dispatch6 + dispatch7 + dispatch8 + raw[0][0x394:], raw[1]]
+    selected = [entry + epilogue + more + ae + raw[0][0xcc:0x124] + ad + raw[0][0x156:0x180] + dispatch + dispatch2 + dispatch3 + dispatch4 + dispatch5 + dispatch6 + dispatch7 + dispatch8 + dispatch9 + raw[0][0x3f0:], raw[1]]
     source = '#ifdef __cplusplus\nextern "C" {\n#endif\n'
     for i, data in enumerate(selected):
         source += '__attribute__((used,section(".tsl9_payload_' + str(i) + '"))) extern const unsigned char payload_' + str(i) + '[] = {'
@@ -157,6 +160,7 @@ print(json.dumps({'passed': True, 'outputs': results, 'opaque_original_bytes': 3
                   'compiled_dispatch6_bytes_replacing_carrier': 66,
                   'compiled_dispatch7_bytes_replacing_carrier': 52,
                   'compiled_dispatch8_bytes_replacing_carrier': 70,
+                  'compiled_dispatch9_bytes_replacing_carrier': 92,
                   'conditional_link_verified': True, 'conditional_data_aliases': 3,
                   'resident_rom_still_undefined_in_strict_link': True,
                   'global_index_bounds_proved': False, 'ram_ownership_proved': False,
