@@ -63,6 +63,8 @@ for mode in ('c','cpp'):
     dispatch4=compile_dispatch4(a.tool_dir,out,mode,reader)
     dispatch5=compile_dispatch5(a.tool_dir,out,mode,reader)
     dispatch6=compile_dispatch6(a.tool_dir,out,mode,reader)
+    dispatch11=fragment_tools['compile_dispatch11'](a.tool_dir,out,mode,reader)
+    if dispatch11!=raw[0][0x424:0x46c]:raise ValueError('Compiled dispatcher command-192 differs from original bytes')
     dispatch10=fragment_tools['compile_dispatch10'](a.tool_dir,out,mode,reader)
     if dispatch10!=raw[0][0x3f0:0x424]:raise ValueError('Compiled dispatcher command-186 differs from original bytes')
     dispatch9=fragment_tools['compile_dispatch9'](a.tool_dir,out,mode,reader)
@@ -82,7 +84,7 @@ for mode in ('c','cpp'):
     if more!=raw[0][0x50:0x86]:raise ValueError('Compiled dispatch continuation differs from original bytes')
     if entry!=raw[0][:0x42]:raise ValueError('Compiled entry differs from original bytes')
     if epilogue!=raw[0][0x42:0x50]:raise ValueError('Compiled epilogue differs from original bytes')
-    code=entry+epilogue+more+ae+raw[0][0xcc:0x124]+ad+raw[0][0x156:0x180]+dispatch+dispatch2+dispatch3+dispatch4+dispatch5+dispatch6+dispatch7+dispatch8+dispatch9+dispatch10+raw[0][0x424:]
+    code=entry+epilogue+more+ae+raw[0][0xcc:0x124]+ad+raw[0][0x156:0x180]+dispatch+dispatch2+dispatch3+dispatch4+dispatch5+dispatch6+dispatch7+dispatch8+dispatch9+dispatch10+dispatch11+raw[0][0x46c:]
     parts=[('.tsl9_full_code','ax','tsl9_incoming_external_14056',code),
            ('.tsl9_full_defaults','a','tsl9_settings_default_data_1a69c',raw[1])]
     asm=[]
@@ -194,6 +196,7 @@ print(json.dumps({'passed':True,'results':results,'opaque_original_bytes':3128,
                   'compiled_dispatch8_bytes_replacing_carrier':70,
                   'compiled_dispatch9_bytes_replacing_carrier':92,
                   'compiled_dispatch10_bytes_replacing_carrier':52,
+                  'compiled_dispatch11_bytes_replacing_carrier':72,
                   'original_semantics_recovered':False,'global_index_bounds_proved':False,
                   'ram_ownership_proved':False,'installed_rom_proved':False,'diagnostic_pt_load':0,
                   'target_executed':False,'hardware_validated':False,'flashable':False}))
