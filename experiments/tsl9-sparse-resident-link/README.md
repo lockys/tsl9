@@ -10,7 +10,9 @@
 python scripts/verify-sparse-resident-link.py --project-root . --conditional-dir <BUILD_DIR>/conditional-link --reference-dir <WCH_REFERENCE_DIR> --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>
 ```
 
-需既有固定來源參考及其 `source-map.json`，不下載或讀取硬體；輸出僅供離線診斷，沒有實機驗證。
+需既有固定來源參考及其 `source-map.json`，不下載或讀取硬體；輸出僅供離線診斷，沒有實機驗證。原有 17 段其實已包含獨立的 136 bytes 尾段；現在連結前會直接校驗 [固定原始 HEX](../../analysis/v131-startup-source/README.md) 的雜湊及記錄，逐位址比對全部 17 段並確認覆蓋完全相同，非從主 carrier 推測或填洞。最後四 bytes 仍未記錄。可離線執行 `python -B tests/test_sparse_resident_evidence.py` 驗證實際資料及污染、偽造 map 負例。
+
+缺 provider 的 strict link 仍必須失敗；這與使用參考段的診斷連結不同，後者的成功不代表來源完整，也不改變產品 strict gate。
 
 [後續符號檢查](../tsl9-diagnostic-discarded-symbols/README.md)將 44 項分為 43 個定義於丟棄區段的備選符號與一個原本未定義符號；相關 24 筆 relocation 的來源區段均被丟棄。
 

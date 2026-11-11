@@ -2,19 +2,12 @@
 """Link a pinned sparse reference resident for offline evidence only."""
 import argparse,hashlib,json,re,runpy,struct,subprocess
 from pathlib import Path
+from sparse_resident_evidence import validate
 p=argparse.ArgumentParser();p.add_argument('--project-root',type=Path,required=True);p.add_argument('--conditional-dir',type=Path,required=True);p.add_argument('--reference-dir',type=Path,required=True);p.add_argument('--tool-dir',type=Path,required=True);p.add_argument('--out',type=Path,required=True);a=p.parse_args()
 root=a.project_root.resolve();base=a.conditional_dir.resolve();ref=a.reference_dir.resolve();out=a.out.resolve()
 if out.exists() or out==root or root in out.parents:raise ValueError('Output must be a new directory outside project')
 def sha(data):return hashlib.sha256(data).hexdigest()
-manifest=(ref/'source-map.json').read_bytes()
-if sha(manifest)!='96ff0490ccd196ee97655a80ed44ea2b1ceee53b84ca3bad8f8f74525031c0ba':raise ValueError('Reference map changed')
-m=json.loads(manifest);segments=m['segments']
-if not m['passed'] or len(segments)!=17:raise ValueError('Reference segments changed')
-for x in segments:
-    path=(ref/x['path']).resolve()
-    if path.parent!=ref or path.suffix!='.bin' or x['end_exclusive']-x['start']!=x['bytes'] or sha(path.read_bytes())!=x['sha256']:raise ValueError('Invalid reference segment')
-if segments[0]['start']!=0x40000 or segments[0]['end_exclusive']!=0x6ea66 or segments[-1]['end_exclusive']!=0x6eb2c:raise ValueError('Reference extents changed')
-if any(x['end_exclusive']>y['start'] for x,y in zip(segments,segments[1:])):raise ValueError('Reference overlaps')
+segments=validate(root,ref)
 def tool(name):
     exe=a.tool_dir/(name+'.exe')
     return exe if exe.is_file() else a.tool_dir/name

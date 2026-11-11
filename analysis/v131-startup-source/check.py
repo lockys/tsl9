@@ -48,7 +48,7 @@ def coverage(source, extracted, start, end):
             [p for p in range(start, end) if p in source and p not in extracted])
 
 def main():
-    raw = (ROOT / 'analysis/wch-resident-candidate-2026-10-21/original-dec2023/wchble_rom.hex').read_bytes()
+    raw = (HERE / 'wchble_rom.hex').read_bytes()
     if digest(raw) != HEX_SHA: raise ValueError('official HEX hash mismatch')
     mem = parse(raw)
     def span(a, b):

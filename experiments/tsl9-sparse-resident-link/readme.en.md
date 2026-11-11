@@ -10,7 +10,7 @@ First run `scripts/build-v4160-source-candidate.py` with a new output directory 
 python scripts/verify-sparse-resident-link.py --project-root . --conditional-dir <BUILD_DIR>/conditional-link --reference-dir <WCH_REFERENCE_DIR> --tool-dir <LLVM_BIN> --out <NEW_OUTPUT_DIR>
 ```
 
-The existing pinned reference and `source-map.json` are required. No download or hardware access occurs; outputs are offline diagnostics and are not device-validated.
+The existing pinned reference and `source-map.json` are required. The existing 17 sections already include the separate 136-byte tail. Before linking, the check now validates the [pinned original HEX](../../analysis/v131-startup-source/README.md), compares every segment byte and its complete coverage against it, and preserves the final four unrecorded bytes as a hole. Run `python -B tests/test_sparse_resident_evidence.py` for real-input and contamination/forged-map controls. No download or hardware access occurs; outputs are offline diagnostics and are not device-validated. The no-provider strict link must still fail; diagnostic reference linking does not change the product strict gate or prove completeness.
 
 A [follow-up symbol audit](../tsl9-diagnostic-discarded-symbols/readme.en.md) classifies the 44 entries as 43 alternative definitions in discarded sections and one originally undefined symbol; the 24 input relocations to them all originate in discarded sections.
 
