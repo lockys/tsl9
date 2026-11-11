@@ -3,11 +3,11 @@
 import argparse,hashlib,json,re,runpy,struct,subprocess
 from pathlib import Path
 from sparse_resident_evidence import validate
-p=argparse.ArgumentParser();p.add_argument('--project-root',type=Path,required=True);p.add_argument('--conditional-dir',type=Path,required=True);p.add_argument('--reference-dir',type=Path,required=True);p.add_argument('--tool-dir',type=Path,required=True);p.add_argument('--out',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--project-root',type=Path,required=True);p.add_argument('--conditional-dir',type=Path,required=True);p.add_argument('--reference-dir',type=Path,required=True);p.add_argument('--hex',type=Path,help='existing pinned raw HEX (default: project local copy)');p.add_argument('--tool-dir',type=Path,required=True);p.add_argument('--out',type=Path,required=True);a=p.parse_args()
 root=a.project_root.resolve();base=a.conditional_dir.resolve();ref=a.reference_dir.resolve();out=a.out.resolve()
 if out.exists() or out==root or root in out.parents:raise ValueError('Output must be a new directory outside project')
 def sha(data):return hashlib.sha256(data).hexdigest()
-segments=validate(root,ref)
+segments=validate(root,ref,a.hex)
 def tool(name):
     exe=a.tool_dir/(name+'.exe')
     return exe if exe.is_file() else a.tool_dir/name

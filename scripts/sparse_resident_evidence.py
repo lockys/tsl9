@@ -6,16 +6,25 @@ from pathlib import Path
 
 MAP_SHA = '96ff0490ccd196ee97655a80ed44ea2b1ceee53b84ca3bad8f8f74525031c0ba'
 
-def validate(root, ref):
+def validate(root, ref, hex_path=None):
     check = runpy.run_path(str(root / 'analysis/v131-startup-source/check.py'))
-    raw = (root / 'analysis/v131-startup-source/wchble_rom.hex').read_bytes()
+    raw = (hex_path or root / 'analysis/v131-startup-source/wchble_rom.hex').read_bytes()
     if hashlib.sha256(raw).hexdigest() != check['HEX_SHA']:
         raise ValueError('official HEX hash mismatch')
     mem = check['parse'](raw)
     raw_map = (ref / 'source-map.json').read_bytes()
+    m = json.loads(raw_map)
+    if m.get('schema') == 'v131-derived-sparse-v1':
+        derived = runpy.run_path(str(root / 'scripts/extract_v131_sparse.py'))['derive'](raw)
+        if raw_map != derived['source-map.json']:
+            raise ValueError('Derived reference map changed')
+        for name, data in derived.items():
+            path = (ref / name).resolve()
+            if path.parent != ref or path.read_bytes() != data:
+                raise ValueError('Derived reference segment changed')
+        return m['segments']
     if hashlib.sha256(raw_map).hexdigest() != MAP_SHA:
         raise ValueError('Reference map changed')
-    m = json.loads(raw_map)
     segments = m['segments']
     if not m['passed'] or len(segments) != 17:
         raise ValueError('Reference segments changed')

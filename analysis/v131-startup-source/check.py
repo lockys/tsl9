@@ -16,9 +16,16 @@ def digest(b):
 
 def parse(raw):
     mem = {}; base = 0; eof = False
-    for line in raw.decode('ascii').splitlines():
+    lines = raw.decode('ascii').split('\n')
+    if lines[-1] == '':
+        lines.pop()
+    for line in lines:
+        if line.endswith('\r'):
+            line = line[:-1]
         if eof or not line.startswith(':'):
             raise ValueError('record after EOF or missing colon')
+        if any(c not in '0123456789abcdefABCDEF' for c in line[1:]):
+            raise ValueError('invalid HEX')
         try:
             r = bytes.fromhex(line[1:])
         except ValueError as e:
@@ -27,6 +34,8 @@ def parse(raw):
             raise ValueError('record length/checksum')
         n, addr, typ, data = r[0], int.from_bytes(r[1:3], 'big'), r[3], r[4:-1]
         if typ == 0:
+            if addr + n > 0x10000 or base + addr + n > 0x100000000:
+                raise ValueError('data address overflow')
             for i, value in enumerate(data):
                 p = base + addr + i
                 if p in mem: raise ValueError('overlap')
