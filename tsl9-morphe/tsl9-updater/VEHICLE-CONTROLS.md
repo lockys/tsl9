@@ -2,6 +2,8 @@
 
 目前0.6.1門鎖／座椅已依使用者要求改為直接A7操作，移除車型checkbox、P／零車速與門鎖確認對話框，並增加排隊指令取消檢查。下方保留0.5原始協定證據與當時操作政策；現行路徑為`MainActivity.sendCar → VehicleControls.perform → BleClient.sendGuarded`，政策以 [DIRECT-CONTROLS.md](DIRECT-CONTROLS.md) 為準。燈光設定維持獨立確認與P／零車速條件。
 
+便利進出只寫三個 A3 欄位，不送開門或開蓋：副駕便利進出是 byte 25 bit 3–4；門把手開關前備箱是 byte 29 bit 2–4；門把手開關充電口是 byte 29 bit 5–7。寫入沿用燈光閘門：完整 76-byte 快照、bytes 18–23 清零、其餘位元保留、layout 確認、新鮮 P／零車速、A0 讀回。硬體 byte 7 只顯示前備箱那一列；其他 Tesla layout 還要 byte 28 bit 3 為 0。這是 A0 raw byte 的畫面規則，不是伺服器 `hw_ver`。
+
 目標為使用者的 2021 年底 Model 3／TSL9。新增原生 `MainActivity.buildVehicleUi()` 分頁，沿用同一個 BLE 連線；沒有原廠登入、後端請求、任意 CAN 傳送或新增 JNI。實車控制尚未驗證，模組仍可能拒絕指令。
 
 ## 原廠靜態證據與實作對照

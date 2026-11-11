@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import java.nio.file.*;
 import java.util.*;
 /** Replays receive metadata with synthetic bytes; never opens BLE or retains real payload. */

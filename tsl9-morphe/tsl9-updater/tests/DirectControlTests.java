@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import java.util.*;
 /** User-requested direct body control: no profile checkbox or gear/speed dependency. */
 public final class DirectControlTests {

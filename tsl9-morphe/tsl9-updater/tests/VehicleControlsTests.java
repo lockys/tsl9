@@ -1,4 +1,4 @@
-package com.lockys.tsl9updater;
+package dev.tsl9.morphe;
 import java.util.*;
 public final class VehicleControlsTests {
     static int checks;static void check(boolean ok,String why){checks++;if(!ok)throw new AssertionError(why);}
@@ -24,6 +24,18 @@ public final class VehicleControlsTests {
         check(r.v.setBlinkHighBeam(true,true)&&r.cmd==0xa3&&r.data.length==76,"OEM full A3 configuration");byte[] expected=baseline.clone();Arrays.fill(expected,18,24,(byte)0);expected[30]|=0x40;check(Arrays.equals(r.data,expected),"lighting bit mask preserves unrelated configuration");check(!r.v.perform(VehicleControls.Action.LOCK),"configuration excludes direct action");r.written();check(r.cmd==0xa0&&r.v.active(),"A0 query follows config write");r.v.onInfo(expected);check(r.v.lightReadbackConfirmed()&&!r.v.active(),"matching A0 confirms setting");
         r.ready();r.v.setBlinkHighBeam(true,true);r.written();byte[] wrong=expected.clone();wrong[4]^=1;r.v.onInfo(wrong);check(!r.v.lightReadbackConfirmed(),"wrong UID cannot confirm configuration");r.now+=3001;r.v.tick();check(!r.v.active(),"configuration wait is bounded");
         r.ready();r.v.perform(VehicleControls.Action.LOCK);int sent=r.actions.size();r.now+=8001;r.v.tick();check(!r.v.active()&&r.actions.size()==sent,"timed-out direct action is not retried");
+        r.ready();byte[] snap=r.info();snap[25]=(byte)0xE7;snap[28]=0;snap[29]=0x03;snap[30]=0x40;r.v.onInfo(snap);
+        check(!r.v.setAccess(VehicleControls.AccessSetting.PASSENGER_EASY,2,false),"access layout still explicitly confirmed");
+        check(r.v.setAccess(VehicleControls.AccessSetting.PASSENGER_EASY,2,true)&&r.cmd==0xa3&&r.data.length==76,"access uses full A3 snapshot");
+        check(r.data[25]==(byte)0xF7&&r.data[29]==0x03&&r.data[30]==0x40,"easy-entry bits do not clobber sibling fields");
+        for(int i=18;i<24;i++)check(r.data[i]==0,"access write clears OEM bytes 18-23");check(r.actions.size()==sent,"access write is not an A7 open");byte[] readback=r.data.clone();r.written();check(r.cmd==0xa0,"A0 follows access write");
+        r.v.onInfo(readback);check(r.v.configReadbackConfirmed()&&!r.v.active(),"matching A0 confirms access setting");
+        r.ready();snap=r.info();snap[0]=7;snap[28]=(byte)0x08;snap[29]=0x03;r.v.onInfo(snap);r.park();
+        check(r.v.accessShown(VehicleControls.AccessSetting.FRONT_BOX_HANDLE)&&!r.v.accessShown(VehicleControls.AccessSetting.PASSENGER_EASY)&&!r.v.accessShown(VehicleControls.AccessSetting.CHARGE_DOOR_HANDLE),"hardware byte 7 shows only the frunk handle timer");
+        check(!r.v.setAccess(VehicleControls.AccessSetting.CHARGE_DOOR_HANDLE,1,true)&&r.v.setAccess(VehicleControls.AccessSetting.FRONT_BOX_HANDLE,1,true)&&r.data[29]==0x07,"hidden access row cannot be written");byte[] frunk=r.data.clone();r.written();r.v.onInfo(frunk);check(!r.v.active(),"frunk readback releases the config channel");
+        r.ready();snap=r.info();snap[0]=19;snap[28]=(byte)0x08;snap[29]=0x03;r.v.onInfo(snap);r.park();check(!r.v.accessShown(VehicleControls.AccessSetting.FRONT_BOX_HANDLE),"disabled module master switch hides the other layouts");
+        snap[28]=0;r.v.onInfo(snap);check(r.v.accessShown(VehicleControls.AccessSetting.CHARGE_DOOR_HANDLE),"enabled module shows charge-port timer");
+        check(r.v.setAccess(VehicleControls.AccessSetting.CHARGE_DOOR_HANDLE,5,true)&&r.data[29]==(byte)0xA3,"charge-port timer keeps frunk bits");
         System.out.println("VehicleControlsTests passed: "+checks+" synthetic assertions; no car actuation.");
     }
 }
