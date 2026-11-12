@@ -8,4 +8,9 @@ poll 的三次 control 讀值分別為 `13579bdf`、`2448ace0`、`a5b3c4d6`，�
 
 另在新的隔離暫存目錄複製三個 C 檔，將 candidate 第一次 control 寫入的 OR mask 由 `0x10000` 改為 `0x20000`；mutant 成功編譯，但執行於 `normal` 事件 1 偵測寫值不符並以 1 退出。這是一個負例，不證明測試可偵測所有錯誤。沒有執行 target、模擬、網路或硬體，測試僅驗證上述有限 host callback 腳本，不能推論原始半字／word bus 寬度、ABI、原址 codegen、完整影像或真實裝置效果。
 
-Python fixture 比對程式目前只在本機，尚未提交；曾逐項比較四條 trace 共 812 事件，正常及 `-O` 通過。該比對程式的 Git blob 為 `ef81301ddfcbb115cebdc46c2b3ad7a58f1c69e2`，其驗證尚不能僅憑此提交重現。詳見 `analysis/v4160-18ef2-host-c-execution.zh-TW.md`。
+```sh
+python experiments/v4160-18ef2-compact-host/test_fixtures.py
+python -O experiments/v4160-18ef2-compact-host/test_fixtures.py
+```
+
+Python 獨立展開有限 macro 語法，逐一比較原始 `../v4160-18ef2-c-harness/fixtures.h` 的四筆登記與 812 個事件（201/201/201/209）。原始檔存在但不符即失敗；不存在時仍檢查固定完整 trace SHA-256 和各自事件數，不依賴原始檔。SHA-256 輸入為每案例一行 `name arg source result`，後接各事件 `kind address value`，數值均為八位小寫十六進位，以空格分隔，每行含 LF。fixture header 另有位元組 pin，保護 Python 未展開的登記 macro 等部分；更新 pin 前須人工審核。Python 驗證不是 C 編譯器或 C 執行的替代品。
