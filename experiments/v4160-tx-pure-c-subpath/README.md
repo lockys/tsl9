@@ -15,7 +15,7 @@
 
 `tx_ram` 是兩個 1062-byte bank 的**明確 C 物件模型**，概念基址 `0x2000b18c`；每 bank +6 是對齊的 `uint16_t magic`，+8/+9/+10 分別是 command、高長度、低長度。`_Static_assert` 排除不合適的 C 佈局。它不會自動配置到真實固定地址，也不宣稱該 RAM 現有的物件生命週期或所有權。呼叫方必須提供有效物件，回傳值是一般 C 值而非映射到目標寄存器的 ABI。
 
-`D = (0x2000b18c + bank*1062 + 6) mod 2^32`。按順序執行 `SH [D]=0x7f55`、`SB [D+4]=length低8`、`SB [D+3]=(length>>8)低8`、`SB [D+2]=command低8`；運算按 `uint32_t` 回捲，出口 `a4=((length>>8)+(length&255)+command) & 255`、`a1=0`、`a5=D`、`a2=bank`、`a3=base`。其餘暫存器、控制與記憶體狀態不由 C ABI 承諾。數值例：bank 0、length 0x1234、command 0x1ff 的 seed 為 0x45。
+`D = (0x2000b18c + bank*1062 + 6) mod 2^32`。按順序執行 `SH [D]=0x7f55`、`SB [D+4]=length低8`、`SB [D+3]=(length>>8)低8`、`SB [D+2]=command低8`；可能超過 32 位的 checksum 加總先使用 `uintmax_t` 無號運算再轉回 `uint32_t`，避免特殊實作的有號整數提升溢位；出口 `a4=((length>>8)+(length&255)+command) & 255`、`a1=0`、`a5=D`、`a2=bank`、`a3=base`。其餘暫存器、控制與記憶體狀態不由 C ABI 承諾。數值例：bank 0、length 0x1234、command 0x1ff 的 seed 為 0x45。
 
 此切片不讀 payload，因此不把 source 與 destination 設成互不 alias；後續來源可以指向剛寫過的 header，必須讀當時的 RAM，不能提前 snapshot。這也是不在此延伸實作 copy loop 的原因之一。原迴圈比較 `u16(index)<u32(s0)`，位址卻使用完整 index；大於 65535 的長度可能不終止，並有 32-bit 位址回捲、重疊與記憶體有效性問題。不能以普通陣列 `memcpy` 或上述入口 guard 消去這些差異。
 

@@ -38,9 +38,9 @@ struct tx_result tx_header(volatile struct tx_ram *ram, uint32_t bank,
     ram->bank[bank].magic = (uint16_t)a4;
     ram->bank[bank].length_lo = (uint8_t)a1;
     a4 = length >> 8;
-    a1 = (uint32_t)(a1 + command);
+    a1 = (uint32_t)((uintmax_t)a1 + (uintmax_t)command);
     ram->bank[bank].length_hi = (uint8_t)a4;
-    a4 = (uint32_t)(a4 + a1);
+    a4 = (uint32_t)((uintmax_t)a4 + (uintmax_t)a1);
     ram->bank[bank].command = (uint8_t)command;
     a4 &= UINT32_C(255);
     a1 = 0;

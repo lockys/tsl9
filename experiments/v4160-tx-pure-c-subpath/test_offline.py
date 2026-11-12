@@ -75,7 +75,7 @@ class Checks(unittest.TestCase):
             validate_operands(RAW[:-1])
         source = Path(__file__).with_name('header.c').read_bytes()
         self.assertEqual(sha256(source).hexdigest(),
-                         'f1825ed2a381b52be935c934d154e73c209eef3bc72d6de68b60efa07322cf1a')
+                         '3af38ed6ef017ef25f1c56fc5b5e076d65968a8d42acdd0cd8abbdb3ec3213fe')
 
     def test_explicit_event_vectors(self):
         events, seed = abstract(0, 0x1234, 0x1ff)
