@@ -4,7 +4,10 @@ Offline regression against the pinned 76,800-byte reference BIN, assuming its
 linear base is `0x8000`. At `0x13928`, bytes `ef900ff2` decode as
 `jal ra, 0xd048`; the following bytes `230ca100` encode `sb a0, 24(sp)`.
 The test checks these bytes, the JAL immediate and register, the BIN digest,
-and finite one-bit and truncation negatives. It does not execute firmware.
+and finite one-bit and truncation negatives. A raw scan of every halfword-aligned
+four-byte window finds one JAL encoding targeting `0xd048`, at `0x13928`
+with `rd=ra`. The scan does not establish instruction boundaries and excludes
+compressed and indirect jumps. It does not execute firmware.
 
 This verifies a reference byte window, not reachability, a complete caller
 set, original source-level intent, data ownership, ABI, or full-image

@@ -29,6 +29,18 @@ def validate_window(window):
         raise ValueError('unexpected following instruction')
 
 
+def raw_jal_sites(data, base, target):
+    """Scan every halfword-aligned four-byte window, without CFG decoding."""
+    sites = []
+    for offset in range(0, len(data) - 3, 2):
+        word = int.from_bytes(data[offset:offset + 4], 'little')
+        if word & 0x7f == 0x6f:
+            rd, destination = decode_jal(word, base + offset)
+            if destination == target:
+                sites.append((base + offset, rd))
+    return sites
+
+
 def validate_reference(data):
     if len(data) != 76800:
         raise ValueError('reference length')
@@ -44,6 +56,16 @@ class CallerTest(unittest.TestCase):
         with BIN.open('rb') as f:
             data = f.read(76801)
         self.assertEqual(validate_reference(data).hex(), 'ef900ff2230ca100')
+
+    def test_raw_jal_scan(self):
+        with BIN.open('rb') as f:
+            data = f.read(76801)
+        validate_reference(data)
+        self.assertEqual(raw_jal_sites(data, BASE, 0xd048), [(SITE, 1)])
+        fixture = bytes.fromhex('0000ef000000')
+        self.assertEqual(raw_jal_sites(fixture, 0x100, 0x102), [(0x102, 1)])
+        self.assertEqual(raw_jal_sites(fixture[:-1], 0x100, 0x102), [])
+        self.assertEqual(raw_jal_sites(fixture, 0x100, 0x104), [])
 
     def test_reference_rejection(self):
         with BIN.open('rb') as f:
