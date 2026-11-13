@@ -17,4 +17,4 @@
 
 參考表窗口 `0x1ab58..0x1ab60` 的 bytes 為 `ff334c667f99b2cc`；這只固定該窗口，不證整個表的宣告範圍。`0xf9fa` 的 AUIPC 與 `0xf9fe` 的 ADDI 合計名義位址 `0x1ab58`。遮罩加零分支使本段實際可能讀取的索引為 1–7。例：`a0=0xffffffff` 高於所有列出的門檻，不可假設此函式自行截斷為 byte。
 
-`0xd022` 是一個已記錄的局部呼叫點，前提是先前比較不等且模式為 4；見 `experiments/v4160-bf45-d000-context/README.md`。這不排除其他呼叫點。指標有效性、GP、記憶體別名、可達性、並行性與 `0x13d48` 後續行為均未確立；尾跳不證實際產品動作。對應現有重建可參考 `src/native/receive/runtime_service_links.c`，但它並非原始來源。以上是靜態推論與固定 bytes 核對，不是目標執行、正式 C ABI 或完整 BIN 等價驗收。
+`0xd022` 是一個已記錄的局部呼叫點，前提是先前比較不等且模式為 4；可參考 `analysis/settings-state-inputs-2026-10-25/evidence.json`。這不排除其他呼叫點。指標有效性、GP、記憶體別名、可達性、並行性與 `0x13d48` 後續行為均未確立；尾跳不證實際產品動作。對應現有重建可參考 `src/native/receive/runtime_service_links.c`，但它並非原始來源。以上是靜態推論與固定 bytes 核對，不是目標執行、正式 C ABI 或完整 BIN 等價驗收。
