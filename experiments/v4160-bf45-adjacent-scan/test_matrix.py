@@ -20,6 +20,12 @@ class MatrixTests(unittest.TestCase):
                 hits = list(scan(pair(rd=rd, rs1=rs1), base=0x1000, target=0x1000))
                 self.assertEqual([hit[4] for hit in hits], [rd] if rd != 0 and rd == rs1 else [])
 
+    def test_all_store_base_register_pairs(self):
+        for rd in range(32):
+            for rs1 in range(32):
+                hits = list(scan(pair(rd=rd, rs1=rs1, opcode=0x23), base=0x1000, target=0x1000))
+                self.assertEqual([hit[4] for hit in hits], [rd] if rd != 0 and rd == rs1 else [])
+
 
 if __name__ == '__main__':
     unittest.main()
