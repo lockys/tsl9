@@ -40,7 +40,7 @@ python -B -O experiments/v4160-bf11-store-callers/verify.py firmware-downloads/l
   "size": 76800,
   "sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
   "base": "0x8000",
-  "bd46_address": "00x2000bf11",
+  "bd46_address": "0x2000bf11",
   "callers": [
     {"pc":"0xef5c","jal_displacement":-12822,"jal_target":"0xbd46","store_pc":"0xef60","store_value":0},
     {"pc":"0xf034","jal_displacement":-13038,"jal_target":"0xbd46","store_pc":"0xf03a","store_value":1}
