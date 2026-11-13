@@ -66,6 +66,11 @@ class CallerTest(unittest.TestCase):
         self.assertEqual(raw_jal_sites(fixture, 0x100, 0x102), [(0x102, 1)])
         self.assertEqual(raw_jal_sites(fixture[:-1], 0x100, 0x102), [])
         self.assertEqual(raw_jal_sites(fixture, 0x100, 0x104), [])
+        # A matching word at an odd byte offset is outside the scan domain.
+        self.assertEqual(raw_jal_sites(bytes.fromhex('00ef000000'), 0x100, 0x101), [])
+        # Do not stop after the first match; each JAL targets the same address.
+        self.assertEqual(raw_jal_sites(bytes.fromhex('ef004000ef000000'), 0x100, 0x104),
+                         [(0x100, 1), (0x104, 1)])
 
     def test_reference_rejection(self):
         with BIN.open('rb') as f:
@@ -88,6 +93,21 @@ class CallerTest(unittest.TestCase):
         for candidate in (b'', original[:-1], original + b'\0'):
             with self.assertRaises(ValueError):
                 validate_window(candidate)
+
+    def test_jal_immediate_bit_positions(self):
+        # Independently place each encoded immediate bit and check its weight.
+        for encoded_bit, displacement in ((21, 2), (22, 4), (23, 8), (24, 16),
+                                          (25, 32), (26, 64), (27, 128),
+                                          (28, 256), (29, 512), (30, 1024),
+                                          (20, 2048), (12, 4096), (13, 8192),
+                                          (14, 16384), (15, 32768), (16, 65536),
+                                          (17, 131072), (18, 262144),
+                                          (19, 524288), (31, -1048576)):
+            with self.subTest(encoded_bit=encoded_bit):
+                self.assertEqual(decode_jal(0xef | (1 << encoded_bit), 0x100000),
+                                 (1, 0x100000 + displacement))
+        with self.assertRaisesRegex(ValueError, 'not JAL'):
+            decode_jal(0, 0)
 
     def test_jal_sign_extension_and_register(self):
         self.assertEqual(decode_jal(0x000000ef, 0x100), (1, 0x100))
