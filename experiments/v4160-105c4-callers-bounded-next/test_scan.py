@@ -32,7 +32,8 @@ def enc_jal(delta, rd=1):
     if delta & 1 or not -(1 << 20) <= delta < (1 << 20) or not 0 <= rd < 32:
         raise ValueError('jal range')
     d = delta & 0x1fffff
-    return (0x6f | rd << 7 | (d & 0x100000) << 11 | (d & 0x800) << 9 | (d & 0x7fe) << 20)
+    return (0x6f | rd << 7 | (d & 0x100000) << 11 | (d & 0xff000) |
+            (d & 0x800) << 9 | (d & 0x7fe) << 20)
 
 
 def enc_cjal(delta):
