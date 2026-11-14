@@ -41,15 +41,21 @@ def main():
             if m.data[32:144]!=source+bytes(112-n): raise ValueError('copy result')
             if (m.r[2],m.r[8],m.r[9],m.r[10])!=(i.RAM+176,n,i.RAM+180,i.RAM+32): raise ValueError('register state')
             if m.mmio!=0x12345678 or sum(e[0]=='read8' for e in m.effects)!=n or sum(e[0]=='write8' for e in m.effects)!=n: raise ValueError('events')
-            # On an injected failed read, earlier writes remain and MMIO is not restored.
-            fault=i.Machine(data,i.RAM+32,i.RAM+180,n,code=code,unmapped_reads={i.RAM+220})
-            try: fault.run(budget=2000)
-            except i.Halt as exc:
-                if str(exc)!='unmapped data': raise
-            else: raise ValueError('expected fault')
-            if fault.data[32:72]!=source[:40] or fault.data[72:144]!=bytes(72) or fault.mmio!=0: raise ValueError('fault effects')
+            # Every read and write position is an independent synthetic fault.
+            # No artificial restore is performed after a halted instruction.
+            for pos in range(n):
+                for kind in ('read','write'):
+                    kw={'unmapped_reads':{i.RAM+180+pos}} if kind=='read' else {'unmapped_writes':{i.RAM+32+pos}}
+                    fault=i.Machine(data,i.RAM+32,i.RAM+180,n,code=code,**kw)
+                    try: fault.run(budget=2000)
+                    except i.Halt as exc:
+                        if str(exc)!='unmapped data': raise
+                    else: raise ValueError('expected fault')
+                    if fault.data[32:144]!=source[:pos]+bytes(112-pos) or fault.mmio!=0: raise ValueError('fault effects')
+                    reads=sum(e[0]=='read8' for e in fault.effects); writes=sum(e[0]=='write8' for e in fault.effects)
+                    if (reads,writes)!=(pos+(kind=='write'),pos): raise ValueError('fault event counts')
             checked+=1
-        print(f'PASS {name}: 94/106 original bytes; register/effect checks and two injected read faults')
+        print(f'PASS {name}: 94/106 original bytes; register/effect checks and 400 position-specific read/write faults')
     if not checked: raise SystemExit('No candidate carrier available')
     print('Conditional host interpreter of reference copy only; fill and caller reconstructed, no installed ROM or hardware.')
 if __name__=='__main__': main()
