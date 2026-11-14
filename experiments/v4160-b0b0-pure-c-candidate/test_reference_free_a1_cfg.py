@@ -3,8 +3,10 @@ import copy
 import hashlib
 import json
 import os
+import sys
 from pathlib import Path
 import unittest
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import reference_free_a1_cfg as cfg
 
 class ControlFlowTest(unittest.TestCase):
@@ -37,6 +39,16 @@ class ControlFlowTest(unittest.TestCase):
         row=copy.deepcopy(next(r for r in self.rows if r['PC']==0x20000174))
         row['rd']=10
         with self.assertRaisesRegex(ValueError,'Xwchc load register'):cfg.check_halfword_row(row)
+    def test_all_control_fields_and_mutations(self):
+        count=0
+        for row in self.rows:
+            if row['op'] not in cfg.BRANCH and row['op'] not in ('jal','jalr'):continue
+            cfg.check_control_row(row); changed=copy.deepcopy(row)
+            if row['op']=='jalr':changed['rs1']=2
+            else:changed['target']^=2
+            with self.assertRaises(ValueError):cfg.check_control_row(changed)
+            count+=1
+        self.assertEqual(count,15)
     def test_missing_kill_rejected(self):
         rows=copy.deepcopy(self.rows)
         next(r for r in rows if r['PC']==0x20000174)['rd']=12

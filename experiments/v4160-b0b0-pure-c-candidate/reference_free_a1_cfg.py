@@ -29,6 +29,28 @@ def check_halfword_row(row):
     if op=='qk.c.lhu':need(row['rd']==reg and row['rs2'] is None,'Xwchc load register')
     else:need(row['rs2']==reg and row['rd'] is None,'Xwchc store register')
 
+def signed(value,bits):
+    return value-(1<<bits) if value&(1<<(bits-1)) else value
+
+def check_control_row(row):
+    raw=bytes.fromhex(row['raw_hex']);pc=row['PC'];op=row['op']
+    if len(raw)==4:
+        word=int.from_bytes(raw,'little');need(word&0x7f==0x63,'branch opcode')
+        kind={0:'beq',1:'bne',4:'blt',5:'bge',6:'bltu',7:'bgeu'}.get((word>>12)&7)
+        imm=((word>>31)&1)<<12|((word>>7)&1)<<11|((word>>25)&0x3f)<<5|((word>>8)&0xf)<<1
+        need((op,row['rs1'],row['rs2'],row['target'])==(kind,(word>>15)&31,(word>>20)&31,(pc+signed(imm,13))&0xffffffff),'RV32 branch fields')
+    elif len(raw)==2:
+        word=int.from_bytes(raw,'little');quad=word&3;funct=word>>13
+        if quad==1 and funct in (6,7):
+            imm=((word>>12)&1)<<8|((word>>10)&3)<<3|((word>>5)&3)<<6|((word>>3)&3)<<1|((word>>2)&1)<<5
+            need((op,row['rs1'],row['rs2'],row['target'])==(('beq' if funct==6 else 'bne'),8+((word>>7)&7),0,(pc+signed(imm,9))&0xffffffff),'compressed branch fields')
+        elif quad==1 and funct==5:
+            imm=((word>>12)&1)<<11|((word>>11)&1)<<4|((word>>9)&3)<<8|((word>>8)&1)<<10|((word>>7)&1)<<6|((word>>6)&1)<<7|((word>>3)&7)<<1|((word>>2)&1)<<5
+            need((op,row['rd'],row['target'])==('jal',0,(pc+signed(imm,12))&0xffffffff),'compressed jump fields')
+        else:
+            need(word==0x8082 and (op,row['rd'],row['rs1'],row['immediate'])==('jalr',0,1,0),'compressed return')
+    else:raise ValueError('control width')
+
 def analyze(rows):
     idx={r['PC']:r for r in rows};need(len(idx)==len(rows),'duplicate PC')
     pending=[(0x20000110,False)];seen=set();reads=set();returns=set();writes=set()
@@ -68,10 +90,11 @@ def main():
             off=flash-0x40000+cursor-0x20000110
             need(data[off:off+len(raw)]==raw,'row/carrier mismatch')
             if r['op'] in ('qk.c.lhu','qk.c.sh'):check_halfword_row(r)
+            if r['op'] in BRANCH or r['op'] in ('jal','jalr'):check_control_row(r)
             cursor+=len(raw)
         need(cursor==0x200001e4,'body end')
         n,reads,returns=analyze(rows)
         print(f'PASS: {name}: {len(rows)} pinned rows, {n} CFG states, {reads} a1 read sites, {returns} return states; incoming a1 never read before write')
-    print('LIMIT: independently decodes Xwchc halfword operands only; otherwise assumes ledger decoding, conservative syntactic CFG, successful accesses, no interrupts or code modification; early return may preserve a1; not device execution')
+    print('LIMIT: independently checks branch/jump fields and Xwchc halfword operands; otherwise assumes ledger decoding, conservative syntactic CFG, successful accesses, no interrupts or code modification; early return may preserve a1; not device execution')
 
 if __name__=='__main__':main()
