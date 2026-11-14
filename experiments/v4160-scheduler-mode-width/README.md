@@ -32,6 +32,8 @@
 
 `full_exit.py` 將「表滿且 callback 不符」掃描接續至 `0x9234` 返回：20,000 組合成資料涵蓋零／非零 delay 與 mode，觀察 `a0=1`、六次堆疊讀取與返回；8 個指令變造被拒。此投影中未呼叫 provider，並非證明真實執行期間無其他並行活動。
 
+`full_exit_model.c` 還原 `0x9234` 的一般尾聲，保留輸入 `a0` 並以提供的合成堆疊值還原暫存器；表滿路徑進入此尾聲時的 `a0=1` 已由 `full_exit.py` 單獨檢查。`full_exit_differential.py` 的 C11/C++17 各通過 70,000 組比較與四種變造，包含任意 `a0` 和堆疊指標環繞；讀取成功且互不別名，未在硬體執行。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -46,6 +48,7 @@ python -I -B experiments/v4160-scheduler-mode-width/setup.py
 python -I -B experiments/v4160-scheduler-mode-width/common.py
 python -I -B experiments/v4160-scheduler-mode-width/full_zero_fallback.py
 python -I -B experiments/v4160-scheduler-mode-width/full_exit.py
+python -I -B experiments/v4160-scheduler-mode-width/full_exit_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit.py
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/route_differential.py --vcvars <vcvars64.bat>
