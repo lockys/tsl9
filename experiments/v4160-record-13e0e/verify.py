@@ -12,9 +12,9 @@ def sx(v, bits):
     return v - (1 << bits) if v & (1 << (bits-1)) else v
 
 
-def run(image, handle, first, second, state=False):
+def run(image, handle, first, second, state=False, mode=1):
     r = [0] * 32
-    r[1], r[2], r[10], r[11] = 0x12345678, 0x20001000, handle, 1
+    r[1], r[2], r[10], r[11] = 0x12345678, 0x20001000, handle, mode
     for reg in (8, 9, *range(18, 28)):
         r[reg] = 0xa5000000 | reg
     pc, reads, writes = 0x13e0e, [], []
@@ -29,6 +29,9 @@ def run(image, handle, first, second, state=False):
             if h == 0x4709: r[14] = 2
             elif h == 0x4705: r[14] = 1
             elif h == 0x4701: r[14] = 0
+            elif h == 0x6741: r[14] = 0x10000
+            elif h == 0x1779: r[14] = (r[14] - 2) & MASK
+            elif h == 0x5779: r[14] = 0xfffffffe
             elif h == 0x070a: r[14] = (r[14] << 2) & MASK
             elif h == 0x97ba: r[15] = (r[15] + r[14]) & MASK
             elif h == 0x8082:
@@ -50,9 +53,9 @@ def run(image, handle, first, second, state=False):
                 if address not in mem: raise ValueError('unexpected load')
                 reads.append(address)
                 r[rd] = mem[address]
-            elif op == 0x23 and f == 0:
+            elif op == 0x23 and f in (0, 1):
                 imm = sx((w >> 25 << 5) | rd, 12)
-                writes.append(((r[a] + imm) & MASK, r[b] & 255))
+                writes.append(((r[a] + imm) & MASK, r[b] & (255 if f == 0 else 65535)))
             elif op == 0x63 and f in (0, 1):
                 imm = ((w >> 31 & 1) << 12 | (w >> 7 & 1) << 11 | (w >> 25 & 63) << 5 | (w >> 8 & 15) << 1)
                 if (r[a] == r[b]) == (f == 0):
