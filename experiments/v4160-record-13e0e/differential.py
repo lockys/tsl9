@@ -39,6 +39,34 @@ def worker(path):
                 raise ValueError(f'mismatch: {handle:#x}, {first:#x}, {second:#x}')
             count += 1
     print(f'PASS: {count} C model vs original-byte interpreter cases, ordered reads/writes and preserved registers', flush=True)
+    other = library.record_update_other
+    other.argtypes = [word, word, ctypes.c_uint16, ctypes.c_uint16, ctypes.POINTER(word)]
+    other.restype = None
+    count = 0
+    for value in list(range(0, 65536, 8)) + [0xffff, 0xfffe, 0x8000, 0x7fff]:
+        for mode in (0, 3, 0xffffffff):
+            for handle, first, second in ((value, value, value ^ 1), (value, value ^ 1, value),
+                                          (value, value, value), (value, value ^ 1, value ^ 1),
+                                          (value | 0x10000, value, value)):
+                compare_other(image, other, handle, mode, first, second)
+                count += 1
+        for handle, first, second in ((value, 0xfffe, value), (value | 0x10000, 0xfffe, 0xfffe),
+                                      (value, 0xffff, 0xfffe), (value, 0xffff, 0xffff)):
+            compare_other(image, other, handle, 2, first, second)
+            count += 1
+    print(f'PASS: {count} other-mode C vs instruction decoder cases, ordered events and widths', flush=True)
+
+
+def compare_other(image, fn, handle, mode, first, second):
+    reads, writes = run(image, handle, first, second, mode=mode, detailed=True)
+    output = (ctypes.c_uint32 * 13)()
+    fn(handle, mode, first, second, output)
+    expected = [len(reads)] + reads + [0] * (2 - len(reads)) + [len(writes)]
+    for address, width, value in writes:
+        expected.extend((address, width, value))
+    expected += [0] * (13-len(expected))
+    if list(output) != expected:
+        raise ValueError(f'other-mode mismatch: {mode:#x}, {handle:#x}, {first:#x}, {second:#x}')
 
 
 def main():
