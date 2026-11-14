@@ -4,13 +4,14 @@ import argparse,importlib.util
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1];MASK=0xffffffff
 s=importlib.util.spec_from_file_location('model',HERE/'record-counter-107d8.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
-def execute(code,ret,old,threshold):
- r=[0]*32;r[10]=ret;r[8]=0x2000;r[2]=0x1000;mem={0x2000:old};pc=0x107d8;events=[]
+def execute(code,ret,old,threshold,sp=0x1000,counter=0x2000,memory=None):
+ r=[0]*32;r[10]=ret;r[8]=counter;r[2]=sp;mem={counter:old,**{(sp+12+i)&MASK:(threshold>>(8*i))&255 for i in range(4)}} if memory is None else memory;pc=0x107d8;events=[]
  for _ in range(12):
   if pc in (0x107ee,0x107fc):return pc,events
   hw=code[pc]|(code[pc+1]<<8)
   if hw&3!=3:
-   if hw==0x45b2:r[11]=threshold;events.append(('load32',0x100c,threshold));pc+=2;continue
+   if hw==0x45b2:
+    addr=(r[2]+12)&MASK;r[11]=sum(mem[(addr+i)&MASK]<<(8*i) for i in range(4));events.append(('load32',addr,r[11]));pc+=2;continue
    if hw==0x0785:r[15]=(r[15]+1)&MASK;pc+=2;continue
    if hw==0xbfe9:pc=0x107ee;continue
    if hw&0xe003==0xc001:
