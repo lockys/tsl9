@@ -14,6 +14,9 @@ def load(name,path):
 p=load('providers',HERE/'filter_reference_providers.py')
 INTERPRETER=ROOT/'experiments/tsl9-copy-instruction-interpreter/interpreter.py'
 if not INTERPRETER.is_file(): raise SystemExit('SKIP: optional local copy instruction interpreter unavailable')
+INTERPRETER_SHA='6aeebdcecd62241b29bc644cf442f3346131464a76b4a36a693f568d38816b1b'
+if hashlib.sha256(INTERPRETER.read_bytes()).hexdigest()!=INTERPRETER_SHA:
+    raise SystemExit('FAIL: optional local interpreter hash mismatch')
 i=load('interpreter',INTERPRETER)
 BIN=ROOT/'firmware-downloads/legacy-options-2026-10-20/BINs/ID-2966-V4.1.60-decoded.bin'
 DIGEST='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
