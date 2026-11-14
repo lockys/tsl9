@@ -15,6 +15,7 @@ python -I -B experiments/v4160-guard-147e4/ingress_dispatch_8a36.py
 python -I -B experiments/v4160-guard-147e4/ingress_a5_provenance.py
 python -I -B experiments/v4160-guard-147e4/ingress_provenance_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_length_initialize.py
+python -I -B experiments/v4160-guard-147e4/ingress_length_initialize_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-guard-147e4/ingress_length_route.py
 python -I -B experiments/v4160-guard-147e4/ingress_length_route_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-guard-147e4/ingress_length_route_composition.py
@@ -47,6 +48,8 @@ python -I -B experiments/v4160-guard-147e4/ingress_store_differential.py --vcvar
 `ingress_a5_provenance.py` 追蹤 `0x896a` 的 LBU 與後續狀態選擇，條件式證明透過該局部路徑到 `0x89cc` 時 `a5` 是零延伸 byte；65,536 個狀態／byte、54 個邊界及 22 個位元組變造通過。`ingress_provenance_composition.py` 分段串接長度初始化與選路：2,048 組解碼對照與 16,777,216 組算術配對表明此路徑下完整結果等於儲存的半字，因此先前高位 `a5` 的合成反例不能由此局部路徑到達；其他入口或中斷尚未排除。假設讀寫成功及區段間暫存器穩定，不代表完整執行或硬體驗證。
 
 `ingress_length_initialize.py` 解碼 `0x89cc–0x89da`，以共享合成記憶體依序驗證清除 `gp+138` 半字、讀取 `[s11]` 半字、與完整 `a5` OR、將結果低半字寫至 `gp+142`。131,072 個值、63 個重疊／位址環繞與 14 個位元組變造均通過，也在 Python 最佳化模式測試。合成輸入 `a5=0x10000`、讀值為零時，完整 `a4=0x10000` 而儲存半字為零；這不表示實際呼叫可達。記憶體存取假設成功，包含未對齊與環繞位址，不代表硬體接受；後續分支由下列獨立投影測試。
+
+`ingress_length_initialize_model.c` 提供 C 暫存器與寫／讀／寫事件投影；讀取值必須由呼叫者提供**首次清除後**的半字，以容許重疊。`ingress_length_initialize_differential.py` 以共享記憶體原始指令解碼器比較 C11/C++17 各 131,135 組，含重疊與環繞；四種運算、位址與截斷變造被拒。合成重疊例證實先清除再讀取；未證硬體可達性或實際 ABI，MSVC 有已知 `vswhere.exe` 警告。
 
 `ingress_length_route.py` 解碼後續 `0x89da–0x89f6`：以完整 `a4` 判斷，0 寫 state 6、1–1040 寫 5、大於 1040 寫 0；65,536 個半字值、27 個完整暫存器／位址邊界及 28 個位元組變造通過，含最佳化模式。`ingress_length_route_composition.py` 分段串接初始化與選路，131,072 組通過；合成 `a5=0x10000`、讀值零時，儲存長度為零但選 state 0，不是 state 6。僅假設成功、穩定的存取，不證實完整呼叫可達或硬體行為。
 
