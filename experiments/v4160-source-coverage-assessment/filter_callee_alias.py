@@ -62,6 +62,18 @@ def classify(sp):
     return source&all_stores,descriptor&all_stores
 
 
+def all_indices_stores():
+    # Dynamic two adjacent words per byte-valued index fill 2048 bytes.
+    return byte_set(FIXED,4) | set(range(0x40006640,0x40006e40))
+
+
+def classify_all(sp):
+    source=byte_set((((sp&MASK)+32)&MASK,),112)
+    descriptor=byte_set((((sp&MASK)+12)&MASK,),20)
+    potential=all_indices_stores()
+    return source&potential,descriptor&potential
+
+
 def main():
     image=audit.loop.calls.case.dispatch.IMAGE.read_bytes()
     if len(image)!=76800 or hashlib.sha256(image).hexdigest()!=audit.loop.calls.case.dispatch.SHA: raise ValueError('APP identity mismatch')
@@ -91,9 +103,20 @@ def main():
     for sp in (0,0x20000f50,0xffffff80,0xfffffff0,0xffffffff):
         source,descriptor=classify(sp)
         if source or descriptor: raise ValueError('unexpected control overlap')
+        if any(classify_all(sp)): raise ValueError('unexpected full-index overlap')
+    # Verify all 256 possible loaded indices against the closed-form byte union.
+    all_index=all_indices_stores()
+    explicit=byte_set(FIXED,4)
+    for i in range(256):
+        explicit |= byte_set((0x40006640+8*i,0x40006644+8*i),4)
+    if explicit!=all_index or len(all_index)!=2068: raise ValueError('all-index union mismatch')
+    source,descriptor=classify_all(0x40006e00)
+    if 0x40006e20 not in source or not descriptor: raise ValueError('high-index overlap witness failed')
+    if any(classify(0x40006e00)): raise ValueError('witness should be outside 0..13 union')
     print('PASS: 12 original store operands, 48 operand mutants, 65536 stack addresses, 14 index unions, two witnesses and five controls')
     print('When the callee actually reads index 0..13, potential writes overlap source at synthetic sp=0x40006620.')
     print('Prior aliased writes can change the index; no unconditional store-set completeness is claimed.')
+    print('All 256 actual byte indices yield a 2068-byte conservative union; sp=0x40006e00 adds a high-index witness.')
     print('Address intersection only; no assertion that peripheral memory is ordinary RAM or the witness is reachable.')
 
 if __name__=='__main__': main()

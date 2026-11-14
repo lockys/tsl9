@@ -84,13 +84,16 @@ def flow(image):
 def main():
     image=alias.audit.loop.calls.case.dispatch.IMAGE.read_bytes()
     observed,states=flow(image)
+    union=alias.all_indices_stores()
     for pc,expressions in observed.items():
         base,factor=next(iter(expressions))
         for index in range(256):
             addr=(base+factor*index)&MASK
-            if index<14 and not alias.byte_set((addr,),4)<=alias.writes(index): raise ValueError(f'bound mismatch {pc:x}')
+            word=alias.byte_set((addr,),4)
+            if not word<=union: raise ValueError(f'full-byte bound mismatch {pc:x}')
+            if index<14 and not word<=alias.writes(index): raise ValueError(f'bound mismatch {pc:x}')
     print(f'PASS: {len(states)} reachable instruction PCs, {len(observed)} store expressions, 3072 store/index checks')
-    print('The conditional store union is validated for every actual loaded byte 0..13.')
+    print('Full byte-index union validated for 0..255; narrower index-specific union validated for 0..13.')
     print('Symbolic base flow only; memory side effects, interrupts, faults and MMIO are not executed.')
 
 if __name__=='__main__': main()
