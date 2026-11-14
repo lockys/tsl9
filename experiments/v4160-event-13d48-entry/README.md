@@ -20,6 +20,8 @@
 
 `callee_composition.py` 將 callee 的實際模型回傳值傳入 caller 投影，再接續紀錄判斷與尾跳；18,000 組合成案例涵蓋返回值與出口的五種組合，其中 8,000 組前後半字不同。這是重建邊界，不是連續 CPU；前後讀值不同必須有中間寫入才能在真實記憶體發生，測試未證明該寫入、排程副作用或執行路徑實際存在。
 
+`stable_composition.py` 另假設兩次讀取之間欄位不變，以 1,296 個合成組合檢查 callee 與 caller：在這個穩定條件下，callee 返回非零且 caller 繼續，恰對應「一組 active、另一組符合 caller 的 mode 為零條件」。兩組方向都可能；例如第一組 active、第二組 mode 為零也可繼續。此結論僅適用於所述欄位與 stub 假設，非實機可達性證明。
+
 重要邊界：此模型刻意令呼叫前後的半字不同，證明所檢查的指令**使用 stub 返回後的值**，並非認定真實 callee 一定會修改該欄位。未執行 `0x135e6`、後續分支、真實記憶體存取、競態或硬體，也不表示該路徑實際可達。
 
 ```text
@@ -29,6 +31,7 @@ python -I -B experiments/v4160-event-13d48-entry/tail.py
 python -I -B experiments/v4160-event-13d48-entry/composition.py
 python -I -B experiments/v4160-event-13d48-entry/callee.py
 python -I -B experiments/v4160-event-13d48-entry/callee_composition.py
+python -I -B experiments/v4160-event-13d48-entry/stable_composition.py
 python -I -B experiments/v4160-event-13d48-entry/callee_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/tail_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/path_differential.py --vcvars <vcvars64.bat>
