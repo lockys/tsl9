@@ -7,11 +7,13 @@ def sx(value, bits):
     return value - (1 << bits) if value & (1 << (bits - 1)) else value
 
 
-def run(code, data, configured, length=4, trace=False, state=False):
+def run(code, data, configured, length=4, trace=False, state=False, handle=0x1234abcd):
     if len(code) != 88 or len(data) != 4 or len(configured) != 4:
         raise ValueError('invalid input size')
     x = [0] * 32
-    x[2], x[3], x[8], x[9], x[13] = 0x1000, 0x2000, 0x3000, 0x1234abcd, length
+    if not 0 <= handle <= MASK:
+        raise ValueError('invalid handle')
+    x[2], x[3], x[8], x[9], x[13] = 0x1000, 0x2000, 0x3000, handle, length
     memory = {0x3000+i: v for i, v in enumerate(data)}
     memory.update({0x400c+i: v for i, v in enumerate(configured)})
     for i, b in enumerate((0x00, 0x40, 0, 0)):
