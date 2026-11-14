@@ -44,6 +44,8 @@
 
 `data_delay_model.c` 是該呼叫點的 C 語意投影；`data_delay_differential.py` 的 C11/C++17 各與原指令投影比較 65,536 組，涵蓋全部 byte 值及合成指標／clock 環繞，四種語意變造均被拒絕。測試假設合成讀取互不影響、不模擬記憶體別名或 provider 副作用。
 
+`data_delay_entry.py` 檢查呼叫點的入口閘門：先呼叫 `0xf65c`，其結果非零即返回；否則呼叫 `0xd3e8`，其結果非零也返回，兩者均零才進入資料選擇。65,536 組合成返回值及 256 種 byte 接續測試通過，9 個指令變造被拒；兩個呼叫都以保留堆疊的正常返回替身模擬，不代表實際 provider 行為。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -62,6 +64,7 @@ python -I -B experiments/v4160-scheduler-mode-width/full_zero_fallback.py
 python -I -B experiments/v4160-scheduler-mode-width/full_exit.py
 python -I -B experiments/v4160-scheduler-mode-width/event_tail_composition.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_caller.py
+python -I -B experiments/v4160-scheduler-mode-width/data_delay_entry.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/full_exit_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit.py
