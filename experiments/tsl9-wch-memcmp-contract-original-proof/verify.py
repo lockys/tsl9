@@ -30,10 +30,28 @@ def branch(code,offset):
 
 BRANCHES={16:('beq',10,0,RAM+24),18:('beq',11,0,RAM+24),22:('bne',12,0,RAM+42),38:('beq',12,15,RAM+24),56:('beq',16,13,RAM+36)}
 
+# Explicit operand contract. This decoder does not depend on the exact-byte
+# ledger; unknown encodings fail closed. Values are architectural registers.
+OPERANDS={0:('lui',15,0x40024000),4:('lw',14,15,524),8:('sw',0,15,524),12:('fence.i',),24:('lui',15,0x40024000),28:('sw',14,15,524),42:('add',16,10,15),46:('add',13,11,15),50:('lbu',16,16,0),60:('lui',15,0x40024000),64:('sw',14,15,524)}
+
+def operands(code,offset):
+    word=int.from_bytes(code[offset:offset+4],'little')
+    opcode=word&127; rd=(word>>7)&31; funct=(word>>12)&7; rs1=(word>>15)&31; rs2=(word>>20)&31
+    if opcode==0x37: return ('lui',rd,word&0xfffff000)
+    if opcode==3 and funct in (2,4): return ('lw' if funct==2 else 'lbu',rd,rs1,sx(word>>20,12))
+    if opcode==0x23 and funct==2:
+        imm=((word>>25)<<5)|((word>>7)&31)
+        return ('sw',rs2,rs1,sx(imm,12))
+    if opcode==0x33 and funct==0 and word>>25==0: return ('add',rd,rs1,rs2)
+    if word==0x0000100f: return ('fence.i',)
+    raise ValueError('unknown operand encoding')
+
 def verify(code):
     if len(code)!=72: raise ValueError('slice size')
     for offset,expected in BRANCHES.items():
         if branch(code,offset)!=expected: raise ValueError(f'branch mismatch at {offset}')
+    for offset,expected in OPERANDS.items():
+        if operands(code,offset)!=expected: raise ValueError(f'operand mismatch at {offset}')
     cursor=0
     for offset,size,raw in LEDGER:
         if offset!=cursor or code[offset:offset+size]!=bytes.fromhex(raw): raise ValueError(f'ledger mismatch at {offset}')
@@ -65,7 +83,14 @@ def main():
             try: verify(bad)
             except ValueError: pass
             else: raise ValueError(f'branch mutation missed {offset}/{bit}')
-    print(f'PASS: {len(LEDGER)} contiguous instructions; {len(BRANCHES)} decoded branch targets; all mutations rejected')
+    for offset in OPERANDS:
+        bad=bytearray(RAW); bad[offset+1]^=0x08
+        try:
+            decoded=operands(bad,offset)
+            if decoded!=OPERANDS[offset]: raise ValueError('operand mismatch')
+        except ValueError: continue
+        raise ValueError(f'operand mutation missed {offset}')
+    print(f'PASS: {len(LEDGER)} contiguous instructions; {len(BRANCHES)} decoded branches; {len(OPERANDS)} decoded operands; all mutations rejected')
     print('Candidate carrier bytes only: Xwchc, installed ROM, ABI, concurrency and hardware not proved.')
 
 if __name__=='__main__': main()

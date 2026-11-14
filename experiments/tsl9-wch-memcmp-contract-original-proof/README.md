@@ -1,6 +1,6 @@
 # WCH 比較函式候選位元組檢查
 
-對兩份公開 WCH resident 候選 carrier 的 72-byte 比較函式，檢查完整 carrier SHA-256、片段雜湊、23 條指令邊界及五個分支的暫存器與相對目標。兩版的 flash 偏移不同，但所記錄的目標 RAM 位址相同。缺少本機候選 carrier 時會明確標示 SKIP，只檢查內建的紀錄位元組；存在但雜湊不符則失敗。
+對兩份公開 WCH resident 候選 carrier 的 72-byte 比較函式，檢查完整 carrier SHA-256、片段雜湊、23 條指令邊界、五個分支的暫存器與相對目標，以及 11 個標準 RV32 指令的操作數（含 MMIO 載入、清除、恢復和 byte 載入）。兩版的 flash 偏移不同，但所記錄的目標 RAM 位址相同。缺少本機候選 carrier 時會明確標示 SKIP，只檢查內建的紀錄位元組；存在但雜湊不符則失敗。
 
 ```text
 python -I -B experiments/tsl9-wch-memcmp-contract-original-proof/verify.py
