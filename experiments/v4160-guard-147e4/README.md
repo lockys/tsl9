@@ -17,6 +17,7 @@ python -I -B experiments/v4160-guard-147e4/ingress_loop_provenance.py
 python -I -B experiments/v4160-guard-147e4/ingress_loop_wrap.py
 python -I -B experiments/v4160-guard-147e4/ingress_argument_provenance.py
 python -I -B experiments/v4160-guard-147e4/clock_wrapper_81b0.py
+python -I -B experiments/v4160-guard-147e4/resident_clock_candidates.py
 python -I -B experiments/v4160-guard-147e4/clock_gap_composition.py
 python -I -B experiments/v4160-guard-147e4/clock_gap_start_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_second_byte.py
@@ -65,6 +66,8 @@ python -I -B experiments/v4160-guard-147e4/ingress_store_differential.py --vcvar
 `clock_gap_model.c` 是時間差讀寫事件的 C 語意投影；`clock_gap_differential.py` 在 C11 與 C++17 各比較 458,827 組原始指令固定投影，並拒絕門檻、減法方向及位址三種變造。假定讀寫成功、輸入 prior 為當次讀取值；不代表原位址逐位元組相同或實機驗證。
 
 `clock_gap_composition.py` 分段組合時鐘包裝與 `0x8908` 的時間差判斷：以 RV32 無號差值大於 299 決定是否清除 `gp+156`，並寫入 `gp+160`。262,144 個差值案例及 26 個位元組變造通過；9 個合成見證中，連續 resident 輸入使包裝值由 `0x0fffffff` 跳至 0，無號差值 `0xf0000001` 觸發清除。這不代表 resident 實際遞增或實機會發生，亦假設堆疊及存取正常。
+
+`resident_clock_candidates.py` 對兩份可選本地 WCH 參考 carrier 核對全檔 SHA、`[0x4007c]` 指標及各 42 個函式 bytes，固定指令投影各執行 131,072 組含 callback 與零指標的合成案例，並拒絕逐 byte 變造。V1.31 指向 `0x43520`，V1.40 指向 `0x435ac`；缺少 carrier 時明確 SKIP。callback 假設正常返回並保留 s0、sp 和已存堆疊值，允許改變計數 word；這不是通用解碼器、實機 ROM 識別或 ABI 證明。
 
 `clock_wrapper_81b0.py` 檢查原始 `0x81b0` 包裝函式固定指令；在 resident 替身正常返回且不修改保存的返回位址或 SP 的假設下，返回值為 `((resident_result*10) mod 2^32)>>4`，而 s2 取決於 resident 返回後的值。65,536 個值、90 個邊界及 26 個位元組變造通過；resident 的實際語義、stack 與硬體未驗證。
 
