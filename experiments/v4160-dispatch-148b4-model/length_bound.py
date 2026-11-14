@@ -38,14 +38,23 @@ def main():
     raw = data[0x1486a-0x8000:0x1487e-0x8000]
     if raw != bytes.fromhex('7919314648108145420982971359090113591900'):
         raise ValueError('length-bound bytes mismatch')
+    high_bounds = 0
     for value in (*range(65536), 0x10000, 0x10001, 0x7fffffff, 0x80000000, 0xffffffff):
         expected = ((value - 2) & 65535) >> 1
-        if run(raw, value) != expected:
+        decoded = run(raw, value)
+        if decoded != expected:
             raise ValueError(f'length-bound mismatch at {value:#x}')
-    if run(raw, 0) != 32767 or run(raw, 1) != 32767 or run(raw, 2) != 0:
-        raise ValueError('missing length-underflow boundary')
+        if value <= 65535:
+            high = decoded > 255
+            if high != (value in (0, 1) or value >= 514):
+                raise ValueError(f'high-bound threshold mismatch at {value:#x}')
+            high_bounds += high
+    if high_bounds != 65024:
+        raise ValueError(f'incorrect high-bound count: {high_bounds}')
+    if tuple(run(raw, x) for x in (0, 1, 2, 512, 513, 514)) != (32767, 32767, 0, 255, 255, 256):
+        raise ValueError('missing length-underflow or high-bound boundary')
     altered = bytearray(raw); altered[0] ^= 4
     if run(altered, 21) == run(raw, 21):
         raise ValueError('C.ADDI immediate mutation not detected')
-    print('PASS: 65536 length values plus five RV32 edges; underflow 0/1 => 32767 under stated call assumption')
+    print('PASS: 65536 lengths plus five RV32 edges; 65024 bounds >255 (0, 1, or >=514), under stated call assumption')
 if __name__ == '__main__': main()
