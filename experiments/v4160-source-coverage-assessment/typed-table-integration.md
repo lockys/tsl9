@@ -19,6 +19,6 @@ python -I -OB scripts/test_relative_table_owner.py --build <candidate-build-outp
 
 這些工具應以原紀錄的輸入快照重播；例如 Git commit `efb57145a2c9c0f73fa53dbf40a9fb2ca2fcf563` 的來源快照可重播第一個 audit。這只是對該舊快照的驗證，不能作為整合後驗證器的通過結果。
 
-`scripts/verify-source-layout.py` 是另一條以歷史物件推導 section 座標的舊驗證路徑；審查指出新表符號未見於歷史物件，可能影響該路徑的選取。舊 121-byte opaque 區域原本是在既有選取範圍之外新增，但本次沒有該腳本要求的 `experiments/tsl9-original-layout/build/event-word-table-data-v1/c/split-C-payload.o`，因此尚未能重播釐清；不將該路徑視為通過，也不憑推測修改其 byte 計數。
+`scripts/verify-source-layout.py` 是另一條以歷史物件推導 section 座標的舊驗證路徑。後續在本機忽略追蹤的建置目錄找到其固定 SHA-256 的歷史物件與 linker script，複製至隔離來源快照後重播：C/C++ 均通過，分別比對 6,235 sections、73,551 bytes，嚴格連結各有 7 個未定符號、診斷 ELF 無 PT_LOAD。該歷史選取未包含新表及其他後加的 opaque 區域；此通過結果不能代替檢查含表的 73,672-byte compact layout，也不等於可刷韌體。這些被忽略的歷史物件不包含於來源提交；缺少時仍不能重播。
 
 候選映像與整合前基準一致，不等於完整原廠映像或硬體功能等價。未驗證 resident ROM、RAM 佔有、實機或刷寫安全。
