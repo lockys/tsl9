@@ -7,6 +7,8 @@ MASK = 0xffffffff
 
 
 def execute(code, regs, memory):
+    if len(code) % 2:
+        raise ValueError('truncated instruction')
     regs = regs[:]
     reads = []
     pc = START
@@ -77,7 +79,19 @@ def main():
             continue
         if result == reference:
             raise ValueError(f'mutation at byte {offset} survived')
-    print('PASS: 10000 decoded epilogue cases, read order, register preservation, SP wrap and return target; 4 mutations rejected')
+    # Synthetic negative ADDI16SP followed by a return: 0x7101 is -512.
+    negative, _, _ = execute(bytes.fromhex('01 71 82 80'), regs, memory)
+    if negative[2] != (regs[2] - 512) & MASK:
+        raise ValueError('negative ADDI16SP sign extension')
+    for bad, bad_memory in ((b'\x82', memory), (bytes.fromhex('02 40 82 80'), memory),
+                            (bytes.fromhex('01 61 82 80'), memory),
+                            (bytes.fromhex('02 80'), memory), (code, {})):
+        try:
+            execute(bad, regs, bad_memory)
+        except ValueError:
+            continue
+        raise ValueError('invalid or incomplete synthetic input accepted')
+    print('PASS: 10000 decoded epilogue cases, SP wrap, negative immediate, 4 mutations and 5 invalid inputs')
     print('Synthetic successful aligned RAM reads only; no traps, interrupts or hardware execution.')
 
 

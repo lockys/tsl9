@@ -12,11 +12,11 @@ START, END, BASE = 0x14098, 0x140a6, 0x8000
 EXPECTED = bytes.fromhex('fa 50 6a 54 da 54 4a 59 ba 59 29 61 82 80')
 
 
-def check(actual, original, start, end):
-    if (start, end) != (START, END) or len(actual) != end - start:
+def check(actual, original, start, end, expected_range=(START, END)):
+    if (start, end) != expected_range or len(actual) != end - start:
         raise ValueError('wrong ownership interval or section size')
     if actual != original[start - BASE:end - BASE]:
-        raise ValueError('epilogue differs from original BIN')
+        raise ValueError('fragment differs from original BIN')
 
 
 def main():
@@ -29,7 +29,9 @@ def main():
     if original[START-BASE:END-BASE] != EXPECTED:
         raise ValueError('unexpected pinned epilogue')
     elf = runpy.run_path(str(ROOT / 'src/native/tx_candidate/postpass/elf32.py'))['ELF']
-    compile_fragment = runpy.run_path(str(ROOT / 'scripts/source-ota-epilogue.py'))['compile_fragment']
+    tools = runpy.run_path(str(ROOT / 'scripts/source-ota-epilogue.py'))
+    compile_fragment = tools['compile_fragment']
+    compile_entry = tools['compile_entry']
     with tempfile.TemporaryDirectory(prefix='tsl9-epilogue-proof-') as tmp:
         for mode in ('c', 'cpp'):
             compiled = compile_fragment(args.tool_dir, Path(tmp), mode, elf)
@@ -49,7 +51,25 @@ def main():
                     continue
                 raise RuntimeError(f'{mode}: wrong boundary accepted')
             print(f'PASS {mode}: 14 bytes equal pinned BIN, section/symbol/no relocations checked; 14 mutations and 4 boundaries rejected')
-    print('Bounded check only: no coverage-policy change, linked image, execution or hardware claim.')
+            entry_start, entry_end = 0x14056, START
+            entry = compile_entry(args.tool_dir, Path(tmp), mode, elf)
+            check(entry, original, entry_start, entry_end, (entry_start, entry_end))
+            for i in range(len(entry)):
+                mutant = bytearray(entry)
+                mutant[i] ^= 1
+                try:
+                    check(mutant, original, entry_start, entry_end, (entry_start, entry_end))
+                except ValueError:
+                    continue
+                raise RuntimeError(f'{mode}: entry mutant {i} accepted')
+            for start, end in ((entry_start-1, entry_end), (entry_start+1, entry_end), (entry_start, entry_end-1), (entry_start, entry_end+1)):
+                try:
+                    check(entry, original, start, end, (entry_start, entry_end))
+                except ValueError:
+                    continue
+                raise RuntimeError(f'{mode}: wrong entry boundary accepted')
+            print(f'PASS {mode}: 66 linked entry bytes equal pinned BIN; relocation layout, 66 mutations and 4 boundaries checked')
+    print('Bounded check only: no coverage-policy change, complete image, execution or hardware claim.')
 
 
 if __name__ == '__main__':

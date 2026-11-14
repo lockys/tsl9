@@ -8,4 +8,6 @@ python -I -B experiments/v4160-epilogue-original-proof/verify.py --tool-dir <And
 
 `python -B experiments/v4160-epilogue-original-proof/semantics.py` 額外以有限 RV32C 解碼器執行原始 bytes，在 10,000 組合成暫存器與成功的對齊記憶體讀取下檢查還原 `ra/s0–s3` 的順序、其餘暫存器、`sp + 192`（含 RV32 環繞）與返回目標，並測試四種指令變造。解碼器與預期結果皆為自製，不涵蓋 trap、中斷或硬體。
 
-此片段原本即存在，並非新還原的 C。它是依賴周邊 192-byte stack frame 的內嵌組語函式尾段，不可視為獨立可呼叫函式。這是局部 object 與原始 BIN 的直接比對，不變更正式 original-coordinate 覆蓋率政策，也不證明連結影像、路徑可達、ABI、功能或實機安全。
+同一驗證也將既有入口片段 `[0x14056, 0x14098)` 分別以 C/C++ 編譯並在暫存 ELF 中連結，檢查 object relocation 配置和固定目標後，將 66 bytes 直接比對原始 BIN；逐一拒絕 66 個單 byte 變造及四個錯誤範圍。入口與 epilogue 連續但分開比對；此暫存 ELF 並非完整韌體或可刷寫映像。
+
+這些片段原本即存在，並非新還原的 C。它是依賴周邊 192-byte stack frame 的內嵌組語函式尾段，不可視為獨立可呼叫函式。這是局部 object 與原始 BIN 的直接比對，不變更正式 original-coordinate 覆蓋率政策，也不證明連結影像、路徑可達、ABI、功能或實機安全。
