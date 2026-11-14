@@ -16,6 +16,8 @@
 
 `table_dispatch.py` 針對原始 `0x14512..0x1452e` 固定指令、取值 0–255 的成功讀取作受限投影：0–4 分別跳至五個目標，5–255 走 `0x14098`；256 個索引、28 個指令 byte 突變及五個表項突變的檢查通過。此投影對壓縮指令固定編碼，不是通用解碼器，亦不證明可達性、並行或硬體行為。`table_model.c` 是假定讀取成功的 C 語意投影；以 `table_differential.py --vcvars <vcvars64.bat>` 編譯 C11/C++17，各比較 256 個原始索引及 20,000 組合成資料（半數在表內），三種邊界／基址／索引變造均被拒絕；索引 5–255 以空表指標測試 251 個直接退出，不須讀表（此為主機 C 測試，不證明目標機記憶體無 fault）。模型不是原址 byte-exact C，合成資料亦不宣稱可達。
 
+`table_case_entry.py` 將五個表項各自串到第一次直接呼叫前：`0x13ba6(a0=s1, a1=0/3/3/4/3)`，驗證各 65,536 個 handle、15 個全寬邊界和 40 個指令 byte 突變；不執行 callee 或證明路徑可達。
+
 正式整合還須共同更新來源清單與 provenance hash、`src/compact-layout.json` 的 section mapping、相關封存及下游 section-count 檢查，並重新驗證實際正式 build，而不是只重連暫存 ELF。原本 6,266 sections 拆為兩個 owner 時預期 6,267，但必須由實際產物確認；不能單純改固定值使檢查通過。
 
 這些命令依賴**本機未提交的實驗及其工作樹依賴**；本紀錄不假裝它們已包含在 main，也不保證其他 checkout 能重播。該實驗以固定座標常數建表，沒有隨目標搬移更新的 relocation。跨 section 的舊 24-byte 符號、正式 manifest、來源封存與 carrier 稽核仍需整合及驗證；其他 linker 或所有 consumer 的相容性未知。
