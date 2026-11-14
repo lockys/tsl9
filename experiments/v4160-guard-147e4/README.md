@@ -12,6 +12,8 @@ python -I -B experiments/v4160-guard-147e4/alias_witness.py
 python -I -B experiments/v4160-guard-147e4/provider_setup_10032.py
 python -I -B experiments/v4160-guard-147e4/provider_setup_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_dispatch_8a36.py
+python -I -B experiments/v4160-guard-147e4/ingress_state_gate.py
+python -I -B experiments/v4160-guard-147e4/ingress_state_store_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_checksum_gate.py
 python -I -B experiments/v4160-guard-147e4/ingress_checksum_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-guard-147e4/ingress_payload_store.py
@@ -33,6 +35,8 @@ python -I -B experiments/v4160-guard-147e4/ingress_store_differential.py --vcvar
 `provider_setup_composition.py` 將此邊界與 `0x1070a` 的替身投影分段串接，16,396 組通過；首次與後續對 `0x40048` 的讀取可各自提供不同值，不能預設相同。假設 `gp=0x2000be8c` 時兩次 provider 的目的位址算術上均為 `0x2000bfb8`，但未確認實際 `gp`、provider 副作用或其返回。
 
 `ingress_dispatch_8a36.py` 解碼原始 `0x8a36–0x8a4c`：在此局部入口成立且讀取成功時，`0x8a48` 呼叫 `0x14056`，其中 `a2=0x2000b9d8` 由 PC-relative 指令形成、與 `gp` 無關；另核對 `0x14068` 是 `s0←a2`。全部 65,536 個長度、3,072 個合成輸入邊界及 22 個位元組變造通過。此為分段靜態與指令投影，未證明 checksum 閘門通過、完整入口可達或中間狀態無變化。
+
+`ingress_state_gate.py` 解碼 `0x89f6–0x8a06`：完整 `a4` 與 `s9` 不同即到 `0x8a2a` 且不讀取計數；相同才從 `gp+138` 讀半字，無號值大於 1039 到 `0x8a4c`，否則到 `0x8a06`。全部 65,536 個半字、90 個邊界及 16 個位元組變造通過，包含 Python 最佳化模式。`ingress_state_store_composition.py` 對全部 65,536 個計數及四個不相等狀態，分段對照既有寫入投影；兩個投影均包含 `0x8a02` 比較指令，這是重複的邊界驗證而非連續執行。假設局部入口成立、讀取成功，不證明實機、並行或完整封包可達性。
 
 `ingress_checksum_gate.py` 解碼緊接此前的 `0x8a2a–0x8a36`：`a4 != s10` 時跳過 dispatch 且不讀 checksum；相等時讀取 `gp+165` 的 byte，再與完整 32 位元 `a5` 比較，相等才到 `0x8a36`。65,536 個 byte 配對、4,096 個合成邊界與 12 個指令位元組變造通過；`a5` 的來源、局部入口可達性、讀取成功及實機行為不由此證明。
 
