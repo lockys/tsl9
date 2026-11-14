@@ -48,6 +48,10 @@
 
 `callback_sequence.py` 解碼 `0x1070a` 及被呼叫的 `0x1061c`；其餘 callee 以保留 callee-saved、刻意覆寫 caller-saved 暫存器的合成 stub 取代。45 組測試確認 `0x1061c` 在合成模型中先將零 byte 寫至 `0x2000bfb8`，再以 `a0=0x1061c` tail jump 至 `0x90b0`；假設其正常返回後，後續呼叫 `0x40048` 指向的合成目標、`0x9af0`、`0x90b0`，最後恢復堆疊與原返回位址後 tail jump 至 `0x90b0`。間接呼叫當下參數為 `(0x2000bfb8, 0, 12)`；後兩次 `0x90b0` 的 `a0` 分別為 `0x9b36`、`0x107c0`。這只驗證測試假設下的呼叫序列，未執行其他 callee、確認函式指標身分或證實實機副作用。
 
+### Callback 表格查找
+
+`callback_table_scan.py` 從原始 bytes 解碼 `0x90b0` 的表格搜尋，於第一個相符項目的 `0x90cc` 停止，或執行至未相符返回。成功讀取、表格穩定且無競態時，它由 `0x2000be08` 起以 12-byte 間距依序比較 15 個項目的 `+4` word 與完整 `a0`；同值多筆時選第一筆，全部不符時恢復保存的暫存器及堆疊並以 `a0=1` 返回。測試所有位置、重複值、未命中及 4,096 組固定種子合成表；未執行命中後的處理，也不能推論實機表格內容或 callback 功能。
+
 ### 接收模型中的封包案例
 
 `ingress_witness.c` 使用既有 `experiments/tsl9-v4160-gatt-ingress-model/` 的合成後端與接收語意模型，送入 `0xc0` 命令及 20、514-byte payload；兩者首個資料半字都是 little-endian `0x0800`。在該模型及測試後端下，無論整包送入或拆成 1、4、其餘 bytes 三段，正確 checksum 均各產生一次指向 `0x14056` 的 dispatch，參數帶入原 payload 與長度；前兩段未觸發 dispatch，checksum 翻轉一位時也沒有 dispatch。測試逐 byte 比對 20-byte payload 與下節人工追蹤相同。C11 與 C++17 均執行；模型的 dispatch 是外部事件，不執行 `0x14056`，此測試不是原始指令模擬，亦未連接後續迴圈或證明實機可達性。
