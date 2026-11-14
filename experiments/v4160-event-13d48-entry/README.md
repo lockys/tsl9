@@ -14,6 +14,8 @@
 
 `composition.py` 以明確重建的邊界狀態串接入口、紀錄分支與尾跳投影，24,000 個合成案例涵蓋直接返回及三種尾跳結果，並檢查跨邊界暫存器、stack、讀取和事件。它重複執行 `0x13d88` 的結果分支，並非連續 CPU 執行；兩個 callee 仍為 stub，亦不涵蓋別名或競態。
 
+`callee.py` 獨立執行入口所呼叫的 `0x135e6` 固定指令表，2,048 組合成案例檢查兩組欄位的短路讀取、先寫 `0x2000c794` 再呼叫 `0x9124(0x1333c,0,300,0)`、堆疊及返回值；40 個指令編碼變造均被拒絕。呼叫以正常返回 stub 代替，不代表登記成功或 callback 會執行。
+
 重要邊界：此模型刻意令呼叫前後的半字不同，證明所檢查的指令**使用 stub 返回後的值**，並非認定真實 callee 一定會修改該欄位。未執行 `0x135e6`、後續分支、真實記憶體存取、競態或硬體，也不表示該路徑實際可達。
 
 ```text
@@ -21,6 +23,7 @@ python -I -B experiments/v4160-event-13d48-entry/verify.py
 python -I -B experiments/v4160-event-13d48-entry/paths.py
 python -I -B experiments/v4160-event-13d48-entry/tail.py
 python -I -B experiments/v4160-event-13d48-entry/composition.py
+python -I -B experiments/v4160-event-13d48-entry/callee.py
 python -I -B experiments/v4160-event-13d48-entry/tail_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/path_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/differential.py --vcvars <vcvars64.bat>
