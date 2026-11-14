@@ -26,6 +26,8 @@
 
 `resident_exit.py` 模擬共同尾段：mode 為零時讀取 `[0x40058]` 並呼叫，若 provider 正常返回則 `a0=(返回值==0)`，再還原堆疊及返回；mode 非零時先還原堆疊，再尾跳 `[0x4022c]`。131,072 組合成軌跡與 22 種指令變造通過；provider 替身、副作用、目標有效性及硬體均未驗證。
 
+`resident_exit_model.c` 另以 C 投影共同尾段的路徑、還原暫存器、讀取順序及呼叫資訊。`resident_exit_differential.py` 各以 C11/C++17 執行 141,072 組比較並拒絕四種語意變造；假設非尾跳 provider 正常返回，不模擬其副作用。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -38,6 +40,7 @@ python -I -B experiments/v4160-scheduler-mode-width/zero_delay_insert.py
 python -I -B experiments/v4160-scheduler-mode-width/delay_precedence.py
 python -I -B experiments/v4160-scheduler-mode-width/setup.py
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit.py
+python -I -B experiments/v4160-scheduler-mode-width/resident_exit_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/route_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/zero_delay_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/match_differential.py --vcvars <vcvars64.bat>
