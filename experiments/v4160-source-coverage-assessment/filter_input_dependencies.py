@@ -1,0 +1,49 @@
+"""Bounded bit-dependence of filter packed data under stable synthetic inputs.
+
+Maps each of the 896 source bits through the caller event decoder and the
+selected original-byte callee decoder. No provider or hardware is executed.
+"""
+import importlib.util
+from pathlib import Path
+HERE=Path(__file__).resolve().parent
+spec=importlib.util.spec_from_file_location('compose',HERE/'filter_original_data_composition.py')
+compose=importlib.util.module_from_spec(spec); spec.loader.exec_module(compose)
+loop=compose.loop; machine=compose.compose.machine
+
+
+def project(image,buffer):
+    if len(buffer)!=112: raise ValueError('expected 112 bytes')
+    sp=0x20001000; mem={sp+32+i:b for i,b in enumerate(buffer)}; output=[]
+    for i in range(14):
+        loop.step(image,mem,sp,sp+32+8*i,i,1,1)
+        fields=tuple(mem[sp+12+2*j]|mem[sp+13+2*j]<<8 for j in range(4))
+        events,_=machine.run(image,i,fields,(0,)*7)
+        output.extend((events[3][1],events[4][1]))
+    return output
+
+
+def main():
+    image=loop.calls.case.dispatch.IMAGE.read_bytes(); machine.projection.route.flow.flow(image)
+    base=project(image,bytes(112)); visible=0; invisible=0; suffix={94:0,106:0}
+    for byte in range(112):
+        for bit in range(8):
+            modified=bytearray(112); modified[byte]=1<<bit
+            words=project(image,modified)
+            changed=[(i,a^b) for i,(a,b) in enumerate(zip(words,base)) if a!=b]
+            # Halfword order maps f0,f1,f2,f3 into output pair f1|f3<<16,
+            # then f0|f2<<16. High input byte bits 3..7 are shifted out.
+            field=(byte//2)%4; slot=2*(byte//8)+(0 if field in (1,3) else 1)
+            output_bit=(8*(byte%2)+bit+5)+(16 if field>=2 else 0)
+            observable=(byte%2==0 or bit<3)
+            expected=[(slot,1<<output_bit)] if observable else []
+            if changed!=expected: raise ValueError(f'dependency mismatch byte={byte} bit={bit}')
+            if observable:
+                visible+=1
+                for length in suffix:
+                    if byte>=length: suffix[length]+=1
+            else: invisible+=1
+    if (visible,invisible,suffix)!=(616,280,{94:99,106:33}): raise ValueError('unexpected counts')
+    print(f'PASS: 896 input-bit probes; {visible} observable, {invisible} discarded')
+    print(f'Unknown suffix observable bits: 94-byte prefix={suffix[94]}, 106-byte prefix={suffix[106]}')
+    print('Bounded synthetic decoder projection; no installed provider or hardware demonstrated.')
+if __name__=='__main__': main()
