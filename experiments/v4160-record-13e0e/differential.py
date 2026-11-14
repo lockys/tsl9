@@ -88,6 +88,24 @@ def main():
             # The child owns the DLL and releases it at process exit, including
             # failures, before TemporaryDirectory removes the build artifacts.
             subprocess.run([sys.executable, '-B', str(Path(__file__).resolve()), '--worker', str(dll)], check=True)
+        source = (HERE / 'model.c').read_text(encoding='utf-8')
+        mutations = (
+            ('mode1-value', 'out[5] = 1;', 'out[5] = 0;', 'mismatch:'),
+            ('sentinel', 'first == UINT16_C(0xfffe)', 'first == UINT16_C(0xfffd)', 'other-mode mismatch:'),
+            ('store-width', 'out[5] = 2;', 'out[5] = 1;', 'other-mode mismatch:'),
+        )
+        for name, before, after, marker in mutations:
+            if source.count(before) != 1: raise ValueError(f'ambiguous mutation: {name}')
+            mutant = Path(temp) / (name + '.c')
+            mutant.write_text(source.replace(before, after), encoding='utf-8')
+            dll = Path(temp) / (name + '.dll')
+            batch.write_text(f'@call "{args.vcvars}" >nul\n@if errorlevel 1 exit /b 1\n@cl /nologo /W4 /LD /TC /std:c11 "{mutant}" /Fe:"{dll}"\n@exit /b %errorlevel%\n', encoding='utf-8')
+            subprocess.run(['cmd.exe', '/d', '/c', str(batch)], cwd=temp, check=True)
+            result = subprocess.run([sys.executable, '-B', str(Path(__file__).resolve()), '--worker', str(dll)],
+                                    capture_output=True, text=True)
+            if result.returncode == 0 or marker not in result.stderr:
+                raise ValueError(f'mutant {name} not rejected for intended mismatch: {result.stderr}')
+            print(f'PASS: semantic mutant {name} rejected', flush=True)
     print('Synthetic successful accesses only; no physical execution or concurrent changes.')
 
 
