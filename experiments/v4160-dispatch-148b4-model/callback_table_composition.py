@@ -32,10 +32,13 @@ def composed(image, key, keys, payloads, gp_byte):
         return kind, reads, [], [], None
     if kind != 'match' or state != (0x20001ff0, scan.BASE, key):
         raise ValueError('scan-to-continuation frame mismatch')
-    calls, writes, regs, memory = match.run(image, index, payloads[index], gp_byte)
-    # match.run supplies its own memory: only the selected entry is projected.
-    expected_addresses = {scan.BASE + 12 * index + 4, scan.BASE + 12 * index + 8}
-    if set(memory) != expected_addresses: raise ValueError('continuation entry mismatch')
+    table = {scan.BASE + 12 * i + offset: value
+             for i in range(15) for offset, value in ((4, keys[i]), (8, payloads[i]))}
+    calls, writes, regs, memory = match.run(image, index, payloads[index], gp_byte, table)
+    expected = dict(table)
+    expected[scan.BASE + 12 * index + 4] = 0
+    expected[scan.BASE + 12 * index + 8] = 0
+    if memory != expected: raise ValueError('continuation table preservation mismatch')
     return kind, reads, calls, writes, regs
 
 

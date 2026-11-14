@@ -7,7 +7,7 @@ SHA = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 BASE, MASK = 0x2000be08, 0xffffffff
 
 
-def run(image, index, payload, gp_byte):
+def run(image, index, payload, gp_byte, table=None):
     if not 0 <= index < 15 or not 0 <= payload <= MASK or not 0 <= gp_byte <= 255:
         raise ValueError('invalid projection input')
     # Original entry state after a successful scan; memory accesses are synthetic.
@@ -15,7 +15,9 @@ def run(image, index, payload, gp_byte):
     r[2], r[3], r[8], r[9] = 0x20001ff0, 0x20001000, index, BASE
     stack = {r[2] + 4: 0x33333333, r[2] + 8: 0x22222222, r[2] + 12: 0x14800}
     entry = BASE + 12 * index
-    memory = {entry + 4: 0x12345678, entry + 8: payload}
+    memory = {entry + 4: 0x12345678, entry + 8: payload} if table is None else dict(table)
+    if memory.get(entry + 8) != payload or entry + 4 not in memory:
+        raise ValueError('selected entry does not match payload')
     calls, writes = [], []
     pc = 0x90cc
     for _ in range(40):
