@@ -37,6 +37,7 @@ def main():
     subprocess.run([sys.executable, '-I', '-B', str(HERE / 'callback_sequence.py')], check=True)
     subprocess.run([sys.executable, '-I', '-B', str(HERE / 'callback_table_scan.py')], check=True)
     subprocess.run([sys.executable, '-I', '-B', str(HERE / 'callback_table_match.py')], check=True)
+    subprocess.run([sys.executable, '-I', '-B', str(HERE / 'callback_table_composition.py')], check=True)
     with tempfile.TemporaryDirectory(prefix='tsl9-dispatch-model-') as temp:
         for lang, flags in (('C', '/TC /std:c11'), ('C++', '/TP /std:c++17')):
             exe = Path(temp) / ('test-' + lang.replace('+', 'p') + '.exe')
