@@ -17,12 +17,12 @@ EXPECTED = bytes.fromhex('631a970303d6a1081307f0406365c704')
 def signed(value, bits):
     return value - (1 << bits) if value & (1 << (bits-1)) else value
 
-def run(code, gp, a4, s9, loaded):
-    if len(code) != 16 or any(not 0 <= x <= MASK for x in (gp,a4,s9)) or not 0 <= loaded <= 0xffff:
+def run(code, gp, a4, s9, loaded, initial_a2=0):
+    if len(code) != 16 or any(not 0 <= x <= MASK for x in (gp,a4,s9,initial_a2)) or not 0 <= loaded <= 0xffff:
         raise ValueError('invalid input')
     registers = [0]*32
     registers[2] = 0x13579bdf  # Preserve a nonzero SP to expose an altered rs1.
-    registers[3],registers[14],registers[25] = gp,a4,s9
+    registers[3],registers[12],registers[14],registers[25] = gp,initial_a2,a4,s9
     reads = []
     trace = []
     pc = 0x89f6
