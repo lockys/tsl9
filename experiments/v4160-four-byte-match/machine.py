@@ -7,7 +7,7 @@ def sx(value, bits):
     return value - (1 << bits) if value & (1 << (bits - 1)) else value
 
 
-def run(code, data, configured, length=4):
+def run(code, data, configured, length=4, trace=False):
     if len(code) != 88 or len(data) != 4 or len(configured) != 4:
         raise ValueError('invalid input size')
     x = [0] * 32
@@ -16,16 +16,18 @@ def run(code, data, configured, length=4):
     memory.update({0x400c+i: v for i, v in enumerate(configured)})
     for i, b in enumerate((0x00, 0x40, 0, 0)):
         memory[0x2054+i] = b
+    reads = []
     def load(address, size):
+        reads.append((address, size))
         try:
             return sum(memory[(address+i) & MASK] << (8*i) for i in range(size))
         except KeyError as exc:
             raise ValueError('unmapped read') from exc
     pc = BASE
     for _ in range(120):
-        if pc == 0x14098: return 'length'
-        if pc == 0x1411a: return 'mismatch'
-        if pc == 0x1416e: return 'match'  # before first outgoing JAL
+        if pc in (0x14098, 0x1411a, 0x1416e):
+            result = {0x14098: 'length', 0x1411a: 'mismatch', 0x1416e: 'match'}[pc]
+            return (result, reads) if trace else result  # match stops before outgoing JAL
         off = pc - BASE
         if off < 0 or off + 2 > len(code) or pc & 1: raise ValueError('PC outside window')
         h = int.from_bytes(code[off:off+2], 'little')

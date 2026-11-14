@@ -28,12 +28,31 @@ def main():
         cases.append((rng.randbytes(4), rng.randbytes(4)))
     for index, (data, config) in enumerate(cases):
         c_result = dll.v4160_four_byte_match((byte*4).from_buffer_copy(data), (byte*4).from_buffer_copy(config))
-        machine = run(code, data, config)
+        machine, reads = run(code, data, config, trace=True)
         if machine != ('match' if c_result else 'mismatch'):
             raise ValueError(f'differential mismatch at {index}')
+        expected_reads = [(0x2054, 4)]
+        for i in range(4):
+            expected_reads.extend(((0x3000 + i, 1), (0x400c + i, 1)))
+            if data[i] != config[i]:
+                expected_reads.append((0x1030 + i, 1))
+                if data[i] != fallback[i]:
+                    break
+        if reads != expected_reads:
+            raise ValueError(f'read trace mismatch at {index}: {reads!r}')
     for length in (0, 1, 3, 5, 255, 0xffffffff):
-        if run(code, fallback, configured, length) != 'length': raise ValueError('length guard')
-    print(f'PASS: {len(cases)} C vs original-byte-decoder comparisons; six wrong lengths exit before predicate')
+        if run(code, fallback, configured, length, trace=True) != ('length', []): raise ValueError('length guard')
+    reference = run(code, fallback, configured, trace=True)
+    for offset, bit in ((0x08, 1), (0x2a, 0x10), (0x36, 0x10), (0x42, 4), (0, 0xff)):
+        mutated = bytearray(code)
+        mutated[offset] ^= bit
+        try:
+            observed = run(mutated, fallback, configured, trace=True)
+        except ValueError:
+            continue
+        if observed == reference:
+            raise ValueError(f'instruction mutant at {offset:#x} survived')
+    print(f'PASS: {len(cases)} C vs original-byte-decoder comparisons and read traces; six wrong lengths read nothing; five byte mutants detected')
 
 
 if __name__ == '__main__': main()
