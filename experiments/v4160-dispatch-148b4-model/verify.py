@@ -37,6 +37,14 @@ def main():
             subprocess.run(['cmd.exe', '/d', '/c', str(batch)], cwd=temp, check=True)
             print(lang + ': ', end='', flush=True)
             subprocess.run([str(exe)], check=True)
+            ingress = ROOT / 'experiments/tsl9-v4160-gatt-ingress-model/src'
+            witness = Path(temp) / ('ingress-' + lang.replace('+', 'p') + '.exe')
+            batch.write_text(f'@call "{args.vcvars}" >nul\n@if errorlevel 1 exit /b 1\n'
+                             f'@cl /nologo /W4 {flags} /I"{ingress}" "{ingress / "gatt_ingress.c"}" "{HERE / "ingress_witness.c"}" /Fe:"{witness}"\n'
+                             '@exit /b %errorlevel%\n', encoding='utf-8')
+            subprocess.run(['cmd.exe', '/d', '/c', str(batch)], cwd=temp, check=True)
+            print(lang + ' ingress witness: ', end='', flush=True)
+            subprocess.run([str(witness)], check=True)
             dll = Path(temp) / ('model-' + lang.replace('+', 'p') + '.dll')
             batch.write_text(f'@call "{args.vcvars}" >nul\n@if errorlevel 1 exit /b 1\n'
                              f'@cl /nologo /W4 /LD {flags} "{HERE / "model.c"}" "{HERE / "bridge.c"}" /Fe:"{dll}"\n'
