@@ -24,6 +24,10 @@
 
 `ingress_bound.py` 解碼原 BIN `0x89e0` 的上限載入及 `0x89e4` 無號分支，窮舉非零 16-bit 值：1–1040 在此閘門落到 `0x89e8`，1041 以上分支到 `0x89f0`。若僅在算術上假設這裡的長度與後續 `s2` 初值相同，其可通過閘門且使 `((length-2)&0xffff)>>1 > 255` 的值為 1 及 514–1040（後者 527 個）；前述 dispatcher 前置條件排除長度 1。這不是端到端的可達性證明：本測試不模擬封包狀態、checksum、呼叫、長度傳遞或記憶體；零長度走其他分支，不在此測試範圍。
 
+### Dispatcher 入口暫存器與呼叫
+
+`entry_provenance.py` 從固定 BIN 解碼入口 `0x14066`、`0x14068`、`0x1406a`，分別得到 `s1=a0`、`s0=a2`、`s2=a3`；並驗證直接呼叫 `0x14240→0x81aa`、`0x147f8→0x13ba6`、`0x147fc→0x1070a` 的目標，含位元變造檢查。靜態指令紀錄 `experiments/tsl9-v4160-startup/src/gatt_ingress_native.c` 顯示，`0xc0` 到迴圈前尚需連線狀態相符、`0x81aa` 返回非零、payload 前兩 byte 均為 `ff`、第一個後續半字不走特殊出口等條件。若該路徑被選中且中間呼叫均正常返回並保存 `s2`，入口 `a3` 長度可供後續算式使用；這支小型檢查器不執行中間指令或被呼叫函式，也不證明實際可達性。尤其不可由 `length != 1` 推論緩衝區至少有四 bytes。
+
 ### 接收模型中的封包案例
 
 `ingress_witness.c` 使用既有 `experiments/tsl9-v4160-gatt-ingress-model/` 的合成後端與接收語意模型，送入 `0xc0` 命令及 20、514-byte payload；兩者首個資料半字都是 little-endian `0x0800`。在該模型及測試後端下，無論整包送入或拆成 1、4、其餘 bytes 三段，正確 checksum 均各產生一次指向 `0x14056` 的 dispatch，參數帶入原 payload 與長度；前兩段未觸發 dispatch，checksum 翻轉一位時也沒有 dispatch。測試逐 byte 比對 20-byte payload 與下節人工追蹤相同。C11 與 C++17 均執行；模型的 dispatch 是外部事件，不執行 `0x14056`，此測試不是原始指令模擬，亦未連接後續迴圈或證明實機可達性。
