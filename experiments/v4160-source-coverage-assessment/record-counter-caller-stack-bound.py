@@ -6,12 +6,14 @@ HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1];MASK=0xffffffff
 def load(name,file):
  s=importlib.util.spec_from_file_location(name,HERE/file);x=importlib.util.module_from_spec(s);s.loader.exec_module(x);return x
 entry=load('entry','record-counter-entry-107c6.py');m=entry.m
+WINDOWS=((0x186aa,bytes.fromhex('97c1fe1f938161951781ff1f1301e194')),(0x10bae,bytes.fromhex('97060000938606af05468d45138521146ff09fc0')))
+def validate_windows(data):
+ for pc,expected in WINDOWS:m.need(data[pc-0x8000:pc-0x8000+len(expected)]==expected,f'window {pc:x}')
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--root',type=Path,default=ROOT);data=(p.parse_args().root/m.BIN).read_bytes();entry.validate(data)
  def read(pc,n):return data[pc-0x8000:pc-0x8000+n]
- m.need(read(0x186aa,16)==bytes.fromhex('97c1fe1f938161951781ff1f1301e194'),'reset bytes')
- m.need(read(0x10bae,20)==bytes.fromhex('97060000938606af05468d45138521146ff09fc0'),'caller bytes')
+ validate_windows(data)
  # Reset AUIPC/ADDI results, conditional on execution and preservation.
  def auadd(pc,b):
   au=int.from_bytes(b[:4],'little');ad=int.from_bytes(b[4:8],'little');imm=ad>>20;imm=imm-4096 if imm&2048 else imm;return (pc+(au&0xfffff000)+imm)&MASK
