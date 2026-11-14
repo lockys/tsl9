@@ -77,11 +77,11 @@ def scan(image):
         for child in edges[node]: visit(child)
         visiting.remove(node); finished.add(node)
     visit(START)
-    return count,writes,controls
+    return count,writes,controls,edges
 
 
 def main():
-    image=loop.calls.case.dispatch.IMAGE.read_bytes(); count,writes,controls=scan(image)
+    image=loop.calls.case.dispatch.IMAGE.read_bytes(); count,writes,controls,_=scan(image)
     for offset in range(END-START):
         bad=bytearray(image); bad[START-0x8000+offset]^=1
         try: scan(bad)
