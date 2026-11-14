@@ -8,10 +8,13 @@
 
 `free_scan.py` 另從 `0x9206` 執行固定指令表：假設前一輪比對未命中、`a5=0x2000be08` 且讀取成功且穩定，依序讀 15 筆的 `+4` word，選第一個零；全非零則在 `0x9234` 前得到 `a0=1`。窮舉 32,768 種佔用組合，將 32,767 個選槽結果接到後段投影，並拒絕 9 個指令變造。組合只檢查片段邊界，沒有執行前一輪掃描或證明輸入可達；尤其 callback 為零且有空槽時，不可假定前輪會未命中。
 
+`match_scan.py` 模擬非零延遲入口的前一輪 callback 比對（`0x9196` 至命中或 `0x9206`），保持 `a5` 指向表首。98,304 組位元圖及 19,683 組混合表確認第一個相等項目優先於空槽；在穩定讀取下，callback 為零時只有全非零表才能未命中並進入空槽掃描。這是兩段投影的合成組合，不含命中後動作、其他入口或實機。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
 python -I -B experiments/v4160-scheduler-mode-width/verify.py
 python -I -B experiments/v4160-scheduler-mode-width/free_scan.py
+python -I -B experiments/v4160-scheduler-mode-width/match_scan.py
 python -I -B experiments/v4160-scheduler-mode-width/differential.py --vcvars <vcvars64.bat>
 ```
