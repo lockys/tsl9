@@ -12,6 +12,8 @@
 
 `match_update.py` 模擬命中後 `0x91a2–0x91d0`：先讀選中項目 `+8`，非零則以該值呼叫 `[0x40068]`；接著讀 `gp+166`，寫入 mode 低 byte 與新的 `+8` word，並產生索引 mask。片段沒有明示寫入 callback word，但 provider 可能有未知副作用，因此不能保證它未改變。1,800 組合成軌跡、6,000 組掃描接續及 16 個指令變造；provider 僅假定正常返回及保存必要暫存器，不證 target 有效或硬體行為。
 
+`match_model.c` 是命中更新的 C 語意投影；`match_differential.py` 比對原指令軌跡，C11/C++17 各 85,536 組及四種語意變造。涵蓋全部低 16 位 mode，但不是 mode、索引與舊參數的完整笛卡兒積。Provider 副作用不在投影中。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -19,5 +21,6 @@ python -I -B experiments/v4160-scheduler-mode-width/verify.py
 python -I -B experiments/v4160-scheduler-mode-width/free_scan.py
 python -I -B experiments/v4160-scheduler-mode-width/match_scan.py
 python -I -B experiments/v4160-scheduler-mode-width/match_update.py
+python -I -B experiments/v4160-scheduler-mode-width/match_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/differential.py --vcvars <vcvars64.bat>
 ```
