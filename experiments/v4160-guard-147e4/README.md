@@ -45,6 +45,6 @@ python -I -B experiments/v4160-guard-147e4/ingress_store_differential.py --vcvar
 
 `reset_provider_arguments.py` 在 gp 保持 reset 值的條件下，對照 callback 的兩次 provider 參數：首次為 `(0x2000412c,0,3)`，後次為 `(0x2000bfb8,0,12)`。以第三參數作為假想長度時，這兩段與 ingress payload 的固定範圍互不重疊；65,536 個合成指標和三個 callback 軌跡通過。未知 provider 是否把第三參數解讀為長度，亦未知它實際讀寫何處。
 
-`ingress_store_model.c` 將索引判斷、兩次寫入事件與重讀後分支重建為 C 投影；呼叫者須提供**寫入後**的半字值，不能假設沒有重疊。`ingress_store_differential.py` 以兩個原始指令解碼器作局部對照，C11/C++17 各 196,968 組通過，索引門檻、byte 遮罩、比較運算三種語意變造均遭拒；非原位址 byte-exact、非實機或完整函式 ABI。主機 MSVC 的 `vswhere.exe` 警告不影響本次編譯。
+`ingress_store_model.c` 將索引判斷、兩次寫入事件與重讀後分支重建為 C 投影；呼叫者須提供**寫入後**的半字值，不能假設沒有重疊。`ingress_store_differential.py` 以兩個原始指令解碼器作局部對照，C11/C++17 各 197,480 組通過，含 512 組以共享記憶體模擬器計算寫入後長度的重疊／對照案例；合成重疊案例也示範錯用寫入前長度會走錯分支。索引門檻、byte 遮罩、比較運算三種語意變造均遭拒；非原位址 byte-exact、非實機或完整函式 ABI。主機 MSVC 的 `vswhere.exe` 警告不影響本次編譯。
 
 既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 已檢查相關雙 byte 條件；此處補充獨立 C 投影、完整輸入暫存器及讀取事件。該範圍已有 inline-assembly 片段，並未因此增加正式原位址覆蓋或產出可刷韌體。

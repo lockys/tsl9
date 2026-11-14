@@ -15,7 +15,7 @@ HERE=Path(__file__).resolve().parent
 
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path); obj=importlib.util.module_from_spec(spec); spec.loader.exec_module(obj); return obj
-store=load('store',HERE/'ingress_payload_store.py'); transition=load('transition',HERE/'ingress_payload_transition.py')
+store=load('store',HERE/'ingress_payload_store.py'); transition=load('transition',HERE/'ingress_payload_transition.py'); alias=load('alias',HERE/'ingress_store_length_alias.py')
 MASK=0xffffffff
 
 def worker(dll,mutant):
@@ -46,7 +46,18 @@ def worker(dll,mutant):
                 for length in (0,1,1040,65535):
                     if not compare(gp,index,byte,length): raise ValueError('boundary mismatch')
                     count+=1
-    print(f'PASS: {count} C/original-decoder comparisons; synthetic post-store length',flush=True)
+    for byte in range(256):
+        for gp in (0x2000b94a,0x20004000):
+            loaded,pc,writes=alias.run(image,gp,0,2,byte)
+            expected_length=byte if gp==0x2000b94a else 2
+            if loaded!=expected_length or pc!=(0x89a8 if loaded>1 else 0x89dc): raise ValueError('shared-memory projection mismatch')
+            if not compare(gp,0,byte,loaded): raise ValueError('C alias comparison mismatch')
+            count+=1
+    actual_length,actual_pc,_=alias.run(image,0x2000b94a,0,2,0)
+    stale=(u*9)(); fn(0x2000b94a,0,0,2,stale)
+    if (actual_length,actual_pc,stale[0])!=(0,0x89dc,0x89a8): raise ValueError('stale-length counterexample missing')
+    print(f'PASS: {count} C/original-decoder comparisons including 512 shared-memory alias/control cases',flush=True)
+    print('PASS: stale pre-write length changes the predicted branch in the synthetic overlap witness',flush=True)
 
 
 def main():
