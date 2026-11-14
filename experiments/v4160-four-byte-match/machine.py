@@ -7,11 +7,11 @@ def sx(value, bits):
     return value - (1 << bits) if value & (1 << (bits - 1)) else value
 
 
-def run(code, data, configured, length=4, trace=False):
+def run(code, data, configured, length=4, trace=False, state=False):
     if len(code) != 88 or len(data) != 4 or len(configured) != 4:
         raise ValueError('invalid input size')
     x = [0] * 32
-    x[2], x[3], x[8], x[13] = 0x1000, 0x2000, 0x3000, length
+    x[2], x[3], x[8], x[9], x[13] = 0x1000, 0x2000, 0x3000, 0x1234abcd, length
     memory = {0x3000+i: v for i, v in enumerate(data)}
     memory.update({0x400c+i: v for i, v in enumerate(configured)})
     for i, b in enumerate((0x00, 0x40, 0, 0)):
@@ -27,6 +27,8 @@ def run(code, data, configured, length=4, trace=False):
     for _ in range(120):
         if pc in (0x14098, 0x1411a, 0x1416e):
             result = {0x14098: 'length', 0x1411a: 'mismatch', 0x1416e: 'match'}[pc]
+            if state:
+                return result, reads, tuple(x)
             return (result, reads) if trace else result  # match stops before outgoing JAL
         off = pc - BASE
         if off < 0 or off + 2 > len(code) or pc & 1: raise ValueError('PC outside window')
