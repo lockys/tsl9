@@ -69,6 +69,31 @@ def main():
                     continue
                 raise RuntimeError(f'{mode}: wrong entry boundary accepted')
             print(f'PASS {mode}: 66 linked entry bytes equal pinned BIN; relocation layout, 66 mutations and 4 boundaries checked')
+            fragments = (('compile_more', 0x140a6, 0x140dc),
+                         ('compile_ae', 0x140dc, 0x14122),
+                         ('compile_ad', 0x1417a, 0x141ac))
+            for name, fragment_start, fragment_end in fragments:
+                fragment = tools[name](args.tool_dir, Path(tmp), mode, elf)
+                interval = (fragment_start, fragment_end)
+                check(fragment, original, *interval, interval)
+                for i in range(len(fragment)):
+                    mutant = bytearray(fragment)
+                    mutant[i] ^= 1
+                    try:
+                        check(mutant, original, *interval, interval)
+                    except ValueError:
+                        continue
+                    raise RuntimeError(f'{mode}: {name} mutant {i} accepted')
+                for start, end in ((fragment_start - 1, fragment_end),
+                                   (fragment_start + 1, fragment_end),
+                                   (fragment_start, fragment_end - 1),
+                                   (fragment_start, fragment_end + 1)):
+                    try:
+                        check(fragment, original, start, end, interval)
+                    except ValueError:
+                        continue
+                    raise RuntimeError(f'{mode}: {name} wrong boundary accepted')
+                print(f'PASS {mode}: {name} [{fragment_start:#x},{fragment_end:#x}) matches original; {len(fragment)} byte mutations and 4 boundaries rejected')
     print('Bounded check only: no coverage-policy change, complete image, execution or hardware claim.')
 
 
