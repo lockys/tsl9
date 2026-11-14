@@ -15,6 +15,20 @@ OPS={'add','addi','beq','bgeu','bltu','bne','fence.i','jal','jalr','lbu','lui','
 def need(ok,msg):
     if not ok: raise ValueError(msg)
 
+def decode_xwch_halfword(raw):
+    need(len(raw)==2,'Xwchc width')
+    word=int.from_bytes(raw,'little');kind=word&0xe003
+    need(kind in (0x2002,0xa002),'Xwchc opcode')
+    base=8+((word>>7)&7); reg=8+((word>>2)&7)
+    offset=(((word>>10)&7)<<3)|(((word>>5)&3)<<1)
+    return ('qk.c.lhu' if kind==0x2002 else 'qk.c.sh',base,reg,offset)
+
+def check_halfword_row(row):
+    op,base,reg,offset=decode_xwch_halfword(bytes.fromhex(row['raw_hex']))
+    need(row['op']==op and row['rs1']==base and row['immediate']==offset and row['memory_width']==16,'Xwchc operand mismatch')
+    if op=='qk.c.lhu':need(row['rd']==reg and row['rs2'] is None,'Xwchc load register')
+    else:need(row['rs2']==reg and row['rd'] is None,'Xwchc store register')
+
 def analyze(rows):
     idx={r['PC']:r for r in rows};need(len(idx)==len(rows),'duplicate PC')
     pending=[(0x20000110,False)];seen=set();reads=set();returns=set();writes=set()
@@ -52,10 +66,12 @@ def main():
             need(r['PC']==cursor,'gap or overlap')
             raw=bytes.fromhex(r['raw_hex']);need(len(raw)==r['bytes'],'width')
             off=flash-0x40000+cursor-0x20000110
-            need(data[off:off+len(raw)]==raw,'row/carrier mismatch');cursor+=len(raw)
+            need(data[off:off+len(raw)]==raw,'row/carrier mismatch')
+            if r['op'] in ('qk.c.lhu','qk.c.sh'):check_halfword_row(r)
+            cursor+=len(raw)
         need(cursor==0x200001e4,'body end')
         n,reads,returns=analyze(rows)
         print(f'PASS: {name}: {len(rows)} pinned rows, {n} CFG states, {reads} a1 read sites, {returns} return states; incoming a1 never read before write')
-    print('LIMIT: assumes ledger Xwchc decoding, conservative syntactic CFG, successful accesses, no interrupts or code modification; early return may preserve a1; not device execution')
+    print('LIMIT: independently decodes Xwchc halfword operands only; otherwise assumes ledger decoding, conservative syntactic CFG, successful accesses, no interrupts or code modification; early return may preserve a1; not device execution')
 
 if __name__=='__main__':main()
