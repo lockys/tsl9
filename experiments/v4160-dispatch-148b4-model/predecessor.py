@@ -60,9 +60,19 @@ def main():
         counts[pc] = counts.get(pc, 0) + 1
     if counts != {0x14812: 1, 0x1482e: 1, 0x14838: 1, 0x14848: 65533}:
         raise ValueError(f'bad destination counts: {counts}')
+    for index, value, expected_error in ((7, 0x1000, 'outside precheck: 0x14830'),
+                                         (13, 0x2000, 'outside precheck: 0x1483a'),
+                                         (16, 0x0800, 'outside precheck: 0x14828')):
+        mutant = bytearray(window); mutant[index] ^= 4 if index == 16 else 1
+        try: run(mutant, value, 0)
+        except ValueError as exc:
+            if str(exc) != expected_error: raise ValueError('wrong mutated branch target') from exc
+        else: raise ValueError('mutated branch target accepted')
     mutant = bytearray(window); mutant[6] = 0
     try: run(mutant, 0x1000, 0)
-    except ValueError: pass
+    except ValueError as exc:
+        if str(exc) != 'unsupported compressed instruction 0x8400 at 0x14806':
+            raise ValueError('invalid opcode rejected at unexpected location') from exc
     else: raise ValueError('invalid opcode mutation accepted')
     print('PASS: all 65536 LHU values decoded; zero/0x1000/0x2000 separated; 65533 reach 0x14848')
 

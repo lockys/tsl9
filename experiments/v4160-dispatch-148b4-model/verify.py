@@ -25,6 +25,7 @@ def main():
         raise ValueError('instruction bytes mismatch')
     print('PASS: pinned firmware and 42-byte instruction window', flush=True)
     subprocess.run([sys.executable, '-I', '-B', str(HERE / 'predecessor.py')], check=True)
+    subprocess.run([sys.executable, '-I', '-B', str(HERE / 'length_bound.py')], check=True)
     with tempfile.TemporaryDirectory(prefix='tsl9-dispatch-model-') as temp:
         for lang, flags in (('C', '/TC /std:c11'), ('C++', '/TP /std:c++17')):
             exe = Path(temp) / ('test-' + lang.replace('+', 'p') + '.exe')
