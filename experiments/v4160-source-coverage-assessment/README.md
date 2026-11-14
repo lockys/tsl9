@@ -14,6 +14,8 @@
 
 以固定 SHA 的原 BIN 獨立解包五個 little-endian signed 值並加 `0x1a6a4`，確認上述五個目標；以 `0x1a6a0` 當基址則每個結果都少 4 bytes，不可混用。此前本紀錄曾誤寫為 `0x1a6a0`，現已更正。`python -I -B experiments/v4160-source-coverage-assessment/verify_table.py` 可在具有固定原 BIN 的 checkout 重播此檢查，並拒絕錯誤基址、20 個單 byte 變造及兩種長度錯誤。
 
+`table_dispatch.py` 針對原始 `0x14512..0x1452e` 固定指令、取值 0–255 的成功讀取作受限投影：0–4 分別跳至五個目標，5–255 走 `0x14098`；256 個索引、28 個指令 byte 突變及五個表項突變的檢查通過。此投影對壓縮指令固定編碼，不是通用解碼器，亦不證明可達性、並行或硬體行為。
+
 正式整合還須共同更新來源清單與 provenance hash、`src/compact-layout.json` 的 section mapping、相關封存及下游 section-count 檢查，並重新驗證實際正式 build，而不是只重連暫存 ELF。原本 6,266 sections 拆為兩個 owner 時預期 6,267，但必須由實際產物確認；不能單純改固定值使檢查通過。
 
 這些命令依賴**本機未提交的實驗及其工作樹依賴**；本紀錄不假裝它們已包含在 main，也不保證其他 checkout 能重播。該實驗以固定座標常數建表，沒有隨目標搬移更新的 relocation。跨 section 的舊 24-byte 符號、正式 manifest、來源封存與 carrier 稽核仍需整合及驗證；其他 linker 或所有 consumer 的相容性未知。
