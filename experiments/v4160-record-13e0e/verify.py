@@ -12,13 +12,16 @@ def sx(v, bits):
     return v - (1 << bits) if v & (1 << (bits-1)) else v
 
 
-def run(image, handle, first, second):
+def run(image, handle, first, second, state=False):
     r = [0] * 32
-    r[1], r[10], r[11] = 0x12345678, handle, 1
+    r[1], r[2], r[10], r[11] = 0x12345678, 0x20001000, handle, 1
+    for reg in (8, 9, *range(18, 28)):
+        r[reg] = 0xa5000000 | reg
     pc, reads, writes = 0x13e0e, [], []
     mem = {FIRST: first, SECOND: second}
     for _ in range(30):
-        if pc == 0x12345678: return reads, writes
+        if pc == 0x12345678:
+            return (reads, writes, tuple(r)) if state else (reads, writes)
         if not 0x13e0e <= pc < 0x13e98 or pc & 1: raise ValueError(f'bad PC {pc:#x}')
         off = pc - 0x8000
         h = int.from_bytes(image[off:off+2], 'little')
