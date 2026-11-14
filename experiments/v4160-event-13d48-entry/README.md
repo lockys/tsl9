@@ -6,10 +6,13 @@
 
 `paths.py` 接續第一個條件分支，以固定指令表解讀至 `0x13d8a`、`0x13da2` 或直接返回。524,288 個合成案例覆蓋兩個半字各為 sentinel／非 sentinel、兩個 byte 各 256 值及兩個回傳值，檢查依路徑短路的讀取順序、返回位址和堆疊；15 個指令編碼變造均被拒絕。每次讀取的值作為獨立輸入，不假設同時取得快照。此固定表不是通用 RV32 解碼器。
 
+`path_model.c` 提供分支的 C 語意投影，假定半字與 byte 輸入分別已限制為 16 位及 8 位；`path_differential.py` 的 C11、C++17 各 524,288 個案例與固定指令表逐軌跡比較，三種分支語意變造均被偵測。合成返回位址與堆疊僅檢查數值，不代表可在硬體上執行。
+
 重要邊界：此模型刻意令呼叫前後的半字不同，證明所檢查的指令**使用 stub 返回後的值**，並非認定真實 callee 一定會修改該欄位。未執行 `0x135e6`、後續分支、真實記憶體存取、競態或硬體，也不表示該路徑實際可達。
 
 ```text
 python -I -B experiments/v4160-event-13d48-entry/verify.py
 python -I -B experiments/v4160-event-13d48-entry/paths.py
+python -I -B experiments/v4160-event-13d48-entry/path_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/differential.py --vcvars <vcvars64.bat>
 ```
