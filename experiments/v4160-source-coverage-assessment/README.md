@@ -4,7 +4,7 @@
 
 ## 參考 resident provider 限定證據
 
-`filter_reference_providers.py` 檢查兩份本機公開 WCH 參考 carrier 的整檔雜湊、兩個 slot 和條件映射的函式 bytes；V1.31／V1.40 的 `[0x40048]` 與 `[0x4004c]` 分別為 RAM `0x2000039c`、`0x20000332`，兩版的 fill 46 bytes 與 copy 58 bytes 各自相同。每版 106 個 byte 變造均由整檔雜湊拒絕。依既有靜態分析，這些候選在成功執行且參數有效時分別逐 byte 填入與向前複製，並於操作前後存取 `0x4002420c`；重疊時 copy 不是 memmove。詳見 `analysis/resident-copy-reference-2026-10-21/source/README.md` 與 `analysis/v4160-config-lifetime-2026-10-22/memset-review/readme.en.md`。這提供先前清零假設的參考依據，但不能證明 TSL9 已安裝相同 provider、RAM 載入完成、存取成功或無別名；腳本本身不執行 provider。缺少本地參考檔時 SKIP，兩份都缺則失敗。
+`filter_reference_providers.py` 檢查兩份本機公開 WCH 參考 carrier 的整檔雜湊、兩個 slot 和條件映射的函式 bytes；V1.31／V1.40 的 `[0x40048]` 與 `[0x4004c]` 分別為 RAM `0x2000039c`、`0x20000332`，兩版的 fill 46 bytes 與 copy 58 bytes 各自相同。每版 106 個 byte 變造均由整檔雜湊拒絕。依既有靜態分析，這些候選在成功執行且參數有效時分別逐 byte 填入與向前複製，並於操作前後存取 `0x4002420c`；重疊時 copy 不是 memmove。詳見 `analysis/resident-copy-reference-2026-10-21/source/README.md` 與 `analysis/v4160-config-lifetime-2026-10-22/memset-review/readme.en.md`。這提供先前清零假設的參考依據，但不能證明 TSL9 已安裝相同 provider、RAM 載入完成、存取成功或無別名；腳本本身不執行 provider。缺少本地參考檔時 SKIP，兩份都缺則失敗。`filter_reference_alias.py` 假定參考 provider 正常執行、無中斷且是普通可存取記憶體，使用原 APP 兩段資料測試 898 個來源相對位移：來源與 workspace 相同時，先填零會毀掉來源；來源起點比 workspace 早一 byte 時，向前複製會傳播第一個來源 byte。這些是合成位址見證，不證明呼叫時有別名或硬體可達。
 
 ## 表格候選
 
