@@ -34,6 +34,8 @@
 
 `full_exit_model.c` 還原 `0x9234` 的一般尾聲，保留輸入 `a0` 並以提供的合成堆疊值還原暫存器；表滿路徑進入此尾聲時的 `a0=1` 已由 `full_exit.py` 單獨檢查。`full_exit_differential.py` 的 C11/C++17 各通過 70,000 組比較與四種變造，包含任意 `a0` 和堆疊指標環繞；讀取成功且互不別名，未在硬體執行。
 
+`scaling_preimages.py` 對 32 位共同換算反推輸出為零的全部輸入：`gcd(1000,2^32)=8`，落在 0–624 的可達餘數共有 79 個，每個有 8 個原像，故共 632 個，其中 631 個非零；最小非零值 `8589935`（`0x0083126f`）的乘法環繞餘數為 408。原像與鄰值均比對原始指令受限投影；不表示呼叫者實際可傳入該值或 provider 如何處理。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -46,6 +48,7 @@ python -I -B experiments/v4160-scheduler-mode-width/zero_delay_insert.py
 python -I -B experiments/v4160-scheduler-mode-width/delay_precedence.py
 python -I -B experiments/v4160-scheduler-mode-width/setup.py
 python -I -B experiments/v4160-scheduler-mode-width/common.py
+python -I -B experiments/v4160-scheduler-mode-width/scaling_preimages.py
 python -I -B experiments/v4160-scheduler-mode-width/full_zero_fallback.py
 python -I -B experiments/v4160-scheduler-mode-width/full_exit.py
 python -I -B experiments/v4160-scheduler-mode-width/full_exit_differential.py --vcvars <vcvars64.bat>
