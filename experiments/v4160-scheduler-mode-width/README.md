@@ -22,6 +22,8 @@
 
 `delay_precedence.py` 解碼 `0x913a` 的零／非零延遲分支，將掃描與後續更新以受限邊界組合。在穩定合成表同時有空槽與相同 callback 的 32,766 個案例中，零延遲先選空槽、非零延遲先選相符項；全滿案例組合了零延遲掃描、一般路徑設定及既有 callback 命中。這不是連續 CPU 執行，不能推論並行或實機結果。
 
+`route_model.c` 組合成只回傳選槽路徑及索引的 C 模型，不執行實際記憶體操作；`route_differential.py` 比較各指令片段的邊界投影，C11/C++17 各 141,072 組，包括所有佔用位元圖、零 callback、重複 key 與四種語意變造。表格必須穩定，未驗證並行、provider、trap 或實機。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -33,6 +35,7 @@ python -I -B experiments/v4160-scheduler-mode-width/zero_delay_scan.py
 python -I -B experiments/v4160-scheduler-mode-width/zero_delay_insert.py
 python -I -B experiments/v4160-scheduler-mode-width/delay_precedence.py
 python -I -B experiments/v4160-scheduler-mode-width/setup.py
+python -I -B experiments/v4160-scheduler-mode-width/route_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/zero_delay_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/match_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/differential.py --vcvars <vcvars64.bat>
