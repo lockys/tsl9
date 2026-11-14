@@ -48,6 +48,8 @@
 
 `data_delay_composition.py` 將資料選擇呼叫點接至排程器，4,096 組合成案例涵蓋全部 byte、四種表格形態及四個 clock 值；三個非零 delay `60000/300000/600000` 分別換算成 `96000/480000/960000`，零 delay 則依既有零延遲選槽路徑處理。這是分段投影，假設表格穩定、讀取成功且 provider 不影響共享狀態，未驗證硬體、實際可達性或時間單位。
 
+`data_delay_callback.py` 模擬 `0xb254` 的固定指令：若設定 byte 高兩位為零，或其非零但 `0x2000bef0` 為零則直接返回；否則先將該 word 清零，再呼叫 `0x90b0(0xb254)`，最後尾跳 `0x90b0(0xb29a)`。1,536 組合成軌跡與 22 個指令變造測試通過；第一個呼叫為假設正常返回且保留堆疊儲存值的替身，沒有模擬其副作用。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -68,6 +70,7 @@ python -I -B experiments/v4160-scheduler-mode-width/event_tail_composition.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_caller.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_entry.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_composition.py
+python -I -B experiments/v4160-scheduler-mode-width/data_delay_callback.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/full_exit_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit.py
