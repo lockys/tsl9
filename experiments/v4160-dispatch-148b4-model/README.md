@@ -26,7 +26,7 @@
 
 ### 接收模型中的封包案例
 
-`ingress_witness.c` 使用既有 `experiments/tsl9-v4160-gatt-ingress-model/` 的合成後端與接收語意模型，送入 `0xc0` 命令及 20、514-byte payload；兩者首個資料半字都是 little-endian `0x0800`。在該模型及測試後端下，正確 checksum 各產生一次指向 `0x14056` 的 dispatch，參數帶入原 payload 與長度；checksum 翻轉一位時沒有 dispatch。20-byte payload 與下節人工追蹤相同。C11 與 C++17 均執行；模型的 dispatch 是外部事件，不執行 `0x14056`，此測試不是原始指令模擬，亦未連接後續迴圈或證明實機可達性。
+`ingress_witness.c` 使用既有 `experiments/tsl9-v4160-gatt-ingress-model/` 的合成後端與接收語意模型，送入 `0xc0` 命令及 20、514-byte payload；兩者首個資料半字都是 little-endian `0x0800`。在該模型及測試後端下，無論整包送入或拆成 1、4、其餘 bytes 三段，正確 checksum 均各產生一次指向 `0x14056` 的 dispatch，參數帶入原 payload 與長度；前兩段未觸發 dispatch，checksum 翻轉一位時也沒有 dispatch。測試逐 byte 比對 20-byte payload 與下節人工追蹤相同。C11 與 C++17 均執行；模型的 dispatch 是外部事件，不執行 `0x14056`，此測試不是原始指令模擬，亦未連接後續迴圈或證明實機可達性。
 
 ### 人工組合追蹤：分類寫入重疊
 

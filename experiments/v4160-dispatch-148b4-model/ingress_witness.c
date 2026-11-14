@@ -22,15 +22,29 @@ static unsigned witness_frame(fixture *x, unsigned length)
     return n;
 }
 
-static void witness(unsigned length, int corrupt)
+static void witness(unsigned length, int corrupt, int fragmented)
 {
+    static const uint8_t short_payload[20] = {
+        0xff, 0xff, 0x00, 0x08, 0x00, 0x10, 0x00, 0x10, 0x00, 0x10,
+        0x00, 0x10, 0x00, 0x10, 0x00, 0x10, 0x00, 0x20, 0x01, 0x30
+    };
     gi_model m;
     unsigned n;
     const gi_request *q;
     reset(&f, &m);
     n = witness_frame(&f, length);
+    if (length == 20)
+        CHECK(!memcmp(f.mem + CHUNK + 5 - RB, short_payload, sizeof(short_payload)));
     if (corrupt) f.mem[CHUNK + n - 1 - RB] ^= 1;
-    CHECK(receive(&m, 0x1234, n) == GI_RETURNED);
+    if (fragmented) {
+        CHECK(gi_receive(&m, 0x1234, ATTR, CHUNK, 1, 0, 0) == GI_RETURNED);
+        CHECK(f.dispatches == 0);
+        CHECK(gi_receive(&m, 0x1234, ATTR, CHUNK + 1, 4, 0, 0) == GI_RETURNED);
+        CHECK(f.dispatches == 0);
+        CHECK(gi_receive(&m, 0x1234, ATTR, CHUNK + 5, n - 5, 0, 0) == GI_RETURNED);
+    } else {
+        CHECK(receive(&m, 0x1234, n) == GI_RETURNED);
+    }
     if (corrupt) {
         CHECK(f.dispatches == 0);
         return;
@@ -45,10 +59,11 @@ static void witness(unsigned length, int corrupt)
 
 int main(void)
 {
-    witness(20, 0);
-    witness(20, 1);
-    witness(514, 0);
-    witness(514, 1);
-    printf("PASS: host ingress model dispatches 20- and 514-byte c0 frames; bad checksums rejected (%u checks)\n", checks);
+    unsigned length, fragmented, corrupt;
+    for (length = 20; length <= 514; length += 494)
+        for (fragmented = 0; fragmented < 2; ++fragmented)
+            for (corrupt = 0; corrupt < 2; ++corrupt)
+                witness(length, (int)corrupt, (int)fragmented);
+    printf("PASS: whole and fragmented host ingress frames (20/514 bytes); bad checksums rejected (%u checks)\n", checks);
     return 0;
 }
