@@ -1,8 +1,9 @@
 """Bounded static proof of two public WCH resident comparison candidates.
 
 These are candidate carriers, not a dump of the TSL9 installed resident ROM.
-The Xwchc halfword is checked as bytes, not executed or validated against a
-hardware ISA. Branch decoder covers only the six recorded branch instructions.
+The Xwchc halfword is decoded only under the cited TableGen profile, not
+executed or validated against a hardware ISA. Branch decoder covers only
+the five recorded branch instructions.
 """
 import hashlib
 from pathlib import Path
@@ -56,6 +57,18 @@ def compressed_operands(code,offset):
     if q==2 and funct==4 and (h>>12&1)==0 and rd!=0 and ((h>>2)&31)==0: return ('jr',rd)
     raise ValueError('unknown compressed operand encoding')
 
+def xwchc_lbu(code,offset):
+    # Conditional on the cited LLVM WCH TableGen profile; not RV32C fld.
+    h=int.from_bytes(code[offset:offset+2],'little')
+    if h&3!=0 or h>>13!=1: raise ValueError('not Xwchc QK_C_LBU')
+    imm=((h>>12&1)<<0)|((h>>10&3)<<3)|((h>>5&3)<<1)
+    return ('qk.c.lbu',8+(h>>2&7),8+(h>>7&7),imm)
+
+def encode_xwchc_lbu(rd,rs1,imm):
+    if not (8<=rd<=15 and 8<=rs1<=15 and 0<=imm<=31): raise ValueError('bad Xwchc operands')
+    h=(1<<13)|((imm&1)<<12)|(((imm>>3)&3)<<10)|((rs1-8)<<7)|(((imm>>1)&3)<<5)|((rd-8)<<2)
+    return h.to_bytes(2,'little')
+
 def verify(code):
     if len(code)!=72: raise ValueError('slice size')
     for offset,expected in BRANCHES.items():
@@ -64,6 +77,7 @@ def verify(code):
         if operands(code,offset)!=expected: raise ValueError(f'operand mismatch at {offset}')
     for offset,expected in COMPRESSED.items():
         if compressed_operands(code,offset)!=expected: raise ValueError(f'compressed operand mismatch at {offset}')
+    if xwchc_lbu(code,54)!=('qk.c.lbu',13,13,0): raise ValueError('Xwchc profile operand mismatch')
     cursor=0
     for offset,size,raw in LEDGER:
         if offset!=cursor or code[offset:offset+size]!=bytes.fromhex(raw): raise ValueError(f'ledger mismatch at {offset}')
@@ -109,7 +123,18 @@ def main():
             if decoded!=COMPRESSED[offset]: raise ValueError('compressed operand mismatch')
         except ValueError: continue
         raise ValueError(f'compressed operand mutation missed {offset}')
+    for rd in range(8,16):
+        for rs1 in range(8,16):
+            for imm in range(32):
+                if xwchc_lbu(encode_xwchc_lbu(rd,rs1,imm),0)!=('qk.c.lbu',rd,rs1,imm): raise ValueError('Xwchc encoding mismatch')
+    for bit in range(16):
+        bad=bytearray(RAW[54:56]); bad[bit//8]^=1<<(bit%8)
+        try:
+            if xwchc_lbu(bad,0)!=('qk.c.lbu',13,13,0): raise ValueError('Xwchc changed')
+        except ValueError: continue
+        raise ValueError(f'Xwchc mutation missed bit {bit}')
     print(f'PASS: {len(LEDGER)} contiguous instructions; {len(BRANCHES)} decoded branches; {len(OPERANDS)} RV32 and {len(COMPRESSED)} compressed operands; all mutations rejected')
-    print('Candidate carrier bytes only: Xwchc, installed ROM, ABI, concurrency and hardware not proved.')
+    print('PASS: conditional QK_C_LBU a3,0(a3); 2048 encode/decode combinations, 16 bit mutations')
+    print('Candidate and cited TableGen profile only: installed ROM, hardware ISA, ABI and concurrency not proved.')
 
 if __name__=='__main__': main()
