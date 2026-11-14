@@ -114,10 +114,19 @@ TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001a635[3]
     __attribute__((used, aligned(1), section(".rodata.tsl9_opaque_gap_0001a635"))) = {
     0x00, 0x00, 0x00
 };
-TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001a6a0[24]
-    __attribute__((used, aligned(1), section(".rodata.tsl9_opaque_gap_0001a6a0"))) = {
-    0x00, 0x00, 0x00, 0x00, 0x8a, 0x9e, 0xff, 0xff, 0x9a, 0x9e, 0xff, 0xff, 0xa6, 0x9e, 0xff, 0xff, 0x9a, 0xa0, 0xff, 0xff, 0xa4, 0xa0, 0xff, 0xff
+/* The table entries are fixed original-coordinate offsets, not relocations. */
+TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_prefix_0001a6a0[4]
+    __attribute__((used, aligned(1), section(".rodata.tsl9_opaque_gap_0001a6a0"))) = {0};
+TSL9_OPAQUE_LINKAGE const int32_t tsl9_relative_table_0001a6a4[5]
+    __attribute__((used, aligned(4), section(".rodata.tsl9_relative_table_0001a6a4"))) = {
+    0x1452e - 0x1a6a4, 0x1453e - 0x1a6a4, 0x1454a - 0x1a6a4,
+    0x1473e - 0x1a6a4, 0x14748 - 0x1a6a4
 };
+/* Legacy ELF object spans the two adjacent sections in the selected layout. */
+__asm__(".globl tsl9_opaque_gap_0001a6a0\n"
+        ".type tsl9_opaque_gap_0001a6a0,@object\n"
+        ".set tsl9_opaque_gap_0001a6a0,tsl9_opaque_prefix_0001a6a0\n"
+        ".size tsl9_opaque_gap_0001a6a0,24\n");
 TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001ab31[3]
     __attribute__((used, aligned(1), section(".rodata.tsl9_opaque_gap_0001ab31"))) = {
     0x00, 0x00, 0x00

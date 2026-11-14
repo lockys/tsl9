@@ -33,7 +33,7 @@ compact = None
 olddefs = {}
 if a.compact_map:
     map_path = ROOT / 'src/compact-layout.json'
-    if hashlib.sha256(map_path.read_bytes()).hexdigest() != 'af2aec2d6b88b40c72c4f7ddc1c696630ac65f25462d3173c18d53d140896b4b':
+    if hashlib.sha256(map_path.read_bytes()).hexdigest() != 'c612ccd91fa8cdd10d0f654b7dbf9faeb96e4c75fdc3f5a17722710dcda1d381':
         raise ValueError('Pinned compact mapping changed')
     compact = json.loads(map_path.read_text(encoding='utf-8'))
     if compact['schema'] != 'tsl9-selected-source-layout-compact-v1':

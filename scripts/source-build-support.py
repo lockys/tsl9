@@ -12,7 +12,7 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 def metadata():
     global _manifest
-    if sha(MANIFEST) != '466883524eca536c88653bce14057ec68c8c94d2c56368e185f1c2116abaf739':
+    if sha(MANIFEST) != 'dabc5bfbe07f9d4965d9d2a81eff6d5c015c1e2d377bac7e945fc4d2bd0f843b':
         raise ValueError('Pinned source build manifest changed')
     data = json.loads(MANIFEST.read_text(encoding='utf-8'))
     if data['schema'] != 'tsl9-source-build-v1' or sha(PARSER) != '00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141':

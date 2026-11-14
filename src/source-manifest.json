@@ -1292,9 +1292,14 @@
     {
       "origin": "experiments/tsl9-opaque-allowed-gaps/opaque_gaps.c",
       "destination": "src/native/receive/opaque_allowed_gaps.c",
-      "replacements": [],
+      "replacements": [
+        [
+          "TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001a6a0[24]\n    __attribute__((used, aligned(1), section(\".rodata.tsl9_opaque_gap_0001a6a0\"))) = {\n    0x00, 0x00, 0x00, 0x00, 0x8a, 0x9e, 0xff, 0xff, 0x9a, 0x9e, 0xff, 0xff, 0xa6, 0x9e, 0xff, 0xff, 0x9a, 0xa0, 0xff, 0xff, 0xa4, 0xa0, 0xff, 0xff\n};\n",
+          "/* The table entries are fixed original-coordinate offsets, not relocations. */\nTSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_prefix_0001a6a0[4]\n    __attribute__((used, aligned(1), section(\".rodata.tsl9_opaque_gap_0001a6a0\"))) = {0};\nTSL9_OPAQUE_LINKAGE const int32_t tsl9_relative_table_0001a6a4[5]\n    __attribute__((used, aligned(4), section(\".rodata.tsl9_relative_table_0001a6a4\"))) = {\n    0x1452e - 0x1a6a4, 0x1453e - 0x1a6a4, 0x1454a - 0x1a6a4,\n    0x1473e - 0x1a6a4, 0x14748 - 0x1a6a4\n};\n/* Legacy ELF object spans the two adjacent sections in the selected layout. */\n__asm__(\".globl tsl9_opaque_gap_0001a6a0\\n\"\n        \".type tsl9_opaque_gap_0001a6a0,@object\\n\"\n        \".set tsl9_opaque_gap_0001a6a0,tsl9_opaque_prefix_0001a6a0\\n\"\n        \".size tsl9_opaque_gap_0001a6a0,24\\n\");\n"
+        ]
+      ],
       "origin_sha256": "c68908db291d1de845335e79c2f3e544158584ae52cd34041f8e24f9cb99441e",
-      "sha256": "c68908db291d1de845335e79c2f3e544158584ae52cd34041f8e24f9cb99441e"
+      "sha256": "24afa80c10c01555cebb52536bf7b1de2974de31da24a0b7ca0d4ab4cd71246b"
     }
   ],
   "native_units": [

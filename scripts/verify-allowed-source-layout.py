@@ -35,7 +35,7 @@ results = []
 for mode in ('c', 'cpp'):
     elf = reader(base / ('NOT-FLASHABLE-compact-source-layout-' + mode + '.elf'))
     sections = sorted((s for s in elf.sections if s['flags'] & 2 and s['size']), key=lambda s: s['address'])
-    if len(sections) != 6266 or sum(s['size'] for s in sections) != 73672:
+    if len(sections) != 6267 or sum(s['size'] for s in sections) != 73672:
         raise ValueError('Unexpected selected coverage')
     checked = 0
     with a.candidate.open('rb') as stream:

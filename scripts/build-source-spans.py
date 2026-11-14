@@ -34,7 +34,7 @@ outputs = []
 for mode in ('c', 'cpp'):
     elf = reader(build / ('NOT-FLASHABLE-compact-source-layout-' + mode + '.elf'))
     sections = sorted((s for s in elf.sections if s['flags'] & 2 and s['size']), key=lambda s: s['address'])
-    if len(sections) != 6266:
+    if len(sections) != 6267:
         raise ValueError('Unexpected source section count')
     payload = bytearray()
     spans = []

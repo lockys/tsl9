@@ -15,10 +15,10 @@ paths += ['src/source-build-manifest.json','src/compact-layout.json','src/native
           'src/native/receive/ota_more_140a6.inc','src/native/receive/ota_ae_140dc.inc',
           'src/native/receive/ota_ad_1417a.inc','src/native/receive/ota_dispatch_141d6.inc','src/native/receive/ota_dispatch_14230.inc','src/native/receive/ota_dispatch_14288.inc','src/native/receive/ota_dispatch_142c0.inc']
 paths += ['src/native/tx_candidate/postpass/'+x for x in ('elf32.py','decode.py','schedule.py','policy.json')]
-paths += ['scripts/build-compact-source-layout.py','scripts/verify-source-aggregate.py','scripts/source-build-support.py',
+paths += ['scripts/build-compact-source-layout.py','scripts/verify-source-aggregate.py','scripts/source-build-support.py','scripts/relative_table_owner.py',
           'scripts/build-source-spans.py','scripts/build-v4160-source-candidate.py','scripts/source-ota-epilogue.py',
           'scripts/verify-conditional-tx-storage.py','scripts/verify-conditional-full-payload-link.py']
-if len(paths)!=199 or len(set(paths))!=199:raise ValueError('Unexpected isolation inventory')
+if len(paths)!=200 or len(set(paths))!=200:raise ValueError('Unexpected isolation inventory')
 tree=out/'source-only'
 for name in paths:
     source,dest=(ROOT/name).resolve(),(tree/name).resolve()

@@ -20,7 +20,7 @@ out = a.out.resolve()
 if out.exists() or out == ROOT or ROOT in out.parents:
     raise SystemExit('Output must be a new directory outside the project')
 path = ROOT / 'src/compact-layout.json'
-if hashlib.sha256(path.read_bytes()).hexdigest() != 'af2aec2d6b88b40c72c4f7ddc1c696630ac65f25462d3173c18d53d140896b4b':
+if hashlib.sha256(path.read_bytes()).hexdigest() != 'c612ccd91fa8cdd10d0f654b7dbf9faeb96e4c75fdc3f5a17722710dcda1d381':
     raise ValueError('Pinned compact mapping changed')
 mapping = json.loads(path.read_text(encoding='utf-8'))
 if mapping['schema'] != 'tsl9-selected-source-layout-compact-v1':
@@ -31,6 +31,7 @@ if not ld.is_file():
 module = runpy.run_path(str(ROOT / 'scripts/source-build-support.py'))
 module['metadata']()
 reader = runpy.run_path(str(module['PARSER']))['ELF']
+check_relative_table_owner = runpy.run_path(str(ROOT / 'scripts/relative_table_owner.py'))['check_relative_table_owner']
 out.mkdir(parents=True)
 source_dir = out / 'source'
 aggregate_args = [sys.executable, '-B', str(ROOT / 'scripts/verify-source-aggregate.py'), '--compact-map',
@@ -94,6 +95,8 @@ for mode in ('c', 'cpp'):
     if linked.returncode:
         raise ValueError('Diagnostic link failed: ' + linked.stderr[:1000])
     result = reader(dest)
+    # The legacy object spans two adjacent independently owned read-only sections.
+    check_relative_table_owner(result)
     allocated = sorted((s for s in result.sections if s['flags'] & 2 and s['size']), key=lambda s: s['address'])
     if len(allocated) != len(selected) or sum(s['size'] for s in allocated) != mapping['expected_bytes']:
         raise ValueError('Unexpected linked coverage')

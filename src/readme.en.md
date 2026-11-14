@@ -144,6 +144,8 @@ This directory holds the currently selected C/C++ reconstruction sources:164 C/H
 
 [source-manifest.json](source-manifest.json) records every origin, original/curated SHA256, individual include adaptations, the two A1 declaration repairs, and each compile entry's evidence and limits. The newer volatile-source experiment still has frame/slot differences and remains in experiments.
 
+The selected 0x1a6a0 owner is represented by a four-byte opaque prefix and five `const int32_t` offsets based at 0x1a6a4 in `native/receive/opaque_allowed_gaps.c`. The 24-byte legacy ELF symbol aliases the prefix and spans both adjacent sections in the diagnostic layout. Targets are fixed original coordinates, not symbol relocations; changing target placement does not update them. The compact build checks the two owners, bytes and symbol metadata in C and C++. This representation adds no coverage and does not establish runtime reachability, installed ROM, hardware behavior, or flashability. Historical audits and receipts remain historical, not automatically valid for this split.
+
 ## Getting started
 
 From the repository root:

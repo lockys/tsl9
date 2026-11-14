@@ -63,7 +63,7 @@ for mode in ('c', 'cpp'):
     prior = reader(folder / 'NOT-FLASHABLE-conditional.elf')
     previous = {s['name']: s for s in prior.sections if s['flags'] & 2 and s['size'] and s['type'] != 8}
     flash = [s for s in elf.sections if s['flags'] & 2 and s['size'] and s['type'] != 8]
-    if (len(flash) != 6266 or sum(s['size'] for s in flash) != 73672 or
+    if (len(flash) != 6267 or sum(s['size'] for s in flash) != 73672 or
         not all(s['name'] in previous and s['address'] == previous[s['name']]['address'] and elf.data(s) == prior.data(previous[s['name']]) for s in flash)):
         raise ValueError('Selected flash sections changed')
     for row in range(6):
