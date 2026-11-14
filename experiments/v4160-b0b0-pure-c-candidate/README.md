@@ -6,7 +6,7 @@
 
 `verify.py` 固定檢查映像長度、全檔 hash、原始十 bytes，以及 `leaf.c` SHA-256 `81dde947df04c123617fa2fa326ca7f2a78544b461fabbb8ba64ae5a1cd74a4a`。測試也直接對窗口逐 byte 突變與截斷，避免全檔 hash 遮蔽窗口檢查。這些是資料身分檢查，不是 C 行為證明；沒有以 Python 模型代替 C。
 
-`host_harness.c` 是僅供主機的未執行測試設計，將 `B0B0_DESTINATION` 強制注入三 byte host stub 的中央 volatile lvalue，不使用候選預設絕對位址。覆蓋 0..255、兩組每個低 byte 的高位截斷及前後 sentinel。替換 stub 時，可設定 `HOST_B0B0_STUB_HEADER` 為標頭名稱；標頭須定義 `HOST_B0B0_MEMORY` 為至少三個 volatile `uint8_t` 元素的主機記憶體陣列，絕不可映射真實目標位址。harness 與候選需在同一 translation unit，勿另外連結第二份 `leaf.c`。測試注入不是正式介面，也不代表目標硬體。
+`host_harness.c` 是僅供主機的測試，將 `B0B0_DESTINATION` 強制注入三 byte host stub 的中央 volatile lvalue，不使用候選預設絕對位址。覆蓋 0..255、兩組每個低 byte 的高位截斷及前後 sentinel。替換 stub 時，可設定 `HOST_B0B0_STUB_HEADER` 為標頭名稱；標頭須定義 `HOST_B0B0_MEMORY` 為至少三個 volatile `uint8_t` 元素的主機記憶體陣列，絕不可映射真實目標位址。harness 與候選需在同一 translation unit，勿另外連結第二份 `leaf.c`。測試注入不是正式介面，也不代表目標硬體。
 
 從 repo 根目錄執行純 Python 資料檢查：
 
@@ -18,4 +18,12 @@ python -B -O experiments/v4160-b0b0-pure-c-candidate/test_verify.py
 
 原始指令正常返回時保持完整 `a0`、覆寫 `a5`；此候選的 `void` 介面不能保證 `a0` 保持，亦不能保證相同 `a5` 或機器碼，尤其尾跳的上層 caller 可能觀察到差異。既有 guard 的 relocation 集合及原址重編碼對 store 型 PC-relative relocation 的支援亦須另行審核，不能因語意相似而繞過。
 
-本次未編譯、未連結、未執行 C harness、未驗證 codegen、ABI 或 runtime；未模擬或執行韌體，未接觸硬體。通過資料檢查不等於候選可用或與韌體等價。
+## 主機 harness 執行
+
+`host_verify.py` 在 MSVC 開發者命令提示字元中以 C11/C++17、`/Od` 和 `/O2` 編譯並執行上述既有 harness。每種組態執行 768 筆低位元組與 sentinel 測試；另以低位反轉及破壞相鄰 byte 的兩種變造檢查測試能拒絕錯誤。候選 hash 於編譯前固定；測試只修改暫存副本，絕不存取目標位址。
+
+```text
+python -I -B experiments/v4160-b0b0-pure-c-candidate/host_verify.py
+```
+
+主機測試仍未驗證目標 codegen、ABI、返回暫存器、真實位址或 runtime；未模擬或執行韌體，未接觸硬體。通過測試不等於候選可用或與韌體等價。
