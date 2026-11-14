@@ -6,6 +6,9 @@
 
 `verify.py` 執行 1,920 個合成軌跡，涵蓋 15 槽、多種 mode、延遲環繞和 task 值，並拒絕 18 個指令編碼變造。此處為既有指令的行為測試，不是新增原始 byte 覆蓋。
 
+`model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
+
 ```text
 python -I -B experiments/v4160-scheduler-mode-width/verify.py
+python -I -B experiments/v4160-scheduler-mode-width/differential.py --vcvars <vcvars64.bat>
 ```
