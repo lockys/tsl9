@@ -17,6 +17,7 @@ python -I -B experiments/v4160-guard-147e4/ingress_payload_store.py
 python -I -B experiments/v4160-guard-147e4/ingress_payload_transition.py
 python -I -B experiments/v4160-guard-147e4/ingress_store_length_alias.py
 python -I -B experiments/v4160-guard-147e4/reset_gp_disjoint.py
+python -I -B experiments/v4160-guard-147e4/reset_provider_arguments.py
 ```
 
 `composition.py` 將既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 的前置解碼與本 C 閘門分段串接，C/C++ 各 68,096 組通過；其中長度為 1 的 512 組在該投影中繞過閘門。此為合成穩定記憶體上的邊界重建，並不證明從完整入口可達或 byte 讀取安全。
@@ -40,5 +41,7 @@ python -I -B experiments/v4160-guard-147e4/reset_gp_disjoint.py
 `ingress_store_length_alias.py` 以共享合成記憶體串接寫入與重讀：假設 `gp=0x2000b94a`、index=0，payload 首 byte 與長度半字低位重疊，可將長度 `2` 改成 `0` 並改變分支。256 個重疊及 256 個 `gp=0x20004000` 不重疊對照通過；後者是啟動分析中的 gp 值而非實機量測，前者不表示該狀態實際可達。未模擬並行或其他副作用。
 
 `reset_gp_disjoint.py` 另從原始 reset 兩條指令解碼 `gp=0x20004000`。**若後續 gp 不變**，1040 個 payload 索引不會與 `gp+138`、`gp+142` 的半字或 `0x2000bfb8` 重疊；8,320 組寫入／重讀條件案例與 8 個 reset 位元組變造通過。這不證明活體 gp、位址轉譯、provider 副作用或實機行為。
+
+`reset_provider_arguments.py` 在 gp 保持 reset 值的條件下，對照 callback 的兩次 provider 參數：首次為 `(0x2000412c,0,3)`，後次為 `(0x2000bfb8,0,12)`。以第三參數作為假想長度時，這兩段與 ingress payload 的固定範圍互不重疊；65,536 個合成指標和三個 callback 軌跡通過。未知 provider 是否把第三參數解讀為長度，亦未知它實際讀寫何處。
 
 既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 已檢查相關雙 byte 條件；此處補充獨立 C 投影、完整輸入暫存器及讀取事件。該範圍已有 inline-assembly 片段，並未因此增加正式原位址覆蓋或產出可刷韌體。
