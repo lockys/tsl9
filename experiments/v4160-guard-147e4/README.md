@@ -16,6 +16,7 @@ python -I -B experiments/v4160-guard-147e4/ingress_s11_provenance.py
 python -I -B experiments/v4160-guard-147e4/ingress_loop_provenance.py
 python -I -B experiments/v4160-guard-147e4/ingress_loop_wrap.py
 python -I -B experiments/v4160-guard-147e4/ingress_argument_provenance.py
+python -I -B experiments/v4160-guard-147e4/clock_wrapper_81b0.py
 python -I -B experiments/v4160-guard-147e4/ingress_a5_provenance.py
 python -I -B experiments/v4160-guard-147e4/ingress_provenance_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_length_initialize.py
@@ -52,6 +53,8 @@ python -I -B experiments/v4160-guard-147e4/ingress_store_differential.py --vcvar
 `ingress_s11_provenance.py` 解碼 `0x8934` 的 `s11=gp+142`，若跨區段 `gp` 與 `s11` 保持不變，長度半字的兩 byte 相對於 counter `gp+138` 的兩 byte 偏移分別為 4、5 與 0、1，即使位址以 32 位元環繞也不重疊。65,536 個 gp、8 個環繞邊界、65,536 個計數／長度組合與四個位元組變造通過；這是分段投影，不證明暫存器穩定或實機行為。
 
 `ingress_loop_provenance.py` 對 `0x8938` 的局部迴圈檢查與 `0x8962–0x896a` 輸入讀取解碼，再分段接續狀態選擇；由 `0x8934` 已設定 `s11` 的條件出發，該次直接路徑到 `0x89cc` 沒有改寫 `gp` 或 `s11`。65,536 個索引、450 個邊界與 18 個位元組變造通過，包含最佳化模式；不涵蓋先前迴圈、非同步改寫、trap 或實機。
+
+`clock_wrapper_81b0.py` 檢查原始 `0x81b0` 包裝函式固定指令；在 resident 替身正常返回且不修改保存的返回位址或 SP 的假設下，返回值為 `((resident_result*10) mod 2^32)>>4`，而 s2 取決於 resident 返回後的值。65,536 個值、90 個邊界及 26 個位元組變造通過；resident 的實際語義、stack 與硬體未驗證。
 
 `ingress_argument_provenance.py` 解碼 `0x8900` 至呼叫 `0x81b0`：呼叫前 `s3=a0`、`s4=a2`、`s2=a3`、`ra=0x8908`，其中 `a3` 未被截斷。窮舉 65,536 個 a3 值、90 個完整位寬邊界及 8 個位元組變造。此結論止於呼叫點；callee 是否返回或保留 s2、上游 a3 的實際範圍及硬體可達性未證。
 
