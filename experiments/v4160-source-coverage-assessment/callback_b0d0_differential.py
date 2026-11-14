@@ -13,9 +13,11 @@ def worker(dll,root,mutant):
  if mutant:
   m.need(not all(compare(flag,[0,2,3]) for flag in (0,1,2,3,0x101)),'mutant survived');print('PASS: mutant rejected');return
  count=0
- for value in range(256):
-  for flag in (*range(256),0x100,0x101,0xfffffffe,0xffffffff):
-   m.need(compare(flag,[value,(value+1)&255,(value+2)&255]),'C mismatch');count+=1
+ for position in range(3):
+  for value in range(256):
+   vals=[0,2,3];vals[position]=value
+   for flag in (*range(256),0x100,0x101,0xfffffffe,0xffffffff):
+    m.need(compare(flag,vals),'C mismatch');count+=1
  print('PASS:',count,'C vs original-byte decoder cases')
 def main():
  p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--vcvars',type=Path);g.add_argument('--worker',type=Path);p.add_argument('--root',type=Path,default=ROOT);p.add_argument('--mutant',action='store_true');a=p.parse_args()
