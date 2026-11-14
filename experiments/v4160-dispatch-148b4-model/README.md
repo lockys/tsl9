@@ -60,6 +60,10 @@
 
 `callback_table_composition.py` 用 4,127 組合成案例串接搜尋與命中續段的投影，涵蓋所有索引、重複鍵、未命中、零／非零 payload，以及搜尋和清除指令的變造反例。它檢查搜尋結果的索引和保存框架，再由相同輸入重建命中續段的完整 15 項合成表，驗證僅選中項目的兩個欄位改變；這**不是**單一完整 CPU／記憶體狀態的連續執行，亦未測實際 provider 的副作用。跨投影仍假設表格穩定、存取成功且無競態。
 
+### Callback 表格 C 語意投影
+
+`callback_model.c` 將搜尋及命中後的表格變更實作為主機 C 模型；`callback_differential.py` 使用 C11、C++17 編譯結果，與原始 bytes 的有限解碼投影分別比較 5,000 組合成表和完整輸出陣列。provider 呼叫只記錄事件，不實際執行；模型假設表格穩定、存取成功及 provider 不改動表格，不是原位址 byte-exact C、可刷映像或實機驗證。
+
 ### 接收模型中的封包案例
 
 `ingress_witness.c` 使用既有 `experiments/tsl9-v4160-gatt-ingress-model/` 的合成後端與接收語意模型，送入 `0xc0` 命令及 20、514-byte payload；兩者首個資料半字都是 little-endian `0x0800`。在該模型及測試後端下，無論整包送入或拆成 1、4、其餘 bytes 三段，正確 checksum 均各產生一次指向 `0x14056` 的 dispatch，參數帶入原 payload 與長度；前兩段未觸發 dispatch，checksum 翻轉一位時也沒有 dispatch。測試逐 byte 比對 20-byte payload 與下節人工追蹤相同。C11 與 C++17 均執行；模型的 dispatch 是外部事件，不執行 `0x14056`，此測試不是原始指令模擬，亦未連接後續迴圈或證明實機可達性。

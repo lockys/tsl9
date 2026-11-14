@@ -56,6 +56,13 @@ def main():
             subprocess.run(['cmd.exe', '/d', '/c', str(batch)], cwd=temp, check=True)
             print(lang + ' ingress witness: ', end='', flush=True)
             subprocess.run([str(witness)], check=True)
+            callback_dll = Path(temp) / ('callback-' + lang.replace('+', 'p') + '.dll')
+            batch.write_text(f'@call "{args.vcvars}" >nul\n@if errorlevel 1 exit /b 1\n'
+                             f'@cl /nologo /W4 /LD {flags} "{HERE / "callback_model.c"}" /Fe:"{callback_dll}"\n'
+                             '@exit /b %errorlevel%\n', encoding='utf-8')
+            subprocess.run(['cmd.exe', '/d', '/c', str(batch)], cwd=temp, check=True)
+            print(lang + ' callback differential: ', end='', flush=True)
+            subprocess.run([sys.executable, '-I', '-B', str(HERE / 'callback_differential.py'), str(callback_dll)], check=True)
             dll = Path(temp) / ('model-' + lang.replace('+', 'p') + '.dll')
             batch.write_text(f'@call "{args.vcvars}" >nul\n@if errorlevel 1 exit /b 1\n'
                              f'@cl /nologo /W4 /LD {flags} "{HERE / "model.c"}" "{HERE / "bridge.c"}" /Fe:"{dll}"\n'
