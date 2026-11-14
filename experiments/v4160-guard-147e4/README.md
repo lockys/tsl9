@@ -18,6 +18,7 @@ python -I -B experiments/v4160-guard-147e4/ingress_loop_wrap.py
 python -I -B experiments/v4160-guard-147e4/ingress_argument_provenance.py
 python -I -B experiments/v4160-guard-147e4/clock_wrapper_81b0.py
 python -I -B experiments/v4160-guard-147e4/resident_clock_candidates.py
+python -I -B experiments/v4160-guard-147e4/resident_ingress_composition.py
 python -I -B experiments/v4160-guard-147e4/resident_clock_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-guard-147e4/clock_gap_composition.py
 python -I -B experiments/v4160-guard-147e4/clock_gap_start_composition.py
@@ -67,6 +68,8 @@ python -I -B experiments/v4160-guard-147e4/ingress_store_differential.py --vcvar
 `clock_gap_model.c` 是時間差讀寫事件的 C 語意投影；`clock_gap_differential.py` 在 C11 與 C++17 各比較 458,827 組原始指令固定投影，並拒絕門檻、減法方向及位址三種變造。假定讀寫成功、輸入 prior 為當次讀取值；不代表原位址逐位元組相同或實機驗證。
 
 `clock_gap_composition.py` 分段組合時鐘包裝與 `0x8908` 的時間差判斷：以 RV32 無號差值大於 299 決定是否清除 `gp+156`，並寫入 `gp+160`。262,144 個差值案例及 26 個位元組變造通過；9 個合成見證中，連續 resident 輸入使包裝值由 `0x0fffffff` 跳至 0，無號差值 `0xf0000001` 觸發清除。這不代表 resident 實際遞增或實機會發生，亦假設堆疊及存取正常。
+
+`resident_ingress_composition.py` 條件式串接兩份參考 resident 投影、APP 時鐘包裝、時間差清除與狀態零入口，每份 65,536 個合成組合；檢查 299/300 邊界及 `0x55`／非 `0x55`。中間控制流與非零輸入長度是額外假設，並假設候選就是實機 resident（尚未證實）；不是連續 CPU 或硬體驗證。缺少任一候選會 SKIP，全部缺少則失敗。
 
 `resident_clock_model.c` 建立候選時鐘函式的受限 C 語意投影；`resident_clock_differential.py` 對兩份 carrier 分別以 C11、C++17 各比對 262,144 案，拒絕三種語意變造。測試至少需要一份本地 carrier；缺少的候選各自 SKIP，全部缺少則明確失敗而非聲稱通過。這些參考 carrier 不在 main，非實機已安裝 ROM 證明。
 
