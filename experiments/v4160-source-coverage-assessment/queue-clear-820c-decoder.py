@@ -3,7 +3,10 @@
 import argparse,importlib.util
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1];MASK=0xffffffff
-s=importlib.util.spec_from_file_location('composition',HERE/'record-counter-clear-provider-alias.py');composition=importlib.util.module_from_spec(s);s.loader.exec_module(composition)
+s=importlib.util.spec_from_file_location('model',HERE/'record-counter-107d8.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+PROVIDER=bytes.fromhex('894763e7a7009387010caa97a38007008280')
+def validate(image):
+ m.validate(image);m.need(image[0x20c:0x21e]==PROVIDER,'queue-clear bytes')
 def execute(code,index,gp):
  r=[0]*32;r[10]=index;r[3]=gp;pc=0x820c;events=[]
  for _ in range(10):
@@ -23,12 +26,12 @@ def execute(code,index,gp):
   else:raise ValueError(f'unsupported instruction {pc:x}')
  raise ValueError('step limit')
 def main():
- p=argparse.ArgumentParser();p.add_argument('--root',type=Path,default=ROOT);image=(p.parse_args().root/composition.m.BIN).read_bytes();composition.validate(image);code={0x820c+i:b for i,b in enumerate(composition.PROVIDER)}
+ p=argparse.ArgumentParser();p.add_argument('--root',type=Path,default=ROOT);image=(p.parse_args().root/m.BIN).read_bytes();validate(image);code={0x820c+i:b for i,b in enumerate(PROVIDER)}
  count=0
  for index in (*range(65536),0x7fffffff,0x80000000,0xfffffffe,0xffffffff):
   for gp in (0,0x20004000,0xffffffff):
    ret,events=execute(code,index,gp);expected=[('store8',(gp+193+index)&MASK,0)] if index<=2 else []
-   composition.m.need((ret,events)==(index,expected),'decoder mismatch');count+=1
+   m.need((ret,events)==(index,expected),'decoder mismatch');count+=1
  print(f'PASS: {count} decoded queue-clear cases against projection, including wrap and unsigned boundaries')
  print('LIMIT: compressed opcodes fixed, bounded decoder, successful accesses; not target CPU, ABI, concurrency or hardware proof')
 if __name__=='__main__':main()
