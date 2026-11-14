@@ -6,6 +6,9 @@
 
 ```text
 python -I -B experiments/v4160-guard-147e4/verify.py --vcvars <vcvars64.bat>
+python -I -B experiments/v4160-guard-147e4/composition.py --vcvars <vcvars64.bat>
 ```
+
+`composition.py` 將既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 的前置解碼與本 C 閘門分段串接，C/C++ 各 68,096 組通過；其中長度為 1 的 512 組在該投影中繞過閘門。此為合成穩定記憶體上的邊界重建，並不證明從完整入口可達或 byte 讀取安全。
 
 既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 已檢查相關雙 byte 條件；此處補充獨立 C 投影、完整輸入暫存器及讀取事件。該範圍已有 inline-assembly 片段，並未因此增加正式原位址覆蓋或產出可刷韌體。
