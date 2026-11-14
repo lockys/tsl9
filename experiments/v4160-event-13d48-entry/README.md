@@ -18,6 +18,8 @@
 
 `callee_model.c` 為 callee 的 C 語意投影；`callee_differential.py` 以 C11、C++17 各 133,120 組軌跡比較固定指令表，包括各半字位置的全部 65,536 個值；四種語意變造遭拒。投影把讀取、寫入與呼叫表示為事件，不執行真實記憶體或排程操作。
 
+`callee_composition.py` 將 callee 的實際模型回傳值傳入 caller 投影，再接續紀錄判斷與尾跳；18,000 組合成案例涵蓋返回值與出口的五種組合，其中 8,000 組前後半字不同。這是重建邊界，不是連續 CPU；前後讀值不同必須有中間寫入才能在真實記憶體發生，測試未證明該寫入、排程副作用或執行路徑實際存在。
+
 重要邊界：此模型刻意令呼叫前後的半字不同，證明所檢查的指令**使用 stub 返回後的值**，並非認定真實 callee 一定會修改該欄位。未執行 `0x135e6`、後續分支、真實記憶體存取、競態或硬體，也不表示該路徑實際可達。
 
 ```text
@@ -26,6 +28,7 @@ python -I -B experiments/v4160-event-13d48-entry/paths.py
 python -I -B experiments/v4160-event-13d48-entry/tail.py
 python -I -B experiments/v4160-event-13d48-entry/composition.py
 python -I -B experiments/v4160-event-13d48-entry/callee.py
+python -I -B experiments/v4160-event-13d48-entry/callee_composition.py
 python -I -B experiments/v4160-event-13d48-entry/callee_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/tail_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/path_differential.py --vcvars <vcvars64.bat>
