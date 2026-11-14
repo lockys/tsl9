@@ -13,6 +13,7 @@ python -I -B experiments/v4160-guard-147e4/provider_setup_10032.py
 python -I -B experiments/v4160-guard-147e4/provider_setup_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_dispatch_8a36.py
 python -I -B experiments/v4160-guard-147e4/ingress_checksum_gate.py
+python -I -B experiments/v4160-guard-147e4/ingress_payload_store.py
 ```
 
 `composition.py` 將既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 的前置解碼與本 C 閘門分段串接，C/C++ 各 68,096 組通過；其中長度為 1 的 512 組在該投影中繞過閘門。此為合成穩定記憶體上的邊界重建，並不證明從完整入口可達或 byte 讀取安全。
@@ -28,5 +29,7 @@ python -I -B experiments/v4160-guard-147e4/ingress_checksum_gate.py
 `ingress_dispatch_8a36.py` 解碼原始 `0x8a36–0x8a4c`：在此局部入口成立且讀取成功時，`0x8a48` 呼叫 `0x14056`，其中 `a2=0x2000b9d8` 由 PC-relative 指令形成、與 `gp` 無關；另核對 `0x14068` 是 `s0←a2`。全部 65,536 個長度、3,072 個合成輸入邊界及 22 個位元組變造通過。此為分段靜態與指令投影，未證明 checksum 閘門通過、完整入口可達或中間狀態無變化。
 
 `ingress_checksum_gate.py` 解碼緊接此前的 `0x8a2a–0x8a36`：`a4 != s10` 時跳過 dispatch 且不讀 checksum；相等時讀取 `gp+165` 的 byte，再與完整 32 位元 `a5` 比較，相等才到 `0x8a36`。65,536 個 byte 配對、4,096 個合成邊界與 12 個指令位元組變造通過；`a5` 的來源、局部入口可達性、讀取成功及實機行為不由此證明。
+
+`ingress_payload_store.py` 從原始 `0x8a02` 解碼 payload 寫入：若輸入 index 無號大於 1039，跳至 `0x8a4c` 且不寫；否則依序寫入 `gp+138` 的遞增半字及 `0x2000b9d8+index` 的資料 byte。窮舉 65,536 個 index、105 個邊界與 30 個位元組變造；在此局部投影中，payload 寫入範圍為 `[0x2000b9d8,0x2000bde8)`。這不是完整封包路徑、物件邊界或硬體驗證。
 
 既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 已檢查相關雙 byte 條件；此處補充獨立 C 投影、完整輸入暫存器及讀取事件。該範圍已有 inline-assembly 片段，並未因此增加正式原位址覆蓋或產出可刷韌體。
