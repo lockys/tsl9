@@ -6,4 +6,6 @@
 python -I -B experiments/v4160-epilogue-original-proof/verify.py --tool-dir <Android-NDK-LLVM-bin>
 ```
 
+`python -B experiments/v4160-epilogue-original-proof/semantics.py` 額外以有限 RV32C 解碼器執行原始 bytes，在 10,000 組合成暫存器與成功的對齊記憶體讀取下檢查還原 `ra/s0–s3` 的順序、其餘暫存器、`sp + 192`（含 RV32 環繞）與返回目標，並測試四種指令變造。解碼器與預期結果皆為自製，不涵蓋 trap、中斷或硬體。
+
 此片段原本即存在，並非新還原的 C。它是依賴周邊 192-byte stack frame 的內嵌組語函式尾段，不可視為獨立可呼叫函式。這是局部 object 與原始 BIN 的直接比對，不變更正式 original-coordinate 覆蓋率政策，也不證明連結影像、路徑可達、ABI、功能或實機安全。
