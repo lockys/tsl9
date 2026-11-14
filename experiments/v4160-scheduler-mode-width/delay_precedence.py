@@ -10,7 +10,7 @@ HERE=Path(__file__).resolve().parent
 
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path); mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod); return mod
-z=load('z',HERE/'zero_delay_scan.py'); m=load('m',HERE/'match_scan.py'); ins=load('ins',HERE/'zero_delay_insert.py'); upd=load('upd',HERE/'match_update.py')
+z=load('z',HERE/'zero_delay_scan.py'); m=load('m',HERE/'match_scan.py'); ins=load('ins',HERE/'zero_delay_insert.py'); upd=load('upd',HERE/'match_update.py'); setup=load('setup',HERE/'setup.py')
 
 
 def branch(image,delay):
@@ -43,7 +43,7 @@ def main():
         count+=1
     # Full zero-delay table falls into general callback scan, not direct failure.
     words=[0xabcdef01]*15; words[14]=0x1333c
-    if z.scan(image,words)[0]!=0x9188 or m.scan(image,words,0x1333c)[:2]!=(0x91a2,14): raise ValueError('full fallback mismatch')
+    if z.scan(image,words)[0]!=0x9188 or setup.run(image,0x1333c,0x100,0,0x12345678)!=(0x1333c,0x100,z.BASE,0,0x12345678,z.BASE) or m.scan(image,words,0x1333c)[:2]!=(0x91a2,14): raise ValueError('full fallback mismatch')
     # Corrupt condition/register and target separately.
     for offset,mask in ((0,0x80),(1,0x20),(0,0x04)):
         bad=bytearray(image); bad[0x913a-0x8000+offset]^=mask
@@ -51,7 +51,7 @@ def main():
         except ValueError: continue
         raise ValueError('branch mutant accepted')
     print(f'PASS: {count} mixed occupancy tables choose free slot for zero delay, existing match for nonzero delay')
-    print('PASS: full zero-delay scan reaches fallback; assumed setup then finds existing callback; 3 branch mutations rejected')
+    print('PASS: full zero-delay scan, bounded general setup, and existing callback match; 3 branch mutations rejected')
     print('Independent synthetic projections, stable memory and normal reads assumed; no provider or hardware execution.')
 
 if __name__=='__main__': main()
