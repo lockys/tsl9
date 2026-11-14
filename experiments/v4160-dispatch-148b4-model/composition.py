@@ -68,11 +68,13 @@ def main():
     # Mixed synthetic traces cover the low-value store and all classifier routes.
     rng = random.Random(0x148de)
     route_counts = [0, 0, 0, 0]  # low, first mask, second mask, neither
-    for sequence in range(128):
+    for sequence in range(129):
+        steps = 1024 if sequence == 128 else 32
+        bound = 256 if sequence == 128 else 32
         state = cont.Regs(2047, 0, 0, 0, 0x10000, 0x2000, 0, 0)
         a4 = a5 = 0
-        for i in range(32):
-            if dll.run_gate(state.a2, 32) != 0x148b4:
+        for i in range(steps):
+            if dll.run_gate(state.a2, bound) != 0x148b4:
                 raise ValueError(f'mixed sequence {sequence}: premature gate exit')
             # Force each route while varying all non-routing data bits.
             kind = (sequence + i) % 4
@@ -83,7 +85,7 @@ def main():
             expected1 = cont.machine.run(w1, [getattr(state, n) for n in cont.NAMES], loaded)
             r1 = cont.Result(); dll.run_step(ctypes.byref(state), loaded, ctypes.byref(r1))
             actual1 = (tuple(getattr(r1.r, n) for n in cont.NAMES), r1.pc, r1.read_addr, r1.write_addr, r1.write_value, r1.wrote)
-            if actual1 != expected1 or r1.read_addr != 0x10000 + 2 * (i + 1):
+            if actual1 != expected1 or r1.read_addr != 0x10000 + 2 * ((i & 255) + 1):
                 raise ValueError(f'mixed sequence {sequence} continuation {i}')
             state = r1.r
             if kind == 0:
@@ -101,9 +103,11 @@ def main():
                 state.a2, state.t1, state.t3 = r2.r.a2, r2.r.t1, r2.r.t3
                 a4, a5 = r2.r.a4, r2.r.a5
             route_counts[kind] += 1
-        if dll.run_gate(state.a2, 32) != 0x14892 or (state.a3, a4, a5) != (8, 8, 8):
+        expected_gate = 0x148b4 if sequence == 128 else 0x14892
+        expected_counters = (0, 0, 0) if sequence == 128 else (8, 8, 8)
+        if dll.run_gate(state.a2, bound) != expected_gate or (state.a3, a4, a5) != expected_counters:
             raise ValueError(f'mixed sequence {sequence}: bad final counters')
-    if route_counts != [1024] * 4:
+    if route_counts != [1280] * 4:
         raise ValueError(f'missing mixed routes: {route_counts}')
-    print('PASS: nine-step conditional predecessor witness and 128 mixed 32-step traces (1024 per route)')
+    print('PASS: nine-step witness, 128 mixed traces, and 1024-step bound-256 counter wrap')
 if __name__ == '__main__': main()
