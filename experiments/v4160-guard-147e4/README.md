@@ -24,6 +24,7 @@ python -I -B experiments/v4160-guard-147e4/clock_gap_composition.py
 python -I -B experiments/v4160-guard-147e4/clock_gap_start_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_second_byte.py
 python -I -B experiments/v4160-guard-147e4/ingress_third_byte.py
+python -I -B experiments/v4160-guard-147e4/ingress_length_high.py
 python -I -B experiments/v4160-guard-147e4/ingress_command_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-guard-147e4/ingress_prefix_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-guard-147e4/clock_gap_differential.py --vcvars <vcvars64.bat>
@@ -63,6 +64,8 @@ python -I -B experiments/v4160-guard-147e4/ingress_store_differential.py --vcvar
 `ingress_s11_provenance.py` 解碼 `0x8934` 的 `s11=gp+142`，若跨區段 `gp` 與 `s11` 保持不變，長度半字的兩 byte 相對於 counter `gp+138` 的兩 byte 偏移分別為 4、5 與 0、1，即使位址以 32 位元環繞也不重疊。65,536 個 gp、8 個環繞邊界、65,536 個計數／長度組合與四個位元組變造通過；這是分段投影，不證明暫存器穩定或實機行為。
 
 `ingress_loop_provenance.py` 對 `0x8938` 的局部迴圈檢查與 `0x8962–0x896a` 輸入讀取解碼，再分段接續狀態選擇；由 `0x8934` 已設定 `s11` 的條件出發，該次直接路徑到 `0x89cc` 沒有改寫 `gp` 或 `s11`。65,536 個索引、450 個邊界與 18 個位元組變造通過，包含最佳化模式；不涵蓋先前迴圈、非同步改寫、trap 或實機。
+
+`ingress_length_high.py` 固定指令投影狀態 3：依序寫 state=4、將輸入 byte 左移 8 位寫入 `gp+142` 半字，然後讀 checksum、寫兩者和的低 byte。65,536 byte/checksum、256 狀態、4 個合成別名邊界及 32 個 byte 變造通過；checksum 讀值取自前述寫入之後。未模擬未對齊異常，亦不證別名可達或實機行為。
 
 `ingress_command_model.c` 建立狀態 2 處理的 C 事件投影；`ingress_command_differential.py` C11/C++17 各 77,056 次與原始固定指令投影比較，拒絕四種語意變造，涵蓋 byte 組合、位址環繞與合成讀寫別名。呼叫者提供前兩次寫入之後的讀取值；並非 byte-exact 或實機證據。
 
