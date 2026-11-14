@@ -45,7 +45,13 @@ def main():
         before,after,bpc,apc=run(image,0x2000bfb5,bytes((255,255,0,value)))
         expected_pc=0x14812 if value==0 else 0x1482e if value==0x10 else 0x14838 if value==0x20 else 0x14848
         if (before,after,bpc,apc)!=(value<<8,0,expected_pc,0x14812): raise ValueError('high-byte alias mismatch')
-    print('PASS: 512 low/high-byte alias cases and disjoint control; 0x0001 -> 0x0000 changes precheck 0x14848 -> 0x14812')
+    # This is the payload address emitted by the ingress C projection; this
+    # calculation alone does not prove the caller actually followed that path.
+    for value in range(65536):
+        before,after,bpc,apc=run(image,0x2000b9d8,bytes((255,255,value&255,value>>8)))
+        expected_pc=0x14812 if value==0 else 0x1482e if value==0x1000 else 0x14838 if value==0x2000 else 0x14848
+        if (before,after,bpc,apc)!=(value,value,expected_pc,expected_pc): raise ValueError('fixed-buffer disjoint mismatch')
+    print('PASS: 512 low/high-byte alias cases, 65536 fixed-buffer disjoint cases; 0x0001 -> 0x0000 changes precheck 0x14848 -> 0x14812')
     print('Conditional synthetic memory only; callback callees are stubs, no device reachability claim.')
 
 if __name__=='__main__': main()
