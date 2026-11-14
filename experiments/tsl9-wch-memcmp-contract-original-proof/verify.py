@@ -46,12 +46,24 @@ def operands(code,offset):
     if word==0x0000100f: return ('fence.i',)
     raise ValueError('unknown operand encoding')
 
+COMPRESSED={20:('li',15,0),32:('li',10,1),34:('jr',1),36:('addi',15,1),68:('li',10,0),70:('jr',1)}
+
+def compressed_operands(code,offset):
+    h=int.from_bytes(code[offset:offset+2],'little'); q=h&3; funct=h>>13; rd=(h>>7)&31
+    if q==1 and funct in (0,2) and rd!=0:
+        imm=sx(((h>>12&1)<<5)|((h>>2)&31),6)
+        return ('addi' if funct==0 else 'li',rd,imm)
+    if q==2 and funct==4 and (h>>12&1)==0 and rd!=0 and ((h>>2)&31)==0: return ('jr',rd)
+    raise ValueError('unknown compressed operand encoding')
+
 def verify(code):
     if len(code)!=72: raise ValueError('slice size')
     for offset,expected in BRANCHES.items():
         if branch(code,offset)!=expected: raise ValueError(f'branch mismatch at {offset}')
     for offset,expected in OPERANDS.items():
         if operands(code,offset)!=expected: raise ValueError(f'operand mismatch at {offset}')
+    for offset,expected in COMPRESSED.items():
+        if compressed_operands(code,offset)!=expected: raise ValueError(f'compressed operand mismatch at {offset}')
     cursor=0
     for offset,size,raw in LEDGER:
         if offset!=cursor or code[offset:offset+size]!=bytes.fromhex(raw): raise ValueError(f'ledger mismatch at {offset}')
@@ -90,7 +102,14 @@ def main():
             if decoded!=OPERANDS[offset]: raise ValueError('operand mismatch')
         except ValueError: continue
         raise ValueError(f'operand mutation missed {offset}')
-    print(f'PASS: {len(LEDGER)} contiguous instructions; {len(BRANCHES)} decoded branches; {len(OPERANDS)} decoded operands; all mutations rejected')
+    for offset in COMPRESSED:
+        bad=bytearray(RAW); bad[offset]^=4
+        try:
+            decoded=compressed_operands(bad,offset)
+            if decoded!=COMPRESSED[offset]: raise ValueError('compressed operand mismatch')
+        except ValueError: continue
+        raise ValueError(f'compressed operand mutation missed {offset}')
+    print(f'PASS: {len(LEDGER)} contiguous instructions; {len(BRANCHES)} decoded branches; {len(OPERANDS)} RV32 and {len(COMPRESSED)} compressed operands; all mutations rejected')
     print('Candidate carrier bytes only: Xwchc, installed ROM, ABI, concurrency and hardware not proved.')
 
 if __name__=='__main__': main()
