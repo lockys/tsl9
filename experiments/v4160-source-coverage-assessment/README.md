@@ -12,7 +12,7 @@
 - `verify-overlay.py`：兩種語言的暫存診斷 ELF 各 6,267 sections，73,672 個已選 bytes 與各自既有基準一致；strict link 仍有七個未定義符號，沒有 `PT_LOAD`。符號與一個合成 consumer relocation 解析檢查通過；目標突變和重疊被拒絕。
 - 該 73,672 bytes 與原始 BIN 尚有 93 bytes 不同，第一個位址是 `0x8a7f`。因此不是完整逐 byte 原廠影像，也不是可刷韌體。
 
-以固定 SHA 的原 BIN 獨立解包五個 little-endian signed 值並加 `0x1a6a4`，確認上述五個目標；以 `0x1a6a0` 當基址則每個結果都少 4 bytes，不可混用。此前本紀錄曾誤寫為 `0x1a6a0`，現已更正。
+以固定 SHA 的原 BIN 獨立解包五個 little-endian signed 值並加 `0x1a6a4`，確認上述五個目標；以 `0x1a6a0` 當基址則每個結果都少 4 bytes，不可混用。此前本紀錄曾誤寫為 `0x1a6a0`，現已更正。`python -I -B experiments/v4160-source-coverage-assessment/verify_table.py` 可在具有固定原 BIN 的 checkout 重播此檢查，並拒絕錯誤基址、20 個單 byte 變造及兩種長度錯誤。
 
 正式整合還須共同更新來源清單與 provenance hash、`src/compact-layout.json` 的 section mapping、相關封存及下游 section-count 檢查，並重新驗證實際正式 build，而不是只重連暫存 ELF。原本 6,266 sections 拆為兩個 owner 時預期 6,267，但必須由實際產物確認；不能單純改固定值使檢查通過。
 
