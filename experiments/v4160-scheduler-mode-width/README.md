@@ -52,6 +52,8 @@
 
 `data_callback_model.c` 為上述 callback 的受限 C 語意投影；`data_callback_differential.py` 以 C11 與 C++17 各比較 65,536 個合成案例，檢查讀寫順序、堆疊與尾跳，並拒絕四個語意變造。這不是逐 byte 重建，也不驗證 provider 的副作用或實機。
 
+`data_callback_table_composition.py` 串接 callback 與兩次 `0x90b0` 表格投影，依序搜尋 `0xb254`、`0xb29a`，將第一次選中項目的清除結果帶入第二次；5,241 組合成案例涵蓋首個相符項優先及未命中。兩次呼叫之間重建狀態，假設 provider 不修改表格、gp 或已儲存的返回位址，不代表連續 CPU 執行或實機。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -74,6 +76,7 @@ python -I -B experiments/v4160-scheduler-mode-width/data_delay_entry.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_composition.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_callback.py
 python -I -B experiments/v4160-scheduler-mode-width/data_callback_differential.py --vcvars <vcvars64.bat>
+python -I -B experiments/v4160-scheduler-mode-width/data_callback_table_composition.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/full_exit_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit.py
