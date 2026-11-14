@@ -13,6 +13,7 @@ python -I -B experiments/v4160-guard-147e4/provider_setup_10032.py
 python -I -B experiments/v4160-guard-147e4/provider_setup_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_dispatch_8a36.py
 python -I -B experiments/v4160-guard-147e4/ingress_s11_provenance.py
+python -I -B experiments/v4160-guard-147e4/ingress_loop_provenance.py
 python -I -B experiments/v4160-guard-147e4/ingress_a5_provenance.py
 python -I -B experiments/v4160-guard-147e4/ingress_provenance_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_length_initialize.py
@@ -47,6 +48,8 @@ python -I -B experiments/v4160-guard-147e4/ingress_store_differential.py --vcvar
 `ingress_dispatch_8a36.py` 解碼原始 `0x8a36–0x8a4c`：在此局部入口成立且讀取成功時，`0x8a48` 呼叫 `0x14056`，其中 `a2=0x2000b9d8` 由 PC-relative 指令形成、與 `gp` 無關；另核對 `0x14068` 是 `s0←a2`。全部 65,536 個長度、3,072 個合成輸入邊界及 22 個位元組變造通過。此為分段靜態與指令投影，未證明 checksum 閘門通過、完整入口可達或中間狀態無變化。
 
 `ingress_s11_provenance.py` 解碼 `0x8934` 的 `s11=gp+142`，若跨區段 `gp` 與 `s11` 保持不變，長度半字的兩 byte 相對於 counter `gp+138` 的兩 byte 偏移分別為 4、5 與 0、1，即使位址以 32 位元環繞也不重疊。65,536 個 gp、8 個環繞邊界、65,536 個計數／長度組合與四個位元組變造通過；這是分段投影，不證明暫存器穩定或實機行為。
+
+`ingress_loop_provenance.py` 對 `0x8938` 的局部迴圈檢查與 `0x8962–0x896a` 輸入讀取解碼，再分段接續狀態選擇；由 `0x8934` 已設定 `s11` 的條件出發，該次直接路徑到 `0x89cc` 沒有改寫 `gp` 或 `s11`。65,536 個索引、450 個邊界與 18 個位元組變造通過，包含最佳化模式；不涵蓋先前迴圈、非同步改寫、trap 或實機。
 
 `ingress_a5_provenance.py` 追蹤 `0x896a` 的 LBU 與後續狀態選擇，條件式證明透過該局部路徑到 `0x89cc` 時 `a5` 是零延伸 byte；65,536 個狀態／byte、54 個邊界及 22 個位元組變造通過。`ingress_provenance_composition.py` 分段串接長度初始化與選路：2,048 組解碼對照與 16,777,216 組算術配對表明此路徑下完整結果等於儲存的半字，因此先前高位 `a5` 的合成反例不能由此局部路徑到達；其他入口或中斷尚未排除。假設讀寫成功及區段間暫存器穩定，不代表完整執行或硬體驗證。
 
