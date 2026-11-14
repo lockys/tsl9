@@ -16,6 +16,8 @@
 
 `zero_delay_scan.py` 驗證零延遲時先掃 15 個槽位：32,768 種佔用組合與 8 種指令變造；若全滿會落到一般路徑，並非直接證明返回失敗。`zero_delay_insert.py` 再以 10,000 組合成軌跡接續首個空槽，記錄 callback word、零 mode byte、參數 word 寫入及從 `[0x40050]` 載入尾跳目標；21 種指令變造被拒。堆疊與其他讀取值由測試直接提供，未模擬記憶體別名、provider 或硬體。
 
+`zero_delay_model.c` 將零延遲插入後的明示事件、保存暫存器與尾跳參數還原為 C 投影。`zero_delay_differential.py` 各以 C11/C++17 比對 30,000 個合成軌跡，含堆疊指標模 2³² 環繞，並拒絕四種 C 語意變造；讀取值獨立提供，不模擬別名或 trap。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -25,6 +27,7 @@ python -I -B experiments/v4160-scheduler-mode-width/match_scan.py
 python -I -B experiments/v4160-scheduler-mode-width/match_update.py
 python -I -B experiments/v4160-scheduler-mode-width/zero_delay_scan.py
 python -I -B experiments/v4160-scheduler-mode-width/zero_delay_insert.py
+python -I -B experiments/v4160-scheduler-mode-width/zero_delay_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/match_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/differential.py --vcvars <vcvars64.bat>
 ```
