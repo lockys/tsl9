@@ -4,9 +4,12 @@
 
 `model.c` 另提供 C 語意投影；`differential.py` 以 C11、C++17 各 131,072 個案例與原始指令解碼結果比對，再檢查六個 RV32 堆疊位址算術邊界，以及分支、位址兩個語意變造。部分邊界刻意使用未對齊的合成堆疊，只測數值環繞，不表示實際存取成功。
 
+`paths.py` 接續第一個條件分支，以固定指令表解讀至 `0x13d8a`、`0x13da2` 或直接返回。524,288 個合成案例覆蓋兩個半字各為 sentinel／非 sentinel、兩個 byte 各 256 值及兩個回傳值，檢查依路徑短路的讀取順序、返回位址和堆疊；15 個指令編碼變造均被拒絕。每次讀取的值作為獨立輸入，不假設同時取得快照。此固定表不是通用 RV32 解碼器。
+
 重要邊界：此模型刻意令呼叫前後的半字不同，證明所檢查的指令**使用 stub 返回後的值**，並非認定真實 callee 一定會修改該欄位。未執行 `0x135e6`、後續分支、真實記憶體存取、競態或硬體，也不表示該路徑實際可達。
 
 ```text
 python -I -B experiments/v4160-event-13d48-entry/verify.py
+python -I -B experiments/v4160-event-13d48-entry/paths.py
 python -I -B experiments/v4160-event-13d48-entry/differential.py --vcvars <vcvars64.bat>
 ```
