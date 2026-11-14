@@ -11,6 +11,7 @@ python -I -B experiments/v4160-guard-147e4/success_path.py --vcvars <vcvars64.ba
 python -I -B experiments/v4160-guard-147e4/alias_witness.py
 python -I -B experiments/v4160-guard-147e4/provider_setup_10032.py
 python -I -B experiments/v4160-guard-147e4/provider_setup_composition.py
+python -I -B experiments/v4160-guard-147e4/ingress_dispatch_8a36.py
 ```
 
 `composition.py` 將既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 的前置解碼與本 C 閘門分段串接，C/C++ 各 68,096 組通過；其中長度為 1 的 512 組在該投影中繞過閘門。此為合成穩定記憶體上的邊界重建，並不證明從完整入口可達或 byte 讀取安全。
@@ -22,5 +23,7 @@ python -I -B experiments/v4160-guard-147e4/provider_setup_composition.py
 `provider_setup_10032.py` 解碼 `0x1070e` 呼叫與 `0x10032–0x10044` 的六條指令：讀取 `[0x40048]`，以 `(gp+300, 0, 3)` 為參數、保留返回位址尾跳至指標（清除目標最低位）。測試涵蓋 65,536 個 gp 值、75 個邊界組合與 18 個逐 byte 變造；未執行 provider，不能推論其清除記憶體或會返回。該段已在既有 state-access 原始位址驗證中，不是新增正式覆蓋。
 
 `provider_setup_composition.py` 將此邊界與 `0x1070a` 的替身投影分段串接，16,396 組通過；首次與後續對 `0x40048` 的讀取可各自提供不同值，不能預設相同。假設 `gp=0x2000be8c` 時兩次 provider 的目的位址算術上均為 `0x2000bfb8`，但未確認實際 `gp`、provider 副作用或其返回。
+
+`ingress_dispatch_8a36.py` 解碼原始 `0x8a36–0x8a4c`：在此局部入口成立且讀取成功時，`0x8a48` 呼叫 `0x14056`，其中 `a2=0x2000b9d8` 由 PC-relative 指令形成、與 `gp` 無關；另核對 `0x14068` 是 `s0←a2`。全部 65,536 個長度、3,072 個合成輸入邊界及 22 個位元組變造通過。此為分段靜態與指令投影，未證明 checksum 閘門通過、完整入口可達或中間狀態無變化。
 
 既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 已檢查相關雙 byte 條件；此處補充獨立 C 投影、完整輸入暫存器及讀取事件。該範圍已有 inline-assembly 片段，並未因此增加正式原位址覆蓋或產出可刷韌體。
