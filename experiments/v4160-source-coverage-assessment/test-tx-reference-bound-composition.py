@@ -23,10 +23,11 @@ class Tests(unittest.TestCase):
                 changed=bytearray(self.ref);changed[pc-0x40000+i]^=1
                 with self.subTest(pc=pc,i=i),self.assertRaises(ValueError):c.ledger.validate(changed)
     def test_copy_window_mutations_and_identity(self):
+        c.copy_code(self.app)
         for pc,h in c.m.WINDOWS:
-            b=bytes.fromhex(h);self.assertEqual(self.app[pc-0x8000:pc-0x8000+len(b)],b)
-            for i in range(len(b)):
-                x=bytearray(b);x[i]^=1;self.assertNotEqual(bytes(x),b)
+            for i in range(len(bytes.fromhex(h))):
+                altered=bytearray(self.app);altered[pc-0x8000+i]^=1
+                with self.subTest(pc=pc,i=i),self.assertRaises(ValueError):c.copy_code(altered)
         for image in (self.app,self.ref):
             altered=bytearray(image);altered[-1]^=1;self.assertNotEqual(hashlib.sha256(altered).digest(),hashlib.sha256(image).digest())
 if __name__=='__main__':unittest.main()

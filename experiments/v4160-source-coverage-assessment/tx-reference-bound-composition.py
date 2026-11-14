@@ -7,15 +7,19 @@ def load(name,file):
     spec=importlib.util.spec_from_file_location(name,HERE/file);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
 entry=load('entry','tx-entry-length-guard.py');ledger=load('ledger','tx-reference-ccc-s0.py');mach=load('mach','tx-copy-machine.py');m=mach.m
 
+def copy_code(image):
+    code={}
+    for pc,h in m.WINDOWS:
+        b=bytes.fromhex(h);entry.need(image[pc-0x8000:pc-0x8000+len(b)]==b,'copy window');code.update({pc+i:v for i,v in enumerate(b)})
+    return code
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--root',type=Path,default=ROOT);root=p.parse_args().root
     image=(root/entry.BIN).read_bytes();entry.need(len(image)==76800 and hashlib.sha256(image).hexdigest()==entry.SHA,'app identity');entry.decode(image[0xa56:0xa74])
     path=root/ledger.refmod.REF
     if not path.exists():raise SystemExit('SKIP (nonzero): reference carrier unavailable')
     ref=path.read_bytes();entry.need(hashlib.sha256(ref).hexdigest()==ledger.refmod.SHA,'reference identity');ledger.validate(ref)
-    code={}
-    for pc,h in m.WINDOWS:
-        b=bytes.fromhex(h);entry.need(image[pc-0x8000:pc-0x8000+len(b)]==b,'copy window');code.update({pc+i:v for i,v in enumerate(b)})
+    code=copy_code(image)
     for length in range(1040):
         # Explicit assumption: actual calls return preserving s0, and nothing
         # between the projections modifies it. Test terminal and last gate.
