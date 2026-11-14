@@ -13,9 +13,11 @@ def signed(n, bits):
     return n - (1 << bits) if n & (1 << (bits - 1)) else n
 
 
-def run(image, a0, a1, seed):
+def run(image, a0, a1, seed, saved=(0x1111, 0x2222, 0x3333)):
+    if len(saved) != 3 or any(not 0 <= x <= MASK for x in saved):
+        raise ValueError('invalid callee-saved inputs')
     r = [0] * 32
-    r[1], r[2], r[8], r[9], r[18], r[10], r[11] = 0x14800, 0x20002000, 0x1111, 0x2222, 0x3333, a0, a1
+    r[1], r[2], r[8], r[9], r[18], r[10], r[11] = 0x14800, 0x20002000, *saved, a0, a1
     stack = {}
     events, writes = [], []
     pc = 0x1070a
@@ -99,6 +101,15 @@ def main():
                     raise ValueError('tail call or callee-saved registers mismatch')
                 if stack != {0x20001ffc: 0x14800}: raise ValueError('stack projection mismatch')
                 if writes != [(0x2000bfb8, 0)]: raise ValueError('0x1061c byte store mismatch')
+    for saved in ((0, 0, 0), (MASK, MASK, MASK), (0x20001000, 0x1234, 20)):
+        for seed in (0, 0x55555555, MASK):
+            _, preserved, _, _ = run(image, 0x1234, 2, seed, saved)
+            if preserved != (0x14800, 0x20002000, *saved):
+                raise ValueError('parameterized callee-saved registers changed')
+    for saved in ((-1, 0, 0), (0, MASK + 1, 0), (0, 0)):
+        try: run(image, 0, 0, 0, saved)
+        except ValueError: pass
+        else: raise ValueError('invalid callee-saved input accepted')
     mutant = bytearray(image)
     mutant[0x1072a - 0x8000] ^= 4
     try: run(mutant, 7, 2, 0)

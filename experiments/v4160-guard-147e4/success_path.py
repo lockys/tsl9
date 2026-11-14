@@ -1,8 +1,9 @@
 """Conditional success-path projection across guard, setter and precheck.
 
-Reconstructed state at segment boundaries; 0x1070a is an unexecuted returning
-stub assumed to preserve s0 and all input bytes. No alias, IRQ, traps, provider
-side effects, whole-dispatcher reachability or hardware are asserted.
+Reconstructed state at segment boundaries; 0x1070a is decoded with returning
+callee stubs that preserve saved registers and do not modify input bytes.
+No alias, IRQ, traps, provider side effects, whole-dispatcher reachability or
+hardware are asserted.
 """
 import argparse
 import ctypes
@@ -16,7 +17,7 @@ HERE=Path(__file__).resolve().parent; OTHER=HERE.parent/'v4160-dispatch-148b4-mo
 
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path); obj=importlib.util.module_from_spec(spec); spec.loader.exec_module(obj); return obj
-prefix=load('prefix',OTHER/'payload_gate.py'); setter=load('setter',OTHER/'state_setter.py'); predecessor=load('predecessor',OTHER/'predecessor.py'); entry=load('entry',OTHER/'entry_provenance.py')
+prefix=load('prefix',OTHER/'payload_gate.py'); setter=load('setter',OTHER/'state_setter.py'); predecessor=load('predecessor',OTHER/'predecessor.py'); entry=load('entry',OTHER/'entry_provenance.py'); callback=load('callback',OTHER/'callback_sequence.py')
 
 
 def worker(dll):
@@ -33,6 +34,10 @@ def worker(dll):
     for first,second,expect in ((handle,handle,[(0x2000c799,2)]),(0,handle,[(0x2000c79d,2)]),(0,1,[])):
         _,writes,regs=setter.run(image,handle,2,first,second)
         if writes!=expect or regs[2:]!=(handle,2): raise ValueError('setter boundary mismatch')
+    for seed in (0,0x55555555,0xffffffff):
+        events,preserved,_,writes=callback.run(image,handle,2,seed,(base,handle,20))
+        if [event[0] for event in events] != [0x10032,0x90b0,0x13572468,0x9af0,0x90b0,0x90b0]: raise ValueError('callback sequence mismatch')
+        if preserved!=(0x14800,0x20002000,base,handle,20) or writes!=[(0x2000bfb8,0)]: raise ValueError('callback boundary mismatch')
     counts={}
     for halfword in range(65536):
         pc,address=predecessor.run(window,halfword,base)
@@ -40,8 +45,8 @@ def worker(dll):
         if pc!=expect or address!=base+2: raise ValueError('halfword precheck mismatch')
         counts[pc]=counts.get(pc,0)+1
     if counts!={0x14812:1,0x1482e:1,0x14838:1,0x14848:65533}: raise ValueError('unexpected precheck totals')
-    print('PASS: guard success, first/second/no matching setter and 65536 subsequent halfword prechecks',flush=True)
-    print('Conditional segment composition only; callback 0x1070a not executed, no reachability or hardware claim.')
+    print('PASS: guard success, three setter outcomes, three 0x1070a traces and 65536 halfword prechecks',flush=True)
+    print('Conditional segment composition only; callback callees are stubs, no reachability or hardware claim.')
 
 
 def main():

@@ -12,6 +12,6 @@ python -I -B experiments/v4160-guard-147e4/success_path.py --vcvars <vcvars64.ba
 
 `composition.py` 將既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 的前置解碼與本 C 閘門分段串接，C/C++ 各 68,096 組通過；其中長度為 1 的 512 組在該投影中繞過閘門。此為合成穩定記憶體上的邊界重建，並不證明從完整入口可達或 byte 讀取安全。
 
-`success_path.py` 額外在合成條件下串接成功閘門、`0x13ba6` 的三種設定結果與 `0x14800` 全 65,536 個半字前置判斷；C/C++ 均通過。這些是分段重建而非連續執行，並假設未執行的 `0x1070a` 正常返回、保留 `s0` 且不修改輸入資料。
+`success_path.py` 額外在合成條件下串接成功閘門、`0x13ba6` 的三種設定結果、三個 `0x1070a` 指令投影，以及 `0x14800` 全 65,536 個半字前置判斷；C/C++ 均通過。這些是分段重建而非連續執行。`0x1070a` 內部呼叫仍以正常返回、保留被呼叫者保存暫存器且不修改輸入資料的替身處理，並假設輸入不與其他寫入重疊。
 
 既有 `experiments/v4160-dispatch-148b4-model/payload_gate.py` 已檢查相關雙 byte 條件；此處補充獨立 C 投影、完整輸入暫存器及讀取事件。該範圍已有 inline-assembly 片段，並未因此增加正式原位址覆蓋或產出可刷韌體。
