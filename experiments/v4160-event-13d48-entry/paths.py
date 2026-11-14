@@ -80,6 +80,23 @@ def main():
                         reached.add(expected_pc)
                         count += 1
     if reached != {0xabcdef00, 0x13da2, 0x13d8a}: raise ValueError('missing exit')
+    # Independently sweep every halfword value in each comparison position.
+    # m0=1 ensures the second halfword is reached regardless of h0.
+    halfword_cases = 0
+    for value in range(65536):
+        for result in (0, 1):
+            for h0, h1 in ((value, 0x1234), (0xfffe, value)):
+                actual = run(image, h0, 1, h1, 0, result, 0x20001000, 0xabcdef00)
+                direct = h1 == 0xfffe
+                expected_reads = [0x2000c796]
+                if h0 != 0xfffe: expected_reads.append(0x2000c799)
+                expected_reads.extend((0x2000c79a,) if direct else (0x2000c79a, 0x2000c79d))
+                expected_pc = 0xabcdef00 if direct else (0x13da2 if result == 0 else 0x13d8a)
+                expected_sp = 0x20001000 if direct else 0x20000ff0
+                expected_ra = 0xabcdef00 if direct else 0x13d50
+                if actual != (expected_pc, result, expected_sp, expected_ra, tuple(expected_reads)):
+                    raise ValueError(f'halfword mismatch h0={h0:#x} h1={h1:#x}')
+                halfword_cases += 1
     # Exercise every allowed encoding by paths, and ensure changed encodings are rejected.
     tests = [(0x1234, 0, 0, 0, 0), (0xfffe, 0, 0xfffe, 0, 0), (0xfffe, 0, 0, 0, 1), (0xfffe, 0, 0, 1, 1)]
     for address, hexop in OPS.items():
@@ -90,7 +107,7 @@ def main():
             except ValueError as e:
                 if str(e).startswith('opcode mismatch'): caught = True; break
         if not caught: raise ValueError(f'mutant not reached/rejected: {address:#x}')
-    print(f'PASS: {count} traces, 3 exits, exact lazy read order, {len(OPS)} opcode mutations rejected')
+    print(f'PASS: {count} byte-combination traces, {halfword_cases} exhaustive halfword traces, 3 exits, exact lazy read order, {len(OPS)} opcode mutations rejected')
     print('Post-call synthetic loads only; callee side effects, concurrency and hardware are not executed.')
 
 

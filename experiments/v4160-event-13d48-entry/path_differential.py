@@ -36,7 +36,16 @@ def worker(dll):
                         expected = [pc, a0, actual_sp, actual_ra, len(reads), *reads] + [0]*(4-len(reads))
                         if list(out) != expected: raise ValueError(f'path model mismatch h0={h0:x} m0={m0} h1={h1:x} m1={m1} result={result}')
                         count += 1
-    print(f'PASS: {count} C model vs fixed-instruction path traces', flush=True)
+    halfword_cases = 0
+    for value in range(65536):
+        for result in (0, 1):
+            for h0, h1 in ((value, 0x1234), (0xfffe, value)):
+                pc, a0, sp, ra, reads = paths.run(image, h0, 1, h1, 0, result, 0x20001000, 0xabcdef00)
+                fn(h0, 1, h1, 0, result, 0x20001000, 0xabcdef00, out)
+                expected = [pc, a0, sp, ra, len(reads), *reads] + [0]*(4-len(reads))
+                if list(out) != expected: raise ValueError(f'path model mismatch halfword={value:#x}')
+                halfword_cases += 1
+    print(f'PASS: {count} byte-combination and {halfword_cases} exhaustive halfword C model traces', flush=True)
 
 
 def main():
