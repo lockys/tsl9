@@ -2,6 +2,7 @@ import argparse
 import hashlib
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 
 HERE = Path(__file__).resolve().parent
@@ -28,7 +29,12 @@ def main():
             subprocess.run(['cmd.exe', '/d', '/c', str(batch)], cwd=temp, check=True)
             print(name + ': ', end='', flush=True)
             subprocess.run([str(exe)], check=True)
-    print('Host projection only; original instruction window is pinned, not executed.')
+            dll = Path(temp) / 'model.dll'
+            batch.write_text(f'@call "{args.vcvars}" >nul\n@if errorlevel 1 exit /b 1\n@cl /nologo /W4 /LD {flags} "{HERE / "model.c"}" /Fe:"{dll}"\n@exit /b %errorlevel%\n', encoding='utf-8')
+            subprocess.run(['cmd.exe', '/d', '/c', str(batch)], cwd=temp, check=True)
+            print(name + ' byte differential: ', end='', flush=True)
+            subprocess.run([sys.executable, '-B', str(HERE / 'differential.py'), str(dll)], check=True)
+    print('Bounded byte decoder and host model; no hardware execution.')
 
 
 if __name__ == '__main__': main()

@@ -1,5 +1,8 @@
 #include <stdint.h>
 #include <stdio.h>
+#ifdef __cplusplus
+extern "C"
+#endif
 int v4160_four_byte_match(const uint8_t input[4], const uint8_t configured[4]);
 int main(void)
 {
