@@ -7,6 +7,6 @@ python -I -B experiments/tsl9-wch-memcmp-contract-original-proof/verify.py
 python -I -B experiments/tsl9-wch-memcmp-contract-original-proof/differential.py --vcvars <vcvars64.bat>
 ```
 
-`differential.py` 將原候選指令的固定 PC 語意投影與既有 C 模型比較：C11、C++17 各 20,000 組隨機合成軌跡，另有 2,304 組完整路徑（全部 byte 值與八個不相等位置及相等情況）和 484 組失敗／觀察上限組合，包含後端拒絕、觀察次數上限及條件式 Xwchc。投影不是通用指令解碼器；當 profile 啟用時假設 `0x2294` 是 `lbu a3,0(a3)`，未啟用時於該指令前停止。
+`differential.py` 將原候選指令的固定 PC 語意投影與既有 C 模型比較：C11、C++17 各 20,000 組隨機合成軌跡，另有 2,304 組完整路徑（全部 byte 值與八個不相等位置及相等情況）和 484 組失敗／觀察上限組合，包含後端拒絕、觀察次數上限及條件式 Xwchc。五種 C 語意變造（返回值、讀取來源、profile 閘門、恢復位置、遞增量）均被差分比較拒絕。投影不是通用指令解碼器；當 profile 啟用時假設 `0x2294` 是 `lbu a3,0(a3)`，未啟用時於該指令前停止。
 
 此檢查不是對 TSL9 實際安裝的 ROM 取樣；`9422` 僅依既有資料紀錄為條件性 Xwchc 指令位元組，並未驗證裝置 ISA 或執行行為。差分測試不證明所有可能情況的 C 模型、ABI、中斷安全或硬體行為。

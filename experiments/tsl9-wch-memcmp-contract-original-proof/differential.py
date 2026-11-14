@@ -8,6 +8,7 @@ import ctypes as C
 import importlib.util
 from pathlib import Path
 import random
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -125,10 +126,25 @@ def main():
     source=ROOT/'experiments/tsl9-wch-memcmp-contract/src/memcmp_contract.c'
     with tempfile.TemporaryDirectory(prefix='tsl9-mc-proof-') as tmp:
         tmp=Path(tmp); batch=tmp/'build.bat'
-        for name,flags in (('C','/TC /std:c11'),('Cpp','/TP /std:c++17')):
-            dll=tmp/(name+'.dll'); batch.write_text(f'@call "{a.vcvars}" >nul\n@if errorlevel 1 exit /b 1\n@cl /nologo /W4 /LD {flags} "{source}" /Fe:"{dll}" /link /EXPORT:mc_init /EXPORT:mc_compare\n@exit /b %errorlevel%\n',encoding='utf8')
+        def build(src,dll,flags):
+            batch.write_text(f'@call "{a.vcvars}" >nul\n@if errorlevel 1 exit /b 1\n@cl /nologo /W4 /LD {flags} "{src}" /Fe:"{dll}" /link /EXPORT:mc_init /EXPORT:mc_compare\n@exit /b %errorlevel%\n',encoding='utf8')
             subprocess.run(['cmd.exe','/d','/c',str(batch)],cwd=tmp,check=True)
+        for name,flags in (('C','/TC /std:c11'),('Cpp','/TP /std:c++17')):
+            dll=tmp/(name+'.dll'); build(source,dll,flags)
             subprocess.run([sys.executable,'-I','-B',str(Path(__file__).resolve()),'--worker',str(dll)],check=True)
+        shutil.copyfile(source.with_name('memcmp_contract.h'),tmp/'memcmp_contract.h')
+        original=source.read_text(encoding='utf8')
+        for name,old,new in (
+            ('equal_return','uint32_t equal = 1,','uint32_t equal = 0,'),
+            ('read_order','src1 + offset, 0, &left','src2 + offset, 0, &left'),
+            ('profile_gate','if (!m->xwchc_profile)','if (m->xwchc_profile)'),
+            ('mismatch_restore','restore_pc = UINT32_C(0x20000482)','restore_pc = UINT32_C(0x2000045e)'),
+            ('increment','++offset;','offset += 2;')):
+            if original.count(old)!=1: raise ValueError(f'ambiguous mutant {name}')
+            mutant=tmp/(name+'.c'); dll=tmp/(name+'.dll'); mutant.write_text(original.replace(old,new),encoding='utf8'); build(mutant,dll,'/TC /std:c11')
+            result=subprocess.run([sys.executable,'-I','-B',str(Path(__file__).resolve()),'--worker',str(dll)],capture_output=True,text=True)
+            if result.returncode==0 or 'projection mismatch' not in result.stderr: raise ValueError(f'mutant not rejected by comparison: {name}\n{result.stderr}')
+            print(f'PASS: {name} mutant rejected by comparison',flush=True)
     print('Conditional candidate-byte semantics; no installed ROM or hardware claim.')
 
 if __name__=='__main__': main()
