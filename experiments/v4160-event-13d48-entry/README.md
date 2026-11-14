@@ -10,12 +10,15 @@
 
 `tail.py` 以固定指令表執行 `0x13d88` 後的三條尾跳路徑：非零結果傳遞 100；零結果在假設 `0x81b0` 正常返回下，以 `T - [gp+344]` 的 32 位無號差比較 34，傳遞 35 或更新該欄位後跳至 `0x13346`。786,468 組合成軌跡涵蓋 34/35 與環繞邊界，23 個指令編碼變造均被拒絕。此處不執行外部函式，不推論數字的單位或實際效果；合成 `gp` 位址環繞也不代表真實有效記憶體。
 
+`tail_model.c` 是尾跳行為的 C 語意投影；`tail_differential.py` 以 C11、C++17 各 786,468 組案例比對指令表軌跡，檢查跳躍目標、已確定的參數、讀寫與呼叫事件、還原的堆疊和返回位址；四個語意變造均被偵測。跳往 `0x13346` 時只有 a0 被視為已確定，其他參數不作聲稱。
+
 重要邊界：此模型刻意令呼叫前後的半字不同，證明所檢查的指令**使用 stub 返回後的值**，並非認定真實 callee 一定會修改該欄位。未執行 `0x135e6`、後續分支、真實記憶體存取、競態或硬體，也不表示該路徑實際可達。
 
 ```text
 python -I -B experiments/v4160-event-13d48-entry/verify.py
 python -I -B experiments/v4160-event-13d48-entry/paths.py
 python -I -B experiments/v4160-event-13d48-entry/tail.py
+python -I -B experiments/v4160-event-13d48-entry/tail_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/path_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/differential.py --vcvars <vcvars64.bat>
 ```
