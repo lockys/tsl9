@@ -12,4 +12,6 @@ python -I -B experiments/v4160-epilogue-original-proof/verify.py --tool-dir <And
 
 另以相同方式比對三段既有暫存連結結果：`[0x140a6,0x140dc)`（54 bytes）、`[0x140dc,0x14122)`（70 bytes）、`[0x1417a,0x141ac)`（50 bytes）。這些片段各自包含需由輔助程式檢查並解析的 relocation；每段的單 byte 變造及邊界均遭拒絕。區間之間仍有未在本測試比對的缺口，不可合計成連續覆蓋。
 
+再獨立驗證既有的四個相鄰 dispatcher 片段 `[0x141d6,0x14230)`、`[0x14230,0x14288)`、`[0x14288,0x142c0)`、`[0x142c0,0x142fc)`，共 294 bytes；各以固定目標地址暫存連結，對照原始 BIN 並逐 byte 變造。這不是把四段實際連成完整 dispatcher，也不證明外部 provider 的實作或行為。
+
 這些片段原本即存在，並非新還原的 C。它是依賴周邊 192-byte stack frame 的內嵌組語函式尾段，不可視為獨立可呼叫函式。這是局部 object 與原始 BIN 的直接比對，不變更正式 original-coordinate 覆蓋率政策，也不證明連結影像、路徑可達、ABI、功能或實機安全。

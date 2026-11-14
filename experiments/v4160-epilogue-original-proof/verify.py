@@ -71,7 +71,11 @@ def main():
             print(f'PASS {mode}: 66 linked entry bytes equal pinned BIN; relocation layout, 66 mutations and 4 boundaries checked')
             fragments = (('compile_more', 0x140a6, 0x140dc),
                          ('compile_ae', 0x140dc, 0x14122),
-                         ('compile_ad', 0x1417a, 0x141ac))
+                         ('compile_ad', 0x1417a, 0x141ac),
+                         ('compile_dispatch', 0x141d6, 0x14230),
+                         ('compile_dispatch2', 0x14230, 0x14288),
+                         ('compile_dispatch3', 0x14288, 0x142c0),
+                         ('compile_dispatch4', 0x142c0, 0x142fc))
             for name, fragment_start, fragment_end in fragments:
                 fragment = tools[name](args.tool_dir, Path(tmp), mode, elf)
                 interval = (fragment_start, fragment_end)
