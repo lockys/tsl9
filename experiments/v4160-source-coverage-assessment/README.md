@@ -2,6 +2,10 @@
 
 這是 2026-11-15 的本機檢查紀錄，不是完整韌體驗收或新的正式來源覆蓋率。原始 decoded APP 為 76,800 bytes，SHA-256 `0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667`。歷史正式收據的 73,538／76,800 是當時的原位址靜態統計，不可直接視為所有後續候選的最新功能完成率。
 
+## 參考 resident provider 限定證據
+
+`filter_reference_providers.py` 檢查兩份本機公開 WCH 參考 carrier 的整檔雜湊、兩個 slot 和條件映射的函式 bytes；V1.31／V1.40 的 `[0x40048]` 與 `[0x4004c]` 分別為 RAM `0x2000039c`、`0x20000332`，兩版的 fill 46 bytes 與 copy 58 bytes 各自相同。每版 106 個 byte 變造均由整檔雜湊拒絕。依既有靜態分析，這些候選在成功執行且參數有效時分別逐 byte 填入與向前複製，並於操作前後存取 `0x4002420c`；重疊時 copy 不是 memmove。詳見 `analysis/resident-copy-reference-2026-10-21/source/README.md` 與 `analysis/v4160-config-lifetime-2026-10-22/memset-review/readme.en.md`。這提供先前清零假設的參考依據，但不能證明 TSL9 已安裝相同 provider、RAM 載入完成、存取成功或無別名；腳本本身不執行 provider。缺少本地參考檔時 SKIP，兩份都缺則失敗。
+
 ## 表格候選
 
 `[0x1a6a4,0x1a6b8)` 是五個相對於表格起點 `0x1a6a4` 的有號 32-bit 值，指向 `0x1452e`、`0x1453e`、`0x1454a`、`0x1473e`、`0x14748`。它目前已在 `[0x1a6a0,0x1a6b8)` 的 opaque owner 內，故將其改成具型別資料即使整合成功，**也不能再算成新增的已選原址 bytes**。前四 bytes 仍未知。
