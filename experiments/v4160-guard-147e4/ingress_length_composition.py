@@ -35,11 +35,22 @@ def main():
         if value!=length or init.get(memory,length_addr,2)!=length or init.get(memory,gp+138,2)!=0: raise ValueError('length mismatch')
         events,_,_=route.run(rc,gp,value)
         for address,size,data in events: init.put(memory,address,size,data)
-        # Continuation at 0x89a8 uses low byte as a5 and checksum as observed after prior writes.
-        loaded=init.get(memory,checksum_addr,1); init.put(memory,checksum_addr,1,(loaded+lower)&255)
+        # Reuse only the pinned 0x89a8 continuation, not the synthetic state-2 prefix.
+        loaded=init.get(memory,checksum_addr,1)
+        pc,checksum_events=high.third.run(common,gp,checksum_addr,lower,loaded)
+        if pc!=0x897e or len(checksum_events)!=4: raise ValueError('checksum path mismatch')
+        for event in checksum_events[2:]:
+            if event[0]=='write': init.put(memory,event[1],event[2],event[3])
         expected_state=6 if length==0 else (5 if length<=1040 else 0)
         if init.get(memory,state_addr,1)!=expected_state: raise ValueError('state mismatch')
         if init.get(memory,checksum_addr,1)!=(command+upper+lower)&255: raise ValueError('checksum mismatch')
+    # Reject a changed continuation before exercising the composition.
+    for address in (0x89a8,0x89ac,0x89ae,0x89b2):
+        altered=dict(common); altered[address]=bytes([common[address][0]^1])+common[address][1:]
+        try: high.third.run(altered,gp,checksum_addr,1,2)
+        except ValueError: continue
+        raise ValueError(f'checksum instruction mutant accepted at {address:#x}')
+    print('PASS: 4 checksum continuation instruction mutations rejected')
     for length in range(65536): check(length,(length*17+3)&255)
     for upper in (0,4,255):
         for lower in range(256):
