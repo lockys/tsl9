@@ -54,6 +54,8 @@
 
 `data_callback_table_composition.py` 串接 callback 與兩次 `0x90b0` 表格投影，依序搜尋 `0xb254`、`0xb29a`，將第一次選中項目的清除結果帶入第二次；5,241 組合成案例涵蓋首個相符項優先及未命中。兩次呼叫之間重建狀態，假設 provider 不修改表格、gp 或已儲存的返回位址，不代表連續 CPU 執行或實機。
 
+`data_callback_clock_composition.py` 將呼叫點寫入 `0x2000bef0` 的 `(clock + delay) mod 2^32` 帶入 callback：即使 delay 非零，若 clock 恰為 `-delay mod 2^32`，該 word 仍為零，callback 的 word 閘門會直接返回。7,168 組邊界案例也測試兩次讀取的 byte 不同時可改變選路；這是假設中間未改寫該 word 的分段投影，未證排程器真的會執行 callback 或 byte 變動會發生。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -77,6 +79,7 @@ python -I -B experiments/v4160-scheduler-mode-width/data_delay_composition.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_callback.py
 python -I -B experiments/v4160-scheduler-mode-width/data_callback_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/data_callback_table_composition.py
+python -I -B experiments/v4160-scheduler-mode-width/data_callback_clock_composition.py
 python -I -B experiments/v4160-scheduler-mode-width/data_delay_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/full_exit_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit.py
