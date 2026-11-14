@@ -40,6 +40,8 @@
 
 `event_tail_composition.py` 以 12,000 組合成案例接續原始 `0x13d88` 事件尾段及排程器片段：各 3,000 組直接分支、命中、插入與表滿。此呼叫點傳入 delay 35 或 100，對應共同換算 56 或 160；片段間重建狀態，假設穩定讀取及 provider 正常返回，不證實際可達或時間單位。
 
+`data_delay_caller.py` 驗證資料選擇的原始呼叫點 `0xb2aa–0xb2f4`：前兩個呼叫均返回零、讀取成功且 clock provider 不修改堆疊等假設下，`[P+96]>>6` 對應 delay `0/60000/300000/600000`，尾跳 `0x9124(0xb254,0,delay,0)`，並將 clock 加 delay 的 32 位環繞結果寫至 `0x2000bef0`。2,048 組含全部 256 byte 值，26 個指令變造被拒；未知呼叫點是否可達、provider 與硬體行為。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -57,6 +59,7 @@ python -I -B experiments/v4160-scheduler-mode-width/scaling_bounds.py
 python -I -B experiments/v4160-scheduler-mode-width/full_zero_fallback.py
 python -I -B experiments/v4160-scheduler-mode-width/full_exit.py
 python -I -B experiments/v4160-scheduler-mode-width/event_tail_composition.py
+python -I -B experiments/v4160-scheduler-mode-width/data_delay_caller.py
 python -I -B experiments/v4160-scheduler-mode-width/full_exit_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit.py
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit_differential.py --vcvars <vcvars64.bat>
