@@ -16,7 +16,7 @@ def run(code, data, configured, length=4, trace=False, state=False):
     memory.update({0x400c+i: v for i, v in enumerate(configured)})
     for i, b in enumerate((0x00, 0x40, 0, 0)):
         memory[0x2054+i] = b
-    reads = []
+    reads, writes = [], []
     def load(address, size):
         reads.append((address, size))
         try:
@@ -28,7 +28,7 @@ def run(code, data, configured, length=4, trace=False, state=False):
         if pc in (0x14098, 0x1411a, 0x1416e):
             result = {0x14098: 'length', 0x1411a: 'mismatch', 0x1416e: 'match'}[pc]
             if state:
-                return result, reads, tuple(x)
+                return result, reads, tuple(x), writes
             return (result, reads) if trace else result  # match stops before outgoing JAL
         off = pc - BASE
         if off < 0 or off + 2 > len(code) or pc & 1: raise ValueError('PC outside window')
@@ -42,7 +42,10 @@ def run(code, data, configured, length=4, trace=False, state=False):
             elif q == 2 and f == 6:  # C.SWSP
                 imm = ((h >> 9 & 15) << 2) | ((h >> 7 & 3) << 6)
                 addr = (x[2] + imm) & MASK
-                for i in range(4): memory[(addr+i) & MASK] = (x[rs] >> (8*i)) & 255
+                for i in range(4):
+                    byte = (x[rs] >> (8*i)) & 255
+                    memory[(addr+i) & MASK] = byte
+                    writes.append(((addr+i) & MASK, byte))
             elif q == 0 and f == 2:  # C.LW
                 dest, src = 8 + (h >> 2 & 7), 8 + (h >> 7 & 7)
                 imm = ((h >> 10 & 7) << 3) | ((h >> 6 & 1) << 2) | ((h >> 5 & 1) << 6)

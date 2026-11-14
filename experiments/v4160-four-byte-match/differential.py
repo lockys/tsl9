@@ -24,11 +24,19 @@ def main():
                 data = bytearray(base)
                 data[i] = value
                 cases.append((bytes(data), configured))
+    for _ in range(4096):
+        config = bytes(rng.choice((fallback[i], rng.randrange(256))) for i in range(4))
+        data = bytearray(rng.choice((config[i], fallback[i])) for i in range(4))
+        if rng.randrange(2):
+            data[rng.randrange(4)] = rng.randrange(256)
+        cases.append((bytes(data), config))
     for _ in range(1000):
         cases.append((rng.randbytes(4), rng.randbytes(4)))
     for index, (data, config) in enumerate(cases):
         c_result = dll.v4160_four_byte_match((byte*4).from_buffer_copy(data), (byte*4).from_buffer_copy(config))
-        machine, reads, registers = run(code, data, config, state=True)
+        machine, reads, registers, writes = run(code, data, config, state=True)
+        if writes != [(0x1030 + i, fallback[i]) for i in range(4)]:
+            raise ValueError(f'scratch write mismatch at {index}: {writes!r}')
         if machine != ('match' if c_result else 'mismatch'):
             raise ValueError(f'differential mismatch at {index}')
         expected_reads = [(0x2054, 4)]
@@ -45,7 +53,8 @@ def main():
         if machine == 'mismatch' and (registers[11], registers[12]) != (168, 0):
             raise ValueError('failure-exit arguments mismatch')
     for length in (0, 1, 3, 5, 255, 0xffffffff):
-        if run(code, fallback, configured, length, trace=True) != ('length', []): raise ValueError('length guard')
+        result, reads, _, writes = run(code, fallback, configured, length, state=True)
+        if result != 'length' or reads or writes: raise ValueError('length guard')
     for pc, expected in ((0x1416e, 0x13e0e), (0x14174, 0x13dd4)):
         word = int.from_bytes(code[pc-0x14122:pc-0x14122+4], 'little')
         if word & 127 != 0x6f or (word >> 7) & 31 != 1:
