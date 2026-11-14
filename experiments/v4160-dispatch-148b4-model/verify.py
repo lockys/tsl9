@@ -29,6 +29,7 @@ def main():
     subprocess.run([sys.executable, '-I', '-B', str(HERE / 'ingress_bound.py')], check=True)
     subprocess.run([sys.executable, '-I', '-B', str(HERE / 'entry_provenance.py')], check=True)
     subprocess.run([sys.executable, '-I', '-B', str(HERE / 'entry_route.py')], check=True)
+    subprocess.run([sys.executable, '-I', '-B', str(HERE / 'connection_gate.py')], check=True)
     with tempfile.TemporaryDirectory(prefix='tsl9-dispatch-model-') as temp:
         for lang, flags in (('C', '/TC /std:c11'), ('C++', '/TP /std:c++17')):
             exe = Path(temp) / ('test-' + lang.replace('+', 'p') + '.exe')
