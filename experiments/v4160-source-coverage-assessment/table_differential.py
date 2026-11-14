@@ -36,11 +36,14 @@ def worker(dll, mutant):
     rng = random.Random(0x41614512)
     for index in range(256):
         if not equal(index, original): raise ValueError('original table mismatch')
+    # A NULL table is valid only here: out-of-range dispatch must not read it.
+    for index in range(5, 256):
+        if fn(index, None) != 0x14098: raise ValueError('unexpected table read or exit')
     for n in range(20000):
         index = rng.randrange(5) if n % 2 == 0 else rng.randrange(5,256)
         table = rng.randbytes(20)
         if not equal(index, table): raise ValueError('synthetic table mismatch')
-    print('PASS: 256 original byte indices and 20000 synthetic table/index cases', flush=True)
+    print('PASS: 256 original byte indices, 251 no-table exits, and 20000 synthetic table/index cases', flush=True)
 
 
 def main():
