@@ -12,12 +12,15 @@
 
 `tail_model.c` 是尾跳行為的 C 語意投影；`tail_differential.py` 以 C11、C++17 各 786,468 組案例比對指令表軌跡，檢查跳躍目標、已確定的參數、讀寫與呼叫事件、還原的堆疊和返回位址；四個語意變造均被偵測。跳往 `0x13346` 時只有 a0 被視為已確定，其他參數不作聲稱。
 
+`composition.py` 以明確重建的邊界狀態串接入口、紀錄分支與尾跳投影，24,000 個合成案例涵蓋直接返回及三種尾跳結果，並檢查跨邊界暫存器、stack、讀取和事件。它重複執行 `0x13d88` 的結果分支，並非連續 CPU 執行；兩個 callee 仍為 stub，亦不涵蓋別名或競態。
+
 重要邊界：此模型刻意令呼叫前後的半字不同，證明所檢查的指令**使用 stub 返回後的值**，並非認定真實 callee 一定會修改該欄位。未執行 `0x135e6`、後續分支、真實記憶體存取、競態或硬體，也不表示該路徑實際可達。
 
 ```text
 python -I -B experiments/v4160-event-13d48-entry/verify.py
 python -I -B experiments/v4160-event-13d48-entry/paths.py
 python -I -B experiments/v4160-event-13d48-entry/tail.py
+python -I -B experiments/v4160-event-13d48-entry/composition.py
 python -I -B experiments/v4160-event-13d48-entry/tail_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/path_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-event-13d48-entry/differential.py --vcvars <vcvars64.bat>
