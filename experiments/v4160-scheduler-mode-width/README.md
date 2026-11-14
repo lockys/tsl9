@@ -28,6 +28,8 @@
 
 `resident_exit_model.c` 另以 C 投影共同尾段的路徑、還原暫存器、讀取順序及呼叫資訊。`resident_exit_differential.py` 各以 C11/C++17 執行 141,072 組比較並拒絕四種語意變造；假設非尾跳 provider 正常返回，不模擬其副作用。
 
+`common.py` 單獨驗證含零延遲的共同換算：先以 32 位環繞乘 1000，再無號除以 625；131,072 組及 8 個指令變造通過。`full_zero_fallback.py` 以 20,000 組合成資料接續「零延遲、表滿、既有 callback 命中」各片段，涵蓋 240 種索引、mode、舊參數與 provider 返回組合；該情況換算延遲為零，但 mode 仍決定正常呼叫或尾跳。片段並非連續 CPU，假設 provider 正常返回、不修改共享狀態且讀取成功。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -39,6 +41,8 @@ python -I -B experiments/v4160-scheduler-mode-width/zero_delay_scan.py
 python -I -B experiments/v4160-scheduler-mode-width/zero_delay_insert.py
 python -I -B experiments/v4160-scheduler-mode-width/delay_precedence.py
 python -I -B experiments/v4160-scheduler-mode-width/setup.py
+python -I -B experiments/v4160-scheduler-mode-width/common.py
+python -I -B experiments/v4160-scheduler-mode-width/full_zero_fallback.py
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit.py
 python -I -B experiments/v4160-scheduler-mode-width/resident_exit_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-scheduler-mode-width/route_differential.py --vcvars <vcvars64.bat>
