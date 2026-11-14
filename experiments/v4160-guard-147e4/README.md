@@ -16,6 +16,7 @@ python -I -B experiments/v4160-guard-147e4/ingress_a5_provenance.py
 python -I -B experiments/v4160-guard-147e4/ingress_provenance_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_length_initialize.py
 python -I -B experiments/v4160-guard-147e4/ingress_length_route.py
+python -I -B experiments/v4160-guard-147e4/ingress_length_route_differential.py --vcvars <vcvars64.bat>
 python -I -B experiments/v4160-guard-147e4/ingress_length_route_composition.py
 python -I -B experiments/v4160-guard-147e4/ingress_state_precedence.py
 python -I -B experiments/v4160-guard-147e4/ingress_state_gate.py
@@ -48,6 +49,8 @@ python -I -B experiments/v4160-guard-147e4/ingress_store_differential.py --vcvar
 `ingress_length_initialize.py` 解碼 `0x89cc–0x89da`，以共享合成記憶體依序驗證清除 `gp+138` 半字、讀取 `[s11]` 半字、與完整 `a5` OR、將結果低半字寫至 `gp+142`。131,072 個值、63 個重疊／位址環繞與 14 個位元組變造均通過，也在 Python 最佳化模式測試。合成輸入 `a5=0x10000`、讀值為零時，完整 `a4=0x10000` 而儲存半字為零；這不表示實際呼叫可達。記憶體存取假設成功，包含未對齊與環繞位址，不代表硬體接受；後續分支由下列獨立投影測試。
 
 `ingress_length_route.py` 解碼後續 `0x89da–0x89f6`：以完整 `a4` 判斷，0 寫 state 6、1–1040 寫 5、大於 1040 寫 0；65,536 個半字值、27 個完整暫存器／位址邊界及 28 個位元組變造通過，含最佳化模式。`ingress_length_route_composition.py` 分段串接初始化與選路，131,072 組通過；合成 `a5=0x10000`、讀值零時，儲存長度為零但選 state 0，不是 state 6。僅假設成功、穩定的存取，不證實完整呼叫可達或硬體行為。
+
+`ingress_length_route_model.c` 將長度選路與寫入事件投影為 C，`ingress_length_route_differential.py` 在 C11/C++17 各與原始位元組解碼器比較 65,563 組，四種零值、邊界、截斷及位址變造均被偵測。這不是原位址 byte-exact 重建或實機驗證；MSVC 有 `vswhere.exe` 警告但編譯成功。
 
 `ingress_state_precedence.py` 對原始 `0x89c8` 比較分支與 `0x89f6` 閘門做分段投影：若完整 `a4` 同時等於 `s8` 與 `s9`，先走 `0x89cc`，不進入 `0x89f6`；否則僅在 `a4 != s8` 時才檢查 `s9`。131,072 組 byte 狀態、200 個完整暫存器邊界及四個 selector 位元組變造通過，亦於 Python 最佳化模式執行。這不證明此局部入口或重複狀態實際可達，也不是連續 CPU 執行或硬體測試。
 
