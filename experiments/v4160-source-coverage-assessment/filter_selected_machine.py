@@ -17,6 +17,7 @@ def run(image,index,fields,reads):
         mem[descriptor+2*offset]=v&255; mem[descriptor+2*offset+1]=v>>8
     for offset,v in ((8,0),(9,0),(10,index),(11,1),(12,0),(13,0),(14,0),(15,0),(16,1),(17,0),(18,0),(19,0)): mem[descriptor+offset]=v
     x=[0]*32; x[10]=descriptor; x[1]=0x1234; pc=0x18ba2; events=[]; rpos=0
+    read_addresses=(0x40006600,0x4000661c,0x4000660c,0x40006604,0x40006614,0x4000661c,0x40006600)
     for _ in range(100):
         h=int.from_bytes(image[pc-0x8000:pc-0x8000+2],'little')
         if h&3==3:
@@ -28,7 +29,7 @@ def run(image,index,fields,reads):
             elif op==3 and f in (2,4,5):
                 addr=(x[a]+sx(w>>20,12))&MASK; size={2:4,4:1,5:2}[f]
                 if addr>=0x40000000:
-                    if size!=4 or rpos>=len(reads): raise ValueError('unexpected MMIO read')
+                    if size!=4 or rpos>=len(reads) or rpos>=len(read_addresses) or addr!=read_addresses[rpos]: raise ValueError('unexpected MMIO read')
                     x[rd]=reads[rpos]; rpos+=1
                 else: x[rd]=sum(mem[addr+i]<<(8*i) for i in range(size))
             elif op==0x23 and f==2:
@@ -81,6 +82,22 @@ def main():
         try: actual,_=run(bad,3,fields,reads)
         except (ValueError,KeyError): continue
         if actual==expected: raise ValueError(f'mutation at {pc:x} not detected')
-    print(f'PASS: {checks} original-byte decoder versus event projection comparisons; 9 store opcode mutations rejected')
+    # Mutating a load address is rejected even if two supplied read values are equal.
+    for pc in (0x18baa,0x18bbc,0x18bd4,0x18c8a,0x18c2a,0x18c40,0x18c4e):
+        bad=bytearray(image); bad[pc-0x8000+2]^=0x10
+        try: run(bad,3,fields,(0,)*7)
+        except (ValueError,KeyError): continue
+        raise ValueError(f'load-address mutation at {pc:x} not rejected')
+    # Distinct reads prevent accidental read-after-write assumptions; these
+    # semantic mutants must disagree with decoded stores on a selected case.
+    fields=(0x11,0x22,0x33,0x44); reads=(0x100,0x200,0x300,0x400,0x500,0x600,0x701)
+    expected,_=run(image,3,fields,reads)
+    mutants=[]
+    v=list(expected); v[3]=(v[3][0],fields[1]<<16|fields[3]); mutants.append(v)
+    v=list(expected); v[7]=(v[7][0],v[1][1]|(1<<3)); mutants.append(v)
+    v=list(expected); v[8]=(v[8][0],v[0][1]&~1); mutants.append(v)
+    for mutant in mutants:
+        if tuple(mutant)==expected: raise ValueError('semantic mutant survived')
+    print(f'PASS: {checks} decoder comparisons; 9 store, 7 load and 3 semantic mutants rejected')
     print('Seven synthetic MMIO reads supplied independently; no hardware or exceptions modeled.')
 if __name__=='__main__': main()
