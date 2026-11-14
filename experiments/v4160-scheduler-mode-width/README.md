@@ -36,6 +36,8 @@
 
 `scaling_preimages.py` 對 32 位共同換算反推輸出為零的全部輸入：`gcd(1000,2^32)=8`，落在 0–624 的可達餘數共有 79 個，每個有 8 個原像，故共 632 個，其中 631 個非零；最小非零值 `8589935`（`0x0083126f`）的乘法環繞餘數為 408。原像與鄰值均比對原始指令受限投影；不表示呼叫者實際可傳入該值或 provider 如何處理。
 
+`scaling_bounds.py` 在假設輸入限制為 16 位時，窮舉確認換算嚴格遞增、`0→0`、`65535→104856`；但尚未證明呼叫者有此限制。32 位算術第一次乘法環繞發生於輸入 `4294968`，輸出由 `6871947` 跳為 `1`；可達的全域最大輸出為 `6871947`，另有原像見證。這些是固定指令投影與數學結果，非實機驗證。
+
 `model.c` 是選定空槽後的 C 語意投影；`differential.py` 的 C11、C++17 各 67,456 組與固定指令表比對，包含所有低 16 位 mode 值及四種語意變造。輸入 index 限制為 0–14，delay 非零；不執行實際讀寫或掃描。
 
 ```text
@@ -49,6 +51,7 @@ python -I -B experiments/v4160-scheduler-mode-width/delay_precedence.py
 python -I -B experiments/v4160-scheduler-mode-width/setup.py
 python -I -B experiments/v4160-scheduler-mode-width/common.py
 python -I -B experiments/v4160-scheduler-mode-width/scaling_preimages.py
+python -I -B experiments/v4160-scheduler-mode-width/scaling_bounds.py
 python -I -B experiments/v4160-scheduler-mode-width/full_zero_fallback.py
 python -I -B experiments/v4160-scheduler-mode-width/full_exit.py
 python -I -B experiments/v4160-scheduler-mode-width/full_exit_differential.py --vcvars <vcvars64.bat>
