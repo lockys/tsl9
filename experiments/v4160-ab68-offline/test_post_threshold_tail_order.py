@@ -55,9 +55,15 @@ class TailOrderTests(unittest.TestCase):
                 result = model(sp, address - 82, 1, memory, True)
                 self.assertEqual(result[0], 0x110)
                 self.assertEqual(result[2], 0x13c4e)
-                self.assertEqual([e[0] for e in result[3]], ['read32'] * 3 + ['write8'])
-                self.assertEqual(result[1][1], int.from_bytes(bytes(before[sp + 12 + i] for i in range(4)), 'little'))
-                self.assertEqual(memory[address], 1)
+                word = lambda off: int.from_bytes(bytes(before[sp + off + i] for i in range(4)), 'little')
+                self.assertEqual(result[1], (word(8), word(12), word(4)))
+                self.assertEqual(result[3], [('read32', sp + 8, word(8)),
+                                              ('read32', sp + 12, word(12)),
+                                              ('read32', sp + 4, word(4)),
+                                              ('write8', address, 1)])
+                expected = before.copy()
+                expected[address] = 1
+                self.assertEqual(memory, expected)
 
     def test_no_change_return_and_wrap(self):
         sp = 0xfffffff8
@@ -66,8 +72,13 @@ class TailOrderTests(unittest.TestCase):
         result = model(sp, 0, 0, memory, False)
         self.assertEqual(result[0], 8)
         self.assertEqual([e[1] for e in result[3]], [4, 0, 0xfffffffc])
-        self.assertEqual(result[2], result[1][1] & ~1)
+        word = lambda off: sum(before[(sp + off + i) & MASK] << (8 * i) for i in range(4))
+        self.assertEqual(result[1], (word(8), word(12), word(4)))
+        self.assertEqual(result[2], word(12) & ~1)
         self.assertEqual(memory, before)
+        for ra in (0x12345678, 0x12345679):
+            memory.update({(sp + 12 + i) & MASK: (ra >> (8 * i)) & 255 for i in range(4)})
+            self.assertEqual(model(sp, 0, 0, memory, False)[2], 0x12345678)
 
 
 if __name__ == '__main__':
