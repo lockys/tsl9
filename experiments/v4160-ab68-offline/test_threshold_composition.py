@@ -53,6 +53,27 @@ class ThresholdCompositionTests(unittest.TestCase):
                 cases += 1
         self.assertEqual(cases, 65536)
 
+    def test_each_boundary_for_all_return_bytes_and_states(self):
+        cases = 0
+        for value in range(256):
+            threshold = (5 * value + 10) & 255
+            for state in (0, 1, 255):
+                for s0 in (0, (threshold - 1) & 0xffffffff, threshold,
+                           threshold + 1, 0xffffffff):
+                    for gp in (0x20004000, 0xfffffecc):
+                        self.assertEqual(compose(value, state, s0, gp),
+                                         oracle(value, state, s0, gp))
+                        cases += 1
+        self.assertEqual(cases, 7680)
+
+    def test_full_width_getter_returns(self):
+        for value in (0x100, 0x101, 0x10000, 0x80000000, 0xffffffff):
+            for state in (0, 1, 255):
+                for s0 in (0, 60, 255, 0xffffffff):
+                    with self.subTest(value=value, state=state, s0=s0):
+                        self.assertEqual(compose(value, state, s0, 0x20004000),
+                                         oracle(value, state, s0, 0x20004000))
+
     def test_branch_condition_mutation_is_observable(self):
         original = branch.SEGMENTS[0x103ae]
         # Change the first BLTU at 0x103b0 into BGEU without changing operands.
