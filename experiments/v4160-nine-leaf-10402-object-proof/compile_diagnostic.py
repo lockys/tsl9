@@ -37,10 +37,18 @@ def main():
         reference = source_check.BIN.read_bytes()
         if hashlib.sha256(reference).hexdigest() != source_check.PINS['reference'][1] or len(reference) != 76800:
             raise ValueError('reference mismatch')
-        spec = importlib.util.spec_from_file_location('isolated_parser', ROOT / 'experiments/v4160-10402-pure-c/probe.py')
+        parser_path = ROOT / 'experiments/v4160-10402-pure-c/probe.py'
+        if hashlib.sha256(parser_path.read_bytes()).hexdigest() != '3f4019ca0b63f552de76dabca4ec6b5cf7a2c00d288acfe18eeaae8d96d6c2b0':
+            raise ValueError('ELF parser pin mismatch')
+        spec = importlib.util.spec_from_file_location('isolated_parser', parser_path)
         parser = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(parser)
         clang, ld, readelf = [TOOLS / (name + '.exe') for name in ('clang', 'ld.lld', 'llvm-readelf')]
+        for path, digest in ((clang, '047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6'),
+                             (ld, 'fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f'),
+                             (readelf, '5bb69ac14e2e14d26516249f84ab94bf520812c156ae30618e0b094208d79a39')):
+            if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+                raise ValueError('tool pin mismatch: ' + str(path))
         cases = []
         with tempfile.TemporaryDirectory(prefix='tsl9-10402-object-') as tmp:
             d = Path(tmp)
@@ -53,9 +61,10 @@ def main():
                          '-fno-stack-protector', '-Oz', '-fno-pic', '-msmall-data-limit=8',
                          '-c', source, '-o', obj])
                 info = command([readelf, '-aW', obj])
-                for text in ('tsl9_state_leaf_entry_10402', 'tsl9_witness_10402', 'R_RISCV_HI20', 'R_RISCV_LO12_I', 'R_RISCV_RELAX'):
-                    if text not in info:
-                        raise ValueError('missing object evidence: ' + text)
+                # Reuse the existing detailed checker after exact symbol/section
+                # renaming; it checks symbol binding, relocation records and offsets.
+                normalized = info.replace('tsl9_state_leaf_entry_10402', 'get_witness').replace('tsl9_witness_10402', 'witness').replace('.text.get_witness', '.leaf')
+                parser.check_object(normalized, False)
                 for name, gp, witness, relax, expected in (
                     ('relaxed', 0x20004000, 0x20004050, True, '03d501058280'),
                     ('witness_shift', 0x20004000, 0x20004052, True, '03d521058280'),
