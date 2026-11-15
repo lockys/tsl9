@@ -10,10 +10,13 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 def load(name,file):
  s=importlib.util.spec_from_file_location(name,HERE/file);x=importlib.util.module_from_spec(s);s.loader.exec_module(x);return x
-m=load('m','record-counter-107d8.py');body=load('body','callback-provider-b0fc-decoder.py')
+m=load('m','record-counter-107d8.py');body=load('body','callback-provider-b0fc-decoder.py');reset=load('reset','record-counter-caller-stack-bound.py')
 def main():
- p=argparse.ArgumentParser();p.add_argument('--root',type=Path,default=ROOT);image=(p.parse_args().root/m.BIN).read_bytes();m.validate(image);body.model.validate_local(image)
- gp=0x20004000;reset_sp=0x20010000;base=gp+192;_,events=body.execute(0xa5,base,0x43c4e)
+ p=argparse.ArgumentParser();p.add_argument('--root',type=Path,default=ROOT);image=(p.parse_args().root/m.BIN).read_bytes();m.validate(image);body.model.validate_local(image);reset.validate_windows(image)
+ def auadd(pc):
+  b=image[pc-0x8000:pc-0x8000+8];au=int.from_bytes(b[:4],'little');ad=int.from_bytes(b[4:],'little');imm=ad>>20;imm=imm-4096 if imm&2048 else imm
+  return (pc+(au&0xfffff000)+imm)&0xffffffff
+ gp=auadd(0x186aa);reset_sp=auadd(0x186b2);m.need((gp,reset_sp)==(0x20004000,0x20010000),'reset addresses');base=gp+192;_,events=body.execute(0xa5,base,0x43c4e)
  writes=set()
  for e in events:
   if e[0] in ('store8','store16'):
