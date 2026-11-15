@@ -27,7 +27,7 @@ def pack(v, a, b):
 
 
 class CallerMath(unittest.TestCase):
-    def test_origim_image(self):
+    def test_original_image(self):
         self.assertEqual(hashlib.sha256(BIN.read_bytes()).hexdigest(), SHA)
 
     def test_threshold_permutation_and_boundaries(self):
