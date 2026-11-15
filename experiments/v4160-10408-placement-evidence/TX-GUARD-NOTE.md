@@ -1,0 +1,7 @@
+# TX guard difference at 0x8a7e
+
+Offline comparison of the selected-layout C and C++ candidate against the original v4.1.60 image (SHA-256 `0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667`). The reconstructed 280-byte candidate TX window `[0x8a56,0x8b6e)` has SHA-256 `8b129d84cbd65062315ec8197f7cbabb0eae7a4dfec4dca5bf39861851a525b9`. Reconstruction used a local diagnostic receipt and is not a separately authenticated build transcript.
+
+At `0x8a76`, both windows have bytes `6310a702` (`bne a4,a0,0x8a96`). At `0x8a7a` both have `c167f917`, loading `0xfffe` into `a5`. At `0x8a7e`, the original has `630cf700` (`beq a4,a5,0x8a96`) while the candidate has `638ca700` (`beq a5,a0,0x8a96`). On the fallthrough path from the first branch, `a4 == a0`, so these two branch predicates are equivalent. This path-condition argument applies to all 32-bit register values, assuming uninterrupted execution of the stated instructions and unchanged registers.
+
+A local branch-field model checked 196,608 inputs under normal Python and `-O`; changing the predecessor condition from BNE to BEQ supplied a counterexample. The supporting local scripts and build receipt are not included in this note, so the check is not independently reproducible from this checkpoint alone. Static decode and the conditional argument do not prove CPU execution, fault or interrupt behavior, unknown resident calls, complete TX equivalence, or firmware flashability. The remaining instruction differences need separate examination.
