@@ -49,7 +49,7 @@ class MetadataBoundary(unittest.TestCase):
         spec = importlib.util.spec_from_file_location('checker_boundary', diag.ROOT / 'experiments/v4160-10402-pure-c/probe.py')
         parser = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(parser)
-        clang, readelf = (str(diag.TOOLS / n) for n in ('clang.exe', 'llvm-readelf.exe'))
+        clang, readelf, linker = (str(diag.TOOLS / n) for n in ('clang.exe', 'llvm-readelf.exe', 'ld.lld.exe'))
         with tempfile.TemporaryDirectory(prefix='tsl9-metadata-boundary-') as temp:
             source, obj = Path(temp) / 'leaf.c', Path(temp) / 'leaf.o'
             source.write_bytes(leaf)
@@ -61,6 +61,15 @@ class MetadataBoundary(unittest.TestCase):
                         '-msmall-data-limit=8', '-c', str(source), '-o', str(obj)],
                         check=True, capture_output=True)
                     original = obj.read_bytes()
+                    layout = Path(temp) / 'layout.ld'
+                    layout.write_text('__global_pointer$ = 0x20004000;\n'
+                        'tsl9_witness_10402 = 0x20004050;\n'
+                        'SECTIONS { .leaf 0x10402 : { *(.text.tsl9_state_leaf_entry_10402) } }\n')
+                    elf = Path(temp) / 'leaf.elf'
+                    link = [linker, '--relax', '--relax-gp', '-T', str(layout), '-o', str(elf), str(obj)]
+                    subprocess.run(link, check=True, capture_output=True)
+                    _, expected = parser.section(elf.read_bytes())
+                    self.assertEqual(expected.hex(), '03d501058280')
                     offset, length = leaf_range(original)
                     altered = bytearray(original)
                     # Flip a bit in the final instruction, leaving all ELF metadata intact.
@@ -69,6 +78,9 @@ class MetadataBoundary(unittest.TestCase):
                     result = subprocess.run([readelf, '-aW', str(obj)], check=True, capture_output=True, text=True)
                     parser.check_object(normalize(result.stdout), False)
                     self.assertNotEqual(original[offset:offset + length], altered[offset:offset + length])
+                    subprocess.run(link, check=True, capture_output=True)
+                    _, actual = parser.section(elf.read_bytes())
+                    self.assertNotEqual(actual, expected, 'linked-byte check must detect this mutation')
 
 
 if __name__ == '__main__':
