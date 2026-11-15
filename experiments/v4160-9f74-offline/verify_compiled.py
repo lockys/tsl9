@@ -20,12 +20,13 @@ def main():
    for variant,text in [('candidate',source),('nonzero',source.replace(statement,'tsl9_9f74_data = 1;')),('no-store',source.replace(statement,'(void)0;'))]:
     unit=root/'unit.c';unit.write_text(text,encoding='utf-8')
     gp.run([clang,'--target=riscv32-unknown-elf','-march=rv32imac_zicsr','-mabi=ilp32','-Oz','-fno-pic','-msmall-data-limit=8','-ffreestanding','-fno-builtin','-x',lang,'-std='+std,'-c',unit,'-o',obj])
-    for label,base,target in [('reference',0x20004000,0x200040af),('wrong-offset',0x20004000,0x200040b0),('shifted-pair',0x20004004,0x200040b3)]:
+    for label,base,target,link_flags in [('reference',0x20004000,0x200040af,['--relax','--relax-gp']),('wrong-offset',0x20004000,0x200040b0,['--relax','--relax-gp']),('shifted-pair',0x20004004,0x200040b3,['--relax','--relax-gp']),('no-relax',0x20004000,0x200040af,['--no-relax'])]:
      script.write_text('__global_pointer$ = '+hex(base)+';\ntsl9_9f74_data = '+hex(target)+';\nSECTIONS { .text.tsl9_9f74_candidate 0x9f74 : { *(.text.tsl9_9f74_candidate) } }\n')
-     gp.run([ld,'--relax','--relax-gp','-T',script,obj,'-o',elf])
+     gp.run([ld,*link_flags,'-T',script,obj,'-o',elf])
      leaf=gp.executable_section(elf.read_bytes(),0x9f74)
-     expect=variant=='candidate' and label!='wrong-offset'
+     expect=variant=='candidate' and label in ('reference','shifted-pair')
      gp.verify.require((leaf==original)==expect,'unexpected bytes '+lang+' '+variant+' '+label)
      print(lang,variant,label,leaf.hex(),'match='+str(leaf==original))
  print('LIMIT: isolated numeric linking only; no proof of actual GP, ABI, callback reachability, or hardware')
+ print('NOTE: the candidate needs GP relaxation for byte identity; stock no-relax layout needs a separate integration strategy')
 if __name__=='__main__':main()
