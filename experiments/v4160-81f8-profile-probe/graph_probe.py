@@ -36,6 +36,10 @@ def main():
    for name in ('modified.c','direct_followup_native.c','post_table_code_native.c','candidate.c'):
     source=(d/name if name in ('modified.c','candidate.c') else src/name);obj=d/(name+'.o')
     run([args.ndk_bin/'clang.exe',*flags,'-x',lang,'-std='+std,*(['-fpic'] if name=='candidate.c' else []),'-c',source,'-o',obj]);objects.append(obj)
+   baseline=d/'baseline.o'
+   run([args.ndk_bin/'clang.exe',*flags,'-x',lang,'-std='+std,'-c',src/'direct_successors_native.c','-o',baseline])
+   duplicate=subprocess.run([str(x) for x in [args.ndk_bin/'ld.lld.exe','-r',baseline,objects[-1],'-o',d/'duplicate.o']],capture_output=True,text=True)
+   if duplicate.returncode==0 or 'duplicate symbol: __tsl9v4160_call_81f8' not in duplicate.stderr:raise ValueError('duplicate owner was not rejected specifically')
    graph=d/'graph.o';run([args.ndk_bin/'ld.lld.exe','-r',*objects,'-o',graph])
    syms=run([args.ndk_bin/'llvm-readelf.exe','-sW',graph]).stdout
    matches=[line for line in syms.splitlines() if re.search(r'\b__tsl9v4160_call_81f8$',line)]
@@ -45,6 +49,12 @@ def main():
    if len(callers)!=2 or any('R_RISCV_JAL' not in line for line in callers):raise ValueError('caller relocations not preserved: '+repr(callers))
    elf=d/'leaf.elf';run([args.ndk_bin/'ld.lld.exe','--no-relax','--gc-sections','-e','__tsl9v4160_call_81f8','-T',d/'link.ld','-o',elf,graph]);got=p.section(elf.read_bytes())
    if got!=image[0x1f8:0x202]:raise ValueError('leaf mismatch')
-   print(f'{lang}: one owner, {len(callers)} JAL references, final bytes {got.hex()}')
+   missing=d/'missing.ld';missing.write_text('SECTIONS { .text 0x81f8 : { *(.text.tsl9v4160.direct_successors_81f8) } }')
+   noalias=subprocess.run([str(x) for x in [args.ndk_bin/'ld.lld.exe','--no-relax','--gc-sections','-e','__tsl9v4160_call_81f8','-T',missing,'-o',d/'missing.elf',graph]],capture_output=True,text=True)
+   if noalias.returncode==0 or 'undefined hidden symbol: tsl9_81f8_data' not in noalias.stderr:raise ValueError('missing alias was not rejected specifically: '+noalias.stderr)
+   wrong=d/'wrong.ld';wrong.write_text('tsl9_81f8_data = 0x2000bee9; SECTIONS { .text 0x81f8 : { *(.text.tsl9v4160.direct_successors_81f8) } }')
+   run([args.ndk_bin/'ld.lld.exe','--no-relax','--gc-sections','-e','__tsl9v4160_call_81f8','-T',wrong,'-o',d/'wrong.elf',graph])
+   if p.section((d/'wrong.elf').read_bytes())==got:raise ValueError('wrong data address was not detected')
+   print(f'{lang}: one owner, {len(callers)} JAL references, final bytes {got.hex()}; duplicate/missing/wrong binding rejected')
  print('LIMIT: three-source partial graph; no complete firmware link or execution')
 if __name__=='__main__':main()
