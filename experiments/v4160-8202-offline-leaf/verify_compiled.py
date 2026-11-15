@@ -17,6 +17,7 @@ def executable_section(data):
     require(len(data) >= 52, 'ELF header')
     h = struct.unpack_from('<16sHHIIIIIHHHHHH', data)
     require(h[0][:7] == b'\x7fELF\x01\x01\x01' and h[1:4] == (2, 243, 1), 'ELF32 RISC-V executable')
+    require(h[8] == 52, 'ELF header size')
     phoff, shoff, phsize, phnum, shsize, shnum = h[5], h[6], h[9], h[10], h[11], h[12]
     require(phsize == 32 and shsize == 40 and phnum > 0 and shnum > 0, 'ELF tables')
     require(phoff + phsize*phnum <= len(data) and shoff + shsize*shnum <= len(data), 'ELF table bounds')
@@ -31,6 +32,9 @@ def executable_section(data):
         if p[0] != 1:
             continue
         require(p[4] <= p[5] and p[1]+p[4] <= len(data), 'load bounds')
+        align = p[7]
+        require(align in (0, 1) or (align & (align-1) == 0 and (p[2]-p[1]) % align == 0),
+                'load alignment')
         if (p[6]&1 and p[2] <= s[3] and s[3]+s[5] <= p[2]+p[4]
                 and p[1] <= s[4] and s[4]+s[5] <= p[1]+p[4]
                 and s[3]-p[2] == s[4]-p[1]):
