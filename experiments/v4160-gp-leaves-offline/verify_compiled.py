@@ -55,6 +55,7 @@ def main():
     verify.require(hashlib.sha256(raw).hexdigest() == verify.IMAGE_SHA256, 'firmware SHA-256')
     clang = args.llvm_bin / ('clang.exe' if (args.llvm_bin/'clang.exe').exists() else 'clang')
     ld = args.llvm_bin / ('ld.lld.exe' if (args.llvm_bin/'ld.lld.exe').exists() else 'ld.lld')
+    source = (HERE/'candidate.c').read_text(encoding='utf-8')
     with tempfile.TemporaryDirectory(prefix='tsl9-gp-leaves-') as temp:
         root = Path(temp)
         for address, (group, offset, expected) in LEAVES.items():
@@ -77,6 +78,31 @@ def main():
                     leaf = executable_section(elf.read_bytes(), address)
                     verify.require((leaf == original) == (label != 'wrong-offset'), 'unexpected '+label+' bytes')
                     print(hex(address), lang, label, leaf.hex(), 'matches='+str(leaf == original))
+                # Recompile actual candidate text with semantic mutations, not a separate model.
+                typename = 'unsigned short' if address == 0x10402 else 'unsigned char'
+                declaration = 'extern volatile ' + typename + ' ' + data_symbol
+                statement = 'return ' + data_symbol + ';'
+                verify.require(source.count(declaration) == source.count(statement) == 1, 'mutation anchors')
+                mutants = {
+                    'signed': source.replace(declaration, declaration.replace('unsigned', 'signed')),
+                    'increment': source.replace(statement, 'return ' + data_symbol + ' + 1;'),
+                    'constant': source.replace(statement, 'return 0;'),
+                }
+                verify.require(len(set([source, *mutants.values()])) == 4, 'distinct semantic mutants')
+                script = root/'layout.ld'
+                script.write_text('__global_pointer$ = '+hex(GP)+';\n'+data_symbol+' = '+hex(GP+offset)+';\n'
+                                  'SECTIONS { '+section+' '+hex(address)+' : { *('+section+') } }\n')
+                for label, text in mutants.items():
+                    mutant = root/'mutant.c'
+                    mutant.write_text(text, encoding='utf-8')
+                    run([clang, '--target=riscv32-unknown-elf', '-march=rv32imac_zicsr', '-mabi=ilp32',
+                         '-Oz', '-fno-pic', '-msmall-data-limit=8', '-ffreestanding', '-fno-builtin',
+                         '-x', lang, '-std='+standard, '-DLEAF='+hex(address), '-c', mutant, '-o', obj])
+                    elf = root/'mutant.elf'
+                    run([ld, '--relax', '--relax-gp', '-T', script, obj, '-o', elf])
+                    leaf = executable_section(elf.read_bytes(), address)
+                    verify.require(leaf != original, 'semantic mutation unexpectedly matched: '+label)
+                    print(hex(address), lang, label, leaf.hex(), 'matches=False')
     print('LIMIT: isolated numeric link, not a stock gate, live GP/carrier binding or device proof')
     print('NOTE: shifting both GP and target preserves code bytes; their actual addresses require separate validation')
 
