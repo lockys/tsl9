@@ -2,7 +2,7 @@
 """Finite decoder for 0x13aca..0x13af0 after AB68 returns.
 
 Assumes successful ordinary byte memory accesses and stable code. It stops before
-0xab72. The three compressed opcodes are intentionally exact-match instructions,
+0xab72. The five compressed opcodes are intentionally exact-match instructions,
 not a general RV32C decoder. This is not device execution or a reachability proof.
 """
 import hashlib
