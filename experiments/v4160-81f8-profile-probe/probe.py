@@ -6,13 +6,22 @@ ROOT=Path(__file__).resolve().parents[2]
 TOOLS=Path(r'C:\Users\locky\AppData\Local\Android\Sdk\ndk\27.1.12297006\toolchains\llvm\prebuilt\windows-x86_64\bin')
 SHA='0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 def section(data):
+ if len(data)<52:raise ValueError('truncated ELF header')
  h=struct.unpack_from('<16sHHIIIIIHHHHHH',data)
- if h[0][:7]!=b'\x7fELF\x01\x01\x01' or h[1:4]!=(2,243,1) or h[11]!=40 or h[6]+h[11]*h[12]>len(data):raise ValueError('invalid ELF')
+ if h[0][:7]!=b'\x7fELF\x01\x01\x01' or h[1:4]!=(2,243,1) or (h[8],h[9],h[11])!=(52,32,40):raise ValueError('invalid ELF')
+ if not h[10] or not h[12] or h[5]+h[9]*h[10]>len(data) or h[6]+h[11]*h[12]>len(data):raise ValueError('invalid tables')
  sections=[struct.unpack_from('<10I',data,h[6]+i*h[11]) for i in range(h[12])]
  found=[s for s in sections if s[3]==0x81f8]
  if len(found)!=1:raise ValueError('section missing or ambiguous')
  s=found[0]
- if s[1]!=1 or s[2]&6!=6 or not s[5] or s[4]+s[5]>len(data):raise ValueError('invalid code section')
+ if s[1]!=1 or s[2]&6!=6 or not s[5] or s[4]+s[5]>len(data) or s[3]+s[5]>0x100000000:raise ValueError('invalid code section')
+ mapped=False
+ for i in range(h[10]):
+  p=struct.unpack_from('<8I',data,h[5]+i*h[9])
+  if p[0]!=1:continue
+  if p[4]>p[5] or p[1]+p[4]>len(data) or p[2]+p[5]>0x100000000:raise ValueError('invalid load segment')
+  if (p[6]&1 and p[2]<=s[3] and s[3]+s[5]<=p[2]+p[4] and p[1]<=s[4] and s[4]+s[5]<=p[1]+p[4] and s[3]-p[2]==s[4]-p[1]):mapped=True
+ if not mapped:raise ValueError('code section not mapped executable')
  return data[s[4]:s[4]+s[5]]
 SOURCE='''extern volatile unsigned char tsl9_state_81f8_byte __attribute__((visibility("hidden")));
 #ifdef __cplusplus
