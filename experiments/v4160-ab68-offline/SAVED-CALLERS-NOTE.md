@@ -1,0 +1,5 @@
+# AB68 saved caller objects: bounded offline audit
+
+The locally saved `source-integrated-26913b544c8c44a198847a7252bf5280` C and C++ object sets have the same pinned hashes. Two caller objects each contain a single relocation to undefined `__tsl9v4160_call_ab68`: `.text.tsl9v4160.post_table_code_10288+0x10c` and `.text.tsl9v4160.direct_followup_137c0+0x306`, both `R_RISCV_JAL`, addend zero and JAL-to-ra instruction. The saved original provider defines the same symbol in `.text.tsl9v4160.direct_successors_ab68`, with HI20 relocation to `__tsl9v4160_ram + 32488` and its matching LO12 relocation.
+
+`audit_saved_callers.py` and `test_audit_saved_callers.py` ran locally in ordinary and Python `-O` modes, including altered relocation and object-hash controls; **these scripts and their saved-object/parser dependencies are not included in this note's checkpoint**. This is not independently reproducible from this note alone. These are existing objects, not a fresh build or a link to the pure C candidate. It does not establish a live RAM binding, complete call graph, device execution, or flashability.
