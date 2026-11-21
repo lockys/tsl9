@@ -16,7 +16,7 @@ def ck(x):
     if not x: raise ValueError('page source mismatch')
 def raw(p,n): return b[p-0x40000:p-0x40000+n]
 ck(hashlib.sha256(b).hexdigest()=='133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22')
-for p,h in [(0x442ae,'21677917e361a7f6b30a5541bdb7'),(0x44228,'03d7c900373b0020b38aea02be9a'),(0x4425e,'83d5c90083a789032a866898156858297'),(0x44288,'85058a052686a2954a85')]:
+for p,h in [(0x442ae,'21677917e361a7f6b30a5541bdb7'),(0x44228,'03d7c900373b0020b38aea02be9a'),(0x4425e,'83d5c90083a789032a86898156858297'),(0x44288,'85058a052686a2954a85')]:
     ck(raw(p,len(h)//2)==bytes.fromhex(h))
 for pc,op,rd,off in [(0x4427c,0x2000,13,2),(0x44282,0x2002,13,0),(0x442bc,0x2000,11,3)]:
     h=int.from_bytes(raw(pc,2),'little'); ck(h&0xe003==op and 8+(h>>7&7)==15 and 8+(h>>2&7)==rd)
