@@ -1,4 +1,4 @@
-"""Trace accepted config copy to the first page callback prologue (for lengths >=4). Args: APP, V1.31, rasm2.
+"""Trace accepted config copy through the first page data loop (256- and 513-byte fixtures). Args: APP, V1.31, rasm2.
 Synthetic source config, stack, MMIO and page; reference RAM mapping and Xwchc assumed.
 """
 from hashlib import sha256
@@ -18,7 +18,7 @@ def window(img,base,lo,hi):
             w=int.from_bytes(bytes.fromhex(h),'little');q=w&3;f=w>>13;ck(img is b and q in (0,2) and f in (1,5));d=8*((w>>10)&(7 if q==2 else 3))+2*(w>>5&3)+(0 if q==2 else w>>12&1);o=('lhu' if q==2 else 'lbu') if f==1 else ('sh' if q==2 else 'sb');x=[compact[w>>2&7],f'{d}({compact[w>>7&7]})']
         code[p]=n,o,x;p+=n
     ck(p==hi)
-for l,h in [(0x197f0,0x1995c),(0x8520,0x854a),(0x19124,0x19142),(0x1908c,0x1909e),(0x188e2,0x189fe),(0x19160,0x1917e),(0x18a66,0x18aa6),(0x1979a,0x197b8),(0x197be,0x197c8)]:window(a,0x8000,l,h)
+for l,h in [(0x197f0,0x1995c),(0x8520,0x854a),(0x19124,0x19142),(0x1908c,0x1909e),(0x188e2,0x189fe),(0x19160,0x1917e),(0x18a66,0x18aa6),(0x1979a,0x197b8),(0x197be,0x197dc),(0x18e98,0x18eb6),(0x18ec4,0x18f36)]:window(a,0x8000,l,h)
 for l,h in [(0x43cc4,0x43d4e),(0x43b3e,0x43c06),(0x430e0,0x43174),(0x4329a,0x432a4),(0x44022,0x440c2)]:window(b,0x40000,l,h)
 for l,h in [(0x40,0x110),(0x332,0x36c),(0x39c,0x3ca)]:window(b,0x20000000-0x270,0x20000000+l,0x20000000+h)
 M=0xffffffff;C=0x200031ec;U=0x2000ff80;S=0x2000ff50;A=0x08077c00;B=0x40012400
@@ -29,9 +29,10 @@ for length,count in [(0,3),(513,7),(1,0),(32000,3)]:
     def get(p,n):return sum(mem[p+i]<<(8*i) for i in range(n))
     put(U,64,0);put(U,4,0x2000418c);put(U+4,2,0x7000);put(U+8,4,A);put(U+12,4,length+(count<<16)+(8<<24));put(U+44,4,0x197f0);put(U+56,4,0x1979a);put(U+60,4,0x197be);put(A,4,A^int(not equal));put(0x4004c,4,int.from_bytes(b[76:80],'little'))
     for p in [0x4002420c,0x40021004,0x40021018,0x4002100c,B+76,*range(B,B+60,4)]:put(p,4,p)
-    request=[];fill=[];written=[];slots=[];entry=[];stage=[];L=length or 256
+    request=[];fill=[];written=[];slots=[];entry=[];stage=[];io=[];L=length or 256
+    put(0x40022010,4,0);put(0x4002200c,4,0)  # synthetic ready controller
     for step in range(20000):
-        if pc in (0x44038,0x197c8) or (pc==0x44092 and L<4):break
+        if pc in (0x44038,0x18f36) or (pc==0x44092 and L<4):break
         if pc==0x197be:entry.append(tuple(r[k] for k in ('a0','a1','a2','s2','sp','ra')))
         if 0x44022 in vis:
             if pc==0x20000040:request.append((r['a0'],r['a1']))
@@ -46,6 +47,7 @@ for length,count in [(0,3),(513,7),(1,0),(32000,3)]:
             if o[0]=='s':put(p,w,r[t])
             elif at==0x18a8e:ck(p==B);r[t]=2 if polls else 0;polls+=1
             else:r[t]=get(p,w)
+            if at in (0x18f1e,0x18f26):io.append((o,p,r[t]))
             if fill and at==0x200003c0:written.append((p,r[t]&255))
             if at in (0x440bc,0x197c0,0x197c2,0x197c4):stage.append((at,p,w,r[t]))
             if p<C+15 and p+w>C+12:events.append((at,o,p-C,w))
@@ -70,7 +72,7 @@ for length,count in [(0,3),(513,7),(1,0),(32000,3)]:
     if callback:expected.append((0x440ac,'lhu',12,2))
     ck(events[6:]==defaults+expected)
     ck([e[1:] for e in events[:6]]==[('sb',i,1) for i in (12,13,14)*2]);ck(get(C+12,2)==(length or 256) and get(C+14,1)==(count or 1))
-    ck(request==([] if equal else [(L,78)]) and pc==(0x197c8 if callback else 0x44092 if success else 0x44038))
+    ck(request==([] if equal else [(L,78)]) and pc==(0x18f36 if callback else 0x44092 if success else 0x44038))
     if success:
         P=get(0x200031bc,4);ck(slots==[P] and P!=0 and get(P-2,2)==78 and fill==[(P,255,L)])
         ck(written==[(P+i,255) for i in range(L)])
@@ -78,8 +80,13 @@ for length,count in [(0,3),(513,7),(1,0),(32000,3)]:
             T=S-16-32;F=T-32
             ck(entry==[(A,L//4,P,1,T,0x440c0)] and r['sp']==F and r['s0']==A)
             ck(stage==[(0x440bc,P,4,A),(0x197c0,F+28,4,0x440c0),(0x197c2,F+24,4,C),(0x197c4,F+12,4,P)])
+            pairs=[]
+            for off in range(0,256,4):
+                data=A if off==0 else M
+                pairs.extend([('lw',P+off,data),('sw',A+off,data)])
+            ck(io==pairs and r['a5']==256 and r['a2']==256)
             ck(get(P,4)==A and all(get(P+i,1)==255 for i in range(4,L)))
         else:ck(get(P,L)==(1<<(8*L))-1 and (r['s2'],r['a5'],r['a2'])==(0,count or 1,P))
-    if not callback:ck(not entry and not stage)
+    if not callback:ck(not entry and not stage and not io)
     if not success:ck(not fill and not written and slots==([] if equal else [0]) and (equal or get(0x200031bc,4)==0))
-print('PASS: 8 chains; 2 first callback prologues (256/513 bytes -> 64/128 words), 1 count-only, 5 early exits')
+print('PASS: 8 chains; 2 full first-page loops (64/128 input words -> 64 paired loads/stores each), 1 count-only, 5 early exits')
