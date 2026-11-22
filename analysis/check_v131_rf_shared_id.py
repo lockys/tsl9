@@ -9,8 +9,8 @@ code=g['code'];M=0xffffffff;B=0x40025000;T=0x40024200;S=0x2000ff40;ID=0x200035f5
 def need(ok):
     if not ok:raise ValueError('RF calibration trace mismatch')
 
-def trace(equal,mode,initial):
-    r={'sp':S,'ra':0x6424a,'zero':0,**{'s'+str(i):0xabc100+i for i in range(12)}}; orig=r.copy(); mem={}; ev=[];calls=[]; polls=0; pc=0x6645c
+def trace(equal,mode,initial,sample=0xabc104):
+    r={'sp':S,'ra':0x6424a,'zero':0,**{'s'+str(i):0xabc100+i for i in range(12)}}; r['s4']=sample; orig=r.copy(); mem={}; ev=[];calls=[]; polls=0; pc=0x6645c
     def put(p,w,z):mem.update({p+i:(z>>(8*i))&255 for i in range(w)})
     def get(p,w):return sum(mem[p+i]<<(8*i) for i in range(w))
     def adr(s):
@@ -57,9 +57,18 @@ def trace(equal,mode,initial):
     busy=not equal and mode=='busy';need(pc==(H+24 if busy else 0x6424a));need(calls==([] if equal else [0x66500] if busy else [0x66500,0x66542,0x6658e]))
     ram=[(p,n) for _,p,n,_ in ev if not (T+100==p and n==4 or B<=p and p+n<=B+212 or S-80<=p and p+n<=S)];need(ram==([(0x20003588,4)] if equal else [] if busy else [(p,1) for p in (0x20002fa6,0x20002fa7,0x20003595,0x2000358c,0x20003594,0x20003584)]))
     need(all(not p<=ID<p+n for _,p,n,_ in ev) and get(ID,1)==initial);need([v for at,p,n,v in ev if at==H+14]==[6000]*len(calls))
+    # Inspect every actual store interval, including those using non-SP bases.
+    slot=S-24
+    need([(at,p,n,v) for at,p,n,v in ev if p<slot+4 and slot<p+n]==[(0x66470,slot,4,sample)])
+    need(get(slot,4)==sample)
+    need([(p,n,v) for at,p,n,v in ev if H<=at<0x20002e28]==[(T+100,4,6000)]*len(calls))
     if not busy:need(all(r[k]==v for k,v in orig.items()))
 
 for initial in (0,11,255):
     for equal in (False,True):
         for mode in ('zero','bits','busy'):trace(equal,mode,initial)
 print('PASS: 15 complete RF calibration traces and 3 bounded waits; shared ID untouched')
+for sample in (0,0xf00f,0x11223344,0xffffffff):
+    for equal in (False,True):
+        for mode in ('zero','bits','busy'):trace(equal,mode,11,sample)
+print('PASS: 20 returns and 4 bounded waits; sole overlapping store is the s4 spill, including nested-call writes')
