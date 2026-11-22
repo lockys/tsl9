@@ -1,6 +1,6 @@
-"""APP V131 rasm2. Two roles share one RAM. Six consumers, fills and first role's post-registration helpers are opaque normal returns.
+"""APP V131 rasm2. Two roles share one RAM. Six consumers and first role's post-registration helpers are opaque normal returns.
 At 5366c assume the remaining initializer returns with saved registers restored and
-no further memory effects. Stop the second role before extra registration if flag=0.
+no further memory effects. Both calls from 53654 execute the mapped 296-byte fill.
 """
 from pathlib import Path
 import re,runpy
@@ -18,13 +18,16 @@ def trace(n,cap,cfg,initial):
     def v(s):return r[s] if s in r else int(s,0)
     def addr(s):
         d,k=re.fullmatch(r'(-?\d+)\((\w+)\)',s).groups();return (r[k]+int(d))&M
-    for p,k,z in [(N,1,n),(N+1,1,cap),(0x200031c4,4,T),(ID,1,255),(0x20003201,1,cfg),(0x2000319f,1,initial)]:put(p,k,z)
-    reads=[];flag=0x2000319f
-    for _ in range(850):
-        if pc in (0x60864,0x6dda4,0x6de04):break
+    for p,k,z in [(0x4002420c,4,17),(N,1,n),(N+1,1,cap),(0x200031c4,4,T),(ID,1,255),(0x20003201,1,cfg),(0x2000319f,1,initial)]:put(p,k,z)
+    reads=[];flag=0x2000319f;second=[];fills=[]
+    for _ in range(6000):
+        if pc in (0x6dda4,0x6de04):break
+        if pc==0x60870:second.append((r['a0'],get(ID,1)))
+        if pc==0x2000039c and r['ra']==0x53658:
+            ck((r['a0'],r['a1'],r['a2'])==(0x200033b8,0,296),'fill arguments');fills.append(len(writes))
         if pc==0x5366c:
             sp=r['sp'];r.update({k:get(sp+d,4) for k,d in [('ra',12),('s0',8),('s1',4),('s2',0)]});r['sp']=sp+16;pc=r['ra'];continue
-        if pc in OPAQUE:r['a0']=0;pc=r['ra'];continue
+        if pc in OPAQUE and not (pc==0x2000039c and r['ra']==0x53658):r['a0']=0;pc=r['ra'];continue
         if pc==0x43c4e:handlers.append(r['a0'])
         if pc==0x8eb8:status.append(r['a0'])
         at=pc;k,o,x=g['code'][pc];pc+=k;t=x[0]
@@ -43,8 +46,8 @@ def trace(n,cap,cfg,initial):
         elif o=='j':pc=v(t)
         elif o.startswith('b'):
             z=0 if len(x)==2 else v(x[1]);y=r[t]
-            if {'bleu':y<=z,'bnez':y!=0,'bne':y!=z,'beq':y==z}[o]:pc=v(x[-1])
-        else:
+            if {'bleu':y<=z,'beqz':y==0,'bnez':y!=0,'bne':y!=z,'beq':y==z}[o]:pc=v(x[-1])
+        elif o!='fence.i':
             y=v(x[1]);z=v(x[2]) if len(x)>2 else 0
             if o in ('mv','li'):q=y
             elif o in ('auipc','lui'):q=(at if o=='auipc' else 0)+(y<<12)
@@ -55,14 +58,21 @@ def trace(n,cap,cfg,initial):
             r[t]=q&M
     live=initial or (n if n<cap else 255)
     ck(reads==[(0x55be2,flag,initial),(0x6085a,flag,live)],'two flag samples')
-    ck([(at,p,k,z) for at,p,k,z in writes if p<=flag<p+k]==([] if initial else [(0x53668,flag,1,live)]),'flag writer')
     hs=([] if initial else [0x5352c])+[0x4dbf2,0x465b4,0x4a808,0x502b4,0x6cc4c,0x4d1b0]+([0x6d26c] if cfg&3 else [])
-    slots=min(len(hs),max(0,cap-n));candidate=n+6+int(initial==0);result=candidate if cfg&3 and candidate<cap else 255
+    candidate=n+6+int(initial==0);result=candidate if cfg&3 and candidate<cap else 255
+    next_id=n+len(hs) if n+len(hs)<cap else 255
+    ck(second==([] if live else [(next_id,result)]),'second init arguments and shared ID')
+    flags=([] if initial else [live])+([] if live else [next_id]);hs+=([] if live else [0x5352c]);slots=min(len(hs),max(0,cap-n))
+    ck([(at,p,k,z) for at,p,k,z in writes if p<=flag<p+k]==[(0x53668,flag,1,z) for z in flags],'flag stores')
+    ck(len(fills)==len(flags) and all(writes[start:start+298]==[(0x200003a4,0x4002420c,4,0)]+[(0x200003c0,0x200033b8+i,1,0) for i in range(296)]+[(0x200003b8,0x4002420c,4,17)] for start in fills),'mapped fills')
     ck(handlers==hs and get(N,1)==n+slots,'count or handler')
     ck([(p,z) for at,p,k,z in writes if at==0x43c72]==[(T+4*(n+i),h) for i,h in enumerate(hs[:slots])],'task table')
-    ck(ids==([(0x6d5b6,result)] if cfg&3 else []) and sample==([(ID,result)] if live else []),'ID store/load')
-    ck(status==[24 if result==255 else 0] and pc==(0x60864 if not live else 0x6dda4 if result==255 else 0x6de04),'status or branch')
-    return live,sample
+    ck(ids==([(0x6d5b6,result)] if cfg&3 else []) and sample==[(ID,result)],'ID store/load')
+    ck(all(p==ID and k==1 and at==0x6d5b6 for at,p,k,z in writes if p<=ID<p+k),'shared ID overlap')
+    ck(status==[24 if result==255 else 0] and pc==(0x6dda4 if result==255 else 0x6de04),'status or branch')
+    return second,sample
 for n,cap,cfg in [(5,29,1),(6,29,1),(5,11,1),(5,29,0),(11,11,1),(248,255,3),(0,29,1)]:
     for initial in (0,1,255):print(n,cap,cfg,initial,'=>',trace(n,cap,cfg,initial))
-print('PASS: 21 two-role traces; flag 0, valid registration ID and rejection 255 distinguished')
+for cap in range(1,256):
+    for cfg in (0,1):trace(0,cap,cfg,0)
+print('PASS: 21 regression + 510 repeated-registration paths; separate flag and shared ID, table entries and exact fill writes checked')
