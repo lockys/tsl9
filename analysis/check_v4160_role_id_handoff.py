@@ -1,12 +1,13 @@
 """APP V131 rasm2. Two roles share one RAM. Six consumers and first role's post-registration helpers are opaque normal returns.
-Execute the RF prefix to 660d6. There assume the remaining initializer returns with saved registers restored and
+Execute the RF prefix through the return to 64302. There assume the remaining initializer returns with saved registers restored and
 no further memory effects. Both calls from 53654 execute the mapped 296-byte fill.
 """
 from pathlib import Path
 import re,runpy
 g=runpy.run_path(str(Path(__file__).with_name('check_v4160_geometry_chain.py')))
 w=g['window'];b=g['b'];w(g['a'],32768,0x8eb8,0x8ebe)
-for lo,hi in [(0x64298,0x6434a),(0x66098,0x660d6),(0x5366c,0x537b6),(0x537cc,0x537d8),(0x43e24,0x43e6a),(0x61b1c,0x61b5a),(0x55bde,0x55c32),(0x5362e,0x5366c),(0x55bd4,0x55bde),(0x55c48,0x55c52),(0x6dd16,0x6dd86),(0x6d572,0x6d682),(0x43c4e,0x43c7e),(0x6dd86,0x6dda4),(0x5a004,0x5a026),(0x60856,0x6089a),(0x58ef2,0x58f14)]:w(b,0x40000,lo,hi)
+rf=runpy.run_path(str(Path(__file__).with_name('v131_rf_register_return.py')))
+for lo,hi in [(0x660d6,0x66242),(0x64298,0x6434a),(0x66098,0x660d6),(0x5366c,0x537b6),(0x537cc,0x537d8),(0x43e24,0x43e6a),(0x61b1c,0x61b5a),(0x55bde,0x55c32),(0x5362e,0x5366c),(0x55bd4,0x55bde),(0x55c48,0x55c52),(0x6dd16,0x6dd86),(0x6d572,0x6d682),(0x43c4e,0x43c7e),(0x6dd86,0x6dda4),(0x5a004,0x5a026),(0x60856,0x6089a),(0x58ef2,0x58f14)]:w(b,0x40000,lo,hi)
 ID=0x200035f5;N=0x2000319d;T=0x20004800;M=0xffffffff
 OPAQUE={0x4da70,0x46570,0x4a7d6,0x50412,0x6c300,0x4d172,0x4600e,0x2000039c,0x440c2,0x20000332}
 def ck(ok,msg):
@@ -38,6 +39,13 @@ def trace(n,cap,cfg,initial):
             expected += [(frame-20,4,0x64302)]+[(0x4002500c,4,z) for z in (0x1101,0,0x1101)]
             ck([row[1:] for row in writes[rf_start:]]==expected and delay==[20,20] and r['sp']==frame-32,'RF prefix trace')
             ck((get(flag,1),get(ID,1))==(old_flag,old_id),'RF ID survival')
+            # cfg bit 0 selects a synthetic readback policy in this test only.
+            base=get(0x20003590,4)
+            for d in {row[0] for row in rf['FIELDS']}:
+                if base+d not in m:put(base+d,4,0xa5a5a5a5)
+            def readback(p,i):return ((0x9e3779b9*(i+1))^p)&M if cfg&1 else get(p,4)
+            dest,batch=rf['run'](g['code'],r,get,put,readback);writes.extend(batch)
+            ck(dest==0x64302 and r['sp']==frame-16 and len(batch)==29 and (get(flag,1),get(ID,1))==(old_flag,old_id),'RF setup return')
             sp=frame;r.update({k:get(sp+d,4) for k,d in [('ra',12),('s0',8),('s1',4),('s2',0)]});r['sp']=sp+16;pc=r['ra'];continue
         if pc in OPAQUE and not (pc==0x2000039c and r['ra']==0x53658):r['a0']=0;pc=r['ra'];continue
         if pc==0x43c4e:handlers.append(r['a0'])
@@ -93,4 +101,4 @@ for n,cap,cfg in [(5,29,1),(6,29,1),(5,11,1),(5,29,0),(11,11,1),(248,255,3),(0,2
     for initial in (0,1,255):print(n,cap,cfg,initial,'=>',trace(n,cap,cfg,initial))
 for cap in range(1,256):
     for cfg in (0,1):trace(0,cap,cfg,0)
-print('PASS: 21 regression + 510 repeated-registration paths; RF prefix to 660d6, 25 ordered stores, two 20-iteration software delays per entry; both IDs preserved')
+print('PASS: 21 regression + 510 repeated-registration paths; RF setup returns to 64302; 28 fresh RMW samples, 29 ordered stores, both IDs preserved')
