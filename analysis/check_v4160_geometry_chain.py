@@ -1,4 +1,4 @@
-"""Trace accepted config copy through all page callbacks up to the release entry (256- and 513-byte fixtures). Args: APP, V1.31, rasm2.
+"""Trace accepted config copy through all page callbacks, release and both cache clears (256- and 513-byte fixtures). Args: APP, V1.31, rasm2.
 Synthetic source config, stack, MMIO and page; reference RAM mapping and Xwchc assumed.
 """
 from hashlib import sha256
@@ -20,7 +20,7 @@ def window(img,base,lo,hi):
     ck(p==hi)
 for l,h in [(0x197f0,0x1995c),(0x8520,0x854a),(0x19124,0x19142),(0x1908c,0x1909e),(0x188e2,0x189fe),(0x19160,0x1917e),(0x18a66,0x18aa6),(0x1979a,0x197b8),(0x197be,0x197f0),(0x19764,0x1979a),(0x18e98,0x18f56)]:window(a,0x8000,l,h)
 for l,h in [(0x43cc4,0x43d4e),(0x43b3e,0x43c06),(0x430e0,0x43174),(0x4329a,0x432a4),(0x44022,0x440c2)]:window(b,0x40000,l,h)
-for l,h in [(0x40,0x110),(0x332,0x36c),(0x39c,0x3ca)]:window(b,0x20000000-0x270,0x20000000+l,0x20000000+h)
+for l,h in [(0x40,0x1e4),(0x332,0x36c),(0x39c,0x3ca)]:window(b,0x20000000-0x270,0x20000000+l,0x20000000+h)
 M=0xffffffff;C=0x200031ec;U=0x2000ff80;S=0x2000ff50;A=0x08077c00;B=0x40012400
 for length,count in [(0,3),(513,7),(1,0),(32000,3)]:
  for equal in (False,True):
@@ -32,10 +32,13 @@ for length,count in [(0,3),(513,7),(1,0),(32000,3)]:
     request=[];fill=[];written=[];slots=[];entry=[];stage=[];io=[];L=length or 256
     put(0x40022010,4,0);put(0x4002200c,4,0)  # synthetic ready controller
     timer=0xe000f000;r['gp']=0x20004000;put(r['gp']+382,1,73);put(timer,4,0);put(timer+4,4,0)
-    aligned=[];returns=[]
+    K=0x200031bc;acct=0x200031a2;freed=[];cleanup=[];aligned=[];returns=[]
     for step in range(40000):
         if pc==0x440c0:returns.append((r['a0'],r['s0'],r['s2'],r['sp']))
-        if pc in (0x44038,0x20000110) or (pc==0x44092 and L<4):break
+        if pc==0x20000110:
+            ptr=r['a0'];tail=get(ptr-8,4)
+            freed.append((ptr,r['ra'],get(ptr-2,2),get(ptr-4,2),get(tail,4),get(tail+4,2),get(acct,2),get(0x4002420c,4)))
+        if pc in (0x44038,0x4403a) or (pc==0x44092 and L<4):break
         if pc==0x197be:entry.append(tuple(r[k] for k in ('a0','a1','a2','s2','sp','ra')))
         if 0x44022 in vis:
             if pc==0x20000040:request.append((r['a0'],r['a1']))
@@ -51,6 +54,7 @@ for length,count in [(0,3),(513,7),(1,0),(32000,3)]:
             elif at==0x18a8e:ck(p==B);r[t]=2 if polls else 0;polls+=1
             elif at==0x1978c:ck(p==timer+4);r[t]=1  # synthetic timer has expired
             else:r[t]=get(p,w)
+            if freed and o[0]=='s':cleanup.append((at,p,w,r[t]&((1<<(8*w))-1)))
             if at==0x18ed6:aligned.append((p,r[t]))
             if at in (0x18f1e,0x18f26):io.append((o,p,r[t]))
             if fill and at==0x200003c0:written.append((p,r[t]&255))
@@ -77,15 +81,22 @@ for length,count in [(0,3),(513,7),(1,0),(32000,3)]:
     if callback:expected += [(0x440ac,'lhu',12,2),(0x4408e,'lbu',14,1)]*count
     ck(events[6:]==defaults+expected)
     ck([e[1:] for e in events[:6]]==[('sb',i,1) for i in (12,13,14)*2]);ck(get(C+12,2)==(length or 256) and get(C+14,1)==(count or 1))
-    ck(request==([] if equal else [(L,78)]) and pc==(0x20000110 if callback else 0x44092 if success else 0x44038))
+    ck(request==([] if equal else [(L,78)]) and pc==(0x4403a if callback else 0x44092 if success else 0x44038))
     if success:
-        P=get(0x200031bc,4);ck(slots==[P] and P!=0 and get(P-2,2)==78 and fill==[(P,255,L)])
+        P,=slots;ck(P!=0 and fill==[(P,255,L)] and get(P-2,2)==(0 if callback else 78))
         ck(written==[(P+i,255) for i in range(L)])
         if callback:
             T=S-16-32;F=T-32
             pages=[A+i*L for i in range(count)]
             ck(entry==[(page,L//4,P,i+1,T,0x440c0) for i,page in enumerate(pages)])
-            ck(returns==[(0,C,i+1,T) for i in range(count)] and (r['a0'],r['ra'])==(P,0x440a0))
+            ck(returns==[(0,C,i+1,T) for i in range(count)] and r['a0']==0)
+            (ptr,ra,tag,size,end,rest,available,control),=freed
+            ck((ptr,ra,tag,size)==(P,0x440a0,78,(L+3)&~3))
+            ck(cleanup==[(0x20000118,0x4002420c,4,0),(0x20000178,P-2,2,0),
+                (0x20000186,acct,2,(available+size)&65535),(0x200001ce,P-4,2,(size+8+rest)&65535),
+                (0x200001d0,P-8,4,end),(0x200001d6,acct,2,(available+size+8)&65535),
+                (0x20000122,0x4002420c,4,control),(0x440a2,K,4,0),(0x440a6,K+4,4,0)])
+            ck(get(K,8)==0)
             ck(aligned==[(0x40022014,page&~255) for page in pages])
             pairs=[];stages=[]
             for page in pages:
@@ -96,6 +107,6 @@ for length,count in [(0,3),(513,7),(1,0),(32000,3)]:
             ck(io==pairs and stage==stages)
             ck(get(P,4)==pages[-1] and all(get(P+i,1)==255 for i in range(4,L)))
         else:ck(get(P,L)==(1<<(8*L))-1 and (r['s2'],r['a5'],r['a2'])==(0,count or 1,P))
-    if not callback:ck(not entry and not stage and not io and not aligned and not returns)
+    if not callback:ck(not entry and not stage and not io and not aligned and not returns and not freed and not cleanup)
     if not success:ck(not fill and not written and slots==([] if equal else [0]) and (equal or get(0x200031bc,4)==0))
-print('PASS: 8 chains; 3+7 page returns, 640 paired word transfers, raw vs aligned destinations, release(P) entry, 1 count-only, 5 early exits')
+print('PASS: 8 chains; 3+7 page returns, 640 paired word transfers, 2 actual release traces, 9 ordered stores each including both cache clears, 1 count-only, 5 early exits')
