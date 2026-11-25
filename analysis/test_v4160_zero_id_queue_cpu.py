@@ -90,6 +90,13 @@ class CPU:
                     check(not h & 0x1000, 'invalid RV32 shift')
                     d = 8 + (h >> 7 & 7)
                     self.put(d, r[d] >> (h >> 2 & 31))
+                elif q == 1 and f == 4 and (h >> 10 & 3) == 2:  # c.andi
+                    d = 8 + (h >> 7 & 7)
+                    self.put(d, r[d] & imm)
+                elif q == 0 and f == 0:  # c.addi4spn
+                    off = ((h >> 11 & 3) << 4 | (h >> 7 & 15) << 6 | (h >> 6 & 1) << 2 | (h >> 5 & 1) << 3)
+                    check(off != 0, 'reserved c.addi4spn')
+                    self.put(8 + (h >> 2 & 7), r[2] + off)
                 elif q == 2 and f == 6:  # c.swsp
                     off = ((h >> 9 & 15) << 2) | ((h >> 7 & 3) << 6)
                     self.mem(r[2] + off, 4, r[rs2])
@@ -128,11 +135,13 @@ class CPU:
                 if op == 0x17: self.put(rd, p + (w & 0xfffff000))
                 elif op == 0x37: self.put(rd, w & 0xfffff000)
                 elif op == 0x13 and f == 0: self.put(rd, r[a] + imm)
+                elif op == 0x13 and f == 7: self.put(rd, r[a] & imm)
                 elif op == 0x13 and f == 5 and f7 == 0: self.put(rd, r[a] >> b)
                 elif op == 0x33 and f == 0 and f7 == 0: self.put(rd, r[a] + r[b])
                 elif op == 0x33 and f == 0 and f7 == 0x20: self.put(rd, r[a] - r[b])
                 elif op == 0x33 and f == 0 and f7 == 1: self.put(rd, r[a] * r[b])
-                elif op == 0x03 and f in (2, 5): self.put(rd, self.mem(r[a] + imm, {2: 4, 5: 2}[f]))
+                elif op == 0x33 and f == 3 and f7 == 0: self.put(rd, int(r[a] < r[b]))
+                elif op == 0x03 and f in (2, 4, 5): self.put(rd, self.mem(r[a] + imm, {2: 4, 4: 1, 5: 2}[f]))
                 elif op == 0x23 and f in (0, 1, 2):
                     off = sx((w >> 25 << 5) | (w >> 7 & 31), 12)
                     self.mem(r[a] + off, {0: 1, 1: 2, 2: 4}[f], r[b])
@@ -140,6 +149,10 @@ class CPU:
                     target = (r[a] + imm) & MASK & ~1
                     self.put(rd, p + 4)
                     self.pc = target
+                elif op == 0x6f:
+                    off = ((w >> 31) << 20 | (w >> 12 & 255) << 12 | (w >> 20 & 1) << 11 | (w >> 21 & 1023) << 1)
+                    self.put(rd, p + 4)
+                    self.pc = p + sx(off, 21)
                 elif op == 0x63 and f in (0, 1, 6, 7):
                     off = ((w >> 31) << 12 | (w >> 7 & 1) << 11 | (w >> 25 & 63) << 5 | (w >> 8 & 15) << 1)
                     taken = (r[a] == r[b]) == (f == 0) if f in (0, 1) else (r[a] < r[b]) == (f == 6)
