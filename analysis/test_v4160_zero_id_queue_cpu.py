@@ -83,6 +83,8 @@ class CPU:
                 elif q == 1 and f == 3 and rd == 2:  # c.addi16sp
                     v = ((h >> 12 & 1) << 9 | (h >> 6 & 1) << 4 | (h >> 5 & 1) << 6 | (h >> 3 & 3) << 7 | (h >> 2 & 1) << 5)
                     self.put(2, r[2] + sx(v, 10))
+                elif q == 1 and f == 3 and rd and imm:  # c.lui
+                    self.put(rd, imm << 12)
                 elif q == 2 and f == 0:  # c.slli
                     check(not h & 0x1000, 'invalid RV32 shift')
                     self.put(rd, r[rd] << rs2)
