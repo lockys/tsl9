@@ -24,6 +24,17 @@ class Capture(CPU):
         self.returns = iter(returns)
         self.transfers = []
 
+    def transfer(self):
+        """Default synthetic return; subclasses may execute the transfer slice."""
+        r = self.reg
+        self.transfers.append((r[1], r[10]))
+        resume = r[1]
+        value = next(self.returns)
+        for reg in (1, 5, 6, 7, *range(10, 18), *range(28, 32)):
+            self.put(reg, 0xbaba0000 + reg * 0x101)
+        self.put(10, value)
+        self.pc = resume
+
     def capture(self, start=ENTRY, stop=GUARD):
         self.pc = start
         for _ in range(1000):
@@ -31,13 +42,7 @@ class Capture(CPU):
             if p == stop:
                 return
             if p == TRANSFER:
-                self.transfers.append((r[1], r[10]))
-                resume = r[1]
-                value = next(self.returns)
-                for reg in (1, 5, 6, 7, *range(10, 18), *range(28, 32)):
-                    self.put(reg, 0xbaba0000 + reg * 0x101)
-                self.put(10, value)
-                self.pc = resume
+                self.transfer()
                 continue
             check((ENTRY <= p < GUARD or REJECT <= p < 0x16b0a) and not p & 1, 'outside capture slice')
             h = self.mem(p, 2)
