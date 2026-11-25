@@ -25,6 +25,8 @@ def sx(value, bits):
 
 
 class CPU:
+    CODE_RANGES = ((0x12bc8, 0x12c24), (0x12c58, 0x12c96))
+
     def __init__(self, image, queue):
         self.reg = [0] * 32
         self.reg[2] = STACK + 0x800
@@ -66,7 +68,7 @@ class CPU:
                 self.mem(a, 1, self.mem(b, 1))
                 self.pc = self.reg[1]
                 continue
-            check((0x12bc8 <= p < 0x12c24 or 0x12c58 <= p < 0x12c96) and not p & 1, 'execution outside bounded slices: %#x' % p)
+            check(any(lo <= p < hi for lo, hi in self.CODE_RANGES) and not p & 1, 'execution outside bounded slices: %#x' % p)
             h = self.mem(p, 2)
             r = self.reg
             if h & 3 != 3:
@@ -128,14 +130,20 @@ class CPU:
                 elif op == 0x13 and f == 0: self.put(rd, r[a] + imm)
                 elif op == 0x13 and f == 5 and f7 == 0: self.put(rd, r[a] >> b)
                 elif op == 0x33 and f == 0 and f7 == 0: self.put(rd, r[a] + r[b])
+                elif op == 0x33 and f == 0 and f7 == 0x20: self.put(rd, r[a] - r[b])
                 elif op == 0x33 and f == 0 and f7 == 1: self.put(rd, r[a] * r[b])
                 elif op == 0x03 and f in (2, 5): self.put(rd, self.mem(r[a] + imm, {2: 4, 5: 2}[f]))
                 elif op == 0x23 and f in (0, 1, 2):
                     off = sx((w >> 25 << 5) | (w >> 7 & 31), 12)
                     self.mem(r[a] + off, {0: 1, 1: 2, 2: 4}[f], r[b])
-                elif op == 0x63 and f in (0, 1):
+                elif op == 0x67 and f == 0:
+                    target = (r[a] + imm) & MASK & ~1
+                    self.put(rd, p + 4)
+                    self.pc = target
+                elif op == 0x63 and f in (0, 1, 6, 7):
                     off = ((w >> 31) << 12 | (w >> 7 & 1) << 11 | (w >> 25 & 63) << 5 | (w >> 8 & 15) << 1)
-                    if (r[a] == r[b]) == (f == 0): self.pc = p + sx(off, 13)
+                    taken = (r[a] == r[b]) == (f == 0) if f in (0, 1) else (r[a] < r[b]) == (f == 6)
+                    if taken: self.pc = p + sx(off, 13)
                 else: raise RuntimeError('unsupported instruction %#x at %#x' % (w, p))
         raise RuntimeError('instruction budget exceeded')
 
