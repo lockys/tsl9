@@ -114,6 +114,9 @@ class CPU:
                 elif q == 0 and f == 2:  # c.lw
                     off = ((h >> 10 & 7) << 3) | ((h >> 6 & 1) << 2) | ((h >> 5 & 1) << 6)
                     self.put(8 + (h >> 2 & 7), self.mem(r[8 + (h >> 7 & 7)] + off, 4))
+                elif q == 0 and f == 6:  # c.sw
+                    off = ((h >> 10 & 7) << 3) | ((h >> 6 & 1) << 2) | ((h >> 5 & 1) << 6)
+                    self.mem(r[8 + (h >> 7 & 7)] + off, 4, r[8 + (h >> 2 & 7)])
                 elif q == 2 and f == 4:
                     if h & 0x1000:
                         if rs2:
