@@ -95,6 +95,9 @@ class CPU:
                 elif q == 1 and f == 4 and (h >> 10 & 3) == 2:  # c.andi
                     d = 8 + (h >> 7 & 7)
                     self.put(d, r[d] & imm)
+                elif q == 1 and f == 4 and (h >> 10 & 3) == 3 and not h & 0x1000 and (h >> 5 & 3) == 2:  # c.or
+                    d = 8 + (h >> 7 & 7)
+                    self.put(d, r[d] | r[8 + (h >> 2 & 7)])
                 elif q == 0 and f == 0:  # c.addi4spn
                     off = ((h >> 11 & 3) << 4 | (h >> 7 & 15) << 6 | (h >> 6 & 1) << 2 | (h >> 5 & 1) << 3)
                     check(off != 0, 'reserved c.addi4spn')
@@ -124,8 +127,10 @@ class CPU:
                     v = ((h >> 12 & 1) << 8 | (h >> 10 & 3) << 3 | (h >> 5 & 3) << 6 | (h >> 3 & 3) << 1 | (h >> 2 & 1) << 5)
                     if (r[8 + (h >> 7 & 7)] == 0) == (f == 6):
                         self.pc = p + sx(v, 9)
-                elif q == 1 and f == 5:
+                elif q == 1 and f in (1, 5):  # RV32 c.jal / c.j
                     v = ((h >> 12 & 1) << 11 | (h >> 11 & 1) << 4 | (h >> 9 & 3) << 8 | (h >> 8 & 1) << 10 | (h >> 7 & 1) << 6 | (h >> 6 & 1) << 7 | (h >> 3 & 7) << 1 | (h >> 2 & 1) << 5)
+                    if f == 1:
+                        self.put(1, p + 2)
                     self.pc = p + sx(v, 12)
                 else:
                     raise RuntimeError('unsupported compressed %#x at %#x' % (h, p))
@@ -138,6 +143,7 @@ class CPU:
                 elif op == 0x37: self.put(rd, w & 0xfffff000)
                 elif op == 0x13 and f == 0: self.put(rd, r[a] + imm)
                 elif op == 0x13 and f == 7: self.put(rd, r[a] & imm)
+                elif op == 0x13 and f == 1 and f7 == 0: self.put(rd, r[a] << b)
                 elif op == 0x13 and f == 5 and f7 == 0: self.put(rd, r[a] >> b)
                 elif op == 0x33 and f == 0 and f7 == 0: self.put(rd, r[a] + r[b])
                 elif op == 0x33 and f == 0 and f7 == 0x20: self.put(rd, r[a] - r[b])
