@@ -1,0 +1,192 @@
+{
+  "schema": "TSL9-cancel-provider-reference-static-v1",
+  "scope": "Pinned candidate bodies and operand/address formulas only; no ISA/provider/MMIO execution",
+  "installed_binding_proved": false,
+  "app_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+  "header": {
+    "source": "original-dec2023/wchble_rom.h only",
+    "bytes": 243435,
+    "sha256": "647a185941fedeb6ba16d544d9bca91a6f53219bb649a5513b59abeb21a9a94c",
+    "flash_base": "0x40000",
+    "JT_base": "0x40034",
+    "types_bits": {
+      "bStatus_t": 8,
+      "tmosTaskID": 8,
+      "tmosEvents": 16
+    },
+    "APIs": [
+      {
+        "name": "tmos_clear_event",
+        "index": 8,
+        "slot": "0x40054",
+        "macro_body_sha256": "f6d9b45482b336bf0e8fc8a8d3eccac940cce7d27530c818e1d1e98ec27da543"
+      },
+      {
+        "name": "tmos_stop_task",
+        "index": 10,
+        "slot": "0x4005c",
+        "macro_body_sha256": "f41997780f25c802fea732df92f7511509526b15fa3651f084b56d4a09fd09f8"
+      },
+      {
+        "name": "tmos_msg_deallocate",
+        "index": 13,
+        "slot": "0x40068",
+        "macro_body_sha256": "133ad9deb69ea7df3ce534183c6fa80a5827d1da3a7b81b1c5d6363aa598f4af"
+      }
+    ],
+    "installed_binding_proved": false
+  },
+  "profiles": [
+    {
+      "label": "V1.31",
+      "carrier_bytes": 191078,
+      "carrier_sha256": "133d37055626caa1ac0f0abd0b8ec4d8c5786a61d52e6a2ef24ae2705aa15a22",
+      "slot40068": {
+        "raw_pointer": "0x431ba",
+        "target": "0x431ba",
+        "body_bytes": 78,
+        "body_sha256": "45e504a67ace2215263cfbaddc9d99a0cc0c1714f8289f19889a9573e7c520b5",
+        "expected_body_sha256": "45e504a67ace2215263cfbaddc9d99a0cc0c1714f8289f19889a9573e7c520b5",
+        "template_sha256": "6000f6bf1ea3c9c30d1aab993653d8fb53d2b06c7fb815c676ed073176b54842"
+      },
+      "slot4005c": {
+        "raw_pointer": "0x439a8",
+        "target": "0x439a8",
+        "body_bytes": 108,
+        "body_sha256": "b7039b31b68bfe6aeae2e453d4b159efab81edade95c9f3079a56898444ff098",
+        "expected_body_sha256": "b7039b31b68bfe6aeae2e453d4b159efab81edade95c9f3079a56898444ff098",
+        "template_sha256": "b1e38acdfe43fb0f0706aa7c8a53ced61ac2cfb70516172d9d82f39b263cdbf0"
+      },
+      "current_task_byte": "0x2000319c",
+      "pending_event_halfword": "0x200031dc",
+      "calls": [
+        {
+          "role": "deallocate private helper",
+          "target": "0x20000110",
+          "source": "0x40380",
+          "mapping": "first-copy load image",
+          "prefix16_sha256": "c9dbdf9fc636b33252601709adf1a5b271abee3d6f009bb5e6f28e5a15617cb7",
+          "body_or_ABI_proved": false
+        },
+        {
+          "role": "timer lookup private helper",
+          "target": "0x20000314",
+          "source": "0x40584",
+          "mapping": "first-copy load image",
+          "prefix16_sha256": "6f6c14cfdea8c78dabbfb02a9759f8ce71b66e8e7c22dcd43a29cff046ff2f28",
+          "body_or_ABI_proved": false
+        },
+        {
+          "role": "clear-event flash helper",
+          "target": "0x4358a",
+          "source": "0x4358a",
+          "mapping": "captured flash",
+          "prefix16_sha256": "2396ab2130323d575fab5197feadba16ad162fad7511af4c329f4335f88a2853",
+          "body_or_ABI_proved": false
+        }
+      ],
+      "clear_event_alias_slot": "0x40054",
+      "decoded_return_codes": {
+        "null": 5,
+        "tag_mismatch": 4,
+        "private_return": 0,
+        "timer_found": 0,
+        "timer_missing": 6
+      },
+      "installed_binding_proved": false
+    },
+    {
+      "label": "V1.40",
+      "carrier_bytes": 191574,
+      "carrier_sha256": "b02cf8ec6829425a558887bd6bc10d28ae1f0e2e9e1850333f0bab6088e9e941",
+      "slot40068": {
+        "raw_pointer": "0x43246",
+        "target": "0x43246",
+        "body_bytes": 78,
+        "body_sha256": "3db0d77ac9e5b56d1b327b3c3576a91acd4895f9d752b337e06b44b07758dfa7",
+        "expected_body_sha256": "3db0d77ac9e5b56d1b327b3c3576a91acd4895f9d752b337e06b44b07758dfa7",
+        "template_sha256": "6000f6bf1ea3c9c30d1aab993653d8fb53d2b06c7fb815c676ed073176b54842"
+      },
+      "slot4005c": {
+        "raw_pointer": "0x43a34",
+        "target": "0x43a34",
+        "body_bytes": 108,
+        "body_sha256": "ef68aa1e9331e08e48880f35aa3b1d0ec25d2f781fa60289d78a07330beec866",
+        "expected_body_sha256": "ef68aa1e9331e08e48880f35aa3b1d0ec25d2f781fa60289d78a07330beec866",
+        "template_sha256": "b1e38acdfe43fb0f0706aa7c8a53ced61ac2cfb70516172d9d82f39b263cdbf0"
+      },
+      "current_task_byte": "0x200031ec",
+      "pending_event_halfword": "0x2000322c",
+      "calls": [
+        {
+          "role": "deallocate private helper",
+          "target": "0x20000110",
+          "source": "0x403c0",
+          "mapping": "first-copy load image",
+          "prefix16_sha256": "c9dbdf9fc636b33252601709adf1a5b271abee3d6f009bb5e6f28e5a15617cb7",
+          "body_or_ABI_proved": false
+        },
+        {
+          "role": "timer lookup private helper",
+          "target": "0x20000314",
+          "source": "0x405c4",
+          "mapping": "first-copy load image",
+          "prefix16_sha256": "85e5ae1717be22eff264c8b351ae26d258d93c34ad53a43a6198ac32193e7e6b",
+          "body_or_ABI_proved": false
+        },
+        {
+          "role": "clear-event flash helper",
+          "target": "0x43616",
+          "source": "0x43616",
+          "mapping": "captured flash",
+          "prefix16_sha256": "2396ab2130323d575fab5197feadba16ad162fad7511af4c329f4335f88a2853",
+          "body_or_ABI_proved": false
+        }
+      ],
+      "clear_event_alias_slot": "0x40054",
+      "decoded_return_codes": {
+        "null": 5,
+        "tag_mismatch": 4,
+        "private_return": 0,
+        "timer_found": 0,
+        "timer_missing": 6
+      },
+      "installed_binding_proved": false
+    }
+  ],
+  "control_word": "0x4002420c",
+  "control_scope": "encoded outer return paths: read/save, write0, FENCE.I before argument checks, restore; valid access and nested normal-return/preservation premises required",
+  "deallocate_reference": {
+    "outer_frame_bytes": 16,
+    "saved_S_registers": [
+      "S0",
+      "S1"
+    ],
+    "pointer_zero_normal_return": 5,
+    "nonzero_pointer_extra_read": "U8[pointer-2]",
+    "marker_not255_normal_return": 4,
+    "marker255_then_private_call_normal_return": 0,
+    "private_helper_preservation_and_return_proved": false
+  },
+  "stop_task_reference": {
+    "outer_frame_bytes": 32,
+    "saved_S_registers": [
+      "S0",
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "lookup_nonzero_store": "SH zero at lookup_result+2 before clear-event call",
+    "lookup_result_zero_normal_return": 6,
+    "lookup_result_nonzero_normal_return": 0,
+    "clear_event_reply_checked": false,
+    "current_task_equal_action": "SH low16(input_event OR old_pending) to profile pending halfword",
+    "private_helper_preservation_and_return_proved": false
+  },
+  "APP_argument_domain": {
+    "task": "U8[GP+166], 0..255",
+    "event_mask": "1 << matched_index, matched_index 0..14",
+    "fits_header_widths": true,
+    "payload_nonzero_proves_pointer_minus2_tag": false
+  }
+}
