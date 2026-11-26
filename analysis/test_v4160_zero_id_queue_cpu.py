@@ -154,6 +154,8 @@ class CPU:
                 elif op == 0x33 and f == 0 and f7 == 0: self.put(rd, r[a] + r[b])
                 elif op == 0x33 and f == 0 and f7 == 0x20: self.put(rd, r[a] - r[b])
                 elif op == 0x33 and f == 0 and f7 == 1: self.put(rd, r[a] * r[b])
+                elif op == 0x33 and f == 5 and f7 == 1: self.put(rd, MASK if r[b] == 0 else r[a] // r[b])
+                elif op == 0x33 and f == 7 and f7 == 1: self.put(rd, r[a] if r[b] == 0 else r[a] % r[b])
                 elif op == 0x33 and f == 3 and f7 == 0: self.put(rd, int(r[a] < r[b]))
                 elif op == 0x33 and f == 6 and f7 == 0: self.put(rd, r[a] | r[b])
                 elif op == 0x33 and f == 5 and f7 == 0: self.put(rd, r[a] >> (r[b] & 31))
