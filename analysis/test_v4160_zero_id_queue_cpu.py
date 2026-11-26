@@ -101,6 +101,9 @@ class CPU:
                 elif q == 1 and f == 4 and (h >> 10 & 3) == 3 and not h & 0x1000 and (h >> 5 & 3) == 2:  # c.or
                     d = 8 + (h >> 7 & 7)
                     self.put(d, r[d] | r[8 + (h >> 2 & 7)])
+                elif q == 1 and f == 4 and (h >> 10 & 3) == 3 and not h & 0x1000 and (h >> 5 & 3) == 1:  # c.xor
+                    d = 8 + (h >> 7 & 7)
+                    self.put(d, r[d] ^ r[8 + (h >> 2 & 7)])
                 elif q == 0 and f == 0:  # c.addi4spn
                     off = ((h >> 11 & 3) << 4 | (h >> 7 & 15) << 6 | (h >> 6 & 1) << 2 | (h >> 5 & 1) << 3)
                     check(off != 0, 'reserved c.addi4spn')
@@ -162,6 +165,7 @@ class CPU:
                 elif op == 0x33 and f == 3 and f7 == 0: self.put(rd, int(r[a] < r[b]))
                 elif op == 0x33 and f == 6 and f7 == 0: self.put(rd, r[a] | r[b])
                 elif op == 0x33 and f == 5 and f7 == 0: self.put(rd, r[a] >> (r[b] & 31))
+                elif op == 0x33 and f == 5 and f7 == 0x20: self.put(rd, sx(r[a], 32) >> (r[b] & 31))
                 elif op == 0x33 and f == 1 and f7 == 0: self.put(rd, r[a] << (r[b] & 31))
                 elif op == 0x03 and f in (2, 4, 5): self.put(rd, self.mem(r[a] + imm, {2: 4, 4: 1, 5: 2}[f]))
                 elif op == 0x23 and f in (0, 1, 2):
