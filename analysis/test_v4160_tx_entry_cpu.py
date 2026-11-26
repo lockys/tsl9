@@ -60,7 +60,7 @@ def conditional_whole(image, tag, length, mask, final):
     check(not c.calls, 'conditional whole provider executed')
 
 
-def probe(c, tag, flags, length, ident=0x123):
+def probe(c, tag, flags, length, ident=0x123, target=PROVIDER):
     c.reg = [0]*32
     c.reg[1], c.reg[2], c.reg[3], c.reg[10] = RETURN, ENTRY_SP, GP, QUEUE
     for reg, value in zip((8, 9, 18, 19), SAVED):
@@ -78,7 +78,7 @@ def probe(c, tag, flags, length, ident=0x123):
     before_row = c.queue()
     c.writes.clear()
     c.reads.clear()
-    stop = c.run(0x16b7c, {PROVIDER, RETURN})
+    stop = c.run(0x16b7c, {target, RETURN})
     expected_reads = [(QUEUE+11, 1)]
     expected_stores = []
     valid_tag = tag in (1, 2)
@@ -94,7 +94,7 @@ def probe(c, tag, flags, length, ident=0x123):
         expected_stores += [(SP+12, 2, 0x4030), (SP+14, 1, 0x50)]
         expected_stores += [(SP+18+i, 1, 0) for i in range(10, -1, -1)]
         expected_stores += [(SP+20, 1, length), (SP+17, 1, ident << 5 & 255), (SP+16, 1, ident >> 3 & 255)]
-        check(stop == PROVIDER, 'entry should reach copy boundary')
+        check(stop == target, 'entry should reach copy boundary')
         check(c.reg[10:13] == [SP+21, QUEUE+3, length], 'entry copy arguments')
         check(c.reg[1] == 0x16bfa and c.reg[2] == SP, 'entry provider frame/link')
     else:
