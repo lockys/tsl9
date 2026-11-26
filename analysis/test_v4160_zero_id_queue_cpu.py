@@ -153,6 +153,7 @@ class CPU:
                 elif op == 0x33 and f == 0 and f7 == 1: self.put(rd, r[a] * r[b])
                 elif op == 0x33 and f == 3 and f7 == 0: self.put(rd, int(r[a] < r[b]))
                 elif op == 0x33 and f == 6 and f7 == 0: self.put(rd, r[a] | r[b])
+                elif op == 0x33 and f == 5 and f7 == 0: self.put(rd, r[a] >> (r[b] & 31))
                 elif op == 0x03 and f in (2, 4, 5): self.put(rd, self.mem(r[a] + imm, {2: 4, 4: 1, 5: 2}[f]))
                 elif op == 0x23 and f in (0, 1, 2):
                     off = sx((w >> 25 << 5) | (w >> 7 & 31), 12)
