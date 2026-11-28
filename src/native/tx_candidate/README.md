@@ -1,5 +1,11 @@
 # V4.1.60 TX 候選來源元件
 
+目前正式來源建置改用 [original_tx.c](original_tx.c) 與
+[verify-original.py](verify-original.py)，保留真實 RAM 重定位，已消除原有
+93-byte TX 差異。[完整驗證](../../../experiments/v4160-original-tx-integrated/README.md)
+核對全部 76,800 bytes 與原 BIN 一致；實機與 RAM／ROM 合約仍未證。
+以下保留舊候選流程及其歷史驗證範圍。
+
 [English](readme.en.md)
 
 這是已測試 TX 候選的入口、C 主體及返回葉節點的獨立 `src/` 副本；目前的 `../receive/transport_frame.c` 是原始 TX 路徑，**不可同時當成同一個位置的兩個 provider 連結**。來源以原實驗為根據，包含由組合語言入口改寫的等價 file-scope inline assembly；只改動 include 路徑。六個 C/H 檔已加入目前 `src/source-manifest.json` 的來源追溯清單；候選元件仍由本目錄的獨立檢查器建置，沒有加入舊 125 個 native units。原有 164 檔歷史收據維持原樣，由於當前 manifest 已擴充，固定舊 manifest 雜湊的歷史重播不能直接視為通過。

@@ -11,7 +11,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parent.parent
-EXPECTED = '28697eab551bd9b3ca74a69c44db24fc02e07bedbb5bf02380e4bcb1a390ce89'
+EXPECTED = '0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667'
 p = argparse.ArgumentParser()
 p.add_argument('--tool-dir', type=Path, required=True)
 p.add_argument('--out', type=Path, required=True)

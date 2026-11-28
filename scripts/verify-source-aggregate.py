@@ -33,7 +33,7 @@ compact = None
 olddefs = {}
 if a.compact_map:
     map_path = ROOT / 'src/compact-layout.json'
-    if hashlib.sha256(map_path.read_bytes()).hexdigest() != 'af181915377c9bf9f415b8b0b5b6f20f8058b4da10cd192d7e52f03a54ee751d':
+    if hashlib.sha256(map_path.read_bytes()).hexdigest() != '5caa9f6a15245ef5223f29c3b4917778cf38090948edc30120da42d07eea59c0':
         raise ValueError('Pinned compact mapping changed')
     compact = json.loads(map_path.read_text(encoding='utf-8'))
     if compact['schema'] != 'tsl9-selected-source-layout-compact-v1':
@@ -78,7 +78,7 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
     built = dict(pool.map(compile_one, jobs))
 tx = out / 'tx'
 if use_tx:
-    tx_args = [sys.executable, '-B', ROOT / 'src/native/tx_candidate/verify-linked.py', '--tool-dir', a.tool_dir, '--out', tx]
+    tx_args = [sys.executable, '-B', ROOT / 'src/native/tx_candidate/verify-original.py', '--tool-dir', a.tool_dir, '--out', tx]
     if a.tx_candidate:
         tx_args += ['--candidate', a.tx_candidate]
     tx_result = json.loads(run(tx_args).stdout)
@@ -119,8 +119,7 @@ for mode in ('c', 'cpp'):
         if len(transport_names) != 13 or external != ['tsl9_filter_external_8a56'] * 8:
             raise ValueError('Unexpected external references to the old TX unit')
         composite = out / ('NOT-FLASHABLE-tx-composite-' + mode + '.o')
-        run([tools['ld.lld'], '-r', '--no-relax', '-T', tx / 'tx-only.ld', tx / 'pre' / ('entry-' + mode + '.o'),
-             tx / ('valid_body-ordered-' + mode + '.o'), tx / 'pre' / ('return_leaf-' + mode + '.o'), '-o', composite])
+        run([tools['ld.lld'], '-r', '--no-relax', tx / ('symbolic-' + mode + '.o'), '-o', composite])
         tx_obj = reader(composite)
         if tx_obj.byname['.text.tsl9_tx_composite']['size'] != 280:
             raise ValueError('Unexpected TX composite size')

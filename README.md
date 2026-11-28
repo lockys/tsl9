@@ -10,9 +10,9 @@
 
 **免責聲明：本專案使用 Codex vibe coding 搭配 REA 進行實驗性重建，目前尚未成功逆向重建出已驗證可用的 TSL9 韌體。重建 BIN 未通過原硬體完整驗證；OTA 讀回成功不代表功能正常。**
 
-**已驗證重建覆蓋率：95.75%**（73,538／76,800 bytes；程式 69,412B＋資料 4,126B）。僅計入 C/C++ 重建後逐 byte 通過原位址比對的部分；不是功能完成率或可刷入比例。[驗證依據](experiments/tsl9-event-word-table-integration/summary.json)
+**封存原位址 C/C++ 證據：95.75%**（73,538／76,800 bytes；程式 69,412B＋資料 4,126B）。僅計入該階段 C/C++ 重建後逐 byte 通過原位址比對的部分；不是功能完成率或可刷入比例。[驗證依據](experiments/tsl9-event-word-table-integration/summary.json)
 
-最新整合：[新增七筆事件 word 資料28B已納入 SRC 與原位址對照](experiments/tsl9-event-word-table-integration/README.md)，實機執行與硬體相容性仍未證。
+最新離線位元組重現：**76,800／76,800 bytes（100%）**。C11／C++17 正式來源建置的診斷候選與 v4.1.60 原 BIN 全部相同，原有 93-byte TX 差異已消除。這包含指令層重建與明示資料，不代表功能完成或實機可用。[來源、重播與限制](experiments/v4160-original-tx-integrated/README.md)。
 
 產物門檻：[APP／BIN readiness](experiments/tsl9-event-word-table-integration/README.md)：目前未就緒。 · [第三查表合約](experiments/tsl9-third-provider-lookup-contract/README.md)
 
