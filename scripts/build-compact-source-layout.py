@@ -20,7 +20,7 @@ out = a.out.resolve()
 if out.exists() or out == ROOT or ROOT in out.parents:
     raise SystemExit('Output must be a new directory outside the project')
 path = ROOT / 'src/compact-layout.json'
-if hashlib.sha256(path.read_bytes()).hexdigest() != '297ab33d576b82bdc712b7544df10dca0f992184c0b99b1f74051b2c1f614d2c':
+if hashlib.sha256(path.read_bytes()).hexdigest() != 'af181915377c9bf9f415b8b0b5b6f20f8058b4da10cd192d7e52f03a54ee751d':
     raise ValueError('Pinned compact mapping changed')
 mapping = json.loads(path.read_text(encoding='utf-8'))
 if mapping['schema'] != 'tsl9-selected-source-layout-compact-v1':
@@ -45,7 +45,7 @@ if not agg['passed'] or agg['uses_historical_object_for_comparison'] or not agg[
     raise ValueError('Unexpected source aggregate')
 witnesses = {'tsl9_boot_resident_40000': 0x40000, 'tsl9_incoming_external_14056': 0x14056,
              'tsl9_input_state_decoders_static_data_1ab48': 0x1ab48, 'tsl9_record_field_transitions_static_data_1a078': 0x1a078,
-             'tsl9_registered_callbacks_static_data_1a638': 0x1a638, 'tsl9_settings_default_data_1a69c': 0x1a69c,
+             'tsl9_registered_callbacks_static_data_1a638': 0x1a638,
              '__tsl9v4160_data_2000b18c': 0x2000b18c}
 results = []
 for mode in ('c', 'cpp'):
@@ -65,7 +65,7 @@ for mode in ('c', 'cpp'):
         end = start + section['size']
         if not (0x8000 <= start < end <= 0x1ac00):
             continue
-        if any(not (end <= lo or start >= hi) for lo, hi in ((0x14056, 0x14c8a), (0x1a69c, 0x1a6a0))):
+        if any(not (end <= lo or start >= hi) for lo, hi in ((0x14056, 0x14c8a),)):
             raise ValueError('Selected range intersects an excluded region')
         if not re.fullmatch(r'[.A-Za-z0-9_]+', section['name']):
             raise ValueError('Invalid section name')
@@ -89,7 +89,7 @@ for mode in ('c', 'cpp'):
     strict = subprocess.run([*command, '-o', str(out / ('STRICT-' + mode + '.elf'))], capture_output=True, text=True)
     missing = set(re.findall(r'undefined symbol: ([^\r\n]+)', strict.stderr))
     if strict.returncode == 0 or missing != set(witnesses):
-        raise ValueError('Strict link must report exactly seven dependencies')
+        raise ValueError('Strict link must report exactly six dependencies')
     dest = out / ('NOT-FLASHABLE-compact-source-layout-' + mode + '.elf')
     linked = subprocess.run([*command, *['--defsym=' + k + '=' + hex(v) for k, v in witnesses.items()], '-o', str(dest)], capture_output=True, text=True)
     if linked.returncode:

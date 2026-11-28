@@ -36,7 +36,7 @@ if not facts['passed'] or facts['candidate_bytes_read'] or facts['flashable']:
     raise ValueError('Unexpected baseline')
 witnesses = {'tsl9_boot_resident_40000': 0x40000, 'tsl9_incoming_external_14056': 0x14056,
              'tsl9_input_state_decoders_static_data_1ab48': 0x1ab48, 'tsl9_record_field_transitions_static_data_1a078': 0x1a078,
-             'tsl9_registered_callbacks_static_data_1a638': 0x1a638, 'tsl9_settings_default_data_1a69c': 0x1a69c}
+             'tsl9_registered_callbacks_static_data_1a638': 0x1a638}
 results = []
 for mode in ('c', 'cpp'):
     folder = out / mode
@@ -65,7 +65,7 @@ for mode in ('c', 'cpp'):
     strict = subprocess.run([*cmd, '-o', str(folder / 'STRICT.elf')], capture_output=True, text=True)
     missing = set(re.findall(r'undefined symbol: ([^\r\n]+)', strict.stderr))
     if strict.returncode == 0 or missing != set(witnesses):
-        raise ValueError('Strict link must retain exactly six APP dependencies')
+        raise ValueError('Strict link must retain exactly five APP dependencies')
     dest = folder / 'NOT-FLASHABLE-conditional.elf'
     linked = subprocess.run([*cmd, *['--defsym=' + k + '=' + hex(v) for k, v in witnesses.items()], '-o', str(dest)], capture_output=True, text=True)
     if linked.returncode:
@@ -77,12 +77,14 @@ for mode in ('c', 'cpp'):
     original = reader(base / ('NOT-FLASHABLE-compact-source-layout-' + mode + '.elf'))
     prior = {s['name']: s for s in original.sections if s['flags'] & 2 and s['size'] and s['type'] != 8}
     flash = [s for s in result.sections if s['flags'] & 2 and s['size'] and s['type'] != 8]
-    if len(flash) != 6267 or sum(s['size'] for s in flash) != 73672 or not all(s['name'] in prior and s['address'] == prior[s['name']]['address'] and result.data(s) == original.data(prior[s['name']]) for s in flash):
+    if len(flash) != 6269 or sum(s['size'] for s in flash) != 73676 or not all(s['name'] in prior and s['address'] == prior[s['name']]['address'] and result.data(s) == original.data(prior[s['name']]) for s in flash):
         raise ValueError('Selected flash sections changed')
     phoff = struct.unpack_from('<I', result.raw, 28)[0]
     phsize, phcount = struct.unpack_from('<HH', result.raw, 42)
     if any(struct.unpack_from('<I', result.raw, phoff + i * phsize)[0] == 1 for i in range(phcount)):
         raise ValueError('Unexpected PT_LOAD')
-    results.append({'mode': mode, 'conditional_ram_bytes': ram['size'], 'strict_undefined': len(missing), 'flash_bytes_unchanged': 73672})
-print(json.dumps({'passed': True, 'results': results, 'ram_ownership_proved': False, 'candidate_bytes_read': 0,
-                  'diagnostic_pt_load': 0, 'excluded_read': False, 'flashable': False}))
+    results.append({'mode': mode, 'conditional_ram_bytes': ram['size'], 'strict_undefined': len(missing), 'flash_bytes_unchanged': 73676})
+report = {'passed': True, 'results': results, 'ram_ownership_proved': False, 'candidate_bytes_read': 0,
+                  'diagnostic_pt_load': 0, 'excluded_read': False, 'flashable': False}
+(out / "verification.json").write_text(json.dumps(report, indent=2)+"\n", encoding="utf-8")
+print(json.dumps(report))

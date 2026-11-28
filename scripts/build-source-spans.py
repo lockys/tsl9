@@ -20,7 +20,7 @@ support = runpy.run_path(str(ROOT / 'scripts/source-build-support.py'))
 support['metadata']()
 reader = runpy.run_path(str(support['PARSER']))['ELF']
 mapping = json.loads((ROOT / 'src/compact-layout.json').read_text(encoding='utf-8'))
-expected = [(0x8000, 0x14056), (0x14c8a, 0x1a69c), (0x1a6a0, 0x1ac00)]
+expected = [(0x8000, 0x14056), (0x14c8a, 0x1ac00)]
 out.mkdir(parents=True)
 build = out / 'build'
 proc = subprocess.run([sys.executable, '-B', str(ROOT / 'scripts/build-compact-source-layout.py'),
@@ -34,7 +34,7 @@ outputs = []
 for mode in ('c', 'cpp'):
     elf = reader(build / ('NOT-FLASHABLE-compact-source-layout-' + mode + '.elf'))
     sections = sorted((s for s in elf.sections if s['flags'] & 2 and s['size']), key=lambda s: s['address'])
-    if len(sections) != 6268:
+    if len(sections) != 6269:
         raise ValueError('Unexpected source section count')
     payload = bytearray()
     spans = []
@@ -48,7 +48,7 @@ for mode in ('c', 'cpp'):
         else:
             spans.append({'start': start, 'end': end, 'file_offset': len(payload), 'length': s['size']})
         payload.extend(elf.data(s))
-    if ([(x['start'], x['end']) for x in spans] != expected or len(payload) != 73672 or
+    if ([(x['start'], x['end']) for x in spans] != expected or len(payload) != 73676 or
         hashlib.sha256(payload).hexdigest() != mapping['selected_linked_sha256']):
         raise ValueError('Selected source spans or digest differ')
     binary = out / ('NOT-FLASHABLE-selected-spans-' + mode + '.bin')
@@ -61,9 +61,9 @@ for mode in ('c', 'cpp'):
 if outputs[0]['sha256'] != outputs[1]['sha256'] or outputs[0]['spans'] != outputs[1]['spans']:
     raise ValueError('C and C++ span outputs differ')
 record = {'schema': 'tsl9-selected-source-spans-v1', 'outputs': outputs, 'candidate_bytes_read': 0,
-          'excluded_bytes': 3128, 'excluded_read': False, 'complete_firmware': False, 'flashable': False}
+          'excluded_bytes': 3124, 'excluded_read': False, 'complete_firmware': False, 'flashable': False}
 with (out / 'NOT-FLASHABLE-spans.json').open('x', encoding='utf-8', newline='\n') as stream:
     json.dump(record, stream, indent=2)
     stream.write('\n')
-print(json.dumps({'passed': True, 'bytes_per_mode': 73672, 'spans': len(expected), 'excluded_bytes': 3128,
+print(json.dumps({'passed': True, 'bytes_per_mode': 73676, 'spans': len(expected), 'excluded_bytes': 3124,
                   'candidate_bytes_read': 0, 'excluded_read': False, 'complete_firmware': False, 'flashable': False}))

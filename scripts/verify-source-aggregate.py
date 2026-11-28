@@ -33,7 +33,7 @@ compact = None
 olddefs = {}
 if a.compact_map:
     map_path = ROOT / 'src/compact-layout.json'
-    if hashlib.sha256(map_path.read_bytes()).hexdigest() != '297ab33d576b82bdc712b7544df10dca0f992184c0b99b1f74051b2c1f614d2c':
+    if hashlib.sha256(map_path.read_bytes()).hexdigest() != 'af181915377c9bf9f415b8b0b5b6f20f8058b4da10cd192d7e52f03a54ee751d':
         raise ValueError('Pinned compact mapping changed')
     compact = json.loads(map_path.read_text(encoding='utf-8'))
     if compact['schema'] != 'tsl9-selected-source-layout-compact-v1':
@@ -86,7 +86,7 @@ if use_tx:
         raise ValueError('TX compilation failed')
 expected = {'tsl9_boot_resident_40000', 'tsl9_incoming_external_14056', 'tsl9_input_state_decoders_static_data_1ab48',
             'tsl9_record_field_transitions_static_data_1a078', 'tsl9_registered_callbacks_static_data_1a638',
-            'tsl9_runtime_reset_stack_top', 'tsl9_settings_default_data_1a69c'}
+            'tsl9_runtime_reset_stack_top'}
 if use_tx:
     expected.add('__tsl9v4160_data_2000b18c')
 helpers = {'ml_port_read8', 'ml_port_read32', 'ml_port_write32'}
@@ -125,7 +125,7 @@ for mode in ('c', 'cpp'):
         if tx_obj.byname['.text.tsl9_tx_composite']['size'] != 280:
             raise ValueError('Unexpected TX composite size')
         objects.append(composite)
-    if len(objects) != 141:
+    if len(objects) != 142:
         raise ValueError('Unexpected source unit count')
     aggregate = out / ('NOT-FLASHABLE-unplaced-' + mode + '.o')
     tx_alias = ['--defsym=tsl9_filter_external_8a56=__tsl9v4160_call_8a56'] if use_tx else []
