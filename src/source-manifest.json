@@ -1311,6 +1311,13 @@
       "replacements": [],
       "origin_sha256": "ebfbcb2521282ab5b3ac99d14ca2acf21ed987468a3dbd22923b5cb9210dd5ea",
       "sha256": "ebfbcb2521282ab5b3ac99d14ca2acf21ed987468a3dbd22923b5cb9210dd5ea"
+    },
+    {
+      "origin": "experiments/v4160-defaults-provider-link/defaults.c",
+      "destination": "src/native/receive/defaults_read_window.c",
+      "replacements": [],
+      "origin_sha256": "6b5bbf4d20f63c38bfb68991055a1e3a077077cfb3860ba39ee1caf4db229a62",
+      "sha256": "6b5bbf4d20f63c38bfb68991055a1e3a077077cfb3860ba39ee1caf4db229a62"
     }
   ],
   "native_units": [
@@ -2964,6 +2971,17 @@
       "verifier": "experiments/v4160-gatt-uuid-integrated/check.py",
       "evidence": "experiments/v4160-gatt-uuid-integrated/README.md",
       "scope": "Exactly two observed UUID bytes at1AB44; conditional GP+36 reader. No complete table/provider extent or runtime proof."
+    },
+    {
+      "name": "defaults-read-window",
+      "profile": "observed-defaults-four-byte-window",
+      "origin_unit": "experiments/v4160-defaults-provider-link/defaults.c",
+      "curated_unit": "src/native/receive/defaults_read_window.c",
+      "origin_unit_sha256": "6b5bbf4d20f63c38bfb68991055a1e3a077077cfb3860ba39ee1caf4db229a62",
+      "spec": "experiments/v4160-defaults-integrated/spec.json",
+      "verifier": "experiments/v4160-defaults-integrated/check.py",
+      "evidence": "experiments/v4160-defaults-integrated/README.md",
+      "scope": "Observed four readonly bytes at1A69C; genuine provider role. Product meaning, full extent and installed copy semantics unproved."
     }
   ],
   "legacy_groups": [
