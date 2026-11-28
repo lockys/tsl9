@@ -1296,10 +1296,21 @@
         [
           "TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001a6a0[24]\n    __attribute__((used, aligned(1), section(\".rodata.tsl9_opaque_gap_0001a6a0\"))) = {\n    0x00, 0x00, 0x00, 0x00, 0x8a, 0x9e, 0xff, 0xff, 0x9a, 0x9e, 0xff, 0xff, 0xa6, 0x9e, 0xff, 0xff, 0x9a, 0xa0, 0xff, 0xff, 0xa4, 0xa0, 0xff, 0xff\n};\n",
           "/* The table entries are fixed original-coordinate offsets, not relocations. */\nTSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_prefix_0001a6a0[4]\n    __attribute__((used, aligned(1), section(\".rodata.tsl9_opaque_gap_0001a6a0\"))) = {0};\nTSL9_OPAQUE_LINKAGE const int32_t tsl9_relative_table_0001a6a4[5]\n    __attribute__((used, aligned(4), section(\".rodata.tsl9_relative_table_0001a6a4\"))) = {\n    0x1452e - 0x1a6a4, 0x1453e - 0x1a6a4, 0x1454a - 0x1a6a4,\n    0x1473e - 0x1a6a4, 0x14748 - 0x1a6a4\n};\n/* Legacy ELF object spans the two adjacent sections in the selected layout. */\n__asm__(\".globl tsl9_opaque_gap_0001a6a0\\n\"\n        \".type tsl9_opaque_gap_0001a6a0,@object\\n\"\n        \".set tsl9_opaque_gap_0001a6a0,tsl9_opaque_prefix_0001a6a0\\n\"\n        \".size tsl9_opaque_gap_0001a6a0,24\\n\");\n"
+        ],
+        [
+          "TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001ab44[4]\n    __attribute__((used, aligned(1), section(\".rodata.tsl9_opaque_gap_0001ab44\"))) = {\n    0xf1, 0xff, 0x00, 0x00\n};",
+          "/* The preceding UUID halfword is now owned by gatt_write_uuid.c. */\nTSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001ab46[2]\n    __attribute__((used, aligned(1), section(\".rodata.tsl9_opaque_gap_0001ab46\"))) = {\n    0x00, 0x00\n};"
         ]
       ],
       "origin_sha256": "c68908db291d1de845335e79c2f3e544158584ae52cd34041f8e24f9cb99441e",
-      "sha256": "24afa80c10c01555cebb52536bf7b1de2974de31da24a0b7ca0d4ab4cd71246b"
+      "sha256": "2c482e5cc93f2adceb791f82a34a1a67a46ee562deba8b8ae555b37e6105837a"
+    },
+    {
+      "origin": "experiments/v4160-gatt-uuid-source-extension/origin.c",
+      "destination": "src/native/receive/gatt_write_uuid.c",
+      "replacements": [],
+      "origin_sha256": "ebfbcb2521282ab5b3ac99d14ca2acf21ed987468a3dbd22923b5cb9210dd5ea",
+      "sha256": "ebfbcb2521282ab5b3ac99d14ca2acf21ed987468a3dbd22923b5cb9210dd5ea"
     }
   ],
   "native_units": [
@@ -2942,6 +2953,17 @@
         "experiments/tsl9-event-word-table-integration/build/data-v1/measurement.json"
       ],
       "scope": "One28-byte positive readonly DATA OBJECT at1AAE8 for index0..6 at read17844. Post-read modulo7 does not bound initial index. All alias/IRQ/DMA writers,physical RAM/timer/channel meanings and full table extent remain unproved. No clamp,provider alias or hardware compatibility claim."
+    },
+    {
+      "name": "gatt-write-uuid",
+      "profile": "gatt-write-uuid-halfword",
+      "origin_unit": "experiments/v4160-gatt-uuid-source-extension/origin.c",
+      "curated_unit": "src/native/receive/gatt_write_uuid.c",
+      "origin_unit_sha256": "ebfbcb2521282ab5b3ac99d14ca2acf21ed987468a3dbd22923b5cb9210dd5ea",
+      "spec": "experiments/v4160-gatt-uuid-integrated/spec-v1.json",
+      "verifier": "experiments/v4160-gatt-uuid-integrated/check.py",
+      "evidence": "experiments/v4160-gatt-uuid-integrated/README.md",
+      "scope": "Exactly two observed UUID bytes at1AB44; conditional GP+36 reader. No complete table/provider extent or runtime proof."
     }
   ],
   "legacy_groups": [

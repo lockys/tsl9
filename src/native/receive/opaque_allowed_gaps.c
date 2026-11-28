@@ -131,9 +131,10 @@ TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001ab31[3]
     __attribute__((used, aligned(1), section(".rodata.tsl9_opaque_gap_0001ab31"))) = {
     0x00, 0x00, 0x00
 };
-TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001ab44[4]
-    __attribute__((used, aligned(1), section(".rodata.tsl9_opaque_gap_0001ab44"))) = {
-    0xf1, 0xff, 0x00, 0x00
+/* The preceding UUID halfword is now owned by gatt_write_uuid.c. */
+TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001ab46[2]
+    __attribute__((used, aligned(1), section(".rodata.tsl9_opaque_gap_0001ab46"))) = {
+    0x00, 0x00
 };
 TSL9_OPAQUE_LINKAGE const uint8_t tsl9_opaque_gap_0001abe0[32]
     __attribute__((used, aligned(1), section(".rodata.tsl9_opaque_gap_0001abe0"))) = {
