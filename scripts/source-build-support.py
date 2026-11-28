@@ -12,20 +12,20 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 def metadata():
     global _manifest
-    if sha(MANIFEST) != 'dabc5bfbe07f9d4965d9d2a81eff6d5c015c1e2d377bac7e945fc4d2bd0f843b':
+    if sha(MANIFEST) != '0238b5ffdea389f466d5a66a907848ef99800af5d4acb552e0d0205b184da61c':
         raise ValueError('Pinned source build manifest changed')
     data = json.loads(MANIFEST.read_text(encoding='utf-8'))
     if data['schema'] != 'tsl9-source-build-v1' or sha(PARSER) != '00a231e3bbd881a9961c12fefd15565364cd813250a46a7b20851a6b9f3a2141':
         raise ValueError('Source build schema or parser changed')
     files = data['files']
     actual = {p.relative_to(ROOT).as_posix() for p in (ROOT / 'src').rglob('*') if p.is_file() and p.suffix in {'.c', '.h', '.cc', '.cpp', '.hpp'}}
-    if len(files) != 173 or len({x['destination'] for x in files}) != len(files) or {x['destination'] for x in files} != actual:
+    if len(files) != 174 or len({x['destination'] for x in files}) != len(files) or {x['destination'] for x in files} != actual:
         raise ValueError('Source inventory changed')
     for item in files:
         path = (ROOT / item['destination']).resolve()
         if not path.is_relative_to(ROOT / 'src') or sha(path) != item['sha256']:
             raise ValueError('Source hash changed: ' + item['destination'])
-    if len(data['native_units']) != 125 or len(data['native_data_units']) != 13:
+    if len(data['native_units']) != 125 or len(data['native_data_units']) != 14:
         raise ValueError('Source unit inventory changed')
     _manifest = data
     return data

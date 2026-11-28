@@ -1,5 +1,9 @@
 # GATT UUID curated source extension
 
+Follow-up: [registered source-only build](../v4160-gatt-uuid-integrated/README.md)
+now includes this source in both manifests. The separate extension receipts and
+the unchanged-manifest descriptions below document the earlier experiment.
+
 The two-byte value read through the initialized `GP+36` pointer is now available
 as `src/native/receive/gatt_write_uuid.c`. This is a byte-for-byte curation of
 the prior `write_UUID.c` experiment, with a separate, pinned extension manifest.

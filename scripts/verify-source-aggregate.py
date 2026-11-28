@@ -33,7 +33,7 @@ compact = None
 olddefs = {}
 if a.compact_map:
     map_path = ROOT / 'src/compact-layout.json'
-    if hashlib.sha256(map_path.read_bytes()).hexdigest() != 'c612ccd91fa8cdd10d0f654b7dbf9faeb96e4c75fdc3f5a17722710dcda1d381':
+    if hashlib.sha256(map_path.read_bytes()).hexdigest() != '297ab33d576b82bdc712b7544df10dca0f992184c0b99b1f74051b2c1f614d2c':
         raise ValueError('Pinned compact mapping changed')
     compact = json.loads(map_path.read_text(encoding='utf-8'))
     if compact['schema'] != 'tsl9-selected-source-layout-compact-v1':
@@ -125,7 +125,7 @@ for mode in ('c', 'cpp'):
         if tx_obj.byname['.text.tsl9_tx_composite']['size'] != 280:
             raise ValueError('Unexpected TX composite size')
         objects.append(composite)
-    if len(objects) != 140:
+    if len(objects) != 141:
         raise ValueError('Unexpected source unit count')
     aggregate = out / ('NOT-FLASHABLE-unplaced-' + mode + '.o')
     tx_alias = ['--defsym=tsl9_filter_external_8a56=__tsl9v4160_call_8a56'] if use_tx else []
