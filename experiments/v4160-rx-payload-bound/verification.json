@@ -1,0 +1,391 @@
+{
+  "normal": {
+    "passed": true,
+    "cases_per_profile": 5880,
+    "profiles": {
+      "c_O0": {
+        "cases": 5880,
+        "payload_cases": 5040,
+        "rejected_cases": 840,
+        "all_32_registers_full_RAM_trace_equal": true
+      },
+      "c_O2": {
+        "cases": 5880,
+        "payload_cases": 5040,
+        "rejected_cases": 840,
+        "all_32_registers_full_RAM_trace_equal": true
+      },
+      "cpp_O0": {
+        "cases": 5880,
+        "payload_cases": 5040,
+        "rejected_cases": 840,
+        "all_32_registers_full_RAM_trace_equal": true
+      },
+      "cpp_O2": {
+        "cases": 5880,
+        "payload_cases": 5040,
+        "rejected_cases": 840,
+        "all_32_registers_full_RAM_trace_equal": true
+      }
+    },
+    "compiled_mutants_rejected": {
+      "guard_allows_1040": {
+        "case": 1680,
+        "fixture": {
+          "field": "normal",
+          "count": 1040,
+          "length": 0,
+          "byte": 0,
+          "old_sum": 0,
+          "source": "GP_sum"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "payload_uses_new_count": {
+        "case": 0,
+        "fixture": {
+          "field": "normal",
+          "count": 0,
+          "length": 0,
+          "byte": 0,
+          "old_sum": 0,
+          "source": "GP_sum"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "cached_expected_length": {
+        "case": 3370,
+        "fixture": {
+          "field": "length",
+          "count": 0,
+          "length": 0,
+          "byte": 1,
+          "old_sum": 0,
+          "source": "GP_sum"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "cached_checksum_byte": {
+        "case": 1,
+        "fixture": {
+          "field": "normal",
+          "count": 0,
+          "length": 0,
+          "byte": 0,
+          "old_sum": 0,
+          "source": "payload"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "state_six_only_on_equality": {
+        "case": 0,
+        "fixture": {
+          "field": "normal",
+          "count": 0,
+          "length": 0,
+          "byte": 0,
+          "old_sum": 0,
+          "source": "GP_sum"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "checksum_ignores_live_S1": {
+        "case": 2,
+        "fixture": {
+          "field": "normal",
+          "count": 0,
+          "length": 0,
+          "byte": 0,
+          "old_sum": 0,
+          "source": "count"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "checksum_register_truncated": {
+        "case": 15,
+        "fixture": {
+          "field": "normal",
+          "count": 0,
+          "length": 0,
+          "byte": 1,
+          "old_sum": 255,
+          "source": "GP_sum"
+        },
+        "state_mismatch": true,
+        "trace_equal": true
+      }
+    },
+    "decoded_counter_and_RAM_audit": {
+      "reset_zero_start": "0x20004080",
+      "reset_zero_end_exclusive": "0x2000c958",
+      "reset_zero_word_stores": 8758,
+      "nominal_TX_start": "0x2000b18c",
+      "nominal_TX_end_exclusive": "0x2000b9d8",
+      "nominal_TX_bytes": 2124,
+      "reset_covers_every_TX_byte": true,
+      "later_zero_fill_request": {
+        "call_PC": "0x8ea6",
+        "slot": "0x40048",
+        "A0": "0x2000b18c",
+        "A1": 0,
+        "A2": 2124
+      },
+      "installed_fill_side_effects_proved": false,
+      "exclusive_RAM_ownership_proved": false,
+      "counter_values_checked": 65536,
+      "payload_write_counter_values": 1040,
+      "over_limit_counter_values": 64496,
+      "nominal_RX_start": "0x2000b9d8",
+      "nominal_RX_end_exclusive": "0x2000bde8",
+      "TX_end_equals_RX_start": true,
+      "payload_store_PC": "0x8a1c",
+      "payload_store_uses_old_counter": true,
+      "normal_GP_slice_writes_disjoint_from_TX": true,
+      "normal_GP_store_intervals": [
+        [
+          "0x2000408a",
+          "0x2000408c"
+        ],
+        [
+          "0x2000409c",
+          "0x2000409d"
+        ],
+        [
+          "0x2000409c",
+          "0x2000409d"
+        ],
+        [
+          "0x200040a5",
+          "0x200040a6"
+        ]
+      ],
+      "all_RAM_accesses_isolated": false,
+      "whole_RX_or_runtime_reachability_proved": false
+    },
+    "decoder_bytes": 76,
+    "decoder_instructions": 24,
+    "original_image_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "inputs_sha256": {
+      "model.c": "b008232b4e5124a036ee7a9c2a6cb799b2e7e938d73fab8bb0587c1fc6249abf",
+      "wrapper.c": "cae75e8035a129d0a5637181658352be24c9b6c7c972ebffaddcf3c26dfade8b",
+      "oracle.py": "cd97e30fcd4c18567c57e2ead050ef2c86c320bbb1e5588528988d316eb2d586",
+      "verify.py": "2935f4c5f99a7383e8ae6a46b1f3e301c790c6b6294c0fe025bb7d73751b933f",
+      "layout.py": "e58d0519da015d9966b313235afeb3f92cb73a06bf9a43a78d733c9009eb7ef6"
+    },
+    "tools_sha256": {
+      "clang": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+      "ld.lld": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "actual_host_C_executed": true,
+    "original_payload_instructions_interpreted": true,
+    "whole_callback_executed": false,
+    "hardware_executed": false
+  },
+  "normal_oracle_tests": {
+    "passed": true,
+    "methods": 11
+  },
+  "optimized": {
+    "passed": true,
+    "cases_per_profile": 5880,
+    "profiles": {
+      "c_O0": {
+        "cases": 5880,
+        "payload_cases": 5040,
+        "rejected_cases": 840,
+        "all_32_registers_full_RAM_trace_equal": true
+      },
+      "c_O2": {
+        "cases": 5880,
+        "payload_cases": 5040,
+        "rejected_cases": 840,
+        "all_32_registers_full_RAM_trace_equal": true
+      },
+      "cpp_O0": {
+        "cases": 5880,
+        "payload_cases": 5040,
+        "rejected_cases": 840,
+        "all_32_registers_full_RAM_trace_equal": true
+      },
+      "cpp_O2": {
+        "cases": 5880,
+        "payload_cases": 5040,
+        "rejected_cases": 840,
+        "all_32_registers_full_RAM_trace_equal": true
+      }
+    },
+    "compiled_mutants_rejected": {
+      "guard_allows_1040": {
+        "case": 1680,
+        "fixture": {
+          "field": "normal",
+          "count": 1040,
+          "length": 0,
+          "byte": 0,
+          "old_sum": 0,
+          "source": "GP_sum"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "payload_uses_new_count": {
+        "case": 0,
+        "fixture": {
+          "field": "normal",
+          "count": 0,
+          "length": 0,
+          "byte": 0,
+          "old_sum": 0,
+          "source": "GP_sum"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "cached_expected_length": {
+        "case": 3370,
+        "fixture": {
+          "field": "length",
+          "count": 0,
+          "length": 0,
+          "byte": 1,
+          "old_sum": 0,
+          "source": "GP_sum"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "cached_checksum_byte": {
+        "case": 1,
+        "fixture": {
+          "field": "normal",
+          "count": 0,
+          "length": 0,
+          "byte": 0,
+          "old_sum": 0,
+          "source": "payload"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "state_six_only_on_equality": {
+        "case": 0,
+        "fixture": {
+          "field": "normal",
+          "count": 0,
+          "length": 0,
+          "byte": 0,
+          "old_sum": 0,
+          "source": "GP_sum"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "checksum_ignores_live_S1": {
+        "case": 2,
+        "fixture": {
+          "field": "normal",
+          "count": 0,
+          "length": 0,
+          "byte": 0,
+          "old_sum": 0,
+          "source": "count"
+        },
+        "state_mismatch": true,
+        "trace_equal": false
+      },
+      "checksum_register_truncated": {
+        "case": 15,
+        "fixture": {
+          "field": "normal",
+          "count": 0,
+          "length": 0,
+          "byte": 1,
+          "old_sum": 255,
+          "source": "GP_sum"
+        },
+        "state_mismatch": true,
+        "trace_equal": true
+      }
+    },
+    "decoded_counter_and_RAM_audit": {
+      "reset_zero_start": "0x20004080",
+      "reset_zero_end_exclusive": "0x2000c958",
+      "reset_zero_word_stores": 8758,
+      "nominal_TX_start": "0x2000b18c",
+      "nominal_TX_end_exclusive": "0x2000b9d8",
+      "nominal_TX_bytes": 2124,
+      "reset_covers_every_TX_byte": true,
+      "later_zero_fill_request": {
+        "call_PC": "0x8ea6",
+        "slot": "0x40048",
+        "A0": "0x2000b18c",
+        "A1": 0,
+        "A2": 2124
+      },
+      "installed_fill_side_effects_proved": false,
+      "exclusive_RAM_ownership_proved": false,
+      "counter_values_checked": 65536,
+      "payload_write_counter_values": 1040,
+      "over_limit_counter_values": 64496,
+      "nominal_RX_start": "0x2000b9d8",
+      "nominal_RX_end_exclusive": "0x2000bde8",
+      "TX_end_equals_RX_start": true,
+      "payload_store_PC": "0x8a1c",
+      "payload_store_uses_old_counter": true,
+      "normal_GP_slice_writes_disjoint_from_TX": true,
+      "normal_GP_store_intervals": [
+        [
+          "0x2000408a",
+          "0x2000408c"
+        ],
+        [
+          "0x2000409c",
+          "0x2000409d"
+        ],
+        [
+          "0x2000409c",
+          "0x2000409d"
+        ],
+        [
+          "0x200040a5",
+          "0x200040a6"
+        ]
+      ],
+      "all_RAM_accesses_isolated": false,
+      "whole_RX_or_runtime_reachability_proved": false
+    },
+    "decoder_bytes": 76,
+    "decoder_instructions": 24,
+    "original_image_sha256": "0ee64183daaa140acac7dbb6c0f7c26d1fe625344ed158151731a9b2632fb667",
+    "inputs_sha256": {
+      "model.c": "b008232b4e5124a036ee7a9c2a6cb799b2e7e938d73fab8bb0587c1fc6249abf",
+      "wrapper.c": "cae75e8035a129d0a5637181658352be24c9b6c7c972ebffaddcf3c26dfade8b",
+      "oracle.py": "cd97e30fcd4c18567c57e2ead050ef2c86c320bbb1e5588528988d316eb2d586",
+      "verify.py": "2935f4c5f99a7383e8ae6a46b1f3e301c790c6b6294c0fe025bb7d73751b933f",
+      "layout.py": "e58d0519da015d9966b313235afeb3f92cb73a06bf9a43a78d733c9009eb7ef6"
+    },
+    "tools_sha256": {
+      "clang": "047dfde05acc6fcce5af669e25cd8d40b4f509b8842d151d6d8a43a1c6a35fd6",
+      "ld.lld": "fe7f55c0c78b3d87f33b905a3874e10e872ca7beef53a8199d7ff9ac6641ec3f"
+    },
+    "actual_host_C_executed": true,
+    "original_payload_instructions_interpreted": true,
+    "whole_callback_executed": false,
+    "hardware_executed": false
+  },
+  "optimized_oracle_tests": {
+    "passed": true,
+    "methods": 11
+  },
+  "normal_and_optimized_equal": true,
+  "additional_inputs_sha256": {
+    "test_oracle.py": "e8bf58b95a16b565ce88ab7664005333dc9b23c8fcc67d3465206d2dcbb8790d",
+    "source-provenance.json": "c0e96c5b15ef497c4e62c79cfce218a2f5f9a181f683d97bb4964c25559f44f1"
+  }
+}
