@@ -1,5 +1,10 @@
 # Defaults: one genuine provider resolved
 
+Follow-up: [regular build integration](../v4160-defaults-integrated/README.md)
+now registers this source and removes the numerical defaults witness. The
+isolated profile and unchanged-manifest descriptions below retain this stage's
+historical evidence.
+
 The actual APP PC-relative reference to `tsl9_settings_default_data_1a69c` now
 resolves to a compiled, section-backed four-byte OBJECT in this isolated link
 profile. This uses the **fresh source-only UUID aggregate**, not the older
